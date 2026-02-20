@@ -1,0 +1,93 @@
+# Proposal: Scaling Roadmap & Admin Tools
+
+## Objective
+The current roadmap uses static JSON array data (`ROADMAP_STAGES` in JS and [lessons.json](file:///Users/niko/antigravity/vnme/src/data/lessons.json)). While effective for prototyping 4 units, a 100-level roadmap requires a scalable data architecture, lazy loading, and an Admin interface for content creators (teachers/linguists) to manage curriculum updates without a developer.
+
+## 1. Data Structure Architecture
+
+**Moving from Static to Relational (or Document) Database**
+To support 100 levels, we need a backend (like Firebase/Firestore, Supabase/PostgreSQL, or a local SQLite db with Express as currently used for the dictionary).
+
+### 1.1 `Units` Collection
+A "Unit" groups several nodes (lessons). With 100 levels, we might have 20 Units of 5 nodes.
+```javascript
+{
+  id: "unit-1",
+  order_index: 1,       // For sorting
+  title: "Welcome to Vietnam",
+  subtitle: "Greetings & Intro",
+  themeColor: "#10B981",
+  coverImage: "url...",
+  unlockCondition: "unit-0-completed" // or cost
+}
+```
+
+### 1.2 `Nodes` Collection 
+Individual spots on the map.
+```javascript
+{
+  id: "node-1-1",
+  unit_id: "unit-1",
+  order_index: 1,
+  type: "learn", // 'learn', 'practice', 'boss'
+  label: "The First Hello",
+  icon: "MessageCircle",
+  content_ref_id: "lesson-101" // Pointer to the actual lesson content
+}
+```
+
+### 1.3 `LessonContent` Collection
+The payload loaded when the game starts.
+```javascript
+{
+  id: "lesson-101",
+  goal: "Say hello",
+  vocabulary: ["xin", "chào", "bạn"], // FK to dictionary/vocab collection
+  sentences: [
+    { 
+       vietnamese: "Xin chào", 
+       english: "Hello", 
+       audio: "url..." 
+    }
+  ],
+  grammar_patterns: ["pattern-1"]
+}
+```
+
+### Benefits of this Structure:
+*   **Lazy Loading**: The Roadmap UI only needs to fetch `Units` and `Nodes`. The large `LessonContent` is only fetched (via `content_ref_id`) when the user clicks "Start".
+*   **Reusability**: `content_ref_id` allows multiple nodes to point to the same lesson (e.g., for spaced repetition).
+
+## 2. The Admin Content Management System (CMS)
+
+To edit 100 levels, manipulating JSON files manually is prone to devastating typos. We propose an internal Admin Dashboard.
+
+### 2.1 Access & Routing
+*   Route: `/admin/curriculum`
+*   Requires Admin/Mentor role in `UserContext`.
+
+### 2.2 Core Features of the CMS
+1.  **Visual Roadmap Mapper**:
+    *   A drag-and-drop interface mapping Units to Nodes.
+    *   Ability to re-order units or insert new lessons between existing nodes safely.
+2.  **Lesson Builder UI**:
+    *   **Vocab Selector**: Type to search the global dictionary. Clicking adds the word to the lesson's pool.
+    *   **Sentence Constructor**: Input Vietnamese. Input English. The system automatically tokenizes the sentence for the "Sentence Builder" game logic.
+    *   **Audio Uploader**: A button to automatically generate TTS audio files and upload them to cloud storage (e.g., AWS S3 or Firebase Storage), bypassing manual mp3 recording.
+3.  **Validation Engine**:
+    *   Before "Publishing" a lesson, the CMS checks if all vocab words exist in the dictionary, if audio links are valid, and if the translation strings are filled.
+
+## 3. Implementation Phases
+
+**Phase 1: Backend Setup & Migration**
+*   Create schemas in Postgres/SQLite or Firestore for Units, Nodes, and Content.
+*   Write a one-time migration script to move existing JSON files into the database.
+*   Refactor [Roadmap.jsx](file:///Users/niko/antigravity/vnme/src/pages/Roadmap.jsx) and [LessonGame.jsx](file:///Users/niko/antigravity/vnme/src/pages/LessonGame.jsx) to `fetch()` data from API routes instead of `import`ing JSON.
+
+**Phase 2: Admin Dashboard Foundation**
+*   Build basic CRUD (Create, Read, Update, Delete) UI forms for lessons (`/admin/lessons/edit/:id`).
+*   Implement token-based authentication for the `/admin` routes.
+
+**Phase 3: Automated Audio & Content Generation (AI Integration)**
+*   Integrate Google Cloud TTS or OpenAI Whisper/TTS API so admins can auto-generate `[sentence].mp3` files right in the browser.
+*   (Optional) "Auto-Generate Lesson": Admin types a topic ("Booking a hotel"), and an LLM drafts the vocab and 5 sentences. Admin approves/edits, and the lesson is injected into the node.
