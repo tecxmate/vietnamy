@@ -35,11 +35,11 @@ import VocabPractice from './pages/Practice/VocabPractice';
 import TonePitchTraining from './pages/Practice/TonePitchTraining';
 import TelexTyping from './pages/Practice/TelexTyping';
 
-function StudentApp() {
+function StudentApp({ initialTab = 'roadmap' }) {
   const [hasCompletedOnboarding, setHasCompletedOnboarding] = useState(() => {
     return localStorage.getItem('vnme_onboarding_completed') === 'true';
   });
-  const [activeTab, setActiveTab] = useState('roadmap');
+  const [activeTab, setActiveTab] = useState(initialTab);
   const [userStats, setUserStats] = useState({ streak: 0, hearts: 5, xp: 0 });
 
   const completeOnboarding = () => {
@@ -85,6 +85,7 @@ function App() {
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<StudentApp />} />
+              <Route path="/practice" element={<StudentApp initialTab="practice" />} />
               <Route path="/lesson/:lessonId" element={<div className="mobile-app-wrapper"><LessonGame /></div>} />
 
               {/* Full-screen Practice Routes */}
