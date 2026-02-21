@@ -278,21 +278,72 @@ export const getLessonContent = (contentRefId) => {
 export const saveLessonContent = (contentData) => {
     const db = getDB();
 
-    if (!db.lessonContent) {
-        db.lessonContent = [];
+    // 1. Update Lesson Metadata if exists
+    const lessonIndex = db.lessons.findIndex(l => l.id === contentData.id);
+    if (lessonIndex >= 0) {
+        db.lessons[lessonIndex].title = contentData.goal || db.lessons[lessonIndex].title;
     }
 
-    const index = db.lessonContent.findIndex(c => c.id === contentData.id);
+    // 2. Clear old exercises for this lesson and regenerate
+    if (!db.exercises) db.exercises = [];
+    db.exercises = db.exercises.filter(ex => ex.lesson_id !== contentData.id);
 
+    const sentences = contentData.sentences || [];
+
+    // Generate a few different exercise types for each sentence to make it "playable"
+    sentences.forEach((s, idx) => {
+        const baseId = `${contentData.id}_${idx}`;
+
+        // Exercise 1: MCQ Translate English -> Vietnamese
+        db.exercises.push({
+            id: `${baseId}_mcq_vi`,
+            lesson_id: contentData.id,
+            exercise_type: "mcq_translate_to_vi",
+            prompt: {
+                instruction: "Translate to Vietnamese",
+                source_text_en: s.english,
+                choices_vi: [s.vietnamese, "Tôi không hiểu", "Chào bạn"], // Hardcoded distractors for MVP
+                answer_vi: s.vietnamese
+            }
+        });
+
+        // Exercise 2: Word Reordering
+        const tokens = s.vietnamese.split(' ').filter(t => t.trim());
+        if (tokens.length > 1) {
+            db.exercises.push({
+                id: `${baseId}_reorder`,
+                lesson_id: contentData.id,
+                exercise_type: "reorder_words",
+                prompt: {
+                    instruction: "Put the words in order",
+                    target_vi: s.vietnamese,
+                    tokens: [...tokens].sort(() => Math.random() - 0.5),
+                    answer_tokens: tokens
+                }
+            });
+        }
+
+        // Exercise 3: Dictation (Simple text entry)
+        db.exercises.push({
+            id: `${baseId}_dictation`,
+            lesson_id: contentData.id,
+            exercise_type: "dictation", // Note: LessonGame uses this for simple text input
+            prompt: {
+                instruction: "Type in Vietnamese",
+                source_text_en: s.english,
+                answer_vi: s.vietnamese,
+                accepted_answers_vi: [s.vietnamese, s.vietnamese.toLowerCase()]
+            }
+        });
+    });
+
+    // 3. Fallback for old lessonContent array (for compatibility with existing UI logic)
+    if (!db.lessonContent) db.lessonContent = [];
+    const index = db.lessonContent.findIndex(c => c.id === contentData.id);
     if (index >= 0) {
         db.lessonContent[index] = contentData;
     } else {
-        // Determine a new ID if not provided (though Admin usually supplies it)
-        const newContent = {
-            id: contentData.id || `lesson-content-${Date.now()}`,
-            ...contentData
-        };
-        db.lessonContent.push(newContent);
+        db.lessonContent.push(contentData);
     }
 
     saveDB(db);

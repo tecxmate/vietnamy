@@ -1,0 +1,329 @@
+/* src/pages/Practice/TonePitchTraining.css */
+
+/* Only styles specific to TonePitchTraining not present in PracticeShared.css */
+
+/* ─── Wave Animations ───────────────────────────────────────────── */
+.pitch-intro-visual {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+}
+
+.pitch-hero-icon {
+    color: var(--primary-color);
+}
+
+.pitch-wave-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 4px;
+    height: 60px;
+}
+
+.pitch-wave-bar {
+    width: 6px;
+    border-radius: 3px;
+    background: linear-gradient(to top, var(--primary-color), var(--success-color));
+    animation: waveBar 1.2s ease-in-out infinite alternate;
+}
+
+@keyframes waveBar {
+    0% {
+        transform: scaleY(0.4);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: scaleY(1);
+        opacity: 1;
+    }
+}
+
+/* ─── Tone Preview Chips ────────────────────────────────────────── */
+.pitch-tone-preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+    justify-content: center;
+    margin: var(--spacing-lg) 0;
+}
+
+.pitch-tone-chip {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: var(--radius-full);
+    background: color-mix(in srgb, var(--chip-color) 8%, transparent);
+    border: 1px solid color-mix(in srgb, var(--chip-color) 20%, transparent);
+    font-size: 0.85rem;
+    transition: transform 0.2s;
+}
+
+.pitch-tone-chip:hover {
+    transform: translateY(-1px);
+}
+
+.pitch-tone-mark {
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.pitch-tone-label {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+}
+
+.pitch-requirements {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    opacity: 0.7;
+    margin-bottom: var(--spacing-lg);
+}
+
+/* ─── Calibration ───────────────────────────────────────────────── */
+.pitch-calibrate-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: var(--radius-full);
+    background: rgba(4, 158, 117, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color);
+    transition: all 0.3s;
+    margin-bottom: var(--spacing-lg);
+}
+
+.pitch-calibrate-icon.active {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--danger-color);
+    animation: calibPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes calibPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.08);
+    }
+}
+
+.pitch-calibrate-progress {
+    width: 100%;
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    margin: var(--spacing-lg) 0;
+}
+
+.pitch-calibrate-bar {
+    height: 10px;
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.pitch-calibrate-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), var(--success-color));
+    border-radius: 5px;
+    transition: width 0.15s ease;
+}
+
+.pitch-calibrate-label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    text-align: center;
+}
+
+/* ─── Canvas Game View ──────────────────────────────────────────── */
+.pitch-progress-bar {
+    height: 6px;
+    background: var(--surface-color);
+}
+
+.pitch-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), var(--success-color));
+    transition: width 0.4s ease;
+}
+
+.pitch-word-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+}
+
+.pitch-target-word {
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--text-main);
+    letter-spacing: 0.02em;
+}
+
+.pitch-listen-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-full);
+    background: var(--surface-color);
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid var(--border-color);
+}
+
+.pitch-listen-btn:hover {
+    background: rgba(4, 158, 117, 0.1);
+    border-color: var(--primary-color);
+    transform: scale(1.05);
+}
+
+.pitch-word-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+}
+
+.pitch-word-meaning {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.pitch-tone-badge {
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: var(--radius-full);
+}
+
+.pitch-canvas-legend {
+    display: flex;
+    gap: var(--spacing-lg);
+    justify-content: center;
+    padding: var(--spacing-sm) 0;
+}
+
+.pitch-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.pitch-legend-swatch {
+    width: 16px;
+    height: 3px;
+    border-radius: 2px;
+    display: inline-block;
+}
+
+.pitch-legend-swatch.live {
+    background: #38bdf8;
+    box-shadow: 0 0 6px #38bdf8;
+}
+
+/* ─── Result Panel / Animations ─────────────────────────────────── */
+.pitch-result-panel {
+    animation: slideUpResult 0.35s ease-out;
+}
+
+@keyframes slideUpResult {
+    from {
+        transform: translateY(16px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.pitch-score-ring {
+    position: relative;
+    width: 72px;
+    height: 72px;
+    flex-shrink: 0;
+}
+
+.pitch-score-svg {
+    width: 100%;
+    height: 100%;
+}
+
+.pitch-score-number {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--primary-color);
+}
+
+.pitch-result-message {
+    font-weight: 700;
+    font-size: 1.05rem;
+    margin-bottom: 2px;
+}
+
+.pitch-result-detail {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+}
+
+/* ─── Summary ───────────────────────────────────────────────────── */
+.pitch-tone-breakdown {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+    justify-content: center;
+    margin: var(--spacing-md) 0;
+}
+
+.pitch-tone-score {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border-radius: var(--radius-md);
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    font-size: 0.85rem;
+}
+
+@media (max-width: 640px) {
+    .pitch-target-word {
+        font-size: 2rem;
+    }
+
+    .pitch-result-panel>div {
+        flex-direction: column;
+        text-align: center !important;
+    }
+}

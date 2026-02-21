@@ -1,0 +1,545 @@
+/* src/pages/Practice/VocabPractice.css */
+
+/* Only styles specific to VocabPractice not present in PracticeShared.css */
+
+/* ─── Tabs ────────────────────────────────────────────────────── */
+.voc-tabs {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-xl);
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: var(--spacing-sm);
+    overflow-x: auto;
+}
+
+.voc-tab {
+    padding: 8px 20px;
+    border-radius: var(--radius-full);
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    transition: all 0.2s;
+    white-space: nowrap;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.voc-tab:hover {
+    color: var(--primary-color);
+    background: rgba(255, 209, 102, 0.06);
+}
+
+.voc-tab.active {
+    background: var(--primary-color);
+    color: #1a1a1a;
+    box-shadow: 0 2px 8px rgba(255, 209, 102, 0.25);
+}
+
+/* ─── Section Headers ─────────────────────────────────────────── */
+.voc-section-header {
+    margin-bottom: var(--spacing-lg);
+}
+
+.voc-section-header h2 {
+    font-size: 1.35rem;
+    margin-bottom: 4px;
+    color: var(--text-main);
+}
+
+.voc-subtitle {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+}
+
+/* ─── Category Pills ──────────────────────────────────────────── */
+.voc-category-pills {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: var(--spacing-lg);
+}
+
+.voc-pill {
+    padding: 6px 16px;
+    border-radius: var(--radius-full);
+    font-size: 0.85rem;
+    font-weight: 500;
+    border: 1px solid var(--border-color);
+    color: var(--text-muted);
+    background: var(--surface-color);
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.voc-pill:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.voc-pill.active {
+    background: var(--primary-color);
+    color: #1a1a1a;
+    border-color: var(--primary-color);
+}
+
+/* ─── Image Fallback ──────────────────────────────────────────── */
+.voc-img-fallback {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: linear-gradient(135deg, var(--surface-color), var(--bg-color));
+}
+
+.voc-img-fallback-emoji {
+    font-size: 4rem;
+    line-height: 1;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.voc-img-fallback-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+/* ─── Browse Grid ─────────────────────────────────────────────── */
+.voc-browse-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+.voc-browse-card {
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.voc-browse-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary-color);
+}
+
+.voc-browse-card.playing {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(255, 209, 102, 0.15);
+}
+
+.voc-card-img-wrap {
+    position: relative;
+    height: 150px;
+    overflow: hidden;
+}
+
+.voc-card-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.voc-browse-card:hover .voc-card-img-wrap img {
+    transform: scale(1.05);
+}
+
+.voc-img-badge {
+    position: absolute;
+    bottom: 6px;
+    right: 6px;
+    background: rgba(0, 0, 0, 0.55);
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.6rem;
+    padding: 2px 8px;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    backdrop-filter: blur(4px);
+}
+
+.voc-card-body {
+    padding: 12px 14px 4px;
+    display: flex;
+    flex-direction: column;
+}
+
+.voc-vn {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.voc-en {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 2px;
+}
+
+.voc-card-footer {
+    padding: 6px 14px 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.voc-speaker {
+    color: var(--primary-color);
+    flex-shrink: 0;
+}
+
+.voc-example {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-style: italic;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* ─── Flashcard ───────────────────────────────────────────────── */
+.voc-flashcard-progress {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.voc-progress-bar {
+    flex: 1;
+    height: 6px;
+    background: var(--border-color);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+}
+
+.voc-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), var(--success-color));
+    border-radius: var(--radius-full);
+    transition: width 0.3s ease;
+}
+
+.voc-flashcard-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+    min-height: 380px;
+}
+
+.voc-nav-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-main);
+    transition: all 0.2s;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.voc-nav-btn:hover:not(:disabled) {
+    background: var(--primary-color);
+    color: #1a1a1a;
+    border-color: var(--primary-color);
+}
+
+.voc-nav-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+/* 3D Flip Card */
+.voc-flashcard {
+    width: 340px;
+    height: 380px;
+    perspective: 1000px;
+    cursor: pointer;
+    position: relative;
+}
+
+.voc-flashcard-face {
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    backface-visibility: hidden;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-lg);
+}
+
+.voc-front {
+    transform: rotateY(0deg);
+}
+
+.voc-back {
+    transform: rotateY(180deg);
+}
+
+.voc-flashcard.flipped .voc-front {
+    transform: rotateY(-180deg);
+}
+
+.voc-flashcard.flipped .voc-back {
+    transform: rotateY(0deg);
+}
+
+.voc-front img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.voc-flash-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.voc-flash-prompt {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.voc-flash-hint {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.85rem;
+    font-style: italic;
+}
+
+.voc-back {
+    background: var(--surface-color);
+    display: flex;
+    flex-direction: column;
+}
+
+.voc-back-img {
+    width: 100%;
+    height: 45%;
+    object-fit: cover;
+}
+
+.voc-back-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 16px;
+    text-align: center;
+}
+
+.voc-back-vn {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.voc-back-en {
+    font-size: 1rem;
+    color: var(--text-muted);
+}
+
+.voc-back-example {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-top: 4px;
+}
+
+.voc-speak-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 16px;
+    border-radius: var(--radius-full);
+    background: var(--primary-color);
+    color: #1a1a1a;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-top: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.voc-speak-btn:hover {
+    filter: brightness(1.1);
+}
+
+.voc-flash-actions {
+    display: flex;
+    justify-content: center;
+}
+
+.voc-hint-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 20px;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--border-color);
+    color: var(--text-muted);
+    background: transparent;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+}
+
+.voc-hint-btn:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+/* ─── Quiz Card Overrides ─── */
+.voc-progress {
+    height: 8px;
+    background: var(--surface-color);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.voc-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), var(--success-color));
+    transition: width 0.4s ease;
+}
+
+.voc-quiz-image-wrap {
+    width: 280px;
+    height: 200px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin-bottom: var(--spacing-lg);
+    position: relative;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+}
+
+.voc-quiz-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.voc-quiz-english-hint {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 8px;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    text-align: center;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.voc-quiz-question {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: var(--spacing-lg);
+    text-align: center;
+}
+
+.voc-quiz-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    width: 100%;
+    max-width: 500px;
+}
+
+.voc-quiz-option {
+    padding: 14px 16px;
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-md);
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.15s;
+    background: transparent;
+    color: var(--text-main);
+}
+
+.voc-quiz-option:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+    background: var(--surface-color);
+}
+
+.voc-quiz-option.selected {
+    border-color: var(--primary-color);
+    background: rgba(255, 209, 102, 0.08);
+    /* Transparent gold */
+    box-shadow: 0 0 0 3px rgba(255, 209, 102, 0.15);
+}
+
+.voc-quiz-option.correct-highlight {
+    border-color: var(--success-color);
+    background: rgba(6, 214, 160, 0.1);
+    color: var(--success-color);
+}
+
+.voc-quiz-option.wrong {
+    border-color: var(--danger-color);
+    background: rgba(239, 71, 111, 0.1);
+    color: var(--danger-color);
+}
+
+.voc-quiz-option.disabled {
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+
+/* ─── Responsive ──────────────────────────────────────────────── */
+@media (max-width: 640px) {
+    .voc-browse-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-md);
+    }
+
+    .voc-flashcard {
+        width: 280px;
+        height: 340px;
+    }
+
+    .voc-quiz-options {
+        grid-template-columns: 1fr;
+    }
+
+    .voc-quiz-image-wrap {
+        width: 100%;
+        max-width: 280px;
+    }
+}

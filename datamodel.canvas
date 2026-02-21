@@ -1,0 +1,28 @@
+{
+	"nodes":[
+		{"id":"d2","type":"text","text":"Course\n- id\n- code\n- title\n- dialect_default","x":0,"y":0,"width":255,"height":201},
+		{"id":"d3","type":"text","text":"Unit\n- id\n- course_id\n- unit_index\n- title","x":0,"y":336,"width":255,"height":201},
+		{"id":"d4","type":"text","text":"Skill\n- id\n- course_id\n- key\n- title\n- skill_type","x":382,"y":336,"width":255,"height":201},
+		{"id":"d5","type":"text","text":"Lesson\n- id\n- skill_id\n- lesson_index\n- title\n- target_xp","x":382,"y":671,"width":255,"height":235},
+		{"id":"d6","type":"text","text":"PathNode\n- id\n- unit_id\n- node_type\n- lesson_id\n- unlock_rule\n- status","x":0,"y":671,"width":255,"height":269},
+		{"id":"d8","type":"text","text":"Exercise\n- id\n- lesson_id\n- exercise_type\n- prompt (JSON)","x":956,"y":0,"width":255,"height":201},
+		{"id":"d9","type":"text","text":"Item (Word/Phrase)\n- id\n- item_type\n- vi_text\n- audio_key\n- dialect","x":956,"y":336,"width":255,"height":235},
+		{"id":"d10","type":"text","text":"Translation\n- item_id\n- lang\n- text","x":956,"y":671,"width":255,"height":168},
+		{"id":"d12","type":"text","text":"User\n- id\n- role (Admin/Guest/Learner)\n- onboarding_data\n- stats (xp, streak, hearts)","x":1465,"y":0,"width":255,"height":235},
+		{"id":"d13","type":"text","text":"Achievement\n- id\n- name\n- criteria\n- progress","x":1465,"y":336,"width":255,"height":201},
+		{"id":"d14","type":"text","text":"WatchContent\n- id\n- title\n- video_url\n- dual_subs (json)","x":1465,"y":671,"width":255,"height":201},
+		{"id":"d7","type":"text","text":"# Content & Dictionary","x":934,"y":-100,"width":300,"height":80},
+		{"id":"d11","type":"text","text":"# User & Session","x":1443,"y":-100,"width":300,"height":80},
+		{"id":"d1","type":"text","text":"# Course Structure","x":-22,"y":-100,"width":300,"height":80}
+	],
+	"edges":[
+		{"id":"ed1","fromNode":"d2","fromSide":"bottom","toNode":"d3","toSide":"top"},
+		{"id":"ed2","fromNode":"d3","fromSide":"bottom","toNode":"d6","toSide":"top"},
+		{"id":"ed3","fromNode":"d6","fromSide":"right","toNode":"d5","toSide":"left"},
+		{"id":"ed4","fromNode":"d5","fromSide":"top","toNode":"d4","toSide":"bottom"},
+		{"id":"ed5","fromNode":"d5","fromSide":"right","toNode":"d8","toSide":"left"},
+		{"id":"ed6","fromNode":"d8","fromSide":"bottom","toNode":"d9","toSide":"top"},
+		{"id":"ed7","fromNode":"d9","fromSide":"bottom","toNode":"d10","toSide":"top"},
+		{"id":"ed8","fromNode":"d12","fromSide":"bottom","toNode":"d13","toSide":"top"}
+	]
+}

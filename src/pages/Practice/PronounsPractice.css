@@ -1,0 +1,166 @@
+/* src/pages/Practice/PronounsPractice.css */
+
+/* Only styles specific to PronounsPractice not present in PracticeShared.css */
+
+.pronouns-content {
+    display: grid;
+    grid-template-columns: 250px 1fr 300px;
+    gap: var(--spacing-xl);
+    align-items: start;
+}
+
+@media (max-width: 1024px) {
+    .pronouns-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ─── Profile Panel ─────────────────────────────────────────────── */
+.profile-config-panel {
+    background: var(--surface-color);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+}
+
+.config-row {
+    margin-bottom: var(--spacing-md);
+}
+
+.config-row label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text-muted);
+}
+
+.toggle-group {
+    display: flex;
+    gap: 8px;
+}
+
+.toggle-group button {
+    flex: 1;
+    padding: 8px;
+    border: 2px solid var(--border-color);
+    background: transparent;
+    border-radius: var(--radius-md);
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--text-muted);
+    transition: all 0.2s;
+}
+
+.toggle-group button.active {
+    background: rgba(4, 158, 117, 0.1);
+    color: var(--success-color);
+    border-color: var(--success-color);
+}
+
+.persona-summary {
+    margin-top: var(--spacing-lg);
+    padding-top: var(--spacing-lg);
+    border-top: 1px dashed var(--border-color);
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    text-align: center;
+}
+
+.persona-summary strong {
+    color: var(--text-main);
+}
+
+/* ─── Interaction Panel ─────────────────────────────────────────── */
+.interaction-panel {
+    position: sticky;
+    top: 2rem;
+}
+
+.interaction-card {
+    background: var(--surface-color);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.placeholder-card {
+    background: transparent;
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    border: 2px dashed var(--border-color);
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.pronoun-equation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(4, 158, 117, 0.08);
+    /* light success tint */
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-md);
+    border: 1px solid rgba(4, 158, 117, 0.2);
+}
+
+.side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.p-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    font-weight: 600;
+}
+
+.p-word {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--success-color);
+}
+
+.arrow {
+    color: rgba(4, 158, 117, 0.4);
+}
+
+.explanation {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    background: var(--bg-color);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-md);
+    line-height: 1.5;
+    border: 1px solid var(--border-color);
+}
+
+.explanation strong {
+    color: var(--text-main);
+}
+
+@keyframes slideUpResult {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

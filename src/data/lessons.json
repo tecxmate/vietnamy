@@ -1,0 +1,361 @@
+[
+    {
+        "id": 1,
+        "title": "Module 1: Welcome to Vietnam",
+        "goal": "Greet people and introduce yourself.",
+        "pronunciation_focus": {
+            "title": "The 6 Tones",
+            "description": "Vietnamese is a tonal language. The meaning of a word changes depending on the tone.",
+            "visual_cues": [
+                "ngang",
+                "huyền",
+                "sắc",
+                "hỏi",
+                "ngã",
+                "nặng"
+            ]
+        },
+        "dialogue": [
+            {
+                "id": "d1-1",
+                "speaker": "Nam",
+                "vietnamese": "Xin chào! Bạn khỏe không?",
+                "meaning": "Hello! How are you?",
+                "audio": "/audio/xin_chao_ban_khoe_khong.mp3",
+                "avatar": "https://ui-avatars.com/api/?name=Nam&background=0D8ABC&color=fff"
+            },
+            {
+                "id": "d1-2",
+                "speaker": "You",
+                "vietnamese": "Chào Nam. Tôi khỏe, cảm ơn.",
+                "meaning": "Hi Nam. I'm good, thanks.",
+                "audio": "/audio/chao_nam_toi_khoe.mp3",
+                "avatar": "https://ui-avatars.com/api/?name=You&background=ef4444&color=fff"
+            },
+            {
+                "id": "d1-3",
+                "speaker": "Nam",
+                "vietnamese": "Bạn tên là gì?",
+                "meaning": "What is your name?",
+                "audio": "/audio/ban_ten_la_gi.mp3",
+                "avatar": "https://ui-avatars.com/api/?name=Nam&background=0D8ABC&color=fff"
+            },
+            {
+                "id": "d1-4",
+                "speaker": "You",
+                "vietnamese": "Tôi tên là John. Rất vui được gặp bạn.",
+                "meaning": "My name is John. Nice to meet you.",
+                "audio": "/audio/toi_ten_la_john.mp3",
+                "avatar": "https://ui-avatars.com/api/?name=You&background=ef4444&color=fff"
+            }
+        ],
+        "sentences": [
+            {
+                "id": "l1-s1",
+                "vietnamese": "Xin chào.",
+                "ipa": "[sin¹] [càːw²]",
+                "audio": "/audio/xin_chao.mp3",
+                "meaning": {
+                    "en": "Hello.",
+                    "cn": "你好。"
+                },
+                "words": [
+                    "xin",
+                    "chào"
+                ]
+            },
+            {
+                "id": "l1-s2",
+                "vietnamese": "Tôi tên là Nam.",
+                "ipa": "[toj¹] [ten¹] [làː²] [naːm¹]",
+                "audio": "/audio/toi_ten_la_nam.mp3",
+                "meaning": {
+                    "en": "My name is Nam.",
+                    "cn": "我叫 Nam。"
+                },
+                "words": [
+                    "tôi",
+                    "tên",
+                    "là"
+                ]
+            }
+        ],
+        "patterns": [
+            {
+                "id": "p1",
+                "structure": "Tôi + tên là + [Name]",
+                "explanation": "Used to introduce your name.",
+                "examples": [
+                    "Tôi tên là Linh.",
+                    "Tôi tên là Peter."
+                ]
+            }
+        ],
+        "vocabulary": [
+            "xin",
+            "chào",
+            "tôi",
+            "tên",
+            "là",
+            "bạn",
+            "khỏe",
+            "cảm ơn",
+            "gì",
+            "rất",
+            "vui"
+        ]
+    },
+    {
+        "id": 2,
+        "title": "Module 2: Coffee Culture",
+        "goal": "Order a coffee like a local.",
+        "pronunciation_focus": {
+            "title": "Vowels",
+            "description": "Focus on formatting 'ơ' and 'ư' correctly.",
+            "visual_cues": [
+                "ơ",
+                "ư"
+            ]
+        },
+        "dialogue": [
+            {
+                "id": "d2-1",
+                "speaker": "Staff",
+                "vietnamese": "Chào anh, anh uống gì?",
+                "meaning": "Hi, what would you like to drink?",
+                "audio": "/audio/chao_anh_uong_gi.mp3",
+                "avatar": "https://ui-avatars.com/api/?name=Staff&background=F59E0B&color=fff"
+            },
+            {
+                "id": "d2-2",
+                "speaker": "You",
+                "vietnamese": "Cho tôi một cà phê sữa đá.",
+                "meaning": "Give me an iced milk coffee.",
+                "audio": "/audio/cho_toi_ca_phe_sua_da.mp3",
+                "avatar": "https://ui-avatars.com/api/?name=You&background=ef4444&color=fff"
+            },
+            {
+                "id": "d2-3",
+                "speaker": "Staff",
+                "vietnamese": "Ít đường hay nhiều đường?",
+                "meaning": "Less sugar or more sugar?",
+                "audio": "/audio/it_duong_hay_nhieu_duong.mp3",
+                "avatar": "https://ui-avatars.com/api/?name=Staff&background=F59E0B&color=fff"
+            },
+            {
+                "id": "d2-4",
+                "speaker": "You",
+                "vietnamese": "Bình thường. Cám ơn em.",
+                "meaning": "Normal. Thank you.",
+                "audio": "/audio/binh_thuong_cam_on.mp3",
+                "avatar": "https://ui-avatars.com/api/?name=You&background=ef4444&color=fff"
+            }
+        ],
+        "sentences": [
+            {
+                "id": "l2-s1",
+                "vietnamese": "Cho tôi một bát phở.",
+                "ipa": "[cɔ¹] [toj¹] [mot⁶] [baːt⁵] [fəː⁴]",
+                "audio": "/audio/cho_toi_pho.mp3",
+                "meaning": {
+                    "en": "Give me a bowl of pho.",
+                    "cn": "给我一碗河粉。"
+                },
+                "words": [
+                    "cho",
+                    "một",
+                    "bát",
+                    "phở"
+                ]
+            }
+        ],
+        "patterns": [
+            {
+                "id": "p2",
+                "structure": "Cho tôi + [Dish/Drink]",
+                "explanation": "Polite way to order food.",
+                "examples": [
+                    "Cho tôi một bia.",
+                    "Cho tôi cơm tấm."
+                ]
+            }
+        ],
+        "vocabulary": [
+            "cho",
+            "tôi",
+            "một",
+            "cà phê",
+            "sữa",
+            "đá",
+            "đường",
+            "cám ơn"
+        ]
+    },
+    {
+        "id": 3,
+        "title": "Module 3: At the Market",
+        "goal": "Ask for prices and haggle.",
+        "pronunciation_focus": {
+            "title": "Ending Consonants",
+            "description": "Final 'm' vs 'n' vs 'ng'.",
+            "visual_cues": [
+                "m",
+                "n",
+                "ng"
+            ]
+        },
+        "dialogue": [
+            {
+                "id": "d3-1",
+                "speaker": "You",
+                "vietnamese": "Chị ơi, cái này bao nhiêu tiền?",
+                "meaning": "Hey (sister), how much is this?",
+                "audio": "/audio/cai_nay_bao_nhieu_tien.mp3",
+                "avatar": "https://ui-avatars.com/api/?name=You&background=ef4444&color=fff"
+            },
+            {
+                "id": "d3-2",
+                "speaker": "Seller",
+                "vietnamese": "Một trăm nghìn.",
+                "meaning": "100,000.",
+                "audio": "/audio/mot_tram_nghin.mp3",
+                "avatar": "https://ui-avatars.com/api/?name=Seller&background=10B981&color=fff"
+            },
+            {
+                "id": "d3-3",
+                "speaker": "You",
+                "vietnamese": "Đắt quá! Tám mươi nghìn được không?",
+                "meaning": "Too expensive! 80,000 okay?",
+                "audio": "/audio/dat_qua_tam_muoi.mp3",
+                "avatar": "https://ui-avatars.com/api/?name=You&background=ef4444&color=fff"
+            },
+            {
+                "id": "d3-4",
+                "speaker": "Seller",
+                "vietnamese": "Thôi được rồi. Bán cho em.",
+                "meaning": "Alright fine. Selling to you.",
+                "audio": "/audio/thoi_duoc_roi.mp3",
+                "avatar": "https://ui-avatars.com/api/?name=Seller&background=10B981&color=fff"
+            }
+        ],
+        "sentences": [
+            {
+                "id": "l3-s1",
+                "vietnamese": "Cái này bao nhiêu tiền?",
+                "ipa": "[kaj⁵] [naj²] [baːw¹] [ɲiəw¹] [tiən²]",
+                "audio": "/audio/bao_nhieu_tien.mp3",
+                "meaning": {
+                    "en": "How much is this?",
+                    "cn": "这个多少钱？"
+                },
+                "words": [
+                    "cái",
+                    "này",
+                    "bao nhiêu",
+                    "tiền"
+                ]
+            }
+        ],
+        "patterns": [
+            {
+                "id": "p3",
+                "structure": "[Item] + bao nhiêu tiền?",
+                "explanation": "Asking price.",
+                "examples": [
+                    "Ly cà phê này bao nhiêu tiền?"
+                ]
+            }
+        ],
+        "vocabulary": [
+            "cái",
+            "này",
+            "bao nhiêu",
+            "tiền",
+            "đắt",
+            "quá",
+            "trăm",
+            "nghìn"
+        ]
+    },
+    {
+        "id": 4,
+        "title": "Module 4: Taking a Taxi",
+        "goal": "Give directions to a driver.",
+        "pronunciation_focus": {
+            "title": "Tone Sandhi (Northern)",
+            "description": "How tones changes in rapid speech (demo).",
+            "visual_cues": []
+        },
+        "dialogue": [
+            {
+                "id": "d4-1",
+                "speaker": "Driver",
+                "vietnamese": "Em đi đâu?",
+                "meaning": "Where are you going?",
+                "audio": "/audio/em_di_dau.mp3",
+                "avatar": "https://ui-avatars.com/api/?name=Driver&background=3B82F6&color=fff"
+            },
+            {
+                "id": "d4-2",
+                "speaker": "You",
+                "vietnamese": "Cho tôi đến Chợ Bến Thành.",
+                "meaning": "Take me to Ben Thanh Market.",
+                "audio": "/audio/cho_toi_den_cho_ben_thanh.mp3",
+                "avatar": "https://ui-avatars.com/api/?name=You&background=ef4444&color=fff"
+            },
+            {
+                "id": "d4-3",
+                "speaker": "You",
+                "vietnamese": "Đi thẳng, rồi rẽ trái ở ngã tư.",
+                "meaning": "Go straight, then turn left at the intersection.",
+                "audio": "/audio/di_thang_roi_re_trai.mp3",
+                "avatar": "https://ui-avatars.com/api/?name=You&background=ef4444&color=fff"
+            },
+            {
+                "id": "d4-4",
+                "speaker": "Driver",
+                "vietnamese": "Ok, biết rồi.",
+                "meaning": "Ok, got it.",
+                "audio": "/audio/ok_biet_roi.mp3",
+                "avatar": "https://ui-avatars.com/api/?name=Driver&background=3B82F6&color=fff"
+            }
+        ],
+        "sentences": [
+            {
+                "id": "l4-s1",
+                "vietnamese": "Nhà vệ sinh ở đâu?",
+                "ipa": "[ɲaː²] [ve⁶] [siŋ¹] [əː⁴] [ɗəw¹]",
+                "audio": "/audio/nha_ve_sinh.mp3",
+                "meaning": {
+                    "en": "Where is the restroom?",
+                    "cn": "洗手间在哪里？"
+                },
+                "words": [
+                    "nhà vệ sinh",
+                    "ở",
+                    "đâu"
+                ]
+            }
+        ],
+        "patterns": [
+            {
+                "id": "p4",
+                "structure": "[Start point] + ở đâu?",
+                "explanation": "Asking location.",
+                "examples": [
+                    "Bến xe ở đâu?"
+                ]
+            }
+        ],
+        "vocabulary": [
+            "đi",
+            "đâu",
+            "đến",
+            "chợ",
+            "thẳng",
+            "rẽ",
+            "trái",
+            "phải"
+        ]
+    }
+]

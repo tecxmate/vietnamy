@@ -1,0 +1,418 @@
+/* src/pages/Practice/NumbersPractice.css */
+
+/* Only styles specific to NumbersPractice that aren't in PracticeShared.css */
+
+/* Stage Navigation */
+.stage-tabs {
+    display: flex;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+    width: 100%;
+    max-width: 500px;
+}
+
+.stage-tab {
+    flex: 1;
+    padding: 12px 16px;
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    background: transparent;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+    color: var(--text-muted);
+}
+
+.stage-tab:hover {
+    border-color: var(--primary-color);
+    color: var(--text-main);
+}
+
+.stage-tab.active {
+    background: var(--surface-color);
+    color: var(--text-main);
+    border-color: var(--primary-color);
+}
+
+.stage-tab.completed {
+    border-color: var(--success-color);
+    color: var(--success-color);
+}
+
+/* ─── Stage 1: Foundation Number Grid ─── */
+.number-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-4);
+    margin-bottom: var(--spacing-xl);
+    width: 100%;
+}
+
+@media (max-width: 480px) {
+    .number-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.number-tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 16px 8px;
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+}
+
+.number-tile:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+    background: var(--surface-color);
+}
+
+.number-tile .digit {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text-main);
+    line-height: 1;
+}
+
+.number-tile .vn-word {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.number-tile .speaker-icon {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    color: var(--text-muted);
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.number-tile:hover .speaker-icon {
+    opacity: 1;
+}
+
+.stage-intro {
+    text-align: center;
+    color: var(--text-muted);
+    margin-bottom: var(--spacing-lg);
+    font-size: 1.05rem;
+    font-weight: 500;
+}
+
+.stage-cta {
+    text-align: center;
+    margin-top: auto;
+    width: 100%;
+    margin-bottom: 24px;
+}
+
+.stage-cta button {
+    width: 100%;
+    max-width: 448px;
+    background-color: var(--primary-color);
+    color: #1A1A1A;
+    box-shadow: 0 4px 0 #DCAE45;
+    padding: 16px;
+    border-radius: var(--radius-full);
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: all 0.2s;
+    border: none;
+    cursor: pointer;
+}
+
+.stage-cta button:active {
+    box-shadow: 0 0 0 #DCAE45;
+    transform: translateY(4px);
+}
+
+/* ─── Stage 2: Pattern Builder ─── */
+.builder-target {
+    font-size: 6.5rem;
+    font-weight: 800;
+    color: var(--text-main);
+    margin-bottom: var(--spacing-md);
+    padding-top: var(--spacing-xl);
+    line-height: 1;
+}
+
+.builder-subtitle {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: var(--spacing-xl);
+}
+
+/* Decomposition display */
+.decomposition {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xxl);
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.decomp-part {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 20px;
+    border-radius: var(--radius-lg);
+    background: transparent;
+    border: 2px solid var(--border-color);
+    animation: popIn 0.3s ease backwards;
+}
+
+.decomp-part:nth-child(2) {
+    animation-delay: 0.15s;
+}
+
+.decomp-part:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.decomp-part:nth-child(4) {
+    animation-delay: 0.45s;
+}
+
+@keyframes popIn {
+    from {
+        opacity: 0;
+        transform: scale(0.7);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.decomp-part .part-digit {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.decomp-part .part-word {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.decomp-plus {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-muted);
+}
+
+/* Build area */
+.build-answer-area {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    min-height: 80px;
+    border-bottom: 2px solid var(--border-color);
+    padding: var(--spacing-xl) var(--spacing-md);
+    /* Increased padding */
+    margin-bottom: var(--spacing-xxl);
+    align-items: center;
+    width: 100%;
+}
+
+.build-answer-area .placeholder-text {
+    color: var(--text-muted);
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+.build-block {
+    padding: 12px 20px;
+    background: transparent;
+    border: 2px solid var(--primary-color);
+    border-radius: var(--radius-lg);
+    font-size: 1.15rem;
+    font-weight: 700;
+    cursor: pointer;
+    color: var(--text-main);
+    box-shadow: 0 4px 0 var(--primary-color);
+    transition: all 0.1s;
+}
+
+.build-block:active {
+    transform: translateY(4px);
+    box-shadow: 0 0 0 var(--primary-color);
+}
+
+.word-bank-builder {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    margin-bottom: var(--spacing-xxl);
+    width: 100%;
+}
+
+.bank-block {
+    padding: 12px 20px;
+    background: transparent;
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    font-size: 1.15rem;
+    font-weight: 700;
+    cursor: pointer;
+    color: var(--text-main);
+    box-shadow: 0 4px 0 var(--border-color);
+    transition: all 0.1s;
+}
+
+.bank-block:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 0 var(--primary-color);
+}
+
+.bank-block:active {
+    transform: translateY(4px);
+    box-shadow: none;
+}
+
+.bank-block.used {
+    background: var(--surface-color-light);
+    border-color: transparent;
+    box-shadow: none;
+    color: transparent;
+    pointer-events: none;
+}
+
+/* ─── Stage 3: Challenge ─── */
+.challenge-progress {
+    height: 8px;
+    background: var(--surface-color);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.challenge-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), var(--success-color));
+    transition: width 0.4s ease;
+}
+
+.challenge-prompt {
+    font-size: 1.2rem;
+    color: var(--text-main);
+    font-weight: 700;
+    margin-bottom: var(--spacing-lg);
+}
+
+.challenge-number {
+    font-size: 5rem;
+    font-weight: 800;
+    color: var(--text-main);
+    line-height: 1;
+    margin-bottom: var(--spacing-xl);
+}
+
+.challenge-input {
+    font-size: 1.8rem;
+    text-align: center;
+    padding: var(--spacing-lg);
+    width: 100%;
+    max-width: 300px;
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    background: transparent;
+    outline: none;
+    letter-spacing: 2px;
+    color: var(--text-main);
+    font-weight: 700;
+}
+
+.challenge-input:focus {
+    border-color: var(--primary-color);
+}
+
+.challenge-input.correct-input {
+    border-color: var(--success-color);
+    color: var(--success-color);
+}
+
+.challenge-input.wrong-input {
+    border-color: var(--danger-color);
+    color: var(--danger-color);
+}
+
+.challenge-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-4);
+    width: 100%;
+}
+
+@media (min-width: 600px) {
+    .challenge-options {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+}
+
+.challenge-option {
+    padding: 16px 12px;
+    background: transparent;
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.challenge-option:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+    background: var(--surface-color);
+}
+
+.challenge-option.selected {
+    border-color: var(--primary-color);
+    background: rgba(255, 209, 102, 0.08);
+    /* Transparent gold */
+    box-shadow: 0 0 0 3px rgba(255, 209, 102, 0.15);
+}
+
+.challenge-option.correct-highlight {
+    border-color: var(--success-color);
+    background: rgba(6, 214, 160, 0.1);
+    color: var(--success-color);
+}
+
+.challenge-option.wrong {
+    border-color: var(--danger-color);
+    background: rgba(239, 71, 111, 0.1);
+    color: var(--danger-color);
+}
+
+.challenge-option.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}

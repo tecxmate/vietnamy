@@ -24,7 +24,7 @@ const OnboardingFlow = ({ onComplete }) => {
                 <h1 className="onboarding-title" style={{ fontSize: 32 }}>Learn Vietnamese<br />the fun way.</h1>
             </div>
             <div className="flex-col gap-4">
-                <button className="primary w-full" onClick={() => onComplete()} style={{ fontSize: 18, padding: '16px' }}>
+                <button className="primary w-full" onClick={nextStep} style={{ fontSize: 18, padding: '16px' }}>
                     Get started
                 </button>
                 <button className="secondary w-full" onClick={() => onComplete()} style={{ fontSize: 18, padding: '16px' }}>

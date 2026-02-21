@@ -1,0 +1,300 @@
+/* src/pages/ToneMarks.css */
+
+
+
+/* ─── Stage 1: Periodic Table ─── */
+.tm-intro {
+    text-align: center;
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-lg);
+    font-size: 1.05rem;
+}
+
+.periodic-table {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: var(--spacing-lg);
+}
+
+.periodic-grid {
+    display: grid;
+    grid-template-columns: 56px repeat(6, 1fr);
+    gap: 3px;
+    min-width: 520px;
+}
+
+.periodic-header {
+    padding: 8px 4px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-align: center;
+    color: var(--color-text-muted);
+    background: var(--color-surface);
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+
+.periodic-header .tone-mark-label {
+    font-size: 1.1rem;
+    color: var(--color-text);
+}
+
+.periodic-row-label {
+    padding: 8px 4px;
+    font-weight: 700;
+    font-size: 1.2rem;
+    text-align: center;
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    background: transparent;
+    padding: 10px 4px;
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 6px;
+    background: var(--color-surface);
+    border: 2px solid transparent;
+    transition: all 0.15s;
+    color: var(--color-text);
+}
+
+.periodic-cell:hover {
+    border-color: var(--primary-color);
+    transform: scale(1.08);
+    background: var(--surface-color);
+    box-shadow: var(--shadow-md);
+    z-index: 1;
+}
+
+.periodic-cell:active {
+    transform: scale(0.96);
+}
+
+.periodic-cell.playing {
+    border-color: var(--primary-color);
+    background: rgba(255, 209, 102, 0.15);
+    /* var(--primary-color) with opacity */
+    animation: cellPulse 0.4s ease;
+}
+
+.periodic-cell.disabled {
+    opacity: 0.25;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.periodic-cell.no-audio {
+    opacity: 0.45;
+    cursor: pointer;
+    color: var(--text-muted);
+}
+
+.periodic-cell.no-audio:hover {
+    border-color: transparent;
+    transform: none;
+    box-shadow: none;
+}
+
+@keyframes cellPulse {
+    0% {
+        transform: scale(1.15);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.tm-stage-cta {
+    text-align: center;
+    margin-top: var(--spacing-lg);
+}
+
+.tm-stage-cta button,
+.tm-next-btn {
+    background: #58cc02;
+    color: white;
+    padding: 12px 32px;
+    border-radius: 30px;
+    border: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 0 #58a700;
+    transition: transform 0.2s;
+}
+
+.tm-stage-cta button:hover,
+.tm-next-btn:hover {
+    transform: translateY(-2px);
+}
+
+.tm-stage-cta button:active,
+.tm-next-btn:active {
+    transform: translateY(4px);
+    box-shadow: none;
+}
+
+
+
+/* Combine prompt */
+.tm-equation {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    font-size: 2.2rem;
+    font-weight: 700;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.tm-base-vowel {
+    color: var(--primary-color);
+    background: rgba(255, 209, 102, 0.08);
+    padding: 8px 20px;
+    border-radius: var(--radius-lg);
+    border: 2px solid rgba(255, 209, 102, 0.2);
+}
+
+.tm-plus {
+    color: var(--text-muted);
+}
+
+.tm-tone-name {
+    color: #FF9800;
+    background: #fff8e1;
+    padding: 8px 20px;
+    border-radius: var(--radius-lg);
+    border: 2px solid rgba(255, 152, 0, 0.2);
+    font-size: 1.1rem;
+}
+
+[data-theme='dark'] .tm-tone-name {
+    background: #2a2510;
+}
+
+.tm-equals {
+    color: var(--text-muted);
+    font-size: 2rem;
+}
+
+.tm-question-mark {
+    font-size: 2.5rem;
+    color: var(--text-muted);
+    font-weight: 800;
+}
+
+/* Decompose prompt */
+.tm-target-char {
+    font-size: 5rem;
+    font-weight: 800;
+    color: var(--text-main);
+    line-height: 1;
+}
+
+.tm-decompose-prompt {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+}
+
+/* Meaning display */
+.tm-meaning {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    background: rgba(255, 209, 102, 0.06);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-style: italic;
+    animation: tmSlideUp 0.3s ease;
+}
+
+/* Options grid */
+.tm-options {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-md);
+    width: 100%;
+    max-width: 420px;
+}
+
+.tm-option {
+    padding: 24px 8px;
+    /* Increased padding */
+    background: transparent;
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.tm-option.text-option {
+    font-size: 0.95rem;
+}
+
+.tm-option:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+    background: var(--surface-color);
+}
+
+.tm-option.selected {
+    border-color: var(--primary-color);
+    background: rgba(255, 209, 102, 0.08);
+    /* Transparent gold */
+    box-shadow: 0 0 0 3px rgba(255, 209, 102, 0.15);
+}
+
+.tm-option.correct-highlight {
+    border-color: var(--success-color);
+    background: rgba(6, 214, 160, 0.1);
+    color: var(--success-color);
+}
+
+.tm-option.wrong {
+    border-color: var(--danger-color);
+    background: rgba(239, 71, 111, 0.1);
+    color: var(--danger-color);
+}
+
+.tm-option.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+
+
+@media (max-width: 560px) {
+    .periodic-grid {
+        grid-template-columns: 44px repeat(6, 1fr);
+        gap: 2px;
+    }
+
+    .periodic-cell {
+        font-size: 1rem;
+        padding: 8px 2px;
+    }
+
+    .periodic-row-label {
+        font-size: 1rem;
+    }
+
+    .tm-equation {
+        font-size: 1.6rem;
+    }
+
+    .tm-target-char {
+        font-size: 3.5rem;
+    }
+
+    .tm-options {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

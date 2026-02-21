@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { getLessonContent, saveLessonContent } from '../../lib/db';
 import { Search, Plus, Trash2, Save } from 'lucide-react';
 
 const LessonBuilder = () => {
-    // In a real app, 'lesson_001' would come from URL params or selection state
-    const targetLessonId = 'lesson_001';
+    const { search } = useLocation();
+    const query = new URLSearchParams(search);
+    const targetLessonId = query.get('id') || 'lesson_001';
 
     const [goal, setGoal] = useState('');
     const [sentences, setSentences] = useState([]);

@@ -1,0 +1,57 @@
+/* src/pages/Practice/TelexTyping.css */
+
+/* Only styles specific to TelexTyping not present in PracticeShared.css */
+
+/* ─── Rules List (Embedded in Intro) ────────────────────────────── */
+.rules-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.rule-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-sm);
+    border-radius: var(--radius-md);
+    background: var(--bg-color);
+    transition: transform 0.2s;
+}
+
+.rule-item:hover {
+    transform: translateX(4px);
+}
+
+.rule-key kbd {
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 2px 8px;
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 1.1em;
+    color: var(--primary-color);
+    box-shadow: 0 2px 0 var(--border-color);
+}
+
+.rule-effect {
+    display: flex;
+    flex-direction: column;
+}
+
+.effect-name {
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.effect-example {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+/* ─── Construction Input Input Focus ────────────────────────────── */
+.construction-input:focus {
+    border-color: var(--primary-color) !important;
+    box-shadow: 0 0 0 4px rgba(255, 209, 102, 0.2) !important;
+}

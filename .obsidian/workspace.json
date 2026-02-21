@@ -1,0 +1,209 @@
+{
+  "main": {
+    "id": "401778d4626b5726",
+    "type": "split",
+    "children": [
+      {
+        "id": "b6c47b2ba61922dc",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "771453596e913b2e",
+            "type": "leaf",
+            "state": {
+              "type": "canvas",
+              "state": {
+                "file": "userflow.canvas",
+                "viewState": {
+                  "x": 1034.2665576380223,
+                  "y": 426.4896996871448,
+                  "zoom": 0.022484611317573726
+                }
+              },
+              "icon": "lucide-layout-dashboard",
+              "title": "userflow"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "c4c9a0387edc8b06",
+    "type": "split",
+    "children": [
+      {
+        "id": "6164c9318bccbe9b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f2d0e1947581292d",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "e8292414799a975b",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "fb28a5318f8a8547",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 202.50390243530273
+  },
+  "right": {
+    "id": "57daa572ead2dd73",
+    "type": "split",
+    "children": [
+      {
+        "id": "ebd2f412fe0ee51b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "634ff518c5ea366f",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "userflow.canvas",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for userflow"
+            }
+          },
+          {
+            "id": "511b0f1513060388",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "userflow.canvas",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from userflow"
+            }
+          },
+          {
+            "id": "b110143406e8438f",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "614115aa3a5a4c82",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "0c44d728831b1711",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "userflow.canvas",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of userflow"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "771453596e913b2e",
+  "lastOpenFiles": [
+    "test_retention_mockups.spec.js",
+    "test_tonemarks_recording.spec.js",
+    "tone_marks_styles.patch",
+    "test_numbers_recording.spec.js",
+    "test_telex_recording.spec.js",
+    "test_pronouns_recording.spec.js",
+    "src/pages/Practice/PracticeShared.css",
+    "Pasted image 20260221161640.png",
+    "userflow.canvas",
+    "src/data/vocabWords.js",
+    "src/data/vn_grammar_bank.json",
+    "src/data/toneContours.js",
+    "src/data/roadmapData.js",
+    "datamodel.canvas",
+    "Pasted image 20260221161608.png",
+    "Pasted image 20260221161342.png",
+    "Pasted image 20260221161309.png"
+  ]
+}

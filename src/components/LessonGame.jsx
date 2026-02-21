@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { X, Heart, Check, Volume2 } from 'lucide-react';
+import { X, Heart, Check, Volume2, FlaskConical, Zap, Frown, Trophy } from 'lucide-react';
 // We'll parse the exercises from localStorage directly for this component
 
 // We'll add this specific export to db.js if it doesn't exist, but for now we can read raw from localStorage
@@ -23,6 +23,11 @@ const LessonGame = () => {
     const [isChecking, setIsChecking] = useState(false);
     const [isCorrect, setIsCorrect] = useState(null);
     const [isFinished, setIsFinished] = useState(false);
+
+    // Retention Mockup States
+    const [showQuitConfirm, setShowQuitConfirm] = useState(false);
+    const [retentionQueue, setRetentionQueue] = useState([]); // Array of mockup screens to show at the end
+    const [activeRetentionScreen, setActiveRetentionScreen] = useState(null);
 
     // Specifically for reorder exercises
     const [orderedTokens, setOrderedTokens] = useState([]);
@@ -93,11 +98,107 @@ const LessonGame = () => {
         if (currentIndex < exercises.length - 1) {
             setCurrentIndex(prev => prev + 1);
         } else {
-            // Finished!
-            // In a real app we would mark the node as completed in DB here
+            // Finished! Queue the retention mockups
+            setRetentionQueue(['energy', 'quest', 'xp']);
+            setActiveRetentionScreen('energy');
+        }
+    };
+
+    const handleNextRetention = () => {
+        const nextQueue = [...retentionQueue];
+        nextQueue.shift(); // Remove current
+        setRetentionQueue(nextQueue);
+
+        if (nextQueue.length > 0) {
+            setActiveRetentionScreen(nextQueue[0]);
+        } else {
+            setActiveRetentionScreen(null);
             setIsFinished(true);
         }
     };
+
+    if (showQuitConfirm) {
+        return (
+            <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', backgroundColor: '#131F24', color: 'white', justifyContent: 'center', padding: 24, textAlign: 'center' }}>
+                <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                    <Frown size={120} color="#58CC02" strokeWidth={1.5} style={{ marginBottom: 32 }} />
+                    <h2 style={{ fontSize: 24, marginBottom: 32, lineHeight: 1.4 }}>Wait, you only have 1 minute to go in this lesson!</h2>
+                </div>
+                <div style={{ paddingBottom: 40, display: 'flex', flexDirection: 'column', gap: 16 }}>
+                    <button className="primary shadow-lg" style={{ backgroundColor: '#1CB0F6', color: '#1A1A1A', boxShadow: '0 4px 0 #1899D6', border: 'none' }} onClick={() => setShowQuitConfirm(false)}>
+                        KEEP LEARNING
+                    </button>
+                    <button className="ghost" style={{ color: '#FF4B4B', fontWeight: 700 }} onClick={() => navigate('/')}>
+                        QUIT
+                    </button>
+                </div>
+            </div>
+        );
+    }
+
+    if (activeRetentionScreen === 'energy') {
+        return (
+            <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', backgroundColor: '#131F24', color: 'white', justifyContent: 'center', padding: 24, textAlign: 'center' }}>
+                <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                    <Zap size={64} color="#FFD166" style={{ marginBottom: -10, zIndex: 2 }} />
+                    <div style={{ backgroundColor: '#FF8BC1', border: '4px solid #FFD166', borderRadius: 24, padding: '20px 40px', fontSize: 48, fontWeight: 800, color: 'white' }}>
+                        +1
+                    </div>
+                </div>
+                <div style={{ paddingBottom: 40 }}>
+                    <button className="primary shadow-lg" style={{ width: '100%' }} onClick={handleNextRetention}>
+                        CONTINUE
+                    </button>
+                </div>
+            </div>
+        );
+    }
+
+    if (activeRetentionScreen === 'quest') {
+        return (
+            <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', backgroundColor: '#131F24', color: 'white', justifyContent: 'center', padding: 24, textAlign: 'center' }}>
+                <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                    <div style={{ width: 160, height: 160, backgroundColor: '#58CC02', borderRadius: 16, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'center', position: 'relative', borderBottom: '16px solid #46A302' }}>
+                        <Trophy size={80} color="#FFD166" fill="#FFD166" style={{ position: 'absolute', top: -30 }} />
+                        <div style={{ width: '90%', height: 16, backgroundColor: '#FF4B4B', borderRadius: 8, marginBottom: 16, position: 'relative', overflow: 'hidden' }}>
+                            <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(255,255,255,0.2)' }} />
+                            <span style={{ position: 'absolute', width: '100%', textAlign: 'center', fontSize: 12, fontWeight: 800, lineHeight: '16px' }}>3 / 3</span>
+                        </div>
+                    </div>
+                    <h2 style={{ fontSize: 24, marginTop: 40, lineHeight: 1.4 }}>You finished this Weekend Quest.<br />Exquisite work!</h2>
+                </div>
+                <div style={{ paddingBottom: 40 }}>
+                    <button className="primary shadow-lg" style={{ backgroundColor: '#1CB0F6', color: '#1A1A1A', boxShadow: '0 4px 0 #1899D6', border: 'none', width: '100%' }} onClick={handleNextRetention}>
+                        I DID IT
+                    </button>
+                </div>
+            </div>
+        );
+    }
+
+    if (activeRetentionScreen === 'xp') {
+        return (
+            <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', backgroundColor: '#131F24', color: 'white', justifyContent: 'center', padding: 24, textAlign: 'center' }}>
+                <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                    <div style={{ position: 'relative', marginBottom: 32 }}>
+                        <FlaskConical size={140} color="#CE82FF" fill="#CE82FF" strokeWidth={1} />
+                        <div style={{ position: 'absolute', bottom: -10, left: '50%', transform: 'translateX(-50%)', backgroundColor: '#E5E5E5', color: '#1A1A1A', padding: '4px 12px', borderRadius: 12, fontSize: 14, fontWeight: 800, display: 'flex', alignItems: 'center', gap: 6 }}>
+                            <span style={{ fontSize: 12 }}>🔒</span> 5H
+                        </div>
+                    </div>
+                    <h2 style={{ fontSize: 24, lineHeight: 1.4 }}>Come back <span style={{ color: '#CE82FF' }}>tomorrow</span> for this<br />triple XP Boost</h2>
+                </div>
+                <div style={{ paddingBottom: 40, display: 'flex', flexDirection: 'column', gap: 16 }}>
+                    <button className="primary shadow-lg" style={{ backgroundColor: '#1CB0F6', color: '#1A1A1A', boxShadow: '0 4px 0 #1899D6', border: 'none', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }} onClick={handleNextRetention}>
+                        <span style={{ fontSize: 14 }}>▶</span> EARN ANOTHER REWARD
+                    </button>
+                    <button className="ghost" style={{ color: '#1CB0F6', fontWeight: 700 }} onClick={handleNextRetention}>
+                        CONTINUE
+                    </button>
+                </div>
+            </div>
+        );
+    }
 
     if (exercises.length === 0) {
         return (
@@ -253,7 +354,7 @@ const LessonGame = () => {
 
             {/* Top Bar Navigation */}
             <div style={{ padding: '16px 24px', display: 'flex', alignItems: 'center', gap: 16 }}>
-                <button className="ghost" onClick={() => navigate('/')} style={{ padding: 8 }}>
+                <button className="ghost" onClick={() => setShowQuitConfirm(true)} style={{ padding: 8 }}>
                     <X size={24} color="var(--text-muted)" />
                 </button>
                 <div style={{ flex: 1, height: 16, backgroundColor: 'var(--surface-color)', borderRadius: 8, overflow: 'hidden' }}>

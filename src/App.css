@@ -23,7 +23,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: var(--spacing-6) 0 var(--spacing-12);
+  padding: var(--spacing-6) 0 120px;
 }
 
 .path-node {
@@ -36,30 +36,50 @@
   margin: var(--spacing-4) 0;
   position: relative;
   z-index: 2;
-  transition: transform 0.2s;
-}
-
-.path-node:active {
-  transform: scale(0.95);
-}
-
-.path-node.locked {
-  background-color: var(--surface-color-light);
-  border: 4px solid var(--border-color);
-  color: var(--text-muted);
-}
-
-.path-node.completed {
-  background-color: var(--primary-color);
-  border: 4px solid #DCAE45;
-  color: #1A1A1A;
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
 }
 
 .path-node.active {
   background-color: var(--primary-color);
   border: 4px solid #DCAE45;
   color: #1A1A1A;
-  box-shadow: 0 0 0 4px var(--bg-color), 0 0 0 8px var(--primary-color);
+  box-shadow:
+    0 6px 0 #DCAE45,
+    0 0 0 4px var(--bg-color),
+    0 0 0 8px var(--primary-color);
+}
+
+.path-node.active:active {
+  transform: translateY(4px) scale(0.95);
+  box-shadow:
+    0 2px 0 #DCAE45,
+    0 0 0 4px var(--bg-color),
+    0 0 0 8px var(--primary-color);
+}
+
+.path-node.completed {
+  background-color: var(--primary-color);
+  border: 4px solid #DCAE45;
+  color: #1A1A1A;
+  box-shadow: 0 6px 0 #DCAE45;
+}
+
+.path-node.completed:active {
+  transform: translateY(4px) scale(0.95);
+  box-shadow: 0 2px 0 #DCAE45;
+}
+
+.path-node.locked {
+  background-color: var(--surface-color-light);
+  border: 4px solid var(--border-color);
+  color: var(--text-muted);
+  box-shadow: 0 6px 0 var(--border-color);
+}
+
+.path-node.locked:active {
+  transform: translateY(4px) scale(0.95);
+  box-shadow: 0 2px 0 var(--border-color);
 }
 
 .path-node-icon {

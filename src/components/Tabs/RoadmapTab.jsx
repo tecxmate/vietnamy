@@ -76,9 +76,36 @@ const RoadmapTab = () => {
                                         {node.status === 'active' && <Star size={32} color="#1A1A1A" fill="#1A1A1A" />}
 
                                         {node.status === 'active' && (
-                                            <div style={{ position: 'absolute', top: -30, whiteSpace: 'nowrap', backgroundColor: 'var(--surface-color)', padding: '4px 12px', borderRadius: 8, border: '2px solid var(--border-color)', fontSize: 14, fontWeight: 700, animation: 'bounce 2s infinite' }}>
-                                                Start
-                                                <div style={{ position: 'absolute', bottom: -6, left: '50%', transform: 'translateX(-50%)', borderLeft: '6px solid transparent', borderRight: '6px solid transparent', borderTop: '6px solid var(--border-color)' }} />
+                                            <div style={{
+                                                position: 'absolute',
+                                                top: -38,
+                                                left: '50%',
+                                                transform: 'translateX(-50%)',
+                                                whiteSpace: 'nowrap',
+                                                backgroundColor: 'white',
+                                                color: 'var(--primary-color)',
+                                                padding: '6px 16px',
+                                                borderRadius: 12,
+                                                fontSize: 16,
+                                                fontWeight: 800,
+                                                boxShadow: '0 4px 12px rgba(0,0,0,0.15), 0 4px 0 #E0E0E0',
+                                                animation: 'bounce 2s infinite',
+                                                textTransform: 'uppercase',
+                                                letterSpacing: '0.5px',
+                                                zIndex: 10
+                                            }}>
+                                                START
+                                                <div style={{
+                                                    position: 'absolute',
+                                                    bottom: -8,
+                                                    left: '50%',
+                                                    transform: 'translateX(-50%)',
+                                                    width: 0,
+                                                    height: 0,
+                                                    borderLeft: '8px solid transparent',
+                                                    borderRight: '8px solid transparent',
+                                                    borderTop: '8px solid white'
+                                                }} />
                                             </div>
                                         )}
                                     </div>
@@ -95,8 +122,28 @@ const RoadmapTab = () => {
                 </div>
             ))}
 
-            <div style={{ position: 'fixed', bottom: 90, left: 16, right: 16, zIndex: 10 }}>
-                <button className="primary w-full shadow-lg" style={{ fontSize: 18, padding: 16 }} onClick={handleContinueClick}>
+            <div style={{
+                position: 'fixed',
+                bottom: 110,
+                left: 24,
+                right: 24,
+                zIndex: 100,
+                display: 'flex',
+                justifyContent: 'center'
+            }}>
+                <button
+                    className="primary w-full shadow-lg"
+                    style={{
+                        maxWidth: 400,
+                        fontSize: 18,
+                        padding: '18px 24px',
+                        textTransform: 'uppercase',
+                        letterSpacing: '1px',
+                        borderRadius: 16,
+                        boxShadow: '0 8px 0 #DCAE45, 0 8px 20px rgba(0,0,0,0.2)'
+                    }}
+                    onClick={handleContinueClick}
+                >
                     CONTINUE
                 </button>
             </div>

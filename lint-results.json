@@ -1,0 +1,5 @@
+
+> vnme-app@0.0.0 lint /Users/niko/antigravity/vnme-app
+> eslint . -- --format json
+
+ ELIFECYCLE  Command failed with exit code 2.

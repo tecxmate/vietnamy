@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { getUnits, getNodesForUnit, addUnit, addNode } from '../../lib/db';
 import { Plus, GripVertical, Settings } from 'lucide-react';
 
 const RoadmapMapper = () => {
+    const navigate = useNavigate();
     const [units, setUnits] = useState([]);
     const [nodesMap, setNodesMap] = useState({});
     const [showAddUnit, setShowAddUnit] = useState(false);
@@ -94,7 +96,13 @@ const RoadmapMapper = () => {
                                             <td style={{ padding: '12px 0' }}>{node.type}</td>
                                             <td style={{ padding: '12px 0', fontFamily: 'monospace', color: 'var(--secondary-color)' }}>{node.content_ref_id}</td>
                                             <td style={{ padding: '12px 0', textAlign: 'right' }}>
-                                                <button className="ghost" style={{ padding: '4px 8px', fontSize: 14 }}>Edit Content</button>
+                                                <button
+                                                    className="ghost"
+                                                    style={{ padding: '4px 8px', fontSize: 14 }}
+                                                    onClick={() => navigate(`/admin/lesson?id=${node.content_ref_id}`)}
+                                                >
+                                                    Edit Content
+                                                </button>
                                             </td>
                                         </tr>
                                     ))}
