@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
-import grammarBank from '../../data/vn_grammar_bank.json';
+import { getGrammarItems } from '../../lib/grammarDB';
 
 const LEVEL_COLORS = {
     A1: '#06D6A0',
@@ -9,16 +9,16 @@ const LEVEL_COLORS = {
     B1: '#EF476F',
 };
 
-const grouped = grammarBank.items.reduce((acc, item) => {
-    acc[item.level] = acc[item.level] || [];
-    acc[item.level].push(item);
-    return acc;
-}, {});
-
 const LEVELS = ['A1', 'A2', 'B1'];
 
 const GrammarTab = () => {
     const navigate = useNavigate();
+    const allItems = getGrammarItems();
+    const grouped = allItems.reduce((acc, item) => {
+        acc[item.level] = acc[item.level] || [];
+        acc[item.level].push(item);
+        return acc;
+    }, {});
 
     return (
         <div className="grammar-level-cards">

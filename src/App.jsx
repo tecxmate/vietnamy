@@ -25,6 +25,7 @@ import GrammarDetail from './pages/Grammar/GrammarDetail';
 import AdminLayout from './pages/Admin/AdminLayout';
 import RoadmapMapper from './pages/Admin/RoadmapMapper';
 import LessonBuilder from './pages/Admin/LessonBuilder';
+import GrammarEditor from './pages/Admin/GrammarEditor';
 
 // Main Content
 import LessonGame from './components/LessonGame';
@@ -109,6 +110,7 @@ function App() {
                 <Route index element={<Navigate to="mapper" />} />
                 <Route path="mapper" element={<RoadmapMapper />} />
                 <Route path="lesson" element={<LessonBuilder />} />
+                <Route path="grammar" element={<GrammarEditor />} />
               </Route>
             </Routes>
           </BrowserRouter>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, BookText, LogOut } from 'lucide-react';
+import { LayoutDashboard, BookText, Languages, LogOut } from 'lucide-react';
 
 const AdminLayout = () => {
     const navigate = useNavigate();
@@ -40,6 +40,20 @@ const AdminLayout = () => {
                     >
                         <BookText size={20} />
                         Lesson Builder
+                    </NavLink>
+
+                    <NavLink
+                        to="/admin/grammar"
+                        style={({ isActive }) => ({
+                            display: 'flex', alignItems: 'center', gap: 12, padding: '12px 16px',
+                            borderRadius: 'var(--radius-md)', textDecoration: 'none',
+                            backgroundColor: isActive ? 'rgba(255, 209, 102, 0.1)' : 'transparent',
+                            color: isActive ? 'var(--primary-color)' : 'var(--text-main)',
+                            fontWeight: isActive ? 700 : 400
+                        })}
+                    >
+                        <Languages size={20} />
+                        Grammar Editor
                     </NavLink>
                 </div>
 

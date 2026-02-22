@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Volume2, ChevronDown } from 'lucide-react';
-import grammarBank from '../../data/vn_grammar_bank.json';
+import { getGrammarItems } from '../../lib/grammarDB';
 import speak from '../../utils/speak';
 import '../Practice/PracticeShared.css';
 import './Grammar.css';
@@ -11,7 +11,7 @@ const GrammarDetail = () => {
     const navigate = useNavigate();
     const [openFaq, setOpenFaq] = useState(null);
 
-    const items = grammarBank.items.filter(i => i.level === level);
+    const items = getGrammarItems().filter(i => i.level === level);
     const item = items[Number(index)];
 
     if (!item) {
@@ -28,8 +28,7 @@ const GrammarDetail = () => {
         );
     }
 
-    const { title, pattern, example, details, faqs, extracted_patterns } = item;
-    const hasError = details?.error;
+    const { title, pattern, example, sections, faqs, extracted_patterns, error: hasError } = item;
 
     // Filter FAQs to only those with both question and answer, and reasonable length
     const validFaqs = (faqs || []).filter(f => f.question && f.answer && f.question.length < 200);
@@ -50,12 +49,17 @@ const GrammarDetail = () => {
                 </div>
 
                 {/* Example with TTS */}
-                <div className="grammar-detail-example">
-                    <p>{example}</p>
-                    <button onClick={() => speak(example)} aria-label="Listen">
-                        <Volume2 size={22} />
-                    </button>
-                </div>
+                {example?.vi && (
+                    <div className="grammar-detail-example">
+                        <div>
+                            <p>{example.vi}</p>
+                            {example.en && <p className="grammar-example-en">{example.en}</p>}
+                        </div>
+                        <button onClick={() => speak(example.vi)} aria-label="Listen">
+                            <Volume2 size={22} />
+                        </button>
+                    </div>
+                )}
 
                 {/* Extra extracted patterns */}
                 {extracted_patterns && extracted_patterns.length > 0 && (
@@ -69,23 +73,55 @@ const GrammarDetail = () => {
                     </>
                 )}
 
-                {/* Headings outline */}
-                {details?.headings && details.headings.length > 0 && (
+                {/* Sections */}
+                {sections && sections.length > 0 && !hasError && (
                     <>
                         <p className="grammar-section-heading">Sections</p>
-                        <div className="grammar-headings-list">
-                            {details.headings.map((h, i) => (
-                                <span key={i} data-tag={h.tag}>{h.text}</span>
+                        <div className="grammar-sections">
+                            {sections.map((sec, i) => (
+                                <div key={i} className="grammar-section-card">
+                                    {sec.heading && (
+                                        <h3 className="grammar-section-title">{sec.heading}</h3>
+                                    )}
+
+                                    {sec.explanation && (
+                                        <p className="grammar-section-explanation">{sec.explanation}</p>
+                                    )}
+
+                                    {sec.pattern && (
+                                        <div className="grammar-section-pattern">
+                                            <span className="grammar-pattern-pill">{sec.pattern}</span>
+                                        </div>
+                                    )}
+
+                                    {sec.note && (
+                                        <p className="grammar-section-note">{sec.note}</p>
+                                    )}
+
+                                    {sec.examples && sec.examples.length > 0 && (
+                                        <div className="grammar-section-examples">
+                                            {sec.examples.map((ex, j) => (
+                                                <div key={j} className="grammar-example-row">
+                                                    <div className="grammar-example-vi">
+                                                        <span>{ex.vi}</span>
+                                                        {ex.vi && (
+                                                            <button
+                                                                className="grammar-example-speak"
+                                                                onClick={() => speak(ex.vi)}
+                                                                aria-label="Listen"
+                                                            >
+                                                                <Volume2 size={14} />
+                                                            </button>
+                                                        )}
+                                                    </div>
+                                                    {ex.en && <div className="grammar-example-en">{ex.en}</div>}
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
                             ))}
                         </div>
-                    </>
-                )}
-
-                {/* Full text */}
-                {details?.full_text && !hasError && (
-                    <>
-                        <p className="grammar-section-heading">Full Explanation</p>
-                        <div className="grammar-full-text">{details.full_text}</div>
                     </>
                 )}
 

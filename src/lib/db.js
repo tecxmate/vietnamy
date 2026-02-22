@@ -234,6 +234,47 @@ export const addNode = (nodeData) => {
     return newNode;
 };
 
+export const updateNode = (nodeId, updates) => {
+    const db = getDB();
+    const nodes = db.path_nodes || [];
+    const idx = nodes.findIndex(n => n.id === nodeId);
+    if (idx >= 0) {
+        Object.assign(nodes[idx], updates);
+        saveDB(db);
+    }
+};
+
+export const deleteNode = (nodeId) => {
+    const db = getDB();
+    db.path_nodes = (db.path_nodes || []).filter(n => n.id !== nodeId);
+    saveDB(db);
+};
+
+export const updateUnit = (unitId, updates) => {
+    const db = getDB();
+    const idx = db.units.findIndex(u => u.id === unitId);
+    if (idx >= 0) {
+        Object.assign(db.units[idx], updates);
+        saveDB(db);
+    }
+};
+
+export const deleteUnit = (unitId) => {
+    const db = getDB();
+    db.units = db.units.filter(u => u.id !== unitId);
+    db.path_nodes = (db.path_nodes || []).filter(n => n.unit_id !== unitId);
+    saveDB(db);
+};
+
+// --- Vocab Items API ---
+export const getItems = () => {
+    const db = getDB();
+    return (db.items || []).map(item => {
+        const translation = (db.translations || []).find(t => t.item_id === item.id && t.lang === 'en');
+        return { ...item, en: translation ? translation.text : '' };
+    });
+};
+
 // --- Lesson Content API ---
 export const getLessonContent = (contentRefId) => {
     const db = getDB();

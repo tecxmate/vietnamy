@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
-import grammarBank from '../../data/vn_grammar_bank.json';
+import { getGrammarItems } from '../../lib/grammarDB';
 import '../Practice/PracticeShared.css';
 import './Grammar.css';
 
@@ -9,7 +9,7 @@ const GrammarList = () => {
     const { level } = useParams();
     const navigate = useNavigate();
 
-    const items = grammarBank.items.filter(i => i.level === level);
+    const items = getGrammarItems().filter(i => i.level === level);
 
     return (
         <div className="practice-layout">
@@ -32,7 +32,7 @@ const GrammarList = () => {
                     >
                         <span className="grammar-pattern-pill">{item.pattern}</span>
                         <p className="grammar-pattern-title">{item.title}</p>
-                        <p className="grammar-pattern-example">{item.example}</p>
+                        <p className="grammar-pattern-example">{item.example?.vi || ''}</p>
                     </div>
                 ))}
             </div>
