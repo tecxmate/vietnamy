@@ -14,8 +14,12 @@ import TopBar from './components/TopBar';
 import RoadmapTab from './components/Tabs/RoadmapTab';
 import PracticeTab from './components/Tabs/PracticeTab';
 import DictionaryTab from './components/Tabs/DictionaryTab';
-import WatchTab from './components/Tabs/WatchTab';
+import GrammarTab from './components/Tabs/GrammarTab';
 import LeaderboardTab from './components/Tabs/LeaderboardTab';
+
+// Grammar pages
+import GrammarList from './pages/Grammar/GrammarList';
+import GrammarDetail from './pages/Grammar/GrammarDetail';
 
 // Admin CMS
 import AdminLayout from './pages/Admin/AdminLayout';
@@ -24,7 +28,6 @@ import LessonBuilder from './pages/Admin/LessonBuilder';
 
 // Main Content
 import LessonGame from './components/LessonGame';
-
 // Practice Modules
 import TonePractice from './pages/Practice/TonePractice';
 import PronounsPractice from './pages/Practice/PronounsPractice';
@@ -60,7 +63,7 @@ function StudentApp({ initialTab = 'roadmap' }) {
       case 'roadmap': return <RoadmapTab />;
       case 'practice': return <PracticeTab />;
       case 'dictionary': return <DictionaryTab />;
-      case 'watch': return <WatchTab />;
+      case 'grammar': return <GrammarTab />;
       case 'leaderboard': return <LeaderboardTab />;
       default: return <RoadmapTab />;
     }
@@ -87,7 +90,6 @@ function App() {
               <Route path="/" element={<StudentApp />} />
               <Route path="/practice" element={<StudentApp initialTab="practice" />} />
               <Route path="/lesson/:lessonId" element={<div className="mobile-app-wrapper"><LessonGame /></div>} />
-
               {/* Full-screen Practice Routes */}
               <Route path="/practice/tones" element={<div className="mobile-app-wrapper"><TonePractice /></div>} />
               <Route path="/practice/pronouns" element={<div className="mobile-app-wrapper"><PronounsPractice /></div>} />
@@ -97,6 +99,10 @@ function App() {
               <Route path="/practice/vocab" element={<div className="mobile-app-wrapper"><VocabPractice /></div>} />
               <Route path="/practice/pitch" element={<div className="mobile-app-wrapper"><TonePitchTraining /></div>} />
               <Route path="/practice/telex" element={<div className="mobile-app-wrapper"><TelexTyping /></div>} />
+
+              {/* Grammar Routes */}
+              <Route path="/grammar/:level" element={<div className="mobile-app-wrapper"><GrammarList /></div>} />
+              <Route path="/grammar/:level/:index" element={<div className="mobile-app-wrapper"><GrammarDetail /></div>} />
 
               {/* Admin CMS Routes */}
               <Route path="/admin" element={<AdminLayout />}>
