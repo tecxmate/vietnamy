@@ -5,20 +5,20 @@
 /* Stage Navigation */
 .stage-tabs {
     display: flex;
-    gap: var(--spacing-md);
-    margin-bottom: var(--spacing-lg);
+    gap: 6px;
+    margin-bottom: 12px;
     width: 100%;
     max-width: 500px;
 }
 
 .stage-tab {
     flex: 1;
-    padding: 12px 16px;
+    padding: 8px 14px;
     border: 2px solid var(--border-color);
     border-radius: var(--radius-lg);
     background: transparent;
     font-weight: 700;
-    font-size: 0.95rem;
+    font-size: 0.82rem;
     cursor: pointer;
     transition: all 0.2s;
     text-align: center;
@@ -45,8 +45,7 @@
 .number-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: var(--spacing-4);
-    margin-bottom: var(--spacing-xl);
+    gap: 8px;
     width: 100%;
 }
 
@@ -106,16 +105,18 @@
 .stage-intro {
     text-align: center;
     color: var(--text-muted);
-    margin-bottom: var(--spacing-lg);
-    font-size: 1.05rem;
+    margin-bottom: 12px;
+    font-size: 0.85rem;
     font-weight: 500;
 }
 
 .stage-cta {
-    text-align: center;
-    margin-top: auto;
-    width: 100%;
-    margin-bottom: 24px;
+    flex-shrink: 0;
+    padding: 12px 16px;
+    background: var(--bg-color);
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: center;
 }
 
 .stage-cta button {
@@ -144,8 +145,8 @@
     font-size: 6.5rem;
     font-weight: 800;
     color: var(--text-main);
-    margin-bottom: var(--spacing-md);
-    padding-top: var(--spacing-xl);
+    margin-bottom: 10px;
+    padding-top: 16px;
     line-height: 1;
 }
 
@@ -153,7 +154,7 @@
     color: var(--text-muted);
     font-size: 1.1rem;
     font-weight: 500;
-    margin-bottom: var(--spacing-xl);
+    margin-bottom: 16px;
 }
 
 /* Decomposition display */
@@ -161,8 +162,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: var(--spacing-md);
-    margin-bottom: var(--spacing-xxl);
+    gap: 10px;
+    margin-bottom: 20px;
     flex-wrap: wrap;
     width: 100%;
 }
@@ -229,9 +230,9 @@
     justify-content: center;
     min-height: 80px;
     border-bottom: 2px solid var(--border-color);
-    padding: var(--spacing-xl) var(--spacing-md);
+    padding: 16px 10px;
     /* Increased padding */
-    margin-bottom: var(--spacing-xxl);
+    margin-bottom: 20px;
     align-items: center;
     width: 100%;
 }
@@ -265,7 +266,7 @@
     flex-wrap: wrap;
     gap: 16px;
     justify-content: center;
-    margin-bottom: var(--spacing-xxl);
+    margin-bottom: 20px;
     width: 100%;
 }
 
@@ -318,7 +319,7 @@
     font-size: 1.2rem;
     color: var(--text-main);
     font-weight: 700;
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: 12px;
 }
 
 .challenge-number {
@@ -326,13 +327,13 @@
     font-weight: 800;
     color: var(--text-main);
     line-height: 1;
-    margin-bottom: var(--spacing-xl);
+    margin-bottom: 16px;
 }
 
 .challenge-input {
     font-size: 1.8rem;
     text-align: center;
-    padding: var(--spacing-lg);
+    padding: 12px;
     width: 100%;
     max-width: 300px;
     border: 2px solid var(--border-color);
@@ -361,7 +362,7 @@
 .challenge-options {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: var(--spacing-4);
+    gap: 8px;
     width: 100%;
 }
 

@@ -276,7 +276,7 @@ export default function VowelsPractice() {
                         <Link to="/practice" style={{ color: 'var(--text-main)', display: 'flex' }}>
                             <ArrowLeft size={24} />
                         </Link>
-                        🔤 Nguyên Âm — Vowels
+                        Vowels
                     </h1>
                 </div>
                 <div className="practice-content-centered">
@@ -316,7 +316,7 @@ export default function VowelsPractice() {
     }
 
     return (
-        <div className="practice-layout" style={{ maxWidth: '860px', margin: '0 auto' }}>
+        <div className="practice-layout practice-fixed-layout">
             {/* Header */}
             <div className="practice-header">
                 <h1 className="practice-header-title">
@@ -338,65 +338,50 @@ export default function VowelsPractice() {
 
             {/* Section Tabs */}
             <div className="vp-tabs">
-                <button className={`vp-tab ${section === 1 ? 'active' : ''}`} onClick={() => startSection(1)}>
-                    ① Vowels
-                </button>
-                <button className={`vp-tab ${section === 2 ? 'active' : ''}`} onClick={() => startSection(2)}>
-                    ② Centering
-                </button>
-                <button className={`vp-tab ${section === 3 ? 'active' : ''}`} onClick={() => startSection(3)}>
-                    ③ Gliding
-                </button>
-                <button className={`vp-tab ${section === 4 ? 'active' : ''}`} onClick={() => startSection(4)}>
-                    ④ Triphthongs
-                </button>
-                <button className={`vp-tab ${section === 5 ? 'active' : ''}`} onClick={() => startSection(5)}>
-                    ⑤ Quiz
-                </button>
+                {[
+                    { id: 1, label: 'Vowels' },
+                    { id: 2, label: 'Centering' },
+                    { id: 3, label: 'Gliding' },
+                    { id: 4, label: 'Triphthongs' },
+                    { id: 5, label: 'Quiz' },
+                ].map(tab => (
+                    <button
+                        key={tab.id}
+                        className={`vp-tab ${section === tab.id ? 'active' : ''}`}
+                        onClick={() => startSection(tab.id)}
+                    >
+                        {tab.label}
+                    </button>
+                ))}
             </div>
+
+            {/* Scrollable content area */}
+            <div className="practice-scroll-area">
 
             {/* ═══ SECTION 1: Single Vowels ═══ */}
             {section === 1 && (
                 <>
-                    <div className="vp-section-header">
-                        <h2>The 12 Single Vowels</h2>
-                        <p className="vp-subtitle">
-                            Vietnamese uses "vowel marks" (different from tone marks) to create entirely new letters. Tap a row to hear it!
-                        </p>
-                    </div>
-                    <div className="vp-table-wrap">
-                        <table className="vp-table">
-                            <thead>
-                                <tr>
-                                    <th>Letter</th>
-                                    <th>Common Name</th>
-                                    <th>English Sound Equivalent</th>
-                                    <th>Example</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {SINGLE_VOWELS.map(v => (
-                                    <tr
-                                        key={v.letter}
-                                        onClick={() => playWord(v.example)}
-                                        className={playingWord === v.example ? 'playing' : ''}
-                                    >
-                                        <td className="vp-letter">{v.letter}</td>
-                                        <td>{v.name}</td>
-                                        <td dangerouslySetInnerHTML={{ __html: v.sound }} />
-                                        <td className="vp-example">
-                                            <em>{v.example}</em> ({v.exMeaning})
-                                            <Volume2 size={14} className="vp-speaker-icon" />
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
-                    <div className="vp-cta">
-                        <button onClick={() => startSection(2)}>
-                            Next: Diphthongs <ChevronRight size={18} style={{ verticalAlign: 'middle' }} />
-                        </button>
+                    <p className="vp-intro">
+                        Tap any vowel card to hear it. Vietnamese has 12 single vowels — each mark creates an entirely new letter.
+                    </p>
+                    <div className="vp-vowel-cards">
+                        {SINGLE_VOWELS.map(v => (
+                            <button
+                                key={v.letter}
+                                className={`vp-vowel-card ${playingWord === v.letter ? 'playing' : ''}`}
+                                onClick={() => playWord(v.letter)}
+                            >
+                                <span className="vp-vowel-card-letter">{v.letter}</span>
+                                <span className="vp-vowel-card-info">
+                                    <span className="vp-vowel-card-name">{v.name}</span>
+                                    <span className="vp-vowel-card-sound" dangerouslySetInnerHTML={{ __html: v.sound }} />
+                                    <span className="vp-vowel-card-example">
+                                        <em>{v.example}</em> — {v.exMeaning}
+                                    </span>
+                                </span>
+                                <Volume2 size={14} className="vp-vowel-card-speaker" />
+                            </button>
+                        ))}
                     </div>
                 </>
             )}
@@ -404,65 +389,50 @@ export default function VowelsPractice() {
             {/* ═══ SECTION 2: Centering Diphthongs ═══ */}
             {section === 2 && (
                 <>
-                    <div className="vp-section-header">
-                        <h2>The "Big Three" Centering Diphthongs</h2>
-                        <p className="vp-subtitle">
-                            These are the most fundamental diphthongs in Vietnamese. Their spelling changes based on whether a syllable is <strong>open</strong> (ends in the vowel) or <strong>closed</strong> (ends in a consonant).
-                        </p>
-                    </div>
-                    <div className="vp-table-wrap">
-                        <table className="vp-table vp-centering-table">
-                            <thead>
-                                <tr>
-                                    <th>Sound Group</th>
-                                    <th>Open Syllable</th>
-                                    <th>Closed Syllable</th>
-                                    <th>Examples</th>
-                                    <th>English Approximation</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {CENTERING_DIPHTHONGS.map(d => (
-                                    <tr key={d.group}>
-                                        <td className="vp-letter">{d.group}</td>
-                                        <td><span className="vp-spelling-badge open">{d.open}</span></td>
-                                        <td><span className="vp-spelling-badge closed">{d.closed}</span></td>
-                                        <td className="vp-examples-cell">
-                                            {d.examples.map(ex => (
-                                                <button
-                                                    key={ex.word}
-                                                    className={`vp-example-chip ${ex.type} ${playingWord === ex.word ? 'playing' : ''}`}
-                                                    onClick={() => playWord(ex.word)}
-                                                >
-                                                    <em>{ex.word}</em> ({ex.meaning})
-                                                    <Volume2 size={12} />
-                                                </button>
-                                            ))}
-                                        </td>
-                                        <td dangerouslySetInnerHTML={{ __html: d.approx }} />
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
+                    <p className="vp-intro">
+                        The 3 core diphthongs. Spelling changes based on <strong>open</strong> (ends in vowel) vs <strong>closed</strong> (ends in consonant) syllables.
+                    </p>
+                    <div className="vp-centering-cards">
+                        {CENTERING_DIPHTHONGS.map(d => (
+                            <div key={d.group} className="vp-centering-card">
+                                <div className="vp-centering-card-header">
+                                    <span className="vp-centering-card-group">{d.group}</span>
+                                </div>
+                                <div className="vp-centering-card-badges">
+                                    <span className="vp-spelling-badge open">{d.open}</span>
+                                    <span className="vp-centering-card-vs">vs</span>
+                                    <span className="vp-spelling-badge closed">{d.closed}</span>
+                                </div>
+                                <p className="vp-centering-card-approx" dangerouslySetInnerHTML={{ __html: d.approx }} />
+                                <div className="vp-centering-card-examples">
+                                    {d.examples.map(ex => (
+                                        <button
+                                            key={ex.word}
+                                            className={`vp-example-chip ${ex.type} ${playingWord === ex.word ? 'playing' : ''}`}
+                                            onClick={() => playWord(ex.word)}
+                                        >
+                                            <em>{ex.word}</em> ({ex.meaning})
+                                            <Volume2 size={12} />
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+                        ))}
                     </div>
 
-                    {/* Rules */}
                     <div className="vp-rules-box">
-                        <h3>📏 Spelling Rules</h3>
+                        <h3>Spelling Rules</h3>
                         <ul>
                             <li>
-                                <strong>Rule:</strong> Use <span className="vp-spelling-badge open">ia</span>, <span className="vp-spelling-badge open">ua</span>, <span className="vp-spelling-badge open">ưa</span> when no consonant follows.
-                                Use <span className="vp-spelling-badge closed">iê</span>, <span className="vp-spelling-badge closed">uô</span>, <span className="vp-spelling-badge closed">ươ</span> when a consonant follows.
+                                Use <span className="vp-spelling-badge open">ia</span> <span className="vp-spelling-badge open">ua</span> <span className="vp-spelling-badge open">ưa</span> when no consonant follows.
                             </li>
                             <li>
-                                <strong>Special case:</strong> <span className="vp-spelling-badge closed">yê</span> is used instead of <span className="vp-spelling-badge closed">iê</span> when there is no initial consonant (e.g., <em>yêu</em>) or after certain sounds like <em>kh</em> (e.g., <em>khuya</em>).
+                                Use <span className="vp-spelling-badge closed">iê</span> <span className="vp-spelling-badge closed">uô</span> <span className="vp-spelling-badge closed">ươ</span> when a consonant follows.
+                            </li>
+                            <li>
+                                <span className="vp-spelling-badge closed">yê</span> replaces <span className="vp-spelling-badge closed">iê</span> when there's no initial consonant (e.g., <em>yêu</em>).
                             </li>
                         </ul>
-                    </div>
-                    <div className="vp-cta">
-                        <button onClick={() => startSection(3)}>
-                            Next: Gliding Diphthongs <ChevronRight size={18} style={{ verticalAlign: 'middle' }} />
-                        </button>
                     </div>
                 </>
             )}
@@ -470,56 +440,38 @@ export default function VowelsPractice() {
             {/* ═══ SECTION 3: Gliding Diphthongs ═══ */}
             {section === 3 && (
                 <>
-                    <div className="vp-section-header">
-                        <h2>Gliding Diphthongs</h2>
-                        <p className="vp-subtitle">
-                            These diphthongs glide from a main vowel toward a secondary vowel sound.
-                        </p>
-                    </div>
-                    <div className="vp-table-wrap">
-                        <table className="vp-table">
-                            <thead>
-                                <tr>
-                                    <th>Diphthong</th>
-                                    <th>English Approximation</th>
-                                    <th>Example</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {GLIDING_DIPHTHONGS.map(g => (
-                                    <tr
-                                        key={g.diph}
-                                        onClick={() => playWord(g.example)}
-                                        className={playingWord === g.example ? 'playing' : ''}
-                                    >
-                                        <td className="vp-letter">{g.diph}</td>
-                                        <td>{g.approx}</td>
-                                        <td className="vp-example">
-                                            <em>{g.example}</em> ({g.meaning})
-                                            <Volume2 size={14} className="vp-speaker-icon" />
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
+                    <p className="vp-intro">
+                        15 diphthongs that glide from one vowel to another. Tap to hear each one.
+                    </p>
+                    <div className="vp-gliding-cards">
+                        {GLIDING_DIPHTHONGS.map(g => (
+                            <button
+                                key={g.diph}
+                                className={`vp-gliding-card ${playingWord === g.diph ? 'playing' : ''}`}
+                                onClick={() => playWord(g.diph)}
+                            >
+                                <span className="vp-gliding-card-diph">{g.diph}</span>
+                                <span className="vp-gliding-card-info">
+                                    <span className="vp-gliding-card-approx">{g.approx}</span>
+                                    <span className="vp-gliding-card-example">
+                                        <em>{g.example}</em> — {g.meaning}
+                                    </span>
+                                </span>
+                                <Volume2 size={14} className="vp-gliding-card-speaker" />
+                            </button>
+                        ))}
                     </div>
 
-                    {/* Key Summary */}
                     <div className="vp-rules-box">
-                        <h3>🔑 Key Summary</h3>
+                        <h3>Key Points</h3>
                         <ul>
                             <li>
-                                <strong>Length Matters:</strong> The difference between pairs like <strong>ai/ay</strong> and <strong>ao/au</strong> is primarily the length of the first vowel. The one ending in <strong>-y</strong> or <strong>-u</strong> is always much shorter.
+                                Pairs like <strong>ai/ay</strong> and <strong>ao/au</strong> differ by vowel length — the <strong>-y</strong> or <strong>-u</strong> ending is always shorter.
                             </li>
                             <li>
-                                <strong>Tone Placement:</strong> In open diphthongs (like <em>mía</em>), the tone goes on the first vowel. In closed ones (like <em>tiền</em>), it typically goes on the second vowel.
+                                Open diphthongs: tone on first vowel. Closed: tone on second vowel.
                             </li>
                         </ul>
-                    </div>
-                    <div className="vp-cta">
-                        <button onClick={() => startSection(4)}>
-                            Next: Triphthongs <ChevronRight size={18} style={{ verticalAlign: 'middle' }} />
-                        </button>
                     </div>
                 </>
             )}
@@ -527,65 +479,41 @@ export default function VowelsPractice() {
             {/* ═══ SECTION 4: Triphthongs ═══ */}
             {section === 4 && (
                 <>
-                    <div className="vp-section-header">
-                        <h2>Triphthongs</h2>
-                        <p className="vp-subtitle">
-                            Vietnamese triphthongs consist of a main vowel cluster (centering diphthong) followed by a glide.
-                            Unlike English, Vietnamese triphthongs are common and must be pronounced as one fluid, sliding sound.
-                        </p>
-                    </div>
-                    <div className="vp-table-wrap">
-                        <table className="vp-table vp-triph-table">
-                            <thead>
-                                <tr>
-                                    <th>Triphthong</th>
-                                    <th>Components</th>
-                                    <th>English Sound Approximation</th>
-                                    <th>Example</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {TRIPHTHONGS.map(t => (
-                                    <tr
-                                        key={t.triph}
-                                        onClick={() => playWord(t.example)}
-                                        className={playingWord === t.example ? 'playing' : ''}
-                                    >
-                                        <td className="vp-letter">{t.triph}</td>
-                                        <td className="vp-components">{t.components}</td>
-                                        <td>{t.approx}</td>
-                                        <td className="vp-example">
-                                            <em>{t.example}</em> ({t.meaning})
-                                            <Volume2 size={14} className="vp-speaker-icon" />
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
+                    <p className="vp-intro">
+                        8 three-vowel clusters. Pronounce them as one fluid, sliding sound.
+                    </p>
+                    <div className="vp-triph-cards">
+                        {TRIPHTHONGS.map(t => (
+                            <button
+                                key={t.triph}
+                                className={`vp-triph-card ${playingWord === t.triph ? 'playing' : ''}`}
+                                onClick={() => playWord(t.triph)}
+                            >
+                                <span className="vp-triph-card-triph">{t.triph}</span>
+                                <span className="vp-triph-card-info">
+                                    <span className="vp-triph-card-components">{t.components}</span>
+                                    <span className="vp-triph-card-example">
+                                        <em>{t.example}</em> — {t.meaning}
+                                    </span>
+                                </span>
+                                <Volume2 size={14} className="vp-triph-card-speaker" />
+                            </button>
+                        ))}
                     </div>
 
-                    {/* Rules */}
                     <div className="vp-rules-box">
-                        <h3>📋 Important Rules for Triphthongs</h3>
+                        <h3>Rules</h3>
                         <ul>
                             <li>
-                                <strong>The "iêu" vs "yêu" Rule:</strong> Use <strong>iêu</strong> if there is a consonant at the beginning (e.g., <em>nhiều</em>, <em>tiêu</em>). Use <strong>yêu</strong> if the syllable starts with the vowel itself (e.g., <em>yêu</em>).
+                                Use <strong>iêu</strong> after a consonant, <strong>yêu</strong> when starting a syllable.
                             </li>
                             <li>
-                                <strong>The Glide Ending:</strong> Triphthongs ending in <strong>-i/-y</strong> glide toward an "ee" sound. Triphthongs ending in <strong>-u/-o</strong> glide toward an "oo" sound.
+                                Endings in <strong>-i/-y</strong> glide to "ee"; endings in <strong>-u/-o</strong> glide to "oo".
                             </li>
                             <li>
-                                <strong>Tone Placement:</strong> The tone mark is always placed on the <em>second vowel</em> (the middle one). Correct: <em>chuối</em>, <em>rượu</em>, <em>khoái</em>.
-                            </li>
-                            <li>
-                                <strong>Pronunciation Tip:</strong> Don't pause between letters. Start with the first vowel's mouth shape and rapidly transition. For <strong>ươi</strong> and <strong>ươu</strong>, keep lips unrounded for the first two letters, then only round them at the very end.
+                                Tone mark goes on the <em>middle</em> vowel: <em>chuối</em>, <em>rượu</em>.
                             </li>
                         </ul>
-                    </div>
-                    <div className="vp-cta">
-                        <button onClick={() => startSection(5)}>
-                            Start Quiz <ChevronRight size={18} style={{ verticalAlign: 'middle' }} />
-                        </button>
                     </div>
                 </>
             )}
@@ -593,11 +521,11 @@ export default function VowelsPractice() {
             {/* ═══ SECTION 5: Quiz ═══ */}
             {section === 5 && currentQ && (
                 <div className="practice-content-centered" style={{ justifyContent: 'flex-start' }}>
-                    <div className="vp-progress" style={{ width: '100%', marginBottom: '32px' }}>
+                    <div className="vp-progress">
                         <div className="vp-progress-fill" style={{ width: `${progress}%` }} />
                     </div>
 
-                    <div className="vp-quiz-content" style={{ width: '100%' }}>
+                    <div className="vp-quiz-content">
                         <div className="vp-quiz-question">{currentQ.question}</div>
                         <button className="practice-audio-btn large" onClick={() => playWord(currentQ.audio)}>
                             <Volume2 size={36} />
@@ -623,7 +551,7 @@ export default function VowelsPractice() {
                         </div>
                         {feedback !== 'idle' && (
                             <div className="vp-hint">
-                                💡 {currentQ.hint.replace(/<[^>]+>/g, '')}
+                                {currentQ.hint.replace(/<[^>]+>/g, '')}
                             </div>
                         )}
                     </div>
@@ -666,6 +594,38 @@ export default function VowelsPractice() {
                             </button>
                         )}
                     </div>
+                </div>
+            )}
+
+            </div>{/* end practice-scroll-area */}
+
+            {/* CTA — outside scroll area, anchored at bottom */}
+            {section === 1 && (
+                <div className="vp-cta">
+                    <button onClick={() => startSection(2)}>
+                        Next: Diphthongs <ChevronRight size={18} style={{ verticalAlign: 'middle' }} />
+                    </button>
+                </div>
+            )}
+            {section === 2 && (
+                <div className="vp-cta">
+                    <button onClick={() => startSection(3)}>
+                        Next: Gliding <ChevronRight size={18} style={{ verticalAlign: 'middle' }} />
+                    </button>
+                </div>
+            )}
+            {section === 3 && (
+                <div className="vp-cta">
+                    <button onClick={() => startSection(4)}>
+                        Next: Triphthongs <ChevronRight size={18} style={{ verticalAlign: 'middle' }} />
+                    </button>
+                </div>
+            )}
+            {section === 4 && (
+                <div className="vp-cta">
+                    <button onClick={() => startSection(5)}>
+                        Start Quiz <ChevronRight size={18} style={{ verticalAlign: 'middle' }} />
+                    </button>
                 </div>
             )}
         </div>

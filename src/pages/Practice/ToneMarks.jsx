@@ -99,6 +99,7 @@ export default function ToneMarks() {
     const dongCtx = useDong();
     const [stage, setStage] = useState(1);
     const [playingCell, setPlayingCell] = useState(null);
+    const [selectedVowel, setSelectedVowel] = useState('a');
 
     // Quiz state
     const [qIndex, setQIndex] = useState(0);
@@ -358,7 +359,7 @@ export default function ToneMarks() {
     }
 
     return (
-        <div className="practice-layout">
+        <div className="practice-layout practice-fixed-layout">
             {/* Header */}
             <div className="practice-header">
                 <h1 className="practice-header-title">
@@ -379,64 +380,69 @@ export default function ToneMarks() {
             </div>
 
             {/* Tabs */}
-            <div className="stage-tabs">
-                <button className={`stage-tab ${stage === 1 ? 'active' : ''}`} onClick={() => startStage(1)}>
-                    ① Explore
-                </button>
-                <button className={`stage-tab ${stage === 2 ? 'active' : ''}`} onClick={() => startStage(2)}>
-                    ② Combine
-                </button>
-                <button className={`stage-tab ${stage === 3 ? 'active' : ''}`} onClick={() => startStage(3)}>
-                    ③ Decompose
-                </button>
-                <button className={`stage-tab ${stage === 4 ? 'active' : ''}`} onClick={() => startStage(4)}>
-                    ④ Speed Quiz
-                </button>
+            <div className="tm-stage-tabs">
+                {[
+                    { id: 1, label: 'Explore' },
+                    { id: 2, label: 'Combine' },
+                    { id: 3, label: 'Decompose' },
+                    { id: 4, label: 'Quiz' },
+                ].map(tab => (
+                    <button
+                        key={tab.id}
+                        className={`tm-stage-tab ${stage === tab.id ? 'active' : ''}`}
+                        onClick={() => startStage(tab.id)}
+                    >
+                        {tab.label}
+                    </button>
+                ))}
             </div>
 
-            {/* ═══ STAGE 1: Periodic Table ═══ */}
+            {/* Scrollable content area */}
+            <div className="practice-scroll-area">
+
+            {/* ═══ STAGE 1: Explore ═══ */}
             {stage === 1 && (
                 <>
                     <p className="tm-intro">
-                        The Vietnamese "periodic table" — 12 vowels × 6 tones. Tap any cell to hear it!
+                        Pick a vowel, then tap each tone to hear it.
                     </p>
-                    <div className="periodic-table">
-                        <div className="periodic-grid">
-                            {/* Header row */}
-                            <div className="periodic-header" />
-                            {TONES.map(tone => (
-                                <div key={tone.id} className="periodic-header">
-                                    <span className="tone-mark-label">{tone.mark}</span>
-                                    <span>{tone.name}</span>
-                                </div>
-                            ))}
-                            {/* Data rows */}
-                            {VOWELS.map(vowel => (
-                                <>
-                                    <div key={`label-${vowel}`} className="periodic-row-label">{vowel}</div>
-                                    {TONE_MAP[vowel].map((char, ti) => {
-                                        const disabled = isDisabled(vowel, ti);
-                                        const noAudio = isNoAudio(char);
-                                        return (
-                                            <div
-                                                key={`${vowel}-${ti}`}
-                                                className={`periodic-cell ${playingCell === char ? 'playing' : ''} ${disabled ? 'disabled' : ''} ${noAudio ? 'no-audio' : ''}`}
-                                                onClick={() => !disabled && !noAudio ? playCell(char) : undefined}
-                                                title={noAudio ? 'Not pronounceable standalone' : ''}
-                                            >
-                                                {char}
-                                            </div>
-                                        );
-                                    })}
-                                </>
-                            ))}
-                        </div>
+
+                    {/* Vowel picker — horizontally scrollable pills */}
+                    <div className="tm-vowel-picker">
+                        {VOWELS.map(v => (
+                            <button
+                                key={v}
+                                className={`tm-vowel-pill ${selectedVowel === v ? 'active' : ''}`}
+                                onClick={() => setSelectedVowel(v)}
+                            >
+                                {v}
+                            </button>
+                        ))}
                     </div>
-                    <div className="tm-stage-cta">
-                        <button onClick={() => startStage(2)}>
-                            Start Practicing <ChevronRight size={18} style={{ verticalAlign: 'middle' }} />
-                        </button>
+
+                    {/* Tone cards for the selected vowel */}
+                    <div className="tm-tone-cards">
+                        {TONE_MAP[selectedVowel].map((char, ti) => {
+                            const noAudio = isNoAudio(char);
+                            return (
+                                <button
+                                    key={ti}
+                                    className={`tm-tone-card ${playingCell === char ? 'playing' : ''} ${noAudio ? 'no-audio' : ''}`}
+                                    onClick={() => !noAudio && playCell(char)}
+                                >
+                                    <span className="tm-tone-card-char">{char}</span>
+                                    <span className="tm-tone-card-name">{TONES[ti].name}</span>
+                                    <span className="tm-tone-card-label">{TONES[ti].label}</span>
+                                    {getMeaning(char) !== 'no meaning' && (
+                                        <span className="tm-tone-card-meaning">{getMeaning(char)}</span>
+                                    )}
+                                    {!noAudio && <Volume2 size={16} className="tm-tone-card-speaker" />}
+                                    {noAudio && <span className="tm-tone-card-no-audio">no standalone sound</span>}
+                                </button>
+                            );
+                        })}
                     </div>
+
                 </>
             )}
 
@@ -560,6 +566,17 @@ export default function ToneMarks() {
                             </button>
                         )}
                     </div>
+                </div>
+            )}
+
+            </div>{/* end practice-scroll-area */}
+
+            {/* CTA — outside scroll area, anchored at bottom */}
+            {stage === 1 && (
+                <div className="tm-stage-cta">
+                    <button onClick={() => startStage(2)}>
+                        Start Practicing <ChevronRight size={18} style={{ verticalAlign: 'middle' }} />
+                    </button>
                 </div>
             )}
         </div>

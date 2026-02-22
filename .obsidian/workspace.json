@@ -13,15 +13,15 @@
             "state": {
               "type": "canvas",
               "state": {
-                "file": "userflow.canvas",
+                "file": "datamodel.canvas",
                 "viewState": {
-                  "x": 1034.2665576380223,
-                  "y": 426.4896996871448,
-                  "zoom": 0.022484611317573726
+                  "x": 860.5,
+                  "y": 420,
+                  "zoom": -0.5931596536877759
                 }
               },
               "icon": "lucide-layout-dashboard",
-              "title": "userflow"
+              "title": "datamodel"
             }
           }
         ]
@@ -97,7 +97,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "userflow.canvas",
+                "file": "datamodel.canvas",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -107,7 +107,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for userflow"
+              "title": "Backlinks for datamodel"
             }
           },
           {
@@ -116,12 +116,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "userflow.canvas",
+                "file": "datamodel.canvas",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from userflow"
+              "title": "Outgoing links from datamodel"
             }
           },
           {
@@ -159,13 +159,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "userflow.canvas",
+                "file": "datamodel.canvas",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of userflow"
+              "title": "Outline of datamodel"
             }
           }
         ]
@@ -188,19 +188,46 @@
   },
   "active": "771453596e913b2e",
   "lastOpenFiles": [
-    "mascot.svg",
-    "server/databases",
-    "server",
-    "test_retention_mockups.spec.js",
-    "test_tonemarks_recording.spec.js",
-    "tone_marks_styles.patch",
-    "test_numbers_recording.spec.js",
-    "test_telex_recording.spec.js",
-    "test_pronouns_recording.spec.js",
-    "src/pages/Practice/PracticeShared.css",
-    "Pasted image 20260221161640.png",
     "userflow.canvas",
-    "src/data/vocabWords.js",
+    "dist/assets/index-CfMb8tkD.js",
+    "dist/assets/index-7GkS2Hx7.css",
+    "dist/assets/index-BlAY-ekC.js",
+    "dist/assets/index-CmFCb02e.css",
+    "dist/assets/index-aTB7jS6U.js",
+    "dist/assets/index-C75SKggl.css",
+    "dist/assets/index-CNcMd2nF.js",
+    "dist/assets/index-BG4hD0XC.css",
+    "dist/assets/index-nKeAQL73.js",
+    "dist/assets/index-DOcuh-zO.css",
+    "plan.md",
+    "node_modules/protobufjs/README.md",
+    "node_modules/path-scurry/node_modules/lru-cache/README.md",
+    "node_modules/path-scurry/README.md",
+    "node_modules/path-scurry/LICENSE.md",
+    "node_modules/@isaacs/cliui/node_modules/wrap-ansi/readme.md",
+    "node_modules/@isaacs/cliui/node_modules/strip-ansi/readme.md",
+    "node_modules/@isaacs/cliui/node_modules/string-width/readme.md",
+    "node_modules/@isaacs/cliui/node_modules/emoji-regex/README.md",
+    "node_modules/@isaacs/cliui/node_modules/ansi-styles/readme.md",
+    "node_modules/@isaacs/cliui/node_modules/ansi-regex/readme.md",
+    "node_modules/@isaacs/cliui/README.md",
+    "node_modules/@pkgjs/parseargs/README.md",
+    "node_modules/@pkgjs/parseargs/CHANGELOG.md",
+    "node_modules/glob/node_modules/minimatch/README.md",
+    "node_modules/glob/node_modules/brace-expansion/README.md",
+    "node_modules/glob/node_modules/balanced-match/README.md",
+    "node_modules/glob/node_modules/balanced-match/LICENSE.md",
+    "node_modules/glob/README.md",
+    "node_modules/@google/genai/README.md",
+    "node_modules/@protobufjs/utf8/README.md",
+    "node_modules/@protobufjs/fetch/README.md",
+    "node_modules/@protobufjs/pool/README.md",
+    "node_modules/@protobufjs/path/README.md",
+    "node_modules/@protobufjs/eventemitter/README.md",
+    "m.svg",
+    "node_modules/concurrently/docs/demo.gif",
+    "mascot.svg",
+    "Pasted image 20260221161640.png",
     "datamodel.canvas",
     "Pasted image 20260221161608.png",
     "Pasted image 20260221161342.png",

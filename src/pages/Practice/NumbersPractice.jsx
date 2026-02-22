@@ -382,7 +382,7 @@ export default function NumbersPractice() {
     }
 
     return (
-        <div className="practice-layout">
+        <div className="practice-layout practice-fixed-layout">
             {/* Header */}
             <div className="practice-header">
                 <h1 className="practice-header-title">
@@ -424,6 +424,9 @@ export default function NumbersPractice() {
                 </button>
             </div>
 
+            {/* Scrollable content area */}
+            <div className="practice-scroll-area">
+
             {/* ═══ STAGE 1: Foundation ═══ */}
             {stage === 1 && (
                 <>
@@ -442,11 +445,6 @@ export default function NumbersPractice() {
                                 <span className="vn-word">{numberToVietnamese(n)}</span>
                             </div>
                         ))}
-                    </div>
-                    <div className="stage-cta">
-                        <button onClick={() => { setStagesCompleted(prev => new Set([...prev, 1])); setStage(2); }}>
-                            I know these! Next <ChevronRight size={18} style={{ verticalAlign: 'middle' }} />
-                        </button>
                     </div>
                 </>
             )}
@@ -679,6 +677,17 @@ export default function NumbersPractice() {
                             </button>
                         )}
                     </div>
+                </div>
+            )}
+
+            </div>{/* end practice-scroll-area */}
+
+            {/* CTA — outside scroll area, anchored at bottom */}
+            {stage === 1 && (
+                <div className="stage-cta">
+                    <button onClick={() => { setStagesCompleted(prev => new Set([...prev, 1])); setStage(2); }}>
+                        I know these! Next <ChevronRight size={18} style={{ verticalAlign: 'middle' }} />
+                    </button>
                 </div>
             )}
         </div>
