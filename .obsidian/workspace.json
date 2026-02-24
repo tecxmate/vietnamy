@@ -13,15 +13,15 @@
             "state": {
               "type": "canvas",
               "state": {
-                "file": "userflow.canvas",
+                "file": "docs/note.canvas",
                 "viewState": {
-                  "x": 367.4277993516235,
-                  "y": 198.27289705780487,
-                  "zoom": -0.4736493413688009
+                  "x": -179.5,
+                  "y": 10.5,
+                  "zoom": -1.1603024166635372
                 }
               },
               "icon": "lucide-layout-dashboard",
-              "title": "userflow"
+              "title": "note"
             }
           }
         ]
@@ -97,7 +97,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "userflow.canvas",
+                "file": "docs/note.canvas",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -107,7 +107,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for userflow"
+              "title": "Backlinks for note"
             }
           },
           {
@@ -116,12 +116,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "userflow.canvas",
+                "file": "docs/note.canvas",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from userflow"
+              "title": "Outgoing links from note"
             }
           },
           {
@@ -159,13 +159,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "userflow.canvas",
+                "file": "docs/note.canvas",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of userflow"
+              "title": "Outline of note"
             }
           }
         ]
@@ -188,44 +188,51 @@
   },
   "active": "771453596e913b2e",
   "lastOpenFiles": [
-    "server/scripts/integrate_stardict.py",
-    "server/scripts/integrate_hanviet.py",
-    "server/scripts/optimize_dbs.py",
-    "server/scripts/integrate_3dict.py",
-    "server/scripts",
-    "dist/assets/index-BDkuMp4F.js",
-    "dist/assets/index-65UMGKB9.css",
-    "dist/assets/index-EqLsOvAe.js",
-    "dist/assets/index-DHV785_S.css",
-    "server/node_modules/better-sqlite3/build/Release/better_sqlite3.node",
-    "server/node_modules/better-sqlite3/build/Release",
+    "dist/assets/index-BH6_Dv3l.js",
+    "dist/assets/index-DOSx_Dff.css",
+    "dist/assets/index-DwkPFxVk.js",
+    "dist/assets/index-4yMLSTM0.css",
+    "dist/assets/index-B9q-Gv_W.css",
+    "dist/assets/index-BS6FgU-x.js",
+    "src/components/Tabs/CommunityTab.css",
+    "src/components/Tabs/CommunityTab.jsx",
+    "src/components/Tabs/VocabLibraryTab.css",
+    "src/components/Tabs/VocabLibraryTab.jsx",
+    "src/components/VocabImage.jsx",
+    "docs/mockup-dictionary-vocab-library.md",
+    "docs/userflow.canvas",
+    "docs/user_flow_and_features.md",
+    "docs/note.canvas",
+    "docs/datamodel.canvas",
+    "docs/PRD.md",
+    "canvas/userflow.canvas",
+    "canvas/user_flow_and_features.md",
+    "canvas/PRD.md",
+    "canvas/note.canvas",
+    "canvas/datamodel.canvas",
+    "userflow.canvas",
+    "PRD.md",
+    "user_flow_and_features.md",
+    "note.canvas",
+    "server/node_modules/denque/README.md",
+    "server/node_modules/denque/CHANGELOG.md",
+    "server/node_modules/mysql2/lib/auth_plugins/caching_sha2_password.md",
+    "server/node_modules/mysql2/node_modules/iconv-lite/README.md",
+    "server/node_modules/mysql2/README.md",
+    "server/node_modules/aws-ssl-profiles/README.md",
+    "server/node_modules/@types/node/README.md",
+    "server/node_modules/generate-function/README.md",
+    "server/node_modules/is-property/README.md",
+    "server/node_modules/sql-escaper/README.md",
+    "server/node_modules/named-placeholders/README.md",
+    "server/node_modules/lru.min/README.md",
+    "server/node_modules/long/README.md",
+    "server/node_modules/undici-types/README.md",
     "server/node_modules/bindings/README.md",
     "server/node_modules/better-sqlite3/README.md",
     "server/node_modules/util-deprecate/README.md",
     "server/node_modules/util-deprecate/History.md",
-    "server/node_modules/ieee754/README.md",
-    "server/node_modules/string_decoder/README.md",
-    "server/node_modules/base64-js/README.md",
-    "server/node_modules/buffer/README.md",
-    "server/node_modules/buffer/AUTHORS.md",
-    "server/node_modules/readable-stream/README.md",
-    "server/node_modules/readable-stream/CONTRIBUTING.md",
-    "server/node_modules/readable-stream/GOVERNANCE.md",
-    "server/node_modules/fs-constants/README.md",
-    "server/node_modules/bl/README.md",
-    "server/node_modules/bl/LICENSE.md",
-    "server/node_modules/tar-stream/README.md",
-    "server/node_modules/chownr/README.md",
-    "server/node_modules/simple-concat/README.md",
-    "server/node_modules/mimic-response/readme.md",
-    "server/node_modules/decompress-response/readme.md",
-    "server/node_modules/strip-json-comments/readme.md",
-    "server/node_modules/ini/README.md",
-    "server/node_modules/deep-extend/README.md",
-    "server/node_modules/deep-extend/CHANGELOG.md",
-    "server/node_modules/wrappy/README.md",
     "datamodel.canvas",
-    "userflow.canvas",
     "m.svg",
     "node_modules/concurrently/docs/demo.gif",
     "mascot.svg",

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { Search, BookA, Loader2, Volume2 } from 'lucide-react';
+import { Search, BookA, Loader2, Volume2, Camera } from 'lucide-react';
 import speak from '../../utils/speak';
 import './DictionaryTab.css';
 
@@ -337,6 +337,9 @@ const DictionaryTab = () => {
                             onChange={(e) => setQuery(e.target.value)}
                             className="search-input"
                         />
+                        <button type="button" className="camera-btn" onClick={() => alert('Camera OCR Mockup')} title="OCR Scanner">
+                            <Camera size={20} />
+                        </button>
                         <button type="submit" disabled={loading} className="search-button">
                             {loading ? <Loader2 size={20} className="loading-icon" /> : <Search size={20} />}
                         </button>

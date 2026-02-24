@@ -663,3 +663,25 @@
 .fallback-google:hover {
     background-color: #3367d6;
 }
+
+/* Camera button for OCR mockup */
+.camera-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    padding: 8px 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease, transform 0.1s ease;
+}
+
+.camera-btn:hover {
+    color: var(--primary-color);
+    transform: scale(1.05);
+}
+
+.camera-btn:active {
+    transform: scale(0.95);
+}

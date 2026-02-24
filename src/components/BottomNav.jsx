@@ -1,11 +1,11 @@
 import React from 'react';
-import { Map, Dumbbell, Book, BookOpen, Library, Users } from 'lucide-react';
+import { Map, Dumbbell, Search, BookOpen, Library, Users } from 'lucide-react';
 
 const BottomNav = ({ activeTab, setActiveTab }) => {
     const tabs = [
         { id: 'roadmap', icon: <Map size={24} />, label: 'Roadmap' },
         { id: 'practice', icon: <Dumbbell size={24} />, label: 'Practice' },
-        { id: 'dictionary', icon: <Book size={24} />, label: 'Dictionary' },
+        { id: 'dictionary', icon: <Search size={24} />, label: 'Dictionary' },
         { id: 'grammar', icon: <BookOpen size={24} />, label: 'Grammar' },
         { id: 'library', icon: <Library size={24} />, label: 'Library' },
         { id: 'community', icon: <Users size={24} />, label: 'Community' },

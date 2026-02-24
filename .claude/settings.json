@@ -2,10 +2,34 @@
   "permissions": {
     "allow": [
       "Bash(# Find the extracted VJ dictionary files find /tmp -name \"\"*.dict\"\" -o -name \"\"*.idx\"\" -o -name \"\"*.ifo\"\")",
-      "Read(//tmp/**)"
+      "Read(//tmp/**)",
+      "Bash(du:*)",
+      "Bash(git check-ignore:*)",
+      "Bash(brew list:*)",
+      "Bash(mysql:*)",
+      "Bash(mysqlsh:*)",
+      "Bash(nc:*)",
+      "Bash(npm install:*)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:sourceforge.net)",
+      "WebFetch(domain:en.bab.la)",
+      "Bash(gh api:*)",
+      "Bash(cat:*)",
+      "WebFetch(domain:thu-tram.github.io)",
+      "WebFetch(domain:tinhte.vn)",
+      "WebFetch(domain:catusf.github.io)",
+      "Bash(git clone:*)",
+      "Bash(git remote set-url:*)",
+      "WebFetch(domain:zeabur.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(head:*)",
+      "WebFetch(domain:1.vndic.net)",
+      "WebFetch(domain:2.vndic.net)",
+      "WebFetch(domain:6.vndic.net)"
     ],
     "additionalDirectories": [
-      "/Users/niko/antigravity/vnme-app"
+      "/Users/niko/antigravity/vnme-app",
+      "/tmp"
     ]
   }
 }
