@@ -404,6 +404,13 @@ app.get('/api/search', (req, res) => {
     }
 });
 
+// Serve Vite build output in production
+const distPath = join(__dirname, '..', 'dist');
+app.use(express.static(distPath));
+app.get('*', (req, res) => {
+    res.sendFile(join(distPath, 'index.html'));
+});
+
 app.listen(PORT, () => {
     console.log(`Dictionary API running on http://localhost:${PORT}`);
 });

@@ -146,7 +146,7 @@ const DictionaryTab = () => {
     const fetchSuggestionsImmediate = useCallback(async (val) => {
         if (val.trim().length < 2) { setSuggestions([]); return; }
         try {
-            const res = await fetch(`http://localhost:3001/api/suggest?q=${encodeURIComponent(val.trim())}`);
+            const res = await fetch(`/api/suggest?q=${encodeURIComponent(val.trim())}`);
             if (res.ok) setSuggestions(await res.json());
         } catch { /* silently ignore */ }
     }, []);
@@ -183,8 +183,8 @@ const DictionaryTab = () => {
         try {
             const enc = encodeURIComponent(word.trim());
             const [enRes, zhRes] = await Promise.all([
-                fetch(`http://localhost:3001/api/search?q=${enc}&lang=en`),
-                fetch(`http://localhost:3001/api/search?q=${enc}&lang=zh`),
+                fetch(`/api/search?q=${enc}&lang=en`),
+                fetch(`/api/search?q=${enc}&lang=zh`),
             ]);
             if (!enRes.ok || !zhRes.ok) throw new Error('Search failed');
             const [enData, zhData] = await Promise.all([enRes.json(), zhRes.json()]);
