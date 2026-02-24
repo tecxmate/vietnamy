@@ -3,8 +3,6 @@ import { Search, BookA, Loader2, Volume2 } from 'lucide-react';
 import speak from '../../utils/speak';
 import './DictionaryTab.css';
 
-const API_BASE = import.meta.env.VITE_API_URL || '';
-
 const MODES = [
     { id: 'en', label: 'EN' },
     { id: 'vi', label: 'VI' },
@@ -148,7 +146,7 @@ const DictionaryTab = () => {
     const fetchSuggestionsImmediate = useCallback(async (val) => {
         if (val.trim().length < 2) { setSuggestions([]); return; }
         try {
-            const res = await fetch(`${API_BASE}/api/suggest?q=${encodeURIComponent(val.trim())}`);
+            const res = await fetch(`/api/suggest?q=${encodeURIComponent(val.trim())}`);
             if (res.ok) setSuggestions(await res.json());
         } catch { /* silently ignore */ }
     }, []);
@@ -185,8 +183,8 @@ const DictionaryTab = () => {
         try {
             const enc = encodeURIComponent(word.trim());
             const [enRes, zhRes] = await Promise.all([
-                fetch(`${API_BASE}/api/search?q=${enc}&lang=en`),
-                fetch(`${API_BASE}/api/search?q=${enc}&lang=zh`),
+                fetch(`/api/search?q=${enc}&lang=en`),
+                fetch(`/api/search?q=${enc}&lang=zh`),
             ]);
             if (!enRes.ok || !zhRes.ok) throw new Error('Search failed');
             const [enData, zhData] = await Promise.all([enRes.json(), zhRes.json()]);
