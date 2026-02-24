@@ -1,5 +1,4 @@
 {
   "build_command": "npm install && npm run build",
-  "start_command": "node server/server.js",
-  "node_version": "20"
+  "start_command": "node server/server.js"
 }
