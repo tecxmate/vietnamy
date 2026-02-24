@@ -29,3 +29,6 @@ dist-ssr
 
 # Full database archives (proprietary sources)
 server/databases/archive/
+
+# Environment variables
+.env

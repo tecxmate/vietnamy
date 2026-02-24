@@ -1,142 +1,204 @@
 import React, { useState } from 'react';
-import { Target, Heart, Zap, User, Settings, Shield, Wrench, X, ChevronDown, RefreshCw, Globe, Type, Volume2, Clock, Coins } from 'lucide-react';
+import {
+    Target, Zap, User, X, ChevronDown, ChevronRight, RefreshCw,
+    Globe, Type, Volume2, Wrench, Moon, Sun, Clock, Bell,
+} from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useDong } from '../context/DongContext';
 import { useUser } from '../context/UserContext';
 
+const SETTINGS_KEY = 'vnme_settings';
+
+function loadSettings() {
+    try {
+        const raw = localStorage.getItem(SETTINGS_KEY);
+        return raw ? JSON.parse(raw) : {};
+    } catch { return {}; }
+}
+
+function saveSettings(s) {
+    localStorage.setItem(SETTINGS_KEY, JSON.stringify(s));
+}
+
 const TAB_META = {
-    practice: { title: 'Targeted Practice', subtitle: 'Focus on specific skills for quick wins' },
-    dictionary: { title: 'Dictionary', subtitle: 'Search Vietnamese words, technical terms, and phrases' },
-    grammar: { title: 'Grammar', subtitle: 'Browse grammar patterns by level' },
-    leaderboard: { title: 'Leaderboard', subtitle: 'See how you stack up against other learners' },
+    roadmap: null, // roadmap shows progress bar instead
+    practice: { title: 'Practice', subtitle: 'Focus on specific skills' },
+    dictionary: { title: 'Dictionary', subtitle: 'Search Vietnamese words' },
+    grammar: { title: 'Grammar', subtitle: 'Browse patterns by level' },
+    library: { title: 'Library', subtitle: 'Your vocab decks & flashcards' },
+    community: { title: 'Community', subtitle: 'Leaderboards & friends' },
 };
 
 const TopBar = ({ activeTab }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const navigate = useNavigate();
     const { balance, dailyStreak } = useDong();
-    const { userProfile } = useUser();
+    const { userProfile, updateUserProfile } = useUser();
     const isRoadmap = activeTab === 'roadmap';
     const meta = TAB_META[activeTab];
 
+    const [settings, setSettings] = useState(() => loadSettings());
+
+    const updateSetting = (key, value) => {
+        const next = { ...settings, [key]: value };
+        setSettings(next);
+        saveSettings(next);
+    };
+
     const dialectLabel = userProfile.dialect === 'north' ? 'Northern' : userProfile.dialect === 'south' ? 'Southern' : userProfile.dialect === 'both' ? 'Both Dialects' : '';
-    const goalLabel = userProfile.dailyMins ? `${userProfile.dailyMins}m/day goal` : '';
+    const goalLabel = userProfile.dailyMins ? `${userProfile.dailyMins}m/day` : '';
+
+    const handleReset = () => {
+        if (confirm('Reset all progress and settings? This cannot be undone.')) {
+            localStorage.clear();
+            window.location.reload();
+        }
+    };
 
     return (
         <>
             <header className="top-bar">
-                {/* Profile Avatar Button */}
+                {/* Profile Avatar */}
                 <button
                     onClick={() => setIsMenuOpen(true)}
                     style={{
-                        padding: '8px',
-                        borderRadius: '50%',
-                        backgroundColor: 'var(--surface-color)',
-                        border: '1px solid var(--border-color)',
-                        marginRight: 'var(--spacing-4)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        color: 'var(--primary-color)',
-                        flexShrink: 0,
+                        padding: '8px', borderRadius: '50%',
+                        backgroundColor: 'var(--surface-color)', border: '1px solid var(--border-color)',
+                        marginRight: 'var(--spacing-3)', display: 'flex', alignItems: 'center',
+                        justifyContent: 'center', color: 'var(--primary-color)', flexShrink: 0,
                     }}
                 >
-                    <User size={24} />
+                    <User size={22} />
                 </button>
 
-                {/* Center: progress bar (roadmap) OR tab title (other tabs) */}
+                {/* Center: progress bar (roadmap) or tab title */}
                 {isRoadmap ? (
-                    <div className="flex items-center gap-2" style={{ flex: 1, marginRight: 'var(--spacing-4)' }}>
-                        <Target size={20} color="var(--text-muted)" />
-                        <div style={{ flex: 1, height: 10, backgroundColor: 'var(--surface-color-light)', borderRadius: 5, overflow: 'hidden', border: '1px solid var(--border-color)' }}>
-                            <div style={{ width: '66%', height: '100%', backgroundColor: 'var(--primary-color)', boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.1)' }}></div>
+                    <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: 8, marginRight: 'var(--spacing-3)' }}>
+                        <Target size={18} color="var(--text-muted)" />
+                        <div style={{ flex: 1, height: 8, backgroundColor: 'var(--surface-color-light)', borderRadius: 4, overflow: 'hidden', border: '1px solid var(--border-color)' }}>
+                            <div style={{ width: '66%', height: '100%', backgroundColor: 'var(--primary-color)' }} />
                         </div>
                     </div>
                 ) : (
-                    <div style={{ flex: 1, marginRight: 'var(--spacing-4)', overflow: 'hidden' }}>
+                    <div style={{ flex: 1, marginRight: 'var(--spacing-3)', overflow: 'hidden' }}>
                         <p style={{ margin: 0, fontWeight: 700, fontSize: 15, lineHeight: 1.2, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                             {meta?.title}
                         </p>
-                        <p style={{ margin: 0, fontSize: 11, color: 'var(--text-muted)', lineHeight: 1.3, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                        <p style={{ margin: 0, fontSize: 11, color: 'var(--text-muted)', lineHeight: 1.3 }}>
                             {meta?.subtitle}
                         </p>
                     </div>
                 )}
 
-                {/* Stats — Roadmap only */}
-                {isRoadmap && (
-                    <div className="flex gap-3">
-                        <div className="stat-badge streak" style={{ padding: '4px 8px', fontSize: '14px' }}>
-                            <Zap size={16} fill="currentColor" /> {dailyStreak}
-                        </div>
-                        <div className="stat-badge" style={{ padding: '4px 8px', fontSize: '14px', color: '#F2C255' }}>
-                            {balance.toLocaleString()}₫
-                        </div>
+                {/* Stats — always visible */}
+                <div style={{ display: 'flex', gap: 10, alignItems: 'center', flexShrink: 0 }}>
+                    <div className="stat-badge streak" style={{ padding: '4px 6px', fontSize: '13px' }}>
+                        <Zap size={14} fill="currentColor" /> {dailyStreak}
                     </div>
-                )}
+                    <div className="stat-badge" style={{ padding: '4px 6px', fontSize: '13px', color: '#F2C255' }}>
+                        {balance.toLocaleString()}₫
+                    </div>
+                </div>
             </header>
 
-
-            {/* Account Settings Overlay Modal */}
+            {/* ─── Settings Modal ────────────────────────────────── */}
             {isMenuOpen && (
                 <div className="modal-overlay" onClick={() => setIsMenuOpen(false)}>
-                    <div className="modal-content slide-up" onClick={(e) => e.stopPropagation()}>
-                        <div className="flex justify-between items-center mb-6">
-                            <h2 style={{ margin: 0 }}>Account Settings</h2>
-                            <button className="ghost" onClick={() => setIsMenuOpen(false)}>
-                                <X size={24} />
+                    <div className="modal-content slide-up" onClick={e => e.stopPropagation()}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
+                            <h2 style={{ margin: 0, fontSize: 20 }}>Settings</h2>
+                            <button className="ghost" onClick={() => setIsMenuOpen(false)} style={{ padding: 6 }}>
+                                <X size={22} />
                             </button>
                         </div>
 
-                        {/* Profile Info */}
-                        <div className="flex items-center gap-4 mb-6">
-                            <div style={{ width: 64, height: 64, backgroundColor: 'var(--primary-color)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#1A1A1A' }}>
-                                <User size={32} />
+                        {/* Profile Card */}
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 24, padding: 16, backgroundColor: 'var(--surface-color)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--border-color)' }}>
+                            <div style={{ width: 52, height: 52, backgroundColor: 'var(--primary-color)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#1A1A1A', flexShrink: 0 }}>
+                                <User size={26} />
                             </div>
-                            <div>
-                                <h3 style={{ fontSize: 20, margin: 0, marginBottom: 4 }}>{userProfile.name || 'Learner'}</h3>
-                                <span style={{ fontSize: 14, color: 'var(--text-muted)' }}>{[dialectLabel, goalLabel].filter(Boolean).join(' • ') || 'Vietnamese Learner'}</span>
+                            <div style={{ flex: 1 }}>
+                                <h3 style={{ fontSize: 17, margin: '0 0 2px', fontWeight: 800 }}>{userProfile.name || 'Learner'}</h3>
+                                <span style={{ fontSize: 13, color: 'var(--text-muted)' }}>
+                                    {[dialectLabel, goalLabel].filter(Boolean).join(' · ') || 'Vietnamese Learner'}
+                                </span>
                             </div>
                         </div>
 
-                        {/* Scrollable Settings Area */}
-                        <div style={{
-                            margin: '0 -24px -24px -24px',
-                            padding: '24px',
-                            backgroundColor: 'rgba(0,0,0,0.03)',
-                            overflowY: 'auto',
-                            maxHeight: '65vh'
-                        }}>
-                            {/* Group 1 */}
-                            <div className="glass-panel" style={{ padding: 0, marginBottom: '20px', borderRadius: '16px' }}>
-                                <SettingDropdown label="Ngày nhắc trong tuần" value="2, 3, 4, 5, 6, 7, CN" />
-                            </div>
+                        {/* Scrollable Settings */}
+                        <div style={{ margin: '0 -24px -48px', padding: '0 24px 48px', overflowY: 'auto', maxHeight: '55vh' }}>
 
-                            {/* Group 2 */}
-                            <div className="glass-panel" style={{ padding: 0, marginBottom: '20px', borderRadius: '16px' }}>
-                                <SettingToggle label="Hiện Hán Việt" checked={true} />
-                                <SettingDropdown label="Chế độ học" value="Phồn thể" />
-                                <SettingDropdown label="Kiểu phiên âm" value="Bính âm" />
-                            </div>
+                            {/* Learning Preferences */}
+                            <SettingsGroup title="Learning">
+                                <SettingSelect
+                                    label="Dialect"
+                                    icon={<Globe size={16} />}
+                                    value={userProfile.dialect || 'south'}
+                                    options={[{ v: 'north', l: 'Northern' }, { v: 'south', l: 'Southern' }, { v: 'both', l: 'Both' }]}
+                                    onChange={v => updateUserProfile({ dialect: v })}
+                                />
+                                <SettingSelect
+                                    label="Daily Goal"
+                                    icon={<Clock size={16} />}
+                                    value={String(userProfile.dailyMins || 10)}
+                                    options={[{ v: '5', l: '5 min' }, { v: '10', l: '10 min' }, { v: '15', l: '15 min' }, { v: '20', l: '20 min' }]}
+                                    onChange={v => updateUserProfile({ dailyMins: parseInt(v) })}
+                                />
+                                <SettingSelect
+                                    label="Level"
+                                    icon={<Target size={16} />}
+                                    value={userProfile.level || 'new'}
+                                    options={[{ v: 'new', l: 'Beginner' }, { v: 'basic', l: 'Elementary' }, { v: 'intermediate', l: 'Intermediate' }]}
+                                    onChange={v => updateUserProfile({ level: v })}
+                                />
+                            </SettingsGroup>
 
-                            {/* Group 3 */}
-                            <div className="glass-panel" style={{ padding: 0, marginBottom: '20px', borderRadius: '16px' }}>
-                                <SettingDropdown label="Ngôn ngữ" value="Tiếng Việt" icon={<Globe size={16} color="var(--primary-color)" />} />
-                                <SettingDropdown label="Font chữ" value="Nghiêm túc" icon={<Type size={16} color="#8D6E63" />} />
-                                <SettingDropdown label="Cỡ chữ" value="15.0" />
-                            </div>
+                            {/* Voice & Sound */}
+                            <SettingsGroup title="Voice & Sound">
+                                <SettingSelect
+                                    label="TTS Speed"
+                                    icon={<Volume2 size={16} />}
+                                    value={settings.ttsSpeed || '0.9'}
+                                    options={[{ v: '0.6', l: 'Slow' }, { v: '0.9', l: 'Normal' }, { v: '1.2', l: 'Fast' }]}
+                                    onChange={v => updateSetting('ttsSpeed', v)}
+                                />
+                            </SettingsGroup>
 
-                            {/* Group 4 */}
-                            <div className="glass-panel" style={{ padding: 0, marginBottom: '20px', borderRadius: '16px' }}>
-                                <SettingDropdown label="Giọng nói" value="Shi" icon={<User size={16} />} />
-                                <SettingDropdown label="Tốc độ" value="1.0x" />
-                            </div>
+                            {/* Display */}
+                            <SettingsGroup title="Display">
+                                <SettingSelect
+                                    label="Font Size"
+                                    icon={<Type size={16} />}
+                                    value={settings.fontSize || 'medium'}
+                                    options={[{ v: 'small', l: 'Small' }, { v: 'medium', l: 'Medium' }, { v: 'large', l: 'Large' }]}
+                                    onChange={v => updateSetting('fontSize', v)}
+                                />
+                            </SettingsGroup>
 
-                            {/* Group 5: Actions */}
-                            <div className="glass-panel" style={{ padding: 0, borderRadius: '16px' }}>
-                                <SettingAction label="Tùy chọn Quản trị (Admin CMS)" icon={<Wrench size={18} />} onClick={() => { setIsMenuOpen(false); navigate('/admin'); }} />
-                                <SettingAction label="Khôi phục cài đặt gốc" icon={<RefreshCw size={18} />} color="var(--danger-color)" />
-                            </div>
+                            {/* Notifications */}
+                            <SettingsGroup title="Reminders">
+                                <SettingToggle
+                                    label="Daily Reminder"
+                                    icon={<Bell size={16} />}
+                                    checked={settings.dailyReminder !== false}
+                                    onChange={v => updateSetting('dailyReminder', v)}
+                                />
+                            </SettingsGroup>
+
+                            {/* Actions */}
+                            <SettingsGroup title="Advanced">
+                                <SettingAction
+                                    label="Admin CMS"
+                                    icon={<Wrench size={16} />}
+                                    onClick={() => { setIsMenuOpen(false); navigate('/admin'); }}
+                                />
+                                <SettingAction
+                                    label="Reset All Progress"
+                                    icon={<RefreshCw size={16} />}
+                                    color="var(--danger-color)"
+                                    onClick={handleReset}
+                                />
+                            </SettingsGroup>
                         </div>
                     </div>
                 </div>
@@ -145,39 +207,85 @@ const TopBar = ({ activeTab }) => {
     );
 };
 
-// --- Mockup Components for Settings ---
+// ─── Setting Components ──────────────────────────────────────
 
-const SettingDropdown = ({ label, value, icon }) => (
-    <div className="flex justify-between items-center p-4" style={{ borderBottom: '1px solid var(--border-color)' }}>
-        <span style={{ fontSize: 16 }}>{label}</span>
-        <div className="flex items-center gap-2" style={{ backgroundColor: 'var(--surface-color-light)', padding: '6px 12px', borderRadius: '8px', cursor: 'pointer' }}>
-            {icon && <span style={{ display: 'flex', alignItems: 'center' }}>{icon}</span>}
-            <span style={{ fontSize: 14, fontWeight: 500 }}>{value}</span>
-            <ChevronDown size={16} color="var(--text-muted)" />
+const SettingsGroup = ({ title, children }) => (
+    <div style={{ marginBottom: 20 }}>
+        <span style={{ fontSize: 11, fontWeight: 800, textTransform: 'uppercase', letterSpacing: 0.5, color: 'var(--text-muted)', display: 'block', marginBottom: 8 }}>{title}</span>
+        <div style={{ backgroundColor: 'var(--surface-color)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--border-color)', overflow: 'hidden' }}>
+            {children}
         </div>
     </div>
 );
 
-const SettingToggle = ({ label, checked }) => (
-    <div className="flex justify-between items-center p-4" style={{ borderBottom: '1px solid var(--border-color)' }}>
-        <span style={{ fontSize: 16 }}>{label}</span>
+const SettingSelect = ({ label, icon, value, options, onChange }) => {
+    const [open, setOpen] = useState(false);
+    const current = options.find(o => o.v === value);
+
+    return (
+        <div style={{ borderBottom: '1px solid var(--border-color)' }}>
+            <div
+                onClick={() => setOpen(!open)}
+                style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '14px 16px', cursor: 'pointer' }}
+            >
+                <span style={{ color: 'var(--primary-color)', display: 'flex' }}>{icon}</span>
+                <span style={{ flex: 1, fontSize: 15 }}>{label}</span>
+                <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--text-muted)', backgroundColor: 'var(--surface-color-light)', padding: '4px 10px', borderRadius: 8 }}>
+                    {current?.l || value}
+                </span>
+                <ChevronDown size={14} color="var(--text-muted)" style={{ transform: open ? 'rotate(180deg)' : 'none', transition: '0.2s' }} />
+            </div>
+            {open && (
+                <div style={{ padding: '0 16px 12px', display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+                    {options.map(o => (
+                        <button
+                            key={o.v}
+                            onClick={() => { onChange(o.v); setOpen(false); }}
+                            style={{
+                                padding: '8px 14px', borderRadius: 'var(--radius-full)', fontSize: 13, fontWeight: 700,
+                                border: o.v === value ? '2px solid var(--primary-color)' : '2px solid var(--border-color)',
+                                backgroundColor: o.v === value ? 'rgba(255,209,102,0.15)' : 'transparent',
+                                color: o.v === value ? 'var(--primary-color)' : 'var(--text-main)',
+                                cursor: 'pointer',
+                            }}
+                        >
+                            {o.l}
+                        </button>
+                    ))}
+                </div>
+            )}
+        </div>
+    );
+};
+
+const SettingToggle = ({ label, icon, checked, onChange }) => (
+    <div
+        onClick={() => onChange(!checked)}
+        style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '14px 16px', cursor: 'pointer', borderBottom: '1px solid var(--border-color)' }}
+    >
+        <span style={{ color: 'var(--primary-color)', display: 'flex' }}>{icon}</span>
+        <span style={{ flex: 1, fontSize: 15 }}>{label}</span>
         <div style={{
-            width: 50, height: 30, backgroundColor: checked ? '#1e3a8a' : 'var(--surface-color-light)',
-            borderRadius: 15, position: 'relative', cursor: 'pointer', transition: '0.3s'
+            width: 46, height: 26, backgroundColor: checked ? 'var(--success-color)' : 'var(--surface-color-light)',
+            borderRadius: 13, position: 'relative', transition: '0.3s', border: '1px solid var(--border-color)',
         }}>
             <div style={{
-                width: 26, height: 26, backgroundColor: 'white', borderRadius: '50%',
-                position: 'absolute', top: 2, left: checked ? 22 : 2, transition: '0.3s',
-                boxShadow: '0 2px 4px rgba(0,0,0,0.2)'
+                width: 22, height: 22, backgroundColor: 'white', borderRadius: '50%',
+                position: 'absolute', top: 1, left: checked ? 22 : 1, transition: '0.3s',
+                boxShadow: '0 1px 3px rgba(0,0,0,0.2)',
             }} />
         </div>
     </div>
 );
 
 const SettingAction = ({ label, icon, color = 'var(--text-main)', onClick }) => (
-    <div onClick={onClick} className="flex items-center gap-3 p-4 cursor-pointer" style={{ borderBottom: '1px solid var(--border-color)' }}>
-        <span style={{ color }}>{icon}</span>
-        <span style={{ fontSize: 16, fontWeight: 500, color }}>{label}</span>
+    <div
+        onClick={onClick}
+        style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '14px 16px', cursor: 'pointer', borderBottom: '1px solid var(--border-color)' }}
+    >
+        <span style={{ color, display: 'flex' }}>{icon}</span>
+        <span style={{ flex: 1, fontSize: 15, fontWeight: 500, color }}>{label}</span>
+        <ChevronRight size={16} color="var(--text-muted)" />
     </div>
 );
 

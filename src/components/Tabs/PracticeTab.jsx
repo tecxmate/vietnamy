@@ -14,7 +14,6 @@ const PracticeTab = () => {
         { id: 'numbers', title: 'Numbers', icon: <Hash size={24} className="practice-icon" />, level: 'Beginner', link: '/practice/numbers' },
         { id: 'tonemarks', title: 'Tone Marks', icon: <PenTool size={24} className="practice-icon" />, level: 'Intermediate', link: '/practice/tonemarks' },
         { id: 'vowels', title: 'Vowels', icon: <Type size={24} className="practice-icon" />, level: 'Beginner', link: '/practice/vowels' },
-        { id: 'vocab', title: 'Vocabulary', icon: <BookOpen size={24} className="practice-icon" />, level: 'Dynamic SRS', link: '/practice/vocab' },
         // { id: 'pitch', title: 'Pitch Training', icon: <Activity size={24} className="practice-icon" />, level: 'Advanced', link: '/practice/pitch' },
         { id: 'telex', title: 'TELEX Typing', icon: <Keyboard size={24} className="practice-icon" />, level: 'Beginner', link: '/practice/telex' },
     ];
@@ -42,8 +41,6 @@ const PracticeTab = () => {
 
     return (
         <div style={{ padding: 'var(--spacing-4)', paddingBottom: '100px' }}>
-            {initialized && <div style={{ fontSize: 14, fontWeight: 'bold', color: '#F2C255', marginBottom: 16 }}>{balance.toLocaleString()}₫</div>}
-
             <div className="practice-grid">
                 {practiceModules.map((mod, idx) => {
                     const moduleCost = getModuleCost(mod.id);

@@ -8,6 +8,7 @@ import {
 import { useTTS } from '../../hooks/useTTS';
 import { useDong } from '../../context/DongContext';
 import { DongCoin } from '../../components/DongCoin';
+import VocabImage from '../../components/VocabImage';
 import VOCAB_WORDS, { CATEGORIES } from '../../data/vocabWords';
 import { getDueItems, recordReview, getTotalItems } from '../../lib/srs';
 import speak from '../../utils/speak';
@@ -15,32 +16,6 @@ import './VocabPractice.css';
 import './PracticeShared.css';
 
 const shuffle = (arr) => [...arr].sort(() => Math.random() - 0.5);
-
-// ─── Fallback Image Component ────────────────────────────────────
-function VocabImage({ word, alt, className, ...props }) {
-    const [failed, setFailed] = useState(false);
-
-    useEffect(() => { setFailed(false); }, [word.id]);
-
-    if (failed) {
-        return (
-            <div className={`voc-img-fallback ${className || ''}`} {...props}>
-                <span className="voc-img-fallback-emoji">{word.emoji}</span>
-            </div>
-        );
-    }
-
-    return (
-        <img
-            src={word.image}
-            alt={alt || word.english}
-            className={className}
-            loading="lazy"
-            onError={() => setFailed(true)}
-            {...props}
-        />
-    );
-}
 
 // ─── Browse Tab ──────────────────────────────────────────────────
 function BrowseTab({ speak }) {

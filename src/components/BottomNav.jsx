@@ -1,5 +1,5 @@
 import React from 'react';
-import { Map, Dumbbell, Book, BookOpen, Trophy } from 'lucide-react';
+import { Map, Dumbbell, Book, BookOpen, Library, Users } from 'lucide-react';
 
 const BottomNav = ({ activeTab, setActiveTab }) => {
     const tabs = [
@@ -7,7 +7,8 @@ const BottomNav = ({ activeTab, setActiveTab }) => {
         { id: 'practice', icon: <Dumbbell size={24} />, label: 'Practice' },
         { id: 'dictionary', icon: <Book size={24} />, label: 'Dictionary' },
         { id: 'grammar', icon: <BookOpen size={24} />, label: 'Grammar' },
-        { id: 'leaderboard', icon: <Trophy size={24} />, label: 'Leaderboard' }
+        { id: 'library', icon: <Library size={24} />, label: 'Library' },
+        { id: 'community', icon: <Users size={24} />, label: 'Community' },
     ];
 
     return (
