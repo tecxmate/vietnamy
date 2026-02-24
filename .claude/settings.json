@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(# Find the extracted VJ dictionary files find /tmp -name \"\"*.dict\"\" -o -name \"\"*.idx\"\" -o -name \"\"*.ifo\"\")",
+      "Read(//tmp/**)"
+    ],
+    "additionalDirectories": [
+      "/Users/niko/antigravity/vnme-app"
+    ]
+  }
+}

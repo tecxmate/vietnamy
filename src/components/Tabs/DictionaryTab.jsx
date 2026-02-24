@@ -5,12 +5,21 @@ import './DictionaryTab.css';
 
 const MODES = [
     { id: 'en', label: 'EN' },
+    { id: 'vi', label: 'VI' },
+    { id: 'hv', label: 'HV' },
+    { id: 'ja', label: 'JA' },
+    { id: 'fr', label: 'FR' },
     { id: 'zh-s', label: '简' },
     { id: 'zh-t', label: '繁' },
     { id: 'all', label: 'All' },
 ];
 
 const SOURCE_LABELS = {
+    'VE': 'English',
+    '3-dict-combination': 'Tiếng Việt',
+    'Hán Việt': 'Hán Việt (漢越)',
+    'JaViDic_VJ': '日本語 (Japanese)',
+    'mtBab_VF': 'Français (French)',
     'mtBabVC_Simplified': '简体中文 (Simplified)',
     'mtBabVC_Traditional': '繁體中文 (Traditional)',
 };
@@ -181,9 +190,14 @@ const DictionaryTab = () => {
             const [enData, zhData] = await Promise.all([enRes.json(), zhRes.json()]);
 
             const zhSources = zhData.structured ? zhData.data : [];
+            const enSources = enData.structured ? enData.data : [];
             const parsedData = {
                 word: word.trim(),
-                en: enData.structured ? enData.data : [],
+                en: enSources.filter(s => s.source_name === 'VE'),
+                vi: enSources.filter(s => s.source_name === '3-dict-combination'),
+                hv: enSources.filter(s => s.source_name === 'Hán Việt'),
+                ja: enSources.filter(s => s.source_name === 'JaViDic_VJ'),
+                fr: enSources.filter(s => s.source_name === 'mtBab_VF'),
                 zhS: zhSources.filter(s => s.source_name === 'mtBabVC_Simplified'),
                 zhT: zhSources.filter(s => s.source_name === 'mtBabVC_Traditional'),
                 components: enData.components || null,
@@ -191,9 +205,9 @@ const DictionaryTab = () => {
             setAllData(parsedData);
 
             // If no results, refresh suggestions for the searched word so "did you mean" shows
-            const hasAny = parsedData.en.some(s => s.meanings?.length > 0)
-                || parsedData.zhS.some(s => s.meanings?.length > 0)
-                || parsedData.zhT.some(s => s.meanings?.length > 0);
+            const hasAny = Object.entries(parsedData).some(([k, v]) =>
+                k !== 'word' && k !== 'components' && Array.isArray(v) && v.some(s => s.meanings?.length > 0)
+            );
             if (!hasAny) fetchSuggestionsImmediate(word.trim());
 
         } catch (err) {
@@ -218,9 +232,17 @@ const DictionaryTab = () => {
         if (!allData || allData.error) return [];
         switch (dictMode) {
             case 'en': return allData.en;
+            case 'vi': return allData.vi;
+            case 'hv': return allData.hv;
+            case 'ja': return allData.ja;
+            case 'fr': return allData.fr;
             case 'zh-s': return allData.zhS;
             case 'zh-t': return allData.zhT;
-            case 'all': return [...(allData.en || []), ...(allData.zhS || []), ...(allData.zhT || [])];
+            case 'all': return [
+                ...(allData.en || []), ...(allData.vi || []), ...(allData.hv || []),
+                ...(allData.ja || []), ...(allData.fr || []),
+                ...(allData.zhS || []), ...(allData.zhT || []),
+            ];
             default: return [];
         }
     };
