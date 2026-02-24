@@ -26,3 +26,6 @@ dist-ssr
 # SQLite WAL sidecar files (not the .db files themselves)
 *.db-shm
 *.db-wal
+
+# Full database archives (proprietary sources)
+server/databases/archive/

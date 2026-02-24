@@ -6,9 +6,6 @@ import './DictionaryTab.css';
 const MODES = [
     { id: 'en', label: 'EN' },
     { id: 'vi', label: 'VI' },
-    { id: 'hv', label: 'HV' },
-    { id: 'ja', label: 'JA' },
-    { id: 'fr', label: 'FR' },
     { id: 'zh-s', label: '简' },
     { id: 'zh-t', label: '繁' },
     { id: 'all', label: 'All' },
@@ -17,40 +14,10 @@ const MODES = [
 const SOURCE_LABELS = {
     'VE': 'English',
     '3-dict-combination': 'Tiếng Việt',
-    'Hán Việt': 'Hán Việt (漢越)',
-    'JaViDic_VJ': '日本語 (Japanese)',
-    'mtBab_VF': 'Français (French)',
-    'mtBabVC_Simplified': '简体中文 (Simplified)',
-    'mtBabVC_Traditional': '繁體中文 (Traditional)',
+    'CVDICT_Simplified': '简体中文 (Simplified)',
+    'CVDICT_Traditional': '繁體中文 (Traditional)',
 };
 
-// Vietnamese tone detection from diacritics
-const TONE_MAP = {
-    '\u0300': { name: 'huyền', label: 'falling', color: '#6366f1' },   // grave ̀
-    '\u0301': { name: 'sắc', label: 'rising', color: '#ef4444' },      // acute ́
-    '\u0303': { name: 'ngã', label: 'broken', color: '#f59e0b' },      // tilde ̃
-    '\u0309': { name: 'hỏi', label: 'dipping', color: '#06b6d4' },     // hook ̉
-    '\u0323': { name: 'nặng', label: 'heavy', color: '#8b5cf6' },      // dot below ̣
-};
-
-function getTones(word) {
-    const syllables = word.trim().split(/\s+/);
-    return syllables.map(syll => {
-        const decomposed = syll.normalize('NFD');
-        for (const [mark, tone] of Object.entries(TONE_MAP)) {
-            if (decomposed.includes(mark)) return { syllable: syll, ...tone };
-        }
-        return { syllable: syll, name: 'ngang', label: 'level', color: '#94a3b8' };
-    });
-}
-
-const TIER_STYLES = {
-    'Top 500':  { bg: 'rgba(234, 179, 8, 0.15)', color: '#ca8a04', icon: '★' },
-    'Top 1K':   { bg: 'rgba(249, 115, 22, 0.12)', color: '#ea580c', icon: '◆' },
-    'Top 3K':   { bg: 'rgba(59, 130, 246, 0.10)', color: '#2563eb', icon: '●' },
-    'Top 10K':  { bg: 'rgba(107, 114, 128, 0.10)', color: '#6b7280', icon: '○' },
-    'Rare':     { bg: 'rgba(107, 114, 128, 0.06)', color: '#9ca3af', icon: '◇' },
-};
 
 const renderSources = (sources) => {
     if (!sources || sources.length === 0) return null;
@@ -195,11 +162,8 @@ const DictionaryTab = () => {
                 word: word.trim(),
                 en: enSources.filter(s => s.source_name === 'VE'),
                 vi: enSources.filter(s => s.source_name === '3-dict-combination'),
-                hv: enSources.filter(s => s.source_name === 'Hán Việt'),
-                ja: enSources.filter(s => s.source_name === 'JaViDic_VJ'),
-                fr: enSources.filter(s => s.source_name === 'mtBab_VF'),
-                zhS: zhSources.filter(s => s.source_name === 'mtBabVC_Simplified'),
-                zhT: zhSources.filter(s => s.source_name === 'mtBabVC_Traditional'),
+                zhS: zhSources.filter(s => s.source_name === 'CVDICT_Simplified'),
+                zhT: zhSources.filter(s => s.source_name === 'CVDICT_Traditional'),
                 components: enData.components || null,
             };
             setAllData(parsedData);
@@ -233,14 +197,10 @@ const DictionaryTab = () => {
         switch (dictMode) {
             case 'en': return allData.en;
             case 'vi': return allData.vi;
-            case 'hv': return allData.hv;
-            case 'ja': return allData.ja;
-            case 'fr': return allData.fr;
             case 'zh-s': return allData.zhS;
             case 'zh-t': return allData.zhT;
             case 'all': return [
-                ...(allData.en || []), ...(allData.vi || []), ...(allData.hv || []),
-                ...(allData.ja || []), ...(allData.fr || []),
+                ...(allData.en || []), ...(allData.vi || []),
                 ...(allData.zhS || []), ...(allData.zhT || []),
             ];
             default: return [];
@@ -274,30 +234,6 @@ const DictionaryTab = () => {
                             </div>
                         )}
 
-                        {/* Compound word decomposition — only for Hán Việt words */}
-                        {allData.components && allData.components.length >= 2 && allData.hv?.some(s => s.meanings?.length > 0) && (
-                            <div className="word-decomposition">
-                                <span className="decomp-label">Breakdown</span>
-                                <div className="decomp-parts">
-                                    {allData.components.map((comp, i) => (
-                                        <div key={i} className="decomp-part">
-                                            <span className="decomp-syllable">{comp.syllable}</span>
-                                            {comp.freq_tier && (
-                                                <span
-                                                    className="decomp-tier"
-                                                    style={{ color: TIER_STYLES[comp.freq_tier]?.color }}
-                                                >
-                                                    {comp.freq_tier}
-                                                </span>
-                                            )}
-                                            {comp.meaning && (
-                                                <span className="decomp-meaning">{comp.meaning}</span>
-                                            )}
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        )}
                     </div>
                 )}
 
