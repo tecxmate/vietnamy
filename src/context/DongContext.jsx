@@ -82,6 +82,7 @@ function loadState() {
                 dailyBonusClaimed: p.dailyBonusClaimed ?? null, // ISO date
                 completedNodes: new Set(p.completedNodes ?? []),
                 unlockedStages: new Set(p.unlockedStages ?? ['arrival']),
+                isExecutive: p.isExecutive ?? false,
             };
         }
     } catch { /* ignore */ }
@@ -94,6 +95,7 @@ function loadState() {
         dailyBonusClaimed: null,
         completedNodes: new Set(),
         unlockedStages: new Set(['arrival']),
+        isExecutive: false,
     };
 }
 
@@ -109,6 +111,7 @@ export function DongProvider({ children }) {
     const [dailyBonusClaimed, setDailyBonusClaimed] = useState(init.dailyBonusClaimed);
     const [completedNodes, setCompletedNodes] = useState(init.completedNodes);
     const [unlockedStages, setUnlockedStages] = useState(init.unlockedStages);
+    const [isExecutive, setIsExecutive] = useState(init.isExecutive);
 
     const [rewardEvent, setRewardEvent] = useState(null);       // { amount, breakdown, isRepeat }
     const [dailyBonusEvent, setDailyBonusEvent] = useState(null); // { amount, streak }
@@ -151,8 +154,9 @@ export function DongProvider({ children }) {
             dailyBonusClaimed,
             completedNodes: [...completedNodes],
             unlockedStages: [...unlockedStages],
+            isExecutive,
         }));
-    }, [balance, unlockedModules, completionCounts, dailyStreak, lastVisitDate, dailyBonusClaimed, completedNodes, unlockedStages]);
+    }, [balance, unlockedModules, completionCounts, dailyStreak, lastVisitDate, dailyBonusClaimed, completedNodes, unlockedStages, isExecutive]);
 
     // ── Earn Dong (score-based, repeatable) ──
     const addDong = useCallback((moduleId, { score = 0, total = 0, bestStreak = 0 } = {}) => {
@@ -218,6 +222,15 @@ export function DongProvider({ children }) {
         return true;
     }, [balance, unlockedStages]);
 
+    // ── Executive tier ──
+    const activateExecutive = useCallback(() => {
+        setIsExecutive(true);
+    }, []);
+
+    const deactivateExecutive = useCallback(() => {
+        setIsExecutive(false);
+    }, []);
+
     // Reset (for testing)
     const resetDong = useCallback(() => {
         setBalance(STARTING_BALANCE);
@@ -228,6 +241,7 @@ export function DongProvider({ children }) {
         setDailyBonusClaimed(null);
         setCompletedNodes(new Set());
         setUnlockedStages(new Set(['arrival']));
+        setIsExecutive(false);
         localStorage.removeItem(STORAGE_KEY);
     }, []);
 
@@ -244,6 +258,10 @@ export function DongProvider({ children }) {
         resetDong,
         calcRewardBreakdown,
         REPEAT_MULTIPLIER,
+        // Executive
+        isExecutive,
+        activateExecutive,
+        deactivateExecutive,
         // Roadmap
         completedNodes,
         completeNode,

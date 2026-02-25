@@ -180,16 +180,17 @@
 
 .voc-progress-bar {
     flex: 1;
-    height: 6px;
-    background: var(--border-color);
-    border-radius: var(--radius-full);
+    height: 16px;
+    background: var(--surface-color);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
     overflow: hidden;
 }
 
 .voc-progress-fill {
     height: 100%;
-    background: linear-gradient(90deg, var(--primary-color), var(--success-color));
-    border-radius: var(--radius-full);
+    background: var(--success-color);
+    border-radius: 8px;
     transition: width 0.3s ease;
 }
 
@@ -379,9 +380,10 @@
 
 /* ─── Quiz ─── */
 .voc-progress {
-    height: 6px;
+    height: 16px;
     background: var(--surface-color);
-    border-radius: 3px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
     overflow: hidden;
 }
 
@@ -431,11 +433,11 @@
 }
 
 .voc-quiz-options {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
     width: 100%;
-    max-width: 400px;
+    max-width: 500px;
 }
 
 .voc-quiz-option {

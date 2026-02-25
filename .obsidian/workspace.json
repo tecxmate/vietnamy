@@ -11,17 +11,14 @@
             "id": "771453596e913b2e",
             "type": "leaf",
             "state": {
-              "type": "canvas",
+              "type": "markdown",
               "state": {
-                "file": "docs/note.canvas",
-                "viewState": {
-                  "x": -179.5,
-                  "y": 10.5,
-                  "zoom": -1.1603024166635372
-                }
+                "file": "docs/PRD.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-layout-dashboard",
-              "title": "note"
+              "icon": "lucide-file",
+              "title": "PRD"
             }
           }
         ]
@@ -97,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "docs/note.canvas",
+                "file": "docs/PRD.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -107,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for note"
+              "title": "Backlinks for PRD"
             }
           },
           {
@@ -116,12 +113,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "docs/note.canvas",
+                "file": "docs/PRD.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from note"
+              "title": "Outgoing links from PRD"
             }
           },
           {
@@ -159,13 +156,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "docs/note.canvas",
+                "file": "docs/PRD.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of note"
+              "title": "Outline of PRD"
             }
           }
         ]
@@ -188,50 +185,50 @@
   },
   "active": "771453596e913b2e",
   "lastOpenFiles": [
-    "dist/assets/index-BH6_Dv3l.js",
-    "dist/assets/index-DOSx_Dff.css",
-    "dist/assets/index-DwkPFxVk.js",
-    "dist/assets/index-4yMLSTM0.css",
-    "dist/assets/index-B9q-Gv_W.css",
-    "dist/assets/index-BS6FgU-x.js",
-    "src/components/Tabs/CommunityTab.css",
-    "src/components/Tabs/CommunityTab.jsx",
-    "src/components/Tabs/VocabLibraryTab.css",
-    "src/components/Tabs/VocabLibraryTab.jsx",
-    "src/components/VocabImage.jsx",
-    "docs/mockup-dictionary-vocab-library.md",
+    "server/scripts/import_hanviet.js",
     "docs/userflow.canvas",
-    "docs/user_flow_and_features.md",
-    "docs/note.canvas",
-    "docs/datamodel.canvas",
+    "server/scripts/enrich_zh_definitions.js",
+    "docs/vnme-note.canvas",
     "docs/PRD.md",
+    "docs/PRD-executive-backend.md",
+    "dist/assets/index-Dy_1qFMK.js",
+    "src/pages/Admin/KinshipEditor.jsx",
+    "src/pages/Admin/ToneWordEditor.jsx",
+    "src/pages/Admin/VocabEditor.jsx",
+    "src/pages/Admin/ArticleEditor.jsx",
+    "dist/assets/index-DMyLuG60.js",
+    "dist/assets/index-C82KfsxK.js",
+    "dist/assets/index-D0fnrTi9.js",
+    "dist/assets/index-BuhA79Yk.css",
+    "node_modules/opencc-js/README.md",
+    "node_modules/opencc-js/README-zh-TW.md",
+    "node_modules/opencc-js/README-zh-CN.md",
+    "node_modules/cors/README.md",
+    "node_modules/vary/HISTORY.md",
+    "node_modules/vary/README.md",
+    "node_modules/object-assign/readme.md",
+    "node_modules/accepts/README.md",
+    "node_modules/accepts/HISTORY.md",
+    "node_modules/send/node_modules/debug/node_modules/ms/license.md",
+    "node_modules/send/node_modules/debug/node_modules/ms/readme.md",
+    "node_modules/send/node_modules/debug/README.md",
+    "node_modules/send/node_modules/debug/CHANGELOG.md",
+    "node_modules/send/SECURITY.md",
+    "node_modules/send/README.md",
+    "node_modules/send/HISTORY.md",
+    "node_modules/node-abi/node_modules/semver/README.md",
+    "node_modules/node-abi/README.md",
+    "node_modules/rc/node_modules/strip-json-comments/readme.md",
+    "node_modules/rc/README.md",
+    "node_modules/finalhandler/node_modules/debug/README.md",
+    "node_modules/finalhandler/node_modules/debug/CHANGELOG.md",
+    "node_modules/finalhandler/node_modules/ms/readme.md",
+    "docs/datamodel.canvas",
     "canvas/userflow.canvas",
-    "canvas/user_flow_and_features.md",
-    "canvas/PRD.md",
     "canvas/note.canvas",
     "canvas/datamodel.canvas",
     "userflow.canvas",
-    "PRD.md",
-    "user_flow_and_features.md",
     "note.canvas",
-    "server/node_modules/denque/README.md",
-    "server/node_modules/denque/CHANGELOG.md",
-    "server/node_modules/mysql2/lib/auth_plugins/caching_sha2_password.md",
-    "server/node_modules/mysql2/node_modules/iconv-lite/README.md",
-    "server/node_modules/mysql2/README.md",
-    "server/node_modules/aws-ssl-profiles/README.md",
-    "server/node_modules/@types/node/README.md",
-    "server/node_modules/generate-function/README.md",
-    "server/node_modules/is-property/README.md",
-    "server/node_modules/sql-escaper/README.md",
-    "server/node_modules/named-placeholders/README.md",
-    "server/node_modules/lru.min/README.md",
-    "server/node_modules/long/README.md",
-    "server/node_modules/undici-types/README.md",
-    "server/node_modules/bindings/README.md",
-    "server/node_modules/better-sqlite3/README.md",
-    "server/node_modules/util-deprecate/README.md",
-    "server/node_modules/util-deprecate/History.md",
     "datamodel.canvas",
     "m.svg",
     "node_modules/concurrently/docs/demo.gif",

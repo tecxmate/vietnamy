@@ -15,7 +15,8 @@ import RoadmapTab from './components/Tabs/RoadmapTab';
 import PracticeTab from './components/Tabs/PracticeTab';
 import DictionaryTab from './components/Tabs/DictionaryTab';
 import GrammarTab from './components/Tabs/GrammarTab';
-import VocabLibraryTab from './components/Tabs/VocabLibraryTab';
+import ReadingLibraryTab from './components/Tabs/ReadingLibraryTab';
+import FlashcardsPage from './pages/Practice/FlashcardsPage';
 import CommunityTab from './components/Tabs/CommunityTab';
 
 // Grammar pages
@@ -27,6 +28,10 @@ import AdminLayout from './pages/Admin/AdminLayout';
 import RoadmapMapper from './pages/Admin/RoadmapMapper';
 import LessonBuilder from './pages/Admin/LessonBuilder';
 import GrammarEditor from './pages/Admin/GrammarEditor';
+import ArticleEditor from './pages/Admin/ArticleEditor';
+import VocabEditor from './pages/Admin/VocabEditor';
+import ToneWordEditor from './pages/Admin/ToneWordEditor';
+import KinshipEditor from './pages/Admin/KinshipEditor';
 
 // Main Content
 import LessonGame from './components/LessonGame';
@@ -46,6 +51,7 @@ function StudentApp({ initialTab = 'roadmap' }) {
     return localStorage.getItem('vnme_onboarding_completed') === 'true';
   });
   const [activeTab, setActiveTab] = useState(initialTab);
+  const [tabSubtitle, setTabSubtitle] = useState(null);
   const completeOnboarding = () => {
     localStorage.setItem('vnme_onboarding_completed', 'true');
     setHasCompletedOnboarding(true);
@@ -65,7 +71,7 @@ function StudentApp({ initialTab = 'roadmap' }) {
       case 'practice': return <PracticeTab />;
       case 'dictionary': return <DictionaryTab />;
       case 'grammar': return <GrammarTab />;
-      case 'library': return <VocabLibraryTab />;
+      case 'library': return <ReadingLibraryTab onSubtitleChange={setTabSubtitle} />;
       case 'community': return <CommunityTab />;
       default: return <RoadmapTab />;
     }
@@ -74,7 +80,7 @@ function StudentApp({ initialTab = 'roadmap' }) {
   return (
     <div className="mobile-app-wrapper">
       <div className="app-container">
-        <TopBar activeTab={activeTab} />
+        <TopBar activeTab={activeTab} subtitleOverride={tabSubtitle} />
         <main key={activeTab} className="main-content">{renderTab()}</main>
         <BottomNav activeTab={activeTab} setActiveTab={setActiveTab} />
       </div>
@@ -99,7 +105,8 @@ function App() {
               <Route path="/practice/numbers" element={<div className="mobile-app-wrapper"><NumbersPractice /></div>} />
               <Route path="/practice/tonemarks" element={<div className="mobile-app-wrapper"><ToneMarks /></div>} />
               <Route path="/practice/vowels" element={<div className="mobile-app-wrapper"><VowelsPractice /></div>} />
-              <Route path="/practice/vocab" element={<StudentApp initialTab="library" />} />
+              <Route path="/practice/vocab" element={<Navigate to="/practice/flashcards" replace />} />
+              <Route path="/practice/flashcards" element={<div className="mobile-app-wrapper"><FlashcardsPage /></div>} />
               <Route path="/practice/pitch" element={<div className="mobile-app-wrapper"><TonePitchTraining /></div>} />
               <Route path="/practice/telex" element={<div className="mobile-app-wrapper"><TelexTyping /></div>} />
 
@@ -113,6 +120,10 @@ function App() {
                 <Route path="mapper" element={<RoadmapMapper />} />
                 <Route path="lesson" element={<LessonBuilder />} />
                 <Route path="grammar" element={<GrammarEditor />} />
+                <Route path="articles" element={<ArticleEditor />} />
+                <Route path="vocab" element={<VocabEditor />} />
+                <Route path="tones" element={<ToneWordEditor />} />
+                <Route path="kinship" element={<KinshipEditor />} />
               </Route>
             </Routes>
           </BrowserRouter>

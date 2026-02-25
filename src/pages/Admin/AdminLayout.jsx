@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, BookText, Languages, LogOut } from 'lucide-react';
+import { LayoutDashboard, BookText, Languages, LogOut, FileText, BookOpen, Music, Users } from 'lucide-react';
 
 const AdminLayout = () => {
     const navigate = useNavigate();
@@ -54,6 +54,64 @@ const AdminLayout = () => {
                     >
                         <Languages size={20} />
                         Grammar Editor
+                    </NavLink>
+
+                    <div style={{ height: 1, backgroundColor: 'var(--border-color)', margin: '8px 0' }} />
+
+                    <NavLink
+                        to="/admin/articles"
+                        style={({ isActive }) => ({
+                            display: 'flex', alignItems: 'center', gap: 12, padding: '12px 16px',
+                            borderRadius: 'var(--radius-md)', textDecoration: 'none',
+                            backgroundColor: isActive ? 'rgba(255, 209, 102, 0.1)' : 'transparent',
+                            color: isActive ? 'var(--primary-color)' : 'var(--text-main)',
+                            fontWeight: isActive ? 700 : 400
+                        })}
+                    >
+                        <FileText size={20} />
+                        Articles
+                    </NavLink>
+
+                    <NavLink
+                        to="/admin/vocab"
+                        style={({ isActive }) => ({
+                            display: 'flex', alignItems: 'center', gap: 12, padding: '12px 16px',
+                            borderRadius: 'var(--radius-md)', textDecoration: 'none',
+                            backgroundColor: isActive ? 'rgba(255, 209, 102, 0.1)' : 'transparent',
+                            color: isActive ? 'var(--primary-color)' : 'var(--text-main)',
+                            fontWeight: isActive ? 700 : 400
+                        })}
+                    >
+                        <BookOpen size={20} />
+                        Vocabulary
+                    </NavLink>
+
+                    <NavLink
+                        to="/admin/tones"
+                        style={({ isActive }) => ({
+                            display: 'flex', alignItems: 'center', gap: 12, padding: '12px 16px',
+                            borderRadius: 'var(--radius-md)', textDecoration: 'none',
+                            backgroundColor: isActive ? 'rgba(255, 209, 102, 0.1)' : 'transparent',
+                            color: isActive ? 'var(--primary-color)' : 'var(--text-main)',
+                            fontWeight: isActive ? 700 : 400
+                        })}
+                    >
+                        <Music size={20} />
+                        Tone Words
+                    </NavLink>
+
+                    <NavLink
+                        to="/admin/kinship"
+                        style={({ isActive }) => ({
+                            display: 'flex', alignItems: 'center', gap: 12, padding: '12px 16px',
+                            borderRadius: 'var(--radius-md)', textDecoration: 'none',
+                            backgroundColor: isActive ? 'rgba(255, 209, 102, 0.1)' : 'transparent',
+                            color: isActive ? 'var(--primary-color)' : 'var(--text-main)',
+                            fontWeight: isActive ? 700 : 400
+                        })}
+                    >
+                        <Users size={20} />
+                        Kinship & Pronouns
                     </NavLink>
                 </div>
 

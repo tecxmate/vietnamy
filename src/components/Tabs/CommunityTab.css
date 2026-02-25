@@ -264,3 +264,152 @@
     color: var(--text-muted);
     flex-shrink: 0;
 }
+
+/* ─── Tutor Profiles ─────────────────────────────────────── */
+.tutor-profiles {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3);
+}
+
+.tutor-profile-card {
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-3);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.tutor-profile-top {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-3);
+}
+
+.tutor-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 14px;
+    color: #1A1A1A;
+    flex-shrink: 0;
+}
+
+.tutor-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    min-width: 0;
+}
+
+.tutor-name {
+    font-weight: 800;
+    font-size: 14px;
+}
+
+.tutor-title {
+    font-size: 11px;
+    color: var(--text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.tutor-rating {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #FFD166;
+}
+
+.tutor-rate {
+    font-size: 13px;
+    font-weight: 900;
+    color: var(--primary-color);
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+.tutor-specialties {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.tutor-specialty-chip {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+    background: rgba(28, 176, 246, 0.1);
+    color: #1CB0F6;
+    border: 1px solid rgba(28, 176, 246, 0.2);
+}
+
+.tutor-book-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px;
+    border-radius: var(--radius-md);
+    background: #1CB0F6;
+    color: #fff;
+    border: none;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.15s;
+    box-shadow: 0 3px 0 #0D8ECF;
+}
+
+.tutor-book-btn:active {
+    box-shadow: 0 0 0 #0D8ECF;
+    transform: translateY(3px);
+}
+
+/* ─── Partner Logo ───────────────────────────────────────── */
+.partner-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 13px;
+    flex-shrink: 0;
+}
+
+/* ─── Corporate Training ─────────────────────────────────── */
+.corporate-inquiry-btn {
+    width: 100%;
+    background: transparent;
+    border: 2px solid #118AB2;
+    color: #1CB0F6;
+    padding: 12px;
+    border-radius: var(--radius-md);
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s;
+}
+
+.corporate-inquiry-btn:hover {
+    background: rgba(17, 138, 178, 0.15);
+}
+
+.corporate-inquiry-btn:active {
+    transform: translateY(2px);
+}

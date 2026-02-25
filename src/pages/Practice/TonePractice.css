@@ -68,10 +68,11 @@
 
 /* Tone Options overrides for the flat grid */
 .tone-options-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--spacing-4);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
     width: 100%;
+    max-width: 500px;
 }
 
 .tone-option-btn {
@@ -135,9 +136,10 @@
 
 /* Progress bar specific to Tone Practice */
 .tone-progress-bar {
-    height: 8px;
+    height: 16px;
     background: var(--surface-color);
-    border-radius: 4px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
     overflow: hidden;
     width: 100%;
     margin-bottom: var(--spacing-4);
@@ -145,6 +147,6 @@
 
 .tone-progress-fill {
     height: 100%;
-    background: linear-gradient(90deg, var(--primary-color), var(--success-color));
+    background: var(--success-color);
     transition: width 0.4s ease;
 }

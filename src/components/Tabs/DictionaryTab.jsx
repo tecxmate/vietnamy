@@ -1,7 +1,10 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { Search, BookA, Loader2, Volume2, Camera } from 'lucide-react';
+import { Search, BookA, Loader2, Volume2, Camera, Sparkles } from 'lucide-react';
+import { Converter } from 'opencc-js';
 import speak from '../../utils/speak';
 import './DictionaryTab.css';
+
+const s2t = Converter({ from: 'cn', to: 'tw' });
 
 const MODES = [
     { id: 'en', label: 'EN' },
@@ -14,19 +17,21 @@ const MODES = [
 const SOURCE_LABELS = {
     'VE': 'English',
     '3-dict-combination': 'Tiếng Việt',
-    'CVDICT_Simplified': '简体中文 (Simplified)',
-    'CVDICT_Traditional': '繁體中文 (Traditional)',
-    'CVDICT_Reverse': '中文 ↔ Tiếng Việt',
+    'AI_Generated_ZH': '中文释义',
+    'AI_Generated_ZH_T': '中文釋義',
+    'AI_Generated_EN': 'English (AI)',
+    'HanViet': '漢越詞典',
 };
 
 
-const renderSources = (sources) => {
+const renderSources = (sources, convert = null, searchQuery = '') => {
     if (!sources || sources.length === 0) return null;
+    const t = (text) => convert ? convert(text) : text;
     return sources.map((src, srcIdx) => (
         <div key={srcIdx} className="source-section">
             <div className="source-header">
                 <BookA size={16} />
-                <span className="source-name">{SOURCE_LABELS[src.source_name] || src.source_name}</span>
+                <span className="source-name">{SOURCE_LABELS[convert ? src.source_name + '_T' : src.source_name] || SOURCE_LABELS[src.source_name] || src.source_name}</span>
             </div>
             <div className="meanings-list">
                 {src.meanings.map((meaning, mIdx) => (
@@ -35,7 +40,7 @@ const renderSources = (sources) => {
                             {meaning.part_of_speech && (
                                 <span className="part-of-speech">{meaning.part_of_speech}</span>
                             )}
-                            <p className="meaning-text">{meaning.meaning_text}</p>
+                            <p className="meaning-text">{t(meaning.meaning_text)}</p>
                         </div>
                         {meaning.examples && meaning.examples.length > 0 && (
                             <div className="examples-list">
@@ -52,10 +57,25 @@ const renderSources = (sources) => {
                                             </button>
                                         </div>
                                         {ex.english_text && (
-                                            <p className="example-en">{ex.english_text}</p>
+                                            <p className="example-en">{t(ex.english_text)}</p>
                                         )}
                                     </div>
                                 ))}
+                            </div>
+                        )}
+
+                        {searchQuery.trim().split(' ').length > 2 && (
+                            <div className="premium-audio-request">
+                                <div className="premium-audio-info">
+                                    <Sparkles size={20} color="#CE82FF" fill="#CE82FF" />
+                                    <span>Need to sound perfect?</span>
+                                </div>
+                                <button
+                                    className="premium-audio-btn"
+                                    onClick={() => alert("MOCKUP: This would charge $1 or ₫5000 to send this sentence to a native Vietnamese speaker for a perfect, custom audio recording within 24 hours.")}
+                                >
+                                    Order Human Pronunciation
+                                </button>
                             </div>
                         )}
                     </div>
@@ -161,11 +181,9 @@ const DictionaryTab = () => {
             const enSources = enData.structured ? enData.data : [];
             const parsedData = {
                 word: word.trim(),
-                en: enSources.filter(s => s.source_name === 'VE'),
+                en: enSources.filter(s => s.source_name === 'VE' || s.source_name === 'AI_Generated_EN'),
                 vi: enSources.filter(s => s.source_name === '3-dict-combination'),
-                zhS: zhSources.filter(s => s.source_name === 'CVDICT_Simplified'),
-                zhT: zhSources.filter(s => s.source_name === 'CVDICT_Traditional'),
-                zhR: zhSources.filter(s => s.source_name === 'CVDICT_Reverse'),
+                zh: zhSources,
                 components: enData.components || null,
             };
             setAllData(parsedData);
@@ -199,11 +217,11 @@ const DictionaryTab = () => {
         switch (dictMode) {
             case 'en': return allData.en;
             case 'vi': return allData.vi;
-            case 'zh-s': return [...(allData.zhS || []), ...(allData.zhR || [])];
-            case 'zh-t': return [...(allData.zhT || []), ...(allData.zhR || [])];
+            case 'zh-s': return allData.zh || [];
+            case 'zh-t': return allData.zh || [];
             case 'all': return [
                 ...(allData.en || []), ...(allData.vi || []),
-                ...(allData.zhS || []), ...(allData.zhT || []), ...(allData.zhR || []),
+                ...(allData.zh || []),
             ];
             default: return [];
         }
@@ -298,7 +316,7 @@ const DictionaryTab = () => {
                     </div>
                 )}
 
-                {hasResults && renderSources(displaySources)}
+                {hasResults && renderSources(displaySources, dictMode === 'zh-t' ? s2t : null)}
             </div>
 
             {/* Sticky bottom bar: suggestions → mode toggle → search */}
@@ -346,9 +364,9 @@ const DictionaryTab = () => {
                     </div>
                 </form>
             </div>
+
         </div>
     );
 };
 
 export default DictionaryTab;
-

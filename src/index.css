@@ -12,9 +12,9 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --primary-color: #FFD166;
-  /* Light yellow */
-  --primary-color-hover: #F2C255;
+  --primary-color: #FFB703;
+  /* Bolder yellow */
+  --primary-color-hover: #E5A503;
   --secondary-color: #118AB2;
   --success-color: #06D6A0;
   --danger-color: #EF476F;
@@ -146,12 +146,12 @@ button.primary {
   background-color: var(--primary-color);
   color: #1A1A1A;
   /* Always dark text on light yellow for contrast */
-  box-shadow: 0 4px 0 #DCAE45;
+  box-shadow: 0 4px 0 #CC9202;
   /* 3D effect replacing Duolingo green */
 }
 
 button.primary:active {
-  box-shadow: 0 0 0 #DCAE45;
+  box-shadow: 0 0 0 #CC9202;
   transform: translateY(4px);
 }
 
@@ -176,7 +176,7 @@ button.ghost {
 
 @media (prefers-color-scheme: light) {
   button.ghost {
-    color: #DCAE45;
+    color: #E5A503;
   }
 }
 
@@ -252,7 +252,9 @@ button.ghost:active {
   border: 1px solid var(--border-color);
   padding: var(--spacing-4);
   box-shadow: var(--shadow-sm);
-}.modal-overlay {
+}
+
+.modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -283,6 +285,7 @@ button.ghost:active {
   from {
     transform: translateY(100%);
   }
+
   to {
     transform: translateY(0);
   }

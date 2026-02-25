@@ -22,7 +22,7 @@
 		{"id":"n16","type":"text","text":"Lesson Game Loop\n- Foundational and survival Lessons\n\t- Pronunciations\n\t- Tones\n\t- Basic Sentences & Phrase\n- Goal Based Paths Contents\n\t- Business with Vietnamese \n\t- Reconnect with family\n\t- Explore culture and language\n- Pronunciation Audio\n\t- North\n\t- South\n- AI ASR Feedback (phase2)\n\t- AWS\n\t- Azure\n\t- On Device?\n- Content Levels\n\t- ","x":323,"y":80,"width":338,"height":570,"color":"3"},
 		{"id":"63e12aeb08b7301d","type":"text","text":"Dictionary Tab (Vocab Library)\n- Saved Words\n\t- Pre-saved Decks\n\t- Custom Decks\n\t- Edit Decks\n\t- Get online pictures for each words\n- Flash Cards Test from Decks\n\t- Tap Center reveal\n\t- Tap Right: Know\n\t- Tap Left: Don't know\n\t- Score: /100\n\t- Practice: Don't know words again\n","x":920,"y":-420,"width":300,"height":420,"color":"5"},
 		{"id":"admin_cms_node","type":"text","text":"Admin CMS (/admin)\n- Roadmap Mapper\n- Lesson Builder\n- Grammar Editor","x":-455,"y":450,"width":250,"height":200,"color":"6"},
-		{"id":"5f9570b966c4c0ce","type":"text","text":"Me Tab\n- Stats\n- Badges\n- Achievements\n- Friends Ranking\n- ","x":1520,"y":90,"width":220,"height":550,"color":"3"},
+		{"id":"5f9570b966c4c0ce","type":"text","text":"Community Tab\n- Stats\n- Badges\n- Achievements\n- Friends Ranking\n- Affilitations and Promotions","x":1520,"y":90,"width":220,"height":550,"color":"3"},
 		{"id":"grammar_node","type":"text","text":"Grammar Tab\n- CEFR Levels\n- Grammar Points\n- Lesson Rules & Formulas\n- Example Sentences","x":1240,"y":90,"width":250,"height":200,"color":"4"}
 	],
 	"edges":[

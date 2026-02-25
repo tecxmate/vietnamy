@@ -25,7 +25,10 @@
       "Bash(head:*)",
       "WebFetch(domain:1.vndic.net)",
       "WebFetch(domain:2.vndic.net)",
-      "WebFetch(domain:6.vndic.net)"
+      "WebFetch(domain:6.vndic.net)",
+      "WebFetch(domain:www.npmjs.com)",
+      "Bash(comm:*)",
+      "Bash(INPUT_FILE=/tmp/missing_zh_headwords.txt node:*)"
     ],
     "additionalDirectories": [
       "/Users/niko/antigravity/vnme-app",

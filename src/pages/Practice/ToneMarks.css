@@ -185,8 +185,13 @@
 }
 
 @keyframes toneCardPulse {
-    0% { transform: scale(1.03); }
-    100% { transform: scale(1); }
+    0% {
+        transform: scale(1.03);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 /* ─── CTA Button — anchored to bottom ─── */
@@ -287,17 +292,24 @@
 }
 
 @keyframes tmSlideUp {
-    from { opacity: 0; transform: translateY(8px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* ─── Quiz Options ─── */
 .tm-options {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
     width: 100%;
-    max-width: 400px;
+    max-width: 500px;
 }
 
 .tm-option {
@@ -353,9 +365,5 @@
 
     .tm-tone-card-char {
         font-size: 2.8rem;
-    }
-
-    .tm-options {
-        grid-template-columns: repeat(3, 1fr);
     }
 }

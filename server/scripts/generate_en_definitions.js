@@ -15,7 +15,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY || fs.readFileSync(path.join(__dirname, '..', '..', '.env'), 'utf8').match(/OPENAI_API_KEY=(.+)/)?.[1]?.trim();
 const MODEL = 'gpt-4o-mini';
 const BATCH_SIZE = 50; // words per API call
-const CONCURRENCY = 20; // parallel requests
+const CONCURRENCY = 30; // parallel requests
 const OUTPUT_FILE = '/tmp/generated_en_definitions.jsonl';
 const INPUT_FILE = '/tmp/missing_headwords.txt';
 const RATE_LIMIT_DELAY = 200; // ms between batch dispatches
