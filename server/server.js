@@ -521,6 +521,47 @@ app.get('/api/tts', async (req, res) => {
     }
 });
 
+// ---------------------------------------------------------------------------
+// /api/translate?text=xin+chào&sl=vi&tl=en  → Google Translate proxy
+// ---------------------------------------------------------------------------
+app.get('/api/translate', async (req, res) => {
+    const text = (req.query.text || '').trim();
+    const sl = req.query.sl || 'vi';
+    const tl = req.query.tl || 'en';
+    if (!text || text.length > 500) {
+        return res.status(400).json({ error: 'text required (max 500 chars)' });
+    }
+
+    const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=${encodeURIComponent(sl)}&tl=${encodeURIComponent(tl)}&dt=t&q=${encodeURIComponent(text)}`;
+
+    try {
+        const response = await fetch(url, {
+            headers: {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+            },
+        });
+
+        if (!response.ok) {
+            return res.status(502).json({ error: 'Translation upstream error' });
+        }
+
+        const data = await response.json();
+        // Response format: [[["translated text","source text",null,null,10]],null,"vi",...]
+        const translated = (data[0] || []).map(seg => seg[0]).join('');
+        const detectedLang = data[2] || sl;
+
+        res.json({
+            translated,
+            source: text,
+            sl: detectedLang,
+            tl,
+        });
+    } catch (err) {
+        console.error('Translate error:', err.message);
+        res.status(502).json({ error: 'Translation failed' });
+    }
+});
+
 // Serve Vite build output in production
 const distPath = join(__dirname, '..', 'dist');
 app.use(express.static(distPath));

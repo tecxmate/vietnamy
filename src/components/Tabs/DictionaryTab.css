@@ -977,3 +977,69 @@
     font-style: italic;
     font-size: 13px;
 }
+
+/* ─── OCR Overlay ──────────────────────────────── */
+.ocr-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.ocr-overlay-card {
+    background: var(--surface-color);
+    border-radius: var(--radius-lg);
+    padding: 32px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    min-width: 260px;
+    max-width: 320px;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+}
+
+.ocr-overlay-text {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.ocr-progress-bar {
+    width: 100%;
+    height: 6px;
+    background: var(--border-color);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.ocr-progress-fill {
+    height: 100%;
+    background: var(--primary-color);
+    border-radius: 3px;
+    transition: width 0.3s ease;
+}
+
+.ocr-cancel-btn {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-muted);
+    padding: 8px 16px;
+    border-radius: var(--radius-md);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: inherit;
+    transition: background 0.15s;
+}
+
+.ocr-cancel-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+}

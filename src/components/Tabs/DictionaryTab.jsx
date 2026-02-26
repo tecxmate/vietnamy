@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { Search, BookA, Loader2, Volume2, Camera, Sparkles } from 'lucide-react';
+import { Search, BookA, Loader2, Volume2, Camera, Sparkles, X } from 'lucide-react';
+import Tesseract from 'tesseract.js';
 import { Converter } from 'opencc-js';
 import speak from '../../utils/speak';
 import './DictionaryTab.css';
@@ -165,38 +166,89 @@ const DictionaryTab = () => {
     const [localTranslation, setLocalTranslation] = useState('');
     const [translating, setTranslating] = useState(false);
     const [translationError, setTranslationError] = useState(false);
+    const [ocrLoading, setOcrLoading] = useState(false);
+    const [ocrProgress, setOcrProgress] = useState(0);
     const suggestTimer = useRef(null);
+    const fileInputRef = useRef(null);
+
+    const handleOcrFile = async (e) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+        e.target.value = ''; // reset so same file can be re-selected
+        setOcrLoading(true);
+        setOcrProgress(0);
+        try {
+            const { data } = await Tesseract.recognize(file, 'vie', {
+                logger: (m) => {
+                    if (m.status === 'recognizing text') {
+                        setOcrProgress(Math.round(m.progress * 100));
+                    }
+                },
+            });
+            const text = data.text.trim().replace(/\s+/g, ' ');
+            if (text) {
+                setQuery(text);
+                runSearch(text);
+            }
+        } catch (err) {
+            console.error('OCR failed:', err);
+        } finally {
+            setOcrLoading(false);
+        }
+    };
+
+    const getTranslateLangs = () => {
+        if (dictMode === 'zh-s') return { sl: 'vi', tl: 'zh-CN' };
+        if (dictMode === 'zh-t') return { sl: 'vi', tl: 'zh-TW' };
+        if (dictMode === 'vi') return { sl: 'vi', tl: 'en' };
+        return { sl: 'vi', tl: 'en' };
+    };
 
     const translateLocally = async (text) => {
         setLocalTranslation('');
         setTranslationError(false);
         setTranslating(true);
+        const { sl, tl } = getTranslateLangs();
+        const chromeTarget = tl.startsWith('zh') ? 'zh' : tl;
         try {
-            if (!('translation' in self && 'createTranslator' in self.translation)) {
-                setTranslationError(true);
-                return;
-            }
-
-            const canTranslate = await self.translation.canTranslate({
-                sourceLanguage: 'vi',
-                targetLanguage: 'en',
-            });
-
-            if (canTranslate !== 'no') {
-                const translator = await self.translation.createTranslator({
-                    sourceLanguage: 'vi',
-                    targetLanguage: 'en',
+            // Try Chrome AI first
+            if ('translation' in self && 'createTranslator' in self.translation) {
+                const canTranslate = await self.translation.canTranslate({
+                    sourceLanguage: sl,
+                    targetLanguage: chromeTarget,
                 });
-                const result = await translator.translate(text);
-                setLocalTranslation(result);
-            } else {
+                if (canTranslate !== 'no') {
+                    const translator = await self.translation.createTranslator({
+                        sourceLanguage: sl,
+                        targetLanguage: chromeTarget,
+                    });
+                    const result = await translator.translate(text);
+                    setLocalTranslation(result);
+                    return;
+                }
+            }
+            // Fallback to Google Translate via server proxy
+            await translateViaServer(text, sl, tl);
+        } catch (err) {
+            console.error('Chrome AI translation failed, trying server:', err);
+            try {
+                await translateViaServer(text, sl, tl);
+            } catch {
                 setTranslationError(true);
             }
-        } catch (err) {
-            console.error('Local translation failed:', err);
-            setTranslationError(true);
         } finally {
             setTranslating(false);
+        }
+    };
+
+    const translateViaServer = async (text, sl = 'vi', tl = 'en') => {
+        const res = await fetch(`/api/translate?text=${encodeURIComponent(text)}&sl=${sl}&tl=${tl}`);
+        if (!res.ok) throw new Error('Server translate failed');
+        const data = await res.json();
+        if (data.translated) {
+            setLocalTranslation(data.translated);
+        } else {
+            setTranslationError(true);
         }
     };
 
@@ -361,27 +413,13 @@ const DictionaryTab = () => {
                         {translating && (
                             <div className="local-translation-card translating fade-in">
                                 <Loader2 size={24} className="loading-icon" />
-                                <span>Translating on-device using Chrome AI...</span>
+                                <span>Translating...</span>
                             </div>
                         )}
 
                         {localTranslation && !translating && (
                             <div className="local-translation-card success fade-in">
-                                <span className="ai-badge">✨ Chrome AI</span>
                                 <h3 className="local-translation-result">{localTranslation}</h3>
-                            </div>
-                        )}
-
-                        {translationError && !translating && (
-                            <div className="fallback-buttons fade-in">
-                                <a
-                                    href={`https://translate.google.com/?sl=vi&tl=en&text=${encodeURIComponent(searchedWord)}&op=translate`}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="fallback-btn fallback-google"
-                                >
-                                    Translate with Google
-                                </a>
                             </div>
                         )}
                     </div>
@@ -450,9 +488,17 @@ const DictionaryTab = () => {
                             onChange={(e) => setQuery(e.target.value)}
                             className="search-input"
                         />
-                        <button type="button" className="camera-btn" onClick={() => alert('Camera OCR Mockup')} title="OCR Scanner">
+                        <button type="button" className="camera-btn" onClick={() => fileInputRef.current?.click()} title="OCR Scanner">
                             <Camera size={20} />
                         </button>
+                        <input
+                            ref={fileInputRef}
+                            type="file"
+                            accept="image/*"
+                            capture="environment"
+                            onChange={handleOcrFile}
+                            style={{ display: 'none' }}
+                        />
                         <button type="submit" disabled={loading} className="search-button">
                             {loading ? <Loader2 size={20} className="loading-icon" /> : <Search size={20} />}
                         </button>
@@ -460,6 +506,20 @@ const DictionaryTab = () => {
                 </form>
             </div>
 
+            {ocrLoading && (
+                <div className="ocr-overlay">
+                    <div className="ocr-overlay-card">
+                        <Loader2 size={32} className="loading-icon" />
+                        <span className="ocr-overlay-text">Recognizing text… {ocrProgress}%</span>
+                        <div className="ocr-progress-bar">
+                            <div className="ocr-progress-fill" style={{ width: `${ocrProgress}%` }} />
+                        </div>
+                        <button className="ocr-cancel-btn" onClick={() => setOcrLoading(false)}>
+                            <X size={16} /> Cancel
+                        </button>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
