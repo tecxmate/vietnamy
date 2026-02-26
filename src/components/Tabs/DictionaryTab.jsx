@@ -17,7 +17,7 @@ const MODES = [
 const SOURCE_LABELS = {
     'VE': 'English',
     '3-dict-combination': 'Tiếng Việt',
-    'AI_Generated_ZH': '中文释义',
+    'AI_Generated_ZH': '越中繁體',
     'AI_Generated_ZH_T': '中文釋義',
     'AI_Generated_EN': 'English (AI)',
     'HanViet': '漢越詞典',
@@ -105,12 +105,12 @@ const renderSources = (sources, convert = null, searchQuery = '') => {
                                 ))}
                             </div>
                         ) : (
-                        <div className="meaning-header">
-                            {meaning.part_of_speech && (
-                                <span className="part-of-speech">{meaning.part_of_speech}</span>
-                            )}
-                            <p className="meaning-text">{t(meaning.meaning_text)}</p>
-                        </div>
+                            <div className="meaning-header">
+                                {meaning.part_of_speech && (
+                                    <span className="part-of-speech">{meaning.part_of_speech}</span>
+                                )}
+                                <p className="meaning-text">{t(meaning.meaning_text)}</p>
+                            </div>
                         )}
                         {meaning.examples && meaning.examples.length > 0 && (
                             <div className="examples-list">
@@ -255,6 +255,7 @@ const DictionaryTab = () => {
                 vi: enSources.filter(s => ['3-dict-combination'].includes(s.source_name)),
                 zh: zhSources,
                 components: enData.components || null,
+                hanvietComponents: zhData.hanvietComponents || null,
             };
             setAllData(parsedData);
 
@@ -386,6 +387,30 @@ const DictionaryTab = () => {
                     </div>
                 )}
 
+                {hasResults && (dictMode === 'zh-s' || dictMode === 'zh-t' || dictMode === 'all') && allData?.hanvietComponents && (
+                    <div className="hanviet-decomposition">
+                        <div className="source-header">
+                            <BookA size={16} />
+                            <span className="source-name">漢越 HanViet</span>
+                        </div>
+                        <div className="hanviet-cards">
+                            {allData.hanvietComponents.map((comp, i) => {
+                                // Pick the best entry: prefer one with a gloss, skip rare chars
+                                const best = comp.entries.find(e => e.gloss) || comp.entries[0];
+                                if (!best) return null;
+                                const chinese = dictMode === 'zh-t' ? s2t(best.chinese) : best.chinese;
+                                return (
+                                    <div key={i} className="hanviet-card">
+                                        <div className="hanviet-card-vi">{comp.syllable}</div>
+                                        <div className="hanviet-card-zh">{chinese}</div>
+                                        {best.pinyin && <div className="hanviet-card-pinyin">{best.pinyin}</div>}
+                                        {best.gloss && <div className="hanviet-card-gloss">{dictMode === 'zh-t' ? s2t(best.gloss) : best.gloss}</div>}
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </div>
+                )}
                 {hasResults && renderSources(displaySources, dictMode === 'zh-t' ? s2t : null)}
             </div>
 

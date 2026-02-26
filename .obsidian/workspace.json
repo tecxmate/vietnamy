@@ -11,14 +11,17 @@
             "id": "771453596e913b2e",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "canvas",
               "state": {
-                "file": "docs/PRD.md",
-                "mode": "source",
-                "source": false
+                "file": "docs/vnme-note.canvas",
+                "viewState": {
+                  "x": -6.597153572344496,
+                  "y": -244.1106679356197,
+                  "zoom": 1
+                }
               },
-              "icon": "lucide-file",
-              "title": "PRD"
+              "icon": "lucide-layout-dashboard",
+              "title": "vnme-note"
             }
           }
         ]
@@ -94,7 +97,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "docs/PRD.md",
+                "file": "docs/vnme-note.canvas",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +107,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for PRD"
+              "title": "Backlinks for vnme-note"
             }
           },
           {
@@ -113,12 +116,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "docs/PRD.md",
+                "file": "docs/vnme-note.canvas",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from PRD"
+              "title": "Outgoing links from vnme-note"
             }
           },
           {
@@ -156,13 +159,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "docs/PRD.md",
+                "file": "docs/vnme-note.canvas",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of PRD"
+              "title": "Outline of vnme-note"
             }
           }
         ]
@@ -185,21 +188,27 @@
   },
   "active": "771453596e913b2e",
   "lastOpenFiles": [
-    "server/scripts/import_hanviet.js",
+    "dist/assets/index-GMr4ZsO7.js",
+    "dist/assets/index-BFSs64LL.css",
+    "server/scripts/add_pinyin_to_hanviet.py",
+    "dist/assets/index-DZEzM1aa.js",
+    "dist/assets/index-7gkYl23c.js",
+    "dist/assets/index-sbnxM4FH.css",
+    "src/components/Tabs/HomeTab.css",
+    "src/components/Tabs/HomeTab.jsx",
+    "PROJECT_HANDOFF.md",
+    "dist/index.html",
+    "dist/assets/index-EzzXVn8e.css",
+    "dist/assets/index-BU7-DSgd.js",
+    "dist/icon.jpg",
     "docs/userflow.canvas",
-    "server/scripts/enrich_zh_definitions.js",
-    "docs/vnme-note.canvas",
+    "docs/user_flow_and_features.md",
     "docs/PRD.md",
+    "public/icon.jpg",
+    "public/IMG_4879.jpg",
+    "public/IMG_4879.svg",
+    "docs/vnme-note.canvas",
     "docs/PRD-executive-backend.md",
-    "dist/assets/index-Dy_1qFMK.js",
-    "src/pages/Admin/KinshipEditor.jsx",
-    "src/pages/Admin/ToneWordEditor.jsx",
-    "src/pages/Admin/VocabEditor.jsx",
-    "src/pages/Admin/ArticleEditor.jsx",
-    "dist/assets/index-DMyLuG60.js",
-    "dist/assets/index-C82KfsxK.js",
-    "dist/assets/index-D0fnrTi9.js",
-    "dist/assets/index-BuhA79Yk.css",
     "node_modules/opencc-js/README.md",
     "node_modules/opencc-js/README-zh-TW.md",
     "node_modules/opencc-js/README-zh-CN.md",
@@ -221,8 +230,6 @@
     "node_modules/rc/node_modules/strip-json-comments/readme.md",
     "node_modules/rc/README.md",
     "node_modules/finalhandler/node_modules/debug/README.md",
-    "node_modules/finalhandler/node_modules/debug/CHANGELOG.md",
-    "node_modules/finalhandler/node_modules/ms/readme.md",
     "docs/datamodel.canvas",
     "canvas/userflow.canvas",
     "canvas/note.canvas",
@@ -235,7 +242,6 @@
     "mascot.svg",
     "Pasted image 20260221161640.png",
     "Pasted image 20260221161608.png",
-    "Pasted image 20260221161342.png",
-    "Pasted image 20260221161309.png"
+    "Pasted image 20260221161342.png"
   ]
 }

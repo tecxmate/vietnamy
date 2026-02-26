@@ -28,7 +28,15 @@
       "WebFetch(domain:6.vndic.net)",
       "WebFetch(domain:www.npmjs.com)",
       "Bash(comm:*)",
-      "Bash(INPUT_FILE=/tmp/missing_zh_headwords.txt node:*)"
+      "Bash(INPUT_FILE=/tmp/missing_zh_headwords.txt node:*)",
+      "Bash(git -C /Users/niko/antigravity/vnme-app diff --stat)",
+      "Bash(git -C /Users/niko/antigravity/vnme-app log --oneline -3)",
+      "Bash(git -C /Users/niko/antigravity/vnme-app add src/components/Tabs/DictionaryTab.jsx src/components/Tabs/DictionaryTab.css src/App.css src/App.jsx src/components/BottomNav.jsx src/components/LessonGame.jsx src/components/Tabs/ReadingLibraryTab.jsx src/lib/db.js src/lib/srs.js src/pages/GrammarLesson.jsx src/pages/UnitTest.jsx PROJECT_HANDOFF.md public/icon.jpg server/databases/vn_en_dictionary.db)",
+      "Bash(git -C /Users/niko/antigravity/vnme-app add src/data/roadmapData.js)",
+      "Bash(git -C /Users/niko/antigravity/vnme-app status --short)",
+      "Bash(git reset:*)",
+      "Bash(git -C:*)",
+      "Bash(pip3 install:*)"
     ],
     "additionalDirectories": [
       "/Users/niko/antigravity/vnme-app",

@@ -3,6 +3,7 @@ import Database from 'better-sqlite3';
 import cors from 'cors';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
+import { Converter } from 'opencc-js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -12,6 +13,9 @@ const DB_PATH_EN = join(__dirname, 'databases', 'vn_en_dictionary.db');
 const DB_PATH_ZH = join(__dirname, 'databases', 'vn_zh_dictionary.db');
 
 app.use(cors());
+
+// Simplified ↔ Traditional Chinese converters
+const s2t = Converter({ from: 'cn', to: 'tw' });
 
 // Connect to SQLite Databases
 const dbEn = new Database(DB_PATH_EN, { fileMustExist: true });
@@ -118,6 +122,17 @@ const stmtSyllableMeaning = dbEn.prepare(`
     JOIN meanings m ON w.id = m.word_id
     WHERE w.word = ? COLLATE NOCASE
     LIMIT 1
+`);
+
+// ---------------------------------------------------------------------------
+// Prepared statement for HanViet syllable lookup (compound decomposition)
+// ---------------------------------------------------------------------------
+const stmtHanVietSyllable = dbZh.prepare(`
+    SELECT m.meaning_text, m.part_of_speech
+    FROM words w
+    JOIN meanings m ON w.id = m.word_id
+    JOIN sources s ON m.source_id = s.id
+    WHERE s.name = 'HanViet' AND w.word = ? COLLATE NOCASE
 `);
 
 // ---------------------------------------------------------------------------
@@ -246,16 +261,6 @@ app.get('/api/suggest', (req, res) => {
                 const words = index.get(normCombo);
                 if (words) {
                     for (const w of words) compoundMatches.push(w);
-                }
-            }
-        }
-
-        // Also add the combos themselves as suggestions even if they're not
-        // dictionary entries — the user likely wants the diacriticized form
-        if (compoundMatches.length === 0) {
-            for (const combo of combos) {
-                if (combo.toLowerCase() !== queryLower && combo !== normQuery) {
-                    compoundMatches.push(combo);
                 }
             }
         }
@@ -396,7 +401,82 @@ app.get('/api/search', (req, res) => {
             });
         }
 
-        res.json({ word: query, structured: true, data: Object.values(grouped), components });
+        // HanViet compound decomposition: for ZH searches with multi-syllable words,
+        // look up each syllable's HanViet entries (Chinese character + pinyin)
+        let hanvietComponents = null;
+        if (syllables.length >= 2 && lang === 'zh') {
+            // Extract the Chinese compound from AI_Generated_ZH to disambiguate
+            // e.g. "không gian" → AI_Generated_ZH has "空間" → chars ['空','間']
+            let compoundChars = null;
+            const aiZhSource = grouped['AI_Generated_ZH'];
+            if (aiZhSource && aiZhSource.meanings.length > 0) {
+                const zhWord = aiZhSource.meanings[0].meaning_text;
+                // Extract CJK characters from the meaning text
+                const cjkChars = [...zhWord].filter(ch => {
+                    const cp = ch.codePointAt(0);
+                    return (cp >= 0x4E00 && cp <= 0x9FFF) || (cp >= 0x3400 && cp <= 0x4DBF) ||
+                           (cp >= 0x20000 && cp <= 0x2A6DF) || (cp >= 0xF900 && cp <= 0xFAFF);
+                });
+                if (cjkChars.length === syllables.length) {
+                    compoundChars = cjkChars;
+                }
+            }
+
+            // Convert compound chars to traditional for matching against HanViet
+            const compoundTradChars = compoundChars
+                ? compoundChars.map(ch => s2t(ch))
+                : null;
+            // Combine both simplified and traditional sets for matching
+            const compoundCharSet = compoundChars
+                ? new Set([...compoundChars, ...compoundTradChars])
+                : null;
+
+            hanvietComponents = syllables.map((syll) => {
+                const hvRows = stmtHanVietSyllable.all(syll);
+                const entries = hvRows.map(r => {
+                    const parts = r.meaning_text.split(' — ', 2);
+                    const chinese = parts[0].trim();
+                    const gloss = parts[1] || '';
+                    return {
+                        chinese,
+                        pinyin: r.part_of_speech || null,
+                        gloss: gloss.trim(),
+                    };
+                });
+
+                // Match against ANY character in the compound (word order may differ)
+                if (compoundCharSet) {
+                    const matchIdx = entries.findIndex(e => {
+                        return [...e.chinese].some(ch => compoundCharSet.has(ch));
+                    });
+                    if (matchIdx > 0) {
+                        const [matched] = entries.splice(matchIdx, 1);
+                        entries.unshift(matched);
+                    }
+                }
+
+                return { syllable: syll, entries };
+            });
+        }
+        // Also provide hanvietComponents for single-syllable ZH lookups
+        if (syllables.length === 1 && lang === 'zh') {
+            const hvRows = stmtHanVietSyllable.all(syllables[0]);
+            if (hvRows.length > 0) {
+                hanvietComponents = [{
+                    syllable: syllables[0],
+                    entries: hvRows.map(r => {
+                        const parts = r.meaning_text.split(' — ', 2);
+                        return {
+                            chinese: parts[0].trim(),
+                            pinyin: r.part_of_speech || null,
+                            gloss: (parts[1] || '').trim(),
+                        };
+                    }),
+                }];
+            }
+        }
+
+        res.json({ word: query, structured: true, data: Object.values(grouped), components, hanvietComponents });
 
     } catch (error) {
         console.error(error);
