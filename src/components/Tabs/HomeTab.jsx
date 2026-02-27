@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Volume2, Flame, BookOpen, Layers, ChevronRight } from 'lucide-react';
+import { Volume2, BookOpen, Layers, ChevronRight } from 'lucide-react';
 import { useDong } from '../../context/DongContext';
 import { getItems, getUnits, getNodesForUnitWithProgress } from '../../lib/db';
 import { getDueItems } from '../../lib/srs';
@@ -26,7 +26,6 @@ const TIPS = [
 ];
 
 function getWordOfTheDay(items) {
-    // Deterministic based on date — same word all day
     const dayOfYear = Math.floor((Date.now() - new Date(new Date().getFullYear(), 0, 0)) / 86400000);
     const words = items.filter(i => i.item_type === 'word' && i.en);
     if (words.length === 0) return null;
@@ -35,7 +34,6 @@ function getWordOfTheDay(items) {
 
 function getTodayTips() {
     const dayOfYear = Math.floor((Date.now() - new Date(new Date().getFullYear(), 0, 0)) / 86400000);
-    // Show 3 tips per day, rotating through the list
     const start = (dayOfYear * 3) % TIPS.length;
     const result = [];
     for (let i = 0; i < 3; i++) {
@@ -44,34 +42,14 @@ function getTodayTips() {
     return result;
 }
 
-function getWeekDots(dailyStreak, lastVisitDate) {
-    // Show Mon-Sun with today highlighted
-    const days = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
-    const today = new Date().getDay(); // 0=Sun
-    const todayIdx = today === 0 ? 6 : today - 1; // Convert to Mon=0
-
-    // Mark days with streak
-    const checked = new Array(7).fill(false);
-    if (lastVisitDate) {
-        for (let i = 0; i < Math.min(dailyStreak, 7); i++) {
-            const idx = todayIdx - i;
-            if (idx >= 0) checked[idx] = true;
-            else checked[idx + 7] = true;
-        }
-    }
-
-    return days.map((label, i) => ({ label, checked: checked[i], isToday: i === todayIdx }));
-}
-
 const HomeTab = () => {
     const navigate = useNavigate();
-    const { dailyStreak, lastVisitDate, completedNodes } = useDong();
+    const { completedNodes } = useDong();
 
     const items = useMemo(() => getItems(), []);
     const wordOfDay = useMemo(() => getWordOfTheDay(items), [items]);
     const tips = useMemo(() => getTodayTips(), []);
     const dueCount = useMemo(() => getDueItems().length, []);
-    const weekDots = useMemo(() => getWeekDots(dailyStreak, lastVisitDate), [dailyStreak, lastVisitDate]);
 
     const handleContinue = () => {
         const units = getUnits();
@@ -80,6 +58,7 @@ const HomeTab = () => {
             const activeNode = nodes.find(n => n.status === 'active');
             if (activeNode) {
                 if (activeNode.type === 'lesson') navigate(`/lesson/${activeNode.content_ref_id}`);
+                else if (activeNode.type === 'grammar_tip') navigate(`/grammar-lesson/${activeNode.id}`);
                 else if (activeNode.type === 'skill' && activeNode.skill_content?.type === 'grammar_lesson') navigate(`/grammar-lesson/${activeNode.id}`);
                 else if (activeNode.type === 'skill' && activeNode.skill_content?.route) navigate(activeNode.skill_content.route);
                 else if (activeNode.type === 'test') navigate(`/test/${activeNode.id}`);
@@ -91,22 +70,6 @@ const HomeTab = () => {
 
     return (
         <div className="home-tab">
-            {/* Streak Banner */}
-            <div className="home-streak-card">
-                <div className="home-streak-header">
-                    <Flame size={18} color="#FF6B35" fill="#FF6B35" />
-                    <span className="home-streak-count">{dailyStreak} day streak</span>
-                </div>
-                <div className="home-week-dots">
-                    {weekDots.map((d, i) => (
-                        <div key={i} className={`home-dot ${d.checked ? 'checked' : ''} ${d.isToday ? 'today' : ''}`}>
-                            <div className="home-dot-circle">{d.checked ? '✓' : ''}</div>
-                            <span className="home-dot-label">{d.label}</span>
-                        </div>
-                    ))}
-                </div>
-            </div>
-
             {/* Word of the Day */}
             {wordOfDay && (
                 <div className="home-wotd-card">

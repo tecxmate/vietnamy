@@ -37,6 +37,10 @@ import LessonGame from './components/LessonGame';
 import GrammarLesson from './pages/GrammarLesson';
 import UnitTest from './pages/UnitTest';
 import RewardToast from './components/RewardToast';
+
+// Feature Pages
+import Account from './pages/Account';
+import SettingsPage from './pages/SettingsPage';
 // Practice Modules
 import TonePractice from './pages/Practice/TonePractice';
 import PronounsPractice from './pages/Practice/PronounsPractice';
@@ -118,6 +122,10 @@ function App() {
               <Route path="/practice/flashcards" element={<div className="mobile-app-wrapper"><FlashcardsPage /></div>} />
               <Route path="/practice/pitch" element={<div className="mobile-app-wrapper"><TonePitchTraining /></div>} />
               <Route path="/practice/telex" element={<div className="mobile-app-wrapper"><TelexTyping /></div>} />
+
+              {/* Feature Pages */}
+              <Route path="/account" element={<div className="mobile-app-wrapper"><Account /></div>} />
+              <Route path="/settings" element={<div className="mobile-app-wrapper"><SettingsPage /></div>} />
 
               {/* Grammar Routes */}
               <Route path="/grammar/:level" element={<div className="mobile-app-wrapper"><GrammarList /></div>} />

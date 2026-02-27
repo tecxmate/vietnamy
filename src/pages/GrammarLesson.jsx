@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Volume2, ChevronDown, Heart, Check, X } from 'lucide-react';
-import { getNodeById } from '../lib/db';
+import { Volume2, Heart, Check, X } from 'lucide-react';
+import { getNodeById, getGrammarTip } from '../lib/db';
 import { getGrammarItems } from '../lib/grammarDB';
 import { useDong } from '../context/DongContext';
 import speak from '../utils/speak';
@@ -11,10 +11,9 @@ const GrammarLesson = () => {
     const navigate = useNavigate();
     const dongCtx = useDong();
 
-    const [phase, setPhase] = useState('reading'); // 'reading' | 'quiz' | 'finished'
-    const [grammarItem, setGrammarItem] = useState(null);
+    const [phase, setPhase] = useState('tip'); // 'tip' | 'quiz' | 'finished'
+    const [tipData, setTipData] = useState(null);
     const [exercises, setExercises] = useState([]);
-    const [openFaq, setOpenFaq] = useState(null);
 
     // Quiz state
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -27,21 +26,44 @@ const GrammarLesson = () => {
 
     useEffect(() => {
         const node = getNodeById(nodeId);
-        if (!node || !node.skill_content) { navigate('/'); return; }
+        if (!node) { navigate('/'); return; }
 
-        const { grammar_level, grammar_index } = node.skill_content;
-        const items = getGrammarItems().filter(i => i.level === grammar_level);
-        const item = items[grammar_index];
-        if (!item) { navigate('/'); return; }
-        setGrammarItem(item);
-
-        // Load exercises for this grammar node from the DB
-        const raw = localStorage.getItem('vnme_mock_db_v5');
-        if (raw) {
-            const db = JSON.parse(raw);
-            const nodeExercises = (db.exercises || []).filter(ex => ex.lesson_id === nodeId);
-            setExercises(nodeExercises);
+        // New grammar_tip node type
+        if (node.node_type === 'grammar_tip' && node.grammar_id) {
+            const tip = getGrammarTip(node.grammar_id);
+            if (!tip) { navigate('/'); return; }
+            setTipData(tip);
+            setExercises(tip.exercises || []);
+            return;
         }
+
+        // Legacy: skill node with grammar_lesson content
+        if (node.skill_content?.type === 'grammar_lesson') {
+            const { grammar_level, grammar_index } = node.skill_content;
+            const items = getGrammarItems().filter(i => i.level === grammar_level);
+            const item = items[grammar_index];
+            if (!item) { navigate('/'); return; }
+            // Convert legacy grammar item to tip format
+            setTipData({
+                id: nodeId,
+                title: item.title,
+                tip_heading: `Here's a ${item.title} tip`,
+                tip_body: item.sections?.[0]?.explanation || '',
+                pattern: item.pattern,
+                table: null,
+                examples: item.example ? [item.example] : [],
+                exercises: [],
+            });
+            // Load exercises from DB for legacy nodes
+            const raw = localStorage.getItem('vnme_mock_db_v6') || localStorage.getItem('vnme_mock_db_v5');
+            if (raw) {
+                const db = JSON.parse(raw);
+                setExercises((db.exercises || []).filter(ex => ex.lesson_id === nodeId));
+            }
+            return;
+        }
+
+        navigate('/');
     }, [nodeId, navigate]);
 
     useEffect(() => {
@@ -98,107 +120,119 @@ const GrammarLesson = () => {
         return () => window.removeEventListener('keydown', onKey);
     });
 
-    if (!grammarItem) return null;
+    if (!tipData) return null;
 
-    const { title, pattern, example, sections, faqs, extracted_patterns, error: hasError } = grammarItem;
-    const validFaqs = (faqs || []).filter(f => f.question && f.answer && f.question.length < 200);
-
-    // --- READING PHASE ---
-    if (phase === 'reading') {
+    // ─── TIP PHASE (Duolingo-style) ─────────────────────────
+    if (phase === 'tip') {
         return (
-            <div style={{ display: 'flex', flexDirection: 'column', height: '100dvh', backgroundColor: 'var(--bg-color)', color: 'var(--text-main)' }}>
-                <header style={{ padding: '16px 24px', display: 'flex', alignItems: 'center', gap: 12, borderBottom: '1px solid var(--border-color)' }}>
-                    <ArrowLeft size={24} onClick={() => navigate('/')} style={{ cursor: 'pointer' }} />
-                    <h1 style={{ margin: 0, fontSize: 18, flex: 1 }}>{title}</h1>
+            <div style={{ display: 'flex', flexDirection: 'column', height: '100dvh', backgroundColor: '#fff', color: '#3C3C3C' }}>
+                {/* Header */}
+                <header style={{ padding: '16px 24px', display: 'flex', alignItems: 'center', gap: 12, borderBottom: '1px solid #E5E5E5' }}>
+                    <X size={24} onClick={() => navigate('/')} style={{ cursor: 'pointer', color: '#AFAFAF' }} />
+                    <span style={{ flex: 1, textAlign: 'center', fontSize: 16, fontWeight: 700, color: '#AFAFAF' }}>
+                        {tipData.title}
+                    </span>
+                    <div style={{ width: 24 }} />
                 </header>
 
-                <div style={{ flex: 1, overflowY: 'auto', padding: 24 }}>
-                    {/* Main pattern */}
-                    <div style={{ textAlign: 'center', marginBottom: 24 }}>
-                        <span style={{ display: 'inline-block', padding: '8px 20px', backgroundColor: 'rgba(167,139,250,0.15)', border: '1px solid rgba(167,139,250,0.3)', borderRadius: 20, fontWeight: 700, fontSize: 16, color: '#A78BFA' }}>
-                            {pattern}
-                        </span>
-                    </div>
+                {/* Content */}
+                <div style={{ flex: 1, overflowY: 'auto', padding: '32px 24px' }}>
+                    {/* Tip heading */}
+                    <h2 style={{ fontSize: 22, fontWeight: 800, margin: '0 0 12px', color: '#3C3C3C' }}>
+                        {tipData.tip_heading || `Here's a ${tipData.title} tip`}
+                    </h2>
 
-                    {/* Example */}
-                    {example?.vi && (
-                        <div style={{ backgroundColor: 'var(--surface-color)', borderRadius: 12, padding: 16, marginBottom: 24, display: 'flex', alignItems: 'center', gap: 12 }}>
-                            <div style={{ flex: 1 }}>
-                                <p style={{ margin: 0, fontWeight: 600, fontSize: 16 }}>{example.vi}</p>
-                                {example.en && <p style={{ margin: '4px 0 0', color: 'var(--text-muted)', fontSize: 14 }}>{example.en}</p>}
-                            </div>
-                            <button onClick={() => speak(example.vi)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-muted)', padding: 8 }}>
-                                <Volume2 size={20} />
-                            </button>
-                        </div>
+                    {/* Tip body */}
+                    {tipData.tip_body && (
+                        <p style={{ fontSize: 15, lineHeight: 1.6, color: '#777', margin: '0 0 24px' }}>
+                            {tipData.tip_body}
+                        </p>
                     )}
 
-                    {/* Related patterns */}
-                    {extracted_patterns && extracted_patterns.length > 0 && (
-                        <div style={{ marginBottom: 24 }}>
-                            <h3 style={{ fontSize: 14, color: 'var(--text-muted)', marginBottom: 8 }}>Related Patterns</h3>
-                            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-                                {extracted_patterns.map((ep, i) => (
-                                    <span key={i} style={{ padding: '4px 12px', backgroundColor: 'var(--surface-color)', borderRadius: 12, fontSize: 13, color: 'var(--text-main)' }}>{ep}</span>
+                    {/* Conjugation / Pattern Table */}
+                    {tipData.table && (
+                        <div style={{ marginBottom: 24, borderRadius: 12, overflow: 'hidden', border: '1px solid #E5E5E5' }}>
+                            {/* Table header */}
+                            <div style={{ display: 'flex', backgroundColor: '#F7F7F7', borderBottom: '2px dotted #E0E0E0' }}>
+                                {tipData.table.headers.map((h, i) => (
+                                    <div key={i} style={{
+                                        flex: 1, padding: '12px 16px', fontSize: 13, fontWeight: 700,
+                                        color: '#AFAFAF', textTransform: 'lowercase',
+                                        borderRight: i < tipData.table.headers.length - 1 ? '1px dotted #E0E0E0' : 'none',
+                                    }}>
+                                        {h}
+                                    </div>
                                 ))}
                             </div>
-                        </div>
-                    )}
-
-                    {/* Sections */}
-                    {sections && sections.length > 0 && !hasError && sections.map((sec, i) => (
-                        <div key={i} style={{ backgroundColor: 'var(--surface-color)', borderRadius: 12, padding: 16, marginBottom: 16 }}>
-                            {sec.heading && <h3 style={{ margin: '0 0 8px', fontSize: 16 }}>{sec.heading}</h3>}
-                            {sec.explanation && <p style={{ margin: '0 0 12px', fontSize: 14, lineHeight: 1.6, color: 'var(--text-muted)' }}>{sec.explanation}</p>}
-                            {sec.pattern && (
-                                <div style={{ marginBottom: 12 }}>
-                                    <span style={{ padding: '4px 12px', backgroundColor: 'rgba(167,139,250,0.1)', borderRadius: 12, fontSize: 13, fontWeight: 600, color: '#A78BFA' }}>{sec.pattern}</span>
-                                </div>
-                            )}
-                            {sec.note && <p style={{ margin: '0 0 8px', fontSize: 13, fontStyle: 'italic', color: 'var(--text-muted)' }}>{sec.note}</p>}
-                            {sec.examples && sec.examples.length > 0 && sec.examples.map((ex, j) => (
-                                <div key={j} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '6px 0', borderTop: j > 0 ? '1px solid var(--border-color)' : 'none' }}>
-                                    <div style={{ flex: 1 }}>
-                                        <span style={{ fontWeight: 600 }}>{ex.vi}</span>
-                                        {ex.en && <span style={{ color: 'var(--text-muted)', fontSize: 13, marginLeft: 8 }}>— {ex.en}</span>}
-                                    </div>
-                                    {ex.vi && (
-                                        <button onClick={() => speak(ex.vi)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-muted)', padding: 4 }}>
-                                            <Volume2 size={14} />
-                                        </button>
-                                    )}
+                            {/* Table rows */}
+                            {tipData.table.rows.map((row, i) => (
+                                <div key={i} style={{
+                                    display: 'flex',
+                                    borderBottom: i < tipData.table.rows.length - 1 ? '1px solid #F0F0F0' : 'none',
+                                }}>
+                                    {row.map((cell, j) => (
+                                        <div key={j} style={{
+                                            flex: 1, padding: '14px 16px', fontSize: 16,
+                                            fontWeight: j === tipData.table.highlight_col ? 600 : 400,
+                                            color: j === tipData.table.highlight_col
+                                                ? (tipData.table.highlight_color || '#1CB0F6')
+                                                : '#3C3C3C',
+                                            borderRight: j < row.length - 1 ? '1px dotted #E0E0E0' : 'none',
+                                        }}>
+                                            {cell}
+                                        </div>
+                                    ))}
                                 </div>
                             ))}
                         </div>
-                    ))}
+                    )}
 
-                    {hasError && <p style={{ color: 'var(--text-muted)', textAlign: 'center' }}>Detail content unavailable.</p>}
-
-                    {/* FAQs */}
-                    {validFaqs.length > 0 && (
-                        <div style={{ marginTop: 16 }}>
-                            <h3 style={{ fontSize: 14, color: 'var(--text-muted)', marginBottom: 8 }}>FAQs</h3>
-                            {validFaqs.map((faq, i) => (
-                                <div key={i} style={{ backgroundColor: 'var(--surface-color)', borderRadius: 12, marginBottom: 8, overflow: 'hidden' }}>
-                                    <button onClick={() => setOpenFaq(openFaq === i ? null : i)} style={{ width: '100%', padding: '12px 16px', border: 'none', background: 'none', color: 'var(--text-main)', textAlign: 'left', display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', fontWeight: 600, fontSize: 14 }}>
-                                        <span style={{ flex: 1 }}>{faq.question}</span>
-                                        <ChevronDown size={16} style={{ transform: openFaq === i ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s' }} />
+                    {/* Examples */}
+                    {tipData.examples && tipData.examples.length > 0 && (
+                        <div style={{ marginBottom: 16 }}>
+                            {tipData.examples.map((ex, i) => (
+                                <div key={i} style={{
+                                    display: 'flex', alignItems: 'center', gap: 10,
+                                    padding: '12px 0',
+                                    borderBottom: i < tipData.examples.length - 1 ? '1px solid #F0F0F0' : 'none',
+                                }}>
+                                    <div style={{ flex: 1 }}>
+                                        <p style={{ margin: 0, fontWeight: 600, fontSize: 15 }}>{ex.vi}</p>
+                                        {ex.en && <p style={{ margin: '2px 0 0', color: '#999', fontSize: 13 }}>{ex.en}</p>}
+                                    </div>
+                                    <button onClick={() => speak(ex.vi)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#AFAFAF', padding: 6 }}>
+                                        <Volume2 size={18} />
                                     </button>
-                                    {openFaq === i && <div style={{ padding: '0 16px 12px', fontSize: 14, color: 'var(--text-muted)', lineHeight: 1.5 }}>{faq.answer}</div>}
                                 </div>
                             ))}
                         </div>
                     )}
                 </div>
 
-                {/* Start Quiz button */}
-                <div style={{ padding: 24, borderTop: '2px solid var(--border-color)', backgroundColor: 'var(--surface-color)' }}>
+                {/* Start Lesson CTA */}
+                <div style={{ padding: '16px 24px 32px' }}>
                     {exercises.length > 0 ? (
-                        <button className="primary w-full shadow-lg" style={{ fontSize: 18, backgroundColor: '#A78BFA', boxShadow: '0 4px 0 #7C3AED' }} onClick={() => setPhase('quiz')}>
-                            START QUIZ ({exercises.length} questions)
+                        <button
+                            className="primary w-full shadow-lg"
+                            style={{
+                                fontSize: 16, fontWeight: 800, letterSpacing: 1, textTransform: 'uppercase',
+                                backgroundColor: '#58CC02', boxShadow: '0 5px 0 #58A700',
+                                borderRadius: 14, padding: '16px 24px',
+                            }}
+                            onClick={() => setPhase('quiz')}
+                        >
+                            START LESSON
                         </button>
                     ) : (
-                        <button className="primary w-full shadow-lg" style={{ fontSize: 18 }} onClick={() => { dongCtx.completeNode(nodeId); navigate('/'); }}>
+                        <button
+                            className="primary w-full shadow-lg"
+                            style={{
+                                fontSize: 16, fontWeight: 800, letterSpacing: 1, textTransform: 'uppercase',
+                                backgroundColor: '#58CC02', boxShadow: '0 5px 0 #58A700',
+                                borderRadius: 14, padding: '16px 24px',
+                            }}
+                            onClick={() => { dongCtx.completeNode(nodeId); navigate('/'); }}
+                        >
                             MARK AS READ
                         </button>
                     )}
@@ -207,25 +241,31 @@ const GrammarLesson = () => {
         );
     }
 
-    // --- FINISHED PHASE ---
+    // ─── FINISHED PHASE ─────────────────────────────────────
     if (phase === 'finished') {
         return (
             <div style={{ display: 'flex', flexDirection: 'column', height: '100dvh', backgroundColor: 'var(--bg-color)', color: 'var(--text-main)' }}>
                 <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: 32, textAlign: 'center' }}>
-                    <div style={{ width: 120, height: 120, backgroundColor: '#A78BFA', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 24 }}>
+                    <div style={{ width: 120, height: 120, backgroundColor: '#58CC02', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 24 }}>
                         <Check size={64} color="white" strokeWidth={3} />
                     </div>
-                    <h1 style={{ color: '#A78BFA', fontSize: 28, marginBottom: 8 }}>Grammar Complete!</h1>
+                    <h1 style={{ color: '#58CC02', fontSize: 28, marginBottom: 8 }}>Lesson Complete!</h1>
                     <p style={{ color: 'var(--text-muted)' }}>{score}/{exercises.length} correct</p>
                 </div>
-                <div style={{ padding: 24, borderTop: '2px solid var(--border-color)', backgroundColor: 'var(--surface-color)' }}>
-                    <button className="primary w-full shadow-lg" onClick={() => navigate('/')}>CONTINUE</button>
+                <div style={{ padding: '16px 24px 32px' }}>
+                    <button
+                        className="primary w-full shadow-lg"
+                        style={{ fontSize: 16, fontWeight: 800, backgroundColor: '#58CC02', boxShadow: '0 5px 0 #58A700', borderRadius: 14, padding: '16px 24px' }}
+                        onClick={() => navigate('/')}
+                    >
+                        CONTINUE
+                    </button>
                 </div>
             </div>
         );
     }
 
-    // --- QUIZ PHASE ---
+    // ─── QUIZ PHASE ─────────────────────────────────────────
     return (
         <div style={{ display: 'flex', flexDirection: 'column', height: '100dvh', backgroundColor: 'var(--bg-color)', color: 'var(--text-main)' }}>
             {/* Top bar */}
@@ -234,7 +274,7 @@ const GrammarLesson = () => {
                     <X size={24} color="var(--text-muted)" />
                 </button>
                 <div style={{ flex: 1, height: 16, backgroundColor: 'var(--surface-color)', borderRadius: 8, overflow: 'hidden' }}>
-                    <div style={{ width: `${progress}%`, height: '100%', backgroundColor: '#A78BFA', transition: 'width 0.3s ease-out', borderRadius: 8 }} />
+                    <div style={{ width: `${progress}%`, height: '100%', backgroundColor: '#58CC02', transition: 'width 0.3s ease-out', borderRadius: 8 }} />
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 6, color: 'var(--danger-color)', fontWeight: 700 }}>
                     <Heart size={24} fill="var(--danger-color)" /> {hearts}
@@ -254,7 +294,7 @@ const GrammarLesson = () => {
                             <h2 style={{ fontSize: 24, margin: 0 }}>{currentEx.prompt.instruction}</h2>
 
                             <div style={{ display: 'flex', gap: 16, alignItems: 'flex-start' }}>
-                                <div style={{ width: 64, height: 64, borderRadius: '50%', backgroundColor: 'rgba(167,139,250,0.2)', border: '2px solid #A78BFA', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontSize: 28 }}>
+                                <div style={{ width: 64, height: 64, borderRadius: '50%', backgroundColor: 'rgba(88,204,2,0.15)', border: '2px solid #58CC02', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontSize: 28 }}>
                                     &#128218;
                                 </div>
                                 <div style={{ flex: 1, padding: 16, backgroundColor: 'var(--surface-color)', borderRadius: 16, border: '2px solid var(--border-color)', position: 'relative' }}>
@@ -271,9 +311,9 @@ const GrammarLesson = () => {
                                             className={selectedAnswer === choice ? 'primary' : 'secondary'}
                                             style={{
                                                 width: '100%', justifyContent: 'flex-start', padding: 20, fontSize: 18,
-                                                borderColor: selectedAnswer === choice ? '#A78BFA' : 'var(--border-color)',
-                                                backgroundColor: selectedAnswer === choice ? 'rgba(167,139,250,0.1)' : 'transparent',
-                                                color: selectedAnswer === choice ? '#A78BFA' : 'var(--text-main)'
+                                                borderColor: selectedAnswer === choice ? '#58CC02' : 'var(--border-color)',
+                                                backgroundColor: selectedAnswer === choice ? 'rgba(88,204,2,0.1)' : 'transparent',
+                                                color: selectedAnswer === choice ? '#58CC02' : 'var(--text-main)'
                                             }}
                                             onClick={() => !isChecking && setSelectedAnswer(choice)}
                                             disabled={isChecking}
@@ -340,7 +380,7 @@ const GrammarLesson = () => {
                 ) : (
                     <button
                         className="primary shadow-lg"
-                        style={{ width: '100%', fontSize: 18, opacity: canCheck() ? 1 : 0.5, backgroundColor: '#A78BFA', boxShadow: '0 4px 0 #7C3AED' }}
+                        style={{ width: '100%', fontSize: 18, opacity: canCheck() ? 1 : 0.5, backgroundColor: '#58CC02', boxShadow: '0 5px 0 #58A700' }}
                         onClick={handleCheck}
                         disabled={!canCheck()}
                     >

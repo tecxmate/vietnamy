@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { MessageCircle, Zap, Trophy, BookOpenText, Check, Lock, BookOpen } from 'lucide-react';
+import { MessageCircle, Zap, Trophy, BookOpenText, Check, Lock } from 'lucide-react';
 import { getUnits, getNodesForUnitWithProgress } from '../../lib/db';
-import { getDueItems } from '../../lib/srs';
 import { useDong } from '../../context/DongContext';
 
 const NODE_STYLES = {
@@ -14,6 +13,7 @@ const NODE_STYLES = {
 
 function getNodeStyle(node) {
     if (node.type === 'test') return NODE_STYLES.test;
+    if (node.type === 'grammar_tip') return NODE_STYLES.grammar;
     if (node.type === 'skill' && node.skill_content?.type === 'grammar_lesson') return NODE_STYLES.grammar;
     if (node.type === 'skill') return NODE_STYLES.skill;
     return NODE_STYLES.lesson;
@@ -24,7 +24,6 @@ const RoadmapTab = () => {
     const { completedNodes } = useDong();
     const [units, setUnits] = useState([]);
     const [nodesMap, setNodesMap] = useState({});
-    const [dueCount, setDueCount] = useState(0);
     const [redoNode, setRedoNode] = useState(null);
 
     useEffect(() => {
@@ -36,13 +35,15 @@ const RoadmapTab = () => {
             map[unit.id] = getNodesForUnitWithProgress(unit.id, completedNodes);
         });
         setNodesMap(map);
-        setDueCount(getDueItems().length);
     }, [completedNodes]);
 
     const navigateNode = (node) => {
         switch (node.type) {
             case 'lesson':
                 navigate(`/lesson/${node.content_ref_id}`);
+                break;
+            case 'grammar_tip':
+                navigate(`/grammar-lesson/${node.id}`);
                 break;
             case 'skill':
                 if (node.skill_content?.type === 'grammar_lesson') {
@@ -78,34 +79,20 @@ const RoadmapTab = () => {
         }
     };
 
+    const reversedUnits = [...units].reverse();
+
     return (
         <div>
-            {dueCount > 0 && (
-                <button
-                    onClick={() => navigate('/practice/vocab')}
-                    style={{
-                        display: 'flex', alignItems: 'center', gap: 12,
-                        width: 'calc(100% - 32px)', margin: '16px auto',
-                        padding: '12px 16px', borderRadius: 12,
-                        backgroundColor: 'rgba(28, 176, 246, 0.1)',
-                        border: '1px solid rgba(28, 176, 246, 0.3)',
-                        color: '#1CB0F6', fontWeight: 700, fontSize: 14,
-                        cursor: 'pointer',
-                    }}
-                >
-                    <BookOpen size={20} />
-                    <span>{dueCount} word{dueCount > 1 ? 's' : ''} to review</span>
-                    <span style={{ marginLeft: 'auto', fontSize: 12, opacity: 0.7 }}>Tap to review</span>
-                </button>
-            )}
-            {units.map((unit) => (
+            {reversedUnits.map((unit) => {
+                const reversedNodes = [...(nodesMap[unit.id] || [])].reverse();
+                return (
                 <div key={unit.id} style={{ marginBottom: 16 }}>
                     <div style={{ backgroundColor: 'var(--surface-color)', padding: 'var(--spacing-4)', position: 'sticky', top: 0, zIndex: 5, borderBottom: '1px solid var(--border-color)' }}>
                         <h2 style={{ margin: 0, fontSize: 18 }}>{unit.title}</h2>
                     </div>
 
                     <div style={{ padding: 16, display: 'flex', flexDirection: 'column', gap: 8 }}>
-                        {(nodesMap[unit.id] || []).map((node) => {
+                        {reversedNodes.map((node) => {
                             const style = getNodeStyle(node);
                             const Icon = style.icon;
                             const isActive = node.status === 'active';
@@ -156,7 +143,8 @@ const RoadmapTab = () => {
                         })}
                     </div>
                 </div>
-            ))}
+                );
+            })}
 
             <div style={{
                 position: 'fixed',

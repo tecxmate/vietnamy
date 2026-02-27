@@ -1,6 +1,6 @@
 // A mock database using localStorage to simulate a backend for the 100-levels proposal.
 
-const DB_KEY = 'vnme_mock_db_v5'; // Bumped to v5 for integrated roadmap with skill nodes + test gates
+const DB_KEY = 'vnme_mock_db_v6'; // Bumped to v6 for grammar_tip nodes with stable IDs
 
 const INIT_DATA = {
     course: {
@@ -91,7 +91,7 @@ const INIT_DATA = {
 
         // Unit 2: Coffee Culture — lessons + grammar skill + test gate
         { id: "node_006", course_id: "course_vi_en_v1", unit_id: "unit_2_coffee", node_index: 1, node_type: "lesson", lesson_id: "lesson_006", unlock_rule: { requires: [{ type: "node_completed", node_id: "node_t01" }] } },
-        { id: "node_s03", course_id: "course_vi_en_v1", unit_id: "unit_2_coffee", node_index: 2, node_type: "skill", label: "Grammar: Subject + là", skill_content: { type: "grammar_lesson", grammar_level: "A1", grammar_index: 0 }, unlock_rule: { requires: [{ type: "node_completed", node_id: "node_006" }] } },
+        { id: "node_s03", course_id: "course_vi_en_v1", unit_id: "unit_2_coffee", node_index: 2, node_type: "grammar_tip", label: "Grammar: Subject + là", grammar_id: "gram_001", unlock_rule: { requires: [{ type: "node_completed", node_id: "node_006" }] } },
         { id: "node_007", course_id: "course_vi_en_v1", unit_id: "unit_2_coffee", node_index: 3, node_type: "lesson", lesson_id: "lesson_007", unlock_rule: { requires: [{ type: "node_completed", node_id: "node_s03" }] } },
         { id: "node_s04", course_id: "course_vi_en_v1", unit_id: "unit_2_coffee", node_index: 4, node_type: "skill", label: "Tone Mastery", skill_content: { type: "practice_module", route: "/practice/tones" }, unlock_rule: { requires: [{ type: "node_completed", node_id: "node_007" }] } },
         { id: "node_008", course_id: "course_vi_en_v1", unit_id: "unit_2_coffee", node_index: 5, node_type: "lesson", lesson_id: "lesson_008", unlock_rule: { requires: [{ type: "node_completed", node_id: "node_s04" }] } },
@@ -100,7 +100,7 @@ const INIT_DATA = {
         // Unit 3: Market Life
         { id: "node_009", course_id: "course_vi_en_v1", unit_id: "unit_3_market", node_index: 1, node_type: "lesson", lesson_id: "lesson_009", unlock_rule: { requires: [{ type: "node_completed", node_id: "node_t02" }] } },
         { id: "node_010", course_id: "course_vi_en_v1", unit_id: "unit_3_market", node_index: 2, node_type: "lesson", lesson_id: "lesson_010", unlock_rule: { requires: [{ type: "node_completed", node_id: "node_009" }] } },
-        { id: "node_s05", course_id: "course_vi_en_v1", unit_id: "unit_3_market", node_index: 3, node_type: "skill", label: "Grammar: Asking Questions", skill_content: { type: "grammar_lesson", grammar_level: "A1", grammar_index: 4 }, unlock_rule: { requires: [{ type: "node_completed", node_id: "node_010" }] } },
+        { id: "node_s05", course_id: "course_vi_en_v1", unit_id: "unit_3_market", node_index: 3, node_type: "grammar_tip", label: "Grammar: Asking Questions", grammar_id: "gram_002", unlock_rule: { requires: [{ type: "node_completed", node_id: "node_010" }] } },
         { id: "node_011", course_id: "course_vi_en_v1", unit_id: "unit_3_market", node_index: 4, node_type: "lesson", lesson_id: "lesson_011", unlock_rule: { requires: [{ type: "node_completed", node_id: "node_s05" }] } },
         { id: "node_s06", course_id: "course_vi_en_v1", unit_id: "unit_3_market", node_index: 5, node_type: "skill", label: "Numbers Master", skill_content: { type: "practice_module", route: "/practice/numbers" }, unlock_rule: { requires: [{ type: "node_completed", node_id: "node_011" }] } },
         { id: "node_012", course_id: "course_vi_en_v1", unit_id: "unit_3_market", node_index: 6, node_type: "lesson", lesson_id: "lesson_012", unlock_rule: { requires: [{ type: "node_completed", node_id: "node_s06" }] } },
@@ -109,7 +109,7 @@ const INIT_DATA = {
         // Unit 4: Getting Around
         { id: "node_013", course_id: "course_vi_en_v1", unit_id: "unit_4_transport", node_index: 1, node_type: "lesson", lesson_id: "lesson_013", unlock_rule: { requires: [{ type: "node_completed", node_id: "node_t03" }] } },
         { id: "node_014", course_id: "course_vi_en_v1", unit_id: "unit_4_transport", node_index: 2, node_type: "lesson", lesson_id: "lesson_014", unlock_rule: { requires: [{ type: "node_completed", node_id: "node_013" }] } },
-        { id: "node_s07", course_id: "course_vi_en_v1", unit_id: "unit_4_transport", node_index: 3, node_type: "skill", label: "Grammar: Giving Directions", skill_content: { type: "grammar_lesson", grammar_level: "A1", grammar_index: 2 }, unlock_rule: { requires: [{ type: "node_completed", node_id: "node_014" }] } },
+        { id: "node_s07", course_id: "course_vi_en_v1", unit_id: "unit_4_transport", node_index: 3, node_type: "grammar_tip", label: "Grammar: Giving Directions", grammar_id: "gram_003", unlock_rule: { requires: [{ type: "node_completed", node_id: "node_014" }] } },
         { id: "node_015", course_id: "course_vi_en_v1", unit_id: "unit_4_transport", node_index: 4, node_type: "lesson", lesson_id: "lesson_015", unlock_rule: { requires: [{ type: "node_completed", node_id: "node_s07" }] } },
         { id: "node_s08", course_id: "course_vi_en_v1", unit_id: "unit_4_transport", node_index: 5, node_type: "skill", label: "TELEX Typing", skill_content: { type: "practice_module", route: "/practice/telex" }, unlock_rule: { requires: [{ type: "node_completed", node_id: "node_015" }] } },
         { id: "node_016", course_id: "course_vi_en_v1", unit_id: "unit_4_transport", node_index: 6, node_type: "lesson", lesson_id: "lesson_016", unlock_rule: { requires: [{ type: "node_completed", node_id: "node_s08" }] } },
@@ -117,7 +117,7 @@ const INIT_DATA = {
 
         // Unit 5: Daily Life
         { id: "node_017", course_id: "course_vi_en_v1", unit_id: "unit_5_daily", node_index: 1, node_type: "lesson", lesson_id: "lesson_017", unlock_rule: { requires: [{ type: "node_completed", node_id: "node_t04" }] } },
-        { id: "node_s09", course_id: "course_vi_en_v1", unit_id: "unit_5_daily", node_index: 2, node_type: "skill", label: "Grammar: Time Expressions", skill_content: { type: "grammar_lesson", grammar_level: "A1", grammar_index: 6 }, unlock_rule: { requires: [{ type: "node_completed", node_id: "node_017" }] } },
+        { id: "node_s09", course_id: "course_vi_en_v1", unit_id: "unit_5_daily", node_index: 2, node_type: "grammar_tip", label: "Grammar: Time Expressions", grammar_id: "gram_004", unlock_rule: { requires: [{ type: "node_completed", node_id: "node_017" }] } },
         { id: "node_018", course_id: "course_vi_en_v1", unit_id: "unit_5_daily", node_index: 3, node_type: "lesson", lesson_id: "lesson_018", unlock_rule: { requires: [{ type: "node_completed", node_id: "node_s09" }] } },
         { id: "node_019", course_id: "course_vi_en_v1", unit_id: "unit_5_daily", node_index: 4, node_type: "lesson", lesson_id: "lesson_019", unlock_rule: { requires: [{ type: "node_completed", node_id: "node_018" }] } },
         { id: "node_s10", course_id: "course_vi_en_v1", unit_id: "unit_5_daily", node_index: 5, node_type: "skill", label: "Pronouns & Kinship", skill_content: { type: "practice_module", route: "/practice/pronouns" }, unlock_rule: { requires: [{ type: "node_completed", node_id: "node_019" }] } },
@@ -127,11 +127,151 @@ const INIT_DATA = {
         // Unit 6: Making Friends
         { id: "node_021", course_id: "course_vi_en_v1", unit_id: "unit_6_friends", node_index: 1, node_type: "lesson", lesson_id: "lesson_021", unlock_rule: { requires: [{ type: "node_completed", node_id: "node_t05" }] } },
         { id: "node_022", course_id: "course_vi_en_v1", unit_id: "unit_6_friends", node_index: 2, node_type: "lesson", lesson_id: "lesson_022", unlock_rule: { requires: [{ type: "node_completed", node_id: "node_021" }] } },
-        { id: "node_s11", course_id: "course_vi_en_v1", unit_id: "unit_6_friends", node_index: 3, node_type: "skill", label: "Grammar: Invitations", skill_content: { type: "grammar_lesson", grammar_level: "A1", grammar_index: 8 }, unlock_rule: { requires: [{ type: "node_completed", node_id: "node_022" }] } },
+        { id: "node_s11", course_id: "course_vi_en_v1", unit_id: "unit_6_friends", node_index: 3, node_type: "grammar_tip", label: "Grammar: Invitations", grammar_id: "gram_005", unlock_rule: { requires: [{ type: "node_completed", node_id: "node_022" }] } },
         { id: "node_023", course_id: "course_vi_en_v1", unit_id: "unit_6_friends", node_index: 4, node_type: "lesson", lesson_id: "lesson_023", unlock_rule: { requires: [{ type: "node_completed", node_id: "node_s11" }] } },
         { id: "node_s12", course_id: "course_vi_en_v1", unit_id: "unit_6_friends", node_index: 5, node_type: "skill", label: "Flashcard Review", skill_content: { type: "practice_module", route: "/practice/flashcards" }, unlock_rule: { requires: [{ type: "node_completed", node_id: "node_023" }] } },
         { id: "node_024", course_id: "course_vi_en_v1", unit_id: "unit_6_friends", node_index: 6, node_type: "lesson", lesson_id: "lesson_024", unlock_rule: { requires: [{ type: "node_completed", node_id: "node_s12" }] } },
         { id: "node_t06", course_id: "course_vi_en_v1", unit_id: "unit_6_friends", node_index: 7, node_type: "test", label: "Final Quiz", unlock_rule: { requires: [{ type: "node_completed", node_id: "node_024" }] } }
+    ],
+    grammar_tips: [
+        {
+            id: "gram_001", level: "A1",
+            title: "Subject + là (to be)",
+            tip_heading: "Here's a là tip",
+            tip_body: "To say 'I am' or 'she is' in Vietnamese, use là after the subject. Unlike English, là doesn't change form — it's always là.",
+            pattern: "Subject + là + Noun",
+            table: {
+                headers: ["subject", "verb"],
+                rows: [
+                    ["tôi (I)", "là giáo viên"],
+                    ["bạn (you)", "là sinh viên"],
+                    ["anh ấy (he)", "là bác sĩ"],
+                    ["cô ấy (she)", "là kỹ sư"]
+                ],
+                highlight_col: 1
+            },
+            examples: [
+                { vi: "Tôi là giáo viên.", en: "I am a teacher." },
+                { vi: "Đây là cà phê.", en: "This is coffee." },
+                { vi: "Anh ấy là bạn tôi.", en: "He is my friend." }
+            ],
+            exercises: [
+                { id: "gex_001_01", exercise_type: "mcq_translate_to_vi", prompt: { instruction: "Translate to Vietnamese", source_text_en: "I am a student.", choices_vi: ["Tôi là sinh viên.", "Tôi có sinh viên.", "Tôi ở sinh viên."], answer_vi: "Tôi là sinh viên.", accepted_answers_vi: ["Tôi là sinh viên", "Tôi là sinh viên."] } },
+                { id: "gex_001_02", exercise_type: "mcq_translate_to_en", prompt: { instruction: "What does this mean?", source_text_vi: "Cô ấy là bác sĩ.", choices_en: ["She is a doctor.", "She has a doctor.", "She likes doctors."], answer_en: "She is a doctor." } },
+                { id: "gex_001_03", exercise_type: "fill_blank", prompt: { instruction: "Fill in the blank", source_text_en: "Tôi ___ giáo viên. (I am a teacher.)", answer_vi: "là", accepted_answers_vi: ["là"] } },
+                { id: "gex_001_04", exercise_type: "mcq_translate_to_vi", prompt: { instruction: "Translate to Vietnamese", source_text_en: "This is my friend.", choices_vi: ["Đây là bạn tôi.", "Đây có bạn tôi.", "Đây ở bạn tôi."], answer_vi: "Đây là bạn tôi.", accepted_answers_vi: ["Đây là bạn tôi", "Đây là bạn tôi."] } }
+            ]
+        },
+        {
+            id: "gram_002", level: "A1",
+            title: "Asking Questions",
+            tip_heading: "Here's a question tip",
+            tip_body: "Vietnamese questions are simple — just add a question word or particle. The word order stays the same as a statement.",
+            pattern: "Statement + không / phải không?",
+            table: {
+                headers: ["statement", "question"],
+                rows: [
+                    ["Bạn là sinh viên.", "Bạn là sinh viên không?"],
+                    ["Anh ấy khỏe.", "Anh ấy khỏe không?"],
+                    ["Đây là cà phê.", "Đây là cà phê phải không?"]
+                ],
+                highlight_col: 1
+            },
+            examples: [
+                { vi: "Bạn khỏe không?", en: "Are you well?" },
+                { vi: "Cái này bao nhiêu tiền?", en: "How much is this?" },
+                { vi: "Bạn có thích cà phê không?", en: "Do you like coffee?" }
+            ],
+            exercises: [
+                { id: "gex_002_01", exercise_type: "mcq_translate_to_vi", prompt: { instruction: "Translate to Vietnamese", source_text_en: "Are you a student?", choices_vi: ["Bạn là sinh viên không?", "Bạn là sinh viên.", "Bạn có sinh viên."], answer_vi: "Bạn là sinh viên không?", accepted_answers_vi: ["Bạn là sinh viên không?", "Bạn là sinh viên không"] } },
+                { id: "gex_002_02", exercise_type: "mcq_translate_to_en", prompt: { instruction: "What does this mean?", source_text_vi: "Cái này bao nhiêu tiền?", choices_en: ["How much is this?", "What is this?", "Where is this?"], answer_en: "How much is this?" } },
+                { id: "gex_002_03", exercise_type: "fill_blank", prompt: { instruction: "Fill in the blank", source_text_en: "Bạn khỏe ___? (Are you well?)", answer_vi: "không", accepted_answers_vi: ["không"] } },
+                { id: "gex_002_04", exercise_type: "mcq_translate_to_vi", prompt: { instruction: "Translate to Vietnamese", source_text_en: "Do you like coffee?", choices_vi: ["Bạn có thích cà phê không?", "Bạn thích cà phê.", "Bạn là cà phê không?"], answer_vi: "Bạn có thích cà phê không?", accepted_answers_vi: ["Bạn có thích cà phê không?", "Bạn có thích cà phê không"] } }
+            ]
+        },
+        {
+            id: "gram_003", level: "A1",
+            title: "Giving Directions",
+            tip_heading: "Here's a directions tip",
+            tip_body: "Use đi (go) + direction words to give directions in Vietnamese. Thẳng means straight, rẽ means turn.",
+            pattern: "Đi + thẳng / rẽ + trái / phải",
+            table: {
+                headers: ["Vietnamese", "English"],
+                rows: [
+                    ["đi thẳng", "go straight"],
+                    ["rẽ trái", "turn left"],
+                    ["rẽ phải", "turn right"],
+                    ["dừng lại", "stop"]
+                ],
+                highlight_col: 0
+            },
+            examples: [
+                { vi: "Đi thẳng rồi rẽ trái.", en: "Go straight then turn left." },
+                { vi: "Ngân hàng ở bên phải.", en: "The bank is on the right." },
+                { vi: "Gần đây có nhà hàng không?", en: "Is there a restaurant nearby?" }
+            ],
+            exercises: [
+                { id: "gex_003_01", exercise_type: "mcq_translate_to_en", prompt: { instruction: "What does this mean?", source_text_vi: "Đi thẳng rồi rẽ trái.", choices_en: ["Go straight then turn left.", "Turn right then go straight.", "Stop and turn left."], answer_en: "Go straight then turn left." } },
+                { id: "gex_003_02", exercise_type: "mcq_translate_to_vi", prompt: { instruction: "Translate to Vietnamese", source_text_en: "Turn right", choices_vi: ["Rẽ phải", "Rẽ trái", "Đi thẳng"], answer_vi: "Rẽ phải", accepted_answers_vi: ["Rẽ phải", "rẽ phải"] } },
+                { id: "gex_003_03", exercise_type: "fill_blank", prompt: { instruction: "Fill in the blank", source_text_en: "Đi ___ rồi rẽ phải. (Go straight then turn right.)", answer_vi: "thẳng", accepted_answers_vi: ["thẳng"] } }
+            ]
+        },
+        {
+            id: "gram_004", level: "A1",
+            title: "Time Expressions",
+            tip_heading: "Here's a time tip",
+            tip_body: "Vietnamese time words go before the verb, unlike English. Use lúc for specific times and vào for days/periods.",
+            pattern: "Time word + Subject + Verb",
+            table: {
+                headers: ["time word", "meaning"],
+                rows: [
+                    ["hôm nay", "today"],
+                    ["ngày mai", "tomorrow"],
+                    ["hôm qua", "yesterday"],
+                    ["bây giờ", "now"],
+                    ["lúc 7 giờ", "at 7 o'clock"]
+                ],
+                highlight_col: 0
+            },
+            examples: [
+                { vi: "Hôm nay tôi đi làm.", en: "Today I go to work." },
+                { vi: "Ngày mai bạn làm gì?", en: "What do you do tomorrow?" },
+                { vi: "Lúc 7 giờ tôi ăn sáng.", en: "At 7 o'clock I eat breakfast." }
+            ],
+            exercises: [
+                { id: "gex_004_01", exercise_type: "mcq_translate_to_en", prompt: { instruction: "What does this mean?", source_text_vi: "Hôm nay tôi đi làm.", choices_en: ["Today I go to work.", "Tomorrow I go home.", "Yesterday I went to work."], answer_en: "Today I go to work." } },
+                { id: "gex_004_02", exercise_type: "mcq_translate_to_vi", prompt: { instruction: "How do you say 'tomorrow'?", source_text_en: "tomorrow", choices_vi: ["ngày mai", "hôm qua", "hôm nay"], answer_vi: "ngày mai", accepted_answers_vi: ["ngày mai"] } },
+                { id: "gex_004_03", exercise_type: "fill_blank", prompt: { instruction: "Fill in the blank", source_text_en: "___ tôi ăn sáng. (Now I eat breakfast.)", answer_vi: "Bây giờ", accepted_answers_vi: ["Bây giờ", "bây giờ"] } },
+                { id: "gex_004_04", exercise_type: "mcq_translate_to_en", prompt: { instruction: "What does this mean?", source_text_vi: "Hôm qua bạn đi đâu?", choices_en: ["Where did you go yesterday?", "Where do you go today?", "Where will you go tomorrow?"], answer_en: "Where did you go yesterday?" } }
+            ]
+        },
+        {
+            id: "gram_005", level: "A1",
+            title: "Invitations & Suggestions",
+            tip_heading: "Here's an invitation tip",
+            tip_body: "Use đi to suggest doing something together, or mời to formally invite. Đi at the end of a sentence makes it a friendly suggestion.",
+            pattern: "Mình + Verb + đi!",
+            table: {
+                headers: ["Vietnamese", "English"],
+                rows: [
+                    ["Mình đi ăn đi!", "Let's go eat!"],
+                    ["Mời bạn vào.", "Please come in."],
+                    ["Bạn có muốn đi không?", "Do you want to go?"],
+                    ["Đi uống cà phê đi!", "Let's go drink coffee!"]
+                ],
+                highlight_col: 0
+            },
+            examples: [
+                { vi: "Mình đi ăn tối đi!", en: "Let's go have dinner!" },
+                { vi: "Mời anh ngồi.", en: "Please have a seat." },
+                { vi: "Cuối tuần bạn có rảnh không?", en: "Are you free this weekend?" }
+            ],
+            exercises: [
+                { id: "gex_005_01", exercise_type: "mcq_translate_to_en", prompt: { instruction: "What does this mean?", source_text_vi: "Mình đi ăn đi!", choices_en: ["Let's go eat!", "I am eating.", "Do you want food?"], answer_en: "Let's go eat!" } },
+                { id: "gex_005_02", exercise_type: "mcq_translate_to_vi", prompt: { instruction: "Translate to Vietnamese", source_text_en: "Please come in.", choices_vi: ["Mời bạn vào.", "Bạn đi ra.", "Bạn ở đây."], answer_vi: "Mời bạn vào.", accepted_answers_vi: ["Mời bạn vào", "Mời bạn vào."] } },
+                { id: "gex_005_03", exercise_type: "fill_blank", prompt: { instruction: "Fill in the blank", source_text_en: "Mình ___ uống cà phê đi! (Let's go drink coffee!)", answer_vi: "đi", accepted_answers_vi: ["đi"] } }
+            ]
+        }
     ],
     items: [
         { id: "it_w_0001", item_type: "word", vi_text: "xin chào", vi_text_no_diacritics: "xin chao", audio_key: "a_xin_chao", dialect: "both" },
@@ -833,6 +973,12 @@ export const getNodeById = (nodeId) => {
     return (db.path_nodes || []).find(n => n.id === nodeId) || null;
 };
 
+// --- Get grammar tip by ID ---
+export const getGrammarTip = (grammarId) => {
+    const db = getDB();
+    return (db.grammar_tips || []).find(t => t.id === grammarId) || null;
+};
+
 // --- Get all lesson exercises for a unit (for unit tests) ---
 export const getExercisesForUnit = (unitId) => {
     const db = getDB();
@@ -848,9 +994,18 @@ export const getNodeByLessonId = (lessonId) => {
     return nodes.find(n => n.lesson_id === lessonId) || null;
 };
 
+// --- Check if test mode is enabled ---
+export const isTestMode = () => {
+    try {
+        const raw = localStorage.getItem('vnme_settings');
+        return raw ? JSON.parse(raw).testMode === true : false;
+    } catch { return false; }
+};
+
 // --- Dynamic node status based on completed nodes ---
 export const getNodesForUnitWithProgress = (unitId, completedNodeIds) => {
     const db = getDB();
+    const testMode = isTestMode();
     const nodes = db.path_nodes || [];
     const unitNodes = nodes.filter(n => n.unit_id === unitId);
 
@@ -858,6 +1013,8 @@ export const getNodesForUnitWithProgress = (unitId, completedNodeIds) => {
         let status;
         if (completedNodeIds.has(n.id)) {
             status = 'completed';
+        } else if (testMode) {
+            status = 'active';
         } else {
             const requires = n.unlock_rule?.requires || [];
             const allMet = requires.every(req => {
@@ -882,6 +1039,7 @@ export const getNodesForUnitWithProgress = (unitId, completedNodeIds) => {
             content_ref_id: n.lesson_id || n.content_ref_id,
             practice_route: n.practice_route || null,
             skill_content: n.skill_content || null,
+            grammar_id: n.grammar_id || null,
             status
         };
     }).sort((a, b) => a.order_index - b.order_index);

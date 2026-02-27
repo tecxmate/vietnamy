@@ -1,26 +1,11 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
-    Target, Zap, User, X, ChevronDown, ChevronRight, RefreshCw,
-    Globe, Type, Volume2, Wrench, Moon, Sun, Clock, Bell, Gift, Crown,
+    Target, Zap, User, Wrench, Bell, Crown,
+    Settings, BookOpen, ShoppingBag,
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useDong } from '../context/DongContext';
 import { useUser } from '../context/UserContext';
-import ReferralModal from './ReferralModal';
-import PremiumModal from './PremiumModal';
-
-const SETTINGS_KEY = 'vnme_settings';
-
-function loadSettings() {
-    try {
-        const raw = localStorage.getItem(SETTINGS_KEY);
-        return raw ? JSON.parse(raw) : {};
-    } catch { return {}; }
-}
-
-function saveSettings(s) {
-    localStorage.setItem(SETTINGS_KEY, JSON.stringify(s));
-}
 
 const TAB_META = {
     home: null,
@@ -33,32 +18,12 @@ const TAB_META = {
 
 const TopBar = ({ activeTab, subtitleOverride }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [isReferralOpen, setIsReferralOpen] = useState(false);
-    const [isPremiumOpen, setIsPremiumOpen] = useState(false);
     const navigate = useNavigate();
     const { balance, dailyStreak, isExecutive } = useDong();
-    const { userProfile, updateUserProfile } = useUser();
+    const { userProfile } = useUser();
     const isHome = activeTab === 'home';
     const isRoadmap = activeTab === 'roadmap';
     const meta = TAB_META[activeTab];
-
-    const [settings, setSettings] = useState(() => loadSettings());
-
-    const updateSetting = (key, value) => {
-        const next = { ...settings, [key]: value };
-        setSettings(next);
-        saveSettings(next);
-    };
-
-    const dialectLabel = userProfile.dialect === 'north' ? 'Northern' : userProfile.dialect === 'south' ? 'Southern' : userProfile.dialect === 'both' ? 'Both Dialects' : '';
-    const goalLabel = userProfile.dailyMins ? `${userProfile.dailyMins}m/day` : '';
-
-    const handleReset = () => {
-        if (confirm('Reset all progress and settings? This cannot be undone.')) {
-            localStorage.clear();
-            window.location.reload();
-        }
-    };
 
     return (
         <>
@@ -102,229 +67,144 @@ const TopBar = ({ activeTab, subtitleOverride }) => {
                 )}
 
                 {/* Stats — always visible */}
-                <div style={{ display: 'flex', gap: 10, alignItems: 'center', flexShrink: 0 }}>
-                    <button onClick={() => setIsPremiumOpen(true)} className="ghost" style={{ padding: 6, color: isExecutive ? '#06D6A0' : '#FFD166', display: 'flex', alignItems: 'center' }}>
-                        <Crown size={20} fill={isExecutive ? '#06D6A0' : '#FFD166'} />
+                <div style={{
+                    display: 'flex', gap: 6, alignItems: 'center', flexShrink: 0,
+                    backgroundColor: 'var(--surface-color)', border: '1px solid var(--border-color)',
+                    borderRadius: 'var(--radius-full)', padding: '4px 6px',
+                }}>
+                    <button onClick={() => navigate('/premium')} className="ghost" style={{
+                        padding: '4px 6px', display: 'flex', alignItems: 'center',
+                        color: isExecutive ? '#06D6A0' : '#FFD166',
+                    }}>
+                        <Crown size={17} fill={isExecutive ? '#06D6A0' : '#FFD166'} />
                     </button>
-                    <button onClick={() => setIsReferralOpen(true)} className="ghost" style={{ padding: 6, color: 'var(--primary-color)', display: 'flex', alignItems: 'center' }}>
-                        <Gift size={20} />
+                    <div style={{ width: 1, height: 16, backgroundColor: 'var(--border-color)' }} />
+                    <button onClick={() => navigate('/notifications')} className="ghost" style={{
+                        padding: '4px 6px', display: 'flex', alignItems: 'center',
+                        color: 'var(--text-muted)', position: 'relative',
+                    }}>
+                        <Bell size={17} />
+                        <div style={{ position: 'absolute', top: 1, right: 3, width: 7, height: 7, borderRadius: '50%', backgroundColor: '#EF476F' }} />
                     </button>
-                    <div className="stat-badge streak" style={{ padding: '4px 6px', fontSize: '13px' }}>
-                        <Zap size={14} fill="currentColor" /> {dailyStreak}
+                    <div style={{ width: 1, height: 16, backgroundColor: 'var(--border-color)' }} />
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 3, padding: '4px 6px', fontSize: 13, fontWeight: 700, color: '#FF6B35' }}>
+                        <Zap size={13} fill="currentColor" /> {dailyStreak}
                     </div>
-                    <div className="stat-badge" style={{ padding: '4px 6px', fontSize: '13px', color: '#F2C255' }}>
+                    <div style={{ width: 1, height: 16, backgroundColor: 'var(--border-color)' }} />
+                    <div onClick={() => navigate('/shop')} style={{ padding: '4px 6px', fontSize: 13, fontWeight: 800, color: '#F2C255', cursor: 'pointer' }}>
                         {balance.toLocaleString()}₫
                     </div>
                 </div>
             </header>
 
-            {/* ─── Settings Modal ────────────────────────────────── */}
+            {/* ─── Left Drawer (Spotify-style) ──────────────────── */}
             {isMenuOpen && (
-                <div className="modal-overlay" onClick={() => setIsMenuOpen(false)}>
-                    <div className="modal-content slide-up" onClick={e => e.stopPropagation()}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
-                            <h2 style={{ margin: 0, fontSize: 20 }}>Settings</h2>
-                            <button className="ghost" onClick={() => setIsMenuOpen(false)} style={{ padding: 6 }}>
-                                <X size={22} />
-                            </button>
-                        </div>
+                <>
+                    <div className="drawer-overlay" onClick={() => setIsMenuOpen(false)} />
+                    <div className="drawer-panel" onClick={e => e.stopPropagation()}>
 
                         {/* Profile Card */}
-                        <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 24, padding: 16, backgroundColor: 'var(--surface-color)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--border-color)' }}>
-                            <div style={{ width: 52, height: 52, backgroundColor: 'var(--primary-color)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#1A1A1A', flexShrink: 0 }}>
-                                <User size={26} />
+                        <div
+                            onClick={() => { setIsMenuOpen(false); navigate('/account'); }}
+                            style={{
+                                display: 'flex', alignItems: 'center', gap: 14,
+                                padding: '24px 20px 20px', cursor: 'pointer',
+                            }}
+                        >
+                            <div style={{
+                                width: 48, height: 48, backgroundColor: 'var(--primary-color)',
+                                borderRadius: '50%', display: 'flex', alignItems: 'center',
+                                justifyContent: 'center', color: '#1A1A1A', flexShrink: 0,
+                            }}>
+                                <User size={24} />
                             </div>
                             <div style={{ flex: 1 }}>
-                                <h3 style={{ fontSize: 17, margin: '0 0 2px', fontWeight: 800 }}>{userProfile.name || 'Learner'}</h3>
-                                <span style={{ fontSize: 13, color: 'var(--text-muted)' }}>
-                                    {[dialectLabel, goalLabel].filter(Boolean).join(' · ') || 'Vietnamese Learner'}
-                                </span>
+                                <h3 style={{ fontSize: 18, margin: 0, fontWeight: 800 }}>{userProfile.name || 'Learner'}</h3>
+                                <span style={{ fontSize: 13, color: 'var(--text-muted)' }}>View account</span>
                             </div>
                         </div>
 
-                        {/* Scrollable Settings */}
-                        <div style={{ margin: '0 -24px -48px', padding: '0 24px 48px', overflowY: 'auto', maxHeight: '55vh' }}>
+                        <div style={{ height: 1, backgroundColor: 'var(--border-color)', margin: '0 20px' }} />
 
-                            {/* Learning Preferences */}
-                            <SettingsGroup title="Learning">
-                                <SettingSelect
-                                    label="Dialect"
-                                    icon={<Globe size={16} />}
-                                    value={userProfile.dialect || 'south'}
-                                    options={[{ v: 'north', l: 'Northern' }, { v: 'south', l: 'Southern' }, { v: 'both', l: 'Both' }]}
-                                    onChange={v => updateUserProfile({ dialect: v })}
-                                />
-                                <SettingSelect
-                                    label="Daily Goal"
-                                    icon={<Clock size={16} />}
-                                    value={String(userProfile.dailyMins || 10)}
-                                    options={[{ v: '5', l: '5 min' }, { v: '10', l: '10 min' }, { v: '15', l: '15 min' }, { v: '20', l: '20 min' }]}
-                                    onChange={v => updateUserProfile({ dailyMins: parseInt(v) })}
-                                />
-                                <SettingSelect
-                                    label="Level"
-                                    icon={<Target size={16} />}
-                                    value={userProfile.level || 'new'}
-                                    options={[{ v: 'new', l: 'Beginner' }, { v: 'basic', l: 'Elementary' }, { v: 'intermediate', l: 'Intermediate' }]}
-                                    onChange={v => updateUserProfile({ level: v })}
-                                />
-                            </SettingsGroup>
+                        {/* Menu Items */}
+                        <nav style={{ padding: '8px 0', flex: 1 }}>
+                            <DrawerItem
+                                icon={<Crown size={20} />}
+                                label="Your Premium"
+                                badge={isExecutive ? 'Executive' : null}
+                                badgeColor={isExecutive ? '#06D6A0' : null}
+                                onClick={() => { setIsMenuOpen(false); navigate('/premium'); }}
+                            />
+                            <DrawerItem
+                                icon={<ShoppingBag size={20} />}
+                                label="Dong Shop"
+                                onClick={() => { setIsMenuOpen(false); navigate('/shop'); }}
+                            />
+                            <DrawerItem
+                                icon={<Bell size={20} />}
+                                label="Notifications"
+                                onClick={() => { setIsMenuOpen(false); navigate('/notifications'); }}
+                            />
+                            <DrawerItem
+                                icon={<BookOpen size={20} />}
+                                label="Achievements"
+                                onClick={() => { setIsMenuOpen(false); navigate('/achievements'); }}
+                            />
 
-                            {/* Voice & Sound */}
-                            <SettingsGroup title="Voice & Sound">
-                                <SettingSelect
-                                    label="TTS Speed"
-                                    icon={<Volume2 size={16} />}
-                                    value={settings.ttsSpeed || '0.9'}
-                                    options={[{ v: '0.6', l: 'Slow' }, { v: '0.9', l: 'Normal' }, { v: '1.2', l: 'Fast' }]}
-                                    onChange={v => updateSetting('ttsSpeed', v)}
-                                />
-                            </SettingsGroup>
+                            <div style={{ height: 1, backgroundColor: 'var(--border-color)', margin: '8px 20px' }} />
 
-                            {/* Display */}
-                            <SettingsGroup title="Display">
-                                <SettingSelect
-                                    label="Font Size"
-                                    icon={<Type size={16} />}
-                                    value={settings.fontSize || 'medium'}
-                                    options={[{ v: 'small', l: 'Small' }, { v: 'medium', l: 'Medium' }, { v: 'large', l: 'Large' }]}
-                                    onChange={v => updateSetting('fontSize', v)}
-                                />
-                            </SettingsGroup>
+                            <DrawerItem
+                                icon={<Wrench size={20} />}
+                                label="Admin CMS"
+                                onClick={() => { setIsMenuOpen(false); navigate('/admin'); }}
+                            />
+                            <DrawerItem
+                                icon={<Settings size={20} />}
+                                label="Settings and preferences"
+                                onClick={() => { setIsMenuOpen(false); navigate('/settings'); }}
+                            />
+                        </nav>
 
-                            {/* Notifications */}
-                            <SettingsGroup title="Reminders">
-                                <SettingToggle
-                                    label="Daily Reminder"
-                                    icon={<Bell size={16} />}
-                                    checked={settings.dailyReminder !== false}
-                                    onChange={v => updateSetting('dailyReminder', v)}
-                                />
-                            </SettingsGroup>
-
-                            {/* Actions */}
-                            <SettingsGroup title="Advanced">
-                                <SettingAction
-                                    label="Admin CMS"
-                                    icon={<Wrench size={16} />}
-                                    onClick={() => { setIsMenuOpen(false); navigate('/admin'); }}
-                                />
-                                <SettingAction
-                                    label="Reset All Progress"
-                                    icon={<RefreshCw size={16} />}
-                                    color="var(--danger-color)"
-                                    onClick={handleReset}
-                                />
-                            </SettingsGroup>
-
-                            {/* Credits & Legal */}
-                            <div style={{ textAlign: 'center', padding: '16px 0 24px', color: 'var(--text-muted)', fontSize: 12, lineHeight: 1.6 }}>
-                                <p style={{ margin: '0 0 8px', fontWeight: 700, fontSize: 14, color: 'var(--text-primary)' }}>Vietnamy Education</p>
-                                <p style={{ margin: 0 }}>Developed by <a href="https://tecxmate.com" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--primary-color)', textDecoration: 'none' }}>TECXMATE.COM</a></p>
-                                <p style={{ margin: '12px 0 0', fontSize: 11, color: 'var(--text-muted)' }}>
-                                    © {new Date().getFullYear()} Vietnamy Education. All rights reserved.
-                                </p>
-                                <p style={{ margin: '8px 0 0', fontSize: 11 }}>
-                                    <a href="https://tecxmate.com/vietnamy/terms" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-muted)', textDecoration: 'underline' }}>Terms of Service</a>
-                                    {' · '}
-                                    <a href="https://tecxmate.com/vietnamy/privacy" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-muted)', textDecoration: 'underline' }}>Privacy Policy</a>
-                                </p>
-                            </div>
+                        {/* Footer */}
+                        <div style={{ padding: '16px 20px 24px', borderTop: '1px solid var(--border-color)' }}>
+                            <p style={{ margin: 0, fontSize: 11, color: 'var(--text-muted)', lineHeight: 1.6 }}>
+                                Vietnamy Education · <a href="https://tecxmate.com" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-muted)', textDecoration: 'none' }}>TECXMATE.COM</a>
+                            </p>
                         </div>
                     </div>
-                </div>
+                </>
             )}
 
-            {isReferralOpen && (
-                <ReferralModal onClose={() => setIsReferralOpen(false)} username={userProfile.name?.toLowerCase().replace(/\s+/g, '') || 'learner123'} />
-            )}
-
-            {isPremiumOpen && (
-                <PremiumModal onClose={() => setIsPremiumOpen(false)} />
-            )}
         </>
     );
 };
 
-// ─── Setting Components ──────────────────────────────────────
+// ─── Drawer Item ─────────────────────────────────────────────
 
-const SettingsGroup = ({ title, children }) => (
-    <div style={{ marginBottom: 20 }}>
-        <span style={{ fontSize: 11, fontWeight: 800, textTransform: 'uppercase', letterSpacing: 0.5, color: 'var(--text-muted)', display: 'block', marginBottom: 8 }}>{title}</span>
-        <div style={{ backgroundColor: 'var(--surface-color)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--border-color)', overflow: 'hidden' }}>
-            {children}
-        </div>
-    </div>
-);
-
-const SettingSelect = ({ label, icon, value, options, onChange }) => {
-    const [open, setOpen] = useState(false);
-    const current = options.find(o => o.v === value);
-
-    return (
-        <div style={{ borderBottom: '1px solid var(--border-color)' }}>
-            <div
-                onClick={() => setOpen(!open)}
-                style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '14px 16px', cursor: 'pointer' }}
-            >
-                <span style={{ color: 'var(--primary-color)', display: 'flex' }}>{icon}</span>
-                <span style={{ flex: 1, fontSize: 15 }}>{label}</span>
-                <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--text-muted)', backgroundColor: 'var(--surface-color-light)', padding: '4px 10px', borderRadius: 8 }}>
-                    {current?.l || value}
-                </span>
-                <ChevronDown size={14} color="var(--text-muted)" style={{ transform: open ? 'rotate(180deg)' : 'none', transition: '0.2s' }} />
-            </div>
-            {open && (
-                <div style={{ padding: '0 16px 12px', display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-                    {options.map(o => (
-                        <button
-                            key={o.v}
-                            onClick={() => { onChange(o.v); setOpen(false); }}
-                            style={{
-                                padding: '8px 14px', borderRadius: 'var(--radius-full)', fontSize: 13, fontWeight: 700,
-                                border: o.v === value ? '2px solid var(--primary-color)' : '2px solid var(--border-color)',
-                                backgroundColor: o.v === value ? 'rgba(255,209,102,0.15)' : 'transparent',
-                                color: o.v === value ? 'var(--primary-color)' : 'var(--text-main)',
-                                cursor: 'pointer',
-                            }}
-                        >
-                            {o.l}
-                        </button>
-                    ))}
-                </div>
-            )}
-        </div>
-    );
-};
-
-const SettingToggle = ({ label, icon, checked, onChange }) => (
-    <div
-        onClick={() => onChange(!checked)}
-        style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '14px 16px', cursor: 'pointer', borderBottom: '1px solid var(--border-color)' }}
-    >
-        <span style={{ color: 'var(--primary-color)', display: 'flex' }}>{icon}</span>
-        <span style={{ flex: 1, fontSize: 15 }}>{label}</span>
-        <div style={{
-            width: 46, height: 26, backgroundColor: checked ? 'var(--success-color)' : 'var(--surface-color-light)',
-            borderRadius: 13, position: 'relative', transition: '0.3s', border: '1px solid var(--border-color)',
-        }}>
-            <div style={{
-                width: 22, height: 22, backgroundColor: 'white', borderRadius: '50%',
-                position: 'absolute', top: 1, left: checked ? 22 : 1, transition: '0.3s',
-                boxShadow: '0 1px 3px rgba(0,0,0,0.2)',
-            }} />
-        </div>
-    </div>
-);
-
-const SettingAction = ({ label, icon, color = 'var(--text-main)', onClick }) => (
+const DrawerItem = ({ icon, label, detail, badge, badgeColor, onClick }) => (
     <div
         onClick={onClick}
-        style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '14px 16px', cursor: 'pointer', borderBottom: '1px solid var(--border-color)' }}
+        style={{
+            display: 'flex', alignItems: 'center', gap: 14,
+            padding: '14px 20px', cursor: 'pointer',
+        }}
     >
-        <span style={{ color, display: 'flex' }}>{icon}</span>
-        <span style={{ flex: 1, fontSize: 15, fontWeight: 500, color }}>{label}</span>
-        <ChevronRight size={16} color="var(--text-muted)" />
+        <span style={{ color: 'var(--text-main)', display: 'flex', opacity: 0.7 }}>{icon}</span>
+        <span style={{ flex: 1, fontSize: 15, fontWeight: 700 }}>{label}</span>
+        {badge && (
+            <span style={{
+                fontSize: 11, fontWeight: 700, padding: '3px 10px',
+                borderRadius: 'var(--radius-full)',
+                backgroundColor: badgeColor ? `${badgeColor}20` : 'var(--surface-color-light)',
+                color: badgeColor || 'var(--text-muted)',
+                border: `1px solid ${badgeColor ? `${badgeColor}40` : 'var(--border-color)'}`,
+            }}>
+                {badge}
+            </span>
+        )}
+        {detail && (
+            <span style={{ fontSize: 13, color: 'var(--text-muted)', fontWeight: 600 }}>{detail}</span>
+        )}
     </div>
 );
 

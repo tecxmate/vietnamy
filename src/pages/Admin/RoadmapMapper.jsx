@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { getUnits, getNodesForUnit, addUnit, addNode, updateNode, deleteNode, updateUnit, deleteUnit } from '../../lib/db';
 import { Plus, GripVertical, Settings, Trash2, ArrowUp, ArrowDown, Pencil, Check, X } from 'lucide-react';
 
-const NODE_TYPES = ['lesson', 'practice', 'checkpoint', 'boss'];
+const NODE_TYPES = ['lesson', 'grammar_tip', 'skill', 'practice', 'test', 'checkpoint', 'boss'];
 const STATUSES = ['locked', 'active', 'completed'];
 
 const RoadmapMapper = () => {
@@ -74,6 +74,7 @@ const RoadmapMapper = () => {
             label: node.label || '',
             node_type: node.type || 'lesson',
             lesson_id: node.content_ref_id || '',
+            grammar_id: node.grammar_id || '',
             status: node.status || 'locked'
         });
     };
@@ -211,12 +212,22 @@ const RoadmapMapper = () => {
                                                         </select>
                                                     </td>
                                                     <td style={{ padding: '8px 4px' }}>
-                                                        <input
-                                                            type="text"
-                                                            value={editNodeData.lesson_id}
-                                                            onChange={(e) => setEditNodeData(d => ({ ...d, lesson_id: e.target.value }))}
-                                                            style={{ ...s.input, width: '100%', fontFamily: 'monospace', fontSize: 12 }}
-                                                        />
+                                                        {editNodeData.node_type === 'grammar_tip' ? (
+                                                            <input
+                                                                type="text"
+                                                                value={editNodeData.grammar_id}
+                                                                onChange={(e) => setEditNodeData(d => ({ ...d, grammar_id: e.target.value }))}
+                                                                placeholder="gram_001"
+                                                                style={{ ...s.input, width: '100%', fontFamily: 'monospace', fontSize: 12 }}
+                                                            />
+                                                        ) : (
+                                                            <input
+                                                                type="text"
+                                                                value={editNodeData.lesson_id}
+                                                                onChange={(e) => setEditNodeData(d => ({ ...d, lesson_id: e.target.value }))}
+                                                                style={{ ...s.input, width: '100%', fontFamily: 'monospace', fontSize: 12 }}
+                                                            />
+                                                        )}
                                                     </td>
                                                     <td style={{ padding: '8px 4px' }}>
                                                         <select value={editNodeData.status} onChange={(e) => setEditNodeData(d => ({ ...d, status: e.target.value }))} style={s.select}>

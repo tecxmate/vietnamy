@@ -47,7 +47,7 @@ const PremiumModal = ({ onClose }) => {
                         <div className="premium-hero-icon" style={{ borderColor: 'rgba(6, 214, 160, 0.4)', background: 'rgba(6, 214, 160, 0.1)' }}>
                             <Crown size={48} color="#06D6A0" fill="#06D6A0" />
                         </div>
-                        <h2 className="premium-headline">VnMe <span style={{ color: '#06D6A0' }}>Executive</span></h2>
+                        <h2 className="premium-headline">Vietnamy <span style={{ color: '#06D6A0' }}>Executive</span></h2>
                         <p className="premium-subhead" style={{ color: '#06D6A0' }}>You're an Executive member!</p>
                         <p className="premium-subhead">All premium modules and features are unlocked.</p>
                     </div>
@@ -72,7 +72,7 @@ const PremiumModal = ({ onClose }) => {
                     <div className="premium-hero-icon">
                         <Crown size={48} color="#FFD166" fill="#FFD166" />
                     </div>
-                    <h2 className="premium-headline">VnMe <span className="premium-text">Executive</span></h2>
+                    <h2 className="premium-headline">Vietnamy <span className="premium-text">Executive</span></h2>
                     <p className="premium-subhead">Stop translating. Start communicating.<br />Unlock the full cultural toolkit.</p>
                 </div>
 

@@ -1,44 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
-    Trophy, Users, Activity, ExternalLink, Crown, Flame,
-    UserPlus, Medal, Star, Zap, GraduationCap, Video, Calendar,
-    Building, MapPin
+    Users, ExternalLink, Crown, Flame, Search,
+    UserPlus, Medal, Star, Video, Calendar,
+    Building, MapPin,
 } from 'lucide-react';
 import './CommunityTab.css';
 
-// Mock leaderboard data
-const LEADERBOARD = [
-    { rank: 1, name: 'Minh T.', xp: 12450, streak: 42, isYou: false },
-    { rank: 2, name: 'Sarah L.', xp: 11200, streak: 38, isYou: false },
-    { rank: 3, name: 'Huy N.', xp: 9800, streak: 27, isYou: false },
-    { rank: 4, name: 'You', xp: 8650, streak: 15, isYou: true },
-    { rank: 5, name: 'Linh P.', xp: 7300, streak: 21, isYou: false },
-    { rank: 6, name: 'James K.', xp: 6100, streak: 12, isYou: false },
-    { rank: 7, name: 'Trang V.', xp: 5400, streak: 9, isYou: false },
-];
-
-const RANK_ICONS = {
-    1: <Crown size={16} style={{ color: '#FFD166' }} />,
-    2: <Medal size={16} style={{ color: '#C0C0C0' }} />,
-    3: <Medal size={16} style={{ color: '#CD7F32' }} />,
-};
-
-// Mock activity feed
-const ACTIVITIES = [
-    { id: 1, icon: <Star size={16} />, text: 'Minh T. completed Unit 3: At the Market', time: '2h ago', color: 'var(--primary-color)' },
-    { id: 2, icon: <Flame size={16} />, text: 'Sarah L. reached a 38-day streak!', time: '5h ago', color: '#FF5722' },
-    { id: 3, icon: <Zap size={16} />, text: 'Huy N. mastered 50 vocabulary words', time: '8h ago', color: 'var(--success-color)' },
-    { id: 4, icon: <GraduationCap size={16} />, text: 'Linh P. unlocked Advanced Grammar', time: '1d ago', color: 'var(--secondary-color)' },
-];
-
-// Premium tutor profiles
 const TUTORS = [
     { name: 'Ngoc Anh', title: 'Business Vietnamese Specialist', rate: '$35/30min', specialties: ['Business Meetings', 'Negotiations'], initials: 'NA', rating: 4.9, color: '#FFD166' },
     { name: 'Minh Duc', title: 'Executive Communication Coach', rate: '$40/30min', specialties: ['Real Estate', 'Legal Terms'], initials: 'MD', rating: 5.0, color: '#1CB0F6' },
     { name: 'Thu Hien', title: 'Social & Cultural Guide', rate: '$25/30min', specialties: ['Dining Etiquette', 'Networking'], initials: 'TH', rating: 4.8, color: '#06D6A0' },
 ];
 
-// Luxury partner cards
 const LUXURY_PARTNERS = [
     { title: 'Park Hyatt Saigon', description: 'Exclusive language sessions for hotel guests', tag: 'Hotel Partner', initials: 'PH', color: '#FFD166' },
     { title: 'Six Senses Con Dao', description: 'Complimentary basic modules for resort guests', tag: 'Resort Partner', initials: 'SS', color: '#06D6A0' },
@@ -46,10 +19,15 @@ const LUXURY_PARTNERS = [
     { title: 'Savills Vietnam', description: 'Real estate Vietnamese for property buyers', tag: 'Real Estate', initials: 'SV', color: '#CE82FF' },
 ];
 
+// ─── Component ──────────────────────────────────────────────
+
 const CommunityTab = () => {
+    const [showAddFriend, setShowAddFriend] = useState(false);
+
     return (
         <div className="comm-container">
-            {/* ─── Leaderboard ─────────────────────────────────────── */}
+
+            {/* ═══ LEADERBOARD ════════════════════════════════════════ */}
             <section className="comm-section">
                 <div className="comm-section-header">
                     <Trophy size={20} className="comm-section-icon" />
@@ -75,46 +53,21 @@ const CommunityTab = () => {
                     ))}
                 </div>
                 <p className="comm-coming-soon">Weekly rankings refresh every Monday</p>
+                <button
+                    onClick={() => setShowAddFriend(true)}
+                    style={{
+                        display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+                        width: '100%', padding: '12px 16px', marginTop: 12,
+                        borderRadius: 'var(--radius-md)', border: '2px dashed var(--border-color)',
+                        backgroundColor: 'transparent', color: 'var(--text-muted)',
+                        fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit',
+                    }}
+                >
+                    <UserPlus size={18} /> Add Friends to Compete
+                </button>
             </section>
 
-            {/* ─── Friends ─────────────────────────────────────────── */}
-            <section className="comm-section">
-                <div className="comm-section-header">
-                    <Users size={20} className="comm-section-icon" />
-                    <h2 className="comm-section-title">Friends</h2>
-                </div>
-                <div className="comm-friends-empty">
-                    <UserPlus size={36} style={{ color: 'var(--text-muted)', marginBottom: 12 }} />
-                    <p className="comm-friends-text">Add friends to see their progress and compete together!</p>
-                    <button className="comm-add-friend-btn" disabled>
-                        <UserPlus size={16} /> Add Friend
-                    </button>
-                    <span className="comm-coming-tag">Coming Soon</span>
-                </div>
-            </section>
-
-            {/* ─── Activity Feed ────────────────────────────────────── */}
-            <section className="comm-section">
-                <div className="comm-section-header">
-                    <Activity size={20} className="comm-section-icon" />
-                    <h2 className="comm-section-title">Activity</h2>
-                </div>
-                <div className="comm-activity-list">
-                    {ACTIVITIES.map(act => (
-                        <div key={act.id} className="comm-activity-row">
-                            <div className="comm-activity-icon" style={{ color: act.color }}>
-                                {act.icon}
-                            </div>
-                            <div className="comm-activity-info">
-                                <span className="comm-activity-text">{act.text}</span>
-                                <span className="comm-activity-time">{act.time}</span>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </section>
-
-            {/* ─── Premium 1-on-1 Tutoring ─────────────────────────── */}
+            {/* ═══ PREMIUM TUTORING ═══════════════════════════════════ */}
             <section className="comm-section premium-tutor-section" style={{ background: 'linear-gradient(135deg, rgba(28, 176, 246, 0.1), rgba(28, 176, 246, 0.2))', borderColor: 'rgba(28, 176, 246, 0.3)' }}>
                 <div className="comm-section-header">
                     <Video size={20} color="#1CB0F6" />
@@ -138,8 +91,8 @@ const CommunityTab = () => {
                                 <span className="tutor-rate">{tutor.rate}</span>
                             </div>
                             <div className="tutor-specialties">
-                                {tutor.specialties.map((s, j) => (
-                                    <span key={j} className="tutor-specialty-chip">{s}</span>
+                                {tutor.specialties.map((sp, j) => (
+                                    <span key={j} className="tutor-specialty-chip">{sp}</span>
                                 ))}
                             </div>
                             <button
@@ -153,7 +106,7 @@ const CommunityTab = () => {
                 </div>
             </section>
 
-            {/* ─── Luxury Partners ─────────────────────────────────── */}
+            {/* ═══ LUXURY PARTNERS ════════════════════════════════════ */}
             <section className="comm-section">
                 <div className="comm-section-header">
                     <MapPin size={20} className="comm-section-icon" />
@@ -177,7 +130,7 @@ const CommunityTab = () => {
                 <p className="comm-coming-soon">Partner integrations launching soon</p>
             </section>
 
-            {/* ─── Corporate Training ──────────────────────────────── */}
+            {/* ═══ CORPORATE TRAINING ═════════════════════════════════ */}
             <section className="comm-section" style={{ background: 'linear-gradient(135deg, rgba(17, 138, 178, 0.08), rgba(17, 138, 178, 0.18))', borderColor: 'rgba(17, 138, 178, 0.25)' }}>
                 <div className="comm-section-header">
                     <Building size={20} color="#118AB2" />
@@ -193,6 +146,39 @@ const CommunityTab = () => {
                     Request a Proposal
                 </button>
             </section>
+
+            {/* ═══ ADD FRIEND MODAL ═══════════════════════════════════ */}
+            {showAddFriend && (
+                <div className="modal-overlay" onClick={() => setShowAddFriend(false)}>
+                    <div className="modal-content slide-up" onClick={e => e.stopPropagation()} style={{ textAlign: 'center', padding: '32px 24px' }}>
+                        <UserPlus size={48} style={{ color: 'var(--primary-color)', marginBottom: 16 }} />
+                        <h2 style={{ fontSize: 20, fontWeight: 800, margin: '0 0 8px' }}>Add Friends</h2>
+                        <p style={{ fontSize: 14, color: 'var(--text-muted)', lineHeight: 1.5, margin: '0 0 24px', maxWidth: 280, marginLeft: 'auto', marginRight: 'auto' }}>
+                            Compete on the leaderboard, share streaks, and cheer each other on!
+                        </p>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 20 }}>
+                            <button style={{
+                                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+                                padding: '14px 20px', borderRadius: 'var(--radius-md)', border: 'none',
+                                backgroundColor: 'var(--primary-color)', color: '#1A1A1A',
+                                fontSize: 15, fontWeight: 800, cursor: 'pointer', fontFamily: 'inherit',
+                            }}>
+                                <Users size={18} /> Share Invite Link
+                            </button>
+                            <button style={{
+                                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+                                padding: '14px 20px', borderRadius: 'var(--radius-md)',
+                                border: '2px solid var(--border-color)', backgroundColor: 'transparent',
+                                color: 'var(--text-main)', fontSize: 15, fontWeight: 700,
+                                cursor: 'pointer', fontFamily: 'inherit',
+                            }}>
+                                <Search size={18} /> Find by Username
+                            </button>
+                        </div>
+                        <span className="comm-coming-tag">Coming Soon</span>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
