@@ -46,6 +46,7 @@ import VowelsPractice from './pages/Practice/VowelsPractice';
 import VocabPractice from './pages/Practice/VocabPractice';
 import TonePitchTraining from './pages/Practice/TonePitchTraining';
 import TelexTyping from './pages/Practice/TelexTyping';
+import TeenCode from './pages/Practice/TeenCode';
 
 function StudentApp({ initialTab = 'home' }) {
   const [hasCompletedOnboarding, setHasCompletedOnboarding] = useState(() => {
@@ -78,7 +79,7 @@ function StudentApp({ initialTab = 'home' }) {
       case 'home': return <HomeTab />;
       case 'study': return <RoadmapTab />;
       case 'dictionary': return <DictionaryTab pendingInput={pendingDictInput} clearPendingInput={() => setPendingDictInput(null)} dictMode={dictMode} onDictModeChange={setDictMode} />;
-      case 'library': return <ReadingLibraryTab onSubtitleChange={setTabSubtitle} />;
+      case 'library': return <ReadingLibraryTab onSubtitleChange={setTabSubtitle} onSearchWord={handleDictInput} />;
       case 'community': return <CommunityTab />;
       default: return <HomeTab />;
     }
@@ -118,6 +119,7 @@ function App() {
               <Route path="/practice/flashcards" element={<div className="mobile-app-wrapper"><FlashcardsPage /></div>} />
               <Route path="/practice/pitch" element={<div className="mobile-app-wrapper"><TonePitchTraining /></div>} />
               <Route path="/practice/telex" element={<div className="mobile-app-wrapper"><TelexTyping /></div>} />
+              <Route path="/practice/teencode" element={<div className="mobile-app-wrapper"><TeenCode /></div>} />
 
               {/* Grammar Routes */}
               <Route path="/grammar/:level" element={<div className="mobile-app-wrapper"><GrammarList /></div>} />

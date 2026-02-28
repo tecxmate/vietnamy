@@ -1,8 +1,10 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { Search, BookA, Loader2, Volume2, Sparkles, Camera, Image, Mic, X, ArrowLeft, Check } from 'lucide-react';
+import { Search, BookA, Loader2, Volume2, Sparkles, Camera, Image, Mic, X, ArrowLeft, Check, Bookmark } from 'lucide-react';
 import { Converter } from 'opencc-js';
 import Tesseract from 'tesseract.js';
 import speak from '../../utils/speak';
+import { isDictWordSaved, toggleDictSavedWord } from '../../lib/dictSavedWords';
+import DeckPickerModal from '../DeckPickerModal';
 import './DictionaryTab.css';
 
 const s2t = Converter({ from: 'cn', to: 'tw' });
@@ -18,8 +20,8 @@ const MODES = [
 const SOURCE_LABELS = {
     'VE': 'English',
     '3-dict-combination': 'Tiếng Việt',
-    'AI_Generated_ZH': '越中簡體',
-    'AI_Generated_ZH_T': '越中繁體',
+    'AI_Generated_ZH': '越中简体 VIET > SIMPLIFIED CHINESE',
+    'AI_Generated_ZH_T': '越中繁體 VIET > TRADITIONAL CHINESE',
     'AI_Generated_EN': 'English (AI)',
     'HanViet': '漢越詞典',
     'Wiktionary': 'Wiktionary',
@@ -169,6 +171,13 @@ const DictionaryTab = ({ pendingInput, clearPendingInput, dictMode: externalDict
 
     // Search history for back navigation
     const searchHistoryRef = useRef([]);
+
+    // Save button states
+    const [wordSaved, setWordSaved] = useState(false);
+    const [showDeckPicker, setShowDeckPicker] = useState(false);
+    const [savePressing, setSavePressing] = useState(false);
+    const savePressTimer = useRef(null);
+    const saveDidLongPress = useRef(false);
 
     // Media input states
     const [ocrLoading, setOcrLoading] = useState(false);
@@ -357,6 +366,7 @@ const DictionaryTab = ({ pendingInput, clearPendingInput, dictMode: externalDict
             setLocalTranslation('');
             setTranslating(false);
             setAllData(parsedData);
+            setWordSaved(isDictWordSaved(word.trim()));
 
             // If no results, refresh suggestions for the searched word so "did you mean" shows
             const hasAny = Object.entries(parsedData).some(([k, v]) =>
@@ -500,6 +510,31 @@ const DictionaryTab = ({ pendingInput, clearPendingInput, dictMode: externalDict
         setInterimText('');
     };
 
+    // Save button: short tap = toggle default saved, long press = open deck picker
+    const handleSavePointerDown = () => {
+        saveDidLongPress.current = false;
+        setSavePressing(true);
+        savePressTimer.current = setTimeout(() => {
+            saveDidLongPress.current = true;
+            setSavePressing(false);
+            setShowDeckPicker(true);
+        }, 500);
+    };
+
+    const handleSavePointerUp = () => {
+        clearTimeout(savePressTimer.current);
+        setSavePressing(false);
+        if (!saveDidLongPress.current && searchedWord) {
+            const added = toggleDictSavedWord(searchedWord);
+            setWordSaved(added);
+        }
+    };
+
+    const handleSavePointerCancel = () => {
+        clearTimeout(savePressTimer.current);
+        setSavePressing(false);
+    };
+
     const displaySources = getDisplaySources();
     const hasValidResults = displaySources.length > 0 && displaySources.some(s => s.meanings?.length > 0);
     const firstSourceWithMetrics = displaySources.find(s => s.metrics && (s.metrics.ipa || s.metrics.subt_freq || s.metrics.mi));
@@ -516,24 +551,34 @@ const DictionaryTab = ({ pendingInput, clearPendingInput, dictMode: externalDict
                                 <ArrowLeft size={20} />
                             </button>
                         )}
-                    <div className="word-heading-card">
-                        <div className="word-heading-row">
-                            <h1 className="word-heading">{allData.word}</h1>
+                        <div className="word-heading-card">
                             <button
-                                className="speak-btn"
-                                onClick={() => speak(allData.word)}
-                                title="Listen"
+                                className={`dict-save-btn ${wordSaved ? 'saved' : ''}${savePressing ? ' pressing' : ''}`}
+                                onPointerDown={handleSavePointerDown}
+                                onPointerUp={handleSavePointerUp}
+                                onPointerCancel={handleSavePointerCancel}
+                                onContextMenu={e => e.preventDefault()}
+                                title={wordSaved ? 'Saved — hold for decks' : 'Save word — hold for decks'}
                             >
-                                <Volume2 size={24} />
+                                <Bookmark size={22} strokeWidth={2} fill={wordSaved ? 'currentColor' : 'none'} />
                             </button>
-                        </div>
-                        {metrics && metrics.ipa && (
-                            <div className="word-metrics">
-                                <span className="metric-badge ipa-badge">/{metrics.ipa}/</span>
+                            <div className="word-heading-row">
+                                <h1 className="word-heading">{allData.word}</h1>
+                                <button
+                                    className="speak-btn"
+                                    onClick={() => speak(allData.word)}
+                                    title="Listen"
+                                >
+                                    <Volume2 size={24} />
+                                </button>
                             </div>
-                        )}
+                            {metrics && metrics.ipa && (
+                                <div className="word-metrics">
+                                    <span className="metric-badge ipa-badge">/{metrics.ipa}/</span>
+                                </div>
+                            )}
 
-                    </div>
+                        </div>
                     </div>
                 )}
 
@@ -600,7 +645,7 @@ const DictionaryTab = ({ pendingInput, clearPendingInput, dictMode: externalDict
                     <div className="hanviet-decomposition">
                         <div className="source-header">
                             <BookA size={16} />
-                            <span className="source-name">漢越 HanViet</span>
+                            <span className="source-name">漢越 Han - Viet</span>
                         </div>
                         <div className="hanviet-cards">
                             {allData.hanvietComponents.map((comp, i) => {
@@ -732,6 +777,15 @@ const DictionaryTab = ({ pendingInput, clearPendingInput, dictMode: externalDict
                         </div>
                     </div>
                 </div>
+            )}
+
+            {/* Deck Picker Modal */}
+            {showDeckPicker && searchedWord && (
+                <DeckPickerModal
+                    word={searchedWord}
+                    onClose={() => setShowDeckPicker(false)}
+                    onChanged={() => setWordSaved(isDictWordSaved(searchedWord))}
+                />
             )}
         </div>
     );

@@ -1,11 +1,15 @@
 import React, { useState, useMemo } from 'react';
-import { ChevronLeft, Volume2, BookOpen, BookOpenText, ChevronRight, Dumbbell, Music, Users, Hash, PenTool, Type, Keyboard, Lock, Layers, Crown, Briefcase, Home, Building, Wine, Flag } from 'lucide-react';
+import { ChevronLeft, Volume2, BookOpen, BookOpenText, ChevronRight, Dumbbell, Music, Users, Hash, PenTool, Type, Keyboard, Lock, Layers, Crown, Briefcase, Home, Building, Wine, Flag, Plus, Trash2, BookmarkCheck } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import ARTICLES, { ARTICLE_CATEGORIES, ARTICLE_LEVELS } from '../../data/articleData';
 import { getGrammarItems } from '../../lib/grammarDB';
 import { useDong } from '../../context/DongContext';
 import speak from '../../utils/speak';
 import PremiumModal from '../PremiumModal';
+import {
+    getDictSavedWords, toggleDictSavedWord, getDictDecks, createDictDeck, deleteDictDeck,
+    removeWordFromDictDeck,
+} from '../../lib/dictSavedWords';
 import './ReadingLibraryTab.css';
 
 const LEVEL_COLORS = { beginner: '#06D6A0', intermediate: '#FFD166', advanced: '#EF476F' };
@@ -19,6 +23,8 @@ function LibraryLanding({ onSelectModule }) {
     const grammarItems = getGrammarItems();
     const grammarCount = grammarItems.length;
     const articleCount = ARTICLES.length;
+    const savedWordCount = getDictSavedWords().length;
+    const deckCount = getDictDecks().length;
 
     return (
         <div style={{ padding: 16, display: 'flex', flexDirection: 'column', gap: 16 }}>
@@ -93,6 +99,33 @@ function LibraryLanding({ onSelectModule }) {
                 <div style={{ flex: 1 }}>
                     <div style={{ fontWeight: 700, fontSize: 17, color: 'var(--text-main)' }}>Practice</div>
                     <div style={{ fontSize: 13, color: 'var(--text-muted)', marginTop: 2 }}>Tones, numbers, flashcards & more</div>
+                </div>
+                <ChevronRight size={20} color="var(--text-muted)" />
+            </button>
+
+            {/* Vocabulary card */}
+            <button
+                onClick={() => onSelectModule('vocabulary')}
+                style={{
+                    display: 'flex', alignItems: 'center', gap: 16,
+                    width: '100%', padding: '20px 16px', borderRadius: 16,
+                    backgroundColor: 'var(--surface-color)',
+                    border: '2px solid rgba(255,159,67,0.3)',
+                    cursor: 'pointer', textAlign: 'left',
+                }}
+            >
+                <div style={{
+                    width: 56, height: 56, borderRadius: 14, flexShrink: 0,
+                    backgroundColor: 'rgba(255,159,67,0.15)',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                }}>
+                    <Layers size={28} color="#FF9F43" />
+                </div>
+                <div style={{ flex: 1 }}>
+                    <div style={{ fontWeight: 700, fontSize: 17, color: 'var(--text-main)' }}>Vocabulary</div>
+                    <div style={{ fontSize: 13, color: 'var(--text-muted)', marginTop: 2 }}>
+                        {savedWordCount} saved word{savedWordCount !== 1 ? 's' : ''}{deckCount > 0 ? ` · ${deckCount} deck${deckCount !== 1 ? 's' : ''}` : ''}
+                    </div>
                 </div>
                 <ChevronRight size={20} color="var(--text-muted)" />
             </button>
@@ -449,9 +482,195 @@ function PracticeBrowseView({ onBack }) {
 }
 
 // ═══════════════════════════════════════════════════════════════
+// Vocabulary Browse View
+// ═══════════════════════════════════════════════════════════════
+function VocabularyBrowseView({ onBack, onSearchWord }) {
+    const [savedWords, setSavedWords] = useState(() => getDictSavedWords());
+    const [customDecks, setCustomDecks] = useState(() => getDictDecks());
+    const [activeDeck, setActiveDeck] = useState(null); // null = deck list, object = viewing a deck
+    const [showCreate, setShowCreate] = useState(false);
+    const [newName, setNewName] = useState('');
+
+    const handleCreate = () => {
+        if (!newName.trim()) return;
+        createDictDeck(newName.trim());
+        setCustomDecks(getDictDecks());
+        setNewName('');
+        setShowCreate(false);
+    };
+
+    const handleDeleteDeck = (e, deckId) => {
+        e.stopPropagation();
+        deleteDictDeck(deckId);
+        setCustomDecks(getDictDecks());
+        if (activeDeck?.id === deckId) setActiveDeck(null);
+    };
+
+    const handleRemoveWord = (word) => {
+        if (activeDeck) {
+            removeWordFromDictDeck(activeDeck.id, word);
+            setCustomDecks(getDictDecks());
+            setActiveDeck(getDictDecks().find(d => d.id === activeDeck.id) || null);
+        }
+    };
+
+    // Saved Words detail view
+    if (activeDeck?.id === '__saved__') {
+        return (
+            <div className="vocab-browse">
+                <div className="vocab-browse-header">
+                    <button onClick={() => { setActiveDeck(null); setSavedWords(getDictSavedWords()); }} className="vocab-back-btn">
+                        <ChevronLeft size={24} />
+                    </button>
+                    <h2 className="vocab-browse-title">Saved Words</h2>
+                    <span className="vocab-browse-count">{savedWords.length} word{savedWords.length !== 1 ? 's' : ''}</span>
+                </div>
+                {savedWords.length === 0 ? (
+                    <div className="vocab-empty">
+                        <BookmarkCheck size={40} />
+                        <p>No saved words yet. Use the bookmark button in the dictionary!</p>
+                    </div>
+                ) : (
+                    <div className="vocab-card-list">
+                        {savedWords.map((word, i) => (
+                            <div key={i} className="vocab-card-row" style={{ borderTop: i > 0 ? '1px solid var(--border-color)' : 'none' }}>
+                                <div className="vocab-card-row-text" onClick={() => onSearchWord?.(word)}>
+                                    <span className="vocab-card-vi">{word}</span>
+                                </div>
+                                <button className="vocab-card-speak" onClick={() => speak(word)}>
+                                    <Volume2 size={16} />
+                                </button>
+                                <button className="vocab-card-remove" onClick={() => {
+                                    toggleDictSavedWord(word);
+                                    setSavedWords(getDictSavedWords());
+                                }}>
+                                    <Trash2 size={14} />
+                                </button>
+                            </div>
+                        ))}
+                    </div>
+                )}
+            </div>
+        );
+    }
+
+    // Custom deck detail view
+    if (activeDeck) {
+        const deck = customDecks.find(d => d.id === activeDeck.id);
+        const words = deck?.words || [];
+        return (
+            <div className="vocab-browse">
+                <div className="vocab-browse-header">
+                    <button onClick={() => setActiveDeck(null)} className="vocab-back-btn">
+                        <ChevronLeft size={24} />
+                    </button>
+                    <h2 className="vocab-browse-title">{deck?.name || 'Deck'}</h2>
+                    <span className="vocab-browse-count">{words.length} word{words.length !== 1 ? 's' : ''}</span>
+                </div>
+                {words.length === 0 ? (
+                    <div className="vocab-empty">
+                        <Layers size={40} />
+                        <p>No words in this deck yet. Save words from the dictionary!</p>
+                    </div>
+                ) : (
+                    <div className="vocab-card-list">
+                        {words.map((word, i) => (
+                            <div key={i} className="vocab-card-row" style={{ borderTop: i > 0 ? '1px solid var(--border-color)' : 'none' }}>
+                                <div className="vocab-card-row-text" onClick={() => onSearchWord?.(word)}>
+                                    <span className="vocab-card-vi">{word}</span>
+                                </div>
+                                <button className="vocab-card-speak" onClick={() => speak(word)}>
+                                    <Volume2 size={16} />
+                                </button>
+                                <button className="vocab-card-remove" onClick={() => handleRemoveWord(word)}>
+                                    <Trash2 size={14} />
+                                </button>
+                            </div>
+                        ))}
+                    </div>
+                )}
+            </div>
+        );
+    }
+
+    // Deck list view
+    return (
+        <div className="vocab-browse">
+            <div className="vocab-browse-header">
+                <button onClick={onBack} className="vocab-back-btn">
+                    <ChevronLeft size={24} />
+                </button>
+                <h2 className="vocab-browse-title">Vocabulary</h2>
+            </div>
+
+            {/* Saved Words deck */}
+            <div className="vocab-deck-list">
+                <button
+                    className="vocab-deck-card"
+                    onClick={() => setActiveDeck({ id: '__saved__', name: 'Saved Words' })}
+                    disabled={savedWords.length === 0}
+                    style={savedWords.length === 0 ? { opacity: 0.5 } : undefined}
+                >
+                    <div className="vocab-deck-icon saved"><BookmarkCheck size={22} /></div>
+                    <div className="vocab-deck-info">
+                        <span className="vocab-deck-name">Saved Words</span>
+                        <span className="vocab-deck-count">{savedWords.length} word{savedWords.length !== 1 ? 's' : ''}</span>
+                    </div>
+                    <ChevronRight size={18} color="var(--text-muted)" />
+                </button>
+
+                {customDecks.length > 0 && (
+                    <div className="vocab-section-label">My Decks</div>
+                )}
+                {customDecks.map(deck => (
+                    <button
+                        key={deck.id}
+                        className="vocab-deck-card"
+                        onClick={() => setActiveDeck(deck)}
+                    >
+                        <div className="vocab-deck-icon custom"><Layers size={22} /></div>
+                        <div className="vocab-deck-info">
+                            <span className="vocab-deck-name">{deck.name}</span>
+                            <span className="vocab-deck-count">{deck.words.length} word{deck.words.length !== 1 ? 's' : ''}</span>
+                        </div>
+                        <button className="vocab-deck-delete" onClick={(e) => handleDeleteDeck(e, deck.id)}>
+                            <Trash2 size={16} />
+                        </button>
+                        <ChevronRight size={18} color="var(--text-muted)" />
+                    </button>
+                ))}
+            </div>
+
+            {/* Create deck */}
+            {showCreate ? (
+                <div className="vocab-create-form">
+                    <input
+                        type="text"
+                        className="vocab-create-input"
+                        placeholder="Deck name..."
+                        value={newName}
+                        onChange={e => setNewName(e.target.value)}
+                        onKeyDown={e => e.key === 'Enter' && handleCreate()}
+                        autoFocus
+                    />
+                    <div className="vocab-create-actions">
+                        <button className="vocab-create-btn primary" onClick={handleCreate} disabled={!newName.trim()}>Create</button>
+                        <button className="vocab-create-btn ghost" onClick={() => { setShowCreate(false); setNewName(''); }}>Cancel</button>
+                    </div>
+                </div>
+            ) : (
+                <button className="vocab-new-deck-btn" onClick={() => setShowCreate(true)}>
+                    <Plus size={16} /> New Deck
+                </button>
+            )}
+        </div>
+    );
+}
+
+// ═══════════════════════════════════════════════════════════════
 // Main Tab Component
 // ═══════════════════════════════════════════════════════════════
-export default function ReadingLibraryTab({ onSubtitleChange }) {
+export default function ReadingLibraryTab({ onSubtitleChange, onSearchWord }) {
     const [view, setView] = useState('landing');
     const [activeArticle, setActiveArticle] = useState(null);
 
@@ -471,6 +690,7 @@ export default function ReadingLibraryTab({ onSubtitleChange }) {
     if (view === 'reader' && activeArticle) return <ArticleReaderView article={activeArticle} onBack={() => setView('readings')} />;
     if (view === 'readings') return <ArticleBrowseView onSelectArticle={enterReader} onBack={goToLanding} />;
     if (view === 'practice') return <PracticeBrowseView onBack={goToLanding} />;
+    if (view === 'vocabulary') return <VocabularyBrowseView onBack={goToLanding} onSearchWord={onSearchWord} />;
 
     return <LibraryLanding onSelectModule={(mod) => setView(mod)} />;
 }

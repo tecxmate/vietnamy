@@ -251,14 +251,15 @@
 .word-heading {
     font-size: 32px;
     font-weight: 800;
-    margin-bottom: 0;
+    margin: 0;
+    line-height: 1;
     color: var(--primary-color);
 }
 
 .word-heading-row {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
     margin-bottom: 0;
 }
 
@@ -490,6 +491,51 @@
 
 .speak-btn--sm:hover {
     opacity: 1;
+}
+
+/* Save / Bookmark button — anchored top-right inside word-heading-card */
+.word-heading-card {
+    position: relative;
+}
+
+.dict-save-btn {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    border: none;
+    border-radius: 8px;
+    background: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: color 0.15s, transform 0.15s;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.dict-save-btn:hover {
+    color: var(--primary-color);
+}
+
+.dict-save-btn.saved {
+    color: var(--primary-color);
+    animation: save-pop 0.3s ease-out;
+}
+
+.dict-save-btn.pressing {
+    transition: transform 0.3s ease-out;
+    transform: translateY(-50%) scale(1.3);
+}
+
+@keyframes save-pop {
+    0% { transform: translateY(-50%) scale(1); }
+    50% { transform: translateY(-50%) scale(1.25); }
+    100% { transform: translateY(-50%) scale(1); }
 }
 
 .example-vi-row {
