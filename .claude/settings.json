@@ -36,7 +36,8 @@
       "Bash(git -C /Users/niko/antigravity/vnme-app status --short)",
       "Bash(git reset:*)",
       "Bash(git -C:*)",
-      "Bash(pip3 install:*)"
+      "Bash(pip3 install:*)",
+      "Bash(ps:*)"
     ],
     "additionalDirectories": [
       "/Users/niko/antigravity/vnme-app",

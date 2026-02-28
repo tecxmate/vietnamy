@@ -183,6 +183,7 @@ const DictionaryTab = ({ pendingInput, clearPendingInput, dictMode: externalDict
     const cameraInputRef = useRef(null);
     const uploadInputRef = useRef(null);
     const recognitionRef = useRef(null);
+    const skipAutoSearch = useRef(false);
 
     const setDictMode = (mode) => {
         setDictModeLocal(mode);
@@ -261,23 +262,27 @@ const DictionaryTab = ({ pendingInput, clearPendingInput, dictMode: externalDict
 
     // Auto-search effect with debounce
     useEffect(() => {
+        // Skip if this query change came from a direct search (suggestion click, back, etc.)
+        if (skipAutoSearch.current) {
+            skipAutoSearch.current = false;
+            return;
+        }
+
         fetchSuggestions(query);
 
         clearTimeout(searchTimer.current);
 
         if (!query.trim()) {
-            // User cleared input, optionally clear results
             setAllData(null);
             setSearchedWord('');
             setLoading(false);
             return;
         }
 
-        // Only auto-search if it's longer than 1 character to avoid thrashing on first keystroke
         if (query.trim().length >= 2) {
             searchTimer.current = setTimeout(() => {
                 runSearch(query);
-            }, 600); // 600ms delay feels natural for typing
+            }, 600);
         }
     }, [query, fetchSuggestions]);
 
@@ -311,6 +316,7 @@ const DictionaryTab = ({ pendingInput, clearPendingInput, dictMode: externalDict
     // Handle input from BottomNav (OCR / voice)
     useEffect(() => {
         if (pendingInput) {
+            skipAutoSearch.current = true;
             setQuery(pendingInput);
             runSearch(pendingInput);
             clearPendingInput();
@@ -327,9 +333,7 @@ const DictionaryTab = ({ pendingInput, clearPendingInput, dictMode: externalDict
 
         setLoading(true);
         setSearchedWord(word.trim());
-        setLocalTranslation('');
         setTranslationError(false);
-        setTranslating(false);
 
         try {
             const enc = encodeURIComponent(word.trim());
@@ -350,6 +354,8 @@ const DictionaryTab = ({ pendingInput, clearPendingInput, dictMode: externalDict
                 components: enData.components || null,
                 hanvietComponents: zhData.hanvietComponents || null,
             };
+            setLocalTranslation('');
+            setTranslating(false);
             setAllData(parsedData);
 
             // If no results, refresh suggestions for the searched word so "did you mean" shows
@@ -375,6 +381,7 @@ const DictionaryTab = ({ pendingInput, clearPendingInput, dictMode: externalDict
         if (pushHistory && searchedWord && searchedWord !== word) {
             searchHistoryRef.current.push(searchedWord);
         }
+        skipAutoSearch.current = true;
         setQuery(word);
         runSearch(word);
     };
@@ -480,6 +487,7 @@ const DictionaryTab = ({ pendingInput, clearPendingInput, dictMode: externalDict
         setListening(false);
         setInterimText('');
         if (text) {
+            skipAutoSearch.current = true;
             setQuery(text);
             runSearch(text);
         }

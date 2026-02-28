@@ -13,18 +13,36 @@
             "state": {
               "type": "canvas",
               "state": {
-                "file": "docs/vnme-note.canvas",
+                "file": "docs/userflow.canvas",
                 "viewState": {
-                  "x": -11.266488199942364,
-                  "y": -201.6621713210937,
-                  "zoom": 0.841769044877752
+                  "x": 943.9735339509873,
+                  "y": 674.6326111649018,
+                  "zoom": -1.5502519934099996
                 }
               },
               "icon": "lucide-layout-dashboard",
-              "title": "vnme-note"
+              "title": "userflow"
+            }
+          },
+          {
+            "id": "e709a357ee53a7cc",
+            "type": "leaf",
+            "state": {
+              "type": "canvas",
+              "state": {
+                "file": "docs/features.canvas",
+                "viewState": {
+                  "x": 343.5926411983383,
+                  "y": 502.0740886889237,
+                  "zoom": -0.9887875160017474
+                }
+              },
+              "icon": "lucide-layout-dashboard",
+              "title": "features"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -97,7 +115,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "docs/vnme-note.canvas",
+                "file": "docs/userflow.canvas",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -107,7 +125,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for vnme-note"
+              "title": "Backlinks for userflow"
             }
           },
           {
@@ -116,12 +134,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "docs/vnme-note.canvas",
+                "file": "docs/userflow.canvas",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from vnme-note"
+              "title": "Outgoing links from userflow"
             }
           },
           {
@@ -159,13 +177,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "docs/vnme-note.canvas",
+                "file": "docs/userflow.canvas",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of vnme-note"
+              "title": "Outline of userflow"
             }
           }
         ]
@@ -186,20 +204,28 @@
       "bases:Create new base": false
     }
   },
-  "active": "771453596e913b2e",
+  "active": "e709a357ee53a7cc",
   "lastOpenFiles": [
-    "dist/assets/index-Cf8vvGCL.js",
+    "dist/index.html",
+    "dist/assets/index-VOeeyiCB.css",
+    "dist/assets/index-BLmcircE.js",
+    "dist/assets",
+    "dist/assets/index-uUUKtlhO.js",
+    "dist/assets/index-Tjmk3n4X.css",
+    "dist/assets/index-CCej2wLI.css",
+    "dist/assets/index-BDkfxBRv.js",
     "dist/assets/index-DqNGh8be.css",
-    "dist/assets/index-CmCrQjdw.js",
-    "dist/assets/index-D68BPbcn.css",
-    "node_modules/tesseract.js-core/tesseract-core.wasm",
-    "node_modules/tesseract.js-core/tesseract-core-simd.wasm",
-    "node_modules/tesseract.js-core/tesseract-core-simd-lstm.wasm",
-    "node_modules/tesseract.js-core/tesseract-core-relaxedsimd.wasm",
-    "node_modules/tesseract.js-core/tesseract-core-relaxedsimd-lstm.wasm",
-    "node_modules/tesseract.js-core/tesseract-core-lstm.wasm",
+    "dist/assets/index-8zvehb5N.js",
+    "docs/mockup-dictionary-vocab-library.md",
+    "docs/PRD.md",
+    "docs/PRD-executive-backend.md",
+    "docs/user_flow_and_features.md",
+    "docs/userflow.canvas",
+    "docs/vnme-note.canvas",
+    "docs/features.canvas",
+    "docs/datamodel.canvas",
+    "docs/proposal_100_levels.md.resolved",
     "node_modules/tesseract.js-core/README.md",
-    "node_modules/tesseract.js-core/package.json",
     "node_modules/zlibjs/README.en.md",
     "node_modules/zlibjs/ChangeLog.md",
     "node_modules/tesseract.js/docs/images/tesseract.png",
@@ -230,13 +256,6 @@
     "node_modules/bmp-js/README.md",
     "node_modules/is-url/History.md",
     "node_modules/regenerator-runtime/README.md",
-    "node_modules/webidl-conversions/README.md",
-    "node_modules/webidl-conversions/LICENSE.md",
-    "node_modules/whatwg-url/README.md",
-    "node_modules/zlibjs/README.md",
-    "docs/userflow.canvas",
-    "docs/vnme-note.canvas",
-    "docs/datamodel.canvas",
     "canvas/userflow.canvas",
     "canvas/note.canvas",
     "canvas/datamodel.canvas",
