@@ -409,17 +409,28 @@ app.get('/api/search', (req, res) => {
             // Extract the Chinese compound from AI_Generated_ZH to disambiguate
             // e.g. "không gian" → AI_Generated_ZH has "空間" → chars ['空','間']
             let compoundChars = null;
+            const isCJK = ch => {
+                const cp = ch.codePointAt(0);
+                return (cp >= 0x4E00 && cp <= 0x9FFF) || (cp >= 0x3400 && cp <= 0x4DBF) ||
+                       (cp >= 0x20000 && cp <= 0x2A6DF) || (cp >= 0xF900 && cp <= 0xFAFF);
+            };
+
             const aiZhSource = grouped['AI_Generated_ZH'];
+            let aiFullText = '';
             if (aiZhSource && aiZhSource.meanings.length > 0) {
                 const zhWord = aiZhSource.meanings[0].meaning_text;
-                // Extract CJK characters from the meaning text
-                const cjkChars = [...zhWord].filter(ch => {
-                    const cp = ch.codePointAt(0);
-                    return (cp >= 0x4E00 && cp <= 0x9FFF) || (cp >= 0x3400 && cp <= 0x4DBF) ||
-                           (cp >= 0x20000 && cp <= 0x2A6DF) || (cp >= 0xF900 && cp <= 0xFAFF);
-                });
+                aiFullText = zhWord;
+                // Extract CJK characters from the full meaning text
+                const cjkChars = [...zhWord].filter(isCJK);
                 if (cjkChars.length === syllables.length) {
                     compoundChars = cjkChars;
+                } else {
+                    // Try extracting just the first term before Chinese punctuation
+                    const firstTerm = zhWord.split(/[，,；;、：:（(]/)[0].trim();
+                    const firstCjk = [...firstTerm].filter(isCJK);
+                    if (firstCjk.length === syllables.length) {
+                        compoundChars = firstCjk;
+                    }
                 }
             }
 
@@ -430,6 +441,11 @@ app.get('/api/search', (req, res) => {
             // Combine both simplified and traditional sets for matching
             const compoundCharSet = compoundChars
                 ? new Set([...compoundChars, ...compoundTradChars])
+                : null;
+            // Always build a set from the full AI text (simplified + traditional) for fallback
+            const aiCjkChars = aiFullText ? [...aiFullText].filter(isCJK) : [];
+            const aiCharSet = aiCjkChars.length > 0
+                ? new Set([...aiCjkChars, ...aiCjkChars.map(ch => s2t(ch))])
                 : null;
 
             hanvietComponents = syllables.map((syll) => {
@@ -445,14 +461,28 @@ app.get('/api/search', (req, res) => {
                     };
                 });
 
-                // Match against ANY character in the compound (word order may differ)
+                // Try compound chars first, then fall back to full AI text
+                let matched = false;
                 if (compoundCharSet) {
                     const matchIdx = entries.findIndex(e => {
                         return [...e.chinese].some(ch => compoundCharSet.has(ch));
                     });
                     if (matchIdx > 0) {
-                        const [matched] = entries.splice(matchIdx, 1);
-                        entries.unshift(matched);
+                        const [m] = entries.splice(matchIdx, 1);
+                        entries.unshift(m);
+                        matched = true;
+                    } else if (matchIdx === 0) {
+                        matched = true;
+                    }
+                }
+                // Fallback: use full AI text characters if compound didn't match
+                if (!matched && aiCharSet) {
+                    const matchIdx = entries.findIndex(e => {
+                        return [...e.chinese].some(ch => aiCharSet.has(ch));
+                    });
+                    if (matchIdx > 0) {
+                        const [m] = entries.splice(matchIdx, 1);
+                        entries.unshift(m);
                     }
                 }
 

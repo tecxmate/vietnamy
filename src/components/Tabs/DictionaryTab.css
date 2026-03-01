@@ -1146,6 +1146,13 @@
     display: none;
 }
 
+.hanviet-cards-best {
+    display: flex;
+    gap: 6px;
+    flex-shrink: 0;
+    width: calc(100% - 1px);
+}
+
 .hanviet-card {
     flex-shrink: 0;
     width: 120px;

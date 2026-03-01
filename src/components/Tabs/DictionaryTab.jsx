@@ -649,32 +649,37 @@ const DictionaryTab = ({ pendingInput, clearPendingInput, dictMode: externalDict
                             <BookA size={16} />
                             <span className="source-name">漢越 Han - Viet</span>
                         </div>
-                        <div className="hanviet-cards">
-                            {(() => {
-                                // Best match per syllable first, then alternates
-                                const best = [];
-                                const rest = [];
-                                allData.hanvietComponents.forEach((comp, i) => {
-                                    if (!comp.entries || comp.entries.length === 0) return;
-                                    comp.entries.forEach((entry, j) => {
-                                        const card = { comp, entry, key: `${i}-${j}`, isBest: j === 0 };
-                                        if (j === 0) best.push(card);
-                                        else rest.push(card);
-                                    });
+                        {(() => {
+                            const best = [];
+                            const rest = [];
+                            allData.hanvietComponents.forEach((comp, i) => {
+                                if (!comp.entries || comp.entries.length === 0) return;
+                                comp.entries.forEach((entry, j) => {
+                                    const card = { comp, entry, key: `${i}-${j}` };
+                                    if (j === 0) best.push(card);
+                                    else rest.push(card);
                                 });
-                                return [...best, ...rest].map(({ comp, entry, key, isBest }) => {
-                                    const chinese = dictMode === 'zh-t' ? s2t(entry.chinese) : entry.chinese;
-                                    return (
-                                        <div key={key} className={`hanviet-card${isBest ? ' hanviet-card--best' : ''}`} onClick={() => handleSuggestionClick(comp.syllable)}>
-                                            <div className="hanviet-card-vi">{comp.syllable}</div>
-                                            <div className="hanviet-card-zh">{chinese}</div>
-                                            {entry.pinyin && <div className="hanviet-card-pinyin">{entry.pinyin}</div>}
-                                            {entry.gloss && <div className="hanviet-card-gloss">{dictMode === 'zh-t' ? s2t(entry.gloss) : entry.gloss}</div>}
-                                        </div>
-                                    );
-                                });
-                            })()}
-                        </div>
+                            });
+                            const renderCard = ({ comp, entry, key }, cls) => {
+                                const chinese = dictMode === 'zh-t' ? s2t(entry.chinese) : entry.chinese;
+                                return (
+                                    <div key={key} className={`hanviet-card ${cls}`} onClick={() => handleSuggestionClick(comp.syllable)}>
+                                        <div className="hanviet-card-vi">{comp.syllable}</div>
+                                        <div className="hanviet-card-zh">{chinese}</div>
+                                        {entry.pinyin && <div className="hanviet-card-pinyin">{entry.pinyin}</div>}
+                                        {entry.gloss && <div className="hanviet-card-gloss">{dictMode === 'zh-t' ? s2t(entry.gloss) : entry.gloss}</div>}
+                                    </div>
+                                );
+                            };
+                            return (
+                                <div className="hanviet-cards">
+                                    <div className="hanviet-cards-best">
+                                        {best.map(c => renderCard(c, 'hanviet-card--best'))}
+                                    </div>
+                                    {rest.length > 0 && rest.map(c => renderCard(c, ''))}
+                                </div>
+                            );
+                        })()}
                     </div>
                 )}
                 {hasValidResults && renderSources(displaySources, dictMode === 'zh-t' ? s2t : null)}
