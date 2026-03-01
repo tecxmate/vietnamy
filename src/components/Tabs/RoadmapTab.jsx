@@ -145,24 +145,27 @@ const RoadmapTab = () => {
                                 return (
                                     <div
                                         key={node.id}
-                                        onClick={() => handleNodeClick(node)}
                                         style={{
-                                            display: 'flex', flexDirection: 'column', gap: 0,
+                                            display: 'flex', alignItems: 'stretch',
                                             width: '100%',
                                             borderRadius: 16,
-                                            backgroundColor: isLocked ? 'var(--surface-color)' : style.bg,
                                             border: `2px solid ${isLocked ? style.mutedBorder : style.color}`,
-                                            cursor: (isActive || isCompleted) ? 'pointer' : 'default',
-                                            transition: 'transform 0.1s',
                                             boxShadow: isActive ? `0 4px 0 ${style.dark}` : isCompleted ? `0 3px 0 ${style.dark}` : 'none',
                                             overflow: 'hidden',
+                                            transition: 'transform 0.1s',
                                         }}
                                     >
-                                        {/* Top row: icon, label, action */}
-                                        <div style={{
-                                            display: 'flex', alignItems: 'center', gap: 14,
-                                            padding: '12px 16px',
-                                        }}>
+                                        {/* Main card content */}
+                                        <div
+                                            onClick={() => handleNodeClick(node)}
+                                            style={{
+                                                flex: 1, minWidth: 0,
+                                                display: 'flex', alignItems: 'center', gap: 14,
+                                                padding: '12px 16px',
+                                                backgroundColor: isLocked ? 'var(--surface-color)' : style.bg,
+                                                cursor: (isActive || isCompleted) ? 'pointer' : 'default',
+                                            }}
+                                        >
                                             <div style={{
                                                 width: 44, height: 44, borderRadius: '50%', flexShrink: 0,
                                                 display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -193,29 +196,22 @@ const RoadmapTab = () => {
                                             )}
                                         </div>
 
-                                        {/* Session progress bar with quiz trophy inline */}
-                                        {!isLocked && (
-                                            <div style={{ display: 'flex', alignItems: 'center', gap: 6, margin: '-4px 12px 6px' }}>
-                                                <div style={{ flex: 1, height: 4, backgroundColor: `${style.color}22`, borderRadius: 2, overflow: 'hidden' }}>
-                                                    <div style={{
-                                                        height: '100%',
-                                                        width: `${(Math.min(sessionCount, SESSIONS_TO_COMPLETE) / SESSIONS_TO_COMPLETE) * 100}%`,
-                                                        backgroundColor: style.color,
-                                                        borderRadius: 2,
-                                                        transition: 'width 0.4s ease-out',
-                                                    }} />
-                                                </div>
-                                                {quiz && (
-                                                    <div
-                                                        onClick={(e) => { e.stopPropagation(); handleNodeClick(quiz); }}
-                                                        style={{ flexShrink: 0, display: 'flex', cursor: (quizReady || quizDone) ? 'pointer' : 'default' }}
-                                                    >
-                                                        <Trophy size={14}
-                                                            color={quizDone ? style.color : quizReady ? style.color : style.muted}
-                                                            fill={quizDone ? style.color : 'none'}
-                                                        />
-                                                    </div>
-                                                )}
+                                        {/* Quiz endcap strip */}
+                                        {quiz && (
+                                            <div
+                                                onClick={(e) => { e.stopPropagation(); handleNodeClick(quiz); }}
+                                                style={{
+                                                    width: 52, flexShrink: 0,
+                                                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                                    backgroundColor: quizDone ? style.color : quizReady ? `${style.color}30` : isLocked ? 'var(--surface-color)' : `${style.color}15`,
+                                                    borderLeft: `1.5px dashed ${isLocked ? style.mutedBorder : style.color}`,
+                                                    cursor: (quizReady || quizDone) ? 'pointer' : 'default',
+                                                }}
+                                            >
+                                                <Trophy size={22}
+                                                    color={quizDone ? '#fff' : quizReady ? style.color : isLocked ? style.muted : style.muted}
+                                                    fill={quizDone ? '#fff' : 'none'}
+                                                />
                                             </div>
                                         )}
                                     </div>
