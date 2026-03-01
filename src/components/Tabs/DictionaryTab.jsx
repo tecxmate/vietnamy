@@ -552,25 +552,27 @@ const DictionaryTab = ({ pendingInput, clearPendingInput, dictMode: externalDict
                             </button>
                         )}
                         <div className="word-heading-card">
-                            <button
-                                className={`dict-save-btn ${wordSaved ? 'saved' : ''}${savePressing ? ' pressing' : ''}`}
-                                onPointerDown={handleSavePointerDown}
-                                onPointerUp={handleSavePointerUp}
-                                onPointerCancel={handleSavePointerCancel}
-                                onContextMenu={e => e.preventDefault()}
-                                title={wordSaved ? 'Saved — hold for decks' : 'Save word — hold for decks'}
-                            >
-                                <Bookmark size={22} strokeWidth={2} fill={wordSaved ? 'currentColor' : 'none'} />
-                            </button>
                             <div className="word-heading-row">
                                 <h1 className="word-heading">{allData.word}</h1>
-                                <button
-                                    className="speak-btn"
-                                    onClick={() => speak(allData.word)}
-                                    title="Listen"
-                                >
-                                    <Volume2 size={24} />
-                                </button>
+                                <div className="word-heading-actions">
+                                    <button
+                                        className="speak-btn"
+                                        onClick={() => speak(allData.word)}
+                                        title="Listen"
+                                    >
+                                        <Volume2 size={24} />
+                                    </button>
+                                    <button
+                                        className={`dict-save-btn ${wordSaved ? 'saved' : ''}${savePressing ? ' pressing' : ''}`}
+                                        onPointerDown={handleSavePointerDown}
+                                        onPointerUp={handleSavePointerUp}
+                                        onPointerCancel={handleSavePointerCancel}
+                                        onContextMenu={e => e.preventDefault()}
+                                        title={wordSaved ? 'Saved — hold for decks' : 'Save word — hold for decks'}
+                                    >
+                                        <Bookmark size={22} strokeWidth={2} fill={wordSaved ? 'currentColor' : 'none'} />
+                                    </button>
+                                </div>
                             </div>
                             {metrics && metrics.ipa && (
                                 <div className="word-metrics">
