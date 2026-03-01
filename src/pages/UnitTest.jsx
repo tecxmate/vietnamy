@@ -60,7 +60,7 @@ const UnitTest = () => {
     useEffect(() => {
         if (isFinished && !rewardGivenRef.current) {
             rewardGivenRef.current = true;
-            dongCtx.completeNode(nodeId);
+            dongCtx.completeNode(nodeId, { immediate: true });
         }
     }, [isFinished]);
 

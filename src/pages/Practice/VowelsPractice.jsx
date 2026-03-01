@@ -2,8 +2,6 @@ import { useState, useEffect, useMemo, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { Volume2, Check, X, RotateCw, ArrowLeft, Trophy, Flame, Star, ChevronRight } from 'lucide-react';
 import { useTTS } from '../../hooks/useTTS';
-import { useDong } from '../../context/DongContext';
-import { DongCoin } from '../../components/DongCoin';
 import './VowelsPractice.css';
 import './PracticeShared.css'; // Add shared layout
 
@@ -152,7 +150,6 @@ function makeOptions(correct, type) {
 // ─── Component ──────────────────────────────────────────────────────
 export default function VowelsPractice() {
     const { speak } = useTTS();
-    const dongCtx = useDong();
     const [section, setSection] = useState(1);
     const [playingWord, setPlayingWord] = useState(null);
 
@@ -164,18 +161,6 @@ export default function VowelsPractice() {
     const [streak, setStreak] = useState(0);
     const [bestStreak, setBestStreak] = useState(0);
     const [showSummary, setShowSummary] = useState(false);
-    const [earnedReward, setEarnedReward] = useState(null);
-
-    // Award Dong when quiz completes
-    useEffect(() => {
-        if (showSummary && !earnedReward) {
-            const t = questions.length;
-            const reward = dongCtx.addDong('vowels', { score, total: t, bestStreak });
-            const breakdown = dongCtx.calcRewardBreakdown(score, t, bestStreak);
-            const isRepeat = (dongCtx.getCompletionCount('vowels') > 1);
-            setEarnedReward({ amount: reward, breakdown, isRepeat });
-        }
-    }, [showSummary]);
 
     const playWord = useCallback((word) => {
         setPlayingWord(word);
@@ -287,21 +272,6 @@ export default function VowelsPractice() {
                         {message}<br />
                         Best streak: 🔥 {bestStreak}
                     </p>
-                    {earnedReward && (
-                        <div className="dong-reward-banner">
-                            <DongCoin size="sm" animate />
-                            <span className="dong-reward-banner__text">
-                                +{earnedReward.amount.toLocaleString()}₫ earned!
-                                {earnedReward.isRepeat && <span className="dong-reward-repeat-tag">×0.5 replay</span>}
-                            </span>
-                            <div className="dong-reward-breakdown">
-                                <span className="dong-reward-breakdown__item">Base {earnedReward.breakdown.base}₫</span>
-                                <span className={`dong-reward-breakdown__item ${earnedReward.breakdown.accuracy === 0 ? 'dong-reward-breakdown__item--zero' : ''}`}>Accuracy +{earnedReward.breakdown.accuracy}₫</span>
-                                {earnedReward.breakdown.perfect > 0 && <span className="dong-reward-breakdown__item">🎯 Perfect +{earnedReward.breakdown.perfect}₫</span>}
-                                {earnedReward.breakdown.streakBonus > 0 && <span className="dong-reward-breakdown__item">🔥 Streak +{earnedReward.breakdown.streakBonus}₫</span>}
-                            </div>
-                        </div>
-                    )}
                 </div>
                 <div className="practice-bottom-bar" style={{ flexDirection: 'row', gap: '16px', justifyContent: 'center' }}>
                     <button className="practice-action-btn" style={{ background: 'var(--surface-color)', border: '2px solid var(--border-color)', color: 'var(--text-main)', width: 'auto', flex: 1, boxShadow: '0 4px 0 var(--border-color)' }} onClick={() => setShowSummary(false) || setSection(1)}>

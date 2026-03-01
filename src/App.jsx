@@ -36,7 +36,6 @@ import KinshipEditor from './pages/Admin/KinshipEditor';
 import LessonGame from './components/LessonGame';
 import GrammarLesson from './pages/GrammarLesson';
 import UnitTest from './pages/UnitTest';
-import RewardToast from './components/RewardToast';
 // Practice Modules
 import TonePractice from './pages/Practice/TonePractice';
 import PronounsPractice from './pages/Practice/PronounsPractice';
@@ -102,7 +101,6 @@ function App() {
       <DongProvider>
         <UserProvider>
           <BrowserRouter>
-            <RewardToast />
             <Routes>
               <Route path="/" element={<StudentApp />} />
               <Route path="/practice" element={<StudentApp initialTab="library" />} />

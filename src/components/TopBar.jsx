@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import {
     Target, Zap, User, X, ChevronDown, ChevronRight, RefreshCw,
-    Globe, Type, Volume2, Wrench, Moon, Sun, Clock, Bell, Gift, Crown,
+    Globe, Type, Volume2, Wrench, Moon, Sun, Clock, Bell, Gift,
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useDong } from '../context/DongContext';
 import { useUser } from '../context/UserContext';
 import ReferralModal from './ReferralModal';
-import PremiumModal from './PremiumModal';
 
 const SETTINGS_KEY = 'vnme_settings';
 
@@ -34,9 +33,8 @@ const TAB_META = {
 const TopBar = ({ activeTab, subtitleOverride }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isReferralOpen, setIsReferralOpen] = useState(false);
-    const [isPremiumOpen, setIsPremiumOpen] = useState(false);
     const navigate = useNavigate();
-    const { balance, dailyStreak, isExecutive } = useDong();
+    const { dailyStreak } = useDong();
     const { userProfile, updateUserProfile } = useUser();
     const isHome = activeTab === 'home';
     const isRoadmap = activeTab === 'roadmap';
@@ -103,17 +101,11 @@ const TopBar = ({ activeTab, subtitleOverride }) => {
 
                 {/* Stats — always visible */}
                 <div style={{ display: 'flex', gap: 10, alignItems: 'center', flexShrink: 0 }}>
-                    <button onClick={() => setIsPremiumOpen(true)} className="ghost" style={{ padding: 6, color: isExecutive ? '#06D6A0' : '#FFD166', display: 'flex', alignItems: 'center' }}>
-                        <Crown size={20} fill={isExecutive ? '#06D6A0' : '#FFD166'} />
-                    </button>
                     <button onClick={() => setIsReferralOpen(true)} className="ghost" style={{ padding: 6, color: 'var(--primary-color)', display: 'flex', alignItems: 'center' }}>
                         <Gift size={20} />
                     </button>
                     <div className="stat-badge streak" style={{ padding: '4px 6px', fontSize: '13px' }}>
                         <Zap size={14} fill="currentColor" /> {dailyStreak}
-                    </div>
-                    <div className="stat-badge" style={{ padding: '4px 6px', fontSize: '13px', color: '#F2C255' }}>
-                        {balance.toLocaleString()}₫
                     </div>
                 </div>
             </header>
@@ -245,9 +237,6 @@ const TopBar = ({ activeTab, subtitleOverride }) => {
                 <ReferralModal onClose={() => setIsReferralOpen(false)} username={userProfile.name?.toLowerCase().replace(/\s+/g, '') || 'learner123'} />
             )}
 
-            {isPremiumOpen && (
-                <PremiumModal onClose={() => setIsPremiumOpen(false)} />
-            )}
         </>
     );
 };

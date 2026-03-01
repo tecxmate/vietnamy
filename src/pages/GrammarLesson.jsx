@@ -226,7 +226,7 @@ const GrammarLesson = () => {
     useEffect(() => {
         if (phase === 'finished' && !rewardGivenRef.current) {
             rewardGivenRef.current = true;
-            dongCtx.completeNode(nodeId);
+            dongCtx.completeNode(nodeId, { immediate: true });
         }
     }, [phase]);
 
@@ -271,7 +271,7 @@ const GrammarLesson = () => {
                 if (phase === 'tips') {
                     if (cardIndex < tipCards.length - 1) setCardIndex(i => i + 1);
                     else if (exercises.length > 0) setPhase('quiz');
-                    else { dongCtx.completeNode(nodeId); navigate('/'); }
+                    else { dongCtx.completeNode(nodeId, { immediate: true }); navigate('/'); }
                 } else if (phase === 'quiz') {
                     if (isChecking) handleNext();
                     else if (canCheck()) handleCheck();
@@ -348,7 +348,7 @@ const GrammarLesson = () => {
                                 } else if (exercises.length > 0) {
                                     setPhase('quiz');
                                 } else {
-                                    dongCtx.completeNode(nodeId);
+                                    dongCtx.completeNode(nodeId, { immediate: true });
                                     navigate('/');
                                 }
                             }}

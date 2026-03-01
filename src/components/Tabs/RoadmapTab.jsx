@@ -160,38 +160,52 @@ const RoadmapTab = () => {
                                             onClick={() => handleNodeClick(node)}
                                             style={{
                                                 flex: 1, minWidth: 0,
-                                                display: 'flex', alignItems: 'center', gap: 14,
-                                                padding: '12px 16px',
+                                                display: 'flex', flexDirection: 'column',
                                                 backgroundColor: isLocked ? 'var(--surface-color)' : style.bg,
                                                 cursor: (isActive || isCompleted) ? 'pointer' : 'default',
                                             }}
                                         >
-                                            <div style={{
-                                                width: 44, height: 44, borderRadius: '50%', flexShrink: 0,
-                                                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                                backgroundColor: isLocked ? style.muted : style.color,
-                                                color: '#fff',
-                                            }}>
-                                                {isCompleted ? <Check size={22} strokeWidth={3} /> :
-                                                    isLocked ? <Icon size={20} fill="rgba(255,255,255,0.6)" color="rgba(255,255,255,0.6)" /> :
-                                                        <Icon size={22} fill="#fff" />}
+                                            <div style={{ display: 'flex', alignItems: 'center', gap: 14, padding: '12px 16px' }}>
+                                                <div style={{
+                                                    width: 44, height: 44, borderRadius: '50%', flexShrink: 0,
+                                                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                                    backgroundColor: isLocked ? style.muted : style.color,
+                                                    color: '#fff',
+                                                }}>
+                                                    {isCompleted ? <Check size={22} strokeWidth={3} /> :
+                                                        isLocked ? <Icon size={20} fill="rgba(255,255,255,0.6)" color="rgba(255,255,255,0.6)" /> :
+                                                            <Icon size={22} fill="#fff" />}
+                                                </div>
+                                                <div style={{ flex: 1, minWidth: 0 }}>
+                                                    <div style={{ fontWeight: 700, fontSize: 15, color: isLocked ? style.mutedIcon : 'var(--text-main)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                                                        {node.label}
+                                                    </div>
+                                                    <div style={{ fontSize: 12, color: isLocked ? style.muted : style.color, fontWeight: 600, marginTop: 2 }}>
+                                                        {sublabel}{hasProgress && ` · ${sessionCount}/${SESSIONS_TO_COMPLETE}`}
+                                                    </div>
+                                                </div>
+                                                {isActive && !hasProgress && (
+                                                    <div style={{ fontSize: 12, fontWeight: 800, color: style.color, textTransform: 'uppercase', letterSpacing: '0.5px', flexShrink: 0 }}>
+                                                        START
+                                                    </div>
+                                                )}
+                                                {hasProgress && (
+                                                    <div style={{ fontSize: 12, fontWeight: 800, color: style.color, textTransform: 'uppercase', letterSpacing: '0.5px', flexShrink: 0 }}>
+                                                        CONTINUE
+                                                    </div>
+                                                )}
                                             </div>
-                                            <div style={{ flex: 1, minWidth: 0 }}>
-                                                <div style={{ fontWeight: 700, fontSize: 15, color: isLocked ? style.mutedIcon : 'var(--text-main)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                                                    {node.label}
-                                                </div>
-                                                <div style={{ fontSize: 12, color: isLocked ? style.muted : style.color, fontWeight: 600, marginTop: 2 }}>
-                                                    {sublabel}{hasProgress && ` · ${sessionCount}/${SESSIONS_TO_COMPLETE}`}
-                                                </div>
-                                            </div>
-                                            {isActive && !hasProgress && (
-                                                <div style={{ fontSize: 12, fontWeight: 800, color: style.color, textTransform: 'uppercase', letterSpacing: '0.5px', flexShrink: 0 }}>
-                                                    START
-                                                </div>
-                                            )}
-                                            {hasProgress && (
-                                                <div style={{ fontSize: 12, fontWeight: 800, color: style.color, textTransform: 'uppercase', letterSpacing: '0.5px', flexShrink: 0 }}>
-                                                    CONTINUE
+                                            {/* Segmented progress bar */}
+                                            {(isActive || hasProgress || isCompleted) && (
+                                                <div style={{ display: 'flex', gap: 3, padding: '0 16px 8px' }}>
+                                                    {Array.from({ length: SESSIONS_TO_COMPLETE }, (_, i) => (
+                                                        <div key={i} style={{
+                                                            flex: 1, height: 6, borderRadius: 3,
+                                                            backgroundColor: i < sessionCount || isCompleted
+                                                                ? style.color
+                                                                : isLocked ? style.mutedBorder : `${style.color}30`,
+                                                        }} />
+                                                    ))}
                                                 </div>
                                             )}
                                         </div>

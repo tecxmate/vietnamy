@@ -6,8 +6,6 @@ import {
     Trophy, Flame, Star, Eye, EyeOff, Image as ImageIcon,
 } from 'lucide-react';
 import { useTTS } from '../../hooks/useTTS';
-import { useDong } from '../../context/DongContext';
-import { DongCoin } from '../../components/DongCoin';
 import VocabImage from '../../components/VocabImage';
 import VOCAB_WORDS, { CATEGORIES } from '../../data/vocabWords';
 import { getDueItems, recordReview, getTotalItems } from '../../lib/srs';
@@ -149,8 +147,6 @@ function FlashcardTab({ speak }) {
 
 // ─── Quiz Tab ────────────────────────────────────────────────────
 function QuizTab({ speak, bottomBarContainer }) {
-    const dongCtx = useDong();
-
     const [questions] = useState(() => {
         const shuffled = shuffle(VOCAB_WORDS).slice(0, 15);
         return shuffled.map(word => {
@@ -173,17 +169,6 @@ function QuizTab({ speak, bottomBarContainer }) {
     const [streak, setStreak] = useState(0);
     const [bestStreak, setBestStreak] = useState(0);
     const [showSummary, setShowSummary] = useState(false);
-    const [earnedReward, setEarnedReward] = useState(null);
-
-    useEffect(() => {
-        if (showSummary && !earnedReward) {
-            const t = questions.length;
-            const reward = dongCtx.addDong('vocab', { score, total: t, bestStreak });
-            const breakdown = dongCtx.calcRewardBreakdown(score, t, bestStreak);
-            const isRepeat = (dongCtx.getCompletionCount('vocab') > 1);
-            setEarnedReward({ amount: reward, breakdown, isRepeat });
-        }
-    }, [showSummary]);
 
     const total = questions.length;
     const currentQ = questions[qIndex];
@@ -255,21 +240,6 @@ function QuizTab({ speak, bottomBarContainer }) {
                         {msg}<br />
                         Best streak: {bestStreak}
                     </p>
-                    {earnedReward && (
-                        <div className="dong-reward-banner">
-                            <DongCoin size="sm" animate />
-                            <span className="dong-reward-banner__text">
-                                +{earnedReward.amount.toLocaleString()} earned!
-                                {earnedReward.isRepeat && <span className="dong-reward-repeat-tag">x0.5 replay</span>}
-                            </span>
-                            <div className="dong-reward-breakdown">
-                                <span className="dong-reward-breakdown__item">Base {earnedReward.breakdown.base}</span>
-                                <span className={`dong-reward-breakdown__item ${earnedReward.breakdown.accuracy === 0 ? 'dong-reward-breakdown__item--zero' : ''}`}>Accuracy +{earnedReward.breakdown.accuracy}</span>
-                                {earnedReward.breakdown.perfect > 0 && <span className="dong-reward-breakdown__item">Perfect +{earnedReward.breakdown.perfect}</span>}
-                                {earnedReward.breakdown.streakBonus > 0 && <span className="dong-reward-breakdown__item">Streak +{earnedReward.breakdown.streakBonus}</span>}
-                            </div>
-                        </div>
-                    )}
                 </div>
                 {bottomBarContainer && createPortal(summaryBottomBar, bottomBarContainer)}
             </>
@@ -358,7 +328,6 @@ function QuizTab({ speak, bottomBarContainer }) {
 
 // ─── Review Tab (SRS) ───────────────────────────────────────────
 function ReviewTab({ bottomBarContainer }) {
-    const dongCtx = useDong();
     const [dueItems, setDueItems] = useState(() => getDueItems());
     const [qIndex, setQIndex] = useState(0);
     const [selected, setSelected] = useState(null);
@@ -367,7 +336,6 @@ function ReviewTab({ bottomBarContainer }) {
     const [streak, setStreak] = useState(0);
     const [bestStreak, setBestStreak] = useState(0);
     const [showSummary, setShowSummary] = useState(false);
-    const [earnedReward, setEarnedReward] = useState(null);
 
     const totalSRS = getTotalItems();
 
@@ -395,14 +363,6 @@ function ReviewTab({ bottomBarContainer }) {
         });
     }, [dueItems]);
 
-    useEffect(() => {
-        if (showSummary && !earnedReward && questions.length > 0) {
-            const t = questions.length;
-            const reward = dongCtx.addDong('review', { score, total: t, bestStreak });
-            const breakdown = dongCtx.calcRewardBreakdown(score, t, bestStreak);
-            setEarnedReward({ amount: reward, breakdown });
-        }
-    }, [showSummary]);
 
     if (dueItems.length === 0) {
         return (
@@ -433,12 +393,6 @@ function ReviewTab({ bottomBarContainer }) {
                     <Trophy size={64} style={{ color: 'var(--primary-color)', marginBottom: '16px' }} />
                     <h2 className="practice-title">Review Complete!</h2>
                     <div style={{ fontSize: '2.5rem', fontWeight: 800, color: 'var(--primary-color)', margin: '12px 0' }}>{score} / {questions.length}</div>
-                    {earnedReward && (
-                        <div className="dong-reward-banner">
-                            <DongCoin size="sm" animate />
-                            <span className="dong-reward-banner__text">+{earnedReward.amount.toLocaleString()} earned!</span>
-                        </div>
-                    )}
                 </div>
                 {bottomBarContainer && createPortal(summaryBottomBar, bottomBarContainer)}
             </>

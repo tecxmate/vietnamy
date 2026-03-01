@@ -31,9 +31,8 @@ const LessonGame = () => {
     const [currentStreak, setCurrentStreak] = useState(0);
     const [bestStreak, setBestStreak] = useState(0);
 
-    // Node & reward tracking
+    // Node tracking
     const [nodeId, setNodeId] = useState(null);
-    const [earnedReward, setEarnedReward] = useState(null);
     const [lessonWords, setLessonWords] = useState([]);
 
     // Retention Mockup States
@@ -81,13 +80,10 @@ const LessonGame = () => {
         }
     }, [currentIndex, currentEx]);
 
-    // Award dong when lesson finishes
+    // Complete node and add words to SRS when lesson finishes
     useEffect(() => {
         if (isFinished && !rewardGivenRef.current) {
             rewardGivenRef.current = true;
-            const reward = dongCtx.addDong(lessonId, { score, total: exercises.length, bestStreak });
-            const breakdown = dongCtx.calcRewardBreakdown(score, exercises.length, bestStreak);
-            setEarnedReward({ amount: reward, breakdown });
 
             if (nodeId) {
                 dongCtx.completeNode(nodeId);
@@ -326,33 +322,6 @@ const LessonGame = () => {
                     </div>
                     <h1 style={{ color: 'var(--primary-color)', fontSize: 32, marginBottom: 8 }}>Lesson Complete!</h1>
                     <p style={{ color: 'var(--text-muted)', marginBottom: 24 }}>{score}/{exercises.length} correct</p>
-
-                    {/* Reward breakdown */}
-                    {earnedReward && (
-                        <div style={{ backgroundColor: 'var(--surface-color)', borderRadius: 16, padding: 20, marginBottom: 24, textAlign: 'left' }}>
-                            <div style={{ fontSize: 24, fontWeight: 800, color: 'var(--primary-color)', marginBottom: 12, textAlign: 'center' }}>
-                                +{earnedReward.amount}₫
-                            </div>
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: 6, fontSize: 14, color: 'var(--text-muted)' }}>
-                                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                                    <span>Base reward</span><span>+{earnedReward.breakdown.base}₫</span>
-                                </div>
-                                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                                    <span>Accuracy ({score} correct)</span><span>+{earnedReward.breakdown.accuracy}₫</span>
-                                </div>
-                                {earnedReward.breakdown.perfect > 0 && (
-                                    <div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--primary-color)' }}>
-                                        <span>Perfect bonus!</span><span>+{earnedReward.breakdown.perfect}₫</span>
-                                    </div>
-                                )}
-                                {earnedReward.breakdown.streakBonus > 0 && (
-                                    <div style={{ display: 'flex', justifyContent: 'space-between', color: '#FF9F1C' }}>
-                                        <span>Streak bonus ({bestStreak} streak)</span><span>+{earnedReward.breakdown.streakBonus}₫</span>
-                                    </div>
-                                )}
-                            </div>
-                        </div>
-                    )}
 
                     {/* Words learned */}
                     {lessonWords.length > 0 && (
