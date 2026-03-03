@@ -53,7 +53,6 @@ function StudentApp({ initialTab = 'home' }) {
   });
   const [activeTab, setActiveTab] = useState(initialTab);
   const [tabSubtitle, setTabSubtitle] = useState(null);
-  const [dictMode, setDictMode] = useState('en');
   const [pendingDictInput, setPendingDictInput] = useState(null);
 
   const handleDictInput = (text) => {
@@ -75,9 +74,9 @@ function StudentApp({ initialTab = 'home' }) {
 
   const renderTab = () => {
     switch (activeTab) {
-      case 'home': return <HomeTab onSearchWord={handleDictInput} dictMode={dictMode} onDictModeChange={setDictMode} />;
+      case 'home': return <HomeTab onSearchWord={handleDictInput} />;
       case 'study': return <RoadmapTab />;
-      case 'dictionary': return <DictionaryTab pendingInput={pendingDictInput} clearPendingInput={() => setPendingDictInput(null)} dictMode={dictMode} onDictModeChange={setDictMode} />;
+      case 'dictionary': return <DictionaryTab pendingInput={pendingDictInput} clearPendingInput={() => setPendingDictInput(null)} />;
       case 'library': return <ReadingLibraryTab onSubtitleChange={setTabSubtitle} onSearchWord={handleDictInput} />;
       case 'community': return <CommunityTab />;
       default: return <HomeTab />;
@@ -89,7 +88,7 @@ function StudentApp({ initialTab = 'home' }) {
       <div className="app-container">
         {activeTab === 'home' && <TopBar activeTab={activeTab} subtitleOverride={tabSubtitle} />}
         <main key={activeTab} className={`main-content${activeTab !== 'home' ? ' no-topbar' : ''}`}>{renderTab()}</main>
-        <BottomNav activeTab={activeTab} setActiveTab={setActiveTab} dictMode={dictMode} onDictInput={handleDictInput} />
+        <BottomNav activeTab={activeTab} setActiveTab={setActiveTab} />
       </div>
     </div>
   );

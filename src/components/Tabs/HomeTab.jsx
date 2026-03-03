@@ -1,21 +1,18 @@
-import React, { useState, useRef, useMemo } from 'react';
+import React, { useState, useRef, useMemo, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Volume2, Flame, BookOpen, Layers, ChevronRight, GraduationCap, BookOpenText, Search, Camera, Image, Mic, Loader2, X } from 'lucide-react';
+import { Volume2, Flame, BookOpen, Layers, ChevronRight, GraduationCap, BookOpenText, Search, Camera, Image, Mic, Loader2, X, BookA } from 'lucide-react';
 import Tesseract from 'tesseract.js';
 import { useDong } from '../../context/DongContext';
+import { useUser } from '../../context/UserContext';
 import { getItems, getUnits, getNodesForUnitWithProgress } from '../../lib/db';
 import { getDueItems, getTotalItems } from '../../lib/srs';
 import speak from '../../utils/speak';
 import './HomeTab.css';
 import './DictionaryTab.css';
 
-const DICT_MODES = [
-    { id: 'en', label: 'EN' },
-    { id: 'vi', label: 'VI' },
-    { id: 'zh-s', label: '简' },
-    { id: 'zh-t', label: '繁' },
-    { id: 'all', label: 'All' },
-];
+const EXTRA_LANG_LABELS = {
+    ja: 'JA', fr: 'FR', de: 'DE', ru: 'RU', no: 'NO', es: 'ES',
+};
 
 const TIPS = [
     { title: 'Six Tones', body: 'Vietnamese has 6 tones. The same syllable "ma" can mean ghost, mother, but, horse, tomb, or rice seedling — depending on the tone!' },
@@ -84,18 +81,46 @@ function getWeekDots(dailyStreak, lastVisitDate) {
     return days.map((label, i) => ({ label, checked: checked[i], isToday: i === todayIdx }));
 }
 
-const HomeTab = ({ onSearchWord, dictMode = 'en', onDictModeChange }) => {
+const HomeTab = ({ onSearchWord }) => {
     const navigate = useNavigate();
     const { dailyStreak, lastVisitDate, completedNodes } = useDong();
+    const { userProfile, updateUserProfile } = useUser();
+    const dictMode = userProfile.dictMode || 'en';
+    const setDictMode = (mode) => updateUserProfile({ dictMode: mode });
+    const visibleDicts = userProfile?.visibleDicts || ['en', 'zh-s', 'zh-t'];
+    const activeModes = [
+        { id: 'all', label: 'All' },
+        { id: 'vi', label: 'VI' },
+        ...(visibleDicts.includes('en') ? [{ id: 'en', label: 'EN' }] : []),
+        ...(visibleDicts.includes('zh-s') ? [{ id: 'zh-s', label: '简' }] : []),
+        ...(visibleDicts.includes('zh-t') ? [{ id: 'zh-t', label: '繁' }] : []),
+        ...(visibleDicts.includes('hanviet') ? [{ id: 'hanviet', label: '漢越' }] : []),
+        ...['ja', 'fr', 'de', 'ru', 'no', 'es']
+            .filter(lc => visibleDicts.includes(lc))
+            .map(lc => ({ id: lc, label: EXTRA_LANG_LABELS[lc] })),
+    ];
+    const [showLangPicker, setShowLangPicker] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
     const [ocrLoading, setOcrLoading] = useState(false);
     const [ocrProgress, setOcrProgress] = useState(0);
     const [listening, setListening] = useState(false);
     const [interimText, setInterimText] = useState('');
+    const [toggleOverflows, setToggleOverflows] = useState(false);
     const cameraRef = useRef(null);
     const uploadRef = useRef(null);
     const recognitionRef = useRef(null);
     const finalTextRef = useRef('');
+    const toggleRef = useRef(null);
+
+    useEffect(() => {
+        const el = toggleRef.current;
+        if (!el) return;
+        const check = () => setToggleOverflows(el.scrollWidth > el.clientWidth + 2);
+        check();
+        const ro = new ResizeObserver(check);
+        ro.observe(el);
+        return () => ro.disconnect();
+    }, [activeModes.length]);
 
     const submitSearch = (text) => {
         if (text.trim() && onSearchWord) {
@@ -190,18 +215,54 @@ const HomeTab = ({ onSearchWord, dictMode = 'en', onDictModeChange }) => {
     return (
         <div className="home-tab">
             {/* Dictionary Search */}
-            <div className="home-dict-search">
-                <div className="dictionary-language-toggle">
-                    {DICT_MODES.map(mode => (
-                        <button
-                            key={mode.id}
-                            className={`toggle-btn ${dictMode === mode.id ? 'active' : ''}`}
-                            onClick={() => onDictModeChange?.(mode.id)}
-                        >
-                            {mode.label}
+            <div className="home-dict-search" style={{ position: 'relative' }}>
+                <div className={`dictionary-language-toggle-wrapper${toggleOverflows ? ' has-overflow' : ''}`}>
+                    <div className="dictionary-language-toggle" ref={toggleRef}>
+                        <button className={`lang-toggle-label${showLangPicker ? ' active' : ''}`} onClick={() => setShowLangPicker(!showLangPicker)}>
+                            <BookA size={16} />
                         </button>
-                    ))}
+                        {activeModes.map(mode => (
+                            <button
+                                key={mode.id}
+                                className={`toggle-btn ${dictMode === mode.id ? 'active' : ''}`}
+                                onClick={() => setDictMode(mode.id)}
+                            >
+                                {mode.label}
+                            </button>
+                        ))}
+                    </div>
                 </div>
+                {showLangPicker && (
+                    <div className="lang-picker-popup">
+                        <div className="lang-picker-header">
+                            <span className="lang-picker-title">Search meaning in:</span>
+                            <button className="lang-picker-close" onClick={() => setShowLangPicker(false)}>
+                                <X size={14} />
+                            </button>
+                        </div>
+                        <div className="lang-picker-grid">
+                            {[
+                                { v: 'en', l: 'English' }, { v: 'zh-s', l: '简体中文' }, { v: 'zh-t', l: '繁體中文' },
+                                { v: 'hanviet', l: '漢越 Hán Việt' },
+                                { v: 'ja', l: '日本語' }, { v: 'fr', l: 'Français' }, { v: 'de', l: 'Deutsch' },
+                                { v: 'ru', l: 'Русский' }, { v: 'no', l: 'Norsk' }, { v: 'es', l: 'Español' },
+                            ].map(lang => (
+                                <button
+                                    key={lang.v}
+                                    className={`lang-picker-chip ${visibleDicts.includes(lang.v) ? 'active' : ''}`}
+                                    onClick={() => {
+                                        const next = visibleDicts.includes(lang.v)
+                                            ? visibleDicts.filter(l => l !== lang.v)
+                                            : [...visibleDicts, lang.v];
+                                        updateUserProfile({ visibleDicts: next.length > 0 ? next : ['en'] });
+                                    }}
+                                >
+                                    {lang.l}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+                )}
                 <form className="search-form" onSubmit={(e) => { e.preventDefault(); submitSearch(searchQuery); }}>
                     <div className="search-input-wrapper">
                         <input

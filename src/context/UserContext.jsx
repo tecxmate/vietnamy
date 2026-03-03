@@ -6,7 +6,7 @@ export const UserProvider = ({ children }) => {
     // Default Persona: 25 year old male
     const [userProfile, setUserProfile] = useState(() => {
         const saved = localStorage.getItem('vnme_user_profile');
-        return saved ? JSON.parse(saved) : { age: 25, gender: 'male', name: 'Bạn', goal: '', dialect: '', level: '', dailyMins: 10 };
+        return saved ? JSON.parse(saved) : { age: 25, gender: 'male', name: 'Bạn', goal: '', dialect: '', level: '', dailyMins: 10, dictMode: 'en' };
     });
 
     useEffect(() => {
