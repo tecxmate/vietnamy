@@ -28,17 +28,14 @@
             "id": "e709a357ee53a7cc",
             "type": "leaf",
             "state": {
-              "type": "canvas",
+              "type": "markdown",
               "state": {
-                "file": "docs/vnme-note.canvas",
-                "viewState": {
-                  "x": -215.55219750927748,
-                  "y": 278.0452552004273,
-                  "zoom": -1.1603024166635372
-                }
+                "file": "docs/PRD.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-layout-dashboard",
-              "title": "vnme-note"
+              "icon": "lucide-file",
+              "title": "PRD"
             }
           }
         ],
@@ -206,22 +203,23 @@
   },
   "active": "e709a357ee53a7cc",
   "lastOpenFiles": [
-    "docs/userflow.canvas",
     "dist/index.html",
-    "dist/assets/index-D5fvIcJJ.js",
-    "dist/assets/index-P703GZTQ.css",
+    "dist/assets/index-DTmGnZQb.css",
+    "dist/assets/index-BR5K_hjs.js",
     "dist/assets/dictionary-BM635fq9.js",
     "dist/assets",
+    "dist/assets/index-CpbVMH9q.css",
+    "dist/assets/index-DIHRdIRZ.js",
+    "docs/vnme-note.canvas",
+    "docs/userflow.canvas",
+    "dist/assets/index-D5fvIcJJ.js",
+    "dist/assets/index-P703GZTQ.css",
     "server/databases/vn_es_dictionary.db-shm",
     "server/databases/vn_es_dictionary.db-wal",
-    "server/databases/vn_es_dictionary.db",
-    "docs/vnme-note.canvas",
     "docs/user_flow_and_features.md",
     "docs/PRD-executive-backend.md",
     "docs/PRD.md",
     "docs/mockup-dictionary-vocab-library.md",
-    "dist/assets/index-DCt_K7Rh.js",
-    "server/databases/vn_no_dictionary.db-shm",
     "docs/features.canvas",
     "docs/datamodel.canvas",
     "dist/icon.png",

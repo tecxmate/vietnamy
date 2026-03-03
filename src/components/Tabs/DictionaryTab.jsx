@@ -893,7 +893,7 @@ const DictionaryTab = ({ pendingInput, clearPendingInput }) => {
                     </div>
                 )}
 
-                {(hasValidResults || localTranslation || dictMode === 'hanviet') && (dictMode === 'zh-s' || dictMode === 'zh-t' || dictMode === 'hanviet' || (dictMode === 'all' && visibleDicts.includes('hanviet'))) && allData?.hanvietComponents && (
+                {(hasValidResults || localTranslation || dictMode === 'hanviet') && visibleDicts.includes('hanviet') && (dictMode === 'zh-s' || dictMode === 'zh-t' || dictMode === 'hanviet' || dictMode === 'all') && allData?.hanvietComponents && (
                     <div className="hanviet-decomposition">
                         <div className="source-header">
                             <BookA size={16} />
