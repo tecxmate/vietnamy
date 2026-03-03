@@ -30,15 +30,15 @@
             "state": {
               "type": "canvas",
               "state": {
-                "file": "docs/features.canvas",
+                "file": "docs/vnme-note.canvas",
                 "viewState": {
-                  "x": 158.6728788805103,
-                  "y": 98.41695135311195,
-                  "zoom": 0.4773144540975815
+                  "x": -215.55219750927748,
+                  "y": 278.0452552004273,
+                  "zoom": -1.1603024166635372
                 }
               },
               "icon": "lucide-layout-dashboard",
-              "title": "features"
+              "title": "vnme-note"
             }
           }
         ],
@@ -206,27 +206,26 @@
   },
   "active": "e709a357ee53a7cc",
   "lastOpenFiles": [
+    "docs/userflow.canvas",
     "dist/index.html",
+    "dist/assets/index-D5fvIcJJ.js",
     "dist/assets/index-P703GZTQ.css",
-    "dist/assets/index-BitwIqZ7.js",
     "dist/assets/dictionary-BM635fq9.js",
     "dist/assets",
-    "dist/assets/index-Djra3yHw.js",
-    "dist/assets/index-Ckm3f29q.css",
-    "dist/assets/index-DQ4blNHa.js",
-    "dist/assets/index-Btaj-9EP.js",
-    "dist/assets/index-BLYVLLQr.css",
-    "dist/assets/index-Bsk1vvyb.js",
+    "server/databases/vn_es_dictionary.db-shm",
+    "server/databases/vn_es_dictionary.db-wal",
+    "server/databases/vn_es_dictionary.db",
+    "docs/vnme-note.canvas",
+    "docs/user_flow_and_features.md",
+    "docs/PRD-executive-backend.md",
+    "docs/PRD.md",
+    "docs/mockup-dictionary-vocab-library.md",
+    "dist/assets/index-DCt_K7Rh.js",
+    "server/databases/vn_no_dictionary.db-shm",
+    "docs/features.canvas",
+    "docs/datamodel.canvas",
     "dist/icon.png",
     "public/icon.png",
-    "docs/userflow.canvas",
-    "docs/user_flow_and_features.md",
-    "docs/features.canvas",
-    "docs/mockup-dictionary-vocab-library.md",
-    "docs/PRD.md",
-    "docs/PRD-executive-backend.md",
-    "docs/vnme-note.canvas",
-    "docs/datamodel.canvas",
     "node_modules/tesseract.js-core/README.md",
     "node_modules/zlibjs/README.en.md",
     "node_modules/zlibjs/ChangeLog.md",

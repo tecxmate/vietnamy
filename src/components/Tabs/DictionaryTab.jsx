@@ -1,8 +1,9 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { Search, BookA, Loader2, Volume2, Sparkles, Camera, Image, Mic, X, ArrowLeft, Check, Bookmark, Clock, Trash2, Type, Languages, ChevronLeft, BookmarkPlus } from 'lucide-react';
+import { Search, BookA, Loader2, Volume2, Sparkles, Camera, Image, Mic, X, ArrowLeft, Check, Bookmark, Clock, Trash2, Type, Languages, ChevronLeft, BookmarkPlus, Settings2 } from 'lucide-react';
 import { Converter } from 'opencc-js';
 import Tesseract from 'tesseract.js';
 import speak from '../../utils/speak';
+import { useUser } from '../../context/UserContext';
 import { isDictWordSaved, toggleDictSavedWord } from '../../lib/dictSavedWords';
 import DeckPickerModal from '../DeckPickerModal';
 import './DictionaryTab.css';
@@ -29,23 +30,50 @@ const clearSearchHistory = () => {
     localStorage.removeItem(HISTORY_KEY);
 };
 
-const MODES = [
-    { id: 'en', label: 'EN' },
-    { id: 'vi', label: 'VI' },
-    { id: 'zh-s', label: '简' },
-    { id: 'zh-t', label: '繁' },
-    { id: 'all', label: 'All' },
+// Base modes always available
+const BASE_MODES = [
+    { id: 'en', label: 'EN', flag: '\uD83C\uDDEC\uD83C\uDDE7' },
+    { id: 'vi', label: 'VI', flag: '\uD83C\uDDFB\uD83C\uDDF3' },
+    { id: 'zh-s', label: '\u7B80', flag: '\uD83C\uDDE8\uD83C\uDDF3' },
+    { id: 'zh-t', label: '\u7E41', flag: '\uD83C\uDDF9\uD83C\uDDFC' },
 ];
+
+// Extra language modes (populated from /api/languages)
+const EXTRA_LANG_CODES = ['ja', 'fr', 'de', 'ru', 'no', 'es'];
+const EXTRA_LANG_LABELS = {
+    ja: { label: '\uD83C\uDDEF\uD83C\uDDF5 JA', short: 'JA' },
+    fr: { label: '\uD83C\uDDEB\uD83C\uDDF7 FR', short: 'FR' },
+    de: { label: '\uD83C\uDDE9\uD83C\uDDEA DE', short: 'DE' },
+    ru: { label: '\uD83C\uDDF7\uD83C\uDDFA RU', short: 'RU' },
+    no: { label: '🇳🇴 NO', short: 'NO' },
+    es: { label: '🇪🇸 ES', short: 'ES' },
+};
+
 
 const SOURCE_LABELS = {
     'VE': 'English',
-    '3-dict-combination': 'Tiếng Việt',
-    'AI_Generated_ZH': '越中简体 VIET > SIMPLIFIED CHINESE',
-    'AI_Generated_ZH_T': '越中繁體 VIET > TRADITIONAL CHINESE',
+    '3-dict-combination': 'Ti\u1EBFng Vi\u1EC7t',
+    'AI_Generated_ZH': '\u8D8A\u4E2D\u7B80\u4F53 VIET > SIMPLIFIED CHINESE',
+    'AI_Generated_ZH_T': '\u8D8A\u4E2D\u7E41\u9AD4 VIET > TRADITIONAL CHINESE',
     'AI_Generated_EN': 'English (AI)',
-    'HanViet': '漢越詞典',
+    'HanViet': '\u6F22\u8D8A\u8A5E\u5178',
     'Wiktionary': 'Wiktionary',
     'FVDP (GPL)': 'FVDP (EN-VI)',
+    // New Stardict sources
+    'NhatViet': '\uD83C\uDDEF\uD83C\uDDF5 Nh\u1EADt-Vi\u1EC7t (Japanese)',
+    'PhapViet': '\uD83C\uDDEB\uD83C\uDDF7 Ph\u00E1p-Vi\u1EC7t (French \u2192 VI)',
+    'VietPhap': '\uD83C\uDDEB\uD83C\uDDF7 Vi\u1EC7t-Ph\u00E1p (VI \u2192 French)',
+    'DucViet': '\uD83C\uDDE9\uD83C\uDDEA \u0110\u1EE9c-Vi\u1EC7t (German \u2192 VI)',
+    'VietDuc': '\uD83C\uDDE9\uD83C\uDDEA Vi\u1EC7t-\u0110\u1EE9c (VI \u2192 German)',
+    'NgaViet': '\uD83C\uDDF7\uD83C\uDDFA Nga-Vi\u1EC7t (Russian \u2192 VI)',
+    'VietNga': '\uD83C\uDDF7\uD83C\uDDFA Vi\u1EC7t-Nga (VI \u2192 Russian)',
+    'NauyViet': '🇳🇴 Na Uy-Việt (Norwegian)',
+    'TrungViet': '🇨🇳 Trung-Việt (Chinese → VI)',
+    'VietNhat': '🇯🇵 Việt-Nhật (VI → Japanese)',
+    'VietAnh_Stardict': '🇬🇧 Việt-Anh (VI → English)',
+    'VietHan': '🇨🇳 Việt-Hán (VI → Sino)',
+    'VietTBN': '🇪🇸 Việt-TBN (VI → Spanish)',
+    'TBNViet': '🇪🇸 TBN-Việt (Spanish → VI)',
 };
 
 
@@ -90,6 +118,67 @@ const parseFVDP = (html) => {
 
 const isFVDP = (sourceName) => sourceName === 'FVDP (GPL)';
 
+/** Parse VietPhap/PhapViet structured text into sections with examples.
+ *  Format: @word\n -french_meaning\n = Vi example +Fr translation\n ...
+ */
+const parseVietPhap = (text) => {
+    const sections = [];
+    // Strip the @headword line if present
+    const lines = text.replace(/^@[^\n]*\n?/, '').split('\n');
+
+    let currentSection = null;
+    for (const raw of lines) {
+        const line = raw.trim();
+        if (!line) continue;
+
+        if (line.startsWith('-')) {
+            // New meaning/sense — extract optional word type prefix like (bot.), {to study}, [adj]
+            if (currentSection) sections.push(currentSection);
+            const raw_meaning = line.slice(1).trim();
+            // Match leading (word_type), {word_type}, or [word_type]
+            const typeMatch = raw_meaning.match(/^(\([^)]+\)|\{[^}]+\}|\[[^\]]+\])\s*/);
+            const wordType = typeMatch ? typeMatch[1].replace(/^[({\[]|[)}\]]$/g, '').trim() : null;
+            const definition = typeMatch ? raw_meaning.slice(typeMatch[0].length).trim() : raw_meaning;
+            currentSection = { wordType, meaning: definition, examples: [] };
+        } else if (line.startsWith('= ') || line.startsWith('=')) {
+            // Example line: "= Vi text +Fr text" or "=compound +meaning"
+            const content = line.startsWith('= ') ? line.slice(2) : line.slice(1);
+            const plusIdx = content.indexOf('+');
+            if (plusIdx > 0) {
+                const vi = content.slice(0, plusIdx).trim().replace(/_/g, ' ');
+                const fr = content.slice(plusIdx + 1).trim();
+                if (currentSection) {
+                    currentSection.examples.push({ vi, fr });
+                } else {
+                    // Standalone example (no preceding meaning)
+                    if (!sections.length) sections.push({ meaning: '', examples: [] });
+                    sections[sections.length - 1].examples.push({ vi, fr });
+                }
+            } else {
+                // Example without + translation
+                const vi = content.trim().replace(/_/g, ' ');
+                if (currentSection) {
+                    currentSection.examples.push({ vi, fr: '' });
+                }
+            }
+        } else {
+            // Continuation or other text
+            if (currentSection) {
+                currentSection.meaning += ' ' + line;
+            }
+        }
+    }
+    if (currentSection) sections.push(currentSection);
+    return sections;
+};
+
+const isStardictSource = (name) => [
+    'VietPhap', 'PhapViet', 'VietDuc', 'DucViet',
+    'VietNga', 'NgaViet', 'VietNhat', 'NhatViet',
+    'NauyViet', 'TrungViet', 'VietHan',
+    'VietAnh_Stardict', 'VietTBN', 'TBNViet',
+].includes(name);
+
 const renderSources = (sources, convert = null, searchQuery = '') => {
     if (!sources || sources.length === 0) return null;
     const t = (text) => convert ? convert(text) : text;
@@ -124,6 +213,42 @@ const renderSources = (sources, convert = null, searchQuery = '') => {
                                                 </li>
                                             ))}
                                         </ol>
+                                    </div>
+                                ))}
+                            </div>
+                        ) : isStardictSource(src.source_name) ? (
+                            <div className="stardict-entry">
+                                {parseVietPhap(meaning.meaning_text).map((section, sIdx) => (
+                                    <div key={sIdx} className="meaning-item">
+                                        <div className="meaning-header">
+                                            {section.wordType && (
+                                                <span className="part-of-speech">{section.wordType}</span>
+                                            )}
+                                            {section.meaning && (
+                                                <p className="meaning-text"><strong>{section.meaning}</strong></p>
+                                            )}
+                                        </div>
+                                        {section.examples.length > 0 && (
+                                            <div className="examples-list">
+                                                {section.examples.map((ex, eIdx) => (
+                                                    <div key={eIdx} className="example-item">
+                                                        <div className="example-vi-row">
+                                                            <p className="example-vi">{ex.vi}</p>
+                                                            <button
+                                                                className="speak-btn speak-btn--sm"
+                                                                onClick={() => speak(ex.vi)}
+                                                                title="Listen"
+                                                            >
+                                                                <Volume2 size={14} />
+                                                            </button>
+                                                        </div>
+                                                        {ex.fr && (
+                                                            <p className="example-en">{ex.fr}</p>
+                                                        )}
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        )}
                                     </div>
                                 ))}
                             </div>
@@ -179,6 +304,7 @@ const renderSources = (sources, convert = null, searchQuery = '') => {
 };
 
 const DictionaryTab = ({ pendingInput, clearPendingInput, dictMode: externalDictMode, onDictModeChange }) => {
+    const { userProfile } = useUser();
     const [query, setQuery] = useState('');
     const [allData, setAllData] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -188,6 +314,7 @@ const DictionaryTab = ({ pendingInput, clearPendingInput, dictMode: externalDict
     const [localTranslation, setLocalTranslation] = useState('');
     const [translating, setTranslating] = useState(false);
     const [translationError, setTranslationError] = useState(false);
+    const [availableLangs, setAvailableLangs] = useState([]);
 
     // Search history for back navigation
     const searchHistoryRef = useRef([]);
@@ -202,6 +329,7 @@ const DictionaryTab = ({ pendingInput, clearPendingInput, dictMode: externalDict
     const [ocrProgress, setOcrProgress] = useState(0);
     const [listening, setListening] = useState(false);
     const [interimText, setInterimText] = useState('');
+    const [showLangSettings, setShowLangSettings] = useState(false);
     const finalTextRef = useRef('');
 
     // Refs
@@ -216,6 +344,31 @@ const DictionaryTab = ({ pendingInput, clearPendingInput, dictMode: externalDict
         setDictModeLocal(mode);
         onDictModeChange?.(mode);
     };
+
+    // Fetch available languages from the server on mount
+    useEffect(() => {
+        fetch('/api/languages')
+            .then(r => r.ok ? r.json() : [])
+            .then(langs => setAvailableLangs(langs.map(l => l.lang)))
+            .catch(() => { });
+    }, []);
+
+    // Build the active MODES list: base modes + user-visible extra langs
+    const visibleDicts = userProfile?.visibleDicts || ['en', 'zh-s', 'zh-t'];
+    const activeModes = [
+        // VI is always shown
+        { id: 'vi', label: 'VI' },
+        // Base lang modes — only if user has them enabled
+        ...(visibleDicts.includes('en') ? [{ id: 'en', label: 'EN' }] : []),
+        ...(visibleDicts.includes('zh-s') ? [{ id: 'zh-s', label: '\u7B80' }] : []),
+        ...(visibleDicts.includes('zh-t') ? [{ id: 'zh-t', label: '\u7E41' }] : []),
+        // Extra langs — only if available on server AND user has them enabled
+        ...EXTRA_LANG_CODES
+            .filter(lc => availableLangs.includes(lc) && visibleDicts.includes(lc))
+            .map(lc => ({ id: lc, label: EXTRA_LANG_LABELS[lc]?.short || lc.toUpperCase() })),
+        { id: 'all', label: 'All' },
+    ];
+
 
     const looksVietnamese = (text) =>
         /[àáảãạăắằẳẵặâấầẩẫậèéẻẽẹêếềểễệìíỉĩịòóỏõọôốồổỗộơớờởỡợùúủũụưứừửữựỳýỷỹỵđ]/i.test(text);
@@ -343,6 +496,12 @@ const DictionaryTab = ({ pendingInput, clearPendingInput, dictMode: externalDict
     // Clear local translation when dictMode changes, to force a re-fetch
     useEffect(() => {
         setLocalTranslation('');
+
+        // If we have a searched word and switched to an extra lang that isn't loaded yet,
+        // re-run the search to fetch that language's data
+        if (searchedWord && EXTRA_LANG_CODES.includes(dictMode) && allData && !allData[dictMode]) {
+            runSearch(searchedWord);
+        }
     }, [dictMode]);
 
     // Handle input from BottomNav (OCR / voice)
@@ -369,15 +528,21 @@ const DictionaryTab = ({ pendingInput, clearPendingInput, dictMode: externalDict
 
         try {
             const enc = encodeURIComponent(word.trim());
-            const [enRes, zhRes] = await Promise.all([
+
+            // Always fetch EN + ZH; also fetch the active extra lang if selected
+            const extraLang = EXTRA_LANG_CODES.includes(dictMode) ? dictMode : null;
+            const fetches = [
                 fetch(`/api/search?q=${enc}&lang=en`),
                 fetch(`/api/search?q=${enc}&lang=zh`),
-            ]);
-            if (!enRes.ok || !zhRes.ok) throw new Error('Search failed');
-            const [enData, zhData] = await Promise.all([enRes.json(), zhRes.json()]);
+                ...(extraLang ? [fetch(`/api/search?q=${enc}&lang=${extraLang}`)] : []),
+            ];
+            const responses = await Promise.all(fetches);
+            if (responses.some(r => !r.ok)) throw new Error('Search failed');
+            const [enData, zhData, extraData] = await Promise.all(responses.map(r => r.json()));
 
             const zhSources = zhData.structured ? zhData.data : [];
             const enSources = enData.structured ? enData.data : [];
+            const extraSources = extraData?.structured ? extraData.data : [];
             const parsedData = {
                 word: word.trim(),
                 en: enSources.filter(s => ['VE', 'AI_Generated_EN', 'Wiktionary'].includes(s.source_name)),
@@ -385,6 +550,8 @@ const DictionaryTab = ({ pendingInput, clearPendingInput, dictMode: externalDict
                 zh: zhSources,
                 components: enData.components || null,
                 hanvietComponents: zhData.hanvietComponents || null,
+                // extra lang results keyed by lang code
+                ...(extraLang ? { [extraLang]: extraSources } : {}),
             };
             setLocalTranslation('');
             setTranslating(false);
@@ -395,7 +562,7 @@ const DictionaryTab = ({ pendingInput, clearPendingInput, dictMode: externalDict
 
             // If no results, refresh suggestions for the searched word so "did you mean" shows
             const hasAny = Object.entries(parsedData).some(([k, v]) =>
-                k !== 'word' && k !== 'components' && Array.isArray(v) && v.some(s => s.meanings?.length > 0)
+                k !== 'word' && k !== 'components' && k !== 'hanvietComponents' && Array.isArray(v) && v.some(s => s.meanings?.length > 0)
             );
             if (!hasAny) fetchSuggestionsImmediate(word.trim());
 
@@ -431,15 +598,18 @@ const DictionaryTab = ({ pendingInput, clearPendingInput, dictMode: externalDict
     const getDisplaySources = () => {
         if (!allData || allData.error) return [];
         switch (dictMode) {
-            case 'en': return allData.en;
-            case 'vi': return allData.vi;
+            case 'en': return allData.en || [];
+            case 'vi': return allData.vi || [];
             case 'zh-s': return allData.zh || [];
             case 'zh-t': return allData.zh || [];
             case 'all': return [
                 ...(allData.en || []), ...(allData.vi || []),
                 ...(allData.zh || []),
+                ...EXTRA_LANG_CODES.flatMap(lc => allData[lc] || []),
             ];
-            default: return [];
+            default:
+                // Extra lang modes (ja, fr, de, ru, no)
+                return allData[dictMode] || [];
         }
     };
 
@@ -757,17 +927,73 @@ const DictionaryTab = ({ pendingInput, clearPendingInput, dictMode: externalDict
                     ))}
                 </div>
 
-                <div className="dictionary-language-toggle">
-                    {MODES.map(mode => (
-                        <button
-                            key={mode.id}
-                            className={`toggle-btn ${dictMode === mode.id ? 'active' : ''}`}
-                            onClick={() => setDictMode(mode.id)}
-                        >
-                            {mode.label}
-                        </button>
-                    ))}
+                <div className={`dictionary-language-toggle-wrapper`}>
+                    <button
+                        className="lang-gear-btn"
+                        onClick={() => setShowLangSettings(!showLangSettings)}
+                        title="Configure visible languages"
+                    >
+                        <Settings2 size={14} />
+                    </button>
+                    <div className={`dictionary-language-toggle ${activeModes.length > 4 ? 'scrollable' : ''}`}>
+                        {activeModes.map(mode => (
+                            <button
+                                key={mode.id}
+                                className={`toggle-btn ${dictMode === mode.id ? 'active' : ''}`}
+                                onClick={() => setDictMode(mode.id)}
+                            >
+                                {mode.label}
+                            </button>
+                        ))}
+                    </div>
+                    {activeModes.length > 4 && <div className="lang-strip-fade" />}
                 </div>
+
+                {showLangSettings && (
+                    <div className="lang-settings-popup">
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
+                            <span style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: 0.5, color: 'var(--text-muted)' }}>Dictionary Languages</span>
+                            <button onClick={() => setShowLangSettings(false)} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 2 }}>
+                                <X size={14} color="var(--text-muted)" />
+                            </button>
+                        </div>
+                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+                            {[
+                                { v: 'en', l: 'English' },
+                                { v: 'zh-s', l: 'Simplified' },
+                                { v: 'zh-t', l: 'Traditional' },
+                                { v: 'ja', l: 'Japanese' },
+                                { v: 'fr', l: 'French' },
+                                { v: 'de', l: 'German' },
+                                { v: 'ru', l: 'Russian' },
+                                { v: 'no', l: 'Norwegian' },
+                                { v: 'es', l: 'Spanish' },
+                            ].map(lang => {
+                                const isOn = visibleDicts.includes(lang.v);
+                                return (
+                                    <button
+                                        key={lang.v}
+                                        onClick={() => {
+                                            const next = isOn
+                                                ? visibleDicts.filter(l => l !== lang.v)
+                                                : [...visibleDicts, lang.v];
+                                            updateUserProfile({ visibleDicts: next.length > 0 ? next : ['en'] });
+                                        }}
+                                        style={{
+                                            padding: '6px 12px', borderRadius: 20, fontSize: 12, fontWeight: 600,
+                                            border: isOn ? '2px solid var(--primary-color)' : '2px solid var(--border-color)',
+                                            backgroundColor: isOn ? 'rgba(255,209,102,0.15)' : 'transparent',
+                                            color: isOn ? 'var(--primary-color)' : 'var(--text-muted)',
+                                            cursor: 'pointer', transition: 'all 0.15s ease',
+                                        }}
+                                    >
+                                        {lang.l}
+                                    </button>
+                                );
+                            })}
+                        </div>
+                    </div>
+                )}
 
                 <form onSubmit={handleSearch} className="search-form">
                     <div className="search-input-wrapper">

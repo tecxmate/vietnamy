@@ -23,20 +23,84 @@
     margin-bottom: var(--spacing-4);
 }
 
+.dictionary-language-toggle-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    width: 100%;
+}
+
 .dictionary-language-toggle {
     display: flex;
-    justify-content: center;
     align-items: center;
     gap: 3px;
     background-color: var(--surface-color);
     border: 1px solid var(--border-color);
     padding: 3px;
     border-radius: var(--radius-full);
-    width: 100%;
+    flex: 1;
+    min-width: 0;
+}
+
+.dictionary-language-toggle.scrollable {
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    justify-content: flex-start;
+}
+
+.dictionary-language-toggle.scrollable::-webkit-scrollbar {
+    display: none;
+}
+
+/* fade gradient hint on the right when scrollable */
+.lang-strip-fade {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 40px;
+    background: linear-gradient(to right, transparent, var(--bg-color, #fff));
+    pointer-events: none;
+    border-radius: 0 var(--radius-full) var(--radius-full) 0;
+}
+
+.lang-gear-btn {
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: none;
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    color: var(--text-muted);
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.2s, color 0.2s;
+}
+
+.lang-gear-btn:hover {
+    opacity: 1;
+    color: var(--primary-color);
+}
+
+.lang-settings-popup {
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 14px 16px;
+    margin-top: 8px;
+    box-shadow: var(--shadow-md, 0 4px 12px rgba(0, 0, 0, 0.1));
+    animation: fadeIn 0.15s ease-out;
 }
 
 .toggle-btn {
     flex: 1;
+    flex-shrink: 0;
     padding: 6px 8px;
     border-radius: var(--radius-full);
     font-weight: 700;
@@ -210,7 +274,7 @@
     gap: var(--spacing-4);
 }
 
-.results-area > * {
+.results-area>* {
     animation: fadeIn 0.2s ease-out;
 }
 
@@ -636,9 +700,17 @@
 }
 
 @keyframes save-pop {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.25); }
-    100% { transform: scale(1); }
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.25);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 .example-vi-row {

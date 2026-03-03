@@ -150,6 +150,22 @@ const TopBar = ({ activeTab, subtitleOverride }) => {
                                     onChange={v => updateUserProfile({ dialect: v })}
                                 />
                                 <SettingSelect
+                                    label="App Language"
+                                    icon={<Globe size={16} />}
+                                    value={userProfile.nativeLang || 'en'}
+                                    options={[
+                                        { v: 'en', l: '🇬🇧 English' },
+                                        { v: 'zh', l: '🇨🇳 Chinese' },
+                                        { v: 'ja', l: '🇯🇵 Japanese' },
+                                        { v: 'fr', l: '🇫🇷 French' },
+                                        { v: 'de', l: '🇩🇪 German' },
+                                        { v: 'ru', l: '🇷🇺 Russian' },
+                                        { v: 'no', l: '🇳🇴 Norwegian' },
+                                        { v: 'es', l: '🇪🇸 Spanish' },
+                                    ]}
+                                    onChange={v => updateUserProfile({ nativeLang: v })}
+                                />
+                                <SettingSelect
                                     label="Daily Goal"
                                     icon={<Clock size={16} />}
                                     value={String(userProfile.dailyMins || 10)}
@@ -162,6 +178,27 @@ const TopBar = ({ activeTab, subtitleOverride }) => {
                                     value={userProfile.level || 'new'}
                                     options={[{ v: 'new', l: 'Beginner' }, { v: 'basic', l: 'Elementary' }, { v: 'intermediate', l: 'Intermediate' }]}
                                     onChange={v => updateUserProfile({ level: v })}
+                                />
+                            </SettingsGroup>
+
+                            {/* Dictionary Languages */}
+                            <SettingsGroup title="Dictionary Languages">
+                                <SettingMultiSelect
+                                    label="Visible Languages"
+                                    icon={<Globe size={16} />}
+                                    values={userProfile.visibleDicts || ['en', 'zh-s', 'zh-t']}
+                                    options={[
+                                        { v: 'en', l: 'English' },
+                                        { v: 'zh-s', l: 'Chinese (Simplified)' },
+                                        { v: 'zh-t', l: 'Chinese (Traditional)' },
+                                        { v: 'ja', l: 'Japanese' },
+                                        { v: 'fr', l: 'French' },
+                                        { v: 'de', l: 'German' },
+                                        { v: 'ru', l: 'Russian' },
+                                        { v: 'no', l: 'Norwegian' },
+                                        { v: 'es', l: 'Spanish' },
+                                    ]}
+                                    onChange={next => updateUserProfile({ visibleDicts: next.length > 0 ? next : ['en'] })}
                                 />
                             </SettingsGroup>
 
@@ -289,6 +326,54 @@ const SettingSelect = ({ label, icon, value, options, onChange }) => {
                             {o.l}
                         </button>
                     ))}
+                </div>
+            )}
+        </div>
+    );
+};
+
+const SettingMultiSelect = ({ label, icon, values, options, onChange }) => {
+    const [open, setOpen] = useState(false);
+    const summary = options.filter(o => values.includes(o.v)).map(o => o.l).join(', ') || 'None';
+
+    return (
+        <div style={{ borderBottom: '1px solid var(--border-color)' }}>
+            <div
+                onClick={() => setOpen(!open)}
+                style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '14px 16px', cursor: 'pointer' }}
+            >
+                <span style={{ color: 'var(--primary-color)', display: 'flex' }}>{icon}</span>
+                <span style={{ flex: 1, fontSize: 15 }}>{label}</span>
+                <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--text-muted)', backgroundColor: 'var(--surface-color-light)', padding: '4px 10px', borderRadius: 8, maxWidth: 140, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                    {values.length} selected
+                </span>
+                <ChevronDown size={14} color="var(--text-muted)" style={{ transform: open ? 'rotate(180deg)' : 'none', transition: '0.2s' }} />
+            </div>
+            {open && (
+                <div style={{ padding: '0 16px 12px', display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+                    {options.map(o => {
+                        const isOn = values.includes(o.v);
+                        return (
+                            <button
+                                key={o.v}
+                                onClick={() => {
+                                    const next = isOn
+                                        ? values.filter(v => v !== o.v)
+                                        : [...values, o.v];
+                                    onChange(next);
+                                }}
+                                style={{
+                                    padding: '8px 14px', borderRadius: 'var(--radius-full)', fontSize: 13, fontWeight: 700,
+                                    border: isOn ? '2px solid var(--primary-color)' : '2px solid var(--border-color)',
+                                    backgroundColor: isOn ? 'rgba(255,209,102,0.15)' : 'transparent',
+                                    color: isOn ? 'var(--primary-color)' : 'var(--text-main)',
+                                    cursor: 'pointer',
+                                }}
+                            >
+                                {o.l}
+                            </button>
+                        );
+                    })}
                 </div>
             )}
         </div>

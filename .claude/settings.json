@@ -47,7 +47,8 @@
       "WebFetch(domain:forms.gle)",
       "Bash(git init:*)",
       "Bash(gh repo create:*)",
-      "Bash(npx react-scripts build:*)"
+      "Bash(npx react-scripts build:*)",
+      "Bash(git checkout:*)"
     ],
     "additionalDirectories": [
       "/Users/niko/antigravity/vnme-app",

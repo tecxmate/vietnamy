@@ -3,23 +3,50 @@ import Database from 'better-sqlite3';
 import cors from 'cors';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
+import { existsSync } from 'fs';
 import { Converter } from 'opencc-js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const app = express();
 const PORT = process.env.PORT || 3001;
-const DB_PATH_EN = join(__dirname, 'databases', 'vn_en_dictionary.db');
-const DB_PATH_ZH = join(__dirname, 'databases', 'vn_zh_dictionary.db');
 
 app.use(cors());
 
 // Simplified ↔ Traditional Chinese converters
 const s2t = Converter({ from: 'cn', to: 'tw' });
 
-// Connect to SQLite Databases
-const dbEn = new Database(DB_PATH_EN, { fileMustExist: true });
-const dbZh = new Database(DB_PATH_ZH, { fileMustExist: true });
+// ---------------------------------------------------------------------------
+// Language DB map — add new languages here
+// ---------------------------------------------------------------------------
+const LANG_META = {
+    en: { label: 'English', flag: '🇬🇧', file: 'vn_en_dictionary.db' },
+    zh: { label: 'Chinese', flag: '🇨🇳', file: 'vn_zh_dictionary.db' },
+    ja: { label: 'Japanese', flag: '🇯🇵', file: 'vn_ja_dictionary.db' },
+    fr: { label: 'French', flag: '🇫🇷', file: 'vn_fr_dictionary.db' },
+    de: { label: 'German', flag: '🇩🇪', file: 'vn_de_dictionary.db' },
+    ru: { label: 'Russian', flag: '🇷🇺', file: 'vn_ru_dictionary.db' },
+    no: { label: 'Norwegian', flag: '🇳🇴', file: 'vn_no_dictionary.db' },
+    es: { label: 'Spanish', flag: '🇪🇸', file: 'vn_es_dictionary.db' },
+};
+
+// Open DBs that exist on disk
+const dbs = {};
+const DB_PATH_EN = join(__dirname, 'databases', 'vn_en_dictionary.db');
+const DB_PATH_ZH = join(__dirname, 'databases', 'vn_zh_dictionary.db');
+
+for (const [lang, meta] of Object.entries(LANG_META)) {
+    const p = join(__dirname, 'databases', meta.file);
+    if (existsSync(p)) {
+        dbs[lang] = new Database(p, { fileMustExist: true });
+    } else {
+        console.warn(`[WARN] DB not found for lang '${lang}': ${meta.file}`);
+    }
+}
+
+// Convenience aliases used throughout the existing code
+const dbEn = dbs['en'];
+const dbZh = dbs['zh'];
 
 // ---------------------------------------------------------------------------
 // Normalize Vietnamese text to ASCII (strip diacritics)
@@ -77,6 +104,17 @@ const indexEn = dataEn.index;
 const indexZh = dataZh.index;
 const combinedFreqMap = new Map([...dataZh.freqMap, ...dataEn.freqMap]); // EN overrides ZH if both exist
 console.log(`Indexes ready — EN: ${indexEn.size}, ZH: ${indexZh.size} normalized keys`);
+
+// Build indexes for all additional languages
+const langIndexes = { en: indexEn, zh: indexZh };
+const langSortedKeys = {};
+for (const lang of Object.keys(dbs)) {
+    if (lang === 'en' || lang === 'zh') continue;
+    const data = buildWordIndex(dbs[lang], false);
+    langIndexes[lang] = data.index;
+    langSortedKeys[lang] = [...data.index.keys()].sort();
+    console.log(`Index ready — ${lang.toUpperCase()}: ${data.index.size} normalized keys`);
+}
 
 // ---------------------------------------------------------------------------
 // Build frequency rank index: word_id → rank (1 = most frequent)
@@ -141,6 +179,10 @@ const stmtHanVietSyllable = dbZh.prepare(`
 const sortedNormKeysEn = [...indexEn.keys()].sort();
 const sortedNormKeysZh = [...indexZh.keys()].sort();
 
+// Populate langSortedKeys for en/zh as well (used in unified suggest)
+langSortedKeys['en'] = sortedNormKeysEn;
+langSortedKeys['zh'] = sortedNormKeysZh;
+
 function prefixSearch(sortedKeys, prefix, limit) {
     // Binary search for first key >= prefix
     let lo = 0, hi = sortedKeys.length;
@@ -161,9 +203,9 @@ function prefixSearch(sortedKeys, prefix, limit) {
 // Helper: find diacriticized variants for a single normalized syllable
 // Returns the actual Vietnamese words sorted by frequency (highest first)
 // ---------------------------------------------------------------------------
-function findDiacriticVariants(normSyll, limit = 5) {
+function findDiacriticVariants(normSyll, limit = 5, extraIndexes = []) {
     const variants = [];
-    for (const index of [indexEn, indexZh]) {
+    for (const index of [indexEn, indexZh, ...extraIndexes]) {
         const words = index.get(normSyll);
         if (words) {
             for (const w of words) {
@@ -182,10 +224,22 @@ app.get('/api/suggest', (req, res) => {
     const query = (req.query.q || '').trim();
     if (query.length < 2) return res.json([]);
 
+    const lang = req.query.lang || 'en';
+
     const normQuery = normalizeVi(query);
     const queryLower = query.toLowerCase();
     const querySylls = normQuery.split(/\s+/);
     const isMultiSyll = querySylls.length >= 2;
+
+    // Determine which indexes to search — always include EN/ZH for VI headwords,
+    // and add the requested lang index for foreign-headword dicts
+    const indexPairs = [
+        [indexEn, sortedNormKeysEn],
+        [indexZh, sortedNormKeysZh],
+    ];
+    if (lang && langIndexes[lang] && lang !== 'en' && lang !== 'zh') {
+        indexPairs.push([langIndexes[lang], langSortedKeys[lang]]);
+    }
 
     // Tier 1: Exact normalized matches (e.g. "khong" → "không", "khống")
     const exactMatches = [];
@@ -198,7 +252,7 @@ app.get('/api/suggest', (req, res) => {
     // Tier 5: Contains matches
     const containsMatches = [];
 
-    for (const [index, sortedKeys] of [[indexEn, sortedNormKeysEn], [indexZh, sortedNormKeysZh]]) {
+    for (const [index, sortedKeys] of indexPairs) {
         // Fast prefix search via binary search on sorted keys
         const prefixKeys = prefixSearch(sortedKeys, normQuery, 80);
 
@@ -311,7 +365,20 @@ app.get('/api/suggest', (req, res) => {
 });
 
 // ---------------------------------------------------------------------------
-// /api/search?q=word&lang=en|zh
+// /api/languages  → list of available language pairs
+// ---------------------------------------------------------------------------
+app.get('/api/languages', (req, res) => {
+    const result = [];
+    for (const [lang, meta] of Object.entries(LANG_META)) {
+        if (!dbs[lang]) continue;
+        const wc = dbs[lang].prepare('SELECT COUNT(*) as c FROM words').get().c;
+        result.push({ lang, label: meta.label, flag: meta.flag, wordCount: wc, available: true });
+    }
+    res.json(result);
+});
+
+// ---------------------------------------------------------------------------
+// /api/search?q=word&lang=en|zh|ja|fr|de|ru|no
 // ---------------------------------------------------------------------------
 app.get('/api/search', (req, res) => {
     const rawQuery = req.query.q;
@@ -319,7 +386,7 @@ app.get('/api/search', (req, res) => {
     if (!rawQuery) return res.json([]);
     const query = rawQuery.toLowerCase();
 
-    const db = lang === 'zh' ? dbZh : dbEn;
+    const db = dbs[lang] || dbEn;
 
     try {
         let sql = `
@@ -373,10 +440,16 @@ app.get('/api/search', (req, res) => {
                 };
             }
 
-            const exStmt = db.prepare(
-                'SELECT vietnamese_text, english_text FROM examples WHERE meaning_id = ?'
-            );
-            const examples = exStmt.all(r.meaning_id);
+            // Only fetch examples for DBs that have the examples table (EN, ZH)
+            let examples = [];
+            if (lang === 'en' || lang === 'zh') {
+                try {
+                    const exStmt = db.prepare(
+                        'SELECT vietnamese_text, english_text FROM examples WHERE meaning_id = ?'
+                    );
+                    examples = exStmt.all(r.meaning_id);
+                } catch (_) { /* examples table missing */ }
+            }
 
             grouped[r.source_name].meanings.push({
                 part_of_speech: r.part_of_speech,
@@ -412,7 +485,7 @@ app.get('/api/search', (req, res) => {
             const isCJK = ch => {
                 const cp = ch.codePointAt(0);
                 return (cp >= 0x4E00 && cp <= 0x9FFF) || (cp >= 0x3400 && cp <= 0x4DBF) ||
-                       (cp >= 0x20000 && cp <= 0x2A6DF) || (cp >= 0xF900 && cp <= 0xFAFF);
+                    (cp >= 0x20000 && cp <= 0x2A6DF) || (cp >= 0xF900 && cp <= 0xFAFF);
             };
 
             const aiZhSource = grouped['AI_Generated_ZH'];
