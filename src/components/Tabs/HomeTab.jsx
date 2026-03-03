@@ -1,7 +1,6 @@
 import React, { useState, useRef, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Volume2, Flame, BookOpen, Layers, ChevronRight, GraduationCap, BookOpenText, Search, Camera, Image, Mic, Loader2, X } from 'lucide-react';
-import Tesseract from 'tesseract.js';
+import { Volume2, Flame, BookOpen, Layers, ChevronRight, GraduationCap, BookOpenText, Search, Mic, X, Check } from 'lucide-react';
 import { useDong } from '../../context/DongContext';
 import { getItems, getUnits, getNodesForUnitWithProgress } from '../../lib/db';
 import { getDueItems, getTotalItems } from '../../lib/srs';
@@ -79,14 +78,47 @@ const HomeTab = ({ onSearchWord }) => {
     const navigate = useNavigate();
     const { dailyStreak, lastVisitDate, completedNodes } = useDong();
     const [searchQuery, setSearchQuery] = useState('');
-    const [ocrLoading, setOcrLoading] = useState(false);
-    const [ocrProgress, setOcrProgress] = useState(0);
     const [listening, setListening] = useState(false);
     const [interimText, setInterimText] = useState('');
-    const cameraRef = useRef(null);
-    const uploadRef = useRef(null);
+    const [showLangPicker, setShowLangPicker] = useState(false);
+    const [inputLang, setInputLang] = useState('vi');
     const recognitionRef = useRef(null);
     const finalTextRef = useRef('');
+
+    const VOICE_LANGUAGES = [
+        { code: 'vi',    bcp: 'vi-VN',  label: 'Tiếng Việt' },
+        { code: 'en',    bcp: 'en-US',  label: 'English' },
+        { code: 'zh-s',  bcp: 'zh-CN',  label: '中文' },
+        { code: 'ja',    bcp: 'ja-JP',  label: '日本語' },
+        { code: 'ko',    bcp: 'ko-KR',  label: '한국어' },
+        { code: 'fr',    bcp: 'fr-FR',  label: 'Français' },
+        { code: 'de',    bcp: 'de-DE',  label: 'Deutsch' },
+        { code: 'es',    bcp: 'es-ES',  label: 'Español' },
+        { code: 'it',    bcp: 'it-IT',  label: 'Italiano' },
+        { code: 'pt',    bcp: 'pt-BR',  label: 'Português' },
+        { code: 'ru',    bcp: 'ru-RU',  label: 'Русский' },
+        { code: 'ar',    bcp: 'ar-SA',  label: 'العربية' },
+        { code: 'hi',    bcp: 'hi-IN',  label: 'हिन्दी' },
+        { code: 'th',    bcp: 'th-TH',  label: 'ภาษาไทย' },
+        { code: 'id',    bcp: 'id-ID',  label: 'Bahasa Indonesia' },
+        { code: 'ms',    bcp: 'ms-MY',  label: 'Bahasa Melayu' },
+        { code: 'tl',    bcp: 'fil-PH', label: 'Filipino' },
+        { code: 'nl',    bcp: 'nl-NL',  label: 'Nederlands' },
+        { code: 'pl',    bcp: 'pl-PL',  label: 'Polski' },
+        { code: 'uk',    bcp: 'uk-UA',  label: 'Українська' },
+        { code: 'cs',    bcp: 'cs-CZ',  label: 'Čeština' },
+        { code: 'ro',    bcp: 'ro-RO',  label: 'Română' },
+        { code: 'sv',    bcp: 'sv-SE',  label: 'Svenska' },
+        { code: 'no',    bcp: 'no-NO',  label: 'Norsk' },
+        { code: 'da',    bcp: 'da-DK',  label: 'Dansk' },
+        { code: 'fi',    bcp: 'fi-FI',  label: 'Suomi' },
+        { code: 'el',    bcp: 'el-GR',  label: 'Ελληνικά' },
+        { code: 'tr',    bcp: 'tr-TR',  label: 'Türkçe' },
+        { code: 'he',    bcp: 'he-IL',  label: 'עברית' },
+        { code: 'hu',    bcp: 'hu-HU',  label: 'Magyar' },
+        { code: 'bn',    bcp: 'bn-BD',  label: 'বাংলা' },
+        { code: 'ta',    bcp: 'ta-IN',  label: 'தமிழ்' },
+    ];
 
     const submitSearch = (text) => {
         if (text.trim() && onSearchWord) {
@@ -95,24 +127,13 @@ const HomeTab = ({ onSearchWord }) => {
         }
     };
 
-    const handleOcrFile = async (e) => {
-        const file = e.target.files?.[0];
-        if (!file) return;
-        e.target.value = '';
-        setOcrLoading(true);
-        setOcrProgress(0);
-        try {
-            const lang = 'vie';
-            const { data } = await Tesseract.recognize(file, lang, {
-                logger: (m) => { if (m.status === 'recognizing text') setOcrProgress(Math.round(m.progress * 100)); },
-            });
-            const text = data.text.trim().replace(/\s+/g, ' ');
-            if (text) submitSearch(text);
-        } catch (err) {
-            console.error('OCR failed:', err);
-        } finally {
-            setOcrLoading(false);
-        }
+    const handleVoicePrompt = () => {
+        setShowLangPicker(true);
+    };
+
+    const startVoiceWithLangs = () => {
+        setShowLangPicker(false);
+        handleVoice();
     };
 
     const handleVoice = () => {
@@ -121,7 +142,8 @@ const HomeTab = ({ onSearchWord }) => {
         const recognition = new SR();
         recognition.continuous = true;
         recognition.interimResults = true;
-        recognition.lang = 'vi-VN';
+        const selectedLang = VOICE_LANGUAGES.find(l => l.code === inputLang);
+        recognition.lang = selectedLang?.bcp || 'vi-VN';
         recognitionRef.current = recognition;
         finalTextRef.current = '';
         setInterimText('');
@@ -129,21 +151,28 @@ const HomeTab = ({ onSearchWord }) => {
         recognition.onresult = (event) => {
             let final = '', interim = '';
             for (let i = 0; i < event.results.length; i++) {
-                if (event.results[i].isFinal) final += event.results[i][0].transcript;
-                else interim += event.results[i][0].transcript;
+                const transcript = event.results[i][0].transcript;
+                if (event.results[i].isFinal) final += transcript;
+                else interim += transcript;
             }
-            finalTextRef.current = final;
+            finalTextRef.current = final || interim;
             setInterimText(final + interim);
         };
         recognition.onerror = () => { setListening(false); setInterimText(''); };
         recognition.onend = () => {
-            if (finalTextRef.current.trim()) {
-                submitSearch(finalTextRef.current.trim());
-            }
+            const text = finalTextRef.current.trim();
             setListening(false);
             setInterimText('');
+            if (text) {
+                setSearchQuery(text);
+                submitSearch(text);
+            }
         };
         recognition.start();
+    };
+
+    const stopVoice = () => {
+        recognitionRef.current?.stop();
     };
 
     const cancelVoice = () => {
@@ -184,42 +213,73 @@ const HomeTab = ({ onSearchWord }) => {
                     <div className="search-input-wrapper">
                         <input
                             type="text"
-                            placeholder="Type a Vietnamese word..."
-                            value={listening ? interimText : searchQuery}
-                            onChange={(e) => !listening && setSearchQuery(e.target.value)}
+                            placeholder="Type a word to search..."
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
                             className="search-input"
-                            readOnly={listening}
                         />
                         <div className="search-actions-group">
-                            <button type="button" className="mode-btn" onClick={() => cameraRef.current?.click()}>
-                                <Camera size={18} />
+                            <button type="button" className="mode-btn" onClick={handleVoicePrompt}>
+                                <Mic size={18} />
                             </button>
-                            <button type="button" className="mode-btn" onClick={() => uploadRef.current?.click()}>
-                                <Image size={18} />
-                            </button>
-                            {listening ? (
-                                <button type="button" className="mode-btn" onClick={cancelVoice} style={{ color: 'var(--danger-color)' }}>
-                                    <X size={18} />
-                                </button>
-                            ) : (
-                                <button type="button" className="mode-btn" onClick={handleVoice}>
-                                    <Mic size={18} />
-                                </button>
-                            )}
                         </div>
-                        <button type="submit" disabled={ocrLoading || (!searchQuery.trim() && !listening)} className="search-button">
-                            {ocrLoading ? <Loader2 size={20} className="loading-icon" /> : <Search size={20} />}
+                        <button type="submit" disabled={!searchQuery.trim()} className="search-button">
+                            <Search size={20} />
                         </button>
                     </div>
                 </form>
-                <input ref={cameraRef} type="file" accept="image/*" capture="environment" onChange={handleOcrFile} style={{ display: 'none' }} />
-                <input ref={uploadRef} type="file" accept="image/*" onChange={handleOcrFile} style={{ display: 'none' }} />
             </div>
 
-            {/* OCR Loading Overlay */}
-            {ocrLoading && (
-                <div style={{ textAlign: 'center', padding: 16, color: 'var(--text-muted)', fontSize: 14 }}>
-                    Recognizing text... {ocrProgress}%
+            {/* Unified Voice Modal — language picker → listening */}
+            {(showLangPicker || listening) && (
+                <div className="voice-overlay" onClick={() => { if (!listening) setShowLangPicker(false); }}>
+                    <div className="voice-modal" onClick={(e) => e.stopPropagation()}>
+                        {/* Top area: language grid or listening indicator */}
+                        {!listening ? (
+                            <>
+                                <h3 className="voice-modal-title">What language will you speak?</h3>
+                                <div className="lang-picker-scroll-wrap">
+                                    <div className="lang-picker-grid">
+                                        {VOICE_LANGUAGES.map(lang => (
+                                            <button
+                                                key={lang.code}
+                                                className={`lang-picker-btn ${inputLang === lang.code ? 'active' : ''}`}
+                                                onClick={() => setInputLang(lang.code)}
+                                            >
+                                                <span className="lang-picker-name">{lang.label}</span>
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
+                            </>
+                        ) : (
+                            <div className="voice-listening-body">
+                                <div className="voice-listening-icon">
+                                    <Mic size={36} color="var(--primary-color)" />
+                                </div>
+                                <h3 className="voice-modal-title">Listening...</h3>
+                                {interimText && (
+                                    <p className="voice-interim-text">{interimText}</p>
+                                )}
+                            </div>
+                        )}
+
+                        {/* Bottom actions — always in same position */}
+                        <div className="voice-modal-actions">
+                            <button className="voice-modal-cancel-btn" onClick={() => { if (listening) cancelVoice(); setShowLangPicker(false); }}>
+                                <X size={16} /> Cancel
+                            </button>
+                            {!listening ? (
+                                <button className="voice-modal-primary-btn" onClick={startVoiceWithLangs}>
+                                    <Mic size={18} /> Start Listening
+                                </button>
+                            ) : (
+                                <button className="voice-modal-primary-btn" onClick={stopVoice}>
+                                    <Check size={16} /> Done
+                                </button>
+                            )}
+                        </div>
+                    </div>
                 </div>
             )}
 

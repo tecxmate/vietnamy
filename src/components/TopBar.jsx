@@ -160,6 +160,7 @@ const TopBar = ({ activeTab, subtitleOverride }) => {
                                         { v: 'fr', l: '🇫🇷 French' },
                                         { v: 'de', l: '🇩🇪 German' },
                                         { v: 'ru', l: '🇷🇺 Russian' },
+                                        { v: 'it', l: '🇮🇹 Italian' },
                                         { v: 'no', l: '🇳🇴 Norwegian' },
                                         { v: 'es', l: '🇪🇸 Spanish' },
                                     ]}
@@ -191,10 +192,12 @@ const TopBar = ({ activeTab, subtitleOverride }) => {
                                         { v: 'en', l: 'English' },
                                         { v: 'zh-s', l: 'Chinese (Simplified)' },
                                         { v: 'zh-t', l: 'Chinese (Traditional)' },
+                                        { v: 'hanviet', l: 'Han-Viet' },
                                         { v: 'ja', l: 'Japanese' },
                                         { v: 'fr', l: 'French' },
                                         { v: 'de', l: 'German' },
                                         { v: 'ru', l: 'Russian' },
+                                        { v: 'it', l: 'Italian' },
                                         { v: 'no', l: 'Norwegian' },
                                         { v: 'es', l: 'Spanish' },
                                     ]}

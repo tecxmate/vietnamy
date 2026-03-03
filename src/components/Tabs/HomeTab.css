@@ -340,3 +340,181 @@
     color: #1A1A1A;
     box-shadow: 0 4px 0 #05A67D;
 }
+
+/* Voice / Language Picker — centered floating modal */
+.voice-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: voiceFadeIn 0.15s ease;
+    padding: 24px;
+}
+
+.voice-modal {
+    background: var(--surface-color);
+    border-radius: 20px;
+    padding: 28px 24px;
+    width: 100%;
+    max-width: 340px;
+    height: 420px;
+    max-height: 65vh;
+    animation: voiceScaleIn 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+@keyframes voiceFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes voiceScaleIn {
+    from { opacity: 0; transform: scale(0.92); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.voice-modal-title {
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--text-main);
+    margin: 0 0 18px;
+    text-align: center;
+}
+
+/* Listening body — vertically centered in the fixed-height modal */
+.voice-listening-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Listening icon pulse */
+.voice-listening-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgba(255, 183, 3, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+    animation: voicePulse 1.5s ease-in-out infinite;
+}
+
+@keyframes voicePulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(255, 183, 3, 0.2); }
+    50% { box-shadow: 0 0 0 14px rgba(255, 183, 3, 0); }
+}
+
+.voice-interim-text {
+    font-size: 15px;
+    color: var(--text-muted);
+    text-align: center;
+    margin: 4px 0 16px;
+    line-height: 1.4;
+    word-break: break-word;
+    max-height: 80px;
+    overflow-y: auto;
+}
+
+/* Action row (Cancel / Done) — pinned to bottom */
+.voice-modal-actions {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    margin-top: auto;
+    padding-top: 16px;
+}
+
+.voice-modal-cancel-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    flex: 1;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1.5px solid var(--border-color);
+    background: var(--surface-color);
+    color: var(--text-main);
+    font-size: 14px;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.voice-modal-primary-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    flex: 1;
+    padding: 12px;
+    border-radius: 12px;
+    border: none;
+    background: var(--primary-color);
+    color: #1A1A1A;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+.voice-modal-primary-btn:active {
+    transform: translateY(2px);
+}
+
+/* Scroll wrapper with bottom fade */
+.lang-picker-scroll-wrap {
+    flex: 1;
+    width: 100%;
+    overflow-y: auto;
+    position: relative;
+    -webkit-overflow-scrolling: touch;
+    mask-image: linear-gradient(to bottom, black calc(100% - 32px), transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black calc(100% - 32px), transparent 100%);
+    padding-bottom: 12px;
+}
+
+/* Language picker grid (reused inside voice-modal) */
+.lang-picker-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    width: 100%;
+}
+
+.lang-picker-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 2px solid var(--border-color);
+    background: var(--surface-color);
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.15s;
+}
+
+.lang-picker-btn.active {
+    border-color: var(--primary-color);
+    background: rgba(255, 183, 3, 0.1);
+}
+
+.lang-picker-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-main);
+}

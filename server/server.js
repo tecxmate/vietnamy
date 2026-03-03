@@ -28,6 +28,7 @@ const LANG_META = {
     ru: { label: 'Russian', flag: '🇷🇺', file: 'vn_ru_dictionary.db' },
     no: { label: 'Norwegian', flag: '🇳🇴', file: 'vn_no_dictionary.db' },
     es: { label: 'Spanish', flag: '🇪🇸', file: 'vn_es_dictionary.db' },
+    it: { label: 'Italian', flag: '🇮🇹', file: 'vn_it_dictionary.db' },
 };
 
 // Open DBs that exist on disk

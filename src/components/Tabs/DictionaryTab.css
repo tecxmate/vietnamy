@@ -114,7 +114,7 @@
     border: 1px solid var(--border-color);
     border-radius: var(--radius-lg);
     padding: 12px;
-    box-shadow: var(--shadow-lg, 0 4px 20px rgba(0,0,0,0.15));
+    box-shadow: var(--shadow-lg, 0 4px 20px rgba(0, 0, 0, 0.15));
     z-index: 50;
 }
 
@@ -164,7 +164,7 @@
 
 .lang-picker-chip.active {
     border-color: var(--primary-color);
-    background-color: rgba(255,209,102,0.15);
+    background-color: rgba(255, 209, 102, 0.15);
     color: var(--primary-color);
 }
 
@@ -242,11 +242,16 @@
     width: 100%;
 }
 
+.suggestions-wrapper {
+    position: relative;
+    width: 100%;
+    margin-top: -2px;
+}
+
 .suggestions-strip {
     display: flex;
     flex-wrap: nowrap;
     gap: 6px;
-    margin-top: -2px;
     padding: 4px 0;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
@@ -258,14 +263,13 @@
     display: none;
 }
 
-.suggestions-strip::before {
+.suggestions-wrapper::before {
     content: '';
-    position: sticky;
+    position: absolute;
     left: 0;
-    flex-shrink: 0;
+    top: 0;
+    bottom: 0;
     width: 28px;
-    margin-right: -28px;
-    align-self: stretch;
     background: linear-gradient(to left, transparent, var(--bg-color, #fff));
     pointer-events: none;
     z-index: 1;
@@ -273,18 +277,17 @@
     transition: opacity 0.2s;
 }
 
-.suggestions-strip.scrolled-left::before {
+.suggestions-wrapper.scrolled-left::before {
     opacity: 1;
 }
 
-.suggestions-strip::after {
+.suggestions-wrapper::after {
     content: '';
-    position: sticky;
+    position: absolute;
     right: 0;
-    flex-shrink: 0;
+    top: 0;
+    bottom: 0;
     width: 28px;
-    margin-left: -28px;
-    align-self: stretch;
     background: linear-gradient(to right, transparent, var(--bg-color, #fff));
     pointer-events: none;
     z-index: 1;

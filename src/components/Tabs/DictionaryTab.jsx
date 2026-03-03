@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { Search, BookA, Loader2, Volume2, Sparkles, Camera, Image, Mic, X, ArrowLeft, Check, Bookmark, Clock, Trash2, Type, ChevronLeft, BookmarkPlus } from 'lucide-react';
+import { Search, BookA, Loader2, Volume2, Sparkles, Mic, X, ArrowLeft, Check, Bookmark, Clock, Trash2, Type, ChevronLeft, BookmarkPlus } from 'lucide-react';
 import { Converter } from 'opencc-js';
-import Tesseract from 'tesseract.js';
 import speak from '../../utils/speak';
 import { useUser } from '../../context/UserContext';
 import { isDictWordSaved, toggleDictSavedWord } from '../../lib/dictSavedWords';
@@ -39,12 +38,13 @@ const BASE_MODES = [
 ];
 
 // Extra language modes (populated from /api/languages)
-const EXTRA_LANG_CODES = ['ja', 'fr', 'de', 'ru', 'no', 'es'];
+const EXTRA_LANG_CODES = ['ja', 'fr', 'de', 'ru', 'it', 'no', 'es'];
 const EXTRA_LANG_LABELS = {
     ja: { label: '\uD83C\uDDEF\uD83C\uDDF5 JA', short: 'JA' },
     fr: { label: '\uD83C\uDDEB\uD83C\uDDF7 FR', short: 'FR' },
     de: { label: '\uD83C\uDDE9\uD83C\uDDEA DE', short: 'DE' },
     ru: { label: '\uD83C\uDDF7\uD83C\uDDFA RU', short: 'RU' },
+    it: { label: '🇮🇹 IT', short: 'IT' },
     no: { label: '🇳🇴 NO', short: 'NO' },
     es: { label: '🇪🇸 ES', short: 'ES' },
 };
@@ -171,6 +171,41 @@ const parseVietPhap = (text) => {
     if (currentSection) sections.push(currentSection);
     return sections;
 };
+
+const VOICE_LANGUAGES = [
+    { code: 'vi',    bcp: 'vi-VN',  label: 'Tiếng Việt' },
+    { code: 'en',    bcp: 'en-US',  label: 'English' },
+    { code: 'zh-s',  bcp: 'zh-CN',  label: '中文' },
+    { code: 'ja',    bcp: 'ja-JP',  label: '日本語' },
+    { code: 'ko',    bcp: 'ko-KR',  label: '한국어' },
+    { code: 'fr',    bcp: 'fr-FR',  label: 'Français' },
+    { code: 'de',    bcp: 'de-DE',  label: 'Deutsch' },
+    { code: 'es',    bcp: 'es-ES',  label: 'Español' },
+    { code: 'it',    bcp: 'it-IT',  label: 'Italiano' },
+    { code: 'pt',    bcp: 'pt-BR',  label: 'Português' },
+    { code: 'ru',    bcp: 'ru-RU',  label: 'Русский' },
+    { code: 'ar',    bcp: 'ar-SA',  label: 'العربية' },
+    { code: 'hi',    bcp: 'hi-IN',  label: 'हिन्दी' },
+    { code: 'th',    bcp: 'th-TH',  label: 'ภาษาไทย' },
+    { code: 'id',    bcp: 'id-ID',  label: 'Bahasa Indonesia' },
+    { code: 'ms',    bcp: 'ms-MY',  label: 'Bahasa Melayu' },
+    { code: 'tl',    bcp: 'fil-PH', label: 'Filipino' },
+    { code: 'nl',    bcp: 'nl-NL',  label: 'Nederlands' },
+    { code: 'pl',    bcp: 'pl-PL',  label: 'Polski' },
+    { code: 'uk',    bcp: 'uk-UA',  label: 'Українська' },
+    { code: 'cs',    bcp: 'cs-CZ',  label: 'Čeština' },
+    { code: 'ro',    bcp: 'ro-RO',  label: 'Română' },
+    { code: 'sv',    bcp: 'sv-SE',  label: 'Svenska' },
+    { code: 'no',    bcp: 'no-NO',  label: 'Norsk' },
+    { code: 'da',    bcp: 'da-DK',  label: 'Dansk' },
+    { code: 'fi',    bcp: 'fi-FI',  label: 'Suomi' },
+    { code: 'el',    bcp: 'el-GR',  label: 'Ελληνικά' },
+    { code: 'tr',    bcp: 'tr-TR',  label: 'Türkçe' },
+    { code: 'he',    bcp: 'he-IL',  label: 'עברית' },
+    { code: 'hu',    bcp: 'hu-HU',  label: 'Magyar' },
+    { code: 'bn',    bcp: 'bn-BD',  label: 'বাংলা' },
+    { code: 'ta',    bcp: 'ta-IN',  label: 'தமிழ்' },
+];
 
 const isStardictSource = (name) => [
     'VietPhap', 'PhapViet', 'VietDuc', 'DucViet',
@@ -329,18 +364,16 @@ const DictionaryTab = ({ pendingInput, clearPendingInput }) => {
     const [toggleOverflows, setToggleOverflows] = useState(false);
     const toggleRef = useRef(null);
 
-    // Media input states
-    const [ocrLoading, setOcrLoading] = useState(false);
-    const [ocrProgress, setOcrProgress] = useState(0);
+    // Voice input states
     const [listening, setListening] = useState(false);
     const [interimText, setInterimText] = useState('');
+    const [showVoiceLangPicker, setShowVoiceLangPicker] = useState(false);
+    const [voiceInputLang, setVoiceInputLang] = useState('vi');
     const finalTextRef = useRef('');
 
     // Refs
     const suggestTimer = useRef(null);
     const searchTimer = useRef(null);
-    const cameraInputRef = useRef(null);
-    const uploadInputRef = useRef(null);
     const recognitionRef = useRef(null);
     const skipAutoSearch = useRef(false);
 
@@ -391,6 +424,29 @@ const DictionaryTab = ({ pendingInput, clearPendingInput }) => {
             'ru': 'ru',
             'no': 'no',
             'es': 'es',
+            'it': 'it',
+            'pt': 'pt',
+            'ar': 'ar',
+            'hi': 'hi',
+            'th': 'th',
+            'id': 'id',
+            'ms': 'ms',
+            'tl': 'tl',
+            'nl': 'nl',
+            'pl': 'pl',
+            'uk': 'uk',
+            'cs': 'cs',
+            'ro': 'ro',
+            'sv': 'sv',
+            'da': 'da',
+            'fi': 'fi',
+            'el': 'el',
+            'tr': 'tr',
+            'he': 'iw',
+            'hu': 'hu',
+            'bn': 'bn',
+            'ta': 'ta',
+            'ko': 'ko',
             'viethan': 'ko',
             'hanviet': 'zh-CN',
         };
@@ -635,38 +691,7 @@ const DictionaryTab = ({ pendingInput, clearPendingInput }) => {
         }
     };
 
-    const handleOcrFile = async (e) => {
-        const file = e.target.files?.[0];
-        if (!file) return;
-        e.target.value = '';
-        setOcrLoading(true);
-        setOcrProgress(0);
-        try {
-            const getOcrLang = () => {
-                if (dictMode === 'zh-s') return 'chi_sim';
-                if (dictMode === 'zh-t') return 'chi_tra';
-                return 'vie';
-            };
-            const { data } = await Tesseract.recognize(file, getOcrLang(), {
-                logger: (m) => {
-                    if (m.status === 'recognizing text') {
-                        setOcrProgress(Math.round(m.progress * 100));
-                    }
-                },
-            });
-            const text = data.text.trim().replace(/\s+/g, ' ');
-            if (text) {
-                setQuery(text);
-                runSearch(text);
-            }
-        } catch (err) {
-            console.error('OCR failed:', err);
-        } finally {
-            setOcrLoading(false);
-        }
-    };
-
-    const handleVoice = () => {
+    const startVoiceWithLang = () => {
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
         if (!SpeechRecognition) {
             alert('Speech recognition is not supported in this browser.');
@@ -675,9 +700,8 @@ const DictionaryTab = ({ pendingInput, clearPendingInput }) => {
         const recognition = new SpeechRecognition();
         recognition.continuous = true;
         recognition.interimResults = true;
-        if (dictMode === 'zh-s') recognition.lang = 'zh-CN';
-        else if (dictMode === 'zh-t') recognition.lang = 'zh-TW';
-        else recognition.lang = 'vi-VN';
+        const selectedLang = VOICE_LANGUAGES.find(l => l.code === voiceInputLang);
+        recognition.lang = selectedLang?.bcp || 'vi-VN';
 
         recognitionRef.current = recognition;
         finalTextRef.current = '';
@@ -695,36 +719,31 @@ const DictionaryTab = ({ pendingInput, clearPendingInput }) => {
                     interim += result[0].transcript;
                 }
             }
-            finalTextRef.current = final;
+            finalTextRef.current = final || interim;
             setInterimText(final + interim);
         };
         recognition.onerror = () => { setListening(false); setInterimText(''); };
         recognition.onend = () => {
-            // Only auto-submit if we weren't cancelled
-            if (listening && finalTextRef.current.trim()) {
-                confirmVoice();
+            const text = finalTextRef.current.trim();
+            setListening(false);
+            setInterimText('');
+            if (text) {
+                skipAutoSearch.current = true;
+                setQuery(text);
+                runSearch(text);
             }
         };
         recognition.start();
     };
 
-    const confirmVoice = () => {
-        recognitionRef.current?.stop();
-        const text = (finalTextRef.current || interimText).trim();
-        setListening(false);
-        setInterimText('');
-        if (text) {
-            skipAutoSearch.current = true;
-            setQuery(text);
-            runSearch(text);
-        }
-    };
+    const stopVoice = () => { recognitionRef.current?.stop(); };
 
     const cancelVoice = () => {
         recognitionRef.current?.abort();
         finalTextRef.current = '';
         setListening(false);
         setInterimText('');
+        setShowVoiceLangPicker(false);
     };
 
     // Save button: first tap = save to default deck, second tap = open deck picker
@@ -912,7 +931,7 @@ const DictionaryTab = ({ pendingInput, clearPendingInput }) => {
                             });
                             const cards = [...best, ...rest];
                             const n = Math.min(cards.length, 4);
-                            const basis = n === 1 ? '100%' : `calc(${100/n}% - ${6*(n-1)/n}px)`;
+                            const basis = n === 1 ? '100%' : `calc(${100 / n}% - ${6 * (n - 1) / n}px)`;
                             return (
                                 <div className={`hanviet-cards${cards.length > 4 ? ' has-overflow' : ''}`} style={{ '--card-basis': basis }}>
                                     {cards.map(({ comp, entry, key, isBest }) => {
@@ -936,17 +955,21 @@ const DictionaryTab = ({ pendingInput, clearPendingInput }) => {
 
             {/* Sticky bottom bar: suggestions → mode toggle → search */}
             <div className="dictionary-bottom-bar">
-                <div className="suggestions-strip" onScroll={(e) => e.currentTarget.classList.toggle('scrolled-left', e.currentTarget.scrollLeft > 4)}>
-                    {suggestions.map((s, i) => (
-                        <button
-                            key={i}
-                            type="button"
-                            className="suggestion-chip"
-                            onClick={() => handleSuggestionClick(s)}
-                        >
-                            {s}
-                        </button>
-                    ))}
+                <div className="suggestions-wrapper">
+                    <div className="suggestions-strip" onScroll={(e) => {
+                        e.currentTarget.parentElement.classList.toggle('scrolled-left', e.currentTarget.scrollLeft > 4);
+                    }}>
+                        {suggestions.map((s, i) => (
+                            <button
+                                key={i}
+                                type="button"
+                                className="suggestion-chip"
+                                onClick={() => handleSuggestionClick(s)}
+                            >
+                                {s}
+                            </button>
+                        ))}
+                    </div>
                 </div>
 
                 <div className={`dictionary-language-toggle-wrapper${toggleOverflows ? ' has-overflow' : ''}`}>
@@ -977,7 +1000,7 @@ const DictionaryTab = ({ pendingInput, clearPendingInput }) => {
                                     { v: 'en', l: 'English' }, { v: 'zh-s', l: '简体中文' }, { v: 'zh-t', l: '繁體中文' },
                                     { v: 'hanviet', l: '漢越 Hán Việt' }, { v: 'viethan', l: '한국어' },
                                     { v: 'ja', l: '日本語' }, { v: 'fr', l: 'Français' }, { v: 'de', l: 'Deutsch' },
-                                    { v: 'ru', l: 'Русский' }, { v: 'no', l: 'Norsk' }, { v: 'es', l: 'Español' },
+                                    { v: 'ru', l: 'Русский' }, { v: 'it', l: 'Italiano' }, { v: 'no', l: 'Norsk' }, { v: 'es', l: 'Español' },
                                 ].map(lang => (
                                     <button
                                         key={lang.v}
@@ -1007,13 +1030,7 @@ const DictionaryTab = ({ pendingInput, clearPendingInput }) => {
                             className="search-input"
                         />
                         <div className="search-actions-group">
-                            <button type="button" className="mode-btn" onClick={() => cameraInputRef.current?.click()}>
-                                <Camera size={18} />
-                            </button>
-                            <button type="button" className="mode-btn" onClick={() => uploadInputRef.current?.click()}>
-                                <Image size={18} />
-                            </button>
-                            <button type="button" className="mode-btn" onClick={handleVoice}>
+                            <button type="button" className="mode-btn" onClick={() => setShowVoiceLangPicker(true)}>
                                 <Mic size={18} />
                             </button>
                         </div>
@@ -1024,58 +1041,41 @@ const DictionaryTab = ({ pendingInput, clearPendingInput }) => {
                 </form>
             </div>
 
-            {/* Hidden file inputs */}
-            <input
-                ref={cameraInputRef}
-                type="file"
-                accept="image/*"
-                capture="environment"
-                onChange={handleOcrFile}
-                style={{ display: 'none' }}
-            />
-            <input
-                ref={uploadInputRef}
-                type="file"
-                accept="image/*"
-                onChange={handleOcrFile}
-                style={{ display: 'none' }}
-            />
-
-            {/* OCR Loading Overlay */}
-            {ocrLoading && (
-                <div className="ocr-overlay">
-                    <div className="ocr-overlay-card">
-                        <Loader2 size={32} className="loading-icon" />
-                        <span className="ocr-overlay-text">Recognizing text… {ocrProgress}%</span>
-                        <div className="ocr-progress-bar">
-                            <div className="ocr-progress-fill" style={{ width: `${ocrProgress}%` }} />
-                        </div>
-                        <button className="ocr-cancel-btn" onClick={() => setOcrLoading(false)}>
-                            <X size={16} /> Cancel
-                        </button>
-                    </div>
-                </div>
-            )}
-
-            {/* Voice Listening Overlay */}
-            {listening && (
-                <div className="ocr-overlay" onClick={cancelVoice}>
-                    <div className="ocr-overlay-card" onClick={(e) => e.stopPropagation()}>
-                        <div className="voice-pulse-ring">
-                            <Mic size={32} color="var(--primary-color)" />
-                        </div>
-                        {interimText ? (
-                            <span className="ocr-overlay-text voice-transcript">{interimText}</span>
+            {/* Voice Language Picker + Listening Modal */}
+            {(showVoiceLangPicker || listening) && (
+                <div className="voice-overlay" onClick={() => { if (!listening) setShowVoiceLangPicker(false); }}>
+                    <div className="voice-modal" onClick={(e) => e.stopPropagation()}>
+                        {!listening ? (
+                            <>
+                                <h3 className="voice-modal-title">What language will you speak?</h3>
+                                <div className="lang-picker-scroll-wrap">
+                                    <div className="lang-picker-grid">
+                                        {VOICE_LANGUAGES.map(lang => (
+                                            <button
+                                                key={lang.code}
+                                                className={`lang-picker-btn${voiceInputLang === lang.code ? ' active' : ''}`}
+                                                onClick={() => setVoiceInputLang(lang.code)}
+                                            >
+                                                <span className="lang-picker-name">{lang.label}</span>
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
+                            </>
                         ) : (
-                            <span className="ocr-overlay-text">Listening…</span>
+                            <div className="voice-listening-body">
+                                <div className="voice-listening-icon"><Mic size={36} color="var(--primary-color)" /></div>
+                                <h3 className="voice-modal-title">Listening...</h3>
+                                {interimText && <p className="voice-interim-text">{interimText}</p>}
+                            </div>
                         )}
-                        <div className="voice-actions">
-                            <button className="ocr-cancel-btn" onClick={(e) => { e.stopPropagation(); cancelVoice(); }}>
-                                <X size={16} /> Cancel
-                            </button>
-                            <button className="voice-confirm-btn" onClick={(e) => { e.stopPropagation(); confirmVoice(); }} disabled={!interimText}>
-                                <Check size={16} /> Done
-                            </button>
+                        <div className="voice-modal-actions">
+                            <button className="voice-modal-cancel-btn" onClick={cancelVoice}><X size={16} /> Cancel</button>
+                            {!listening ? (
+                                <button className="voice-modal-primary-btn" onClick={startVoiceWithLang}><Mic size={16} /> Start Listening</button>
+                            ) : (
+                                <button className="voice-modal-primary-btn" onClick={stopVoice}><Check size={16} /> Done</button>
+                            )}
                         </div>
                     </div>
                 </div>
