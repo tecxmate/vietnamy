@@ -105,9 +105,11 @@ const TopBar = ({ activeTab, subtitleOverride }) => {
 
                 {/* Stats — always visible */}
                 <div style={{ display: 'flex', gap: 10, alignItems: 'center', flexShrink: 0 }}>
-                    <button onClick={() => setIsReferralOpen(true)} className="ghost" style={{ padding: 6, color: 'var(--primary-color)', display: 'flex', alignItems: 'center' }}>
-                        <Gift size={20} />
-                    </button>
+                    {userProfile.isDeveloperMode && (
+                        <button onClick={() => setIsReferralOpen(true)} className="ghost" style={{ padding: 6, color: 'var(--primary-color)', display: 'flex', alignItems: 'center' }}>
+                            <Gift size={20} />
+                        </button>
+                    )}
                     <div style={{ display: 'flex', alignItems: 'center', gap: 4, fontWeight: 700, fontSize: 13, color: '#FFB703' }}>
                         <CircleDollarSign size={16} /> {coins}
                     </div>
@@ -249,6 +251,23 @@ const TopBar = ({ activeTab, subtitleOverride }) => {
                                     icon={<Zap size={16} />}
                                     checked={settings.testMode === true}
                                     onChange={v => updateSetting('testMode', v)}
+                                />
+                                <SettingToggle
+                                    label="Developer Preview"
+                                    icon={<Wrench size={16} />}
+                                    checked={userProfile.isDeveloperMode === true}
+                                    onChange={v => {
+                                        if (v) {
+                                            const pwd = window.prompt("Enter preview password:");
+                                            if (pwd === "tecxmate2026") {
+                                                updateUserProfile({ isDeveloperMode: true });
+                                            } else {
+                                                alert("Incorrect password.");
+                                            }
+                                        } else {
+                                            updateUserProfile({ isDeveloperMode: false });
+                                        }
+                                    }}
                                 />
                                 <SettingAction
                                     label={t('admin_cms')}

@@ -5,6 +5,7 @@ import ARTICLES, { ARTICLE_CATEGORIES, ARTICLE_LEVELS } from '../../data/article
 import { getGrammarItems } from '../../lib/grammarDB';
 import VOCAB_WORDS, { CATEGORIES as VOCAB_CATEGORIES } from '../../data/vocabWords';
 import speak from '../../utils/speak';
+import { useUser } from '../../context/UserContext';
 import { lookupWords } from '../../lib/dictionaryLookup';
 import {
     getDictSavedWords, toggleDictSavedWord, getDictDecks, createDictDeck, deleteDictDeck,
@@ -531,6 +532,7 @@ function ArticleCard({ article, onSelect }) {
 // Article Reader View (tap-to-reveal)
 // ═══════════════════════════════════════════════════════════════
 function ArticleReaderView({ article, onBack }) {
+    const { userProfile } = useUser();
     const [revealedSet, setRevealedSet] = useState(new Set());
     const [translationLang, setTranslationLang] = useState('en');
     const [copiedCode, setCopiedCode] = useState(false);
@@ -616,7 +618,7 @@ function ArticleReaderView({ article, onBack }) {
             </div>
 
             {/* Partner CTA Section */}
-            {article.partnerCta && (
+            {(article.partnerCta && userProfile?.isDeveloperMode) && (
                 <div className="rlib-partner-cta">
                     <img
                         src={article.partnerCta.img}

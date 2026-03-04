@@ -7,6 +7,7 @@ import { getItems, getUnits, getNodesForUnitWithProgress } from '../../lib/db';
 import { getDueItems, getTotalItems } from '../../lib/srs';
 import ARTICLES from '../../data/articleData';
 import speak from '../../utils/speak';
+import { useUser } from '../../context/UserContext';
 import './HomeTab.css';
 
 const TIPS = [
@@ -72,6 +73,7 @@ function getWeekDots(dailyStreak, lastVisitDate) {
 const HomeTab = ({ onSearchWord }) => {
     const navigate = useNavigate();
     const { dailyStreak, lastVisitDate, completedNodes } = useDong();
+    const { userProfile } = useUser();
     const t = useT();
     const [searchQuery, setSearchQuery] = useState('');
     const [listening, setListening] = useState(false);
@@ -372,55 +374,59 @@ const HomeTab = ({ onSearchWord }) => {
             </div>
 
             {/* Explore Vietnam */}
-            <div className="home-section-header">
-                <span>{t('explore_vietnam')}</span>
-            </div>
-            <div className="home-tips-scroll" style={{ paddingBottom: 16 }}>
-                {partnerCtas.map((cta, i) => (
-                    <div key={i} className="home-partner-cta">
-                        <img
-                            src={cta.img}
-                            alt="Partner"
-                            className="home-partner-cta-img"
-                        />
-                        <div className="home-partner-cta-content">
-                            <h3 className="home-partner-cta-title">
-                                {cta.title_en}
-                            </h3>
-                            <p className="home-partner-cta-desc">
-                                {cta.desc_en}
-                            </p>
-
-                            <div className="home-partner-cta-actions">
-                                <div className="home-partner-cta-code-box">
-                                    <span className="home-partner-cta-code-label">CODE:</span>
-                                    <span className="home-partner-cta-code-val">{cta.code}</span>
-                                    <button
-                                        className={`home-partner-cta-copy-btn ${copiedCode === cta.code ? 'copied' : ''}`}
-                                        onClick={() => handleCopyCode(cta.code)}
-                                    >
-                                        {copiedCode === cta.code ? 'Copied!' : 'Copy'}
-                                    </button>
-                                </div>
-
-                                <a
-                                    href={cta.link}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="home-partner-cta-link-btn"
-                                    style={{
-                                        backgroundColor: cta.theme || 'var(--primary-color)',
-                                        boxShadow: `0 4px 0 ${cta.themeDark || '#E5A503'}`,
-                                        color: '#fff'
-                                    }}
-                                >
-                                    Get {cta.discount_en}
-                                </a>
-                            </div>
-                        </div>
+            {userProfile?.isDeveloperMode && (
+                <>
+                    <div className="home-section-header">
+                        <span>{t('explore_vietnam')}</span>
                     </div>
-                ))}
-            </div>
+                    <div className="home-tips-scroll" style={{ paddingBottom: 16 }}>
+                        {partnerCtas.map((cta, i) => (
+                            <div key={i} className="home-partner-cta">
+                                <img
+                                    src={cta.img}
+                                    alt="Partner"
+                                    className="home-partner-cta-img"
+                                />
+                                <div className="home-partner-cta-content">
+                                    <h3 className="home-partner-cta-title">
+                                        {cta.title_en}
+                                    </h3>
+                                    <p className="home-partner-cta-desc">
+                                        {cta.desc_en}
+                                    </p>
+
+                                    <div className="home-partner-cta-actions">
+                                        <div className="home-partner-cta-code-box">
+                                            <span className="home-partner-cta-code-label">CODE:</span>
+                                            <span className="home-partner-cta-code-val">{cta.code}</span>
+                                            <button
+                                                className={`home-partner-cta-copy-btn ${copiedCode === cta.code ? 'copied' : ''}`}
+                                                onClick={() => handleCopyCode(cta.code)}
+                                            >
+                                                {copiedCode === cta.code ? 'Copied!' : 'Copy'}
+                                            </button>
+                                        </div>
+
+                                        <a
+                                            href={cta.link}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="home-partner-cta-link-btn"
+                                            style={{
+                                                backgroundColor: cta.theme || 'var(--primary-color)',
+                                                boxShadow: `0 4px 0 ${cta.themeDark || '#E5A503'}`,
+                                                color: '#fff'
+                                            }}
+                                        >
+                                            Get {cta.discount_en}
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </>
+            )}
         </div>
     );
 };

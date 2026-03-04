@@ -280,7 +280,7 @@ const ARTICLES = [
             discount_en: '$5 OFF',
             discount_zh: '减 5 美元',
             link: 'https://example.com/hanoi-food-tour',
-            img: 'https://images.unsplash.com/photo-1582298538104-e51c8901fb2b?w=400&h=200&fit=crop',
+            img: '/hanoi_street_food.png',
             theme: '#E74C3C',
             themeDark: '#C0392B'
         }
