@@ -10,7 +10,7 @@ const AdminLayout = () => {
             {/* Sidebar Navigation */}
             <nav style={{ width: '250px', backgroundColor: 'var(--surface-color)', borderRight: '1px solid var(--border-color)', display: 'flex', flexDirection: 'column', padding: 'var(--spacing-4)' }}>
                 <h2 style={{ fontSize: 20, marginBottom: 32, display: 'flex', alignItems: 'center', gap: 8 }}>
-                    <span style={{ fontSize: 24 }}>⚙️</span> VNME Admin
+                    <span style={{ fontSize: 24 }}>⚙️</span> Vietnamy Admin
                 </h2>
 
                 <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 8 }}>
