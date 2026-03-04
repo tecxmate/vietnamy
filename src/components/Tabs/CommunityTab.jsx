@@ -4,6 +4,7 @@ import {
     UserPlus, Medal, Star, Zap, GraduationCap, Video, Calendar,
     Building, MapPin
 } from 'lucide-react';
+import { useUser } from '../../context/UserContext';
 import './CommunityTab.css';
 
 // Mock leaderboard data
@@ -47,6 +48,7 @@ const LUXURY_PARTNERS = [
 ];
 
 const CommunityTab = () => {
+    const { userProfile } = useUser();
     return (
         <div className="comm-container">
             {/* ─── Leaderboard ─────────────────────────────────────── */}
@@ -114,85 +116,89 @@ const CommunityTab = () => {
                 </div>
             </section>
 
-            {/* ─── Premium 1-on-1 Tutoring ─────────────────────────── */}
-            <section className="comm-section premium-tutor-section" style={{ background: 'linear-gradient(135deg, rgba(28, 176, 246, 0.1), rgba(28, 176, 246, 0.2))', borderColor: 'rgba(28, 176, 246, 0.3)' }}>
-                <div className="comm-section-header">
-                    <Video size={20} color="#1CB0F6" />
-                    <h2 className="comm-section-title" style={{ color: '#1CB0F6' }}>1-on-1 Executive Tutoring</h2>
-                </div>
-                <div className="tutor-profiles">
-                    {TUTORS.map((tutor, i) => (
-                        <div key={i} className="tutor-profile-card">
-                            <div className="tutor-profile-top">
-                                <div className="tutor-avatar" style={{ backgroundColor: tutor.color }}>
-                                    {tutor.initials}
-                                </div>
-                                <div className="tutor-info">
-                                    <span className="tutor-name">{tutor.name}</span>
-                                    <span className="tutor-title">{tutor.title}</span>
-                                    <div className="tutor-rating">
-                                        <Star size={12} fill="#FFD166" color="#FFD166" />
-                                        <span>{tutor.rating}</span>
+            {userProfile?.isDeveloperMode && (
+                <>
+                    {/* ─── Premium 1-on-1 Tutoring ─────────────────────────── */}
+                    <section className="comm-section premium-tutor-section" style={{ background: 'linear-gradient(135deg, rgba(28, 176, 246, 0.1), rgba(28, 176, 246, 0.2))', borderColor: 'rgba(28, 176, 246, 0.3)' }}>
+                        <div className="comm-section-header">
+                            <Video size={20} color="#1CB0F6" />
+                            <h2 className="comm-section-title" style={{ color: '#1CB0F6' }}>1-on-1 Executive Tutoring</h2>
+                        </div>
+                        <div className="tutor-profiles">
+                            {TUTORS.map((tutor, i) => (
+                                <div key={i} className="tutor-profile-card">
+                                    <div className="tutor-profile-top">
+                                        <div className="tutor-avatar" style={{ backgroundColor: tutor.color }}>
+                                            {tutor.initials}
+                                        </div>
+                                        <div className="tutor-info">
+                                            <span className="tutor-name">{tutor.name}</span>
+                                            <span className="tutor-title">{tutor.title}</span>
+                                            <div className="tutor-rating">
+                                                <Star size={12} fill="#FFD166" color="#FFD166" />
+                                                <span>{tutor.rating}</span>
+                                            </div>
+                                        </div>
+                                        <span className="tutor-rate">{tutor.rate}</span>
                                     </div>
+                                    <div className="tutor-specialties">
+                                        {tutor.specialties.map((s, j) => (
+                                            <span key={j} className="tutor-specialty-chip">{s}</span>
+                                        ))}
+                                    </div>
+                                    <button
+                                        className="tutor-book-btn"
+                                        onClick={() => alert(`MOCKUP: Opens Calendly booking for ${tutor.name}. Platform takes 20% commission.`)}
+                                    >
+                                        <Calendar size={14} /> Book Session
+                                    </button>
                                 </div>
-                                <span className="tutor-rate">{tutor.rate}</span>
-                            </div>
-                            <div className="tutor-specialties">
-                                {tutor.specialties.map((s, j) => (
-                                    <span key={j} className="tutor-specialty-chip">{s}</span>
-                                ))}
-                            </div>
-                            <button
-                                className="tutor-book-btn"
-                                onClick={() => alert(`MOCKUP: Opens Calendly booking for ${tutor.name}. Platform takes 20% commission.`)}
-                            >
-                                <Calendar size={14} /> Book Session
-                            </button>
+                            ))}
                         </div>
-                    ))}
-                </div>
-            </section>
+                    </section>
 
-            {/* ─── Luxury Partners ─────────────────────────────────── */}
-            <section className="comm-section">
-                <div className="comm-section-header">
-                    <MapPin size={20} className="comm-section-icon" />
-                    <h2 className="comm-section-title">Luxury Partners</h2>
-                </div>
-                <div className="comm-resources">
-                    {LUXURY_PARTNERS.map((partner, i) => (
-                        <div key={i} className="comm-resource-card">
-                            <div className="partner-logo" style={{ backgroundColor: `${partner.color}20`, color: partner.color }}>
-                                {partner.initials}
-                            </div>
-                            <div className="comm-resource-info">
-                                <span className="comm-resource-tag">{partner.tag}</span>
-                                <span className="comm-resource-title">{partner.title}</span>
-                                <span className="comm-resource-desc">{partner.description}</span>
-                            </div>
-                            <ExternalLink size={16} className="comm-resource-link" />
+                    {/* ─── Luxury Partners ─────────────────────────────────── */}
+                    <section className="comm-section">
+                        <div className="comm-section-header">
+                            <MapPin size={20} className="comm-section-icon" />
+                            <h2 className="comm-section-title">Luxury Partners</h2>
                         </div>
-                    ))}
-                </div>
-                <p className="comm-coming-soon">Partner integrations launching soon</p>
-            </section>
+                        <div className="comm-resources">
+                            {LUXURY_PARTNERS.map((partner, i) => (
+                                <div key={i} className="comm-resource-card">
+                                    <div className="partner-logo" style={{ backgroundColor: `${partner.color}20`, color: partner.color }}>
+                                        {partner.initials}
+                                    </div>
+                                    <div className="comm-resource-info">
+                                        <span className="comm-resource-tag">{partner.tag}</span>
+                                        <span className="comm-resource-title">{partner.title}</span>
+                                        <span className="comm-resource-desc">{partner.description}</span>
+                                    </div>
+                                    <ExternalLink size={16} className="comm-resource-link" />
+                                </div>
+                            ))}
+                        </div>
+                        <p className="comm-coming-soon">Partner integrations launching soon</p>
+                    </section>
 
-            {/* ─── Corporate Training ──────────────────────────────── */}
-            <section className="comm-section" style={{ background: 'linear-gradient(135deg, rgba(17, 138, 178, 0.08), rgba(17, 138, 178, 0.18))', borderColor: 'rgba(17, 138, 178, 0.25)' }}>
-                <div className="comm-section-header">
-                    <Building size={20} color="#118AB2" />
-                    <h2 className="comm-section-title" style={{ color: '#1CB0F6' }}>Corporate Training</h2>
-                </div>
-                <p style={{ fontSize: 14, color: 'var(--text-muted)', lineHeight: 1.5, margin: '0 0 16px' }}>
-                    Onboard your entire team with custom Vietnamese programs. Includes progress dashboards, dedicated account manager, and tailored content for your industry.
-                </p>
-                <button
-                    className="corporate-inquiry-btn"
-                    onClick={() => alert('MOCKUP: Opens corporate training inquiry form. Enterprise licenses start at $5,000/yr for 50 seats.')}
-                >
-                    Request a Proposal
-                </button>
-            </section>
+                    {/* ─── Corporate Training ──────────────────────────────── */}
+                    <section className="comm-section" style={{ background: 'linear-gradient(135deg, rgba(17, 138, 178, 0.08), rgba(17, 138, 178, 0.18))', borderColor: 'rgba(17, 138, 178, 0.25)' }}>
+                        <div className="comm-section-header">
+                            <Building size={20} color="#118AB2" />
+                            <h2 className="comm-section-title" style={{ color: '#1CB0F6' }}>Corporate Training</h2>
+                        </div>
+                        <p style={{ fontSize: 14, color: 'var(--text-muted)', lineHeight: 1.5, margin: '0 0 16px' }}>
+                            Onboard your entire team with custom Vietnamese programs. Includes progress dashboards, dedicated account manager, and tailored content for your industry.
+                        </p>
+                        <button
+                            className="corporate-inquiry-btn"
+                            onClick={() => alert('MOCKUP: Opens corporate training inquiry form. Enterprise licenses start at $5,000/yr for 50 seats.')}
+                        >
+                            Request a Proposal
+                        </button>
+                    </section>
+                </>
+            )}
         </div>
     );
 };
