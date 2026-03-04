@@ -36,13 +36,36 @@ const dbs = {};
 const DB_PATH_EN = join(__dirname, 'databases', 'vn_en_dictionary.db');
 const DB_PATH_ZH = join(__dirname, 'databases', 'vn_zh_dictionary.db');
 
+// Split EN dictionaries: high-priority (top 40K words) + low-priority (rest)
+const DB_PATH_EN_HIGH = join(__dirname, 'databases', 'vn_en_dictionary_high.db');
+const DB_PATH_EN_LOW = join(__dirname, 'databases', 'vn_en_dictionary_low.db');
+const hasSplitDbs = existsSync(DB_PATH_EN_HIGH) && existsSync(DB_PATH_EN_LOW);
+
 for (const [lang, meta] of Object.entries(LANG_META)) {
+    // For EN, prefer split DBs if available
+    if (lang === 'en' && hasSplitDbs) {
+        continue; // handled separately below
+    }
     const p = join(__dirname, 'databases', meta.file);
     if (existsSync(p)) {
         dbs[lang] = new Database(p, { fileMustExist: true });
     } else {
         console.warn(`[WARN] DB not found for lang '${lang}': ${meta.file}`);
     }
+}
+
+// Set up EN databases (split or single)
+let dbEnHigh, dbEnLow;
+if (hasSplitDbs) {
+    dbEnHigh = new Database(DB_PATH_EN_HIGH, { fileMustExist: true });
+    dbEnLow = new Database(DB_PATH_EN_LOW, { fileMustExist: true });
+    dbs['en'] = dbEnHigh; // primary EN DB for word index / suggest
+    console.log('Using split EN dictionaries (high + low priority)');
+} else if (existsSync(DB_PATH_EN)) {
+    dbs['en'] = new Database(DB_PATH_EN, { fileMustExist: true });
+    dbEnHigh = dbs['en'];
+    dbEnLow = null;
+    console.log('Using single EN dictionary');
 }
 
 // Convenience aliases used throughout the existing code
@@ -99,12 +122,14 @@ function buildWordIndex(db, hasMetrics) {
 }
 
 console.log('Building word indexes...');
-const dataEn = buildWordIndex(dbEn, true);
+const dataEnHigh = buildWordIndex(dbEnHigh, true);
+const dataEnLow = dbEnLow ? buildWordIndex(dbEnLow, true) : { index: new Map(), freqMap: new Map() };
+// Merge high + low EN indexes
+const indexEn = new Map([...dataEnLow.index, ...dataEnHigh.index]); // high overrides low
 const dataZh = buildWordIndex(dbZh, false);
-const indexEn = dataEn.index;
 const indexZh = dataZh.index;
-const combinedFreqMap = new Map([...dataZh.freqMap, ...dataEn.freqMap]); // EN overrides ZH if both exist
-console.log(`Indexes ready — EN: ${indexEn.size}, ZH: ${indexZh.size} normalized keys`);
+const combinedFreqMap = new Map([...dataZh.freqMap, ...dataEnLow.freqMap, ...dataEnHigh.freqMap]);
+console.log(`Indexes ready — EN: ${indexEn.size} (high: ${dataEnHigh.index.size}, low: ${dataEnLow.index.size}), ZH: ${indexZh.size} normalized keys`);
 
 // Build indexes for all additional languages
 const langIndexes = { en: indexEn, zh: indexZh };
@@ -124,13 +149,21 @@ const freqRankMap = new Map(); // word_id → rank
 const MAX_DISP = 13287; // max subt_disp value in corpus
 
 (() => {
-    const rows = dbEn.prepare(`
-        SELECT word_id, subt_freq FROM word_metrics
-        WHERE subt_freq IS NOT NULL
-        ORDER BY subt_freq DESC
-    `).all();
-    rows.forEach((row, i) => {
-        freqRankMap.set(row.word_id, i + 1);
+    // Collect freq data from both high and low DBs
+    const allRows = [];
+    for (const db of [dbEnHigh, dbEnLow].filter(Boolean)) {
+        const rows = db.prepare(`
+            SELECT word_id, subt_freq FROM word_metrics
+            WHERE subt_freq IS NOT NULL
+        `).all();
+        allRows.push(...rows);
+    }
+    // Sort combined by frequency descending and assign ranks
+    allRows.sort((a, b) => b.subt_freq - a.subt_freq);
+    allRows.forEach((row, i) => {
+        if (!freqRankMap.has(row.word_id)) {
+            freqRankMap.set(row.word_id, i + 1);
+        }
     });
     console.log(`Frequency rank index built — ${freqRankMap.size} entries`);
 })();
@@ -147,21 +180,33 @@ function getFreqTier(rank) {
 // ---------------------------------------------------------------------------
 // Prepared statements for compound word decomposition
 // ---------------------------------------------------------------------------
-const stmtSyllableMetrics = dbEn.prepare(`
+// Prepared statements for compound decomposition — check high DB first, then low
+const syllableMetricsSql = `
     SELECT w.id as word_id, wm.subt_freq
     FROM words w
     LEFT JOIN word_metrics wm ON w.id = wm.word_id
     WHERE w.word = ? COLLATE NOCASE
     LIMIT 1
-`);
-
-const stmtSyllableMeaning = dbEn.prepare(`
+`;
+const syllableMeaningSql = `
     SELECT m.meaning_text
     FROM words w
     JOIN meanings m ON w.id = m.word_id
     WHERE w.word = ? COLLATE NOCASE
     LIMIT 1
-`);
+`;
+
+const stmtSyllableMetricsHigh = dbEnHigh.prepare(syllableMetricsSql);
+const stmtSyllableMetricsLow = dbEnLow ? dbEnLow.prepare(syllableMetricsSql) : null;
+const stmtSyllableMeaningHigh = dbEnHigh.prepare(syllableMeaningSql);
+const stmtSyllableMeaningLow = dbEnLow ? dbEnLow.prepare(syllableMeaningSql) : null;
+
+function getSyllableMetrics(word) {
+    return stmtSyllableMetricsHigh.get(word) || stmtSyllableMetricsLow?.get(word) || null;
+}
+function getSyllableMeaning(word) {
+    return stmtSyllableMeaningHigh.get(word) || stmtSyllableMeaningLow?.get(word) || null;
+}
 
 // ---------------------------------------------------------------------------
 // Prepared statement for HanViet syllable lookup (compound decomposition)
@@ -390,7 +435,18 @@ app.get('/api/search', (req, res) => {
     const db = dbs[lang] || dbEn;
 
     try {
-        let sql = `
+        const enSql = `
+            SELECT
+                w.word, w.id as word_id, s.name as source_name, m.id as meaning_id, m.part_of_speech, m.meaning_text,
+                wm.subt_freq, wm.mi, wm.subt_disp, p.ipa
+            FROM words w
+            LEFT JOIN word_metrics wm ON w.id = wm.word_id
+            LEFT JOIN pronunciations p ON w.id = p.word_id
+            JOIN meanings m ON w.id = m.word_id
+            JOIN sources s ON m.source_id = s.id
+            WHERE w.word = ? COLLATE NOCASE
+        `;
+        const otherSql = `
             SELECT w.word, s.name as source_name, m.id as meaning_id, m.part_of_speech, m.meaning_text
             FROM words w
             JOIN meanings m ON w.id = m.word_id
@@ -398,23 +454,19 @@ app.get('/api/search', (req, res) => {
             WHERE w.word = ? COLLATE NOCASE
         `;
 
+        let results;
+        let searchDb = db; // the DB that produced the results (for example lookups)
         if (lang === 'en') {
-            sql = `
-                SELECT
-                    w.word, w.id as word_id, s.name as source_name, m.id as meaning_id, m.part_of_speech, m.meaning_text,
-                    wm.subt_freq, wm.mi, wm.subt_disp, p.ipa
-                FROM words w
-                LEFT JOIN word_metrics wm ON w.id = wm.word_id
-                LEFT JOIN pronunciations p ON w.id = p.word_id
-                JOIN meanings m ON w.id = m.word_id
-                JOIN sources s ON m.source_id = s.id
-                WHERE w.word = ? COLLATE NOCASE
-            `;
+            // Check high-priority DB first, fall back to low
+            results = dbEnHigh.prepare(enSql).all(query);
+            searchDb = dbEnHigh;
+            if (results.length === 0 && dbEnLow) {
+                results = dbEnLow.prepare(enSql).all(query);
+                searchDb = dbEnLow;
+            }
+        } else {
+            results = db.prepare(otherSql).all(query);
         }
-
-        const stmt = db.prepare(sql);
-
-        const results = stmt.all(query);
 
         if (results.length === 0) {
             return res.json({ word: query, results: [] });
@@ -445,7 +497,8 @@ app.get('/api/search', (req, res) => {
             let examples = [];
             if (lang === 'en' || lang === 'zh') {
                 try {
-                    const exStmt = db.prepare(
+                    const exDb = lang === 'en' ? searchDb : db;
+                    const exStmt = exDb.prepare(
                         'SELECT vietnamese_text, english_text FROM examples WHERE meaning_id = ?'
                     );
                     examples = exStmt.all(r.meaning_id);
@@ -464,8 +517,8 @@ app.get('/api/search', (req, res) => {
         const syllables = query.trim().split(/\s+/);
         if (syllables.length >= 2 && lang === 'en') {
             components = syllables.map(syll => {
-                const metricsRow = stmtSyllableMetrics.get(syll);
-                const meaningRow = stmtSyllableMeaning.get(syll);
+                const metricsRow = getSyllableMetrics(syll);
+                const meaningRow = getSyllableMeaning(syll);
                 const syllRank = metricsRow?.word_id ? freqRankMap.get(metricsRow.word_id) : null;
                 return {
                     syllable: syll,
