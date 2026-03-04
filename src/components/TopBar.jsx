@@ -82,7 +82,17 @@ const TopBar = ({ activeTab, subtitleOverride }) => {
                 {isHome ? (
                     <div style={{ flex: 1, marginRight: 'var(--spacing-3)', overflow: 'hidden' }}>
                         <p style={{ margin: 0, fontWeight: 800, fontSize: 16, lineHeight: 1.2, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                            {(() => { const h = new Date().getHours(); return h < 12 ? t('good_morning') : h < 18 ? t('good_afternoon') : t('good_evening'); })()}, {userProfile?.name || 'Bạn'}!
+                            {(() => {
+                                const h = new Date().getHours();
+                                const name = userProfile?.name || 'Bạn';
+                                if (h >= 0 && h < 4) return `Still up, ${name}? 🦉`;
+                                if (h >= 4 && h < 6) return `Early bird, ${name}! 🌅`;
+                                if (h >= 6 && h < 12) return `${t('good_morning')}, ${name}!`;
+                                if (h >= 12 && h < 14) return `${t('good_afternoon')}, ${name}! 🍜`;
+                                if (h >= 14 && h < 18) return `${t('good_afternoon')}, ${name}!`;
+                                if (h >= 18 && h < 21) return `${t('good_evening')}, ${name}!`;
+                                return `Late night, ${name}? 🌙`;
+                            })()}
                         </p>
                     </div>
                 ) : isRoadmap ? (
