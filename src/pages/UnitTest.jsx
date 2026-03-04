@@ -4,6 +4,8 @@ import { X, Heart, Check, Trophy, Volume2, ChevronRight } from 'lucide-react';
 import { getNodeById, getExercisesForUnit, getExercisesForNode, getNextNode, getNodeRoute } from '../lib/db';
 import { useDong } from '../context/DongContext';
 import speak from '../utils/speak';
+import { loadSettings } from '../components/TopBar';
+import { checkVietnameseInput } from '../utils/fuzzyVietnamese';
 
 const UNIT_QUIZ_SIZE = 12;
 const MODULE_QUIZ_SIZE = 6;
@@ -24,7 +26,8 @@ const UnitTest = () => {
 
     const [exercises, setExercises] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
-    const hearts = dongCtx.hearts;
+    const testMode = loadSettings().testMode === true;
+    const hearts = testMode ? Infinity : dongCtx.hearts;
     const [selectedAnswer, setSelectedAnswer] = useState(null);
     const [isChecking, setIsChecking] = useState(false);
     const [isCorrect, setIsCorrect] = useState(null);
@@ -44,6 +47,15 @@ const UnitTest = () => {
     const [matchSelectedRight, setMatchSelectedRight] = useState(null);
     const [matchedSet, setMatchedSet] = useState(new Set());
     const [matchFlashWrong, setMatchFlashWrong] = useState(false);
+
+    // New exercise type state
+    const [typedAnswer, setTypedAnswer] = useState('');
+    const [imageError, setImageError] = useState(false);
+    const [isRecording, setIsRecording] = useState(false);
+    const [speechResult, setSpeechResult] = useState('');
+    const [speechSupported, setSpeechSupported] = useState(true);
+    const recognitionRef = useRef(null);
+    const [fuzzyHint, setFuzzyHint] = useState(null);
 
     const rewardGivenRef = useRef(false);
 
@@ -87,7 +99,12 @@ const UnitTest = () => {
         setSelectedAnswer(null);
         setIsChecking(false);
         setIsCorrect(null);
-        if (currentEx && currentEx.exercise_type === 'reorder_words') {
+        setTypedAnswer('');
+        setFuzzyHint(null);
+        setSpeechResult('');
+        setIsRecording(false);
+        setImageError(false);
+        if (currentEx && ['reorder_words', 'translation_word_bank'].includes(currentEx.exercise_type)) {
             setAvailableTokens([...currentEx.prompt.tokens].sort(() => Math.random() - 0.5));
             setOrderedTokens([]);
         }
@@ -159,15 +176,26 @@ const UnitTest = () => {
         if (currentEx.exercise_type === 'mcq_translate_to_vi') correct = selectedAnswer === currentEx.prompt.answer_vi;
         else if (currentEx.exercise_type === 'mcq_translate_to_en') correct = selectedAnswer === currentEx.prompt.answer_en;
         else if (currentEx.exercise_type === 'listen_choose') correct = selectedAnswer === currentEx.prompt.answer_vi;
+        else if (currentEx.exercise_type === 'picture_choice') correct = selectedAnswer === currentEx.prompt.answer_vi;
         else if (currentEx.exercise_type === 'reorder_words') correct = orderedTokens.join(' ') === currentEx.prompt.answer_tokens.join(' ');
+        else if (currentEx.exercise_type === 'translation_word_bank') correct = orderedTokens.join(' ') === currentEx.prompt.answer_tokens.join(' ');
         else if (currentEx.exercise_type === 'fill_blank') correct = selectedAnswer === currentEx.prompt.answer_vi;
         else if (currentEx.exercise_type === 'match_pairs') correct = matchedSet.size === matchPairs.length;
+        else if (currentEx.exercise_type === 'listen_type') {
+            const result = checkVietnameseInput(typedAnswer, currentEx.prompt.answer_vi, currentEx.prompt.answer_vi_no_diacritics);
+            correct = result.fuzzy;
+            if (correct && !result.exact) setFuzzyHint(currentEx.prompt.answer_vi);
+        } else if (currentEx.exercise_type === 'speak_sentence') {
+            const result = checkVietnameseInput(speechResult || typedAnswer, currentEx.prompt.answer_vi, currentEx.prompt.answer_vi_no_diacritics);
+            correct = result.fuzzy;
+            if (correct && !result.exact) setFuzzyHint(currentEx.prompt.answer_vi);
+        }
         else correct = true;
 
         setIsCorrect(correct);
         setIsChecking(true);
         if (correct) setScore(s => s + 1);
-        else dongCtx.loseHeart();
+        else if (!testMode) dongCtx.loseHeart();
     };
 
     const handleNext = () => {
@@ -176,10 +204,19 @@ const UnitTest = () => {
         else setIsFinished(true);
     };
 
+    const handleSkip = () => {
+        if (!testMode) return;
+        setScore(s => s + 1);
+        if (currentIndex < exercises.length - 1) setCurrentIndex(i => i + 1);
+        else setIsFinished(true);
+    };
+
     const canCheck = () => {
         if (!currentEx) return false;
         if (currentEx.exercise_type === 'match_pairs') return false;
-        if (currentEx.exercise_type === 'reorder_words') return orderedTokens.length > 0;
+        if (['reorder_words', 'translation_word_bank'].includes(currentEx.exercise_type)) return orderedTokens.length > 0;
+        if (currentEx.exercise_type === 'listen_type') return typedAnswer.trim().length > 0;
+        if (currentEx.exercise_type === 'speak_sentence') return (speechResult || typedAnswer).trim().length > 0;
         return selectedAnswer !== null && selectedAnswer !== '';
     };
 
@@ -222,15 +259,15 @@ const UnitTest = () => {
                         {isModuleTest ? 'Next module unlocked!' : 'Next unit unlocked!'}
                     </p>
                 </div>
-                <div style={{ padding: 24, borderTop: '2px solid var(--border-color)', backgroundColor: 'var(--surface-color)', display: 'flex', flexDirection: 'column', gap: 12 }}>
-                    <button className="primary w-full shadow-lg" onClick={() => navigate(nextNodeRoute || '/')} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
-                        CONTINUE {nextNodeRoute && <ChevronRight size={20} />}
-                    </button>
+                <div style={{ padding: '24px 16px', borderTop: '2px solid var(--border-color)', backgroundColor: 'var(--surface-color)', display: 'flex', flexDirection: 'column', gap: 10, minHeight: 140, justifyContent: 'center' }}>
                     {nextNodeRoute && (
-                        <button className="ghost" onClick={() => navigate('/')} style={{ width: '100%', fontSize: 14, color: 'var(--text-muted)' }}>
+                        <button className="ghost" onClick={() => navigate('/')} style={{ width: '100%', color: 'var(--text-muted)', fontWeight: 600 }}>
                             Back to Roadmap
                         </button>
                     )}
+                    <button className="primary w-full shadow-lg" onClick={() => navigate(nextNodeRoute || '/')} style={{ fontSize: 18, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
+                        CONTINUE {nextNodeRoute && <ChevronRight size={20} />}
+                    </button>
                 </div>
             </div>
         );
@@ -254,29 +291,40 @@ const UnitTest = () => {
             <div style={{ width: '100%', maxWidth: 600, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 24 }}>
                 <h2 style={{ fontSize: 24, margin: 0 }}>{prompt.instruction}</h2>
 
-                <div style={{ display: 'flex', gap: 16, alignItems: 'flex-start' }}>
-                    <div style={{ width: 64, height: 64, borderRadius: '50%', backgroundColor: 'rgba(249,115,22,0.2)', border: '2px solid #F97316', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontSize: 28 }}>
-                        &#127942;
-                    </div>
+                {exercise_type !== 'picture_choice' && exercise_type !== 'speak_sentence' && (
+                    <div style={{ display: 'flex', gap: 16, alignItems: 'flex-start' }}>
+                        <div style={{ width: 64, height: 64, borderRadius: '50%', backgroundColor: 'rgba(249,115,22,0.2)', border: '2px solid #F97316', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontSize: 28 }}>
+                            &#127942;
+                        </div>
 
-                    {['listen_choose'].includes(exercise_type) ? (
-                        <div style={{ display: 'flex', alignItems: 'center', gap: 16, alignSelf: 'center' }}>
-                            <button
-                                className="secondary"
-                                style={{ width: 64, height: 64, borderRadius: 16, color: '#F97316', borderColor: '#F97316', boxShadow: '0 4px 0 #C2410C' }}
-                                onClick={() => handlePlayAudio(audioText)}
-                            >
-                                <Volume2 size={32} />
-                            </button>
-                            {audioText && <span style={{ fontSize: 16, color: 'var(--text-muted)', fontStyle: 'italic' }}>{audioText}</span>}
-                        </div>
-                    ) : (
-                        <div style={{ flex: 1, padding: 16, backgroundColor: 'var(--surface-color)', borderRadius: 16, border: '2px solid var(--border-color)', position: 'relative' }}>
-                            <div style={{ position: 'absolute', left: -10, top: 20, width: 20, height: 20, backgroundColor: 'var(--surface-color)', borderLeft: '2px solid var(--border-color)', borderBottom: '2px solid var(--border-color)', transform: 'rotate(45deg)' }} />
-                            <span style={{ fontSize: 18, position: 'relative', zIndex: 2 }}>{prompt.source_text_en || prompt.source_text_vi || prompt.template_vi || "Translate this"}</span>
-                        </div>
-                    )}
-                </div>
+                        {['listen_choose', 'listen_type'].includes(exercise_type) ? (
+                            <div style={{ display: 'flex', alignItems: 'center', gap: 16, alignSelf: 'center' }}>
+                                <button
+                                    className="secondary"
+                                    style={{ width: 64, height: 64, borderRadius: 16, color: '#F97316', borderColor: '#F97316', boxShadow: '0 4px 0 #C2410C' }}
+                                    onClick={() => handlePlayAudio(audioText)}
+                                >
+                                    <Volume2 size={32} />
+                                </button>
+                                {exercise_type === 'listen_type' && (
+                                    <button
+                                        className="secondary"
+                                        style={{ width: 48, height: 48, borderRadius: 12, color: 'var(--text-muted)', borderColor: 'var(--border-color)', boxShadow: '0 3px 0 var(--border-color)', fontSize: 20 }}
+                                        onClick={() => speak(audioText, 0.7)}
+                                    >
+                                        🐢
+                                    </button>
+                                )}
+                                {exercise_type === 'listen_choose' && audioText && <span style={{ fontSize: 16, color: 'var(--text-muted)', fontStyle: 'italic' }}>{audioText}</span>}
+                            </div>
+                        ) : (
+                            <div style={{ flex: 1, padding: 16, backgroundColor: 'var(--surface-color)', borderRadius: 16, border: '2px solid var(--border-color)', position: 'relative' }}>
+                                <div style={{ position: 'absolute', left: -10, top: 20, width: 20, height: 20, backgroundColor: 'var(--surface-color)', borderLeft: '2px solid var(--border-color)', borderBottom: '2px solid var(--border-color)', transform: 'rotate(45deg)' }} />
+                                <span style={{ fontSize: 18, position: 'relative', zIndex: 2 }}>{prompt.source_text_en || prompt.source_text_vi || prompt.template_vi || "Translate this"}</span>
+                            </div>
+                        )}
+                    </div>
+                )}
 
                 <div style={{ marginTop: 24, display: 'flex', flexDirection: 'column', gap: 12 }}>
                     {/* Multiple Choice */}
@@ -298,8 +346,51 @@ const UnitTest = () => {
                             </button>
                         ))}
 
-                    {/* Word Reordering */}
-                    {exercise_type === 'reorder_words' && (
+                    {/* Picture Choice */}
+                    {exercise_type === 'picture_choice' && (
+                        <>
+                            <div style={{ width: '100%', maxWidth: 300, margin: '0 auto 16px', borderRadius: 16, overflow: 'hidden', border: '2px solid var(--border-color)', backgroundColor: 'var(--surface-color)' }}>
+                                {prompt.image_url && !imageError ? (
+                                    <img src={prompt.image_url} alt="" style={{ width: '100%', height: 200, objectFit: 'cover', display: 'block' }} onError={() => setImageError(true)} />
+                                ) : (
+                                    <div style={{ width: '100%', height: 200, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 80 }}>{prompt.emoji_fallback || '?'}</div>
+                                )}
+                            </div>
+                            {(prompt.choices_vi || []).map((choice, idx) => (
+                                <button key={idx} className={selectedAnswer === choice ? 'primary' : 'secondary'}
+                                    style={{ width: '100%', justifyContent: 'flex-start', padding: 20, fontSize: 18, borderColor: selectedAnswer === choice ? '#F97316' : 'var(--border-color)', backgroundColor: selectedAnswer === choice ? 'rgba(249,115,22,0.1)' : 'transparent', color: selectedAnswer === choice ? '#F97316' : 'var(--text-main)' }}
+                                    onClick={() => !isChecking && setSelectedAnswer(choice)} disabled={isChecking}
+                                >{choice}</button>
+                            ))}
+                        </>
+                    )}
+
+                    {/* Listen & Type */}
+                    {exercise_type === 'listen_type' && (
+                        <input type="text" value={typedAnswer} onChange={(e) => setTypedAnswer(e.target.value)} placeholder="Type what you hear..." disabled={isChecking} autoFocus
+                            style={{ width: '100%', padding: 16, fontSize: 18, borderRadius: 12, border: '2px solid var(--border-color)', backgroundColor: 'var(--surface-color)', color: 'var(--text-main)', outline: 'none', boxSizing: 'border-box' }}
+                            onFocus={(e) => { e.target.style.borderColor = '#F97316'; }} onBlur={(e) => { e.target.style.borderColor = 'var(--border-color)'; }}
+                        />
+                    )}
+
+                    {/* Speak Sentence */}
+                    {exercise_type === 'speak_sentence' && (
+                        <>
+                            <div style={{ textAlign: 'center', padding: 24, backgroundColor: 'var(--surface-color)', borderRadius: 16, border: '2px solid var(--border-color)', marginBottom: 16 }}>
+                                <p style={{ fontSize: 22, fontWeight: 600, marginBottom: 12 }}>{prompt.target_vi}</p>
+                                <p style={{ fontSize: 14, color: 'var(--text-muted)' }}>{prompt.target_en}</p>
+                                <button className="secondary" style={{ marginTop: 12, color: '#F97316', borderColor: '#F97316' }} onClick={() => handlePlayAudio(prompt.target_vi)}>
+                                    <Volume2 size={20} /> Listen
+                                </button>
+                            </div>
+                            <input type="text" value={speechResult || typedAnswer} onChange={(e) => { setSpeechResult(''); setTypedAnswer(e.target.value); }} placeholder="Type the sentence..." disabled={isChecking}
+                                style={{ width: '100%', padding: 16, fontSize: 18, borderRadius: 12, border: '2px solid var(--border-color)', backgroundColor: 'var(--surface-color)', color: 'var(--text-main)', outline: 'none', boxSizing: 'border-box' }}
+                            />
+                        </>
+                    )}
+
+                    {/* Word Reordering / Translation Word Bank */}
+                    {['reorder_words', 'translation_word_bank'].includes(exercise_type) && (
                         <>
                             <div style={{ minHeight: 70, padding: '10px 0', borderBottom: '2px solid var(--border-color)', display: 'flex', flexWrap: 'wrap', gap: 10, marginBottom: 24, alignItems: 'center' }}>
                                 {orderedTokens.length === 0 && <span style={{ color: 'var(--text-muted)', padding: '10px 0', width: '100%' }}>Tap words below to build the sentence</span>}
@@ -429,7 +520,7 @@ const UnitTest = () => {
                     <div style={{ width: `${progress}%`, height: '100%', backgroundColor: '#F97316', transition: 'width 0.3s ease-out', borderRadius: 8 }} />
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 6, color: 'var(--danger-color)', fontWeight: 700 }}>
-                    <Heart size={24} fill="var(--danger-color)" /> {hearts}
+                    <Heart size={24} fill="var(--danger-color)" /> {testMode ? '∞' : hearts}
                 </div>
             </div>
 
@@ -463,13 +554,16 @@ const UnitTest = () => {
                                 {isCorrect ? <Check size={20} color="#1A1A1A" strokeWidth={3} /> : <X size={20} color="white" strokeWidth={3} />}
                             </div>
                             <h3 style={{ margin: 0, fontSize: 24, color: isCorrect ? 'var(--success-color)' : 'var(--danger-color)' }}>
-                                {isCorrect ? 'Nicely done!' : 'Correct solution:'}
+                                {isCorrect ? (fuzzyHint ? 'Good! Try with diacritics:' : 'Nicely done!') : 'Correct solution:'}
                             </h3>
                         </div>
                         {!isCorrect && (
                             <div style={{ fontSize: 18, color: 'var(--danger-color)' }}>
                                 {currentEx?.prompt?.answer_vi || currentEx?.prompt?.answer_en || (currentEx?.prompt?.answer_tokens && currentEx.prompt.answer_tokens.join(' '))}
                             </div>
+                        )}
+                        {isCorrect && fuzzyHint && (
+                            <div style={{ fontSize: 18, color: 'var(--success-color)', fontWeight: 600 }}>{fuzzyHint}</div>
                         )}
                         <button
                             className="primary shadow-lg"
@@ -485,14 +579,25 @@ const UnitTest = () => {
                         </button>
                     </div>
                 ) : (
-                    <button
-                        className="primary shadow-lg"
-                        style={{ width: '100%', fontSize: 18, opacity: canCheck() ? 1 : 0.5, backgroundColor: '#F97316', boxShadow: '0 4px 0 #C2410C' }}
-                        onClick={handleCheck}
-                        disabled={!canCheck()}
-                    >
-                        CHECK
-                    </button>
+                    <div style={{ display: 'flex', gap: 10 }}>
+                        <button
+                            className="primary shadow-lg"
+                            style={{ flex: 1, fontSize: 18, opacity: canCheck() ? 1 : 0.5, backgroundColor: '#F97316', boxShadow: '0 4px 0 #C2410C' }}
+                            onClick={handleCheck}
+                            disabled={!canCheck()}
+                        >
+                            CHECK
+                        </button>
+                        {testMode && (
+                            <button
+                                className="shadow-lg"
+                                style={{ padding: '0 20px', fontSize: 14, fontWeight: 700, backgroundColor: 'var(--warning-color)', color: '#1A1A1A', borderRadius: 12, border: 'none', boxShadow: '0 4px 0 #c77b00' }}
+                                onClick={handleSkip}
+                            >
+                                SKIP
+                            </button>
+                        )}
+                    </div>
                 )}
             </div>
         </div>

@@ -223,6 +223,99 @@ const ARTICLES = [
             { vi: 'Bữa tối kinh doanh thành công có thể mở ra nhiều cơ hội hợp tác.', en: 'A successful business dinner can open many cooperation opportunities.', zh: '一场成功的商务晚宴可以带来许多合作机会。' },
         ],
     },
+    // ─── Partner / Affiliate Integrated Articles ───────────────────────────
+    {
+        id: 'best-cafes',
+        title_vi: 'Cà Phê: Hương Vị Khó Tồn Của Việt Nam',
+        title_en: 'Top 5 Coffee Spots in Hanoi & HCMC',
+        title_zh: '河内和胡志明市排名前五的咖啡馆',
+        category: 'food',
+        level: 'beginner',
+        image: 'https://images.unsplash.com/photo-1551608821-4f1b20f4c9ea?w=600&h=300&fit=crop',
+        readingTimeMins: 3,
+        sentences: [
+            { vi: 'Văn hóa cà phê ở Việt Nam rất độc đáo và đa dạng.', en: 'Coffee culture in Vietnam is very unique and diverse.', zh: '越南的咖啡文化非常独特且多样化。' },
+            { vi: 'Bạn nhất định phải thử cà phê sữa đá.', en: 'You absolutely must try iced milk coffee.', zh: '你一定要尝试冰奶咖啡。' },
+            { vi: 'Nhiều quán cà phê ở Hà Nội có phong cách cổ kính.', en: 'Many cafes in Hanoi have a vintage style.', zh: '河内的许多咖啡馆具有复古风格。' },
+            { vi: 'Trong khi đó, Sài Gòn có nhiều quán hiện đại hơn.', en: 'Meanwhile, Saigon has more modern cafes.', zh: '与此同时，西贡有更多现代的咖啡馆。' },
+            { vi: 'Hạt cà phê Robusta của Việt Nam đậm đà và thơm ngon.', en: 'Vietnam\'s Robusta coffee beans are rich and delicious.', zh: '越南的罗布斯塔咖啡豆浓郁可口。' },
+        ],
+        partnerCta: {
+            title_en: 'Love Vietnamese Coffee?',
+            title_zh: '喜欢越南咖啡吗？',
+            desc_en: 'Brew authentic iced milk coffee at home. Get locally-roasted Robusta beans shipped worldwide from Saigon Roasters.',
+            desc_zh: '在家冲泡正宗的冰奶咖啡。从西贡烘焙购买当地烘焙的罗布斯塔咖啡豆，全球发货。',
+            code: 'VNME',
+            discount_en: '10% OFF',
+            discount_zh: '九折优惠',
+            link: 'https://example.com/saigon-roasters',
+            img: 'https://images.unsplash.com/photo-1497935586351-b67a49e012bf?w=400&h=200&fit=crop',
+            theme: '#8B5A2B',
+            themeDark: '#67411C'
+        }
+    },
+    {
+        id: 'street-food-guide',
+        title_vi: 'Ăn Uống Như Người Bản Địa',
+        title_en: 'How to Eat Street Food Like a Local',
+        title_zh: '如何像当地人一样吃街头美食',
+        category: 'food',
+        level: 'intermediate',
+        image: 'https://images.unsplash.com/photo-1625937712144-8c65b822af4f?w=600&h=300&fit=crop',
+        readingTimeMins: 4,
+        sentences: [
+            { vi: 'Ẩm thực đường phố là trái tim của văn hóa Việt Nam.', en: 'Street food is the heart of Vietnamese culture.', zh: '街头美食是越南文化的心脏。' },
+            { vi: 'Những quán ăn ngon nhất thường chỉ có vài chiếc ghế nhựa.', en: 'The best eateries often only have a few plastic chairs.', zh: '最好的餐馆通常只有几把塑料椅子。' },
+            { vi: 'Hãy nhìn những nơi có nhiều người địa phương đang ăn.', en: 'Look for places where many locals are eating.', zh: '寻找有许多当地人吃饭的地方。' },
+            { vi: 'Bánh mì, Phở, và Bún Chả là những món không thể bỏ qua.', en: 'Banh mi, Pho, and Bun Cha are unmissable dishes.', zh: '越式法包、河粉和烤肉米粉是不可错过的美食。' },
+            { vi: 'Người Việt Nam thích ăn kèm với nhiều loại rau thơm tươi.', en: 'Vietnamese people like to eat with many types of fresh herbs.', zh: '越南人喜欢搭配许多新鲜香草一起吃。' },
+            { vi: 'Muốn khám phá những quán ăn ẩn mình, tốt nhất là đi cùng người địa phương.', en: 'To discover hidden eateries, it\'s best to go with a local.', zh: '想发现隐藏的餐馆，最好和当地人一起去。' },
+        ],
+        partnerCta: {
+            title_en: 'Explore Hidden Culinary Gems',
+            title_zh: '探索隐藏的烹饪瑰宝',
+            desc_en: 'Join a guided local street food tour in Hanoi to taste the best authentic dishes safely and confidently.',
+            desc_zh: '参加河内有导游的当地街头美食之旅，安全自信地品尝最正宗的菜肴。',
+            code: 'VNME-FOOD',
+            discount_en: '$5 OFF',
+            discount_zh: '减 5 美元',
+            link: 'https://example.com/hanoi-food-tour',
+            img: 'https://images.unsplash.com/photo-1582298538104-e51c8901fb2b?w=400&h=200&fit=crop',
+            theme: '#E74C3C',
+            themeDark: '#C0392B'
+        }
+    },
+    {
+        id: 'vietnam-travel-tech',
+        title_vi: 'Công Nghệ Cho Chuyến Du Lịch Việt Nam',
+        title_en: 'Essential Tech for Traveling Vietnam',
+        title_zh: '越南旅行必备技术',
+        category: 'travel',
+        level: 'beginner',
+        image: 'https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=600&h=300&fit=crop',
+        readingTimeMins: 3,
+        sentences: [
+            { vi: 'Sử dụng điện thoại thông minh ở Việt Nam rất dễ dàng.', en: 'Using a smartphone in Vietnam is very easy.', zh: '在越南使用智能手机非常容易。' },
+            { vi: 'Mạng WiFi miễn phí có sẵn ở hầu hết các quán cà phê và nhà hàng.', en: 'Free WiFi is available in most cafes and restaurants.', zh: '大多数咖啡馆和餐厅都提供免费 WiFi。' },
+            { vi: 'Bạn nên tải ứng dụng gọi xe như Grab hoặc Be để di chuyển.', en: 'You should download ride-hailing apps like Grab or Be to get around.', zh: '你应该下载像 Grab 或 Be 这样的叫车应用程序来出行。' },
+            { vi: 'Ứng dụng dịch thuật cũng rất hữu ích khi mua sắm.', en: 'Translation apps are also very helpful when shopping.', zh: '购物时，翻译应用程序也非常有用。' },
+            { vi: 'Tuy nhiên, bạn luôn cần kết nối internet 4G ổn định khi ra ngoài.', en: 'However, you always need a stable 4G internet connection when outdoors.', zh: '然而，在户外时，你始终需要稳定的 4G 互联网连接。' },
+            { vi: 'Mua eSIM trước khi đến là cách thuận tiện nhất để có mạng ngay lập tức.', en: 'Buying an eSIM before arriving is the most convenient way to get online instantly.', zh: '抵达前购买 eSIM 是立即联网最方便的方法。' },
+        ],
+        partnerCta: {
+            title_en: 'Stay Connected Anywhere',
+            title_zh: '随时随地保持联系',
+            desc_en: 'Get a reliable local eSIM with Gigago before you land. Enjoy 4G coverage across the entire country without expensive roaming fees.',
+            desc_zh: '在您降落之前，从 Gigago 获取可靠的本地 eSIM。在全国范围内享受 4G 覆盖，无需昂贵的漫游费。',
+            code: 'VNME-SIM',
+            discount_en: '15% OFF',
+            discount_zh: '八五折优惠',
+            link: 'https://example.com/gigago',
+            img: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=400&h=200&fit=crop',
+            theme: '#3498DB',
+            themeDark: '#2980B9'
+        }
+    }
 ];
 
 export default ARTICLES;

@@ -61,6 +61,13 @@ function StudentApp({ initialTab = 'home' }) {
     setPendingDictInput(text);
     setActiveTab('dictionary');
   };
+
+  const [pendingLibraryArticle, setPendingLibraryArticle] = useState(null);
+
+  const handleNavigateToLibrary = (articleId) => {
+    setPendingLibraryArticle(articleId);
+    setActiveTab('library');
+  };
   const completeOnboarding = () => {
     localStorage.setItem('vnme_onboarding_completed', 'true');
     setHasCompletedOnboarding(true);
@@ -78,8 +85,8 @@ function StudentApp({ initialTab = 'home' }) {
     switch (activeTab) {
       case 'home': return <HomeTab onSearchWord={handleDictInput} />;
       case 'study': return <RoadmapTab />;
-      case 'dictionary': return <DictionaryTab pendingInput={pendingDictInput} clearPendingInput={() => setPendingDictInput(null)} />;
-      case 'library': return <ReadingLibraryTab onSubtitleChange={setTabSubtitle} onSearchWord={handleDictInput} />;
+      case 'dictionary': return <DictionaryTab pendingInput={pendingDictInput} clearPendingInput={() => setPendingDictInput(null)} onNavigateToLibrary={handleNavigateToLibrary} />;
+      case 'library': return <ReadingLibraryTab onSubtitleChange={setTabSubtitle} onSearchWord={handleDictInput} pendingArticle={pendingLibraryArticle} clearPendingArticle={() => setPendingLibraryArticle(null)} />;
       case 'community': return <CommunityTab />;
       default: return <HomeTab />;
     }

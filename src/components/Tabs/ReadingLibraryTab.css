@@ -17,7 +17,10 @@
     overflow-x: auto;
     scrollbar-width: none;
 }
-.lib-filter-row::-webkit-scrollbar { display: none; }
+
+.lib-filter-row::-webkit-scrollbar {
+    display: none;
+}
 
 .lib-subtag-row {
     padding-top: 8px;
@@ -69,12 +72,12 @@
     font-size: 12px;
     padding: 5px 13px;
     background: transparent;
-    border-color: rgba(255,255,255,0.1);
+    border-color: rgba(255, 255, 255, 0.1);
 }
 
 .lib-subtag.active {
-    background: rgba(255,255,255,0.12);
-    border-color: rgba(255,255,255,0.3);
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.3);
     color: var(--text-main);
 }
 
@@ -117,6 +120,7 @@
     font-size: 0;
     transition: color 0.15s;
 }
+
 .lib-sort-dir-btn:hover {
     color: var(--text-main);
 }
@@ -222,6 +226,7 @@
     font-size: 0;
     transition: color 0.15s, border-color 0.15s;
 }
+
 .lib-view-toggle:hover {
     color: var(--text-main);
     border-color: var(--text-muted);
@@ -287,6 +292,7 @@
     color: var(--text-muted);
     grid-column: 1 / -1;
 }
+
 .lib-empty-state p {
     margin: 0;
     font-size: 14px;
@@ -562,6 +568,7 @@
         opacity: 0;
         transform: translateY(-4px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -996,9 +1003,17 @@
     transition: opacity 0.15s;
 }
 
-.fc-zone-label.left { color: #EF476F; }
-.fc-zone-label.right { color: #06D6A0; }
-.fc-zone-label.active { opacity: 1; }
+.fc-zone-label.left {
+    color: #EF476F;
+}
+
+.fc-zone-label.right {
+    color: #06D6A0;
+}
+
+.fc-zone-label.active {
+    opacity: 1;
+}
 
 .fc-card {
     flex: 1;
@@ -1010,8 +1025,15 @@
     transition: transform 0.2s;
 }
 
-.fc-card.swipe-left { transform: translateX(-30px) rotate(-4deg); opacity: 0.5; }
-.fc-card.swipe-right { transform: translateX(30px) rotate(4deg); opacity: 0.5; }
+.fc-card.swipe-left {
+    transform: translateX(-30px) rotate(-4deg);
+    opacity: 0.5;
+}
+
+.fc-card.swipe-right {
+    transform: translateX(30px) rotate(4deg);
+    opacity: 0.5;
+}
 
 .fc-card-inner {
     width: 100%;
@@ -1141,7 +1163,9 @@
     transition: transform 0.1s;
 }
 
-.fc-btn:active { transform: translateY(2px); }
+.fc-btn:active {
+    transform: translateY(2px);
+}
 
 .fc-btn.dont-know {
     background: rgba(239, 71, 111, 0.15);
@@ -1207,8 +1231,13 @@
     font-weight: 700;
 }
 
-.fc-stat.know { color: #06D6A0; }
-.fc-stat.unknown { color: #EF476F; }
+.fc-stat.know {
+    color: #06D6A0;
+}
+
+.fc-stat.unknown {
+    color: #EF476F;
+}
 
 .fc-retry-btn {
     display: flex;
@@ -1237,3 +1266,115 @@
     padding: 8px;
 }
 
+
+/* ─── Partner CTA in Article ──────────────────────────────── */
+.rlib-partner-cta {
+    margin: var(--spacing-4);
+    background: var(--surface-color);
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.rlib-cta-img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+}
+
+.rlib-cta-content {
+    padding: var(--spacing-3);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.rlib-cta-title {
+    font-size: 16px;
+    font-weight: 800;
+    margin: 0;
+    color: var(--text-main);
+}
+
+.rlib-cta-desc {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin: 0 0 8px 0;
+}
+
+.rlib-cta-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.rlib-cta-code-box {
+    display: flex;
+    align-items: center;
+    background: var(--bg-color);
+    border: 1px dashed var(--border-color);
+    border-radius: var(--radius-sm);
+    padding: 6px 8px;
+    gap: 8px;
+}
+
+.rlib-cta-code-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-muted);
+}
+
+.rlib-cta-code-val {
+    flex: 1;
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--text-main);
+    letter-spacing: 0.5px;
+}
+
+.rlib-cta-copy-btn {
+    background: transparent;
+    border: none;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--primary-color);
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: background 0.15s;
+    font-family: inherit;
+}
+
+.rlib-cta-copy-btn:hover {
+    background: rgba(255, 209, 102, 0.15);
+}
+
+.rlib-cta-copy-btn.copied {
+    color: #06D6A0;
+}
+
+.rlib-cta-link-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 16px;
+    border-radius: 14px;
+    border: none;
+    font-size: 15px;
+    font-weight: 700;
+    font-family: inherit;
+    text-decoration: none;
+    transition: transform 0.1s, box-shadow 0.1s;
+    cursor: pointer;
+    margin-top: 4px;
+    box-sizing: border-box;
+}
+
+.rlib-cta-link-btn:active {
+    transform: translateY(4px);
+    box-shadow: 0 0 0 transparent !important;
+}

@@ -793,6 +793,7 @@ export const getNodeRoute = (node) => {
 
 // --- Exercise Generation (auto-generate from items) ---
 import { generateExercises } from './exerciseGenerator';
+import { getImageForWord } from '../utils/vocabImageLookup';
 
 // Session-level cache so exercises aren't regenerated on every render
 const exerciseCache = new Map();
@@ -806,6 +807,7 @@ const resolveItems = (db, itemIds) => {
         return {
             id: item.id,
             vi_text: item.vi_text,
+            vi_text_no_diacritics: item.vi_text_no_diacritics || null,
             en_text: translation.text,
             audio_key: item.audio_key,
             item_type: item.item_type
@@ -840,8 +842,10 @@ const getDistractorPool = (db, lessonId) => {
 };
 
 // Main function: generate exercises for a lesson from its blueprint items
-export const getExercisesGenerated = (lessonId) => {
-    if (exerciseCache.has(lessonId)) return exerciseCache.get(lessonId);
+// session parameter (0-3) varies the exercise mix across repeat sessions
+export const getExercisesGenerated = (lessonId, session = 0) => {
+    const cacheKey = `${lessonId}_s${session}`;
+    if (exerciseCache.has(cacheKey)) return exerciseCache.get(cacheKey);
 
     const db = getDB();
     const blueprint = (db.lesson_blueprints || []).find(bp => bp.lesson_id === lessonId);
@@ -851,9 +855,17 @@ export const getExercisesGenerated = (lessonId) => {
     if (items.length === 0) return [];
 
     const distractorPool = getDistractorPool(db, lessonId);
-    const exercises = generateExercises(lessonId, items, distractorPool);
 
-    exerciseCache.set(lessonId, exercises);
+    // Build image map for picture_choice exercises
+    const imageMap = {};
+    items.forEach(item => {
+        const imgData = getImageForWord(item.vi_text);
+        if (imgData) imageMap[item.vi_text.toLowerCase()] = imgData;
+    });
+
+    const exercises = generateExercises(lessonId, items, distractorPool, imageMap, session);
+
+    exerciseCache.set(cacheKey, exercises);
     return exercises;
 };
 

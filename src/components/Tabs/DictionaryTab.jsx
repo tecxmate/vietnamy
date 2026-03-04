@@ -173,38 +173,38 @@ const parseVietPhap = (text) => {
 };
 
 const VOICE_LANGUAGES = [
-    { code: 'vi',    bcp: 'vi-VN',  label: 'Tiếng Việt' },
-    { code: 'en',    bcp: 'en-US',  label: 'English' },
-    { code: 'zh-s',  bcp: 'zh-CN',  label: '中文' },
-    { code: 'ja',    bcp: 'ja-JP',  label: '日本語' },
-    { code: 'ko',    bcp: 'ko-KR',  label: '한국어' },
-    { code: 'fr',    bcp: 'fr-FR',  label: 'Français' },
-    { code: 'de',    bcp: 'de-DE',  label: 'Deutsch' },
-    { code: 'es',    bcp: 'es-ES',  label: 'Español' },
-    { code: 'it',    bcp: 'it-IT',  label: 'Italiano' },
-    { code: 'pt',    bcp: 'pt-BR',  label: 'Português' },
-    { code: 'ru',    bcp: 'ru-RU',  label: 'Русский' },
-    { code: 'ar',    bcp: 'ar-SA',  label: 'العربية' },
-    { code: 'hi',    bcp: 'hi-IN',  label: 'हिन्दी' },
-    { code: 'th',    bcp: 'th-TH',  label: 'ภาษาไทย' },
-    { code: 'id',    bcp: 'id-ID',  label: 'Bahasa Indonesia' },
-    { code: 'ms',    bcp: 'ms-MY',  label: 'Bahasa Melayu' },
-    { code: 'tl',    bcp: 'fil-PH', label: 'Filipino' },
-    { code: 'nl',    bcp: 'nl-NL',  label: 'Nederlands' },
-    { code: 'pl',    bcp: 'pl-PL',  label: 'Polski' },
-    { code: 'uk',    bcp: 'uk-UA',  label: 'Українська' },
-    { code: 'cs',    bcp: 'cs-CZ',  label: 'Čeština' },
-    { code: 'ro',    bcp: 'ro-RO',  label: 'Română' },
-    { code: 'sv',    bcp: 'sv-SE',  label: 'Svenska' },
-    { code: 'no',    bcp: 'no-NO',  label: 'Norsk' },
-    { code: 'da',    bcp: 'da-DK',  label: 'Dansk' },
-    { code: 'fi',    bcp: 'fi-FI',  label: 'Suomi' },
-    { code: 'el',    bcp: 'el-GR',  label: 'Ελληνικά' },
-    { code: 'tr',    bcp: 'tr-TR',  label: 'Türkçe' },
-    { code: 'he',    bcp: 'he-IL',  label: 'עברית' },
-    { code: 'hu',    bcp: 'hu-HU',  label: 'Magyar' },
-    { code: 'bn',    bcp: 'bn-BD',  label: 'বাংলা' },
-    { code: 'ta',    bcp: 'ta-IN',  label: 'தமிழ்' },
+    { code: 'vi', bcp: 'vi-VN', label: 'Tiếng Việt' },
+    { code: 'en', bcp: 'en-US', label: 'English' },
+    { code: 'zh-s', bcp: 'zh-CN', label: '中文' },
+    { code: 'ja', bcp: 'ja-JP', label: '日本語' },
+    { code: 'ko', bcp: 'ko-KR', label: '한국어' },
+    { code: 'fr', bcp: 'fr-FR', label: 'Français' },
+    { code: 'de', bcp: 'de-DE', label: 'Deutsch' },
+    { code: 'es', bcp: 'es-ES', label: 'Español' },
+    { code: 'it', bcp: 'it-IT', label: 'Italiano' },
+    { code: 'pt', bcp: 'pt-BR', label: 'Português' },
+    { code: 'ru', bcp: 'ru-RU', label: 'Русский' },
+    { code: 'ar', bcp: 'ar-SA', label: 'العربية' },
+    { code: 'hi', bcp: 'hi-IN', label: 'हिन्दी' },
+    { code: 'th', bcp: 'th-TH', label: 'ภาษาไทย' },
+    { code: 'id', bcp: 'id-ID', label: 'Bahasa Indonesia' },
+    { code: 'ms', bcp: 'ms-MY', label: 'Bahasa Melayu' },
+    { code: 'tl', bcp: 'fil-PH', label: 'Filipino' },
+    { code: 'nl', bcp: 'nl-NL', label: 'Nederlands' },
+    { code: 'pl', bcp: 'pl-PL', label: 'Polski' },
+    { code: 'uk', bcp: 'uk-UA', label: 'Українська' },
+    { code: 'cs', bcp: 'cs-CZ', label: 'Čeština' },
+    { code: 'ro', bcp: 'ro-RO', label: 'Română' },
+    { code: 'sv', bcp: 'sv-SE', label: 'Svenska' },
+    { code: 'no', bcp: 'no-NO', label: 'Norsk' },
+    { code: 'da', bcp: 'da-DK', label: 'Dansk' },
+    { code: 'fi', bcp: 'fi-FI', label: 'Suomi' },
+    { code: 'el', bcp: 'el-GR', label: 'Ελληνικά' },
+    { code: 'tr', bcp: 'tr-TR', label: 'Türkçe' },
+    { code: 'he', bcp: 'he-IL', label: 'עברית' },
+    { code: 'hu', bcp: 'hu-HU', label: 'Magyar' },
+    { code: 'bn', bcp: 'bn-BD', label: 'বাংলা' },
+    { code: 'ta', bcp: 'ta-IN', label: 'தமிழ்' },
 ];
 
 const isStardictSource = (name) => [
@@ -338,7 +338,7 @@ const renderSources = (sources, convert = null, searchQuery = '') => {
     ));
 };
 
-const DictionaryTab = ({ pendingInput, clearPendingInput }) => {
+const DictionaryTab = ({ pendingInput, clearPendingInput, onNavigateToLibrary }) => {
     const { userProfile, updateUserProfile } = useUser();
     const dictMode = userProfile.dictMode || 'en';
     const setDictMode = (mode) => updateUserProfile({ dictMode: mode });
@@ -849,6 +849,23 @@ const DictionaryTab = ({ pendingInput, clearPendingInput }) => {
                                 </div>
                             )}
 
+                        </div>
+                    </div>
+                )}
+
+                {/* MOCKUP: Contextual Partner Widget */}
+                {allData && !allData.error && hasValidResults && (['cà phê', 'cafe', 'phở', 'bánh mì', 'du lịch'].includes(searchedWord.toLowerCase())) && (
+                    <div className="partner-widget fade-in" style={{ backgroundColor: 'var(--surface-color)', borderLeft: '4px solid var(--primary-color)', borderRadius: '0 12px 12px 0', padding: '16px 20px', marginBottom: 24, marginTop: 8, display: 'flex', alignItems: 'flex-start', gap: 16, boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}>
+                        <div style={{ flexShrink: 0, marginTop: 2 }}>
+                            <Sparkles size={20} color="var(--primary-color)" fill="var(--primary-color)" opacity={0.8} />
+                        </div>
+                        <div style={{ flex: 1 }}>
+                            <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: 1, marginBottom: 6 }}>Explore Vietnam</div>
+                            <div style={{ fontSize: 15, color: 'var(--text-main)', lineHeight: 1.5 }}>
+                                {['cà phê', 'cafe'].includes(searchedWord.toLowerCase()) && <span>Vietnam is the world's second-largest coffee producer, famous for its strong Robusta beans often served with sweetened condensed milk. <button className="ghost" style={{ padding: 0, color: 'var(--primary-color)', cursor: 'pointer', fontWeight: 600, textDecoration: 'none', display: 'inline' }} onClick={() => onNavigateToLibrary?.('best-cafes')}>Read: Best Cafes in Hanoi & HCMC →</button></span>}
+                                {['phở', 'bánh mì'].includes(searchedWord.toLowerCase()) && <span>Street food is the heart of Vietnamese culinary culture. The best dishes are often found at small, family-run stalls rather than large restaurants. <button className="ghost" style={{ padding: 0, color: 'var(--primary-color)', cursor: 'pointer', fontWeight: 600, textDecoration: 'none', display: 'inline' }} onClick={() => onNavigateToLibrary?.('street-food-guide')}>Read: A guide to Vietnamese Street food →</button></span>}
+                                {searchedWord.toLowerCase() === 'du lịch' && <span>When traveling in Vietnam, having a reliable internet connection makes navigation and translation much easier. <button className="ghost" style={{ padding: 0, color: 'var(--primary-color)', cursor: 'pointer', fontWeight: 600, textDecoration: 'none', display: 'inline' }} onClick={() => onNavigateToLibrary?.('vietnam-travel-tech')}>Read: Essential Tech for Vietnam Travel →</button></span>}
+                            </div>
                         </div>
                     </div>
                 )}

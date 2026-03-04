@@ -20,40 +20,40 @@ const GRAMMAR_LEVELS = ['A1', 'A2', 'B1'];
 // Content type configs for the tag filter system
 // ═══════════════════════════════════════════════════════════════
 const CONTENT_TYPES = {
-    grammar:    { label: 'Grammar',    icon: BookOpenText, color: '#A78BFA', bg: 'rgba(167,139,250,0.15)', border: 'rgba(167,139,250,0.3)' },
-    readings:   { label: 'Readings',   icon: BookOpen,     color: '#1CB0F6', bg: 'rgba(28,176,246,0.15)',  border: 'rgba(28,176,246,0.3)' },
-    practice:   { label: 'Practice',   icon: Dumbbell,     color: '#06D6A0', bg: 'rgba(6,214,160,0.15)',   border: 'rgba(6,214,160,0.3)' },
-    vocabulary: { label: 'Vocabulary', icon: Layers,       color: '#FF9F43', bg: 'rgba(255,159,67,0.15)',  border: 'rgba(255,159,67,0.3)' },
+    grammar: { label: 'Grammar', icon: BookOpenText, color: '#A78BFA', bg: 'rgba(167,139,250,0.15)', border: 'rgba(167,139,250,0.3)' },
+    readings: { label: 'Readings', icon: BookOpen, color: '#1CB0F6', bg: 'rgba(28,176,246,0.15)', border: 'rgba(28,176,246,0.3)' },
+    practice: { label: 'Practice', icon: Dumbbell, color: '#06D6A0', bg: 'rgba(6,214,160,0.15)', border: 'rgba(6,214,160,0.3)' },
+    vocabulary: { label: 'Vocabulary', icon: Layers, color: '#FF9F43', bg: 'rgba(255,159,67,0.15)', border: 'rgba(255,159,67,0.3)' },
 };
 
 const SUB_TAGS = {
-    grammar:    ['A1', 'A2', 'B1'],
-    readings:   ['Culture', 'Food', 'Travel', 'Daily Life', 'History', 'Business'],
-    practice:   ['Tones', 'Pronouns', 'Numbers', 'Typing'],
+    grammar: ['A1', 'A2', 'B1'],
+    readings: ['Culture', 'Food', 'Travel', 'Daily Life', 'History', 'Business'],
+    practice: ['Tones', 'Pronouns', 'Numbers', 'Typing'],
     vocabulary: ['Saved', 'Custom Decks', 'Pre-built'],
 };
 
 const SORT_OPTIONS = [
     { key: 'recent', label: 'Recent' },
-    { key: 'name',   label: 'Name' },
-    { key: 'level',  label: 'Level' },
+    { key: 'name', label: 'Name' },
+    { key: 'level', label: 'Level' },
 ];
 
 // Per-item icon + color lookup for practice modules
 const PRACTICE_ITEM_META = {
-    tones:     { icon: Music,    color: '#F59E0B', bg: 'rgba(245,158,11,0.15)', level: 'Beginner' },
-    pronouns:  { icon: Users,    color: '#8B5CF6', bg: 'rgba(139,92,246,0.15)', level: 'All Levels' },
-    numbers:   { icon: Hash,     color: '#3B82F6', bg: 'rgba(59,130,246,0.15)', level: 'Beginner' },
-    tonemarks: { icon: PenTool,  color: '#EC4899', bg: 'rgba(236,72,153,0.15)', level: 'Intermediate' },
-    vowels:    { icon: Type,     color: '#14B8A6', bg: 'rgba(20,184,166,0.15)', level: 'Beginner' },
-    telex:     { icon: Keyboard, color: '#F97316', bg: 'rgba(249,115,22,0.15)', level: 'Beginner' },
-    teencode:  { icon: MessageCircle, color: '#E879F9', bg: 'rgba(232,121,249,0.15)', level: 'Intermediate' },
+    tones: { icon: Music, color: '#F59E0B', bg: 'rgba(245,158,11,0.15)', level: 'Beginner' },
+    pronouns: { icon: Users, color: '#8B5CF6', bg: 'rgba(139,92,246,0.15)', level: 'All Levels' },
+    numbers: { icon: Hash, color: '#3B82F6', bg: 'rgba(59,130,246,0.15)', level: 'Beginner' },
+    tonemarks: { icon: PenTool, color: '#EC4899', bg: 'rgba(236,72,153,0.15)', level: 'Intermediate' },
+    vowels: { icon: Type, color: '#14B8A6', bg: 'rgba(20,184,166,0.15)', level: 'Beginner' },
+    telex: { icon: Keyboard, color: '#F97316', bg: 'rgba(249,115,22,0.15)', level: 'Beginner' },
+    teencode: { icon: MessageCircle, color: '#E879F9', bg: 'rgba(232,121,249,0.15)', level: 'Intermediate' },
 };
 
 const READING_LEVEL_META = {
-    beginner:     { color: '#06D6A0', bg: 'rgba(6,214,160,0.15)' },
+    beginner: { color: '#06D6A0', bg: 'rgba(6,214,160,0.15)' },
     intermediate: { color: '#FFD166', bg: 'rgba(255,209,102,0.15)' },
-    advanced:     { color: '#EF476F', bg: 'rgba(239,71,111,0.15)' },
+    advanced: { color: '#EF476F', bg: 'rgba(239,71,111,0.15)' },
 };
 
 // Build a unified content list from all sources (mockup timestamps)
@@ -104,13 +104,13 @@ function buildLibraryItems() {
 
     // Practice modules — all 7
     const allPractice = [
-        { id: 'tones',     name: 'Tone Mastery',  sub: 'Tones',    link: '/practice/tones' },
-        { id: 'pronouns',  name: 'Pronouns',      sub: 'Pronouns', link: '/practice/pronouns' },
-        { id: 'numbers',   name: 'Numbers',        sub: 'Numbers',  link: '/practice/numbers' },
-        { id: 'tonemarks', name: 'Tone Marks',    sub: 'Tones',    link: '/practice/tonemarks' },
-        { id: 'vowels',    name: 'Vowels',         sub: 'Typing',   link: '/practice/vowels' },
-        { id: 'telex',     name: 'TELEX Typing',  sub: 'Typing',   link: '/practice/telex' },
-        { id: 'teencode',  name: 'Teen Code',     sub: 'Typing',   link: '/practice/teencode' },
+        { id: 'tones', name: 'Tone Mastery', sub: 'Tones', link: '/practice/tones' },
+        { id: 'pronouns', name: 'Pronouns', sub: 'Pronouns', link: '/practice/pronouns' },
+        { id: 'numbers', name: 'Numbers', sub: 'Numbers', link: '/practice/numbers' },
+        { id: 'tonemarks', name: 'Tone Marks', sub: 'Tones', link: '/practice/tonemarks' },
+        { id: 'vowels', name: 'Vowels', sub: 'Typing', link: '/practice/vowels' },
+        { id: 'telex', name: 'TELEX Typing', sub: 'Typing', link: '/practice/telex' },
+        { id: 'teencode', name: 'Teen Code', sub: 'Typing', link: '/practice/teencode' },
     ];
     allPractice.forEach((p, i) => {
         const meta = PRACTICE_ITEM_META[p.id];
@@ -533,6 +533,7 @@ function ArticleCard({ article, onSelect }) {
 function ArticleReaderView({ article, onBack }) {
     const [revealedSet, setRevealedSet] = useState(new Set());
     const [translationLang, setTranslationLang] = useState('en');
+    const [copiedCode, setCopiedCode] = useState(false);
 
     const toggleReveal = (idx) => {
         setRevealedSet(prev => {
@@ -545,6 +546,12 @@ function ArticleReaderView({ article, onBack }) {
     const handleSpeak = (text, e) => {
         e.stopPropagation();
         speak(text);
+    };
+
+    const handleCopyCode = (code) => {
+        navigator.clipboard.writeText(code);
+        setCopiedCode(true);
+        setTimeout(() => setCopiedCode(false), 2000);
     };
 
     return (
@@ -607,6 +614,52 @@ function ArticleReaderView({ article, onBack }) {
                     );
                 })}
             </div>
+
+            {/* Partner CTA Section */}
+            {article.partnerCta && (
+                <div className="rlib-partner-cta">
+                    <img
+                        src={article.partnerCta.img}
+                        alt="Partner"
+                        className="rlib-cta-img"
+                    />
+                    <div className="rlib-cta-content">
+                        <h3 className="rlib-cta-title">
+                            {translationLang === 'en' ? article.partnerCta.title_en : article.partnerCta.title_zh}
+                        </h3>
+                        <p className="rlib-cta-desc">
+                            {translationLang === 'en' ? article.partnerCta.desc_en : article.partnerCta.desc_zh}
+                        </p>
+
+                        <div className="rlib-cta-actions">
+                            <div className="rlib-cta-code-box">
+                                <span className="rlib-cta-code-label">CODE:</span>
+                                <span className="rlib-cta-code-val">{article.partnerCta.code}</span>
+                                <button
+                                    className={`rlib-cta-copy-btn ${copiedCode ? 'copied' : ''}`}
+                                    onClick={() => handleCopyCode(article.partnerCta.code)}
+                                >
+                                    {copiedCode ? 'Copied!' : 'Copy'}
+                                </button>
+                            </div>
+
+                            <a
+                                href={article.partnerCta.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="rlib-cta-link-btn"
+                                style={{
+                                    backgroundColor: article.partnerCta.theme || 'var(--primary-color)',
+                                    boxShadow: `0 4px 0 ${article.partnerCta.themeDark || '#E5A503'}`,
+                                    color: '#fff'
+                                }}
+                            >
+                                Get {translationLang === 'en' ? article.partnerCta.discount_en : article.partnerCta.discount_zh}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
@@ -1119,9 +1172,21 @@ function VocabularyBrowseView({ onBack, onSearchWord }) {
 // ═══════════════════════════════════════════════════════════════
 // Main Tab Component
 // ═══════════════════════════════════════════════════════════════
-export default function ReadingLibraryTab({ onSubtitleChange, onSearchWord }) {
+export default function ReadingLibraryTab({ onSubtitleChange, onSearchWord, pendingArticle, clearPendingArticle }) {
     const [view, setView] = useState('landing');
     const [activeArticle, setActiveArticle] = useState(null);
+
+    useEffect(() => {
+        if (pendingArticle) {
+            // Find the requested article by id (which acts like a slug in this context)
+            const articleToOpen = ARTICLES.find(a => a.id === pendingArticle);
+            if (articleToOpen) {
+                enterReader(articleToOpen);
+            }
+            // Always clear it after attempting to open so it doesn't re-trigger on subsequent visits
+            clearPendingArticle?.();
+        }
+    }, [pendingArticle, clearPendingArticle]);
 
     const enterReader = (article) => {
         setActiveArticle(article);
