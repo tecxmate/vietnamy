@@ -226,76 +226,118 @@
 }
 
 /* Partner Cards */
-.home-partner-card {
-    min-width: 200px;
-    max-width: 220px;
+.home-partner-cta {
+    min-width: 280px;
+    max-width: 320px;
+    width: 85vw;
     background: var(--surface-color);
     border: 1px solid var(--border-color);
-    border-radius: 14px;
-    flex-shrink: 0;
-    display: flex;
-    flex-direction: column;
+    border-radius: var(--radius-lg);
     overflow: hidden;
-}
-
-.home-partner-hero {
-    height: 90px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.home-partner-emoji {
-    font-size: 44px;
-    line-height: 1;
-}
-
-.home-partner-info {
-    padding: 12px 14px 14px;
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    flex-shrink: 0;
 }
 
-.home-partner-top {
+.home-partner-cta-img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+}
+
+.home-partner-cta-content {
+    padding: var(--spacing-3);
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 2px;
+    flex-direction: column;
+    gap: 8px;
 }
 
-.home-partner-logo {
-    width: 30px;
-    height: 30px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    font-size: 14px;
-    font-weight: 900;
-}
-
-.home-partner-badge {
-    font-size: 10px;
+.home-partner-cta-title {
+    font-size: 16px;
     font-weight: 800;
-    padding: 3px 8px;
-    border-radius: 8px;
-    text-transform: uppercase;
-    letter-spacing: 0.3px;
+    margin: 0;
+    color: var(--text-main);
 }
 
-.home-partner-name {
+.home-partner-cta-desc {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin: 0 0 8px 0;
+}
+
+.home-partner-cta-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.home-partner-cta-code-box {
+    display: flex;
+    align-items: center;
+    background: var(--bg-color);
+    border: 1px dashed var(--border-color);
+    border-radius: var(--radius-sm);
+    padding: 6px 8px;
+    gap: 8px;
+}
+
+.home-partner-cta-code-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-muted);
+}
+
+.home-partner-cta-code-val {
+    flex: 1;
     font-size: 14px;
     font-weight: 800;
     color: var(--text-main);
-    line-height: 1.2;
+    letter-spacing: 0.5px;
 }
 
-.home-partner-tagline {
+.home-partner-cta-copy-btn {
+    background: transparent;
+    border: none;
     font-size: 12px;
-    color: var(--text-muted);
-    line-height: 1.4;
+    font-weight: 700;
+    color: var(--primary-color);
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: background 0.15s;
+    font-family: inherit;
+}
+
+.home-partner-cta-copy-btn:hover {
+    background: rgba(255, 209, 102, 0.15);
+}
+
+.home-partner-cta-copy-btn.copied {
+    color: #06D6A0;
+}
+
+.home-partner-cta-link-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 16px;
+    border-radius: 14px;
+    border: none;
+    font-size: 15px;
+    font-weight: 700;
+    font-family: inherit;
+    text-decoration: none;
+    transition: transform 0.1s, box-shadow 0.1s;
+    cursor: pointer;
+    margin-top: 4px;
+    box-sizing: border-box;
+}
+
+.home-partner-cta-link-btn:active {
+    transform: translateY(4px);
+    box-shadow: 0 0 0 transparent !important;
 }
 
 /* Quick Actions */
@@ -371,13 +413,25 @@
 }
 
 @keyframes voiceFadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 @keyframes voiceScaleIn {
-    from { opacity: 0; transform: scale(0.92); }
-    to { opacity: 1; transform: scale(1); }
+    from {
+        opacity: 0;
+        transform: scale(0.92);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 .voice-modal-title {
@@ -412,8 +466,15 @@
 }
 
 @keyframes voicePulse {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(255, 183, 3, 0.2); }
-    50% { box-shadow: 0 0 0 14px rgba(255, 183, 3, 0); }
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 183, 3, 0.2);
+    }
+
+    50% {
+        box-shadow: 0 0 0 14px rgba(255, 183, 3, 0);
+    }
 }
 
 .voice-interim-text {

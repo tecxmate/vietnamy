@@ -318,4 +318,6 @@ const ARTICLES = [
     }
 ];
 
+export const PARTNER_CTAS = ARTICLES.filter(a => a.partnerCta).map(a => a.partnerCta);
+
 export default ARTICLES;

@@ -5,6 +5,7 @@ import { useDong } from '../../context/DongContext';
 import { useT } from '../../lib/i18n';
 import { getItems, getUnits, getNodesForUnitWithProgress } from '../../lib/db';
 import { getDueItems, getTotalItems } from '../../lib/srs';
+import ARTICLES from '../../data/articleData';
 import speak from '../../utils/speak';
 import './HomeTab.css';
 
@@ -26,14 +27,7 @@ const TIPS = [
     { title: '"Xin" = Please / Ask', body: '"Xin chào" literally means "ask hello" — a formal greeting. "Xin lỗi" = "ask pardon" (sorry). "Xin" adds formality to any request.' },
 ];
 
-const PARTNERS = [
-    { name: 'Cà Phê Sài Gòn', tagline: 'Try ordering a cà phê sữa đá', category: 'Coffee', color: '#6F4E37', initial: 'C', emoji: '\u2615' },
-    { name: 'Chợ Bến Thành', tagline: 'Practice haggling in Vietnamese', category: 'Market', color: '#E74C3C', initial: 'B', emoji: '\uD83C\uDFEA' },
-    { name: 'Bánh Mì House', tagline: 'Order your bánh mì like a local', category: 'Food', color: '#F39C12', initial: 'B', emoji: '\uD83E\uDD56' },
-    { name: 'Áo Dài Boutique', tagline: 'Get fitted for your own áo dài', category: 'Fashion', color: '#9B59B6', initial: 'A', emoji: '\uD83D\uDC57' },
-    { name: 'Phúc Long Tea', tagline: 'Ask for trà đào cam sả', category: 'Drinks', color: '#27AE60', initial: 'P', emoji: '\uD83C\uDF75' },
-    { name: 'Gốm Việt Ceramics', tagline: 'Visit the Bát Tràng pottery village', category: 'Crafts', color: '#3498DB', initial: 'G', emoji: '\uD83C\uDFFA' },
-];
+
 
 
 function getWordsOfTheDay(items, count = 5) {
@@ -84,42 +78,47 @@ const HomeTab = ({ onSearchWord }) => {
     const [interimText, setInterimText] = useState('');
     const [showLangPicker, setShowLangPicker] = useState(false);
     const [inputLang, setInputLang] = useState('vi');
+    const [copiedCode, setCopiedCode] = useState(null);
     const recognitionRef = useRef(null);
     const finalTextRef = useRef('');
 
+    const partnerCtas = useMemo(() => {
+        return ARTICLES.filter(a => a.partnerCta).map(a => a.partnerCta);
+    }, []);
+
     const VOICE_LANGUAGES = [
-        { code: 'vi',    bcp: 'vi-VN',  label: 'Tiếng Việt' },
-        { code: 'en',    bcp: 'en-US',  label: 'English' },
-        { code: 'zh-s',  bcp: 'zh-CN',  label: '中文' },
-        { code: 'ja',    bcp: 'ja-JP',  label: '日本語' },
-        { code: 'ko',    bcp: 'ko-KR',  label: '한국어' },
-        { code: 'fr',    bcp: 'fr-FR',  label: 'Français' },
-        { code: 'de',    bcp: 'de-DE',  label: 'Deutsch' },
-        { code: 'es',    bcp: 'es-ES',  label: 'Español' },
-        { code: 'it',    bcp: 'it-IT',  label: 'Italiano' },
-        { code: 'pt',    bcp: 'pt-BR',  label: 'Português' },
-        { code: 'ru',    bcp: 'ru-RU',  label: 'Русский' },
-        { code: 'ar',    bcp: 'ar-SA',  label: 'العربية' },
-        { code: 'hi',    bcp: 'hi-IN',  label: 'हिन्दी' },
-        { code: 'th',    bcp: 'th-TH',  label: 'ภาษาไทย' },
-        { code: 'id',    bcp: 'id-ID',  label: 'Bahasa Indonesia' },
-        { code: 'ms',    bcp: 'ms-MY',  label: 'Bahasa Melayu' },
-        { code: 'tl',    bcp: 'fil-PH', label: 'Filipino' },
-        { code: 'nl',    bcp: 'nl-NL',  label: 'Nederlands' },
-        { code: 'pl',    bcp: 'pl-PL',  label: 'Polski' },
-        { code: 'uk',    bcp: 'uk-UA',  label: 'Українська' },
-        { code: 'cs',    bcp: 'cs-CZ',  label: 'Čeština' },
-        { code: 'ro',    bcp: 'ro-RO',  label: 'Română' },
-        { code: 'sv',    bcp: 'sv-SE',  label: 'Svenska' },
-        { code: 'no',    bcp: 'no-NO',  label: 'Norsk' },
-        { code: 'da',    bcp: 'da-DK',  label: 'Dansk' },
-        { code: 'fi',    bcp: 'fi-FI',  label: 'Suomi' },
-        { code: 'el',    bcp: 'el-GR',  label: 'Ελληνικά' },
-        { code: 'tr',    bcp: 'tr-TR',  label: 'Türkçe' },
-        { code: 'he',    bcp: 'he-IL',  label: 'עברית' },
-        { code: 'hu',    bcp: 'hu-HU',  label: 'Magyar' },
-        { code: 'bn',    bcp: 'bn-BD',  label: 'বাংলা' },
-        { code: 'ta',    bcp: 'ta-IN',  label: 'தமிழ்' },
+        { code: 'vi', bcp: 'vi-VN', label: 'Tiếng Việt' },
+        { code: 'en', bcp: 'en-US', label: 'English' },
+        { code: 'zh-s', bcp: 'zh-CN', label: '中文' },
+        { code: 'ja', bcp: 'ja-JP', label: '日本語' },
+        { code: 'ko', bcp: 'ko-KR', label: '한국어' },
+        { code: 'fr', bcp: 'fr-FR', label: 'Français' },
+        { code: 'de', bcp: 'de-DE', label: 'Deutsch' },
+        { code: 'es', bcp: 'es-ES', label: 'Español' },
+        { code: 'it', bcp: 'it-IT', label: 'Italiano' },
+        { code: 'pt', bcp: 'pt-BR', label: 'Português' },
+        { code: 'ru', bcp: 'ru-RU', label: 'Русский' },
+        { code: 'ar', bcp: 'ar-SA', label: 'العربية' },
+        { code: 'hi', bcp: 'hi-IN', label: 'हिन्दी' },
+        { code: 'th', bcp: 'th-TH', label: 'ภาษาไทย' },
+        { code: 'id', bcp: 'id-ID', label: 'Bahasa Indonesia' },
+        { code: 'ms', bcp: 'ms-MY', label: 'Bahasa Melayu' },
+        { code: 'tl', bcp: 'fil-PH', label: 'Filipino' },
+        { code: 'nl', bcp: 'nl-NL', label: 'Nederlands' },
+        { code: 'pl', bcp: 'pl-PL', label: 'Polski' },
+        { code: 'uk', bcp: 'uk-UA', label: 'Українська' },
+        { code: 'cs', bcp: 'cs-CZ', label: 'Čeština' },
+        { code: 'ro', bcp: 'ro-RO', label: 'Română' },
+        { code: 'sv', bcp: 'sv-SE', label: 'Svenska' },
+        { code: 'no', bcp: 'no-NO', label: 'Norsk' },
+        { code: 'da', bcp: 'da-DK', label: 'Dansk' },
+        { code: 'fi', bcp: 'fi-FI', label: 'Suomi' },
+        { code: 'el', bcp: 'el-GR', label: 'Ελληνικά' },
+        { code: 'tr', bcp: 'tr-TR', label: 'Türkçe' },
+        { code: 'he', bcp: 'he-IL', label: 'עברית' },
+        { code: 'hu', bcp: 'hu-HU', label: 'Magyar' },
+        { code: 'bn', bcp: 'bn-BD', label: 'বাংলা' },
+        { code: 'ta', bcp: 'ta-IN', label: 'தமிழ்' },
     ];
 
     const submitSearch = (text) => {
@@ -205,6 +204,12 @@ const HomeTab = ({ onSearchWord }) => {
                 return;
             }
         }
+    };
+
+    const handleCopyCode = (code) => {
+        navigator.clipboard.writeText(code);
+        setCopiedCode(code);
+        setTimeout(() => setCopiedCode(null), 2000);
     };
 
     return (
@@ -370,23 +375,48 @@ const HomeTab = ({ onSearchWord }) => {
             <div className="home-section-header">
                 <span>{t('explore_vietnam')}</span>
             </div>
-            <div className="home-tips-scroll">
-                {PARTNERS.map((p, i) => (
-                    <div key={i} className="home-partner-card">
-                        <div className="home-partner-hero" style={{ backgroundColor: `${p.color}20` }}>
-                            <span className="home-partner-emoji">{p.emoji}</span>
-                        </div>
-                        <div className="home-partner-info">
-                            <div className="home-partner-top">
-                                <div className="home-partner-logo" style={{ backgroundColor: p.color }}>
-                                    {p.initial}
+            <div className="home-tips-scroll" style={{ paddingBottom: 16 }}>
+                {partnerCtas.map((cta, i) => (
+                    <div key={i} className="home-partner-cta">
+                        <img
+                            src={cta.img}
+                            alt="Partner"
+                            className="home-partner-cta-img"
+                        />
+                        <div className="home-partner-cta-content">
+                            <h3 className="home-partner-cta-title">
+                                {cta.title_en}
+                            </h3>
+                            <p className="home-partner-cta-desc">
+                                {cta.desc_en}
+                            </p>
+
+                            <div className="home-partner-cta-actions">
+                                <div className="home-partner-cta-code-box">
+                                    <span className="home-partner-cta-code-label">CODE:</span>
+                                    <span className="home-partner-cta-code-val">{cta.code}</span>
+                                    <button
+                                        className={`home-partner-cta-copy-btn ${copiedCode === cta.code ? 'copied' : ''}`}
+                                        onClick={() => handleCopyCode(cta.code)}
+                                    >
+                                        {copiedCode === cta.code ? 'Copied!' : 'Copy'}
+                                    </button>
                                 </div>
-                                <div className="home-partner-badge" style={{ color: p.color, backgroundColor: `${p.color}18` }}>
-                                    {p.category}
-                                </div>
+
+                                <a
+                                    href={cta.link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="home-partner-cta-link-btn"
+                                    style={{
+                                        backgroundColor: cta.theme || 'var(--primary-color)',
+                                        boxShadow: `0 4px 0 ${cta.themeDark || '#E5A503'}`,
+                                        color: '#fff'
+                                    }}
+                                >
+                                    Get {cta.discount_en}
+                                </a>
                             </div>
-                            <div className="home-partner-name">{p.name}</div>
-                            <div className="home-partner-tagline">{p.tagline}</div>
                         </div>
                     </div>
                 ))}

@@ -14,8 +14,10 @@ const SETTINGS_KEY = 'vnme_settings';
 export function loadSettings() {
     try {
         const raw = localStorage.getItem(SETTINGS_KEY);
-        return raw ? JSON.parse(raw) : {};
-    } catch { return {}; }
+        const parsed = raw ? JSON.parse(raw) : {};
+        if (parsed.testMode === undefined) parsed.testMode = true;
+        return parsed;
+    } catch { return { testMode: true }; }
 }
 
 export function saveSettings(s) {

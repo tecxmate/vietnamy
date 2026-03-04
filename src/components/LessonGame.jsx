@@ -75,6 +75,7 @@ const LessonGame = () => {
     // Image error fallback
     const [imageError, setImageError] = useState(false);
 
+
     const rewardGivenRef = useRef(false);
 
     useEffect(() => {
