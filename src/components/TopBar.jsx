@@ -91,7 +91,7 @@ const TopBar = ({ activeTab, subtitleOverride }) => {
                                 if (h >= 4 && h < 6) return `${name} dậy sớm thật đấy! 🌅`;
                                 if (h >= 6 && h < 12) return `Chào buổi sáng ${name} nha! ☀️`;
                                 if (h >= 12 && h < 14) return `Đến giờ ăn trưa rồi ${name}! 🍜`;
-                                if (h >= 14 && h < 18) return `Buổi chiều vui vẻ ${name}! 🌤️`;
+                                if (h >= 14 && h < 18) return `Chúc ${name} buổi chiều vui vẻ! 🌤️`;
                                 if (h >= 18 && h < 21) return `Chào buổi tối ${name}. 🌆`;
                                 return `Muộn rồi đấy ${name} ạ. 🌙`;
                             })()}

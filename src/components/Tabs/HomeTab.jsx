@@ -92,6 +92,7 @@ const HomeTab = ({ onSearchWord }) => {
     const [copiedCode, setCopiedCode] = useState(null);
     const [waitlistEmail, setWaitlistEmail] = useState('');
     const [waitlistJoined, setWaitlistJoined] = useState(() => !!localStorage.getItem('vnme_waitlist'));
+    const [tallySheet, setTallySheet] = useState(null); // { id, title, prefill? }
     const recognitionRef = useRef(null);
     const finalTextRef = useRef('');
 
@@ -240,33 +241,75 @@ const HomeTab = ({ onSearchWord }) => {
     const handleWaitlistJoin = (e) => {
         e.preventDefault();
         if (!waitlistEmail.trim()) return;
-        // Open Tally popup with pre-filled email
-        if (window.Tally) {
-            window.Tally.openPopup(TALLY_WAITLIST_ID, {
-                width: 400,
-                hiddenFields: { email: waitlistEmail },
-                onSubmit: () => {
-                    localStorage.setItem('vnme_waitlist', waitlistEmail);
-                    setWaitlistJoined(true);
-                },
-            });
-        } else {
-            window.open(`https://tally.so/r/${TALLY_WAITLIST_ID}`, '_blank');
-        }
-        localStorage.setItem('vnme_waitlist', waitlistEmail);
-        setWaitlistJoined(true);
+        const url = `https://tally.so/embed/${TALLY_WAITLIST_ID}?email=${encodeURIComponent(waitlistEmail)}&transparentBackground=1`;
+        setTallySheet({
+            id: TALLY_WAITLIST_ID, title: 'Join Waitlist', url, onSubmit: () => {
+                localStorage.setItem('vnme_waitlist', waitlistEmail);
+                setWaitlistJoined(true);
+                setTallySheet(null);
+            }
+        });
     };
 
     const handleFeatureRequest = () => {
-        if (window.Tally) {
-            window.Tally.openPopup(TALLY_FEATURE_ID, { width: 400 });
-        } else {
-            window.open(`https://tally.so/r/${TALLY_FEATURE_ID}`, '_blank');
-        }
+        const url = `https://tally.so/embed/${TALLY_FEATURE_ID}?transparentBackground=1`;
+        setTallySheet({ id: TALLY_FEATURE_ID, title: 'Request a Feature', url });
     };
 
     return (
         <div className="home-tab">
+            {/* Tally Bottom Sheet */}
+            {tallySheet && (
+                <>
+                    <div
+                        style={{
+                            position: 'fixed', inset: 0, zIndex: 9000,
+                            background: 'rgba(0,0,0,0.5)',
+                            animation: 'notifBackdropIn 0.2s ease',
+                        }}
+                        onClick={() => setTallySheet(null)}
+                    />
+                    <div style={{
+                        position: 'fixed',
+                        left: 0, right: 0, bottom: 0,
+                        zIndex: 9100,
+                        background: 'var(--bg-color)',
+                        borderRadius: '20px 20px 0 0',
+                        boxShadow: '0 -8px 40px rgba(0,0,0,0.3)',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        height: '85dvh',
+                        animation: 'slideUpSheet 0.28s cubic-bezier(0.34,1.1,0.64,1)',
+                    }}>
+                        {/* Handle + header */}
+                        <div style={{
+                            padding: '12px 16px 10px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'space-between',
+                            borderBottom: '1px solid var(--border-color)',
+                            flexShrink: 0,
+                        }}>
+                            <div style={{ width: 36, height: 4, borderRadius: 2, background: 'var(--border-color)', margin: '0 auto', position: 'absolute', left: '50%', transform: 'translateX(-50%)', top: 8 }} />
+                            <span style={{ fontSize: 15, fontWeight: 700, color: 'var(--text-main)' }}>{tallySheet.title}</span>
+                            <button
+                                onClick={() => setTallySheet(null)}
+                                style={{ background: 'none', border: 'none', color: 'var(--text-muted)', padding: 6, borderRadius: 8, cursor: 'pointer', display: 'flex', alignItems: 'center' }}
+                            >
+                                <X size={20} />
+                            </button>
+                        </div>
+                        {/* Embedded form */}
+                        <iframe
+                            src={tallySheet.url}
+                            style={{ flex: 1, border: 'none', width: '100%' }}
+                            title={tallySheet.title}
+                            allow="camera; microphone"
+                        />
+                    </div>
+                </>
+            )}
+
             {/* Demo Banner */}
             <div className="demo-banner">
                 <span className="demo-banner-tag"><Sparkles size={12} /> VNMY v0.3.5</span>
