@@ -93,6 +93,7 @@ const HomeTab = ({ onSearchWord }) => {
     const [copiedCode, setCopiedCode] = useState(null);
     const [waitlistEmail, setWaitlistEmail] = useState('');
     const [waitlistJoined, setWaitlistJoined] = useState(() => !!localStorage.getItem('vnme_waitlist'));
+    const [featureContributed, setFeatureContributed] = useState(false);
     const [tallySheet, setTallySheet] = useState(null); // { id, title, prefill? }
     const recognitionRef = useRef(null);
     const finalTextRef = useRef('');
@@ -129,6 +130,7 @@ const HomeTab = ({ onSearchWord }) => {
                             fireNotification('success', 'You are on the list! Welcome!');
                         } else if (formId === TALLY_FEATURE_ID) {
                             setTallySheet(null);
+                            setFeatureContributed(true);
                             fireNotification('success', 'Thank you for your feature request!');
                         }
                     }
@@ -303,11 +305,9 @@ const HomeTab = ({ onSearchWord }) => {
                         left: 0, right: 0, bottom: 0,
                         zIndex: 9100,
                         background: 'var(--bg-color)',
-                        borderRadius: '20px 20px 0 0',
-                        boxShadow: '0 -8px 40px rgba(0,0,0,0.3)',
                         display: 'flex',
                         flexDirection: 'column',
-                        height: '85dvh',
+                        height: '100dvh',
                         paddingBottom: 'env(safe-area-inset-bottom, 0px)',
                         animation: 'slideUpSheet 0.28s cubic-bezier(0.34,1.1,0.64,1)',
                     }}>
@@ -370,9 +370,23 @@ const HomeTab = ({ onSearchWord }) => {
                 )}
 
                 <div className="demo-actions-row">
-                    <button className="demo-action-btn" onClick={handleFeatureRequest}>
-                        <Lightbulb size={16} />
-                        <span>Request your Ideas/Features</span>
+                    <button
+                        className="demo-action-btn"
+                        onClick={handleFeatureRequest}
+                        disabled={featureContributed}
+                        style={featureContributed ? { color: 'var(--success-color)', borderColor: 'var(--success-color)' } : {}}
+                    >
+                        {featureContributed ? (
+                            <>
+                                <Check size={16} />
+                                <span>Thank you for your contribution!</span>
+                            </>
+                        ) : (
+                            <>
+                                <Lightbulb size={16} />
+                                <span>Request your Ideas/Features</span>
+                            </>
+                        )}
                     </button>
                 </div>
 
