@@ -272,6 +272,14 @@ const HomeTab = ({ onSearchWord }) => {
     const handleWaitlistJoin = (e) => {
         e.preventDefault();
         if (!waitlistEmail.trim()) return;
+
+        // Silently capture lead instantly before Tally completes
+        fetch('/api/waitlist', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: waitlistEmail })
+        }).catch(err => console.error('Silent capture failed:', err));
+
         const url = `https://tally.so/embed/${TALLY_WAITLIST_ID}?email=${encodeURIComponent(waitlistEmail)}&transparentBackground=1`;
         setTallySheet({
             id: TALLY_WAITLIST_ID, title: 'Join Waitlist', url, onSubmit: () => {

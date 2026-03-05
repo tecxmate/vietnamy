@@ -118,16 +118,18 @@ const TopBar = ({ activeTab, subtitleOverride }) => {
                 {/* Stats — always visible */}
                 <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexShrink: 0 }}>
                     {userProfile.isDeveloperMode && (
-                        <button onClick={() => setIsReferralOpen(true)} className="ghost" style={{ padding: 6, color: 'var(--primary-color)', display: 'flex', alignItems: 'center' }}>
-                            <Gift size={20} />
-                        </button>
+                        <>
+                            <button onClick={() => setIsReferralOpen(true)} className="ghost" style={{ padding: 6, color: 'var(--primary-color)', display: 'flex', alignItems: 'center' }}>
+                                <Gift size={20} />
+                            </button>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: 4, fontWeight: 700, fontSize: 13, color: '#FFB703' }}>
+                                <CircleDollarSign size={16} /> {coins}
+                            </div>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: 4, fontWeight: 700, fontSize: 13, color: '#EF4444' }}>
+                                <Heart size={16} fill="#EF4444" /> {hearts}
+                            </div>
+                        </>
                     )}
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 4, fontWeight: 700, fontSize: 13, color: '#FFB703' }}>
-                        <CircleDollarSign size={16} /> {coins}
-                    </div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 4, fontWeight: 700, fontSize: 13, color: '#EF4444' }}>
-                        <Heart size={16} fill="#EF4444" /> {hearts}
-                    </div>
                     {/* Notification bell */}
                     <button
                         className="notif-bell-btn"
