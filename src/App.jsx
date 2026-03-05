@@ -39,6 +39,8 @@ import KinshipEditor from './pages/Admin/KinshipEditor';
 import LessonGame from './components/LessonGame';
 import GrammarLesson from './pages/GrammarLesson';
 import UnitTest from './pages/UnitTest';
+import PrivacyPolicy from './pages/Legal/PrivacyPolicy';
+import TermsOfService from './pages/Legal/TermsOfService';
 // Practice Modules
 import TonePractice from './pages/Practice/TonePractice';
 import PronounsPractice from './pages/Practice/PronounsPractice';
@@ -148,6 +150,10 @@ function App() {
                 <Route path="/practice/pitch" element={<div className="mobile-app-wrapper"><TonePitchTraining /></div>} />
                 <Route path="/practice/telex" element={<div className="mobile-app-wrapper"><TelexTyping /></div>} />
                 <Route path="/practice/teencode" element={<div className="mobile-app-wrapper"><TeenCode /></div>} />
+
+                {/* Legal Routes */}
+                <Route path="/privacy" element={<div className="mobile-app-wrapper"><PrivacyPolicy /></div>} />
+                <Route path="/terms" element={<div className="mobile-app-wrapper"><TermsOfService /></div>} />
 
                 {/* Grammar Routes */}
                 <Route path="/grammar/:level" element={<div className="mobile-app-wrapper"><GrammarList /></div>} />

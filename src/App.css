@@ -239,6 +239,7 @@
 /* Dictionary long-press popup */
 .bottom-nav {
   position: relative;
+  z-index: 50;
 }
 
 .dict-popup-menu {

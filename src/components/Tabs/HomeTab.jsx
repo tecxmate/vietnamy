@@ -1,4 +1,5 @@
 import React, { useState, useRef, useMemo, useEffect } from 'react';
+import ReactDOM from 'react-dom';
 import { useNavigate } from 'react-router-dom';
 import { Volume2, Flame, BookOpen, Layers, ChevronRight, GraduationCap, BookOpenText, Search, Mic, X, Check, Sparkles, Lightbulb } from 'lucide-react';
 import { useDong } from '../../context/DongContext';
@@ -258,8 +259,8 @@ const HomeTab = ({ onSearchWord }) => {
 
     return (
         <div className="home-tab">
-            {/* Tally Bottom Sheet */}
-            {tallySheet && (
+            {/* Tally Bottom Sheet — portalled to body to escape stacking context */}
+            {tallySheet && ReactDOM.createPortal(
                 <>
                     <div
                         style={{
@@ -279,6 +280,7 @@ const HomeTab = ({ onSearchWord }) => {
                         display: 'flex',
                         flexDirection: 'column',
                         height: '85dvh',
+                        paddingBottom: 'env(safe-area-inset-bottom, 0px)',
                         animation: 'slideUpSheet 0.28s cubic-bezier(0.34,1.1,0.64,1)',
                     }}>
                         {/* Handle + header */}
@@ -307,8 +309,10 @@ const HomeTab = ({ onSearchWord }) => {
                             allow="camera; microphone"
                         />
                     </div>
-                </>
+                </>,
+                document.body
             )}
+
 
             {/* Demo Banner */}
             <div className="demo-banner">
