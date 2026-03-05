@@ -8,41 +8,16 @@
         "type": "tabs",
         "children": [
           {
-            "id": "771453596e913b2e",
-            "type": "leaf",
-            "state": {
-              "type": "canvas",
-              "state": {
-                "file": "docs/userflow.canvas",
-                "viewState": {
-                  "x": 943.9735339509873,
-                  "y": 674.6326111649018,
-                  "zoom": -1.5502519934099996
-                }
-              },
-              "icon": "lucide-layout-dashboard",
-              "title": "userflow"
-            }
-          },
-          {
             "id": "e709a357ee53a7cc",
             "type": "leaf",
             "state": {
-              "type": "canvas",
-              "state": {
-                "file": "docs/vnme-note.canvas",
-                "viewState": {
-                  "x": -659.3947070818963,
-                  "y": 379.10221217200956,
-                  "zoom": 0.030293607390630587
-                }
-              },
-              "icon": "lucide-layout-dashboard",
-              "title": "vnme-note"
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -206,24 +181,33 @@
   },
   "active": "e709a357ee53a7cc",
   "lastOpenFiles": [
-    "src/pages/Legal/Legal.css",
-    "src/pages/Legal/TermsOfService.jsx",
-    "src/pages/Legal/PrivacyPolicy.jsx",
-    "src/pages/Legal",
-    "src/context/NotificationContext.jsx",
-    "src/components/NotificationToast.css",
-    "src/components/NotificationToast.jsx",
-    "src/components/Onboarding/AppTutorial.jsx",
-    "src/components/Onboarding/AppTutorial.css",
-    "src/components/WaitlistFormModal.jsx",
-    "server/databases/vn_en_dictionary_low.db-journal",
+    "docs/vnme-note.canvas",
+    "docs/prd-notes/vnme-note.canvas",
+    "docs/prd-notes/userflow.canvas",
+    "docs/prd-notes/user_flow_and_features.md",
+    "docs/prd-notes/social_media_plan.md",
+    "docs/prd-notes/proposal_100_levels.md.resolved",
+    "docs/prd-notes/PROJECT_HANDOFF.md",
+    "docs/prd-notes/PRD.md",
+    "docs/prd-notes/PRD-executive-backend.md",
+    "docs/prd-notes/mockup-dictionary-vocab-library.md",
+    "docs/prd-notes/features.canvas",
+    "docs/prd-notes/datamodel.canvas",
+    "docs/prd-notes",
+    "docs/notes",
+    "docs/terms and policies templates/terms-and-condition.txt",
+    "docs/terms and policies templates/privacy-policies.txt",
+    "docs/terms and policies templates",
+    "docs/terms and policies/privacy-policies.txt",
+    "docs/terms and policies/terms-and-condition.txt",
+    "docs/terms and policies/privacy.txt",
+    "docs/terms and policies",
     "CLAUDE.md",
     "dist/hanoi_street_food.png",
     "docs/social_media_plan.md",
     "public/hanoi_street_food.png",
     "docs/PROJECT_HANDOFF.md",
     "docs/PRD.md",
-    "docs/vnme-note.canvas",
     "docs/userflow.canvas",
     "docs/user_flow_and_features.md",
     "docs/PRD-executive-backend.md",
@@ -246,21 +230,12 @@
     "node_modules/tesseract.js/LICENSE.md",
     "node_modules/tesseract.js/docs/image-format.md",
     "node_modules/tesseract.js/docs/faq.md",
-    "node_modules/tesseract.js/docs/examples.md",
-    "node_modules/idb-keyval/README.md",
     "node_modules/tesseract.js/docs/images/video-demo.gif",
-    "node_modules/opencollective-postinstall/README.md",
-    "node_modules/node-fetch/README.md",
-    "node_modules/node-fetch/LICENSE.md",
     "node_modules/bmp-js/test/bit8_out.bmp",
     "node_modules/bmp-js/test/bit8_RLE_out.bmp",
     "node_modules/bmp-js/test/bit8_RLE.bmp",
-    "node_modules/is-url/Readme.md",
     "canvas/userflow.canvas",
     "canvas/note.canvas",
-    "canvas/datamodel.canvas",
-    "userflow.canvas",
-    "note.canvas",
-    "datamodel.canvas"
+    "canvas/datamodel.canvas"
   ]
 }

@@ -1,9 +1,11 @@
 .legal-page {
     display: flex;
     flex-direction: column;
-    min-height: 100dvh;
+    height: 100dvh;
     background: var(--bg-color);
     color: var(--text-main);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .legal-header {
@@ -46,6 +48,9 @@
 }
 
 .legal-content {
+    flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     padding: 24px 20px;
     max-width: 680px;
     width: 100%;
