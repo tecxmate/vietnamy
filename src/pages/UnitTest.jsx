@@ -6,7 +6,8 @@ import { useDong } from '../context/DongContext';
 import speak from '../utils/speak';
 import { loadSettings } from '../components/TopBar';
 import { checkVietnameseInput } from '../utils/fuzzyVietnamese';
-import { playSuccess, playError, playDisabled, playButton } from '../utils/sound';
+import { playSuccess, playError } from '../utils/sound';
+import SoundButton from '../components/SoundButton';
 
 const UNIT_QUIZ_SIZE = 12;
 const MODULE_QUIZ_SIZE = 6;
@@ -204,7 +205,6 @@ const UnitTest = () => {
     };
 
     const handleNext = () => {
-        playButton();
         if (hearts === 0) { navigate('/'); return; }
         if (currentIndex < exercises.length - 1) setCurrentIndex(i => i + 1);
         else setIsFinished(true);
@@ -271,9 +271,9 @@ const UnitTest = () => {
                             Back to Roadmap
                         </button>
                     )}
-                    <button className="primary w-full shadow-lg" onClick={() => { playButton(); navigate(nextNodeRoute || '/'); }} style={{ fontSize: 18, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
+                    <SoundButton className="primary w-full shadow-lg" onClick={() => navigate(nextNodeRoute || '/')} style={{ fontSize: 18, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
                         CONTINUE {nextNodeRoute && <ChevronRight size={20} />}
-                    </button>
+                    </SoundButton>
                 </div>
             </div>
         );
@@ -571,7 +571,7 @@ const UnitTest = () => {
                         {isCorrect && fuzzyHint && (
                             <div style={{ fontSize: 18, color: 'var(--success-color)', fontWeight: 600 }}>{fuzzyHint}</div>
                         )}
-                        <button
+                        <SoundButton
                             className="primary shadow-lg"
                             style={{
                                 width: '100%', fontSize: 18,
@@ -582,17 +582,17 @@ const UnitTest = () => {
                             onClick={handleNext}
                         >
                             CONTINUE
-                        </button>
+                        </SoundButton>
                     </div>
                 ) : (
                     <div style={{ display: 'flex', gap: 10 }}>
-                        <button
-                            className="primary shadow-lg"
+                        <SoundButton
+                            className={`${canCheck() ? 'primary' : 'disabled'} shadow-lg`}
                             style={{ flex: 1, fontSize: 18, opacity: canCheck() ? 1 : 0.5, backgroundColor: '#F97316', boxShadow: '0 4px 0 #C2410C' }}
-                            onClick={() => canCheck() ? handleCheck() : playDisabled()}
+                            onClick={handleCheck}
                         >
                             CHECK
-                        </button>
+                        </SoundButton>
                         {testMode && (
                             <button
                                 className="shadow-lg"

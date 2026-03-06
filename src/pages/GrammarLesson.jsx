@@ -5,7 +5,8 @@ import { getNodeById } from '../lib/db';
 import { getGrammarItems } from '../lib/grammarDB';
 import { useDong } from '../context/DongContext';
 import speak from '../utils/speak';
-import { playButton, playSuccess, playError, playDisabled } from '../utils/sound';
+import { playSuccess, playError } from '../utils/sound';
+import SoundButton from '../components/SoundButton';
 
 // Build tip cards from a grammar item's data
 function buildTipCards(item) {
@@ -252,7 +253,6 @@ const GrammarLesson = () => {
     };
 
     const handleNext = () => {
-        playButton();
         if (hearts === 0) { navigate('/'); return; }
         if (currentIndex < exercises.length - 1) {
             setCurrentIndex(i => i + 1);
@@ -337,7 +337,7 @@ const GrammarLesson = () => {
                                 <ArrowLeft size={20} />
                             </button>
                         )}
-                        <button
+                        <SoundButton
                             className="primary shadow-lg"
                             style={{
                                 flex: 1, fontSize: 17, padding: '16px 24px', borderRadius: 14,
@@ -345,7 +345,6 @@ const GrammarLesson = () => {
                                 display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
                             }}
                             onClick={() => {
-                                playButton();
                                 if (!isLastCard) {
                                     setCardIndex(i => i + 1);
                                 } else if (exercises.length > 0) {
@@ -360,7 +359,7 @@ const GrammarLesson = () => {
                                 ? (exercises.length > 0 ? 'START LESSON' : 'DONE')
                                 : <>CONTINUE <ArrowRight size={18} /></>
                             }
-                        </button>
+                        </SoundButton>
                     </div>
                 </div>
             </div>
@@ -379,7 +378,7 @@ const GrammarLesson = () => {
                     <p style={{ color: 'var(--text-muted)' }}>{score}/{exercises.length} correct</p>
                 </div>
                 <div style={{ padding: 24, borderTop: '2px solid var(--border-color)', backgroundColor: 'var(--surface-color)' }}>
-                    <button className="primary w-full shadow-lg" onClick={() => { playButton(); navigate('/'); }}>CONTINUE</button>
+                    <SoundButton className="primary w-full shadow-lg" onClick={() => navigate('/')}>CONTINUE</SoundButton>
                 </div>
             </div>
         );
@@ -484,7 +483,7 @@ const GrammarLesson = () => {
                                 {currentEx?.prompt?.answer_vi || currentEx?.prompt?.answer_en}
                             </div>
                         )}
-                        <button
+                        <SoundButton
                             className="primary shadow-lg"
                             style={{
                                 width: '100%', fontSize: 18,
@@ -495,16 +494,16 @@ const GrammarLesson = () => {
                             onClick={handleNext}
                         >
                             CONTINUE
-                        </button>
+                        </SoundButton>
                     </div>
                 ) : (
-                    <button
-                        className="primary shadow-lg"
+                    <SoundButton
+                        className={`${canCheck() ? 'primary' : 'disabled'} shadow-lg`}
                         style={{ width: '100%', fontSize: 18, opacity: canCheck() ? 1 : 0.5, backgroundColor: '#06D6A0', boxShadow: '0 4px 0 #05A67D' }}
-                        onClick={() => canCheck() ? handleCheck() : playDisabled()}
+                        onClick={handleCheck}
                     >
                         CHECK
-                    </button>
+                    </SoundButton>
                 )}
             </div>
         </div>

@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { Volume2, Check, X, RotateCw, ArrowLeft, Trophy, Flame, Star, ChevronRight, Lightbulb } from 'lucide-react';
 import { useTTS } from '../../hooks/useTTS';
 import './NumbersPractice.css';
-import { playButton, playSuccess, playError, playDisabled } from '../../utils/sound';
+import { playSuccess, playError } from '../../utils/sound';
+import SoundButton from '../../components/SoundButton';
 import './PracticeShared.css'; // Add shared layout
 
 // ─── Vietnamese Number Engine ──────────────────────────────────────
@@ -346,12 +347,12 @@ export default function NumbersPractice() {
                     </p>
                 </div>
                 <div className="practice-bottom-bar" style={{ flexDirection: 'row', gap: '16px', justifyContent: 'center' }}>
-                    <button className="practice-action-btn" style={{ background: 'var(--surface-color)', border: '2px solid var(--border-color)', color: 'var(--text-main)', width: 'auto', flex: 1, boxShadow: '0 4px 0 var(--border-color)' }} onClick={() => { playButton(); setShowSummary(false) || setStage(1); }}>
+                    <SoundButton className="practice-action-btn" sound="button" style={{ background: 'var(--surface-color)', border: '2px solid var(--border-color)', color: 'var(--text-main)', width: 'auto', flex: 1, boxShadow: '0 4px 0 var(--border-color)' }} onClick={() => { setShowSummary(false) || setStage(1); }}>
                         Back
-                    </button>
-                    <button className="practice-action-btn primary" style={{ width: 'auto', flex: 2 }} onClick={() => { playButton(); handleRestartChallenge(); }}>
+                    </SoundButton>
+                    <SoundButton className="practice-action-btn primary" style={{ width: 'auto', flex: 2 }} onClick={handleRestartChallenge}>
                         Try Again
-                    </button>
+                    </SoundButton>
                 </div>
             </div>
         );
@@ -499,20 +500,20 @@ export default function NumbersPractice() {
                         )}
 
                         {builderFeedback === 'idle' ? (
-                            <button
+                            <SoundButton
                                 className={`practice-action-btn ${builtAnswer.length > 0 ? 'primary' : 'disabled'}`}
-                                onClick={() => builtAnswer.length > 0 ? handleBuilderCheck() : playDisabled()}
+                                onClick={handleBuilderCheck}
                             >
                                 Check
-                            </button>
+                            </SoundButton>
                         ) : (
-                            <button
+                            <SoundButton
                                 className={`practice-action-btn primary`}
                                 style={builderFeedback === 'incorrect' ? { background: 'var(--danger-color)', color: 'white', boxShadow: '0 4px 0 #b92b49' } : { background: 'var(--success-color)', color: '#1a1a1a', boxShadow: '0 4px 0 #049e75' }}
-                                onClick={() => { playButton(); handleBuilderContinue(); }}
+                                onClick={handleBuilderContinue}
                             >
                                 Continue
-                            </button>
+                            </SoundButton>
                         )}
                     </div>
                 </div>
@@ -630,24 +631,21 @@ export default function NumbersPractice() {
                         )}
 
                         {challengeFeedback === 'idle' ? (
-                            <button
+                            <SoundButton
                                 className={`practice-action-btn ${(currentChallenge.type === 'listen-type' ? typedAnswer.trim() !== '' : !!selectedOption) ? 'primary' : 'disabled'
                                     }`}
-                                onClick={() => {
-                                    const hasAnswer = currentChallenge.type === 'listen-type' ? typedAnswer.trim() !== '' : !!selectedOption;
-                                    hasAnswer ? handleChallengeCheck() : playDisabled();
-                                }}
+                                onClick={handleChallengeCheck}
                             >
                                 Check
-                            </button>
+                            </SoundButton>
                         ) : (
-                            <button
+                            <SoundButton
                                 className={`practice-action-btn primary`}
                                 style={challengeFeedback === 'incorrect' ? { background: 'var(--danger-color)', color: 'white', boxShadow: '0 4px 0 #b92b49' } : { background: 'var(--success-color)', color: '#1a1a1a', boxShadow: '0 4px 0 #049e75' }}
-                                onClick={() => { playButton(); handleChallengeContinue(); }}
+                                onClick={handleChallengeContinue}
                             >
                                 Continue
-                            </button>
+                            </SoundButton>
                         )}
                     </div>
                 </div>
@@ -658,9 +656,9 @@ export default function NumbersPractice() {
             {/* CTA — outside scroll area, anchored at bottom */}
             {stage === 1 && (
                 <div className="stage-cta">
-                    <button onClick={() => { playButton(); setStagesCompleted(prev => new Set([...prev, 1])); setStage(2); }}>
+                    <SoundButton sound="button" onClick={() => { setStagesCompleted(prev => new Set([...prev, 1])); setStage(2); }}>
                         I know these! Next <ChevronRight size={18} style={{ verticalAlign: 'middle' }} />
-                    </button>
+                    </SoundButton>
                 </div>
             )}
         </div>

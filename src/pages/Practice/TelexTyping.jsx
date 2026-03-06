@@ -3,7 +3,8 @@ import './TelexTyping.css';
 import { ArrowLeft, RefreshCw, Keyboard, Trophy, CheckCircle, XCircle, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import './TelexTyping.css';
-import { playButton, playSuccess, playError } from '../../utils/sound';
+import { playSuccess, playError } from '../../utils/sound';
+import SoundButton from '../../components/SoundButton';
 import './PracticeShared.css'; // Add shared layout
 
 // Removed canvas-confetti import to avoid dependency issues
@@ -260,7 +261,7 @@ const TelexTyping = () => {
                                                     className="construction-input"
                                                     style={{ fontSize: '2rem', textAlign: 'center', padding: '16px', width: '220px', border: '2px solid var(--border-color)', borderRadius: 'var(--radius-lg)', background: 'var(--surface-color)', color: 'var(--text-main)', letterSpacing: '4px', outline: 'none', transition: 'all 0.2s' }}
                                                 />
-                                                <button type="submit" className="practice-action-btn primary" style={{ width: '220px' }} onClick={() => playButton()}>Submit</button>
+                                                <SoundButton type="submit" className="practice-action-btn primary" style={{ width: '220px' }}>Submit</SoundButton>
                                                 <p className="hint-text" style={{ color: 'var(--text-muted)', fontStyle: 'italic', fontSize: '0.9rem' }}>{currentQuestion.hint}</p>
                                             </form>
                                         )}
@@ -284,15 +285,15 @@ const TelexTyping = () => {
             {/* Bottom Bar for navigation actions */}
             <div className="practice-bottom-bar" style={{ justifyContent: 'center' }}>
                 {gameState === 'intro' && (
-                    <button className="practice-action-btn primary" onClick={() => { playButton(); handleStart(); }}>
+                    <SoundButton className="practice-action-btn primary" onClick={handleStart}>
                         Start Challenge
-                    </button>
+                    </SoundButton>
                 )}
                 {gameState === 'summary' && (
                     <div style={{ display: 'flex', gap: '16px', width: '100%', maxWidth: '400px' }}>
-                        <button className="practice-action-btn" style={{ flex: 1, background: 'var(--surface-color)', border: '2px solid var(--border-color)', color: 'var(--text-main)', boxShadow: '0 4px 0 var(--border-color)', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8px' }} onClick={() => { playButton(); handleStart(); }}>
+                        <SoundButton className="practice-action-btn" sound="button" style={{ flex: 1, background: 'var(--surface-color)', border: '2px solid var(--border-color)', color: 'var(--text-main)', boxShadow: '0 4px 0 var(--border-color)', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8px' }} onClick={handleStart}>
                             <RefreshCw size={20} /> Play Again
-                        </button>
+                        </SoundButton>
                         <Link to="/practice" className="practice-action-btn primary" style={{ flex: 1, textDecoration: 'none', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                             Finish
                         </Link>

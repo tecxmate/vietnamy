@@ -26,7 +26,7 @@ function isEnabled() {
 function play(sound) {
     init();
     if (!ready || !isEnabled()) return;
-    try { snd.play(sound); } catch { /* swallow */ }
+    try { snd.play(sound, { volume: 0.5 }); } catch { /* swallow */ }
 }
 
 // ─── Public API ──────────────────────────────────────────────────────────────

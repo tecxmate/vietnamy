@@ -9,7 +9,8 @@ import { lookupWords } from '../lib/dictionaryLookup';
 import { checkVietnameseInput } from '../utils/fuzzyVietnamese';
 import { loadSettings } from './TopBar';
 import { fireNotification } from '../context/NotificationContext';
-import { playSuccess, playError, playButton, playDisabled } from '../utils/sound';
+import { playSuccess, playError } from '../utils/sound';
+import SoundButton from './SoundButton';
 
 const LessonGame = () => {
     const { lessonId } = useParams();
@@ -463,7 +464,6 @@ const LessonGame = () => {
     };
 
     const handleNext = () => {
-        playButton();
         if (hearts === 0) {
             navigate('/');
             return;
@@ -478,7 +478,6 @@ const LessonGame = () => {
     };
 
     const handleNextRetention = () => {
-        playButton();
         const nextQueue = [...retentionQueue];
         nextQueue.shift();
         setRetentionQueue(nextQueue);
@@ -525,9 +524,9 @@ const LessonGame = () => {
                     <button className="ghost" style={{ color: '#FF4B4B', fontWeight: 700, width: '100%' }} onClick={() => navigate('/')}>
                         QUIT
                     </button>
-                    <button className="primary shadow-lg" style={{ backgroundColor: '#1CB0F6', color: '#1A1A1A', boxShadow: '0 4px 0 #1899D6', border: 'none', width: '100%', fontSize: 18 }} onClick={() => { playButton(); setShowQuitConfirm(false); }}>
+                    <SoundButton className="primary shadow-lg" style={{ backgroundColor: '#1CB0F6', color: '#1A1A1A', boxShadow: '0 4px 0 #1899D6', border: 'none', width: '100%', fontSize: 18 }} onClick={() => setShowQuitConfirm(false)}>
                         KEEP LEARNING
-                    </button>
+                    </SoundButton>
                 </div>
             </div>
         );
@@ -543,9 +542,9 @@ const LessonGame = () => {
                     </div>
                 </div>
                 <div style={{ padding: '24px 16px', borderTop: '2px solid rgba(255,255,255,0.1)' }}>
-                    <button className="primary shadow-lg" style={{ width: '100%', fontSize: 18 }} onClick={handleNextRetention}>
+                    <SoundButton className="primary shadow-lg" style={{ width: '100%', fontSize: 18 }} onClick={handleNextRetention}>
                         CONTINUE
-                    </button>
+                    </SoundButton>
                 </div>
             </div>
         );
@@ -565,9 +564,9 @@ const LessonGame = () => {
                     <h2 style={{ fontSize: 24, marginTop: 40, lineHeight: 1.4 }}>You finished this Weekend Quest.<br />Exquisite work!</h2>
                 </div>
                 <div style={{ padding: '24px 16px', borderTop: '2px solid rgba(255,255,255,0.1)' }}>
-                    <button className="primary shadow-lg" style={{ backgroundColor: '#1CB0F6', color: '#1A1A1A', boxShadow: '0 4px 0 #1899D6', border: 'none', width: '100%', fontSize: 18 }} onClick={handleNextRetention}>
+                    <SoundButton className="primary shadow-lg" style={{ backgroundColor: '#1CB0F6', color: '#1A1A1A', boxShadow: '0 4px 0 #1899D6', border: 'none', width: '100%', fontSize: 18 }} onClick={handleNextRetention}>
                         I DID IT
-                    </button>
+                    </SoundButton>
                 </div>
             </div>
         );
@@ -586,12 +585,12 @@ const LessonGame = () => {
                     <h2 style={{ fontSize: 24, lineHeight: 1.4 }}>Come back <span style={{ color: '#CE82FF' }}>tomorrow</span> for this<br />triple XP Boost</h2>
                 </div>
                 <div style={{ padding: '24px 16px', borderTop: '2px solid rgba(255,255,255,0.1)', display: 'flex', flexDirection: 'column', gap: 10 }}>
-                    <button className="ghost" style={{ color: '#1CB0F6', fontWeight: 700, width: '100%' }} onClick={handleNextRetention}>
+                    <SoundButton className="ghost" style={{ color: '#1CB0F6', fontWeight: 700, width: '100%' }} sound="button" onClick={handleNextRetention}>
                         CONTINUE
-                    </button>
-                    <button className="primary shadow-lg" style={{ backgroundColor: '#1CB0F6', color: '#1A1A1A', boxShadow: '0 4px 0 #1899D6', border: 'none', width: '100%', fontSize: 18, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }} onClick={handleNextRetention}>
+                    </SoundButton>
+                    <SoundButton className="primary shadow-lg" style={{ backgroundColor: '#1CB0F6', color: '#1A1A1A', boxShadow: '0 4px 0 #1899D6', border: 'none', width: '100%', fontSize: 18, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }} onClick={handleNextRetention}>
                         <span style={{ fontSize: 14 }}>&#9654;</span> EARN ANOTHER REWARD
-                    </button>
+                    </SoundButton>
                 </div>
             </div>
         );
@@ -676,11 +675,10 @@ const LessonGame = () => {
 
                 {/* Bottom navigation */}
                 <div style={{ padding: '24px 16px', borderTop: '2px solid var(--border-color)', backgroundColor: 'var(--surface-color)', minHeight: 140, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                    <button
+                    <SoundButton
                         className="primary shadow-lg"
                         style={{ width: '100%', fontSize: 18, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}
                         onClick={() => {
-                            playButton();
                             if (wordIntroIndex < lessonWords.length - 1) {
                                 setWordIntroIndex(i => i + 1);
                             } else {
@@ -689,7 +687,7 @@ const LessonGame = () => {
                         }}
                     >
                         {wordIntroIndex < lessonWords.length - 1 ? 'NEXT WORD' : 'START EXERCISES'} <ChevronRight size={20} />
-                    </button>
+                    </SoundButton>
                 </div>
             </div>
         );
@@ -727,13 +725,13 @@ const LessonGame = () => {
                             Back to Roadmap
                         </button>
                     )}
-                    <button
+                    <SoundButton
                         className="primary w-full shadow-lg"
                         style={{ fontSize: 18 }}
-                        onClick={() => { playButton(); navigate(nextNodeRoute || '/'); }}
+                        onClick={() => navigate(nextNodeRoute || '/')}
                     >
                         CONTINUE
-                    </button>
+                    </SoundButton>
                 </div>
             </div>
         );
@@ -1192,7 +1190,7 @@ const LessonGame = () => {
                             </div>
                         )}
 
-                        <button
+                        <SoundButton
                             className="primary shadow-lg"
                             style={{
                                 width: '100%',
@@ -1204,17 +1202,17 @@ const LessonGame = () => {
                             onClick={handleNext}
                         >
                             CONTINUE
-                        </button>
+                        </SoundButton>
                     </div>
                 ) : (
                     <div style={{ display: 'flex', gap: 10 }}>
-                        <button
-                            className="primary shadow-lg"
+                        <SoundButton
+                            className={`${canCheck() ? 'primary' : 'disabled'} shadow-lg`}
                             style={{ flex: 1, fontSize: 18, opacity: canCheck() ? 1 : 0.5 }}
-                            onClick={() => canCheck() ? handleCheck() : playDisabled()}
+                            onClick={handleCheck}
                         >
                             CHECK
-                        </button>
+                        </SoundButton>
                         {testMode && (
                             <button
                                 className="shadow-lg"

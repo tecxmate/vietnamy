@@ -11,7 +11,8 @@ import VOCAB_WORDS, { CATEGORIES } from '../../data/vocabWords';
 import { getDueItems, recordReview, getTotalItems } from '../../lib/srs';
 import speak from '../../utils/speak';
 import './VocabPractice.css';
-import { playButton, playSuccess, playError, playDisabled } from '../../utils/sound';
+import { playSuccess, playError } from '../../utils/sound';
+import SoundButton from '../../components/SoundButton';
 import './PracticeShared.css';
 
 const shuffle = (arr) => [...arr].sort(() => Math.random() - 0.5);
@@ -224,12 +225,12 @@ function QuizTab({ speak, bottomBarContainer }) {
 
         const summaryBottomBar = (
             <div className="practice-bottom-bar" style={{ flexDirection: 'row', gap: '12px', justifyContent: 'center' }}>
-                <button className="practice-action-btn" style={{ background: 'var(--surface-color)', border: '2px solid var(--border-color)', color: 'var(--text-main)', width: 'auto', flex: 1, boxShadow: '0 4px 0 var(--border-color)' }} onClick={() => { playButton(); setShowSummary(false) || setQIndex(0); }}>
+                <SoundButton className="practice-action-btn" sound="button" style={{ background: 'var(--surface-color)', border: '2px solid var(--border-color)', color: 'var(--text-main)', width: 'auto', flex: 1, boxShadow: '0 4px 0 var(--border-color)' }} onClick={() => { setShowSummary(false) || setQIndex(0); }}>
                     Back
-                </button>
-                <button className="practice-action-btn primary" style={{ width: 'auto', flex: 2 }} onClick={() => { playButton(); handleRestart(); }}>
+                </SoundButton>
+                <SoundButton className="practice-action-btn primary" style={{ width: 'auto', flex: 2 }} onClick={handleRestart}>
                     Try Again
-                </button>
+                </SoundButton>
             </div>
         );
 
@@ -270,20 +271,20 @@ function QuizTab({ speak, bottomBarContainer }) {
             )}
 
             {feedback === 'idle' ? (
-                <button
+                <SoundButton
                     className={`practice-action-btn ${selected ? 'primary' : 'disabled'}`}
-                    onClick={() => selected ? handleCheck() : playDisabled()}
+                    onClick={handleCheck}
                 >
                     Check
-                </button>
+                </SoundButton>
             ) : (
-                <button
+                <SoundButton
                     className={`practice-action-btn primary`}
                     style={feedback === 'incorrect' ? { background: 'var(--danger-color)', color: 'white', boxShadow: '0 4px 0 #b92b49' } : { background: 'var(--success-color)', color: '#1a1a1a', boxShadow: '0 4px 0 #049e75' }}
-                    onClick={() => { playButton(); handleContinue(); }}
+                    onClick={handleContinue}
                 >
                     Continue
-                </button>
+                </SoundButton>
             )}
         </div>
     );
@@ -451,13 +452,13 @@ function ReviewTab({ bottomBarContainer }) {
                 </div>
             )}
             {feedback === 'idle' ? (
-                <button className={`practice-action-btn ${selected ? 'primary' : 'disabled'}`} onClick={() => selected ? handleCheck() : playDisabled()}>Check</button>
+                <SoundButton className={`practice-action-btn ${selected ? 'primary' : 'disabled'}`} onClick={handleCheck}>Check</SoundButton>
             ) : (
-                <button
+                <SoundButton
                     className="practice-action-btn primary"
                     style={feedback === 'incorrect' ? { background: 'var(--danger-color)', color: 'white', boxShadow: '0 4px 0 #b92b49' } : { background: 'var(--success-color)', color: '#1a1a1a', boxShadow: '0 4px 0 #049e75' }}
-                    onClick={() => { playButton(); handleContinue(); }}
-                >Continue</button>
+                    onClick={handleContinue}
+                >Continue</SoundButton>
             )}
         </div>
     );

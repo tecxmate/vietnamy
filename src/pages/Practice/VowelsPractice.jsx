@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { Volume2, Check, X, RotateCw, ArrowLeft, Trophy, Flame, Star, ChevronRight } from 'lucide-react';
 import { useTTS } from '../../hooks/useTTS';
 import './VowelsPractice.css';
-import { playButton, playSuccess, playError, playDisabled } from '../../utils/sound';
+import { playSuccess, playError } from '../../utils/sound';
+import SoundButton from '../../components/SoundButton';
 import './PracticeShared.css'; // Add shared layout
 
 // ─── Data ───────────────────────────────────────────────────────────
@@ -277,12 +278,12 @@ export default function VowelsPractice() {
                     </p>
                 </div>
                 <div className="practice-bottom-bar" style={{ flexDirection: 'row', gap: '16px', justifyContent: 'center' }}>
-                    <button className="practice-action-btn" style={{ background: 'var(--surface-color)', border: '2px solid var(--border-color)', color: 'var(--text-main)', width: 'auto', flex: 1, boxShadow: '0 4px 0 var(--border-color)' }} onClick={() => { playButton(); setShowSummary(false) || setSection(1); }}>
+                    <SoundButton className="practice-action-btn" sound="button" style={{ background: 'var(--surface-color)', border: '2px solid var(--border-color)', color: 'var(--text-main)', width: 'auto', flex: 1, boxShadow: '0 4px 0 var(--border-color)' }} onClick={() => { setShowSummary(false) || setSection(1); }}>
                         Back
-                    </button>
-                    <button className="practice-action-btn primary" style={{ width: 'auto', flex: 2 }} onClick={() => { playButton(); handleRestart(); }}>
+                    </SoundButton>
+                    <SoundButton className="practice-action-btn primary" style={{ width: 'auto', flex: 2 }} onClick={handleRestart}>
                         Try Again
-                    </button>
+                    </SoundButton>
                 </div>
             </div>
         );
@@ -550,20 +551,20 @@ export default function VowelsPractice() {
                         )}
 
                         {feedback === 'idle' ? (
-                            <button
+                            <SoundButton
                                 className={`practice-action-btn ${selected ? 'primary' : 'disabled'}`}
-                                onClick={() => selected ? handleCheck() : playDisabled()}
+                                onClick={handleCheck}
                             >
                                 Check
-                            </button>
+                            </SoundButton>
                         ) : (
-                            <button
+                            <SoundButton
                                 className={`practice-action-btn primary`}
                                 style={feedback === 'incorrect' ? { background: 'var(--danger-color)', color: 'white', boxShadow: '0 4px 0 #b92b49' } : { background: 'var(--success-color)', color: '#1a1a1a', boxShadow: '0 4px 0 #049e75' }}
-                                onClick={() => { playButton(); handleContinue(); }}
+                                onClick={handleContinue}
                             >
                                 Continue
-                            </button>
+                            </SoundButton>
                         )}
                     </div>
                 </div>
@@ -574,30 +575,30 @@ export default function VowelsPractice() {
             {/* CTA — outside scroll area, anchored at bottom */}
             {section === 1 && (
                 <div className="vp-cta">
-                    <button onClick={() => { playButton(); startSection(2); }}>
+                    <SoundButton sound="button" onClick={() => startSection(2)}>
                         Next: Diphthongs <ChevronRight size={18} style={{ verticalAlign: 'middle' }} />
-                    </button>
+                    </SoundButton>
                 </div>
             )}
             {section === 2 && (
                 <div className="vp-cta">
-                    <button onClick={() => { playButton(); startSection(3); }}>
+                    <SoundButton sound="button" onClick={() => startSection(3)}>
                         Next: Gliding <ChevronRight size={18} style={{ verticalAlign: 'middle' }} />
-                    </button>
+                    </SoundButton>
                 </div>
             )}
             {section === 3 && (
                 <div className="vp-cta">
-                    <button onClick={() => { playButton(); startSection(4); }}>
+                    <SoundButton sound="button" onClick={() => startSection(4)}>
                         Next: Triphthongs <ChevronRight size={18} style={{ verticalAlign: 'middle' }} />
-                    </button>
+                    </SoundButton>
                 </div>
             )}
             {section === 4 && (
                 <div className="vp-cta">
-                    <button onClick={() => { playButton(); startSection(5); }}>
+                    <SoundButton sound="button" onClick={() => startSection(5)}>
                         Start Quiz <ChevronRight size={18} style={{ verticalAlign: 'middle' }} />
-                    </button>
+                    </SoundButton>
                 </div>
             )}
         </div>
