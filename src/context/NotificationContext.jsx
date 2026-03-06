@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, useCallback, useRef } from 'react';
+import { playNotifSound } from '../utils/sound';
 
 const NotificationContext = createContext(null);
 
@@ -116,6 +117,9 @@ export function NotificationProvider({ children }) {
                 timestamp: Date.now(),
                 read: false,
             };
+
+            // Play mapped UI sound
+            playNotifSound(id);
 
             // Add to persistent history
             setHistory(h => [entry, ...h].slice(0, MAX_HISTORY));

@@ -6,6 +6,7 @@ import { useDong } from '../context/DongContext';
 import speak from '../utils/speak';
 import { loadSettings } from '../components/TopBar';
 import { checkVietnameseInput } from '../utils/fuzzyVietnamese';
+import { playSuccess, playError } from '../utils/sound';
 
 const UNIT_QUIZ_SIZE = 12;
 const MODULE_QUIZ_SIZE = 6;
@@ -133,6 +134,7 @@ const UnitTest = () => {
                 const leftPair = shuffledLeft[index];
                 const rightPair = shuffledRight[matchSelectedRight];
                 if (leftPair.vi_text === rightPair.vi_text && leftPair.en_text === rightPair.en_text) {
+                    playSuccess();
                     const newMatched = new Set(matchedSet);
                     newMatched.add(pairKey);
                     setMatchedSet(newMatched);
@@ -142,6 +144,7 @@ const UnitTest = () => {
                         setTimeout(() => { setIsCorrect(true); setIsChecking(true); setScore(s => s + 1); }, 400);
                     }
                 } else {
+                    playError();
                     setMatchFlashWrong(true);
                     setTimeout(() => { setMatchFlashWrong(false); setMatchSelectedLeft(null); setMatchSelectedRight(null); }, 500);
                 }
@@ -153,6 +156,7 @@ const UnitTest = () => {
                 const rightPair = shuffledRight[index];
                 const rightKey = `${rightPair.vi_text}::${rightPair.en_text}`;
                 if (leftPair.vi_text === rightPair.vi_text && leftPair.en_text === rightPair.en_text) {
+                    playSuccess();
                     const newMatched = new Set(matchedSet);
                     newMatched.add(rightKey);
                     setMatchedSet(newMatched);
@@ -162,6 +166,7 @@ const UnitTest = () => {
                         setTimeout(() => { setIsCorrect(true); setIsChecking(true); setScore(s => s + 1); }, 400);
                     }
                 } else {
+                    playError();
                     setMatchFlashWrong(true);
                     setTimeout(() => { setMatchFlashWrong(false); setMatchSelectedLeft(null); setMatchSelectedRight(null); }, 500);
                 }
@@ -194,8 +199,8 @@ const UnitTest = () => {
 
         setIsCorrect(correct);
         setIsChecking(true);
-        if (correct) setScore(s => s + 1);
-        else if (!testMode) dongCtx.loseHeart();
+        if (correct) { playSuccess(); setScore(s => s + 1); }
+        else { playError(); if (!testMode) dongCtx.loseHeart(); }
     };
 
     const handleNext = () => {

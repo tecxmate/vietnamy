@@ -5,6 +5,7 @@ import { getUnits, getNodesForUnitWithProgress } from '../../lib/db';
 import { getDueItems } from '../../lib/srs';
 import { useDong } from '../../context/DongContext';
 import { loadSettings } from '../TopBar';
+import { playButton, playDisabled } from '../../utils/sound';
 
 const NODE_STYLES = {
     orange: { color: '#FFB703', dark: '#CC9202', bg: 'rgba(255,183,3,0.12)', muted: 'rgba(255,183,3,0.35)', mutedBorder: 'rgba(255,183,3,0.25)', mutedIcon: 'rgba(255,183,3,0.5)', icon: MessageCircle, label: 'Lesson' },
@@ -84,6 +85,7 @@ const RoadmapTab = () => {
     };
 
     const handleContinueClick = () => {
+        playButton();
         for (const unit of units) {
             const nodes = nodesMap[unit.id] || [];
             const activeNode = nodes.find(n => n.status === 'active');
@@ -267,7 +269,7 @@ const RoadmapTab = () => {
                     <button
                         id="roadmap-continue-btn"
                         className="primary w-full shadow-lg"
-                        disabled
+                        onClick={playDisabled}
                         style={{
                             maxWidth: 400,
                             fontSize: 18,

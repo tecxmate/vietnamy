@@ -9,6 +9,7 @@ import { useUser } from '../context/UserContext';
 import { useT } from '../lib/i18n';
 import ReferralModal from './ReferralModal';
 import { useNotifications } from '../context/NotificationContext';
+import { getSoundEnabled, setSoundEnabled, playTap, playSelect } from '../utils/sound';
 
 const SETTINGS_KEY = 'vnme_settings';
 
@@ -281,6 +282,12 @@ const TopBar = ({ activeTab, subtitleOverride }) => {
                                     options={[{ v: '0.6', l: 'Slow' }, { v: '0.9', l: 'Normal' }, { v: '1.2', l: 'Fast' }]}
                                     onChange={v => updateSetting('ttsSpeed', v)}
                                 />
+                                <SettingToggle
+                                    label="Sound Effects"
+                                    icon={<Volume2 size={16} />}
+                                    checked={getSoundEnabled()}
+                                    onChange={v => { setSoundEnabled(v); if (v) playTap(); }}
+                                />
                             </SettingsGroup>
 
                             {/* Display */}
@@ -406,7 +413,7 @@ const SettingSelect = ({ label, icon, value, options, onChange }) => {
                     {options.map(o => (
                         <button
                             key={o.v}
-                            onClick={() => { onChange(o.v); setOpen(false); }}
+                            onClick={() => { playSelect(); onChange(o.v); setOpen(false); }}
                             style={{
                                 padding: '8px 14px', borderRadius: 'var(--radius-full)', fontSize: 13, fontWeight: 700,
                                 border: o.v === value ? '2px solid var(--primary-color)' : '2px solid var(--border-color)',
@@ -449,6 +456,7 @@ const SettingMultiSelect = ({ label, icon, values, options, onChange }) => {
                             <button
                                 key={o.v}
                                 onClick={() => {
+                                    playSelect();
                                     const next = isOn
                                         ? values.filter(v => v !== o.v)
                                         : [...values, o.v];

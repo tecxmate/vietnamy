@@ -9,6 +9,7 @@ import { lookupWords } from '../lib/dictionaryLookup';
 import { checkVietnameseInput } from '../utils/fuzzyVietnamese';
 import { loadSettings } from './TopBar';
 import { fireNotification } from '../context/NotificationContext';
+import { playSuccess, playError, playButton } from '../utils/sound';
 
 const LessonGame = () => {
     const { lessonId } = useParams();
@@ -322,6 +323,7 @@ const LessonGame = () => {
                 const leftPair = shuffledLeft[index];
                 const rightPair = shuffledRight[matchSelectedRight];
                 if (leftPair.vi_text === rightPair.vi_text && leftPair.en_text === rightPair.en_text) {
+                    playSuccess();
                     const newMatched = new Set(matchedSet);
                     newMatched.add(pairKey);
                     setMatchedSet(newMatched);
@@ -339,6 +341,7 @@ const LessonGame = () => {
                         }, 400);
                     }
                 } else {
+                    playError();
                     setMatchFlashWrong(true);
                     setTimeout(() => {
                         setMatchFlashWrong(false);
@@ -355,6 +358,7 @@ const LessonGame = () => {
                 const rightPair = shuffledRight[index];
                 const rightKey = `${rightPair.vi_text}::${rightPair.en_text}`;
                 if (leftPair.vi_text === rightPair.vi_text && leftPair.en_text === rightPair.en_text) {
+                    playSuccess();
                     const newMatched = new Set(matchedSet);
                     newMatched.add(rightKey);
                     setMatchedSet(newMatched);
@@ -371,6 +375,7 @@ const LessonGame = () => {
                         }, 400);
                     }
                 } else {
+                    playError();
                     setMatchFlashWrong(true);
                     setTimeout(() => {
                         setMatchFlashWrong(false);
@@ -429,11 +434,13 @@ const LessonGame = () => {
         setIsChecking(true);
 
         if (correct) {
+            playSuccess();
             setScore(s => s + 1);
             const newStreak = currentStreak + 1;
             setCurrentStreak(newStreak);
             if (newStreak > bestStreak) setBestStreak(newStreak);
         } else {
+            playError();
             setCurrentStreak(0);
             notifiedStreakRef.current = 0; // reset streak notif gate
             if (!testMode) {
@@ -456,6 +463,7 @@ const LessonGame = () => {
     };
 
     const handleNext = () => {
+        playButton();
         if (hearts === 0) {
             navigate('/');
             return;
@@ -470,6 +478,7 @@ const LessonGame = () => {
     };
 
     const handleNextRetention = () => {
+        playButton();
         const nextQueue = [...retentionQueue];
         nextQueue.shift();
         setRetentionQueue(nextQueue);
@@ -671,6 +680,7 @@ const LessonGame = () => {
                         className="primary shadow-lg"
                         style={{ width: '100%', fontSize: 18, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}
                         onClick={() => {
+                            playButton();
                             if (wordIntroIndex < lessonWords.length - 1) {
                                 setWordIntroIndex(i => i + 1);
                             } else {
@@ -720,7 +730,7 @@ const LessonGame = () => {
                     <button
                         className="primary w-full shadow-lg"
                         style={{ fontSize: 18 }}
-                        onClick={() => navigate(nextNodeRoute || '/')}
+                        onClick={() => { playButton(); navigate(nextNodeRoute || '/'); }}
                     >
                         CONTINUE
                     </button>
