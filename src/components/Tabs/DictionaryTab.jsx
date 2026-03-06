@@ -670,8 +670,8 @@ const DictionaryTab = ({ pendingInput, clearPendingInput, onNavigateToLibrary })
         await runSearch(query);
     };
 
-    const handleWordTap = useCallback((word, rect) => {
-        setPopupWord({ word, anchorRect: rect });
+    const handleWordTap = useCallback((word, rect, isPhrase = false) => {
+        setPopupWord({ word, anchorRect: rect, isPhrase });
     }, []);
 
     const handleSuggestionClick = (word, pushHistory = true) => {
@@ -1181,8 +1181,10 @@ const DictionaryTab = ({ pendingInput, clearPendingInput, onNavigateToLibrary })
                     word={popupWord.word}
                     anchorRect={popupWord.anchorRect}
                     dictMode={dictMode}
+                    isPhrase={popupWord.isPhrase}
                     onClose={() => setPopupWord(null)}
                     onNavigate={(word) => { setPopupWord(null); handleSuggestionClick(word); }}
+                    onSave={(word) => { toggleDictSavedWord(word); setPopupWord(null); }}
                 />
             )}
 

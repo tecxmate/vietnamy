@@ -1677,6 +1677,11 @@
 .tappable-word:active {
     background-color: color-mix(in srgb, var(--primary-color) 18%, transparent);
 }
+.tappable-word--selected {
+    background-color: color-mix(in srgb, var(--primary-color) 22%, transparent);
+    border-bottom-color: var(--primary-color);
+    border-bottom-style: solid;
+}
 
 /* ── Word Popup ── */
 .word-popup-overlay {
@@ -1754,6 +1759,25 @@
     border-radius: 4px;
     display: inline-block;
     margin-bottom: 6px;
+}
+.word-popup-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+.word-popup-save {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-main);
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    padding: 4px 10px;
+    border-radius: 6px;
+    cursor: pointer;
 }
 .word-popup-more {
     display: flex;

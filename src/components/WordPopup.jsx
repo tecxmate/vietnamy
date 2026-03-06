@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Volume2, ArrowRight } from 'lucide-react';
+import { Volume2, ArrowRight, Bookmark } from 'lucide-react';
 import speak from '../utils/speak';
 
 const popupCache = new Map();
 
-const WordPopup = ({ word, anchorRect, dictMode, onClose, onNavigate }) => {
+const WordPopup = ({ word, anchorRect, dictMode, onClose, onNavigate, isPhrase, onSave }) => {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    // Map dictMode to API lang param
     const lang = dictMode === 'zh-s' || dictMode === 'zh-t' ? 'zh' : (dictMode || 'en');
 
     useEffect(() => {
@@ -33,7 +32,7 @@ const WordPopup = ({ word, anchorRect, dictMode, onClose, onNavigate }) => {
                     setData(result);
                     setLoading(false);
                 } else {
-                    // Fallback: try Google Translate
+                    // Fallback: Google Translate
                     const tl = lang === 'zh' ? 'zh-CN' : (lang === 'en' ? 'en' : lang);
                     fetch(`/api/translate?text=${encodeURIComponent(word)}&sl=vi&tl=${encodeURIComponent(tl)}`)
                         .then(r => r.ok ? r.json() : Promise.reject())
@@ -65,7 +64,7 @@ const WordPopup = ({ word, anchorRect, dictMode, onClose, onNavigate }) => {
         return () => { cancelled = true; };
     }, [word, lang]);
 
-    // Position: above or below the tapped word
+    // Position
     const style = {};
     if (anchorRect) {
         const viewH = window.innerHeight;
@@ -73,13 +72,11 @@ const WordPopup = ({ word, anchorRect, dictMode, onClose, onNavigate }) => {
         const margin = 12;
         const popupW = 260;
 
-        // Horizontal: center on word, clamp to screen
         let left = anchorRect.left + anchorRect.width / 2 - popupW / 2;
         left = Math.max(margin, Math.min(left, viewW - popupW - margin));
         style.left = left;
         style.width = popupW;
 
-        // Vertical: prefer above, fall back to below
         if (anchorRect.top > viewH * 0.4) {
             style.bottom = viewH - anchorRect.top + 6;
         } else {
@@ -114,12 +111,22 @@ const WordPopup = ({ word, anchorRect, dictMode, onClose, onNavigate }) => {
                         ) : (
                             <p className="word-popup-def word-popup-def--empty">No definition found</p>
                         )}
-                        <button
-                            className="word-popup-more"
-                            onClick={() => onNavigate(word)}
-                        >
-                            More <ArrowRight size={12} />
-                        </button>
+                        <div className="word-popup-actions">
+                            {onSave && (
+                                <button
+                                    className="word-popup-save"
+                                    onClick={() => onSave(word)}
+                                >
+                                    <Bookmark size={13} /> Save
+                                </button>
+                            )}
+                            <button
+                                className="word-popup-more"
+                                onClick={() => onNavigate(word)}
+                            >
+                                More <ArrowRight size={12} />
+                            </button>
+                        </div>
                     </>
                 ) : null}
             </div>

@@ -545,8 +545,8 @@ function ArticleReaderView({ article, onBack }) {
 
     const [popupWord, setPopupWord] = useState(null);
 
-    const handleWordTap = (word, rect) => {
-        setPopupWord({ word, anchorRect: rect });
+    const handleWordTap = (word, rect, isPhrase = false) => {
+        setPopupWord({ word, anchorRect: rect, isPhrase });
     };
 
     const handleSpeak = (text, e) => {
@@ -629,8 +629,10 @@ function ArticleReaderView({ article, onBack }) {
                     word={popupWord.word}
                     anchorRect={popupWord.anchorRect}
                     dictMode={translationLang === 'zh' ? 'zh-s' : 'en'}
+                    isPhrase={popupWord.isPhrase}
                     onClose={() => setPopupWord(null)}
                     onNavigate={() => setPopupWord(null)}
+                    onSave={(word) => { toggleDictSavedWord(word); setPopupWord(null); }}
                 />
             )}
 
