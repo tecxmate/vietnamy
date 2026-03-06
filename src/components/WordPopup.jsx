@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Volume2, ArrowRight, Bookmark } from 'lucide-react';
 import speak from '../utils/speak';
 
@@ -7,6 +7,8 @@ const popupCache = new Map();
 const WordPopup = ({ word, anchorRect, dictMode, onClose, onNavigate, isPhrase, onSave }) => {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
+    const cardRef = useRef(null);
+    const [pos, setPos] = useState(null);
 
     const lang = dictMode === 'zh-s' || dictMode === 'zh-t' ? 'zh' : (dictMode || 'en');
 
@@ -64,72 +66,109 @@ const WordPopup = ({ word, anchorRect, dictMode, onClose, onNavigate, isPhrase, 
         return () => { cancelled = true; };
     }, [word, lang]);
 
-    // Position
-    const style = {};
-    if (anchorRect) {
+    // Position the popup after it renders so we know its actual height
+    useEffect(() => {
+        if (!anchorRect || !cardRef.current) return;
+        const card = cardRef.current;
+        const cardH = card.offsetHeight;
         const viewH = window.innerHeight;
         const viewW = window.innerWidth;
-        const margin = 12;
+        const margin = 8;
+        const gap = 6;
         const popupW = 260;
 
         let left = anchorRect.left + anchorRect.width / 2 - popupW / 2;
         left = Math.max(margin, Math.min(left, viewW - popupW - margin));
-        style.left = left;
-        style.width = popupW;
 
-        if (anchorRect.top > viewH * 0.4) {
-            style.bottom = viewH - anchorRect.top + 6;
+        // Prefer above the word; if not enough space, go below
+        const spaceAbove = anchorRect.top - margin;
+        const spaceBelow = viewH - anchorRect.bottom - margin;
+
+        let top;
+        if (spaceAbove >= cardH + gap) {
+            // Place above
+            top = anchorRect.top - cardH - gap;
+        } else if (spaceBelow >= cardH + gap) {
+            // Place below
+            top = anchorRect.bottom + gap;
         } else {
-            style.top = anchorRect.bottom + 6;
+            // Not enough space either way — pick the side with more room
+            if (spaceAbove > spaceBelow) {
+                top = Math.max(margin, anchorRect.top - cardH - gap);
+            } else {
+                top = anchorRect.bottom + gap;
+            }
         }
-    }
+
+        setPos({ left, top, width: popupW });
+    }, [anchorRect, loading, data]);
+
+    // Close on outside click (but not on tappable words — those handle themselves)
+    useEffect(() => {
+        const handler = (e) => {
+            if (cardRef.current?.contains(e.target)) return;
+            if (e.target.closest?.('.tappable-word')) return;
+            onClose();
+        };
+        const t = setTimeout(() => document.addEventListener('click', handler), 50);
+        return () => { clearTimeout(t); document.removeEventListener('click', handler); };
+    }, [onClose]);
+
+    // Close on scroll
+    useEffect(() => {
+        const handler = () => onClose();
+        window.addEventListener('scroll', handler, { capture: true, once: true });
+        return () => window.removeEventListener('scroll', handler, { capture: true });
+    }, [onClose]);
 
     return (
-        <div className="word-popup-overlay" onClick={onClose}>
-            <div className="word-popup-card" style={style} onClick={e => e.stopPropagation()}>
-                {loading ? (
-                    <div className="word-popup-loading">Looking up...</div>
-                ) : data ? (
-                    <>
-                        <div className="word-popup-header">
-                            <span className="word-popup-word">{word}</span>
+        <div
+            ref={cardRef}
+            className="word-popup-card"
+            style={pos || { left: -9999, top: -9999, width: 260 }}
+        >
+            {loading ? (
+                <div className="word-popup-loading">Looking up...</div>
+            ) : data ? (
+                <>
+                    <div className="word-popup-header">
+                        <span className="word-popup-word">{word}</span>
+                        <button
+                            className="speak-btn speak-btn--sm"
+                            onClick={() => speak(word)}
+                            title="Listen"
+                        >
+                            <Volume2 size={16} />
+                        </button>
+                    </div>
+                    {data.ipa && <span className="word-popup-ipa">/{data.ipa}/</span>}
+                    {data.pos && <span className="word-popup-pos">{data.pos}</span>}
+                    {data.definition ? (
+                        <p className="word-popup-def">
+                            {data.definition}
+                            {data.translated && <span className="word-popup-badge">GT</span>}
+                        </p>
+                    ) : (
+                        <p className="word-popup-def word-popup-def--empty">No definition found</p>
+                    )}
+                    <div className="word-popup-actions">
+                        {onSave && (
                             <button
-                                className="speak-btn speak-btn--sm"
-                                onClick={() => speak(word)}
-                                title="Listen"
+                                className="word-popup-save"
+                                onClick={() => onSave(word)}
                             >
-                                <Volume2 size={16} />
+                                <Bookmark size={13} /> Save
                             </button>
-                        </div>
-                        {data.ipa && <span className="word-popup-ipa">/{data.ipa}/</span>}
-                        {data.pos && <span className="word-popup-pos">{data.pos}</span>}
-                        {data.definition ? (
-                            <p className="word-popup-def">
-                                {data.definition}
-                                {data.translated && <span className="word-popup-badge">GT</span>}
-                            </p>
-                        ) : (
-                            <p className="word-popup-def word-popup-def--empty">No definition found</p>
                         )}
-                        <div className="word-popup-actions">
-                            {onSave && (
-                                <button
-                                    className="word-popup-save"
-                                    onClick={() => onSave(word)}
-                                >
-                                    <Bookmark size={13} /> Save
-                                </button>
-                            )}
-                            <button
-                                className="word-popup-more"
-                                onClick={() => onNavigate(word)}
-                            >
-                                More <ArrowRight size={12} />
-                            </button>
-                        </div>
-                    </>
-                ) : null}
-            </div>
+                        <button
+                            className="word-popup-more"
+                            onClick={() => onNavigate(word)}
+                        >
+                            More <ArrowRight size={12} />
+                        </button>
+                    </div>
+                </>
+            ) : null}
         </div>
     );
 };
