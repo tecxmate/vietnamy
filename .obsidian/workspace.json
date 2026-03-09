@@ -11,14 +11,17 @@
             "id": "e709a357ee53a7cc",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "canvas",
               "state": {
-                "file": "docs/prd-notes/social_media_plan.md",
-                "mode": "source",
-                "source": false
+                "file": "docs/prd-notes/vnme-note.canvas",
+                "viewState": {
+                  "x": -599.4652350689674,
+                  "y": 413.2776965035984,
+                  "zoom": -0.15100311186327472
+                }
               },
-              "icon": "lucide-file",
-              "title": "social_media_plan"
+              "icon": "lucide-layout-dashboard",
+              "title": "vnme-note"
             }
           }
         ]
@@ -185,6 +188,9 @@
   },
   "active": "e709a357ee53a7cc",
   "lastOpenFiles": [
+    "server/databases/vn_en_dictionary_full_backup.db",
+    "docs/marketing-sales-sow.md",
+    "docs/prd-notes/social_media_plan.md",
     "dist/index.html",
     "dist/assets/dictionary-BM635fq9.js",
     "dist/assets/index-Yr1tv5AV.js",
@@ -195,12 +201,10 @@
     "docs/product-launch-plan.md",
     "docs/prd-notes/PRD.md",
     "docs/prd-notes/PROJECT_HANDOFF.md",
-    "docs/prd-notes/social_media_plan.md",
     "docs/prd-notes/study-content-overview.canvas",
     "dist/assets/index-DXaF-N6H.js",
     "src/components/SoundButton.jsx",
     "dist/assets/index-Bzjij4XY.js",
-    "dist/assets/index-XLWrEGkS.js",
     "node_modules/snd-lib/README.md",
     "node_modules/events/security.md",
     "node_modules/events/Readme.md",
@@ -236,7 +240,6 @@
     "node_modules/tesseract.js/docs/workers_vs_schedulers.md",
     "node_modules/tesseract.js/docs/tesseract_lang_list.md",
     "node_modules/tesseract.js/README.md",
-    "node_modules/tesseract.js/docs/performance.md",
     "node_modules/tesseract.js/docs/images/video-demo.gif",
     "node_modules/bmp-js/test/bit8_out.bmp",
     "node_modules/bmp-js/test/bit8_RLE_out.bmp",

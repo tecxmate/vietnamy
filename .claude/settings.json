@@ -54,7 +54,9 @@
     "additionalDirectories": [
       "/Users/niko/antigravity/vnme-app",
       "/tmp",
-      "/Users/niko/antigravity/vietnamy-landing/src"
+      "/Users/niko/antigravity/vietnamy-landing/src",
+      "/private/tmp",
+      "/Users/niko/antigravity/vnme-app/server/databases"
     ]
   }
 }

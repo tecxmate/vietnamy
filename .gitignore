@@ -29,6 +29,7 @@ dist-ssr
 
 # Full database archives (proprietary sources)
 server/databases/archive/
+*_full_backup.db
 
 # Large media files
 public/opening.mov
