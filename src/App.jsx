@@ -45,7 +45,9 @@ import TermsOfService from './pages/Legal/TermsOfService';
 import TonePractice from './pages/Practice/TonePractice';
 import PronounsPractice from './pages/Practice/PronounsPractice';
 import NumbersPractice from './pages/Practice/NumbersPractice';
-import ToneMarks from './pages/Practice/ToneMarks';
+import ToneMarksBasic from './pages/Practice/ToneMarksBasic';
+import ToneMarksSpecial from './pages/Practice/ToneMarksSpecial';
+import ToneMarksMaster from './pages/Practice/ToneMarksMaster';
 import VowelsPractice from './pages/Practice/VowelsPractice';
 import VocabPractice from './pages/Practice/VocabPractice';
 import TonePitchTraining from './pages/Practice/TonePitchTraining';
@@ -143,7 +145,10 @@ function App() {
                 <Route path="/practice/tones" element={<div className="mobile-app-wrapper"><TonePractice /></div>} />
                 <Route path="/practice/pronouns" element={<div className="mobile-app-wrapper"><PronounsPractice /></div>} />
                 <Route path="/practice/numbers" element={<div className="mobile-app-wrapper"><NumbersPractice /></div>} />
-                <Route path="/practice/tonemarks" element={<div className="mobile-app-wrapper"><ToneMarks /></div>} />
+                <Route path="/practice/tonemarks" element={<Navigate to="/practice/tonemarks-basic" replace />} />
+                <Route path="/practice/tonemarks-basic" element={<div className="mobile-app-wrapper"><ToneMarksBasic /></div>} />
+                <Route path="/practice/tonemarks-special" element={<div className="mobile-app-wrapper"><ToneMarksSpecial /></div>} />
+                <Route path="/practice/tonemarks-master" element={<div className="mobile-app-wrapper"><ToneMarksMaster /></div>} />
                 <Route path="/practice/vowels" element={<div className="mobile-app-wrapper"><VowelsPractice /></div>} />
                 <Route path="/practice/vocab" element={<Navigate to="/practice" replace />} />
                 <Route path="/practice/flashcards" element={<Navigate to="/practice" replace />} />

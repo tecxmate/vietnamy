@@ -8,7 +8,7 @@ import SoundButton from '../../components/SoundButton';
 import './PracticeShared.css'; // Add shared layout
 
 // ─── Vietnamese Vowel × Tone Data ──────────────────────────────────
-const VOWELS = ['a', 'ă', 'â', 'e', 'ê', 'i', 'o', 'ô', 'ơ', 'u', 'ư', 'y'];
+const ALL_VOWELS = ['a', 'ă', 'â', 'e', 'ê', 'i', 'o', 'ô', 'ơ', 'u', 'ư', 'y'];
 
 const TONES = [
     { id: 'ngang', name: 'Ngang', label: 'Level', mark: '(none)' },
@@ -94,11 +94,11 @@ const isDisabled = () => false;
 const shuffle = (arr) => [...arr].sort(() => Math.random() - 0.5);
 
 // ─── Component ─────────────────────────────────────────────────────
-export default function ToneMarks() {
+export default function ToneMarks({ vowels = ALL_VOWELS, title = '🔤 Dấu — Tone Marks', quizOnly = false }) {
     const { speak } = useTTS();
-    const [stage, setStage] = useState(1);
+    const [stage, setStage] = useState(quizOnly ? 4 : 1);
     const [playingCell, setPlayingCell] = useState(null);
-    const [selectedVowel, setSelectedVowel] = useState('a');
+    const [selectedVowel, setSelectedVowel] = useState(vowels[0]);
 
     // Quiz state
     const [qIndex, setQIndex] = useState(0);
@@ -113,13 +113,13 @@ export default function ToneMarks() {
     // ── Generate questions (skip disabled cells) ──
     const validPairs = useMemo(() => {
         const pairs = [];
-        VOWELS.forEach(v => {
+        vowels.forEach(v => {
             [1, 2, 3, 4, 5].forEach(ti => {
                 if (!isDisabled(v, ti)) pairs.push({ vowel: v, toneIndex: ti });
             });
         });
         return pairs;
-    }, []);
+    }, [vowels]);
 
     const questions = useMemo(() => {
         if (stage < 2 || stage > 4) return [];
@@ -132,7 +132,7 @@ export default function ToneMarks() {
                 const correct = TONE_MAP[vowel][toneIndex];
                 // Distractors: same vowel diff tones + diff vowels same tone (only valid ones)
                 const sameVowel = TONE_MAP[vowel].filter((_, i) => i !== toneIndex && i !== 0 && !isDisabled(vowel, i));
-                const sameTone = VOWELS.filter(v => v !== vowel && !isDisabled(v, toneIndex)).map(v => TONE_MAP[v][toneIndex]);
+                const sameTone = vowels.filter(v => v !== vowel && !isDisabled(v, toneIndex)).map(v => TONE_MAP[v][toneIndex]);
                 const distractors = shuffle([...sameVowel, ...sameTone]).filter(d => d !== correct).slice(0, 5);
                 qs.push({
                     type: 'combine',
@@ -170,7 +170,7 @@ export default function ToneMarks() {
                     // Combine
                     const correct = TONE_MAP[vowel][toneIndex];
                     const sameVowel = TONE_MAP[vowel].filter((_, idx) => idx !== toneIndex && idx !== 0 && !isDisabled(vowel, idx));
-                    const sameTone = VOWELS.filter(v2 => v2 !== vowel && !isDisabled(v2, toneIndex)).map(v2 => TONE_MAP[v2][toneIndex]);
+                    const sameTone = vowels.filter(v2 => v2 !== vowel && !isDisabled(v2, toneIndex)).map(v2 => TONE_MAP[v2][toneIndex]);
                     const distractors = shuffle([...sameVowel, ...sameTone]).filter(d => d !== correct).slice(0, 5);
                     qs.push({
                         type: 'combine',
@@ -197,7 +197,7 @@ export default function ToneMarks() {
         }
 
         return qs;
-    }, [stage, validPairs]);
+    }, [stage, validPairs, vowels]);
 
     const questionCount = questions.length;
     const currentQ = questions[qIndex];
@@ -312,7 +312,7 @@ export default function ToneMarks() {
                         <Link to="/practice" style={{ color: 'var(--text-main)', display: 'flex' }}>
                             <ArrowLeft size={24} />
                         </Link>
-                        🔤 Dấu — Tone Marks
+                        {title}
                     </h1>
                 </div>
                 <div className="practice-content-centered">
@@ -357,7 +357,7 @@ export default function ToneMarks() {
             {/* Tabs */}
             <div className="tm-stage-tabs">
                 {[
-                    { id: 1, label: 'Explore' },
+                    ...(!quizOnly ? [{ id: 1, label: 'Explore' }] : []),
                     { id: 2, label: 'Combine' },
                     { id: 3, label: 'Decompose' },
                     { id: 4, label: 'Quiz' },
@@ -384,7 +384,7 @@ export default function ToneMarks() {
 
                     {/* Vowel picker — horizontally scrollable pills */}
                     <div className="tm-vowel-picker">
-                        {VOWELS.map(v => (
+                        {vowels.map(v => (
                             <button
                                 key={v}
                                 className={`tm-vowel-pill ${selectedVowel === v ? 'active' : ''}`}
