@@ -43,7 +43,6 @@ import UnitTest from './pages/UnitTest';
 import PrivacyPolicy from './pages/Legal/PrivacyPolicy';
 import TermsOfService from './pages/Legal/TermsOfService';
 // Practice Modules
-import VocabPractice from './pages/Practice/VocabPractice';
 // Pronouns sub-modules
 import Pronouns1 from './pages/Practice/Pronouns1';
 import Pronouns2 from './pages/Practice/Pronouns2';
@@ -86,6 +85,13 @@ import ParticlesEmotion from './pages/Practice/ParticlesEmotion';
 import QuestionWords from './pages/Practice/QuestionWords';
 import QuestionWordsAdvanced from './pages/Practice/QuestionWordsAdvanced';
 import AspectMarkers from './pages/Practice/AspectMarkers';
+// Grammar drill modules (Units 26-30 + prepositions)
+import Connectors from './pages/Practice/Connectors';
+import Intensifiers from './pages/Practice/Intensifiers';
+import DegreeAdverbs from './pages/Practice/DegreeAdverbs';
+import Quantifiers from './pages/Practice/Quantifiers';
+import VisionVerbs from './pages/Practice/VisionVerbs';
+import Prepositions from './pages/Practice/Prepositions';
 
 function StudentApp({ initialTab = 'home' }) {
   const [hasCompletedOnboarding, setHasCompletedOnboarding] = useState(() => {
@@ -106,9 +112,15 @@ function StudentApp({ initialTab = 'home' }) {
   };
 
   const [pendingLibraryArticle, setPendingLibraryArticle] = useState(null);
+  const [pendingVocabDeck, setPendingVocabDeck] = useState(null);
 
   const handleNavigateToLibrary = (articleId) => {
     setPendingLibraryArticle(articleId);
+    setActiveTab('library');
+  };
+
+  const handleNavigateToVocabDeck = (deckId) => {
+    setPendingVocabDeck(deckId);
     setActiveTab('library');
   };
   const completeOnboarding = () => {
@@ -133,9 +145,9 @@ function StudentApp({ initialTab = 'home' }) {
   const renderTab = () => {
     switch (activeTab) {
       case 'home': return <HomeTab onSearchWord={handleDictInput} />;
-      case 'study': return <RoadmapTab />;
+      case 'study': return <RoadmapTab onNavigateToVocabDeck={handleNavigateToVocabDeck} />;
       case 'dictionary': return <DictionaryTab pendingInput={pendingDictInput} clearPendingInput={() => setPendingDictInput(null)} onNavigateToLibrary={handleNavigateToLibrary} />;
-      case 'library': return <ReadingLibraryTab onSubtitleChange={setTabSubtitle} onSearchWord={handleDictInput} pendingArticle={pendingLibraryArticle} clearPendingArticle={() => setPendingLibraryArticle(null)} />;
+      case 'library': return <ReadingLibraryTab onSubtitleChange={setTabSubtitle} onSearchWord={handleDictInput} pendingArticle={pendingLibraryArticle} clearPendingArticle={() => setPendingLibraryArticle(null)} pendingVocabDeck={pendingVocabDeck} clearPendingVocabDeck={() => setPendingVocabDeck(null)} />;
       case 'community': return <CommunityTab />;
       default: return <HomeTab />;
     }
@@ -226,7 +238,13 @@ function App() {
                 <Route path="/practice/question-words-1" element={<div className="mobile-app-wrapper"><QuestionWords /></div>} />
                 <Route path="/practice/question-words-2" element={<div className="mobile-app-wrapper"><QuestionWordsAdvanced /></div>} />
                 <Route path="/practice/aspect-markers" element={<div className="mobile-app-wrapper"><AspectMarkers /></div>} />
-                <Route path="/practice/vocab" element={<Navigate to="/practice" replace />} />
+                {/* Grammar drill modules (Units 26-30 + prepositions) */}
+                <Route path="/practice/connectors" element={<div className="mobile-app-wrapper"><Connectors /></div>} />
+                <Route path="/practice/intensifiers" element={<div className="mobile-app-wrapper"><Intensifiers /></div>} />
+                <Route path="/practice/degree-adverbs" element={<div className="mobile-app-wrapper"><DegreeAdverbs /></div>} />
+                <Route path="/practice/quantifiers" element={<div className="mobile-app-wrapper"><Quantifiers /></div>} />
+                <Route path="/practice/vision-verbs" element={<div className="mobile-app-wrapper"><VisionVerbs /></div>} />
+                <Route path="/practice/prepositions" element={<div className="mobile-app-wrapper"><Prepositions /></div>} />
                 <Route path="/practice/flashcards" element={<Navigate to="/practice" replace />} />
 
                 {/* Legal Routes */}

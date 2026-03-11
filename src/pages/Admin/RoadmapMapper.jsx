@@ -12,7 +12,7 @@ const MODULE_TYPES = [
     { value: 'lesson', label: 'Lesson', nodeType: 'lesson', moduleType: 'orange', color: '#FFB703' },
     { value: 'skill', label: 'Skill', nodeType: 'skill', moduleType: 'purple', color: '#A78BFA' },
     { value: 'grammar', label: 'Grammar', nodeType: 'skill', moduleType: 'green', color: '#06D6A0' },
-    { value: 'unit_test', label: 'Unit Quiz', nodeType: 'test', moduleType: 'test', color: '#EF4444' },
+    { value: 'unit_test', label: 'Quizzes', nodeType: 'test', moduleType: 'test', color: '#EF4444' },
 ];
 
 function getModuleColor(node) {
@@ -26,7 +26,7 @@ function getModuleColor(node) {
 
 function getModuleLabel(node) {
     if (node.test_scope === 'module') return 'Quiz';
-    if (node.test_scope === 'unit') return 'Unit Quiz';
+    if (node.test_scope === 'unit') return 'Quizzes';
     if (node.module_type === 'orange') return 'Lesson';
     if (node.module_type === 'purple') return 'Skill';
     if (node.module_type === 'green') return 'Grammar';
@@ -140,9 +140,9 @@ const RoadmapMapper = () => {
             }
         } else if (addType === 'unit_test') {
             nodeData.test_scope = 'unit';
-            if (!nodeData.label || nodeData.label === 'Unit Quiz') {
+            if (!nodeData.label || nodeData.label === 'Quizzes') {
                 const unit = units.find(u => u.id === unitId);
-                nodeData.label = unit ? `${unit.title} Quiz` : 'Unit Quiz';
+                nodeData.label = unit ? `${unit.title} Quiz` : 'Quizzes';
             }
         }
 

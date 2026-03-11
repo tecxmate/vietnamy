@@ -212,6 +212,25 @@
     transform: scale(0.98);
 }
 
+/* ─── Dashed "create new" card ─────────────────────────── */
+.lib-card-dashed {
+    background: transparent;
+    border-style: dashed;
+    border-width: 2px;
+    opacity: 0.7;
+}
+
+.lib-card-dashed:hover,
+.lib-card-dashed:active {
+    opacity: 1;
+}
+
+.lib-icon-dashed {
+    background: transparent !important;
+    border-style: dashed;
+    border-width: 2px;
+}
+
 .lib-card-icon {
     width: 44px;
     height: 44px;
@@ -1429,4 +1448,219 @@
 .rlib-cta-link-btn:active {
     transform: translateY(4px);
     box-shadow: 0 0 0 transparent !important;
+}
+
+/* ─── SRS Review deck card ──────────────────────────── */
+.vocab-deck-review {
+    border: 1px solid rgba(255, 87, 34, 0.3);
+    background: rgba(255, 87, 34, 0.05);
+}
+
+.vocab-deck-icon.review {
+    background: rgba(255, 87, 34, 0.15);
+    color: #FF5722;
+}
+
+.vocab-due-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    border-radius: 10px;
+    background: #EF476F;
+    color: white;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+/* ─── Quiz chip variant ──────────────────────────── */
+.vocab-study-chip.quiz {
+    background: rgba(167, 139, 250, 0.15);
+    color: #A78BFA;
+}
+
+.vocab-study-chip.quiz:hover {
+    background: rgba(167, 139, 250, 0.25);
+}
+
+.vocab-study-btn.quiz {
+    background: rgba(167, 139, 250, 0.15);
+    color: #A78BFA;
+}
+
+.vocab-header-actions {
+    display: flex;
+    gap: 6px;
+    flex-shrink: 0;
+}
+
+/* ─── Enriched deck row with image ──────────────── */
+.vocab-card-row-rich {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+}
+
+.vocab-card-row-rich .vocab-card-thumb {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.vocab-card-row-rich .vocab-card-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.vocab-card-row-rich .vocab-card-row-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.vocab-card-example {
+    font-size: 11px;
+    color: var(--text-muted);
+    opacity: 0.7;
+    font-style: italic;
+}
+
+/* ─── Vocab Quiz View ──────────────────────────── */
+.vq-quiz-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 16px;
+    gap: 16px;
+    overflow-y: auto;
+}
+
+.vq-quiz-image {
+    width: 140px;
+    height: 100px;
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.vq-quiz-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.vq-quiz-hint {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.vq-quiz-question {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--text-main);
+    text-align: center;
+}
+
+.vq-quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    max-width: 360px;
+}
+
+.vq-option {
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 14px;
+    border: 2px solid var(--border-color);
+    background: var(--surface-color);
+    font-size: 16px;
+    font-weight: 600;
+    font-family: inherit;
+    color: var(--text-main);
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+    text-align: left;
+}
+
+.vq-option:active {
+    transform: translateY(1px);
+}
+
+.vq-option.selected {
+    border-color: var(--primary-color);
+    background: rgba(255, 209, 102, 0.1);
+}
+
+.vq-option.correct {
+    border-color: #06D6A0;
+    background: rgba(6, 214, 160, 0.15);
+    color: #06D6A0;
+}
+
+.vq-option.wrong {
+    border-color: #EF476F;
+    background: rgba(239, 71, 111, 0.15);
+    color: #EF476F;
+}
+
+.vq-option.dim {
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+.vq-quiz-bottom {
+    width: 100%;
+    max-width: 360px;
+    margin-top: auto;
+    padding: 16px 0;
+}
+
+.vq-action-btn {
+    width: 100%;
+    padding: 14px;
+    border-radius: 14px;
+    border: none;
+    font-size: 15px;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+.vq-action-btn:active {
+    transform: translateY(2px);
+}
+
+.vq-action-btn.primary {
+    background: var(--primary-color);
+    color: #1A1A1A;
+    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.15);
+}
+
+.vq-action-btn.disabled {
+    background: var(--border-color);
+    color: var(--text-muted);
+    cursor: default;
+}
+
+.vq-action-btn.success {
+    background: #06D6A0;
+    color: #1A1A1A;
+    box-shadow: 0 4px 0 #049e75;
+}
+
+.vq-action-btn.danger {
+    background: #EF476F;
+    color: white;
+    box-shadow: 0 4px 0 #b92b49;
 }

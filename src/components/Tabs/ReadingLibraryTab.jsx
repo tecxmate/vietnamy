@@ -1,17 +1,20 @@
-import React, { useState, useRef, useMemo, useEffect } from 'react';
-import { ChevronLeft, Volume2, BookOpen, BookOpenText, ChevronRight, Layers, Plus, Trash2, BookmarkCheck, Play, X, Check, RotateCw, ArrowUpDown, ListFilter, Clock, SortAsc, SortDesc, LayoutList, LayoutGrid } from 'lucide-react';
+import React, { useState, useRef, useMemo, useEffect, useCallback } from 'react';
+import { ChevronLeft, Volume2, BookOpen, BookOpenText, ChevronRight, Layers, Plus, Trash2, BookmarkCheck, Play, X, Check, RotateCw, ArrowUpDown, ListFilter, Clock, SortAsc, SortDesc, LayoutList, LayoutGrid, Trophy, Flame, Star } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import ARTICLES, { ARTICLE_CATEGORIES, ARTICLE_LEVELS } from '../../data/articleData';
 import { getGrammarItems } from '../../lib/grammarDB';
 import VOCAB_WORDS, { CATEGORIES as VOCAB_CATEGORIES } from '../../data/vocabWords';
 import speak from '../../utils/speak';
+import VocabImage from '../VocabImage';
+import { getDueItems, recordReview, getTotalItems } from '../../lib/srs';
+import { playSuccess, playError } from '../../utils/sound';
 
 import { useUser } from '../../context/UserContext';
 import TappableVietnamese from '../TappableVietnamese';
 import WordPopup from '../WordPopup';
 import { lookupWords } from '../../lib/dictionaryLookup';
 import {
-    getDictSavedWords, toggleDictSavedWord, getDictDecks, createDictDeck, deleteDictDeck,
+    getDictSavedWords, toggleDictSavedWord, getDictDecks, createDictDeck,
     removeWordFromDictDeck,
 } from '../../lib/dictSavedWords';
 import './ReadingLibraryTab.css';
@@ -94,6 +97,22 @@ function buildLibraryItems() {
     });
 
     // Vocabulary decks
+    // SRS Review
+    const dueCount = getDueItems().length;
+    items.push({
+        id: 'vocab-srs',
+        type: 'vocabulary',
+        subTag: 'Saved',
+        title: 'SRS Review',
+        subtitle: dueCount > 0 ? `${dueCount} word${dueCount !== 1 ? 's' : ''} due` : 'All caught up',
+        itemIcon: Flame,
+        itemColor: '#FF5722',
+        itemBg: 'rgba(255,87,34,0.15)',
+        action: { type: 'vocabDeck', deckId: '__srs__' },
+        createdAt: now,
+        sortName: '!SRS Review',
+        levelOrder: -1,
+    });
     const savedWords = getDictSavedWords();
     if (savedWords.length > 0) {
         items.push({
@@ -105,7 +124,7 @@ function buildLibraryItems() {
             itemIcon: BookmarkCheck,
             itemColor: '#06D6A0',
             itemBg: 'rgba(6,214,160,0.15)',
-            action: { type: 'view', view: 'vocabulary' },
+            action: { type: 'vocabDeck', deckId: '__saved__' },
             createdAt: now - 86400000,
             sortName: 'Saved Words',
             levelOrder: 0,
@@ -117,27 +136,27 @@ function buildLibraryItems() {
             type: 'vocabulary',
             subTag: 'Custom Decks',
             title: deck.name,
-            subtitle: `${deck.wordIds?.length || 0} words`,
+            subtitle: `${deck.words?.length || 0} words`,
             itemIcon: Layers,
             itemColor: '#FF9F43',
             itemBg: 'rgba(255,159,67,0.15)',
-            action: { type: 'view', view: 'vocabulary' },
+            action: { type: 'vocabDeck', deckId: deck.id },
             createdAt: now - (i + 2) * 86400000 * 3,
             sortName: deck.name,
             levelOrder: 1,
         });
     });
-    VOCAB_CATEGORIES.filter(c => c.key !== 'all').slice(0, 4).forEach((cat, i) => {
+    VOCAB_CATEGORIES.filter(c => c.key !== 'all').forEach((cat, i) => {
         items.push({
             id: `vocab-preset-${cat.key}`,
             type: 'vocabulary',
             subTag: 'Pre-built',
-            title: `${cat.emoji} ${cat.label}`,
-            subtitle: 'Pre-built deck',
+            title: cat.label,
+            subtitle: `${VOCAB_WORDS.filter(w => w.category === cat.key).length} words`,
             itemIcon: Layers,
             itemColor: '#3B82F6',
             itemBg: 'rgba(59,130,246,0.15)',
-            action: { type: 'view', view: 'vocabulary' },
+            action: { type: 'vocabDeck', deckId: `preset_${cat.key}` },
             createdAt: now - (i + 5) * 86400000 * 10,
             sortName: cat.label,
             levelOrder: 2,
@@ -205,6 +224,11 @@ function LibraryLanding({ onSelectModule, onOpenArticle }) {
             onOpenArticle(item.action.article);
             return;
         }
+        // Open a specific vocab deck directly
+        if (item.action?.type === 'vocabDeck') {
+            onSelectModule({ view: 'vocabulary', deckId: item.action.deckId });
+            return;
+        }
         // Internal view navigation (vocabulary)
         if (item.action?.type === 'view') {
             onSelectModule(item.action.view);
@@ -261,6 +285,24 @@ function LibraryLanding({ onSelectModule, onOpenArticle }) {
 
             {/* ── Content ── */}
             <div className={viewMode === 'grid' ? 'lib-content-grid' : 'lib-content-list'}>
+                {activeType === 'vocabulary' && (() => {
+                    const c = CONTENT_TYPES.vocabulary.color;
+                    return viewMode === 'grid' ? (
+                        <button className="lib-grid-card lib-card-dashed" style={{ borderColor: c }} onClick={() => onSelectModule({ view: 'vocabulary', deckId: '__create__' })}>
+                            <div className="lib-grid-icon lib-icon-dashed" style={{ borderColor: c }}><Plus size={28} color={c} /></div>
+                            <div className="lib-grid-title" style={{ color: c }}>New Deck</div>
+                            <div className="lib-grid-subtitle">Create a custom deck</div>
+                        </button>
+                    ) : (
+                        <button className="lib-content-card lib-card-dashed" style={{ borderColor: c }} onClick={() => onSelectModule({ view: 'vocabulary', deckId: '__create__' })}>
+                            <div className="lib-card-icon lib-icon-dashed" style={{ borderColor: c }}><Plus size={22} color={c} /></div>
+                            <div className="lib-card-info">
+                                <div className="lib-card-title" style={{ color: c }}>New Deck</div>
+                                <div className="lib-card-subtitle">Create a custom vocabulary deck</div>
+                            </div>
+                        </button>
+                    );
+                })()}
                 {filtered.map(item => {
                     const cfg = CONTENT_TYPES[item.type];
                     const Icon = item.itemIcon || cfg.icon;
@@ -654,7 +696,7 @@ function ArticleReaderView({ article, onBack }) {
 const PRE_BUILT_DECKS = VOCAB_CATEGORIES.filter(c => c.key !== 'all').map(cat => ({
     id: `preset_${cat.key}`,
     type: 'preset',
-    name: `${cat.emoji} ${cat.label}`,
+    name: cat.label,
     emoji: cat.emoji,
     words: VOCAB_WORDS.filter(w => w.category === cat.key).map(w => w.vietnamese),
 }));
@@ -836,36 +878,331 @@ function FlashcardStudyView({ deckName, cards, onBack }) {
 }
 
 // ═══════════════════════════════════════════════════════════════
+// Vocab Quiz View — multiple-choice quiz from any word list
+// ═══════════════════════════════════════════════════════════════
+const quizShuffle = (arr) => [...arr].sort(() => Math.random() - 0.5);
+
+function VocabQuizView({ deckName, words, onBack }) {
+    const [questions] = useState(() => {
+        const pool = VOCAB_WORDS;
+        const deckWords = pool.filter(w => words.includes(w.vietnamese));
+        const shuffled = quizShuffle(deckWords).slice(0, 15);
+        return shuffled.map(word => {
+            const correct = word.vietnamese;
+            const distractors = quizShuffle(pool.filter(w => w.vietnamese !== correct).map(w => w.vietnamese)).slice(0, 3);
+            return { word, question: 'What is this in Vietnamese?', correct, options: quizShuffle([correct, ...distractors]) };
+        });
+    });
+    const [qIndex, setQIndex] = useState(0);
+    const [selected, setSelected] = useState(null);
+    const [feedback, setFeedback] = useState('idle');
+    const [score, setScore] = useState(0);
+    // eslint-disable-next-line no-unused-vars
+    const [streak, setStreak] = useState(0);
+    const [bestStreak, setBestStreak] = useState(0);
+    const [showSummary, setShowSummary] = useState(false);
+
+    const total = questions.length;
+    const currentQ = questions[qIndex];
+    const progress = total > 0 ? (qIndex / total) * 100 : 0;
+
+    const handleCheck = useCallback(() => {
+        if (!selected || !currentQ) return;
+        const isCorrect = selected === currentQ.correct;
+        if (isCorrect) {
+            playSuccess();
+            setFeedback('correct');
+            setScore(s => s + 1);
+            setStreak(s => { const n = s + 1; setBestStreak(b => Math.max(b, n)); return n; });
+            speak(currentQ.word.vietnamese);
+        } else {
+            playError();
+            setFeedback('incorrect');
+            setStreak(0);
+        }
+    }, [selected, currentQ]);
+
+    const handleContinue = useCallback(() => {
+        if (qIndex < total - 1) {
+            setQIndex(i => i + 1);
+            setSelected(null);
+            setFeedback('idle');
+        } else {
+            setShowSummary(true);
+        }
+    }, [qIndex, total]);
+
+    useEffect(() => {
+        const onKey = (e) => {
+            if (e.key !== 'Enter' || showSummary) return;
+            if (feedback === 'idle' && selected) handleCheck();
+            else if (feedback !== 'idle') handleContinue();
+        };
+        window.addEventListener('keydown', onKey);
+        return () => window.removeEventListener('keydown', onKey);
+    }, [feedback, selected, handleCheck, handleContinue, showSummary]);
+
+    if (total === 0) {
+        return (
+            <div className="fc-study-container">
+                <div className="fc-study-header">
+                    <button className="vocab-back-btn" onClick={onBack}><ChevronLeft size={20} /> Back</button>
+                    <span className="fc-study-name">{deckName} — Quiz</span>
+                </div>
+                <div className="fc-score-screen">
+                    <p style={{ color: 'var(--text-muted)' }}>Not enough words for a quiz. Add more words to this deck.</p>
+                    <button className="fc-back-btn" onClick={onBack}>Back to Decks</button>
+                </div>
+            </div>
+        );
+    }
+
+    if (showSummary) {
+        const pct = Math.round((score / total) * 100);
+        let msg = 'Keep practicing!';
+        if (pct >= 90) msg = 'Vocabulary master!';
+        else if (pct >= 70) msg = 'Great memory!';
+        else if (pct >= 50) msg = 'Good progress!';
+        return (
+            <div className="fc-study-container">
+                <div className="fc-study-header">
+                    <button className="vocab-back-btn" onClick={onBack}><ChevronLeft size={20} /> Done</button>
+                    <span className="fc-study-name">{deckName} — Quiz</span>
+                </div>
+                <div className="fc-score-screen">
+                    <Trophy size={48} style={{ color: 'var(--primary-color)', marginBottom: 12 }} />
+                    <div className="fc-score-circle">
+                        <span className="fc-score-number">{score}</span>
+                        <span className="fc-score-label">/ {total}</span>
+                    </div>
+                    <h2 className="fc-score-title">{msg}</h2>
+                    <div className="fc-score-stats">
+                        <div className="fc-stat know"><Check size={16} /> {score} Correct</div>
+                        <div className="fc-stat unknown"><X size={16} /> {total - score} Wrong</div>
+                    </div>
+                    {bestStreak > 1 && <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>Best streak: {bestStreak}</p>}
+                    <button className="fc-back-btn" onClick={onBack}>Back to Decks</button>
+                </div>
+            </div>
+        );
+    }
+
+    return (
+        <div className="fc-study-container">
+            <div className="fc-study-header">
+                <button className="vocab-back-btn" onClick={onBack}><ChevronLeft size={20} /></button>
+                <span className="fc-study-name">{deckName} — Quiz</span>
+                <span className="fc-study-counter">{qIndex + 1} / {total}</span>
+            </div>
+            <div className="fc-progress-bar">
+                <div className="fc-progress-fill" style={{ width: `${progress}%` }} />
+            </div>
+            <div className="vq-quiz-area">
+                {currentQ.word.image && (
+                    <div className="vq-quiz-image">
+                        <VocabImage word={currentQ.word} alt="quiz" />
+                    </div>
+                )}
+                <div className="vq-quiz-hint">{currentQ.word.english}</div>
+                <div className="vq-quiz-question">{currentQ.question}</div>
+                <div className="vq-quiz-options">
+                    {currentQ.options.map((opt, i) => {
+                        let cls = 'vq-option';
+                        if (feedback !== 'idle') {
+                            if (opt === currentQ.correct) cls += ' correct';
+                            else if (opt === selected) cls += ' wrong';
+                            else cls += ' dim';
+                        } else if (opt === selected) cls += ' selected';
+                        return (
+                            <button key={i} className={cls} onClick={() => feedback === 'idle' && setSelected(opt)}>{opt}</button>
+                        );
+                    })}
+                </div>
+                <div className="vq-quiz-bottom">
+                    {feedback === 'idle' ? (
+                        <button className={`vq-action-btn ${selected ? 'primary' : 'disabled'}`} onClick={handleCheck} disabled={!selected}>Check</button>
+                    ) : (
+                        <button className={`vq-action-btn ${feedback === 'correct' ? 'success' : 'danger'}`} onClick={handleContinue}>
+                            {feedback === 'correct' ? 'Correct!' : `Wrong — ${currentQ.correct}`} — Continue
+                        </button>
+                    )}
+                </div>
+            </div>
+        </div>
+    );
+}
+
+// ═══════════════════════════════════════════════════════════════
+// Vocab SRS Review View — spaced repetition review
+// ═══════════════════════════════════════════════════════════════
+function VocabReviewView({ onBack }) {
+    const [dueItems] = useState(() => getDueItems());
+    const totalSRS = getTotalItems();
+    const [qIndex, setQIndex] = useState(0);
+    const [selected, setSelected] = useState(null);
+    const [feedback, setFeedback] = useState('idle');
+    const [score, setScore] = useState(0);
+    const [showSummary, setShowSummary] = useState(false);
+
+    const questions = useMemo(() => {
+        if (dueItems.length === 0) return [];
+        const items = quizShuffle(dueItems).slice(0, 15);
+        return items.map(item => {
+            const distractors = quizShuffle(
+                VOCAB_WORDS.filter(w => w.vietnamese !== item.vietnamese).map(w => w.vietnamese)
+            ).slice(0, 3);
+            return {
+                item,
+                question: `What is "${item.english}" in Vietnamese?`,
+                correct: item.vietnamese,
+                options: quizShuffle([item.vietnamese, ...distractors]),
+            };
+        });
+    }, [dueItems]);
+
+    if (dueItems.length === 0) {
+        return (
+            <div className="fc-study-container">
+                <div className="fc-study-header">
+                    <button className="vocab-back-btn" onClick={onBack}><ChevronLeft size={20} /> Back</button>
+                    <span className="fc-study-name">SRS Review</span>
+                </div>
+                <div className="fc-score-screen">
+                    <Check size={48} style={{ color: 'var(--success-color)', marginBottom: 12 }} />
+                    <h2 className="fc-score-title">All caught up!</h2>
+                    <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', textAlign: 'center' }}>
+                        {totalSRS > 0
+                            ? `${totalSRS} words in your review deck. Complete more lessons to add words.`
+                            : 'Complete lessons to add words to your review deck.'}
+                    </p>
+                    <button className="fc-back-btn" onClick={onBack}>Back to Decks</button>
+                </div>
+            </div>
+        );
+    }
+
+    if (showSummary) {
+        return (
+            <div className="fc-study-container">
+                <div className="fc-study-header">
+                    <button className="vocab-back-btn" onClick={onBack}><ChevronLeft size={20} /> Done</button>
+                    <span className="fc-study-name">SRS Review</span>
+                </div>
+                <div className="fc-score-screen">
+                    <Trophy size={48} style={{ color: 'var(--primary-color)', marginBottom: 12 }} />
+                    <div className="fc-score-circle">
+                        <span className="fc-score-number">{score}</span>
+                        <span className="fc-score-label">/ {questions.length}</span>
+                    </div>
+                    <h2 className="fc-score-title">Review Complete!</h2>
+                    <button className="fc-back-btn" onClick={onBack}>Back to Decks</button>
+                </div>
+            </div>
+        );
+    }
+
+    const currentQ = questions[qIndex];
+    if (!currentQ) return null;
+    const progress = (qIndex / questions.length) * 100;
+
+    const handleCheck = () => {
+        if (!selected) return;
+        const isCorrect = selected === currentQ.correct;
+        recordReview(currentQ.item.itemId, isCorrect);
+        if (isCorrect) {
+            playSuccess();
+            setFeedback('correct');
+            setScore(s => s + 1);
+            speak(currentQ.item.vietnamese);
+        } else {
+            playError();
+            setFeedback('incorrect');
+        }
+    };
+
+    const handleContinue = () => {
+        if (qIndex < questions.length - 1) {
+            setQIndex(i => i + 1);
+            setSelected(null);
+            setFeedback('idle');
+        } else {
+            setShowSummary(true);
+        }
+    };
+
+    return (
+        <div className="fc-study-container">
+            <div className="fc-study-header">
+                <button className="vocab-back-btn" onClick={onBack}><ChevronLeft size={20} /></button>
+                <span className="fc-study-name">SRS Review</span>
+                <span className="fc-study-counter">{qIndex + 1} / {questions.length}</span>
+            </div>
+            <div className="fc-progress-bar">
+                <div className="fc-progress-fill" style={{ width: `${progress}%` }} />
+            </div>
+            <div className="vq-quiz-area">
+                <div className="vq-quiz-question">{currentQ.question}</div>
+                <div className="vq-quiz-options">
+                    {currentQ.options.map((opt, i) => {
+                        let cls = 'vq-option';
+                        if (feedback !== 'idle') {
+                            if (opt === currentQ.correct) cls += ' correct';
+                            else if (opt === selected) cls += ' wrong';
+                            else cls += ' dim';
+                        } else if (opt === selected) cls += ' selected';
+                        return (
+                            <button key={i} className={cls} onClick={() => feedback === 'idle' && setSelected(opt)}>{opt}</button>
+                        );
+                    })}
+                </div>
+                <div className="vq-quiz-bottom">
+                    {feedback === 'idle' ? (
+                        <button className={`vq-action-btn ${selected ? 'primary' : 'disabled'}`} onClick={handleCheck} disabled={!selected}>Check</button>
+                    ) : (
+                        <button className={`vq-action-btn ${feedback === 'correct' ? 'success' : 'danger'}`} onClick={handleContinue}>
+                            {feedback === 'correct' ? 'Correct!' : `Answer: ${currentQ.correct}`} — Continue
+                        </button>
+                    )}
+                </div>
+            </div>
+        </div>
+    );
+}
+
+// ═══════════════════════════════════════════════════════════════
 // Vocabulary Browse View (combined: dict saved + custom + pre-built)
 // ═══════════════════════════════════════════════════════════════
-function VocabularyBrowseView({ onBack, onSearchWord }) {
+function VocabularyBrowseView({ onBack, onSearchWord, initialDeckId }) {
     const [savedWords, setSavedWords] = useState(() => getDictSavedWords());
     const [customDecks, setCustomDecks] = useState(() => getDictDecks());
-    const [activeDeck, setActiveDeck] = useState(null);
-    const [studyDeck, setStudyDeck] = useState(null); // { name, cards }
-    const [showCreate, setShowCreate] = useState(false);
+    const [studyDeck, setStudyDeck] = useState(null);
+    const [quizDeck, setQuizDeck] = useState(null);
+    const [showCreate, setShowCreate] = useState(initialDeckId === '__create__');
     const [newName, setNewName] = useState('');
+
+    // Resolve initialDeckId into the right view
+    const [activeDeck] = useState(() => {
+        if (!initialDeckId || initialDeckId === '__srs__' || initialDeckId === '__create__') return null;
+        if (initialDeckId === '__saved__') return { id: '__saved__', name: 'Saved Words' };
+        if (initialDeckId.startsWith('preset_')) return { id: initialDeckId, type: 'preset' };
+        const custom = getDictDecks().find(d => d.id === initialDeckId);
+        if (custom) return { ...custom, type: 'custom' };
+        return null;
+    });
+    const [showReview] = useState(initialDeckId === '__srs__');
 
     const handleCreate = () => {
         if (!newName.trim()) return;
         createDictDeck(newName.trim());
-        setCustomDecks(getDictDecks());
         setNewName('');
         setShowCreate(false);
-    };
-
-    const handleDeleteDeck = (e, deckId) => {
-        e.stopPropagation();
-        deleteDictDeck(deckId);
-        setCustomDecks(getDictDecks());
-        if (activeDeck?.id === deckId) setActiveDeck(null);
+        onBack();
     };
 
     const handleRemoveWord = (word) => {
         if (activeDeck) {
             removeWordFromDictDeck(activeDeck.id, word);
             setCustomDecks(getDictDecks());
-            setActiveDeck(getDictDecks().find(d => d.id === activeDeck.id) || null);
         }
     };
 
@@ -873,6 +1210,21 @@ function VocabularyBrowseView({ onBack, onSearchWord }) {
         if (cards.length === 0) return;
         setStudyDeck({ name, cards });
     };
+
+    const startQuiz = (name, words) => {
+        if (words.length === 0) return;
+        setQuizDeck({ name, words });
+    };
+
+    // SRS Review mode
+    if (showReview) {
+        return <VocabReviewView onBack={onBack} />;
+    }
+
+    // Quiz mode
+    if (quizDeck) {
+        return <VocabQuizView deckName={quizDeck.name} words={quizDeck.words} onBack={() => setQuizDeck(null)} />;
+    }
 
     // Flashcard study mode
     if (studyDeck) {
@@ -885,12 +1237,41 @@ function VocabularyBrowseView({ onBack, onSearchWord }) {
         );
     }
 
+    // Create deck form
+    if (showCreate) {
+        return (
+            <div className="vocab-browse">
+                <div className="vocab-browse-header">
+                    <button onClick={onBack} className="vocab-back-btn">
+                        <ChevronLeft size={24} />
+                    </button>
+                    <h2 className="vocab-browse-title">New Deck</h2>
+                </div>
+                <div className="vocab-create-form" style={{ margin: 16 }}>
+                    <input
+                        type="text"
+                        className="vocab-create-input"
+                        placeholder="Deck name..."
+                        value={newName}
+                        onChange={e => setNewName(e.target.value)}
+                        onKeyDown={e => e.key === 'Enter' && handleCreate()}
+                        autoFocus
+                    />
+                    <div className="vocab-create-actions">
+                        <button className="vocab-create-btn primary" onClick={handleCreate} disabled={!newName.trim()}>Create</button>
+                        <button className="vocab-create-btn ghost" onClick={onBack}>Cancel</button>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
     // Saved Words detail view
     if (activeDeck?.id === '__saved__') {
         return (
             <div className="vocab-browse">
                 <div className="vocab-browse-header">
-                    <button onClick={() => { setActiveDeck(null); setSavedWords(getDictSavedWords()); }} className="vocab-back-btn">
+                    <button onClick={onBack} className="vocab-back-btn">
                         <ChevronLeft size={24} />
                     </button>
                     <h2 className="vocab-browse-title">Saved Words</h2>
@@ -936,7 +1317,7 @@ function VocabularyBrowseView({ onBack, onSearchWord }) {
         return (
             <div className="vocab-browse">
                 <div className="vocab-browse-header">
-                    <button onClick={() => setActiveDeck(null)} className="vocab-back-btn">
+                    <button onClick={onBack} className="vocab-back-btn">
                         <ChevronLeft size={24} />
                     </button>
                     <h2 className="vocab-browse-title">{deck?.name || 'Deck'}</h2>
@@ -975,25 +1356,38 @@ function VocabularyBrowseView({ onBack, onSearchWord }) {
     // Pre-built deck detail view
     if (activeDeck?.type === 'preset') {
         const deck = PRE_BUILT_DECKS.find(d => d.id === activeDeck.id);
-        if (!deck) { setActiveDeck(null); return null; }
+        if (!deck) return null;
+        const deckVocabWords = VOCAB_WORDS.filter(w => deck.words.includes(w.vietnamese));
         return (
             <div className="vocab-browse">
                 <div className="vocab-browse-header">
-                    <button onClick={() => setActiveDeck(null)} className="vocab-back-btn">
+                    <button onClick={onBack} className="vocab-back-btn">
                         <ChevronLeft size={24} />
                     </button>
                     <h2 className="vocab-browse-title">{deck.name}</h2>
-                    <button className="vocab-study-btn" onClick={() => startStudy(deck.name, deck.words)}>
-                        <Play size={14} /> Study
-                    </button>
+                    <div className="vocab-header-actions">
+                        <button className="vocab-study-btn" onClick={() => startStudy(deck.name, deck.words)}>
+                            <Play size={14} /> Study
+                        </button>
+                        <button className="vocab-study-btn quiz" onClick={() => startQuiz(deck.name, deck.words)}>
+                            <Star size={14} /> Quiz
+                        </button>
+                    </div>
                 </div>
                 <div className="vocab-card-list">
-                    {deck.words.map((word, i) => (
-                        <div key={i} className="vocab-card-row" style={{ borderTop: i > 0 ? '1px solid var(--border-color)' : 'none' }}>
-                            <div className="vocab-card-row-text" onClick={() => onSearchWord?.(word)}>
-                                <span className="vocab-card-vi">{word}</span>
+                    {deckVocabWords.map((word, i) => (
+                        <div key={i} className="vocab-card-row vocab-card-row-rich" style={{ borderTop: i > 0 ? '1px solid var(--border-color)' : 'none' }}>
+                            {word.image && (
+                                <div className="vocab-card-thumb">
+                                    <VocabImage word={word} alt={word.english} />
+                                </div>
+                            )}
+                            <div className="vocab-card-row-text" onClick={() => onSearchWord?.(word.vietnamese)}>
+                                <span className="vocab-card-vi">{word.vietnamese}</span>
+                                <span className="vocab-card-en">{word.english}</span>
+                                {word.example && <span className="vocab-card-example">{word.example}</span>}
                             </div>
-                            <button className="vocab-card-speak" onClick={() => speak(word)}>
+                            <button className="vocab-card-speak" onClick={() => speak(word.vietnamese)}>
                                 <Volume2 size={16} />
                             </button>
                         </div>
@@ -1003,7 +1397,7 @@ function VocabularyBrowseView({ onBack, onSearchWord }) {
         );
     }
 
-    // Deck list view
+    // Fallback — no deck selected
     return (
         <div className="vocab-browse">
             <div className="vocab-browse-header">
@@ -1012,104 +1406,10 @@ function VocabularyBrowseView({ onBack, onSearchWord }) {
                 </button>
                 <h2 className="vocab-browse-title">Vocabulary</h2>
             </div>
-
-            <div className="vocab-deck-list">
-                {/* Saved Words deck */}
-                <button
-                    className="vocab-deck-card"
-                    onClick={() => setActiveDeck({ id: '__saved__', name: 'Saved Words' })}
-                    disabled={savedWords.length === 0}
-                    style={savedWords.length === 0 ? { opacity: 0.5 } : undefined}
-                >
-                    <div className="vocab-deck-icon saved"><BookmarkCheck size={22} /></div>
-                    <div className="vocab-deck-info">
-                        <span className="vocab-deck-name">Saved Words</span>
-                        <span className="vocab-deck-count">{savedWords.length} word{savedWords.length !== 1 ? 's' : ''}</span>
-                    </div>
-                    <div className="vocab-deck-actions">
-                        {savedWords.length > 0 && (
-                            <button className="vocab-study-chip" onClick={e => { e.stopPropagation(); startStudy('Saved Words', savedWords); }}>
-                                <Play size={12} /> Study
-                            </button>
-                        )}
-                        <ChevronRight size={18} color="var(--text-muted)" />
-                    </div>
-                </button>
-
-                {/* Custom Decks */}
-                {customDecks.length > 0 && (
-                    <div className="vocab-section-label">My Decks</div>
-                )}
-                {customDecks.map(deck => (
-                    <button
-                        key={deck.id}
-                        className="vocab-deck-card"
-                        onClick={() => setActiveDeck({ ...deck, type: 'custom' })}
-                    >
-                        <div className="vocab-deck-icon custom"><Layers size={22} /></div>
-                        <div className="vocab-deck-info">
-                            <span className="vocab-deck-name">{deck.name}</span>
-                            <span className="vocab-deck-count">{deck.words.length} word{deck.words.length !== 1 ? 's' : ''}</span>
-                        </div>
-                        <div className="vocab-deck-actions">
-                            {deck.words.length > 0 && (
-                                <button className="vocab-study-chip" onClick={e => { e.stopPropagation(); startStudy(deck.name, deck.words); }}>
-                                    <Play size={12} /> Study
-                                </button>
-                            )}
-                            <button className="vocab-deck-delete" onClick={(e) => handleDeleteDeck(e, deck.id)}>
-                                <Trash2 size={16} />
-                            </button>
-                            <ChevronRight size={18} color="var(--text-muted)" />
-                        </div>
-                    </button>
-                ))}
-
-                {/* Pre-built Decks */}
-                <div className="vocab-section-label">Pre-built Decks</div>
-                {PRE_BUILT_DECKS.map(deck => (
-                    <button
-                        key={deck.id}
-                        className="vocab-deck-card"
-                        onClick={() => setActiveDeck({ id: deck.id, type: 'preset' })}
-                    >
-                        <div className="vocab-deck-icon preset"><BookOpen size={22} /></div>
-                        <div className="vocab-deck-info">
-                            <span className="vocab-deck-name">{deck.name}</span>
-                            <span className="vocab-deck-count">{deck.words.length} words</span>
-                        </div>
-                        <div className="vocab-deck-actions">
-                            <button className="vocab-study-chip" onClick={e => { e.stopPropagation(); startStudy(deck.name, deck.words); }}>
-                                <Play size={12} /> Study
-                            </button>
-                            <ChevronRight size={18} color="var(--text-muted)" />
-                        </div>
-                    </button>
-                ))}
+            <div className="vocab-empty">
+                <Layers size={40} />
+                <p>Select a deck from the Library to get started.</p>
             </div>
-
-            {/* Create deck */}
-            {showCreate ? (
-                <div className="vocab-create-form">
-                    <input
-                        type="text"
-                        className="vocab-create-input"
-                        placeholder="Deck name..."
-                        value={newName}
-                        onChange={e => setNewName(e.target.value)}
-                        onKeyDown={e => e.key === 'Enter' && handleCreate()}
-                        autoFocus
-                    />
-                    <div className="vocab-create-actions">
-                        <button className="vocab-create-btn primary" onClick={handleCreate} disabled={!newName.trim()}>Create</button>
-                        <button className="vocab-create-btn ghost" onClick={() => { setShowCreate(false); setNewName(''); }}>Cancel</button>
-                    </div>
-                </div>
-            ) : (
-                <button className="vocab-new-deck-btn" onClick={() => setShowCreate(true)}>
-                    <Plus size={16} /> New Deck
-                </button>
-            )}
         </div>
     );
 }
@@ -1117,21 +1417,28 @@ function VocabularyBrowseView({ onBack, onSearchWord }) {
 // ═══════════════════════════════════════════════════════════════
 // Main Tab Component
 // ═══════════════════════════════════════════════════════════════
-export default function ReadingLibraryTab({ onSubtitleChange, onSearchWord, pendingArticle, clearPendingArticle }) {
+export default function ReadingLibraryTab({ onSubtitleChange, onSearchWord, pendingArticle, clearPendingArticle, pendingVocabDeck, clearPendingVocabDeck }) {
     const [view, setView] = useState('landing');
     const [activeArticle, setActiveArticle] = useState(null);
+    const [vocabInitialDeck, setVocabInitialDeck] = useState(null);
 
     useEffect(() => {
         if (pendingArticle) {
-            // Find the requested article by id (which acts like a slug in this context)
             const articleToOpen = ARTICLES.find(a => a.id === pendingArticle);
             if (articleToOpen) {
                 enterReader(articleToOpen);
             }
-            // Always clear it after attempting to open so it doesn't re-trigger on subsequent visits
             clearPendingArticle?.();
         }
     }, [pendingArticle, clearPendingArticle]);
+
+    useEffect(() => {
+        if (pendingVocabDeck) {
+            setVocabInitialDeck(pendingVocabDeck);
+            setView('vocabulary');
+            clearPendingVocabDeck?.();
+        }
+    }, [pendingVocabDeck, clearPendingVocabDeck]);
 
     const enterReader = (article) => {
         setActiveArticle(article);
@@ -1142,11 +1449,22 @@ export default function ReadingLibraryTab({ onSubtitleChange, onSearchWord, pend
     const goToLanding = () => {
         setView('landing');
         setActiveArticle(null);
+        setVocabInitialDeck(null);
         onSubtitleChange?.(null);
     };
 
-    if (view === 'reader' && activeArticle) return <ArticleReaderView article={activeArticle} onBack={goToLanding} />;
-    if (view === 'vocabulary') return <VocabularyBrowseView onBack={goToLanding} onSearchWord={onSearchWord} />;
+    const handleSelectModule = (mod) => {
+        if (typeof mod === 'object' && mod.view === 'vocabulary') {
+            setVocabInitialDeck(mod.deckId || null);
+            setView('vocabulary');
+        } else {
+            setVocabInitialDeck(null);
+            setView(mod);
+        }
+    };
 
-    return <LibraryLanding onSelectModule={(mod) => setView(mod)} onOpenArticle={enterReader} />;
+    if (view === 'reader' && activeArticle) return <ArticleReaderView article={activeArticle} onBack={goToLanding} />;
+    if (view === 'vocabulary') return <VocabularyBrowseView onBack={goToLanding} onSearchWord={onSearchWord} initialDeckId={vocabInitialDeck} />;
+
+    return <LibraryLanding onSelectModule={handleSelectModule} onOpenArticle={enterReader} />;
 }

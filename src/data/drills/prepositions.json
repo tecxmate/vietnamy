@@ -1,0 +1,121 @@
+{
+    "id": "prepositions",
+    "title": "Prepositions",
+    "description": "Master Vietnamese prepositions — trong, trên, dưới, trước, sau, gần, xa, với, cho, từ, đến",
+    "color": "#FF9800",
+    "intro": "Prepositions connect words and show relationships of place, time, and direction. Vietnamese prepositions work similarly to English ones but with some key differences in usage and position.",
+    "questions": [
+        {
+            "type": "mcq",
+            "prompt": "Which preposition means 'in / inside'?",
+            "correct": "trong",
+            "options": ["trong", "ngoài", "trên", "dưới"],
+            "explanation": "'trong' = in/inside. 'trong nhà' = inside the house."
+        },
+        {
+            "type": "mcq",
+            "prompt": "Which preposition means 'with'?",
+            "correct": "với",
+            "options": ["với", "cho", "từ", "về"],
+            "explanation": "'với' = with. 'Bạn có thể đến với tôi không?' = Can you come with me?"
+        },
+        {
+            "type": "fill_blank",
+            "prompt": "Cô ta sống ___ nhà thờ. (She lives NEAR the church.)",
+            "correct": "gần",
+            "options": ["gần", "xa", "trong", "trước"],
+            "explanation": "'gần' = near. 'sống gần' = lives near."
+        },
+        {
+            "type": "fill_blank",
+            "prompt": "Tôi ăn không cần ___. (I eat without a knife.)",
+            "correct": "dao",
+            "options": ["dao", "không", "mà", "cần"],
+            "explanation": "'không cần' = without / don't need. 'ăn không cần dao' = eat without a knife."
+        },
+        {
+            "type": "mcq",
+            "prompt": "How do you say 'without' in Vietnamese?",
+            "correct": "mà không cần / không cần",
+            "options": ["mà không cần / không cần", "với không", "từ không", "cho không"],
+            "explanation": "'mà không cần' or simply 'không cần' = without. Literally 'don't need'."
+        },
+        {
+            "type": "fill_blank",
+            "prompt": "Ông đến cùng ___ con chó nhỏ của ông. (He came WITH his small dog.)",
+            "correct": "với",
+            "options": ["với", "cho", "từ", "và"],
+            "explanation": "'cùng với' = together with. 'với' = with."
+        },
+        {
+            "type": "fill_blank",
+            "prompt": "Ông ta cao hơn ___ ấy. (He is taller THAN her.)",
+            "correct": "bà",
+            "options": ["bà", "cô", "hơn", "với"],
+            "explanation": "'hơn' acts as 'than' in comparisons. 'cao hơn bà ấy' = taller than her."
+        },
+        {
+            "type": "mcq",
+            "prompt": "Which preposition means 'about' (topic)?",
+            "correct": "về",
+            "options": ["về", "với", "cho", "từ"],
+            "explanation": "'về' = about. 'nói về' = talk about. 'sách về lịch sử' = book about history."
+        },
+        {
+            "type": "fill_blank",
+            "prompt": "Nhà của họ ở ___ hai con đường. (Their house is BETWEEN two streets.)",
+            "correct": "giữa",
+            "options": ["giữa", "trong", "gần", "bên"],
+            "explanation": "'giữa' = between/in the middle of. 'giữa hai con đường' = between two streets."
+        },
+        {
+            "type": "fill_blank",
+            "prompt": "Tôi đi ___ Sài Gòn ___ Hà Nội. (I go FROM Saigon TO Hanoi.)",
+            "correct": "từ",
+            "options": ["từ", "đến", "cho", "với"],
+            "explanation": "'từ...đến' = from...to. 'từ Sài Gòn đến Hà Nội' = from Saigon to Hanoi."
+        },
+        {
+            "type": "mcq",
+            "prompt": "Which preposition means 'for' (giving to someone)?",
+            "correct": "cho",
+            "options": ["cho", "với", "từ", "về"],
+            "explanation": "'cho' = for/to (giving). 'Tôi mua quà cho mẹ' = I buy a gift for Mom."
+        },
+        {
+            "type": "fill_blank",
+            "prompt": "Tôi thích mua đồ ___ chợ. (I like buying things AT the market.)",
+            "correct": "ở",
+            "options": ["ở", "trong", "tại", "trên"],
+            "explanation": "'ở' = at (location). 'ở chợ' = at the market."
+        },
+        {
+            "type": "fill_blank",
+            "prompt": "Đặt sách ___ bàn. (Put the book ON the table.)",
+            "correct": "trên",
+            "options": ["trên", "dưới", "trong", "gần"],
+            "explanation": "'trên' = on/above. 'trên bàn' = on the table."
+        },
+        {
+            "type": "fill_blank",
+            "prompt": "Con mèo nằm ___ ghế. (The cat lies UNDER the chair.)",
+            "correct": "dưới",
+            "options": ["dưới", "trên", "trong", "gần"],
+            "explanation": "'dưới' = under/below. 'dưới ghế' = under the chair."
+        },
+        {
+            "type": "fill_blank",
+            "prompt": "Rửa tay ___ khi ăn. (Wash hands BEFORE eating.)",
+            "correct": "trước",
+            "options": ["trước", "sau", "trong", "từ"],
+            "explanation": "'trước khi' = before (time). 'trước khi ăn' = before eating."
+        },
+        {
+            "type": "fill_blank",
+            "prompt": "___ đó chúng tôi đi về nhà. (AFTER THAT we went home.)",
+            "correct": "Sau",
+            "options": ["Sau", "Trước", "Từ", "Trong"],
+            "explanation": "'sau đó' = after that. 'sau' = after (time/place)."
+        }
+    ]
+}

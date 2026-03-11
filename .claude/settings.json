@@ -49,7 +49,8 @@
       "Bash(gh repo create:*)",
       "Bash(npx react-scripts build:*)",
       "Bash(git checkout:*)",
-      "Bash(npx eslint:*)"
+      "Bash(npx eslint:*)",
+      "Bash(npm run dev:*)"
     ],
     "additionalDirectories": [
       "/Users/niko/antigravity/vnme-app",

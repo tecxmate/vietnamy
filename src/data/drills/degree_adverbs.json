@@ -1,0 +1,121 @@
+{
+    "id": "degree_adverbs",
+    "title": "Degree Adverbs",
+    "description": "Master khá, tương đối, hơi, đến nỗi — expressing degrees from 'quite' to 'so much that'",
+    "color": "#9C27B0",
+    "intro": "Beyond rất/lắm/quá, Vietnamese has finer degree words. From highest to lowest: rất > khá > tương đối > không...lắm > hơi. Plus 'đến nỗi/đến mức' for extreme consequences.",
+    "questions": [
+        {
+            "type": "mcq",
+            "prompt": "Put these in order from STRONGEST to WEAKEST: rất, khá, tương đối, hơi",
+            "correct": "rất > khá > tương đối > hơi",
+            "options": ["rất > khá > tương đối > hơi", "hơi > tương đối > khá > rất", "khá > rất > hơi > tương đối", "rất > hơi > khá > tương đối"],
+            "explanation": "rất (very) > khá (quite) > tương đối (relatively) > không...lắm (not very) > hơi (a little/rather)."
+        },
+        {
+            "type": "mcq",
+            "prompt": "What does 'khá' mean as a degree word?",
+            "correct": "Quite / fairly",
+            "options": ["Quite / fairly", "Very", "A little", "Extremely"],
+            "explanation": "'Tiếng Anh của em ấy khá tốt' = Her English is quite good. Less than 'rất' but still positive."
+        },
+        {
+            "type": "fill_blank",
+            "prompt": "Vào buổi tối, con đường này ___ vắng vẻ. (This street is RELATIVELY deserted at night.)",
+            "correct": "tương đối",
+            "options": ["tương đối", "rất", "hơi", "khá"],
+            "explanation": "'tương đối' = relatively. A moderate, measured assessment."
+        },
+        {
+            "type": "fill_blank",
+            "prompt": "Giá cả ở đây ___ cao. (The prices here are RATHER high.)",
+            "correct": "hơi",
+            "options": ["hơi", "rất", "khá", "tương đối"],
+            "explanation": "'hơi' = a little/rather. Often pairs with negative-connotation adjectives: hơi cao (rather high), hơi khó (rather difficult)."
+        },
+        {
+            "type": "mcq",
+            "prompt": "What kind of adjectives does 'hơi' usually combine with?",
+            "correct": "Adjectives with negative connotation",
+            "options": ["Adjectives with negative connotation", "Only positive adjectives", "Only color adjectives", "Any adjective"],
+            "explanation": "'hơi' often pairs with negative-feeling words: hơi đắt (rather expensive), hơi khó chịu (a little uncomfortable)."
+        },
+        {
+            "type": "fill_blank",
+            "prompt": "Bọn trẻ xem phim say sưa ___ quên ăn. (The kids watched so intently THAT they forgot to eat.)",
+            "correct": "đến nỗi",
+            "options": ["đến nỗi", "đến mức", "vì vậy", "cho nên"],
+            "explanation": "'đến nỗi' = to such an extent that. Action was so intense it caused a consequence."
+        },
+        {
+            "type": "mcq",
+            "prompt": "What do 'đến nỗi' and 'đến mức' express?",
+            "correct": "Something so extreme it causes a consequence",
+            "options": ["Something so extreme it causes a consequence", "A comparison between two things", "A time sequence", "A polite request"],
+            "explanation": "'Trời nóng đến mức tôi không ngủ được' = It was so hot (to the point that) I couldn't sleep."
+        },
+        {
+            "type": "fill_blank",
+            "prompt": "Cô ta ___ xấu. (She is NOT TOO bad-looking.)",
+            "correct": "không đến nỗi",
+            "options": ["không đến nỗi", "rất không", "hơi không", "khá không"],
+            "explanation": "'không đến nỗi' + adj = not too bad. Has a positive undertone — better than expected."
+        },
+        {
+            "type": "mcq",
+            "prompt": "'Không đến nỗi' usually conveys what feeling?",
+            "correct": "Positive — not as bad as expected",
+            "options": ["Positive — not as bad as expected", "Very negative", "Neutral, no feeling", "Strong criticism"],
+            "explanation": "'không đến nỗi xấu' = not too bad-looking (better than you'd think). Softens a negative."
+        },
+        {
+            "type": "mcq",
+            "prompt": "Which is UNGRAMMATICAL?",
+            "correct": "rất không đến nỗi xấu",
+            "options": ["rất không đến nỗi xấu", "không đến nỗi xấu", "không đến nỗi nào", "hơi xấu"],
+            "explanation": "You cannot combine 'rất' with 'không đến nỗi'. 'rất không đến nỗi' is ungrammatical."
+        },
+        {
+            "type": "fill_blank",
+            "prompt": "Anh ấy ___ kiêu ngạo như mọi người nghĩ. (He is NOT AS arrogant as people thought.)",
+            "correct": "không đến nỗi",
+            "options": ["không đến nỗi", "rất", "hơi", "khá"],
+            "explanation": "'không đến nỗi' = not as (bad as thought). Corrects a misconception."
+        },
+        {
+            "type": "mcq",
+            "prompt": "When the exact negative quality is NOT stated, what phrase replaces 'không đến nỗi + adj'?",
+            "correct": "không đến nỗi nào",
+            "options": ["không đến nỗi nào", "không đến nỗi gì", "không lắm", "không quá"],
+            "explanation": "'Anh ấy không đến nỗi nào' = He's not that bad (general, without specifying what). '-nào' replaces the adjective."
+        },
+        {
+            "type": "fill_blank",
+            "prompt": "Tiếng Anh của em ấy ___ tốt. (Her English is QUITE good.)",
+            "correct": "khá",
+            "options": ["khá", "hơi", "tương đối", "không lắm"],
+            "explanation": "'khá tốt' = quite good. Moderate positive assessment, below 'rất' but above 'tương đối'."
+        },
+        {
+            "type": "fill_blank",
+            "prompt": "Tối qua, trời nóng ___ tôi không ngủ được. (Last night was so hot THAT I couldn't sleep.)",
+            "correct": "đến mức",
+            "options": ["đến mức", "đến nỗi", "vì vậy", "cho nên"],
+            "explanation": "Both 'đến nỗi' and 'đến mức' work here. They're interchangeable: 'to such a degree that'."
+        },
+        {
+            "type": "mcq",
+            "prompt": "To express a negative assessment (bad connotation), which is preferred over 'không đến nỗi'?",
+            "correct": "không...lắm",
+            "options": ["không...lắm", "không đến nỗi nào", "hơi", "khá"],
+            "explanation": "'không...lắm' for bad connotation: 'không khiêm tốn lắm' (not very humble). 'không đến nỗi' implies 'not as bad as thought' (positive)."
+        },
+        {
+            "type": "fill_blank",
+            "prompt": "Tôi thấy ___ khó chịu. (I feel A LITTLE uncomfortable.)",
+            "correct": "hơi",
+            "options": ["hơi", "rất", "khá", "tương đối"],
+            "explanation": "'hơi' = a little. Softens the negative feeling. 'hơi khó chịu' = slightly uncomfortable."
+        }
+    ]
+}

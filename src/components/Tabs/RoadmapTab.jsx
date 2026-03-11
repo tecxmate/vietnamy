@@ -11,7 +11,7 @@ const NODE_STYLES = {
     orange: { color: '#FFB703', dark: '#CC9202', bg: 'rgba(255,183,3,0.12)', muted: 'rgba(255,183,3,0.35)', mutedBorder: 'rgba(255,183,3,0.25)', mutedIcon: 'rgba(255,183,3,0.5)', icon: MessageCircle, label: 'Conversation' },
     purple: { color: '#A78BFA', dark: '#7C3AED', bg: 'rgba(167,139,250,0.12)', muted: 'rgba(167,139,250,0.35)', mutedBorder: 'rgba(167,139,250,0.25)', mutedIcon: 'rgba(167,139,250,0.5)', icon: Zap, label: 'Skill' },
     green: { color: '#06D6A0', dark: '#05A67D', bg: 'rgba(6,214,160,0.12)', muted: 'rgba(6,214,160,0.35)', mutedBorder: 'rgba(6,214,160,0.25)', mutedIcon: 'rgba(6,214,160,0.5)', icon: BookOpenText, label: 'Grammar' },
-    test: { color: '#EF4444', dark: '#B91C1C', bg: 'rgba(239,68,68,0.12)', muted: 'rgba(239,68,68,0.35)', mutedBorder: 'rgba(239,68,68,0.25)', mutedIcon: 'rgba(239,68,68,0.5)', icon: Trophy, label: 'Unit Quiz' },
+    test: { color: '#EF4444', dark: '#B91C1C', bg: 'rgba(239,68,68,0.12)', muted: 'rgba(239,68,68,0.35)', mutedBorder: 'rgba(239,68,68,0.25)', mutedIcon: 'rgba(239,68,68,0.5)', icon: Trophy, label: 'Quizzes' },
 };
 
 function getNodeStyle(node) {
@@ -31,11 +31,11 @@ function getNodeStyle(node) {
 function getNodeLabel(node, style) {
     // Mini-tests get "Quiz" label, module tests show their module type
     if (node.test_scope === 'module') return 'Quiz';
-    if (node.test_scope === 'unit') return 'Unit Quiz';
+    if (node.test_scope === 'unit') return 'Quizzes';
     return style.label;
 }
 
-const RoadmapTab = () => {
+const RoadmapTab = ({ onNavigateToVocabDeck } = {}) => {
     const navigate = useNavigate();
     const { completedNodes, getNodeSessionCount, SESSIONS_TO_COMPLETE } = useDong();
     const { testMode } = loadSettings();
@@ -109,7 +109,7 @@ const RoadmapTab = () => {
         <div>
             {dueCount > 0 && (
                 <button
-                    onClick={() => navigate('/practice/vocab')}
+                    onClick={() => onNavigateToVocabDeck?.('__srs__')}
                     style={{
                         display: 'flex', alignItems: 'center', gap: 12,
                         width: 'calc(100% - 32px)', margin: '16px auto',
@@ -117,7 +117,7 @@ const RoadmapTab = () => {
                         backgroundColor: 'rgba(28, 176, 246, 0.1)',
                         border: '1px solid rgba(28, 176, 246, 0.3)',
                         color: '#1CB0F6', fontWeight: 700, fontSize: 14,
-                        cursor: 'pointer',
+                        cursor: 'pointer', fontFamily: 'inherit',
                     }}
                 >
                     <BookOpen size={20} />

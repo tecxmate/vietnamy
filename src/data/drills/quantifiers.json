@@ -1,0 +1,121 @@
+{
+    "id": "quantifiers",
+    "title": "Quantifiers: Từng, Mỗi, Mọi, Hàng",
+    "description": "Distinguish từng (each in turn), mỗi (each one), mọi (all/every), and hàng (every, habitual)",
+    "color": "#2196F3",
+    "intro": "Vietnamese has four words for 'each/every' with distinct nuances: 'từng' = each one in turn, 'mỗi' = each individual, 'mọi' = all/every (collective), 'hàng' = every (habitual, with time words only). Learning the differences will make your Vietnamese much more precise.",
+    "questions": [
+        {
+            "type": "mcq",
+            "prompt": "Which quantifier means 'each one in turn / one after another'?",
+            "correct": "từng",
+            "options": ["từng", "mỗi", "mọi", "hàng"],
+            "explanation": "'từng' = each in succession. 'Thủ tướng bắt tay từng người' = The PM shook hands with each person (one after another)."
+        },
+        {
+            "type": "mcq",
+            "prompt": "Which quantifier means 'each' (considered individually)?",
+            "correct": "mỗi",
+            "options": ["mỗi", "từng", "mọi", "hàng"],
+            "explanation": "'mỗi' = each (individual). 'Mỗi đĩa chứa được 144 trang' = Each disk stores 144 pages."
+        },
+        {
+            "type": "mcq",
+            "prompt": "Which quantifier means 'all / every' (the whole group)?",
+            "correct": "mọi",
+            "options": ["mọi", "từng", "mỗi", "hàng"],
+            "explanation": "'mọi' = all/every (collective). 'Mọi người nhận được phần thưởng' = Everyone received a reward."
+        },
+        {
+            "type": "fill_blank",
+            "prompt": "___ ngày cô ấy đi bơi vào buổi sáng. (She swims EVERY morning — habitual.)",
+            "correct": "Hàng",
+            "options": ["Hàng", "Từng", "Mỗi", "Mọi"],
+            "explanation": "'hàng' + time = habitual/regular. 'Hàng ngày' = every day (as a habit, without interruption)."
+        },
+        {
+            "type": "mcq",
+            "prompt": "'Hàng' can only be used with what type of noun?",
+            "correct": "Time nouns: ngày, tuần, tháng, năm",
+            "options": ["Time nouns: ngày, tuần, tháng, năm", "Any noun", "People only", "Objects only"],
+            "explanation": "'hàng' + ngày/tuần/tháng/năm only. NOT with phút, giờ, or buổi. 'Hàng tháng' = every month."
+        },
+        {
+            "type": "fill_blank",
+            "prompt": "___ người một đi vào phòng. (Every person went in, ONE BY ONE.)",
+            "correct": "Từng",
+            "options": ["Từng", "Mỗi", "Mọi", "Hàng"],
+            "explanation": "'từng...một' = one by one. More emphatic than 'từng' alone. Each person goes in turn."
+        },
+        {
+            "type": "fill_blank",
+            "prompt": "___ sinh viên trong lớp đều phải làm bài thuyết trình. (EACH AND EVERY student must present.)",
+            "correct": "Mỗi",
+            "options": ["Mỗi", "Từng", "Mọi", "Hàng"],
+            "explanation": "'mỗi...đều' emphasizes that every single individual must do the same thing."
+        },
+        {
+            "type": "mcq",
+            "prompt": "What does 'đều' do when combined with mỗi/mọi/hàng?",
+            "correct": "Emphasizes that everyone/everything does the same action",
+            "options": ["Emphasizes that everyone/everything does the same action", "Makes it past tense", "Adds a question meaning", "Makes it negative"],
+            "explanation": "'đều' = all (do the same). 'Mọi người đều vui' = Everyone (all) is happy."
+        },
+        {
+            "type": "fill_blank",
+            "prompt": "___ người đều nhận được phần thưởng. (EVERY person received a reward.)",
+            "correct": "Mọi",
+            "options": ["Mọi", "Từng", "Mỗi", "Hàng"],
+            "explanation": "'mọi người' = everyone (as a group). Refers to the entire group collectively."
+        },
+        {
+            "type": "mcq",
+            "prompt": "'Mọi ngày anh ấy về sớm nhưng hôm nay...' — Why is 'mọi' used here?",
+            "correct": "To highlight an exception to the usual pattern",
+            "options": ["To highlight an exception to the usual pattern", "To describe a habit", "To count one by one", "To emphasize each individual"],
+            "explanation": "'mọi + time' is used when there's an exception. Every day he comes home early, BUT today something's different."
+        },
+        {
+            "type": "fill_blank",
+            "prompt": "___ tháng anh ấy đều gửi tiền về cho gia đình. (EVERY month he sends money home — habitual.)",
+            "correct": "Hàng",
+            "options": ["Hàng", "Mỗi", "Từng", "Mọi"],
+            "explanation": "'hàng tháng' = every month (as a regular, uninterrupted habit). Emphasizes continuity."
+        },
+        {
+            "type": "fill_blank",
+            "prompt": "Tôi có cảm giác ___ phút trôi qua thật lâu. (Every MINUTE passes so slowly.)",
+            "correct": "từng",
+            "options": ["từng", "mỗi", "mọi", "hàng"],
+            "explanation": "'từng' + time emphasizes each moment passing one after another. 'từng phút' = minute by minute."
+        },
+        {
+            "type": "mcq",
+            "prompt": "Which is INCORRECT: 'hàng buổi sáng' or 'hàng ngày'?",
+            "correct": "'hàng buổi sáng' — 'hàng' can't be used with 'buổi'",
+            "options": ["'hàng buổi sáng' — 'hàng' can't be used with 'buổi'", "Both are correct", "'hàng ngày' — should be 'mỗi ngày'", "Neither is correct"],
+            "explanation": "'hàng' only works with ngày, tuần, tháng, năm. NOT with buổi, giờ, or phút. Use 'mỗi buổi sáng' instead."
+        },
+        {
+            "type": "fill_blank",
+            "prompt": "Giáo viên mời ___ người vào phòng thi. (Teacher called EACH person into the exam room — one by one.)",
+            "correct": "từng",
+            "options": ["từng", "mỗi", "mọi", "hàng"],
+            "explanation": "'từng người' = each person (called in one after another, in succession)."
+        },
+        {
+            "type": "fill_blank",
+            "prompt": "___ sáng nó đều tập chạy bộ. (EVERY morning he jogs.)",
+            "correct": "Mỗi",
+            "options": ["Mỗi", "Hàng", "Từng", "Mọi"],
+            "explanation": "'mỗi sáng' = every morning. 'mỗi + time' emphasizes repetition of the same action."
+        },
+        {
+            "type": "mcq",
+            "prompt": "Which sentence uses a quantifier with 'đều' to mean 'every country has its own problems'?",
+            "correct": "Mỗi nước đều có những vấn đề riêng",
+            "options": ["Mỗi nước đều có những vấn đề riêng", "Từng nước một có vấn đề", "Hàng nước có vấn đề", "Mọi nước không có vấn đề"],
+            "explanation": "'Mỗi nước đều' = each country (all of them). 'đều' emphasizes the universal truth."
+        }
+    ]
+}

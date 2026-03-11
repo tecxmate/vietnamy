@@ -1,0 +1,121 @@
+{
+    "id": "connectors",
+    "title": "Connectors: Và, Còn, Nhưng",
+    "description": "Master the three main Vietnamese connectors — và (and), còn (and/but for contrast), nhưng (but)",
+    "color": "#4CAF50",
+    "intro": "Vietnamese has three key connectors: 'và' links similar ideas, 'còn' contrasts two different subjects, and 'nhưng' expresses opposition. Learning when to use each is essential for natural-sounding sentences.",
+    "questions": [
+        {
+            "type": "mcq",
+            "prompt": "Which connector means 'and' and links two similar things?",
+            "correct": "và",
+            "options": ["và", "còn", "nhưng", "thì"],
+            "explanation": "'và' = and. Used to connect words, phrases, or sentences: 'Cô ấy hiền và tốt bụng' = She is gentle and kind."
+        },
+        {
+            "type": "mcq",
+            "prompt": "Which connector is used to contrast TWO DIFFERENT subjects?",
+            "correct": "còn",
+            "options": ["còn", "và", "nhưng", "cũng"],
+            "explanation": "'còn' contrasts different subjects: 'Tôi mua áo sơ mi, còn em tôi mua áo đầm' = I bought a shirt, and my sister bought a dress."
+        },
+        {
+            "type": "mcq",
+            "prompt": "Which connector means 'but' and shows opposition?",
+            "correct": "nhưng",
+            "options": ["nhưng", "và", "còn", "mà"],
+            "explanation": "'nhưng' = but. Expresses contrasting ideas: 'Phòng này nhỏ nhưng thoáng' = This room is small but well ventilated."
+        },
+        {
+            "type": "fill_blank",
+            "prompt": "Cô ấy hiền ___ tốt bụng. (She is gentle AND kind.)",
+            "correct": "và",
+            "options": ["và", "còn", "nhưng", "thì"],
+            "explanation": "'và' links two similar positive qualities about the same person."
+        },
+        {
+            "type": "fill_blank",
+            "prompt": "Tôi học tiếng Anh, ___ em tôi học tiếng Việt. (I study English, and my sister studies Vietnamese.)",
+            "correct": "còn",
+            "options": ["còn", "và", "nhưng", "cũng"],
+            "explanation": "'còn' contrasts what two different people do. Different subjects = use 'còn'."
+        },
+        {
+            "type": "fill_blank",
+            "prompt": "Phim đó hay ___ hơi dài. (That movie is good BUT a bit long.)",
+            "correct": "nhưng",
+            "options": ["nhưng", "và", "còn", "mà"],
+            "explanation": "'nhưng' = but. Good thing + bad thing = opposition → use 'nhưng'."
+        },
+        {
+            "type": "mcq",
+            "prompt": "Can 'còn' link two clauses with the SAME subject?",
+            "correct": "No — use 'và' or 'nhưng' instead",
+            "options": ["No — use 'và' or 'nhưng' instead", "Yes, always", "Only in formal writing", "Only in Southern dialect"],
+            "explanation": "'còn' requires different subjects. 'Tôi thích đọc sách và nghe nhạc' (NOT *còn*) — same subject 'tôi'."
+        },
+        {
+            "type": "fill_blank",
+            "prompt": "Anh ấy thì mở cửa, ___ tôi thì bật đèn. (He opened the door, and I turned on the light.)",
+            "correct": "còn",
+            "options": ["còn", "và", "nhưng", "rồi"],
+            "explanation": "Two different subjects doing different actions → 'còn'. The 'thì' after each subject emphasizes the contrast."
+        },
+        {
+            "type": "mcq",
+            "prompt": "What does 'thì' do when used with 'còn'?",
+            "correct": "Emphasizes the contrast between subjects",
+            "options": ["Emphasizes the contrast between subjects", "Makes the sentence past tense", "Adds a question meaning", "Makes it more polite"],
+            "explanation": "'Anh ấy thì mở cửa, còn tôi thì bật đèn' — 'thì' after each subject makes the contrast stronger."
+        },
+        {
+            "type": "fill_blank",
+            "prompt": "Tôi có thể chơi tennis ___ không thể chơi gôn. (I can play tennis BUT can't play golf.)",
+            "correct": "nhưng",
+            "options": ["nhưng", "còn", "và", "mà"],
+            "explanation": "Same subject + contrasting abilities → 'nhưng'. Can't use 'còn' with the same subject."
+        },
+        {
+            "type": "mcq",
+            "prompt": "Which sentence is CORRECT?",
+            "correct": "Sách này đẹp và thú vị.",
+            "options": ["Sách này đẹp và thú vị.", "Sách này đẹp còn thú vị.", "Tôi thích đọc sách còn nghe nhạc.", "Anh ấy cao còn ốm."],
+            "explanation": "Linking two qualities of the same noun → 'và'. 'còn' needs different subjects."
+        },
+        {
+            "type": "fill_blank",
+            "prompt": "Nên ăn ít hơn, vận động nhiều hơn ___ suy nghĩ tích cực hơn. (Eat less, exercise more, AND think positively.)",
+            "correct": "và",
+            "options": ["và", "còn", "nhưng", "với"],
+            "explanation": "In a list, 'và' goes before the last item only: A, B và C."
+        },
+        {
+            "type": "mcq",
+            "prompt": "'Mẹ thì ghét phim đó, còn ba thì nghĩ là nó hay.' — What does 'còn' express here?",
+            "correct": "Contrast between two people's opinions",
+            "options": ["Contrast between two people's opinions", "Agreement between parents", "A sequence of events", "A cause and effect"],
+            "explanation": "'còn' contrasts Mom's dislike with Dad's positive opinion. Two subjects, opposing views."
+        },
+        {
+            "type": "fill_blank",
+            "prompt": "Tôi đã giặt quần áo xong. ___ tôi cũng đã dọn dẹp nhà. (I finished laundry. AND I also cleaned the house.)",
+            "correct": "Và",
+            "options": ["Và", "Còn", "Nhưng", "Rồi"],
+            "explanation": "'Và...cũng' = And...also. Same subject doing more than expected → 'và + cũng'."
+        },
+        {
+            "type": "mcq",
+            "prompt": "When 'còn' has 'lại' after 'thì', what does it imply?",
+            "correct": "Criticism or something unexpected",
+            "options": ["Criticism or something unexpected", "Politeness", "Past tense", "A question"],
+            "explanation": "'Vợ thì phải làm việc nhà, còn anh ấy thì lại xem bóng đá' — 'lại' adds a tone of criticism."
+        },
+        {
+            "type": "fill_blank",
+            "prompt": "Ông ấy là giáo viên nghiêm khắc ___ sinh viên kính trọng ông ấy. (He's strict BUT students respect him.)",
+            "correct": "nhưng",
+            "options": ["nhưng", "và", "còn", "vì"],
+            "explanation": "Strict (seems negative) but respected (positive outcome) → opposition → 'nhưng'."
+        }
+    ]
+}

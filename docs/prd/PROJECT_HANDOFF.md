@@ -54,7 +54,7 @@ The architecture is designed to be **cloned and adapted** for other language pai
 │   │
 │   ├── pages/
 │   │   ├── GrammarLesson.jsx      # Grammar lesson player
-│   │   ├── UnitTest.jsx           # Unit quiz
+│   │   ├── UnitTest.jsx           # Quizzes
 │   │   ├── Practice/              # All practice modules
 │   │   │   ├── TonePractice.jsx   # Vietnamese-specific
 │   │   │   ├── NumbersPractice.jsx
@@ -100,13 +100,16 @@ The architecture is designed to be **cloned and adapted** for other language pai
 ## Core Systems (Language-Agnostic — Keep These)
 
 ### 1. Lesson Engine (`LessonGame.jsx`)
+
 Renders exercises sequentially with:
+
 - **5-heart system** — lose a heart on wrong answer, game over at 0
 - **Streak tracking** — consecutive correct answers
 - **Score calculation** — accuracy + streak bonuses
 - **SRS integration** — adds learned vocab to spaced repetition on completion
 
 Exercise types supported:
+
 - `multiple_choice` — pick the correct translation
 - `listen_tap` — hear audio, tap the word
 - `speaking_repeat` — repeat after audio
@@ -114,28 +117,36 @@ Exercise types supported:
 - Easily extendable with new types
 
 ### 2. Roadmap & Progression (`RoadmapTab.jsx`)
+
 Duolingo-style skill tree:
+
 - **Units** contain **nodes** (lesson, skill, grammar, test)
 - Each node has an `unlock_rule` specifying prerequisite nodes
 - Node status: `locked` → `active` → `completed`
 - Color-coded by type: lesson(yellow), skill(purple), grammar(green), test(orange)
 
 ### 3. Gamification (`DongContext.jsx`)
+
 Virtual currency "₫" (Dong) system:
+
 - Earn currency by completing lessons (formula: base + accuracy bonus + streak bonus)
 - Spend currency to unlock practice modules
 - Daily streak tracker with multiplier bonuses
 - Replay penalty (50% rewards on repeat)
 
 ### 4. Spaced Repetition (`srs.js`)
+
 SM-2 inspired algorithm:
+
 - Intervals: 1 → 3 → 7 → 14 → 30 days
 - Items added automatically from completed lessons
 - `getDueItems()` returns cards ready for review
 - FlashcardsPage provides the study UI
 
 ### 5. Dictionary (`DictionaryTab.jsx` + `server/server.js`)
+
 Multi-source, multi-language dictionary:
+
 - Server indexes SQLite databases on startup
 - `/api/suggest?q=...` — fuzzy autocomplete (8 results)
 - `/api/search?q=...&lang=en|zh` — full definitions with examples
@@ -144,7 +155,9 @@ Multi-source, multi-language dictionary:
 - FVDP entries use a custom HTML parser (`parseFVDP()`) for clean rendering
 
 ### 6. Admin CMS (`/admin/*`)
+
 Content management dashboard:
+
 - RoadmapMapper — visual node editor
 - LessonBuilder — create lessons + exercises
 - GrammarEditor — manage grammar by CEFR level
@@ -186,11 +199,13 @@ word_metrics(word_id, subt_freq, mi, ipa, subt_disp)
 ### Data Structures
 
 **Unit:**
+
 ```js
 { id: "unit_1_basics", unit_index: 1, title: "Unit 1 — Basics" }
 ```
 
 **Path Node:**
+
 ```js
 {
   id: "node_001", unit_id: "unit_1_basics", node_index: 1,
@@ -202,6 +217,7 @@ word_metrics(word_id, subt_freq, mi, ipa, subt_disp)
 ```
 
 **Exercise:**
+
 ```js
 {
   id: "ex_001", lesson_id: "lesson_001",
@@ -217,6 +233,7 @@ word_metrics(word_id, subt_freq, mi, ipa, subt_disp)
 ```
 
 **Vocab Item:**
+
 ```js
 {
   id: "it_w_0001", item_type: "word",
@@ -275,6 +292,7 @@ npm run build && npm start
 ## How to Clone for a New Language App
 
 ### Step 1: What to Keep (language-agnostic)
+
 - Lesson engine (`LessonGame.jsx`)
 - Roadmap system (`RoadmapTab.jsx`, path node logic)
 - Gamification (`DongContext.jsx`)
@@ -285,6 +303,7 @@ npm run build && npm start
 - Onboarding flow structure
 
 ### Step 2: What to Replace (language-specific content)
+
 - **`src/lib/db.js`** — Replace all Vietnamese lesson content (units, lessons, exercises, vocab items) with your target language
 - **`src/data/vocabWords.js`** — Replace vocabulary list
 - **`src/data/articleData.js`** — Replace reading articles
@@ -294,6 +313,7 @@ npm run build && npm start
 - **`server/databases/*.db`** — Replace with your language pair dictionary databases
 
 ### Step 3: What to Remove or Adapt (Vietnamese-specific modules)
+
 - `TonePractice.jsx` — Vietnamese 6-tone system (remove or adapt for Mandarin 4 tones)
 - `TonePitchTraining.jsx` — Pitch contour training (adapt for target language)
 - `ToneMarks.jsx` — Vietnamese diacritics (remove for English)
@@ -304,6 +324,7 @@ npm run build && npm start
 - `FamilyTree.jsx` — Vietnamese kinship system (remove)
 
 ### Step 4: What to Rebrand
+
 - App name: "Vietnamy Education" → your app name
 - Currency name: "Dong ₫" → your currency
 - `TopBar.jsx` credits section — update developer info
@@ -312,7 +333,9 @@ npm run build && npm start
 - localStorage key prefixes (`vnme_*`, `vietnamy_*`) — rename to avoid conflicts
 
 ### Step 5: Dictionary Setup (for English↔Chinese)
+
 For an English teaching app for Chinese speakers:
+
 1. Source an EN↔ZH dictionary dataset (StarDict, CC-CEDICT, etc.)
 2. Import into SQLite with the same schema (`words`, `meanings`, `sources`, `examples`)
 3. Update `DictionaryTab.jsx` MODES and SOURCE_LABELS
@@ -337,16 +360,19 @@ For an English teaching app for Chinese speakers:
 ## Quick Reference: Adding Common Things
 
 **New lesson:**
+
 1. Add exercises to `db.js` → `exercises` array
 2. Add lesson blueprint to `lesson_blueprints`
 3. Add path node to `path_nodes` with `unlock_rule`
 
 **New practice module:**
+
 1. Create component in `src/pages/Practice/`
 2. Add route in `App.jsx`
 3. Add to grid in `PracticeTab.jsx`
 
 **New tab:**
+
 1. Create component in `src/components/Tabs/`
 2. Add to `renderTab()` in `App.jsx`
 3. Add to `BottomNav.jsx`

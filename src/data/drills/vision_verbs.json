@@ -1,0 +1,121 @@
+{
+    "id": "vision_verbs",
+    "title": "Vision Verbs",
+    "description": "Master xem, ngắm, nhìn, thấy, trông, gặp — Vietnamese has 6+ ways to say 'see/look/watch'",
+    "color": "#00BCD4",
+    "intro": "English uses 'see', 'look', 'watch' loosely. Vietnamese is very specific: 'xem' = watch/read for entertainment, 'ngắm' = gaze at something beautiful, 'nhìn' = look at with attention, 'thấy' = see (ability), 'trông' = look (appearance/judgment), 'gặp' = meet (see + talk to).",
+    "questions": [
+        {
+            "type": "mcq",
+            "prompt": "Which verb means 'watch' (TV, movies, performances)?",
+            "correct": "xem",
+            "options": ["xem", "nhìn", "ngắm", "thấy"],
+            "explanation": "'xem' = watch for entertainment. 'xem ti vi' = watch TV, 'xem phim' = watch a movie."
+        },
+        {
+            "type": "mcq",
+            "prompt": "Which verb means 'gaze at' something beautiful or a target?",
+            "correct": "ngắm",
+            "options": ["ngắm", "xem", "nhìn", "trông"],
+            "explanation": "'ngắm' = gaze at with appreciation. 'ngắm hoa' = look at flowers, 'ngắm trăng' = gaze at the moon."
+        },
+        {
+            "type": "mcq",
+            "prompt": "Which verb means 'look at' with attention?",
+            "correct": "nhìn",
+            "options": ["nhìn", "xem", "thấy", "gặp"],
+            "explanation": "'nhìn' = look at, pay attention. 'Mark nhìn đồng hồ' = Mark looked at his watch."
+        },
+        {
+            "type": "fill_blank",
+            "prompt": "Ba tôi rất thích ___ bóng đá. (My dad loves to WATCH soccer.)",
+            "correct": "xem",
+            "options": ["xem", "nhìn", "ngắm", "thấy"],
+            "explanation": "'xem' for watching entertainment/sports. 'xem bóng đá' = watch soccer."
+        },
+        {
+            "type": "fill_blank",
+            "prompt": "Họ đi ra vườn để ___ trăng. (They went to the garden to GAZE AT the moon.)",
+            "correct": "ngắm",
+            "options": ["ngắm", "xem", "nhìn", "thấy"],
+            "explanation": "'ngắm' = gaze at something beautiful. The moon is admired aesthetically → 'ngắm trăng'."
+        },
+        {
+            "type": "fill_blank",
+            "prompt": "Gần đây mắt tôi không còn ___ rõ nữa. (Recently I can't SEE clearly anymore.)",
+            "correct": "thấy",
+            "options": ["thấy", "nhìn", "xem", "trông"],
+            "explanation": "'thấy' = ability to see. 'không thấy rõ' = can't see clearly. About visual ability, not deliberate looking."
+        },
+        {
+            "type": "mcq",
+            "prompt": "'Trông cô ấy có vẻ vui' means:",
+            "correct": "She LOOKS happy (appearance/judgment)",
+            "options": ["She LOOKS happy (appearance/judgment)", "She is WATCHING something happy", "She can SEE happiness", "She MET a happy person"],
+            "explanation": "'trông...có vẻ' = looks like / appears to be. Making a judgment about someone's appearance."
+        },
+        {
+            "type": "fill_blank",
+            "prompt": "Tôi ___ anh ấy trên phố và chúng tôi đi ăn trưa. (I MET him on the street and we had lunch.)",
+            "correct": "gặp",
+            "options": ["gặp", "thấy", "nhìn", "xem"],
+            "explanation": "'gặp' = meet (see + talk to). Not just seeing, but having an encounter."
+        },
+        {
+            "type": "mcq",
+            "prompt": "'xem' can also mean 'read'. In what context?",
+            "correct": "Reading for fun or information (books, newspapers)",
+            "options": ["Reading for fun or information (books, newspapers)", "Reading aloud in class", "Reading a contract", "Reading braille"],
+            "explanation": "'Anh đã xem quyển sách mới chưa?' = Have you read the new book? 'xem' for casual reading."
+        },
+        {
+            "type": "fill_blank",
+            "prompt": "Màu này ___ ghê quá. (This color LOOKS awful.)",
+            "correct": "trông",
+            "options": ["trông", "nhìn", "thấy", "xem"],
+            "explanation": "'trông' for making a judgment about appearance. 'trông ghê' = looks awful."
+        },
+        {
+            "type": "fill_blank",
+            "prompt": "Chị có thể ___ nhà giùm khi tôi đi vắng không? (Can you LOOK AFTER the house while I'm away?)",
+            "correct": "trông",
+            "options": ["trông", "nhìn", "xem", "ngắm"],
+            "explanation": "'trông' also means 'to keep an eye on / look after'. 'trông nhà' = watch the house, 'trông em bé' = babysit."
+        },
+        {
+            "type": "mcq",
+            "prompt": "In Southern Vietnamese, 'can see' is expressed as:",
+            "correct": "nhìn thấy",
+            "options": ["nhìn thấy", "trông thấy", "xem thấy", "ngắm thấy"],
+            "explanation": "South: 'nhìn thấy'. North: 'trông thấy'. Both mean 'to be able to see'. Regional difference!"
+        },
+        {
+            "type": "fill_blank",
+            "prompt": "Cửa sổ ___ ra vườn. (The windows FACE the garden.)",
+            "correct": "trông",
+            "options": ["trông", "nhìn", "xem", "thấy"],
+            "explanation": "'trông ra' (North) / 'nhìn ra' (South) = face towards. Describes which direction something faces."
+        },
+        {
+            "type": "fill_blank",
+            "prompt": "Anh Minh say sưa ___ đứa con trai đang ngủ. (Minh gazed adoringly at his sleeping son.)",
+            "correct": "ngắm",
+            "options": ["ngắm", "nhìn", "xem", "thấy"],
+            "explanation": "'ngắm' for looking at something/someone with love and admiration. A father gazing at his child."
+        },
+        {
+            "type": "fill_blank",
+            "prompt": "Tôi hy vọng chúng ta có thể ___ nhau một lần nữa. (I hope we can MEET again.)",
+            "correct": "gặp",
+            "options": ["gặp", "thấy", "nhìn", "xem"],
+            "explanation": "'gặp nhau' = meet each other. About having an encounter, not just seeing."
+        },
+        {
+            "type": "mcq",
+            "prompt": "Which is WRONG: 'Xin hãy xem đây' or 'Xin hãy nhìn đây'?",
+            "correct": "'Xin hãy xem đây' — should be 'nhìn đây' (look here)",
+            "options": ["'Xin hãy xem đây' — should be 'nhìn đây' (look here)", "Both are correct", "'nhìn đây' is wrong", "Neither is correct"],
+            "explanation": "'nhìn đây' = look here (pay attention). 'xem' is for entertainment/reading, not for directing attention."
+        }
+    ]
+}

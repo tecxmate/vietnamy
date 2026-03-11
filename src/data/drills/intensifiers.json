@@ -1,0 +1,121 @@
+{
+    "id": "intensifiers",
+    "title": "Intensifiers: Rất, Lắm, Quá",
+    "description": "Learn when to use rất (very, formal), lắm (very, casual), and quá (too/so, emotional)",
+    "color": "#FF5722",
+    "intro": "Vietnamese has three main intensifiers: 'rất' goes BEFORE adjectives (formal), 'lắm' goes AFTER (casual), and 'quá' expresses strong emotion (too/so!). They look interchangeable but have strict placement rules and different nuances.",
+    "questions": [
+        {
+            "type": "mcq",
+            "prompt": "Where does 'rất' go in a sentence?",
+            "correct": "BEFORE the adjective/adverb",
+            "options": ["BEFORE the adjective/adverb", "AFTER the adjective/adverb", "At the end of the sentence", "It can go anywhere"],
+            "explanation": "'rất' always goes BEFORE: 'rất lạnh' (very cold), 'rất nhanh' (very fast)."
+        },
+        {
+            "type": "mcq",
+            "prompt": "Where does 'lắm' go in a sentence?",
+            "correct": "AFTER the adjective/adverb",
+            "options": ["AFTER the adjective/adverb", "BEFORE the adjective/adverb", "Before the subject", "Between subject and verb"],
+            "explanation": "'lắm' goes AFTER: 'tốt lắm' (very good), 'nhanh lắm' (very fast)."
+        },
+        {
+            "type": "fill_blank",
+            "prompt": "Ở bên ngoài ___ lạnh. (It's VERY cold outside.)",
+            "correct": "rất",
+            "options": ["rất", "lắm", "quá", "khá"],
+            "explanation": "'rất' before 'lạnh': 'rất lạnh'. This is a commentary sentence, so 'rất' fits best."
+        },
+        {
+            "type": "fill_blank",
+            "prompt": "Trường học đó tốt ___. (That school is VERY good.)",
+            "correct": "lắm",
+            "options": ["lắm", "rất", "quá", "hơi"],
+            "explanation": "'lắm' after 'tốt': 'tốt lắm'. Casual, conversational tone."
+        },
+        {
+            "type": "fill_blank",
+            "prompt": "Em đi chậm ___! (You walk TOO slowly!)",
+            "correct": "quá",
+            "options": ["quá", "rất", "lắm", "khá"],
+            "explanation": "'quá' as an exclamation: 'chậm quá!' = too slow! Expresses the speaker's frustration."
+        },
+        {
+            "type": "mcq",
+            "prompt": "Which is UNGRAMMATICAL in Vietnamese?",
+            "correct": "rất không giỏi",
+            "options": ["rất không giỏi", "không giỏi lắm", "rất giỏi", "giỏi lắm"],
+            "explanation": "You CAN say 'không...lắm' (not very) but CANNOT say 'rất không...' — that's ungrammatical."
+        },
+        {
+            "type": "fill_blank",
+            "prompt": "Tôi chơi thể thao không giỏi ___. (I'm NOT VERY good at sports.)",
+            "correct": "lắm",
+            "options": ["lắm", "rất", "quá", "hơi"],
+            "explanation": "'không...lắm' = not very. 'không giỏi lắm' = not very good. Can't use 'rất' in negation."
+        },
+        {
+            "type": "mcq",
+            "prompt": "When 'quá' comes BEFORE an adjective, what does it often imply?",
+            "correct": "Negative connotation or consequence",
+            "options": ["Negative connotation or consequence", "Positive surprise", "A polite request", "Past tense"],
+            "explanation": "'quá mắc' = too expensive (leads to negative consequence: can't buy it). Pre-position 'quá' often implies something bad."
+        },
+        {
+            "type": "mcq",
+            "prompt": "'Cà phê Việt Nam đậm lắm' vs 'Cà phê Việt Nam đậm quá!' — what's the difference?",
+            "correct": "'lắm' = factual observation, 'quá' = emotional reaction",
+            "options": ["'lắm' = factual observation, 'quá' = emotional reaction", "No difference", "'lắm' is Northern, 'quá' is Southern", "'lắm' is past, 'quá' is present"],
+            "explanation": "'đậm lắm' = talking about something already experienced. 'đậm quá!' = reacting in the moment."
+        },
+        {
+            "type": "fill_blank",
+            "prompt": "Cô nói tiếng Việt ___ hay! (You speak Vietnamese SO well!)",
+            "correct": "quá",
+            "options": ["quá", "rất", "lắm", "khá"],
+            "explanation": "'quá' here is an emotional exclamation. 'hay quá!' or 'quá hay!' = So good!"
+        },
+        {
+            "type": "mcq",
+            "prompt": "Which is MORE FORMAL?",
+            "correct": "rất",
+            "options": ["rất", "lắm", "quá", "They're all the same"],
+            "explanation": "'rất' is used in formal speech and writing. 'lắm' is more casual/conversational. 'quá' is exclamatory."
+        },
+        {
+            "type": "fill_blank",
+            "prompt": "___ có thể là hai công ty ấy sẽ đóng cửa. (There is a VERY high possibility...)",
+            "correct": "Rất",
+            "options": ["Rất", "Lắm", "Quá", "Khá"],
+            "explanation": "'rất' can also go before modal verbs like 'có thể' (can/possible): 'rất có thể' = very possibly."
+        },
+        {
+            "type": "mcq",
+            "prompt": "Which combination is UNGRAMMATICAL?",
+            "correct": "không xa quá",
+            "options": ["không xa quá", "không xa lắm", "rất xa", "xa lắm"],
+            "explanation": "You can say 'không...lắm' but NOT 'không...quá'. 'Không xa lắm' = not very far (correct)."
+        },
+        {
+            "type": "fill_blank",
+            "prompt": "Quyển từ điển này hay nhưng ___ mắc, tôi mua không nổi. (This dictionary is good but TOO expensive...)",
+            "correct": "quá",
+            "options": ["quá", "rất", "lắm", "hơi"],
+            "explanation": "'quá mắc' = too expensive, leading to consequence (can't buy). 'quá' before adj = negative connotation."
+        },
+        {
+            "type": "fill_blank",
+            "prompt": "Tỷ lệ sinh ở các nước phát triển ___ thấp. (Birth rates in developed countries are VERY low.)",
+            "correct": "rất",
+            "options": ["rất", "lắm", "quá", "hơi"],
+            "explanation": "Formal/factual statement about statistics → 'rất' (before adj). Commentary style."
+        },
+        {
+            "type": "mcq",
+            "prompt": "Arrange from most to least intense: rất, quá, lắm",
+            "correct": "quá > rất ≈ lắm",
+            "options": ["quá > rất ≈ lắm", "rất > lắm > quá", "lắm > quá > rất", "They're all equal"],
+            "explanation": "'quá' is the strongest (emotional), 'rất' and 'lắm' are similar in intensity but differ in formality and position."
+        }
+    ]
+}
