@@ -15,9 +15,9 @@
               "state": {
                 "file": "docs/prd/vnme-note.canvas",
                 "viewState": {
-                  "x": -711.2568099976878,
-                  "y": 669.4082732694717,
-                  "zoom": -1.0653276285116904
+                  "x": -715.1309434106602,
+                  "y": 466.14534435380773,
+                  "zoom": 0.08684419610298225
                 }
               },
               "icon": "lucide-layout-dashboard",
@@ -188,6 +188,9 @@
   },
   "active": "e709a357ee53a7cc",
   "lastOpenFiles": [
+    "docs/prd/userflow.canvas",
+    "docs/Curriculum/curriculum-state-and-plan.md",
+    "docs/prd/vnme-note.canvas",
     "dist/assets/index-gfqDyUir.js",
     "dist/assets/dictionary-BM635fq9.js",
     "dist/index.html",
@@ -198,7 +201,6 @@
     "dist/assets/index-1hcLJ6WL.js",
     "dist/assets/index-BKTrK6yo.js",
     "dist/assets/index-ClZXQawU.js",
-    "dist/assets/index-BVdg6FWA.js",
     "docs/Curriculum/05_Misc/01_Exam.md",
     "docs/Curriculum/05_Misc/02_Learn_Southern_Vietnamese_with_a_Saigonese_For_Free.md",
     "docs/Curriculum/04_Phrases_and_Practical/03_Translation.md",
@@ -216,7 +218,6 @@
     "docs/Curriculum/02_Vocabulary/03_Numbers.md",
     "docs/Curriculum/01_Basics/01_Alphabet.md",
     "docs/Curriculum/02_Vocabulary/01_Adjectives.md",
-    "docs/Curriculum/curriculum-state-and-plan.md",
     "docs/Curriculum copy/curriculum-state-and-plan.md",
     "docs/Curriculum copy/curriculum-plan.md",
     "docs/Curriculum copy/05_Misc/02_Learn_Southern_Vietnamese_with_a_Saigonese_For_Free.md",
@@ -224,8 +225,6 @@
     "docs/Curriculum copy/04_Phrases_and_Practical/03_Translation.md",
     "docs/Curriculum copy/04_Phrases_and_Practical/02_Audio.md",
     "docs/Curriculum copy/04_Phrases_and_Practical/01_Phrases.md",
-    "docs/prd/vnme-note.canvas",
-    "docs/prd/userflow.canvas",
     "docs/prd/study-roadmap-architecture.canvas",
     "docs/prd/study-content-overview.canvas",
     "docs/prd/features.canvas",

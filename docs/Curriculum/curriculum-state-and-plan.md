@@ -1,5 +1,7 @@
 # Vietnamy Curriculum Plan
 
+
+
 ## Current State
 
 | What we have | Count | Notes |

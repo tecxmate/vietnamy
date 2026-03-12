@@ -66,7 +66,17 @@
 		{"id":"feat_home","type":"text","text":"**Home Tab Features**\n• Word of the Day (w/ TTS)\n• Daily language tip (15 rotating tips)\n• Week streak dots (Mon–Sun)\n• 🔴 Continue button → active node\n• SRS review badge (due count)\n• Quick-access: Grammar, Practice\n• Daily goal progress ring","x":160,"y":-980,"width":290,"height":180,"color":"3"},
 		{"id":"ctx_hdr","type":"text","text":"## Global State (React Contexts)","x":910,"y":-1080,"width":290,"height":90},
 		{"id":"srs_ui","type":"text","text":"**SRS UI Integrations**\n• Review banner on Roadmap tab\n• Due count badge in Library > Vocabulary\n• SRS prompt on Home tab\n• Review session accessible from Library tab\n• `exerciseGenerator.js` — auto-generates exercises","x":440,"y":200,"width":470,"height":130,"color":"3"},
-		{"id":"grammar_hdr","type":"text","text":"## Grammar Routes\n`/grammar/:level/:index`","x":90,"y":-151,"width":280,"height":83}
+		{"id":"grammar_hdr","type":"text","text":"## Grammar Routes\n`/grammar/:level/:index`","x":90,"y":-151,"width":280,"height":83},
+		{"id":"71ce7f0f6c22a8c5","type":"text","text":"Question:","x":1320,"y":-1840,"width":120,"height":60,"color":"6"},
+		{"id":"a7e03159a4f71837","x":1480,"y":-1840,"width":250,"height":60,"type":"text","text":"What does this mean? \nCon chó"},
+		{"id":"eef7ff506acf05e6","x":1480,"y":-1920,"width":250,"height":60,"type":"text","text":"EN"},
+		{"id":"a62933e269d35e98","x":1760,"y":-1920,"width":125,"height":60,"type":"text","text":"ZH-Traditional"},
+		{"id":"ef15e8916dac49c4","type":"text","text":"\"Con chó\" 是什麼?","x":1760,"y":-1840,"width":250,"height":60},
+		{"id":"0c2af85392674d1d","type":"text","text":"ZH-Simplified","x":1885,"y":-1920,"width":125,"height":60},
+		{"id":"ef9f567ff8cc0bfb","type":"text","text":"Answer:","x":1320,"y":-1760,"width":120,"height":60,"color":"6"},
+		{"id":"9c719d34c37107ac","type":"text","text":"EN","x":1320,"y":-1920,"width":120,"height":60},
+		{"id":"61974c7d830a9ecd","type":"text","text":"“Dog”， “Cat” ，","x":1480,"y":-1760,"width":250,"height":60},
+		{"id":"c381d7c4333a181c","type":"text","text":"貓🐱，狗🐶","x":1760,"y":-1760,"width":250,"height":60}
 	],
 	"edges":[
 		{"id":"e_roles_welcome1","fromNode":"role_guest","fromSide":"right","toNode":"ob_welcome","toSide":"left","label":"enters as"},
@@ -111,6 +121,7 @@
 		{"id":"e_admin_lesson_grammar","fromNode":"admin_lesson","fromSide":"bottom","toNode":"admin_grammar","toSide":"top"},
 		{"id":"e_admin_grammar_articles","fromNode":"admin_grammar","fromSide":"bottom","toNode":"admin_articles","toSide":"top"},
 		{"id":"e_admin_articles_vocab","fromNode":"admin_articles","fromSide":"bottom","toNode":"admin_vocab","toSide":"top"},
-		{"id":"e_admin_vocab_kinship","fromNode":"admin_vocab","fromSide":"bottom","toNode":"admin_kinship","toSide":"top"}
+		{"id":"e_admin_vocab_kinship","fromNode":"admin_vocab","fromSide":"bottom","toNode":"admin_kinship","toSide":"top"},
+		{"id":"6b20da21a87c6631","fromNode":"a62933e269d35e98","fromSide":"top","toNode":"0c2af85392674d1d","toSide":"top","fromEnd":"arrow","label":"pyt2s"}
 	]
 }
