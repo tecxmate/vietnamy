@@ -221,8 +221,8 @@ export default function KinshipFoundation() {
             {/* Quiz Playing */}
             {mode === 'quiz' && quizState && quizState.questions[quizState.currentIdx] && (
                 <div style={{ padding: '24px 0' }}>
-                    <div className="pitch-progress-bar" style={{ borderRadius: 4, overflow: 'hidden', marginBottom: 24 }}>
-                        <div className="pitch-progress-fill" style={{ width: `${(quizState.currentIdx / quizState.questions.length) * 100}%` }} />
+                    <div style={{ height: 16, backgroundColor: 'var(--surface-color)', borderRadius: 15, overflow: 'hidden', marginBottom: 24 }}>
+                        <div style={{ width: `${(quizState.currentIdx / quizState.questions.length) * 100}%`, height: '100%', backgroundColor: 'var(--primary-color)', transition: 'width 0.3s ease-out', borderRadius: 15 }} />
                     </div>
                     <div style={{ textAlign: 'center', marginBottom: 24 }}>
                         <p style={{ fontSize: '1.1rem', color: 'var(--text-muted)', marginBottom: 8 }}>What is the Vietnamese word for...</p>
@@ -246,9 +246,9 @@ export default function KinshipFoundation() {
                     )}
 
                     {!quizState.feedback && (
-                        <div className="voc-quiz-options">
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
                             {quizState.questions[quizState.currentIdx].options.map((opt, i) => (
-                                <button key={i} className="voc-quiz-option" onClick={() => handleQuizAnswer(opt)}>
+                                <button key={i} className="secondary" style={{ width: '100%', justifyContent: 'flex-start', padding: 20, fontSize: 18, borderRadius: 15, borderColor: 'var(--border-color)', backgroundColor: 'transparent', color: 'var(--text-main)' }} onClick={() => handleQuizAnswer(opt)}>
                                     {opt}
                                 </button>
                             ))}
