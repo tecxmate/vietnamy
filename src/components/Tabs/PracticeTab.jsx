@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Music, Users, Hash, PenTool, Type, Keyboard, MessageCircle, Activity, SlidersHorizontal } from 'lucide-react';
+import { Music, Users, Hash, PenTool, Type, Keyboard, MessageCircle, Activity, SlidersHorizontal, Calculator } from 'lucide-react';
 
 const CATEGORY_STYLES = {
     Phonetics: { color: '#1CB0F6', dark: '#0D8ECF', bg: 'rgba(28,176,246,0.12)' },
@@ -33,6 +33,7 @@ const practiceModules = [
     { id: 'kinship-foundation', title: 'Kinship Terms', icon: Users, level: 'Beginner', link: '/practice/kinship-foundation', category: 'Pronouns' },
     { id: 'pronouns-1', title: 'Pronouns: Core', icon: Users, level: 'Beginner', link: '/practice/pronouns-1', category: 'Pronouns' },
     { id: 'pronouns-2', title: 'Pronouns: Extended', icon: Users, level: 'Intermediate', link: '/practice/pronouns-2', category: 'Pronouns' },
+    { id: 'kinship-calculator', title: 'Kinship Calculator', icon: Calculator, level: 'Intermediate', link: '/practice/kinship-calculator', category: 'Pronouns' },
     { id: 'kinship-engine', title: 'Pronoun Engine', icon: SlidersHorizontal, level: 'Advanced', link: '/practice/kinship-engine', category: 'Pronouns' },
     // ── Typing ──
     { id: 'telex-1', title: 'TELEX: Tone Keys', icon: Keyboard, level: 'Beginner', link: '/practice/telex-1', category: 'Typing' },
@@ -55,10 +56,10 @@ const PracticeTab = () => {
 
     const toggleFilter = (cat) => {
         setActiveFilters(prev => {
-            const next = new Set(prev);
-            if (next.has(cat)) next.delete(cat);
-            else next.add(cat);
-            return next;
+            // If this is the only active one, deselect it → show all
+            if (prev.size === 1 && prev.has(cat)) return new Set(categories);
+            // Otherwise select only this one
+            return new Set([cat]);
         });
     };
 

@@ -48,6 +48,7 @@ import KinshipFoundation from './pages/Practice/KinshipFoundation';
 import Pronouns1 from './pages/Practice/Pronouns1';
 import Pronouns2 from './pages/Practice/Pronouns2';
 import KinshipEngine from './pages/Practice/KinshipEngine';
+import KinshipCalculator from './pages/Practice/KinshipCalculator';
 // TELEX sub-modules
 import TelexTyping1 from './pages/Practice/TelexTyping1';
 import TelexTyping2 from './pages/Practice/TelexTyping2';
@@ -222,6 +223,7 @@ function App() {
                 <Route path="/practice/pronouns" element={<Navigate to="/practice/pronouns-1" replace />} />
                 <Route path="/practice/pronouns-1" element={<div className="mobile-app-wrapper"><Pronouns1 /></div>} />
                 <Route path="/practice/pronouns-2" element={<div className="mobile-app-wrapper"><Pronouns2 /></div>} />
+                <Route path="/practice/kinship-calculator" element={<div className="mobile-app-wrapper"><KinshipCalculator /></div>} />
                 <Route path="/practice/kinship-engine" element={<div className="mobile-app-wrapper"><KinshipEngine /></div>} />
                 {/* TELEX sub-modules */}
                 <Route path="/practice/telex" element={<Navigate to="/practice/telex-1" replace />} />
