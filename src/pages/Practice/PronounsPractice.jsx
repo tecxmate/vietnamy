@@ -123,12 +123,12 @@ const RESULTS = {
     'maternal_grandfather': { term: 'Ông ngoại', en: 'Maternal Grandfather' },
     'maternal_grandmother': { term: 'Bà ngoại', en: 'Maternal Grandmother' },
     'father_older_brother': { term: 'Bác (trai)', en: 'Uncle (Father\'s older brother)' },
-    'father_older_sister': { term: 'Bác (gái)', en: 'Aunt (Father\'s older sister)' },
+    'father_older_sister': { term: 'Bác (gái)', en: 'Aunt (Father\'s older sister)', south: { term: 'Cô', en: 'Aunt (Father\'s older sister)' } },
     'father_younger_brother': { term: 'Chú', en: 'Uncle (Father\'s younger brother)' },
     'father_younger_sister': { term: 'Cô', en: 'Aunt (Father\'s younger sister)' },
-    'mother_older_brother': { term: 'Cậu', en: 'Uncle (Mother\'s brother)' },
+    'mother_older_brother': { term: 'Bác', en: 'Uncle (Mother\'s older brother)', south: { term: 'Cậu', en: 'Uncle (Mother\'s older brother)' } },
     'mother_younger_brother': { term: 'Cậu', en: 'Uncle (Mother\'s brother)' },
-    'mother_older_sister': { term: 'Dì', en: 'Aunt (Mother\'s sister)' },
+    'mother_older_sister': { term: 'Bác', en: 'Aunt (Mother\'s older sister)', south: { term: 'Dì', en: 'Aunt (Mother\'s older sister)' } },
     'mother_younger_sister': { term: 'Dì', en: 'Aunt (Mother\'s sister)' },
     'chi_dau': { term: 'Chị dâu', en: 'Sister-in-law (older brother\'s wife)' },
     'anh_re': { term: 'Anh rể', en: 'Brother-in-law (older sister\'s husband)' },
@@ -199,7 +199,7 @@ const CALC_BUTTONS = [
     { label: '=', key: '=', type: 'equals' },
 ];
 
-function resolveChain(chain) {
+function resolveChain(chain, region = 'north') {
     // Extract relation terms (skip "của")
     const steps = chain.filter(s => s !== 'của');
     if (steps.length === 0) return null;
@@ -217,7 +217,11 @@ function resolveChain(chain) {
         state = nextState;
     }
 
-    return RESULTS[state] || { term: '?', en: 'Unknown relationship' };
+    const entry = RESULTS[state];
+    if (!entry) return { term: '?', en: 'Unknown relationship' };
+    // Use regional variant if available
+    if (region === 'south' && entry.south) return entry.south;
+    return { term: entry.term, en: entry.en };
 }
 
 // TTS helper
@@ -245,6 +249,7 @@ export default function PronounsPractice({ members: memberIds = null, title = 'K
     const { markComplete, goNext } = usePracticeCompletion();
     const [chain, setChain] = useState([]);
     const [result, setResult] = useState(null);
+    const [region, setRegion] = useState('north'); // north | south
     const [mode, setMode] = useState('explore'); // explore | quiz | quiz-done
     const [quizState, setQuizState] = useState(null);
 
@@ -257,7 +262,7 @@ export default function PronounsPractice({ members: memberIds = null, title = 'K
     const handleButton = (btn) => {
         if (btn.key === '=') {
             if (chain.length === 0) return;
-            const resolved = resolveChain(chain);
+            const resolved = resolveChain(chain, region);
             setResult(resolved);
             if (resolved && resolved.term !== '?') playSuccess();
             else playError();
@@ -435,6 +440,22 @@ export default function PronounsPractice({ members: memberIds = null, title = 'K
             {/* Calculator Mode */}
             {mode === 'explore' && (
                 <div className="calc-container">
+                    {/* Region Toggle */}
+                    <div className="calc-region-toggle">
+                        <button
+                            className={`calc-region-btn ${region === 'north' ? 'active' : ''}`}
+                            onClick={() => { setRegion('north'); setResult(null); }}
+                        >
+                            Bắc
+                        </button>
+                        <button
+                            className={`calc-region-btn ${region === 'south' ? 'active' : ''}`}
+                            onClick={() => { setRegion('south'); setResult(null); }}
+                        >
+                            Nam
+                        </button>
+                    </div>
+
                     {/* Display */}
                     <div className="calc-display">
                         <div className="calc-display-chain">

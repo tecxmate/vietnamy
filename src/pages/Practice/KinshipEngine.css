@@ -1,0 +1,129 @@
+/* src/pages/Practice/KinshipEngine.css */
+
+.engine-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.engine-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.engine-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+}
+
+.engine-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.engine-chip {
+    padding: 8px 14px;
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-full);
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.engine-chip.active {
+    background: rgba(255, 183, 3, 0.12);
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.engine-chip:active {
+    transform: scale(0.96);
+}
+
+/* ─── Result ─────────────────────────────────────────────── */
+.engine-result {
+    background: var(--surface-color);
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 24px 20px;
+    text-align: center;
+    position: relative;
+}
+
+.engine-result-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.engine-result-side {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.engine-result-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+}
+
+.engine-result-term {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--primary-color);
+}
+
+.engine-result-term.self {
+    color: var(--success-color);
+    font-size: 1.4rem;
+}
+
+.engine-result-divider {
+    width: 2px;
+    height: 48px;
+    background: var(--border-color);
+    border-radius: 1px;
+    flex-shrink: 0;
+}
+
+.engine-speak-btn {
+    background: rgba(255, 183, 3, 0.12);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color);
+    cursor: pointer;
+    margin: 0 auto 12px;
+    transition: background 0.2s;
+}
+
+.engine-speak-btn:active {
+    background: rgba(255, 183, 3, 0.25);
+    transform: scale(0.95);
+}
+
+.engine-result-note {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}

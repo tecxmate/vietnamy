@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Music, Users, Hash, PenTool, Type, Keyboard, MessageCircle, Activity } from 'lucide-react';
+import { Music, Users, Hash, PenTool, Type, Keyboard, MessageCircle, Activity, SlidersHorizontal } from 'lucide-react';
 
 const CATEGORY_STYLES = {
     Phonetics: { color: '#1CB0F6', dark: '#0D8ECF', bg: 'rgba(28,176,246,0.12)' },
@@ -33,6 +33,7 @@ const practiceModules = [
     { id: 'kinship-foundation', title: 'Kinship Terms', icon: Users, level: 'Beginner', link: '/practice/kinship-foundation', category: 'Pronouns' },
     { id: 'pronouns-1', title: 'Pronouns: Core', icon: Users, level: 'Beginner', link: '/practice/pronouns-1', category: 'Pronouns' },
     { id: 'pronouns-2', title: 'Pronouns: Extended', icon: Users, level: 'Intermediate', link: '/practice/pronouns-2', category: 'Pronouns' },
+    { id: 'kinship-engine', title: 'Pronoun Engine', icon: SlidersHorizontal, level: 'Advanced', link: '/practice/kinship-engine', category: 'Pronouns' },
     // ── Typing ──
     { id: 'telex-1', title: 'TELEX: Tone Keys', icon: Keyboard, level: 'Beginner', link: '/practice/telex-1', category: 'Typing' },
     { id: 'telex-2', title: 'TELEX: Vowel Mods', icon: Keyboard, level: 'Beginner', link: '/practice/telex-2', category: 'Typing' },

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ArrowLeft, Volume2, CheckCircle, XCircle, Trophy } from 'lucide-react';
+import { ArrowLeft, Volume2, CheckCircle, XCircle, Trophy, ChevronDown, ChevronUp } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SoundButton from '../../components/SoundButton';
 import { playSuccess, playError } from '../../utils/sound';
@@ -8,17 +8,87 @@ import './PracticeShared.css';
 import './KinshipFoundation.css';
 
 const KINSHIP_TERMS = [
-    { vn: 'Bố', en: 'Father', gender: 'male', note: 'Also: Ba, Cha' },
-    { vn: 'Mẹ', en: 'Mother', gender: 'female', note: 'Also: Má' },
-    { vn: 'Anh', en: 'Older Brother', gender: 'male', note: 'Also used for older males' },
-    { vn: 'Chị', en: 'Older Sister', gender: 'female', note: 'Also used for older females' },
-    { vn: 'Em', en: 'Younger Sibling', gender: 'neutral', note: 'Em trai (brother), Em gái (sister)' },
-    { vn: 'Con', en: 'Child', gender: 'neutral', note: 'Con trai (son), Con gái (daughter)' },
-    { vn: 'Chồng', en: 'Husband', gender: 'male' },
-    { vn: 'Vợ', en: 'Wife', gender: 'female' },
-    { vn: 'Ông', en: 'Grandfather', gender: 'male', note: 'Also: old man / Mr.' },
-    { vn: 'Bà', en: 'Grandmother', gender: 'female', note: 'Also: old woman / Mrs.' },
-    { vn: 'của', en: "'s / of", gender: 'neutral', note: 'Possessive particle: Bố của Mẹ = Mother\'s Father' },
+    {
+        vn: 'Bố', en: 'Father', gender: 'male', note: 'Also: Ba (South), Cha (formal)',
+        contexts: [
+            { tag: 'Family', desc: 'Your father' },
+            { tag: 'Self', desc: 'How a father refers to himself when speaking to his children' },
+        ]
+    },
+    {
+        vn: 'Mẹ', en: 'Mother', gender: 'female', note: 'Also: Má (South)',
+        contexts: [
+            { tag: 'Family', desc: 'Your mother' },
+            { tag: 'Self', desc: 'How a mother refers to herself when speaking to her children' },
+        ]
+    },
+    {
+        vn: 'Anh', en: 'Older Brother', gender: 'male',
+        contexts: [
+            { tag: 'Family', desc: 'Older brother' },
+            { tag: 'Romantic', desc: 'Male partner in a relationship' },
+            { tag: 'Social', desc: 'Male peer slightly older than you' },
+        ]
+    },
+    {
+        vn: 'Chị', en: 'Older Sister', gender: 'female',
+        contexts: [
+            { tag: 'Family', desc: 'Older sister' },
+            { tag: 'Social', desc: 'Female peer slightly older than you' },
+        ]
+    },
+    {
+        vn: 'Em', en: 'Younger Sibling', gender: 'neutral',
+        contexts: [
+            { tag: 'Family', desc: 'Younger sibling (Em trai = brother, Em gái = sister)' },
+            { tag: 'Romantic', desc: 'Female partner (or younger male) in a relationship' },
+            { tag: 'Social', desc: 'Peer younger than you' },
+            { tag: 'Self', desc: 'How you refer to yourself when speaking to someone older' },
+        ]
+    },
+    {
+        vn: 'Con', en: 'Child', gender: 'neutral',
+        contexts: [
+            { tag: 'Family', desc: 'Son or daughter (Con trai / Con gái)' },
+            { tag: 'Social', desc: 'Young person about the age of your child' },
+            { tag: 'Self', desc: 'How you refer to yourself when speaking to parents' },
+        ]
+    },
+    {
+        vn: 'Ông', en: 'Grandfather', gender: 'male',
+        contexts: [
+            { tag: 'Family', desc: 'Grandfather (Ông nội = paternal, Ông ngoại = maternal)' },
+            { tag: 'Social', desc: 'Elderly man / term of respect for older men' },
+            { tag: 'Formal', desc: 'Mr. (formal address)' },
+        ]
+    },
+    {
+        vn: 'Bà', en: 'Grandmother', gender: 'female',
+        contexts: [
+            { tag: 'Family', desc: 'Grandmother (Bà nội = paternal, Bà ngoại = maternal)' },
+            { tag: 'Social', desc: 'Elderly woman / term of respect for older women' },
+            { tag: 'Formal', desc: 'Mrs. (formal address)' },
+        ]
+    },
+    {
+        vn: 'Chồng', en: 'Husband', gender: 'male',
+        contexts: [
+            { tag: 'Family', desc: 'Your husband' },
+        ]
+    },
+    {
+        vn: 'Vợ', en: 'Wife', gender: 'female',
+        contexts: [
+            { tag: 'Family', desc: 'Your wife' },
+        ]
+    },
+    {
+        vn: 'của', en: "'s / of", gender: 'neutral',
+        contexts: [
+            { tag: 'Grammar', desc: 'Possessive particle used to chain relationships' },
+            { tag: 'Example', desc: 'Bố của Mẹ = Mother\'s Father = Ông ngoại' },
+        ]
+    },
 ];
 
 function speakTerm(text) {
@@ -43,6 +113,41 @@ function shuffleArray(arr) {
         [a[i], a[j]] = [a[j], a[i]];
     }
     return a;
+}
+
+function TermCard({ term }) {
+    const [expanded, setExpanded] = useState(false);
+
+    return (
+        <div className={`kinship-term-card ${term.gender} ${expanded ? 'expanded' : ''}`}>
+            <button
+                className="kinship-term-top"
+                onClick={() => { speakTerm(term.vn); setExpanded(!expanded); }}
+            >
+                <div className="kinship-term-vn">
+                    {term.vn}
+                    <Volume2 size={16} className="kinship-term-speaker" />
+                </div>
+                <div className="kinship-term-en">{term.en}</div>
+                {term.note && !expanded && <div className="kinship-term-note">{term.note}</div>}
+                {term.contexts && (
+                    <div className="kinship-term-expand-hint">
+                        {expanded ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+                    </div>
+                )}
+            </button>
+            {expanded && term.contexts && (
+                <div className="kinship-term-contexts">
+                    {term.contexts.map((ctx, i) => (
+                        <div key={i} className="kinship-context-row">
+                            <span className={`kinship-context-tag ${ctx.tag.toLowerCase()}`}>{ctx.tag}</span>
+                            <span className="kinship-context-desc">{ctx.desc}</span>
+                        </div>
+                    ))}
+                </div>
+            )}
+        </div>
+    );
 }
 
 export default function KinshipFoundation() {
@@ -156,23 +261,12 @@ export default function KinshipFoundation() {
             {mode === 'learn' && (
                 <>
                     <p className="practice-subtitle" style={{ textAlign: 'center', marginBottom: '20px' }}>
-                        Learn the basic Vietnamese kinship terms. Tap a card to hear the pronunciation.
+                        Tap a card to hear pronunciation and see all contexts.
                     </p>
 
                     <div className="kinship-term-grid">
                         {KINSHIP_TERMS.map((term) => (
-                            <button
-                                key={term.vn}
-                                className={`kinship-term-card ${term.gender}`}
-                                onClick={() => speakTerm(term.vn)}
-                            >
-                                <div className="kinship-term-vn">
-                                    {term.vn}
-                                    <Volume2 size={16} className="kinship-term-speaker" />
-                                </div>
-                                <div className="kinship-term-en">{term.en}</div>
-                                {term.note && <div className="kinship-term-note">{term.note}</div>}
-                            </button>
+                            <TermCard key={term.vn} term={term} />
                         ))}
                     </div>
 
