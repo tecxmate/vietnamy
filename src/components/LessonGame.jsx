@@ -847,14 +847,6 @@ const LessonGame = () => {
 
         return (
             <div style={{ width: '100%', maxWidth: 600, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 24 }}>
-                {lessonBlueprint?.goal && (
-                    <div style={{
-                        textAlign: 'center', fontSize: 12, color: 'var(--text-muted)',
-                        padding: '0 0 4px', fontStyle: 'italic',
-                    }}>
-                        {lessonBlueprint.goal}
-                    </div>
-                )}
                 <h2 style={{ fontSize: 24, margin: 0 }}>{prompt.instruction}</h2>
 
                 {/* Question Prompt Area */}
@@ -881,9 +873,6 @@ const LessonGame = () => {
                                     >
                                         🐢
                                     </button>
-                                )}
-                                {exercise_type === 'listen_choose' && audioText && (
-                                    <span style={{ fontSize: 16, color: 'var(--text-muted)', fontStyle: 'italic' }}><TappableText text={audioText} hints={hints} /></span>
                                 )}
                             </div>
                         ) : (

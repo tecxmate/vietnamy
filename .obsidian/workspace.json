@@ -15,9 +15,9 @@
               "state": {
                 "file": "docs/prd/userflow.canvas",
                 "viewState": {
-                  "x": 1674.6705400803587,
-                  "y": -1801.2826332674506,
-                  "zoom": 0.4465458364507011
+                  "x": 2549.24972421813,
+                  "y": -795.2401978651412,
+                  "zoom": 0.009948127652613187
                 }
               },
               "icon": "lucide-layout-dashboard",
@@ -81,7 +81,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 325.5
+    "width": 325.5,
+    "collapsed": true
   },
   "right": {
     "id": "57daa572ead2dd73",
@@ -186,8 +187,9 @@
       "bases:Create new base": false
     }
   },
-  "active": "f2d0e1947581292d",
+  "active": "e709a357ee53a7cc",
   "lastOpenFiles": [
+    "Untitled.md",
     "src/pages/Practice/KinshipCalculator.jsx",
     "dist/assets/index-dTA5IktW.js",
     "dist/assets/dictionary-BM635fq9.js",
@@ -198,11 +200,9 @@
     "docs/Curriculum/06_Kinship",
     "docs/Curriculum/06_kinship",
     "docs/Curriculum/kinship",
-    "docs/kinship",
     "Pasted image 20260313020451.png",
     "Pasted image 20260313020441.png",
     "docs/prd/userflow.canvas",
-    "Untitled.md",
     "docs/prd/user_flow_and_features.md",
     "docs/prd/study-roadmap-architecture.canvas",
     "docs/prd/study-content-overview.canvas",
