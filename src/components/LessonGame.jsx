@@ -615,16 +615,17 @@ const LessonGame = () => {
 
     if (showQuitConfirm) {
         return (
-            <div style={{ display: 'flex', flexDirection: 'column', height: '100dvh', backgroundColor: 'var(--interstitial-bg)', color: 'var(--interstitial-text)', justifyContent: 'center', padding: 24, textAlign: 'center' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', height: '100%', backgroundColor: 'var(--bg-color)', color: 'var(--text-main)', justifyContent: 'center', padding: 24, textAlign: 'center' }}>
                 <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                    <Frown size={120} color="var(--accent-green)" strokeWidth={1.5} style={{ marginBottom: 32 }} />
-                    <h2 style={{ fontSize: 24, marginBottom: 32, lineHeight: 1.4 }}>Wait, you only have 1 minute to go in this lesson!</h2>
+                    <Frown size={100} color="var(--text-muted)" strokeWidth={1.5} style={{ marginBottom: 24 }} />
+                    <h2 style={{ fontSize: 22, marginBottom: 8, lineHeight: 1.4 }}>Are you sure?</h2>
+                    <p style={{ color: 'var(--text-muted)', fontSize: 15, margin: 0 }}>You're almost done with this lesson!</p>
                 </div>
-                <div style={{ padding: '24px 16px', borderTop: '2px solid var(--interstitial-border)', display: 'flex', flexDirection: 'column', gap: 10 }}>
-                    <button className="ghost" style={{ color: 'var(--accent-red)', fontWeight: 700, width: '100%' }} onClick={() => navigate('/')}>
+                <div style={{ padding: '24px 16px', borderTop: '2px solid var(--border-color)', backgroundColor: 'var(--surface-color)', display: 'flex', flexDirection: 'column', gap: 10, minHeight: 140, justifyContent: 'center' }}>
+                    <button className="ghost" style={{ color: 'var(--danger-color)', fontWeight: 700, width: '100%' }} onClick={() => navigate('/')}>
                         QUIT
                     </button>
-                    <SoundButton className="primary shadow-lg" style={{ backgroundColor: 'var(--accent-blue)', color: '#1A1A1A', boxShadow: '0 4px 0 var(--accent-blue-shadow)', border: 'none', width: '100%', fontSize: 18 }} onClick={() => setShowQuitConfirm(false)}>
+                    <SoundButton className="primary shadow-lg" style={{ width: '100%', fontSize: 18 }} onClick={() => setShowQuitConfirm(false)}>
                         KEEP LEARNING
                     </SoundButton>
                 </div>
@@ -634,7 +635,7 @@ const LessonGame = () => {
 
     if (activeRetentionScreen === 'energy') {
         return (
-            <div style={{ display: 'flex', flexDirection: 'column', height: '100dvh', backgroundColor: 'var(--interstitial-bg)', color: 'var(--interstitial-text)', justifyContent: 'center', padding: 24, textAlign: 'center' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', height: '100%', backgroundColor: 'var(--interstitial-bg)', color: 'var(--interstitial-text)', justifyContent: 'center', padding: 24, textAlign: 'center' }}>
                 <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                     <Zap size={64} color="var(--accent-gold)" style={{ marginBottom: -10, zIndex: 2 }} />
                     <div style={{ backgroundColor: 'var(--accent-pink)', border: '4px solid var(--accent-gold)', borderRadius: 24, padding: '20px 40px', fontSize: 48, fontWeight: 800, color: 'white' }}>
@@ -652,7 +653,7 @@ const LessonGame = () => {
 
     if (activeRetentionScreen === 'quest') {
         return (
-            <div style={{ display: 'flex', flexDirection: 'column', height: '100dvh', backgroundColor: 'var(--interstitial-bg)', color: 'var(--interstitial-text)', justifyContent: 'center', padding: 24, textAlign: 'center' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', height: '100%', backgroundColor: 'var(--interstitial-bg)', color: 'var(--interstitial-text)', justifyContent: 'center', padding: 24, textAlign: 'center' }}>
                 <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                     <div style={{ width: 160, height: 160, backgroundColor: 'var(--accent-green)', borderRadius: 16, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'center', position: 'relative', borderBottom: '16px solid var(--accent-green-shadow)' }}>
                         <Trophy size={80} color="var(--accent-gold)" fill="var(--accent-gold)" style={{ position: 'absolute', top: -30 }} />
@@ -674,7 +675,7 @@ const LessonGame = () => {
 
     if (activeRetentionScreen === 'xp') {
         return (
-            <div style={{ display: 'flex', flexDirection: 'column', height: '100dvh', backgroundColor: 'var(--interstitial-bg)', color: 'var(--interstitial-text)', justifyContent: 'center', padding: 24, textAlign: 'center' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', height: '100%', backgroundColor: 'var(--interstitial-bg)', color: 'var(--interstitial-text)', justifyContent: 'center', padding: 24, textAlign: 'center' }}>
                 <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                     <div style={{ position: 'relative', marginBottom: 32 }}>
                         <FlaskConical size={140} color="var(--accent-purple)" fill="var(--accent-purple)" strokeWidth={1} />
@@ -698,7 +699,7 @@ const LessonGame = () => {
 
     if (exercises.length === 0 && !showWordIntro) {
         return (
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100dvh', backgroundColor: 'var(--bg-color)', color: 'var(--text-main)', padding: 24 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', backgroundColor: 'var(--bg-color)', color: 'var(--text-main)', padding: 24 }}>
                 <h2>No exercises found for this lesson.</h2>
                 <button className="primary mt-4" onClick={() => navigate('/')}>Return to Roadmap</button>
             </div>
@@ -719,7 +720,7 @@ const LessonGame = () => {
         };
 
         return (
-            <div style={{ display: 'flex', flexDirection: 'column', height: '100dvh', backgroundColor: 'var(--bg-color)', color: 'var(--text-main)' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', height: '100%', backgroundColor: 'var(--bg-color)', color: 'var(--text-main)' }}>
                 {/* Top Bar */}
                 <div style={{ padding: '16px 24px', display: 'flex', alignItems: 'center', gap: 16 }}>
                     <button className="ghost" onClick={() => setShowWordIntro(false)} style={{ padding: 8 }}>
@@ -779,7 +780,7 @@ const LessonGame = () => {
 
     if (isFinished) {
         return (
-            <div style={{ display: 'flex', flexDirection: 'column', height: '100dvh', backgroundColor: 'var(--bg-color)', color: 'var(--text-main)' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', height: '100%', backgroundColor: 'var(--bg-color)', color: 'var(--text-main)' }}>
                 <div style={{ flex: 1, overflowY: 'auto', padding: 32, textAlign: 'center' }}>
                     <div style={{ width: 120, height: 120, backgroundColor: 'var(--primary-color)', borderRadius: 'var(--radius-full)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 24px' }}>
                         <Check size={64} color="var(--bg-color)" strokeWidth={3} />
@@ -804,17 +805,12 @@ const LessonGame = () => {
                 </div>
 
                 <div style={{ padding: '24px 16px', borderTop: '2px solid var(--border-color)', backgroundColor: 'var(--surface-color)', display: 'flex', flexDirection: 'column', gap: 10, minHeight: 140, justifyContent: 'center' }}>
-                    {nextNodeRoute && (
-                        <button className="ghost" style={{ color: 'var(--text-muted)', fontWeight: 600, width: '100%' }} onClick={() => navigate('/')}>
-                            Back to Roadmap
-                        </button>
-                    )}
                     <SoundButton
                         className="primary w-full shadow-lg"
                         style={{ fontSize: 18 }}
-                        onClick={() => navigate(nextNodeRoute || '/')}
+                        onClick={() => navigate('/')}
                     >
-                        CONTINUE
+                        BACK TO ROADMAP
                     </SoundButton>
                 </div>
             </div>
@@ -1322,7 +1318,7 @@ const LessonGame = () => {
     };
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', height: '100dvh', backgroundColor: 'var(--bg-color)', color: 'var(--text-main)' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', height: '100%', backgroundColor: 'var(--bg-color)', color: 'var(--text-main)' }}>
 
             {/* Top Bar Navigation */}
             <div style={{ padding: '16px 24px', display: 'flex', alignItems: 'center', gap: 16 }}>
