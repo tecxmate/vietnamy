@@ -439,7 +439,7 @@ const ScenePerform = ({ config, scene, onComplete }) => {
 
             {/* Bottom check/continue bar */}
             <div style={{
-                padding: '16px 20px', borderTop: '2px solid var(--border-color)',
+                padding: '16px 20px', paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 16px)', borderTop: '2px solid var(--border-color)',
                 backgroundColor: isChecking ? (isCorrect ? 'var(--lesson-correct-fill)' : 'var(--lesson-error-fill)') : 'var(--surface-color)',
                 transition: 'background-color 0.2s', minHeight: 80,
                 display: 'flex', flexDirection: 'column', justifyContent: 'center'

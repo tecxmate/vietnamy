@@ -88,7 +88,7 @@ const SceneEngine = () => {
 
             {/* Top bar */}
             {currentPhase !== 'ending' && (
-                <div style={{ padding: '12px 20px', display: 'flex', alignItems: 'center', gap: 12 }}>
+                <div style={{ padding: '12px 20px', paddingTop: 'calc(env(safe-area-inset-top, 0px) + 12px)', display: 'flex', alignItems: 'center', gap: 12 }}>
                     <button className="ghost" onClick={() => navigate('/')} style={{ padding: 8 }}>
                         <X size={22} color="var(--text-muted)" />
                     </button>
@@ -153,7 +153,7 @@ const SceneEngine = () => {
 
             {/* Bottom bar for Explore phase continue */}
             {currentPhase === 'explore' && (
-                <div style={{ padding: '16px 20px', borderTop: '2px solid var(--border-color)', backgroundColor: 'var(--surface-color)', minHeight: 80, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <div style={{ padding: '16px 20px', paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 16px)', borderTop: '2px solid var(--border-color)', backgroundColor: 'var(--surface-color)', minHeight: 80, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     <SoundButton
                         className="primary w-full shadow-lg"
                         style={{

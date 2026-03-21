@@ -64,7 +64,7 @@ const SceneEnding = ({ scene, results, onFinish }) => {
 
             {/* Bottom bar */}
             <div style={{
-                padding: '20px 20px', borderTop: '2px solid var(--border-color)',
+                padding: '20px 20px', paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 20px)', borderTop: '2px solid var(--border-color)',
                 backgroundColor: 'var(--surface-color)', display: 'flex', flexDirection: 'column',
                 gap: 10, minHeight: 100, justifyContent: 'center'
             }}>
