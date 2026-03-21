@@ -57,6 +57,13 @@
       "mcp__figma__whoami",
       "mcp__figma__get_screenshot",
       "mcp__figma__get_design_context",
+<<<<<<< Updated upstream
+=======
+      "Bash(git rm:*)",
+      "Bash(git add:*)",
+      "Bash(git cherry-pick:*)",
+      "Bash(git push:*)",
+>>>>>>> Stashed changes
       "Bash(git stash:*)"
     ],
     "additionalDirectories": [

@@ -1,0 +1,18 @@
+{
+  "name": "Vietnamy",
+  "short_name": "Vietnamy",
+  "description": "Learn Vietnamese with dictionary, practice, and more",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#121212",
+  "theme_color": "#FFB703",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

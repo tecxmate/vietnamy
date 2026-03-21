@@ -14,6 +14,7 @@ import AppTutorial from './components/Onboarding/AppTutorial';
 import BottomNav from './components/BottomNav';
 import { NotificationToastStack, NotificationPanel } from './components/NotificationToast';
 import TopBar from './components/TopBar';
+import InstallPrompt from './components/InstallPrompt';
 import HomeTab from './components/Tabs/HomeTab';
 import RoadmapTab from './components/Tabs/RoadmapTab';
 import DictionaryTab from './components/Tabs/DictionaryTab';
@@ -174,6 +175,7 @@ function StudentApp({ initialTab = 'home' }) {
         )}
         <NotificationToastStack />
         <NotificationPanel />
+        <InstallPrompt />
       </div>
     </div>
   );
