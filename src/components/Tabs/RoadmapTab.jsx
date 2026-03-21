@@ -355,15 +355,7 @@ const RoadmapTab = ({ onNavigateToVocabDeck } = {}) => {
                 </div>
             ))}
 
-            <div style={{
-                position: 'fixed',
-                bottom: 110,
-                left: 24,
-                right: 24,
-                zIndex: 100,
-                display: 'flex',
-                justifyContent: 'center'
-            }}>
+            <div className="roadmap-continue-wrapper">
                 {testMode ? (
                     <SoundButton
                         id="roadmap-continue-btn"

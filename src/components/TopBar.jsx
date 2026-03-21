@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     Target, Zap, User, X, ChevronDown, ChevronRight, RefreshCw,
     Globe, Type, Volume2, Wrench, Moon, Sun, Clock, Bell, Gift, Heart, CircleDollarSign,
@@ -70,6 +70,13 @@ const TopBar = ({ activeTab, subtitleOverride }) => {
         setIsMenuOpen(false);
         setTimeout(() => setMenuVisible(false), 280);
     };
+
+    // Listen for sidebar settings button (desktop)
+    useEffect(() => {
+        const handler = () => openMenu();
+        window.addEventListener('open-settings', handler);
+        return () => window.removeEventListener('open-settings', handler);
+    });
 
     const handleReset = () => {
         if (confirm(t('reset_confirm'))) {
