@@ -52,18 +52,6 @@ export const AuthProvider = ({ children }) => {
     if (error) console.error('Google sign-in error:', error.message);
   };
 
-  const signInWithEmail = async (email) => {
-    if (!supabase) return { error: 'Supabase not configured' };
-    const { error } = await supabase.auth.signInWithOtp({
-      email,
-      options: {
-        emailRedirectTo: window.location.origin,
-      },
-    });
-    if (error) console.error('Email sign-in error:', error.message);
-    return { error };
-  };
-
   const signOut = async () => {
     if (!supabase) return;
     const { error } = await supabase.auth.signOut();
@@ -82,7 +70,7 @@ export const AuthProvider = ({ children }) => {
   } : null;
 
   return (
-    <AuthContext.Provider value={{ user, profile, loading, signInWithGoogle, signInWithEmail, signOut, syncProgress }}>
+    <AuthContext.Provider value={{ user, profile, loading, signInWithGoogle, signOut, syncProgress }}>
       {children}
     </AuthContext.Provider>
   );

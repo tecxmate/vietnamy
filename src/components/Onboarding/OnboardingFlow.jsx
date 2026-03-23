@@ -15,12 +15,9 @@ function isInAppBrowser() {
 
 const OnboardingFlow = ({ onComplete, requireAuth = false }) => {
     const { updateUserProfile } = useUser();
-    const { signInWithGoogle, signInWithEmail, profile: authProfile } = useAuth();
+    const { signInWithGoogle, profile: authProfile } = useAuth();
     const [currentStep, setCurrentStep] = useState(requireAuth ? 0 : 1);
     const inAppBrowser = isInAppBrowser();
-    const [emailInput, setEmailInput] = useState('');
-    const [emailSent, setEmailSent] = useState(false);
-    const [emailLoading, setEmailLoading] = useState(false);
     const [onboardingData, setOnboardingData] = useState({
         nativeLang: 'en',
         name: '',
@@ -54,55 +51,22 @@ const OnboardingFlow = ({ onComplete, requireAuth = false }) => {
                 {requireAuth ? (
                     <>
                         {inAppBrowser ? (
-                            emailSent ? (
-                                <div style={{ textAlign: 'center', padding: '16px', backgroundColor: 'var(--surface-color-light)', borderRadius: 12 }}>
-                                    <p style={{ fontSize: 18, fontWeight: 600, marginBottom: 8 }}>Check your email</p>
-                                    <p style={{ fontSize: 14, color: 'var(--text-muted)', margin: 0 }}>
-                                        We sent a sign-in link to <strong>{emailInput}</strong>. Tap the link in your email to continue.
-                                    </p>
-                                </div>
-                            ) : (
-                                <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-                                    <input
-                                        type="email"
-                                        value={emailInput}
-                                        onChange={(e) => setEmailInput(e.target.value)}
-                                        placeholder="Enter your email"
-                                        style={{
-                                            width: '100%', padding: 16, fontSize: 18, borderRadius: 12,
-                                            border: '2px solid var(--border-color)', backgroundColor: 'var(--surface-color)',
-                                            color: 'var(--text-main)', outline: 'none', textAlign: 'center',
-                                            boxSizing: 'border-box',
-                                        }}
-                                        onKeyDown={(e) => {
-                                            if (e.key === 'Enter' && emailInput.includes('@')) {
-                                                setEmailLoading(true);
-                                                signInWithEmail(emailInput).then(({ error }) => {
-                                                    setEmailLoading(false);
-                                                    if (!error) setEmailSent(true);
-                                                });
-                                            }
-                                        }}
-                                    />
-                                    <button
-                                        className="primary w-full"
-                                        disabled={!emailInput.includes('@') || emailLoading}
-                                        onClick={() => {
-                                            setEmailLoading(true);
-                                            signInWithEmail(emailInput).then(({ error }) => {
-                                                setEmailLoading(false);
-                                                if (!error) setEmailSent(true);
-                                            });
-                                        }}
-                                        style={{ fontSize: 18, padding: '16px' }}
-                                    >
-                                        {emailLoading ? 'Sending...' : 'Send sign-in link'}
-                                    </button>
-                                    <p style={{ fontSize: 13, color: 'var(--text-muted)', textAlign: 'center', margin: 0 }}>
-                                        We'll email you a magic link to sign in.
-                                    </p>
-                                </div>
-                            )
+                            <div style={{ textAlign: 'center', padding: '20px 16px', backgroundColor: 'var(--surface-color-light)', borderRadius: 12 }}>
+                                <p style={{ fontSize: 18, fontWeight: 600, marginBottom: 8, marginTop: 0 }}>Open in Safari to continue</p>
+                                <p style={{ fontSize: 14, color: 'var(--text-muted)', marginBottom: 16 }}>
+                                    Google sign-in is not supported in this browser. Tap <strong>⋯</strong> above and select <strong>"Open in Safari"</strong>.
+                                </p>
+                                <button
+                                    className="primary w-full"
+                                    onClick={() => {
+                                        navigator.clipboard?.writeText(window.location.href);
+                                        alert('Link copied! Paste it in Safari or Chrome.');
+                                    }}
+                                    style={{ fontSize: 16, padding: '14px' }}
+                                >
+                                    Copy link
+                                </button>
+                            </div>
                         ) : (
                             <button
                                 className="primary w-full"
