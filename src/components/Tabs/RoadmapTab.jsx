@@ -177,8 +177,8 @@ const RoadmapTab = ({ onNavigateToVocabDeck } = {}) => {
 
             {units.map((unit) => (
                 <div key={unit.id} style={{ marginBottom: 16 }}>
-                    <div style={{ backgroundColor: 'var(--surface-color)', padding: 'var(--spacing-4)', position: 'sticky', top: 0, zIndex: 5, borderBottom: '1px solid var(--border-color)' }}>
-                        <h2 style={{ margin: 0, fontSize: 18 }}>{unit.title}</h2>
+                    <div style={{ backgroundColor: 'var(--surface-color)', padding: 'var(--spacing-4)', position: 'sticky', top: 'env(safe-area-inset-top, 0px)', zIndex: 5, borderBottom: '1px solid var(--border-color)' }}>
+                        <h2 style={{ margin: 0, fontSize: 18 }}>{unit.title.replace('Unit', 'Phase')}</h2>
                     </div>
 
                     <div style={{ padding: 16, display: 'flex', flexDirection: 'column', gap: 8 }}>

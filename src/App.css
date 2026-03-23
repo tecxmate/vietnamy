@@ -26,7 +26,7 @@
 }
 
 .main-content.no-topbar {
-  padding-top: calc(env(safe-area-inset-top, 0px) + 16px);
+  padding-top: env(safe-area-inset-top, 0px);
 }
 
 @keyframes tabFadeIn {
@@ -648,6 +648,10 @@
 
   .topbar-desktop-only {
     display: block;
+  }
+
+  .study-tab-container .topbar-desktop-only {
+    display: none !important;
   }
 
   /* ─── Sidebar Footer (profile, settings, notifs) ─ */

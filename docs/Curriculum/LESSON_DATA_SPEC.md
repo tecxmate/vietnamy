@@ -7,25 +7,25 @@
 ```
 INPUT (words to teach)
     ↓
-LESSON BLUEPRINT (4-6 words + 2-3 sentences)
+LESSON BLUEPRINT (1-2 words + 1-2 sentences)
     ↓
 ┌─────────────────────────────────────────────────┐
 │  Lần 1: Recognition (session 0)                 │
 │  → match_pairs, picture_choice, mcq_to_en       │
-│  → Introduces words 1-2 with image + audio       │
+│  → Introduces words 1-2 with image + audio      │
 ├─────────────────────────────────────────────────┤
 │  Lần 2: Reinforcement (session 1)               │
 │  → listen_choose, mcq_to_vi, fill_blank         │
-│  → Introduces words 3-4, reviews words 1-2       │
+│  →                                              │
 ├─────────────────────────────────────────────────┤
 │  Lần 3: Production (session 2)                  │
-│  → word_bank, reorder, listen_type, speak        │
-│  → Introduces words 5-6, reviews all             │
+│  → word_bank, reorder, listen_type, speak       │
+│  →                                              │
 ├─────────────────────────────────────────────────┤
-│  TEST (session 3)                                │
-│  → All exercise types, no new words              │
-│  → Must score ≥80% to unlock next lesson         │
-│  → No hearts consumed (test mode)                │
+│  TEST (session 3)                               │
+│  → All exercise types, no new words             │
+│  → Must score ≥80% to unlock next lesson        │
+│  → No hearts consumed (test mode)               │
 └─────────────────────────────────────────────────┘
     ↓
 RESULTS: per-word, per-exercise-type grading
