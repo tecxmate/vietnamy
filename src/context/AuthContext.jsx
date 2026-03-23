@@ -1,5 +1,6 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import { supabase } from '../lib/supabase';
+import { loadProgressFromCloud, saveProgressToCloud, debouncedSaveProgress } from '../lib/syncProgress';
 
 const AuthContext = createContext();
 
@@ -18,8 +19,23 @@ export const AuthProvider = ({ children }) => {
       setLoading(false);
     });
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user ?? null);
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, session) => {
+      const newUser = session?.user ?? null;
+      setUser(newUser);
+
+      if (newUser && _event === 'SIGNED_IN') {
+        // Check if user has cloud data to restore
+        const hasOnboarding = localStorage.getItem('vnme_onboarding_completed') === 'true';
+        const loaded = await loadProgressFromCloud(newUser.id);
+
+        if (loaded && !hasOnboarding) {
+          // Cloud data restored to localStorage — reload to pick up state
+          window.location.reload();
+        } else if (hasOnboarding) {
+          // User has local progress — push to cloud
+          await saveProgressToCloud(newUser.id);
+        }
+      }
     });
 
     return () => subscription.unsubscribe();
@@ -42,6 +58,10 @@ export const AuthProvider = ({ children }) => {
     if (error) console.error('Sign-out error:', error.message);
   };
 
+  const syncProgress = useCallback(() => {
+    if (user) debouncedSaveProgress(user.id);
+  }, [user]);
+
   // Extract useful fields from user metadata
   const profile = user ? {
     email: user.email,
@@ -50,7 +70,7 @@ export const AuthProvider = ({ children }) => {
   } : null;
 
   return (
-    <AuthContext.Provider value={{ user, profile, loading, signInWithGoogle, signOut }}>
+    <AuthContext.Provider value={{ user, profile, loading, signInWithGoogle, signOut, syncProgress }}>
       {children}
     </AuthContext.Provider>
   );

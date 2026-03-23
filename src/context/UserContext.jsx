@@ -1,8 +1,10 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { useAuth } from './AuthContext';
 
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
+    const { syncProgress } = useAuth();
     // Default Persona: 25 year old male
     const [userProfile, setUserProfile] = useState(() => {
         const saved = localStorage.getItem('vnme_user_profile');
@@ -11,6 +13,7 @@ export const UserProvider = ({ children }) => {
 
     useEffect(() => {
         localStorage.setItem('vnme_user_profile', JSON.stringify(userProfile));
+        syncProgress?.();
     }, [userProfile]);
 
     const updateUserProfile = (newProfile) => {

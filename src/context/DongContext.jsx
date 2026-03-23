@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect, useCallback, useMemo } from 'react';
 import { NODE_ID_MIGRATION } from '../lib/db';
+import { useAuth } from './AuthContext';
 
 const DongContext = createContext();
 
@@ -69,6 +70,7 @@ function loadState() {
 
 // ─── Provider ───────────────────────────────────────────────────
 export function DongProvider({ children }) {
+    const { syncProgress } = useAuth();
     const init = useMemo(() => loadState(), []);
 
     const [dailyStreak, setDailyStreak] = useState(init.dailyStreak);
@@ -128,6 +130,7 @@ export function DongProvider({ children }) {
             lastHeartLoss,
             coins,
         }));
+        syncProgress?.();
     }, [dailyStreak, lastVisitDate, completedNodes, nodeSessionCounts, unlockedStages, hearts, lastHeartLoss, coins]);
 
     const addCoins = useCallback((amount) => {
