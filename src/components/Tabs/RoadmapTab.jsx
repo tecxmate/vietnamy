@@ -200,6 +200,30 @@ const RoadmapTab = ({ onNavigateToVocabDeck } = {}) => {
                                                     <div style={{ fontSize: 12, color: isLocked ? style.muted : style.color, fontWeight: 600, marginTop: 2 }}>
                                                         {sublabel}{hasProgress && ` · ${sessionCount}/${SESSIONS_TO_COMPLETE}`}
                                                     </div>
+                                                    {(node.cefr_level || node.difficulty) && (
+                                                        <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 3 }}>
+                                                            {node.cefr_level && (
+                                                                <span style={{
+                                                                    fontSize: 10, fontWeight: 700, lineHeight: 1,
+                                                                    padding: '2px 5px', borderRadius: 6,
+                                                                    backgroundColor: isLocked ? 'var(--surface-color)' : `${style.color}18`,
+                                                                    color: isLocked ? style.muted : style.color,
+                                                                    border: `1px solid ${isLocked ? style.mutedBorder : `${style.color}30`}`,
+                                                                }}>
+                                                                    {node.cefr_level}
+                                                                </span>
+                                                            )}
+                                                            {node.difficulty && (() => {
+                                                                const filled = Math.ceil(node.difficulty / 2);
+                                                                const total = 5;
+                                                                return (
+                                                                    <span style={{ fontSize: 8, letterSpacing: 1, color: isLocked ? style.muted : `${style.color}90` }}>
+                                                                        {'●'.repeat(filled)}{'○'.repeat(total - filled)}
+                                                                    </span>
+                                                                );
+                                                            })()}
+                                                        </div>
+                                                    )}
                                                 </div>
                                                 {testMode && isActive && !hasProgress && (
                                                     <div style={{ fontSize: 12, fontWeight: 800, color: style.color, textTransform: 'uppercase', letterSpacing: '0.5px', flexShrink: 0 }}>

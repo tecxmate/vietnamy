@@ -983,6 +983,68 @@
               ]
             },
             {
+              "id": "A1_M06_U01a",
+              "title": "Basic I/You: tôi & bạn",
+              "pattern": "Tôi / Bạn + Verb",
+              "explanation": "The two most essential Vietnamese pronouns: tôi (I) and bạn (you, for peers of similar age). These are safe defaults in most casual conversations.",
+              "note": "Bạn is gender-neutral and used with people around your age.",
+              "examples": [
+                {
+                  "vi": "Tôi là sinh viên.",
+                  "en": "I am a student."
+                },
+                {
+                  "vi": "Bạn có khỏe không?",
+                  "en": "Are you well?"
+                }
+              ],
+              "exercise_types": [
+                "mcq_translate_to_en",
+                "mcq_translate_to_vi",
+                "fill_blank",
+                "listen_choose"
+              ],
+              "tags": [
+                "pronouns",
+                "basic"
+              ],
+              "difficulty": 1,
+              "estimated_minutes": 5,
+              "prerequisites": []
+            },
+            {
+              "id": "A1_M06_U01b",
+              "title": "Formal You: anh & chị",
+              "pattern": "Anh / Chị / Anh ấy / Chị ấy + Verb",
+              "explanation": "Anh (older brother/male) and Chị (older sister/female) are used as respectful second-person pronouns for people older than you. Add ấy to make third-person forms.",
+              "note": "Anh ấy = he (older male), Chị ấy = she (older female)",
+              "examples": [
+                {
+                  "vi": "Anh ấy là bác sĩ.",
+                  "en": "He is a doctor."
+                },
+                {
+                  "vi": "Chị ấy rất đẹp.",
+                  "en": "She is very beautiful."
+                }
+              ],
+              "exercise_types": [
+                "mcq_translate_to_en",
+                "mcq_translate_to_vi",
+                "fill_blank",
+                "listen_choose"
+              ],
+              "tags": [
+                "pronouns",
+                "formal"
+              ],
+              "difficulty": 3,
+              "estimated_minutes": 8,
+              "prerequisites": [
+                "A1_M06_U01a"
+              ]
+            },
+            {
               "id": "A1_M06_U02",
               "title": "Family Pronouns (ông, bà, cô, chú)",
               "pattern": "Ông / Bà / Cô / Chú + Verb",
