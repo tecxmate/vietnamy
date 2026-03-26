@@ -7,7 +7,7 @@
 ```
 INPUT (words to teach)
     ↓
-LESSON BLUEPRINT (1-2 words + 1-2 sentences)
+LESSON BLUEPRINT (1-2 words + 1 sentences)
     ↓
 ┌─────────────────────────────────────────────────┐
 │  Lần 1: Recognition (session 0)                 │
@@ -20,7 +20,7 @@ LESSON BLUEPRINT (1-2 words + 1-2 sentences)
 ├─────────────────────────────────────────────────┤
 │  Lần 3: Production (session 2)                  │
 │  → word_bank, reorder, listen_type, speak       │
-│  →                                              │
+│  → 
 ├─────────────────────────────────────────────────┤
 │  TEST (session 3)                               │
 │  → All exercise types, no new words             │

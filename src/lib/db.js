@@ -1305,10 +1305,9 @@ export const getNodesForUnitWithProgress = (unitId, completedNodeIds) => {
         }
 
         // Auto-complete practice-only skill nodes so they don't block roadmap progression
-        // Skills are now accessed from the Practice tab, not the roadmap
-        // Exception: grammar_unit skills ARE roadmap lessons and should NOT be auto-completed
-        const isGrammarUnit = n.skill_content?.type === 'grammar_unit';
-        if (n.node_type === 'skill' && status === 'active' && !isGrammarUnit) {
+        // Exception: grammar_unit and phonetics (blue) skills ARE roadmap lessons
+        const isRoadmapSkill = n.skill_content?.type === 'grammar_unit' || n.module_type === 'blue';
+        if (n.node_type === 'skill' && status === 'active' && !isRoadmapSkill) {
             status = 'completed';
             completedNodeIds.add(n.id);
         }
@@ -1336,9 +1335,9 @@ export const getNodesForUnitWithProgress = (unitId, completedNodeIds) => {
         };
     }).filter(n => {
         // Hide practice-only skill nodes (they live in the Practice tab)
-        // But keep grammar_unit skills — they are roadmap lessons
+        // But keep grammar_unit and phonetics (blue) skills — they are roadmap lessons
         if ((n.type || '') === 'skill') {
-            return n.skill_content?.type === 'grammar_unit';
+            return n.skill_content?.type === 'grammar_unit' || n.module_type === 'blue';
         }
         return true;
     }).sort((a, b) => a.order_index - b.order_index);

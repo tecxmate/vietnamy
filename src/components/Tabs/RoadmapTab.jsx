@@ -98,7 +98,7 @@ const RoadmapTab = ({ onNavigateToVocabDeck } = {}) => {
     const [nodesMap, setNodesMap] = useState({});
     const [dueCount, setDueCount] = useState(0);
     const [redoNode, setRedoNode] = useState(null);
-    const activeFilters = new Set(['orange', 'test', 'gold', 'purple']);
+    const activeFilters = new Set(['orange', 'test', 'gold', 'purple', 'blue']);
 
     useEffect(() => {
         const fetchedUnits = getUnits();
