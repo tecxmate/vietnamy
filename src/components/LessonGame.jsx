@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
-import { X, Heart, Check, Volume2, Zap, Frown, Trophy, FlaskConical, ChevronRight, Mic, MicOff } from 'lucide-react';
+import { X, Heart, Check, Volume2, Frown, Trophy, ChevronRight, Mic, MicOff } from 'lucide-react';
 import { lookupWords } from '../lib/dictionaryLookup';
 import { useDong } from '../context/DongContext';
 import { getNodeByLessonId, getLessonBlueprint, getExercisesGenerated, getNextNode, getNodeRoute } from '../lib/db';
@@ -39,10 +39,7 @@ const LessonGame = () => {
     const [nodeId, setNodeId] = useState(null);
     const [lessonWords, setLessonWords] = useState([]);
 
-    // Retention Mockup States
     const [showQuitConfirm, setShowQuitConfirm] = useState(false);
-    const [retentionQueue, setRetentionQueue] = useState([]);
-    const [activeRetentionScreen, setActiveRetentionScreen] = useState(null);
 
     // Reorder exercises
     const [orderedTokens, setOrderedTokens] = useState([]);
@@ -447,8 +444,7 @@ const LessonGame = () => {
         if (currentIndex < exercises.length - 1) {
             setCurrentIndex(prev => prev + 1);
         } else {
-            setRetentionQueue(['energy', 'quest', 'xp']);
-            setActiveRetentionScreen('energy');
+            setIsFinished(true);
         }
     };
 
@@ -461,20 +457,6 @@ const LessonGame = () => {
         if (currentIndex < exercises.length - 1) {
             setCurrentIndex(prev => prev + 1);
         } else {
-            setRetentionQueue(['energy', 'quest', 'xp']);
-            setActiveRetentionScreen('energy');
-        }
-    };
-
-    const handleNextRetention = () => {
-        const nextQueue = [...retentionQueue];
-        nextQueue.shift();
-        setRetentionQueue(nextQueue);
-
-        if (nextQueue.length > 0) {
-            setActiveRetentionScreen(nextQueue[0]);
-        } else {
-            setActiveRetentionScreen(null);
             setIsFinished(true);
         }
     };
@@ -493,7 +475,6 @@ const LessonGame = () => {
     useEffect(() => {
         const onKey = (e) => {
             if (e.key !== 'Enter') return;
-            if (activeRetentionScreen) { handleNextRetention(); return; }
             if (isFinished || showQuitConfirm) return;
             if (isChecking) { handleNext(); return; }
             if (canCheck()) handleCheck();
@@ -516,70 +497,6 @@ const LessonGame = () => {
                     </button>
                     <SoundButton className="primary shadow-lg" style={{ width: '100%', fontSize: 18 }} onClick={() => setShowQuitConfirm(false)}>
                         KEEP LEARNING
-                    </SoundButton>
-                </div>
-            </div>
-        );
-    }
-
-    if (activeRetentionScreen === 'energy') {
-        return (
-            <div style={{ display: 'flex', flexDirection: 'column', height: '100%', backgroundColor: 'var(--interstitial-bg)', color: 'var(--interstitial-text)', justifyContent: 'center', padding: 24, textAlign: 'center' }}>
-                <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                    <Zap size={64} color="var(--accent-gold)" style={{ marginBottom: -10, zIndex: 2 }} />
-                    <div style={{ backgroundColor: 'var(--accent-pink)', border: '4px solid var(--accent-gold)', borderRadius: 24, padding: '20px 40px', fontSize: 48, fontWeight: 800, color: 'white' }}>
-                        +1
-                    </div>
-                </div>
-                <div style={{ padding: '24px 16px', borderTop: '2px solid var(--interstitial-border)' }}>
-                    <SoundButton className="primary shadow-lg" style={{ width: '100%', fontSize: 18 }} onClick={handleNextRetention}>
-                        CONTINUE
-                    </SoundButton>
-                </div>
-            </div>
-        );
-    }
-
-    if (activeRetentionScreen === 'quest') {
-        return (
-            <div style={{ display: 'flex', flexDirection: 'column', height: '100%', backgroundColor: 'var(--interstitial-bg)', color: 'var(--interstitial-text)', justifyContent: 'center', padding: 24, textAlign: 'center' }}>
-                <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                    <div style={{ width: 160, height: 160, backgroundColor: 'var(--accent-green)', borderRadius: 16, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'center', position: 'relative', borderBottom: '16px solid var(--accent-green-shadow)' }}>
-                        <Trophy size={80} color="var(--accent-gold)" fill="var(--accent-gold)" style={{ position: 'absolute', top: -30 }} />
-                        <div style={{ width: '90%', height: 16, backgroundColor: 'var(--accent-red)', borderRadius: 8, marginBottom: 16, position: 'relative', overflow: 'hidden' }}>
-                            <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(255,255,255,0.2)' }} />
-                            <span style={{ position: 'absolute', width: '100%', textAlign: 'center', fontSize: 12, fontWeight: 800, lineHeight: '16px' }}>3 / 3</span>
-                        </div>
-                    </div>
-                    <h2 style={{ fontSize: 24, marginTop: 40, lineHeight: 1.4 }}>You finished this Weekend Quest.<br />Exquisite work!</h2>
-                </div>
-                <div style={{ padding: '24px 16px', borderTop: '2px solid var(--interstitial-border)' }}>
-                    <SoundButton className="primary shadow-lg" style={{ backgroundColor: 'var(--accent-blue)', color: '#1A1A1A', boxShadow: '0 4px 0 var(--accent-blue-shadow)', border: 'none', width: '100%', fontSize: 18 }} onClick={handleNextRetention}>
-                        I DID IT
-                    </SoundButton>
-                </div>
-            </div>
-        );
-    }
-
-    if (activeRetentionScreen === 'xp') {
-        return (
-            <div style={{ display: 'flex', flexDirection: 'column', height: '100%', backgroundColor: 'var(--interstitial-bg)', color: 'var(--interstitial-text)', justifyContent: 'center', padding: 24, textAlign: 'center' }}>
-                <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                    <div style={{ position: 'relative', marginBottom: 32 }}>
-                        <FlaskConical size={140} color="var(--accent-purple)" fill="var(--accent-purple)" strokeWidth={1} />
-                        <div style={{ position: 'absolute', bottom: -10, left: '50%', transform: 'translateX(-50%)', backgroundColor: '#E5E5E5', color: '#1A1A1A', padding: '4px 12px', borderRadius: 12, fontSize: 14, fontWeight: 800, display: 'flex', alignItems: 'center', gap: 6 }}>
-                            <span style={{ fontSize: 12 }}>&#128274;</span> 5H
-                        </div>
-                    </div>
-                    <h2 style={{ fontSize: 24, lineHeight: 1.4 }}>Come back <span style={{ color: 'var(--accent-purple)' }}>tomorrow</span> for this<br />triple XP Boost</h2>
-                </div>
-                <div style={{ padding: '24px 16px', borderTop: '2px solid var(--interstitial-border)', display: 'flex', flexDirection: 'column', gap: 10 }}>
-                    <SoundButton className="ghost" style={{ color: 'var(--accent-blue)', fontWeight: 700, width: '100%' }} sound="button" onClick={handleNextRetention}>
-                        CONTINUE
-                    </SoundButton>
-                    <SoundButton className="primary shadow-lg" style={{ backgroundColor: 'var(--accent-blue)', color: '#1A1A1A', boxShadow: '0 4px 0 var(--accent-blue-shadow)', border: 'none', width: '100%', fontSize: 18, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }} onClick={handleNextRetention}>
-                        <span style={{ fontSize: 14 }}>&#9654;</span> EARN ANOTHER REWARD
                     </SoundButton>
                 </div>
             </div>
@@ -668,44 +585,82 @@ const LessonGame = () => {
     }
 
     if (isFinished) {
+        const ACCENT = '#FFB703';
         return (
-            <div style={{ display: 'flex', flexDirection: 'column', height: '100%', backgroundColor: 'var(--bg-color)', color: 'var(--text-main)' }}>
-                <div style={{ flex: 1, overflowY: 'auto', padding: 32, textAlign: 'center' }}>
-                    <div style={{ width: 120, height: 120, backgroundColor: 'var(--primary-color)', borderRadius: 'var(--radius-full)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 24px' }}>
-                        <Check size={64} color="var(--bg-color)" strokeWidth={3} />
-                    </div>
-                    <h1 style={{ color: 'var(--primary-color)', fontSize: 32, marginBottom: 8 }}>Lesson Complete!</h1>
-                    <p style={{ color: 'var(--text-muted)', marginBottom: 24 }}>{score}/{exercises.length} correct</p>
-
-                    {/* Words learned */}
-                    {lessonWords.length > 0 && (
-                        <div style={{ textAlign: 'left' }}>
-                            <h3 style={{ fontSize: 16, marginBottom: 12, color: 'var(--text-muted)' }}>Words learned</h3>
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                                {lessonWords.map((w, i) => (
-                                    <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 14px', backgroundColor: 'var(--surface-color)', borderRadius: 'var(--radius-md)' }}>
-                                        <span style={{ fontWeight: 700 }}>{w.vietnamese}</span>
-                                        <span style={{ color: 'var(--text-muted)', fontSize: 14 }}>{w.english}</span>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    )}
+            <div style={{
+                minHeight: '100vh', display: 'flex', flexDirection: 'column',
+                alignItems: 'center', justifyContent: 'center',
+                backgroundColor: 'var(--bg-color)', color: 'var(--text-main)',
+                padding: '40px 24px', gap: 24,
+            }}>
+                {/* Trophy */}
+                <div style={{
+                    width: 80, height: 80, borderRadius: '50%',
+                    backgroundColor: `${ACCENT}15`,
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                }}>
+                    <Trophy size={40} color={ACCENT} fill={ACCENT} />
                 </div>
 
-                <div style={{ padding: '24px 16px', borderTop: '2px solid var(--border-color)', backgroundColor: 'var(--surface-color)', display: 'flex', flexDirection: 'column', gap: 10, minHeight: 140, justifyContent: 'center' }}>
+                <h2 style={{ fontSize: 24, fontWeight: 800, margin: 0, textAlign: 'center' }}>
+                    Lesson Complete!
+                </h2>
+
+                <div style={{ fontSize: 15, color: 'var(--text-muted)', textAlign: 'center', lineHeight: 1.5 }}>
+                    <strong style={{ color: ACCENT }}>{lessonBlueprint?.title || lessonId}</strong>
+                    <br />You scored {score}/{exercises.length}
+                </div>
+
+                {/* Stats row */}
+                <div style={{ display: 'flex', gap: 16, justifyContent: 'center' }}>
+                    <div style={{ textAlign: 'center', padding: '12px 20px', borderRadius: 12, backgroundColor: 'var(--surface-color)', border: '1px solid var(--border-color)' }}>
+                        <div style={{ fontSize: 20, fontWeight: 800, color: ACCENT }}>{score}</div>
+                        <div style={{ fontSize: 11, color: 'var(--text-muted)', fontWeight: 600 }}>Correct</div>
+                    </div>
+                    <div style={{ textAlign: 'center', padding: '12px 20px', borderRadius: 12, backgroundColor: 'var(--surface-color)', border: '1px solid var(--border-color)' }}>
+                        <div style={{ fontSize: 20, fontWeight: 800, color: '#F59E0B' }}>+10</div>
+                        <div style={{ fontSize: 11, color: 'var(--text-muted)', fontWeight: 600 }}>Coins</div>
+                    </div>
+                    <div style={{ textAlign: 'center', padding: '12px 20px', borderRadius: 12, backgroundColor: 'var(--surface-color)', border: '1px solid var(--border-color)' }}>
+                        <div style={{ fontSize: 20, fontWeight: 800, color: '#EF4444' }}>{hearts === Infinity ? '∞' : hearts}/{5}</div>
+                        <div style={{ fontSize: 11, color: 'var(--text-muted)', fontWeight: 600 }}>Hearts</div>
+                    </div>
+                </div>
+
+                {/* Words learned */}
+                {lessonWords.length > 0 && (
+                    <div style={{ width: '100%', maxWidth: 360, textAlign: 'left' }}>
+                        <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: 1.5, color: 'var(--text-muted)', marginBottom: 8 }}>Words learned</div>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                            {lessonWords.map((w, i) => (
+                                <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '8px 14px', backgroundColor: 'var(--surface-color)', borderRadius: 10, border: '1px solid var(--border-color)' }}>
+                                    <span style={{ fontWeight: 700, fontSize: 14 }}>{w.vietnamese}</span>
+                                    <span style={{ color: 'var(--text-muted)', fontSize: 13 }}>{w.english}</span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                )}
+
+                {/* Navigation */}
+                <div style={{ width: '100%', maxWidth: 360, display: 'flex', flexDirection: 'column', gap: 10, marginTop: 8 }}>
                     {nextNodeRoute && (
                         <SoundButton
-                            className="primary w-full shadow-lg"
-                            style={{ fontSize: 18 }}
                             onClick={() => navigate(nextNodeRoute)}
+                            style={{
+                                width: '100%', padding: '16px 24px', borderRadius: 14,
+                                border: 'none', cursor: 'pointer',
+                                backgroundColor: ACCENT, color: '#fff',
+                                fontWeight: 800, fontSize: 16,
+                                boxShadow: '0 4px 0 #CC9202',
+                            }}
                         >
                             {nextNodeLabel || 'NEXT LESSON'}
                         </SoundButton>
                     )}
                     <SoundButton
-                        className={nextNodeRoute ? "ghost w-full" : "primary w-full shadow-lg"}
-                        style={{ fontSize: nextNodeRoute ? 14 : 18, color: nextNodeRoute ? 'var(--text-muted)' : undefined }}
+                        className="ghost"
+                        style={{ width: '100%', fontSize: 14, color: 'var(--text-muted)', fontWeight: 600 }}
                         onClick={() => navigate('/', { state: { tab: 'study' } })}
                     >
                         BACK TO ROADMAP
