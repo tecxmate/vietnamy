@@ -32,40 +32,24 @@
               "id": "A1_M01_U01",
               "title": "Subject + Noun (using là)",
               "pattern": "Subject + là + Noun",
-              "explanation": "To give an introduction about a person or a thing, make a statement, use the following sentence structure: Vietnamese language functions as am/is/are in English.",
-              "note": null,
+              "explanation": "'Là' works like am/is/are in English. Place it between the subject and a noun to say what someone or something is.",
+              "note": "'Là' is only used before nouns, never before adjectives (that's a different pattern).",
               "examples": [
                 {
-                  "vi": "Tôi là David",
-                  "en": "I am David"
+                  "vi": "Tôi là David.",
+                  "en": "I am David."
                 },
                 {
-                  "vi": "Anh ấy là giáo viên",
-                  "en": "He is a teacher"
+                  "vi": "Bạn là Mai.",
+                  "en": "You are Mai."
                 },
                 {
-                  "vi": "Cô ấy là bác sĩ",
-                  "en": "She is a doctor"
+                  "vi": "Tôi tên là gì?",
+                  "en": "What is my name?"
                 },
                 {
-                  "vi": "Chúng tôi là người",
-                  "en": "We are Vietnamese."
-                },
-                {
-                  "vi": "Việt Nam",
-                  "en": "We are Vietnamese"
-                },
-                {
-                  "vi": "Họ là người",
-                  "en": "They are American."
-                },
-                {
-                  "vi": "Bánh mì là đồ ăn",
-                  "en": "Banh mi is a Vietnamese food."
-                },
-                {
-                  "vi": "Việt Nam",
-                  "en": "Banh mi is a Vietnamese food"
+                  "vi": "Bạn tên là David.",
+                  "en": "Your name is David."
                 }
               ],
               "exercise_types": [
@@ -86,32 +70,24 @@
               "id": "A1_M01_U02",
               "title": "Subject + Adjective",
               "pattern": "Subject + Adjective",
-              "explanation": "In the Vietnamese language, to-be verbs are not placed before an adjective as it does in English. You just need to add the adjective behind a subject.",
-              "note": null,
+              "explanation": "In Vietnamese, you don't need 'là' before adjectives. Just put the adjective directly after the subject. No 'am/is/are' needed!",
+              "note": "This is different from English. 'Tôi vui' = 'I happy' = 'I am happy'.",
               "examples": [
                 {
-                  "vi": "Tôi đẹp",
-                  "en": "I am pretty"
+                  "vi": "Tôi vui.",
+                  "en": "I am happy."
                 },
                 {
-                  "vi": "Anh ấy xấu",
-                  "en": "He is ugly"
+                  "vi": "Bạn rất vui.",
+                  "en": "You are very happy."
                 },
                 {
-                  "vi": "Chị ấy thông minh",
-                  "en": "She is smart"
+                  "vi": "Tôi không vui.",
+                  "en": "I am not happy."
                 },
                 {
-                  "vi": "Chúng tôi ngu ngốc",
-                  "en": "We are stupid"
-                },
-                {
-                  "vi": "Họ thân thiện",
-                  "en": "They are friendly"
-                },
-                {
-                  "vi": "Bánh mì ngon",
-                  "en": "Banh mi is delicious"
+                  "vi": "Bạn rất tốt.",
+                  "en": "You are very kind."
                 }
               ],
               "exercise_types": [
@@ -1002,12 +978,12 @@
               "note": "Bạn is gender-neutral and used with people around your age.",
               "examples": [
                 {
-                  "vi": "Tôi là sinh viên.",
-                  "en": "I am a student."
+                  "vi": "Tôi chào bạn.",
+                  "en": "I greet you."
                 },
                 {
-                  "vi": "Bạn có khỏe không?",
-                  "en": "Are you well?"
+                  "vi": "Bạn cảm ơn tôi.",
+                  "en": "You thank me."
                 }
               ],
               "exercise_types": [
