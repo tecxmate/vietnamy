@@ -1,0 +1,147 @@
+{
+    "id": "consonants_final",
+    "title": "Consonants: Final",
+    "description": "Learn the 8 final consonant sounds in Vietnamese and how they differ from initial consonants",
+    "color": "#1CB0F6",
+    "questions": [
+        {
+            "type": "mcq",
+            "prompt": "How many distinct final consonant SOUNDS does Vietnamese have?",
+            "correct": "8",
+            "options": ["8", "6", "12", "17"],
+            "explanation": "Vietnamese has only 8 final consonant sounds: /p/, /t/, /k/, /m/, /n/, /ŋ/, /c/ (ch), /ɲ/ (nh). Far fewer than initial consonants"
+        },
+        {
+            "type": "mcq",
+            "prompt": "Final 'c' and 'ch' are both pronounced as what?",
+            "correct": "An unreleased /k/ stop",
+            "options": ["An unreleased /k/ stop", "A 'ch' sound like English", "A 'k' sound like English", "Silent"],
+            "explanation": "Both final 'c' and 'ch' become an unreleased /k/ — your tongue stops at the back but no air is released"
+        },
+        {
+            "type": "listen_pick",
+            "prompt": "What final consonant do you hear in this word?",
+            "audio": "một",
+            "correct": "t",
+            "options": ["t", "c", "p", "n"],
+            "explanation": "một (one) ends with final 't' — an unreleased /t/ stop. The tongue touches behind the teeth but doesn't release"
+        },
+        {
+            "type": "listen_pick",
+            "prompt": "What final consonant do you hear?",
+            "audio": "ăn",
+            "correct": "n",
+            "options": ["n", "ng", "nh", "m"],
+            "explanation": "ăn (to eat) ends with 'n' — tongue tip touches behind the upper teeth"
+        },
+        {
+            "type": "listen_pick",
+            "prompt": "What final consonant do you hear?",
+            "audio": "nóng",
+            "correct": "ng",
+            "options": ["ng", "n", "nh", "m"],
+            "explanation": "nóng (hot) ends with 'ng' — a velar nasal, the back of the tongue rises to the soft palate"
+        },
+        {
+            "type": "mcq",
+            "prompt": "Final 'p' in Vietnamese is:",
+            "correct": "Unreleased — lips close but no puff of air",
+            "options": ["Unreleased — lips close but no puff of air", "Same as English 'p'", "Silent", "Sounds like 'b'"],
+            "explanation": "All Vietnamese stop finals (p, t, c/ch) are unreleased — you make the closure but don't release the air"
+        },
+        {
+            "type": "fill_blank",
+            "prompt": "Complete: cơ___ (rice, cooked)",
+            "correct": "m",
+            "options": ["m", "n", "ng", "p"],
+            "explanation": "cơm = cooked rice. Ends with 'm' — lips close together"
+        },
+        {
+            "type": "fill_blank",
+            "prompt": "Complete: mắ___ (eyes)",
+            "correct": "t",
+            "options": ["t", "c", "p", "n"],
+            "explanation": "mắt = eyes. Ends with final 't' — unreleased stop"
+        },
+        {
+            "type": "fill_blank",
+            "prompt": "Complete: đẹ___ (beautiful)",
+            "correct": "p",
+            "options": ["p", "t", "c", "m"],
+            "explanation": "đẹp = beautiful. Ends with final 'p' — lips close without release"
+        },
+        {
+            "type": "listen_pick",
+            "prompt": "What final consonant do you hear?",
+            "audio": "sách",
+            "correct": "ch",
+            "options": ["ch", "c", "t", "nh"],
+            "explanation": "sách (book) ends with 'ch' — after 'a' it's written 'ch', pronounced as unreleased /k/"
+        },
+        {
+            "type": "mcq",
+            "prompt": "Which finals are STOPS (block airflow completely)?",
+            "correct": "p, t, c/ch",
+            "options": ["p, t, c/ch", "m, n, ng", "n, t, ng", "p, m, nh"],
+            "explanation": "p, t, c/ch are stops — they block airflow. m, n, ng/nh are nasals — air flows through the nose"
+        },
+        {
+            "type": "mcq",
+            "prompt": "Which tones can appear with final stops (p, t, c/ch)?",
+            "correct": "Only sắc (´) and nặng (ˌ)",
+            "options": ["Only sắc (´) and nặng (ˌ)", "All 6 tones", "Only level tone", "Any tone except hỏi"],
+            "explanation": "Words ending in stops (p, t, c/ch) can ONLY have sắc or nặng tone. This is a key Vietnamese phonotactic rule"
+        },
+        {
+            "type": "fill_blank",
+            "prompt": "Complete: mì___ (taste/flavor)",
+            "correct": "nh",
+            "options": ["nh", "ng", "n", "ch"],
+            "explanation": "mình = oneself/body. Final 'nh' appears after 'i' — palatal nasal"
+        },
+        {
+            "type": "listen_pick",
+            "prompt": "What final consonant do you hear?",
+            "audio": "tập",
+            "correct": "p",
+            "options": ["p", "t", "m", "b"],
+            "explanation": "tập (to practice) ends with 'p' — unreleased bilabial stop"
+        },
+        {
+            "type": "mcq",
+            "prompt": "'nh' and 'ch' as FINALS only appear after which vowels?",
+            "correct": "i, ê, a (short 'a')",
+            "options": ["i, ê, a (short 'a')", "All vowels", "o, u, ư", "a, ă, â"],
+            "explanation": "Final 'nh'/'ch' appear after i, ê, and a. After other vowels, you use 'ng'/'c' instead"
+        },
+        {
+            "type": "fill_blank",
+            "prompt": "Complete: họ___ (to learn/to study)",
+            "correct": "c",
+            "options": ["c", "ch", "k", "t"],
+            "explanation": "học = to study. After 'o' the final stop is written 'c' (not 'ch')"
+        },
+        {
+            "type": "listen_pick",
+            "prompt": "What final consonant do you hear?",
+            "audio": "xanh",
+            "correct": "nh",
+            "options": ["nh", "ng", "n", "ch"],
+            "explanation": "xanh (blue/green) ends with 'nh' — after 'a', the palatal nasal"
+        },
+        {
+            "type": "mcq",
+            "prompt": "What's the difference between 'an' and 'ang'?",
+            "correct": "'an' = tongue tip up, 'ang' = tongue back up",
+            "options": ["'an' = tongue tip up, 'ang' = tongue back up", "They sound the same", "'an' is longer", "'ang' has a 'g' sound at the end"],
+            "explanation": "Final 'n' is alveolar (tongue tip), 'ng' is velar (tongue back). Different mouth positions, very different sounds"
+        },
+        {
+            "type": "fill_blank",
+            "prompt": "Complete: thá___ (month)",
+            "correct": "ng",
+            "options": ["ng", "n", "nh", "m"],
+            "explanation": "tháng = month. After 'a', the velar nasal is written 'ng'"
+        }
+    ]
+}

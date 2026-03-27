@@ -83,6 +83,7 @@ import TonePitchTraining1 from './pages/Practice/TonePitchTraining1';
 import TonePitchTraining2 from './pages/Practice/TonePitchTraining2';
 // Drill-based practice modules (data-driven, CMS-editable)
 import ConsonantsPractice from './pages/Practice/ConsonantsPractice';
+import ConsonantsFinalPractice from './pages/Practice/ConsonantsFinalPractice';
 import ClassifiersBasics from './pages/Practice/ClassifiersBasics';
 import ClassifiersExtended from './pages/Practice/ClassifiersExtended';
 import ParticlesPoliteness from './pages/Practice/ParticlesPoliteness';
@@ -268,6 +269,7 @@ function App() {
                 <Route path="/practice/teencode-3" element={<div className="mobile-app-wrapper"><TeenCode3 /></div>} />
                 {/* Drill-based practice modules */}
                 <Route path="/practice/consonants" element={<div className="mobile-app-wrapper"><ConsonantsPractice /></div>} />
+                <Route path="/practice/consonants-final" element={<div className="mobile-app-wrapper"><ConsonantsFinalPractice /></div>} />
                 <Route path="/practice/classifiers-1" element={<div className="mobile-app-wrapper"><ClassifiersBasics /></div>} />
                 <Route path="/practice/classifiers-2" element={<div className="mobile-app-wrapper"><ClassifiersExtended /></div>} />
                 <Route path="/practice/particles-1" element={<div className="mobile-app-wrapper"><ParticlesPoliteness /></div>} />
