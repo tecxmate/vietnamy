@@ -32,7 +32,6 @@ const TAB_META = {
     study: null,
     dictionary: { title: 'Dictionary', subtitle: 'Search Vietnamese words' },
     grammar: { title: 'Grammar', subtitle: 'Browse patterns by level' },
-    scenes: { title: 'Scenes', subtitle: 'Learn through real-life scenarios' },
     library: { title: 'Library', subtitle: 'Grammar, readings & vocabulary' },
     practice: { title: 'Practice', subtitle: 'Skills & pronunciation drills' },
 };

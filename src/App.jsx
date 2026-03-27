@@ -22,8 +22,6 @@ import DictionaryTab from './components/Tabs/DictionaryTab';
 import ReadingLibraryTab from './components/Tabs/ReadingLibraryTab';
 // FlashcardsPage merged into Library > Vocabulary
 import PracticeTab from './components/Tabs/PracticeTab';
-import ScenesTab from './components/Tabs/ScenesTab';
-
 // Grammar pages
 import GrammarList from './pages/Grammar/GrammarList';
 import GrammarDetail from './pages/Grammar/GrammarDetail';
@@ -178,7 +176,6 @@ function StudentApp({ initialTab = 'home' }) {
       case 'study': return <RoadmapTab onNavigateToVocabDeck={handleNavigateToVocabDeck} />;
       case 'dictionary': return <DictionaryTab pendingInput={pendingDictInput} clearPendingInput={() => setPendingDictInput(null)} onNavigateToLibrary={handleNavigateToLibrary} />;
       case 'library': return <ReadingLibraryTab onSubtitleChange={setTabSubtitle} onSearchWord={handleDictInput} pendingArticle={pendingLibraryArticle} clearPendingArticle={() => setPendingLibraryArticle(null)} pendingVocabDeck={pendingVocabDeck} clearPendingVocabDeck={() => setPendingVocabDeck(null)} />;
-      case 'scenes': return <ScenesTab />;
       case 'practice': return <PracticeTab />;
       default: return <HomeTab />;
     }
