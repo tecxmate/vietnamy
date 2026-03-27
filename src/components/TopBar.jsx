@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {
     Target, Zap, User, X, ChevronDown, ChevronRight, RefreshCw,
-    Globe, Type, Volume2, Wrench, Moon, Sun, Clock, Bell, Gift, Heart, CircleDollarSign,
+    Globe, Type, Volume2, Wrench, Moon, Sun, Clock, Bell, Gift, Heart, CircleDollarSign, Tag,
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useDong } from '../context/DongContext';
@@ -331,6 +331,12 @@ const TopBar = ({ activeTab, subtitleOverride }) => {
                                     value={settings.fontSize || 'medium'}
                                     options={[{ v: 'small', l: 'Small' }, { v: 'medium', l: 'Medium' }, { v: 'large', l: 'Large' }]}
                                     onChange={v => updateSetting('fontSize', v)}
+                                />
+                                <SettingToggle
+                                    label="Show CEFR Level Tags"
+                                    icon={<Tag size={16} />}
+                                    checked={settings.showCefrTags !== false}
+                                    onChange={v => updateSetting('showCefrTags', v)}
                                 />
                             </SettingsGroup>
 

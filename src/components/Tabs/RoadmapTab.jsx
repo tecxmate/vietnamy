@@ -43,7 +43,9 @@ function getNodeLabel(node, style) {
 const RoadmapTab = ({ onNavigateToVocabDeck } = {}) => {
     const navigate = useNavigate();
     const { completedNodes, getNodeSessionCount, SESSIONS_TO_COMPLETE } = useDong();
-    const { testMode } = loadSettings();
+    const currentSettings = loadSettings();
+    const { testMode } = currentSettings;
+    const showCefrTags = currentSettings.showCefrTags !== false;
     const [units, setUnits] = useState([]);
     const [nodesMap, setNodesMap] = useState({});
     const [dueCount, setDueCount] = useState(0);
@@ -277,7 +279,7 @@ const RoadmapTab = ({ onNavigateToVocabDeck } = {}) => {
                                                     <div style={{ fontSize: 12, color: isLocked ? style.muted : style.color, fontWeight: 600, marginTop: 2 }}>
                                                         {sublabel}{hasProgress && ` · ${sessionCount}/${SESSIONS_TO_COMPLETE}`}
                                                     </div>
-                                                    {(node.cefr_level || node.difficulty) && (
+                                                    {showCefrTags && (node.cefr_level || node.difficulty) && (
                                                         <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 3 }}>
                                                             {node.cefr_level && (
                                                                 <span style={{
