@@ -572,7 +572,7 @@ export default function GrammarUnitLesson() {
                                 backgroundColor: canCheck() ? ACCENT : 'var(--border-color)',
                                 color: canCheck() ? '#fff' : 'var(--text-muted)',
                                 fontWeight: 800, fontSize: 16,
-                                boxShadow: canCheck() ? `0 4px 0 #05A67D` : 'none',
+                                boxShadow: canCheck() ? `0 4px 0 #7C3AED` : 'none',
                             }}
                         >
                             CHECK
@@ -657,7 +657,7 @@ export default function GrammarUnitLesson() {
                     borderRadius: 14, border: 'none', cursor: 'pointer',
                     backgroundColor: ACCENT, color: '#fff',
                     fontWeight: 800, fontSize: 16,
-                    boxShadow: `0 4px 0 #05A67D`,
+                    boxShadow: `0 4px 0 #7C3AED`,
                 }}
             >
                 CONTINUE

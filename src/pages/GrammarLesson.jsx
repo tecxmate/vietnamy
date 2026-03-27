@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { ArrowLeft, ArrowRight, Volume2, Heart, Check, X, BookOpenText } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Volume2, Heart, Check, X, BookOpenText, Trophy } from 'lucide-react';
 import { getNodeById } from '../lib/db';
 import { getGrammarItems } from '../lib/grammarDB';
 import { useDong } from '../context/DongContext';
@@ -367,18 +367,60 @@ const GrammarLesson = () => {
     }
 
     // --- FINISHED PHASE ---
+    const ACCENT = '#06D6A0';
     if (phase === 'finished') {
         return (
-            <div style={{ display: 'flex', flexDirection: 'column', height: '100dvh', backgroundColor: 'var(--bg-color)', color: 'var(--text-main)' }}>
-                <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: 32, textAlign: 'center' }}>
-                    <div style={{ width: 120, height: 120, backgroundColor: '#06D6A0', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 24 }}>
-                        <Check size={64} color="white" strokeWidth={3} />
-                    </div>
-                    <h1 style={{ color: '#06D6A0', fontSize: 28, marginBottom: 8 }}>Grammar Complete!</h1>
-                    <p style={{ color: 'var(--text-muted)' }}>{score}/{exercises.length} correct</p>
+            <div style={{
+                minHeight: '100vh', display: 'flex', flexDirection: 'column',
+                alignItems: 'center', justifyContent: 'center',
+                backgroundColor: 'var(--bg-color)', color: 'var(--text-main)',
+                padding: '40px 24px', gap: 24,
+            }}>
+                <div style={{
+                    width: 80, height: 80, borderRadius: '50%',
+                    backgroundColor: `${ACCENT}15`,
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                }}>
+                    <Trophy size={40} color={ACCENT} fill={ACCENT} />
                 </div>
-                <div style={{ padding: 24, borderTop: '2px solid var(--border-color)', backgroundColor: 'var(--surface-color)' }}>
-                    <SoundButton className="primary w-full shadow-lg" onClick={() => navigate('/', { state: { tab: 'study' } })}>CONTINUE</SoundButton>
+
+                <h2 style={{ fontSize: 24, fontWeight: 800, margin: 0, textAlign: 'center' }}>
+                    Grammar Complete!
+                </h2>
+
+                <div style={{ fontSize: 15, color: 'var(--text-muted)', textAlign: 'center', lineHeight: 1.5 }}>
+                    You scored <strong style={{ color: ACCENT }}>{score}/{exercises.length}</strong>
+                </div>
+
+                {/* Stats row */}
+                <div style={{ display: 'flex', gap: 16, justifyContent: 'center' }}>
+                    <div style={{ textAlign: 'center', padding: '12px 20px', borderRadius: 12, backgroundColor: 'var(--surface-color)', border: '1px solid var(--border-color)' }}>
+                        <div style={{ fontSize: 20, fontWeight: 800, color: ACCENT }}>{score}</div>
+                        <div style={{ fontSize: 11, color: 'var(--text-muted)', fontWeight: 600 }}>Correct</div>
+                    </div>
+                    <div style={{ textAlign: 'center', padding: '12px 20px', borderRadius: 12, backgroundColor: 'var(--surface-color)', border: '1px solid var(--border-color)' }}>
+                        <div style={{ fontSize: 20, fontWeight: 800, color: '#F59E0B' }}>+10</div>
+                        <div style={{ fontSize: 11, color: 'var(--text-muted)', fontWeight: 600 }}>Coins</div>
+                    </div>
+                    <div style={{ textAlign: 'center', padding: '12px 20px', borderRadius: 12, backgroundColor: 'var(--surface-color)', border: '1px solid var(--border-color)' }}>
+                        <div style={{ fontSize: 20, fontWeight: 800, color: '#EF4444' }}>{hearts}/{5}</div>
+                        <div style={{ fontSize: 11, color: 'var(--text-muted)', fontWeight: 600 }}>Hearts</div>
+                    </div>
+                </div>
+
+                <div style={{ width: '100%', maxWidth: 360, display: 'flex', flexDirection: 'column', gap: 10 }}>
+                    <SoundButton
+                        style={{
+                            width: '100%', padding: '16px 24px', borderRadius: 14,
+                            border: 'none', cursor: 'pointer',
+                            backgroundColor: ACCENT, color: '#fff',
+                            fontWeight: 800, fontSize: 16,
+                            boxShadow: '0 4px 0 #05A67D',
+                        }}
+                        onClick={() => navigate('/', { state: { tab: 'study' } })}
+                    >
+                        CONTINUE
+                    </SoundButton>
                 </div>
             </div>
         );

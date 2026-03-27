@@ -271,24 +271,26 @@ const UnitTest = () => {
 
         return (
             <div style={{ display: 'flex', flexDirection: 'column', height: '100dvh', backgroundColor: 'var(--bg-color)', color: 'var(--text-main)' }}>
-                <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: 32, textAlign: 'center' }}>
+                <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: 32, textAlign: 'center', gap: 20 }}>
                     <div style={{
-                        width: 120, height: 120,
-                        backgroundColor: passed ? '#F97316' : 'var(--danger-color)',
-                        borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 24
+                        width: 80, height: 80,
+                        backgroundColor: passed ? '#F9731615' : 'var(--danger-color)15',
+                        borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center',
                     }}>
                         {passed
-                            ? <Trophy size={64} color="white" strokeWidth={2} />
-                            : <X size={64} color="white" strokeWidth={2} />
+                            ? <Trophy size={40} color="#F97316" fill="#F97316" />
+                            : <X size={40} color="var(--danger-color)" strokeWidth={2.5} />
                         }
                     </div>
-                    <h1 style={{ color: passed ? '#F97316' : 'var(--danger-color)', fontSize: 28, marginBottom: 8 }}>
+                    <h1 style={{ color: passed ? '#F97316' : 'var(--danger-color)', fontSize: 24, margin: 0, fontWeight: 800 }}>
                         {passed
                             ? (isModuleTest ? 'Quiz Complete!' : 'Test Passed!')
                             : 'Not Quite!'}
                     </h1>
-                    <p style={{ color: 'var(--text-muted)', fontSize: 18 }}>{score}/{exercises.length} correct ({pct}%)</p>
-                    <p style={{ color: 'var(--text-muted)', fontSize: 14, marginTop: 8 }}>
+                    <div style={{ fontSize: 15, color: 'var(--text-muted)', lineHeight: 1.5 }}>
+                        <strong style={{ color: passed ? '#F97316' : 'var(--danger-color)' }}>{score}/{exercises.length}</strong> correct ({pct}%)
+                    </div>
+                    <p style={{ color: 'var(--text-muted)', fontSize: 14, margin: 0 }}>
                         {passed
                             ? (isModuleTest ? 'Next module unlocked!' : 'Next unit unlocked!')
                             : `You need ${thresholdPct}% to pass. Review the lesson and try again!`}
