@@ -255,12 +255,24 @@
               "note": null,
               "examples": [
                 {
-                  "vi": "Cô ấy làm việc hôm nay",
-                  "en": "She goes to work today"
+                  "vi": "Hôm nay trời nắng.",
+                  "en": "Today it is sunny."
                 },
                 {
-                  "vi": "Chị ấy học bài mỗi tháng",
-                  "en": "She studies every month"
+                  "vi": "Tôi đi sáng.",
+                  "en": "I go in the morning."
+                },
+                {
+                  "vi": "Bạn ở đây hôm nay.",
+                  "en": "You are here today."
+                },
+                {
+                  "vi": "Trời mưa chiều.",
+                  "en": "It rains in the afternoon."
+                },
+                {
+                  "vi": "Ngày mai tôi đi.",
+                  "en": "Tomorrow I go."
                 }
               ],
               "exercise_types": [
@@ -1162,92 +1174,24 @@
               "note": null,
               "examples": [
                 {
-                  "vi": "Những cái bàn",
-                  "en": "Tables (general plural)"
+                  "vi": "Những trái cam rất ngon.",
+                  "en": "The oranges are very delicious."
                 },
                 {
-                  "vi": "Những cái bàn màu đỏ",
-                  "en": "Tables → The tables are red"
+                  "vi": "Các bạn tôi thích xoài.",
+                  "en": "My friends like mango."
                 },
                 {
-                  "vi": "Những con mèo",
-                  "en": "Cats (general plural)"
+                  "vi": "Tôi muốn mua những trái xoài.",
+                  "en": "I want to buy mangoes."
                 },
                 {
-                  "vi": "Những con mèo đang ăn những con cá",
-                  "en": "Cats → The cats are eating fishes"
+                  "vi": "Các cái áo đẹp.",
+                  "en": "The shirts are beautiful."
                 },
                 {
-                  "vi": "Các tấm ảnh",
-                  "en": "Photos (general plural)"
-                },
-                {
-                  "vi": "Các tấm ảnh cũ kỹ",
-                  "en": "Photos → The photos are old"
-                },
-                {
-                  "vi": "Các viên đá",
-                  "en": "Stones (general plural)"
-                },
-                {
-                  "vi": "Các viên đá hình con cá",
-                  "en": "Ice cubes → The ice cubes are all shaped as fishes"
-                },
-                {
-                  "vi": "Những cây bút chì",
-                  "en": "Pencils (general plural)"
-                },
-                {
-                  "vi": "Những cây bút chì màu đen",
-                  "en": "Pencils → The pencils are black"
-                },
-                {
-                  "vi": "Những tờ báo",
-                  "en": "Newspapers (general plural)"
-                },
-                {
-                  "vi": "Những tờ báo đang",
-                  "en": "Newspapers → The newspapers are flying"
-                },
-                {
-                  "vi": "Những cuốn sách",
-                  "en": "Books (general plural)"
-                },
-                {
-                  "vi": "Những cuốn sách của ba tôi rất",
-                  "en": "Books → The books of my dad are good"
-                },
-                {
-                  "vi": "Những bức",
-                  "en": "Tranh →"
-                },
-                {
-                  "vi": "Những bức tranh thật đẹp!",
-                  "en": "Paintigs → The paintings are beautiful"
-                },
-                {
-                  "vi": "Những chiếc lá",
-                  "en": "Leaves (general plural)"
-                },
-                {
-                  "vi": "Những chiếc lá đang rơi",
-                  "en": "Leaves → The leaves are falling"
-                },
-                {
-                  "vi": "Các chai nước",
-                  "en": "Bottles of water (general plural)"
-                },
-                {
-                  "vi": "Các chai nước ở trong tủ lạnh",
-                  "en": "Bottles of water → The bottles of water are in the fridge"
-                },
-                {
-                  "vi": "Các ly rượu",
-                  "en": "Glasses of wine (general plural)"
-                },
-                {
-                  "vi": "Các ly rượu của mẹ đã hết",
-                  "en": "Glasses of wine → The glasses of wine of my mom are all finished"
+                  "vi": "Những cà chua rất đỏ.",
+                  "en": "The tomatoes are very red."
                 }
               ],
               "exercise_types": [
@@ -1383,40 +1327,24 @@
               "note": null,
               "examples": [
                 {
-                  "vi": "Tôi không thích mưa",
-                  "en": "I don’t like rain"
+                  "vi": "Tôi không hiểu.",
+                  "en": "I don’t understand."
                 },
                 {
-                  "vi": "Anh ấy không ăn kem",
-                  "en": "He doesn’t eat ice cream"
+                  "vi": "Bạn không là bạn tôi.",
+                  "en": "You are not my friend."
                 },
                 {
-                  "vi": "Chị ấy không có tiền",
-                  "en": "She doesn’t have money"
+                  "vi": "Tôi không chào bạn.",
+                  "en": "I don’t greet you."
                 },
                 {
-                  "vi": "Chúng tôi không nghèo",
-                  "en": "We are not poor"
+                  "vi": "Không, cảm ơn.",
+                  "en": "No, thank you."
                 },
                 {
-                  "vi": "Họ không thông minh",
-                  "en": "They are not smart"
-                },
-                {
-                  "vi": "Các chị ấy không xấu",
-                  "en": "Those sisters are not ugly"
-                },
-                {
-                  "vi": "Ba tôi không phải là bác sĩ",
-                  "en": "My father is not a doctor"
-                },
-                {
-                  "vi": "Phở không phải là món ăn",
-                  "en": "Pho is not a Japanese food."
-                },
-                {
-                  "vi": "Việt Hiragana",
-                  "en": "Vietnamese alphabet"
+                  "vi": "Tôi không xin lỗi.",
+                  "en": "I don’t apologize."
                 }
               ],
               "exercise_types": [
@@ -1635,28 +1563,24 @@
               "note": null,
               "examples": [
                 {
-                  "vi": "Tôi đẹp",
-                  "en": "I am pretty"
+                  "vi": "Cái này đẹp.",
+                  "en": "This one is beautiful."
                 },
                 {
-                  "vi": "Anh ấy dễ thương",
-                  "en": "He is cute"
+                  "vi": "Cà phê ngon.",
+                  "en": "The coffee is delicious."
                 },
                 {
-                  "vi": "Trời nóng và nắng",
-                  "en": "The weather is hot and sunny"
+                  "vi": "Cái áo đỏ to.",
+                  "en": "The red shirt is big."
                 },
                 {
-                  "vi": "Mùa đông lạnh và khô",
-                  "en": "Winter is cold and dry"
+                  "vi": "Phở ngon quá!",
+                  "en": "The pho is so delicious!"
                 },
                 {
-                  "vi": "Phở ngon và rẻ Pho",
-                  "en": "Is delicious and cheap"
-                },
-                {
-                  "vi": "Con mèo màu đen",
-                  "en": "Cat is black"
+                  "vi": "Cái này nhỏ và rẻ.",
+                  "en": "This one is small and cheap."
                 }
               ],
               "exercise_types": [
@@ -2078,8 +2002,24 @@
               "note": null,
               "examples": [
                 {
-                  "vi": "Bếp ở sau phòng khách",
-                  "en": "The kitchen is behind the living room."
+                  "vi": "Tôi ở khách sạn.",
+                  "en": "I am at the hotel."
+                },
+                {
+                  "vi": "Bạn ở đây.",
+                  "en": "You are here."
+                },
+                {
+                  "vi": "Phòng ở đâu?",
+                  "en": "Where is the room?"
+                },
+                {
+                  "vi": "Nhà vệ sinh ở bên trái.",
+                  "en": "The bathroom is on the left."
+                },
+                {
+                  "vi": "Khách sạn ở gần đây.",
+                  "en": "The hotel is nearby."
                 }
               ],
               "exercise_types": [
@@ -2956,20 +2896,24 @@
               "note": null,
               "examples": [
                 {
-                  "vi": "Chén: 10 cái Bowl: 10 units",
-                  "en": "Bowl: 10 units"
+                  "vi": "Một cái này bao nhiêu?",
+                  "en": "How much is one of these?"
                 },
                 {
-                  "vi": "Có 10 cái chén",
-                  "en": "There are 10 bowls"
+                  "vi": "Hai bát phở, làm ơn.",
+                  "en": "Two bowls of pho, please."
                 },
                 {
-                  "vi": "Ghế: 100 cái",
-                  "en": "Chair: 100 units"
+                  "vi": "Ba cái bánh mì.",
+                  "en": "Three banh mi."
                 },
                 {
-                  "vi": "Có 100 cái ghế",
-                  "en": "There are 100 chairs"
+                  "vi": "Cái này đắt.",
+                  "en": "This one is expensive."
+                },
+                {
+                  "vi": "Tôi muốn một bát cơm.",
+                  "en": "I want one bowl of rice."
                 }
               ],
               "exercise_types": [
@@ -3728,20 +3672,24 @@
               "note": "Please double-check",
               "examples": [
                 {
-                  "vi": "Bởi vì chị!",
-                  "en": "Because of you!"
+                  "vi": "Tôi vui vì hôm nay là sinh nhật.",
+                  "en": "I'm happy because today is my birthday."
                 },
                 {
-                  "vi": "Tôi làm việc vì gia đình!",
-                  "en": "I go to work because of my family!"
+                  "vi": "Tôi mệt vì trời nóng.",
+                  "en": "I'm tired because it's hot."
                 },
                 {
-                  "vi": "Chuyến bay bị huỷ do thời tiết!",
-                  "en": "The flight was cancelled because of the weather"
+                  "vi": "Bạn buồn vì mưa.",
+                  "en": "You're sad because of rain."
                 },
                 {
-                  "vi": "Bởi vì đồng tiền, cô ấy có thể làm tất cả!",
-                  "en": "She does anything just because of money!"
+                  "vi": "Tôi thích cà phê vì ngon.",
+                  "en": "I like coffee because it's delicious."
+                },
+                {
+                  "vi": "Anh ấy vui vì bạn đến.",
+                  "en": "He's happy because you came."
                 }
               ],
               "exercise_types": [
@@ -4155,20 +4103,24 @@
               "note": null,
               "examples": [
                 {
-                  "vi": "Chúng tôi nên nghỉ ngơi",
-                  "en": "We should take a rest"
+                  "vi": "Bạn nên đi.",
+                  "en": "You should go."
                 },
                 {
-                  "vi": "Em ấy nên ăn cơm lúc 7h00 tối",
-                  "en": "She should have dinner at 7pm"
+                  "vi": "Tôi nên đọc sách.",
+                  "en": "I should read books."
                 },
                 {
-                  "vi": "Anh nên học",
-                  "en": "You should study Vietnamese."
+                  "vi": "Bạn không nên buồn.",
+                  "en": "You should not be sad."
                 },
                 {
-                  "vi": "Việt mỗi ngày",
-                  "en": "You should learn Vietnamese everyday"
+                  "vi": "Anh nên chơi thể thao.",
+                  "en": "You should play sports."
+                },
+                {
+                  "vi": "Chị nên vui.",
+                  "en": "You should be happy."
                 }
               ],
               "exercise_types": [
@@ -4949,16 +4901,24 @@
               "note": null,
               "examples": [
                 {
-                  "vi": "Chúng tôi muốn về nhà",
-                  "en": "We want to go home"
+                  "vi": "Tôi muốn cà phê.",
+                  "en": "I want coffee."
                 },
                 {
-                  "vi": "Anh ấy muốn khoẻ mạnh",
-                  "en": "He wants to be strong"
+                  "vi": "Bạn muốn trà không?",
+                  "en": "Do you want tea?"
                 },
                 {
-                  "vi": "Em ấy muốn xinh đẹp",
-                  "en": "She wants to be pretty"
+                  "vi": "Tôi muốn nước.",
+                  "en": "I want water."
+                },
+                {
+                  "vi": "Cho tôi một cà phê sữa đá.",
+                  "en": "Give me an iced milk coffee."
+                },
+                {
+                  "vi": "Tôi không muốn sữa.",
+                  "en": "I don't want milk."
                 }
               ],
               "exercise_types": [
@@ -5201,32 +5161,24 @@
               "note": null,
               "examples": [
                 {
-                  "vi": "Bánh mì rất ngon! Very delicious",
-                  "en": "Banh mi is very delicious"
+                  "vi": "Cà phê rất ngon.",
+                  "en": "The coffee is very delicious."
                 },
                 {
-                  "vi": "Rất đẹp!",
-                  "en": "Very beautiful!"
+                  "vi": "Cái này rất đẹp.",
+                  "en": "This is very beautiful."
                 },
                 {
-                  "vi": "Thiên nhiên rất đẹp!",
-                  "en": "Very beautiful → Nature is very beautiful"
+                  "vi": "Phở rất đắt.",
+                  "en": "The pho is very expensive."
                 },
                 {
-                  "vi": "Rất tốt!",
-                  "en": "Very good!"
+                  "vi": "Nước rất rẻ.",
+                  "en": "Water is very cheap."
                 },
                 {
-                  "vi": "Bài kiểm tra rất tốt!",
-                  "en": "Very good → The test was very good"
-                },
-                {
-                  "vi": "Rất đắng!",
-                  "en": "Very bitter!"
-                },
-                {
-                  "vi": "Cà phê rất đắng!",
-                  "en": "Too bitter! → Coffee is too bitter"
+                  "vi": "Cái áo rất to.",
+                  "en": "The shirt is very big."
                 }
               ],
               "exercise_types": [
@@ -5402,52 +5354,24 @@
               "note": null,
               "examples": [
                 {
-                  "vi": "Làm sao đi đến bệnh viện?",
-                  "en": "How to get to the hospital?"
+                  "vi": "Đi thẳng.",
+                  "en": "Go straight."
                 },
                 {
-                  "vi": "Làm sao đi đến trường học ?",
-                  "en": "How to get to school?"
+                  "vi": "Bên trái hay bên phải?",
+                  "en": "Left or right?"
                 },
                 {
-                  "vi": "Làm sao đi đến rạp phim?",
-                  "en": "How to get to the cinema?"
+                  "vi": "Gần đây không?",
+                  "en": "Is it nearby?"
                 },
                 {
-                  "vi": "Làm sao đi đến công viên?",
-                  "en": "How to get to the park?"
+                  "vi": "Đi bên phải.",
+                  "en": "Go to the right."
                 },
                 {
-                  "vi": "Làm sao đi đến siêu thị?",
-                  "en": "How to get to the supermarket?"
-                },
-                {
-                  "vi": "Làm sao đi đến sở thú?",
-                  "en": "How do I get to the zoo?"
-                },
-                {
-                  "vi": "Bệnh viện, đi đường nào?",
-                  "en": "Which street to go to the hospital?"
-                },
-                {
-                  "vi": "Trường học, đi đường nào?",
-                  "en": "Which street to go to school?"
-                },
-                {
-                  "vi": "Rạp phim, đi đường nào?",
-                  "en": "Which street to go to the cinema?"
-                },
-                {
-                  "vi": "Muốn đến công viên, đi đường nào?",
-                  "en": "In order to go to the park, which street?"
-                },
-                {
-                  "vi": "Muốn đến siêu thị, đi đường nào?",
-                  "en": "In order to go to the supermarket, which street?"
-                },
-                {
-                  "vi": "Muốn đến sở thú, đi đường nào?",
-                  "en": "In order to go to the zoo, which street?"
+                  "vi": "Xa quá!",
+                  "en": "Too far!"
                 }
               ],
               "exercise_types": [

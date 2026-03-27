@@ -67,6 +67,8 @@
   --accent-purple: #CE82FF;
   --accent-red: #FF4B4B;
   --error-shadow: #c43d3d;
+
+  --accent-color: var(--primary-color);
 }
 
 @media (prefers-color-scheme: light) {

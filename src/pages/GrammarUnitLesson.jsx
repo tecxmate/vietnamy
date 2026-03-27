@@ -12,7 +12,7 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import {
-    ArrowLeft, ArrowRight, Volume2, Heart, Check, X,
+    ArrowLeft, ArrowRight, Volume2, Heart, X,
     BookOpenText, Trophy
 } from 'lucide-react';
 import { getUnit, generateExercisesForUnit } from '../lib/grammarModulesDB';
@@ -20,6 +20,10 @@ import { useDong } from '../context/DongContext';
 import speak from '../utils/speak';
 import { playSuccess, playError } from '../utils/sound';
 import SoundButton from '../components/SoundButton';
+import {
+    MCQOptions, FillBlankInput, ReorderWords, MatchPairs,
+    FeedbackBanner, ProgressBar, checkAnswer,
+} from '../components/Exercise';
 
 const ACCENT = '#A78BFA'; // purple — matches roadmap node color
 const EXERCISES_PER_LESSON = 6;
@@ -170,237 +174,133 @@ function renderTipCard(card) {
     }
 }
 
-// ─── Exercise Renderers ─────────────────────────────────────────
+// ─── Exercise Renderer (uses shared components) ─────────────────
 
-function MCQExercise({ exercise, selectedAnswer, onSelect, isChecking, isCorrect }) {
-    const isMCQToEn = exercise.exercise_type === 'mcq_translate_to_en';
-    const isMCQToVi = exercise.exercise_type === 'mcq_translate_to_vi';
-    const isListenChoose = exercise.exercise_type === 'listen_choose';
-
-    const prompt = exercise.prompt;
-    const question = isMCQToEn ? prompt.sentence_vi :
-        isMCQToVi ? prompt.sentence_en :
-            isListenChoose ? prompt.audio_vi : '';
-    const options = isMCQToEn ? prompt.options_en :
-        isMCQToVi ? prompt.options_vi :
-            isListenChoose ? prompt.options_en : [];
-    const correctAnswer = isMCQToEn ? prompt.answer_en :
-        isMCQToVi ? prompt.answer_vi :
-            isListenChoose ? prompt.answer_en : '';
-
-    return (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-            <div style={{ textAlign: 'center' }}>
-                <div style={{
-                    fontSize: 12, fontWeight: 700, textTransform: 'uppercase',
-                    letterSpacing: 1, color: 'var(--text-muted)', marginBottom: 8,
-                }}>
-                    {isMCQToEn ? 'Translate to English' :
-                        isMCQToVi ? 'Translate to Vietnamese' :
-                            'Listen and choose'}
-                </div>
-
-                <div style={{
-                    display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
-                }}>
-                    {(isMCQToEn || isListenChoose) && (
-                        <button onClick={() => speak(question)} style={{
-                            background: 'none', border: 'none', cursor: 'pointer',
-                            color: ACCENT, padding: 4,
-                        }}>
-                            <Volume2 size={20} />
-                        </button>
-                    )}
-                    <span style={{
-                        fontSize: 20, fontWeight: 700,
-                        color: 'var(--text-main)',
-                    }}>
-                        {question}
-                    </span>
-                </div>
-            </div>
-
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                {options.map((opt, i) => {
-                    const isSelected = selectedAnswer === opt;
-                    const isCorrectOption = opt === correctAnswer;
-                    let bg = 'var(--surface-color)';
-                    let borderColor = 'var(--border-color)';
-                    let textColor = 'var(--text-main)';
-
-                    if (isChecking) {
-                        if (isCorrectOption) { bg = 'rgba(167,139,250,0.12)'; borderColor = ACCENT; textColor = ACCENT; }
-                        else if (isSelected && !isCorrect) { bg = 'rgba(239,68,68,0.12)'; borderColor = '#EF4444'; textColor = '#EF4444'; }
-                    } else if (isSelected) {
-                        bg = `${ACCENT}12`; borderColor = ACCENT;
-                    }
-
-                    return (
-                        <button
-                            key={i}
-                            onClick={() => !isChecking && onSelect(opt)}
-                            style={{
-                                padding: '14px 16px', borderRadius: 12,
-                                border: `2px solid ${borderColor}`,
-                                backgroundColor: bg, cursor: isChecking ? 'default' : 'pointer',
-                                textAlign: 'left', fontSize: 15, fontWeight: 600,
-                                color: textColor,
-                            }}
-                        >
-                            {opt}
-                        </button>
-                    );
-                })}
-            </div>
-        </div>
-    );
-}
-
-function FillBlankExercise({ exercise, selectedAnswer, onSelect, isChecking, isCorrect }) {
-    const { sentence_with_blank, hint_en, answer_vi } = exercise.prompt;
-    return (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-            <div style={{ textAlign: 'center' }}>
-                <div style={{
-                    fontSize: 12, fontWeight: 700, textTransform: 'uppercase',
-                    letterSpacing: 1, color: 'var(--text-muted)', marginBottom: 8,
-                }}>
-                    Fill in the blank
-                </div>
-                <div style={{ fontSize: 20, fontWeight: 700, color: 'var(--text-main)', lineHeight: 1.4 }}>
-                    {sentence_with_blank}
-                </div>
-                {hint_en && (
-                    <div style={{ fontSize: 13, color: 'var(--text-muted)', marginTop: 4 }}>
-                        Hint: {hint_en}
-                    </div>
-                )}
-            </div>
-
-            <input
-                type="text"
-                value={selectedAnswer || ''}
-                onChange={e => !isChecking && onSelect(e.target.value)}
-                placeholder="Type the missing word..."
-                autoFocus
-                style={{
-                    padding: '14px 16px', borderRadius: 12, fontSize: 16,
-                    border: `2px solid ${isChecking ? (isCorrect ? ACCENT : '#EF4444') : 'var(--border-color)'}`,
-                    backgroundColor: 'var(--surface-color)',
-                    color: 'var(--text-main)',
-                    outline: 'none', fontFamily: 'inherit',
-                }}
-            />
-
-            {isChecking && !isCorrect && (
-                <div style={{ fontSize: 14, color: ACCENT, fontWeight: 600 }}>
-                    Correct answer: {answer_vi}
-                </div>
-            )}
-        </div>
-    );
-}
-
-function ReorderExercise({ exercise, onSelect, isChecking, isCorrect }) {
-    const { words_shuffled, answer_vi, hint_en } = exercise.prompt;
-    const [selectedWords, setSelectedWords] = useState([]);
-    const [available, setAvailable] = useState([...words_shuffled]);
-
-    const addWord = (word, idx) => {
-        if (isChecking) return;
-        const newSelected = [...selectedWords, word];
-        const newAvailable = [...available];
-        newAvailable.splice(idx, 1);
-        setSelectedWords(newSelected);
-        setAvailable(newAvailable);
-        onSelect(newSelected.join(' '));
-    };
-
-    const removeWord = (word, idx) => {
-        if (isChecking) return;
-        const newSelected = [...selectedWords];
-        newSelected.splice(idx, 1);
-        setSelectedWords(newSelected);
-        setAvailable([...available, word]);
-        onSelect(newSelected.join(' '));
-    };
-
-    return (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-            <div style={{ textAlign: 'center' }}>
-                <div style={{
-                    fontSize: 12, fontWeight: 700, textTransform: 'uppercase',
-                    letterSpacing: 1, color: 'var(--text-muted)', marginBottom: 8,
-                }}>
-                    Arrange the words
-                </div>
-                {hint_en && (
-                    <div style={{ fontSize: 14, color: 'var(--text-muted)' }}>{hint_en}</div>
-                )}
-            </div>
-
-            {/* Selected words area */}
-            <div style={{
-                minHeight: 50, padding: '10px 12px', borderRadius: 12,
-                border: `2px solid ${isChecking ? (isCorrect ? ACCENT : '#EF4444') : 'var(--border-color)'}`,
-                backgroundColor: 'var(--surface-color)',
-                display: 'flex', flexWrap: 'wrap', gap: 6,
-            }}>
-                {selectedWords.length === 0 && (
-                    <span style={{ color: 'var(--text-muted)', fontSize: 14 }}>Tap words below...</span>
-                )}
-                {selectedWords.map((w, i) => (
-                    <button key={i} onClick={() => removeWord(w, i)} style={{
-                        padding: '6px 12px', borderRadius: 8,
-                        backgroundColor: `${ACCENT}15`, border: `1px solid ${ACCENT}40`,
-                        color: 'var(--text-main)', fontWeight: 600, fontSize: 14,
-                        cursor: isChecking ? 'default' : 'pointer',
-                    }}>
-                        {w}
-                    </button>
-                ))}
-            </div>
-
-            {/* Available words */}
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
-                {available.map((w, i) => (
-                    <button key={i} onClick={() => addWord(w, i)} style={{
-                        padding: '6px 12px', borderRadius: 8,
-                        backgroundColor: 'var(--surface-color)', border: '1px solid var(--border-color)',
-                        color: 'var(--text-main)', fontWeight: 600, fontSize: 14,
-                        cursor: isChecking ? 'default' : 'pointer',
-                    }}>
-                        {w}
-                    </button>
-                ))}
-            </div>
-
-            {isChecking && !isCorrect && (
-                <div style={{ fontSize: 14, color: ACCENT, fontWeight: 600 }}>
-                    Correct: {answer_vi}
-                </div>
-            )}
-        </div>
-    );
-}
-
-function renderExercise(exercise, selectedAnswer, onSelect, isChecking, isCorrect) {
+function renderExercise(exercise, selectedAnswer, onSelect, isChecking, isCorrect, reorderWords, setReorderWords) {
     const type = exercise.exercise_type;
+    const prompt = exercise.prompt;
+
     if (['mcq_translate_to_en', 'mcq_translate_to_vi', 'listen_choose'].includes(type)) {
-        return <MCQExercise exercise={exercise} selectedAnswer={selectedAnswer}
-            onSelect={onSelect} isChecking={isChecking} isCorrect={isCorrect} />;
+        const isMCQToEn = type === 'mcq_translate_to_en';
+        const isMCQToVi = type === 'mcq_translate_to_vi';
+        const isListenChoose = type === 'listen_choose';
+
+        const question = isMCQToEn ? prompt.sentence_vi :
+            isMCQToVi ? prompt.sentence_en :
+                isListenChoose ? prompt.audio_vi : '';
+        const options = isMCQToEn ? prompt.options_en :
+            isMCQToVi ? prompt.options_vi :
+                isListenChoose ? prompt.options_en : [];
+        const correctAns = isMCQToEn ? prompt.answer_en :
+            isMCQToVi ? prompt.answer_vi :
+                isListenChoose ? prompt.answer_en : '';
+
+        return (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+                <div style={{ textAlign: 'center' }}>
+                    <div style={{
+                        fontSize: 12, fontWeight: 700, textTransform: 'uppercase',
+                        letterSpacing: 1, color: 'var(--text-muted)', marginBottom: 8,
+                    }}>
+                        {isMCQToEn ? 'Translate to English' :
+                            isMCQToVi ? 'Translate to Vietnamese' :
+                                'Listen and choose'}
+                    </div>
+                    <div style={{
+                        display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+                    }}>
+                        {(isMCQToEn || isListenChoose) && (
+                            <button onClick={() => speak(question)} style={{
+                                background: 'none', border: 'none', cursor: 'pointer',
+                                color: 'var(--accent-color)', padding: 4,
+                            }}>
+                                <Volume2 size={20} />
+                            </button>
+                        )}
+                        <span style={{ fontSize: 20, fontWeight: 700, color: 'var(--text-main)' }}>
+                            {question}
+                        </span>
+                    </div>
+                </div>
+                <MCQOptions
+                    options={options}
+                    selectedAnswer={selectedAnswer}
+                    correctAnswer={correctAns}
+                    onSelect={onSelect}
+                    isChecking={isChecking}
+                    isCorrect={isCorrect}
+                />
+            </div>
+        );
     }
+
     if (type === 'fill_blank') {
-        return <FillBlankExercise exercise={exercise} selectedAnswer={selectedAnswer}
-            onSelect={onSelect} isChecking={isChecking} isCorrect={isCorrect} />;
+        return (
+            <FillBlankInput
+                sentenceWithBlank={prompt.sentence_with_blank}
+                hintText={prompt.hint_en}
+                value={selectedAnswer || ''}
+                onChange={onSelect}
+                isChecking={isChecking}
+                isCorrect={isCorrect}
+                correctAnswer={prompt.answer_vi}
+                mode="input"
+            />
+        );
     }
+
     if (type === 'reorder_words') {
-        return <ReorderExercise exercise={exercise} selectedAnswer={selectedAnswer}
-            onSelect={onSelect} isChecking={isChecking} isCorrect={isCorrect} />;
+        return (
+            <ReorderWords
+                shuffledWords={prompt.words_shuffled}
+                hintText={prompt.hint_en}
+                selectedWords={reorderWords}
+                onToggleWord={(word, idx) => {
+                    if (isChecking) return;
+                    // Check if removing from selected or adding from bank
+                    const selectedIdx = reorderWords.indexOf(word);
+                    if (selectedIdx !== -1 && idx === selectedIdx) {
+                        // Remove from selected
+                        const newSelected = [...reorderWords];
+                        newSelected.splice(idx, 1);
+                        setReorderWords(newSelected);
+                        onSelect(newSelected.join(' '));
+                    } else {
+                        // Add to selected
+                        const newSelected = [...reorderWords, word];
+                        setReorderWords(newSelected);
+                        onSelect(newSelected.join(' '));
+                    }
+                }}
+                isChecking={isChecking}
+                isCorrect={isCorrect}
+                correctAnswer={prompt.answer_vi}
+            />
+        );
     }
+
+    if (type === 'match_pairs') {
+        return (
+            <MatchPairs
+                pairs={prompt.pairs}
+                onComplete={() => onSelect('__match_complete__')}
+            />
+        );
+    }
+
     // Fallback: render as MCQ
-    return <MCQExercise exercise={exercise} selectedAnswer={selectedAnswer}
-        onSelect={onSelect} isChecking={isChecking} isCorrect={isCorrect} />;
+    const options = prompt.options_en || prompt.options_vi || [];
+    const correctAns = prompt.answer_en || prompt.answer_vi || '';
+    return (
+        <MCQOptions
+            options={options}
+            selectedAnswer={selectedAnswer}
+            correctAnswer={correctAns}
+            onSelect={onSelect}
+            isChecking={isChecking}
+            isCorrect={isCorrect}
+        />
+    );
 }
 
 // ─── Main Component ─────────────────────────────────────────────
@@ -421,6 +321,7 @@ export default function GrammarUnitLesson() {
     const [isChecking, setIsChecking] = useState(false);
     const [isCorrect, setIsCorrect] = useState(null);
     const [score, setScore] = useState(0);
+    const [reorderWords, setReorderWords] = useState([]);
     const rewardGivenRef = useRef(false);
 
     // Load unit data synchronously (it's a static JSON import)
@@ -456,31 +357,12 @@ export default function GrammarUnitLesson() {
     }, [phase]); // eslint-disable-line react-hooks/exhaustive-deps
 
     const currentEx = exercises[currentIndex];
-    const progress = exercises.length > 0 ? (currentIndex / exercises.length) * 100 : 0;
+    const progress = exercises.length > 0 ? currentIndex / exercises.length : 0;
 
     const handleCheck = () => {
         if (!currentEx) return;
-        let correct = false;
-
-        switch (currentEx.exercise_type) {
-            case 'mcq_translate_to_vi':
-                correct = selectedAnswer === currentEx.prompt.answer_vi;
-                break;
-            case 'mcq_translate_to_en':
-            case 'listen_choose':
-                correct = selectedAnswer === currentEx.prompt.answer_en;
-                break;
-            case 'fill_blank': {
-                const accepted = currentEx.prompt.accepted_answers_vi || [currentEx.prompt.answer_vi];
-                correct = accepted.some(a => a.toLowerCase() === (selectedAnswer || '').toLowerCase());
-                break;
-            }
-            case 'reorder_words':
-                correct = (selectedAnswer || '').trim() === currentEx.prompt.answer_vi;
-                break;
-            default:
-                correct = selectedAnswer !== null;
-        }
+        const result = checkAnswer(currentEx.exercise_type, selectedAnswer, currentEx.prompt);
+        const correct = result.correct;
 
         setIsCorrect(correct);
         setIsChecking(true);
@@ -495,6 +377,7 @@ export default function GrammarUnitLesson() {
             setSelectedAnswer(null);
             setIsChecking(false);
             setIsCorrect(null);
+            setReorderWords([]);
         } else {
             setPhase('finished');
         }
@@ -531,6 +414,7 @@ export default function GrammarUnitLesson() {
         const card = tipCards[cardIndex];
         return (
             <div style={{
+                '--accent-color': '#A78BFA',
                 minHeight: '100vh', display: 'flex', flexDirection: 'column',
                 backgroundColor: 'var(--bg-color)',
             }}>
@@ -622,6 +506,7 @@ export default function GrammarUnitLesson() {
     if (phase === 'quiz') {
         return (
             <div style={{
+                '--accent-color': '#A78BFA',
                 minHeight: '100vh', display: 'flex', flexDirection: 'column',
                 backgroundColor: 'var(--bg-color)',
             }}>
@@ -638,16 +523,8 @@ export default function GrammarUnitLesson() {
                         <X size={22} />
                     </button>
 
-                    {/* Progress bar */}
-                    <div style={{
-                        flex: 1, height: 8, borderRadius: 4,
-                        backgroundColor: 'var(--border-color)',
-                    }}>
-                        <div style={{
-                            width: `${progress}%`, height: '100%',
-                            backgroundColor: ACCENT, borderRadius: 4,
-                            transition: 'width 0.3s ease',
-                        }} />
+                    <div style={{ flex: 1 }}>
+                        <ProgressBar progress={progress} />
                     </div>
 
                     {/* Hearts */}
@@ -665,7 +542,7 @@ export default function GrammarUnitLesson() {
                     flex: 1, padding: '24px 20px',
                     overflowY: 'auto',
                 }}>
-                    {currentEx && renderExercise(currentEx, selectedAnswer, setSelectedAnswer, isChecking, isCorrect)}
+                    {currentEx && renderExercise(currentEx, selectedAnswer, setSelectedAnswer, isChecking, isCorrect, reorderWords, setReorderWords)}
                 </div>
 
                 {/* Check / Next button */}
@@ -674,37 +551,10 @@ export default function GrammarUnitLesson() {
                     borderTop: '1px solid var(--border-color)',
                 }}>
                     {isChecking ? (
-                        <div style={{
-                            display: 'flex', flexDirection: 'column', gap: 12,
-                        }}>
-                            <div style={{
-                                padding: '12px 16px', borderRadius: 12,
-                                backgroundColor: isCorrect ? 'rgba(167,139,250,0.1)' : 'rgba(239,68,68,0.1)',
-                                border: `1px solid ${isCorrect ? ACCENT : '#EF4444'}40`,
-                                display: 'flex', alignItems: 'center', gap: 10,
-                            }}>
-                                {isCorrect ? <Check size={20} color={ACCENT} strokeWidth={3} /> :
-                                    <X size={20} color="#EF4444" strokeWidth={3} />}
-                                <span style={{
-                                    fontWeight: 700, fontSize: 15,
-                                    color: isCorrect ? ACCENT : '#EF4444',
-                                }}>
-                                    {isCorrect ? 'Correct!' : 'Not quite'}
-                                </span>
-                            </div>
-                            <SoundButton
-                                onClick={handleNext}
-                                style={{
-                                    width: '100%', padding: '14px 20px', borderRadius: 14,
-                                    border: 'none', cursor: 'pointer',
-                                    backgroundColor: isCorrect ? ACCENT : '#EF4444',
-                                    color: '#fff', fontWeight: 800, fontSize: 16,
-                                    boxShadow: `0 4px 0 ${isCorrect ? '#05A67D' : '#B91C1C'}`,
-                                }}
-                            >
-                                CONTINUE
-                            </SoundButton>
-                        </div>
+                        <FeedbackBanner
+                            isCorrect={isCorrect}
+                            onContinue={handleNext}
+                        />
                     ) : (
                         <SoundButton
                             onClick={handleCheck}
@@ -729,6 +579,7 @@ export default function GrammarUnitLesson() {
     // ─── FINISHED PHASE ─────────────────────────────────────
     return (
         <div style={{
+            '--accent-color': '#A78BFA',
             minHeight: '100vh', display: 'flex', flexDirection: 'column',
             alignItems: 'center', justifyContent: 'center',
             backgroundColor: 'var(--bg-color)',
