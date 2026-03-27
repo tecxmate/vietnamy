@@ -9,7 +9,7 @@ import SoundButton from '../SoundButton';
 
 
 const NODE_STYLES = {
-    orange: { color: '#FFB703', dark: '#CC9202', bg: 'rgba(255,183,3,0.12)', muted: 'rgba(255,183,3,0.35)', mutedBorder: 'rgba(255,183,3,0.25)', mutedIcon: 'rgba(255,183,3,0.5)', icon: MessageCircle, label: 'Conversation' },
+    orange: { color: '#FFB703', dark: '#CC9202', bg: 'rgba(255,183,3,0.12)', muted: 'rgba(255,183,3,0.35)', mutedBorder: 'rgba(255,183,3,0.25)', mutedIcon: 'rgba(255,183,3,0.5)', icon: MessageCircle, label: 'Vocabulary' },
     blue:   { color: '#1CB0F6', dark: '#0D8ECF', bg: 'rgba(28,176,246,0.12)', muted: 'rgba(28,176,246,0.35)', mutedBorder: 'rgba(28,176,246,0.25)', mutedIcon: 'rgba(28,176,246,0.5)', icon: Music, label: 'Phonetics' },
     purple: { color: '#A78BFA', dark: '#7C3AED', bg: 'rgba(167,139,250,0.12)', muted: 'rgba(167,139,250,0.35)', mutedBorder: 'rgba(167,139,250,0.25)', mutedIcon: 'rgba(167,139,250,0.5)', icon: Zap, label: 'Grammar' },
     green:  { color: '#06D6A0', dark: '#05A67D', bg: 'rgba(6,214,160,0.12)', muted: 'rgba(6,214,160,0.35)', mutedBorder: 'rgba(6,214,160,0.25)', mutedIcon: 'rgba(6,214,160,0.5)', icon: Theater, label: 'Scene' },
@@ -52,7 +52,7 @@ const RoadmapTab = ({ onNavigateToVocabDeck } = {}) => {
     const [activeFilters, setActiveFilters] = useState(new Set(ALL_FILTERS));
 
     const FILTER_CHIPS = [
-        { key: 'orange', label: 'Conversation' },
+        { key: 'orange', label: 'Vocabulary' },
         { key: 'blue',   label: 'Phonetics' },
         { key: 'purple', label: 'Grammar' },
         { key: 'green',  label: 'Scene' },
