@@ -146,15 +146,7 @@ const RoadmapMapper = () => {
             }
         }
 
-        // Build unlock_rule: requires previous node completed
-        const unitNodes = nodesMap[unitId] || [];
-        if (unitNodes.length > 0) {
-            const lastNode = unitNodes[unitNodes.length - 1];
-            nodeData.unlock_rule = { requires: [{ type: 'node_completed', node_id: lastNode.id }] };
-        } else {
-            nodeData.unlock_rule = { requires: [] };
-        }
-
+        // unlock order is auto-derived from node_index — no manual wiring needed
         addNodeWithQuiz(nodeData);
         cancelAdd();
         loadData();
