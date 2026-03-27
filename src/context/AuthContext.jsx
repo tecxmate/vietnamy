@@ -16,8 +16,12 @@ export const AuthProvider = ({ children }) => {
       return;
     }
 
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    // Race getSession against a timeout so the app never stays stuck on "Loading..."
+    const sessionPromise = supabase.auth.getSession().then(({ data: { session } }) => {
       setUser(session?.user ?? null);
+    });
+    const timeout = new Promise(resolve => setTimeout(resolve, 5000));
+    Promise.race([sessionPromise, timeout]).catch(() => {}).finally(() => {
       setLoading(false);
     });
 

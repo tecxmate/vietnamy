@@ -47,6 +47,14 @@ const DB_PATH_EN_HIGH = join(__dirname, 'databases', 'vn_en_dictionary_high.db')
 const DB_PATH_EN_LOW = join(__dirname, 'databases', 'vn_en_dictionary_low.db');
 const hasSplitDbs = existsSync(DB_PATH_EN_HIGH) && existsSync(DB_PATH_EN_LOW);
 
+// Helper: open a SQLite DB with reduced memory footprint
+function openDB(path) {
+    const db = new Database(path, { fileMustExist: true, readonly: true });
+    db.pragma('cache_size = -2000');   // 2MB page cache (default ~2MB per table, can grow)
+    db.pragma('mmap_size = 0');        // disable memory-mapped I/O to reduce RSS
+    return db;
+}
+
 for (const [lang, meta] of Object.entries(LANG_META)) {
     // For EN, prefer split DBs if available
     if (lang === 'en' && hasSplitDbs) {
@@ -54,7 +62,7 @@ for (const [lang, meta] of Object.entries(LANG_META)) {
     }
     const p = join(__dirname, 'databases', meta.file);
     if (existsSync(p)) {
-        dbs[lang] = new Database(p, { fileMustExist: true });
+        dbs[lang] = openDB(p);
     } else {
         console.warn(`[WARN] DB not found for lang '${lang}': ${meta.file}`);
     }
@@ -63,12 +71,12 @@ for (const [lang, meta] of Object.entries(LANG_META)) {
 // Set up EN databases (split or single)
 let dbEnHigh, dbEnLow;
 if (hasSplitDbs) {
-    dbEnHigh = new Database(DB_PATH_EN_HIGH, { fileMustExist: true });
-    dbEnLow = new Database(DB_PATH_EN_LOW, { fileMustExist: true });
+    dbEnHigh = openDB(DB_PATH_EN_HIGH);
+    dbEnLow = openDB(DB_PATH_EN_LOW);
     dbs['en'] = dbEnHigh; // primary EN DB for word index / suggest
     console.log('Using split EN dictionaries (high + low priority)');
 } else if (existsSync(DB_PATH_EN)) {
-    dbs['en'] = new Database(DB_PATH_EN, { fileMustExist: true });
+    dbs['en'] = openDB(DB_PATH_EN);
     dbEnHigh = dbs['en'];
     dbEnLow = null;
     console.log('Using single EN dictionary');
