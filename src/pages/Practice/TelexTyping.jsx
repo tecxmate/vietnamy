@@ -28,7 +28,8 @@ const TelexTyping = ({ rules: ruleKeys = null, title = '⌨️ TELEX Master', qu
         [ruleKeys]
     );
 
-    const { markComplete, goNext, goBack } = usePracticeCompletion();
+    const { session, markComplete, goNext, goBack } = usePracticeCompletion();
+    const scaledQuestionCount = Math.min(questionCount + session * 2, questionCount * 2);
 
     const [gameState, setGameState] = useState('intro'); // intro, playing, summary
     const [currentQIndex, setCurrentQIndex] = useState(0);
@@ -42,7 +43,7 @@ const TelexTyping = ({ rules: ruleKeys = null, title = '⌨️ TELEX Master', qu
 
     const handleStart = () => {
         const qs = generateMixedQuestions(TELEX_RULES, {
-            count: questionCount,
+            count: scaledQuestionCount,
             constructionRatio: 0.35,
             constructionMapper: (rule) => ({
                 target: rule.target,

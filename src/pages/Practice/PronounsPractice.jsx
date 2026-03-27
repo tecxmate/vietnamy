@@ -19,7 +19,7 @@ function shuffleArray(arr) {
 
 export default function PronounsPractice({ members: memberIds = null, title = 'Pronouns Quiz' }) {
     const { userProfile } = useUser();
-    const { markComplete, goNext, goBack } = usePracticeCompletion();
+    const { session, markComplete, goNext, goBack } = usePracticeCompletion();
     const [mode, setMode] = useState('quiz');
     const [quizState, setQuizState] = useState(null);
 
@@ -30,7 +30,7 @@ export default function PronounsPractice({ members: memberIds = null, title = 'P
 
     const startQuiz = () => {
         const quizMembers = filteredMembers.filter(m => m.relationType !== 'self');
-        const questions = shuffleArray(quizMembers).slice(0, Math.min(8, quizMembers.length)).map(member => {
+        const questions = shuffleArray(quizMembers).slice(0, Math.min(6 + session, quizMembers.length)).map(member => {
             const correct = calculatePronoun(userProfile, member);
             const allPronouns = [...new Set(
                 quizMembers.map(m => calculatePronoun(userProfile, m)?.targetPronoun).filter(Boolean)
@@ -47,7 +47,7 @@ export default function PronounsPractice({ members: memberIds = null, title = 'P
     useMemo(() => {
         if (!quizState && filteredMembers.length > 1) {
             const quizMembers = filteredMembers.filter(m => m.relationType !== 'self');
-            const questions = shuffleArray(quizMembers).slice(0, Math.min(8, quizMembers.length)).map(member => {
+            const questions = shuffleArray(quizMembers).slice(0, Math.min(6 + session, quizMembers.length)).map(member => {
                 const correct = calculatePronoun(userProfile, member);
                 const allPronouns = [...new Set(
                     quizMembers.map(m => calculatePronoun(userProfile, m)?.targetPronoun).filter(Boolean)

@@ -108,7 +108,7 @@ const FOUNDATION_NUMBERS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 // ─── Component ─────────────────────────────────────────────────────
 export default function NumbersPractice({ stages: allowedStages = [1, 2, 3], title = '🔢 Numbers' }) {
     const { speak } = useTTS();
-    const { markComplete, goNext, goBack } = usePracticeCompletion();
+    const { session, markComplete, goNext, goBack } = usePracticeCompletion();
 
     const [stage, setStage] = useState(allowedStages[0]); // 1 = Foundation, 2 = Builder, 3 = Challenge
     const [stagesCompleted, setStagesCompleted] = useState(new Set());
@@ -154,7 +154,8 @@ export default function NumbersPractice({ stages: allowedStages = [1, 2, 3], tit
         const qs = [];
 
         // Type 1: See number → pick Vietnamese (multiple choice) — easy range
-        for (let i = 0; i < 5; i++) {
+        const mcVnCount = Math.min(3 + session, 7);
+        for (let i = 0; i < mcVnCount; i++) {
             const n = Math.floor(Math.random() * 11); // 0–10
             const correct = numberToVietnamese(n);
             const distractorNums = shuffle(FOUNDATION_NUMBERS.filter(x => x !== n)).slice(0, 3);
@@ -163,7 +164,8 @@ export default function NumbersPractice({ stages: allowedStages = [1, 2, 3], tit
         }
 
         // Type 2: See Vietnamese → pick number (multiple choice) — medium range
-        for (let i = 0; i < 4; i++) {
+        const mcNumCount = Math.min(3 + session, 6);
+        for (let i = 0; i < mcNumCount; i++) {
             const n = 10 + Math.floor(Math.random() * 90); // 10–99
             const vnWord = numberToVietnamese(n);
             const distractorNums = [];
@@ -176,13 +178,14 @@ export default function NumbersPractice({ stages: allowedStages = [1, 2, 3], tit
         }
 
         // Type 3: Listen → type number
-        for (let i = 0; i < 3; i++) {
+        const listenCount = Math.min(2 + session, 5);
+        for (let i = 0; i < listenCount; i++) {
             const n = Math.floor(Math.random() * 100); // 0–99
             qs.push({ type: 'listen-type', number: n, correctAnswer: String(n), vnWord: numberToVietnamese(n), prompt: 'Listen and type the number' });
         }
 
         return shuffle(qs);
-    }, [stage]);
+    }, [stage, session]);
 
     const totalChallenges = challenges.length;
     const currentChallenge = challenges[challengeIndex];

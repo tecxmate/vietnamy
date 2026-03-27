@@ -1239,7 +1239,14 @@ export const getExercisesGenerated = (lessonId, session = 0) => {
 
     // If session exceeds blueprint items, treat as pure review session
     const newItems = sessionNewItems.length > 0 ? sessionNewItems : [];
-    const reviewFromLesson = previouslyIntroduced;
+    let reviewFromLesson = previouslyIntroduced;
+
+    // Sessions 2-3: prioritize items the learner got wrong
+    if (session >= 2 && reviewFromLesson.length > 0) {
+        const weakOrder = _getWeakItems(reviewFromLesson.map(i => i.id));
+        const byId = new Map(reviewFromLesson.map(i => [i.id, i]));
+        reviewFromLesson = weakOrder.map(id => byId.get(id)).filter(Boolean);
+    }
 
     // SRS review items: only inject items the user has actually studied
     const blueprintItemIds = new Set(blueprint.introduced_items || []);

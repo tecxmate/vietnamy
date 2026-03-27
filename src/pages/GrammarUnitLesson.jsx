@@ -311,8 +311,10 @@ export default function GrammarUnitLesson() {
     const [searchParams] = useSearchParams();
     const roadmapNodeId = searchParams.get('nodeId'); // path_node ID from roadmap
     const dongCtx = useDong();
+    const GRAMMAR_SESSIONS = 2;
+    const session = roadmapNodeId ? dongCtx.getNodeSessionCount(roadmapNodeId) : 0;
 
-    const [phase, setPhase] = useState('tips');
+    const [phase, setPhase] = useState(session >= 1 ? 'quiz' : 'tips');
     const [cardIndex, setCardIndex] = useState(0);
     // Quiz state
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -335,8 +337,8 @@ export default function GrammarUnitLesson() {
 
     const exercises = useMemo(() => {
         if (!unitData) return [];
-        return generateExercisesForUnit(unitId, EXERCISES_PER_LESSON);
-    }, [unitData, unitId]);
+        return generateExercisesForUnit(unitId, EXERCISES_PER_LESSON, session);
+    }, [unitData, unitId, session]);
 
     // Redirect if unit not found
     useEffect(() => {
@@ -345,8 +347,8 @@ export default function GrammarUnitLesson() {
 
     // Completion reward — mark both grammar unit ID and roadmap node ID
     const markComplete = () => {
-        if (roadmapNodeId) dongCtx.completeNode(roadmapNodeId, { immediate: true });
-        dongCtx.completeNode(unitId, { immediate: true });
+        if (roadmapNodeId) dongCtx.completeNode(roadmapNodeId, { sessionsRequired: GRAMMAR_SESSIONS });
+        dongCtx.completeNode(unitId, { sessionsRequired: GRAMMAR_SESSIONS });
     };
 
     useEffect(() => {

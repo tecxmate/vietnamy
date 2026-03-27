@@ -122,22 +122,32 @@ export function getNextActiveUnit(completedNodeIds) {
 
 // ─── Exercise generation from unit examples ─────────────────────
 
+// Session profiles for grammar: session 0 = recognition, session 1 = production
+const GRAMMAR_SESSION_PROFILES = [
+    // Session 0 (Learn): recognition-heavy
+    { types: ['mcq_translate_to_en', 'mcq_translate_to_vi', 'listen_choose', 'match_pairs'], count: 6 },
+    // Session 1 (Practice): production-heavy
+    { types: ['fill_blank', 'reorder_words', 'mcq_translate_to_vi', 'listen_choose', 'mcq_translate_to_en'], count: 8 },
+];
+
 /**
  * Generate exercises for a grammar unit from its examples + exercise_types.
- * This creates on-the-fly exercises so we don't need to pre-populate db.exercises.
+ * Session parameter controls exercise type profile (0 = recognition, 1 = production).
  */
-export function generateExercisesForUnit(unitId, count = 6) {
+export function generateExercisesForUnit(unitId, count = 6, session = 0) {
     const result = getUnit(unitId);
     if (!result) return [];
 
     const { unit } = result;
     const examples = unit.examples || [];
-    const exerciseTypes = unit.exercise_types || ['mcq_translate_to_en', 'mcq_translate_to_vi'];
-
     if (examples.length === 0) return [];
 
+    const profile = GRAMMAR_SESSION_PROFILES[Math.min(session, GRAMMAR_SESSION_PROFILES.length - 1)];
+    const exerciseTypes = profile.types;
+    const effectiveCount = profile.count;
+
     const exercises = [];
-    const maxExercises = Math.min(count, examples.length * exerciseTypes.length);
+    const maxExercises = Math.min(effectiveCount, examples.length * exerciseTypes.length);
 
     // Cycle through examples and exercise types
     for (let i = 0; i < maxExercises; i++) {
@@ -154,7 +164,7 @@ export function generateExercisesForUnit(unitId, count = 6) {
         [exercises[i], exercises[j]] = [exercises[j], exercises[i]];
     }
 
-    return exercises.slice(0, count);
+    return exercises.slice(0, effectiveCount);
 }
 
 function buildExercise(example, type, allExamples, unit) {

@@ -75,7 +75,8 @@ const TeenCode = ({ categories: allowedCategories = null, title = '💬 Teen Cod
         [allowedCategories]
     );
 
-    const { markComplete, goNext, goBack } = usePracticeCompletion();
+    const { session, markComplete, goNext, goBack } = usePracticeCompletion();
+    const scaledQuestionCount = Math.min(questionCount + session * 2, questionCount * 2);
 
     const [gameState, setGameState] = useState('intro');
     const [currentQIndex, setCurrentQIndex] = useState(0);
@@ -89,7 +90,7 @@ const TeenCode = ({ categories: allowedCategories = null, title = '💬 Teen Cod
 
     const handleStart = () => {
         const qs = generateMixedQuestions(TEENCODE_RULES, {
-            count: questionCount,
+            count: scaledQuestionCount,
             constructionRatio: 0.25,
             constructionMapper: (rule) => ({
                 target: `${rule.meaning} → ?`,

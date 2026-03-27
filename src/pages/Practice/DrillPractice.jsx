@@ -24,7 +24,7 @@ const shuffle = (arr) => [...arr].sort(() => Math.random() - 0.5);
  */
 export default function DrillPractice({ data, questionCount = 10 }) {
     const { speak } = useTTS();
-    const { markComplete, goNext, goBack } = usePracticeCompletion();
+    const { session, markComplete, goNext, goBack } = usePracticeCompletion();
 
     // Load CMS overrides from localStorage (if teacher edited the content)
     const drillData = useMemo(() => {
@@ -42,7 +42,9 @@ export default function DrillPractice({ data, questionCount = 10 }) {
 
     const startDrill = useCallback(() => {
         const shuffled = shuffle(drillData.questions);
-        const count = Math.min(questionCount, shuffled.length);
+        // Scale question count by session: +25% per session
+        const scaledCount = Math.round(questionCount * (1 + session * 0.25));
+        const count = Math.min(scaledCount, shuffled.length);
         // Shuffle options within each question too
         const prepared = shuffled.slice(0, count).map(q => ({
             ...q,

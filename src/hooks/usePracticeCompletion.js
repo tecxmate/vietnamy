@@ -21,6 +21,7 @@ export function usePracticeCompletion() {
     const completedRef = useRef(false);
 
     const nodeId = searchParams.get('nodeId') || null;
+    const session = nodeId ? dongCtx.getNodeSessionCount(nodeId) : 0;
 
     const nextRoute = useMemo(() => {
         if (!nodeId) return '/';
@@ -46,5 +47,5 @@ export function usePracticeCompletion() {
         navigate(backPath, backState);
     }, [navigate, backPath, backState]);
 
-    return { nodeId, markComplete, nextRoute, goNext, backPath, backState, goBack };
+    return { nodeId, session, markComplete, nextRoute, goNext, backPath, backState, goBack };
 }

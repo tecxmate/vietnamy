@@ -138,7 +138,7 @@ export function DongProvider({ children }) {
     }, []);
 
     // ── Roadmap progress ──
-    const completeNode = useCallback((nodeId, { immediate = false, isTest = false } = {}) => {
+    const completeNode = useCallback((nodeId, { immediate = false, isTest = false, sessionsRequired } = {}) => {
         const reward = isTest ? COINS_PER_TEST : COINS_PER_LESSON;
         if (immediate) {
             setCompletedNodes(prev => new Set([...prev, nodeId]));
@@ -147,7 +147,8 @@ export function DongProvider({ children }) {
         }
         setNodeSessionCounts(prev => {
             const newCount = (prev[nodeId] ?? 0) + 1;
-            if (newCount >= SESSIONS_TO_COMPLETE) {
+            const target = sessionsRequired ?? SESSIONS_TO_COMPLETE;
+            if (newCount >= target) {
                 setCompletedNodes(prevNodes => new Set([...prevNodes, nodeId]));
             }
             return { ...prev, [nodeId]: newCount };

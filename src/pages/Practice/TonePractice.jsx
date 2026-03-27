@@ -78,7 +78,7 @@ export default function TonePractice({ tones = ALL_TONES.map(t => t.id), title =
     const TONES = useMemo(() => ALL_TONES.filter(t => tones.includes(t.id)), [tones]);
     const filteredWordBank = useMemo(() => WORD_BANK.filter(w => tones.includes(w.tone)), [tones]);
     const { speak } = useTTS();
-    const { markComplete, goNext, goBack } = usePracticeCompletion();
+    const { session, markComplete, goNext, goBack } = usePracticeCompletion();
 
     const [gameState, setGameState] = useState('intro'); // intro | playing | summary
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -93,11 +93,12 @@ export default function TonePractice({ tones = ALL_TONES.map(t => t.id), title =
     // Generate a shuffled set of questions on start
     const questions = useMemo(() => {
         if (gameState !== 'playing') return [];
-        // Pick 3 words per tone, shuffled
+        // Scale questions by session: 3 words per tone → up to 5 in later sessions
+        const wordsPerTone = Math.min(3 + session, 5);
         const picked = [];
         TONES.forEach(t => {
             const wordsForTone = filteredWordBank.filter(w => w.tone === t.id);
-            picked.push(...shuffle(wordsForTone).slice(0, 3));
+            picked.push(...shuffle(wordsForTone).slice(0, wordsPerTone));
         });
         return shuffle(picked);
     }, [gameState, TONES, filteredWordBank]);

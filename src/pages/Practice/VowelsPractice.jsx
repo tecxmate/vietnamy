@@ -212,7 +212,7 @@ export default function VowelsPractice({
         return items;
     }, [singleVowels, centeringDiphthongs, glidingDiphthongs, triphthongs]);
     const { speak } = useTTS();
-    const { markComplete, goNext, goBack } = usePracticeCompletion();
+    const { session, markComplete, goNext, goBack } = usePracticeCompletion();
     const firstSection = singleVowels?.length ? 1 : centeringDiphthongs?.length ? 2 : glidingDiphthongs?.length ? 3 : triphthongs?.length ? 4 : 5;
     const [section, setSection] = useState(firstSection);
     const [playingWord, setPlayingWord] = useState(null);
@@ -235,12 +235,13 @@ export default function VowelsPractice({
     // Quiz questions
     const questions = useMemo(() => {
         if (section !== 5) return [];
-        const picked = shuffle(quizItems).slice(0, 15);
+        const count = Math.min(10 + session * 2, 20);
+        const picked = shuffle(quizItems).slice(0, count);
         return picked.map(q => ({
             ...q,
             options: makeOptions(q.correctAnswer, q.type),
         }));
-    }, [section, quizItems]);
+    }, [section, quizItems, session]);
 
     const questionCount = questions.length;
     const currentQ = questions[qIndex];

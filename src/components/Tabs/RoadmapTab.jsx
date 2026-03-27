@@ -233,6 +233,7 @@ const RoadmapTab = ({ onNavigateToVocabDeck } = {}) => {
                                 const isLocked = !testMode || node.status === 'locked';
                                 const sublabel = getNodeLabel(node, style);
                                 const sessionCount = getNodeSessionCount(node.id);
+                                const sessionsTarget = node.skill_content?.type === 'grammar_unit' ? 2 : SESSIONS_TO_COMPLETE;
                                 const hasProgress = testMode && sessionCount > 0 && !isCompleted;
                                 const quiz = quizByParent[node.id];
                                 const quizDone = quiz?.status === 'completed';
@@ -277,7 +278,7 @@ const RoadmapTab = ({ onNavigateToVocabDeck } = {}) => {
                                                         {node.label}
                                                     </div>
                                                     <div style={{ fontSize: 12, color: isLocked ? style.muted : style.color, fontWeight: 600, marginTop: 2 }}>
-                                                        {sublabel}{hasProgress && ` · ${sessionCount}/${SESSIONS_TO_COMPLETE}`}
+                                                        {sublabel}{hasProgress && ` · ${sessionCount}/${sessionsTarget}`}
                                                     </div>
                                                     {showCefrTags && (node.cefr_level || node.difficulty) && (
                                                         <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 3 }}>
@@ -318,7 +319,7 @@ const RoadmapTab = ({ onNavigateToVocabDeck } = {}) => {
                                             {/* Segmented progress bar */}
                                             {testMode && (isActive || hasProgress || isCompleted) && (
                                                 <div style={{ display: 'flex', gap: 3, padding: '0 16px 8px' }}>
-                                                    {Array.from({ length: SESSIONS_TO_COMPLETE }, (_, i) => (
+                                                    {Array.from({ length: sessionsTarget }, (_, i) => (
                                                         <div key={i} style={{
                                                             flex: 1, height: 6, borderRadius: 3,
                                                             backgroundColor: i < sessionCount || isCompleted

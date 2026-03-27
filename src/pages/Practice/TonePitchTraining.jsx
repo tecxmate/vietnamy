@@ -133,7 +133,7 @@ export default function TonePitchTraining({ tones: toneIds = null, title = '🎤
     const FILTERED_TONES = toneIds ? TONE_LIST.filter(t => toneIds.includes(t.id)) : TONE_LIST;
     const FILTERED_WORDS = toneIds ? PRACTICE_WORDS.filter(w => toneIds.includes(w.tone)) : PRACTICE_WORDS;
     const { speak } = useTTS();
-    const { markComplete, goNext, goBack } = usePracticeCompletion();
+    const { session, markComplete, goNext, goBack } = usePracticeCompletion();
 
     // State machine: intro → calibrate → tone-calibrate → practice → summary
     const [stage, setStage] = useState('intro');
@@ -410,12 +410,12 @@ export default function TonePitchTraining({ tones: toneIds = null, title = '🎤
         setSelectedTone(toneFilter);
         let words;
         if (toneFilter) {
-            words = shuffle(FILTERED_WORDS.filter(w => w.tone === toneFilter)).slice(0, 6);
+            words = shuffle(FILTERED_WORDS.filter(w => w.tone === toneFilter)).slice(0, Math.min(4 + session, 8));
         } else {
             const picked = [];
             FILTERED_TONES.forEach(t => {
                 const forTone = FILTERED_WORDS.filter(w => w.tone === t.id);
-                picked.push(...shuffle(forTone).slice(0, 2));
+                picked.push(...shuffle(forTone).slice(0, Math.min(1 + session, 3)));
             });
             words = shuffle(picked);
         }

@@ -150,13 +150,14 @@ function TermCard({ term }) {
 }
 
 export default function KinshipFoundation() {
-    const { markComplete, goNext, goBack } = usePracticeCompletion();
+    const { session, markComplete, goNext, goBack } = usePracticeCompletion();
     const [mode, setMode] = useState('learn'); // learn | quiz | quiz-done
     const [quizState, setQuizState] = useState(null);
 
     const startQuiz = () => {
         const quizTerms = KINSHIP_TERMS.filter(t => t.vn !== 'của');
-        const questions = shuffleArray(quizTerms).slice(0, 8).map(term => {
+        const quizCount = Math.min(6 + session, 10);
+        const questions = shuffleArray(quizTerms).slice(0, quizCount).map(term => {
             const distractors = shuffleArray(
                 quizTerms.filter(t => t.vn !== term.vn)
             ).slice(0, 3).map(t => t.vn);

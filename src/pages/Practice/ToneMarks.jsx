@@ -97,7 +97,7 @@ const shuffle = (arr) => [...arr].sort(() => Math.random() - 0.5);
 // ─── Component ─────────────────────────────────────────────────────
 export default function ToneMarks({ vowels = ALL_VOWELS, title = '🔤 Dấu — Tone Marks', quizOnly = false }) {
     const { speak } = useTTS();
-    const { markComplete, goNext, goBack } = usePracticeCompletion();
+    const { session, markComplete, goNext, goBack } = usePracticeCompletion();
     const [stage, setStage] = useState(quizOnly ? 4 : 1);
     const [playingCell, setPlayingCell] = useState(null);
     const [selectedVowel, setSelectedVowel] = useState(vowels[0]);
@@ -129,7 +129,8 @@ export default function ToneMarks({ vowels = ALL_VOWELS, title = '🔤 Dấu —
 
         if (stage === 2) {
             // Combine: vowel + tone → pick the accented char
-            const picked = shuffle(validPairs).slice(0, 15);
+            const stageCount = Math.min(10 + session * 2, 20);
+            const picked = shuffle(validPairs).slice(0, stageCount);
             picked.forEach(({ vowel, toneIndex }) => {
                 const correct = TONE_MAP[vowel][toneIndex];
                 // Distractors: same vowel diff tones + diff vowels same tone (only valid ones)
@@ -148,7 +149,8 @@ export default function ToneMarks({ vowels = ALL_VOWELS, title = '🔤 Dấu —
 
         if (stage === 3) {
             // Decompose: see accented char → identify vowel + tone
-            const picked = shuffle(validPairs).slice(0, 15);
+            const stageCount = Math.min(10 + session * 2, 20);
+            const picked = shuffle(validPairs).slice(0, stageCount);
             picked.forEach(({ vowel, toneIndex }) => {
                 const char = TONE_MAP[vowel][toneIndex];
                 const correctTone = TONES[toneIndex].name;
@@ -166,7 +168,8 @@ export default function ToneMarks({ vowels = ALL_VOWELS, title = '🔤 Dấu —
 
         if (stage === 4) {
             // Mixed speed round
-            const picked = shuffle(validPairs).slice(0, 16);
+            const mixedCount = Math.min(10 + session * 2, 20);
+            const picked = shuffle(validPairs).slice(0, mixedCount);
             picked.forEach(({ vowel, toneIndex }, i) => {
                 if (i % 2 === 0) {
                     // Combine
@@ -199,7 +202,7 @@ export default function ToneMarks({ vowels = ALL_VOWELS, title = '🔤 Dấu —
         }
 
         return qs;
-    }, [stage, validPairs, vowels]);
+    }, [stage, validPairs, vowels, session]);
 
     const questionCount = questions.length;
     const currentQ = questions[qIndex];
