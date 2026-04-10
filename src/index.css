@@ -12,9 +12,9 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --primary-color: #FFB703;
-  /* Bolder yellow */
-  --primary-color-hover: #E5A503;
+  --primary-color: #DA251D;
+  /* Vietnamese flag red */
+  --primary-color-hover: #B81E17;
   --secondary-color: #118AB2;
   --success-color: #06D6A0;
   --danger-color: #EF476F;
@@ -206,14 +206,14 @@ button:disabled {
 
 button.primary {
   background-color: var(--primary-color);
-  color: #1A1A1A;
-  /* Always dark text on light yellow for contrast */
-  box-shadow: 0 4px 0 #CC9202;
-  /* 3D effect replacing Duolingo green */
+  color: #FFFFFF;
+  /* White text on red for contrast */
+  box-shadow: 0 4px 0 #8F1711;
+  /* 3D effect, darker red shadow */
 }
 
 button.primary:active {
-  box-shadow: 0 0 0 #CC9202;
+  box-shadow: 0 0 0 #8F1711;
   transform: translateY(4px);
 }
 
@@ -238,7 +238,7 @@ button.ghost {
 
 @media (prefers-color-scheme: light) {
   button.ghost {
-    color: #E5A503;
+    color: #B81E17;
   }
 }
 
