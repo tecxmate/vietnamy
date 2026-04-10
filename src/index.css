@@ -12,9 +12,9 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --primary-color: #DA251D;
-  /* Vietnamese flag red */
-  --primary-color-hover: #B81E17;
+  --primary-color: #F26B5A;
+  /* Warm coral — pastel red that bridges to orange accents */
+  --primary-color-hover: #D9523F;
   --secondary-color: #118AB2;
   --success-color: #06D6A0;
   --danger-color: #EF476F;
@@ -207,13 +207,13 @@ button:disabled {
 button.primary {
   background-color: var(--primary-color);
   color: #FFFFFF;
-  /* White text on red for contrast */
-  box-shadow: 0 4px 0 #8F1711;
-  /* 3D effect, darker red shadow */
+  /* White text on coral for contrast */
+  box-shadow: 0 4px 0 #B03E2D;
+  /* 3D effect, darker coral shadow */
 }
 
 button.primary:active {
-  box-shadow: 0 0 0 #8F1711;
+  box-shadow: 0 0 0 #B03E2D;
   transform: translateY(4px);
 }
 
@@ -238,7 +238,7 @@ button.ghost {
 
 @media (prefers-color-scheme: light) {
   button.ghost {
-    color: #B81E17;
+    color: #D9523F;
   }
 }
 
