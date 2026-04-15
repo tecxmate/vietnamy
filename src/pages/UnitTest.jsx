@@ -353,34 +353,28 @@ const UnitTest = () => {
 
                 {exercise_type !== 'picture_choice' && exercise_type !== 'speak_sentence' && (
                     <div style={{ display: 'flex', gap: 16, alignItems: 'flex-start' }}>
-                        <div style={{ width: 64, height: 64, borderRadius: '50%', backgroundColor: 'rgba(249,115,22,0.2)', border: '2px solid #F97316', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontSize: 28 }}>
-                            &#127942;
-                        </div>
-
                         {['listen_choose', 'listen_type'].includes(exercise_type) ? (
-                            <div style={{ display: 'flex', alignItems: 'center', gap: 16, alignSelf: 'center' }}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: 12, width: '100%', justifyContent: 'center' }}>
                                 <button
                                     className="secondary"
-                                    style={{ width: 64, height: 64, borderRadius: 16, color: '#F97316', borderColor: '#F97316', boxShadow: '0 4px 0 #C2410C' }}
+                                    style={{ width: 100, height: 100, borderRadius: 20, color: '#F97316', borderColor: '#F97316', boxShadow: '0 5px 0 #C2410C', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                                     onClick={() => handlePlayAudio(audioText)}
                                 >
-                                    <Volume2 size={32} />
+                                    <Volume2 size={48} />
                                 </button>
                                 {exercise_type === 'listen_type' && (
                                     <button
                                         className="secondary"
-                                        style={{ width: 48, height: 48, borderRadius: 12, color: 'var(--text-muted)', borderColor: 'var(--border-color)', boxShadow: '0 3px 0 var(--border-color)', fontSize: 20 }}
+                                        style={{ width: 56, height: 56, borderRadius: 14, color: 'var(--text-muted)', borderColor: 'var(--border-color)', boxShadow: '0 3px 0 var(--border-color)', fontSize: 24 }}
                                         onClick={() => speak(audioText, 0.7)}
                                     >
                                         🐢
                                     </button>
                                 )}
-                                {exercise_type === 'listen_choose' && audioText && <span style={{ fontSize: 16, color: 'var(--text-muted)', fontStyle: 'italic' }}>{audioText}</span>}
                             </div>
                         ) : (
-                            <div style={{ flex: 1, padding: 16, backgroundColor: 'var(--surface-color)', borderRadius: 16, border: '2px solid var(--border-color)', position: 'relative' }}>
-                                <div style={{ position: 'absolute', left: -10, top: 20, width: 20, height: 20, backgroundColor: 'var(--surface-color)', borderLeft: '2px solid var(--border-color)', borderBottom: '2px solid var(--border-color)', transform: 'rotate(45deg)' }} />
-                                <span style={{ fontSize: 18, position: 'relative', zIndex: 2 }}>{prompt.source_text_en || prompt.source_text_vi || prompt.template_vi || "Translate this"}</span>
+                            <div style={{ flex: 1, padding: 18, backgroundColor: 'var(--surface-color)', borderRadius: 16, border: '2px solid var(--border-color)' }}>
+                                <span style={{ fontSize: 20, fontWeight: 500 }}>{prompt.source_text_en || prompt.source_text_vi || prompt.template_vi || "Translate this"}</span>
                             </div>
                         )}
                     </div>
