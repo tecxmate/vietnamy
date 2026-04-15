@@ -44,6 +44,9 @@ const LessonGame = () => {
 
     const [showQuitConfirm, setShowQuitConfirm] = useState(false);
 
+    // Hearts disabled (was from DongContext, now simplified)
+    const hearts = Infinity;
+
     // Reorder exercises
     const [orderedTokens, setOrderedTokens] = useState([]);
     const [availableTokens, setAvailableTokens] = useState([]);
