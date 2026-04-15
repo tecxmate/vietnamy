@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronRight, ChevronDown, BookOpen } from 'lucide-react';
+import { ChevronRight, ChevronDown, BookOpen, Volume2 } from 'lucide-react';
 
 const LEVEL_COLORS = {
     A1: '#06D6A0',
@@ -12,6 +12,15 @@ const GrammarTab = () => {
     const [expandedLevel, setExpandedLevel] = useState('A1');
     const [expandedModule, setExpandedModule] = useState(null);
     const [expandedUnit, setExpandedUnit] = useState(null);
+
+    const playTTS = (text) => {
+        if ('speechSynthesis' in window) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'vi-VN';
+            utterance.rate = 0.8;
+            speechSynthesis.speak(utterance);
+        }
+    };
 
     useEffect(() => {
         import('../../data/grammar_modules.json').then(mod => {
@@ -229,17 +238,28 @@ const GrammarTab = () => {
                                                                         </div>
                                                                         <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
                                                                             {unit.examples.slice(0, 4).map((ex, i) => (
-                                                                                <div key={i} style={{
-                                                                                    backgroundColor: 'var(--bg-color)',
-                                                                                    padding: '8px 10px',
-                                                                                    borderRadius: 8,
-                                                                                }}>
-                                                                                    <div style={{ fontWeight: 600, fontSize: 14, color: 'var(--text-main)' }}>
-                                                                                        {ex.vi}
+                                                                                <div
+                                                                                    key={i}
+                                                                                    onClick={() => playTTS(ex.vi)}
+                                                                                    style={{
+                                                                                        backgroundColor: 'var(--bg-color)',
+                                                                                        padding: '8px 10px',
+                                                                                        borderRadius: 8,
+                                                                                        cursor: 'pointer',
+                                                                                        display: 'flex',
+                                                                                        alignItems: 'flex-start',
+                                                                                        gap: 10,
+                                                                                    }}
+                                                                                >
+                                                                                    <div style={{ flex: 1 }}>
+                                                                                        <div style={{ fontWeight: 600, fontSize: 14, color: 'var(--text-main)' }}>
+                                                                                            {ex.vi}
+                                                                                        </div>
+                                                                                        <div style={{ fontSize: 12, color: 'var(--text-muted)', marginTop: 2 }}>
+                                                                                            {ex.en}
+                                                                                        </div>
                                                                                     </div>
-                                                                                    <div style={{ fontSize: 12, color: 'var(--text-muted)', marginTop: 2 }}>
-                                                                                        {ex.en}
-                                                                                    </div>
+                                                                                    <Volume2 size={16} color={LEVEL_COLORS[level.id]} style={{ flexShrink: 0, marginTop: 2 }} />
                                                                                 </div>
                                                                             ))}
                                                                         </div>
