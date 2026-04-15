@@ -1,8 +1,7 @@
 import React, { useState, useRef, useMemo, useEffect, useCallback } from 'react';
-import { ChevronLeft, Volume2, BookOpen, BookOpenText, ChevronRight, Layers, Plus, Trash2, BookmarkCheck, Play, X, Check, RotateCw, ArrowUpDown, ListFilter, Clock, SortAsc, SortDesc, LayoutList, LayoutGrid, Trophy, Flame, Star, Users, Calculator, SlidersHorizontal } from 'lucide-react';
+import { ChevronLeft, Volume2, BookOpen, ChevronRight, Layers, Plus, Trash2, BookmarkCheck, Play, X, Check, RotateCw, ArrowUpDown, ListFilter, Clock, SortAsc, SortDesc, LayoutList, LayoutGrid, Trophy, Flame, Star } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import ARTICLES, { ARTICLE_CATEGORIES, ARTICLE_LEVELS } from '../../data/articleData';
-import { getGrammarItems } from '../../lib/grammarDB';
 import VOCAB_WORDS, { CATEGORIES as VOCAB_CATEGORIES } from '../../data/vocabWords';
 import speak from '../../utils/speak';
 import VocabImage from '../VocabImage';
@@ -20,24 +19,18 @@ import {
 import './ReadingLibraryTab.css';
 
 const LEVEL_COLORS = { beginner: '#06D6A0', intermediate: '#FFD166', advanced: '#EF476F' };
-const GRAMMAR_LEVEL_COLORS = { A1: '#06D6A0', A2: '#118AB2', B1: '#EF476F' };
-const GRAMMAR_LEVELS = ['A1', 'A2', 'B1'];
 
 // ═══════════════════════════════════════════════════════════════
 // Content type configs for the tag filter system
 // ═══════════════════════════════════════════════════════════════
 const CONTENT_TYPES = {
-    grammar: { label: 'Grammar', icon: BookOpenText, color: '#A78BFA', bg: 'rgba(167,139,250,0.15)', border: 'rgba(167,139,250,0.3)' },
     readings: { label: 'Readings', icon: BookOpen, color: '#1CB0F6', bg: 'rgba(28,176,246,0.15)', border: 'rgba(28,176,246,0.3)' },
     vocabulary: { label: 'Vocabulary', icon: Layers, color: '#FF9F43', bg: 'rgba(255,159,67,0.15)', border: 'rgba(255,159,67,0.3)' },
-    culture: { label: 'Culture', icon: Users, color: '#F26B5A', bg: 'rgba(242,107,90,0.15)', border: 'rgba(242,107,90,0.3)' },
 };
 
 const SUB_TAGS = {
-    grammar: ['A1', 'A2', 'B1'],
     readings: ['Culture', 'Food', 'Travel', 'Daily Life', 'History', 'Business'],
     vocabulary: ['Saved', 'Custom Decks', 'Pre-built'],
-    culture: ['Kinship'],
 };
 
 const SORT_OPTIONS = [
@@ -55,28 +48,7 @@ const READING_LEVEL_META = {
 // Build a unified content list from all sources (mockup timestamps)
 function buildLibraryItems() {
     const items = [];
-    const grammarItems = getGrammarItems();
     const now = Date.now();
-
-    // Grammar items — group by level
-    GRAMMAR_LEVELS.forEach((lvl, li) => {
-        const count = grammarItems.filter(g => g.level === lvl).length;
-        if (count === 0) return;
-        items.push({
-            id: `grammar-${lvl}`,
-            type: 'grammar',
-            subTag: lvl,
-            title: `${lvl} Grammar`,
-            subtitle: `${count} patterns`,
-            itemIcon: BookOpenText,
-            itemColor: GRAMMAR_LEVEL_COLORS[lvl],
-            itemBg: `rgba(${lvl === 'A1' ? '6,214,160' : lvl === 'A2' ? '17,138,178' : '239,71,111'},0.15)`,
-            route: `/grammar/${lvl}`,
-            createdAt: now - (li + 1) * 86400000 * 30,
-            sortName: `Grammar ${lvl}`,
-            levelOrder: li,
-        });
-    });
 
     // Reading articles
     ARTICLES.forEach((art, i) => {
@@ -146,49 +118,6 @@ function buildLibraryItems() {
             createdAt: now - (i + 2) * 86400000 * 3,
             sortName: deck.name,
             levelOrder: 1,
-        });
-    });
-    // Culture — Vietnamese family & kinship relationship modules
-    const kinshipModules = [
-        {
-            id: 'culture-kinship-foundation',
-            title: 'Kinship Terms',
-            subtitle: 'Family members & how to address them',
-            icon: Users,
-            route: '/practice/kinship-foundation',
-            levelOrder: 0,
-        },
-        {
-            id: 'culture-kinship-calculator',
-            title: 'Kinship Calculator',
-            subtitle: 'Figure out the right term for any relative',
-            icon: Calculator,
-            route: '/practice/kinship-calculator',
-            levelOrder: 1,
-        },
-        {
-            id: 'culture-kinship-engine',
-            title: 'Pronoun Engine',
-            subtitle: 'Navigate pronouns across any relationship',
-            icon: SlidersHorizontal,
-            route: '/practice/kinship-engine',
-            levelOrder: 2,
-        },
-    ];
-    kinshipModules.forEach((mod, i) => {
-        items.push({
-            id: mod.id,
-            type: 'culture',
-            subTag: 'Kinship',
-            title: mod.title,
-            subtitle: mod.subtitle,
-            itemIcon: mod.icon,
-            itemColor: '#F26B5A',
-            itemBg: 'rgba(242,107,90,0.15)',
-            route: mod.route,
-            createdAt: now - (i + 1) * 86400000 * 2,
-            sortName: mod.title,
-            levelOrder: mod.levelOrder,
         });
     });
 
