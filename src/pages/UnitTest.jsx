@@ -41,6 +41,9 @@ const UnitTest = () => {
     const [score, setScore] = useState(0);
     const [unitTitle, setUnitTitle] = useState('');
 
+    // Hearts disabled (was from DongContext, now simplified)
+    const hearts = Infinity;
+
     // Reorder state
     const [orderedTokens, setOrderedTokens] = useState([]);
     const [availableTokens, setAvailableTokens] = useState([]);
