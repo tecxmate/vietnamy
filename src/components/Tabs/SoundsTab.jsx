@@ -29,13 +29,30 @@ const VOWELS = {
         { letter: 'ia/iê', ipa: '/iə/', example: 'bia (beer)' },
         { letter: 'iu', ipa: '/iw/', example: 'chịu (endure)' },
         { letter: 'oa', ipa: '/waː/', example: 'hoa (flower)' },
+        { letter: 'oe', ipa: '/wɛ/', example: 'khoe (show off)' },
         { letter: 'oi', ipa: '/ɔj/', example: 'tôi (I)' },
         { letter: 'ôi', ipa: '/oj/', example: 'hồi (time)' },
         { letter: 'ơi', ipa: '/əːj/', example: 'ơi (hey)' },
         { letter: 'ua/uô', ipa: '/uə/', example: 'mua (buy)' },
+        { letter: 'uê', ipa: '/we/', example: 'huê (Huế city)' },
         { letter: 'ui', ipa: '/uj/', example: 'vui (happy)' },
         { letter: 'ưa/ươ', ipa: '/ɯə/', example: 'mưa (rain)' },
         { letter: 'ưi', ipa: '/ɯj/', example: 'gửi (send)' },
+        { letter: 'ưu', ipa: '/ɯw/', example: 'lưu (save)' },
+    ],
+    triphthongs: [
+        { letter: 'iêu/yêu', ipa: '/iəw/', example: 'yêu (love)' },
+        { letter: 'oai', ipa: '/waːj/', example: 'ngoài (outside)' },
+        { letter: 'oao', ipa: '/waːw/', example: 'ngoao (meow)' },
+        { letter: 'oay', ipa: '/waj/', example: 'xoay (rotate)' },
+        { letter: 'oeo', ipa: '/wɛw/', example: 'ngoẹo (crooked)' },
+        { letter: 'uây', ipa: '/wəj/', example: 'khuây (distracted)' },
+        { letter: 'uôi', ipa: '/uəj/', example: 'chuối (banana)' },
+        { letter: 'uya', ipa: '/wiə/', example: 'khuya (late night)' },
+        { letter: 'uyê', ipa: '/wiə/', example: 'khuyên (advise)' },
+        { letter: 'uyu', ipa: '/wiw/', example: 'khuỷu (elbow)' },
+        { letter: 'ươi', ipa: '/ɯəj/', example: 'tươi (fresh)' },
+        { letter: 'ươu', ipa: '/ɯəw/', example: 'hươu (deer)' },
     ],
 };
 
@@ -283,9 +300,9 @@ const SoundsTab = () => {
                         </div>
                     </div>
 
-                    <div>
+                    <div style={{ marginBottom: 20 }}>
                         <h3 style={{ margin: '0 0 12px', fontSize: 15, fontWeight: 700, color: 'var(--text-main)' }}>
-                            Diphthongs & Combinations
+                            Diphthongs (2 vowels)
                         </h3>
                         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 6 }}>
                             {VOWELS.diphthongs.map(v => (
@@ -296,6 +313,27 @@ const SoundsTab = () => {
                                 }}>
                                     <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                                         <span style={{ fontSize: 16, fontWeight: 700, color: '#1CB0F6' }}>{v.letter}</span>
+                                        <span style={{ fontSize: 11, color: 'var(--text-muted)' }}>{v.ipa}</span>
+                                    </div>
+                                    <div style={{ fontSize: 12, color: 'var(--text-muted)', marginTop: 2 }}>{v.example}</div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 style={{ margin: '0 0 12px', fontSize: 15, fontWeight: 700, color: 'var(--text-main)' }}>
+                            Triphthongs (3 vowels)
+                        </h3>
+                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 6 }}>
+                            {VOWELS.triphthongs.map(v => (
+                                <div key={v.letter} style={{
+                                    padding: '10px 12px', borderRadius: 10,
+                                    backgroundColor: 'var(--surface-color)',
+                                    border: '1px solid var(--border-color)',
+                                }}>
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                                        <span style={{ fontSize: 16, fontWeight: 700, color: '#A78BFA' }}>{v.letter}</span>
                                         <span style={{ fontSize: 11, color: 'var(--text-muted)' }}>{v.ipa}</span>
                                     </div>
                                     <div style={{ fontSize: 12, color: 'var(--text-muted)', marginTop: 2 }}>{v.example}</div>
