@@ -86,7 +86,7 @@ const ALPHABET = [
     { letter: 'Ư ư', name: 'ư', sound: 'uh (unrounded)' },
     { letter: 'V v', name: 'vê', sound: 'veh' },
     { letter: 'X x', name: 'ích-xì', sound: 'eek-see' },
-    { letter: 'Y y', name: 'i-cờ-rét', sound: 'ee' },
+    { letter: 'Y y', name: 'y dài', sound: 'ee' },
 ];
 
 const CONSONANTS = {

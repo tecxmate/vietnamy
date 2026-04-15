@@ -25,18 +25,35 @@
             "id": "a2a9a826357937cd",
             "type": "leaf",
             "state": {
+              "type": "canvas",
+              "state": {
+                "file": "docs/prd/vnme-note.canvas",
+                "viewState": {
+                  "x": 393.1704875964605,
+                  "y": 382.445203652483,
+                  "zoom": -0.8122249030169086
+                }
+              },
+              "icon": "lucide-layout-dashboard",
+              "title": "vnme-note"
+            }
+          },
+          {
+            "id": "ff53cda9b0a1b91d",
+            "type": "leaf",
+            "state": {
               "type": "markdown",
               "state": {
-                "file": "# Dental Jarvis — Pilot Installation Agreement.md",
+                "file": "Untitled.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "# Dental Jarvis — Pilot Installation Agreement"
+              "title": "Untitled"
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -198,8 +215,28 @@
       "bases:Create new base": false
     }
   },
-  "active": "a2a9a826357937cd",
+  "active": "ff53cda9b0a1b91d",
   "lastOpenFiles": [
+    "src/components/Tabs/SoundsTab.jsx",
+    "src/components/Tabs/PhoneticsTab.jsx",
+    "Untitled.md",
+    "docs/prd/vnme-note.canvas",
+    "docs/prd/userflow.canvas",
+    "docs/prd/study-content-overview.canvas",
+    "docs/prd/datamodel.canvas",
+    "docs/mkt/product-launch-plan.md",
+    "docs/mkt/marketing-sales-sow.md",
+    "docs/curr/scene-engine-spec.md",
+    "docs/curr/LESSON_DATA_SPEC.md",
+    "docs/curr/curriculum-state-and-plan.md",
+    "docs/prd/features.canvas",
+    "docs/prd/mockup-dictionary-vocab-library.md",
+    "docs/prd/PRD.md",
+    "docs/prd/PRD-executive-backend.md",
+    "docs/prd/PROJECT_HANDOFF.md",
+    "docs/prd/social_media_plan.md",
+    "docs/prd/study-roadmap-architecture.canvas",
+    "docs/prd/user_flow_and_features.md",
     "docs/Curriculum/LESSON_DATA_SPEC.md",
     "# Dental Jarvis — Pilot Installation Agreement.md",
     "src/pages/GrammarUnitLesson.jsx",
@@ -213,7 +250,6 @@
     "dist/index.html",
     "dist/assets/index-CDZ6xEPI.css",
     "dist/assets/index-BS2x3BQR.js",
-    "dist/assets/dictionary-BM635fq9.js",
     "dist/vite.svg",
     "dist/icon.png",
     "dist/hanoi_street_food.png",
@@ -226,19 +262,6 @@
     "node_modules/react-router-dom/LICENSE.md",
     "node_modules/react-router-dom/CHANGELOG.md",
     "node_modules/finalhandler/node_modules/debug/CHANGELOG.md",
-    "node_modules/send/node_modules/debug/CHANGELOG.md",
-    "node_modules/better-sqlite3/README.md",
-    "node_modules/lucide-react/README.md",
-    "node_modules/bindings/LICENSE.md",
-    "node_modules/bindings/README.md",
-    "node_modules/express/node_modules/debug/CHANGELOG.md",
-    "node_modules/express/node_modules/debug/README.md",
-    "node_modules/send/node_modules/debug/README.md",
-    "node_modules/finalhandler/node_modules/debug/README.md",
-    "node_modules/body-parser/node_modules/debug/CHANGELOG.md",
-    "node_modules/@eslint/eslintrc/README.md",
-    "node_modules/body-parser/node_modules/debug/README.md",
-    "node_modules/accepts/README.md",
     "node_modules/bmp-js/test/bit8_out.bmp",
     "node_modules/bmp-js/test/bit8_RLE_out.bmp",
     "node_modules/bmp-js/test/bit8_RLE.bmp",
@@ -246,12 +269,6 @@
     "node_modules/bmp-js/test/bit4_out.bmp",
     "node_modules/bmp-js/test/bit4_RLE_out.bmp",
     "node_modules/bmp-js/test/bit4_RLE.bmp",
-    "docs/prd/userflow.canvas",
-    "docs/prd/study-roadmap-architecture.canvas",
-    "docs/prd/study-content-overview.canvas",
-    "docs/prd/vnme-note.canvas",
-    "docs/prd/features.canvas",
-    "docs/prd/datamodel.canvas",
     "docs/prd-notes/study-content-overview.canvas",
     "docs/prd-notes/vnme-note.canvas",
     "docs/prd-notes/study-roadmap-architecture.canvas",
