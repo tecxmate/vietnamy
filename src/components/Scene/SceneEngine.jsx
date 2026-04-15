@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { X, ChevronRight } from 'lucide-react';
-import { useDong } from '../../context/DongContext';
+import { useProgress } from '../../context/ProgressContext';
+import { useUser } from '../../context/UserContext';
 import { getDB } from '../../lib/db';
 import { addItemsFromLesson } from '../../lib/srs';
 import SoundButton from '../SoundButton';
@@ -9,13 +10,16 @@ import SceneExplore from './SceneExplore';
 import SceneObserve from './SceneObserve';
 import ScenePerform from './ScenePerform';
 import SceneEnding from './SceneEnding';
+import { DEFAULT_LEARNER_MODE } from '../../data/learnerModes';
 
 const PHASES = ['explore', 'observe', 'perform', 'ending'];
 
 const SceneEngine = () => {
     const { sceneId } = useParams();
     const navigate = useNavigate();
-    const dongCtx = useDong();
+    const progressCtx = useProgress();
+    const { userProfile } = useUser();
+    const currentMode = userProfile?.learnerMode || DEFAULT_LEARNER_MODE;
 
     const [scene, setScene] = useState(null);
     const [phaseIndex, setPhaseIndex] = useState(0);
@@ -40,7 +44,7 @@ const SceneEngine = () => {
             const db = getDB();
             const node = (db.path_nodes || []).find(n => n.scene_id === sceneId);
             if (node) {
-                dongCtx.completeNode(node.id, { immediate: true });
+                progressCtx.completeNode(node.id, { immediate: true, mode: currentMode });
             }
             // Register vocab items with SRS
             if (scene?.vocab_items?.length) {

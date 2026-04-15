@@ -4,7 +4,7 @@ import './App.css';
 
 // Contexts
 import { LanguageProvider } from './context/LanguageContext';
-import { DongProvider } from './context/DongContext';
+import { ProgressProvider } from './context/ProgressContext';
 import { UserProvider, useUser } from './context/UserContext';
 import { NotificationProvider } from './context/NotificationContext';
 import { AuthProvider, useAuth } from './context/AuthContext';
@@ -214,7 +214,7 @@ function App() {
   return (
     <AuthProvider>
     <LanguageProvider>
-      <DongProvider>
+      <ProgressProvider>
         <UserProvider>
           <NotificationProvider>
             <BrowserRouter>
@@ -315,7 +315,7 @@ function App() {
             </BrowserRouter>
           </NotificationProvider>
         </UserProvider>
-      </DongProvider>
+      </ProgressProvider>
     </LanguageProvider>
     </AuthProvider>
   );

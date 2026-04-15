@@ -16,7 +16,8 @@ import {
     BookOpenText, Trophy
 } from 'lucide-react';
 import { getUnit, generateExercisesForUnit, loadGrammarModules } from '../lib/grammarModulesDB';
-import { useDong } from '../context/DongContext';
+import { useProgress } from '../context/ProgressContext';
+import { useUser } from '../context/UserContext';
 import speak from '../utils/speak';
 import { playSuccess, playError } from '../utils/sound';
 import SoundButton from '../components/SoundButton';
@@ -24,6 +25,7 @@ import {
     MCQOptions, FillBlankInput, ReorderWords, MatchPairs,
     FeedbackBanner, ProgressBar, checkAnswer,
 } from '../components/Exercise';
+import { DEFAULT_LEARNER_MODE } from '../data/learnerModes';
 
 const ACCENT = '#A78BFA'; // purple — matches roadmap node color
 const EXERCISES_PER_LESSON = 6;
@@ -310,9 +312,11 @@ export default function GrammarUnitLesson() {
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
     const roadmapNodeId = searchParams.get('nodeId'); // path_node ID from roadmap
-    const dongCtx = useDong();
+    const progressCtx = useProgress();
+    const { userProfile } = useUser();
+    const currentMode = userProfile?.learnerMode || DEFAULT_LEARNER_MODE;
     const GRAMMAR_SESSIONS = 2;
-    const session = roadmapNodeId ? dongCtx.getNodeSessionCount(roadmapNodeId) : 0;
+    const session = roadmapNodeId ? progressCtx.getNodeSessionCount(roadmapNodeId, currentMode) : 0;
 
     const [phase, setPhase] = useState(session >= 1 ? 'quiz' : 'tips');
     const [cardIndex, setCardIndex] = useState(0);
@@ -352,8 +356,8 @@ export default function GrammarUnitLesson() {
 
     // Completion reward — mark both grammar unit ID and roadmap node ID
     const markComplete = () => {
-        if (roadmapNodeId) dongCtx.completeNode(roadmapNodeId, { sessionsRequired: GRAMMAR_SESSIONS });
-        dongCtx.completeNode(unitId, { sessionsRequired: GRAMMAR_SESSIONS });
+        if (roadmapNodeId) progressCtx.completeNode(roadmapNodeId, { sessionsRequired: GRAMMAR_SESSIONS, mode: currentMode });
+        progressCtx.completeNode(unitId, { sessionsRequired: GRAMMAR_SESSIONS, mode: currentMode });
     };
 
     useEffect(() => {

@@ -2,12 +2,14 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { X, Heart, Check, Trophy, Volume2, ChevronRight } from 'lucide-react';
 import { getNodeById, getExercisesForUnit, getExercisesForNode, getNextNode, getNodeRoute } from '../lib/db';
-import { useDong } from '../context/DongContext';
+import { useProgress } from '../context/ProgressContext';
+import { useUser } from '../context/UserContext';
 import speak from '../utils/speak';
 import { loadSettings } from '../components/TopBar';
 import { checkVietnameseInput } from '../utils/fuzzyVietnamese';
 import { playSuccess, playError } from '../utils/sound';
 import SoundButton from '../components/SoundButton';
+import { DEFAULT_LEARNER_MODE } from '../data/learnerModes';
 
 const UNIT_QUIZ_SIZE = 20;
 const MODULE_QUIZ_SIZE = 6;
@@ -25,12 +27,13 @@ function shuffle(arr) {
 const UnitTest = () => {
     const { nodeId } = useParams();
     const navigate = useNavigate();
-    const dongCtx = useDong();
+    const progressCtx = useProgress();
+    const { userProfile } = useUser();
+    const currentMode = userProfile?.learnerMode || DEFAULT_LEARNER_MODE;
 
     const [exercises, setExercises] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
     const testMode = loadSettings().testMode === true;
-    const hearts = testMode ? Infinity : dongCtx.hearts;
     const [selectedAnswer, setSelectedAnswer] = useState(null);
     const [isChecking, setIsChecking] = useState(false);
     const [isCorrect, setIsCorrect] = useState(null);
@@ -93,7 +96,7 @@ const UnitTest = () => {
     useEffect(() => {
         if (isFinished && !rewardGivenRef.current && passed) {
             rewardGivenRef.current = true;
-            dongCtx.completeNode(nodeId, { immediate: true, isTest: true });
+            progressCtx.completeNode(nodeId, { immediate: true, isTest: true, mode: currentMode });
         }
     }, [isFinished, passed]);
 
@@ -216,7 +219,7 @@ const UnitTest = () => {
         setIsCorrect(correct);
         setIsChecking(true);
         if (correct) { playSuccess(); setScore(s => s + 1); }
-        else { playError(); if (!testMode) dongCtx.loseHeart(); }
+        else { playError(); if (!testMode) progressCtx.loseHeart(); }
     };
 
     const handleNext = () => {

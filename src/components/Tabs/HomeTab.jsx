@@ -1,7 +1,7 @@
-import React, { useState, useRef, useMemo, useEffect } from 'react';
+import React, { useState, useRef, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Volume2, Flame, BookOpen, Layers, ChevronRight, GraduationCap, BookOpenText, Search, Mic, X, Check, Sparkles, Lightbulb } from 'lucide-react';
-import { useDong } from '../../context/DongContext';
+import { Volume2, BookOpen, Layers, ChevronRight, GraduationCap, BookOpenText, Search, Mic, X, Check, Sparkles, Lightbulb } from 'lucide-react';
+import { useProgress } from '../../context/ProgressContext';
 import { useT } from '../../lib/i18n';
 import { getItems, getUnits, getNodesForUnitWithProgress } from '../../lib/db';
 import { getDueItems, getTotalItems } from '../../lib/srs';
@@ -9,7 +9,7 @@ import ARTICLES from '../../data/articleData';
 import speak from '../../utils/speak';
 import SoundButton from '../SoundButton';
 import { useUser } from '../../context/UserContext';
-import { fireNotification } from '../../context/NotificationContext';
+import { DEFAULT_LEARNER_MODE } from '../../data/learnerModes';
 import './HomeTab.css';
 
 const TIPS = [
@@ -55,23 +55,6 @@ function getTodayTips() {
     return result;
 }
 
-function getWeekDots(dailyStreak, lastVisitDate) {
-    const days = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
-    const today = new Date().getDay();
-    const todayIdx = today === 0 ? 6 : today - 1;
-
-    const checked = new Array(7).fill(false);
-    if (lastVisitDate) {
-        for (let i = 0; i < Math.min(dailyStreak, 7); i++) {
-            const idx = todayIdx - i;
-            if (idx >= 0) checked[idx] = true;
-            else checked[idx + 7] = true;
-        }
-    }
-
-    return days.map((label, i) => ({ label, checked: checked[i], isToday: i === todayIdx }));
-}
-
 const GOOGLE_FORM = 'https://docs.google.com/forms/d/e/1FAIpQLSfGs4jkrPQ3poxNlLkG85H5VyF4KgSdC_MMvrML1WOhhm4rnA/viewform?usp=sharing&ouid=106659001470051938885';
 const FACEBOOK_GROUP = 'https://www.facebook.com/groups/2144254376389864/';
 const INSTAGRAM = 'https://www.instagram.com/tecxmate';
@@ -80,8 +63,10 @@ const WHATSAPP_GROUP = 'https://chat.whatsapp.com/EKFn6q6gXeZIT2ZcNDYOV4';
 
 const HomeTab = ({ onSearchWord }) => {
     const navigate = useNavigate();
-    const { dailyStreak, lastVisitDate, completedNodes } = useDong();
+    const { completedNodes } = useProgress();
     const { userProfile } = useUser();
+    const currentMode = userProfile?.learnerMode || DEFAULT_LEARNER_MODE;
+    const modeCompletedNodes = completedNodes[currentMode] || new Set();
     const t = useT();
     const [searchQuery, setSearchQuery] = useState('');
     const [listening, setListening] = useState(false);
@@ -95,18 +80,6 @@ const HomeTab = ({ onSearchWord }) => {
 
     const partnerCtas = useMemo(() => {
         return ARTICLES.filter(a => a.partnerCta).map(a => a.partnerCta);
-    }, []);
-
-    // 🔔 Fire streak reminder once per session on home open
-    useEffect(() => {
-        if (dailyStreak > 1) {
-            const key = `vnme_streak_notif_${new Date().toISOString().slice(0, 10)}`;
-            if (!sessionStorage.getItem(key)) {
-                sessionStorage.setItem(key, '1');
-                setTimeout(() => fireNotification('daily_streak'), 1200);
-            }
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const VOICE_LANGUAGES = [
@@ -211,12 +184,10 @@ const HomeTab = ({ onSearchWord }) => {
     const tips = useMemo(() => getTodayTips(), []);
     const dueCount = useMemo(() => getDueItems().length, []);
     const totalWords = useMemo(() => getTotalItems(), []);
-    const weekDots = useMemo(() => getWeekDots(dailyStreak, lastVisitDate), [dailyStreak, lastVisitDate]);
-
     const handleContinue = () => {
         const units = getUnits();
         for (const unit of units) {
-            const nodes = getNodesForUnitWithProgress(unit.id, completedNodes);
+            const nodes = getNodesForUnitWithProgress(unit.id, modeCompletedNodes);
             const activeNode = nodes.find(n => n.status === 'active');
             if (activeNode) {
                 if (activeNode.type === 'lesson') navigate(`/lesson/${activeNode.content_ref_id}`);
@@ -237,6 +208,26 @@ const HomeTab = ({ onSearchWord }) => {
 
     return (
         <div className="home-tab">
+            {/* Words to Review Banner */}
+            {dueCount > 0 && (
+                <button
+                    onClick={() => navigate('/practice/flashcards')}
+                    style={{
+                        display: 'flex', alignItems: 'center', gap: 12,
+                        width: 'calc(100% - 32px)', margin: '16px auto 0',
+                        padding: '12px 16px', borderRadius: 12,
+                        backgroundColor: 'rgba(28, 176, 246, 0.1)',
+                        border: '1px solid rgba(28, 176, 246, 0.3)',
+                        color: '#1CB0F6', fontWeight: 700, fontSize: 14,
+                        cursor: 'pointer', fontFamily: 'inherit',
+                    }}
+                >
+                    <BookOpen size={20} />
+                    <span>{dueCount} word{dueCount > 1 ? 's' : ''} to review</span>
+                    <span style={{ marginLeft: 'auto', fontSize: 12, opacity: 0.7 }}>Tap to review</span>
+                </button>
+            )}
+
             {/* Demo Banner */}
             {!bannerDismissed && <div className="demo-banner" style={{ position: 'relative' }}>
                 <button
@@ -364,23 +355,8 @@ const HomeTab = ({ onSearchWord }) => {
                 </div>
             )}
 
-            {/* Combined Streak + Stats Card */}
+            {/* Stats Card */}
             <div className="home-streak-card compact">
-                <div className="home-streak-row">
-                    <div className="home-streak-header">
-                        <Flame size={16} color="#FF6B35" fill="#FF6B35" />
-                        <span className="home-streak-count">{dailyStreak}</span>
-                        <span className="home-streak-label">{t('daily_streak')}</span>
-                    </div>
-                    <div className="home-week-dots">
-                        {weekDots.map((d, i) => (
-                            <div key={i} className={`home-dot ${d.checked ? 'checked' : ''} ${d.isToday ? 'today' : ''}`}>
-                                <div className="home-dot-circle">{d.label}</div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-                <div className="home-streak-divider" />
                 <div className="home-streak-stats">
                     <div className="home-progress-stat">
                         <BookOpenText size={16} color="#FFB703" />
@@ -390,7 +366,7 @@ const HomeTab = ({ onSearchWord }) => {
                     <div className="home-progress-divider" />
                     <div className="home-progress-stat">
                         <GraduationCap size={16} color="#06D6A0" />
-                        <span className="home-progress-number">{completedNodes.size}</span>
+                        <span className="home-progress-number">{modeCompletedNodes.size}</span>
                         <span className="home-progress-label">{t('lessons')}</span>
                     </div>
                 </div>

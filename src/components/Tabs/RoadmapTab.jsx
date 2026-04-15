@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { MessageCircle, Zap, Trophy, Pen, Check, Lock, BookOpen, Music, Clapperboard } from 'lucide-react';
+import { MessageCircle, Zap, Trophy, Pen, Check, Lock, BookOpen, Music, Clapperboard, ChevronDown, Plane, Briefcase, Heart } from 'lucide-react';
 import { getUnits, getNodesForUnitWithProgress } from '../../lib/db';
 import { getDueItems } from '../../lib/srs';
-import { useDong } from '../../context/DongContext';
+import { useProgress } from '../../context/ProgressContext';
+import { useUser } from '../../context/UserContext';
 import { loadSettings } from '../TopBar';
 import SoundButton from '../SoundButton';
+import { DEFAULT_LEARNER_MODE, getTopicsForMode, getModeConfig, LEARNER_MODES } from '../../data/learnerModes';
+
+const MODE_ICONS = { Plane, Briefcase, Heart };
 
 
 const NODE_STYLES = {
@@ -42,7 +46,10 @@ function getNodeLabel(node, style) {
 
 const RoadmapTab = ({ onNavigateToVocabDeck } = {}) => {
     const navigate = useNavigate();
-    const { completedNodes, getNodeSessionCount, SESSIONS_TO_COMPLETE } = useDong();
+    const { completedNodes, getNodeSessionCount, SESSIONS_TO_COMPLETE } = useProgress();
+    const { userProfile, updateUserProfile } = useUser();
+    const currentMode = userProfile?.learnerMode || DEFAULT_LEARNER_MODE;
+    const modeCompletedNodes = completedNodes[currentMode] || new Set();
     const currentSettings = loadSettings();
     const { testMode } = currentSettings;
     const showCefrTags = currentSettings.showCefrTags !== false;
@@ -50,47 +57,46 @@ const RoadmapTab = ({ onNavigateToVocabDeck } = {}) => {
     const [nodesMap, setNodesMap] = useState({});
     const [dueCount, setDueCount] = useState(0);
     const [redoNode, setRedoNode] = useState(null);
-    // Grammar (purple) and Phonetics (blue) are now in separate sidebar tabs
-    const ALL_FILTERS = new Set(['orange', 'green', 'test', 'gold']);
-    const [activeFilters, setActiveFilters] = useState(new Set(ALL_FILTERS));
+    const [showModePicker, setShowModePicker] = useState(false);
 
-    const FILTER_CHIPS = [
-        { key: 'orange', label: 'Vocabulary' },
-        { key: 'green',  label: 'Scene' },
-        { key: 'test',   label: 'Quiz' },
-    ];
+    // Topic-based filtering from learner mode
+    const modeTopics = getTopicsForMode(currentMode);
+    const modeConfig = getModeConfig(currentMode);
+    const allTopicIds = modeTopics.map(t => t.id);
+    const [activeTopics, setActiveTopics] = useState(new Set(allTopicIds));
 
-    const toggleFilter = (key) => {
-        setActiveFilters(prev => {
-            const isShowingAll = prev.size === ALL_FILTERS.size;
-            const keyWithGold = key === 'green' ? new Set([key, 'gold']) : new Set([key]);
+    const toggleTopic = (topicId) => {
+        setActiveTopics(prev => {
+            const isShowingAll = prev.size === allTopicIds.length;
 
             if (isShowingAll) {
-                // From "all" → solo this category
-                return keyWithGold;
+                // From "all" → solo this topic
+                return new Set([topicId]);
             }
 
-            if (prev.has(key)) {
-                // Already active — check if it's the only one (or only one + gold)
-                const visibleCount = [...prev].filter(k => k !== 'gold').length;
-                if (visibleCount === 1) {
+            if (prev.has(topicId)) {
+                // Already active — check if it's the only one
+                if (prev.size === 1) {
                     // Solo tap again → show all
-                    return new Set(ALL_FILTERS);
+                    return new Set(allTopicIds);
                 }
-                // Deselect this one from multi-select
+                // Deselect this one
                 const next = new Set(prev);
-                next.delete(key);
-                if (key === 'green') next.delete('gold');
+                next.delete(topicId);
                 return next;
             }
 
-            // Not active → add it (multi-select)
+            // Not active → add it
             const next = new Set(prev);
-            next.add(key);
-            if (key === 'green') next.add('gold');
+            next.add(topicId);
             return next;
         });
     };
+
+    // Reset active topics when mode changes
+    React.useEffect(() => {
+        setActiveTopics(new Set(allTopicIds));
+    }, [currentMode]); // eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(() => {
         const fetchedUnits = getUnits();
@@ -98,11 +104,11 @@ const RoadmapTab = ({ onNavigateToVocabDeck } = {}) => {
 
         const map = {};
         fetchedUnits.forEach(unit => {
-            map[unit.id] = getNodesForUnitWithProgress(unit.id, completedNodes);
+            map[unit.id] = getNodesForUnitWithProgress(unit.id, modeCompletedNodes);
         });
         setNodesMap(map);
         setDueCount(getDueItems().length);
-    }, [completedNodes]);
+    }, [modeCompletedNodes, currentMode]);
 
     const navigateNode = (node) => {
         switch (node.type) {
@@ -148,29 +154,13 @@ const RoadmapTab = ({ onNavigateToVocabDeck } = {}) => {
         }
     };
 
+    const ModeIcon = MODE_ICONS[modeConfig.icon] || Plane;
+
     return (
         <div>
-            {dueCount > 0 && (
-                <button
-                    onClick={() => onNavigateToVocabDeck?.('__srs__')}
-                    style={{
-                        display: 'flex', alignItems: 'center', gap: 12,
-                        width: 'calc(100% - 32px)', margin: '16px auto',
-                        padding: '12px 16px', borderRadius: 12,
-                        backgroundColor: 'rgba(28, 176, 246, 0.1)',
-                        border: '1px solid rgba(28, 176, 246, 0.3)',
-                        color: '#1CB0F6', fontWeight: 700, fontSize: 14,
-                        cursor: 'pointer', fontFamily: 'inherit',
-                    }}
-                >
-                    <BookOpen size={20} />
-                    <span>{dueCount} word{dueCount > 1 ? 's' : ''} to review</span>
-                    <span style={{ marginLeft: 'auto', fontSize: 12, opacity: 0.7 }}>Tap to review</span>
-                </button>
-            )}
-            {/* Filter chips — sticky */}
+            {/* Mode switcher + Topic chips - same row, scrollable */}
             <div className="hide-scrollbar" style={{
-                display: 'flex', gap: 8,
+                display: 'flex', alignItems: 'center', gap: 8,
                 padding: '12px 16px',
                 overflowX: 'auto',
                 position: 'sticky',
@@ -179,32 +169,125 @@ const RoadmapTab = ({ onNavigateToVocabDeck } = {}) => {
                 backgroundColor: 'var(--bg-color)',
                 borderBottom: '1px solid var(--border-color)',
             }}>
-                {FILTER_CHIPS.map(chip => {
-                    const isActive = activeFilters.has(chip.key);
-                    const s = NODE_STYLES[chip.key];
-                    const Icon = s.icon;
+                {/* Mode switcher button */}
+                <button
+                    onClick={() => setShowModePicker(true)}
+                    style={{
+                        display: 'flex', alignItems: 'center', gap: 6,
+                        padding: '6px 10px', borderRadius: 20,
+                        backgroundColor: `${modeConfig.color}15`,
+                        border: `2px solid ${modeConfig.color}`,
+                        cursor: 'pointer', fontFamily: 'inherit',
+                        flexShrink: 0,
+                    }}
+                >
+                    <div style={{
+                        width: 22, height: 22, borderRadius: 6,
+                        backgroundColor: modeConfig.color,
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    }}>
+                        <ModeIcon size={12} color="#fff" />
+                    </div>
+                    <ChevronDown size={14} color={modeConfig.color} />
+                </button>
+
+                {/* Divider */}
+                <div style={{ width: 1, height: 24, backgroundColor: 'var(--border-color)', flexShrink: 0 }} />
+
+                {/* Topic chips */}
+                {modeTopics.map(topic => {
+                    const isActive = activeTopics.has(topic.id);
+                    const color = modeConfig.color;
                     return (
                         <button
-                            key={chip.key}
-                            onClick={() => toggleFilter(chip.key)}
+                            key={topic.id}
+                            onClick={() => toggleTopic(topic.id)}
                             style={{
                                 display: 'flex', alignItems: 'center', gap: 6,
                                 padding: '6px 14px', borderRadius: 20,
-                                border: `2px solid ${isActive ? s.color : 'var(--border-color)'}`,
-                                backgroundColor: isActive ? s.bg : 'transparent',
-                                color: isActive ? s.color : 'var(--text-muted)',
+                                border: `2px solid ${isActive ? color : 'var(--border-color)'}`,
+                                backgroundColor: isActive ? `${color}15` : 'transparent',
+                                color: isActive ? color : 'var(--text-muted)',
                                 fontWeight: 700, fontSize: 13,
                                 cursor: 'pointer', whiteSpace: 'nowrap',
                                 transition: 'all 0.15s',
                                 fontFamily: 'inherit',
+                                flexShrink: 0,
                             }}
                         >
-                            <Icon size={14} />
-                            {chip.label}
+                            {topic.label}
                         </button>
                     );
                 })}
             </div>
+
+            {/* Mode picker modal */}
+            {showModePicker && (
+                <div
+                    style={{
+                        position: 'fixed', inset: 0, zIndex: 200,
+                        backgroundColor: 'rgba(0,0,0,0.5)',
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        padding: 24,
+                    }}
+                    onClick={() => setShowModePicker(false)}
+                >
+                    <div
+                        style={{
+                            backgroundColor: 'var(--surface-color)',
+                            borderRadius: 20, padding: 20, width: '100%', maxWidth: 340,
+                        }}
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <h3 style={{ margin: '0 0 16px', fontSize: 18, fontWeight: 800, color: 'var(--text-main)', textAlign: 'center' }}>
+                            Choose Learning Path
+                        </h3>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+                            {Object.values(LEARNER_MODES).map(mode => {
+                                const Icon = MODE_ICONS[mode.icon] || Plane;
+                                const isActive = currentMode === mode.id;
+                                return (
+                                    <button
+                                        key={mode.id}
+                                        onClick={() => {
+                                            updateUserProfile({ learnerMode: mode.id });
+                                            setShowModePicker(false);
+                                        }}
+                                        style={{
+                                            display: 'flex', alignItems: 'center', gap: 12,
+                                            padding: '14px 16px', borderRadius: 14,
+                                            backgroundColor: isActive ? `${mode.color}15` : 'var(--bg-color)',
+                                            border: `2px solid ${isActive ? mode.color : 'var(--border-color)'}`,
+                                            cursor: 'pointer', fontFamily: 'inherit',
+                                            transition: 'all 0.15s',
+                                        }}
+                                    >
+                                        <div style={{
+                                            width: 40, height: 40, borderRadius: 10,
+                                            backgroundColor: mode.color,
+                                            display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                            flexShrink: 0,
+                                        }}>
+                                            <Icon size={22} color="#fff" />
+                                        </div>
+                                        <div style={{ flex: 1, textAlign: 'left' }}>
+                                            <div style={{ fontWeight: 700, fontSize: 15, color: isActive ? mode.color : 'var(--text-main)' }}>
+                                                {mode.label}
+                                            </div>
+                                            <div style={{ fontSize: 12, color: 'var(--text-muted)', marginTop: 2 }}>
+                                                {mode.description}
+                                            </div>
+                                        </div>
+                                        {isActive && (
+                                            <Check size={20} color={mode.color} strokeWidth={3} />
+                                        )}
+                                    </button>
+                                );
+                            })}
+                        </div>
+                    </div>
+                </div>
+            )}
 
             {units.map((unit) => (
                 <div key={unit.id} style={{ marginBottom: 16 }}>
@@ -221,9 +304,11 @@ const RoadmapTab = ({ onNavigateToVocabDeck } = {}) => {
                                     quizByParent[n.source_node_id] = n;
                                 }
                             });
-                            return nodes.filter(n => n.test_scope !== 'module').filter(n => {
-                                return activeFilters.has(n.module_type || 'orange');
-                            }).map((node) => {
+                            return nodes
+                                .filter(n => n.test_scope !== 'module')
+                                .filter(n => n.module_type !== 'blue' && n.module_type !== 'purple') // Grammar & Phonetics in separate tabs
+                                .filter(n => activeTopics.has(n.topic) || activeTopics.size === allTopicIds.length)
+                                .map((node) => {
                                 const style = getNodeStyle(node);
                                 const Icon = style.icon;
                                 const isActive = node.status === 'active';
@@ -231,7 +316,7 @@ const RoadmapTab = ({ onNavigateToVocabDeck } = {}) => {
                                 // When testMode is off, treat ALL nodes as locked
                                 const isLocked = !testMode || node.status === 'locked';
                                 const sublabel = getNodeLabel(node, style);
-                                const sessionCount = getNodeSessionCount(node.id);
+                                const sessionCount = getNodeSessionCount(node.id, currentMode);
                                 const sessionsTarget = node.skill_content?.type === 'grammar_unit' ? 2 : SESSIONS_TO_COMPLETE;
                                 const hasProgress = testMode && sessionCount > 0 && !isCompleted;
                                 const quiz = quizByParent[node.id];

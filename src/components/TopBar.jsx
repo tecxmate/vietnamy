@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import {
     Target, Zap, User, X, ChevronDown, ChevronRight, RefreshCw,
-    Globe, Type, Volume2, Wrench, Moon, Sun, Clock, Bell, Gift, Heart, CircleDollarSign, Tag,
+    Globe, Type, Volume2, Wrench, Clock, Bell, Gift, Tag, Compass,
 } from 'lucide-react';
+import { LEARNER_MODES, DEFAULT_LEARNER_MODE } from '../data/learnerModes';
 import { useNavigate } from 'react-router-dom';
-import { useDong } from '../context/DongContext';
+import { useProgress } from '../context/ProgressContext';
 import { useUser } from '../context/UserContext';
 import { useAuth } from '../context/AuthContext';
 import { useT } from '../lib/i18n';
@@ -40,7 +41,6 @@ const TopBar = ({ activeTab, subtitleOverride }) => {
     const [menuVisible, setMenuVisible] = useState(false);
     const [isReferralOpen, setIsReferralOpen] = useState(false);
     const navigate = useNavigate();
-    const { dailyStreak, hearts, coins } = useDong();
     const { userProfile, updateUserProfile } = useUser();
     const { profile: authProfile, signInWithGoogle, signOut } = useAuth();
     const { unreadCount, openPanel } = useNotifications();
@@ -139,17 +139,9 @@ const TopBar = ({ activeTab, subtitleOverride }) => {
                 {/* Stats — always visible */}
                 <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexShrink: 0 }}>
                     {userProfile.isDeveloperMode && (
-                        <>
-                            <button onClick={() => setIsReferralOpen(true)} className="ghost" style={{ padding: 6, color: 'var(--primary-color)', display: 'flex', alignItems: 'center' }}>
-                                <Gift size={20} />
-                            </button>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: 4, fontWeight: 700, fontSize: 13, color: '#FFB703' }}>
-                                <CircleDollarSign size={16} /> {coins}
-                            </div>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: 4, fontWeight: 700, fontSize: 13, color: '#EF4444' }}>
-                                <Heart size={16} fill="#EF4444" /> {hearts}
-                            </div>
-                        </>
+                        <button onClick={() => setIsReferralOpen(true)} className="ghost" style={{ padding: 6, color: 'var(--primary-color)', display: 'flex', alignItems: 'center' }}>
+                            <Gift size={20} />
+                        </button>
                     )}
                     {/* Notification bell */}
                     <button
@@ -284,6 +276,13 @@ const TopBar = ({ activeTab, subtitleOverride }) => {
                                     value={userProfile.level || 'new'}
                                     options={[{ v: 'new', l: 'Beginner' }, { v: 'basic', l: 'Elementary' }, { v: 'intermediate', l: 'Intermediate' }]}
                                     onChange={v => updateUserProfile({ level: v })}
+                                />
+                                <SettingSelect
+                                    label="Learning Path"
+                                    icon={<Compass size={16} />}
+                                    value={userProfile.learnerMode || DEFAULT_LEARNER_MODE}
+                                    options={Object.values(LEARNER_MODES).map(m => ({ v: m.id, l: m.label }))}
+                                    onChange={v => updateUserProfile({ learnerMode: v })}
                                 />
                                 <SettingMultiSelect
                                     label={t('visible_languages')}

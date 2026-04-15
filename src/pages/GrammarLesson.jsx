@@ -3,10 +3,12 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, Volume2, Heart, Check, X, BookOpenText, Trophy } from 'lucide-react';
 import { getNodeById } from '../lib/db';
 import { getGrammarItems } from '../lib/grammarDB';
-import { useDong } from '../context/DongContext';
+import { useProgress } from '../context/ProgressContext';
+import { useUser } from '../context/UserContext';
 import speak from '../utils/speak';
 import { playSuccess, playError } from '../utils/sound';
 import SoundButton from '../components/SoundButton';
+import { DEFAULT_LEARNER_MODE } from '../data/learnerModes';
 
 // Build tip cards from a grammar item's data
 function buildTipCards(item) {
@@ -188,7 +190,9 @@ function renderCard(card) {
 const GrammarLesson = () => {
     const { nodeId } = useParams();
     const navigate = useNavigate();
-    const dongCtx = useDong();
+    const progressCtx = useProgress();
+    const { userProfile } = useUser();
+    const currentMode = userProfile?.learnerMode || DEFAULT_LEARNER_MODE;
 
     const [phase, setPhase] = useState('tips'); // 'tips' | 'quiz' | 'finished'
     const [grammarItem, setGrammarItem] = useState(null);
@@ -228,7 +232,7 @@ const GrammarLesson = () => {
     useEffect(() => {
         if (phase === 'finished' && !rewardGivenRef.current) {
             rewardGivenRef.current = true;
-            dongCtx.completeNode(nodeId, { immediate: true });
+            progressCtx.completeNode(nodeId, { immediate: true, mode: currentMode });
         }
     }, [phase]);
 
@@ -273,7 +277,7 @@ const GrammarLesson = () => {
                 if (phase === 'tips') {
                     if (cardIndex < tipCards.length - 1) setCardIndex(i => i + 1);
                     else if (exercises.length > 0) setPhase('quiz');
-                    else { dongCtx.completeNode(nodeId, { immediate: true }); navigate('/', { state: { tab: 'study' } }); }
+                    else { progressCtx.completeNode(nodeId, { immediate: true, mode: currentMode }); navigate('/', { state: { tab: 'study' } }); }
                 } else if (phase === 'quiz') {
                     if (isChecking) handleNext();
                     else if (canCheck()) handleCheck();
@@ -350,7 +354,7 @@ const GrammarLesson = () => {
                                 } else if (exercises.length > 0) {
                                     setPhase('quiz');
                                 } else {
-                                    dongCtx.completeNode(nodeId, { immediate: true });
+                                    progressCtx.completeNode(nodeId, { immediate: true, mode: currentMode });
                                     navigate('/', { state: { tab: 'study' } });
                                 }
                             }}

@@ -2,7 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { X, Heart, Check, Volume2, Frown, Trophy, ChevronRight, Mic, MicOff } from 'lucide-react';
 import { lookupWords } from '../lib/dictionaryLookup';
-import { useDong } from '../context/DongContext';
+import { useProgress } from '../context/ProgressContext';
+import { useUser } from '../context/UserContext';
 import { getNodeByLessonId, getLessonBlueprint, getExercisesGenerated, getNextNode, getNodeRoute } from '../lib/db';
 import speak from '../utils/speak';
 import { addItemsFromLesson, recordReview } from '../lib/srs';
@@ -14,17 +15,19 @@ import { fireNotification } from '../context/NotificationContext';
 import { playSuccess, playError } from '../utils/sound';
 import SoundButton from './SoundButton';
 import { MCQOptions, MatchPairs, FeedbackBanner, ProgressBar } from './Exercise';
+import { DEFAULT_LEARNER_MODE } from '../data/learnerModes';
 
 const LessonGame = () => {
     const { lessonId } = useParams();
     const navigate = useNavigate();
     const location = useLocation();
-    const dongCtx = useDong();
+    const progressCtx = useProgress();
+    const { userProfile } = useUser();
+    const currentMode = userProfile?.learnerMode || DEFAULT_LEARNER_MODE;
 
     const [exercises, setExercises] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
     const testMode = loadSettings().testMode === true;
-    const hearts = testMode ? Infinity : dongCtx.hearts;
     const [selectedAnswer, setSelectedAnswer] = useState(null);
     const [isChecking, setIsChecking] = useState(false);
     const [isCorrect, setIsCorrect] = useState(null);
@@ -99,7 +102,7 @@ const LessonGame = () => {
 
         // Determine current session number for this lesson's node
         const node = getNodeByLessonId(lessonId);
-        const session = node ? dongCtx.getNodeSessionCount(node.id) : 0;
+        const session = node ? progressCtx.getNodeSessionCount(node.id, currentMode) : 0;
 
         const loaded = getExercisesGenerated(lessonId, session);
         if (loaded.length === 0) {
@@ -208,7 +211,7 @@ const LessonGame = () => {
             rewardGivenRef.current = true;
 
             if (nodeId) {
-                dongCtx.completeNode(nodeId);
+                progressCtx.completeNode(nodeId, { mode: currentMode });
             }
 
             // Add words to SRS for review later
@@ -431,7 +434,7 @@ const LessonGame = () => {
             setCurrentStreak(0);
             notifiedStreakRef.current = 0; // reset streak notif gate
             if (!testMode) {
-                dongCtx.loseHeart();
+                progressCtx.loseHeart();
                 // 🔔 Notify: lost a heart
                 setTimeout(() => fireNotification('lost_heart'), 300);
             }

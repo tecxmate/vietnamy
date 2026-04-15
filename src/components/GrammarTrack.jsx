@@ -11,7 +11,8 @@ import {
     BookOpenText, ChevronDown, ChevronRight, Check, Lock,
     Award, Zap, Play
 } from 'lucide-react';
-import { useDong } from '../context/DongContext';
+import { useProgress } from '../context/ProgressContext';
+import { DEFAULT_LEARNER_MODE } from '../data/learnerModes';
 import {
     getLevels, getModuleProgress, getLevelProgress,
     getUnitStatus, getNextActiveUnit, loadGrammarModules
@@ -246,9 +247,11 @@ function ModuleRow({ module, levelColor, completedNodeIds, onUnitClick, testMode
 }
 
 // ─── Main GrammarTrack Component ────────────────────────────────
-export default function GrammarTrack() {
+export default function GrammarTrack({ currentMode }) {
     const navigate = useNavigate();
-    const { completedNodes } = useDong();
+    const { completedNodes } = useProgress();
+    const mode = currentMode || DEFAULT_LEARNER_MODE;
+    const modeCompletedNodes = useMemo(() => completedNodes[mode] || new Set(), [completedNodes, mode]);
     const { testMode } = loadSettings();
     const [activeLevel, setActiveLevel] = useState('A1');
     const [collapsed, setCollapsed] = useState(false);
@@ -260,7 +263,7 @@ export default function GrammarTrack() {
     const levels = getLevels();
     const currentLevel = levels.find(l => l.id === activeLevel);
     const levelColor = LEVEL_COLORS[activeLevel]?.color || GRAMMAR_GREEN;
-    const nextUnit = useMemo(() => getNextActiveUnit(completedNodes), [completedNodes]);
+    const nextUnit = useMemo(() => getNextActiveUnit(modeCompletedNodes), [modeCompletedNodes]);
 
     const handleUnitClick = (unitId) => {
         navigate(`/grammar-unit/${unitId}`);
@@ -270,12 +273,12 @@ export default function GrammarTrack() {
     const totalProgress = useMemo(() => {
         let completed = 0, total = 0;
         for (const lv of levels) {
-            const p = getLevelProgress(lv.id, completedNodes);
+            const p = getLevelProgress(lv.id, modeCompletedNodes);
             completed += p.completed;
             total += p.total;
         }
         return { completed, total, percent: total > 0 ? Math.round((completed / total) * 100) : 0 };
-    }, [completedNodes]); // eslint-disable-line react-hooks/exhaustive-deps
+    }, [modeCompletedNodes]); // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
         <div style={{
@@ -363,7 +366,7 @@ export default function GrammarTrack() {
                     <LevelTabs
                         activeLevel={activeLevel}
                         onSelect={setActiveLevel}
-                        completedNodeIds={completedNodes}
+                        completedNodeIds={modeCompletedNodes}
                     />
 
                     {/* Module list */}
@@ -377,7 +380,7 @@ export default function GrammarTrack() {
                                     key={mod.id}
                                     module={mod}
                                     levelColor={levelColor}
-                                    completedNodeIds={completedNodes}
+                                    completedNodeIds={modeCompletedNodes}
                                     onUnitClick={handleUnitClick}
                                     testMode={testMode}
                                 />
