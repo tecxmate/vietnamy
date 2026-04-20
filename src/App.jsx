@@ -109,7 +109,28 @@ function StudentApp({ initialTab = 'home' }) {
   const [hasCompletedTutorial, setHasCompletedTutorial] = useState(() => {
     return localStorage.getItem('vnme_tutorial_completed') === 'true';
   });
-  const [activeTab, setActiveTab] = useState(location.state?.tab || initialTab);
+  const [activeTab, setActiveTab] = useState(() => {
+    // Priority: location.state > localStorage > initialTab
+    // This handles PWA state loss on refresh/reopen
+    if (location.state?.tab) return location.state.tab;
+    const saved = localStorage.getItem('vnme_active_tab');
+    if (saved && ['home', 'study', 'grammar', 'sounds', 'dictionary', 'library'].includes(saved)) {
+      return saved;
+    }
+    return initialTab;
+  });
+
+  // Sync location.state.tab when navigating back from lessons
+  React.useEffect(() => {
+    if (location.state?.tab) {
+      setActiveTab(location.state.tab);
+    }
+  }, [location.state?.tab]);
+
+  // Persist active tab to localStorage for PWA recovery
+  React.useEffect(() => {
+    localStorage.setItem('vnme_active_tab', activeTab);
+  }, [activeTab]);
   const [tabSubtitle, setTabSubtitle] = useState(null);
   const [pendingDictInput, setPendingDictInput] = useState(null);
   const { updateUserProfile } = useUser();
@@ -311,6 +332,9 @@ function App() {
                   <Route path="kinship" element={<KinshipEditor />} />
                   <Route path="drills" element={<DrillEditor />} />
                 </Route>
+
+                {/* Catch-all: redirect unknown routes to home */}
+                <Route path="*" element={<Navigate to="/" replace />} />
               </Routes>
             </BrowserRouter>
           </NotificationProvider>

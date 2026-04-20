@@ -435,7 +435,7 @@ export default function GrammarUnitLesson() {
                     padding: '16px 16px 12px',
                     borderBottom: '1px solid var(--border-color)',
                 }}>
-                    <button onClick={() => navigate(-1)} style={{
+                    <button onClick={() => navigate('/', { state: { tab: 'study' } })} style={{
                         background: 'none', border: 'none', cursor: 'pointer',
                         color: 'var(--text-muted)', padding: 4,
                     }}>
@@ -527,7 +527,7 @@ export default function GrammarUnitLesson() {
                     padding: '16px 16px 12px',
                     borderBottom: '1px solid var(--border-color)',
                 }}>
-                    <button onClick={() => navigate(-1)} style={{
+                    <button onClick={() => navigate('/', { state: { tab: 'study' } })} style={{
                         background: 'none', border: 'none', cursor: 'pointer',
                         color: 'var(--text-muted)', padding: 4,
                     }}>

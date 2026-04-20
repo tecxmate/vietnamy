@@ -322,7 +322,7 @@ const UnitTest = () => {
                             <SoundButton
                                 className="primary w-full shadow-lg"
                                 style={{ fontSize: 18, backgroundColor: 'var(--danger-color)', boxShadow: '0 4px 0 #B52F4E' }}
-                                onClick={() => navigate(0)}
+                                onClick={() => navigate(`/test/${nodeId}`, { replace: true })}
                             >
                                 TRY AGAIN
                             </SoundButton>
