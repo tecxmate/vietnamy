@@ -1,0 +1,2747 @@
+{
+  "vocab": {
+    "chào": {
+      "pos": "interjection",
+      "frequency": 1,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "xin chào": {
+      "pos": "phrase",
+      "frequency": 2,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "tên": {
+      "pos": "noun",
+      "frequency": 3,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "tôi": {
+      "pos": "pronoun",
+      "frequency": 4,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "bạn": {
+      "pos": "pronoun",
+      "frequency": 5,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "anh": {
+      "pos": "pronoun",
+      "frequency": 6,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "chị": {
+      "pos": "pronoun",
+      "frequency": 7,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "em": {
+      "pos": "pronoun",
+      "frequency": 8,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "mỹ": {
+      "pos": "noun",
+      "frequency": 9,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "anh (quốc)": {
+      "pos": "noun",
+      "frequency": 10,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "úc": {
+      "pos": "noun",
+      "frequency": 11,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "pháp": {
+      "pos": "noun",
+      "frequency": 12,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "ý": {
+      "pos": "noun",
+      "frequency": 13,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "việt nam": {
+      "pos": "noun",
+      "frequency": 14,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "trung quốc": {
+      "pos": "noun",
+      "frequency": 15,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "khỏe": {
+      "pos": "adjective",
+      "frequency": 16,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "không": {
+      "pos": "particle",
+      "frequency": 17,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "không (0)": {
+      "pos": "number",
+      "frequency": 18,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "một": {
+      "pos": "number",
+      "frequency": 19,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "hai": {
+      "pos": "number",
+      "frequency": 20,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "ba": {
+      "pos": "number",
+      "frequency": 21,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "bốn": {
+      "pos": "number",
+      "frequency": 22,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "năm": {
+      "pos": "number",
+      "frequency": 23,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "sáu": {
+      "pos": "number",
+      "frequency": 24,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "bảy": {
+      "pos": "number",
+      "frequency": 25,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "tám": {
+      "pos": "number",
+      "frequency": 26,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "chín": {
+      "pos": "number",
+      "frequency": 27,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "mười": {
+      "pos": "number",
+      "frequency": 28,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "ăn": {
+      "pos": "verb",
+      "frequency": 29,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "uống": {
+      "pos": "verb",
+      "frequency": 30,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "nước": {
+      "pos": "noun",
+      "frequency": 31,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "cơm": {
+      "pos": "noun",
+      "frequency": 32,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "bánh mì": {
+      "pos": "noun",
+      "frequency": 33,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "cà phê": {
+      "pos": "noun",
+      "frequency": 34,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "thực đơn": {
+      "pos": "noun",
+      "frequency": 35,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "cám ơn": {
+      "pos": "phrase",
+      "frequency": 36,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "phở": {
+      "pos": "noun",
+      "frequency": 37,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "nóng": {
+      "pos": "adjective",
+      "frequency": 38,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "đá": {
+      "pos": "noun",
+      "frequency": 39,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "chiên": {
+      "pos": "adjective",
+      "frequency": 40,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "bánh mì heo quay": {
+      "pos": "noun",
+      "frequency": 41,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "nước mía": {
+      "pos": "noun",
+      "frequency": 42,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "sinh tố": {
+      "pos": "noun",
+      "frequency": 43,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "gọi món": {
+      "pos": "verb",
+      "frequency": 44,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "phần": {
+      "pos": "measure word",
+      "frequency": 45,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "ly": {
+      "pos": "measure word",
+      "frequency": 46,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "gì": {
+      "pos": "question word",
+      "frequency": 47,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "muốn": {
+      "pos": "verb",
+      "frequency": 48,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "không có chi": {
+      "pos": "phrase",
+      "frequency": 49,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "đặt bàn": {
+      "pos": "verb phrase",
+      "frequency": 50,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "giờ": {
+      "pos": "noun",
+      "frequency": 51,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "thứ": {
+      "pos": "noun",
+      "frequency": 52,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "ngày": {
+      "pos": "noun",
+      "frequency": 53,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "buổi": {
+      "pos": "noun",
+      "frequency": 54,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "buổi sáng": {
+      "pos": "noun",
+      "frequency": 55,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "buổi trưa": {
+      "pos": "noun",
+      "frequency": 56,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "buổi chiều": {
+      "pos": "noun",
+      "frequency": 57,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "buổi tối": {
+      "pos": "noun",
+      "frequency": 58,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "hôm nay": {
+      "pos": "noun",
+      "frequency": 59,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "ngày mai": {
+      "pos": "noun",
+      "frequency": 60,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "hôm qua": {
+      "pos": "noun",
+      "frequency": 61,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "khi nào": {
+      "pos": "question word",
+      "frequency": 62,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "dạ / vâng": {
+      "pos": "particle",
+      "frequency": 63,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "hẹn gặp anh": {
+      "pos": "phrase",
+      "frequency": 64,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "đợi một chút": {
+      "pos": "phrase",
+      "frequency": 65,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "thanh toán": {
+      "pos": "verb",
+      "frequency": 66,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "hóa đơn": {
+      "pos": "noun",
+      "frequency": 67,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "tiền thừa": {
+      "pos": "noun",
+      "frequency": 68,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "bao nhiêu": {
+      "pos": "question word",
+      "frequency": 69,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "gửi": {
+      "pos": "verb",
+      "frequency": 70,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "hẹn gặp lại": {
+      "pos": "phrase",
+      "frequency": 71,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "ngon": {
+      "pos": "adjective",
+      "frequency": 72,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "không ngon": {
+      "pos": "phrase",
+      "frequency": 73,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "mặn": {
+      "pos": "adjective",
+      "frequency": 74,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "ngọt": {
+      "pos": "adjective",
+      "frequency": 75,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "nhạt": {
+      "pos": "adjective",
+      "frequency": 76,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "chua": {
+      "pos": "adjective",
+      "frequency": 77,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "cay": {
+      "pos": "adjective",
+      "frequency": 78,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "thơm": {
+      "pos": "adjective",
+      "frequency": 79,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "như thế nào": {
+      "pos": "question word",
+      "frequency": 80,
+      "hasImage": true,
+      "difficulty": 1
+    },
+    "quá": {
+      "pos": "intensifier",
+      "frequency": 81,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "món này": {
+      "pos": "phrase",
+      "frequency": 82,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "món kia": {
+      "pos": "phrase",
+      "frequency": 83,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "gia đình": {
+      "pos": "noun",
+      "frequency": 84,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "bố / ba": {
+      "pos": "noun",
+      "frequency": 85,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "mẹ / má": {
+      "pos": "noun",
+      "frequency": 86,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "con": {
+      "pos": "noun",
+      "frequency": 87,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "anh trai": {
+      "pos": "noun",
+      "frequency": 88,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "chị gái": {
+      "pos": "noun",
+      "frequency": 89,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "em trai": {
+      "pos": "noun",
+      "frequency": 90,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "em gái": {
+      "pos": "noun",
+      "frequency": 91,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "ông": {
+      "pos": "noun",
+      "frequency": 92,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "bà": {
+      "pos": "noun",
+      "frequency": 93,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "chồng": {
+      "pos": "noun",
+      "frequency": 94,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "vợ": {
+      "pos": "noun",
+      "frequency": 95,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "tuổi": {
+      "pos": "noun",
+      "frequency": 96,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "mười một": {
+      "pos": "number",
+      "frequency": 97,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "mười hai": {
+      "pos": "number",
+      "frequency": 98,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "hai mươi": {
+      "pos": "number",
+      "frequency": 99,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "hai mươi mốt": {
+      "pos": "number",
+      "frequency": 100,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "ba mươi": {
+      "pos": "number",
+      "frequency": 101,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "năm mươi": {
+      "pos": "number",
+      "frequency": 102,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "một trăm": {
+      "pos": "number",
+      "frequency": 103,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "bao nhiêu tuổi": {
+      "pos": "phrase",
+      "frequency": 104,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "nghề nghiệp": {
+      "pos": "noun",
+      "frequency": 105,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "làm gì": {
+      "pos": "phrase",
+      "frequency": 106,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "giáo viên": {
+      "pos": "noun",
+      "frequency": 107,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "bác sĩ": {
+      "pos": "noun",
+      "frequency": 108,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "kỹ sư": {
+      "pos": "noun",
+      "frequency": 109,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "sinh viên": {
+      "pos": "noun",
+      "frequency": 110,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "học sinh": {
+      "pos": "noun",
+      "frequency": 111,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "nhân viên": {
+      "pos": "noun",
+      "frequency": 112,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "công ty": {
+      "pos": "noun",
+      "frequency": 113,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "làm việc": {
+      "pos": "verb",
+      "frequency": 114,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "cao": {
+      "pos": "adjective",
+      "frequency": 115,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "thấp": {
+      "pos": "adjective",
+      "frequency": 116,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "đẹp": {
+      "pos": "adjective",
+      "frequency": 117,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "đẹp trai": {
+      "pos": "adjective",
+      "frequency": 118,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "dễ thương": {
+      "pos": "adjective",
+      "frequency": 119,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "tốt bụng": {
+      "pos": "adjective",
+      "frequency": 120,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "thông minh": {
+      "pos": "adjective",
+      "frequency": 121,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "vui vẻ": {
+      "pos": "adjective",
+      "frequency": 122,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "mấy giờ": {
+      "pos": "phrase",
+      "frequency": 123,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "phút": {
+      "pos": "noun",
+      "frequency": 124,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "rưỡi": {
+      "pos": "noun",
+      "frequency": 125,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "kém": {
+      "pos": "preposition",
+      "frequency": 126,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "sáng": {
+      "pos": "noun",
+      "frequency": 127,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "tối": {
+      "pos": "noun",
+      "frequency": 128,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "thứ hai": {
+      "pos": "noun",
+      "frequency": 129,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "thứ ba": {
+      "pos": "noun",
+      "frequency": 130,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "thứ tư": {
+      "pos": "noun",
+      "frequency": 131,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "thứ năm": {
+      "pos": "noun",
+      "frequency": 132,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "thứ sáu": {
+      "pos": "noun",
+      "frequency": 133,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "thứ bảy": {
+      "pos": "noun",
+      "frequency": 134,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "chủ nhật": {
+      "pos": "noun",
+      "frequency": 135,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "tuần": {
+      "pos": "noun",
+      "frequency": 136,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "tháng": {
+      "pos": "noun",
+      "frequency": 137,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "tháng một": {
+      "pos": "noun",
+      "frequency": 138,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "tháng mười hai": {
+      "pos": "noun",
+      "frequency": 139,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "sinh nhật": {
+      "pos": "noun",
+      "frequency": 141,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "ngày bao nhiêu": {
+      "pos": "phrase",
+      "frequency": 142,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "đã": {
+      "pos": "particle",
+      "frequency": 143,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "đang": {
+      "pos": "particle",
+      "frequency": 144,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "sẽ": {
+      "pos": "particle",
+      "frequency": 145,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "rồi": {
+      "pos": "particle",
+      "frequency": 146,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "chưa": {
+      "pos": "particle",
+      "frequency": 147,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "chợ": {
+      "pos": "noun",
+      "frequency": 148,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "trái cây / hoa quả": {
+      "pos": "noun",
+      "frequency": 149,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "rau": {
+      "pos": "noun",
+      "frequency": 150,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "táo": {
+      "pos": "noun",
+      "frequency": 151,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "chuối": {
+      "pos": "noun",
+      "frequency": 152,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "xoài": {
+      "pos": "noun",
+      "frequency": 153,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "cà chua": {
+      "pos": "noun",
+      "frequency": 154,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "kí / cân": {
+      "pos": "measure word",
+      "frequency": 155,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "áo": {
+      "pos": "noun",
+      "frequency": 156,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "quần": {
+      "pos": "noun",
+      "frequency": 157,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "váy": {
+      "pos": "noun",
+      "frequency": 158,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "giày": {
+      "pos": "noun",
+      "frequency": 159,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "mũ / nón": {
+      "pos": "noun",
+      "frequency": 160,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "đỏ": {
+      "pos": "adjective",
+      "frequency": 161,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "xanh": {
+      "pos": "adjective",
+      "frequency": 162,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "vàng": {
+      "pos": "adjective",
+      "frequency": 163,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "đen": {
+      "pos": "adjective",
+      "frequency": 164,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "trắng": {
+      "pos": "adjective",
+      "frequency": 165,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "cỡ / size": {
+      "pos": "noun",
+      "frequency": 166,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "lớn / to": {
+      "pos": "adjective",
+      "frequency": 167,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "nhỏ": {
+      "pos": "adjective",
+      "frequency": 168,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "vừa": {
+      "pos": "adjective",
+      "frequency": 169,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "thử": {
+      "pos": "verb",
+      "frequency": 170,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "chật": {
+      "pos": "adjective",
+      "frequency": 171,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "rộng": {
+      "pos": "adjective",
+      "frequency": 172,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "mắc / đắt": {
+      "pos": "adjective",
+      "frequency": 173,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "rẻ": {
+      "pos": "adjective",
+      "frequency": 174,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "bớt": {
+      "pos": "verb",
+      "frequency": 175,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "giảm giá": {
+      "pos": "verb",
+      "frequency": 176,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "giá": {
+      "pos": "noun",
+      "frequency": 177,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "hơn": {
+      "pos": "particle",
+      "frequency": 178,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "nhất": {
+      "pos": "particle",
+      "frequency": 179,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "bằng": {
+      "pos": "particle",
+      "frequency": 180,
+      "hasImage": true,
+      "difficulty": 2
+    },
+    "xe máy": {
+      "pos": "noun",
+      "frequency": 181,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "xe ô tô / xe hơi": {
+      "pos": "noun",
+      "frequency": 182,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "xe buýt": {
+      "pos": "noun",
+      "frequency": 183,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "xe đạp": {
+      "pos": "noun",
+      "frequency": 184,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "taxi": {
+      "pos": "noun",
+      "frequency": 185,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "grab": {
+      "pos": "noun",
+      "frequency": 186,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "máy bay": {
+      "pos": "noun",
+      "frequency": 187,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "đi đến": {
+      "pos": "verb",
+      "frequency": 188,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "địa chỉ": {
+      "pos": "noun",
+      "frequency": 189,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "gần": {
+      "pos": "adjective",
+      "frequency": 190,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "xa": {
+      "pos": "adjective",
+      "frequency": 191,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "đặt xe": {
+      "pos": "verb phrase",
+      "frequency": 192,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "trái": {
+      "pos": "noun",
+      "frequency": 193,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "phải": {
+      "pos": "noun",
+      "frequency": 194,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "thẳng": {
+      "pos": "adverb",
+      "frequency": 195,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "rẽ / quẹo": {
+      "pos": "verb",
+      "frequency": 196,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "ngã tư": {
+      "pos": "noun",
+      "frequency": 197,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "đèn đỏ": {
+      "pos": "noun",
+      "frequency": 198,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "ngân hàng": {
+      "pos": "noun",
+      "frequency": 199,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "bưu điện": {
+      "pos": "noun",
+      "frequency": 200,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "bệnh viện": {
+      "pos": "noun",
+      "frequency": 201,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "trường học": {
+      "pos": "noun",
+      "frequency": 202,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "siêu thị": {
+      "pos": "noun",
+      "frequency": 203,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "công viên": {
+      "pos": "noun",
+      "frequency": 204,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "khách sạn": {
+      "pos": "noun",
+      "frequency": 205,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "phòng": {
+      "pos": "noun",
+      "frequency": 206,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "đặt phòng": {
+      "pos": "verb phrase",
+      "frequency": 207,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "hộ chiếu": {
+      "pos": "noun",
+      "frequency": 208,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "nhận phòng": {
+      "pos": "verb phrase",
+      "frequency": 209,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "trả phòng": {
+      "pos": "verb phrase",
+      "frequency": 210,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "chìa khóa": {
+      "pos": "noun",
+      "frequency": 211,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "wifi / mạng": {
+      "pos": "noun",
+      "frequency": 212,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "điều hòa / máy lạnh": {
+      "pos": "noun",
+      "frequency": 213,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "ăn sáng": {
+      "pos": "noun",
+      "frequency": 214,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "bể bơi / hồ bơi": {
+      "pos": "noun",
+      "frequency": 215,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "giường": {
+      "pos": "noun",
+      "frequency": 216,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "phòng tắm": {
+      "pos": "noun",
+      "frequency": 217,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "hỏng / hư": {
+      "pos": "adjective",
+      "frequency": 218,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "sửa": {
+      "pos": "verb",
+      "frequency": 219,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "giúp": {
+      "pos": "verb",
+      "frequency": 220,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "cần": {
+      "pos": "verb",
+      "frequency": 221,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "có thể": {
+      "pos": "modal verb",
+      "frequency": 222,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "nếu": {
+      "pos": "conjunction",
+      "frequency": 224,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "thì": {
+      "pos": "conjunction",
+      "frequency": 225,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "thời tiết": {
+      "pos": "noun",
+      "frequency": 226,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "mưa": {
+      "pos": "noun/verb",
+      "frequency": 227,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "nắng": {
+      "pos": "adjective",
+      "frequency": 228,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "lạnh": {
+      "pos": "adjective",
+      "frequency": 229,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "gió": {
+      "pos": "noun",
+      "frequency": 230,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "mùa": {
+      "pos": "noun",
+      "frequency": 231,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "mùa xuân": {
+      "pos": "noun",
+      "frequency": 232,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "mùa hè": {
+      "pos": "noun",
+      "frequency": 233,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "mùa thu": {
+      "pos": "noun",
+      "frequency": 234,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "mùa đông": {
+      "pos": "noun",
+      "frequency": 235,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "thức dậy": {
+      "pos": "verb",
+      "frequency": 236,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "ngủ": {
+      "pos": "verb",
+      "frequency": 237,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "đánh răng": {
+      "pos": "verb phrase",
+      "frequency": 238,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "tắm": {
+      "pos": "verb",
+      "frequency": 239,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "đi học": {
+      "pos": "verb phrase",
+      "frequency": 240,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "đi làm": {
+      "pos": "verb phrase",
+      "frequency": 241,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "về nhà": {
+      "pos": "verb phrase",
+      "frequency": 242,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "thích": {
+      "pos": "verb",
+      "frequency": 243,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "sở thích": {
+      "pos": "noun",
+      "frequency": 244,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "đọc sách": {
+      "pos": "verb phrase",
+      "frequency": 245,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "xem phim": {
+      "pos": "verb phrase",
+      "frequency": 246,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "nghe nhạc": {
+      "pos": "verb phrase",
+      "frequency": 247,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "chơi thể thao": {
+      "pos": "verb phrase",
+      "frequency": 248,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "thường": {
+      "pos": "adverb",
+      "frequency": 249,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "luôn luôn": {
+      "pos": "adverb",
+      "frequency": 250,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "không bao giờ": {
+      "pos": "adverb",
+      "frequency": 251,
+      "hasImage": true,
+      "difficulty": 3
+    },
+    "đôi khi": {
+      "pos": "adverb",
+      "frequency": 252,
+      "hasImage": true,
+      "difficulty": 3
+    }
+  },
+  "sentences": {
+    "xin chào.": {
+      "accepted": [
+        "Hello.",
+        "Hi."
+      ],
+      "tokens": 2,
+      "difficulty": 1
+    },
+    "tôi tên là ___.": {
+      "accepted": [
+        "My name is ___.",
+        "I am ___.",
+        "I'm ___."
+      ],
+      "tags": [
+        "GT002"
+      ],
+      "note": "tên là = 'is named'",
+      "tokens": 4,
+      "difficulty": 1
+    },
+    "rất vui được gặp bạn.": {
+      "accepted": [
+        "Nice to meet you.",
+        "Pleased to meet you.",
+        "It's nice to meet you."
+      ],
+      "tags": [
+        "GT031"
+      ],
+      "tokens": 5,
+      "difficulty": 1
+    },
+    "tôi là người việt nam.": {
+      "accepted": [
+        "I am Vietnamese.",
+        "I'm Vietnamese."
+      ],
+      "tags": [
+        "GT002"
+      ],
+      "note": "người + country = nationality",
+      "tokens": 5,
+      "difficulty": 1
+    },
+    "tôi là người úc.": {
+      "accepted": [
+        "I am Australian.",
+        "I'm Australian."
+      ],
+      "tags": [
+        "GT002"
+      ],
+      "tokens": 4,
+      "difficulty": 1
+    },
+    "tôi là người trung quốc.": {
+      "accepted": [
+        "I am Chinese.",
+        "I'm Chinese."
+      ],
+      "tags": [
+        "GT002"
+      ],
+      "tokens": 5,
+      "difficulty": 1
+    },
+    "tôi là người mỹ.": {
+      "accepted": [
+        "I am American.",
+        "I'm American."
+      ],
+      "tags": [
+        "GT002"
+      ],
+      "tokens": 4,
+      "difficulty": 1
+    },
+    "tôi là người pháp.": {
+      "accepted": [
+        "I am French.",
+        "I'm French."
+      ],
+      "tags": [
+        "GT002"
+      ],
+      "tokens": 4,
+      "difficulty": 1
+    },
+    "bạn khỏe không?": {
+      "accepted": [
+        "How are you? (Are you well?)",
+        "How are you?",
+        "Are you well?",
+        "How are you doing?"
+      ],
+      "tags": [
+        "GT005"
+      ],
+      "note": "Yes/no question with 'không'",
+      "tokens": 3,
+      "difficulty": 1
+    },
+    "tôi khỏe.": {
+      "accepted": [
+        "I am well.",
+        "I'm well.",
+        "I'm fine.",
+        "I am fine."
+      ],
+      "tokens": 2,
+      "difficulty": 1
+    },
+    "cho xin thực đơn.": {
+      "accepted": [
+        "Please give me the menu.",
+        "Can I have the menu?",
+        "The menu, please."
+      ],
+      "tags": [
+        "GT020"
+      ],
+      "note": "Polite request with 'cho xin'",
+      "tokens": 4,
+      "difficulty": 1
+    },
+    "tôi uống cà phê.": {
+      "accepted": [
+        "I drink coffee.",
+        "I'll have coffee.",
+        "I'm drinking coffee."
+      ],
+      "note": "SVO order, no conjugation",
+      "tokens": 4,
+      "difficulty": 1
+    },
+    "tôi uống nước.": {
+      "accepted": [
+        "I drink water.",
+        "I'll have water."
+      ],
+      "tokens": 3,
+      "difficulty": 1
+    },
+    "tôi ăn cơm.": {
+      "accepted": [
+        "I eat rice.",
+        "I'll have rice.",
+        "I'm eating rice."
+      ],
+      "tokens": 3,
+      "difficulty": 1
+    },
+    "tôi ăn bánh mì.": {
+      "accepted": [
+        "I eat bread.",
+        "I'll have bread."
+      ],
+      "tokens": 4,
+      "difficulty": 1
+    },
+    "tôi muốn gọi món.": {
+      "accepted": [
+        "I want to order.",
+        "I'd like to order."
+      ],
+      "tags": [
+        "GT022"
+      ],
+      "tokens": 4,
+      "difficulty": 1
+    },
+    "bạn ăn gì?": {
+      "accepted": [
+        "What do you eat? / What will you have?",
+        "What do you eat?",
+        "What will you have?",
+        "What would you like to eat?"
+      ],
+      "tags": [
+        "GT006"
+      ],
+      "note": "Question word 'gì' at end",
+      "tokens": 3,
+      "difficulty": 1
+    },
+    "bạn uống gì?": {
+      "accepted": [
+        "What do you drink?",
+        "What would you like to drink?"
+      ],
+      "tags": [
+        "GT006"
+      ],
+      "tokens": 3,
+      "difficulty": 1
+    },
+    "cho tôi 2 phần cơm.": {
+      "accepted": [
+        "Give me 2 portions of rice.",
+        "I'll have 2 portions of rice.",
+        "Two portions of rice, please."
+      ],
+      "tags": [
+        "GT021",
+        "GT023",
+        "GT024"
+      ],
+      "note": "Number + measure word + noun",
+      "tokens": 5,
+      "difficulty": 1
+    },
+    "cho tôi 1 ly cà phê nóng.": {
+      "accepted": [
+        "Give me 1 glass of hot coffee.",
+        "One hot coffee, please.",
+        "A hot coffee, please."
+      ],
+      "tags": [
+        "GT021",
+        "GT023",
+        "GT024"
+      ],
+      "tokens": 7,
+      "difficulty": 1
+    },
+    "tôi đặt bàn 2 người.": {
+      "accepted": [
+        "I'll book a table for 2.",
+        "I want to book a table for two.",
+        "A table for 2, please."
+      ],
+      "tags": [
+        "GT023",
+        "GT024"
+      ],
+      "tokens": 5,
+      "difficulty": 1
+    },
+    "buổi trưa ngày mai, 11 giờ.": {
+      "tags": [
+        "GT035",
+        "GT023",
+        "GT024"
+      ],
+      "note": "Time of day + date + hour",
+      "tokens": 6,
+      "difficulty": 1
+    },
+    "anh đặt bàn khi nào ạ?": {
+      "tags": [
+        "GT008"
+      ],
+      "note": "Question word 'khi nào'",
+      "tokens": 6,
+      "difficulty": 1
+    },
+    "tôi muốn thanh toán.": {
+      "accepted": [
+        "I want to pay.",
+        "I'd like to pay.",
+        "Can I have the bill?"
+      ],
+      "tags": [
+        "GT022"
+      ],
+      "tokens": 4,
+      "difficulty": 1
+    },
+    "bao nhiêu tiền?": {
+      "accepted": [
+        "How much money?",
+        "How much?",
+        "How much is it?"
+      ],
+      "tags": [
+        "GT010"
+      ],
+      "note": "Question word 'bao nhiêu'",
+      "tokens": 3,
+      "difficulty": 1
+    },
+    "hóa đơn là 125.000 vnd.": {
+      "tags": [
+        "GT002"
+      ],
+      "tokens": 5,
+      "difficulty": 1
+    },
+    "tôi gửi 150.000 vnd.": {
+      "tokens": 4,
+      "difficulty": 1
+    },
+    "món ăn như thế nào?": {
+      "accepted": [
+        "How is the dish?",
+        "How's the food?"
+      ],
+      "tags": [
+        "GT009"
+      ],
+      "note": "Question word 'như thế nào'",
+      "tokens": 5,
+      "difficulty": 1
+    },
+    "món này cay.": {
+      "accepted": [
+        "This dish is spicy.",
+        "This is spicy."
+      ],
+      "tags": [
+        "GT042"
+      ],
+      "tokens": 3,
+      "difficulty": 1
+    },
+    "món kia ngọt không?": {
+      "tags": [
+        "GT005",
+        "GT042"
+      ],
+      "tokens": 4,
+      "difficulty": 1
+    },
+    "thơm quá!": {
+      "accepted": [
+        "So fragrant!",
+        "It's so fragrant!",
+        "That smells great!"
+      ],
+      "tags": [
+        "GT032"
+      ],
+      "note": "Adjective + quá = exclamation",
+      "tokens": 2,
+      "difficulty": 1
+    },
+    "cay quá!": {
+      "accepted": [
+        "So spicy!",
+        "It's so spicy!",
+        "Very spicy!"
+      ],
+      "tags": [
+        "GT032"
+      ],
+      "tokens": 2,
+      "difficulty": 1
+    },
+    "ngon quá!": {
+      "accepted": [
+        "So delicious!",
+        "It's so delicious!",
+        "Very delicious!"
+      ],
+      "tags": [
+        "GT032"
+      ],
+      "tokens": 2,
+      "difficulty": 1
+    },
+    "nóng quá!": {
+      "tags": [
+        "GT032"
+      ],
+      "tokens": 2,
+      "difficulty": 1
+    },
+    "gia đình tôi có bốn người.": {
+      "accepted": [
+        "My family has four people.",
+        "There are four people in my family."
+      ],
+      "tags": [
+        "GT023",
+        "GT024"
+      ],
+      "note": "Số lượng người (count people)",
+      "tokens": 6,
+      "difficulty": 2
+    },
+    "đây là bố tôi.": {
+      "accepted": [
+        "This is my father.",
+        "This is my dad."
+      ],
+      "tags": [
+        "GT043",
+        "GT002"
+      ],
+      "note": "Đây là = 'This is'",
+      "tokens": 4,
+      "difficulty": 2
+    },
+    "tôi có một anh trai và một em gái.": {
+      "accepted": [
+        "I have one older brother and one younger sister.",
+        "I have an older brother and a younger sister."
+      ],
+      "tags": [
+        "GT044"
+      ],
+      "tokens": 9,
+      "difficulty": 2
+    },
+    "bà tôi năm nay 70 tuổi.": {
+      "tags": [
+        "GT023",
+        "GT024"
+      ],
+      "tokens": 6,
+      "difficulty": 2
+    },
+    "bạn bao nhiêu tuổi?": {
+      "accepted": [
+        "How old are you?",
+        "What's your age?"
+      ],
+      "tags": [
+        "GT013"
+      ],
+      "note": "bao nhiêu tuổi question",
+      "tokens": 4,
+      "difficulty": 2
+    },
+    "tôi 25 tuổi.": {
+      "accepted": [
+        "I am 25 years old.",
+        "I'm 25.",
+        "I'm 25 years old.",
+        "I am 25."
+      ],
+      "tags": [
+        "GT023",
+        "GT024"
+      ],
+      "note": "Noun + số + tuổi",
+      "tokens": 3,
+      "difficulty": 2
+    },
+    "em tôi 15 tuổi.": {
+      "tags": [
+        "GT023",
+        "GT024"
+      ],
+      "tokens": 4,
+      "difficulty": 2
+    },
+    "bạn làm nghề gì?": {
+      "accepted": [
+        "What is your job?",
+        "What do you do?",
+        "What's your occupation?"
+      ],
+      "tags": [
+        "GT006"
+      ],
+      "note": "làm nghề gì",
+      "tokens": 4,
+      "difficulty": 2
+    },
+    "tôi là giáo viên.": {
+      "accepted": [
+        "I am a teacher.",
+        "I'm a teacher."
+      ],
+      "tags": [
+        "GT002"
+      ],
+      "note": "Tôi là + nghề",
+      "tokens": 4,
+      "difficulty": 2
+    },
+    "bố tôi làm bác sĩ.": {
+      "accepted": [
+        "My father is a doctor.",
+        "My dad is a doctor."
+      ],
+      "note": "làm + nghề",
+      "tokens": 5,
+      "difficulty": 2
+    },
+    "tôi làm việc ở công ty abc.": {
+      "accepted": [
+        "I work at ABC company.",
+        "I work for ABC."
+      ],
+      "tags": [
+        "GT038"
+      ],
+      "note": "ở = at",
+      "tokens": 7,
+      "difficulty": 2
+    },
+    "chị ấy rất đẹp.": {
+      "accepted": [
+        "She is very beautiful.",
+        "She's very beautiful.",
+        "She's very pretty."
+      ],
+      "tags": [
+        "GT031"
+      ],
+      "note": "rất = very",
+      "tokens": 4,
+      "difficulty": 2
+    },
+    "anh trai tôi cao và thông minh.": {
+      "accepted": [
+        "My older brother is tall and smart.",
+        "My big brother is tall and smart."
+      ],
+      "tags": [
+        "GT044"
+      ],
+      "note": "và = and",
+      "tokens": 7,
+      "difficulty": 2
+    },
+    "bây giờ là mấy giờ?": {
+      "accepted": [
+        "What time is it now?",
+        "What time is it?",
+        "What's the time?"
+      ],
+      "tags": [
+        "GT011",
+        "GT002"
+      ],
+      "tokens": 5,
+      "difficulty": 2
+    },
+    "bây giờ là 7 giờ rưỡi.": {
+      "accepted": [
+        "It's 7:30 now.",
+        "It's 7:30.",
+        "It's half past seven."
+      ],
+      "tags": [
+        "GT002",
+        "GT023",
+        "GT024"
+      ],
+      "note": "rưỡi = half past",
+      "tokens": 6,
+      "difficulty": 2
+    },
+    "8 giờ kém 10.": {
+      "accepted": [
+        "Ten to eight (7:50).",
+        "Ten to eight.",
+        "It's 7:50.",
+        "It's ten to eight."
+      ],
+      "tags": [
+        "GT023",
+        "GT024"
+      ],
+      "note": "giờ kém minute",
+      "tokens": 4,
+      "difficulty": 2
+    },
+    "10 giờ sáng.": {
+      "accepted": [
+        "10 AM.",
+        "10 in the morning.",
+        "Ten in the morning."
+      ],
+      "tags": [
+        "GT023",
+        "GT024"
+      ],
+      "note": "giờ + sáng/tối",
+      "tokens": 3,
+      "difficulty": 2
+    },
+    "hôm nay là thứ mấy?": {
+      "accepted": [
+        "What day is today?",
+        "What day of the week is it?"
+      ],
+      "tags": [
+        "GT012",
+        "GT002"
+      ],
+      "note": "thứ mấy question",
+      "tokens": 5,
+      "difficulty": 2
+    },
+    "hôm nay là thứ hai.": {
+      "accepted": [
+        "Today is Monday.",
+        "It's Monday today.",
+        "It's Monday."
+      ],
+      "tags": [
+        "GT002"
+      ],
+      "tokens": 5,
+      "difficulty": 2
+    },
+    "thứ bảy tôi không đi làm.": {
+      "accepted": [
+        "On Saturday I don't go to work.",
+        "I don't work on Saturdays.",
+        "Saturdays I don't work."
+      ],
+      "tags": [
+        "GT004"
+      ],
+      "note": "không + verb = negation",
+      "tokens": 6,
+      "difficulty": 2
+    },
+    "hôm nay là ngày bao nhiêu?": {
+      "accepted": [
+        "What's today's date?",
+        "What date is it today?"
+      ],
+      "tags": [
+        "GT010",
+        "GT002"
+      ],
+      "tokens": 6,
+      "difficulty": 2
+    },
+    "hôm nay là ngày 5 tháng 3.": {
+      "accepted": [
+        "Today is March 5.",
+        "It's March 5th today.",
+        "Today's the 5th of March."
+      ],
+      "tags": [
+        "GT036",
+        "GT002"
+      ],
+      "note": "ngày + số + tháng + số",
+      "tokens": 7,
+      "difficulty": 2
+    },
+    "sinh nhật tôi là ngày 20 tháng 10.": {
+      "accepted": [
+        "My birthday is October 20.",
+        "My birthday is October 20th.",
+        "My birthday is on the 20th of October."
+      ],
+      "tags": [
+        "GT036",
+        "GT002"
+      ],
+      "tokens": 8,
+      "difficulty": 2
+    },
+    "tôi đang ăn cơm.": {
+      "accepted": [
+        "I am eating rice.",
+        "I'm eating rice."
+      ],
+      "tags": [
+        "GT016"
+      ],
+      "note": "đang + verb = progressive",
+      "tokens": 4,
+      "difficulty": 2
+    },
+    "tôi đã ăn cơm rồi.": {
+      "accepted": [
+        "I already ate.",
+        "I've already eaten.",
+        "I have eaten already."
+      ],
+      "tags": [
+        "GT015",
+        "GT018"
+      ],
+      "note": "đã...rồi = past completed",
+      "tokens": 5,
+      "difficulty": 2
+    },
+    "ngày mai tôi sẽ đi làm.": {
+      "accepted": [
+        "Tomorrow I will go to work.",
+        "I'll go to work tomorrow.",
+        "Tomorrow I'll work."
+      ],
+      "tags": [
+        "GT017"
+      ],
+      "note": "sẽ + verb = future",
+      "tokens": 6,
+      "difficulty": 2
+    },
+    "bạn đã ăn cơm chưa?": {
+      "accepted": [
+        "Have you eaten yet?",
+        "Did you eat yet?",
+        "Have you had food yet?"
+      ],
+      "tags": [
+        "GT015",
+        "GT019"
+      ],
+      "note": "đã...chưa = have you...yet",
+      "tokens": 5,
+      "difficulty": 2
+    },
+    "tôi chưa ăn.": {
+      "accepted": [
+        "I haven't eaten yet.",
+        "I haven't eaten."
+      ],
+      "tags": [
+        "GT019"
+      ],
+      "note": "chưa = not yet",
+      "tokens": 3,
+      "difficulty": 2
+    },
+    "táo bao nhiêu một kí?": {
+      "accepted": [
+        "How much per kilo for apples?",
+        "How much is a kilo of apples?",
+        "How much are apples per kilo?"
+      ],
+      "tags": [
+        "GT010",
+        "GT023",
+        "GT024"
+      ],
+      "note": "bao nhiêu một + measure",
+      "tokens": 5,
+      "difficulty": 2
+    },
+    "cho tôi hai kí cam.": {
+      "accepted": [
+        "Give me 2 kilos of oranges.",
+        "I'll have 2 kilos of oranges.",
+        "Two kilos of oranges, please."
+      ],
+      "tags": [
+        "GT021",
+        "GT023",
+        "GT024"
+      ],
+      "tokens": 5,
+      "difficulty": 2
+    },
+    "tôi muốn mua một cái áo.": {
+      "accepted": [
+        "I want to buy a shirt.",
+        "I'd like to buy a shirt."
+      ],
+      "tags": [
+        "GT022",
+        "GT023",
+        "GT024"
+      ],
+      "note": "cái = measure word for objects",
+      "tokens": 6,
+      "difficulty": 2
+    },
+    "áo này màu gì?": {
+      "accepted": [
+        "What color is this shirt?",
+        "What colour is this shirt?"
+      ],
+      "tags": [
+        "GT006",
+        "GT014",
+        "GT042"
+      ],
+      "note": "màu gì = what color",
+      "tokens": 4,
+      "difficulty": 2
+    },
+    "tôi thích áo màu đỏ.": {
+      "accepted": [
+        "I like the red shirt.",
+        "I like red shirts."
+      ],
+      "note": "màu + color",
+      "tokens": 5,
+      "difficulty": 2
+    },
+    "tôi muốn thử cái này.": {
+      "accepted": [
+        "I want to try this one.",
+        "I'd like to try this one.",
+        "Can I try this?"
+      ],
+      "tags": [
+        "GT022",
+        "GT042"
+      ],
+      "tokens": 5,
+      "difficulty": 2
+    },
+    "cái này hơi chật.": {
+      "accepted": [
+        "This one is a bit tight.",
+        "It's a little tight.",
+        "This is slightly tight."
+      ],
+      "tags": [
+        "GT042"
+      ],
+      "note": "hơi = a bit",
+      "tokens": 4,
+      "difficulty": 2
+    },
+    "có cỡ lớn hơn không?": {
+      "accepted": [
+        "Do you have a bigger size?",
+        "Is there a bigger size?",
+        "Have you got a larger size?"
+      ],
+      "tags": [
+        "GT005",
+        "GT025"
+      ],
+      "note": "hơn = more than (comparative)",
+      "tokens": 5,
+      "difficulty": 2
+    },
+    "mắc quá! bớt được không?": {
+      "accepted": [
+        "Too expensive! Can you reduce?",
+        "Too expensive! Can you lower the price?",
+        "That's too expensive. Any discount?"
+      ],
+      "tags": [
+        "GT005",
+        "GT032"
+      ],
+      "tokens": 5,
+      "difficulty": 2
+    },
+    "giảm giá 20% được không?": {
+      "accepted": [
+        "Can I get 20% off?",
+        "Can you give me 20% off?",
+        "Is 20% discount possible?"
+      ],
+      "tags": [
+        "GT005"
+      ],
+      "tokens": 5,
+      "difficulty": 2
+    },
+    "cái này đẹp hơn cái kia.": {
+      "accepted": [
+        "This one is prettier than that one.",
+        "This is nicer than that one.",
+        "This is more beautiful than that."
+      ],
+      "tags": [
+        "GT025",
+        "GT042"
+      ],
+      "note": "A + adj + hơn + B",
+      "tokens": 6,
+      "difficulty": 2
+    },
+    "đây là cái đẹp nhất.": {
+      "accepted": [
+        "This is the prettiest one.",
+        "This is the most beautiful.",
+        "This is the nicest one."
+      ],
+      "tags": [
+        "GT026",
+        "GT043",
+        "GT002"
+      ],
+      "note": "adj + nhất = most",
+      "tokens": 5,
+      "difficulty": 2
+    },
+    "tôi đi xe máy đến công ty.": {
+      "accepted": [
+        "I ride a motorbike to the office.",
+        "I go to the office by motorbike.",
+        "I take my motorbike to work."
+      ],
+      "note": "đi + vehicle = travel by",
+      "tokens": 7,
+      "difficulty": 3
+    },
+    "bạn đi bằng gì?": {
+      "accepted": [
+        "What are you going by?",
+        "How are you getting there?",
+        "What's your transport?"
+      ],
+      "tags": [
+        "GT006",
+        "GT040"
+      ],
+      "note": "bằng + vehicle",
+      "tokens": 4,
+      "difficulty": 3
+    },
+    "tôi muốn đặt grab.": {
+      "accepted": [
+        "I want to book a Grab.",
+        "I'd like to book a Grab.",
+        "I'll book a Grab."
+      ],
+      "tags": [
+        "GT022"
+      ],
+      "tokens": 4,
+      "difficulty": 3
+    },
+    "đi đến địa chỉ này.": {
+      "accepted": [
+        "Go to this address.",
+        "Take me to this address.",
+        "Please go to this address."
+      ],
+      "tags": [
+        "GT042"
+      ],
+      "tokens": 5,
+      "difficulty": 3
+    },
+    "bao xa từ đây?": {
+      "accepted": [
+        "How far from here?",
+        "How far is it from here?",
+        "Is it far?"
+      ],
+      "tokens": 4,
+      "difficulty": 3
+    },
+    "rẽ trái ở ngã tư.": {
+      "accepted": [
+        "Turn left at the intersection.",
+        "At the intersection, turn left.",
+        "Make a left at the intersection."
+      ],
+      "tags": [
+        "GT038"
+      ],
+      "tokens": 5,
+      "difficulty": 3
+    },
+    "đi thẳng 100 mét.": {
+      "accepted": [
+        "Go straight 100 meters.",
+        "Go straight for 100 metres.",
+        "Keep going straight 100 meters."
+      ],
+      "tokens": 4,
+      "difficulty": 3
+    },
+    "ngân hàng ở bên phải.": {
+      "accepted": [
+        "The bank is on the right.",
+        "The bank is on the right side.",
+        "You'll find the bank on the right."
+      ],
+      "tags": [
+        "GT038",
+        "GT039"
+      ],
+      "note": "bên + direction",
+      "tokens": 5,
+      "difficulty": 3
+    },
+    "bệnh viện ở đâu?": {
+      "accepted": [
+        "Where is the hospital?",
+        "Where's the hospital?"
+      ],
+      "tags": [
+        "GT007",
+        "GT038"
+      ],
+      "note": "ở đâu = where",
+      "tokens": 4,
+      "difficulty": 3
+    },
+    "siêu thị gần đây.": {
+      "accepted": [
+        "The supermarket is nearby.",
+        "The supermarket is close by.",
+        "There's a supermarket nearby."
+      ],
+      "tokens": 4,
+      "difficulty": 3
+    },
+    "tôi đã đặt phòng.": {
+      "accepted": [
+        "I have booked a room.",
+        "I've booked a room.",
+        "I booked a room already."
+      ],
+      "tags": [
+        "GT015"
+      ],
+      "note": "đã + verb = past",
+      "tokens": 4,
+      "difficulty": 3
+    },
+    "cho xin hộ chiếu.": {
+      "accepted": [
+        "Please give me your passport.",
+        "Your passport, please.",
+        "Can I have your passport?"
+      ],
+      "tags": [
+        "GT020"
+      ],
+      "note": "polite request",
+      "tokens": 4,
+      "difficulty": 3
+    },
+    "tôi muốn nhận phòng.": {
+      "accepted": [
+        "I want to check in.",
+        "I'd like to check in.",
+        "I'll check in."
+      ],
+      "tags": [
+        "GT022"
+      ],
+      "tokens": 4,
+      "difficulty": 3
+    },
+    "phòng có wifi không?": {
+      "accepted": [
+        "Does the room have wifi?",
+        "Is there wifi in the room?",
+        "Does the room have wi-fi?"
+      ],
+      "tags": [
+        "GT005"
+      ],
+      "note": "có...không = yes/no",
+      "tokens": 4,
+      "difficulty": 3
+    },
+    "mật khẩu wifi là gì?": {
+      "accepted": [
+        "What's the wifi password?",
+        "Wifi password, please?",
+        "What's the wi-fi password?"
+      ],
+      "tags": [
+        "GT006",
+        "GT002"
+      ],
+      "tokens": 5,
+      "difficulty": 3
+    },
+    "ăn sáng lúc mấy giờ?": {
+      "accepted": [
+        "What time is breakfast?",
+        "When is breakfast?",
+        "Breakfast time?"
+      ],
+      "tags": [
+        "GT011",
+        "GT034"
+      ],
+      "note": "lúc mấy giờ = at what time",
+      "tokens": 5,
+      "difficulty": 3
+    },
+    "điều hòa bị hỏng.": {
+      "accepted": [
+        "The AC is broken.",
+        "The air conditioning is broken.",
+        "The air conditioner doesn't work."
+      ],
+      "tags": [
+        "GT037"
+      ],
+      "note": "bị = passive/negative",
+      "tokens": 4,
+      "difficulty": 3
+    },
+    "tôi cần giúp đỡ.": {
+      "accepted": [
+        "I need help.",
+        "I'd like some help.",
+        "Can someone help me?"
+      ],
+      "tokens": 4,
+      "difficulty": 3
+    },
+    "bạn có thể sửa được không?": {
+      "accepted": [
+        "Can you fix it?",
+        "Could you fix it?",
+        "Are you able to repair it?"
+      ],
+      "tags": [
+        "GT005",
+        "GT028"
+      ],
+      "note": "có thể...được không",
+      "tokens": 6,
+      "difficulty": 3
+    },
+    "nếu trời mưa thì tôi ở nhà.": {
+      "accepted": [
+        "If it rains, I'll stay home.",
+        "If it rains, I will stay at home.",
+        "I'll stay home if it rains."
+      ],
+      "tags": [
+        "GT030",
+        "GT038"
+      ],
+      "note": "nếu...thì = if...then",
+      "tokens": 7,
+      "difficulty": 3
+    },
+    "hôm nay thời tiết thế nào?": {
+      "accepted": [
+        "How is the weather today?",
+        "How's the weather today?",
+        "What's the weather like today?"
+      ],
+      "tokens": 6,
+      "difficulty": 3
+    },
+    "hôm nay trời nắng.": {
+      "accepted": [
+        "Today is sunny.",
+        "It's sunny today.",
+        "It is sunny today."
+      ],
+      "note": "trời + weather",
+      "tokens": 4,
+      "difficulty": 3
+    },
+    "ngày mai trời sẽ mưa.": {
+      "accepted": [
+        "Tomorrow it will rain.",
+        "It will rain tomorrow.",
+        "Tomorrow's going to rain."
+      ],
+      "tags": [
+        "GT017"
+      ],
+      "note": "sẽ + verb",
+      "tokens": 5,
+      "difficulty": 3
+    },
+    "mùa hè ở việt nam rất nóng.": {
+      "accepted": [
+        "Summer in Vietnam is very hot.",
+        "It's very hot in summer in Vietnam.",
+        "Vietnamese summers are very hot."
+      ],
+      "tags": [
+        "GT031",
+        "GT038"
+      ],
+      "tokens": 7,
+      "difficulty": 3
+    },
+    "tôi thức dậy lúc 6 giờ sáng.": {
+      "accepted": [
+        "I wake up at 6 AM.",
+        "I get up at 6 in the morning.",
+        "I wake up at 6 in the morning."
+      ],
+      "tags": [
+        "GT034",
+        "GT023",
+        "GT024"
+      ],
+      "note": "lúc + time",
+      "tokens": 7,
+      "difficulty": 3
+    },
+    "tôi đi làm lúc 8 giờ.": {
+      "accepted": [
+        "I go to work at 8.",
+        "I leave for work at 8.",
+        "I start work at 8."
+      ],
+      "tags": [
+        "GT034",
+        "GT023",
+        "GT024"
+      ],
+      "tokens": 6,
+      "difficulty": 3
+    },
+    "tôi về nhà lúc 6 giờ tối.": {
+      "accepted": [
+        "I go home at 6 PM.",
+        "I go home at 6 in the evening.",
+        "I head home at 6."
+      ],
+      "tags": [
+        "GT034",
+        "GT023",
+        "GT024"
+      ],
+      "tokens": 7,
+      "difficulty": 3
+    },
+    "tôi thích đọc sách.": {
+      "accepted": [
+        "I like to read books.",
+        "I like reading books.",
+        "I enjoy reading."
+      ],
+      "note": "thích + verb",
+      "tokens": 4,
+      "difficulty": 3
+    },
+    "tôi thường xem phim vào cuối tuần.": {
+      "accepted": [
+        "I often watch movies on weekends.",
+        "I usually watch movies on the weekend.",
+        "On weekends I often watch films."
+      ],
+      "note": "thường + verb",
+      "tokens": 7,
+      "difficulty": 3
+    },
+    "tôi không bao giờ uống cà phê tối.": {
+      "accepted": [
+        "I never drink coffee at night.",
+        "I never have coffee at night.",
+        "At night, I never drink coffee."
+      ],
+      "tags": [
+        "GT004"
+      ],
+      "note": "không bao giờ = never",
+      "tokens": 8,
+      "difficulty": 3
+    }
+  }
+}

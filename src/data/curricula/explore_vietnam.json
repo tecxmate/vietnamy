@@ -1,0 +1,5997 @@
+{
+  "meta": {
+    "mode": "explore_vietnam",
+    "version": "1.0.0",
+    "generated": "2026-04-20T15:00:20.755Z",
+    "source": "vietnamese_curriculum_source.xlsx",
+    "stats": {
+      "units": 9,
+      "lessons": 32,
+      "vocabulary": 252,
+      "sentences": 104,
+      "conversations": 25,
+      "grammarTags": 44
+    }
+  },
+  "units": [
+    {
+      "id": "unit_1_introduce_yourself",
+      "order": 1,
+      "title": "Introduce Yourself",
+      "description": "Basic greetings, names, nationalities, and simple caring questions."
+    },
+    {
+      "id": "unit_2_numbers_well_being",
+      "order": 2,
+      "title": "Numbers & Well-being",
+      "description": "Numbers 0-10 and asking how someone is."
+    },
+    {
+      "id": "unit_3_restaurant",
+      "order": 3,
+      "title": "Restaurant",
+      "description": "Ordering food, booking tables, paying, and reviewing dishes."
+    },
+    {
+      "id": "unit_4_family_people",
+      "order": 4,
+      "title": "Family & People",
+      "description": "Family members, ages, jobs, describing people. Introduction to past tense (đã)."
+    },
+    {
+      "id": "unit_5_time_dates",
+      "order": 5,
+      "title": "Time & Dates",
+      "description": "Telling time, days of week, months, expressing frequency. Future (sẽ) and progressive (đang)."
+    },
+    {
+      "id": "unit_6_shopping",
+      "order": 6,
+      "title": "Shopping",
+      "description": "Clothes, colors, sizes, prices, bargaining. Comparatives (hơn, nhất)."
+    },
+    {
+      "id": "unit_7_transportation_directions",
+      "order": 7,
+      "title": "Transportation & Directions",
+      "description": "Grab, taxi, motorbike, directions (left, right, straight). 'Can' and 'must'."
+    },
+    {
+      "id": "unit_8_hotel_accommodation",
+      "order": 8,
+      "title": "Hotel & Accommodation",
+      "description": "Check-in, room types, amenities, problems. 'If' conditionals (nếu...thì)."
+    },
+    {
+      "id": "unit_9_weather_daily_life",
+      "order": 9,
+      "title": "Weather & Daily Life",
+      "description": "Weather, seasons, daily routines, hobbies. Frequency adverbs (thường, luôn, không bao giờ)."
+    }
+  ],
+  "lessons": [
+    {
+      "id": "lesson_001",
+      "unit": "phase_1_first_words",
+      "title": "Hello! My name is",
+      "nodeId": "u1_L001",
+      "quizId": "u1_Q001",
+      "quizLabel": "Hello! My name is Quiz",
+      "nodeIndex": 1,
+      "difficulty": 1,
+      "cefr": "A1",
+      "xp": 10,
+      "topic": "greetings",
+      "focus": [
+        "greetings"
+      ],
+      "words": [
+        {
+          "id": "it_w_0001",
+          "vi": "Chào",
+          "en": "Hello / Hi",
+          "emoji": "👋",
+          "pos": "interjection",
+          "difficulty": 1,
+          "frequency": 1,
+          "dialect": "north",
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0002",
+          "vi": "Xin chào",
+          "en": "Hello (polite)",
+          "emoji": "👋",
+          "pos": "phrase",
+          "difficulty": 1,
+          "frequency": 2,
+          "dialect": "north",
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0003",
+          "vi": "Tên",
+          "en": "Name",
+          "pos": "noun",
+          "difficulty": 1,
+          "frequency": 3,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0004",
+          "vi": "Tôi",
+          "en": "I / Me",
+          "pos": "pronoun",
+          "difficulty": 1,
+          "frequency": 4,
+          "dialect": "north",
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0005",
+          "vi": "Bạn",
+          "en": "You",
+          "pos": "pronoun",
+          "difficulty": 1,
+          "frequency": 5,
+          "dialect": "north",
+          "hasImage": true
+        }
+      ],
+      "sentences": [
+        {
+          "id": "it_s_0001",
+          "vi": "Xin chào.",
+          "en": "Hello.",
+          "accepted": [
+            "Hello.",
+            "Hi."
+          ],
+          "tokens": 2,
+          "difficulty": 1
+        },
+        {
+          "id": "it_s_0002",
+          "vi": "Tôi tên là ___.",
+          "en": "My name is ___.",
+          "accepted": [
+            "My name is ___.",
+            "I am ___.",
+            "I'm ___."
+          ],
+          "tags": [
+            "GT002"
+          ],
+          "note": "tên là = 'is named'",
+          "tokens": 4,
+          "difficulty": 1
+        },
+        {
+          "id": "it_s_0003",
+          "vi": "Rất vui được gặp bạn.",
+          "en": "Nice to meet you.",
+          "accepted": [
+            "Nice to meet you.",
+            "Pleased to meet you.",
+            "It's nice to meet you."
+          ],
+          "tags": [
+            "GT031"
+          ],
+          "tokens": 5,
+          "difficulty": 1
+        }
+      ],
+      "conversations": [
+        {
+          "id": "CV001",
+          "title": "Meeting someone for the first time",
+          "context": "",
+          "lines": [
+            {
+              "speaker": "A",
+              "vi": "Xin chào.",
+              "en": "Hello."
+            },
+            {
+              "speaker": "B",
+              "vi": "Xin chào.",
+              "en": "Hello."
+            },
+            {
+              "speaker": "A",
+              "vi": "Tôi tên là Nam.",
+              "en": "My name is Nam."
+            },
+            {
+              "speaker": "A",
+              "vi": "Tôi là người Việt Nam.",
+              "en": "I am Vietnamese."
+            },
+            {
+              "speaker": "B",
+              "vi": "Tôi là người Úc. Rất vui được gặp bạn.",
+              "en": "I am Australian. Nice to meet you."
+            }
+          ]
+        }
+      ],
+      "targets": [
+        null,
+        null
+      ]
+    },
+    {
+      "id": "lesson_002",
+      "unit": "phase_1_first_words",
+      "title": "Personal Pronouns & Nationality",
+      "nodeId": "u1_L002",
+      "quizId": "u1_Q002",
+      "quizLabel": "Personal Pronouns & Nationality Quiz",
+      "nodeIndex": 4,
+      "difficulty": 1,
+      "cefr": "A1",
+      "xp": 10,
+      "topic": "basics",
+      "focus": [
+        "basics"
+      ],
+      "words": [
+        {
+          "id": "it_w_0006",
+          "vi": "Anh",
+          "en": "You (older male / brother)",
+          "emoji": "👦",
+          "pos": "pronoun",
+          "difficulty": 1,
+          "frequency": 6,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0007",
+          "vi": "Chị",
+          "en": "You (older female / sister)",
+          "emoji": "👧",
+          "pos": "pronoun",
+          "difficulty": 1,
+          "frequency": 7,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0008",
+          "vi": "Em",
+          "en": "You (younger)",
+          "emoji": "🧒",
+          "pos": "pronoun",
+          "difficulty": 1,
+          "frequency": 8,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0009",
+          "vi": "Mỹ",
+          "en": "American / USA",
+          "pos": "noun",
+          "difficulty": 1,
+          "frequency": 9,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0010",
+          "vi": "Anh (quốc)",
+          "en": "British / UK",
+          "pos": "noun",
+          "difficulty": 1,
+          "frequency": 10,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0011",
+          "vi": "Úc",
+          "en": "Australian / Australia",
+          "pos": "noun",
+          "difficulty": 1,
+          "frequency": 11,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0012",
+          "vi": "Pháp",
+          "en": "French / France",
+          "pos": "noun",
+          "difficulty": 1,
+          "frequency": 12,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0013",
+          "vi": "Ý",
+          "en": "Italian / Italy",
+          "pos": "noun",
+          "difficulty": 1,
+          "frequency": 13,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0014",
+          "vi": "Việt Nam",
+          "en": "Vietnam / Vietnamese",
+          "pos": "noun",
+          "difficulty": 1,
+          "frequency": 14,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0015",
+          "vi": "Trung Quốc",
+          "en": "China / Chinese",
+          "pos": "noun",
+          "difficulty": 1,
+          "frequency": 15,
+          "hasImage": true
+        }
+      ],
+      "sentences": [
+        {
+          "id": "it_s_0004",
+          "vi": "Tôi là người Việt Nam.",
+          "en": "I am Vietnamese.",
+          "accepted": [
+            "I am Vietnamese.",
+            "I'm Vietnamese."
+          ],
+          "tags": [
+            "GT002"
+          ],
+          "note": "người + country = nationality",
+          "tokens": 5,
+          "difficulty": 1
+        },
+        {
+          "id": "it_s_0005",
+          "vi": "Tôi là người Úc.",
+          "en": "I am Australian.",
+          "accepted": [
+            "I am Australian.",
+            "I'm Australian."
+          ],
+          "tags": [
+            "GT002"
+          ],
+          "tokens": 4,
+          "difficulty": 1
+        },
+        {
+          "id": "it_s_0006",
+          "vi": "Tôi là người Trung Quốc.",
+          "en": "I am Chinese.",
+          "accepted": [
+            "I am Chinese.",
+            "I'm Chinese."
+          ],
+          "tags": [
+            "GT002"
+          ],
+          "tokens": 5,
+          "difficulty": 1
+        },
+        {
+          "id": "it_s_0007",
+          "vi": "Tôi là người Mỹ.",
+          "en": "I am American.",
+          "accepted": [
+            "I am American.",
+            "I'm American."
+          ],
+          "tags": [
+            "GT002"
+          ],
+          "tokens": 4,
+          "difficulty": 1
+        },
+        {
+          "id": "it_s_0008",
+          "vi": "Tôi là người Pháp.",
+          "en": "I am French.",
+          "accepted": [
+            "I am French.",
+            "I'm French."
+          ],
+          "tags": [
+            "GT002"
+          ],
+          "tokens": 4,
+          "difficulty": 1
+        }
+      ],
+      "targets": [
+        null,
+        null
+      ]
+    },
+    {
+      "id": "lesson_003",
+      "unit": "phase_2_polite",
+      "title": "How are you?",
+      "nodeId": "u2_L003",
+      "quizId": "u2_Q003",
+      "quizLabel": "How are you? Quiz",
+      "nodeIndex": 1,
+      "difficulty": 1,
+      "cefr": "A1",
+      "xp": 10,
+      "topic": "basics",
+      "focus": [
+        "basics"
+      ],
+      "words": [
+        {
+          "id": "it_w_0016",
+          "vi": "Khỏe",
+          "en": "Healthy / Well",
+          "pos": "adjective",
+          "difficulty": 1,
+          "frequency": 16,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0017",
+          "vi": "Không",
+          "en": "No / Not",
+          "emoji": "❌",
+          "pos": "particle",
+          "difficulty": 1,
+          "frequency": 17,
+          "dialect": "north",
+          "hasImage": true
+        }
+      ],
+      "sentences": [
+        {
+          "id": "it_s_0009",
+          "vi": "Bạn khỏe không?",
+          "en": "How are you? (Are you well?)",
+          "accepted": [
+            "How are you? (Are you well?)",
+            "How are you?",
+            "Are you well?",
+            "How are you doing?"
+          ],
+          "tags": [
+            "GT005"
+          ],
+          "note": "Yes/no question with 'không'",
+          "tokens": 3,
+          "difficulty": 1
+        },
+        {
+          "id": "it_s_0010",
+          "vi": "Tôi khỏe.",
+          "en": "I am well.",
+          "accepted": [
+            "I am well.",
+            "I'm well.",
+            "I'm fine.",
+            "I am fine."
+          ],
+          "tokens": 2,
+          "difficulty": 1
+        }
+      ],
+      "conversations": [
+        {
+          "id": "CV002",
+          "title": "Asking how someone is",
+          "context": "",
+          "lines": [
+            {
+              "speaker": "A",
+              "vi": "Xin chào.",
+              "en": "Hello."
+            },
+            {
+              "speaker": "A",
+              "vi": "Tôi tên là Linh.",
+              "en": "My name is Linh."
+            },
+            {
+              "speaker": "A",
+              "vi": "Tôi là người Việt Nam.",
+              "en": "I am Vietnamese."
+            },
+            {
+              "speaker": "A",
+              "vi": "Rất vui được gặp bạn.",
+              "en": "Nice to meet you."
+            },
+            {
+              "speaker": "A",
+              "vi": "Bạn khỏe không?",
+              "en": "How are you?"
+            },
+            {
+              "speaker": "B",
+              "vi": "Tôi khỏe. Cám ơn.",
+              "en": "I am well. Thank you."
+            }
+          ]
+        }
+      ],
+      "targets": [
+        null,
+        null
+      ]
+    },
+    {
+      "id": "lesson_004",
+      "unit": "phase_2_polite",
+      "title": "Numbers 0-10",
+      "nodeId": "u2_L004",
+      "quizId": "u2_Q004",
+      "quizLabel": "Numbers 0-10 Quiz",
+      "nodeIndex": 4,
+      "difficulty": 1,
+      "cefr": "A1",
+      "xp": 10,
+      "topic": "basics",
+      "focus": [
+        "basics"
+      ],
+      "words": [
+        {
+          "id": "it_w_0018",
+          "vi": "Không (0)",
+          "en": "Zero",
+          "pos": "number",
+          "difficulty": 1,
+          "frequency": 18,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0019",
+          "vi": "Một",
+          "en": "One",
+          "emoji": "1️⃣",
+          "pos": "number",
+          "difficulty": 1,
+          "frequency": 19,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0020",
+          "vi": "Hai",
+          "en": "Two",
+          "emoji": "2️⃣",
+          "pos": "number",
+          "difficulty": 1,
+          "frequency": 20,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0021",
+          "vi": "Ba",
+          "en": "Three",
+          "emoji": "3️⃣",
+          "pos": "number",
+          "difficulty": 1,
+          "frequency": 21,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0022",
+          "vi": "Bốn",
+          "en": "Four",
+          "emoji": "4️⃣",
+          "pos": "number",
+          "difficulty": 1,
+          "frequency": 22,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0023",
+          "vi": "Năm",
+          "en": "Five",
+          "emoji": "📅",
+          "pos": "number",
+          "difficulty": 1,
+          "frequency": 23,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0024",
+          "vi": "Sáu",
+          "en": "Six",
+          "emoji": "6️⃣",
+          "pos": "number",
+          "difficulty": 1,
+          "frequency": 24,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0025",
+          "vi": "Bảy",
+          "en": "Seven",
+          "emoji": "7️⃣",
+          "pos": "number",
+          "difficulty": 1,
+          "frequency": 25,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0026",
+          "vi": "Tám",
+          "en": "Eight",
+          "emoji": "8️⃣",
+          "pos": "number",
+          "difficulty": 1,
+          "frequency": 26,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0027",
+          "vi": "Chín",
+          "en": "Nine",
+          "emoji": "9️⃣",
+          "pos": "number",
+          "difficulty": 1,
+          "frequency": 27,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0028",
+          "vi": "Mười",
+          "en": "Ten",
+          "emoji": "🔟",
+          "pos": "number",
+          "difficulty": 1,
+          "frequency": 28,
+          "hasImage": true
+        }
+      ],
+      "sentences": [],
+      "targets": [
+        null
+      ]
+    },
+    {
+      "id": "lesson_005",
+      "unit": "phase_3_cafe",
+      "title": "Restaurant - Menu",
+      "nodeId": "u3_L005",
+      "quizId": "u3_Q005",
+      "quizLabel": "Restaurant - Menu Quiz",
+      "nodeIndex": 1,
+      "difficulty": 1,
+      "cefr": "A1",
+      "xp": 10,
+      "topic": "basics",
+      "focus": [
+        "basics"
+      ],
+      "words": [
+        {
+          "id": "it_w_0029",
+          "vi": "Ăn",
+          "en": "To eat",
+          "emoji": "🍽️",
+          "pos": "verb",
+          "difficulty": 1,
+          "frequency": 29,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0030",
+          "vi": "Uống",
+          "en": "To drink",
+          "emoji": "🥤",
+          "pos": "verb",
+          "difficulty": 1,
+          "frequency": 30,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0031",
+          "vi": "Nước",
+          "en": "Water",
+          "emoji": "💧",
+          "pos": "noun",
+          "difficulty": 1,
+          "frequency": 31,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0032",
+          "vi": "Cơm",
+          "en": "Rice",
+          "emoji": "🍚",
+          "pos": "noun",
+          "difficulty": 1,
+          "frequency": 32,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0033",
+          "vi": "Bánh mì",
+          "en": "Bread / Vietnamese sandwich",
+          "emoji": "🥖",
+          "pos": "noun",
+          "difficulty": 1,
+          "frequency": 33,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0034",
+          "vi": "Cà phê",
+          "en": "Coffee",
+          "emoji": "☕",
+          "pos": "noun",
+          "difficulty": 1,
+          "frequency": 34,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0035",
+          "vi": "Thực đơn",
+          "en": "Menu",
+          "pos": "noun",
+          "difficulty": 1,
+          "frequency": 35,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0036",
+          "vi": "Cám ơn",
+          "en": "Thank you",
+          "pos": "phrase",
+          "difficulty": 1,
+          "frequency": 36,
+          "dialect": "north",
+          "hasImage": true
+        }
+      ],
+      "sentences": [
+        {
+          "id": "it_s_0011",
+          "vi": "Cho xin thực đơn.",
+          "en": "Please give me the menu.",
+          "accepted": [
+            "Please give me the menu.",
+            "Can I have the menu?",
+            "The menu, please."
+          ],
+          "tags": [
+            "GT020"
+          ],
+          "note": "Polite request with 'cho xin'",
+          "tokens": 4,
+          "difficulty": 1
+        },
+        {
+          "id": "it_s_0012",
+          "vi": "Tôi uống cà phê.",
+          "en": "I drink coffee.",
+          "accepted": [
+            "I drink coffee.",
+            "I'll have coffee.",
+            "I'm drinking coffee."
+          ],
+          "note": "SVO order, no conjugation",
+          "tokens": 4,
+          "difficulty": 1
+        },
+        {
+          "id": "it_s_0013",
+          "vi": "Tôi uống nước.",
+          "en": "I drink water.",
+          "accepted": [
+            "I drink water.",
+            "I'll have water."
+          ],
+          "tokens": 3,
+          "difficulty": 1
+        },
+        {
+          "id": "it_s_0014",
+          "vi": "Tôi ăn cơm.",
+          "en": "I eat rice.",
+          "accepted": [
+            "I eat rice.",
+            "I'll have rice.",
+            "I'm eating rice."
+          ],
+          "tokens": 3,
+          "difficulty": 1
+        },
+        {
+          "id": "it_s_0015",
+          "vi": "Tôi ăn bánh mì.",
+          "en": "I eat bread.",
+          "accepted": [
+            "I eat bread.",
+            "I'll have bread."
+          ],
+          "tokens": 4,
+          "difficulty": 1
+        }
+      ],
+      "conversations": [
+        {
+          "id": "CV003",
+          "title": "Ordering at a restaurant - Scene 1",
+          "context": "",
+          "lines": [
+            {
+              "speaker": "Customer",
+              "vi": "Cho xin thực đơn.",
+              "en": "Please give me the menu."
+            },
+            {
+              "speaker": "Staff",
+              "vi": "Dạ, thực đơn đây ạ.",
+              "en": "Yes, here is the menu."
+            },
+            {
+              "speaker": "Staff",
+              "vi": "Bạn ăn gì?",
+              "en": "What would you like to eat?"
+            },
+            {
+              "speaker": "Customer",
+              "vi": "Tôi ăn bánh mì. Cám ơn.",
+              "en": "I'll have the bánh mì. Thank you."
+            },
+            {
+              "speaker": "Staff",
+              "vi": "Bạn uống gì?",
+              "en": "What would you like to drink?"
+            },
+            {
+              "speaker": "Customer",
+              "vi": "Tôi uống nước. Cám ơn.",
+              "en": "I'll drink water. Thank you."
+            }
+          ]
+        }
+      ],
+      "targets": [
+        null,
+        null
+      ]
+    },
+    {
+      "id": "lesson_006",
+      "unit": "phase_3_cafe",
+      "title": "Restaurant - Ordering",
+      "nodeId": "u3_L006",
+      "quizId": "u3_Q006",
+      "quizLabel": "Restaurant - Ordering Quiz",
+      "nodeIndex": 4,
+      "difficulty": 1,
+      "cefr": "A1",
+      "xp": 10,
+      "topic": "basics",
+      "focus": [
+        "basics"
+      ],
+      "words": [
+        {
+          "id": "it_w_0037",
+          "vi": "Phở",
+          "en": "Pho (noodle soup)",
+          "emoji": "🍜",
+          "pos": "noun",
+          "difficulty": 1,
+          "frequency": 37,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0038",
+          "vi": "Nóng",
+          "en": "Hot",
+          "emoji": "🥵",
+          "pos": "adjective",
+          "difficulty": 1,
+          "frequency": 38,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0039",
+          "vi": "Đá",
+          "en": "Ice / Iced",
+          "pos": "noun",
+          "difficulty": 1,
+          "frequency": 39,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0040",
+          "vi": "Chiên",
+          "en": "Fried",
+          "pos": "adjective",
+          "difficulty": 1,
+          "frequency": 40,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0041",
+          "vi": "Bánh mì heo quay",
+          "en": "Roast pork bánh mì",
+          "pos": "noun",
+          "difficulty": 1,
+          "frequency": 41,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0042",
+          "vi": "Nước mía",
+          "en": "Sugarcane juice",
+          "pos": "noun",
+          "difficulty": 1,
+          "frequency": 42,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0043",
+          "vi": "Sinh tố",
+          "en": "Smoothie",
+          "pos": "noun",
+          "difficulty": 1,
+          "frequency": 43,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0044",
+          "vi": "Gọi món",
+          "en": "To order (food)",
+          "pos": "verb",
+          "difficulty": 1,
+          "frequency": 44,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0045",
+          "vi": "Phần",
+          "en": "Portion",
+          "pos": "measure word",
+          "difficulty": 1,
+          "frequency": 45,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0046",
+          "vi": "Ly",
+          "en": "Glass",
+          "pos": "measure word",
+          "difficulty": 1,
+          "frequency": 46,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0047",
+          "vi": "Gì",
+          "en": "What",
+          "pos": "question word",
+          "difficulty": 1,
+          "frequency": 47,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0048",
+          "vi": "Muốn",
+          "en": "To want",
+          "pos": "verb",
+          "difficulty": 1,
+          "frequency": 48,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0049",
+          "vi": "Không có chi",
+          "en": "You're welcome",
+          "pos": "phrase",
+          "difficulty": 1,
+          "frequency": 49,
+          "dialect": "north",
+          "hasImage": true
+        }
+      ],
+      "sentences": [
+        {
+          "id": "it_s_0016",
+          "vi": "Tôi muốn gọi món.",
+          "en": "I want to order.",
+          "accepted": [
+            "I want to order.",
+            "I'd like to order."
+          ],
+          "tags": [
+            "GT022"
+          ],
+          "tokens": 4,
+          "difficulty": 1
+        },
+        {
+          "id": "it_s_0017",
+          "vi": "Bạn ăn gì?",
+          "en": "What do you eat? / What will you have?",
+          "accepted": [
+            "What do you eat? / What will you have?",
+            "What do you eat?",
+            "What will you have?",
+            "What would you like to eat?"
+          ],
+          "tags": [
+            "GT006"
+          ],
+          "note": "Question word 'gì' at end",
+          "tokens": 3,
+          "difficulty": 1
+        },
+        {
+          "id": "it_s_0018",
+          "vi": "Bạn uống gì?",
+          "en": "What do you drink?",
+          "accepted": [
+            "What do you drink?",
+            "What would you like to drink?"
+          ],
+          "tags": [
+            "GT006"
+          ],
+          "tokens": 3,
+          "difficulty": 1
+        },
+        {
+          "id": "it_s_0019",
+          "vi": "Cho tôi 2 phần cơm.",
+          "en": "Give me 2 portions of rice.",
+          "accepted": [
+            "Give me 2 portions of rice.",
+            "I'll have 2 portions of rice.",
+            "Two portions of rice, please."
+          ],
+          "tags": [
+            "GT021",
+            "GT023",
+            "GT024"
+          ],
+          "note": "Number + measure word + noun",
+          "tokens": 5,
+          "difficulty": 1
+        },
+        {
+          "id": "it_s_0020",
+          "vi": "Cho tôi 1 ly cà phê nóng.",
+          "en": "Give me 1 glass of hot coffee.",
+          "accepted": [
+            "Give me 1 glass of hot coffee.",
+            "One hot coffee, please.",
+            "A hot coffee, please."
+          ],
+          "tags": [
+            "GT021",
+            "GT023",
+            "GT024"
+          ],
+          "tokens": 7,
+          "difficulty": 1
+        }
+      ],
+      "conversations": [
+        {
+          "id": "CV004",
+          "title": "Ordering food - Conversation 1",
+          "context": "",
+          "lines": [
+            {
+              "speaker": "Staff",
+              "vi": "Xin chào!",
+              "en": "Hello!"
+            },
+            {
+              "speaker": "Customer",
+              "vi": "Chào bạn!",
+              "en": "Hi!"
+            },
+            {
+              "speaker": "Staff",
+              "vi": "Bạn ăn gì?",
+              "en": "What do you eat?"
+            },
+            {
+              "speaker": "Customer",
+              "vi": "Cho tôi 2 phần phở.",
+              "en": "Give me 2 portions of pho."
+            },
+            {
+              "speaker": "Staff",
+              "vi": "Bạn uống gì?",
+              "en": "What do you drink?"
+            },
+            {
+              "speaker": "Customer",
+              "vi": "Cho tôi 1 ly cà phê đá. Cám ơn.",
+              "en": "Give me 1 glass of iced coffee. Thank you."
+            },
+            {
+              "speaker": "Staff",
+              "vi": "Không có chi.",
+              "en": "You're welcome."
+            }
+          ]
+        },
+        {
+          "id": "CV005",
+          "title": "Ordering food - Conversation 2",
+          "context": "",
+          "lines": [
+            {
+              "speaker": "Customer",
+              "vi": "Xin chào!",
+              "en": "Hello!"
+            },
+            {
+              "speaker": "Staff",
+              "vi": "Xin chào!",
+              "en": "Hello!"
+            },
+            {
+              "speaker": "Customer",
+              "vi": "Cho xin thực đơn.",
+              "en": "Please give me the menu."
+            },
+            {
+              "speaker": "Customer",
+              "vi": "Tôi muốn gọi món. Cho tôi 2 phần cơm, 1 phần bánh mì, 1 ly cà phê. Cám ơn.",
+              "en": "I want to order. Give me 2 portions of rice, 1 bánh mì, 1 coffee. Thank you."
+            }
+          ]
+        }
+      ],
+      "targets": [
+        null,
+        null
+      ]
+    },
+    {
+      "id": "lesson_007",
+      "unit": "phase_3_cafe",
+      "title": "Restaurant - Book a Table",
+      "nodeId": "u3_L007",
+      "quizId": "u3_Q007",
+      "quizLabel": "Restaurant - Book a Table Quiz",
+      "nodeIndex": 7,
+      "difficulty": 1,
+      "cefr": "A1",
+      "xp": 10,
+      "topic": "basics",
+      "focus": [
+        "basics"
+      ],
+      "words": [
+        {
+          "id": "it_w_0050",
+          "vi": "Đặt bàn",
+          "en": "To book a table",
+          "pos": "verb phrase",
+          "difficulty": 1,
+          "frequency": 50,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0051",
+          "vi": "Giờ",
+          "en": "Hour / O'clock",
+          "emoji": "🕐",
+          "pos": "noun",
+          "difficulty": 1,
+          "frequency": 51,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0052",
+          "vi": "Thứ",
+          "en": "Day (of the week)",
+          "pos": "noun",
+          "difficulty": 1,
+          "frequency": 52,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0053",
+          "vi": "Ngày",
+          "en": "Day / Date",
+          "emoji": "📅",
+          "pos": "noun",
+          "difficulty": 1,
+          "frequency": 53,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0054",
+          "vi": "Buổi",
+          "en": "Time of day (part)",
+          "pos": "noun",
+          "difficulty": 1,
+          "frequency": 54,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0055",
+          "vi": "Buổi sáng",
+          "en": "Morning",
+          "pos": "noun",
+          "difficulty": 1,
+          "frequency": 55,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0056",
+          "vi": "Buổi trưa",
+          "en": "Noon",
+          "pos": "noun",
+          "difficulty": 1,
+          "frequency": 56,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0057",
+          "vi": "Buổi chiều",
+          "en": "Afternoon",
+          "pos": "noun",
+          "difficulty": 1,
+          "frequency": 57,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0058",
+          "vi": "Buổi tối",
+          "en": "Evening",
+          "pos": "noun",
+          "difficulty": 1,
+          "frequency": 58,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0059",
+          "vi": "Hôm nay",
+          "en": "Today",
+          "pos": "noun",
+          "difficulty": 1,
+          "frequency": 59,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0060",
+          "vi": "Ngày mai",
+          "en": "Tomorrow",
+          "pos": "noun",
+          "difficulty": 1,
+          "frequency": 60,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0061",
+          "vi": "Hôm qua",
+          "en": "Yesterday",
+          "pos": "noun",
+          "difficulty": 1,
+          "frequency": 61,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0062",
+          "vi": "Khi nào",
+          "en": "When",
+          "pos": "question word",
+          "difficulty": 1,
+          "frequency": 62,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0063",
+          "vi": "Dạ / Vâng",
+          "en": "Yes (polite)",
+          "pos": "particle",
+          "difficulty": 1,
+          "frequency": 63,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0064",
+          "vi": "Hẹn gặp anh",
+          "en": "See you (to older male)",
+          "pos": "phrase",
+          "difficulty": 1,
+          "frequency": 64,
+          "dialect": "north",
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0065",
+          "vi": "Đợi một chút",
+          "en": "Wait a moment",
+          "pos": "phrase",
+          "difficulty": 1,
+          "frequency": 65,
+          "dialect": "north",
+          "hasImage": true
+        }
+      ],
+      "sentences": [
+        {
+          "id": "it_s_0021",
+          "vi": "Tôi đặt bàn 2 người.",
+          "en": "I'll book a table for 2.",
+          "accepted": [
+            "I'll book a table for 2.",
+            "I want to book a table for two.",
+            "A table for 2, please."
+          ],
+          "tags": [
+            "GT023",
+            "GT024"
+          ],
+          "tokens": 5,
+          "difficulty": 1
+        },
+        {
+          "id": "it_s_0022",
+          "vi": "Buổi trưa ngày mai, 11 giờ.",
+          "en": "Tomorrow noon, 11 o'clock.",
+          "tags": [
+            "GT035",
+            "GT023",
+            "GT024"
+          ],
+          "note": "Time of day + date + hour",
+          "tokens": 6,
+          "difficulty": 1
+        },
+        {
+          "id": "it_s_0023",
+          "vi": "Anh đặt bàn khi nào ạ?",
+          "en": "When are you booking the table?",
+          "tags": [
+            "GT008"
+          ],
+          "note": "Question word 'khi nào'",
+          "tokens": 6,
+          "difficulty": 1
+        }
+      ],
+      "conversations": [
+        {
+          "id": "CV006",
+          "title": "Booking a table - Conversation 1",
+          "context": "",
+          "lines": [
+            {
+              "speaker": "Customer",
+              "vi": "Xin chào!",
+              "en": "Hello!"
+            },
+            {
+              "speaker": "Staff",
+              "vi": "Restaurant A xin chào!",
+              "en": "Restaurant A, hello!"
+            },
+            {
+              "speaker": "Customer",
+              "vi": "Tôi muốn đặt bàn 2 người.",
+              "en": "I want to book a table for 2."
+            },
+            {
+              "speaker": "Staff",
+              "vi": "Dạ. Anh đặt bàn khi nào ạ?",
+              "en": "Yes. When would you like to book?"
+            },
+            {
+              "speaker": "Customer",
+              "vi": "Buổi trưa ngày mai, 11 giờ.",
+              "en": "Tomorrow at noon, 11 o'clock."
+            },
+            {
+              "speaker": "Staff",
+              "vi": "Dạ. Anh tên gì?",
+              "en": "Yes. What is your name?"
+            },
+            {
+              "speaker": "Customer",
+              "vi": "Tôi tên Minh.",
+              "en": "My name is Minh."
+            },
+            {
+              "speaker": "Staff",
+              "vi": "Dạ. Hẹn gặp anh Minh ngày mai!",
+              "en": "Yes. See you tomorrow, Mr. Minh!"
+            }
+          ]
+        },
+        {
+          "id": "CV007",
+          "title": "Arriving for a reservation - Conversation 2",
+          "context": "",
+          "lines": [
+            {
+              "speaker": "Staff",
+              "vi": "Xin chào!",
+              "en": "Hello!"
+            },
+            {
+              "speaker": "Customer",
+              "vi": "Xin chào! Hôm qua tôi đặt bàn lúc 11 giờ. Tôi tên Minh.",
+              "en": "Hello! Yesterday I booked a table at 11 o'clock. My name is Minh."
+            },
+            {
+              "speaker": "Staff",
+              "vi": "Dạ.",
+              "en": "Yes."
+            },
+            {
+              "speaker": "Customer",
+              "vi": "Cho tôi xin thực đơn.",
+              "en": "Please give me the menu."
+            },
+            {
+              "speaker": "Staff",
+              "vi": "Dạ.",
+              "en": "Yes."
+            },
+            {
+              "speaker": "Customer",
+              "vi": "Tôi muốn gọi món. Cho tôi 1 phần phở, 1 phần cơm, 1 ly nước cam, 1 ly cà phê nóng. Cám ơn.",
+              "en": "I want to order. Give me 1 pho, 1 rice, 1 orange juice, 1 hot coffee. Thank you."
+            },
+            {
+              "speaker": "Staff",
+              "vi": "Dạ. Anh đợi một chút nhé!",
+              "en": "Yes. Please wait a moment!"
+            }
+          ]
+        }
+      ],
+      "targets": [
+        null,
+        null
+      ]
+    },
+    {
+      "id": "lesson_008",
+      "unit": "phase_3_cafe",
+      "title": "Restaurant - Payment",
+      "nodeId": "u3_L008",
+      "quizId": "u3_Q008",
+      "quizLabel": "Restaurant - Payment Quiz",
+      "nodeIndex": 10,
+      "difficulty": 1,
+      "cefr": "A1",
+      "xp": 10,
+      "topic": "basics",
+      "focus": [
+        "basics"
+      ],
+      "words": [
+        {
+          "id": "it_w_0066",
+          "vi": "Thanh toán",
+          "en": "To pay / Payment",
+          "pos": "verb",
+          "difficulty": 1,
+          "frequency": 66,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0067",
+          "vi": "Hóa đơn",
+          "en": "Bill / Invoice",
+          "pos": "noun",
+          "difficulty": 1,
+          "frequency": 67,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0068",
+          "vi": "Tiền thừa",
+          "en": "Change (money)",
+          "pos": "noun",
+          "difficulty": 1,
+          "frequency": 68,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0069",
+          "vi": "Bao nhiêu",
+          "en": "How much / How many",
+          "pos": "question word",
+          "difficulty": 1,
+          "frequency": 69,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0070",
+          "vi": "Gửi",
+          "en": "To send / give",
+          "pos": "verb",
+          "difficulty": 1,
+          "frequency": 70,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0071",
+          "vi": "Hẹn gặp lại",
+          "en": "See you again",
+          "pos": "phrase",
+          "difficulty": 1,
+          "frequency": 71,
+          "hasImage": true
+        }
+      ],
+      "sentences": [
+        {
+          "id": "it_s_0024",
+          "vi": "Tôi muốn thanh toán.",
+          "en": "I want to pay.",
+          "accepted": [
+            "I want to pay.",
+            "I'd like to pay.",
+            "Can I have the bill?"
+          ],
+          "tags": [
+            "GT022"
+          ],
+          "tokens": 4,
+          "difficulty": 1
+        },
+        {
+          "id": "it_s_0025",
+          "vi": "Bao nhiêu tiền?",
+          "en": "How much money?",
+          "accepted": [
+            "How much money?",
+            "How much?",
+            "How much is it?"
+          ],
+          "tags": [
+            "GT010"
+          ],
+          "note": "Question word 'bao nhiêu'",
+          "tokens": 3,
+          "difficulty": 1
+        },
+        {
+          "id": "it_s_0026",
+          "vi": "Hóa đơn là 125.000 vnd.",
+          "en": "The bill is 125,000 VND.",
+          "tags": [
+            "GT002"
+          ],
+          "tokens": 5,
+          "difficulty": 1
+        },
+        {
+          "id": "it_s_0027",
+          "vi": "Tôi gửi 150.000 vnd.",
+          "en": "I give 150,000 VND.",
+          "tokens": 4,
+          "difficulty": 1
+        }
+      ],
+      "conversations": [
+        {
+          "id": "CV008",
+          "title": "Paying the bill - Conversation 1",
+          "context": "",
+          "lines": [
+            {
+              "speaker": "Customer",
+              "vi": "Tôi muốn thanh toán. Bao nhiêu tiền?",
+              "en": "I want to pay. How much?"
+            },
+            {
+              "speaker": "Staff",
+              "vi": "Dạ hóa đơn là 125.000 vnd.",
+              "en": "The bill is 125,000 VND."
+            },
+            {
+              "speaker": "Customer",
+              "vi": "Tôi gửi 150.000 vnd.",
+              "en": "I give 150,000 VND."
+            },
+            {
+              "speaker": "Staff",
+              "vi": "Dạ em gửi tiền thừa là 25.000 vnd.",
+              "en": "Your change is 25,000 VND."
+            },
+            {
+              "speaker": "Customer",
+              "vi": "Cám ơn.",
+              "en": "Thank you."
+            },
+            {
+              "speaker": "Staff",
+              "vi": "Cám ơn anh. Hẹn gặp lại!",
+              "en": "Thank you. See you again!"
+            }
+          ]
+        },
+        {
+          "id": "CV009",
+          "title": "Full order and payment - Conversation 2",
+          "context": "",
+          "lines": [
+            {
+              "speaker": "Customer",
+              "vi": "Xin chào!",
+              "en": "Hello!"
+            },
+            {
+              "speaker": "Staff",
+              "vi": "Xin chào!",
+              "en": "Hello!"
+            },
+            {
+              "speaker": "Customer",
+              "vi": "Tôi muốn gọi món.",
+              "en": "I want to order."
+            },
+            {
+              "speaker": "Staff",
+              "vi": "Dạ.",
+              "en": "Yes."
+            },
+            {
+              "speaker": "Customer",
+              "vi": "Cho tôi 2 phở, 2 bánh mì, 2 cà phê đá, 2 cà phê nóng, 1 nước cam.",
+              "en": "Give me 2 pho, 2 bánh mì, 2 iced coffees, 2 hot coffees, 1 orange juice."
+            },
+            {
+              "speaker": "Staff",
+              "vi": "Dạ. Hóa đơn là 180.000 vnd.",
+              "en": "Yes. The bill is 180,000 VND."
+            },
+            {
+              "speaker": "Customer",
+              "vi": "Tôi gửi là 200.000 vnd.",
+              "en": "I give 200,000 VND."
+            },
+            {
+              "speaker": "Staff",
+              "vi": "Dạ, em gửi tiền thừa là 20.000 vnd. Chị đợi một chút nhé!",
+              "en": "Yes, your change is 20,000 VND. Please wait a moment!"
+            },
+            {
+              "speaker": "Customer",
+              "vi": "Cám ơn em!",
+              "en": "Thank you!"
+            }
+          ]
+        }
+      ],
+      "targets": [
+        null,
+        null
+      ]
+    },
+    {
+      "id": "lesson_009",
+      "unit": "phase_3_cafe",
+      "title": "Restaurant - Food Review",
+      "nodeId": "u3_L009",
+      "quizId": "u3_Q009",
+      "quizLabel": "Restaurant - Food Review Quiz",
+      "nodeIndex": 1,
+      "difficulty": 2,
+      "cefr": "A1",
+      "xp": 12,
+      "topic": "emergency",
+      "focus": [
+        "emergency"
+      ],
+      "words": [
+        {
+          "id": "it_w_0072",
+          "vi": "Ngon",
+          "en": "Delicious",
+          "pos": "adjective",
+          "difficulty": 1,
+          "frequency": 72,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0073",
+          "vi": "Không ngon",
+          "en": "Not delicious",
+          "pos": "phrase",
+          "difficulty": 1,
+          "frequency": 73,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0074",
+          "vi": "Mặn",
+          "en": "Salty",
+          "pos": "adjective",
+          "difficulty": 1,
+          "frequency": 74,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0075",
+          "vi": "Ngọt",
+          "en": "Sweet",
+          "pos": "adjective",
+          "difficulty": 1,
+          "frequency": 75,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0076",
+          "vi": "Nhạt",
+          "en": "Bland",
+          "pos": "adjective",
+          "difficulty": 1,
+          "frequency": 76,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0077",
+          "vi": "Chua",
+          "en": "Sour",
+          "pos": "adjective",
+          "difficulty": 1,
+          "frequency": 77,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0078",
+          "vi": "Cay",
+          "en": "Spicy",
+          "pos": "adjective",
+          "difficulty": 1,
+          "frequency": 78,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0079",
+          "vi": "Thơm",
+          "en": "Fragrant",
+          "pos": "adjective",
+          "difficulty": 1,
+          "frequency": 79,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0080",
+          "vi": "Như thế nào",
+          "en": "How / In what way",
+          "pos": "question word",
+          "difficulty": 1,
+          "frequency": 80,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0081",
+          "vi": "Quá",
+          "en": "Very / Too",
+          "pos": "intensifier",
+          "difficulty": 2,
+          "frequency": 81,
+          "dialect": "north",
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0082",
+          "vi": "Món này",
+          "en": "This dish",
+          "pos": "phrase",
+          "difficulty": 2,
+          "frequency": 82,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0083",
+          "vi": "Món kia",
+          "en": "That dish",
+          "pos": "phrase",
+          "difficulty": 2,
+          "frequency": 83,
+          "hasImage": true
+        }
+      ],
+      "sentences": [
+        {
+          "id": "it_s_0028",
+          "vi": "Món ăn như thế nào?",
+          "en": "How is the dish?",
+          "accepted": [
+            "How is the dish?",
+            "How's the food?"
+          ],
+          "tags": [
+            "GT009"
+          ],
+          "note": "Question word 'như thế nào'",
+          "tokens": 5,
+          "difficulty": 1
+        },
+        {
+          "id": "it_s_0029",
+          "vi": "Món này cay.",
+          "en": "This dish is spicy.",
+          "accepted": [
+            "This dish is spicy.",
+            "This is spicy."
+          ],
+          "tags": [
+            "GT042"
+          ],
+          "tokens": 3,
+          "difficulty": 1
+        },
+        {
+          "id": "it_s_0030",
+          "vi": "Món kia ngọt không?",
+          "en": "Is that dish sweet?",
+          "tags": [
+            "GT005",
+            "GT042"
+          ],
+          "tokens": 4,
+          "difficulty": 1
+        },
+        {
+          "id": "it_s_0031",
+          "vi": "Thơm quá!",
+          "en": "So fragrant!",
+          "accepted": [
+            "So fragrant!",
+            "It's so fragrant!",
+            "That smells great!"
+          ],
+          "tags": [
+            "GT032"
+          ],
+          "note": "Adjective + quá = exclamation",
+          "tokens": 2,
+          "difficulty": 1
+        },
+        {
+          "id": "it_s_0032",
+          "vi": "Cay quá!",
+          "en": "So spicy!",
+          "accepted": [
+            "So spicy!",
+            "It's so spicy!",
+            "Very spicy!"
+          ],
+          "tags": [
+            "GT032"
+          ],
+          "tokens": 2,
+          "difficulty": 1
+        },
+        {
+          "id": "it_s_0033",
+          "vi": "Ngon quá!",
+          "en": "So delicious!",
+          "accepted": [
+            "So delicious!",
+            "It's so delicious!",
+            "Very delicious!"
+          ],
+          "tags": [
+            "GT032"
+          ],
+          "tokens": 2,
+          "difficulty": 1
+        },
+        {
+          "id": "it_s_0034",
+          "vi": "Nóng quá!",
+          "en": "So hot!",
+          "tags": [
+            "GT032"
+          ],
+          "tokens": 2,
+          "difficulty": 1
+        }
+      ],
+      "conversations": [
+        {
+          "id": "CV010",
+          "title": "Ordering spicy food - Conversation 1",
+          "context": "",
+          "lines": [
+            {
+              "speaker": "Customer",
+              "vi": "Xin chào! Cho tôi 2 bánh mì!",
+              "en": "Hello! Give me 2 bánh mì!"
+            },
+            {
+              "speaker": "Staff",
+              "vi": "Anh ăn cay không?",
+              "en": "Do you eat spicy?"
+            },
+            {
+              "speaker": "Customer",
+              "vi": "Có, nhiều cay nhé!",
+              "en": "Yes, extra spicy!"
+            },
+            {
+              "speaker": "Staff",
+              "vi": "Anh đợi một chút nhé!",
+              "en": "Please wait a moment!"
+            },
+            {
+              "speaker": "Customer",
+              "vi": "Cám ơn!",
+              "en": "Thank you!"
+            }
+          ]
+        },
+        {
+          "id": "CV011",
+          "title": "Asking about taste - Conversation 2",
+          "context": "",
+          "lines": [
+            {
+              "speaker": "Customer",
+              "vi": "Xin chào! Món này như thế nào?",
+              "en": "Hello! How is this dish?"
+            },
+            {
+              "speaker": "Staff",
+              "vi": "Món này cay.",
+              "en": "This dish is spicy."
+            },
+            {
+              "speaker": "Customer",
+              "vi": "Món kia mặn không?",
+              "en": "Is that dish salty?"
+            },
+            {
+              "speaker": "Staff",
+              "vi": "Không, món kia chua.",
+              "en": "No, that dish is sour."
+            },
+            {
+              "speaker": "Customer",
+              "vi": "Thơm quá. Món kia ngon không?",
+              "en": "So fragrant. Is that dish delicious?"
+            },
+            {
+              "speaker": "Staff",
+              "vi": "Món kia ngọt! Ngon lắm!",
+              "en": "That dish is sweet! Very delicious!"
+            },
+            {
+              "speaker": "Customer",
+              "vi": "Cho tôi 2 phần nhé.",
+              "en": "Give me 2 portions."
+            },
+            {
+              "speaker": "Staff",
+              "vi": "50.000 vnd.",
+              "en": "50,000 VND."
+            },
+            {
+              "speaker": "Customer",
+              "vi": "Tôi gửi. Cám ơn!",
+              "en": "Here you go. Thank you!"
+            },
+            {
+              "speaker": "Staff",
+              "vi": "Cám ơn. Hẹn gặp lại!",
+              "en": "Thank you. See you again!"
+            }
+          ]
+        }
+      ],
+      "targets": [
+        null,
+        null
+      ]
+    },
+    {
+      "id": "lesson_010",
+      "unit": "phase_4_food",
+      "title": "My Family",
+      "nodeId": "u4_L010",
+      "quizId": "u4_Q010",
+      "quizLabel": "My Family Quiz",
+      "nodeIndex": 1,
+      "difficulty": 1,
+      "cefr": "A1",
+      "xp": 10,
+      "topic": "basics",
+      "focus": [
+        "basics"
+      ],
+      "words": [
+        {
+          "id": "it_w_0084",
+          "vi": "Gia đình",
+          "en": "Family",
+          "emoji": "👨‍👩‍👧‍👦",
+          "pos": "noun",
+          "difficulty": 2,
+          "frequency": 84,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0085",
+          "vi": "Bố / Ba",
+          "en": "Father",
+          "pos": "noun",
+          "difficulty": 2,
+          "frequency": 85,
+          "dialect": "south",
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0086",
+          "vi": "Mẹ / Má",
+          "en": "Mother",
+          "pos": "noun",
+          "difficulty": 2,
+          "frequency": 86,
+          "dialect": "south",
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0087",
+          "vi": "Con",
+          "en": "Child",
+          "emoji": "👶",
+          "pos": "noun",
+          "difficulty": 2,
+          "frequency": 87,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0088",
+          "vi": "Anh trai",
+          "en": "Older brother",
+          "pos": "noun",
+          "difficulty": 2,
+          "frequency": 88,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0089",
+          "vi": "Chị gái",
+          "en": "Older sister",
+          "pos": "noun",
+          "difficulty": 2,
+          "frequency": 89,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0090",
+          "vi": "Em trai",
+          "en": "Younger brother",
+          "pos": "noun",
+          "difficulty": 2,
+          "frequency": 90,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0091",
+          "vi": "Em gái",
+          "en": "Younger sister",
+          "pos": "noun",
+          "difficulty": 2,
+          "frequency": 91,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0092",
+          "vi": "Ông",
+          "en": "Grandfather",
+          "emoji": "👴",
+          "pos": "noun",
+          "difficulty": 2,
+          "frequency": 92,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0093",
+          "vi": "Bà",
+          "en": "Grandmother",
+          "emoji": "👵",
+          "pos": "noun",
+          "difficulty": 2,
+          "frequency": 93,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0094",
+          "vi": "Chồng",
+          "en": "Husband",
+          "pos": "noun",
+          "difficulty": 2,
+          "frequency": 94,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0095",
+          "vi": "Vợ",
+          "en": "Wife",
+          "pos": "noun",
+          "difficulty": 2,
+          "frequency": 95,
+          "hasImage": true
+        }
+      ],
+      "sentences": [
+        {
+          "id": "it_s_0035",
+          "vi": "Gia đình tôi có bốn người.",
+          "en": "My family has four people.",
+          "accepted": [
+            "My family has four people.",
+            "There are four people in my family."
+          ],
+          "tags": [
+            "GT023",
+            "GT024"
+          ],
+          "note": "Số lượng người (count people)",
+          "tokens": 6,
+          "difficulty": 2
+        },
+        {
+          "id": "it_s_0036",
+          "vi": "Đây là bố tôi.",
+          "en": "This is my father.",
+          "accepted": [
+            "This is my father.",
+            "This is my dad."
+          ],
+          "tags": [
+            "GT043",
+            "GT002"
+          ],
+          "note": "Đây là = 'This is'",
+          "tokens": 4,
+          "difficulty": 2
+        },
+        {
+          "id": "it_s_0037",
+          "vi": "Tôi có một anh trai và một em gái.",
+          "en": "I have one older brother and one younger sister.",
+          "accepted": [
+            "I have one older brother and one younger sister.",
+            "I have an older brother and a younger sister."
+          ],
+          "tags": [
+            "GT044"
+          ],
+          "tokens": 9,
+          "difficulty": 2
+        },
+        {
+          "id": "it_s_0038",
+          "vi": "Bà tôi năm nay 70 tuổi.",
+          "en": "My grandmother is 70 this year.",
+          "tags": [
+            "GT023",
+            "GT024"
+          ],
+          "tokens": 6,
+          "difficulty": 2
+        }
+      ],
+      "conversations": [
+        {
+          "id": "CV012",
+          "title": "Meeting someone's family",
+          "context": "",
+          "lines": [
+            {
+              "speaker": "Host",
+              "vi": "Đây là gia đình tôi.",
+              "en": "This is my family."
+            },
+            {
+              "speaker": "Host",
+              "vi": "Đây là bố và mẹ tôi.",
+              "en": "This is my father and mother."
+            },
+            {
+              "speaker": "Guest",
+              "vi": "Chào bác. Rất vui được gặp bác.",
+              "en": "Hello. Nice to meet you."
+            },
+            {
+              "speaker": "Host",
+              "vi": "Đây là anh trai và em gái tôi.",
+              "en": "This is my older brother and younger sister."
+            },
+            {
+              "speaker": "Guest",
+              "vi": "Gia đình bạn có mấy người?",
+              "en": "How many people in your family?"
+            },
+            {
+              "speaker": "Host",
+              "vi": "Gia đình tôi có năm người.",
+              "en": "My family has five people."
+            }
+          ]
+        }
+      ],
+      "targets": [
+        null,
+        null
+      ]
+    },
+    {
+      "id": "lesson_011",
+      "unit": "phase_4_food",
+      "title": "Age & Ages",
+      "nodeId": "u4_L011",
+      "quizId": "u4_Q011",
+      "quizLabel": "Age & Ages Quiz",
+      "nodeIndex": 4,
+      "difficulty": 1,
+      "cefr": "A1",
+      "xp": 10,
+      "topic": "restaurant",
+      "focus": [
+        "restaurant"
+      ],
+      "words": [
+        {
+          "id": "it_w_0096",
+          "vi": "Tuổi",
+          "en": "Age / Year old",
+          "pos": "noun",
+          "difficulty": 2,
+          "frequency": 96,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0097",
+          "vi": "Mười một",
+          "en": "Eleven",
+          "pos": "number",
+          "difficulty": 2,
+          "frequency": 97,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0098",
+          "vi": "Mười hai",
+          "en": "Twelve",
+          "pos": "number",
+          "difficulty": 2,
+          "frequency": 98,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0099",
+          "vi": "Hai mươi",
+          "en": "Twenty",
+          "pos": "number",
+          "difficulty": 2,
+          "frequency": 99,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0100",
+          "vi": "Hai mươi mốt",
+          "en": "Twenty-one",
+          "pos": "number",
+          "difficulty": 2,
+          "frequency": 100,
+          "dialect": "north",
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0101",
+          "vi": "Ba mươi",
+          "en": "Thirty",
+          "pos": "number",
+          "difficulty": 2,
+          "frequency": 101,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0102",
+          "vi": "Năm mươi",
+          "en": "Fifty",
+          "pos": "number",
+          "difficulty": 2,
+          "frequency": 102,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0103",
+          "vi": "Một trăm",
+          "en": "One hundred",
+          "pos": "number",
+          "difficulty": 2,
+          "frequency": 103,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0104",
+          "vi": "Bao nhiêu tuổi",
+          "en": "How old",
+          "pos": "phrase",
+          "difficulty": 2,
+          "frequency": 104,
+          "hasImage": true
+        }
+      ],
+      "sentences": [
+        {
+          "id": "it_s_0039",
+          "vi": "Bạn bao nhiêu tuổi?",
+          "en": "How old are you?",
+          "accepted": [
+            "How old are you?",
+            "What's your age?"
+          ],
+          "tags": [
+            "GT013"
+          ],
+          "note": "bao nhiêu tuổi question",
+          "tokens": 4,
+          "difficulty": 2
+        },
+        {
+          "id": "it_s_0040",
+          "vi": "Tôi 25 tuổi.",
+          "en": "I am 25 years old.",
+          "accepted": [
+            "I am 25 years old.",
+            "I'm 25.",
+            "I'm 25 years old.",
+            "I am 25."
+          ],
+          "tags": [
+            "GT023",
+            "GT024"
+          ],
+          "note": "Noun + số + tuổi",
+          "tokens": 3,
+          "difficulty": 2
+        },
+        {
+          "id": "it_s_0041",
+          "vi": "Em tôi 15 tuổi.",
+          "en": "My younger sibling is 15.",
+          "tags": [
+            "GT023",
+            "GT024"
+          ],
+          "tokens": 4,
+          "difficulty": 2
+        }
+      ],
+      "conversations": [
+        {
+          "id": "CV013",
+          "title": "Asking about age",
+          "context": "",
+          "lines": [
+            {
+              "speaker": "A",
+              "vi": "Bạn bao nhiêu tuổi?",
+              "en": "How old are you?"
+            },
+            {
+              "speaker": "B",
+              "vi": "Tôi 28 tuổi. Còn bạn?",
+              "en": "I'm 28. And you?"
+            },
+            {
+              "speaker": "A",
+              "vi": "Tôi 30 tuổi.",
+              "en": "I'm 30."
+            },
+            {
+              "speaker": "A",
+              "vi": "Em bạn bao nhiêu tuổi?",
+              "en": "How old is your younger sibling?"
+            },
+            {
+              "speaker": "B",
+              "vi": "Em tôi 15 tuổi.",
+              "en": "My younger sibling is 15."
+            }
+          ]
+        }
+      ],
+      "targets": [
+        null,
+        null
+      ]
+    },
+    {
+      "id": "lesson_012",
+      "unit": "phase_4_food",
+      "title": "Jobs & Occupations",
+      "nodeId": "u4_L012",
+      "quizId": "u4_Q012",
+      "quizLabel": "Jobs & Occupations Quiz",
+      "nodeIndex": 7,
+      "difficulty": 1,
+      "cefr": "A1",
+      "xp": 10,
+      "topic": "basics",
+      "focus": [
+        "basics"
+      ],
+      "words": [
+        {
+          "id": "it_w_0105",
+          "vi": "Nghề nghiệp",
+          "en": "Occupation",
+          "pos": "noun",
+          "difficulty": 2,
+          "frequency": 105,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0106",
+          "vi": "Làm gì",
+          "en": "Do what / What job",
+          "pos": "phrase",
+          "difficulty": 2,
+          "frequency": 106,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0107",
+          "vi": "Giáo viên",
+          "en": "Teacher",
+          "pos": "noun",
+          "difficulty": 2,
+          "frequency": 107,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0108",
+          "vi": "Bác sĩ",
+          "en": "Doctor",
+          "pos": "noun",
+          "difficulty": 2,
+          "frequency": 108,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0109",
+          "vi": "Kỹ sư",
+          "en": "Engineer",
+          "pos": "noun",
+          "difficulty": 2,
+          "frequency": 109,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0110",
+          "vi": "Sinh viên",
+          "en": "University student",
+          "pos": "noun",
+          "difficulty": 2,
+          "frequency": 110,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0111",
+          "vi": "Học sinh",
+          "en": "School student",
+          "pos": "noun",
+          "difficulty": 2,
+          "frequency": 111,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0112",
+          "vi": "Nhân viên",
+          "en": "Employee / Staff",
+          "pos": "noun",
+          "difficulty": 2,
+          "frequency": 112,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0113",
+          "vi": "Công ty",
+          "en": "Company",
+          "pos": "noun",
+          "difficulty": 2,
+          "frequency": 113,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0114",
+          "vi": "Làm việc",
+          "en": "To work",
+          "pos": "verb",
+          "difficulty": 2,
+          "frequency": 114,
+          "hasImage": true
+        }
+      ],
+      "sentences": [
+        {
+          "id": "it_s_0042",
+          "vi": "Bạn làm nghề gì?",
+          "en": "What is your job?",
+          "accepted": [
+            "What is your job?",
+            "What do you do?",
+            "What's your occupation?"
+          ],
+          "tags": [
+            "GT006"
+          ],
+          "note": "làm nghề gì",
+          "tokens": 4,
+          "difficulty": 2
+        },
+        {
+          "id": "it_s_0043",
+          "vi": "Tôi là giáo viên.",
+          "en": "I am a teacher.",
+          "accepted": [
+            "I am a teacher.",
+            "I'm a teacher."
+          ],
+          "tags": [
+            "GT002"
+          ],
+          "note": "Tôi là + nghề",
+          "tokens": 4,
+          "difficulty": 2
+        },
+        {
+          "id": "it_s_0044",
+          "vi": "Bố tôi làm bác sĩ.",
+          "en": "My father is a doctor.",
+          "accepted": [
+            "My father is a doctor.",
+            "My dad is a doctor."
+          ],
+          "note": "làm + nghề",
+          "tokens": 5,
+          "difficulty": 2
+        },
+        {
+          "id": "it_s_0045",
+          "vi": "Tôi làm việc ở công ty ABC.",
+          "en": "I work at ABC company.",
+          "accepted": [
+            "I work at ABC company.",
+            "I work for ABC."
+          ],
+          "tags": [
+            "GT038"
+          ],
+          "note": "ở = at",
+          "tokens": 7,
+          "difficulty": 2
+        }
+      ],
+      "conversations": [
+        {
+          "id": "CV014",
+          "title": "Talking about jobs",
+          "context": "",
+          "lines": [
+            {
+              "speaker": "A",
+              "vi": "Bạn làm nghề gì?",
+              "en": "What do you do for work?"
+            },
+            {
+              "speaker": "B",
+              "vi": "Tôi là giáo viên. Còn bạn?",
+              "en": "I'm a teacher. And you?"
+            },
+            {
+              "speaker": "A",
+              "vi": "Tôi là kỹ sư. Tôi làm việc ở công ty ABC.",
+              "en": "I'm an engineer. I work at ABC company."
+            },
+            {
+              "speaker": "B",
+              "vi": "Bạn làm việc ở đâu?",
+              "en": "Where do you work?"
+            },
+            {
+              "speaker": "A",
+              "vi": "Tôi làm việc ở quận 1.",
+              "en": "I work in District 1."
+            }
+          ]
+        }
+      ],
+      "targets": [
+        null,
+        null
+      ]
+    },
+    {
+      "id": "lesson_013",
+      "unit": "phase_4_food",
+      "title": "Describing People",
+      "nodeId": "u4_L013",
+      "quizId": "u4_Q013",
+      "quizLabel": "Describing People Quiz",
+      "nodeIndex": 10,
+      "difficulty": 1,
+      "cefr": "A1",
+      "xp": 10,
+      "topic": "basics",
+      "focus": [
+        "basics"
+      ],
+      "words": [
+        {
+          "id": "it_w_0115",
+          "vi": "Cao",
+          "en": "Tall",
+          "pos": "adjective",
+          "difficulty": 2,
+          "frequency": 115,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0116",
+          "vi": "Thấp",
+          "en": "Short (height)",
+          "pos": "adjective",
+          "difficulty": 2,
+          "frequency": 116,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0117",
+          "vi": "Đẹp",
+          "en": "Beautiful",
+          "pos": "adjective",
+          "difficulty": 2,
+          "frequency": 117,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0118",
+          "vi": "Đẹp trai",
+          "en": "Handsome",
+          "pos": "adjective",
+          "difficulty": 2,
+          "frequency": 118,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0119",
+          "vi": "Dễ thương",
+          "en": "Cute",
+          "pos": "adjective",
+          "difficulty": 2,
+          "frequency": 119,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0120",
+          "vi": "Tốt bụng",
+          "en": "Kind-hearted",
+          "pos": "adjective",
+          "difficulty": 2,
+          "frequency": 120,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0121",
+          "vi": "Thông minh",
+          "en": "Smart",
+          "pos": "adjective",
+          "difficulty": 2,
+          "frequency": 121,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0122",
+          "vi": "Vui vẻ",
+          "en": "Cheerful",
+          "pos": "adjective",
+          "difficulty": 2,
+          "frequency": 122,
+          "hasImage": true
+        }
+      ],
+      "sentences": [
+        {
+          "id": "it_s_0046",
+          "vi": "Chị ấy rất đẹp.",
+          "en": "She is very beautiful.",
+          "accepted": [
+            "She is very beautiful.",
+            "She's very beautiful.",
+            "She's very pretty."
+          ],
+          "tags": [
+            "GT031"
+          ],
+          "note": "rất = very",
+          "tokens": 4,
+          "difficulty": 2
+        },
+        {
+          "id": "it_s_0047",
+          "vi": "Anh trai tôi cao và thông minh.",
+          "en": "My older brother is tall and smart.",
+          "accepted": [
+            "My older brother is tall and smart.",
+            "My big brother is tall and smart."
+          ],
+          "tags": [
+            "GT044"
+          ],
+          "note": "và = and",
+          "tokens": 7,
+          "difficulty": 2
+        }
+      ],
+      "targets": [
+        null,
+        null
+      ]
+    },
+    {
+      "id": "lesson_014",
+      "unit": "phase_5_market",
+      "title": "Telling Time",
+      "nodeId": "u5_L014",
+      "quizId": "u5_Q014",
+      "quizLabel": "Telling Time Quiz",
+      "nodeIndex": 1,
+      "difficulty": 1,
+      "cefr": "A1",
+      "xp": 10,
+      "topic": "transport",
+      "focus": [
+        "transport"
+      ],
+      "words": [
+        {
+          "id": "it_w_0123",
+          "vi": "Mấy giờ",
+          "en": "What time",
+          "pos": "phrase",
+          "difficulty": 2,
+          "frequency": 123,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0124",
+          "vi": "Phút",
+          "en": "Minute",
+          "emoji": "⏱️",
+          "pos": "noun",
+          "difficulty": 2,
+          "frequency": 124,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0125",
+          "vi": "Rưỡi",
+          "en": "Half (past)",
+          "pos": "noun",
+          "difficulty": 2,
+          "frequency": 125,
+          "dialect": "north",
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0126",
+          "vi": "Kém",
+          "en": "Less / To (time)",
+          "pos": "preposition",
+          "difficulty": 2,
+          "frequency": 126,
+          "dialect": "north",
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0127",
+          "vi": "Sáng",
+          "en": "Morning / AM",
+          "pos": "noun",
+          "difficulty": 2,
+          "frequency": 127,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0128",
+          "vi": "Tối",
+          "en": "Evening / PM",
+          "pos": "noun",
+          "difficulty": 2,
+          "frequency": 128,
+          "hasImage": true
+        }
+      ],
+      "sentences": [
+        {
+          "id": "it_s_0048",
+          "vi": "Bây giờ là mấy giờ?",
+          "en": "What time is it now?",
+          "accepted": [
+            "What time is it now?",
+            "What time is it?",
+            "What's the time?"
+          ],
+          "tags": [
+            "GT011",
+            "GT002"
+          ],
+          "tokens": 5,
+          "difficulty": 2
+        },
+        {
+          "id": "it_s_0049",
+          "vi": "Bây giờ là 7 giờ rưỡi.",
+          "en": "It's 7:30 now.",
+          "accepted": [
+            "It's 7:30 now.",
+            "It's 7:30.",
+            "It's half past seven."
+          ],
+          "tags": [
+            "GT002",
+            "GT023",
+            "GT024"
+          ],
+          "note": "rưỡi = half past",
+          "tokens": 6,
+          "difficulty": 2
+        },
+        {
+          "id": "it_s_0050",
+          "vi": "8 giờ kém 10.",
+          "en": "Ten to eight (7:50).",
+          "accepted": [
+            "Ten to eight (7:50).",
+            "Ten to eight.",
+            "It's 7:50.",
+            "It's ten to eight."
+          ],
+          "tags": [
+            "GT023",
+            "GT024"
+          ],
+          "note": "giờ kém minute",
+          "tokens": 4,
+          "difficulty": 2
+        },
+        {
+          "id": "it_s_0051",
+          "vi": "10 giờ sáng.",
+          "en": "10 AM.",
+          "accepted": [
+            "10 AM.",
+            "10 in the morning.",
+            "Ten in the morning."
+          ],
+          "tags": [
+            "GT023",
+            "GT024"
+          ],
+          "note": "giờ + sáng/tối",
+          "tokens": 3,
+          "difficulty": 2
+        }
+      ],
+      "conversations": [
+        {
+          "id": "CV015",
+          "title": "Scheduling a meeting",
+          "context": "",
+          "lines": [
+            {
+              "speaker": "A",
+              "vi": "Mấy giờ chúng ta gặp nhau?",
+              "en": "What time shall we meet?"
+            },
+            {
+              "speaker": "B",
+              "vi": "2 giờ rưỡi chiều được không?",
+              "en": "2:30 PM OK?"
+            },
+            {
+              "speaker": "A",
+              "vi": "Được. Ở đâu?",
+              "en": "OK. Where?"
+            },
+            {
+              "speaker": "B",
+              "vi": "Ở quán cà phê gần công ty.",
+              "en": "At the café near the office."
+            },
+            {
+              "speaker": "A",
+              "vi": "Hẹn gặp lại.",
+              "en": "See you then."
+            }
+          ]
+        }
+      ],
+      "targets": [
+        null,
+        null
+      ]
+    },
+    {
+      "id": "lesson_015",
+      "unit": "phase_5_market",
+      "title": "Days of the Week",
+      "nodeId": "u5_L015",
+      "quizId": "u5_Q015",
+      "quizLabel": "Days of the Week Quiz",
+      "nodeIndex": 4,
+      "difficulty": 1,
+      "cefr": "A1",
+      "xp": 10,
+      "topic": "restaurant",
+      "focus": [
+        "restaurant"
+      ],
+      "words": [
+        {
+          "id": "it_w_0129",
+          "vi": "Thứ hai",
+          "en": "Monday",
+          "pos": "noun",
+          "difficulty": 2,
+          "frequency": 129,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0130",
+          "vi": "Thứ ba",
+          "en": "Tuesday",
+          "pos": "noun",
+          "difficulty": 2,
+          "frequency": 130,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0131",
+          "vi": "Thứ tư",
+          "en": "Wednesday",
+          "pos": "noun",
+          "difficulty": 2,
+          "frequency": 131,
+          "dialect": "north",
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0132",
+          "vi": "Thứ năm",
+          "en": "Thursday",
+          "pos": "noun",
+          "difficulty": 2,
+          "frequency": 132,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0133",
+          "vi": "Thứ sáu",
+          "en": "Friday",
+          "pos": "noun",
+          "difficulty": 2,
+          "frequency": 133,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0134",
+          "vi": "Thứ bảy",
+          "en": "Saturday",
+          "pos": "noun",
+          "difficulty": 2,
+          "frequency": 134,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0135",
+          "vi": "Chủ nhật",
+          "en": "Sunday",
+          "pos": "noun",
+          "difficulty": 2,
+          "frequency": 135,
+          "dialect": "north",
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0136",
+          "vi": "Tuần",
+          "en": "Week",
+          "emoji": "📆",
+          "pos": "noun",
+          "difficulty": 2,
+          "frequency": 136,
+          "hasImage": true
+        }
+      ],
+      "sentences": [
+        {
+          "id": "it_s_0052",
+          "vi": "Hôm nay là thứ mấy?",
+          "en": "What day is today?",
+          "accepted": [
+            "What day is today?",
+            "What day of the week is it?"
+          ],
+          "tags": [
+            "GT012",
+            "GT002"
+          ],
+          "note": "thứ mấy question",
+          "tokens": 5,
+          "difficulty": 2
+        },
+        {
+          "id": "it_s_0053",
+          "vi": "Hôm nay là thứ hai.",
+          "en": "Today is Monday.",
+          "accepted": [
+            "Today is Monday.",
+            "It's Monday today.",
+            "It's Monday."
+          ],
+          "tags": [
+            "GT002"
+          ],
+          "tokens": 5,
+          "difficulty": 2
+        },
+        {
+          "id": "it_s_0054",
+          "vi": "Thứ bảy tôi không đi làm.",
+          "en": "On Saturday I don't go to work.",
+          "accepted": [
+            "On Saturday I don't go to work.",
+            "I don't work on Saturdays.",
+            "Saturdays I don't work."
+          ],
+          "tags": [
+            "GT004"
+          ],
+          "note": "không + verb = negation",
+          "tokens": 6,
+          "difficulty": 2
+        }
+      ],
+      "targets": [
+        null,
+        null
+      ]
+    },
+    {
+      "id": "lesson_016",
+      "unit": "phase_5_market",
+      "title": "Months & Dates",
+      "nodeId": "u5_L016",
+      "quizId": "u5_Q016",
+      "quizLabel": "Months & Dates Quiz",
+      "nodeIndex": 7,
+      "difficulty": 1,
+      "cefr": "A1",
+      "xp": 10,
+      "topic": "restaurant",
+      "focus": [
+        "restaurant"
+      ],
+      "words": [
+        {
+          "id": "it_w_0137",
+          "vi": "Tháng",
+          "en": "Month",
+          "emoji": "🗓️",
+          "pos": "noun",
+          "difficulty": 2,
+          "frequency": 137,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0138",
+          "vi": "Tháng một",
+          "en": "January",
+          "pos": "noun",
+          "difficulty": 2,
+          "frequency": 138,
+          "dialect": "north",
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0139",
+          "vi": "Tháng mười hai",
+          "en": "December",
+          "pos": "noun",
+          "difficulty": 2,
+          "frequency": 139,
+          "dialect": "north",
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0140",
+          "vi": "Năm",
+          "en": "Year",
+          "emoji": "📅",
+          "pos": "noun",
+          "difficulty": 2,
+          "frequency": 140,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0141",
+          "vi": "Sinh nhật",
+          "en": "Birthday",
+          "pos": "noun",
+          "difficulty": 2,
+          "frequency": 141,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0142",
+          "vi": "Ngày bao nhiêu",
+          "en": "What date",
+          "pos": "phrase",
+          "difficulty": 2,
+          "frequency": 142,
+          "hasImage": true
+        }
+      ],
+      "sentences": [
+        {
+          "id": "it_s_0055",
+          "vi": "Hôm nay là ngày bao nhiêu?",
+          "en": "What's today's date?",
+          "accepted": [
+            "What's today's date?",
+            "What date is it today?"
+          ],
+          "tags": [
+            "GT010",
+            "GT002"
+          ],
+          "tokens": 6,
+          "difficulty": 2
+        },
+        {
+          "id": "it_s_0056",
+          "vi": "Hôm nay là ngày 5 tháng 3.",
+          "en": "Today is March 5.",
+          "accepted": [
+            "Today is March 5.",
+            "It's March 5th today.",
+            "Today's the 5th of March."
+          ],
+          "tags": [
+            "GT036",
+            "GT002"
+          ],
+          "note": "ngày + số + tháng + số",
+          "tokens": 7,
+          "difficulty": 2
+        },
+        {
+          "id": "it_s_0057",
+          "vi": "Sinh nhật tôi là ngày 20 tháng 10.",
+          "en": "My birthday is October 20.",
+          "accepted": [
+            "My birthday is October 20.",
+            "My birthday is October 20th.",
+            "My birthday is on the 20th of October."
+          ],
+          "tags": [
+            "GT036",
+            "GT002"
+          ],
+          "tokens": 8,
+          "difficulty": 2
+        }
+      ],
+      "targets": [
+        null,
+        null
+      ]
+    },
+    {
+      "id": "lesson_017",
+      "unit": "phase_5_market",
+      "title": "Daily Schedule",
+      "nodeId": "u5_L017",
+      "quizId": "u5_Q017",
+      "quizLabel": "Daily Schedule Quiz",
+      "nodeIndex": 10,
+      "difficulty": 1,
+      "cefr": "A1",
+      "xp": 10,
+      "topic": "basics",
+      "focus": [
+        "basics"
+      ],
+      "words": [
+        {
+          "id": "it_w_0143",
+          "vi": "Đã",
+          "en": "Past marker (did)",
+          "pos": "particle",
+          "difficulty": 2,
+          "frequency": 143,
+          "dialect": "north",
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0144",
+          "vi": "Đang",
+          "en": "Progressive marker (-ing)",
+          "pos": "particle",
+          "difficulty": 2,
+          "frequency": 144,
+          "dialect": "north",
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0145",
+          "vi": "Sẽ",
+          "en": "Future marker (will)",
+          "pos": "particle",
+          "difficulty": 2,
+          "frequency": 145,
+          "dialect": "north",
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0146",
+          "vi": "Rồi",
+          "en": "Already",
+          "pos": "particle",
+          "difficulty": 2,
+          "frequency": 146,
+          "dialect": "north",
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0147",
+          "vi": "Chưa",
+          "en": "Not yet / Yet?",
+          "pos": "particle",
+          "difficulty": 2,
+          "frequency": 147,
+          "hasImage": true
+        }
+      ],
+      "sentences": [
+        {
+          "id": "it_s_0058",
+          "vi": "Tôi đang ăn cơm.",
+          "en": "I am eating rice.",
+          "accepted": [
+            "I am eating rice.",
+            "I'm eating rice."
+          ],
+          "tags": [
+            "GT016"
+          ],
+          "note": "đang + verb = progressive",
+          "tokens": 4,
+          "difficulty": 2
+        },
+        {
+          "id": "it_s_0059",
+          "vi": "Tôi đã ăn cơm rồi.",
+          "en": "I already ate.",
+          "accepted": [
+            "I already ate.",
+            "I've already eaten.",
+            "I have eaten already."
+          ],
+          "tags": [
+            "GT015",
+            "GT018"
+          ],
+          "note": "đã...rồi = past completed",
+          "tokens": 5,
+          "difficulty": 2
+        },
+        {
+          "id": "it_s_0060",
+          "vi": "Ngày mai tôi sẽ đi làm.",
+          "en": "Tomorrow I will go to work.",
+          "accepted": [
+            "Tomorrow I will go to work.",
+            "I'll go to work tomorrow.",
+            "Tomorrow I'll work."
+          ],
+          "tags": [
+            "GT017"
+          ],
+          "note": "sẽ + verb = future",
+          "tokens": 6,
+          "difficulty": 2
+        },
+        {
+          "id": "it_s_0061",
+          "vi": "Bạn đã ăn cơm chưa?",
+          "en": "Have you eaten yet?",
+          "accepted": [
+            "Have you eaten yet?",
+            "Did you eat yet?",
+            "Have you had food yet?"
+          ],
+          "tags": [
+            "GT015",
+            "GT019"
+          ],
+          "note": "đã...chưa = have you...yet",
+          "tokens": 5,
+          "difficulty": 2
+        },
+        {
+          "id": "it_s_0062",
+          "vi": "Tôi chưa ăn.",
+          "en": "I haven't eaten yet.",
+          "accepted": [
+            "I haven't eaten yet.",
+            "I haven't eaten."
+          ],
+          "tags": [
+            "GT019"
+          ],
+          "note": "chưa = not yet",
+          "tokens": 3,
+          "difficulty": 2
+        }
+      ],
+      "conversations": [
+        {
+          "id": "CV016",
+          "title": "What are you doing?",
+          "context": "",
+          "lines": [
+            {
+              "speaker": "A",
+              "vi": "A lô, bạn đang làm gì?",
+              "en": "Hello, what are you doing?"
+            },
+            {
+              "speaker": "B",
+              "vi": "Tôi đang ăn cơm. Còn bạn?",
+              "en": "I'm eating. And you?"
+            },
+            {
+              "speaker": "A",
+              "vi": "Tôi đã ăn rồi. Chiều nay bạn sẽ đi đâu?",
+              "en": "I already ate. Where will you go this afternoon?"
+            },
+            {
+              "speaker": "B",
+              "vi": "Chiều nay tôi sẽ đi siêu thị.",
+              "en": "This afternoon I will go to the supermarket."
+            },
+            {
+              "speaker": "A",
+              "vi": "Tốt quá. Hẹn gặp lại.",
+              "en": "Great. See you."
+            }
+          ]
+        }
+      ],
+      "targets": [
+        null
+      ]
+    },
+    {
+      "id": "lesson_018",
+      "unit": "phase_6_numbers",
+      "title": "At the Market",
+      "nodeId": "u6_L018",
+      "quizId": "u6_Q018",
+      "quizLabel": "At the Market Quiz",
+      "nodeIndex": 1,
+      "difficulty": 1,
+      "cefr": "A1",
+      "xp": 10,
+      "topic": "basics",
+      "focus": [
+        "basics"
+      ],
+      "words": [
+        {
+          "id": "it_w_0148",
+          "vi": "Chợ",
+          "en": "Market",
+          "emoji": "🏪",
+          "pos": "noun",
+          "difficulty": 2,
+          "frequency": 148,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0149",
+          "vi": "Trái cây / Hoa quả",
+          "en": "Fruit",
+          "pos": "noun",
+          "difficulty": 2,
+          "frequency": 149,
+          "dialect": "north",
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0150",
+          "vi": "Rau",
+          "en": "Vegetable",
+          "emoji": "🥬",
+          "pos": "noun",
+          "difficulty": 2,
+          "frequency": 150,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0151",
+          "vi": "Táo",
+          "en": "Apple",
+          "emoji": "🍎",
+          "pos": "noun",
+          "difficulty": 2,
+          "frequency": 151,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0152",
+          "vi": "Chuối",
+          "en": "Banana",
+          "emoji": "🍌",
+          "pos": "noun",
+          "difficulty": 2,
+          "frequency": 152,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0153",
+          "vi": "Xoài",
+          "en": "Mango",
+          "emoji": "🥭",
+          "pos": "noun",
+          "difficulty": 2,
+          "frequency": 153,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0154",
+          "vi": "Cà chua",
+          "en": "Tomato",
+          "emoji": "🍅",
+          "pos": "noun",
+          "difficulty": 2,
+          "frequency": 154,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0155",
+          "vi": "Kí / Cân",
+          "en": "Kilogram",
+          "pos": "measure word",
+          "difficulty": 2,
+          "frequency": 155,
+          "hasImage": true
+        }
+      ],
+      "sentences": [
+        {
+          "id": "it_s_0063",
+          "vi": "Táo bao nhiêu một kí?",
+          "en": "How much per kilo for apples?",
+          "accepted": [
+            "How much per kilo for apples?",
+            "How much is a kilo of apples?",
+            "How much are apples per kilo?"
+          ],
+          "tags": [
+            "GT010",
+            "GT023",
+            "GT024"
+          ],
+          "note": "bao nhiêu một + measure",
+          "tokens": 5,
+          "difficulty": 2
+        },
+        {
+          "id": "it_s_0064",
+          "vi": "Cho tôi hai kí cam.",
+          "en": "Give me 2 kilos of oranges.",
+          "accepted": [
+            "Give me 2 kilos of oranges.",
+            "I'll have 2 kilos of oranges.",
+            "Two kilos of oranges, please."
+          ],
+          "tags": [
+            "GT021",
+            "GT023",
+            "GT024"
+          ],
+          "tokens": 5,
+          "difficulty": 2
+        }
+      ],
+      "conversations": [
+        {
+          "id": "CV017",
+          "title": "Shopping at the market",
+          "context": "",
+          "lines": [
+            {
+              "speaker": "Customer",
+              "vi": "Chào chị. Táo bao nhiêu một kí?",
+              "en": "Hello. How much per kilo for apples?"
+            },
+            {
+              "speaker": "Vendor",
+              "vi": "Dạ, 40.000 một kí.",
+              "en": "40,000 per kilo."
+            },
+            {
+              "speaker": "Customer",
+              "vi": "Cho tôi hai kí.",
+              "en": "Give me 2 kilos."
+            },
+            {
+              "speaker": "Customer",
+              "vi": "Còn chuối bao nhiêu?",
+              "en": "And how much for bananas?"
+            },
+            {
+              "speaker": "Vendor",
+              "vi": "Dạ, 25.000 một kí.",
+              "en": "25,000 per kilo."
+            },
+            {
+              "speaker": "Customer",
+              "vi": "Cho tôi một kí chuối.",
+              "en": "Give me 1 kilo of bananas."
+            }
+          ]
+        }
+      ],
+      "targets": [
+        null,
+        null
+      ]
+    },
+    {
+      "id": "lesson_019",
+      "unit": "phase_6_numbers",
+      "title": "Clothes & Colors",
+      "nodeId": "u6_L019",
+      "quizId": "u6_Q019",
+      "quizLabel": "Clothes & Colors Quiz",
+      "nodeIndex": 4,
+      "difficulty": 1,
+      "cefr": "A1",
+      "xp": 10,
+      "topic": "transport",
+      "focus": [
+        "transport"
+      ],
+      "words": [
+        {
+          "id": "it_w_0156",
+          "vi": "Áo",
+          "en": "Shirt / Top",
+          "pos": "noun",
+          "difficulty": 2,
+          "frequency": 156,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0157",
+          "vi": "Quần",
+          "en": "Pants",
+          "pos": "noun",
+          "difficulty": 2,
+          "frequency": 157,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0158",
+          "vi": "Váy",
+          "en": "Skirt / Dress",
+          "pos": "noun",
+          "difficulty": 2,
+          "frequency": 158,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0159",
+          "vi": "Giày",
+          "en": "Shoes",
+          "pos": "noun",
+          "difficulty": 2,
+          "frequency": 159,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0160",
+          "vi": "Mũ / Nón",
+          "en": "Hat",
+          "pos": "noun",
+          "difficulty": 2,
+          "frequency": 160,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0161",
+          "vi": "Đỏ",
+          "en": "Red",
+          "emoji": "🔴",
+          "pos": "adjective",
+          "difficulty": 2,
+          "frequency": 161,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0162",
+          "vi": "Xanh",
+          "en": "Blue / Green",
+          "emoji": "🟢",
+          "pos": "adjective",
+          "difficulty": 2,
+          "frequency": 162,
+          "dialect": "north",
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0163",
+          "vi": "Vàng",
+          "en": "Yellow",
+          "emoji": "🟡",
+          "pos": "adjective",
+          "difficulty": 2,
+          "frequency": 163,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0164",
+          "vi": "Đen",
+          "en": "Black",
+          "emoji": "⚫",
+          "pos": "adjective",
+          "difficulty": 2,
+          "frequency": 164,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0165",
+          "vi": "Trắng",
+          "en": "White",
+          "emoji": "⚪",
+          "pos": "adjective",
+          "difficulty": 2,
+          "frequency": 165,
+          "hasImage": true
+        }
+      ],
+      "sentences": [
+        {
+          "id": "it_s_0065",
+          "vi": "Tôi muốn mua một cái áo.",
+          "en": "I want to buy a shirt.",
+          "accepted": [
+            "I want to buy a shirt.",
+            "I'd like to buy a shirt."
+          ],
+          "tags": [
+            "GT022",
+            "GT023",
+            "GT024"
+          ],
+          "note": "cái = measure word for objects",
+          "tokens": 6,
+          "difficulty": 2
+        },
+        {
+          "id": "it_s_0066",
+          "vi": "Áo này màu gì?",
+          "en": "What color is this shirt?",
+          "accepted": [
+            "What color is this shirt?",
+            "What colour is this shirt?"
+          ],
+          "tags": [
+            "GT006",
+            "GT014",
+            "GT042"
+          ],
+          "note": "màu gì = what color",
+          "tokens": 4,
+          "difficulty": 2
+        },
+        {
+          "id": "it_s_0067",
+          "vi": "Tôi thích áo màu đỏ.",
+          "en": "I like the red shirt.",
+          "accepted": [
+            "I like the red shirt.",
+            "I like red shirts."
+          ],
+          "note": "màu + color",
+          "tokens": 5,
+          "difficulty": 2
+        }
+      ],
+      "conversations": [
+        {
+          "id": "CV018",
+          "title": "Buying clothes",
+          "context": "",
+          "lines": [
+            {
+              "speaker": "Customer",
+              "vi": "Tôi muốn mua một cái áo.",
+              "en": "I want to buy a shirt."
+            },
+            {
+              "speaker": "Staff",
+              "vi": "Bạn thích màu gì?",
+              "en": "What color do you like?"
+            },
+            {
+              "speaker": "Customer",
+              "vi": "Tôi thích màu xanh.",
+              "en": "I like blue."
+            },
+            {
+              "speaker": "Staff",
+              "vi": "Cái này đẹp lắm. Bạn thử đi.",
+              "en": "This one is very nice. Try it."
+            },
+            {
+              "speaker": "Customer",
+              "vi": "Hơi chật. Có cỡ lớn hơn không?",
+              "en": "A bit tight. Do you have a bigger size?"
+            },
+            {
+              "speaker": "Staff",
+              "vi": "Dạ có. Cái này vừa không?",
+              "en": "Yes. Does this one fit?"
+            },
+            {
+              "speaker": "Customer",
+              "vi": "Vừa. Bao nhiêu tiền?",
+              "en": "Yes. How much?"
+            }
+          ]
+        }
+      ],
+      "targets": [
+        null,
+        null
+      ]
+    },
+    {
+      "id": "lesson_020",
+      "unit": "phase_6_numbers",
+      "title": "Sizes & Trying On",
+      "nodeId": "u6_L020",
+      "quizId": "u6_Q020",
+      "quizLabel": "Sizes & Trying On Quiz",
+      "nodeIndex": 7,
+      "difficulty": 1,
+      "cefr": "A1",
+      "xp": 10,
+      "topic": "basics",
+      "focus": [
+        "basics"
+      ],
+      "words": [
+        {
+          "id": "it_w_0166",
+          "vi": "Cỡ / Size",
+          "en": "Size",
+          "pos": "noun",
+          "difficulty": 2,
+          "frequency": 166,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0167",
+          "vi": "Lớn / To",
+          "en": "Big",
+          "pos": "adjective",
+          "difficulty": 2,
+          "frequency": 167,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0168",
+          "vi": "Nhỏ",
+          "en": "Small",
+          "pos": "adjective",
+          "difficulty": 2,
+          "frequency": 168,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0169",
+          "vi": "Vừa",
+          "en": "Just right / Fits",
+          "pos": "adjective",
+          "difficulty": 2,
+          "frequency": 169,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0170",
+          "vi": "Thử",
+          "en": "To try",
+          "pos": "verb",
+          "difficulty": 2,
+          "frequency": 170,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0171",
+          "vi": "Chật",
+          "en": "Tight",
+          "pos": "adjective",
+          "difficulty": 2,
+          "frequency": 171,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0172",
+          "vi": "Rộng",
+          "en": "Loose / Wide",
+          "pos": "adjective",
+          "difficulty": 2,
+          "frequency": 172,
+          "hasImage": true
+        }
+      ],
+      "sentences": [
+        {
+          "id": "it_s_0068",
+          "vi": "Tôi muốn thử cái này.",
+          "en": "I want to try this one.",
+          "accepted": [
+            "I want to try this one.",
+            "I'd like to try this one.",
+            "Can I try this?"
+          ],
+          "tags": [
+            "GT022",
+            "GT042"
+          ],
+          "tokens": 5,
+          "difficulty": 2
+        },
+        {
+          "id": "it_s_0069",
+          "vi": "Cái này hơi chật.",
+          "en": "This one is a bit tight.",
+          "accepted": [
+            "This one is a bit tight.",
+            "It's a little tight.",
+            "This is slightly tight."
+          ],
+          "tags": [
+            "GT042"
+          ],
+          "note": "hơi = a bit",
+          "tokens": 4,
+          "difficulty": 2
+        },
+        {
+          "id": "it_s_0070",
+          "vi": "Có cỡ lớn hơn không?",
+          "en": "Do you have a bigger size?",
+          "accepted": [
+            "Do you have a bigger size?",
+            "Is there a bigger size?",
+            "Have you got a larger size?"
+          ],
+          "tags": [
+            "GT005",
+            "GT025"
+          ],
+          "note": "hơn = more than (comparative)",
+          "tokens": 5,
+          "difficulty": 2
+        }
+      ],
+      "targets": [
+        null,
+        null
+      ]
+    },
+    {
+      "id": "lesson_021",
+      "unit": "phase_6_numbers",
+      "title": "Bargaining",
+      "nodeId": "u6_L021",
+      "quizId": "u6_Q021",
+      "quizLabel": "Bargaining Quiz",
+      "nodeIndex": 10,
+      "difficulty": 1,
+      "cefr": "A1",
+      "xp": 10,
+      "topic": "basics",
+      "focus": [
+        "basics"
+      ],
+      "words": [
+        {
+          "id": "it_w_0173",
+          "vi": "Mắc / Đắt",
+          "en": "Expensive",
+          "pos": "adjective",
+          "difficulty": 2,
+          "frequency": 173,
+          "dialect": "north",
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0174",
+          "vi": "Rẻ",
+          "en": "Cheap",
+          "pos": "adjective",
+          "difficulty": 2,
+          "frequency": 174,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0175",
+          "vi": "Bớt",
+          "en": "Reduce (price)",
+          "pos": "verb",
+          "difficulty": 2,
+          "frequency": 175,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0176",
+          "vi": "Giảm giá",
+          "en": "Discount",
+          "pos": "verb",
+          "difficulty": 2,
+          "frequency": 176,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0177",
+          "vi": "Giá",
+          "en": "Price",
+          "pos": "noun",
+          "difficulty": 2,
+          "frequency": 177,
+          "hasImage": true
+        }
+      ],
+      "sentences": [
+        {
+          "id": "it_s_0071",
+          "vi": "Mắc quá! Bớt được không?",
+          "en": "Too expensive! Can you reduce?",
+          "accepted": [
+            "Too expensive! Can you reduce?",
+            "Too expensive! Can you lower the price?",
+            "That's too expensive. Any discount?"
+          ],
+          "tags": [
+            "GT005",
+            "GT032"
+          ],
+          "tokens": 5,
+          "difficulty": 2
+        },
+        {
+          "id": "it_s_0072",
+          "vi": "Giảm giá 20% được không?",
+          "en": "Can I get 20% off?",
+          "accepted": [
+            "Can I get 20% off?",
+            "Can you give me 20% off?",
+            "Is 20% discount possible?"
+          ],
+          "tags": [
+            "GT005"
+          ],
+          "tokens": 5,
+          "difficulty": 2
+        }
+      ],
+      "conversations": [
+        {
+          "id": "CV019",
+          "title": "Bargaining at a street stall",
+          "context": "",
+          "lines": [
+            {
+              "speaker": "Tourist",
+              "vi": "Cái này bao nhiêu?",
+              "en": "How much is this?"
+            },
+            {
+              "speaker": "Vendor",
+              "vi": "500.000.",
+              "en": "500,000."
+            },
+            {
+              "speaker": "Tourist",
+              "vi": "Mắc quá! Bớt được không?",
+              "en": "Too expensive! Can you reduce?"
+            },
+            {
+              "speaker": "Vendor",
+              "vi": "450.000 được không?",
+              "en": "450,000 OK?"
+            },
+            {
+              "speaker": "Tourist",
+              "vi": "300.000 đi.",
+              "en": "300,000, come on."
+            },
+            {
+              "speaker": "Vendor",
+              "vi": "Không được. 400.000.",
+              "en": "No. 400,000."
+            },
+            {
+              "speaker": "Tourist",
+              "vi": "OK, 400.000.",
+              "en": "OK, 400,000."
+            }
+          ]
+        }
+      ],
+      "targets": [
+        null,
+        null
+      ]
+    },
+    {
+      "id": "lesson_022",
+      "unit": "phase_6_numbers",
+      "title": "Comparing Items",
+      "nodeId": "u6_L022",
+      "quizId": "u6_Q022",
+      "quizLabel": "Comparing Items Quiz",
+      "nodeIndex": 1,
+      "difficulty": 2,
+      "cefr": "A1",
+      "xp": 12,
+      "topic": "basics",
+      "focus": [
+        "basics"
+      ],
+      "words": [
+        {
+          "id": "it_w_0178",
+          "vi": "Hơn",
+          "en": "More than (comparative)",
+          "pos": "particle",
+          "difficulty": 2,
+          "frequency": 178,
+          "dialect": "north",
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0179",
+          "vi": "Nhất",
+          "en": "Most (superlative)",
+          "pos": "particle",
+          "difficulty": 2,
+          "frequency": 179,
+          "dialect": "north",
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0180",
+          "vi": "Bằng",
+          "en": "As...as (equal)",
+          "pos": "particle",
+          "difficulty": 2,
+          "frequency": 180,
+          "hasImage": true
+        }
+      ],
+      "sentences": [
+        {
+          "id": "it_s_0073",
+          "vi": "Cái này đẹp hơn cái kia.",
+          "en": "This one is prettier than that one.",
+          "accepted": [
+            "This one is prettier than that one.",
+            "This is nicer than that one.",
+            "This is more beautiful than that."
+          ],
+          "tags": [
+            "GT025",
+            "GT042"
+          ],
+          "note": "A + adj + hơn + B",
+          "tokens": 6,
+          "difficulty": 2
+        },
+        {
+          "id": "it_s_0074",
+          "vi": "Đây là cái đẹp nhất.",
+          "en": "This is the prettiest one.",
+          "accepted": [
+            "This is the prettiest one.",
+            "This is the most beautiful.",
+            "This is the nicest one."
+          ],
+          "tags": [
+            "GT026",
+            "GT043",
+            "GT002"
+          ],
+          "note": "adj + nhất = most",
+          "tokens": 5,
+          "difficulty": 2
+        }
+      ],
+      "targets": [
+        null
+      ]
+    },
+    {
+      "id": "lesson_023",
+      "unit": "phase_7_transport",
+      "title": "Types of Transport",
+      "nodeId": "u7_L023",
+      "quizId": "u7_Q023",
+      "quizLabel": "Types of Transport Quiz",
+      "nodeIndex": 1,
+      "difficulty": 1,
+      "cefr": "A1",
+      "xp": 10,
+      "topic": "directions",
+      "focus": [
+        "directions"
+      ],
+      "words": [
+        {
+          "id": "it_w_0181",
+          "vi": "Xe máy",
+          "en": "Motorbike",
+          "emoji": "🏍️",
+          "pos": "noun",
+          "difficulty": 3,
+          "frequency": 181,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0182",
+          "vi": "Xe ô tô / Xe hơi",
+          "en": "Car",
+          "pos": "noun",
+          "difficulty": 3,
+          "frequency": 182,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0183",
+          "vi": "Xe buýt",
+          "en": "Bus",
+          "emoji": "🚌",
+          "pos": "noun",
+          "difficulty": 3,
+          "frequency": 183,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0184",
+          "vi": "Xe đạp",
+          "en": "Bicycle",
+          "emoji": "🚲",
+          "pos": "noun",
+          "difficulty": 3,
+          "frequency": 184,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0185",
+          "vi": "Taxi",
+          "en": "Taxi",
+          "emoji": "🚕",
+          "pos": "noun",
+          "difficulty": 3,
+          "frequency": 185,
+          "dialect": "north",
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0186",
+          "vi": "Grab",
+          "en": "Grab",
+          "pos": "noun",
+          "difficulty": 3,
+          "frequency": 186,
+          "dialect": "north",
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0187",
+          "vi": "Máy bay",
+          "en": "Airplane",
+          "emoji": "✈️",
+          "pos": "noun",
+          "difficulty": 3,
+          "frequency": 187,
+          "hasImage": true
+        }
+      ],
+      "sentences": [
+        {
+          "id": "it_s_0075",
+          "vi": "Tôi đi xe máy đến công ty.",
+          "en": "I ride a motorbike to the office.",
+          "accepted": [
+            "I ride a motorbike to the office.",
+            "I go to the office by motorbike.",
+            "I take my motorbike to work."
+          ],
+          "note": "đi + vehicle = travel by",
+          "tokens": 7,
+          "difficulty": 3
+        },
+        {
+          "id": "it_s_0076",
+          "vi": "Bạn đi bằng gì?",
+          "en": "What are you going by?",
+          "accepted": [
+            "What are you going by?",
+            "How are you getting there?",
+            "What's your transport?"
+          ],
+          "tags": [
+            "GT006",
+            "GT040"
+          ],
+          "note": "bằng + vehicle",
+          "tokens": 4,
+          "difficulty": 3
+        }
+      ],
+      "targets": [
+        null,
+        null
+      ]
+    },
+    {
+      "id": "lesson_024",
+      "unit": "phase_7_transport",
+      "title": "Getting a Ride",
+      "nodeId": "u7_L024",
+      "quizId": "u7_Q024",
+      "quizLabel": "Getting a Ride Quiz",
+      "nodeIndex": 4,
+      "difficulty": 1,
+      "cefr": "A1",
+      "xp": 10,
+      "topic": "basics",
+      "focus": [
+        "basics"
+      ],
+      "words": [
+        {
+          "id": "it_w_0188",
+          "vi": "Đi đến",
+          "en": "Go to",
+          "pos": "verb",
+          "difficulty": 3,
+          "frequency": 188,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0189",
+          "vi": "Địa chỉ",
+          "en": "Address",
+          "pos": "noun",
+          "difficulty": 3,
+          "frequency": 189,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0190",
+          "vi": "Gần",
+          "en": "Near",
+          "pos": "adjective",
+          "difficulty": 3,
+          "frequency": 190,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0191",
+          "vi": "Xa",
+          "en": "Far",
+          "pos": "adjective",
+          "difficulty": 3,
+          "frequency": 191,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0192",
+          "vi": "Đặt xe",
+          "en": "Book a ride",
+          "pos": "verb phrase",
+          "difficulty": 3,
+          "frequency": 192,
+          "hasImage": true
+        }
+      ],
+      "sentences": [
+        {
+          "id": "it_s_0077",
+          "vi": "Tôi muốn đặt Grab.",
+          "en": "I want to book a Grab.",
+          "accepted": [
+            "I want to book a Grab.",
+            "I'd like to book a Grab.",
+            "I'll book a Grab."
+          ],
+          "tags": [
+            "GT022"
+          ],
+          "tokens": 4,
+          "difficulty": 3
+        },
+        {
+          "id": "it_s_0078",
+          "vi": "Đi đến địa chỉ này.",
+          "en": "Go to this address.",
+          "accepted": [
+            "Go to this address.",
+            "Take me to this address.",
+            "Please go to this address."
+          ],
+          "tags": [
+            "GT042"
+          ],
+          "tokens": 5,
+          "difficulty": 3
+        },
+        {
+          "id": "it_s_0079",
+          "vi": "Bao xa từ đây?",
+          "en": "How far from here?",
+          "accepted": [
+            "How far from here?",
+            "How far is it from here?",
+            "Is it far?"
+          ],
+          "tokens": 4,
+          "difficulty": 3
+        }
+      ],
+      "conversations": [
+        {
+          "id": "CV020",
+          "title": "Booking a Grab ride",
+          "context": "",
+          "lines": [
+            {
+              "speaker": "Customer",
+              "vi": "Chào anh. Anh đi Grab ạ?",
+              "en": "Hello. Are you the Grab driver?"
+            },
+            {
+              "speaker": "Driver",
+              "vi": "Dạ. Anh đi đâu?",
+              "en": "Yes. Where are you going?"
+            },
+            {
+              "speaker": "Customer",
+              "vi": "Đi sân bay Tân Sơn Nhất.",
+              "en": "To Tan Son Nhat airport."
+            },
+            {
+              "speaker": "Driver",
+              "vi": "Dạ. Khoảng 30 phút ạ.",
+              "en": "OK. About 30 minutes."
+            },
+            {
+              "speaker": "Customer",
+              "vi": "Cảm ơn anh.",
+              "en": "Thank you."
+            }
+          ]
+        }
+      ],
+      "targets": [
+        null,
+        null
+      ]
+    },
+    {
+      "id": "lesson_025",
+      "unit": "phase_7_transport",
+      "title": "Asking Directions",
+      "nodeId": "u7_L025",
+      "quizId": "u7_Q025",
+      "quizLabel": "Asking Directions Quiz",
+      "nodeIndex": 7,
+      "difficulty": 1,
+      "cefr": "A1",
+      "xp": 10,
+      "topic": "hotel",
+      "focus": [
+        "hotel"
+      ],
+      "words": [
+        {
+          "id": "it_w_0193",
+          "vi": "Trái",
+          "en": "Left",
+          "pos": "noun",
+          "difficulty": 3,
+          "frequency": 193,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0194",
+          "vi": "Phải",
+          "en": "Right",
+          "pos": "noun",
+          "difficulty": 3,
+          "frequency": 194,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0195",
+          "vi": "Thẳng",
+          "en": "Straight",
+          "pos": "adverb",
+          "difficulty": 3,
+          "frequency": 195,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0196",
+          "vi": "Rẽ / Quẹo",
+          "en": "Turn",
+          "pos": "verb",
+          "difficulty": 3,
+          "frequency": 196,
+          "dialect": "north",
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0197",
+          "vi": "Ngã tư",
+          "en": "Intersection",
+          "pos": "noun",
+          "difficulty": 3,
+          "frequency": 197,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0198",
+          "vi": "Đèn đỏ",
+          "en": "Red light / Traffic light",
+          "pos": "noun",
+          "difficulty": 3,
+          "frequency": 198,
+          "hasImage": true
+        }
+      ],
+      "sentences": [
+        {
+          "id": "it_s_0080",
+          "vi": "Rẽ trái ở ngã tư.",
+          "en": "Turn left at the intersection.",
+          "accepted": [
+            "Turn left at the intersection.",
+            "At the intersection, turn left.",
+            "Make a left at the intersection."
+          ],
+          "tags": [
+            "GT038"
+          ],
+          "tokens": 5,
+          "difficulty": 3
+        },
+        {
+          "id": "it_s_0081",
+          "vi": "Đi thẳng 100 mét.",
+          "en": "Go straight 100 meters.",
+          "accepted": [
+            "Go straight 100 meters.",
+            "Go straight for 100 metres.",
+            "Keep going straight 100 meters."
+          ],
+          "tokens": 4,
+          "difficulty": 3
+        },
+        {
+          "id": "it_s_0082",
+          "vi": "Ngân hàng ở bên phải.",
+          "en": "The bank is on the right.",
+          "accepted": [
+            "The bank is on the right.",
+            "The bank is on the right side.",
+            "You'll find the bank on the right."
+          ],
+          "tags": [
+            "GT038",
+            "GT039"
+          ],
+          "note": "bên + direction",
+          "tokens": 5,
+          "difficulty": 3
+        }
+      ],
+      "conversations": [
+        {
+          "id": "CV021",
+          "title": "Asking for directions",
+          "context": "",
+          "lines": [
+            {
+              "speaker": "Tourist",
+              "vi": "Xin lỗi, bưu điện ở đâu ạ?",
+              "en": "Excuse me, where is the post office?"
+            },
+            {
+              "speaker": "Local",
+              "vi": "Bưu điện ở gần đây.",
+              "en": "The post office is nearby."
+            },
+            {
+              "speaker": "Local",
+              "vi": "Bạn đi thẳng 200 mét, rẽ trái ở ngã tư.",
+              "en": "Go straight 200 meters, turn left at the intersection."
+            },
+            {
+              "speaker": "Local",
+              "vi": "Bưu điện ở bên phải.",
+              "en": "The post office is on the right."
+            },
+            {
+              "speaker": "Tourist",
+              "vi": "Cảm ơn bạn nhiều!",
+              "en": "Thank you very much!"
+            }
+          ]
+        }
+      ],
+      "targets": [
+        null,
+        null
+      ]
+    },
+    {
+      "id": "lesson_026",
+      "unit": "phase_7_transport",
+      "title": "Landmarks & Places",
+      "nodeId": "u7_L026",
+      "quizId": "u7_Q026",
+      "quizLabel": "Landmarks & Places Quiz",
+      "nodeIndex": 10,
+      "difficulty": 1,
+      "cefr": "A1",
+      "xp": 10,
+      "topic": "basics",
+      "focus": [
+        "basics"
+      ],
+      "words": [
+        {
+          "id": "it_w_0199",
+          "vi": "Ngân hàng",
+          "en": "Bank",
+          "emoji": "🏦",
+          "pos": "noun",
+          "difficulty": 3,
+          "frequency": 199,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0200",
+          "vi": "Bưu điện",
+          "en": "Post office",
+          "pos": "noun",
+          "difficulty": 3,
+          "frequency": 200,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0201",
+          "vi": "Bệnh viện",
+          "en": "Hospital",
+          "emoji": "🏥",
+          "pos": "noun",
+          "difficulty": 3,
+          "frequency": 201,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0202",
+          "vi": "Trường học",
+          "en": "School",
+          "pos": "noun",
+          "difficulty": 3,
+          "frequency": 202,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0203",
+          "vi": "Siêu thị",
+          "en": "Supermarket",
+          "pos": "noun",
+          "difficulty": 3,
+          "frequency": 203,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0204",
+          "vi": "Công viên",
+          "en": "Park",
+          "pos": "noun",
+          "difficulty": 3,
+          "frequency": 204,
+          "hasImage": true
+        }
+      ],
+      "sentences": [
+        {
+          "id": "it_s_0083",
+          "vi": "Bệnh viện ở đâu?",
+          "en": "Where is the hospital?",
+          "accepted": [
+            "Where is the hospital?",
+            "Where's the hospital?"
+          ],
+          "tags": [
+            "GT007",
+            "GT038"
+          ],
+          "note": "ở đâu = where",
+          "tokens": 4,
+          "difficulty": 3
+        },
+        {
+          "id": "it_s_0084",
+          "vi": "Siêu thị gần đây.",
+          "en": "The supermarket is nearby.",
+          "accepted": [
+            "The supermarket is nearby.",
+            "The supermarket is close by.",
+            "There's a supermarket nearby."
+          ],
+          "tokens": 4,
+          "difficulty": 3
+        }
+      ],
+      "targets": [
+        null,
+        null
+      ]
+    },
+    {
+      "id": "lesson_027",
+      "unit": "phase_8_daily",
+      "title": "Hotel Check-in",
+      "nodeId": "u8_L027",
+      "quizId": "u8_Q027",
+      "quizLabel": "Hotel Check-in Quiz",
+      "nodeIndex": 1,
+      "difficulty": 1,
+      "cefr": "A1",
+      "xp": 10,
+      "topic": "basics",
+      "focus": [
+        "basics"
+      ],
+      "words": [
+        {
+          "id": "it_w_0205",
+          "vi": "Khách sạn",
+          "en": "Hotel",
+          "emoji": "🏨",
+          "pos": "noun",
+          "difficulty": 3,
+          "frequency": 205,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0206",
+          "vi": "Phòng",
+          "en": "Room",
+          "emoji": "🚪",
+          "pos": "noun",
+          "difficulty": 3,
+          "frequency": 206,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0207",
+          "vi": "Đặt phòng",
+          "en": "Book a room",
+          "pos": "verb phrase",
+          "difficulty": 3,
+          "frequency": 207,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0208",
+          "vi": "Hộ chiếu",
+          "en": "Passport",
+          "pos": "noun",
+          "difficulty": 3,
+          "frequency": 208,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0209",
+          "vi": "Nhận phòng",
+          "en": "Check in",
+          "pos": "verb phrase",
+          "difficulty": 3,
+          "frequency": 209,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0210",
+          "vi": "Trả phòng",
+          "en": "Check out",
+          "pos": "verb phrase",
+          "difficulty": 3,
+          "frequency": 210,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0211",
+          "vi": "Chìa khóa",
+          "en": "Key",
+          "emoji": "🔑",
+          "pos": "noun",
+          "difficulty": 3,
+          "frequency": 211,
+          "hasImage": true
+        }
+      ],
+      "sentences": [
+        {
+          "id": "it_s_0085",
+          "vi": "Tôi đã đặt phòng.",
+          "en": "I have booked a room.",
+          "accepted": [
+            "I have booked a room.",
+            "I've booked a room.",
+            "I booked a room already."
+          ],
+          "tags": [
+            "GT015"
+          ],
+          "note": "đã + verb = past",
+          "tokens": 4,
+          "difficulty": 3
+        },
+        {
+          "id": "it_s_0086",
+          "vi": "Cho xin hộ chiếu.",
+          "en": "Please give me your passport.",
+          "accepted": [
+            "Please give me your passport.",
+            "Your passport, please.",
+            "Can I have your passport?"
+          ],
+          "tags": [
+            "GT020"
+          ],
+          "note": "polite request",
+          "tokens": 4,
+          "difficulty": 3
+        },
+        {
+          "id": "it_s_0087",
+          "vi": "Tôi muốn nhận phòng.",
+          "en": "I want to check in.",
+          "accepted": [
+            "I want to check in.",
+            "I'd like to check in.",
+            "I'll check in."
+          ],
+          "tags": [
+            "GT022"
+          ],
+          "tokens": 4,
+          "difficulty": 3
+        }
+      ],
+      "conversations": [
+        {
+          "id": "CV022",
+          "title": "Hotel check-in",
+          "context": "",
+          "lines": [
+            {
+              "speaker": "Guest",
+              "vi": "Chào chị. Tôi đã đặt phòng.",
+              "en": "Hello. I have a reservation."
+            },
+            {
+              "speaker": "Receptionist",
+              "vi": "Dạ. Anh tên gì ạ?",
+              "en": "Yes. What's your name?"
+            },
+            {
+              "speaker": "Guest",
+              "vi": "Tôi tên Minh.",
+              "en": "My name is Minh."
+            },
+            {
+              "speaker": "Receptionist",
+              "vi": "Dạ. Cho xin hộ chiếu.",
+              "en": "Please give me your passport."
+            },
+            {
+              "speaker": "Guest",
+              "vi": "Đây ạ.",
+              "en": "Here it is."
+            },
+            {
+              "speaker": "Receptionist",
+              "vi": "Phòng của anh là 305. Đây là chìa khóa.",
+              "en": "Your room is 305. Here is the key."
+            },
+            {
+              "speaker": "Guest",
+              "vi": "Ăn sáng lúc mấy giờ?",
+              "en": "What time is breakfast?"
+            },
+            {
+              "speaker": "Receptionist",
+              "vi": "Dạ, từ 6 đến 10 giờ sáng.",
+              "en": "From 6 to 10 AM."
+            }
+          ]
+        }
+      ],
+      "targets": [
+        null,
+        null
+      ]
+    },
+    {
+      "id": "lesson_028",
+      "unit": "phase_8_daily",
+      "title": "Room Amenities",
+      "nodeId": "u8_L028",
+      "quizId": "u8_Q028",
+      "quizLabel": "Room Amenities Quiz",
+      "nodeIndex": 4,
+      "difficulty": 1,
+      "cefr": "A1",
+      "xp": 10,
+      "topic": "basics",
+      "focus": [
+        "basics"
+      ],
+      "words": [
+        {
+          "id": "it_w_0212",
+          "vi": "Wifi / Mạng",
+          "en": "Wifi / Internet",
+          "pos": "noun",
+          "difficulty": 3,
+          "frequency": 212,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0213",
+          "vi": "Điều hòa / Máy lạnh",
+          "en": "Air conditioner",
+          "pos": "noun",
+          "difficulty": 3,
+          "frequency": 213,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0214",
+          "vi": "Ăn sáng",
+          "en": "Breakfast",
+          "pos": "noun",
+          "difficulty": 3,
+          "frequency": 214,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0215",
+          "vi": "Bể bơi / Hồ bơi",
+          "en": "Swimming pool",
+          "pos": "noun",
+          "difficulty": 3,
+          "frequency": 215,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0216",
+          "vi": "Giường",
+          "en": "Bed",
+          "emoji": "🛏️",
+          "pos": "noun",
+          "difficulty": 3,
+          "frequency": 216,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0217",
+          "vi": "Phòng tắm",
+          "en": "Bathroom",
+          "pos": "noun",
+          "difficulty": 3,
+          "frequency": 217,
+          "hasImage": true
+        }
+      ],
+      "sentences": [
+        {
+          "id": "it_s_0088",
+          "vi": "Phòng có wifi không?",
+          "en": "Does the room have wifi?",
+          "accepted": [
+            "Does the room have wifi?",
+            "Is there wifi in the room?",
+            "Does the room have wi-fi?"
+          ],
+          "tags": [
+            "GT005"
+          ],
+          "note": "có...không = yes/no",
+          "tokens": 4,
+          "difficulty": 3
+        },
+        {
+          "id": "it_s_0089",
+          "vi": "Mật khẩu wifi là gì?",
+          "en": "What's the wifi password?",
+          "accepted": [
+            "What's the wifi password?",
+            "Wifi password, please?",
+            "What's the wi-fi password?"
+          ],
+          "tags": [
+            "GT006",
+            "GT002"
+          ],
+          "tokens": 5,
+          "difficulty": 3
+        },
+        {
+          "id": "it_s_0090",
+          "vi": "Ăn sáng lúc mấy giờ?",
+          "en": "What time is breakfast?",
+          "accepted": [
+            "What time is breakfast?",
+            "When is breakfast?",
+            "Breakfast time?"
+          ],
+          "tags": [
+            "GT011",
+            "GT034"
+          ],
+          "note": "lúc mấy giờ = at what time",
+          "tokens": 5,
+          "difficulty": 3
+        }
+      ],
+      "targets": [
+        null,
+        null
+      ]
+    },
+    {
+      "id": "lesson_029",
+      "unit": "phase_8_daily",
+      "title": "Problems & Requests",
+      "nodeId": "u8_L029",
+      "quizId": "u8_Q029",
+      "quizLabel": "Problems & Requests Quiz",
+      "nodeIndex": 7,
+      "difficulty": 1,
+      "cefr": "A1",
+      "xp": 10,
+      "topic": "basics",
+      "focus": [
+        "basics"
+      ],
+      "words": [
+        {
+          "id": "it_w_0218",
+          "vi": "Hỏng / Hư",
+          "en": "Broken",
+          "pos": "adjective",
+          "difficulty": 3,
+          "frequency": 218,
+          "dialect": "north",
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0219",
+          "vi": "Sửa",
+          "en": "Repair / Fix",
+          "pos": "verb",
+          "difficulty": 3,
+          "frequency": 219,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0220",
+          "vi": "Giúp",
+          "en": "Help",
+          "emoji": "🆘",
+          "pos": "verb",
+          "difficulty": 3,
+          "frequency": 220,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0221",
+          "vi": "Cần",
+          "en": "Need",
+          "pos": "verb",
+          "difficulty": 3,
+          "frequency": 221,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0222",
+          "vi": "Có thể",
+          "en": "Can / Able to",
+          "pos": "modal verb",
+          "difficulty": 3,
+          "frequency": 222,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0223",
+          "vi": "Phải",
+          "en": "Must / Have to",
+          "pos": "modal verb",
+          "difficulty": 3,
+          "frequency": 223,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0224",
+          "vi": "Nếu",
+          "en": "If",
+          "pos": "conjunction",
+          "difficulty": 3,
+          "frequency": 224,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0225",
+          "vi": "Thì",
+          "en": "Then",
+          "pos": "conjunction",
+          "difficulty": 3,
+          "frequency": 225,
+          "dialect": "north",
+          "hasImage": true
+        }
+      ],
+      "sentences": [
+        {
+          "id": "it_s_0091",
+          "vi": "Điều hòa bị hỏng.",
+          "en": "The AC is broken.",
+          "accepted": [
+            "The AC is broken.",
+            "The air conditioning is broken.",
+            "The air conditioner doesn't work."
+          ],
+          "tags": [
+            "GT037"
+          ],
+          "note": "bị = passive/negative",
+          "tokens": 4,
+          "difficulty": 3
+        },
+        {
+          "id": "it_s_0092",
+          "vi": "Tôi cần giúp đỡ.",
+          "en": "I need help.",
+          "accepted": [
+            "I need help.",
+            "I'd like some help.",
+            "Can someone help me?"
+          ],
+          "tokens": 4,
+          "difficulty": 3
+        },
+        {
+          "id": "it_s_0093",
+          "vi": "Bạn có thể sửa được không?",
+          "en": "Can you fix it?",
+          "accepted": [
+            "Can you fix it?",
+            "Could you fix it?",
+            "Are you able to repair it?"
+          ],
+          "tags": [
+            "GT005",
+            "GT028"
+          ],
+          "note": "có thể...được không",
+          "tokens": 6,
+          "difficulty": 3
+        },
+        {
+          "id": "it_s_0094",
+          "vi": "Nếu trời mưa thì tôi ở nhà.",
+          "en": "If it rains, I'll stay home.",
+          "accepted": [
+            "If it rains, I'll stay home.",
+            "If it rains, I will stay at home.",
+            "I'll stay home if it rains."
+          ],
+          "tags": [
+            "GT030",
+            "GT038"
+          ],
+          "note": "nếu...thì = if...then",
+          "tokens": 7,
+          "difficulty": 3
+        }
+      ],
+      "conversations": [
+        {
+          "id": "CV023",
+          "title": "Reporting a problem in the room",
+          "context": "",
+          "lines": [
+            {
+              "speaker": "Guest",
+              "vi": "A lô, tôi ở phòng 305.",
+              "en": "Hello, I'm in room 305."
+            },
+            {
+              "speaker": "Guest",
+              "vi": "Điều hòa bị hỏng.",
+              "en": "The AC is broken."
+            },
+            {
+              "speaker": "Staff",
+              "vi": "Dạ, xin lỗi anh. Bạn có thể sửa ngay không?",
+              "en": "Sorry. Can we fix it right away?"
+            },
+            {
+              "speaker": "Staff",
+              "vi": "Nhân viên sẽ lên phòng ngay.",
+              "en": "Staff will go up to the room right away."
+            },
+            {
+              "speaker": "Guest",
+              "vi": "Cảm ơn chị.",
+              "en": "Thank you."
+            }
+          ]
+        }
+      ],
+      "targets": [
+        null,
+        null
+      ]
+    },
+    {
+      "id": "lesson_030",
+      "unit": "phase_9_social",
+      "title": "Weather & Seasons",
+      "nodeId": "u9_L030",
+      "quizId": "u9_Q030",
+      "quizLabel": "Weather & Seasons Quiz",
+      "nodeIndex": 1,
+      "difficulty": 1,
+      "cefr": "A1",
+      "xp": 10,
+      "topic": "basics",
+      "focus": [
+        "basics"
+      ],
+      "words": [
+        {
+          "id": "it_w_0226",
+          "vi": "Thời tiết",
+          "en": "Weather",
+          "pos": "noun",
+          "difficulty": 3,
+          "frequency": 226,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0227",
+          "vi": "Mưa",
+          "en": "Rain",
+          "emoji": "🌧️",
+          "pos": "noun/verb",
+          "difficulty": 3,
+          "frequency": 227,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0228",
+          "vi": "Nắng",
+          "en": "Sunny",
+          "emoji": "☀️",
+          "pos": "adjective",
+          "difficulty": 3,
+          "frequency": 228,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0229",
+          "vi": "Lạnh",
+          "en": "Cold",
+          "emoji": "🥶",
+          "pos": "adjective",
+          "difficulty": 3,
+          "frequency": 229,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0230",
+          "vi": "Gió",
+          "en": "Wind",
+          "emoji": "💨",
+          "pos": "noun",
+          "difficulty": 3,
+          "frequency": 230,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0231",
+          "vi": "Mùa",
+          "en": "Season",
+          "pos": "noun",
+          "difficulty": 3,
+          "frequency": 231,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0232",
+          "vi": "Mùa xuân",
+          "en": "Spring",
+          "pos": "noun",
+          "difficulty": 3,
+          "frequency": 232,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0233",
+          "vi": "Mùa hè",
+          "en": "Summer",
+          "pos": "noun",
+          "difficulty": 3,
+          "frequency": 233,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0234",
+          "vi": "Mùa thu",
+          "en": "Autumn",
+          "pos": "noun",
+          "difficulty": 3,
+          "frequency": 234,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0235",
+          "vi": "Mùa đông",
+          "en": "Winter",
+          "pos": "noun",
+          "difficulty": 3,
+          "frequency": 235,
+          "hasImage": true
+        }
+      ],
+      "sentences": [
+        {
+          "id": "it_s_0095",
+          "vi": "Hôm nay thời tiết thế nào?",
+          "en": "How is the weather today?",
+          "accepted": [
+            "How is the weather today?",
+            "How's the weather today?",
+            "What's the weather like today?"
+          ],
+          "tokens": 6,
+          "difficulty": 3
+        },
+        {
+          "id": "it_s_0096",
+          "vi": "Hôm nay trời nắng.",
+          "en": "Today is sunny.",
+          "accepted": [
+            "Today is sunny.",
+            "It's sunny today.",
+            "It is sunny today."
+          ],
+          "note": "trời + weather",
+          "tokens": 4,
+          "difficulty": 3
+        },
+        {
+          "id": "it_s_0097",
+          "vi": "Ngày mai trời sẽ mưa.",
+          "en": "Tomorrow it will rain.",
+          "accepted": [
+            "Tomorrow it will rain.",
+            "It will rain tomorrow.",
+            "Tomorrow's going to rain."
+          ],
+          "tags": [
+            "GT017"
+          ],
+          "note": "sẽ + verb",
+          "tokens": 5,
+          "difficulty": 3
+        },
+        {
+          "id": "it_s_0098",
+          "vi": "Mùa hè ở Việt Nam rất nóng.",
+          "en": "Summer in Vietnam is very hot.",
+          "accepted": [
+            "Summer in Vietnam is very hot.",
+            "It's very hot in summer in Vietnam.",
+            "Vietnamese summers are very hot."
+          ],
+          "tags": [
+            "GT031",
+            "GT038"
+          ],
+          "tokens": 7,
+          "difficulty": 3
+        }
+      ],
+      "conversations": [
+        {
+          "id": "CV024",
+          "title": "Talking about the weather",
+          "context": "",
+          "lines": [
+            {
+              "speaker": "A",
+              "vi": "Hôm nay thời tiết thế nào?",
+              "en": "How's the weather today?"
+            },
+            {
+              "speaker": "B",
+              "vi": "Hôm nay trời nắng và nóng.",
+              "en": "Today is sunny and hot."
+            },
+            {
+              "speaker": "A",
+              "vi": "Ngày mai thế nào?",
+              "en": "How about tomorrow?"
+            },
+            {
+              "speaker": "B",
+              "vi": "Ngày mai trời sẽ mưa.",
+              "en": "Tomorrow it will rain."
+            },
+            {
+              "speaker": "A",
+              "vi": "Vậy tôi sẽ ở nhà.",
+              "en": "Then I'll stay home."
+            }
+          ]
+        }
+      ],
+      "targets": [
+        null,
+        null
+      ]
+    },
+    {
+      "id": "lesson_031",
+      "unit": "phase_9_social",
+      "title": "Daily Routines",
+      "nodeId": "u9_L031",
+      "quizId": "u9_Q031",
+      "quizLabel": "Daily Routines Quiz",
+      "nodeIndex": 4,
+      "difficulty": 1,
+      "cefr": "A1",
+      "xp": 10,
+      "topic": "basics",
+      "focus": [
+        "basics"
+      ],
+      "words": [
+        {
+          "id": "it_w_0236",
+          "vi": "Thức dậy",
+          "en": "Wake up",
+          "pos": "verb",
+          "difficulty": 3,
+          "frequency": 236,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0237",
+          "vi": "Ngủ",
+          "en": "Sleep",
+          "emoji": "😴",
+          "pos": "verb",
+          "difficulty": 3,
+          "frequency": 237,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0238",
+          "vi": "Đánh răng",
+          "en": "Brush teeth",
+          "pos": "verb phrase",
+          "difficulty": 3,
+          "frequency": 238,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0239",
+          "vi": "Tắm",
+          "en": "Shower / Bathe",
+          "pos": "verb",
+          "difficulty": 3,
+          "frequency": 239,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0240",
+          "vi": "Đi học",
+          "en": "Go to school",
+          "pos": "verb phrase",
+          "difficulty": 3,
+          "frequency": 240,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0241",
+          "vi": "Đi làm",
+          "en": "Go to work",
+          "pos": "verb phrase",
+          "difficulty": 3,
+          "frequency": 241,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0242",
+          "vi": "Về nhà",
+          "en": "Go home",
+          "pos": "verb phrase",
+          "difficulty": 3,
+          "frequency": 242,
+          "hasImage": true
+        }
+      ],
+      "sentences": [
+        {
+          "id": "it_s_0099",
+          "vi": "Tôi thức dậy lúc 6 giờ sáng.",
+          "en": "I wake up at 6 AM.",
+          "accepted": [
+            "I wake up at 6 AM.",
+            "I get up at 6 in the morning.",
+            "I wake up at 6 in the morning."
+          ],
+          "tags": [
+            "GT034",
+            "GT023",
+            "GT024"
+          ],
+          "note": "lúc + time",
+          "tokens": 7,
+          "difficulty": 3
+        },
+        {
+          "id": "it_s_0100",
+          "vi": "Tôi đi làm lúc 8 giờ.",
+          "en": "I go to work at 8.",
+          "accepted": [
+            "I go to work at 8.",
+            "I leave for work at 8.",
+            "I start work at 8."
+          ],
+          "tags": [
+            "GT034",
+            "GT023",
+            "GT024"
+          ],
+          "tokens": 6,
+          "difficulty": 3
+        },
+        {
+          "id": "it_s_0101",
+          "vi": "Tôi về nhà lúc 6 giờ tối.",
+          "en": "I go home at 6 PM.",
+          "accepted": [
+            "I go home at 6 PM.",
+            "I go home at 6 in the evening.",
+            "I head home at 6."
+          ],
+          "tags": [
+            "GT034",
+            "GT023",
+            "GT024"
+          ],
+          "tokens": 7,
+          "difficulty": 3
+        }
+      ],
+      "targets": [
+        null,
+        null
+      ]
+    },
+    {
+      "id": "lesson_032",
+      "unit": "phase_9_social",
+      "title": "Hobbies & Free Time",
+      "nodeId": "u9_L032",
+      "quizId": "u9_Q032",
+      "quizLabel": "Hobbies & Free Time Quiz",
+      "nodeIndex": 7,
+      "difficulty": 1,
+      "cefr": "A1",
+      "xp": 10,
+      "topic": "basics",
+      "focus": [
+        "basics"
+      ],
+      "words": [
+        {
+          "id": "it_w_0243",
+          "vi": "Thích",
+          "en": "Like",
+          "pos": "verb",
+          "difficulty": 3,
+          "frequency": 243,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0244",
+          "vi": "Sở thích",
+          "en": "Hobby",
+          "pos": "noun",
+          "difficulty": 3,
+          "frequency": 244,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0245",
+          "vi": "Đọc sách",
+          "en": "Read books",
+          "pos": "verb phrase",
+          "difficulty": 3,
+          "frequency": 245,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0246",
+          "vi": "Xem phim",
+          "en": "Watch movies",
+          "pos": "verb phrase",
+          "difficulty": 3,
+          "frequency": 246,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0247",
+          "vi": "Nghe nhạc",
+          "en": "Listen to music",
+          "pos": "verb phrase",
+          "difficulty": 3,
+          "frequency": 247,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0248",
+          "vi": "Chơi thể thao",
+          "en": "Play sports",
+          "pos": "verb phrase",
+          "difficulty": 3,
+          "frequency": 248,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0249",
+          "vi": "Thường",
+          "en": "Often / Usually",
+          "pos": "adverb",
+          "difficulty": 3,
+          "frequency": 249,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0250",
+          "vi": "Luôn luôn",
+          "en": "Always",
+          "pos": "adverb",
+          "difficulty": 3,
+          "frequency": 250,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0251",
+          "vi": "Không bao giờ",
+          "en": "Never",
+          "pos": "adverb",
+          "difficulty": 3,
+          "frequency": 251,
+          "hasImage": true
+        },
+        {
+          "id": "it_w_0252",
+          "vi": "Đôi khi",
+          "en": "Sometimes",
+          "pos": "adverb",
+          "difficulty": 3,
+          "frequency": 252,
+          "hasImage": true
+        }
+      ],
+      "sentences": [
+        {
+          "id": "it_s_0102",
+          "vi": "Tôi thích đọc sách.",
+          "en": "I like to read books.",
+          "accepted": [
+            "I like to read books.",
+            "I like reading books.",
+            "I enjoy reading."
+          ],
+          "note": "thích + verb",
+          "tokens": 4,
+          "difficulty": 3
+        },
+        {
+          "id": "it_s_0103",
+          "vi": "Tôi thường xem phim vào cuối tuần.",
+          "en": "I often watch movies on weekends.",
+          "accepted": [
+            "I often watch movies on weekends.",
+            "I usually watch movies on the weekend.",
+            "On weekends I often watch films."
+          ],
+          "note": "thường + verb",
+          "tokens": 7,
+          "difficulty": 3
+        },
+        {
+          "id": "it_s_0104",
+          "vi": "Tôi không bao giờ uống cà phê tối.",
+          "en": "I never drink coffee at night.",
+          "accepted": [
+            "I never drink coffee at night.",
+            "I never have coffee at night.",
+            "At night, I never drink coffee."
+          ],
+          "tags": [
+            "GT004"
+          ],
+          "note": "không bao giờ = never",
+          "tokens": 8,
+          "difficulty": 3
+        }
+      ],
+      "conversations": [
+        {
+          "id": "CV025",
+          "title": "Weekend hobbies",
+          "context": "",
+          "lines": [
+            {
+              "speaker": "A",
+              "vi": "Cuối tuần bạn thường làm gì?",
+              "en": "What do you usually do on weekends?"
+            },
+            {
+              "speaker": "B",
+              "vi": "Tôi thường đọc sách và xem phim. Còn bạn?",
+              "en": "I often read books and watch movies. And you?"
+            },
+            {
+              "speaker": "A",
+              "vi": "Tôi thích chơi thể thao. Tôi luôn luôn chơi bóng đá vào chủ nhật.",
+              "en": "I like playing sports. I always play soccer on Sundays."
+            },
+            {
+              "speaker": "B",
+              "vi": "Hay quá! Bạn có thích nghe nhạc không?",
+              "en": "Cool! Do you like listening to music?"
+            },
+            {
+              "speaker": "A",
+              "vi": "Có, đôi khi tôi nghe nhạc.",
+              "en": "Yes, sometimes I listen to music."
+            }
+          ]
+        }
+      ],
+      "targets": [
+        null,
+        null
+      ]
+    }
+  ],
+  "grammarTags": [
+    {
+      "id": "GT001",
+      "category": "structure",
+      "description": "Subject-Verb-Object word order",
+      "examples": ""
+    },
+    {
+      "id": "GT002",
+      "category": "structure",
+      "description": "'là' copula (to be)",
+      "examples": ""
+    },
+    {
+      "id": "GT003",
+      "category": "structure",
+      "description": "Possessive (noun + possessor)",
+      "examples": ""
+    },
+    {
+      "id": "GT004",
+      "category": "structure",
+      "description": "Negation with 'không'",
+      "examples": ""
+    },
+    {
+      "id": "GT005",
+      "category": "question",
+      "description": "Yes/no question with 'không' particle",
+      "examples": ""
+    },
+    {
+      "id": "GT006",
+      "category": "question",
+      "description": "Question with 'gì' (what)",
+      "examples": ""
+    },
+    {
+      "id": "GT007",
+      "category": "question",
+      "description": "Question with 'ở đâu' (where)",
+      "examples": ""
+    },
+    {
+      "id": "GT008",
+      "category": "question",
+      "description": "Question with 'khi nào' (when)",
+      "examples": ""
+    },
+    {
+      "id": "GT009",
+      "category": "question",
+      "description": "Question with 'như thế nào' (how)",
+      "examples": ""
+    },
+    {
+      "id": "GT010",
+      "category": "question",
+      "description": "Question with 'bao nhiêu' (how much/many)",
+      "examples": ""
+    },
+    {
+      "id": "GT011",
+      "category": "question",
+      "description": "Question with 'mấy giờ' (what time)",
+      "examples": ""
+    },
+    {
+      "id": "GT012",
+      "category": "question",
+      "description": "Question with 'thứ mấy' (what day)",
+      "examples": ""
+    },
+    {
+      "id": "GT013",
+      "category": "question",
+      "description": "Question with 'bao nhiêu tuổi' (how old)",
+      "examples": ""
+    },
+    {
+      "id": "GT014",
+      "category": "question",
+      "description": "Question with 'màu gì' (what color)",
+      "examples": ""
+    },
+    {
+      "id": "GT015",
+      "category": "tense",
+      "description": "Past marker 'đã' before verb",
+      "examples": ""
+    },
+    {
+      "id": "GT016",
+      "category": "tense",
+      "description": "Progressive marker 'đang' before verb",
+      "examples": ""
+    },
+    {
+      "id": "GT017",
+      "category": "tense",
+      "description": "Future marker 'sẽ' before verb",
+      "examples": ""
+    },
+    {
+      "id": "GT018",
+      "category": "tense",
+      "description": "Completed aspect 'rồi' at end",
+      "examples": ""
+    },
+    {
+      "id": "GT019",
+      "category": "tense",
+      "description": "'chưa' (not yet) / have you... yet",
+      "examples": ""
+    },
+    {
+      "id": "GT020",
+      "category": "request",
+      "description": "Polite request 'Cho xin...'",
+      "examples": ""
+    },
+    {
+      "id": "GT021",
+      "category": "request",
+      "description": "Request 'Cho tôi...' (give me)",
+      "examples": ""
+    },
+    {
+      "id": "GT022",
+      "category": "request",
+      "description": "'muốn + verb' (want to)",
+      "examples": ""
+    },
+    {
+      "id": "GT023",
+      "category": "counting",
+      "description": "Measure word between number and noun",
+      "examples": ""
+    },
+    {
+      "id": "GT024",
+      "category": "counting",
+      "description": "Number + measure word + noun",
+      "examples": ""
+    },
+    {
+      "id": "GT025",
+      "category": "comparison",
+      "description": "A + adj + hơn + B (more than)",
+      "examples": ""
+    },
+    {
+      "id": "GT026",
+      "category": "comparison",
+      "description": "adj + nhất (most)",
+      "examples": ""
+    },
+    {
+      "id": "GT027",
+      "category": "comparison",
+      "description": "A + bằng + B (equal to)",
+      "examples": ""
+    },
+    {
+      "id": "GT028",
+      "category": "modal",
+      "description": "'có thể' (can, be able to)",
+      "examples": ""
+    },
+    {
+      "id": "GT029",
+      "category": "modal",
+      "description": "'phải' (must, have to)",
+      "examples": ""
+    },
+    {
+      "id": "GT030",
+      "category": "conditional",
+      "description": "'nếu...thì...' (if...then)",
+      "examples": ""
+    },
+    {
+      "id": "GT031",
+      "category": "descriptive",
+      "description": "'rất + adj' (very)",
+      "examples": ""
+    },
+    {
+      "id": "GT032",
+      "category": "descriptive",
+      "description": "'adj + quá' (too/so) - exclamation",
+      "examples": ""
+    },
+    {
+      "id": "GT033",
+      "category": "descriptive",
+      "description": "'adj + lắm' (very) - casual",
+      "examples": ""
+    },
+    {
+      "id": "GT034",
+      "category": "time",
+      "description": "'lúc + time' (at X o'clock)",
+      "examples": ""
+    },
+    {
+      "id": "GT035",
+      "category": "time",
+      "description": "buổi sáng/trưa/chiều/tối (morning/noon/afternoon/evening)",
+      "examples": ""
+    },
+    {
+      "id": "GT036",
+      "category": "time",
+      "description": "'ngày X tháng Y' (day before month)",
+      "examples": ""
+    },
+    {
+      "id": "GT037",
+      "category": "state",
+      "description": "'bị + adj/verb' (passive/negative state)",
+      "examples": ""
+    },
+    {
+      "id": "GT038",
+      "category": "location",
+      "description": "'ở + place' (at/in)",
+      "examples": ""
+    },
+    {
+      "id": "GT039",
+      "category": "location",
+      "description": "'bên + direction' (on the X side)",
+      "examples": ""
+    },
+    {
+      "id": "GT040",
+      "category": "location",
+      "description": "'đi bằng + vehicle' (by vehicle)",
+      "examples": ""
+    },
+    {
+      "id": "GT041",
+      "category": "frequency",
+      "description": "thường/luôn luôn/không bao giờ/đôi khi",
+      "examples": ""
+    },
+    {
+      "id": "GT042",
+      "category": "demonstrative",
+      "description": "'này' (this) / 'kia' (that)",
+      "examples": ""
+    },
+    {
+      "id": "GT043",
+      "category": "demonstrative",
+      "description": "'đây là' (this is) / 'đó là' (that is)",
+      "examples": ""
+    },
+    {
+      "id": "GT044",
+      "category": "connective",
+      "description": "'và' (and)",
+      "examples": ""
+    }
+  ]
+}

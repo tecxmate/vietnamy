@@ -16,6 +16,7 @@ export default function FeedbackBanner({
     correctAnswer = '',
     onContinue,
     fuzzyHint = null,
+    alternatives = null, // Array of alternative accepted translations
 }) {
     const [isVisible, setIsVisible] = useState(false);
     const [isPressed, setIsPressed] = useState(false);
@@ -108,6 +109,15 @@ export default function FeedbackBanner({
                             marginTop: 4,
                         }}>
                             Perfect spelling: <strong style={{ color: 'var(--text-main)' }}>{fuzzyHint}</strong>
+                        </div>
+                    )}
+                    {/* Show alternative translations when correct */}
+                    {isCorrect && !fuzzyHint && alternatives && alternatives.length > 1 && (
+                        <div style={{
+                            fontSize: 13, color: 'var(--text-muted)',
+                            marginTop: 4,
+                        }}>
+                            Also: {alternatives.slice(1, 3).join(', ')}
                         </div>
                     )}
                     {!isCorrect && correctAnswer && (

@@ -1158,6 +1158,7 @@ const LessonGame = () => {
                                 : ''
                         }
                         fuzzyHint={fuzzyHint}
+                        alternatives={currentEx?.prompt?.accepted_en}
                         onContinue={handleNext}
                     />
                 ) : (

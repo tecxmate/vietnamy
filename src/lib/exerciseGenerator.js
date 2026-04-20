@@ -11,8 +11,26 @@ function shuffleArray(arr) {
     return a;
 }
 
+/**
+ * Pick distractors with POS-aware tiering (better pedagogical distractors)
+ * Tier 1: Same POS from pool (hardest - can't eliminate by word type)
+ * Tier 2: Any POS from pool (fallback)
+ */
 function pickDistractors(item, pool, count, field = 'en_text') {
     const candidates = pool.filter(p => p.id !== item.id && p[field] !== item[field]);
+
+    // If item has POS, prefer same-POS distractors
+    if (item.pos) {
+        const samePOS = candidates.filter(p => p.pos === item.pos);
+        const otherPOS = candidates.filter(p => p.pos !== item.pos);
+
+        // Prioritize same-POS, then fill with others
+        const tier1 = shuffleArray(samePOS);
+        const tier2 = shuffleArray(otherPOS);
+        const combined = [...tier1, ...tier2];
+        return combined.slice(0, count).map(c => c[field]);
+    }
+
     const shuffled = shuffleArray(candidates);
     return shuffled.slice(0, count).map(c => c[field]);
 }
@@ -68,7 +86,9 @@ function generateMCQ(lessonId, item, pool, direction, exIndex) {
                 instruction: 'Translate to English',
                 source_text_vi: item.vi_text,
                 choices_en: choices,
-                answer_en: item.en_text
+                answer_en: item.en_text,
+                // Include all accepted translations for display/checking
+                accepted_en: item.accepted || [item.en_text],
             }
         };
     } else {
@@ -82,7 +102,9 @@ function generateMCQ(lessonId, item, pool, direction, exIndex) {
                 instruction: 'Translate to Vietnamese',
                 source_text_en: item.en_text,
                 choices_vi: choices,
-                answer_vi: item.vi_text
+                answer_vi: item.vi_text,
+                // Include accepted English translations for context
+                accepted_en: item.accepted || [item.en_text],
             }
         };
     }
@@ -168,7 +190,9 @@ function generateTranslationWordBank(lessonId, item, pool, exIndex) {
             source_text_en: item.en_text,
             tokens: allTokens,
             answer_tokens: tokens,
-            answer_vi: item.vi_text
+            answer_vi: item.vi_text,
+            // Include accepted translations for flexible answer checking
+            accepted_en: item.accepted || [item.en_text],
         }
     };
 }
@@ -208,9 +232,47 @@ function generateReorder(lessonId, item, exIndex) {
             target_vi: item.vi_text,
             source_text_en: item.en_text,
             tokens: scrambled,
-            answer_tokens: tokens
+            answer_tokens: tokens,
+            // Include accepted translations for context
+            accepted_en: item.accepted || [item.en_text],
         }
     };
+}
+
+// Grammar-aware target words for fill_blank exercises
+const TENSE_MARKERS = ['đã', 'đang', 'sẽ', 'rồi', 'chưa', 'sắp', 'vừa'];
+const QUESTION_WORDS = ['gì', 'nào', 'đâu', 'ai', 'sao', 'mấy', 'bao nhiêu', 'khi nào', 'tại sao'];
+const MEASURE_WORDS = ['cái', 'con', 'người', 'chiếc', 'quyển', 'ly', 'chai', 'tô', 'đĩa', 'bát'];
+
+/**
+ * Select the best word to blank based on grammar tags and pedagogical value
+ */
+function selectBlankTarget(words, tags) {
+    const lowerWords = words.map(w => w.toLowerCase());
+
+    // Priority 1: Tense markers (if sentence has tense tag)
+    if (tags?.some(t => ['GT015', 'GT016', 'GT017', 'GT018', 'GT019'].includes(t))) {
+        const tenseIdx = lowerWords.findIndex(w => TENSE_MARKERS.includes(w));
+        if (tenseIdx !== -1) return { word: words[tenseIdx], index: tenseIdx, type: 'tense' };
+    }
+
+    // Priority 2: Question words (if sentence has question tag)
+    if (tags?.some(t => t.startsWith('GT00') && parseInt(t.slice(2)) >= 3 && parseInt(t.slice(2)) <= 12)) {
+        const qIdx = lowerWords.findIndex(w => QUESTION_WORDS.includes(w));
+        if (qIdx !== -1) return { word: words[qIdx], index: qIdx, type: 'question' };
+    }
+
+    // Priority 3: Measure words
+    const measureIdx = lowerWords.findIndex(w => MEASURE_WORDS.includes(w));
+    if (measureIdx !== -1) return { word: words[measureIdx], index: measureIdx, type: 'measure' };
+
+    // Fallback: Random content word (not punctuation, not too short)
+    const candidates = words
+        .map((w, i) => ({ word: w, index: i }))
+        .filter(({ word }) => word.length > 1 && !/^[.!?,]+$/.test(word));
+
+    if (candidates.length === 0) return null;
+    return candidates[Math.floor(Math.random() * candidates.length)];
 }
 
 // Fill in the blank — remove a word from a sentence, offer MCQ choices
@@ -218,20 +280,29 @@ function generateFillBlank(lessonId, sentenceItem, pool, exIndex) {
     const words = sentenceItem.vi_text.split(/\s+/).filter(t => t);
     if (words.length < 2) return null;
 
-    const candidates = words
-        .map((w, i) => ({ word: w, index: i }))
-        .filter(({ word }) => word.length > 1 && !/^[.!?,]+$/.test(word));
+    // Use grammar-tag-aware target selection
+    const target = selectBlankTarget(words, sentenceItem.tags);
+    if (!target) return null;
 
-    if (candidates.length === 0) return null;
-
-    const target = candidates[Math.floor(Math.random() * candidates.length)];
     const blanked = words.map((w, i) => i === target.index ? '____' : w).join(' ');
 
-    const otherWords = pool
-        .filter(p => p.id !== sentenceItem.id)
-        .flatMap(p => p.vi_text.split(/\s+/).filter(t => t.length > 1))
-        .filter(w => w !== target.word);
-    const uniqueDistractors = [...new Set(otherWords)];
+    // Generate distractors based on blank type
+    let distractorPool;
+    if (target.type === 'tense') {
+        distractorPool = TENSE_MARKERS.filter(w => w !== target.word.toLowerCase());
+    } else if (target.type === 'question') {
+        distractorPool = QUESTION_WORDS.filter(w => w !== target.word.toLowerCase());
+    } else if (target.type === 'measure') {
+        distractorPool = MEASURE_WORDS.filter(w => w !== target.word.toLowerCase());
+    } else {
+        // Fallback: words from other items in pool
+        distractorPool = pool
+            .filter(p => p.id !== sentenceItem.id)
+            .flatMap(p => p.vi_text.split(/\s+/).filter(t => t.length > 1))
+            .filter(w => w !== target.word);
+    }
+
+    const uniqueDistractors = [...new Set(distractorPool)];
     const distractorChoices = shuffleArray(uniqueDistractors).slice(0, 2);
     const choices = shuffleArray([target.word, ...distractorChoices]);
 
@@ -244,7 +315,8 @@ function generateFillBlank(lessonId, sentenceItem, pool, exIndex) {
             template_vi: blanked,
             source_text_en: sentenceItem.en_text,
             choices_vi: choices,
-            answer_vi: target.word
+            answer_vi: target.word,
+            blank_type: target.type || 'general',
         }
     };
 }

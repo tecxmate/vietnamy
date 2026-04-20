@@ -1,6 +1,6 @@
 // A mock database using localStorage to simulate a backend for the 100-levels proposal.
 
-const DB_KEY = 'vnme_mock_db_v21'; // v21: declarative LESSON_DEFS with auto-generated items/translations/blueprints
+const DB_KEY = 'vnme_mock_db_v24'; // v24: unified_db.json as primary source
 
 // ── Diacritics stripping ──
 const stripDiacritics = (s) => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
@@ -16,6 +16,7 @@ const LESSON_DEFS = [
         id: "lesson_001a", unit: "phase_1_first_words", title: "Say Hello",
         nodeId: "p1_L001a", quizId: "p1_Q001a", quizLabel: "Greetings Quiz",
         nodeIndex: 1, difficulty: 1, cefr: "A1.1", xp: 8,
+        topic: "greetings", // Learner mode topic filter
         focus: ["greetings", "farewell"],
         words: [
             { id: "it_w_0001", vi: "xin chào", en: "hello (polite)", emoji: "👋" },
@@ -27,6 +28,7 @@ const LESSON_DEFS = [
         id: "lesson_001b", unit: "phase_1_first_words", title: "Thank You",
         nodeId: "p1_L001b", quizId: "p1_Q001b", quizLabel: "Thank You Quiz",
         nodeIndex: 4, difficulty: 1, cefr: "A1.1", xp: 8,
+        topic: "greetings", // Learner mode topic filter
         focus: ["politeness", "first_pronouns"],
         words: [
             { id: "it_w_0004", vi: "cảm ơn", en: "thank you", emoji: "🙏" },
@@ -42,6 +44,7 @@ const LESSON_DEFS = [
         id: "lesson_002a", unit: "phase_1_first_words", title: "What's Your Name?",
         nodeId: "p1_L002a", quizId: "p1_Q002a", quizLabel: "Name Quiz",
         nodeIndex: 10, difficulty: 2, cefr: "A1.1", xp: 8,
+        topic: "greetings", // Learner mode topic filter
         focus: ["introductions", "question_form"],
         phrases: [
             { id: "it_p_0010", vi: "tôi tên là {NAME}", en: "my name is {NAME}" },
@@ -54,6 +57,7 @@ const LESSON_DEFS = [
         id: "lesson_002b", unit: "phase_1_first_words", title: "Nice to Meet You",
         nodeId: "p1_L002b", quizId: "p1_Q002b", quizLabel: "Meeting Quiz",
         nodeIndex: 13, difficulty: 2, cefr: "A1.1", xp: 8,
+        topic: "greetings", // Learner mode topic filter
         focus: ["meeting_people"],
         phrases: [
             { id: "it_p_0011", vi: "tôi là {ROLE}", en: "I am a {ROLE}" },
@@ -68,6 +72,7 @@ const LESSON_DEFS = [
         id: "lesson_003", unit: "phase_2_polite", title: "Be Polite",
         nodeId: "p2_L003", quizId: "p2_Q003", quizLabel: "Polite Phrases Quiz",
         nodeIndex: 1, difficulty: 3, cefr: "A1.1", xp: 12,
+        topic: "basics", // Learner mode topic filter
         focus: ["polite_requests", "repair_phrases"],
         words: [
             { id: "it_w_0005", vi: "vâng", en: "yes (Northern)", emoji: "✅", dialect: "north" },
@@ -84,6 +89,7 @@ const LESSON_DEFS = [
         id: "lesson_004", unit: "phase_2_polite", title: "Count to 5",
         nodeId: "p2_L004", quizId: "p2_Q004", quizLabel: "Numbers 1–5 Quiz",
         nodeIndex: 4, difficulty: 4, cefr: "A1.1", xp: 12,
+        topic: "basics", // Learner mode topic filter
         focus: ["numbers_1_5"],
         words: [
             { id: "it_w_0020", vi: "một", en: "one", emoji: "1️⃣" },
@@ -101,6 +107,7 @@ const LESSON_DEFS = [
         id: "lesson_025", unit: "phase_2_polite", title: "Count to 10",
         nodeId: "p2_L025", quizId: "p2_Q025", quizLabel: "Numbers 6–10 Quiz",
         nodeIndex: 6, difficulty: 5, cefr: "A1.1", xp: 12,
+        topic: "basics", // Learner mode topic filter
         focus: ["numbers_6_10"],
         words: [
             { id: "it_w_0025", vi: "sáu", en: "six", emoji: "6️⃣" },
@@ -120,6 +127,7 @@ const LESSON_DEFS = [
         id: "lesson_005", unit: "phase_3_cafe", title: "Order Something",
         nodeId: "p3_L005", quizId: "p3_Q005", quizLabel: "Ordering Quiz",
         nodeIndex: 1, difficulty: 5, cefr: "A1.2", xp: 14,
+        topic: "restaurant", // Learner mode topic filter
         focus: ["ordering", "diacritics_awareness"],
         words: [
             { id: "it_w_0030", vi: "cà phê", en: "coffee", emoji: "☕" },
@@ -137,6 +145,7 @@ const LESSON_DEFS = [
         id: "lesson_006", unit: "phase_3_cafe", title: "At the Café",
         nodeId: "p3_L006", quizId: "p3_Q006", quizLabel: "Café Quiz",
         nodeIndex: 5, difficulty: 6, cefr: "A1.2", xp: 14,
+        topic: "restaurant", // Learner mode topic filter
         focus: ["cafe_ordering", "drinks"],
         words: [
             { id: "it_w_0040", vi: "cà phê sữa đá", en: "iced milk coffee", emoji: "☕" },
@@ -154,6 +163,7 @@ const LESSON_DEFS = [
         id: "lesson_007", unit: "phase_4_food", title: "Talk About Food",
         nodeId: "p4_L007", quizId: "p4_Q007", quizLabel: "Food Quiz",
         nodeIndex: 1, difficulty: 6, cefr: "A1.2", xp: 14,
+        topic: "restaurant", // Learner mode topic filter
         focus: ["food_vocabulary"],
         words: [
             { id: "it_w_0045", vi: "phở", en: "pho (noodle soup)", emoji: "🍜" },
@@ -171,6 +181,7 @@ const LESSON_DEFS = [
         id: "lesson_008", unit: "phase_4_food", title: "Ask the Price",
         nodeId: "p4_L008", quizId: "p4_Q008", quizLabel: "Prices Quiz",
         nodeIndex: 4, difficulty: 7, cefr: "A1.2", xp: 16,
+        topic: "money", // Learner mode topic filter
         focus: ["prices", "haggling"],
         words: [
             { id: "it_w_0052", vi: "bao nhiêu", en: "how much / how many", emoji: "🔢" },
@@ -189,6 +200,7 @@ const LESSON_DEFS = [
         id: "lesson_009", unit: "phase_5_market", title: "Learn Colors",
         nodeId: "p5_L009", quizId: "p5_Q009", quizLabel: "Colors Quiz",
         nodeIndex: 1, difficulty: 5, cefr: "A1.3", xp: 16,
+        topic: "shopping", // Learner mode topic filter
         focus: ["colors"],
         words: [
             { id: "it_w_0060", vi: "màu", en: "color", emoji: "🎨" },
@@ -207,6 +219,7 @@ const LESSON_DEFS = [
         id: "lesson_026", unit: "phase_5_market", title: "Describe Things",
         nodeId: "p5_L026", quizId: "p5_Q026", quizLabel: "Adjectives Quiz",
         nodeIndex: 3, difficulty: 6, cefr: "A1.3", xp: 16,
+        topic: "basics", // Learner mode topic filter
         focus: ["descriptions", "adjectives"],
         words: [
             { id: "it_w_0066", vi: "to", en: "big / large", emoji: "📏" },
@@ -223,6 +236,7 @@ const LESSON_DEFS = [
         id: "lesson_010", unit: "phase_5_market", title: "Haggle at the Market",
         nodeId: "p5_L010", quizId: "p5_Q010", quizLabel: "Haggling Quiz",
         nodeIndex: 6, difficulty: 7, cefr: "A1.3", xp: 16,
+        topic: "shopping", // Learner mode topic filter
         focus: ["haggling", "shopping"],
         words: [
             { id: "it_w_0070", vi: "mua", en: "to buy", emoji: "🛒" },
@@ -243,6 +257,7 @@ const LESSON_DEFS = [
         id: "lesson_011", unit: "phase_6_numbers", title: "Pick Some Fruit",
         nodeId: "p6_L011", quizId: "p6_Q011", quizLabel: "Fruits Quiz",
         nodeIndex: 1, difficulty: 5, cefr: "A1.3", xp: 16,
+        topic: "shopping", // Learner mode topic filter
         focus: ["fruits"],
         words: [
             { id: "it_w_0080", vi: "trái cây", en: "fruit", emoji: "🍎" },
@@ -260,6 +275,7 @@ const LESSON_DEFS = [
         id: "lesson_027", unit: "phase_6_numbers", title: "Buy Vegetables",
         nodeId: "p6_L027", quizId: "p6_Q027", quizLabel: "Vegetables Quiz",
         nodeIndex: 3, difficulty: 6, cefr: "A1.3", xp: 16,
+        topic: "shopping", // Learner mode topic filter
         focus: ["vegetables"],
         words: [
             { id: "it_w_0085", vi: "rau", en: "vegetable", emoji: "🥬" },
@@ -275,6 +291,7 @@ const LESSON_DEFS = [
         id: "lesson_012", unit: "phase_6_numbers", title: "Big Numbers & Bills",
         nodeId: "p6_L012", quizId: "p6_Q012", quizLabel: "Big Numbers Quiz",
         nodeIndex: 6, difficulty: 7, cefr: "A1.3", xp: 16,
+        topic: "money", // Learner mode topic filter
         focus: ["big_numbers", "bills"],
         words: [
             { id: "it_w_0090", vi: "trăm", en: "hundred", emoji: "💯" },
@@ -293,6 +310,7 @@ const LESSON_DEFS = [
         id: "lesson_013", unit: "phase_7_transport", title: "Directions",
         nodeId: "p7_L013", quizId: "p7_Q013", quizLabel: "Directions Quiz",
         nodeIndex: 1, difficulty: 5, cefr: "A2.1", xp: 14,
+        topic: "directions", // Learner mode topic filter
         focus: ["directions"],
         words: [
             { id: "it_w_0100", vi: "đi", en: "to go", emoji: "🚶" },
@@ -309,6 +327,7 @@ const LESSON_DEFS = [
         id: "lesson_030", unit: "phase_7_transport", title: "Distance",
         nodeId: "p7_L030", quizId: "p7_Q030", quizLabel: "Distance Quiz",
         nodeIndex: 3, difficulty: 6, cefr: "A2.1", xp: 14,
+        topic: "directions", // Learner mode topic filter
         focus: ["distance"],
         words: [
             { id: "it_w_0105", vi: "gần", en: "near / close", emoji: "📍" },
@@ -323,6 +342,7 @@ const LESSON_DEFS = [
         id: "lesson_014", unit: "phase_7_transport", title: "Taxi & Transport",
         nodeId: "p7_L014", quizId: "p7_Q014", quizLabel: "Taxi Quiz",
         nodeIndex: 6, difficulty: 7, cefr: "A2.1", xp: 16,
+        topic: "transport", // Learner mode topic filter
         focus: ["transport", "taxi"],
         words: [
             { id: "it_w_0110", vi: "xe", en: "vehicle", emoji: "🏍️" },
@@ -340,6 +360,7 @@ const LESSON_DEFS = [
         id: "lesson_015", unit: "phase_7_transport", title: "At the Hotel",
         nodeId: "p7_L015", quizId: "p7_Q015", quizLabel: "Hotel Quiz",
         nodeIndex: 9, difficulty: 8, cefr: "A2.1", xp: 16,
+        topic: "hotel", // Learner mode topic filter
         focus: ["hotel", "accommodation"],
         words: [
             { id: "it_w_0120", vi: "khách sạn", en: "hotel", emoji: "🏨" },
@@ -356,6 +377,7 @@ const LESSON_DEFS = [
         id: "lesson_016", unit: "phase_7_transport", title: "Asking for Help",
         nodeId: "p7_L016", quizId: "p7_Q016", quizLabel: "Help Quiz",
         nodeIndex: 12, difficulty: 9, cefr: "A2.1", xp: 16,
+        topic: "emergency", // Learner mode topic filter
         focus: ["emergency", "help"],
         words: [
             { id: "it_w_0130", vi: "giúp", en: "to help", emoji: "🆘" },
@@ -375,6 +397,7 @@ const LESSON_DEFS = [
         id: "lesson_017", unit: "phase_8_daily", title: "Time & Schedule",
         nodeId: "p8_L017", quizId: "p8_Q017", quizLabel: "Time Quiz",
         nodeIndex: 1, difficulty: 5, cefr: "A2.1", xp: 16,
+        topic: "basics", // Learner mode topic filter
         focus: ["time", "time_of_day"],
         words: [
             { id: "it_w_0140", vi: "giờ", en: "hour / o'clock", emoji: "🕐" },
@@ -392,6 +415,7 @@ const LESSON_DEFS = [
         id: "lesson_028", unit: "phase_8_daily", title: "Days & Schedule",
         nodeId: "p8_L028", quizId: "p8_Q028", quizLabel: "Days Quiz",
         nodeIndex: 3, difficulty: 6, cefr: "A2.1", xp: 14,
+        topic: "basics", // Learner mode topic filter
         focus: ["days", "schedule"],
         words: [
             { id: "it_w_0145", vi: "hôm nay", en: "today", emoji: "📅" },
@@ -406,6 +430,7 @@ const LESSON_DEFS = [
         id: "lesson_018", unit: "phase_8_daily", title: "Weather",
         nodeId: "p8_L018", quizId: "p8_Q018", quizLabel: "Weather Quiz",
         nodeIndex: 6, difficulty: 7, cefr: "A2.1", xp: 16,
+        topic: "sightseeing", // Learner mode topic filter
         focus: ["weather"],
         words: [
             { id: "it_w_0150", vi: "trời", en: "sky / weather", emoji: "🌤️" },
@@ -423,6 +448,7 @@ const LESSON_DEFS = [
         id: "lesson_019", unit: "phase_8_daily", title: "Family",
         nodeId: "p8_L019", quizId: "p8_Q019", quizLabel: "Parents Quiz",
         nodeIndex: 9, difficulty: 8, cefr: "A2.1", xp: 16,
+        topic: "family", // Learner mode topic filter
         focus: ["family", "parents"],
         words: [
             { id: "it_w_0160", vi: "bố", en: "father (Northern)", emoji: "👨" },
@@ -441,6 +467,7 @@ const LESSON_DEFS = [
         id: "lesson_029", unit: "phase_8_daily", title: "Family (Extended)",
         nodeId: "p8_L029", quizId: "p8_Q029", quizLabel: "Siblings Quiz",
         nodeIndex: 11, difficulty: 9, cefr: "A2.1", xp: 14,
+        topic: "family", // Learner mode topic filter
         focus: ["family", "extended"],
         words: [
             { id: "it_w_0166", vi: "em", en: "younger sibling", emoji: "🧒" },
@@ -457,6 +484,7 @@ const LESSON_DEFS = [
         id: "lesson_020", unit: "phase_8_daily", title: "House & Rooms",
         nodeId: "p8_L020", quizId: "p8_Q020", quizLabel: "Rooms Quiz",
         nodeIndex: 14, difficulty: 9, cefr: "A2.1", xp: 16,
+        topic: "home", // Learner mode topic filter
         focus: ["house", "rooms"],
         words: [
             { id: "it_w_0170", vi: "nhà", en: "house / home", emoji: "🏠" },
@@ -473,6 +501,7 @@ const LESSON_DEFS = [
         id: "lesson_031", unit: "phase_8_daily", title: "Furniture",
         nodeId: "p8_L031", quizId: "p8_Q031", quizLabel: "Furniture Quiz",
         nodeIndex: 16, difficulty: 10, cefr: "A2.1", xp: 14,
+        topic: "home", // Learner mode topic filter
         focus: ["furniture"],
         words: [
             { id: "it_w_0174", vi: "cửa", en: "door", emoji: "🚪" },
@@ -490,6 +519,7 @@ const LESSON_DEFS = [
         id: "lesson_021", unit: "phase_9_social", title: "Hobbies",
         nodeId: "p9_L021", quizId: "p9_Q021", quizLabel: "Hobbies Quiz",
         nodeIndex: 1, difficulty: 6, cefr: "A2.2", xp: 16,
+        topic: "sightseeing", // Learner mode topic filter
         focus: ["hobbies"],
         words: [
             { id: "it_w_0180", vi: "thích", en: "to like / to enjoy", emoji: "❤️" },
@@ -507,6 +537,7 @@ const LESSON_DEFS = [
         id: "lesson_022", unit: "phase_9_social", title: "Feelings & Emotions",
         nodeId: "p9_L022", quizId: "p9_Q022", quizLabel: "Feelings Quiz",
         nodeIndex: 4, difficulty: 7, cefr: "A2.2", xp: 16,
+        topic: "basics", // Learner mode topic filter
         focus: ["feelings", "emotions"],
         words: [
             { id: "it_w_0190", vi: "vui", en: "happy / fun", emoji: "😊" },
@@ -524,6 +555,7 @@ const LESSON_DEFS = [
         id: "lesson_023", unit: "phase_9_social", title: "Make Plans",
         nodeId: "p9_L023", quizId: "p9_Q023", quizLabel: "Invitations Quiz",
         nodeIndex: 7, difficulty: 8, cefr: "A2.2", xp: 16,
+        topic: "sightseeing", // Learner mode topic filter
         focus: ["invitations", "plans"],
         words: [
             { id: "it_w_0200", vi: "cuối tuần", en: "weekend", emoji: "🗓️" },
@@ -541,6 +573,7 @@ const LESSON_DEFS = [
         id: "lesson_024", unit: "phase_9_social", title: "Celebrate Together",
         nodeId: "p9_L024", quizId: "p9_Q024", quizLabel: "Party Quiz",
         nodeIndex: 11, difficulty: 9, cefr: "A2.2", xp: 24,
+        topic: "traditions", // Learner mode topic filter
         focus: ["celebrations", "party"],
         words: [
             { id: "it_w_0210", vi: "chúc mừng", en: "congratulations", emoji: "🎊" },
@@ -555,6 +588,148 @@ const LESSON_DEFS = [
         ],
     },
 ];
+
+// ── Unified Database ──
+// Import the unified database (combines legacy + curriculum data)
+import unifiedDB from '../data/unified_db.json';
+
+/**
+ * Build internal structures from unified_db.json
+ * This replaces the old buildFromDefs(LESSON_DEFS) approach
+ */
+function buildFromUnifiedDB(db) {
+    const items = [];
+    const translations = [];
+    const blueprints = [];
+    const lessons = [];
+    const pathNodes = [];
+
+    // Build vocabulary items
+    (db.vocabulary || []).forEach(v => {
+        const audioKey = "a_" + v.vi_text.replace(/[^a-zA-ZàáạảãăắằặẳẵâấầậẩẫèéẹẻẽêếềệểễìíịỉĩòóọỏõôốồộổỗơớờợởỡùúụủũưứừựửữỳýỵỷỹđĐ ]/g, '').replace(/ +/g, '_').toLowerCase();
+        items.push({
+            id: v.id,
+            item_type: v.pos === 'phrase' ? 'phrase' : 'word',
+            vi_text: v.vi_text,
+            vi_text_no_diacritics: stripDiacritics(v.vi_text),
+            audio_key: audioKey,
+            dialect: v.dialect || 'both',
+            emoji: v.emoji,
+            pos: v.pos,
+            frequency: v.frequency_rank,
+            hasImage: v.has_image,
+        });
+        // Add translations
+        (v.translations || []).forEach(t => {
+            translations.push({
+                item_id: v.id,
+                lang: t.lang,
+                text: t.text,
+                is_alternate: !t.is_primary,
+            });
+        });
+    });
+
+    // Build sentence items
+    (db.sentences || []).forEach(s => {
+        const audioKey = "a_" + s.vi_text.replace(/[^a-zA-ZàáạảãăắằặẳẵâấầậẩẫèéẹẻẽêếềệểễìíịỉĩòóọỏõôốồộổỗơớờợởỡùúụủũưứừựửữỳýỵỷỹđĐ ]/g, '').replace(/ +/g, '_').toLowerCase();
+        items.push({
+            id: s.id,
+            item_type: 'sentence',
+            vi_text: s.vi_text,
+            vi_text_no_diacritics: stripDiacritics(s.vi_text),
+            audio_key: audioKey,
+            dialect: 'both',
+            token_count: s.token_count,
+            tags: s.grammar_tags,
+            note: s.grammar_note,
+            accepted: (s.translations || []).map(t => t.text),
+        });
+        // Add translations
+        (s.translations || []).forEach(t => {
+            translations.push({
+                item_id: s.id,
+                lang: t.lang,
+                text: t.text,
+                is_alternate: !t.is_primary,
+            });
+        });
+    });
+
+    // Build lessons, blueprints, and path_nodes from db.lessons
+    (db.lessons || []).forEach(lesson => {
+        // Find vocab and sentences for this lesson
+        const lessonVocab = (db.vocabulary || []).filter(v => v.lesson_id === lesson.id);
+        const lessonSentences = (db.sentences || []).filter(s => s.lesson_id === lesson.id);
+        const itemIds = [...lessonVocab.map(v => v.id), ...lessonSentences.map(s => s.id)];
+
+        lessons.push({
+            id: lesson.id,
+            course_id: "course_vi_en_v1",
+            skill_id: `skill_${lesson.id}`,
+            lesson_index: lesson.order_index,
+            title: lesson.title,
+            target_xp: lesson.xp_reward || 10,
+        });
+
+        blueprints.push({
+            lesson_id: lesson.id,
+            focus: lesson.focus || [],
+            introduced_items: itemIds,
+        });
+
+        // Create lesson path_node
+        if (lesson.node_id) {
+            pathNodes.push({
+                id: lesson.node_id,
+                course_id: "course_vi_en_v1",
+                unit_id: lesson.unit_id,
+                node_index: lesson.order_index,
+                node_type: "lesson",
+                module_type: "orange",
+                lesson_id: lesson.id,
+                difficulty: lesson.difficulty || 1,
+                cefr_level: lesson.cefr_level || "A1.1",
+                vocab_introduces: itemIds,
+                vocab_requires: [],
+            });
+
+            // Create quiz path_node
+            if (lesson.quiz_id) {
+                pathNodes.push({
+                    id: lesson.quiz_id,
+                    course_id: "course_vi_en_v1",
+                    unit_id: lesson.unit_id,
+                    node_index: lesson.order_index + 1,
+                    node_type: "test",
+                    module_type: "test",
+                    label: `${lesson.title} Quiz`,
+                    test_scope: "module",
+                    source_node_id: lesson.node_id,
+                    difficulty: lesson.difficulty || 1,
+                    cefr_level: lesson.cefr_level || "A1.1",
+                    vocab_introduces: [],
+                    vocab_requires: [],
+                });
+            }
+        }
+    });
+
+    return { items, translations, blueprints, lessons, pathNodes };
+}
+
+// Also keep the metadata lookup functions for backward compatibility
+import curriculumMetadata from '../data/curricula/metadata.json';
+
+function getVocabMetadata(viText) {
+    const key = viText.toLowerCase().trim();
+    return curriculumMetadata.vocab[key] || null;
+}
+
+function getSentenceMetadata(viText) {
+    const key = viText.toLowerCase().trim();
+    return curriculumMetadata.sentences[key] || null;
+}
 
 // ── Build structured data from LESSON_DEFS ──
 function buildFromDefs(defs) {
@@ -574,6 +749,12 @@ function buildFromDefs(defs) {
         const itemIds = [];
         for (const entry of allEntries) {
             const audioKey = "a_" + entry.vi.replace(/[^a-zA-ZàáạảãăắằặẳẵâấầậẩẫèéẹẻẽêếềệểễìíịỉĩòóọỏõôốồộổỗơớờợởỡùúụủũưứừựửữỳýỵỷỹđĐ ]/g, '').replace(/ +/g, '_').toLowerCase();
+
+            // Look up curriculum metadata for this item
+            const meta = entry.type === 'sentence'
+                ? getSentenceMetadata(entry.vi)
+                : getVocabMetadata(entry.vi);
+
             items.push({
                 id: entry.id,
                 item_type: entry.type,
@@ -582,8 +763,22 @@ function buildFromDefs(defs) {
                 audio_key: audioKey,
                 dialect: entry.dialect || "both",
                 ...(entry.emoji ? { emoji: entry.emoji } : {}),
+                // Curriculum metadata (from metadata.json lookup)
+                ...(meta?.pos ? { pos: meta.pos } : {}),
+                ...(meta?.frequency ? { frequency: meta.frequency } : {}),
+                ...(meta?.hasImage ? { hasImage: meta.hasImage } : {}),
+                ...(meta?.accepted ? { accepted: meta.accepted } : {}),
+                ...(meta?.tags ? { tags: meta.tags } : {}),
+                ...(meta?.note ? { note: meta.note } : {}),
+                ...(meta?.tokens ? { token_count: meta.tokens } : {}),
             });
             translations.push({ item_id: entry.id, lang: "en", text: entry.en });
+            // Also store accepted translations if available from curriculum
+            if (meta?.accepted && meta.accepted.length > 1) {
+                meta.accepted.slice(1).forEach(alt => {
+                    translations.push({ item_id: entry.id, lang: "en", text: alt, is_alternate: true });
+                });
+            }
             itemIds.push(entry.id);
         }
 
@@ -640,7 +835,47 @@ function buildFromDefs(defs) {
     return { items, translations, blueprints, lessons, pathNodes };
 }
 
-const _built = buildFromDefs(LESSON_DEFS);
+// Build from unified database (combines legacy content + curriculum metadata)
+const _built = buildFromUnifiedDB(unifiedDB);
+
+// Also build from LESSON_DEFS for any items not in unified_db (backward compatibility)
+const _legacyBuilt = buildFromDefs(LESSON_DEFS);
+
+// Merge: prefer unified_db, fallback to legacy for missing items
+const mergeBuilt = () => {
+    const unifiedItemIds = new Set(_built.items.map(i => i.id));
+    const unifiedLessonIds = new Set(_built.lessons.map(l => l.id));
+
+    // Add legacy items not in unified
+    const extraItems = _legacyBuilt.items.filter(i => !unifiedItemIds.has(i.id));
+    const extraTranslations = _legacyBuilt.translations.filter(t => !unifiedItemIds.has(t.item_id));
+    const extraLessons = _legacyBuilt.lessons.filter(l => !unifiedLessonIds.has(l.id));
+    const extraBlueprints = _legacyBuilt.blueprints.filter(b => !unifiedLessonIds.has(b.lesson_id));
+    const extraPathNodes = _legacyBuilt.pathNodes.filter(n => !_built.pathNodes.some(bn => bn.id === n.id));
+
+    return {
+        items: [..._built.items, ...extraItems],
+        translations: [..._built.translations, ...extraTranslations],
+        blueprints: [..._built.blueprints, ...extraBlueprints],
+        lessons: [..._built.lessons, ...extraLessons],
+        pathNodes: [..._built.pathNodes, ...extraPathNodes],
+    };
+};
+
+const _mergedBuilt = mergeBuilt();
+
+// Units definition
+const LEGACY_UNITS = [
+    { id: "phase_1_first_words", course_id: "course_vi_en_v1", unit_index: 0, title: "Unit 1 — First Words" },
+    { id: "phase_2_polite", course_id: "course_vi_en_v1", unit_index: 2, title: "Unit 2 — Polite Survival" },
+    { id: "phase_3_cafe", course_id: "course_vi_en_v1", unit_index: 3, title: "Unit 3 — Ordering & Café" },
+    { id: "phase_4_food", course_id: "course_vi_en_v1", unit_index: 4, title: "Unit 4 — Food & Prices" },
+    { id: "phase_5_market", course_id: "course_vi_en_v1", unit_index: 5, title: "Unit 5 — Market Life" },
+    { id: "phase_6_numbers", course_id: "course_vi_en_v1", unit_index: 6, title: "Unit 6 — Numbers Advanced" },
+    { id: "phase_7_transport", course_id: "course_vi_en_v1", unit_index: 7, title: "Unit 7 — Getting Around" },
+    { id: "phase_8_daily", course_id: "course_vi_en_v1", unit_index: 8, title: "Unit 8 — Daily Life" },
+    { id: "phase_9_social", course_id: "course_vi_en_v1", unit_index: 9, title: "Unit 9 — Social Life" }
+];
 
 const INIT_DATA = {
     course: {
@@ -650,17 +885,8 @@ const INIT_DATA = {
         title: "Vietnamese (English UI)",
         dialect_default: "both"
     },
-    units: [
-        { id: "phase_1_first_words", course_id: "course_vi_en_v1", unit_index: 0, title: "Unit 1 — First Words" },
-        { id: "phase_2_polite", course_id: "course_vi_en_v1", unit_index: 2, title: "Unit 2 — Polite Survival" },
-        { id: "phase_3_cafe", course_id: "course_vi_en_v1", unit_index: 3, title: "Unit 3 — Ordering & Café" },
-        { id: "phase_4_food", course_id: "course_vi_en_v1", unit_index: 4, title: "Unit 4 — Food & Prices" },
-        { id: "phase_5_market", course_id: "course_vi_en_v1", unit_index: 5, title: "Unit 5 — Market Life" },
-        { id: "phase_6_numbers", course_id: "course_vi_en_v1", unit_index: 6, title: "Unit 6 — Numbers Advanced" },
-        { id: "phase_7_transport", course_id: "course_vi_en_v1", unit_index: 7, title: "Unit 7 — Getting Around" },
-        { id: "phase_8_daily", course_id: "course_vi_en_v1", unit_index: 8, title: "Unit 8 — Daily Life" },
-        { id: "phase_9_social", course_id: "course_vi_en_v1", unit_index: 9, title: "Unit 9 — Social Life" }
-    ],
+    // Keep legacy units for compatibility with existing manual path_nodes
+    units: LEGACY_UNITS,
     skills: [
         { id: "skill_greetings_1", course_id: "course_vi_en_v1", key: "greetings_1", title: "Greetings", skill_type: "vocab" },
         { id: "skill_introduce_1", course_id: "course_vi_en_v1", key: "introduce_1", title: "Introduce Yourself", skill_type: "grammar" },
@@ -698,11 +924,11 @@ const INIT_DATA = {
         { id: "skill_invite_1", course_id: "course_vi_en_v1", key: "invite_1", title: "Invitations", skill_type: "grammar" },
         { id: "skill_party_1", course_id: "course_vi_en_v1", key: "party_1", title: "At the Party", skill_type: "vocab" }
     ],
-    lessons: [..._built.lessons],
+    lessons: [..._mergedBuilt.lessons],
     path_nodes: [
-        // ═══ Unit 1: First Words ═══
-        // Lesson + quiz nodes auto-generated from LESSON_DEFS; grammar/phonetics/test nodes manual
-        ..._built.pathNodes,
+        // ═══ Lesson + quiz nodes from unified_db + legacy ═══
+        ..._mergedBuilt.pathNodes,
+        // ═══ Manual nodes (grammar, practice, tests) ═══
         { id: "p1_P0", course_id: "course_vi_en_v1", unit_id: "phase_1_first_words", node_index: 3, node_type: "skill", module_type: "blue", label: "Tones: Introduction", skill_content: { type: "practice_module", route: "/practice/tones-1" }, difficulty: 1, cefr_level: "A1.1", vocab_introduces: [], vocab_requires: [] },
         { id: "p1_G1", course_id: "course_vi_en_v1", unit_id: "phase_1_first_words", node_index: 6, node_type: "skill", module_type: "purple", label: "Grammar: I + You (tôi, bạn)", skill_content: { type: "grammar_unit", grammar_unit_id: "A1_M06_U01a" }, difficulty: 2, cefr_level: "A1.1", vocab_introduces: [], vocab_requires: ["it_w_0008", "it_w_0009"] },
         { id: "p1_S1", course_id: "course_vi_en_v1", unit_id: "phase_1_first_words", node_index: 7, node_type: "skill", module_type: "blue", label: "Tones: Level & Rising", skill_content: { type: "practice_module", route: "/practice/tones-2" }, difficulty: 2, cefr_level: "A1.1", vocab_introduces: [], vocab_requires: [] },
@@ -799,12 +1025,12 @@ const INIT_DATA = {
         { id: "p9_T", course_id: "course_vi_en_v1", unit_id: "phase_9_social", node_index: 17, node_type: "test", module_type: "test", label: "Final Test", test_scope: "unit", difficulty: 10, cefr_level: "A2.2", vocab_introduces: [], vocab_requires: [] },
         { id: "p9_SC1", course_id: "course_vi_en_v1", unit_id: "phase_9_social", node_index: 18, node_type: "scene", module_type: "green", label: "🎉 At a Party", scene_id: "scene_party_001", difficulty: 9, cefr_level: "A2.2", vocab_introduces: [], vocab_requires: [] }
     ],
-    items: [..._built.items],
-    translations: [..._built.translations],
+    items: [..._mergedBuilt.items],
+    translations: [..._mergedBuilt.translations],
     exercises: [
         // Exercises are now auto-generated at runtime by exerciseGenerator.js
     ],
-    lesson_blueprints: [..._built.blueprints],
+    lesson_blueprints: [..._mergedBuilt.blueprints],
 
     // ── Scene Locations (neighborhoods) ──
     scene_locations: [

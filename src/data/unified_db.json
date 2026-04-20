@@ -1,0 +1,5158 @@
+{
+  "version": "1.0.0",
+  "generated": "2026-04-20T16:48:46.777Z",
+  "stats": {
+    "units": 9,
+    "lessons": 33,
+    "vocabulary": 147,
+    "sentences": 51,
+    "grammar_tags": 44,
+    "conversations": 25
+  },
+  "units": [
+    {
+      "id": "phase_1_first_words",
+      "order_index": 1,
+      "title": "First Words"
+    },
+    {
+      "id": "phase_2_polite",
+      "order_index": 2,
+      "title": "Polite Survival"
+    },
+    {
+      "id": "phase_3_cafe",
+      "order_index": 3,
+      "title": "Ordering & Café"
+    },
+    {
+      "id": "phase_4_food",
+      "order_index": 4,
+      "title": "Food & Prices"
+    },
+    {
+      "id": "phase_5_market",
+      "order_index": 5,
+      "title": "Market Life"
+    },
+    {
+      "id": "phase_6_numbers",
+      "order_index": 6,
+      "title": "Numbers Advanced"
+    },
+    {
+      "id": "phase_7_transport",
+      "order_index": 7,
+      "title": "Getting Around"
+    },
+    {
+      "id": "phase_8_daily",
+      "order_index": 8,
+      "title": "Daily Life"
+    },
+    {
+      "id": "phase_9_social",
+      "order_index": 9,
+      "title": "Social Life"
+    }
+  ],
+  "lessons": [
+    {
+      "id": "lesson_001a",
+      "unit_id": "phase_1_first_words",
+      "order_index": 1,
+      "title": "Say Hello",
+      "topic": "greetings",
+      "focus": [
+        "greetings",
+        "farewell"
+      ],
+      "difficulty": 1,
+      "xp_reward": 8,
+      "cefr_level": "A1.1",
+      "node_id": "p1_L001a",
+      "quiz_id": "p1_Q001a"
+    },
+    {
+      "id": "lesson_001b",
+      "unit_id": "phase_1_first_words",
+      "order_index": 4,
+      "title": "Thank You",
+      "topic": "greetings",
+      "focus": [
+        "politeness",
+        "first_pronouns"
+      ],
+      "difficulty": 1,
+      "xp_reward": 8,
+      "cefr_level": "A1.1",
+      "node_id": "p1_L001b",
+      "quiz_id": "p1_Q001b"
+    },
+    {
+      "id": "lesson_002a",
+      "unit_id": "phase_1_first_words",
+      "order_index": 10,
+      "title": "What's Your Name?",
+      "topic": "greetings",
+      "focus": [
+        "introductions",
+        "question_form"
+      ],
+      "difficulty": 2,
+      "xp_reward": 8,
+      "cefr_level": "A1.1",
+      "node_id": "p1_L002a",
+      "quiz_id": "p1_Q002a"
+    },
+    {
+      "id": "lesson_002b",
+      "unit_id": "phase_1_first_words",
+      "order_index": 13,
+      "title": "Nice to Meet You",
+      "topic": "greetings",
+      "focus": [
+        "meeting_people"
+      ],
+      "difficulty": 2,
+      "xp_reward": 8,
+      "cefr_level": "A1.1",
+      "node_id": "p1_L002b",
+      "quiz_id": "p1_Q002b"
+    },
+    {
+      "id": "lesson_003",
+      "unit_id": "phase_2_polite",
+      "order_index": 1,
+      "title": "Be Polite",
+      "topic": "basics",
+      "focus": [
+        "polite_requests",
+        "repair_phrases"
+      ],
+      "difficulty": 3,
+      "xp_reward": 12,
+      "cefr_level": "A1.1",
+      "node_id": "p2_L003",
+      "quiz_id": "p2_Q003"
+    },
+    {
+      "id": "lesson_004",
+      "unit_id": "phase_2_polite",
+      "order_index": 4,
+      "title": "Count to 5",
+      "topic": "basics",
+      "focus": [
+        "numbers_1_5"
+      ],
+      "difficulty": 4,
+      "xp_reward": 12,
+      "cefr_level": "A1.1",
+      "node_id": "p2_L004",
+      "quiz_id": "p2_Q004"
+    },
+    {
+      "id": "lesson_025",
+      "unit_id": "phase_2_polite",
+      "order_index": 6,
+      "title": "Count to 10",
+      "topic": "basics",
+      "focus": [
+        "numbers_6_10"
+      ],
+      "difficulty": 5,
+      "xp_reward": 12,
+      "cefr_level": "A1.1",
+      "node_id": "p2_L025",
+      "quiz_id": "p2_Q025"
+    },
+    {
+      "id": "lesson_005",
+      "unit_id": "phase_3_cafe",
+      "order_index": 1,
+      "title": "Order Something",
+      "topic": "restaurant",
+      "focus": [
+        "ordering",
+        "diacritics_awareness"
+      ],
+      "difficulty": 5,
+      "xp_reward": 14,
+      "cefr_level": "A1.2",
+      "node_id": "p3_L005",
+      "quiz_id": "p3_Q005"
+    },
+    {
+      "id": "lesson_006",
+      "unit_id": "phase_3_cafe",
+      "order_index": 5,
+      "title": "At the Café",
+      "topic": "restaurant",
+      "focus": [
+        "cafe_ordering",
+        "drinks"
+      ],
+      "difficulty": 6,
+      "xp_reward": 14,
+      "cefr_level": "A1.2",
+      "node_id": "p3_L006",
+      "quiz_id": "p3_Q006"
+    },
+    {
+      "id": "lesson_007",
+      "unit_id": "phase_4_food",
+      "order_index": 1,
+      "title": "Talk About Food",
+      "topic": "restaurant",
+      "focus": [
+        "food_vocabulary"
+      ],
+      "difficulty": 6,
+      "xp_reward": 14,
+      "cefr_level": "A1.2",
+      "node_id": "p4_L007",
+      "quiz_id": "p4_Q007"
+    },
+    {
+      "id": "lesson_008",
+      "unit_id": "phase_4_food",
+      "order_index": 4,
+      "title": "Ask the Price",
+      "topic": "money",
+      "focus": [
+        "prices",
+        "haggling"
+      ],
+      "difficulty": 7,
+      "xp_reward": 16,
+      "cefr_level": "A1.2",
+      "node_id": "p4_L008",
+      "quiz_id": "p4_Q008"
+    },
+    {
+      "id": "lesson_009",
+      "unit_id": "phase_5_market",
+      "order_index": 1,
+      "title": "Learn Colors",
+      "topic": "shopping",
+      "focus": [
+        "colors"
+      ],
+      "difficulty": 5,
+      "xp_reward": 16,
+      "cefr_level": "A1.3",
+      "node_id": "p5_L009",
+      "quiz_id": "p5_Q009"
+    },
+    {
+      "id": "lesson_026",
+      "unit_id": "phase_5_market",
+      "order_index": 3,
+      "title": "Describe Things",
+      "topic": "basics",
+      "focus": [
+        "descriptions",
+        "adjectives"
+      ],
+      "difficulty": 6,
+      "xp_reward": 16,
+      "cefr_level": "A1.3",
+      "node_id": "p5_L026",
+      "quiz_id": "p5_Q026"
+    },
+    {
+      "id": "lesson_010",
+      "unit_id": "phase_5_market",
+      "order_index": 6,
+      "title": "Haggle at the Market",
+      "topic": "shopping",
+      "focus": [
+        "haggling",
+        "shopping"
+      ],
+      "difficulty": 7,
+      "xp_reward": 16,
+      "cefr_level": "A1.3",
+      "node_id": "p5_L010",
+      "quiz_id": "p5_Q010"
+    },
+    {
+      "id": "lesson_011",
+      "unit_id": "phase_6_numbers",
+      "order_index": 1,
+      "title": "Pick Some Fruit",
+      "topic": "shopping",
+      "focus": [
+        "fruits"
+      ],
+      "difficulty": 5,
+      "xp_reward": 16,
+      "cefr_level": "A1.3",
+      "node_id": "p6_L011",
+      "quiz_id": "p6_Q011"
+    },
+    {
+      "id": "lesson_027",
+      "unit_id": "phase_6_numbers",
+      "order_index": 3,
+      "title": "Buy Vegetables",
+      "topic": "shopping",
+      "focus": [
+        "vegetables"
+      ],
+      "difficulty": 6,
+      "xp_reward": 16,
+      "cefr_level": "A1.3",
+      "node_id": "p6_L027",
+      "quiz_id": "p6_Q027"
+    },
+    {
+      "id": "lesson_012",
+      "unit_id": "phase_6_numbers",
+      "order_index": 6,
+      "title": "Big Numbers & Bills",
+      "topic": "money",
+      "focus": [
+        "big_numbers",
+        "bills"
+      ],
+      "difficulty": 7,
+      "xp_reward": 16,
+      "cefr_level": "A1.3",
+      "node_id": "p6_L012",
+      "quiz_id": "p6_Q012"
+    },
+    {
+      "id": "lesson_013",
+      "unit_id": "phase_7_transport",
+      "order_index": 1,
+      "title": "Directions",
+      "topic": "directions",
+      "focus": [
+        "directions"
+      ],
+      "difficulty": 5,
+      "xp_reward": 14,
+      "cefr_level": "A2.1",
+      "node_id": "p7_L013",
+      "quiz_id": "p7_Q013"
+    },
+    {
+      "id": "lesson_030",
+      "unit_id": "phase_7_transport",
+      "order_index": 3,
+      "title": "Distance",
+      "topic": "directions",
+      "focus": [
+        "distance"
+      ],
+      "difficulty": 6,
+      "xp_reward": 14,
+      "cefr_level": "A2.1",
+      "node_id": "p7_L030",
+      "quiz_id": "p7_Q030"
+    },
+    {
+      "id": "lesson_014",
+      "unit_id": "phase_7_transport",
+      "order_index": 6,
+      "title": "Taxi & Transport",
+      "topic": "transport",
+      "focus": [
+        "transport",
+        "taxi"
+      ],
+      "difficulty": 7,
+      "xp_reward": 16,
+      "cefr_level": "A2.1",
+      "node_id": "p7_L014",
+      "quiz_id": "p7_Q014"
+    },
+    {
+      "id": "lesson_015",
+      "unit_id": "phase_7_transport",
+      "order_index": 9,
+      "title": "At the Hotel",
+      "topic": "hotel",
+      "focus": [
+        "hotel",
+        "accommodation"
+      ],
+      "difficulty": 8,
+      "xp_reward": 16,
+      "cefr_level": "A2.1",
+      "node_id": "p7_L015",
+      "quiz_id": "p7_Q015"
+    },
+    {
+      "id": "lesson_016",
+      "unit_id": "phase_7_transport",
+      "order_index": 12,
+      "title": "Asking for Help",
+      "topic": "emergency",
+      "focus": [
+        "emergency",
+        "help"
+      ],
+      "difficulty": 9,
+      "xp_reward": 16,
+      "cefr_level": "A2.1",
+      "node_id": "p7_L016",
+      "quiz_id": "p7_Q016"
+    },
+    {
+      "id": "lesson_017",
+      "unit_id": "phase_8_daily",
+      "order_index": 1,
+      "title": "Time & Schedule",
+      "topic": "basics",
+      "focus": [
+        "time",
+        "time_of_day"
+      ],
+      "difficulty": 5,
+      "xp_reward": 16,
+      "cefr_level": "A2.1",
+      "node_id": "p8_L017",
+      "quiz_id": "p8_Q017"
+    },
+    {
+      "id": "lesson_028",
+      "unit_id": "phase_8_daily",
+      "order_index": 3,
+      "title": "Days & Schedule",
+      "topic": "basics",
+      "focus": [
+        "days",
+        "schedule"
+      ],
+      "difficulty": 6,
+      "xp_reward": 14,
+      "cefr_level": "A2.1",
+      "node_id": "p8_L028",
+      "quiz_id": "p8_Q028"
+    },
+    {
+      "id": "lesson_018",
+      "unit_id": "phase_8_daily",
+      "order_index": 6,
+      "title": "Weather",
+      "topic": "sightseeing",
+      "focus": [
+        "weather"
+      ],
+      "difficulty": 7,
+      "xp_reward": 16,
+      "cefr_level": "A2.1",
+      "node_id": "p8_L018",
+      "quiz_id": "p8_Q018"
+    },
+    {
+      "id": "lesson_019",
+      "unit_id": "phase_8_daily",
+      "order_index": 9,
+      "title": "Family",
+      "topic": "family",
+      "focus": [
+        "family",
+        "parents"
+      ],
+      "difficulty": 8,
+      "xp_reward": 16,
+      "cefr_level": "A2.1",
+      "node_id": "p8_L019",
+      "quiz_id": "p8_Q019"
+    },
+    {
+      "id": "lesson_029",
+      "unit_id": "phase_8_daily",
+      "order_index": 11,
+      "title": "Family (Extended)",
+      "topic": "family",
+      "focus": [
+        "family",
+        "extended"
+      ],
+      "difficulty": 9,
+      "xp_reward": 14,
+      "cefr_level": "A2.1",
+      "node_id": "p8_L029",
+      "quiz_id": "p8_Q029"
+    },
+    {
+      "id": "lesson_020",
+      "unit_id": "phase_8_daily",
+      "order_index": 14,
+      "title": "House & Rooms",
+      "topic": "home",
+      "focus": [
+        "house",
+        "rooms"
+      ],
+      "difficulty": 9,
+      "xp_reward": 16,
+      "cefr_level": "A2.1",
+      "node_id": "p8_L020",
+      "quiz_id": "p8_Q020"
+    },
+    {
+      "id": "lesson_031",
+      "unit_id": "phase_8_daily",
+      "order_index": 16,
+      "title": "Furniture",
+      "topic": "home",
+      "focus": [
+        "furniture"
+      ],
+      "difficulty": 10,
+      "xp_reward": 14,
+      "cefr_level": "A2.1",
+      "node_id": "p8_L031",
+      "quiz_id": "p8_Q031"
+    },
+    {
+      "id": "lesson_021",
+      "unit_id": "phase_9_social",
+      "order_index": 1,
+      "title": "Hobbies",
+      "topic": "sightseeing",
+      "focus": [
+        "hobbies"
+      ],
+      "difficulty": 6,
+      "xp_reward": 16,
+      "cefr_level": "A2.2",
+      "node_id": "p9_L021",
+      "quiz_id": "p9_Q021"
+    },
+    {
+      "id": "lesson_022",
+      "unit_id": "phase_9_social",
+      "order_index": 4,
+      "title": "Feelings & Emotions",
+      "topic": "basics",
+      "focus": [
+        "feelings",
+        "emotions"
+      ],
+      "difficulty": 7,
+      "xp_reward": 16,
+      "cefr_level": "A2.2",
+      "node_id": "p9_L022",
+      "quiz_id": "p9_Q022"
+    },
+    {
+      "id": "lesson_023",
+      "unit_id": "phase_9_social",
+      "order_index": 7,
+      "title": "Make Plans",
+      "topic": "sightseeing",
+      "focus": [
+        "invitations",
+        "plans"
+      ],
+      "difficulty": 8,
+      "xp_reward": 16,
+      "cefr_level": "A2.2",
+      "node_id": "p9_L023",
+      "quiz_id": "p9_Q023"
+    },
+    {
+      "id": "lesson_024",
+      "unit_id": "phase_9_social",
+      "order_index": 11,
+      "title": "Celebrate Together",
+      "topic": "traditions",
+      "focus": [
+        "celebrations",
+        "party"
+      ],
+      "difficulty": 9,
+      "xp_reward": 24,
+      "cefr_level": "A2.2",
+      "node_id": "p9_L024",
+      "quiz_id": "p9_Q024"
+    }
+  ],
+  "vocabulary": [
+    {
+      "id": "it_w_0001",
+      "lesson_id": "lesson_001a",
+      "vi_text": "xin chào",
+      "pos": "phrase",
+      "emoji": "👋",
+      "difficulty": 1,
+      "frequency_rank": 2,
+      "dialect": "Polite greeting",
+      "has_image": "FALSE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "hello (polite)",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0002",
+      "lesson_id": "lesson_001a",
+      "vi_text": "chào",
+      "pos": "interjection",
+      "emoji": "👋",
+      "difficulty": 1,
+      "frequency_rank": 1,
+      "dialect": "Casual greeting",
+      "has_image": "FALSE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "hi / hello",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0003",
+      "lesson_id": "lesson_001a",
+      "vi_text": "tạm biệt",
+      "pos": "phrase",
+      "emoji": "👋",
+      "difficulty": 1,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "goodbye",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0004",
+      "lesson_id": "lesson_001b",
+      "vi_text": "cảm ơn",
+      "pos": "phrase",
+      "emoji": "🙏",
+      "difficulty": 1,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "thank you",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0007",
+      "lesson_id": "lesson_001b",
+      "vi_text": "không",
+      "pos": "particle",
+      "emoji": "❌",
+      "difficulty": 1,
+      "frequency_rank": 17,
+      "dialect": "Negation / question particle",
+      "has_image": "FALSE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "no / not",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0008",
+      "lesson_id": "lesson_001b",
+      "vi_text": "tôi",
+      "pos": "pronoun",
+      "emoji": "👤",
+      "difficulty": 1,
+      "frequency_rank": 4,
+      "dialect": "Neutral 1st person",
+      "has_image": "FALSE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "I / me",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0009",
+      "lesson_id": "lesson_001b",
+      "vi_text": "bạn",
+      "pos": "pronoun",
+      "emoji": "👥",
+      "difficulty": 1,
+      "frequency_rank": 5,
+      "dialect": "Neutral 2nd person",
+      "has_image": "FALSE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "you (friend)",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_p_0010",
+      "lesson_id": "lesson_002a",
+      "vi_text": "tôi tên là {NAME}",
+      "pos": "phrase",
+      "emoji": null,
+      "difficulty": 2,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "my name is {NAME}",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_p_0011",
+      "lesson_id": "lesson_002b",
+      "vi_text": "tôi là {ROLE}",
+      "pos": "phrase",
+      "emoji": null,
+      "difficulty": 2,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "I am a {ROLE}",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0005",
+      "lesson_id": "lesson_003",
+      "vi_text": "vâng",
+      "pos": "word",
+      "emoji": "✅",
+      "difficulty": 3,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "yes (Northern)",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0006",
+      "lesson_id": "lesson_003",
+      "vi_text": "dạ",
+      "pos": "word",
+      "emoji": "✅",
+      "difficulty": 3,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "yes (Southern / polite response)",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0014",
+      "lesson_id": "lesson_003",
+      "vi_text": "xin lỗi",
+      "pos": "phrase",
+      "emoji": "🙇",
+      "difficulty": 3,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "sorry / excuse me",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0015",
+      "lesson_id": "lesson_003",
+      "vi_text": "làm ơn",
+      "pos": "phrase",
+      "emoji": "🙏",
+      "difficulty": 3,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "please (as a request)",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0020",
+      "lesson_id": "lesson_004",
+      "vi_text": "một",
+      "pos": "number",
+      "emoji": "1️⃣",
+      "difficulty": 1,
+      "frequency_rank": 19,
+      "dialect": "both",
+      "has_image": "TRUE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "one",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0021",
+      "lesson_id": "lesson_004",
+      "vi_text": "hai",
+      "pos": "number",
+      "emoji": "2️⃣",
+      "difficulty": 1,
+      "frequency_rank": 20,
+      "dialect": "both",
+      "has_image": "TRUE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "two",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0022",
+      "lesson_id": "lesson_004",
+      "vi_text": "ba",
+      "pos": "number",
+      "emoji": "3️⃣",
+      "difficulty": 1,
+      "frequency_rank": 21,
+      "dialect": "both",
+      "has_image": "TRUE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "three",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0023",
+      "lesson_id": "lesson_004",
+      "vi_text": "bốn",
+      "pos": "number",
+      "emoji": "4️⃣",
+      "difficulty": 1,
+      "frequency_rank": 22,
+      "dialect": "both",
+      "has_image": "TRUE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "four",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0024",
+      "lesson_id": "lesson_004",
+      "vi_text": "năm",
+      "pos": "noun",
+      "emoji": "5️⃣",
+      "difficulty": 2,
+      "frequency_rank": 140,
+      "dialect": "both",
+      "has_image": "TRUE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "five",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0025",
+      "lesson_id": "lesson_025",
+      "vi_text": "sáu",
+      "pos": "number",
+      "emoji": "6️⃣",
+      "difficulty": 1,
+      "frequency_rank": 24,
+      "dialect": "both",
+      "has_image": "TRUE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "six",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0026",
+      "lesson_id": "lesson_025",
+      "vi_text": "bảy",
+      "pos": "number",
+      "emoji": "7️⃣",
+      "difficulty": 1,
+      "frequency_rank": 25,
+      "dialect": "both",
+      "has_image": "TRUE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "seven",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0027",
+      "lesson_id": "lesson_025",
+      "vi_text": "tám",
+      "pos": "number",
+      "emoji": "8️⃣",
+      "difficulty": 1,
+      "frequency_rank": 26,
+      "dialect": "both",
+      "has_image": "TRUE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "eight",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0028",
+      "lesson_id": "lesson_025",
+      "vi_text": "chín",
+      "pos": "number",
+      "emoji": "9️⃣",
+      "difficulty": 1,
+      "frequency_rank": 27,
+      "dialect": "both",
+      "has_image": "TRUE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "nine",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0029",
+      "lesson_id": "lesson_025",
+      "vi_text": "mười",
+      "pos": "number",
+      "emoji": "🔟",
+      "difficulty": 1,
+      "frequency_rank": 28,
+      "dialect": "both",
+      "has_image": "TRUE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "ten",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0030",
+      "lesson_id": "lesson_005",
+      "vi_text": "cà phê",
+      "pos": "noun",
+      "emoji": "☕",
+      "difficulty": 1,
+      "frequency_rank": 34,
+      "dialect": "both",
+      "has_image": "TRUE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "coffee",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0031",
+      "lesson_id": "lesson_005",
+      "vi_text": "trà",
+      "pos": "word",
+      "emoji": "🍵",
+      "difficulty": 5,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "tea",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0032",
+      "lesson_id": "lesson_005",
+      "vi_text": "nước",
+      "pos": "noun",
+      "emoji": "💧",
+      "difficulty": 1,
+      "frequency_rank": 31,
+      "dialect": "both",
+      "has_image": "TRUE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "water",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0035",
+      "lesson_id": "lesson_005",
+      "vi_text": "muốn",
+      "pos": "verb",
+      "emoji": "💭",
+      "difficulty": 1,
+      "frequency_rank": 48,
+      "dialect": "both",
+      "has_image": "FALSE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "to want",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0036",
+      "lesson_id": "lesson_005",
+      "vi_text": "cho",
+      "pos": "word",
+      "emoji": "🤲",
+      "difficulty": 5,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "give (request form)",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0040",
+      "lesson_id": "lesson_006",
+      "vi_text": "cà phê sữa đá",
+      "pos": "phrase",
+      "emoji": "☕",
+      "difficulty": 6,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "iced milk coffee",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0041",
+      "lesson_id": "lesson_006",
+      "vi_text": "sữa",
+      "pos": "word",
+      "emoji": "🥛",
+      "difficulty": 6,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "milk",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0042",
+      "lesson_id": "lesson_006",
+      "vi_text": "đá",
+      "pos": "noun",
+      "emoji": "🧊",
+      "difficulty": 1,
+      "frequency_rank": 39,
+      "dialect": "both",
+      "has_image": "TRUE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "ice",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0043",
+      "lesson_id": "lesson_006",
+      "vi_text": "nóng",
+      "pos": "adjective",
+      "emoji": "🔥",
+      "difficulty": 1,
+      "frequency_rank": 38,
+      "dialect": "both",
+      "has_image": "FALSE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "hot",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0045",
+      "lesson_id": "lesson_007",
+      "vi_text": "phở",
+      "pos": "noun",
+      "emoji": "🍜",
+      "difficulty": 1,
+      "frequency_rank": 37,
+      "dialect": "both",
+      "has_image": "TRUE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "pho (noodle soup)",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0046",
+      "lesson_id": "lesson_007",
+      "vi_text": "bánh mì",
+      "pos": "noun",
+      "emoji": "🥖",
+      "difficulty": 1,
+      "frequency_rank": 33,
+      "dialect": "both",
+      "has_image": "TRUE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "Vietnamese sandwich",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0047",
+      "lesson_id": "lesson_007",
+      "vi_text": "bún",
+      "pos": "word",
+      "emoji": "🍜",
+      "difficulty": 6,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "rice noodles",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0048",
+      "lesson_id": "lesson_007",
+      "vi_text": "cơm",
+      "pos": "noun",
+      "emoji": "🍚",
+      "difficulty": 1,
+      "frequency_rank": 32,
+      "dialect": "both",
+      "has_image": "TRUE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "rice",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0050",
+      "lesson_id": "lesson_007",
+      "vi_text": "bát",
+      "pos": "word",
+      "emoji": "🥣",
+      "difficulty": 6,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "bowl",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0051",
+      "lesson_id": "lesson_007",
+      "vi_text": "ngon",
+      "pos": "adjective",
+      "emoji": "😋",
+      "difficulty": 1,
+      "frequency_rank": 72,
+      "dialect": "both",
+      "has_image": "FALSE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "delicious",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0052",
+      "lesson_id": "lesson_008",
+      "vi_text": "bao nhiêu",
+      "pos": "question word",
+      "emoji": "🔢",
+      "difficulty": 1,
+      "frequency_rank": 69,
+      "dialect": "both",
+      "has_image": "FALSE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "how much / how many",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0053",
+      "lesson_id": "lesson_008",
+      "vi_text": "tiền",
+      "pos": "word",
+      "emoji": "💰",
+      "difficulty": 7,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "money",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0055",
+      "lesson_id": "lesson_008",
+      "vi_text": "cái này",
+      "pos": "phrase",
+      "emoji": "👆",
+      "difficulty": 7,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "this (thing)",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0056",
+      "lesson_id": "lesson_008",
+      "vi_text": "đắt",
+      "pos": "word",
+      "emoji": "💸",
+      "difficulty": 7,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "expensive",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0057",
+      "lesson_id": "lesson_008",
+      "vi_text": "rẻ",
+      "pos": "adjective",
+      "emoji": "🏷️",
+      "difficulty": 2,
+      "frequency_rank": 174,
+      "dialect": "both",
+      "has_image": "FALSE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "cheap",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0060",
+      "lesson_id": "lesson_009",
+      "vi_text": "màu",
+      "pos": "word",
+      "emoji": "🎨",
+      "difficulty": 5,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "color",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0061",
+      "lesson_id": "lesson_009",
+      "vi_text": "đỏ",
+      "pos": "adjective",
+      "emoji": "🔴",
+      "difficulty": 2,
+      "frequency_rank": 161,
+      "dialect": "both",
+      "has_image": "FALSE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "red",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0062",
+      "lesson_id": "lesson_009",
+      "vi_text": "xanh",
+      "pos": "adjective",
+      "emoji": "🟢",
+      "difficulty": 2,
+      "frequency_rank": 162,
+      "dialect": "xanh dương=blue, xanh lá=green",
+      "has_image": "FALSE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "blue / green",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0063",
+      "lesson_id": "lesson_009",
+      "vi_text": "trắng",
+      "pos": "adjective",
+      "emoji": "⚪",
+      "difficulty": 2,
+      "frequency_rank": 165,
+      "dialect": "both",
+      "has_image": "FALSE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "white",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0064",
+      "lesson_id": "lesson_009",
+      "vi_text": "đen",
+      "pos": "adjective",
+      "emoji": "⚫",
+      "difficulty": 2,
+      "frequency_rank": 164,
+      "dialect": "both",
+      "has_image": "FALSE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "black",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0065",
+      "lesson_id": "lesson_009",
+      "vi_text": "vàng",
+      "pos": "adjective",
+      "emoji": "🟡",
+      "difficulty": 2,
+      "frequency_rank": 163,
+      "dialect": "both",
+      "has_image": "FALSE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "yellow",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0066",
+      "lesson_id": "lesson_026",
+      "vi_text": "to",
+      "pos": "word",
+      "emoji": "📏",
+      "difficulty": 6,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "big / large",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0067",
+      "lesson_id": "lesson_026",
+      "vi_text": "nhỏ",
+      "pos": "adjective",
+      "emoji": "🔹",
+      "difficulty": 2,
+      "frequency_rank": 168,
+      "dialect": "both",
+      "has_image": "FALSE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "small / little",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0068",
+      "lesson_id": "lesson_026",
+      "vi_text": "đẹp",
+      "pos": "adjective",
+      "emoji": "✨",
+      "difficulty": 2,
+      "frequency_rank": 117,
+      "dialect": "both",
+      "has_image": "FALSE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "beautiful / pretty",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0069",
+      "lesson_id": "lesson_026",
+      "vi_text": "xấu",
+      "pos": "word",
+      "emoji": "👎",
+      "difficulty": 6,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "ugly / bad",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0070",
+      "lesson_id": "lesson_010",
+      "vi_text": "mua",
+      "pos": "word",
+      "emoji": "🛒",
+      "difficulty": 7,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "to buy",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0071",
+      "lesson_id": "lesson_010",
+      "vi_text": "bán",
+      "pos": "word",
+      "emoji": "🏪",
+      "difficulty": 7,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "to sell",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0072",
+      "lesson_id": "lesson_010",
+      "vi_text": "mắc",
+      "pos": "word",
+      "emoji": "💸",
+      "difficulty": 7,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "expensive (Southern)",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0073",
+      "lesson_id": "lesson_010",
+      "vi_text": "bớt",
+      "pos": "verb",
+      "emoji": "⬇️",
+      "difficulty": 2,
+      "frequency_rank": 175,
+      "dialect": "both",
+      "has_image": "FALSE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "to reduce / discount",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0074",
+      "lesson_id": "lesson_010",
+      "vi_text": "giảm",
+      "pos": "word",
+      "emoji": "📉",
+      "difficulty": 7,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "to reduce / lower",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0077",
+      "lesson_id": "lesson_010",
+      "vi_text": "được không",
+      "pos": "phrase",
+      "emoji": "❓",
+      "difficulty": 7,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "is that ok? / can you?",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0080",
+      "lesson_id": "lesson_011",
+      "vi_text": "trái cây",
+      "pos": "phrase",
+      "emoji": "🍎",
+      "difficulty": 5,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "fruit",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0081",
+      "lesson_id": "lesson_011",
+      "vi_text": "cam",
+      "pos": "word",
+      "emoji": "🍊",
+      "difficulty": 5,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "orange",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0082",
+      "lesson_id": "lesson_011",
+      "vi_text": "xoài",
+      "pos": "noun",
+      "emoji": "🥭",
+      "difficulty": 2,
+      "frequency_rank": 153,
+      "dialect": "both",
+      "has_image": "TRUE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "mango",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0083",
+      "lesson_id": "lesson_011",
+      "vi_text": "dừa",
+      "pos": "word",
+      "emoji": "🥥",
+      "difficulty": 5,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "coconut",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0084",
+      "lesson_id": "lesson_011",
+      "vi_text": "dưa hấu",
+      "pos": "phrase",
+      "emoji": "🍉",
+      "difficulty": 5,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "watermelon",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0085",
+      "lesson_id": "lesson_027",
+      "vi_text": "rau",
+      "pos": "noun",
+      "emoji": "🥬",
+      "difficulty": 2,
+      "frequency_rank": 150,
+      "dialect": "both",
+      "has_image": "TRUE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "vegetable",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0086",
+      "lesson_id": "lesson_027",
+      "vi_text": "cà chua",
+      "pos": "noun",
+      "emoji": "🍅",
+      "difficulty": 2,
+      "frequency_rank": 154,
+      "dialect": "both",
+      "has_image": "TRUE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "tomato",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0087",
+      "lesson_id": "lesson_027",
+      "vi_text": "khoai",
+      "pos": "word",
+      "emoji": "🥔",
+      "difficulty": 6,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "potato / sweet potato",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0090",
+      "lesson_id": "lesson_012",
+      "vi_text": "trăm",
+      "pos": "word",
+      "emoji": "💯",
+      "difficulty": 7,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "hundred",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0091",
+      "lesson_id": "lesson_012",
+      "vi_text": "nghìn",
+      "pos": "word",
+      "emoji": "🔢",
+      "difficulty": 7,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "thousand (Northern)",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0092",
+      "lesson_id": "lesson_012",
+      "vi_text": "ngàn",
+      "pos": "word",
+      "emoji": "🔢",
+      "difficulty": 7,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "thousand (Southern)",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0093",
+      "lesson_id": "lesson_012",
+      "vi_text": "triệu",
+      "pos": "word",
+      "emoji": "💎",
+      "difficulty": 7,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "million",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0094",
+      "lesson_id": "lesson_012",
+      "vi_text": "hóa đơn",
+      "pos": "noun",
+      "emoji": "🧾",
+      "difficulty": 1,
+      "frequency_rank": 67,
+      "dialect": "both",
+      "has_image": "TRUE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "bill / receipt",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0100",
+      "lesson_id": "lesson_013",
+      "vi_text": "đi",
+      "pos": "word",
+      "emoji": "🚶",
+      "difficulty": 5,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "to go",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0101",
+      "lesson_id": "lesson_013",
+      "vi_text": "đường",
+      "pos": "word",
+      "emoji": "🛤️",
+      "difficulty": 5,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "road / street",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0102",
+      "lesson_id": "lesson_013",
+      "vi_text": "bên trái",
+      "pos": "phrase",
+      "emoji": "⬅️",
+      "difficulty": 5,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "left side",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0103",
+      "lesson_id": "lesson_013",
+      "vi_text": "bên phải",
+      "pos": "phrase",
+      "emoji": "➡️",
+      "difficulty": 5,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "right side",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0104",
+      "lesson_id": "lesson_013",
+      "vi_text": "thẳng",
+      "pos": "adverb",
+      "emoji": "⬆️",
+      "difficulty": 3,
+      "frequency_rank": 195,
+      "dialect": "both",
+      "has_image": "FALSE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "straight",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0105",
+      "lesson_id": "lesson_030",
+      "vi_text": "gần",
+      "pos": "adjective",
+      "emoji": "📍",
+      "difficulty": 3,
+      "frequency_rank": 190,
+      "dialect": "both",
+      "has_image": "FALSE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "near / close",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0106",
+      "lesson_id": "lesson_030",
+      "vi_text": "xa",
+      "pos": "adjective",
+      "emoji": "🌍",
+      "difficulty": 3,
+      "frequency_rank": 191,
+      "dialect": "both",
+      "has_image": "FALSE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "far",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0110",
+      "lesson_id": "lesson_014",
+      "vi_text": "xe",
+      "pos": "word",
+      "emoji": "🏍️",
+      "difficulty": 7,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "vehicle",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0111",
+      "lesson_id": "lesson_014",
+      "vi_text": "xe ôm",
+      "pos": "phrase",
+      "emoji": "🏍️",
+      "difficulty": 7,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "motorbike taxi",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0112",
+      "lesson_id": "lesson_014",
+      "vi_text": "dừng lại",
+      "pos": "phrase",
+      "emoji": "🛑",
+      "difficulty": 7,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "stop",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0113",
+      "lesson_id": "lesson_014",
+      "vi_text": "ở đây",
+      "pos": "phrase",
+      "emoji": "📍",
+      "difficulty": 7,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "here",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0114",
+      "lesson_id": "lesson_014",
+      "vi_text": "đến",
+      "pos": "word",
+      "emoji": "📍",
+      "difficulty": 7,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "to arrive / to",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0120",
+      "lesson_id": "lesson_015",
+      "vi_text": "khách sạn",
+      "pos": "noun",
+      "emoji": "🏨",
+      "difficulty": 3,
+      "frequency_rank": 205,
+      "dialect": "both",
+      "has_image": "TRUE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "hotel",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0121",
+      "lesson_id": "lesson_015",
+      "vi_text": "phòng",
+      "pos": "noun",
+      "emoji": "🚪",
+      "difficulty": 3,
+      "frequency_rank": 206,
+      "dialect": "both",
+      "has_image": "TRUE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "room",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0122",
+      "lesson_id": "lesson_015",
+      "vi_text": "chìa khóa",
+      "pos": "noun",
+      "emoji": "🔑",
+      "difficulty": 3,
+      "frequency_rank": 211,
+      "dialect": "both",
+      "has_image": "TRUE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "key",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0123",
+      "lesson_id": "lesson_015",
+      "vi_text": "giường",
+      "pos": "noun",
+      "emoji": "🛏️",
+      "difficulty": 3,
+      "frequency_rank": 216,
+      "dialect": "both",
+      "has_image": "TRUE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "bed",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0124",
+      "lesson_id": "lesson_015",
+      "vi_text": "nhà vệ sinh",
+      "pos": "phrase",
+      "emoji": "🚽",
+      "difficulty": 8,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "bathroom / toilet",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0130",
+      "lesson_id": "lesson_016",
+      "vi_text": "giúp",
+      "pos": "verb",
+      "emoji": "🆘",
+      "difficulty": 3,
+      "frequency_rank": 220,
+      "dialect": "both",
+      "has_image": "FALSE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "to help",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0131",
+      "lesson_id": "lesson_016",
+      "vi_text": "tìm",
+      "pos": "word",
+      "emoji": "🔍",
+      "difficulty": 9,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "to find / to look for",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0132",
+      "lesson_id": "lesson_016",
+      "vi_text": "bị lạc",
+      "pos": "phrase",
+      "emoji": "😰",
+      "difficulty": 9,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "to be lost",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0133",
+      "lesson_id": "lesson_016",
+      "vi_text": "cần",
+      "pos": "verb",
+      "emoji": "❗",
+      "difficulty": 3,
+      "frequency_rank": 221,
+      "dialect": "both",
+      "has_image": "FALSE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "to need",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0134",
+      "lesson_id": "lesson_016",
+      "vi_text": "gọi",
+      "pos": "word",
+      "emoji": "📞",
+      "difficulty": 9,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "to call",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0140",
+      "lesson_id": "lesson_017",
+      "vi_text": "giờ",
+      "pos": "noun",
+      "emoji": "🕐",
+      "difficulty": 1,
+      "frequency_rank": 51,
+      "dialect": "both",
+      "has_image": "TRUE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "hour / o'clock",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0141",
+      "lesson_id": "lesson_017",
+      "vi_text": "phút",
+      "pos": "noun",
+      "emoji": "⏱️",
+      "difficulty": 2,
+      "frequency_rank": 124,
+      "dialect": "both",
+      "has_image": "TRUE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "minute",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0142",
+      "lesson_id": "lesson_017",
+      "vi_text": "sáng",
+      "pos": "noun",
+      "emoji": "🌅",
+      "difficulty": 2,
+      "frequency_rank": 127,
+      "dialect": "both",
+      "has_image": "TRUE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "morning",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0143",
+      "lesson_id": "lesson_017",
+      "vi_text": "chiều",
+      "pos": "word",
+      "emoji": "🌇",
+      "difficulty": 5,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "afternoon",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0144",
+      "lesson_id": "lesson_017",
+      "vi_text": "tối",
+      "pos": "noun",
+      "emoji": "🌙",
+      "difficulty": 2,
+      "frequency_rank": 128,
+      "dialect": "both",
+      "has_image": "TRUE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "evening / night",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0145",
+      "lesson_id": "lesson_028",
+      "vi_text": "hôm nay",
+      "pos": "noun",
+      "emoji": "📅",
+      "difficulty": 1,
+      "frequency_rank": 59,
+      "dialect": "both",
+      "has_image": "TRUE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "today",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0146",
+      "lesson_id": "lesson_028",
+      "vi_text": "ngày mai",
+      "pos": "noun",
+      "emoji": "📆",
+      "difficulty": 1,
+      "frequency_rank": 60,
+      "dialect": "both",
+      "has_image": "TRUE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "tomorrow",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0147",
+      "lesson_id": "lesson_028",
+      "vi_text": "hôm qua",
+      "pos": "noun",
+      "emoji": "⏪",
+      "difficulty": 1,
+      "frequency_rank": 61,
+      "dialect": "both",
+      "has_image": "TRUE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "yesterday",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0150",
+      "lesson_id": "lesson_018",
+      "vi_text": "trời",
+      "pos": "word",
+      "emoji": "🌤️",
+      "difficulty": 7,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "sky / weather",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0151",
+      "lesson_id": "lesson_018",
+      "vi_text": "mưa",
+      "pos": "noun/verb",
+      "emoji": "🌧️",
+      "difficulty": 3,
+      "frequency_rank": 227,
+      "dialect": "both",
+      "has_image": "FALSE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "rain",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0152",
+      "lesson_id": "lesson_018",
+      "vi_text": "nắng",
+      "pos": "adjective",
+      "emoji": "☀️",
+      "difficulty": 3,
+      "frequency_rank": 228,
+      "dialect": "both",
+      "has_image": "FALSE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "sunny",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0153",
+      "lesson_id": "lesson_018",
+      "vi_text": "gió",
+      "pos": "noun",
+      "emoji": "💨",
+      "difficulty": 3,
+      "frequency_rank": 230,
+      "dialect": "both",
+      "has_image": "TRUE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "wind / windy",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0154",
+      "lesson_id": "lesson_018",
+      "vi_text": "lạnh",
+      "pos": "adjective",
+      "emoji": "🥶",
+      "difficulty": 3,
+      "frequency_rank": 229,
+      "dialect": "both",
+      "has_image": "FALSE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "cold",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0155",
+      "lesson_id": "lesson_018",
+      "vi_text": "mát",
+      "pos": "word",
+      "emoji": "🌬️",
+      "difficulty": 7,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "cool / pleasant",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0160",
+      "lesson_id": "lesson_019",
+      "vi_text": "bố",
+      "pos": "word",
+      "emoji": "👨",
+      "difficulty": 8,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "father (Northern)",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0161",
+      "lesson_id": "lesson_019",
+      "vi_text": "ba",
+      "pos": "number",
+      "emoji": "👨",
+      "difficulty": 1,
+      "frequency_rank": 21,
+      "dialect": "both",
+      "has_image": "TRUE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "father (Southern)",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0162",
+      "lesson_id": "lesson_019",
+      "vi_text": "mẹ",
+      "pos": "word",
+      "emoji": "👩",
+      "difficulty": 8,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "mother (Northern)",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0163",
+      "lesson_id": "lesson_019",
+      "vi_text": "má",
+      "pos": "word",
+      "emoji": "👩",
+      "difficulty": 8,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "mother (Southern)",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0164",
+      "lesson_id": "lesson_019",
+      "vi_text": "anh",
+      "pos": "pronoun",
+      "emoji": "👦",
+      "difficulty": 1,
+      "frequency_rank": 6,
+      "dialect": "both",
+      "has_image": "FALSE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "older brother",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0165",
+      "lesson_id": "lesson_019",
+      "vi_text": "chị",
+      "pos": "pronoun",
+      "emoji": "👧",
+      "difficulty": 1,
+      "frequency_rank": 7,
+      "dialect": "both",
+      "has_image": "FALSE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "older sister",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0166",
+      "lesson_id": "lesson_029",
+      "vi_text": "em",
+      "pos": "pronoun",
+      "emoji": "🧒",
+      "difficulty": 1,
+      "frequency_rank": 8,
+      "dialect": "both",
+      "has_image": "FALSE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "younger sibling",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0167",
+      "lesson_id": "lesson_029",
+      "vi_text": "con",
+      "pos": "noun",
+      "emoji": "👶",
+      "difficulty": 2,
+      "frequency_rank": 87,
+      "dialect": "both",
+      "has_image": "TRUE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "child",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0168",
+      "lesson_id": "lesson_029",
+      "vi_text": "vợ",
+      "pos": "noun",
+      "emoji": "💑",
+      "difficulty": 2,
+      "frequency_rank": 95,
+      "dialect": "both",
+      "has_image": "TRUE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "wife",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0169",
+      "lesson_id": "lesson_029",
+      "vi_text": "chồng",
+      "pos": "noun",
+      "emoji": "💏",
+      "difficulty": 2,
+      "frequency_rank": 94,
+      "dialect": "both",
+      "has_image": "TRUE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "husband",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0170",
+      "lesson_id": "lesson_020",
+      "vi_text": "nhà",
+      "pos": "word",
+      "emoji": "🏠",
+      "difficulty": 9,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "house / home",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0171",
+      "lesson_id": "lesson_020",
+      "vi_text": "nhà bếp",
+      "pos": "phrase",
+      "emoji": "🍳",
+      "difficulty": 9,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "kitchen",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0172",
+      "lesson_id": "lesson_020",
+      "vi_text": "phòng ngủ",
+      "pos": "phrase",
+      "emoji": "🛏️",
+      "difficulty": 9,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "bedroom",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0173",
+      "lesson_id": "lesson_020",
+      "vi_text": "phòng khách",
+      "pos": "phrase",
+      "emoji": "🛋️",
+      "difficulty": 9,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "living room",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0174",
+      "lesson_id": "lesson_031",
+      "vi_text": "cửa",
+      "pos": "word",
+      "emoji": "🚪",
+      "difficulty": 10,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "door",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0175",
+      "lesson_id": "lesson_031",
+      "vi_text": "ghế",
+      "pos": "word",
+      "emoji": "💺",
+      "difficulty": 10,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "chair",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0176",
+      "lesson_id": "lesson_031",
+      "vi_text": "bàn",
+      "pos": "word",
+      "emoji": "🪑",
+      "difficulty": 10,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "table / desk",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0180",
+      "lesson_id": "lesson_021",
+      "vi_text": "thích",
+      "pos": "verb",
+      "emoji": "❤️",
+      "difficulty": 3,
+      "frequency_rank": 243,
+      "dialect": "both",
+      "has_image": "FALSE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "to like / to enjoy",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0181",
+      "lesson_id": "lesson_021",
+      "vi_text": "đi chơi",
+      "pos": "phrase",
+      "emoji": "🎉",
+      "difficulty": 6,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "to hang out / go out",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0182",
+      "lesson_id": "lesson_021",
+      "vi_text": "xem phim",
+      "pos": "verb phrase",
+      "emoji": "🎬",
+      "difficulty": 3,
+      "frequency_rank": 246,
+      "dialect": "both",
+      "has_image": "FALSE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "to watch movies",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0183",
+      "lesson_id": "lesson_021",
+      "vi_text": "nghe nhạc",
+      "pos": "verb phrase",
+      "emoji": "🎵",
+      "difficulty": 3,
+      "frequency_rank": 247,
+      "dialect": "both",
+      "has_image": "FALSE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "to listen to music",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0184",
+      "lesson_id": "lesson_021",
+      "vi_text": "nấu ăn",
+      "pos": "phrase",
+      "emoji": "🍳",
+      "difficulty": 6,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "to cook",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0185",
+      "lesson_id": "lesson_021",
+      "vi_text": "đọc sách",
+      "pos": "verb phrase",
+      "emoji": "📖",
+      "difficulty": 3,
+      "frequency_rank": 245,
+      "dialect": "both",
+      "has_image": "FALSE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "to read books",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0190",
+      "lesson_id": "lesson_022",
+      "vi_text": "vui",
+      "pos": "word",
+      "emoji": "😊",
+      "difficulty": 7,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "happy / fun",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0191",
+      "lesson_id": "lesson_022",
+      "vi_text": "buồn",
+      "pos": "word",
+      "emoji": "😢",
+      "difficulty": 7,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "sad",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0192",
+      "lesson_id": "lesson_022",
+      "vi_text": "mệt",
+      "pos": "word",
+      "emoji": "😩",
+      "difficulty": 7,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "tired",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0193",
+      "lesson_id": "lesson_022",
+      "vi_text": "đói",
+      "pos": "word",
+      "emoji": "🤤",
+      "difficulty": 7,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "hungry",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0194",
+      "lesson_id": "lesson_022",
+      "vi_text": "khát",
+      "pos": "word",
+      "emoji": "🥤",
+      "difficulty": 7,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "thirsty",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0195",
+      "lesson_id": "lesson_022",
+      "vi_text": "sợ",
+      "pos": "word",
+      "emoji": "😨",
+      "difficulty": 7,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "scared / afraid",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0200",
+      "lesson_id": "lesson_023",
+      "vi_text": "cuối tuần",
+      "pos": "phrase",
+      "emoji": "🗓️",
+      "difficulty": 8,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "weekend",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0201",
+      "lesson_id": "lesson_023",
+      "vi_text": "rảnh",
+      "pos": "word",
+      "emoji": "🆓",
+      "difficulty": 8,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "free (available)",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0202",
+      "lesson_id": "lesson_023",
+      "vi_text": "bận",
+      "pos": "word",
+      "emoji": "📋",
+      "difficulty": 8,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "busy",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0203",
+      "lesson_id": "lesson_023",
+      "vi_text": "cùng",
+      "pos": "word",
+      "emoji": "🤝",
+      "difficulty": 8,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "together",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0204",
+      "lesson_id": "lesson_023",
+      "vi_text": "hẹn",
+      "pos": "word",
+      "emoji": "📅",
+      "difficulty": 8,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "to make an appointment",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0210",
+      "lesson_id": "lesson_024",
+      "vi_text": "chúc mừng",
+      "pos": "phrase",
+      "emoji": "🎊",
+      "difficulty": 9,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "congratulations",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0211",
+      "lesson_id": "lesson_024",
+      "vi_text": "sinh nhật",
+      "pos": "noun",
+      "emoji": "🎂",
+      "difficulty": 2,
+      "frequency_rank": 141,
+      "dialect": "both",
+      "has_image": "TRUE",
+      "translations": [
+        {
+          "lang": "en",
+          "text": "birthday",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0212",
+      "lesson_id": "lesson_024",
+      "vi_text": "quà",
+      "pos": "word",
+      "emoji": "🎁",
+      "difficulty": 9,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "gift / present",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0213",
+      "lesson_id": "lesson_024",
+      "vi_text": "tiệc",
+      "pos": "word",
+      "emoji": "🎉",
+      "difficulty": 9,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "party / feast",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_0216",
+      "lesson_id": "lesson_024",
+      "vi_text": "chụp hình",
+      "pos": "phrase",
+      "emoji": "📸",
+      "difficulty": 9,
+      "dialect": "both",
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "to take a photo",
+          "is_primary": true
+        }
+      ]
+    }
+  ],
+  "sentences": [
+    {
+      "id": "it_s_0037",
+      "lesson_id": "lesson_001b",
+      "vi_text": "Cảm ơn!",
+      "token_count": 2,
+      "difficulty": 1,
+      "grammar_tags": [],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "Thank you!",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_s_0012",
+      "lesson_id": "lesson_002a",
+      "vi_text": "Bạn tên là gì?",
+      "token_count": 4,
+      "difficulty": 2,
+      "grammar_tags": [],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "What is your name?",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_s_0013",
+      "lesson_id": "lesson_002b",
+      "vi_text": "Rất vui được gặp bạn.",
+      "token_count": 5,
+      "difficulty": 1,
+      "grammar_note": "",
+      "grammar_tags": [
+        "GT031"
+      ],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "Nice to meet you.",
+          "is_primary": true
+        },
+        {
+          "lang": "en",
+          "text": "Pleased to meet you.",
+          "is_primary": false
+        },
+        {
+          "lang": "en",
+          "text": "It's nice to meet you.",
+          "is_primary": false
+        }
+      ]
+    },
+    {
+      "id": "it_s_0016",
+      "lesson_id": "lesson_003",
+      "vi_text": "Tôi không hiểu.",
+      "token_count": 3,
+      "difficulty": 3,
+      "grammar_tags": [],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "I don't understand.",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_s_0017",
+      "lesson_id": "lesson_003",
+      "vi_text": "Nói chậm lại.",
+      "token_count": 3,
+      "difficulty": 3,
+      "grammar_tags": [],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "Speak more slowly.",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_s_0220",
+      "lesson_id": "lesson_004",
+      "vi_text": "Một, hai, ba!",
+      "token_count": 3,
+      "difficulty": 4,
+      "grammar_tags": [],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "One, two, three!",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_s_0221",
+      "lesson_id": "lesson_004",
+      "vi_text": "Tôi có năm bạn.",
+      "token_count": 4,
+      "difficulty": 4,
+      "grammar_tags": [],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "I have five friends.",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_s_0222",
+      "lesson_id": "lesson_025",
+      "vi_text": "Tám hay chín?",
+      "token_count": 3,
+      "difficulty": 5,
+      "grammar_tags": [],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "Eight or nine?",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_s_0223",
+      "lesson_id": "lesson_025",
+      "vi_text": "Từ sáu đến mười.",
+      "token_count": 4,
+      "difficulty": 5,
+      "grammar_tags": [],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "From six to ten.",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_s_0033",
+      "lesson_id": "lesson_005",
+      "vi_text": "Cho tôi cà phê.",
+      "token_count": 4,
+      "difficulty": 5,
+      "grammar_tags": [],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "Give me coffee.",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_s_0034",
+      "lesson_id": "lesson_005",
+      "vi_text": "Tôi muốn một trà.",
+      "token_count": 4,
+      "difficulty": 5,
+      "grammar_tags": [],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "I want a tea.",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_s_0044",
+      "lesson_id": "lesson_006",
+      "vi_text": "Tôi muốn cà phê sữa đá.",
+      "token_count": 6,
+      "difficulty": 6,
+      "grammar_tags": [],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "I want iced milk coffee.",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_s_0049",
+      "lesson_id": "lesson_007",
+      "vi_text": "Tôi muốn một bát phở.",
+      "token_count": 5,
+      "difficulty": 6,
+      "grammar_tags": [],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "I want a bowl of pho.",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_s_0054",
+      "lesson_id": "lesson_008",
+      "vi_text": "Cái này bao nhiêu tiền?",
+      "token_count": 5,
+      "difficulty": 7,
+      "grammar_tags": [],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "How much does this cost?",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_s_0224",
+      "lesson_id": "lesson_009",
+      "vi_text": "Tôi thích màu đỏ.",
+      "token_count": 4,
+      "difficulty": 5,
+      "grammar_tags": [],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "I like the color red.",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_s_0225",
+      "lesson_id": "lesson_009",
+      "vi_text": "Cái áo màu xanh.",
+      "token_count": 4,
+      "difficulty": 5,
+      "grammar_tags": [],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "The blue shirt.",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_s_0226",
+      "lesson_id": "lesson_026",
+      "vi_text": "Cái nhà to quá!",
+      "token_count": 4,
+      "difficulty": 6,
+      "grammar_tags": [],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "The house is so big!",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_s_0227",
+      "lesson_id": "lesson_026",
+      "vi_text": "Hoa đẹp quá!",
+      "token_count": 3,
+      "difficulty": 6,
+      "grammar_tags": [],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "The flowers are so beautiful!",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_s_0075",
+      "lesson_id": "lesson_010",
+      "vi_text": "Mắc quá! Bớt đi.",
+      "token_count": 4,
+      "difficulty": 7,
+      "grammar_tags": [],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "Too expensive! Lower the price.",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_s_0076",
+      "lesson_id": "lesson_010",
+      "vi_text": "Tôi muốn mua cái này.",
+      "token_count": 5,
+      "difficulty": 7,
+      "grammar_tags": [],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "I want to buy this.",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_s_0228",
+      "lesson_id": "lesson_011",
+      "vi_text": "Tôi muốn mua cam.",
+      "token_count": 4,
+      "difficulty": 5,
+      "grammar_tags": [],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "I want to buy oranges.",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_s_0229",
+      "lesson_id": "lesson_011",
+      "vi_text": "Xoài rất ngon.",
+      "token_count": 3,
+      "difficulty": 5,
+      "grammar_tags": [],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "Mango is very delicious.",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_s_0230",
+      "lesson_id": "lesson_027",
+      "vi_text": "Tôi ăn rau mỗi ngày.",
+      "token_count": 5,
+      "difficulty": 6,
+      "grammar_tags": [],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "I eat vegetables every day.",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_s_0231",
+      "lesson_id": "lesson_027",
+      "vi_text": "Cà chua màu đỏ.",
+      "token_count": 4,
+      "difficulty": 6,
+      "grammar_tags": [],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "Tomatoes are red.",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_s_0095",
+      "lesson_id": "lesson_012",
+      "vi_text": "Tính tiền, làm ơn.",
+      "token_count": 4,
+      "difficulty": 7,
+      "grammar_tags": [],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "The bill, please.",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_s_0107",
+      "lesson_id": "lesson_013",
+      "vi_text": "Đi thẳng rồi quẹo trái.",
+      "token_count": 5,
+      "difficulty": 5,
+      "grammar_tags": [],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "Go straight then turn left.",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_s_0242",
+      "lesson_id": "lesson_030",
+      "vi_text": "Nhà tôi gần đây.",
+      "token_count": 4,
+      "difficulty": 6,
+      "grammar_tags": [],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "My house is nearby.",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_s_0243",
+      "lesson_id": "lesson_030",
+      "vi_text": "Có xa không?",
+      "token_count": 3,
+      "difficulty": 6,
+      "grammar_tags": [],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "Is it far?",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_s_0115",
+      "lesson_id": "lesson_014",
+      "vi_text": "Cho tôi đến khách sạn.",
+      "token_count": 5,
+      "difficulty": 7,
+      "grammar_tags": [],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "Take me to the hotel.",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_s_0116",
+      "lesson_id": "lesson_014",
+      "vi_text": "Dừng ở đây, làm ơn.",
+      "token_count": 5,
+      "difficulty": 7,
+      "grammar_tags": [],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "Stop here, please.",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_s_0125",
+      "lesson_id": "lesson_015",
+      "vi_text": "Phòng có wifi không?",
+      "token_count": 4,
+      "difficulty": 3,
+      "grammar_note": "có...không = yes/no",
+      "grammar_tags": [
+        "GT005"
+      ],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "Does the room have wifi?",
+          "is_primary": true
+        },
+        {
+          "lang": "en",
+          "text": "Is there wifi in the room?",
+          "is_primary": false
+        },
+        {
+          "lang": "en",
+          "text": "Does the room have wi-fi?",
+          "is_primary": false
+        }
+      ]
+    },
+    {
+      "id": "it_s_0135",
+      "lesson_id": "lesson_016",
+      "vi_text": "Giúp tôi với!",
+      "token_count": 3,
+      "difficulty": 9,
+      "grammar_tags": [],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "Help me!",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_s_0136",
+      "lesson_id": "lesson_016",
+      "vi_text": "Tôi bị lạc.",
+      "token_count": 3,
+      "difficulty": 9,
+      "grammar_tags": [],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "I am lost.",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_s_0232",
+      "lesson_id": "lesson_017",
+      "vi_text": "Sáng hay chiều?",
+      "token_count": 3,
+      "difficulty": 5,
+      "grammar_tags": [],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "Morning or afternoon?",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_s_0233",
+      "lesson_id": "lesson_017",
+      "vi_text": "Mấy giờ rồi?",
+      "token_count": 3,
+      "difficulty": 5,
+      "grammar_tags": [],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "What time is it?",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_s_0148",
+      "lesson_id": "lesson_028",
+      "vi_text": "Bây giờ là mấy giờ?",
+      "token_count": 5,
+      "difficulty": 2,
+      "grammar_note": "",
+      "grammar_tags": [
+        "GT011",
+        "GT002"
+      ],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "What time is it now?",
+          "is_primary": true
+        },
+        {
+          "lang": "en",
+          "text": "What time is it?",
+          "is_primary": false
+        },
+        {
+          "lang": "en",
+          "text": "What's the time?",
+          "is_primary": false
+        }
+      ]
+    },
+    {
+      "id": "it_s_0156",
+      "lesson_id": "lesson_018",
+      "vi_text": "Hôm nay trời đẹp quá!",
+      "token_count": 5,
+      "difficulty": 7,
+      "grammar_tags": [],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "The weather is so nice today!",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_s_0234",
+      "lesson_id": "lesson_019",
+      "vi_text": "Bố mẹ tôi khỏe.",
+      "token_count": 4,
+      "difficulty": 8,
+      "grammar_tags": [],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "My parents are well.",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_s_0235",
+      "lesson_id": "lesson_019",
+      "vi_text": "Anh chị khỏe không?",
+      "token_count": 4,
+      "difficulty": 8,
+      "grammar_tags": [],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "Are you well? (to older sibling)",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_s_0236",
+      "lesson_id": "lesson_029",
+      "vi_text": "Em tôi còn nhỏ.",
+      "token_count": 4,
+      "difficulty": 9,
+      "grammar_tags": [],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "My younger sibling is still small.",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_s_0237",
+      "lesson_id": "lesson_029",
+      "vi_text": "Vợ chồng tôi rất vui.",
+      "token_count": 5,
+      "difficulty": 9,
+      "grammar_tags": [],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "My wife/husband and I are very happy.",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_s_0238",
+      "lesson_id": "lesson_020",
+      "vi_text": "Nhà bếp rất sạch.",
+      "token_count": 4,
+      "difficulty": 9,
+      "grammar_tags": [],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "The kitchen is very clean.",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_s_0239",
+      "lesson_id": "lesson_020",
+      "vi_text": "Phòng khách rất to.",
+      "token_count": 4,
+      "difficulty": 9,
+      "grammar_tags": [],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "The living room is very big.",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_s_0240",
+      "lesson_id": "lesson_031",
+      "vi_text": "Ngồi trên ghế đi.",
+      "token_count": 4,
+      "difficulty": 10,
+      "grammar_tags": [],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "Sit on the chair.",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_s_0241",
+      "lesson_id": "lesson_031",
+      "vi_text": "Đặt trên bàn.",
+      "token_count": 3,
+      "difficulty": 10,
+      "grammar_tags": [],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "Put it on the table.",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_s_0186",
+      "lesson_id": "lesson_021",
+      "vi_text": "Bạn thích làm gì?",
+      "token_count": 4,
+      "difficulty": 6,
+      "grammar_tags": [],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "What do you like to do?",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_s_0196",
+      "lesson_id": "lesson_022",
+      "vi_text": "Tôi mệt quá.",
+      "token_count": 3,
+      "difficulty": 7,
+      "grammar_tags": [],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "I am so tired.",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_s_0205",
+      "lesson_id": "lesson_023",
+      "vi_text": "Cuối tuần bạn rảnh không?",
+      "token_count": 5,
+      "difficulty": 8,
+      "grammar_tags": [],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "Are you free this weekend?",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_s_0206",
+      "lesson_id": "lesson_023",
+      "vi_text": "Đi chơi cùng tôi không?",
+      "token_count": 5,
+      "difficulty": 8,
+      "grammar_tags": [],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "Do you want to hang out with me?",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_s_0214",
+      "lesson_id": "lesson_024",
+      "vi_text": "Chúc mừng sinh nhật!",
+      "token_count": 4,
+      "difficulty": 9,
+      "grammar_tags": [],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "Happy birthday!",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_s_0215",
+      "lesson_id": "lesson_024",
+      "vi_text": "Vui quá!",
+      "token_count": 2,
+      "difficulty": 9,
+      "grammar_tags": [],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "So fun!",
+          "is_primary": true
+        }
+      ]
+    }
+  ],
+  "grammar_tags": [
+    {
+      "id": "GT001",
+      "name": "svo_order",
+      "category": "structure",
+      "description": "Subject-Verb-Object word order"
+    },
+    {
+      "id": "GT002",
+      "name": "copula_là",
+      "category": "structure",
+      "description": "'là' copula (to be)"
+    },
+    {
+      "id": "GT003",
+      "name": "possessive",
+      "category": "structure",
+      "description": "Possessive (noun + possessor)"
+    },
+    {
+      "id": "GT004",
+      "name": "negation_không",
+      "category": "structure",
+      "description": "Negation with 'không'"
+    },
+    {
+      "id": "GT005",
+      "name": "q_yesno_không",
+      "category": "question",
+      "description": "Yes/no question with 'không' particle"
+    },
+    {
+      "id": "GT006",
+      "name": "q_what_gì",
+      "category": "question",
+      "description": "Question with 'gì' (what)"
+    },
+    {
+      "id": "GT007",
+      "name": "q_where_ở_đâu",
+      "category": "question",
+      "description": "Question with 'ở đâu' (where)"
+    },
+    {
+      "id": "GT008",
+      "name": "q_when_khi_nào",
+      "category": "question",
+      "description": "Question with 'khi nào' (when)"
+    },
+    {
+      "id": "GT009",
+      "name": "q_how_như_thế_nào",
+      "category": "question",
+      "description": "Question with 'như thế nào' (how)"
+    },
+    {
+      "id": "GT010",
+      "name": "q_howmuch_bao_nhiêu",
+      "category": "question",
+      "description": "Question with 'bao nhiêu' (how much/many)"
+    },
+    {
+      "id": "GT011",
+      "name": "q_what_time_mấy_giờ",
+      "category": "question",
+      "description": "Question with 'mấy giờ' (what time)"
+    },
+    {
+      "id": "GT012",
+      "name": "q_what_day_thứ_mấy",
+      "category": "question",
+      "description": "Question with 'thứ mấy' (what day)"
+    },
+    {
+      "id": "GT013",
+      "name": "q_how_old_bao_nhiêu_tuổi",
+      "category": "question",
+      "description": "Question with 'bao nhiêu tuổi' (how old)"
+    },
+    {
+      "id": "GT014",
+      "name": "q_what_color_màu_gì",
+      "category": "question",
+      "description": "Question with 'màu gì' (what color)"
+    },
+    {
+      "id": "GT015",
+      "name": "past_đã",
+      "category": "tense",
+      "description": "Past marker 'đã' before verb"
+    },
+    {
+      "id": "GT016",
+      "name": "progressive_đang",
+      "category": "tense",
+      "description": "Progressive marker 'đang' before verb"
+    },
+    {
+      "id": "GT017",
+      "name": "future_sẽ",
+      "category": "tense",
+      "description": "Future marker 'sẽ' before verb"
+    },
+    {
+      "id": "GT018",
+      "name": "completed_rồi",
+      "category": "tense",
+      "description": "Completed aspect 'rồi' at end"
+    },
+    {
+      "id": "GT019",
+      "name": "not_yet_chưa",
+      "category": "tense",
+      "description": "'chưa' (not yet) / have you... yet"
+    },
+    {
+      "id": "GT020",
+      "name": "polite_request_cho_xin",
+      "category": "request",
+      "description": "Polite request 'Cho xin...'"
+    },
+    {
+      "id": "GT021",
+      "name": "polite_request_cho_tôi",
+      "category": "request",
+      "description": "Request 'Cho tôi...' (give me)"
+    },
+    {
+      "id": "GT022",
+      "name": "want_muốn",
+      "category": "request",
+      "description": "'muốn + verb' (want to)"
+    },
+    {
+      "id": "GT023",
+      "name": "measure_word",
+      "category": "counting",
+      "description": "Measure word between number and noun"
+    },
+    {
+      "id": "GT024",
+      "name": "number_noun_phrase",
+      "category": "counting",
+      "description": "Number + measure word + noun"
+    },
+    {
+      "id": "GT025",
+      "name": "comparative_hơn",
+      "category": "comparison",
+      "description": "A + adj + hơn + B (more than)"
+    },
+    {
+      "id": "GT026",
+      "name": "superlative_nhất",
+      "category": "comparison",
+      "description": "adj + nhất (most)"
+    },
+    {
+      "id": "GT027",
+      "name": "equal_bằng",
+      "category": "comparison",
+      "description": "A + bằng + B (equal to)"
+    },
+    {
+      "id": "GT028",
+      "name": "modal_có_thể",
+      "category": "modal",
+      "description": "'có thể' (can, be able to)"
+    },
+    {
+      "id": "GT029",
+      "name": "modal_phải",
+      "category": "modal",
+      "description": "'phải' (must, have to)"
+    },
+    {
+      "id": "GT030",
+      "name": "conditional_nếu_thì",
+      "category": "conditional",
+      "description": "'nếu...thì...' (if...then)"
+    },
+    {
+      "id": "GT031",
+      "name": "intensifier_rất",
+      "category": "descriptive",
+      "description": "'rất + adj' (very)"
+    },
+    {
+      "id": "GT032",
+      "name": "intensifier_quá",
+      "category": "descriptive",
+      "description": "'adj + quá' (too/so) - exclamation"
+    },
+    {
+      "id": "GT033",
+      "name": "intensifier_lắm",
+      "category": "descriptive",
+      "description": "'adj + lắm' (very) - casual"
+    },
+    {
+      "id": "GT034",
+      "name": "time_lúc",
+      "category": "time",
+      "description": "'lúc + time' (at X o'clock)"
+    },
+    {
+      "id": "GT035",
+      "name": "time_of_day",
+      "category": "time",
+      "description": "buổi sáng/trưa/chiều/tối (morning/noon/afternoon/evening)"
+    },
+    {
+      "id": "GT036",
+      "name": "date_order",
+      "category": "time",
+      "description": "'ngày X tháng Y' (day before month)"
+    },
+    {
+      "id": "GT037",
+      "name": "passive_bị",
+      "category": "state",
+      "description": "'bị + adj/verb' (passive/negative state)"
+    },
+    {
+      "id": "GT038",
+      "name": "location_ở",
+      "category": "location",
+      "description": "'ở + place' (at/in)"
+    },
+    {
+      "id": "GT039",
+      "name": "direction_bên",
+      "category": "location",
+      "description": "'bên + direction' (on the X side)"
+    },
+    {
+      "id": "GT040",
+      "name": "transport_bằng",
+      "category": "location",
+      "description": "'đi bằng + vehicle' (by vehicle)"
+    },
+    {
+      "id": "GT041",
+      "name": "frequency_adv",
+      "category": "frequency",
+      "description": "thường/luôn luôn/không bao giờ/đôi khi"
+    },
+    {
+      "id": "GT042",
+      "name": "demo_này_kia",
+      "category": "demonstrative",
+      "description": "'này' (this) / 'kia' (that)"
+    },
+    {
+      "id": "GT043",
+      "name": "demo_đây_đó",
+      "category": "demonstrative",
+      "description": "'đây là' (this is) / 'đó là' (that is)"
+    },
+    {
+      "id": "GT044",
+      "name": "conjunction_và",
+      "category": "connective",
+      "description": "'và' (and)"
+    }
+  ],
+  "conversations": [
+    {
+      "id": "CV001",
+      "lessonId": "L001",
+      "title": "Meeting someone for the first time",
+      "lines": [
+        {
+          "speaker": "A",
+          "vi": "Xin chào.",
+          "en": "Hello."
+        },
+        {
+          "speaker": "B",
+          "vi": "Xin chào.",
+          "en": "Hello."
+        },
+        {
+          "speaker": "A",
+          "vi": "Tôi tên là Nam.",
+          "en": "My name is Nam."
+        },
+        {
+          "speaker": "A",
+          "vi": "Tôi là người Việt Nam.",
+          "en": "I am Vietnamese."
+        },
+        {
+          "speaker": "B",
+          "vi": "Tôi là người Úc. Rất vui được gặp bạn.",
+          "en": "I am Australian. Nice to meet you."
+        }
+      ]
+    },
+    {
+      "id": "CV002",
+      "lessonId": "L003",
+      "title": "Asking how someone is",
+      "lines": [
+        {
+          "speaker": "A",
+          "vi": "Xin chào.",
+          "en": "Hello."
+        },
+        {
+          "speaker": "A",
+          "vi": "Tôi tên là Linh.",
+          "en": "My name is Linh."
+        },
+        {
+          "speaker": "A",
+          "vi": "Tôi là người Việt Nam.",
+          "en": "I am Vietnamese."
+        },
+        {
+          "speaker": "A",
+          "vi": "Rất vui được gặp bạn.",
+          "en": "Nice to meet you."
+        },
+        {
+          "speaker": "A",
+          "vi": "Bạn khỏe không?",
+          "en": "How are you?"
+        },
+        {
+          "speaker": "B",
+          "vi": "Tôi khỏe. Cám ơn.",
+          "en": "I am well. Thank you."
+        }
+      ]
+    },
+    {
+      "id": "CV003",
+      "lessonId": "L005",
+      "title": "Ordering at a restaurant - Scene 1",
+      "lines": [
+        {
+          "speaker": "Customer",
+          "vi": "Cho xin thực đơn.",
+          "en": "Please give me the menu."
+        },
+        {
+          "speaker": "Staff",
+          "vi": "Dạ, thực đơn đây ạ.",
+          "en": "Yes, here is the menu."
+        },
+        {
+          "speaker": "Staff",
+          "vi": "Bạn ăn gì?",
+          "en": "What would you like to eat?"
+        },
+        {
+          "speaker": "Customer",
+          "vi": "Tôi ăn bánh mì. Cám ơn.",
+          "en": "I'll have the bánh mì. Thank you."
+        },
+        {
+          "speaker": "Staff",
+          "vi": "Bạn uống gì?",
+          "en": "What would you like to drink?"
+        },
+        {
+          "speaker": "Customer",
+          "vi": "Tôi uống nước. Cám ơn.",
+          "en": "I'll drink water. Thank you."
+        }
+      ]
+    },
+    {
+      "id": "CV004",
+      "lessonId": "L006",
+      "title": "Ordering food - Conversation 1",
+      "lines": [
+        {
+          "speaker": "Staff",
+          "vi": "Xin chào!",
+          "en": "Hello!"
+        },
+        {
+          "speaker": "Customer",
+          "vi": "Chào bạn!",
+          "en": "Hi!"
+        },
+        {
+          "speaker": "Staff",
+          "vi": "Bạn ăn gì?",
+          "en": "What do you eat?"
+        },
+        {
+          "speaker": "Customer",
+          "vi": "Cho tôi 2 phần phở.",
+          "en": "Give me 2 portions of pho."
+        },
+        {
+          "speaker": "Staff",
+          "vi": "Bạn uống gì?",
+          "en": "What do you drink?"
+        },
+        {
+          "speaker": "Customer",
+          "vi": "Cho tôi 1 ly cà phê đá. Cám ơn.",
+          "en": "Give me 1 glass of iced coffee. Thank you."
+        },
+        {
+          "speaker": "Staff",
+          "vi": "Không có chi.",
+          "en": "You're welcome."
+        }
+      ]
+    },
+    {
+      "id": "CV005",
+      "lessonId": "L006",
+      "title": "Ordering food - Conversation 2",
+      "lines": [
+        {
+          "speaker": "Customer",
+          "vi": "Xin chào!",
+          "en": "Hello!"
+        },
+        {
+          "speaker": "Staff",
+          "vi": "Xin chào!",
+          "en": "Hello!"
+        },
+        {
+          "speaker": "Customer",
+          "vi": "Cho xin thực đơn.",
+          "en": "Please give me the menu."
+        },
+        {
+          "speaker": "Customer",
+          "vi": "Tôi muốn gọi món. Cho tôi 2 phần cơm, 1 phần bánh mì, 1 ly cà phê. Cám ơn.",
+          "en": "I want to order. Give me 2 portions of rice, 1 bánh mì, 1 coffee. Thank you."
+        }
+      ]
+    },
+    {
+      "id": "CV006",
+      "lessonId": "L007",
+      "title": "Booking a table - Conversation 1",
+      "lines": [
+        {
+          "speaker": "Customer",
+          "vi": "Xin chào!",
+          "en": "Hello!"
+        },
+        {
+          "speaker": "Staff",
+          "vi": "Restaurant A xin chào!",
+          "en": "Restaurant A, hello!"
+        },
+        {
+          "speaker": "Customer",
+          "vi": "Tôi muốn đặt bàn 2 người.",
+          "en": "I want to book a table for 2."
+        },
+        {
+          "speaker": "Staff",
+          "vi": "Dạ. Anh đặt bàn khi nào ạ?",
+          "en": "Yes. When would you like to book?"
+        },
+        {
+          "speaker": "Customer",
+          "vi": "Buổi trưa ngày mai, 11 giờ.",
+          "en": "Tomorrow at noon, 11 o'clock."
+        },
+        {
+          "speaker": "Staff",
+          "vi": "Dạ. Anh tên gì?",
+          "en": "Yes. What is your name?"
+        },
+        {
+          "speaker": "Customer",
+          "vi": "Tôi tên Minh.",
+          "en": "My name is Minh."
+        },
+        {
+          "speaker": "Staff",
+          "vi": "Dạ. Hẹn gặp anh Minh ngày mai!",
+          "en": "Yes. See you tomorrow, Mr. Minh!"
+        }
+      ]
+    },
+    {
+      "id": "CV007",
+      "lessonId": "L007",
+      "title": "Arriving for a reservation - Conversation 2",
+      "lines": [
+        {
+          "speaker": "Staff",
+          "vi": "Xin chào!",
+          "en": "Hello!"
+        },
+        {
+          "speaker": "Customer",
+          "vi": "Xin chào! Hôm qua tôi đặt bàn lúc 11 giờ. Tôi tên Minh.",
+          "en": "Hello! Yesterday I booked a table at 11 o'clock. My name is Minh."
+        },
+        {
+          "speaker": "Staff",
+          "vi": "Dạ.",
+          "en": "Yes."
+        },
+        {
+          "speaker": "Customer",
+          "vi": "Cho tôi xin thực đơn.",
+          "en": "Please give me the menu."
+        },
+        {
+          "speaker": "Staff",
+          "vi": "Dạ.",
+          "en": "Yes."
+        },
+        {
+          "speaker": "Customer",
+          "vi": "Tôi muốn gọi món. Cho tôi 1 phần phở, 1 phần cơm, 1 ly nước cam, 1 ly cà phê nóng. Cám ơn.",
+          "en": "I want to order. Give me 1 pho, 1 rice, 1 orange juice, 1 hot coffee. Thank you."
+        },
+        {
+          "speaker": "Staff",
+          "vi": "Dạ. Anh đợi một chút nhé!",
+          "en": "Yes. Please wait a moment!"
+        }
+      ]
+    },
+    {
+      "id": "CV008",
+      "lessonId": "L008",
+      "title": "Paying the bill - Conversation 1",
+      "lines": [
+        {
+          "speaker": "Customer",
+          "vi": "Tôi muốn thanh toán. Bao nhiêu tiền?",
+          "en": "I want to pay. How much?"
+        },
+        {
+          "speaker": "Staff",
+          "vi": "Dạ hóa đơn là 125.000 vnd.",
+          "en": "The bill is 125,000 VND."
+        },
+        {
+          "speaker": "Customer",
+          "vi": "Tôi gửi 150.000 vnd.",
+          "en": "I give 150,000 VND."
+        },
+        {
+          "speaker": "Staff",
+          "vi": "Dạ em gửi tiền thừa là 25.000 vnd.",
+          "en": "Your change is 25,000 VND."
+        },
+        {
+          "speaker": "Customer",
+          "vi": "Cám ơn.",
+          "en": "Thank you."
+        },
+        {
+          "speaker": "Staff",
+          "vi": "Cám ơn anh. Hẹn gặp lại!",
+          "en": "Thank you. See you again!"
+        }
+      ]
+    },
+    {
+      "id": "CV009",
+      "lessonId": "L008",
+      "title": "Full order and payment - Conversation 2",
+      "lines": [
+        {
+          "speaker": "Customer",
+          "vi": "Xin chào!",
+          "en": "Hello!"
+        },
+        {
+          "speaker": "Staff",
+          "vi": "Xin chào!",
+          "en": "Hello!"
+        },
+        {
+          "speaker": "Customer",
+          "vi": "Tôi muốn gọi món.",
+          "en": "I want to order."
+        },
+        {
+          "speaker": "Staff",
+          "vi": "Dạ.",
+          "en": "Yes."
+        },
+        {
+          "speaker": "Customer",
+          "vi": "Cho tôi 2 phở, 2 bánh mì, 2 cà phê đá, 2 cà phê nóng, 1 nước cam.",
+          "en": "Give me 2 pho, 2 bánh mì, 2 iced coffees, 2 hot coffees, 1 orange juice."
+        },
+        {
+          "speaker": "Staff",
+          "vi": "Dạ. Hóa đơn là 180.000 vnd.",
+          "en": "Yes. The bill is 180,000 VND."
+        },
+        {
+          "speaker": "Customer",
+          "vi": "Tôi gửi là 200.000 vnd.",
+          "en": "I give 200,000 VND."
+        },
+        {
+          "speaker": "Staff",
+          "vi": "Dạ, em gửi tiền thừa là 20.000 vnd. Chị đợi một chút nhé!",
+          "en": "Yes, your change is 20,000 VND. Please wait a moment!"
+        },
+        {
+          "speaker": "Customer",
+          "vi": "Cám ơn em!",
+          "en": "Thank you!"
+        }
+      ]
+    },
+    {
+      "id": "CV010",
+      "lessonId": "L009",
+      "title": "Ordering spicy food - Conversation 1",
+      "lines": [
+        {
+          "speaker": "Customer",
+          "vi": "Xin chào! Cho tôi 2 bánh mì!",
+          "en": "Hello! Give me 2 bánh mì!"
+        },
+        {
+          "speaker": "Staff",
+          "vi": "Anh ăn cay không?",
+          "en": "Do you eat spicy?"
+        },
+        {
+          "speaker": "Customer",
+          "vi": "Có, nhiều cay nhé!",
+          "en": "Yes, extra spicy!"
+        },
+        {
+          "speaker": "Staff",
+          "vi": "Anh đợi một chút nhé!",
+          "en": "Please wait a moment!"
+        },
+        {
+          "speaker": "Customer",
+          "vi": "Cám ơn!",
+          "en": "Thank you!"
+        }
+      ]
+    },
+    {
+      "id": "CV011",
+      "lessonId": "L009",
+      "title": "Asking about taste - Conversation 2",
+      "lines": [
+        {
+          "speaker": "Customer",
+          "vi": "Xin chào! Món này như thế nào?",
+          "en": "Hello! How is this dish?"
+        },
+        {
+          "speaker": "Staff",
+          "vi": "Món này cay.",
+          "en": "This dish is spicy."
+        },
+        {
+          "speaker": "Customer",
+          "vi": "Món kia mặn không?",
+          "en": "Is that dish salty?"
+        },
+        {
+          "speaker": "Staff",
+          "vi": "Không, món kia chua.",
+          "en": "No, that dish is sour."
+        },
+        {
+          "speaker": "Customer",
+          "vi": "Thơm quá. Món kia ngon không?",
+          "en": "So fragrant. Is that dish delicious?"
+        },
+        {
+          "speaker": "Staff",
+          "vi": "Món kia ngọt! Ngon lắm!",
+          "en": "That dish is sweet! Very delicious!"
+        },
+        {
+          "speaker": "Customer",
+          "vi": "Cho tôi 2 phần nhé.",
+          "en": "Give me 2 portions."
+        },
+        {
+          "speaker": "Staff",
+          "vi": "50.000 vnd.",
+          "en": "50,000 VND."
+        },
+        {
+          "speaker": "Customer",
+          "vi": "Tôi gửi. Cám ơn!",
+          "en": "Here you go. Thank you!"
+        },
+        {
+          "speaker": "Staff",
+          "vi": "Cám ơn. Hẹn gặp lại!",
+          "en": "Thank you. See you again!"
+        }
+      ]
+    },
+    {
+      "id": "CV012",
+      "lessonId": "L010",
+      "title": "Meeting someone's family",
+      "lines": [
+        {
+          "speaker": "Host",
+          "vi": "Đây là gia đình tôi.",
+          "en": "This is my family."
+        },
+        {
+          "speaker": "Host",
+          "vi": "Đây là bố và mẹ tôi.",
+          "en": "This is my father and mother."
+        },
+        {
+          "speaker": "Guest",
+          "vi": "Chào bác. Rất vui được gặp bác.",
+          "en": "Hello. Nice to meet you."
+        },
+        {
+          "speaker": "Host",
+          "vi": "Đây là anh trai và em gái tôi.",
+          "en": "This is my older brother and younger sister."
+        },
+        {
+          "speaker": "Guest",
+          "vi": "Gia đình bạn có mấy người?",
+          "en": "How many people in your family?"
+        },
+        {
+          "speaker": "Host",
+          "vi": "Gia đình tôi có năm người.",
+          "en": "My family has five people."
+        }
+      ]
+    },
+    {
+      "id": "CV013",
+      "lessonId": "L011",
+      "title": "Asking about age",
+      "lines": [
+        {
+          "speaker": "A",
+          "vi": "Bạn bao nhiêu tuổi?",
+          "en": "How old are you?"
+        },
+        {
+          "speaker": "B",
+          "vi": "Tôi 28 tuổi. Còn bạn?",
+          "en": "I'm 28. And you?"
+        },
+        {
+          "speaker": "A",
+          "vi": "Tôi 30 tuổi.",
+          "en": "I'm 30."
+        },
+        {
+          "speaker": "A",
+          "vi": "Em bạn bao nhiêu tuổi?",
+          "en": "How old is your younger sibling?"
+        },
+        {
+          "speaker": "B",
+          "vi": "Em tôi 15 tuổi.",
+          "en": "My younger sibling is 15."
+        }
+      ]
+    },
+    {
+      "id": "CV014",
+      "lessonId": "L012",
+      "title": "Talking about jobs",
+      "lines": [
+        {
+          "speaker": "A",
+          "vi": "Bạn làm nghề gì?",
+          "en": "What do you do for work?"
+        },
+        {
+          "speaker": "B",
+          "vi": "Tôi là giáo viên. Còn bạn?",
+          "en": "I'm a teacher. And you?"
+        },
+        {
+          "speaker": "A",
+          "vi": "Tôi là kỹ sư. Tôi làm việc ở công ty ABC.",
+          "en": "I'm an engineer. I work at ABC company."
+        },
+        {
+          "speaker": "B",
+          "vi": "Bạn làm việc ở đâu?",
+          "en": "Where do you work?"
+        },
+        {
+          "speaker": "A",
+          "vi": "Tôi làm việc ở quận 1.",
+          "en": "I work in District 1."
+        }
+      ]
+    },
+    {
+      "id": "CV015",
+      "lessonId": "L014",
+      "title": "Scheduling a meeting",
+      "lines": [
+        {
+          "speaker": "A",
+          "vi": "Mấy giờ chúng ta gặp nhau?",
+          "en": "What time shall we meet?"
+        },
+        {
+          "speaker": "B",
+          "vi": "2 giờ rưỡi chiều được không?",
+          "en": "2:30 PM OK?"
+        },
+        {
+          "speaker": "A",
+          "vi": "Được. Ở đâu?",
+          "en": "OK. Where?"
+        },
+        {
+          "speaker": "B",
+          "vi": "Ở quán cà phê gần công ty.",
+          "en": "At the café near the office."
+        },
+        {
+          "speaker": "A",
+          "vi": "Hẹn gặp lại.",
+          "en": "See you then."
+        }
+      ]
+    },
+    {
+      "id": "CV016",
+      "lessonId": "L017",
+      "title": "What are you doing?",
+      "lines": [
+        {
+          "speaker": "A",
+          "vi": "A lô, bạn đang làm gì?",
+          "en": "Hello, what are you doing?"
+        },
+        {
+          "speaker": "B",
+          "vi": "Tôi đang ăn cơm. Còn bạn?",
+          "en": "I'm eating. And you?"
+        },
+        {
+          "speaker": "A",
+          "vi": "Tôi đã ăn rồi. Chiều nay bạn sẽ đi đâu?",
+          "en": "I already ate. Where will you go this afternoon?"
+        },
+        {
+          "speaker": "B",
+          "vi": "Chiều nay tôi sẽ đi siêu thị.",
+          "en": "This afternoon I will go to the supermarket."
+        },
+        {
+          "speaker": "A",
+          "vi": "Tốt quá. Hẹn gặp lại.",
+          "en": "Great. See you."
+        }
+      ]
+    },
+    {
+      "id": "CV017",
+      "lessonId": "L018",
+      "title": "Shopping at the market",
+      "lines": [
+        {
+          "speaker": "Customer",
+          "vi": "Chào chị. Táo bao nhiêu một kí?",
+          "en": "Hello. How much per kilo for apples?"
+        },
+        {
+          "speaker": "Vendor",
+          "vi": "Dạ, 40.000 một kí.",
+          "en": "40,000 per kilo."
+        },
+        {
+          "speaker": "Customer",
+          "vi": "Cho tôi hai kí.",
+          "en": "Give me 2 kilos."
+        },
+        {
+          "speaker": "Customer",
+          "vi": "Còn chuối bao nhiêu?",
+          "en": "And how much for bananas?"
+        },
+        {
+          "speaker": "Vendor",
+          "vi": "Dạ, 25.000 một kí.",
+          "en": "25,000 per kilo."
+        },
+        {
+          "speaker": "Customer",
+          "vi": "Cho tôi một kí chuối.",
+          "en": "Give me 1 kilo of bananas."
+        }
+      ]
+    },
+    {
+      "id": "CV018",
+      "lessonId": "L019",
+      "title": "Buying clothes",
+      "lines": [
+        {
+          "speaker": "Customer",
+          "vi": "Tôi muốn mua một cái áo.",
+          "en": "I want to buy a shirt."
+        },
+        {
+          "speaker": "Staff",
+          "vi": "Bạn thích màu gì?",
+          "en": "What color do you like?"
+        },
+        {
+          "speaker": "Customer",
+          "vi": "Tôi thích màu xanh.",
+          "en": "I like blue."
+        },
+        {
+          "speaker": "Staff",
+          "vi": "Cái này đẹp lắm. Bạn thử đi.",
+          "en": "This one is very nice. Try it."
+        },
+        {
+          "speaker": "Customer",
+          "vi": "Hơi chật. Có cỡ lớn hơn không?",
+          "en": "A bit tight. Do you have a bigger size?"
+        },
+        {
+          "speaker": "Staff",
+          "vi": "Dạ có. Cái này vừa không?",
+          "en": "Yes. Does this one fit?"
+        },
+        {
+          "speaker": "Customer",
+          "vi": "Vừa. Bao nhiêu tiền?",
+          "en": "Yes. How much?"
+        }
+      ]
+    },
+    {
+      "id": "CV019",
+      "lessonId": "L021",
+      "title": "Bargaining at a street stall",
+      "lines": [
+        {
+          "speaker": "Tourist",
+          "vi": "Cái này bao nhiêu?",
+          "en": "How much is this?"
+        },
+        {
+          "speaker": "Vendor",
+          "vi": "500.000.",
+          "en": "500,000."
+        },
+        {
+          "speaker": "Tourist",
+          "vi": "Mắc quá! Bớt được không?",
+          "en": "Too expensive! Can you reduce?"
+        },
+        {
+          "speaker": "Vendor",
+          "vi": "450.000 được không?",
+          "en": "450,000 OK?"
+        },
+        {
+          "speaker": "Tourist",
+          "vi": "300.000 đi.",
+          "en": "300,000, come on."
+        },
+        {
+          "speaker": "Vendor",
+          "vi": "Không được. 400.000.",
+          "en": "No. 400,000."
+        },
+        {
+          "speaker": "Tourist",
+          "vi": "OK, 400.000.",
+          "en": "OK, 400,000."
+        }
+      ]
+    },
+    {
+      "id": "CV020",
+      "lessonId": "L024",
+      "title": "Booking a Grab ride",
+      "lines": [
+        {
+          "speaker": "Customer",
+          "vi": "Chào anh. Anh đi Grab ạ?",
+          "en": "Hello. Are you the Grab driver?"
+        },
+        {
+          "speaker": "Driver",
+          "vi": "Dạ. Anh đi đâu?",
+          "en": "Yes. Where are you going?"
+        },
+        {
+          "speaker": "Customer",
+          "vi": "Đi sân bay Tân Sơn Nhất.",
+          "en": "To Tan Son Nhat airport."
+        },
+        {
+          "speaker": "Driver",
+          "vi": "Dạ. Khoảng 30 phút ạ.",
+          "en": "OK. About 30 minutes."
+        },
+        {
+          "speaker": "Customer",
+          "vi": "Cảm ơn anh.",
+          "en": "Thank you."
+        }
+      ]
+    },
+    {
+      "id": "CV021",
+      "lessonId": "L025",
+      "title": "Asking for directions",
+      "lines": [
+        {
+          "speaker": "Tourist",
+          "vi": "Xin lỗi, bưu điện ở đâu ạ?",
+          "en": "Excuse me, where is the post office?"
+        },
+        {
+          "speaker": "Local",
+          "vi": "Bưu điện ở gần đây.",
+          "en": "The post office is nearby."
+        },
+        {
+          "speaker": "Local",
+          "vi": "Bạn đi thẳng 200 mét, rẽ trái ở ngã tư.",
+          "en": "Go straight 200 meters, turn left at the intersection."
+        },
+        {
+          "speaker": "Local",
+          "vi": "Bưu điện ở bên phải.",
+          "en": "The post office is on the right."
+        },
+        {
+          "speaker": "Tourist",
+          "vi": "Cảm ơn bạn nhiều!",
+          "en": "Thank you very much!"
+        }
+      ]
+    },
+    {
+      "id": "CV022",
+      "lessonId": "L027",
+      "title": "Hotel check-in",
+      "lines": [
+        {
+          "speaker": "Guest",
+          "vi": "Chào chị. Tôi đã đặt phòng.",
+          "en": "Hello. I have a reservation."
+        },
+        {
+          "speaker": "Receptionist",
+          "vi": "Dạ. Anh tên gì ạ?",
+          "en": "Yes. What's your name?"
+        },
+        {
+          "speaker": "Guest",
+          "vi": "Tôi tên Minh.",
+          "en": "My name is Minh."
+        },
+        {
+          "speaker": "Receptionist",
+          "vi": "Dạ. Cho xin hộ chiếu.",
+          "en": "Please give me your passport."
+        },
+        {
+          "speaker": "Guest",
+          "vi": "Đây ạ.",
+          "en": "Here it is."
+        },
+        {
+          "speaker": "Receptionist",
+          "vi": "Phòng của anh là 305. Đây là chìa khóa.",
+          "en": "Your room is 305. Here is the key."
+        },
+        {
+          "speaker": "Guest",
+          "vi": "Ăn sáng lúc mấy giờ?",
+          "en": "What time is breakfast?"
+        },
+        {
+          "speaker": "Receptionist",
+          "vi": "Dạ, từ 6 đến 10 giờ sáng.",
+          "en": "From 6 to 10 AM."
+        }
+      ]
+    },
+    {
+      "id": "CV023",
+      "lessonId": "L029",
+      "title": "Reporting a problem in the room",
+      "lines": [
+        {
+          "speaker": "Guest",
+          "vi": "A lô, tôi ở phòng 305.",
+          "en": "Hello, I'm in room 305."
+        },
+        {
+          "speaker": "Guest",
+          "vi": "Điều hòa bị hỏng.",
+          "en": "The AC is broken."
+        },
+        {
+          "speaker": "Staff",
+          "vi": "Dạ, xin lỗi anh. Bạn có thể sửa ngay không?",
+          "en": "Sorry. Can we fix it right away?"
+        },
+        {
+          "speaker": "Staff",
+          "vi": "Nhân viên sẽ lên phòng ngay.",
+          "en": "Staff will go up to the room right away."
+        },
+        {
+          "speaker": "Guest",
+          "vi": "Cảm ơn chị.",
+          "en": "Thank you."
+        }
+      ]
+    },
+    {
+      "id": "CV024",
+      "lessonId": "L030",
+      "title": "Talking about the weather",
+      "lines": [
+        {
+          "speaker": "A",
+          "vi": "Hôm nay thời tiết thế nào?",
+          "en": "How's the weather today?"
+        },
+        {
+          "speaker": "B",
+          "vi": "Hôm nay trời nắng và nóng.",
+          "en": "Today is sunny and hot."
+        },
+        {
+          "speaker": "A",
+          "vi": "Ngày mai thế nào?",
+          "en": "How about tomorrow?"
+        },
+        {
+          "speaker": "B",
+          "vi": "Ngày mai trời sẽ mưa.",
+          "en": "Tomorrow it will rain."
+        },
+        {
+          "speaker": "A",
+          "vi": "Vậy tôi sẽ ở nhà.",
+          "en": "Then I'll stay home."
+        }
+      ]
+    },
+    {
+      "id": "CV025",
+      "lessonId": "L032",
+      "title": "Weekend hobbies",
+      "lines": [
+        {
+          "speaker": "A",
+          "vi": "Cuối tuần bạn thường làm gì?",
+          "en": "What do you usually do on weekends?"
+        },
+        {
+          "speaker": "B",
+          "vi": "Tôi thường đọc sách và xem phim. Còn bạn?",
+          "en": "I often read books and watch movies. And you?"
+        },
+        {
+          "speaker": "A",
+          "vi": "Tôi thích chơi thể thao. Tôi luôn luôn chơi bóng đá vào chủ nhật.",
+          "en": "I like playing sports. I always play soccer on Sundays."
+        },
+        {
+          "speaker": "B",
+          "vi": "Hay quá! Bạn có thích nghe nhạc không?",
+          "en": "Cool! Do you like listening to music?"
+        },
+        {
+          "speaker": "A",
+          "vi": "Có, đôi khi tôi nghe nhạc.",
+          "en": "Yes, sometimes I listen to music."
+        }
+      ]
+    }
+  ]
+}

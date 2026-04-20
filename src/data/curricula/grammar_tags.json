@@ -1,0 +1,266 @@
+[
+  {
+    "id": "GT001",
+    "category": "structure",
+    "description": "Subject-Verb-Object word order",
+    "examples": ""
+  },
+  {
+    "id": "GT002",
+    "category": "structure",
+    "description": "'là' copula (to be)",
+    "examples": ""
+  },
+  {
+    "id": "GT003",
+    "category": "structure",
+    "description": "Possessive (noun + possessor)",
+    "examples": ""
+  },
+  {
+    "id": "GT004",
+    "category": "structure",
+    "description": "Negation with 'không'",
+    "examples": ""
+  },
+  {
+    "id": "GT005",
+    "category": "question",
+    "description": "Yes/no question with 'không' particle",
+    "examples": ""
+  },
+  {
+    "id": "GT006",
+    "category": "question",
+    "description": "Question with 'gì' (what)",
+    "examples": ""
+  },
+  {
+    "id": "GT007",
+    "category": "question",
+    "description": "Question with 'ở đâu' (where)",
+    "examples": ""
+  },
+  {
+    "id": "GT008",
+    "category": "question",
+    "description": "Question with 'khi nào' (when)",
+    "examples": ""
+  },
+  {
+    "id": "GT009",
+    "category": "question",
+    "description": "Question with 'như thế nào' (how)",
+    "examples": ""
+  },
+  {
+    "id": "GT010",
+    "category": "question",
+    "description": "Question with 'bao nhiêu' (how much/many)",
+    "examples": ""
+  },
+  {
+    "id": "GT011",
+    "category": "question",
+    "description": "Question with 'mấy giờ' (what time)",
+    "examples": ""
+  },
+  {
+    "id": "GT012",
+    "category": "question",
+    "description": "Question with 'thứ mấy' (what day)",
+    "examples": ""
+  },
+  {
+    "id": "GT013",
+    "category": "question",
+    "description": "Question with 'bao nhiêu tuổi' (how old)",
+    "examples": ""
+  },
+  {
+    "id": "GT014",
+    "category": "question",
+    "description": "Question with 'màu gì' (what color)",
+    "examples": ""
+  },
+  {
+    "id": "GT015",
+    "category": "tense",
+    "description": "Past marker 'đã' before verb",
+    "examples": ""
+  },
+  {
+    "id": "GT016",
+    "category": "tense",
+    "description": "Progressive marker 'đang' before verb",
+    "examples": ""
+  },
+  {
+    "id": "GT017",
+    "category": "tense",
+    "description": "Future marker 'sẽ' before verb",
+    "examples": ""
+  },
+  {
+    "id": "GT018",
+    "category": "tense",
+    "description": "Completed aspect 'rồi' at end",
+    "examples": ""
+  },
+  {
+    "id": "GT019",
+    "category": "tense",
+    "description": "'chưa' (not yet) / have you... yet",
+    "examples": ""
+  },
+  {
+    "id": "GT020",
+    "category": "request",
+    "description": "Polite request 'Cho xin...'",
+    "examples": ""
+  },
+  {
+    "id": "GT021",
+    "category": "request",
+    "description": "Request 'Cho tôi...' (give me)",
+    "examples": ""
+  },
+  {
+    "id": "GT022",
+    "category": "request",
+    "description": "'muốn + verb' (want to)",
+    "examples": ""
+  },
+  {
+    "id": "GT023",
+    "category": "counting",
+    "description": "Measure word between number and noun",
+    "examples": ""
+  },
+  {
+    "id": "GT024",
+    "category": "counting",
+    "description": "Number + measure word + noun",
+    "examples": ""
+  },
+  {
+    "id": "GT025",
+    "category": "comparison",
+    "description": "A + adj + hơn + B (more than)",
+    "examples": ""
+  },
+  {
+    "id": "GT026",
+    "category": "comparison",
+    "description": "adj + nhất (most)",
+    "examples": ""
+  },
+  {
+    "id": "GT027",
+    "category": "comparison",
+    "description": "A + bằng + B (equal to)",
+    "examples": ""
+  },
+  {
+    "id": "GT028",
+    "category": "modal",
+    "description": "'có thể' (can, be able to)",
+    "examples": ""
+  },
+  {
+    "id": "GT029",
+    "category": "modal",
+    "description": "'phải' (must, have to)",
+    "examples": ""
+  },
+  {
+    "id": "GT030",
+    "category": "conditional",
+    "description": "'nếu...thì...' (if...then)",
+    "examples": ""
+  },
+  {
+    "id": "GT031",
+    "category": "descriptive",
+    "description": "'rất + adj' (very)",
+    "examples": ""
+  },
+  {
+    "id": "GT032",
+    "category": "descriptive",
+    "description": "'adj + quá' (too/so) - exclamation",
+    "examples": ""
+  },
+  {
+    "id": "GT033",
+    "category": "descriptive",
+    "description": "'adj + lắm' (very) - casual",
+    "examples": ""
+  },
+  {
+    "id": "GT034",
+    "category": "time",
+    "description": "'lúc + time' (at X o'clock)",
+    "examples": ""
+  },
+  {
+    "id": "GT035",
+    "category": "time",
+    "description": "buổi sáng/trưa/chiều/tối (morning/noon/afternoon/evening)",
+    "examples": ""
+  },
+  {
+    "id": "GT036",
+    "category": "time",
+    "description": "'ngày X tháng Y' (day before month)",
+    "examples": ""
+  },
+  {
+    "id": "GT037",
+    "category": "state",
+    "description": "'bị + adj/verb' (passive/negative state)",
+    "examples": ""
+  },
+  {
+    "id": "GT038",
+    "category": "location",
+    "description": "'ở + place' (at/in)",
+    "examples": ""
+  },
+  {
+    "id": "GT039",
+    "category": "location",
+    "description": "'bên + direction' (on the X side)",
+    "examples": ""
+  },
+  {
+    "id": "GT040",
+    "category": "location",
+    "description": "'đi bằng + vehicle' (by vehicle)",
+    "examples": ""
+  },
+  {
+    "id": "GT041",
+    "category": "frequency",
+    "description": "thường/luôn luôn/không bao giờ/đôi khi",
+    "examples": ""
+  },
+  {
+    "id": "GT042",
+    "category": "demonstrative",
+    "description": "'này' (this) / 'kia' (that)",
+    "examples": ""
+  },
+  {
+    "id": "GT043",
+    "category": "demonstrative",
+    "description": "'đây là' (this is) / 'đó là' (that is)",
+    "examples": ""
+  },
+  {
+    "id": "GT044",
+    "category": "connective",
+    "description": "'và' (and)",
+    "examples": ""
+  }
+]
