@@ -928,53 +928,23 @@ const INIT_DATA = {
     path_nodes: [
         // ═══ Lesson + quiz nodes from unified_db + legacy ═══
         ..._mergedBuilt.pathNodes,
-        // ═══ Manual nodes (grammar, tests, scenes) ═══
-        // Practice modules removed - now accessible from Library tab
-        { id: "p1_G1", course_id: "course_vi_en_v1", unit_id: "phase_1_first_words", node_index: 6, node_type: "skill", module_type: "purple", label: "Grammar: I + You (tôi, bạn)", skill_content: { type: "grammar_unit", grammar_unit_id: "A1_M06_U01a" }, difficulty: 2, cefr_level: "A1.1", vocab_introduces: [], vocab_requires: ["it_w_0008", "it_w_0009"] },
-        { id: "p1_G2", course_id: "course_vi_en_v1", unit_id: "phase_1_first_words", node_index: 12, node_type: "skill", module_type: "purple", label: "Grammar: Subject + là", skill_content: { type: "grammar_unit", grammar_unit_id: "A1_M01_U01" }, difficulty: 2, cefr_level: "A1.1", vocab_introduces: [], vocab_requires: ["it_w_0008", "it_w_0009"] },
+        // ═══ Manual nodes (tests, scenes only) ═══
+        // Practice modules & grammar units removed - now accessible from Library tab
         { id: "p1_T", course_id: "course_vi_en_v1", unit_id: "phase_1_first_words", node_index: 16, node_type: "test", module_type: "test", label: "Unit 1 Test", test_scope: "unit", difficulty: 2, cefr_level: "A1.1", vocab_introduces: [], vocab_requires: [] },
-
-        // ═══ Unit 2: Polite Survival ═══
-        { id: "p2_G1", course_id: "course_vi_en_v1", unit_id: "phase_2_polite", node_index: 3, node_type: "skill", module_type: "purple", label: "Grammar: Negation (không)", skill_content: { type: "grammar_unit", grammar_unit_id: "A1_M08_U01" }, difficulty: 2, cefr_level: "A1.1", vocab_introduces: [], vocab_requires: ["it_w_0008", "it_w_0009", "it_w_0007"] },
         { id: "p2_T", course_id: "course_vi_en_v1", unit_id: "phase_2_polite", node_index: 10, node_type: "test", module_type: "test", label: "Unit 2 Test", test_scope: "unit", difficulty: 5, cefr_level: "A1.1", vocab_introduces: [], vocab_requires: [] },
-
-        // ═══ Unit 3: Ordering & Café ═══
-        { id: "p3_G1", course_id: "course_vi_en_v1", unit_id: "phase_3_cafe", node_index: 7, node_type: "skill", module_type: "purple", label: "Grammar: Want to (muốn)", skill_content: { type: "grammar_unit", grammar_unit_id: "A1_M25_U01" }, difficulty: 4, cefr_level: "A1.2", vocab_introduces: [], vocab_requires: ["it_w_0035", "it_w_0030", "it_w_0031", "it_w_0032"] },
         { id: "p3_T", course_id: "course_vi_en_v1", unit_id: "phase_3_cafe", node_index: 9, node_type: "test", module_type: "test", label: "Unit 3 Test", test_scope: "unit", difficulty: 7, cefr_level: "A1.2", vocab_introduces: [], vocab_requires: [] },
         { id: "p3_SC1", course_id: "course_vi_en_v1", unit_id: "phase_3_cafe", node_index: 10, node_type: "scene", module_type: "green", label: "☕ At the Café", scene_id: "scene_cafe_001", difficulty: 7, cefr_level: "A1.2", vocab_introduces: [], vocab_requires: [] },
-
-        // ═══ Unit 4: Food & Prices ═══
-        { id: "p4_G1", course_id: "course_vi_en_v1", unit_id: "phase_4_food", node_index: 3, node_type: "skill", module_type: "purple", label: "Grammar: Counters (cái)", skill_content: { type: "grammar_unit", grammar_unit_id: "A1_M14_U01" }, difficulty: 4, cefr_level: "A1.2", vocab_introduces: [], vocab_requires: ["it_w_0055", "it_w_0045", "it_w_0046"] },
         { id: "p4_T", course_id: "course_vi_en_v1", unit_id: "phase_4_food", node_index: 9, node_type: "test", module_type: "test", label: "Unit 4 Test", test_scope: "unit", difficulty: 7, cefr_level: "A1.2", vocab_introduces: [], vocab_requires: [] },
         { id: "p4_SC1", course_id: "course_vi_en_v1", unit_id: "phase_4_food", node_index: 10, node_type: "scene", module_type: "green", label: "🛵 Street Food Stall", scene_id: "scene_streetfood_001", difficulty: 7, cefr_level: "A1.2", vocab_introduces: [], vocab_requires: [] },
-
-        // ═══ Unit 5: Market Life ═══
-        { id: "p5_S2", course_id: "course_vi_en_v1", unit_id: "phase_5_market", node_index: 8, node_type: "skill", module_type: "purple", label: "Grammar: Adjectives", skill_content: { type: "grammar_unit", grammar_unit_id: "A1_M09_U01" }, difficulty: 4, cefr_level: "A1.3", vocab_introduces: [], vocab_requires: ["it_w_0068", "it_w_0066", "it_w_0067", "it_w_0056", "it_w_0057"] },
-        { id: "p5_G1", course_id: "course_vi_en_v1", unit_id: "phase_5_market", node_index: 9, node_type: "skill", module_type: "purple", label: "Grammar: Very (rất)", skill_content: { type: "grammar_unit", grammar_unit_id: "A1_M26_U01" }, difficulty: 4, cefr_level: "A1.3", vocab_introduces: [], vocab_requires: ["it_w_0068", "it_w_0066", "it_w_0067", "it_w_0056", "it_w_0057"] },
         { id: "p5_T", course_id: "course_vi_en_v1", unit_id: "phase_5_market", node_index: 11, node_type: "test", module_type: "test", label: "Unit 5 Test", test_scope: "unit", difficulty: 7, cefr_level: "A1.3", vocab_introduces: [], vocab_requires: [] },
         { id: "p5_SC1", course_id: "course_vi_en_v1", unit_id: "phase_5_market", node_index: 12, node_type: "scene", module_type: "green", label: "🛒 At the Market", scene_id: "scene_market_001", difficulty: 7, cefr_level: "A1.3", vocab_introduces: [], vocab_requires: [] },
-
-        // ═══ Unit 6: Numbers Advanced ═══
-        { id: "p6_G1", course_id: "course_vi_en_v1", unit_id: "phase_6_numbers", node_index: 8, node_type: "skill", module_type: "purple", label: "Grammar: Plurals (những/các)", skill_content: { type: "grammar_unit", grammar_unit_id: "A1_M07_U01" }, difficulty: 4, cefr_level: "A1.3", vocab_introduces: [], vocab_requires: ["it_w_0080", "it_w_0081", "it_w_0082", "it_w_0086", "it_w_0085"] },
         { id: "p6_T", course_id: "course_vi_en_v1", unit_id: "phase_6_numbers", node_index: 13, node_type: "test", module_type: "test", label: "Unit 6 Test", test_scope: "unit", difficulty: 8, cefr_level: "A1.3", vocab_introduces: [], vocab_requires: [] },
         { id: "p6_SC1", course_id: "course_vi_en_v1", unit_id: "phase_6_numbers", node_index: 14, node_type: "scene", module_type: "green", label: "🍜 At the Restaurant", scene_id: "scene_restaurant_001", difficulty: 8, cefr_level: "A1.3", vocab_introduces: [], vocab_requires: [] },
-
-        // ═══ Unit 7: Getting Around ═══
-        { id: "p7_S2", course_id: "course_vi_en_v1", unit_id: "phase_7_transport", node_index: 8, node_type: "skill", module_type: "purple", label: "Grammar: Directions", skill_content: { type: "grammar_unit", grammar_unit_id: "A1_M27_U01" }, difficulty: 6, cefr_level: "A2.1", vocab_introduces: [], vocab_requires: ["it_w_0100", "it_w_0102", "it_w_0103", "it_w_0104", "it_w_0105", "it_w_0106"] },
-        { id: "p7_G1", course_id: "course_vi_en_v1", unit_id: "phase_7_transport", node_index: 9, node_type: "skill", module_type: "purple", label: "Grammar: Location (ở)", skill_content: { type: "grammar_unit", grammar_unit_id: "A1_M11_U01" }, difficulty: 6, cefr_level: "A2.1", vocab_introduces: [], vocab_requires: ["it_w_0113", "it_w_0120", "it_w_0121", "it_w_0124"] },
         { id: "p7_T", course_id: "course_vi_en_v1", unit_id: "phase_7_transport", node_index: 17, node_type: "test", module_type: "test", label: "Unit 7 Test", test_scope: "unit", difficulty: 9, cefr_level: "A2.1", vocab_introduces: [], vocab_requires: [] },
         { id: "p7_SC1", course_id: "course_vi_en_v1", unit_id: "phase_7_transport", node_index: 18, node_type: "scene", module_type: "green", label: "🚕 Getting a Taxi", scene_id: "scene_taxi_001", difficulty: 8, cefr_level: "A2.1", vocab_introduces: [], vocab_requires: [] },
         { id: "p7_SC2", course_id: "course_vi_en_v1", unit_id: "phase_7_transport", node_index: 19, node_type: "scene", module_type: "green", label: "✈️ At the Airport", scene_id: "scene_airport_001", difficulty: 8, cefr_level: "A2.1", vocab_introduces: [], vocab_requires: [] },
-
-        // ═══ Unit 8: Daily Life ═══
-        { id: "p8_S2", course_id: "course_vi_en_v1", unit_id: "phase_8_daily", node_index: 8, node_type: "skill", module_type: "purple", label: "Grammar: Days & Dates", skill_content: { type: "grammar_unit", grammar_unit_id: "A1_M15_U01" }, difficulty: 6, cefr_level: "A2.1", vocab_introduces: [], vocab_requires: [] },
-        { id: "p8_G1", course_id: "course_vi_en_v1", unit_id: "phase_8_daily", node_index: 9, node_type: "skill", module_type: "purple", label: "Grammar: Present Tense", skill_content: { type: "grammar_unit", grammar_unit_id: "A1_M02_U01" }, difficulty: 6, cefr_level: "A2.1", vocab_introduces: [], vocab_requires: ["it_w_0145", "it_w_0142", "it_w_0143", "it_w_0144", "it_w_0100", "it_w_0151", "it_w_0152"] },
         { id: "p8_T", course_id: "course_vi_en_v1", unit_id: "phase_8_daily", node_index: 21, node_type: "test", module_type: "test", label: "Unit 8 Test", test_scope: "unit", difficulty: 10, cefr_level: "A2.1", vocab_introduces: [], vocab_requires: [] },
         { id: "p8_SC1", course_id: "course_vi_en_v1", unit_id: "phase_8_daily", node_index: 22, node_type: "scene", module_type: "green", label: "🏨 Checking into a Hotel", scene_id: "scene_hotel_001", difficulty: 9, cefr_level: "A2.1", vocab_introduces: [], vocab_requires: [] },
-
-        // ═══ Unit 9: Social Life ═══
-        { id: "p9_S3", course_id: "course_vi_en_v1", unit_id: "phase_9_social", node_index: 9, node_type: "skill", module_type: "purple", label: "Grammar: Should & Shouldn't", skill_content: { type: "grammar_unit", grammar_unit_id: "A1_M20_U01" }, difficulty: 7, cefr_level: "A2.2", vocab_introduces: [], vocab_requires: ["it_w_0100", "it_w_0181", "it_w_0191", "it_w_0190"] },
-        { id: "p9_G1", course_id: "course_vi_en_v1", unit_id: "phase_9_social", node_index: 10, node_type: "skill", module_type: "purple", label: "Grammar: Because (vì)", skill_content: { type: "grammar_unit", grammar_unit_id: "A1_M17_U01" }, difficulty: 7, cefr_level: "A2.2", vocab_introduces: [], vocab_requires: ["it_w_0190", "it_w_0192", "it_w_0191", "it_w_0151", "it_w_0030"] },
         { id: "p9_T", course_id: "course_vi_en_v1", unit_id: "phase_9_social", node_index: 17, node_type: "test", module_type: "test", label: "Final Test", test_scope: "unit", difficulty: 10, cefr_level: "A2.2", vocab_introduces: [], vocab_requires: [] },
         { id: "p9_SC1", course_id: "course_vi_en_v1", unit_id: "phase_9_social", node_index: 18, node_type: "scene", module_type: "green", label: "🎉 At a Party", scene_id: "scene_party_001", difficulty: 9, cefr_level: "A2.2", vocab_introduces: [], vocab_requires: [] }
     ],
