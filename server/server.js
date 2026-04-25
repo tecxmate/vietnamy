@@ -99,88 +99,27 @@ function normalizeVi(text) {
 }
 
 // ---------------------------------------------------------------------------
-// Build in-memory normalized→[actualWord] index at startup
+// Frequency tier helper (query on-demand instead of pre-loading)
 // ---------------------------------------------------------------------------
-function buildWordIndex(db, hasMetrics) {
-    let rows;
-    if (hasMetrics) {
-        rows = db.prepare(`
-            SELECT w.word, wm.subt_freq 
-            FROM words w 
-            LEFT JOIN word_metrics wm ON w.id = wm.word_id
-            WHERE EXISTS (SELECT 1 FROM meanings m WHERE m.word_id = w.id)
-        `).all();
-    } else {
-        rows = db.prepare(`
-            SELECT word FROM words w
-            WHERE EXISTS (SELECT 1 FROM meanings m WHERE m.word_id = w.id)
-        `).all();
-    }
-
-    const index = new Map(); // normalizedForm → Set of actual words
-    const freqMap = new Map(); // word -> subt_freq
-
-    for (const row of rows) {
-        const word = row.word;
-        const freq = row.subt_freq || 0;
-        const norm = normalizeVi(word);
-
-        if (!index.has(norm)) index.set(norm, []);
-        index.get(norm).push(word);
-
-        if (freq > 0) {
-            freqMap.set(word, Math.max(freq, freqMap.get(word) || 0));
-        }
-    }
-    return { index, freqMap };
-}
-
-console.log('Building word indexes...');
-const dataEnHigh = buildWordIndex(dbEnHigh, true);
-const dataEnLow = dbEnLow ? buildWordIndex(dbEnLow, true) : { index: new Map(), freqMap: new Map() };
-// Merge high + low EN indexes
-const indexEn = new Map([...dataEnLow.index, ...dataEnHigh.index]); // high overrides low
-const dataZh = buildWordIndex(dbZh, false);
-const indexZh = dataZh.index;
-const combinedFreqMap = new Map([...dataZh.freqMap, ...dataEnLow.freqMap, ...dataEnHigh.freqMap]);
-console.log(`Indexes ready — EN: ${indexEn.size} (high: ${dataEnHigh.index.size}, low: ${dataEnLow.index.size}), ZH: ${indexZh.size} normalized keys`);
-
-// Build indexes for all additional languages
-const langIndexes = { en: indexEn, zh: indexZh };
-const langSortedKeys = {};
-for (const lang of Object.keys(dbs)) {
-    if (lang === 'en' || lang === 'zh') continue;
-    const data = buildWordIndex(dbs[lang], false);
-    langIndexes[lang] = data.index;
-    langSortedKeys[lang] = [...data.index.keys()].sort();
-    console.log(`Index ready — ${lang.toUpperCase()}: ${data.index.size} normalized keys`);
-}
-
-// ---------------------------------------------------------------------------
-// Build frequency rank index: word_id → rank (1 = most frequent)
-// ---------------------------------------------------------------------------
-const freqRankMap = new Map(); // word_id → rank
 const MAX_DISP = 13287; // max subt_disp value in corpus
 
-(() => {
-    // Collect freq data from both high and low DBs
-    const allRows = [];
-    for (const db of [dbEnHigh, dbEnLow].filter(Boolean)) {
-        const rows = db.prepare(`
-            SELECT word_id, subt_freq FROM word_metrics
-            WHERE subt_freq IS NOT NULL
-        `).all();
-        allRows.push(...rows);
-    }
-    // Sort combined by frequency descending and assign ranks
-    allRows.sort((a, b) => b.subt_freq - a.subt_freq);
-    allRows.forEach((row, i) => {
-        if (!freqRankMap.has(row.word_id)) {
-            freqRankMap.set(row.word_id, i + 1);
-        }
-    });
-    console.log(`Frequency rank index built — ${freqRankMap.size} entries`);
-})();
+// Prepared statement for frequency rank lookup
+const stmtFreqRank = dbEnHigh.prepare(`
+    SELECT COUNT(*) + 1 as rank FROM word_metrics
+    WHERE subt_freq > (SELECT subt_freq FROM word_metrics WHERE word_id = ?)
+`);
+const stmtFreqRankLow = dbEnLow ? dbEnLow.prepare(`
+    SELECT COUNT(*) + 1 as rank FROM word_metrics
+    WHERE subt_freq > (SELECT subt_freq FROM word_metrics WHERE word_id = ?)
+`) : null;
+
+function getFreqRank(wordId) {
+    let row = stmtFreqRank.get(wordId);
+    if (!row && stmtFreqRankLow) row = stmtFreqRankLow.get(wordId);
+    return row?.rank || null;
+}
+
+console.log('Server initialized (on-demand SQLite queries, no in-memory indexes)');
 
 function getFreqTier(rank) {
     if (!rank) return null;
@@ -192,9 +131,77 @@ function getFreqTier(rank) {
 }
 
 // ---------------------------------------------------------------------------
+// Prepared statements for suggest (prefix search via word_normalized column)
+// ---------------------------------------------------------------------------
+const stmtSuggestEn = dbEnHigh.prepare(`
+    SELECT DISTINCT w.word, wm.subt_freq
+    FROM words w
+    LEFT JOIN word_metrics wm ON w.id = wm.word_id
+    WHERE w.word_normalized LIKE ? || '%'
+      AND EXISTS (SELECT 1 FROM meanings m WHERE m.word_id = w.id)
+    ORDER BY wm.subt_freq DESC NULLS LAST, length(w.word)
+    LIMIT 30
+`);
+const stmtSuggestEnLow = dbEnLow ? dbEnLow.prepare(`
+    SELECT DISTINCT w.word, wm.subt_freq
+    FROM words w
+    LEFT JOIN word_metrics wm ON w.id = wm.word_id
+    WHERE w.word_normalized LIKE ? || '%'
+      AND EXISTS (SELECT 1 FROM meanings m WHERE m.word_id = w.id)
+    ORDER BY wm.subt_freq DESC NULLS LAST, length(w.word)
+    LIMIT 30
+`) : null;
+const stmtSuggestZh = dbZh.prepare(`
+    SELECT DISTINCT w.word
+    FROM words w
+    WHERE w.word_normalized LIKE ? || '%'
+      AND EXISTS (SELECT 1 FROM meanings m WHERE m.word_id = w.id)
+    ORDER BY length(w.word)
+    LIMIT 30
+`);
+
+// Contains search for fallback
+const stmtContainsEn = dbEnHigh.prepare(`
+    SELECT DISTINCT w.word, wm.subt_freq
+    FROM words w
+    LEFT JOIN word_metrics wm ON w.id = wm.word_id
+    WHERE w.word_normalized LIKE '%' || ? || '%'
+      AND w.word_normalized NOT LIKE ? || '%'
+      AND EXISTS (SELECT 1 FROM meanings m WHERE m.word_id = w.id)
+    ORDER BY wm.subt_freq DESC NULLS LAST
+    LIMIT 20
+`);
+
+// Exact normalized match
+const stmtExactEn = dbEnHigh.prepare(`
+    SELECT DISTINCT w.word, wm.subt_freq
+    FROM words w
+    LEFT JOIN word_metrics wm ON w.id = wm.word_id
+    WHERE w.word_normalized = ?
+      AND EXISTS (SELECT 1 FROM meanings m WHERE m.word_id = w.id)
+    ORDER BY wm.subt_freq DESC NULLS LAST
+    LIMIT 10
+`);
+const stmtExactEnLow = dbEnLow ? dbEnLow.prepare(`
+    SELECT DISTINCT w.word, wm.subt_freq
+    FROM words w
+    LEFT JOIN word_metrics wm ON w.id = wm.word_id
+    WHERE w.word_normalized = ?
+      AND EXISTS (SELECT 1 FROM meanings m WHERE m.word_id = w.id)
+    ORDER BY wm.subt_freq DESC NULLS LAST
+    LIMIT 10
+`) : null;
+const stmtExactZh = dbZh.prepare(`
+    SELECT DISTINCT w.word
+    FROM words w
+    WHERE w.word_normalized = ?
+      AND EXISTS (SELECT 1 FROM meanings m WHERE m.word_id = w.id)
+    LIMIT 10
+`);
+
+// ---------------------------------------------------------------------------
 // Prepared statements for compound word decomposition
 // ---------------------------------------------------------------------------
-// Prepared statements for compound decomposition — check high DB first, then low
 const syllableMetricsSql = `
     SELECT w.id as word_id, wm.subt_freq
     FROM words w
@@ -234,47 +241,35 @@ const stmtHanVietSyllable = dbZh.prepare(`
 `);
 
 // ---------------------------------------------------------------------------
-// Build sorted normalized keys for binary-search prefix matching
-// ---------------------------------------------------------------------------
-const sortedNormKeysEn = [...indexEn.keys()].sort();
-const sortedNormKeysZh = [...indexZh.keys()].sort();
-
-// Populate langSortedKeys for en/zh as well (used in unified suggest)
-langSortedKeys['en'] = sortedNormKeysEn;
-langSortedKeys['zh'] = sortedNormKeysZh;
-
-function prefixSearch(sortedKeys, prefix, limit) {
-    // Binary search for first key >= prefix
-    let lo = 0, hi = sortedKeys.length;
-    while (lo < hi) {
-        const mid = (lo + hi) >>> 1;
-        if (sortedKeys[mid] < prefix) lo = mid + 1;
-        else hi = mid;
-    }
-    const results = [];
-    for (let i = lo; i < sortedKeys.length && results.length < limit; i++) {
-        if (sortedKeys[i].startsWith(prefix)) results.push(sortedKeys[i]);
-        else break;
-    }
-    return results;
-}
-
-// ---------------------------------------------------------------------------
 // Helper: find diacriticized variants for a single normalized syllable
-// Returns the actual Vietnamese words sorted by frequency (highest first)
+// Uses direct SQLite query instead of in-memory index
 // ---------------------------------------------------------------------------
-function findDiacriticVariants(normSyll, limit = 5, extraIndexes = []) {
+function findDiacriticVariants(normSyll, limit = 5) {
     const variants = [];
-    for (const index of [indexEn, indexZh, ...extraIndexes]) {
-        const words = index.get(normSyll);
-        if (words) {
-            for (const w of words) {
-                if (!w.includes(' ')) variants.push(w); // single-syllable only
-            }
+    // Query EN (high priority first)
+    const enRows = stmtExactEn.all(normSyll);
+    for (const r of enRows) {
+        if (!r.word.includes(' ')) variants.push({ word: r.word, freq: r.subt_freq || 0 });
+    }
+    if (stmtExactEnLow) {
+        const enLowRows = stmtExactEnLow.all(normSyll);
+        for (const r of enLowRows) {
+            if (!r.word.includes(' ')) variants.push({ word: r.word, freq: r.subt_freq || 0 });
         }
     }
-    variants.sort((a, b) => (combinedFreqMap.get(b) || 0) - (combinedFreqMap.get(a) || 0));
-    return [...new Set(variants)].slice(0, limit);
+    // Query ZH
+    const zhRows = stmtExactZh.all(normSyll);
+    for (const r of zhRows) {
+        if (!r.word.includes(' ')) variants.push({ word: r.word, freq: 0 });
+    }
+    // Sort by freq and dedupe
+    variants.sort((a, b) => b.freq - a.freq);
+    const seen = new Set();
+    return variants.filter(v => {
+        if (seen.has(v.word)) return false;
+        seen.add(v.word);
+        return true;
+    }).slice(0, limit).map(v => v.word);
 }
 
 // ---------------------------------------------------------------------------
@@ -284,74 +279,70 @@ app.get('/api/suggest', (req, res) => {
     const query = (req.query.q || '').trim();
     if (query.length < 2) return res.json([]);
 
-    const lang = req.query.lang || 'en';
-
     const normQuery = normalizeVi(query);
     const queryLower = query.toLowerCase();
     const querySylls = normQuery.split(/\s+/);
     const isMultiSyll = querySylls.length >= 2;
 
-    // Determine which indexes to search — always include EN/ZH for VI headwords,
-    // and add the requested lang index for foreign-headword dicts
-    const indexPairs = [
-        [indexEn, sortedNormKeysEn],
-        [indexZh, sortedNormKeysZh],
-    ];
-    if (lang && langIndexes[lang] && lang !== 'en' && lang !== 'zh') {
-        indexPairs.push([langIndexes[lang], langSortedKeys[lang]]);
-    }
-
     // Tier 1: Exact normalized matches (e.g. "khong" → "không", "khống")
     const exactMatches = [];
-    // Tier 2: Compound recombinations (e.g. "xin chao" → "xin chào", "xín chào")
+    // Tier 2: Compound recombinations
     const compoundMatches = [];
     // Tier 3: Prefix matches (e.g. "xin" → "xin lỗi", "xin phép")
     const prefixMatches = [];
-    // Tier 4: Per-syllable matches for multi-word queries (e.g. "xin chao" → "xin", "chào")
+    // Tier 4: Per-syllable matches for multi-word queries
     const syllableMatches = [];
     // Tier 5: Contains matches
     const containsMatches = [];
 
-    for (const [index, sortedKeys] of indexPairs) {
-        // Fast prefix search via binary search on sorted keys
-        const prefixKeys = prefixSearch(sortedKeys, normQuery, 80);
+    // Query EN database (high + low)
+    for (const r of stmtExactEn.all(normQuery)) {
+        if (r.word.toLowerCase() !== queryLower) exactMatches.push({ word: r.word, freq: r.subt_freq || 0 });
+    }
+    if (stmtExactEnLow) {
+        for (const r of stmtExactEnLow.all(normQuery)) {
+            if (r.word.toLowerCase() !== queryLower) exactMatches.push({ word: r.word, freq: r.subt_freq || 0 });
+        }
+    }
+    // Query ZH database
+    for (const r of stmtExactZh.all(normQuery)) {
+        if (r.word.toLowerCase() !== queryLower) exactMatches.push({ word: r.word, freq: 0 });
+    }
 
-        for (const norm of prefixKeys) {
-            const words = index.get(norm);
-            if (!words) continue;
-            for (const w of words) {
-                if (w.toLowerCase() === queryLower) continue;
-                if (norm === normQuery) {
-                    exactMatches.push(w);
-                } else {
-                    prefixMatches.push(w);
-                }
+    // Prefix matches from EN
+    for (const r of stmtSuggestEn.all(normQuery)) {
+        if (r.word.toLowerCase() !== queryLower && normalizeVi(r.word) !== normQuery) {
+            prefixMatches.push({ word: r.word, freq: r.subt_freq || 0 });
+        }
+    }
+    if (stmtSuggestEnLow) {
+        for (const r of stmtSuggestEnLow.all(normQuery)) {
+            if (r.word.toLowerCase() !== queryLower && normalizeVi(r.word) !== normQuery) {
+                prefixMatches.push({ word: r.word, freq: r.subt_freq || 0 });
             }
         }
+    }
+    // Prefix matches from ZH
+    for (const r of stmtSuggestZh.all(normQuery)) {
+        if (r.word.toLowerCase() !== queryLower && normalizeVi(r.word) !== normQuery) {
+            prefixMatches.push({ word: r.word, freq: 0 });
+        }
+    }
 
-        // Contains matching for short queries when we don't have enough results
-        if (normQuery.length >= 3 && !isMultiSyll && exactMatches.length + prefixMatches.length < 8) {
-            for (const norm of sortedKeys) {
-                if (norm.includes(normQuery) && !norm.startsWith(normQuery)) {
-                    const words = index.get(norm);
-                    if (!words) continue;
-                    for (const w of words) {
-                        if (w.toLowerCase() === queryLower) continue;
-                        containsMatches.push(w);
-                    }
-                    if (containsMatches.length >= 30) break;
-                }
+    // Contains matching for short queries when we don't have enough results
+    if (normQuery.length >= 3 && !isMultiSyll && exactMatches.length + prefixMatches.length < 8) {
+        for (const r of stmtContainsEn.all(normQuery, normQuery)) {
+            if (r.word.toLowerCase() !== queryLower) {
+                containsMatches.push({ word: r.word, freq: r.subt_freq || 0 });
             }
         }
     }
 
-    // Multi-syllable compound recombination:
-    // e.g. "xin chao" → find diacriticized variants for each syllable,
-    // then generate compound combinations and check if they exist in the index
+    // Multi-syllable compound recombination
     if (isMultiSyll && exactMatches.length === 0) {
         const syllVariants = querySylls.map(s => findDiacriticVariants(s, 4));
 
-        // Generate all combinations (capped to avoid explosion)
+        // Generate combinations (capped)
         const combos = [];
         const generate = (idx, current) => {
             if (combos.length >= 20) return;
@@ -359,7 +350,6 @@ app.get('/api/suggest', (req, res) => {
                 combos.push(current.join(' '));
                 return;
             }
-            // Also try the original syllable as-is
             const candidates = syllVariants[idx].length > 0 ? syllVariants[idx] : [querySylls[idx]];
             for (const variant of candidates) {
                 generate(idx + 1, [...current, variant]);
@@ -367,38 +357,29 @@ app.get('/api/suggest', (req, res) => {
         };
         generate(0, []);
 
-        // Check which combos exist as dictionary words (have meanings)
+        // Check which combos exist as dictionary words
         for (const combo of combos) {
             if (combo.toLowerCase() === queryLower) continue;
             const normCombo = normalizeVi(combo);
-            for (const index of [indexEn, indexZh]) {
-                const words = index.get(normCombo);
-                if (words) {
-                    for (const w of words) compoundMatches.push(w);
-                }
-            }
+            for (const r of stmtExactEn.all(normCombo)) compoundMatches.push({ word: r.word, freq: r.subt_freq || 0 });
+            for (const r of stmtExactZh.all(normCombo)) compoundMatches.push({ word: r.word, freq: 0 });
         }
 
-        // Add individual syllable matches so user can explore each part
-        for (let i = 0; i < querySylls.length; i++) {
-            const variants = findDiacriticVariants(querySylls[i], 3);
-            for (const v of variants) {
-                syllableMatches.push(v);
+        // Add individual syllable matches
+        for (const syll of querySylls) {
+            for (const v of findDiacriticVariants(syll, 3)) {
+                syllableMatches.push({ word: v, freq: 0 });
             }
         }
     }
 
     // Sort each tier by: single-word first → frequency desc → shorter first
     const sortFn = (a, b) => {
-        const aMulti = a.includes(' ') ? 1 : 0;
-        const bMulti = b.includes(' ') ? 1 : 0;
+        const aMulti = a.word.includes(' ') ? 1 : 0;
+        const bMulti = b.word.includes(' ') ? 1 : 0;
         if (aMulti !== bMulti) return aMulti - bMulti;
-
-        const freqA = combinedFreqMap.get(a) || 0;
-        const freqB = combinedFreqMap.get(b) || 0;
-        if (freqA !== freqB) return freqB - freqA;
-
-        return a.length - b.length;
+        if (a.freq !== b.freq) return b.freq - a.freq;
+        return a.word.length - b.word.length;
     };
 
     exactMatches.sort(sortFn);
@@ -407,16 +388,14 @@ app.get('/api/suggest', (req, res) => {
     syllableMatches.sort(sortFn);
     containsMatches.sort(sortFn);
 
-    // Merge tiers preserving priority
+    // Merge tiers preserving priority, dedupe, take top 8
     const merged = [...exactMatches, ...compoundMatches, ...prefixMatches, ...syllableMatches, ...containsMatches];
-
-    // Deduplicate and take top 8
     const seen = new Set();
     const result = [];
-    for (const w of merged) {
-        if (!seen.has(w)) {
-            seen.add(w);
-            result.push(w);
+    for (const item of merged) {
+        if (!seen.has(item.word)) {
+            seen.add(item.word);
+            result.push(item.word);
             if (result.length >= 8) break;
         }
     }
@@ -499,7 +478,7 @@ app.get('/api/search', (req, res) => {
         for (const r of results) {
             if (!wordId && r.word_id) wordId = r.word_id;
             if (!grouped[r.source_name]) {
-                const rank = r.word_id ? freqRankMap.get(r.word_id) : null;
+                const rank = r.word_id ? getFreqRank(r.word_id) : null;
                 grouped[r.source_name] = {
                     source_name: r.source_name,
                     meanings: [],
@@ -540,7 +519,7 @@ app.get('/api/search', (req, res) => {
             components = syllables.map(syll => {
                 const metricsRow = getSyllableMetrics(syll);
                 const meaningRow = getSyllableMeaning(syll);
-                const syllRank = metricsRow?.word_id ? freqRankMap.get(metricsRow.word_id) : null;
+                const syllRank = metricsRow?.word_id ? getFreqRank(metricsRow.word_id) : null;
                 return {
                     syllable: syll,
                     freq: metricsRow?.subt_freq || null,
@@ -705,13 +684,45 @@ app.get('/api/search', (req, res) => {
 });
 
 // ---------------------------------------------------------------------------
+// Prepared statements for segment endpoint
+// ---------------------------------------------------------------------------
+const stmtWordExistsEn = dbEnHigh.prepare(`
+    SELECT w.word, wm.subt_freq FROM words w
+    LEFT JOIN word_metrics wm ON w.id = wm.word_id
+    WHERE w.word_normalized = ?
+      AND EXISTS (SELECT 1 FROM meanings m WHERE m.word_id = w.id)
+    LIMIT 1
+`);
+const stmtWordExistsEnLow = dbEnLow ? dbEnLow.prepare(`
+    SELECT w.word, wm.subt_freq FROM words w
+    LEFT JOIN word_metrics wm ON w.id = wm.word_id
+    WHERE w.word_normalized = ?
+      AND EXISTS (SELECT 1 FROM meanings m WHERE m.word_id = w.id)
+    LIMIT 1
+`) : null;
+const stmtWordExistsZh = dbZh.prepare(`
+    SELECT word FROM words w
+    WHERE w.word_normalized = ?
+      AND EXISTS (SELECT 1 FROM meanings m WHERE m.word_id = w.id)
+    LIMIT 1
+`);
+
+function wordExistsWithFreq(norm) {
+    let row = stmtWordExistsEn.get(norm);
+    if (!row && stmtWordExistsEnLow) row = stmtWordExistsEnLow.get(norm);
+    if (row) return { exists: true, freq: row.subt_freq || 0 };
+    const zhRow = stmtWordExistsZh.get(norm);
+    if (zhRow) return { exists: true, freq: 0 };
+    return { exists: false, freq: 0 };
+}
+
+// ---------------------------------------------------------------------------
 // /api/segment?text=Tôi+đi+học   → split Vietnamese sentence into dictionary segments
 // ---------------------------------------------------------------------------
 app.get('/api/segment', (req, res) => {
     const text = (req.query.text || '').trim();
     if (!text) return res.json({ segments: [] });
 
-    // Split into syllables, preserving punctuation attached to each
     const tokens = text.split(/\s+/);
     const segments = [];
     let i = 0;
@@ -720,28 +731,21 @@ app.get('/api/segment', (req, res) => {
         let matched = false;
 
         // Try 3-gram, 2-gram — only group if compound freq > individual syllable freqs
-        // This prevents "cho ngựa" from grouping when "cho" and "ngựa" are both common
         for (let len = Math.min(3, tokens.length - i); len >= 2; len--) {
             const phrase = tokens.slice(i, i + len).join(' ');
             const norm = normalizeVi(phrase);
-            if (indexEn.has(norm) || indexZh.has(norm)) {
+            const compound = wordExistsWithFreq(norm);
+
+            if (compound.exists) {
                 // Check if compound is a "true" compound vs coincidental match
-                const compoundFreq = combinedFreqMap.get(phrase.toLowerCase()) || combinedFreqMap.get(norm) || 0;
                 const syllableFreqs = tokens.slice(i, i + len).map(t => {
                     const n = normalizeVi(t);
-                    // Find the best freq among diacriticized variants
-                    let best = 0;
-                    for (const idx of [indexEn, indexZh]) {
-                        const words = idx.get(n);
-                        if (words) for (const w of words) best = Math.max(best, combinedFreqMap.get(w) || 0);
-                    }
-                    return best;
+                    return wordExistsWithFreq(n).freq;
                 });
                 const minSyllableFreq = Math.min(...syllableFreqs);
 
                 // Group as compound if: compound has own frequency, OR any syllable is rare
-                // (rare = freq < 50, meaning it's likely not a standalone word)
-                if (compoundFreq > 0 || minSyllableFreq < 50) {
+                if (compound.freq > 0 || minSyllableFreq < 50) {
                     segments.push({ text: phrase });
                     i += len;
                     matched = true;
@@ -751,7 +755,6 @@ app.get('/api/segment', (req, res) => {
         }
 
         if (!matched) {
-            // Single token — strip punctuation for dictionary check
             const token = tokens[i];
             const stripped = token.replace(/^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$/gu, '');
             const leading = token.slice(0, token.indexOf(stripped) >= 0 ? token.indexOf(stripped) : 0);
@@ -760,7 +763,6 @@ app.get('/api/segment', (req, res) => {
             if (stripped.length > 0) {
                 segments.push({ text: stripped, leading, trailing });
             } else {
-                // Pure punctuation
                 segments.push({ text: token, punct: true });
             }
             i++;
