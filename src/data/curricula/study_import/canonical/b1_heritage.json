@@ -1,0 +1,5303 @@
+{
+  "meta": {
+    "level": "b1",
+    "track": "heritage",
+    "source": "vn_b1_heritage_en.xlsx",
+    "generated": "2026-04-28T09:02:31.264Z",
+    "stats": {
+      "units": 10,
+      "lessons": 85,
+      "words": 300,
+      "sentences": 205,
+      "matches": 65
+    }
+  },
+  "units": [
+    {
+      "index": 1,
+      "title": "Reading the Alphabet"
+    },
+    {
+      "index": 2,
+      "title": "Reading Everyday Text"
+    },
+    {
+      "index": 3,
+      "title": "Writing Basics"
+    },
+    {
+      "index": 4,
+      "title": "Common Heritage Pronunciation Errors"
+    },
+    {
+      "index": 5,
+      "title": "Grammar Errors Heritage Speakers Make"
+    },
+    {
+      "index": 6,
+      "title": "Home vs Formal Register"
+    },
+    {
+      "index": 7,
+      "title": "Vocabulary You Never Learned"
+    },
+    {
+      "index": 8,
+      "title": "Proverbs & Idioms"
+    },
+    {
+      "index": 9,
+      "title": "Formal Occasions & Ceremonies"
+    },
+    {
+      "index": 10,
+      "title": "Reconnecting with Vietnam"
+    }
+  ],
+  "lessons": [
+    {
+      "id": "L_70d74a3e77",
+      "node_id": "heritage_u1_L001",
+      "quiz_id": null,
+      "unit_index": 1,
+      "unit_title": "Reading the Alphabet",
+      "lesson_type": "Phonetics",
+      "lesson_title": "Letters You Already Know (From English)",
+      "content_types": [
+        "listen_choose",
+        "listen_type",
+        "match_pairs"
+      ],
+      "xp_reward": 8,
+      "unlock_rule": {
+        "type": "start"
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_df689c06",
+          "vi": "a, b, c, d",
+          "ipa": "",
+          "category": "alphabet"
+        },
+        {
+          "id": "W_fbe0a88c",
+          "vi": "e, f, g, h",
+          "ipa": "",
+          "category": "alphabet"
+        },
+        {
+          "id": "W_11cb5f5e",
+          "vi": "i, k, l, m, n",
+          "ipa": "",
+          "category": "alphabet"
+        },
+        {
+          "id": "W_5f777d4c",
+          "vi": "o, p, q, r, s, t",
+          "ipa": "",
+          "category": "alphabet"
+        },
+        {
+          "id": "W_944c1fa9",
+          "vi": "u, v, x, y",
+          "ipa": "",
+          "category": "alphabet"
+        },
+        {
+          "id": "W_9db71fa1",
+          "vi": "j, z, w",
+          "ipa": "",
+          "category": "alphabet"
+        },
+        {
+          "id": "W_e65aaa88",
+          "vi": "f",
+          "ipa": "",
+          "category": "alphabet"
+        }
+      ],
+      "sentences": [],
+      "matches": []
+    },
+    {
+      "id": "L_b8d3455abc",
+      "node_id": "heritage_u1_L002",
+      "quiz_id": null,
+      "unit_index": 1,
+      "unit_title": "Reading the Alphabet",
+      "lesson_type": "Phonetics",
+      "lesson_title": "New Letters You Need to Learn",
+      "content_types": [
+        "listen_choose",
+        "listen_type",
+        "match_pairs"
+      ],
+      "xp_reward": 8,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_70d74a3e77"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_116fc2d6",
+          "vi": "ă",
+          "ipa": "",
+          "category": "vowel-new"
+        },
+        {
+          "id": "W_7fc969e3",
+          "vi": "â",
+          "ipa": "",
+          "category": "vowel-new"
+        },
+        {
+          "id": "W_d702f7c4",
+          "vi": "ê",
+          "ipa": "",
+          "category": "vowel-new"
+        },
+        {
+          "id": "W_328bdcff",
+          "vi": "ô",
+          "ipa": "",
+          "category": "vowel-new"
+        },
+        {
+          "id": "W_c3a85c25",
+          "vi": "ơ",
+          "ipa": "",
+          "category": "vowel-new"
+        },
+        {
+          "id": "W_0943f7a2",
+          "vi": "ư",
+          "ipa": "",
+          "category": "vowel-new"
+        },
+        {
+          "id": "W_1dd01695",
+          "vi": "đ",
+          "ipa": "",
+          "category": "consonant-new"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_7fd5c3b8",
+          "text": "ă"
+        },
+        {
+          "id": "M_2734188d",
+          "text": "ê"
+        },
+        {
+          "id": "M_d0b9720c",
+          "text": "ô"
+        },
+        {
+          "id": "M_132926bf",
+          "text": "đ"
+        }
+      ]
+    },
+    {
+      "id": "L_ffff469c34",
+      "node_id": "heritage_u1_L003",
+      "quiz_id": null,
+      "unit_index": 1,
+      "unit_title": "Reading the Alphabet",
+      "lesson_type": "Phonetics",
+      "lesson_title": "Reading Your Own Name in Vietnamese",
+      "content_types": [
+        "listen_choose",
+        "listen_type"
+      ],
+      "xp_reward": 8,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_b8d3455abc"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_4344ece2",
+          "vi": "Nguyễn",
+          "ipa": "",
+          "category": "reading"
+        },
+        {
+          "id": "W_479da92d",
+          "vi": "Trần",
+          "ipa": "",
+          "category": "reading"
+        },
+        {
+          "id": "W_3fa1b99f",
+          "vi": "Lê",
+          "ipa": "",
+          "category": "reading"
+        },
+        {
+          "id": "W_ce7171f4",
+          "vi": "Phạm",
+          "ipa": "",
+          "category": "reading"
+        },
+        {
+          "id": "W_01ca08ec",
+          "vi": "Huỳnh",
+          "ipa": "",
+          "category": "reading"
+        },
+        {
+          "id": "W_42f86e4f",
+          "vi": "Đặng",
+          "ipa": "",
+          "category": "reading"
+        },
+        {
+          "id": "W_10fb4266",
+          "vi": "Võ / Vũ",
+          "ipa": "",
+          "category": "reading"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_f0195d49",
+          "vi": "Tôi tên là Nguyễn Minh Anh."
+        },
+        {
+          "id": "S_96847c53",
+          "vi": "Bà ngoại tên là Trần Thị Hạnh."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_cf9fa23a18",
+      "node_id": "heritage_u1_L004",
+      "quiz_id": null,
+      "unit_index": 1,
+      "unit_title": "Reading the Alphabet",
+      "lesson_type": "Grammar",
+      "lesson_title": "Reading Combination Letters (Digraphs)",
+      "content_types": [
+        "fill_blank",
+        "listen_type",
+        "mcq_translate_to_vi"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_ffff469c34"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_43b9b872",
+          "vi": "ch",
+          "ipa": "",
+          "category": "digraph"
+        },
+        {
+          "id": "W_fdea6433",
+          "vi": "nh",
+          "ipa": "",
+          "category": "digraph"
+        },
+        {
+          "id": "W_59de3816",
+          "vi": "ng / ngh",
+          "ipa": "",
+          "category": "digraph"
+        },
+        {
+          "id": "W_bf3bb83d",
+          "vi": "ph",
+          "ipa": "",
+          "category": "digraph"
+        },
+        {
+          "id": "W_73bb9f42",
+          "vi": "kh",
+          "ipa": "",
+          "category": "digraph"
+        },
+        {
+          "id": "W_5dbd66f8",
+          "vi": "tr",
+          "ipa": "",
+          "category": "digraph"
+        },
+        {
+          "id": "W_4aa5d70b",
+          "vi": "th",
+          "ipa": "",
+          "category": "digraph"
+        },
+        {
+          "id": "W_c13815db",
+          "vi": "gi",
+          "ipa": "",
+          "category": "digraph"
+        }
+      ],
+      "sentences": [],
+      "matches": []
+    },
+    {
+      "id": "L_c1693a51cb",
+      "node_id": "heritage_u1_L005",
+      "quiz_id": null,
+      "unit_index": 1,
+      "unit_title": "Reading the Alphabet",
+      "lesson_type": "Grammar",
+      "lesson_title": "Reading Tone Marks",
+      "content_types": [
+        "fill_blank",
+        "listen_choose"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_cf9fa23a18"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_5ab772ae",
+          "vi": "a",
+          "ipa": "",
+          "category": "tone-mark"
+        },
+        {
+          "id": "W_98ba77d4",
+          "vi": "à",
+          "ipa": "",
+          "category": "tone-mark"
+        },
+        {
+          "id": "W_26825d74",
+          "vi": "á",
+          "ipa": "",
+          "category": "tone-mark"
+        },
+        {
+          "id": "W_b7352841",
+          "vi": "ả",
+          "ipa": "",
+          "category": "tone-mark"
+        },
+        {
+          "id": "W_38aad79f",
+          "vi": "ã",
+          "ipa": "",
+          "category": "tone-mark"
+        },
+        {
+          "id": "W_66a9599c",
+          "vi": "ạ",
+          "ipa": "",
+          "category": "tone-mark"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_19cc70d3",
+          "vi": "Words that look similar but have different meanings: ma (ghost), má (mom), mà (but)."
+        },
+        {
+          "id": "S_e2d4a6ff",
+          "vi": "Read: bạn, nhà, cô, đi."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_473603357d",
+      "node_id": "heritage_u1_L006",
+      "quiz_id": null,
+      "unit_index": 1,
+      "unit_title": "Reading the Alphabet",
+      "lesson_type": "Scene",
+      "lesson_title": "Reading a Simple Family Message",
+      "content_types": [
+        "listen_type",
+        "listen_choose"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_c1693a51cb"
+        ]
+      },
+      "grammar_tags": [
+        "GT018",
+        "GT022"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_862ac33b",
+          "vi": "Con ơi, mẹ đã nấu phở rồi, về ăn đi!"
+        },
+        {
+          "id": "S_bae93a88",
+          "vi": "Bà ngoại muốn gặp cháu ngày mai."
+        },
+        {
+          "id": "S_b023787d",
+          "vi": "Đi đâu cũng được, nhớ về trước 10 giờ."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_269e558e40",
+      "node_id": "heritage_u1_L007",
+      "quiz_id": null,
+      "unit_index": 1,
+      "unit_title": "Reading the Alphabet",
+      "lesson_type": "Scene",
+      "lesson_title": "Reading Common Street Signs",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_473603357d"
+        ]
+      },
+      "grammar_tags": [
+        "GT044"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_4a61cc66",
+          "vi": "CẨN THẬN"
+        },
+        {
+          "id": "S_f5edd37b",
+          "vi": "CẤM VÀO"
+        },
+        {
+          "id": "S_b7d35e02",
+          "vi": "LỐI RA"
+        },
+        {
+          "id": "S_10920e46",
+          "vi": "NHÀ VỆ SINH"
+        },
+        {
+          "id": "S_23a50a00",
+          "vi": "TRẠM XE BUÝT"
+        },
+        {
+          "id": "S_5109fca3",
+          "vi": "BỆNH VIỆN"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_4ad2192abb",
+      "node_id": "heritage_u1_Q008",
+      "quiz_id": "heritage_u1_Q008",
+      "unit_index": 1,
+      "unit_title": "Reading the Alphabet",
+      "lesson_type": "Quiz",
+      "lesson_title": "Alphabet Review",
+      "content_types": [
+        "mcq_translate_to_en",
+        "listen_choose",
+        "listen_type"
+      ],
+      "xp_reward": 20,
+      "unlock_rule": {
+        "type": "unit_complete",
+        "requires": [
+          "L_70d74a3e77",
+          "L_b8d3455abc",
+          "L_ffff469c34",
+          "L_cf9fa23a18",
+          "L_c1693a51cb",
+          "L_473603357d",
+          "L_269e558e40"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_9c2f6696",
+          "vi": "ă",
+          "ipa": "",
+          "category": "vowel-new"
+        },
+        {
+          "id": "W_fab1e187",
+          "vi": "đ",
+          "ipa": "",
+          "category": "consonant-new"
+        },
+        {
+          "id": "W_ee47fe64",
+          "vi": "nh",
+          "ipa": "",
+          "category": "digraph"
+        },
+        {
+          "id": "W_c477de4f",
+          "vi": "ph",
+          "ipa": "",
+          "category": "digraph"
+        },
+        {
+          "id": "W_12131480",
+          "vi": "ạ",
+          "ipa": "",
+          "category": "tone-mark"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_546f65c0",
+          "vi": "Tôi tên là Nguyễn."
+        }
+      ],
+      "matches": [
+        {
+          "id": "M_b618c3ee",
+          "text": "ă"
+        },
+        {
+          "id": "M_26a51d52",
+          "text": "đ"
+        },
+        {
+          "id": "M_8b7f95f1",
+          "text": "nh"
+        },
+        {
+          "id": "M_56c3a4c2",
+          "text": "ạ"
+        }
+      ]
+    },
+    {
+      "id": "L_e6cf77d21e",
+      "node_id": "heritage_u2_L009",
+      "quiz_id": null,
+      "unit_index": 2,
+      "unit_title": "Reading Everyday Text",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Menu Reading",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_4ad2192abb"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_39857f42",
+          "vi": "cơm",
+          "ipa": "",
+          "category": "menu"
+        },
+        {
+          "id": "W_fea56e64",
+          "vi": "phở bò",
+          "ipa": "",
+          "category": "menu"
+        },
+        {
+          "id": "W_0d755cf2",
+          "vi": "phở gà",
+          "ipa": "",
+          "category": "menu"
+        },
+        {
+          "id": "W_a8bcda84",
+          "vi": "bún bò",
+          "ipa": "",
+          "category": "menu"
+        },
+        {
+          "id": "W_b23cda39",
+          "vi": "gỏi cuốn",
+          "ipa": "",
+          "category": "menu"
+        },
+        {
+          "id": "W_55652150",
+          "vi": "canh",
+          "ipa": "",
+          "category": "menu"
+        },
+        {
+          "id": "W_d2d93e4b",
+          "vi": "rau muống xào",
+          "ipa": "",
+          "category": "menu"
+        },
+        {
+          "id": "W_8f95ba47",
+          "vi": "thịt kho",
+          "ipa": "",
+          "category": "menu"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_b570d246",
+          "text": "phở bò"
+        },
+        {
+          "id": "M_55ae8022",
+          "text": "phở gà"
+        },
+        {
+          "id": "M_45111a36",
+          "text": "gỏi cuốn"
+        },
+        {
+          "id": "M_7a46eb42",
+          "text": "canh"
+        }
+      ]
+    },
+    {
+      "id": "L_2a1a77624e",
+      "node_id": "heritage_u2_L010",
+      "quiz_id": null,
+      "unit_index": 2,
+      "unit_title": "Reading Everyday Text",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Reading Prices",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_vi",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_e6cf77d21e"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_f5e964e0",
+          "vi": "50.000đ",
+          "ipa": "",
+          "category": "price"
+        },
+        {
+          "id": "W_78a9902e",
+          "vi": "100k",
+          "ipa": "",
+          "category": "price"
+        },
+        {
+          "id": "W_54953feb",
+          "vi": "2tr",
+          "ipa": "",
+          "category": "price"
+        },
+        {
+          "id": "W_a4103f93",
+          "vi": "tính tiền",
+          "ipa": "",
+          "category": "price"
+        },
+        {
+          "id": "W_962ad94f",
+          "vi": "giá",
+          "ipa": "",
+          "category": "price"
+        },
+        {
+          "id": "W_0590a8a8",
+          "vi": "bill / hóa đơn",
+          "ipa": "",
+          "category": "price"
+        }
+      ],
+      "sentences": [],
+      "matches": []
+    },
+    {
+      "id": "L_79589ec347",
+      "node_id": "heritage_u2_L011",
+      "quiz_id": null,
+      "unit_index": 2,
+      "unit_title": "Reading Everyday Text",
+      "lesson_type": "Grammar",
+      "lesson_title": "Reading Dates & Numbers",
+      "content_types": [
+        "fill_blank",
+        "listen_type"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_2a1a77624e"
+        ]
+      },
+      "grammar_tags": [
+        "GT036"
+      ],
+      "words": [
+        {
+          "id": "W_f518f2b8",
+          "vi": "ngày 15/3",
+          "ipa": "",
+          "category": "date"
+        },
+        {
+          "id": "W_d382e19b",
+          "vi": "2024",
+          "ipa": "",
+          "category": "date"
+        },
+        {
+          "id": "W_2bdd687c",
+          "vi": "14h30",
+          "ipa": "",
+          "category": "time"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_38bb96d4",
+          "vi": "Ngày 20 tháng 10 năm 2024."
+        },
+        {
+          "id": "S_2f5bfb70",
+          "vi": "8h sáng — 5h chiều."
+        },
+        {
+          "id": "S_f3c2eaae",
+          "vi": "Sinh nhật của ba là 15/8."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_1428f4b410",
+      "node_id": "heritage_u2_L012",
+      "quiz_id": null,
+      "unit_index": 2,
+      "unit_title": "Reading Everyday Text",
+      "lesson_type": "Grammar",
+      "lesson_title": "Reading Addresses (Vietnamese Format)",
+      "content_types": [
+        "fill_blank",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_79589ec347"
+        ]
+      },
+      "grammar_tags": [
+        "GT042"
+      ],
+      "words": [
+        {
+          "id": "W_fd21e26e",
+          "vi": "số nhà",
+          "ipa": "",
+          "category": "address"
+        },
+        {
+          "id": "W_0c02172a",
+          "vi": "đường / phố",
+          "ipa": "",
+          "category": "address"
+        },
+        {
+          "id": "W_d880de58",
+          "vi": "phường",
+          "ipa": "",
+          "category": "address"
+        },
+        {
+          "id": "W_39e1816e",
+          "vi": "quận",
+          "ipa": "",
+          "category": "address"
+        },
+        {
+          "id": "W_a953d462",
+          "vi": "tỉnh / thành phố",
+          "ipa": "",
+          "category": "address"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_56974eb8",
+          "vi": "123 Lê Lợi, phường Bến Nghé, quận 1, TP.HCM."
+        },
+        {
+          "id": "S_3ce5b670",
+          "vi": "Địa chỉ này thuộc quận nào?"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_ab5844f06b",
+      "node_id": "heritage_u2_L013",
+      "quiz_id": null,
+      "unit_index": 2,
+      "unit_title": "Reading Everyday Text",
+      "lesson_type": "Grammar",
+      "lesson_title": "Reading Facebook / Zalo Posts",
+      "content_types": [
+        "fill_blank",
+        "mcq_translate_to_vi"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_1428f4b410"
+        ]
+      },
+      "grammar_tags": [
+        "GT005",
+        "GT042"
+      ],
+      "words": [
+        {
+          "id": "W_47d2da4a",
+          "vi": "cmt",
+          "ipa": "",
+          "category": "social-media"
+        },
+        {
+          "id": "W_1c4c4ac2",
+          "vi": "like nha / tym",
+          "ipa": "",
+          "category": "social-media"
+        },
+        {
+          "id": "W_5a0db1b3",
+          "vi": "share bài này",
+          "ipa": "",
+          "category": "social-media"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_339edc32",
+          "vi": "Bài viết này quá hay, share nha!"
+        },
+        {
+          "id": "S_4c7d48e9",
+          "vi": "Ai đi cùng mình không?"
+        },
+        {
+          "id": "S_088d5277",
+          "vi": "Update: chuyến đi đã hủy."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_68e6dcda94",
+      "node_id": "heritage_u2_L014",
+      "quiz_id": null,
+      "unit_index": 2,
+      "unit_title": "Reading Everyday Text",
+      "lesson_type": "Scene",
+      "lesson_title": "Reading a Café Menu",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_ab5844f06b"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_e116172e",
+          "vi": "Cà phê đen đá ............ 25k"
+        },
+        {
+          "id": "S_fe5df3f6",
+          "vi": "Cà phê sữa đá ............ 30k"
+        },
+        {
+          "id": "S_7d41ba58",
+          "vi": "Sinh tố bơ ................ 45k"
+        },
+        {
+          "id": "S_c3e35157",
+          "vi": "Trà đào cam sả ............ 55k"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_43da0ef2c1",
+      "node_id": "heritage_u2_L015",
+      "quiz_id": null,
+      "unit_index": 2,
+      "unit_title": "Reading Everyday Text",
+      "lesson_type": "Scene",
+      "lesson_title": "Reading a Text Message from Mom",
+      "content_types": [
+        "listen_choose",
+        "translation_word_bank"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_68e6dcda94"
+        ]
+      },
+      "grammar_tags": [
+        "GT007"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_9e35aaa6",
+          "vi": "Con đang ở đâu?"
+        },
+        {
+          "id": "S_e650b6a8",
+          "vi": "Mẹ đang nấu cơm, về ăn."
+        },
+        {
+          "id": "S_fd8dccdf",
+          "vi": "Nhớ mua sữa về nhé."
+        },
+        {
+          "id": "S_d5b16d55",
+          "vi": "Ok con về trong 20 phút."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_dd1b2dea4c",
+      "node_id": "heritage_u2_Q016",
+      "quiz_id": "heritage_u2_Q016",
+      "unit_index": 2,
+      "unit_title": "Reading Everyday Text",
+      "lesson_type": "Quiz",
+      "lesson_title": "Reading Practice Review",
+      "content_types": [
+        "mcq_translate_to_en",
+        "listen_choose",
+        "listen_type"
+      ],
+      "xp_reward": 20,
+      "unlock_rule": {
+        "type": "unit_complete",
+        "requires": [
+          "L_e6cf77d21e",
+          "L_2a1a77624e",
+          "L_79589ec347",
+          "L_1428f4b410",
+          "L_ab5844f06b",
+          "L_68e6dcda94",
+          "L_43da0ef2c1"
+        ]
+      },
+      "grammar_tags": [
+        "GT036"
+      ],
+      "words": [
+        {
+          "id": "W_ef2fa4c8",
+          "vi": "phở bò",
+          "ipa": "",
+          "category": "menu"
+        },
+        {
+          "id": "W_9597f4ef",
+          "vi": "50.000đ",
+          "ipa": "",
+          "category": "price"
+        },
+        {
+          "id": "W_a67bdb85",
+          "vi": "đường",
+          "ipa": "",
+          "category": "address"
+        },
+        {
+          "id": "W_67b3d494",
+          "vi": "phường",
+          "ipa": "",
+          "category": "address"
+        },
+        {
+          "id": "W_75716a0e",
+          "vi": "14h30",
+          "ipa": "",
+          "category": "date"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_3337c6b0",
+          "vi": "Ngày 20 tháng 10 năm 2024."
+        }
+      ],
+      "matches": [
+        {
+          "id": "M_eedb50ae",
+          "text": "phở bò"
+        },
+        {
+          "id": "M_d97b5ffe",
+          "text": "phường"
+        },
+        {
+          "id": "M_741a6ad4",
+          "text": "đường"
+        }
+      ]
+    },
+    {
+      "id": "L_fea5749f71",
+      "node_id": "heritage_u3_L017",
+      "quiz_id": null,
+      "unit_index": 3,
+      "unit_title": "Writing Basics",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Input Methods (Typing Vietnamese)",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_dd1b2dea4c"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_4edb794c",
+          "vi": "Telex",
+          "ipa": "",
+          "category": "input"
+        },
+        {
+          "id": "W_9a31f993",
+          "vi": "VNI",
+          "ipa": "",
+          "category": "input"
+        },
+        {
+          "id": "W_ecde43fa",
+          "vi": "Unikey",
+          "ipa": "",
+          "category": "input"
+        },
+        {
+          "id": "W_f077c612",
+          "vi": "bộ gõ",
+          "ipa": "",
+          "category": "input"
+        },
+        {
+          "id": "W_24e862eb",
+          "vi": "dấu",
+          "ipa": "",
+          "category": "input"
+        },
+        {
+          "id": "W_bf4c3bf7",
+          "vi": "không dấu",
+          "ipa": "",
+          "category": "input"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_bceab919",
+          "text": "Telex"
+        },
+        {
+          "id": "M_303442c7",
+          "text": "không dấu"
+        },
+        {
+          "id": "M_002a9b00",
+          "text": "bộ gõ"
+        }
+      ]
+    },
+    {
+      "id": "L_634508eb7b",
+      "node_id": "heritage_u3_L018",
+      "quiz_id": null,
+      "unit_index": 3,
+      "unit_title": "Writing Basics",
+      "lesson_type": "Grammar",
+      "lesson_title": "Telex Typing Basics",
+      "content_types": [
+        "fill_blank",
+        "listen_type"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_fea5749f71"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_ebbb78c0",
+          "vi": "aa → â",
+          "ipa": "",
+          "category": "telex"
+        },
+        {
+          "id": "W_199526ad",
+          "vi": "dd → đ",
+          "ipa": "",
+          "category": "telex"
+        },
+        {
+          "id": "W_5765f457",
+          "vi": "oo → ô",
+          "ipa": "",
+          "category": "telex"
+        },
+        {
+          "id": "W_b31dd5da",
+          "vi": "ee → ê",
+          "ipa": "",
+          "category": "telex"
+        },
+        {
+          "id": "W_483317c0",
+          "vi": "uw → ư",
+          "ipa": "",
+          "category": "telex"
+        },
+        {
+          "id": "W_fe2ee41d",
+          "vi": "ow → ơ",
+          "ipa": "",
+          "category": "telex"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_0893afc3",
+          "vi": "Type: 'caam ow n' → cảm ơn."
+        },
+        {
+          "id": "S_b1c1476a",
+          "vi": "Type: 'chaof' → chào."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_ed630e1d81",
+      "node_id": "heritage_u3_L019",
+      "quiz_id": null,
+      "unit_index": 3,
+      "unit_title": "Writing Basics",
+      "lesson_type": "Grammar",
+      "lesson_title": "Telex Tone Markers",
+      "content_types": [
+        "fill_blank",
+        "mcq_translate_to_vi"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_634508eb7b"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_b5f490e2",
+          "vi": "f → ̀ (huyền)",
+          "ipa": "",
+          "category": "telex-tone"
+        },
+        {
+          "id": "W_39113145",
+          "vi": "s → ́ (sắc)",
+          "ipa": "",
+          "category": "telex-tone"
+        },
+        {
+          "id": "W_3321e067",
+          "vi": "r → ̉ (hỏi)",
+          "ipa": "",
+          "category": "telex-tone"
+        },
+        {
+          "id": "W_78e493d0",
+          "vi": "x → ̃ (ngã)",
+          "ipa": "",
+          "category": "telex-tone"
+        },
+        {
+          "id": "W_50103a68",
+          "vi": "j → ̣ (nặng)",
+          "ipa": "",
+          "category": "telex-tone"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_ac130ce1",
+          "vi": "chaof → chào | chafo (wrong order)"
+        },
+        {
+          "id": "S_ea5619d7",
+          "vi": "banj → bạn (friend) | ban (wait; no meaning)"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_e89042acd5",
+      "node_id": "heritage_u3_L020",
+      "quiz_id": null,
+      "unit_index": 3,
+      "unit_title": "Writing Basics",
+      "lesson_type": "Grammar",
+      "lesson_title": "Common Spelling Confusions for Heritage",
+      "content_types": [
+        "fill_blank",
+        "mcq_translate_to_vi"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_ed630e1d81"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_5b607f8f",
+          "vi": "i vs y",
+          "ipa": "",
+          "category": "spelling"
+        },
+        {
+          "id": "W_fadff9f6",
+          "vi": "c vs k",
+          "ipa": "",
+          "category": "spelling"
+        },
+        {
+          "id": "W_a11150ad",
+          "vi": "c vs q",
+          "ipa": "",
+          "category": "spelling"
+        },
+        {
+          "id": "W_e7d7825e",
+          "vi": "ngh vs ng",
+          "ipa": "",
+          "category": "spelling"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_72becdb1",
+          "vi": "nghe (hear) — ngh before i, e, ê"
+        },
+        {
+          "id": "S_461f11a8",
+          "vi": "Spelling rule: gh + i/e/ê, otherwise g."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_3624dfc1c8",
+      "node_id": "heritage_u3_L021",
+      "quiz_id": null,
+      "unit_index": 3,
+      "unit_title": "Writing Basics",
+      "lesson_type": "Grammar",
+      "lesson_title": "Writing Simple Texts",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_e89042acd5"
+        ]
+      },
+      "grammar_tags": [
+        "GT002"
+      ],
+      "words": [
+        {
+          "id": "W_e6d7d70a",
+          "vi": "xin chào",
+          "ipa": "",
+          "category": "writing"
+        },
+        {
+          "id": "W_2a1616f8",
+          "vi": "cảm ơn",
+          "ipa": "",
+          "category": "writing"
+        },
+        {
+          "id": "W_9f670ec2",
+          "vi": "ok anh",
+          "ipa": "",
+          "category": "writing"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_40a171b5",
+          "vi": "Hi anh, con đang đi làm."
+        },
+        {
+          "id": "S_66f99586",
+          "vi": "Con sẽ về nhà 7h tối."
+        },
+        {
+          "id": "S_2d92846a",
+          "vi": "Mẹ ơi, con yêu mẹ."
+        },
+        {
+          "id": "S_50654e15",
+          "vi": "Chúc mẹ ngủ ngon."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_84cb1affa6",
+      "node_id": "heritage_u3_L022",
+      "quiz_id": null,
+      "unit_index": 3,
+      "unit_title": "Writing Basics",
+      "lesson_type": "Scene",
+      "lesson_title": "Writing a Text to Grandma",
+      "content_types": [
+        "listen_type",
+        "speak_sentence"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_3624dfc1c8"
+        ]
+      },
+      "grammar_tags": [
+        "GT008"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_5e91d619",
+          "vi": "Bà ngoại, con là Lan đây."
+        },
+        {
+          "id": "S_3b7cf687",
+          "vi": "Con gửi bà hình gia đình con."
+        },
+        {
+          "id": "S_3bd44650",
+          "vi": "Khi nào bà về Việt Nam?"
+        },
+        {
+          "id": "S_c1816fe6",
+          "vi": "Con nhớ bà nhiều."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_a927c1ef64",
+      "node_id": "heritage_u3_L023",
+      "quiz_id": null,
+      "unit_index": 3,
+      "unit_title": "Writing Basics",
+      "lesson_type": "Scene",
+      "lesson_title": "Writing a Facebook Comment",
+      "content_types": [
+        "listen_type",
+        "translation_word_bank"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_84cb1affa6"
+        ]
+      },
+      "grammar_tags": [
+        "GT004",
+        "GT008",
+        "GT018"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_7fdd26c2",
+          "vi": "Ảnh đẹp quá chị ơi!"
+        },
+        {
+          "id": "S_88d74b3f",
+          "vi": "Chúc mừng sinh nhật em nhé."
+        },
+        {
+          "id": "S_0edbc643",
+          "vi": "Lâu rồi không gặp, nhớ quá."
+        },
+        {
+          "id": "S_778928ab",
+          "vi": "Khi nào chị về Mỹ?"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_3b95ce8b69",
+      "node_id": "heritage_u3_Q024",
+      "quiz_id": "heritage_u3_Q024",
+      "unit_index": 3,
+      "unit_title": "Writing Basics",
+      "lesson_type": "Quiz",
+      "lesson_title": "Writing Review",
+      "content_types": [
+        "mcq_translate_to_en",
+        "listen_type",
+        "listen_choose"
+      ],
+      "xp_reward": 20,
+      "unlock_rule": {
+        "type": "unit_complete",
+        "requires": [
+          "L_fea5749f71",
+          "L_634508eb7b",
+          "L_ed630e1d81",
+          "L_e89042acd5",
+          "L_3624dfc1c8",
+          "L_84cb1affa6",
+          "L_a927c1ef64"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_a2ef5609",
+          "vi": "Telex",
+          "ipa": "",
+          "category": "input"
+        },
+        {
+          "id": "W_3c30087f",
+          "vi": "aa → â",
+          "ipa": "",
+          "category": "telex"
+        },
+        {
+          "id": "W_a83affa1",
+          "vi": "j → ̣",
+          "ipa": "",
+          "category": "telex-tone"
+        },
+        {
+          "id": "W_a8035687",
+          "vi": "f → ̀",
+          "ipa": "",
+          "category": "telex-tone"
+        },
+        {
+          "id": "W_ad8f8c7e",
+          "vi": "không dấu",
+          "ipa": "",
+          "category": "input"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_80920b8a",
+          "vi": "Con yêu mẹ."
+        }
+      ],
+      "matches": [
+        {
+          "id": "M_bc362201",
+          "text": "aa → â"
+        },
+        {
+          "id": "M_0a9454d3",
+          "text": "dd → đ"
+        },
+        {
+          "id": "M_381df876",
+          "text": "không dấu"
+        }
+      ]
+    },
+    {
+      "id": "L_fc7852cfb9",
+      "node_id": "heritage_u4_L025",
+      "quiz_id": null,
+      "unit_index": 4,
+      "unit_title": "Common Heritage Pronunciation Errors",
+      "lesson_type": "Phonetics",
+      "lesson_title": "ă vs â (Often Confused)",
+      "content_types": [
+        "listen_choose",
+        "listen_type",
+        "speak_sentence"
+      ],
+      "xp_reward": 8,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_3b95ce8b69"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_b8f463f1",
+          "vi": "ăn (eat) vs ân (favor)",
+          "ipa": "",
+          "category": "confusion"
+        },
+        {
+          "id": "W_9b553f5b",
+          "vi": "mặn (salty) vs mận (plum)",
+          "ipa": "",
+          "category": "confusion"
+        },
+        {
+          "id": "W_21a3a7da",
+          "vi": "nắng (sunshine) vs nấng (no word)",
+          "ipa": "",
+          "category": "confusion"
+        },
+        {
+          "id": "W_9e5d7481",
+          "vi": "căn (unit/room) vs cân (to weigh)",
+          "ipa": "",
+          "category": "confusion"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_2deb2eee",
+          "vi": "Practice: ăn cơm (eat rice) — short bright 'a'."
+        },
+        {
+          "id": "S_2f5365d9",
+          "vi": "Practice: ấn nút (press button) — short dark 'uh'."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_d2a009363b",
+      "node_id": "heritage_u4_L026",
+      "quiz_id": null,
+      "unit_index": 4,
+      "unit_title": "Common Heritage Pronunciation Errors",
+      "lesson_type": "Phonetics",
+      "lesson_title": "Final Consonants Not Dropped",
+      "content_types": [
+        "listen_choose",
+        "listen_type",
+        "speak_sentence"
+      ],
+      "xp_reward": 8,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_fc7852cfb9"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_f14b10a8",
+          "vi": "-c vs -t",
+          "ipa": "",
+          "category": "final-cons"
+        },
+        {
+          "id": "W_ef93190a",
+          "vi": "-p vs -t",
+          "ipa": "",
+          "category": "final-cons"
+        },
+        {
+          "id": "W_3864dbe4",
+          "vi": "-ch vs -c",
+          "ipa": "",
+          "category": "final-cons"
+        },
+        {
+          "id": "W_39b20fbc",
+          "vi": "-ng vs -n",
+          "ipa": "",
+          "category": "final-cons"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_b3de6c9a",
+          "vi": "Practice: 'ăn cơm' — clear -n ending."
+        },
+        {
+          "id": "S_58e98a64",
+          "vi": "Practice: 'đi học' — clear -c ending (abrupt stop)."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_ce420ae721",
+      "node_id": "heritage_u4_L027",
+      "quiz_id": null,
+      "unit_index": 4,
+      "unit_title": "Common Heritage Pronunciation Errors",
+      "lesson_type": "Phonetics",
+      "lesson_title": "d vs gi vs r (Dialect Variants)",
+      "content_types": [
+        "listen_choose",
+        "listen_type"
+      ],
+      "xp_reward": 8,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_d2a009363b"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_c0fd09f8",
+          "vi": "dễ (easy)",
+          "ipa": "",
+          "category": "dialect"
+        },
+        {
+          "id": "W_a1c110b1",
+          "vi": "giàu (rich)",
+          "ipa": "",
+          "category": "dialect"
+        },
+        {
+          "id": "W_1f911f1f",
+          "vi": "rồi (already)",
+          "ipa": "",
+          "category": "dialect"
+        },
+        {
+          "id": "W_46a8b6ea",
+          "vi": "dì (aunt) vs gì (what)",
+          "ipa": "",
+          "category": "dialect"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_b8552397",
+          "vi": "In North: d, gi, r = z. In South: d, gi = y, r = r."
+        },
+        {
+          "id": "S_d0ca8986",
+          "vi": "Heritage speakers often merge these — distinguish when reading."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_60226e95ef",
+      "node_id": "heritage_u4_L028",
+      "quiz_id": null,
+      "unit_index": 4,
+      "unit_title": "Common Heritage Pronunciation Errors",
+      "lesson_type": "Phonetics",
+      "lesson_title": "l vs n (Hanoi Dialect Swap)",
+      "content_types": [
+        "listen_choose",
+        "listen_type"
+      ],
+      "xp_reward": 8,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_ce420ae721"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_944bbd43",
+          "vi": "làm (do) vs nàm (casual Hanoi slang)",
+          "ipa": "",
+          "category": "dialect"
+        },
+        {
+          "id": "W_9b407836",
+          "vi": "lên (up) vs nên (should)",
+          "ipa": "",
+          "category": "dialect"
+        },
+        {
+          "id": "W_6cd13912",
+          "vi": "nói (speak) vs lói (no word)",
+          "ipa": "",
+          "category": "dialect"
+        },
+        {
+          "id": "W_3049c07e",
+          "vi": "Listen carefully to family input — they may carry this feature.",
+          "ipa": "",
+          "category": "dialect"
+        }
+      ],
+      "sentences": [],
+      "matches": []
+    },
+    {
+      "id": "L_7961c656aa",
+      "node_id": "heritage_u4_L029",
+      "quiz_id": null,
+      "unit_index": 4,
+      "unit_title": "Common Heritage Pronunciation Errors",
+      "lesson_type": "Phonetics",
+      "lesson_title": "Tone Mark Accuracy on Reading",
+      "content_types": [
+        "listen_choose",
+        "listen_type",
+        "speak_sentence"
+      ],
+      "xp_reward": 8,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_60226e95ef"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_6a339d13",
+          "vi": "bà (grandma) vs ba (three/dad) vs bá (uncle) vs bả (her, slang)",
+          "ipa": "",
+          "category": "tones"
+        },
+        {
+          "id": "W_7a6235b7",
+          "vi": "mã (horse/code) vs ma (ghost) vs mạ (seedling) vs má (mom)",
+          "ipa": "",
+          "category": "tones"
+        },
+        {
+          "id": "W_8a8e35f7",
+          "vi": "đánh (to hit) vs đành (resigned)",
+          "ipa": "",
+          "category": "tones"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_dcb90eb5",
+          "vi": "Read: Mẹ tôi là bác sĩ."
+        },
+        {
+          "id": "S_b2e94038",
+          "vi": "Read: Ba ba ba ba ba ba ba."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_827d752b9a",
+      "node_id": "heritage_u4_L030",
+      "quiz_id": null,
+      "unit_index": 4,
+      "unit_title": "Common Heritage Pronunciation Errors",
+      "lesson_type": "Grammar",
+      "lesson_title": "Noticing Dialect Mixing in Your Speech",
+      "content_types": [
+        "fill_blank",
+        "mcq_translate_to_vi"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_7961c656aa"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_278c1c61",
+          "vi": "Northern vs Southern",
+          "ipa": "",
+          "category": "awareness"
+        },
+        {
+          "id": "W_a4bd9501",
+          "vi": "bố vs ba",
+          "ipa": "",
+          "category": "awareness"
+        },
+        {
+          "id": "W_5453b0d4",
+          "vi": "mẹ vs má",
+          "ipa": "",
+          "category": "awareness"
+        },
+        {
+          "id": "W_003872d5",
+          "vi": "nghìn vs ngàn",
+          "ipa": "",
+          "category": "awareness"
+        },
+        {
+          "id": "W_92fb0252",
+          "vi": "rẽ vs quẹo",
+          "ipa": "",
+          "category": "awareness"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_fcdc523d",
+          "vi": "My family says 'má' — that's the southern form."
+        },
+        {
+          "id": "S_a3a95ce2",
+          "vi": "Standard Vietnamese uses both, but texts usually follow northern."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_49b2750211",
+      "node_id": "heritage_u4_L031",
+      "quiz_id": null,
+      "unit_index": 4,
+      "unit_title": "Common Heritage Pronunciation Errors",
+      "lesson_type": "Scene",
+      "lesson_title": "Accent Check — Reading Aloud",
+      "content_types": [
+        "listen_type",
+        "speak_sentence"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_827d752b9a"
+        ]
+      },
+      "grammar_tags": [
+        "GT022",
+        "GT025"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_b619d535",
+          "vi": "Tôi tên là Minh, tôi là người Việt Nam."
+        },
+        {
+          "id": "S_84fca0a9",
+          "vi": "Bố mẹ tôi sinh ra ở Sài Gòn."
+        },
+        {
+          "id": "S_2098b008",
+          "vi": "Tôi muốn học tiếng Việt chuẩn hơn."
+        },
+        {
+          "id": "S_dba8330d",
+          "vi": "Ông bà tôi nói giọng Huế."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_185aad5b90",
+      "node_id": "heritage_u4_L032",
+      "quiz_id": null,
+      "unit_index": 4,
+      "unit_title": "Common Heritage Pronunciation Errors",
+      "lesson_type": "Scene",
+      "lesson_title": "Asking Someone to Correct Your Accent",
+      "content_types": [
+        "listen_choose",
+        "translation_word_bank"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_49b2750211"
+        ]
+      },
+      "grammar_tags": [
+        "GT004",
+        "GT005",
+        "GT022",
+        "GT025",
+        "GT028"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_d0c0af7e",
+          "vi": "Tôi nói đúng không ạ?"
+        },
+        {
+          "id": "S_ae0dd4be",
+          "vi": "Chị có thể sửa giúp em không?"
+        },
+        {
+          "id": "S_52f23e44",
+          "vi": "Em học ở nước ngoài, nên hơi khác."
+        },
+        {
+          "id": "S_e33f242f",
+          "vi": "Em muốn nói chuẩn hơn."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_1b88422cbc",
+      "node_id": "heritage_u4_Q033",
+      "quiz_id": "heritage_u4_Q033",
+      "unit_index": 4,
+      "unit_title": "Common Heritage Pronunciation Errors",
+      "lesson_type": "Quiz",
+      "lesson_title": "Pronunciation Review",
+      "content_types": [
+        "mcq_translate_to_en",
+        "listen_choose",
+        "listen_type"
+      ],
+      "xp_reward": 20,
+      "unlock_rule": {
+        "type": "unit_complete",
+        "requires": [
+          "L_fc7852cfb9",
+          "L_d2a009363b",
+          "L_ce420ae721",
+          "L_60226e95ef",
+          "L_7961c656aa",
+          "L_827d752b9a",
+          "L_49b2750211",
+          "L_185aad5b90"
+        ]
+      },
+      "grammar_tags": [
+        "GT022",
+        "GT025"
+      ],
+      "words": [
+        {
+          "id": "W_5ae7493e",
+          "vi": "ăn vs ân",
+          "ipa": "",
+          "category": "confusion"
+        },
+        {
+          "id": "W_f09ee2d5",
+          "vi": "bác vs bát",
+          "ipa": "",
+          "category": "final-cons"
+        },
+        {
+          "id": "W_b6ced82e",
+          "vi": "dễ",
+          "ipa": "",
+          "category": "dialect"
+        },
+        {
+          "id": "W_48789bf2",
+          "vi": "bà vs ba",
+          "ipa": "",
+          "category": "tones"
+        },
+        {
+          "id": "W_620b7069",
+          "vi": "má vs mẹ",
+          "ipa": "",
+          "category": "awareness"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_9b45c62f",
+          "vi": "Tôi muốn học tiếng Việt chuẩn hơn."
+        }
+      ],
+      "matches": [
+        {
+          "id": "M_ac1c6e3f",
+          "text": "ăn"
+        },
+        {
+          "id": "M_747332e8",
+          "text": "bác vs bát"
+        },
+        {
+          "id": "M_e896ae87",
+          "text": "má"
+        }
+      ]
+    },
+    {
+      "id": "L_e540445527",
+      "node_id": "heritage_u5_L034",
+      "quiz_id": null,
+      "unit_index": 5,
+      "unit_title": "Grammar Errors Heritage Speakers Make",
+      "lesson_type": "Grammar",
+      "lesson_title": "Missing Classifiers (Heritage Drops Them)",
+      "content_types": [
+        "fill_blank",
+        "mcq_translate_to_vi"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_1b88422cbc"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_c45f4366",
+          "vi": "cái (for objects)",
+          "ipa": "",
+          "category": "classifier-fix"
+        },
+        {
+          "id": "W_c04ae46e",
+          "vi": "con (for animals)",
+          "ipa": "",
+          "category": "classifier-fix"
+        },
+        {
+          "id": "W_6b799188",
+          "vi": "chiếc (for vehicles)",
+          "ipa": "",
+          "category": "classifier-fix"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_df85aefa",
+          "vi": "❌ Tôi có hai chó. ✓ Tôi có hai con chó."
+        },
+        {
+          "id": "S_7e3b0284",
+          "vi": "❌ Mẹ mua ba áo. ✓ Mẹ mua ba cái áo."
+        },
+        {
+          "id": "S_f66a719e",
+          "vi": "❌ Tôi thấy một xe. ✓ Tôi thấy một chiếc xe."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_5d1c41336a",
+      "node_id": "heritage_u5_L035",
+      "quiz_id": null,
+      "unit_index": 5,
+      "unit_title": "Grammar Errors Heritage Speakers Make",
+      "lesson_type": "Grammar",
+      "lesson_title": "Dropping Polite Particles (ạ)",
+      "content_types": [
+        "fill_blank",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_e540445527"
+        ]
+      },
+      "grammar_tags": [
+        "GT004",
+        "GT020"
+      ],
+      "words": [
+        {
+          "id": "W_1612d5a4",
+          "vi": "ạ (sentence-end)",
+          "ipa": "",
+          "category": "politeness-fix"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_2d7bf337",
+          "vi": "To grandma (home): 'Con đói.' → Outside: 'Con đói ạ.'"
+        },
+        {
+          "id": "S_43b383d5",
+          "vi": "❌ Anh cho xin menu. ✓ Anh cho xin menu ạ."
+        },
+        {
+          "id": "S_4f534680",
+          "vi": "❌ Em không biết. ✓ Em không biết ạ."
+        },
+        {
+          "id": "S_f7f75918",
+          "vi": "In home, dropping ạ is fine. Outside home, it sounds rude."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_9e6a53f540",
+      "node_id": "heritage_u5_L036",
+      "quiz_id": null,
+      "unit_index": 5,
+      "unit_title": "Grammar Errors Heritage Speakers Make",
+      "lesson_type": "Grammar",
+      "lesson_title": "Using 'Bạn' with Elders (Wrong!)",
+      "content_types": [
+        "fill_blank",
+        "mcq_translate_to_vi"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_5d1c41336a"
+        ]
+      },
+      "grammar_tags": [
+        "GT004"
+      ],
+      "words": [
+        {
+          "id": "W_19fda050",
+          "vi": "bạn (to peer/younger)",
+          "ipa": "",
+          "category": "pronoun-fix"
+        },
+        {
+          "id": "W_3c507e98",
+          "vi": "anh/chị (to older)",
+          "ipa": "",
+          "category": "pronoun-fix"
+        },
+        {
+          "id": "W_8d554c49",
+          "vi": "ông/bà (to much older)",
+          "ipa": "",
+          "category": "pronoun-fix"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_13cd40ff",
+          "vi": "❌ Bạn khỏe không, bác? ✓ Bác khỏe không ạ?"
+        },
+        {
+          "id": "S_46387f73",
+          "vi": "❌ Bạn là giám đốc? ✓ Anh/chị là giám đốc ạ?"
+        },
+        {
+          "id": "S_1b026147",
+          "vi": "Rule: 'bạn' only for peers or younger."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_1fd3bdb0d5",
+      "node_id": "heritage_u5_L037",
+      "quiz_id": null,
+      "unit_index": 5,
+      "unit_title": "Grammar Errors Heritage Speakers Make",
+      "lesson_type": "Grammar",
+      "lesson_title": "Wrong Word Order (English Interference)",
+      "content_types": [
+        "fill_blank",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_9e6a53f540"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_f6d055d7",
+          "vi": "adjective AFTER noun",
+          "ipa": "",
+          "category": "syntax-fix"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_7d6345a3",
+          "vi": "❌ Đẹp nhà (pretty house). ✓ Nhà đẹp."
+        },
+        {
+          "id": "S_1709257a",
+          "vi": "❌ Ngon phở. ✓ Phở ngon."
+        },
+        {
+          "id": "S_7b3ae735",
+          "vi": "❌ Lớn con chó. ✓ Con chó lớn."
+        },
+        {
+          "id": "S_5c35cdb6",
+          "vi": "English: 'red shirt'. Vietnamese: 'áo đỏ' (shirt red)."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_8c2409a915",
+      "node_id": "heritage_u5_L038",
+      "quiz_id": null,
+      "unit_index": 5,
+      "unit_title": "Grammar Errors Heritage Speakers Make",
+      "lesson_type": "Grammar",
+      "lesson_title": "Possession Order (Heritage Confusion)",
+      "content_types": [
+        "fill_blank",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_1fd3bdb0d5"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_aa15ac01",
+          "vi": "của (possession)",
+          "ipa": "",
+          "category": "syntax-fix"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_81686055",
+          "vi": "❌ Mẹ của tôi nhà. ✓ Nhà của mẹ tôi / Nhà mẹ tôi."
+        },
+        {
+          "id": "S_a47d04c1",
+          "vi": "❌ Tôi của sách. ✓ Sách của tôi / Sách tôi."
+        },
+        {
+          "id": "S_83af1d6c",
+          "vi": "Casual drops 'của': nhà mẹ = nhà của mẹ."
+        },
+        {
+          "id": "S_03738880",
+          "vi": "English 'my book' = Vietnamese 'sách tôi' (book I/me)."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_0eded0a905",
+      "node_id": "heritage_u5_L039",
+      "quiz_id": null,
+      "unit_index": 5,
+      "unit_title": "Grammar Errors Heritage Speakers Make",
+      "lesson_type": "Grammar",
+      "lesson_title": "Tense Marker Misuse (đã, đang, sẽ)",
+      "content_types": [
+        "fill_blank",
+        "mcq_translate_to_vi"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_8c2409a915"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_98ec925c",
+          "vi": "đã (past)",
+          "ipa": "",
+          "category": "tense-fix"
+        },
+        {
+          "id": "W_e0ff7bdf",
+          "vi": "đang (progressive)",
+          "ipa": "",
+          "category": "tense-fix"
+        },
+        {
+          "id": "W_75403070",
+          "vi": "sẽ (future)",
+          "ipa": "",
+          "category": "tense-fix"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_c59517d2",
+          "vi": "✓ Hôm qua tôi ăn phở."
+        },
+        {
+          "id": "S_44f9e2b0",
+          "vi": "✓ Tôi đang nấu cơm."
+        },
+        {
+          "id": "S_401bb941",
+          "vi": "❌ Tôi đang ăn cơm ngày hôm qua. (doesn't make sense)"
+        },
+        {
+          "id": "S_53cac906",
+          "vi": "Time words (hôm qua, ngày mai) often replace tense markers."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_71caebb61a",
+      "node_id": "heritage_u5_L040",
+      "quiz_id": null,
+      "unit_index": 5,
+      "unit_title": "Grammar Errors Heritage Speakers Make",
+      "lesson_type": "Scene",
+      "lesson_title": "Correcting Yourself When Speaking",
+      "content_types": [
+        "listen_choose",
+        "speak_sentence"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_0eded0a905"
+        ]
+      },
+      "grammar_tags": [
+        "GT019",
+        "GT033"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_392ac2a7",
+          "vi": "Xin lỗi, tôi nói lại."
+        },
+        {
+          "id": "S_8e21051c",
+          "vi": "Ý tôi là..."
+        },
+        {
+          "id": "S_fa20cb79",
+          "vi": "Tôi học tiếng Việt chưa chuẩn lắm."
+        },
+        {
+          "id": "S_bec35e2a",
+          "vi": "Xin chỉ giúp tôi cách nói đúng."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_066a768c28",
+      "node_id": "heritage_u5_L041",
+      "quiz_id": null,
+      "unit_index": 5,
+      "unit_title": "Grammar Errors Heritage Speakers Make",
+      "lesson_type": "Scene",
+      "lesson_title": "Being Corrected by a Native Speaker",
+      "content_types": [
+        "listen_choose",
+        "translation_word_bank"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_71caebb61a"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_46f2a0ab",
+          "vi": "À, mình nói sai à?"
+        },
+        {
+          "id": "S_42e1f115",
+          "vi": "Cảm ơn chị, mình học được thêm."
+        },
+        {
+          "id": "S_4749aba3",
+          "vi": "Ghi lại giùm mình nhé."
+        },
+        {
+          "id": "S_2ed6d660",
+          "vi": "Lần sau mình sẽ nhớ."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_a814337ff7",
+      "node_id": "heritage_u5_Q042",
+      "quiz_id": "heritage_u5_Q042",
+      "unit_index": 5,
+      "unit_title": "Grammar Errors Heritage Speakers Make",
+      "lesson_type": "Quiz",
+      "lesson_title": "Grammar Fix Review",
+      "content_types": [
+        "mcq_translate_to_en",
+        "listen_choose",
+        "match_pairs"
+      ],
+      "xp_reward": 20,
+      "unlock_rule": {
+        "type": "unit_complete",
+        "requires": [
+          "L_e540445527",
+          "L_5d1c41336a",
+          "L_9e6a53f540",
+          "L_1fd3bdb0d5",
+          "L_8c2409a915",
+          "L_0eded0a905",
+          "L_71caebb61a",
+          "L_066a768c28"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_f941130a",
+          "vi": "classifier required",
+          "ipa": "",
+          "category": "classifier-fix"
+        },
+        {
+          "id": "W_56411944",
+          "vi": "ạ with elders",
+          "ipa": "",
+          "category": "politeness-fix"
+        },
+        {
+          "id": "W_99291127",
+          "vi": "bạn rule",
+          "ipa": "",
+          "category": "pronoun-fix"
+        },
+        {
+          "id": "W_6b3dd989",
+          "vi": "noun-adjective order",
+          "ipa": "",
+          "category": "syntax-fix"
+        },
+        {
+          "id": "W_324657be",
+          "vi": "possession order",
+          "ipa": "",
+          "category": "syntax-fix"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_95931e85",
+          "vi": "❌ Tôi có hai chó. ✓ Tôi có hai con chó."
+        }
+      ],
+      "matches": [
+        {
+          "id": "M_24ca61e5",
+          "text": "classifier"
+        },
+        {
+          "id": "M_8dffa8a1",
+          "text": "ạ"
+        },
+        {
+          "id": "M_2abbecfa",
+          "text": "bạn"
+        }
+      ]
+    },
+    {
+      "id": "L_0492afdba9",
+      "node_id": "heritage_u6_L043",
+      "quiz_id": null,
+      "unit_index": 6,
+      "unit_title": "Home vs Formal Register",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Home Register You Already Know",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_a814337ff7"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_d5fadb1d",
+          "vi": "ba / má",
+          "ipa": "",
+          "category": "home-register"
+        },
+        {
+          "id": "W_217b3e8a",
+          "vi": "ông / bà",
+          "ipa": "",
+          "category": "home-register"
+        },
+        {
+          "id": "W_64008df0",
+          "vi": "con",
+          "ipa": "",
+          "category": "home-register"
+        },
+        {
+          "id": "W_97d7a72e",
+          "vi": "mày / tao",
+          "ipa": "",
+          "category": "home-register"
+        },
+        {
+          "id": "W_5c470bf3",
+          "vi": "ăn cơm chưa?",
+          "ipa": "",
+          "category": "home-register"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_5608cc37",
+          "text": "ba / má"
+        },
+        {
+          "id": "M_f1166856",
+          "text": "con"
+        },
+        {
+          "id": "M_39807adf",
+          "text": "mày / tao"
+        }
+      ]
+    },
+    {
+      "id": "L_c92db77c70",
+      "node_id": "heritage_u6_L044",
+      "quiz_id": null,
+      "unit_index": 6,
+      "unit_title": "Home vs Formal Register",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Formal Register You Need to Learn",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_vi",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_0492afdba9"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_c32b76dc",
+          "vi": "bố / mẹ",
+          "ipa": "",
+          "category": "formal-register"
+        },
+        {
+          "id": "W_2202a1a8",
+          "vi": "quý vị",
+          "ipa": "",
+          "category": "formal-register"
+        },
+        {
+          "id": "W_b7d0877e",
+          "vi": "các bạn",
+          "ipa": "",
+          "category": "formal-register"
+        },
+        {
+          "id": "W_841fa407",
+          "vi": "xin chào",
+          "ipa": "",
+          "category": "formal-register"
+        },
+        {
+          "id": "W_8ae448cc",
+          "vi": "kính gửi",
+          "ipa": "",
+          "category": "formal-register"
+        },
+        {
+          "id": "W_11eaaddf",
+          "vi": "trân trọng",
+          "ipa": "",
+          "category": "formal-register"
+        }
+      ],
+      "sentences": [],
+      "matches": []
+    },
+    {
+      "id": "L_b49343b2ff",
+      "node_id": "heritage_u6_L045",
+      "quiz_id": null,
+      "unit_index": 6,
+      "unit_title": "Home vs Formal Register",
+      "lesson_type": "Grammar",
+      "lesson_title": "When to Switch Registers",
+      "content_types": [
+        "fill_blank",
+        "mcq_translate_to_vi"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_c92db77c70"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_93cfc05a",
+          "vi": "at home",
+          "ipa": "",
+          "category": "register-switch"
+        },
+        {
+          "id": "W_bb2d533b",
+          "vi": "at a restaurant",
+          "ipa": "",
+          "category": "register-switch"
+        },
+        {
+          "id": "W_ed1d8645",
+          "vi": "at the office",
+          "ipa": "",
+          "category": "register-switch"
+        },
+        {
+          "id": "W_2a27be1a",
+          "vi": "writing formal email",
+          "ipa": "",
+          "category": "register-switch"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_7d0c29e5",
+          "vi": "At home: 'Má ơi, con đói!' → At restaurant: 'Chị cho em xin menu ạ.'"
+        },
+        {
+          "id": "S_49bd8584",
+          "vi": "Calling grandpa: 'Ông ơi.' → Public speech: 'Kính thưa ông bà.'"
+        },
+        {
+          "id": "S_1fe6277f",
+          "vi": "Written email to boss uses 'bố/mẹ' spelling even if you say 'ba/má'."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_c058bbdd00",
+      "node_id": "heritage_u6_L046",
+      "quiz_id": null,
+      "unit_index": 6,
+      "unit_title": "Home vs Formal Register",
+      "lesson_type": "Grammar",
+      "lesson_title": "Titles You Might Not Know",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_b49343b2ff"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_1daa3d98",
+          "vi": "thầy",
+          "ipa": "",
+          "category": "formal-address"
+        },
+        {
+          "id": "W_858490ee",
+          "vi": "cô giáo",
+          "ipa": "",
+          "category": "formal-address"
+        },
+        {
+          "id": "W_0d9abbc3",
+          "vi": "bác sĩ",
+          "ipa": "",
+          "category": "formal-address"
+        },
+        {
+          "id": "W_2d0a1f68",
+          "vi": "sư thầy",
+          "ipa": "",
+          "category": "formal-address"
+        },
+        {
+          "id": "W_a6317765",
+          "vi": "cha",
+          "ipa": "",
+          "category": "formal-address"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_b28d3a94",
+          "vi": "Chào thầy ạ."
+        },
+        {
+          "id": "S_fd25ebfa",
+          "vi": "Cảm ơn bác sĩ."
+        },
+        {
+          "id": "S_001c4f9f",
+          "vi": "Con chào cô ạ. (to female teacher)"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_d1c10b85d5",
+      "node_id": "heritage_u6_L047",
+      "quiz_id": null,
+      "unit_index": 6,
+      "unit_title": "Home vs Formal Register",
+      "lesson_type": "Grammar",
+      "lesson_title": "Hedging & Softening (Learned Formally)",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_c058bbdd00"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_511da82e",
+          "vi": "có lẽ",
+          "ipa": "",
+          "category": "hedging"
+        },
+        {
+          "id": "W_b652bc2c",
+          "vi": "hình như",
+          "ipa": "",
+          "category": "hedging"
+        },
+        {
+          "id": "W_2be3ba86",
+          "vi": "theo em",
+          "ipa": "",
+          "category": "hedging"
+        },
+        {
+          "id": "W_3494ed73",
+          "vi": "xin phép",
+          "ipa": "",
+          "category": "hedging"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_7421fc0b",
+          "vi": "Theo em, chúng ta nên đi sớm."
+        },
+        {
+          "id": "S_38867df6",
+          "vi": "Có lẽ em hiểu sai."
+        },
+        {
+          "id": "S_62e902dc",
+          "vi": "Xin phép chị, em có câu hỏi."
+        },
+        {
+          "id": "S_fbe9ca7e",
+          "vi": "Hình như cuộc họp đã bắt đầu."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_a457e5f919",
+      "node_id": "heritage_u6_L048",
+      "quiz_id": null,
+      "unit_index": 6,
+      "unit_title": "Home vs Formal Register",
+      "lesson_type": "Scene",
+      "lesson_title": "Talking at Home vs in Public",
+      "content_types": [
+        "listen_choose",
+        "speak_sentence"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_d1c10b85d5"
+        ]
+      },
+      "grammar_tags": [
+        "GT018"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_48c12f02",
+          "vi": "[At home to mom] Má ơi, con đói bụng."
+        },
+        {
+          "id": "S_852ebb03",
+          "vi": "[At a restaurant] Chị cho em một phần cơm ạ."
+        },
+        {
+          "id": "S_fa7fff2f",
+          "vi": "[With grandma] Bà ơi, cháu đi học về rồi."
+        },
+        {
+          "id": "S_2d5ce678",
+          "vi": "[At school greeting teacher] Con chào thầy ạ."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_75a72b4f4d",
+      "node_id": "heritage_u6_L049",
+      "quiz_id": null,
+      "unit_index": 6,
+      "unit_title": "Home vs Formal Register",
+      "lesson_type": "Scene",
+      "lesson_title": "Switching to Formal Mid-conversation",
+      "content_types": [
+        "listen_choose",
+        "translation_word_bank"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_a457e5f919"
+        ]
+      },
+      "grammar_tags": [
+        "GT002"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_1a1e62ee",
+          "vi": "Ba ơi, con đi làm việc đây."
+        },
+        {
+          "id": "S_d4affed0",
+          "vi": "Dạ, em chào các anh chị, em mới đến ạ."
+        },
+        {
+          "id": "S_f56a2ac0",
+          "vi": "Thầy dạy về chủ đề hôm nay hay quá ạ."
+        },
+        {
+          "id": "S_6d2eb191",
+          "vi": "Tối về con kể cho má nghe nhé."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_6d732fc69d",
+      "node_id": "heritage_u6_Q050",
+      "quiz_id": "heritage_u6_Q050",
+      "unit_index": 6,
+      "unit_title": "Home vs Formal Register",
+      "lesson_type": "Quiz",
+      "lesson_title": "Register Review",
+      "content_types": [
+        "mcq_translate_to_en",
+        "listen_choose",
+        "match_pairs"
+      ],
+      "xp_reward": 20,
+      "unlock_rule": {
+        "type": "unit_complete",
+        "requires": [
+          "L_0492afdba9",
+          "L_c92db77c70",
+          "L_b49343b2ff",
+          "L_c058bbdd00",
+          "L_d1c10b85d5",
+          "L_a457e5f919",
+          "L_75a72b4f4d"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_a98e13b3",
+          "vi": "ba / má",
+          "ipa": "",
+          "category": "home-register"
+        },
+        {
+          "id": "W_64c26f4e",
+          "vi": "bố / mẹ",
+          "ipa": "",
+          "category": "formal-register"
+        },
+        {
+          "id": "W_528ebc10",
+          "vi": "quý vị",
+          "ipa": "",
+          "category": "formal-register"
+        },
+        {
+          "id": "W_ffe214b1",
+          "vi": "thầy",
+          "ipa": "",
+          "category": "formal-address"
+        },
+        {
+          "id": "W_c2211afb",
+          "vi": "xin phép",
+          "ipa": "",
+          "category": "hedging"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_5a5af823",
+          "vi": "Theo em, chúng ta nên đi sớm."
+        }
+      ],
+      "matches": [
+        {
+          "id": "M_65d0ff75",
+          "text": "ba"
+        },
+        {
+          "id": "M_b96ebfbe",
+          "text": "bố"
+        },
+        {
+          "id": "M_192e2cb2",
+          "text": "quý vị"
+        }
+      ]
+    },
+    {
+      "id": "L_665ebc13fc",
+      "node_id": "heritage_u7_L051",
+      "quiz_id": null,
+      "unit_index": 7,
+      "unit_title": "Vocabulary You Never Learned",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Office & Work Words (Never Heard at Home)",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_6d732fc69d"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_6ad75bf8",
+          "vi": "công ty",
+          "ipa": "",
+          "category": "work"
+        },
+        {
+          "id": "W_f83a4980",
+          "vi": "văn phòng",
+          "ipa": "",
+          "category": "work"
+        },
+        {
+          "id": "W_20ec16cf",
+          "vi": "nhân viên",
+          "ipa": "",
+          "category": "work"
+        },
+        {
+          "id": "W_614d15e3",
+          "vi": "lương",
+          "ipa": "",
+          "category": "work"
+        },
+        {
+          "id": "W_def431ee",
+          "vi": "thuế",
+          "ipa": "",
+          "category": "work"
+        },
+        {
+          "id": "W_09ed2dea",
+          "vi": "khách hàng",
+          "ipa": "",
+          "category": "work"
+        },
+        {
+          "id": "W_2f143d97",
+          "vi": "dự án",
+          "ipa": "",
+          "category": "work"
+        },
+        {
+          "id": "W_6396e7d7",
+          "vi": "hợp đồng",
+          "ipa": "",
+          "category": "work"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_c4de8e86",
+          "text": "công ty"
+        },
+        {
+          "id": "M_a35c8a87",
+          "text": "lương"
+        },
+        {
+          "id": "M_f804243c",
+          "text": "khách hàng"
+        },
+        {
+          "id": "M_8789fab8",
+          "text": "hợp đồng"
+        }
+      ]
+    },
+    {
+      "id": "L_cefbd15013",
+      "node_id": "heritage_u7_L052",
+      "quiz_id": null,
+      "unit_index": 7,
+      "unit_title": "Vocabulary You Never Learned",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Political & News Words",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_vi",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_665ebc13fc"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_81910a4a",
+          "vi": "chính phủ",
+          "ipa": "",
+          "category": "news"
+        },
+        {
+          "id": "W_0f9a80d0",
+          "vi": "bầu cử",
+          "ipa": "",
+          "category": "news"
+        },
+        {
+          "id": "W_81087809",
+          "vi": "kinh tế",
+          "ipa": "",
+          "category": "news"
+        },
+        {
+          "id": "W_2e625424",
+          "vi": "xã hội",
+          "ipa": "",
+          "category": "news"
+        },
+        {
+          "id": "W_80921b0a",
+          "vi": "đại sứ quán",
+          "ipa": "",
+          "category": "news"
+        },
+        {
+          "id": "W_0694543d",
+          "vi": "tổng thống",
+          "ipa": "",
+          "category": "news"
+        },
+        {
+          "id": "W_ad197198",
+          "vi": "thủ tướng",
+          "ipa": "",
+          "category": "news"
+        },
+        {
+          "id": "W_925f5eaa",
+          "vi": "luật pháp",
+          "ipa": "",
+          "category": "news"
+        }
+      ],
+      "sentences": [],
+      "matches": []
+    },
+    {
+      "id": "L_3dd48365cf",
+      "node_id": "heritage_u7_L053",
+      "quiz_id": null,
+      "unit_index": 7,
+      "unit_title": "Vocabulary You Never Learned",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Health & Medical (Beyond Kitchen)",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_cefbd15013"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_fd27eefd",
+          "vi": "bệnh viện",
+          "ipa": "",
+          "category": "health"
+        },
+        {
+          "id": "W_e782842d",
+          "vi": "khám bệnh",
+          "ipa": "",
+          "category": "health"
+        },
+        {
+          "id": "W_22ce5b9d",
+          "vi": "bác sĩ chuyên khoa",
+          "ipa": "",
+          "category": "health"
+        },
+        {
+          "id": "W_8cacbe0e",
+          "vi": "tiểu đường",
+          "ipa": "",
+          "category": "health"
+        },
+        {
+          "id": "W_b19685aa",
+          "vi": "huyết áp",
+          "ipa": "",
+          "category": "health"
+        },
+        {
+          "id": "W_ddaa49bd",
+          "vi": "thuốc kháng sinh",
+          "ipa": "",
+          "category": "health"
+        },
+        {
+          "id": "W_9d8de110",
+          "vi": "tiêm vắc-xin",
+          "ipa": "",
+          "category": "health"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_8d349713",
+          "text": "bệnh viện"
+        },
+        {
+          "id": "M_407ec7b4",
+          "text": "huyết áp"
+        },
+        {
+          "id": "M_bbaca860",
+          "text": "tiểu đường"
+        }
+      ]
+    },
+    {
+      "id": "L_36855972ac",
+      "node_id": "heritage_u7_L054",
+      "quiz_id": null,
+      "unit_index": 7,
+      "unit_title": "Vocabulary You Never Learned",
+      "lesson_type": "Grammar",
+      "lesson_title": "Sino-Vietnamese vs Pure Vietnamese",
+      "content_types": [
+        "fill_blank",
+        "mcq_translate_to_vi"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_3dd48365cf"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_3833735f",
+          "vi": "Sino-Vietnamese",
+          "ipa": "",
+          "category": "vocab-origin"
+        },
+        {
+          "id": "W_18ad11d8",
+          "vi": "Pure Vietnamese",
+          "ipa": "",
+          "category": "vocab-origin"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_42b9f31c",
+          "vi": "phụ huynh (Sino) = ba mẹ (pure): parents"
+        },
+        {
+          "id": "S_f843bc53",
+          "vi": "gia đình (Sino) = nhà (pure): family"
+        },
+        {
+          "id": "S_80dd36c8",
+          "vi": "y tá (Sino) = người chăm sóc (pure): nurse"
+        },
+        {
+          "id": "S_18bd77b1",
+          "vi": "Heritage knows pure Vietnamese. Reading needs Sino."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_f5165acf94",
+      "node_id": "heritage_u7_L055",
+      "quiz_id": null,
+      "unit_index": 7,
+      "unit_title": "Vocabulary You Never Learned",
+      "lesson_type": "Grammar",
+      "lesson_title": "Reading News Headlines",
+      "content_types": [
+        "fill_blank",
+        "mcq_translate_to_en"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_36855972ac"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_77d19095",
+          "vi": "tăng / giảm",
+          "ipa": "",
+          "category": "news"
+        },
+        {
+          "id": "W_bb171564",
+          "vi": "công bố",
+          "ipa": "",
+          "category": "news"
+        },
+        {
+          "id": "W_9d0dd8dc",
+          "vi": "bùng phát",
+          "ipa": "",
+          "category": "news"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_17c200d6",
+          "vi": "Kinh tế Việt Nam tăng trưởng 6% năm 2024."
+        },
+        {
+          "id": "S_2cbad123",
+          "vi": "Chính phủ công bố chính sách mới về thuế."
+        },
+        {
+          "id": "S_e20d8ca5",
+          "vi": "Số ca COVID bùng phát ở Hà Nội."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_3d365cfc84",
+      "node_id": "heritage_u7_L056",
+      "quiz_id": null,
+      "unit_index": 7,
+      "unit_title": "Vocabulary You Never Learned",
+      "lesson_type": "Grammar",
+      "lesson_title": "Reading a Job Posting",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_f5165acf94"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_30721ee2",
+          "vi": "tuyển dụng",
+          "ipa": "",
+          "category": "work"
+        },
+        {
+          "id": "W_49d18e5a",
+          "vi": "yêu cầu",
+          "ipa": "",
+          "category": "work"
+        },
+        {
+          "id": "W_8c945af8",
+          "vi": "kinh nghiệm",
+          "ipa": "",
+          "category": "work"
+        },
+        {
+          "id": "W_c0d0e4fb",
+          "vi": "mô tả công việc",
+          "ipa": "",
+          "category": "work"
+        },
+        {
+          "id": "W_f8e846aa",
+          "vi": "gửi hồ sơ",
+          "ipa": "",
+          "category": "work"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_9c4a2d48",
+          "vi": "Công ty tuyển dụng nhân viên marketing."
+        },
+        {
+          "id": "S_6c859fe2",
+          "vi": "Yêu cầu: 2 năm kinh nghiệm."
+        },
+        {
+          "id": "S_158b1ba0",
+          "vi": "Vui lòng gửi hồ sơ qua email."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_ff3886c59a",
+      "node_id": "heritage_u7_L057",
+      "quiz_id": null,
+      "unit_index": 7,
+      "unit_title": "Vocabulary You Never Learned",
+      "lesson_type": "Scene",
+      "lesson_title": "Reading a Vietnamese Newspaper Headline",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_3d365cfc84"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_915b874a",
+          "vi": "TP.HCM: Giá nhà tăng 15% trong quý 1."
+        },
+        {
+          "id": "S_18dcfe70",
+          "vi": "Việt Nam ký hợp đồng hợp tác với Nhật Bản."
+        },
+        {
+          "id": "S_f37a8519",
+          "vi": "Bộ Giáo dục công bố đề thi tốt nghiệp."
+        },
+        {
+          "id": "S_4fd25b4c",
+          "vi": "Thời tiết: Miền Bắc có mưa lớn cuối tuần."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_609c48f28c",
+      "node_id": "heritage_u7_L058",
+      "quiz_id": null,
+      "unit_index": 7,
+      "unit_title": "Vocabulary You Never Learned",
+      "lesson_type": "Scene",
+      "lesson_title": "Doctor's Office — Adult Health Issues",
+      "content_types": [
+        "listen_choose",
+        "translation_word_bank"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_ff3886c59a"
+        ]
+      },
+      "grammar_tags": [
+        "GT005"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_d62f2151",
+          "vi": "Chào bác sĩ, tôi đi khám định kỳ."
+        },
+        {
+          "id": "S_eafc6a4e",
+          "vi": "Gia đình tôi có người bị tiểu đường."
+        },
+        {
+          "id": "S_c1811d22",
+          "vi": "Huyết áp của tôi thế nào?"
+        },
+        {
+          "id": "S_d7b2db83",
+          "vi": "Tôi cần tiêm vắc-xin cúm không?"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_a8bd184866",
+      "node_id": "heritage_u7_Q059",
+      "quiz_id": "heritage_u7_Q059",
+      "unit_index": 7,
+      "unit_title": "Vocabulary You Never Learned",
+      "lesson_type": "Quiz",
+      "lesson_title": "New Vocabulary Review",
+      "content_types": [
+        "mcq_translate_to_en",
+        "listen_choose",
+        "match_pairs"
+      ],
+      "xp_reward": 20,
+      "unlock_rule": {
+        "type": "unit_complete",
+        "requires": [
+          "L_665ebc13fc",
+          "L_cefbd15013",
+          "L_3dd48365cf",
+          "L_36855972ac",
+          "L_f5165acf94",
+          "L_3d365cfc84",
+          "L_ff3886c59a",
+          "L_609c48f28c"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_f0345c48",
+          "vi": "công ty",
+          "ipa": "",
+          "category": "work"
+        },
+        {
+          "id": "W_434e8748",
+          "vi": "chính phủ",
+          "ipa": "",
+          "category": "news"
+        },
+        {
+          "id": "W_f5d172da",
+          "vi": "bệnh viện",
+          "ipa": "",
+          "category": "health"
+        },
+        {
+          "id": "W_4b0e1416",
+          "vi": "phụ huynh",
+          "ipa": "",
+          "category": "vocab-origin"
+        },
+        {
+          "id": "W_2ec934f3",
+          "vi": "tuyển dụng",
+          "ipa": "",
+          "category": "work"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_33368cf9",
+          "vi": "Công ty tuyển dụng nhân viên marketing."
+        }
+      ],
+      "matches": [
+        {
+          "id": "M_18ea9193",
+          "text": "công ty"
+        },
+        {
+          "id": "M_116de651",
+          "text": "chính phủ"
+        },
+        {
+          "id": "M_eb595fc4",
+          "text": "huyết áp"
+        }
+      ]
+    },
+    {
+      "id": "L_998a56cc0f",
+      "node_id": "heritage_u8_L060",
+      "quiz_id": null,
+      "unit_index": 8,
+      "unit_title": "Proverbs & Idioms",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Common Proverbs You Might've Heard",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_a8bd184866"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_5eb73e46",
+          "vi": "không có gì là không thể",
+          "ipa": "",
+          "category": "proverb"
+        },
+        {
+          "id": "W_d9e0a05e",
+          "vi": "ăn quả nhớ kẻ trồng cây",
+          "ipa": "",
+          "category": "proverb"
+        },
+        {
+          "id": "W_70c68c5f",
+          "vi": "một giọt máu đào hơn ao nước lã",
+          "ipa": "",
+          "category": "proverb"
+        },
+        {
+          "id": "W_dc53fe6c",
+          "vi": "lá rụng về cội",
+          "ipa": "",
+          "category": "proverb"
+        },
+        {
+          "id": "W_f26c67d3",
+          "vi": "có công mài sắt, có ngày nên kim",
+          "ipa": "",
+          "category": "proverb"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_a8f21d7c",
+          "text": "ăn quả nhớ kẻ trồng cây"
+        },
+        {
+          "id": "M_5db8e285",
+          "text": "lá rụng về cội"
+        }
+      ]
+    },
+    {
+      "id": "L_5645fadc15",
+      "node_id": "heritage_u8_L061",
+      "quiz_id": null,
+      "unit_index": 8,
+      "unit_title": "Proverbs & Idioms",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Family-Themed Idioms",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_vi",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_998a56cc0f"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_f2c6b08a",
+          "vi": "anh em như thể chân tay",
+          "ipa": "",
+          "category": "idiom"
+        },
+        {
+          "id": "W_7ab6adcc",
+          "vi": "cha mẹ nuôi con biển hồ lai láng",
+          "ipa": "",
+          "category": "idiom"
+        },
+        {
+          "id": "W_1947d0aa",
+          "vi": "con hơn cha là nhà có phúc",
+          "ipa": "",
+          "category": "idiom"
+        },
+        {
+          "id": "W_e720d258",
+          "vi": "máu chảy ruột mềm",
+          "ipa": "",
+          "category": "idiom"
+        },
+        {
+          "id": "W_46666f72",
+          "vi": "cây có cội, nước có nguồn",
+          "ipa": "",
+          "category": "idiom"
+        }
+      ],
+      "sentences": [],
+      "matches": []
+    },
+    {
+      "id": "L_322c917dd0",
+      "node_id": "heritage_u8_L062",
+      "quiz_id": null,
+      "unit_index": 8,
+      "unit_title": "Proverbs & Idioms",
+      "lesson_type": "Grammar",
+      "lesson_title": "Using Proverbs in Conversation",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_5645fadc15"
+        ]
+      },
+      "grammar_tags": [
+        "GT022",
+        "GT025"
+      ],
+      "words": [
+        {
+          "id": "W_03931d89",
+          "vi": "ông bà ta có câu",
+          "ipa": "",
+          "category": "introducing"
+        },
+        {
+          "id": "W_f673d2d2",
+          "vi": "như câu nói",
+          "ipa": "",
+          "category": "introducing"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_f0997a21",
+          "vi": "Ông bà ta có câu 'ăn quả nhớ kẻ trồng cây'."
+        },
+        {
+          "id": "S_ac5d701e",
+          "vi": "Như câu nói 'lá rụng về cội', tôi muốn về Việt Nam."
+        },
+        {
+          "id": "S_3b05235b",
+          "vi": "Có câu 'con hơn cha là nhà có phúc'."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_01b9febe3f",
+      "node_id": "heritage_u8_L063",
+      "quiz_id": null,
+      "unit_index": 8,
+      "unit_title": "Proverbs & Idioms",
+      "lesson_type": "Grammar",
+      "lesson_title": "Chúc — Formal Wishes & Blessings",
+      "content_types": [
+        "fill_blank",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_322c917dd0"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_ba6ae6d2",
+          "vi": "chúc sức khỏe",
+          "ipa": "",
+          "category": "blessing"
+        },
+        {
+          "id": "W_12291931",
+          "vi": "chúc thành công",
+          "ipa": "",
+          "category": "blessing"
+        },
+        {
+          "id": "W_8a16b1b5",
+          "vi": "chúc vạn sự như ý",
+          "ipa": "",
+          "category": "blessing"
+        },
+        {
+          "id": "W_5b694c0b",
+          "vi": "chúc bình an",
+          "ipa": "",
+          "category": "blessing"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_2fb16354",
+          "vi": "Chúc ông bà sức khỏe và bình an."
+        },
+        {
+          "id": "S_04828011",
+          "vi": "Chúc anh chị vạn sự như ý."
+        },
+        {
+          "id": "S_cbe96231",
+          "vi": "Chúc em thi tốt!"
+        },
+        {
+          "id": "S_9a42a502",
+          "vi": "Chúc gia đình một năm mới thành công."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_e66a2be748",
+      "node_id": "heritage_u8_L064",
+      "quiz_id": null,
+      "unit_index": 8,
+      "unit_title": "Proverbs & Idioms",
+      "lesson_type": "Grammar",
+      "lesson_title": "Tết Greetings in Detail",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_01b9febe3f"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_cb7a6a33",
+          "vi": "chúc mừng năm mới",
+          "ipa": "",
+          "category": "tet"
+        },
+        {
+          "id": "W_a0a8a9cb",
+          "vi": "an khang thịnh vượng",
+          "ipa": "",
+          "category": "tet"
+        },
+        {
+          "id": "W_9baaddbe",
+          "vi": "vạn sự như ý",
+          "ipa": "",
+          "category": "tet"
+        },
+        {
+          "id": "W_3c36c61b",
+          "vi": "tiền vô như nước",
+          "ipa": "",
+          "category": "tet"
+        },
+        {
+          "id": "W_8bb2a243",
+          "vi": "phát tài phát lộc",
+          "ipa": "",
+          "category": "tet"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_212d8d6d",
+          "vi": "Chúc mừng năm mới, chúc cả nhà an khang thịnh vượng."
+        },
+        {
+          "id": "S_ad0e8bc3",
+          "vi": "Chúc ông bà sống lâu trăm tuổi."
+        },
+        {
+          "id": "S_9400504a",
+          "vi": "Chúc các em học giỏi, chăm ngoan."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_3480635989",
+      "node_id": "heritage_u8_L065",
+      "quiz_id": null,
+      "unit_index": 8,
+      "unit_title": "Proverbs & Idioms",
+      "lesson_type": "Scene",
+      "lesson_title": "Visiting Elders for Tết",
+      "content_types": [
+        "listen_choose",
+        "speak_sentence"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_e66a2be748"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_aab4d18f",
+          "vi": "Thưa ông bà, cháu đến chúc Tết ạ."
+        },
+        {
+          "id": "S_ee251bfc",
+          "vi": "Chúc ông bà một năm mới mạnh khỏe."
+        },
+        {
+          "id": "S_f4ff479e",
+          "vi": "Cháu xin lì xì ông bà ạ."
+        },
+        {
+          "id": "S_c6c68cfa",
+          "vi": "Cảm ơn ông bà!"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_2d27b07c6d",
+      "node_id": "heritage_u8_L066",
+      "quiz_id": null,
+      "unit_index": 8,
+      "unit_title": "Proverbs & Idioms",
+      "lesson_type": "Scene",
+      "lesson_title": "Using a Proverb Appropriately",
+      "content_types": [
+        "listen_choose",
+        "translation_word_bank"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_3480635989"
+        ]
+      },
+      "grammar_tags": [
+        "GT021",
+        "GT031",
+        "GT042"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_5cd13bdc",
+          "vi": "Mẹ em dạy em: 'Ăn quả nhớ kẻ trồng cây.'"
+        },
+        {
+          "id": "S_d69ab926",
+          "vi": "Tôi rất biết ơn ba mẹ đã cho tôi cơ hội."
+        },
+        {
+          "id": "S_89033d62",
+          "vi": "Câu này ba tôi hay nói."
+        },
+        {
+          "id": "S_cfc77ac5",
+          "vi": "Bây giờ tôi mới hiểu ý nghĩa."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_60023025d2",
+      "node_id": "heritage_u8_Q067",
+      "quiz_id": "heritage_u8_Q067",
+      "unit_index": 8,
+      "unit_title": "Proverbs & Idioms",
+      "lesson_type": "Quiz",
+      "lesson_title": "Proverbs & Idioms Review",
+      "content_types": [
+        "mcq_translate_to_en",
+        "listen_choose",
+        "match_pairs"
+      ],
+      "xp_reward": 20,
+      "unlock_rule": {
+        "type": "unit_complete",
+        "requires": [
+          "L_998a56cc0f",
+          "L_5645fadc15",
+          "L_322c917dd0",
+          "L_01b9febe3f",
+          "L_e66a2be748",
+          "L_3480635989",
+          "L_2d27b07c6d"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_ea3691ce",
+          "vi": "ăn quả nhớ kẻ trồng cây",
+          "ipa": "",
+          "category": "proverb"
+        },
+        {
+          "id": "W_21b74c98",
+          "vi": "lá rụng về cội",
+          "ipa": "",
+          "category": "proverb"
+        },
+        {
+          "id": "W_dfa6f0d0",
+          "vi": "anh em như thể chân tay",
+          "ipa": "",
+          "category": "idiom"
+        },
+        {
+          "id": "W_68f04a10",
+          "vi": "chúc mừng năm mới",
+          "ipa": "",
+          "category": "tet"
+        },
+        {
+          "id": "W_0ef372e2",
+          "vi": "an khang thịnh vượng",
+          "ipa": "",
+          "category": "tet"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_7badb38d",
+          "vi": "Chúc ông bà sức khỏe và bình an."
+        }
+      ],
+      "matches": [
+        {
+          "id": "M_473c6575",
+          "text": "ăn quả nhớ kẻ trồng cây"
+        },
+        {
+          "id": "M_0b7b5ebd",
+          "text": "lá rụng về cội"
+        },
+        {
+          "id": "M_30f09864",
+          "text": "chúc mừng năm mới"
+        }
+      ]
+    },
+    {
+      "id": "L_4a0243dba5",
+      "node_id": "heritage_u9_L068",
+      "quiz_id": null,
+      "unit_index": 9,
+      "unit_title": "Formal Occasions & Ceremonies",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Weddings",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_60023025d2"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_e158d389",
+          "vi": "đám cưới",
+          "ipa": "",
+          "category": "ceremony"
+        },
+        {
+          "id": "W_bd473d09",
+          "vi": "lễ cưới",
+          "ipa": "",
+          "category": "ceremony"
+        },
+        {
+          "id": "W_0683af69",
+          "vi": "cô dâu",
+          "ipa": "",
+          "category": "ceremony"
+        },
+        {
+          "id": "W_de3d8807",
+          "vi": "chú rể",
+          "ipa": "",
+          "category": "ceremony"
+        },
+        {
+          "id": "W_be3ab062",
+          "vi": "nhà gái",
+          "ipa": "",
+          "category": "ceremony"
+        },
+        {
+          "id": "W_e8a53014",
+          "vi": "nhà trai",
+          "ipa": "",
+          "category": "ceremony"
+        },
+        {
+          "id": "W_bbcfd789",
+          "vi": "phong bì mừng",
+          "ipa": "",
+          "category": "ceremony"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_f4caa9fa",
+          "text": "đám cưới"
+        },
+        {
+          "id": "M_7bc78181",
+          "text": "cô dâu"
+        },
+        {
+          "id": "M_45251623",
+          "text": "chú rể"
+        }
+      ]
+    },
+    {
+      "id": "L_15e8b9ea28",
+      "node_id": "heritage_u9_L069",
+      "quiz_id": null,
+      "unit_index": 9,
+      "unit_title": "Formal Occasions & Ceremonies",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Funerals & Mourning",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_vi",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_4a0243dba5"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_f27c61c8",
+          "vi": "đám tang",
+          "ipa": "",
+          "category": "mourning"
+        },
+        {
+          "id": "W_d0e2edbd",
+          "vi": "tang lễ",
+          "ipa": "",
+          "category": "mourning"
+        },
+        {
+          "id": "W_f55fcb79",
+          "vi": "người qua đời",
+          "ipa": "",
+          "category": "mourning"
+        },
+        {
+          "id": "W_cf8a7560",
+          "vi": "chia buồn",
+          "ipa": "",
+          "category": "mourning"
+        },
+        {
+          "id": "W_d9328bdc",
+          "vi": "viếng",
+          "ipa": "",
+          "category": "mourning"
+        },
+        {
+          "id": "W_701c6e3d",
+          "vi": "hương",
+          "ipa": "",
+          "category": "mourning"
+        },
+        {
+          "id": "W_4d6a7d24",
+          "vi": "mộ",
+          "ipa": "",
+          "category": "mourning"
+        }
+      ],
+      "sentences": [],
+      "matches": []
+    },
+    {
+      "id": "L_66798970e5",
+      "node_id": "heritage_u9_L070",
+      "quiz_id": null,
+      "unit_index": 9,
+      "unit_title": "Formal Occasions & Ceremonies",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Ancestor Worship & Religion",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_15e8b9ea28"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_62776aa4",
+          "vi": "thờ cúng",
+          "ipa": "",
+          "category": "religion"
+        },
+        {
+          "id": "W_cfe548c8",
+          "vi": "ông bà tổ tiên",
+          "ipa": "",
+          "category": "religion"
+        },
+        {
+          "id": "W_91edf0b3",
+          "vi": "bàn thờ",
+          "ipa": "",
+          "category": "religion"
+        },
+        {
+          "id": "W_217b7c45",
+          "vi": "thắp hương / thắp nhang",
+          "ipa": "",
+          "category": "religion"
+        },
+        {
+          "id": "W_d4377ce1",
+          "vi": "cúng",
+          "ipa": "",
+          "category": "religion"
+        },
+        {
+          "id": "W_e7cbc6cb",
+          "vi": "chùa",
+          "ipa": "",
+          "category": "religion"
+        },
+        {
+          "id": "W_e9bf2920",
+          "vi": "đi lễ",
+          "ipa": "",
+          "category": "religion"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_f3e33313",
+          "text": "ông bà tổ tiên"
+        },
+        {
+          "id": "M_3de0725e",
+          "text": "bàn thờ"
+        },
+        {
+          "id": "M_764824e5",
+          "text": "thắp hương"
+        }
+      ]
+    },
+    {
+      "id": "L_76d41b9c91",
+      "node_id": "heritage_u9_L071",
+      "quiz_id": null,
+      "unit_index": 9,
+      "unit_title": "Formal Occasions & Ceremonies",
+      "lesson_type": "Grammar",
+      "lesson_title": "Formal Congratulations",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_66798970e5"
+        ]
+      },
+      "grammar_tags": [
+        "GT041"
+      ],
+      "words": [
+        {
+          "id": "W_ff6392ea",
+          "vi": "xin chúc mừng",
+          "ipa": "",
+          "category": "ceremony"
+        },
+        {
+          "id": "W_a6f1e1ef",
+          "vi": "trăm năm hạnh phúc",
+          "ipa": "",
+          "category": "ceremony"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_0cb0111e",
+          "vi": "Xin chúc mừng cô dâu chú rể."
+        },
+        {
+          "id": "S_01a0ad2d",
+          "vi": "Chúc hai cháu trăm năm hạnh phúc."
+        },
+        {
+          "id": "S_913ad330",
+          "vi": "Chúc gia đình luôn vui vẻ."
+        },
+        {
+          "id": "S_e65521b4",
+          "vi": "Thay mặt gia đình xin cảm ơn quý vị."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_9a2f04e9b8",
+      "node_id": "heritage_u9_L072",
+      "quiz_id": null,
+      "unit_index": 9,
+      "unit_title": "Formal Occasions & Ceremonies",
+      "lesson_type": "Grammar",
+      "lesson_title": "Giving Condolences Properly",
+      "content_types": [
+        "fill_blank",
+        "mcq_translate_to_vi"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_76d41b9c91"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_0400c2fe",
+          "vi": "chia buồn",
+          "ipa": "",
+          "category": "mourning"
+        },
+        {
+          "id": "W_b90d4c08",
+          "vi": "thành kính phân ưu",
+          "ipa": "",
+          "category": "mourning"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_7648e8ef",
+          "vi": "Xin chia buồn cùng gia đình."
+        },
+        {
+          "id": "S_0f296250",
+          "vi": "Thành kính phân ưu cùng anh chị."
+        },
+        {
+          "id": "S_bcccea72",
+          "vi": "Cầu mong người đã khuất được yên nghỉ."
+        },
+        {
+          "id": "S_039e9456",
+          "vi": "Cả gia đình chúng tôi xin chia buồn."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_22195bbe8e",
+      "node_id": "heritage_u9_L073",
+      "quiz_id": null,
+      "unit_index": 9,
+      "unit_title": "Formal Occasions & Ceremonies",
+      "lesson_type": "Grammar",
+      "lesson_title": "Thanking at Ceremonies",
+      "content_types": [
+        "fill_blank",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_9a2f04e9b8"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_86434cb5",
+          "vi": "thay mặt",
+          "ipa": "",
+          "category": "ceremony"
+        },
+        {
+          "id": "W_87fb5b77",
+          "vi": "chân thành cảm ơn",
+          "ipa": "",
+          "category": "ceremony"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_c02c6d72",
+          "vi": "Thay mặt gia đình, chân thành cảm ơn quý vị."
+        },
+        {
+          "id": "S_67678682",
+          "vi": "Cảm ơn anh chị đã đến chia vui."
+        },
+        {
+          "id": "S_b7282a7c",
+          "vi": "Cảm ơn mọi người đã đến viếng."
+        },
+        {
+          "id": "S_f7dbc676",
+          "vi": "Sự hiện diện của quý vị là vinh dự của chúng tôi."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_1175a93dd3",
+      "node_id": "heritage_u9_L074",
+      "quiz_id": null,
+      "unit_index": 9,
+      "unit_title": "Formal Occasions & Ceremonies",
+      "lesson_type": "Scene",
+      "lesson_title": "Attending a Relative's Wedding",
+      "content_types": [
+        "listen_choose",
+        "speak_sentence"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_22195bbe8e"
+        ]
+      },
+      "grammar_tags": [
+        "GT031",
+        "GT043"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_da5137a2",
+          "vi": "Xin chào anh chị, chúc mừng ngày trọng đại."
+        },
+        {
+          "id": "S_3fe691af",
+          "vi": "Đây là phong bì mừng từ gia đình em."
+        },
+        {
+          "id": "S_61fba187",
+          "vi": "Chúc hai anh chị trăm năm hạnh phúc."
+        },
+        {
+          "id": "S_c59275bd",
+          "vi": "Em rất vui được tham dự."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_c7ee359714",
+      "node_id": "heritage_u9_L075",
+      "quiz_id": null,
+      "unit_index": 9,
+      "unit_title": "Formal Occasions & Ceremonies",
+      "lesson_type": "Scene",
+      "lesson_title": "At a Funeral Service",
+      "content_types": [
+        "listen_choose",
+        "translation_word_bank"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_1175a93dd3"
+        ]
+      },
+      "grammar_tags": [
+        "GT033"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_5ce768bc",
+          "vi": "Con đến thắp hương ông ạ."
+        },
+        {
+          "id": "S_df27be31",
+          "vi": "Thành kính phân ưu cùng gia đình."
+        },
+        {
+          "id": "S_62272992",
+          "vi": "Con nhớ ông bà lắm."
+        },
+        {
+          "id": "S_bdd32b55",
+          "vi": "Cả nhà con xin chia buồn."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_a0fb16c396",
+      "node_id": "heritage_u9_Q076",
+      "quiz_id": "heritage_u9_Q076",
+      "unit_index": 9,
+      "unit_title": "Formal Occasions & Ceremonies",
+      "lesson_type": "Quiz",
+      "lesson_title": "Ceremonies Review",
+      "content_types": [
+        "mcq_translate_to_en",
+        "listen_choose",
+        "match_pairs"
+      ],
+      "xp_reward": 20,
+      "unlock_rule": {
+        "type": "unit_complete",
+        "requires": [
+          "L_4a0243dba5",
+          "L_15e8b9ea28",
+          "L_66798970e5",
+          "L_76d41b9c91",
+          "L_9a2f04e9b8",
+          "L_22195bbe8e",
+          "L_1175a93dd3",
+          "L_c7ee359714"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_c4cb9d0b",
+          "vi": "đám cưới",
+          "ipa": "",
+          "category": "ceremony"
+        },
+        {
+          "id": "W_0b3782e1",
+          "vi": "đám tang",
+          "ipa": "",
+          "category": "mourning"
+        },
+        {
+          "id": "W_480833bf",
+          "vi": "chia buồn",
+          "ipa": "",
+          "category": "mourning"
+        },
+        {
+          "id": "W_40644a2a",
+          "vi": "thắp hương",
+          "ipa": "",
+          "category": "religion"
+        },
+        {
+          "id": "W_66c8f3b9",
+          "vi": "ông bà tổ tiên",
+          "ipa": "",
+          "category": "religion"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_bc318f4b",
+          "vi": "Chúc hai cháu trăm năm hạnh phúc."
+        }
+      ],
+      "matches": [
+        {
+          "id": "M_3a39b5cf",
+          "text": "đám cưới"
+        },
+        {
+          "id": "M_fb88994e",
+          "text": "đám tang"
+        },
+        {
+          "id": "M_57bda301",
+          "text": "thắp hương"
+        },
+        {
+          "id": "M_86fe47cb",
+          "text": "chia buồn"
+        }
+      ]
+    },
+    {
+      "id": "L_5cbf7aa830",
+      "node_id": "heritage_u10_L077",
+      "quiz_id": null,
+      "unit_index": 10,
+      "unit_title": "Reconnecting with Vietnam",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Heritage & Identity",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_a0fb16c396"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_e0c977ac",
+          "vi": "gốc Việt",
+          "ipa": "",
+          "category": "identity"
+        },
+        {
+          "id": "W_d10c527a",
+          "vi": "Việt kiều",
+          "ipa": "",
+          "category": "identity"
+        },
+        {
+          "id": "W_a147df10",
+          "vi": "thế hệ thứ hai",
+          "ipa": "",
+          "category": "identity"
+        },
+        {
+          "id": "W_6746d11d",
+          "vi": "người Mỹ gốc Việt",
+          "ipa": "",
+          "category": "identity"
+        },
+        {
+          "id": "W_09d9b000",
+          "vi": "quê hương",
+          "ipa": "",
+          "category": "identity"
+        },
+        {
+          "id": "W_98b04eec",
+          "vi": "nguồn cội",
+          "ipa": "",
+          "category": "identity"
+        },
+        {
+          "id": "W_f2a58f0a",
+          "vi": "mất gốc",
+          "ipa": "",
+          "category": "identity"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_038a1f7a",
+          "text": "gốc Việt"
+        },
+        {
+          "id": "M_61e0e26c",
+          "text": "Việt kiều"
+        },
+        {
+          "id": "M_4e9beda5",
+          "text": "quê hương"
+        }
+      ]
+    },
+    {
+      "id": "L_4eb26281aa",
+      "node_id": "heritage_u10_L078",
+      "quiz_id": null,
+      "unit_index": 10,
+      "unit_title": "Reconnecting with Vietnam",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Visiting Vietnam as a Returnee",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_vi",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_5cbf7aa830"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_19d93086",
+          "vi": "về nước",
+          "ipa": "",
+          "category": "return"
+        },
+        {
+          "id": "W_e122f57d",
+          "vi": "về thăm",
+          "ipa": "",
+          "category": "return"
+        },
+        {
+          "id": "W_1ba4f352",
+          "vi": "bà con",
+          "ipa": "",
+          "category": "return"
+        },
+        {
+          "id": "W_9e31a4e5",
+          "vi": "họ hàng",
+          "ipa": "",
+          "category": "return"
+        },
+        {
+          "id": "W_60d77318",
+          "vi": "quê nội",
+          "ipa": "",
+          "category": "return"
+        },
+        {
+          "id": "W_c06ef813",
+          "vi": "quê ngoại",
+          "ipa": "",
+          "category": "return"
+        },
+        {
+          "id": "W_ef4e5973",
+          "vi": "thờ cúng tổ tiên",
+          "ipa": "",
+          "category": "return"
+        }
+      ],
+      "sentences": [],
+      "matches": []
+    },
+    {
+      "id": "L_cd859755ce",
+      "node_id": "heritage_u10_L079",
+      "quiz_id": null,
+      "unit_index": 10,
+      "unit_title": "Reconnecting with Vietnam",
+      "lesson_type": "Grammar",
+      "lesson_title": "Talking About Your Heritage Journey",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_4eb26281aa"
+        ]
+      },
+      "grammar_tags": [
+        "GT022"
+      ],
+      "words": [
+        {
+          "id": "W_0c383e66",
+          "vi": "sinh ra ở",
+          "ipa": "",
+          "category": "identity"
+        },
+        {
+          "id": "W_ef969bfd",
+          "vi": "lớn lên ở",
+          "ipa": "",
+          "category": "identity"
+        },
+        {
+          "id": "W_409d025a",
+          "vi": "gốc Việt",
+          "ipa": "",
+          "category": "identity"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_e37d6b1a",
+          "vi": "Tôi sinh ra ở Mỹ nhưng gốc Việt."
+        },
+        {
+          "id": "S_431947bb",
+          "vi": "Ba mẹ tôi từ Việt Nam sang Mỹ năm 1975."
+        },
+        {
+          "id": "S_de7271f2",
+          "vi": "Tôi lớn lên nói tiếng Anh nhưng hiểu tiếng Việt."
+        },
+        {
+          "id": "S_8cd70d18",
+          "vi": "Tôi muốn học tiếng Việt để kết nối với văn hóa."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_1ae1c0757e",
+      "node_id": "heritage_u10_L080",
+      "quiz_id": null,
+      "unit_index": 10,
+      "unit_title": "Reconnecting with Vietnam",
+      "lesson_type": "Grammar",
+      "lesson_title": "Explaining Your Language Level",
+      "content_types": [
+        "fill_blank",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_cd859755ce"
+        ]
+      },
+      "grammar_tags": [
+        "GT019",
+        "GT025"
+      ],
+      "words": [
+        {
+          "id": "W_f4cd2d80",
+          "vi": "nói được",
+          "ipa": "",
+          "category": "ability"
+        },
+        {
+          "id": "W_8f557492",
+          "vi": "hiểu được",
+          "ipa": "",
+          "category": "ability"
+        },
+        {
+          "id": "W_c2d70457",
+          "vi": "chưa viết được",
+          "ipa": "",
+          "category": "ability"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_e875b7d3",
+          "vi": "Tôi nói được nhưng chưa viết được."
+        },
+        {
+          "id": "S_0c63e888",
+          "vi": "Tôi hiểu nhiều hơn nói."
+        },
+        {
+          "id": "S_654d27ca",
+          "vi": "Tôi đang học để đọc và viết."
+        },
+        {
+          "id": "S_126b2ab8",
+          "vi": "Tôi nghe được nhưng phát âm chưa chuẩn."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_6a71a577d8",
+      "node_id": "heritage_u10_L081",
+      "quiz_id": null,
+      "unit_index": 10,
+      "unit_title": "Reconnecting with Vietnam",
+      "lesson_type": "Grammar",
+      "lesson_title": "Meeting Relatives for the First Time",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_1ae1c0757e"
+        ]
+      },
+      "grammar_tags": [
+        "GT043"
+      ],
+      "words": [
+        {
+          "id": "W_434dfb3b",
+          "vi": "lần đầu gặp",
+          "ipa": "",
+          "category": "return"
+        },
+        {
+          "id": "W_392258ea",
+          "vi": "nhận ra",
+          "ipa": "",
+          "category": "return"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_539c2ca1",
+          "vi": "Đây là lần đầu con gặp bác ạ."
+        },
+        {
+          "id": "S_9590eb6c",
+          "vi": "Con là cháu của cô Mai."
+        },
+        {
+          "id": "S_f5eadb70",
+          "vi": "Ba con hay kể về bác."
+        },
+        {
+          "id": "S_ac4995b8",
+          "vi": "Con nhìn giống ai trong gia đình?"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_4c52505ee3",
+      "node_id": "heritage_u10_L082",
+      "quiz_id": null,
+      "unit_index": 10,
+      "unit_title": "Reconnecting with Vietnam",
+      "lesson_type": "Grammar",
+      "lesson_title": "Expressing Emotional Connection",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_6a71a577d8"
+        ]
+      },
+      "grammar_tags": [
+        "GT031",
+        "GT043"
+      ],
+      "words": [
+        {
+          "id": "W_deb39e3b",
+          "vi": "xúc động",
+          "ipa": "",
+          "category": "emotion"
+        },
+        {
+          "id": "W_6034b935",
+          "vi": "tự hào",
+          "ipa": "",
+          "category": "emotion"
+        },
+        {
+          "id": "W_0930dad8",
+          "vi": "biết ơn",
+          "ipa": "",
+          "category": "emotion"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_d55cdbee",
+          "vi": "Về Việt Nam con rất xúc động."
+        },
+        {
+          "id": "S_c8ae157f",
+          "vi": "Con tự hào là người Việt."
+        },
+        {
+          "id": "S_c2e3d314",
+          "vi": "Con biết ơn ba mẹ đã giữ tiếng Việt cho con."
+        },
+        {
+          "id": "S_fd30df9f",
+          "vi": "Đây là chuyến đi rất ý nghĩa."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_56a00e0162",
+      "node_id": "heritage_u10_L083",
+      "quiz_id": null,
+      "unit_index": 10,
+      "unit_title": "Reconnecting with Vietnam",
+      "lesson_type": "Scene",
+      "lesson_title": "Meeting Grandparents in Vietnam",
+      "content_types": [
+        "listen_choose",
+        "speak_sentence"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_4c52505ee3"
+        ]
+      },
+      "grammar_tags": [
+        "GT019",
+        "GT031"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_cf29fb14",
+          "vi": "Con chào ông bà ạ."
+        },
+        {
+          "id": "S_5700bd5b",
+          "vi": "Con là cháu của cô Hương ở Mỹ."
+        },
+        {
+          "id": "S_d441e635",
+          "vi": "Lần đầu con về Việt Nam."
+        },
+        {
+          "id": "S_f4df7189",
+          "vi": "Con rất vui được gặp ông bà."
+        },
+        {
+          "id": "S_ba49cbc5",
+          "vi": "Con hiểu tiếng Việt nhưng chưa nói giỏi."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_d6f421834e",
+      "node_id": "heritage_u10_L084",
+      "quiz_id": null,
+      "unit_index": 10,
+      "unit_title": "Reconnecting with Vietnam",
+      "lesson_type": "Scene",
+      "lesson_title": "Explaining to a Stranger Why You're in Vietnam",
+      "content_types": [
+        "listen_choose",
+        "translation_word_bank"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_56a00e0162"
+        ]
+      },
+      "grammar_tags": [
+        "GT005",
+        "GT029"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_d08b53dc",
+          "vi": "Bạn là người Việt phải không?"
+        },
+        {
+          "id": "S_72d672ca",
+          "vi": "Vâng, tôi gốc Việt, sống ở Mỹ từ nhỏ."
+        },
+        {
+          "id": "S_e2f8c06c",
+          "vi": "Tôi về để tìm về cội nguồn."
+        },
+        {
+          "id": "S_99e3c344",
+          "vi": "Tôi đang học tiếng Việt để giữ văn hóa."
+        },
+        {
+          "id": "S_2ed76d30",
+          "vi": "Lần sau con sẽ đưa cả gia đình về."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_cd546f1eaf",
+      "node_id": "heritage_u10_Q085",
+      "quiz_id": "heritage_u10_Q085",
+      "unit_index": 10,
+      "unit_title": "Reconnecting with Vietnam",
+      "lesson_type": "Quiz",
+      "lesson_title": "Heritage & Identity Review",
+      "content_types": [
+        "mcq_translate_to_en",
+        "listen_choose",
+        "match_pairs"
+      ],
+      "xp_reward": 20,
+      "unlock_rule": {
+        "type": "unit_complete",
+        "requires": [
+          "L_5cbf7aa830",
+          "L_4eb26281aa",
+          "L_cd859755ce",
+          "L_1ae1c0757e",
+          "L_6a71a577d8",
+          "L_4c52505ee3",
+          "L_56a00e0162",
+          "L_d6f421834e"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_4fea0828",
+          "vi": "gốc Việt",
+          "ipa": "",
+          "category": "identity"
+        },
+        {
+          "id": "W_906cd04f",
+          "vi": "Việt kiều",
+          "ipa": "",
+          "category": "identity"
+        },
+        {
+          "id": "W_d2de267b",
+          "vi": "về nước",
+          "ipa": "",
+          "category": "return"
+        },
+        {
+          "id": "W_987d5016",
+          "vi": "bà con",
+          "ipa": "",
+          "category": "return"
+        },
+        {
+          "id": "W_b692617e",
+          "vi": "xúc động",
+          "ipa": "",
+          "category": "emotion"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_b430878b",
+          "vi": "Con biết ơn ba mẹ đã giữ tiếng Việt cho con."
+        }
+      ],
+      "matches": [
+        {
+          "id": "M_ad17f4ff",
+          "text": "gốc Việt"
+        },
+        {
+          "id": "M_63dcfccf",
+          "text": "Việt kiều"
+        },
+        {
+          "id": "M_f3485560",
+          "text": "về nước"
+        },
+        {
+          "id": "M_9f7dfa2c",
+          "text": "xúc động"
+        }
+      ]
+    }
+  ]
+}

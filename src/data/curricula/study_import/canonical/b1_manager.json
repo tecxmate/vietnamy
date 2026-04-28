@@ -1,0 +1,6467 @@
+{
+  "meta": {
+    "level": "b1",
+    "track": "manager",
+    "source": "vn_b1_manager_en.xlsx",
+    "generated": "2026-04-28T09:02:31.260Z",
+    "stats": {
+      "units": 12,
+      "lessons": 104,
+      "words": 325,
+      "sentences": 272,
+      "matches": 96
+    }
+  },
+  "units": [
+    {
+      "index": 1,
+      "title": "Workplace Titles & Address"
+    },
+    {
+      "index": 2,
+      "title": "Office Daily Communication"
+    },
+    {
+      "index": 3,
+      "title": "Meetings: Opening & Participating"
+    },
+    {
+      "index": 4,
+      "title": "Meetings: Decisions & Follow-up"
+    },
+    {
+      "index": 5,
+      "title": "Directives & Task Assignment"
+    },
+    {
+      "index": 6,
+      "title": "Performance Feedback"
+    },
+    {
+      "index": 7,
+      "title": "Email Writing"
+    },
+    {
+      "index": 8,
+      "title": "Zalo & Instant Messages"
+    },
+    {
+      "index": 9,
+      "title": "Negotiation & Proposals"
+    },
+    {
+      "index": 10,
+      "title": "Business Meals & Entertainment"
+    },
+    {
+      "index": 11,
+      "title": "Government & Legal Errands"
+    },
+    {
+      "index": 12,
+      "title": "Festivals & Employee Relations"
+    }
+  ],
+  "lessons": [
+    {
+      "id": "L_16f08c57d5",
+      "node_id": "manager_u1_L001",
+      "quiz_id": null,
+      "unit_index": 1,
+      "unit_title": "Workplace Titles & Address",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Management Titles",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "start"
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_c0991b6d",
+          "vi": "sếp",
+          "ipa": "",
+          "category": "title"
+        },
+        {
+          "id": "W_b2027a63",
+          "vi": "giám đốc",
+          "ipa": "",
+          "category": "title"
+        },
+        {
+          "id": "W_267fc74f",
+          "vi": "phó giám đốc",
+          "ipa": "",
+          "category": "title"
+        },
+        {
+          "id": "W_2abe3ea6",
+          "vi": "tổng giám đốc",
+          "ipa": "",
+          "category": "title"
+        },
+        {
+          "id": "W_a5d97c55",
+          "vi": "trưởng phòng",
+          "ipa": "",
+          "category": "title"
+        },
+        {
+          "id": "W_1015cc79",
+          "vi": "phó phòng",
+          "ipa": "",
+          "category": "title"
+        },
+        {
+          "id": "W_58917230",
+          "vi": "chủ tịch",
+          "ipa": "",
+          "category": "title"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_f84cf598",
+          "text": "giám đốc"
+        },
+        {
+          "id": "M_038f78b7",
+          "text": "trưởng phòng"
+        },
+        {
+          "id": "M_5c5225d0",
+          "text": "tổng giám đốc"
+        },
+        {
+          "id": "M_5f2ab633",
+          "text": "chủ tịch"
+        }
+      ]
+    },
+    {
+      "id": "L_e35cf73891",
+      "node_id": "manager_u1_L002",
+      "quiz_id": null,
+      "unit_index": 1,
+      "unit_title": "Workplace Titles & Address",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Staff & Positions",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_vi",
+        "picture_choice"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_16f08c57d5"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_3a0d4eac",
+          "vi": "nhân viên",
+          "ipa": "",
+          "category": "title"
+        },
+        {
+          "id": "W_f03150c2",
+          "vi": "chuyên viên",
+          "ipa": "",
+          "category": "title"
+        },
+        {
+          "id": "W_bf5c4f8a",
+          "vi": "thư ký",
+          "ipa": "",
+          "category": "title"
+        },
+        {
+          "id": "W_2157454d",
+          "vi": "trợ lý",
+          "ipa": "",
+          "category": "title"
+        },
+        {
+          "id": "W_e7d8a394",
+          "vi": "đồng nghiệp",
+          "ipa": "",
+          "category": "title"
+        },
+        {
+          "id": "W_7e4ff2d4",
+          "vi": "cấp trên",
+          "ipa": "",
+          "category": "title"
+        },
+        {
+          "id": "W_727af98d",
+          "vi": "cấp dưới",
+          "ipa": "",
+          "category": "title"
+        }
+      ],
+      "sentences": [],
+      "matches": []
+    },
+    {
+      "id": "L_ad5e311e60",
+      "node_id": "manager_u1_L003",
+      "quiz_id": null,
+      "unit_index": 1,
+      "unit_title": "Workplace Titles & Address",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Addressing with Titles",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_e35cf73891"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_2ab90fbf",
+          "vi": "anh Giám đốc",
+          "ipa": "",
+          "category": "address"
+        },
+        {
+          "id": "W_88d623e9",
+          "vi": "chị Trưởng phòng",
+          "ipa": "",
+          "category": "address"
+        },
+        {
+          "id": "W_913b44bd",
+          "vi": "ông Giám đốc",
+          "ipa": "",
+          "category": "address"
+        },
+        {
+          "id": "W_889ed902",
+          "vi": "bà Chủ tịch",
+          "ipa": "",
+          "category": "address"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_1a030204",
+          "text": "anh Giám đốc"
+        },
+        {
+          "id": "M_62d55545",
+          "text": "ông Giám đốc"
+        }
+      ]
+    },
+    {
+      "id": "L_c1105713b3",
+      "node_id": "manager_u1_L004",
+      "quiz_id": null,
+      "unit_index": 1,
+      "unit_title": "Workplace Titles & Address",
+      "lesson_type": "Grammar",
+      "lesson_title": "When to Use Anh vs Ông",
+      "content_types": [
+        "fill_blank",
+        "mcq_translate_to_vi"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_ad5e311e60"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_1531dbe3",
+          "vi": "thân mật",
+          "ipa": "",
+          "category": "register"
+        },
+        {
+          "id": "W_e97cf616",
+          "vi": "trang trọng",
+          "ipa": "",
+          "category": "register"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_48c71cca",
+          "vi": "Chào anh Minh!"
+        },
+        {
+          "id": "S_d1ac16bd",
+          "vi": "Chào ông Minh!"
+        },
+        {
+          "id": "S_c52d26c9",
+          "vi": "Em chào anh ạ."
+        },
+        {
+          "id": "S_e992ee2d",
+          "vi": "Kính chào ông Giám đốc."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_ec3d3cc344",
+      "node_id": "manager_u1_L005",
+      "quiz_id": null,
+      "unit_index": 1,
+      "unit_title": "Workplace Titles & Address",
+      "lesson_type": "Grammar",
+      "lesson_title": "Self-Address by Rank (em, tôi, cháu)",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_c1105713b3"
+        ]
+      },
+      "grammar_tags": [
+        "GT043",
+        "GT044"
+      ],
+      "words": [
+        {
+          "id": "W_70d9e96a",
+          "vi": "tôi",
+          "ipa": "",
+          "category": "pronoun"
+        },
+        {
+          "id": "W_ffaf3952",
+          "vi": "em",
+          "ipa": "",
+          "category": "pronoun"
+        },
+        {
+          "id": "W_4a84a762",
+          "vi": "cháu",
+          "ipa": "",
+          "category": "pronoun"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_699592bc",
+          "vi": "Tôi là Linh, nhân viên mới."
+        },
+        {
+          "id": "S_43ef844c",
+          "vi": "Em xin phép vào ạ."
+        },
+        {
+          "id": "S_0c6ce674",
+          "vi": "Cháu chào bác ạ."
+        },
+        {
+          "id": "S_af1117ae",
+          "vi": "Tôi nghĩ rằng đây là phương án tốt."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_227377942f",
+      "node_id": "manager_u1_L006",
+      "quiz_id": null,
+      "unit_index": 1,
+      "unit_title": "Workplace Titles & Address",
+      "lesson_type": "Grammar",
+      "lesson_title": "Formal Opening 'Kính chào'",
+      "content_types": [
+        "fill_blank",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_ec3d3cc344"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_ccb9d3c8",
+          "vi": "kính chào",
+          "ipa": "",
+          "category": "greeting"
+        },
+        {
+          "id": "W_fb19b536",
+          "vi": "kính thưa",
+          "ipa": "",
+          "category": "greeting"
+        },
+        {
+          "id": "W_0845974c",
+          "vi": "kính gửi",
+          "ipa": "",
+          "category": "greeting"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_1932c1af",
+          "vi": "Kính chào các anh chị."
+        },
+        {
+          "id": "S_5b4b3373",
+          "vi": "Kính thưa ông Giám đốc."
+        },
+        {
+          "id": "S_cf848304",
+          "vi": "Kính gửi anh Nam."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_b946fb2369",
+      "node_id": "manager_u1_L007",
+      "quiz_id": null,
+      "unit_index": 1,
+      "unit_title": "Workplace Titles & Address",
+      "lesson_type": "Scene",
+      "lesson_title": "First Day Introduction",
+      "content_types": [
+        "speak_sentence",
+        "listen_choose"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_227377942f"
+        ]
+      },
+      "grammar_tags": [
+        "GT002",
+        "GT031"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_349a2d8e",
+          "vi": "Em xin phép giới thiệu."
+        },
+        {
+          "id": "S_1e804df8",
+          "vi": "Em là Linh, nhân viên mới của phòng marketing."
+        },
+        {
+          "id": "S_58b13177",
+          "vi": "Rất mong được làm việc cùng các anh chị."
+        },
+        {
+          "id": "S_81c14e65",
+          "vi": "Em mong được anh chị chỉ bảo thêm."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_f753a09003",
+      "node_id": "manager_u1_L008",
+      "quiz_id": null,
+      "unit_index": 1,
+      "unit_title": "Workplace Titles & Address",
+      "lesson_type": "Scene",
+      "lesson_title": "Meeting Your New Boss",
+      "content_types": [
+        "listen_choose",
+        "translation_word_bank"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_b946fb2369"
+        ]
+      },
+      "grammar_tags": [
+        "GT004",
+        "GT044"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_3763eff6",
+          "vi": "Kính chào anh Giám đốc."
+        },
+        {
+          "id": "S_d5dd83c3",
+          "vi": "Em là Nam, em mới vào công ty tuần trước."
+        },
+        {
+          "id": "S_3578d545",
+          "vi": "Anh cần em giúp gì không ạ?"
+        },
+        {
+          "id": "S_38b150f9",
+          "vi": "Em sẽ cố gắng hết sức."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_82da927d48",
+      "node_id": "manager_u1_Q009",
+      "quiz_id": "manager_u1_Q009",
+      "unit_index": 1,
+      "unit_title": "Workplace Titles & Address",
+      "lesson_type": "Quiz",
+      "lesson_title": "Titles & Address Review",
+      "content_types": [
+        "mcq_translate_to_en",
+        "listen_choose",
+        "match_pairs"
+      ],
+      "xp_reward": 20,
+      "unlock_rule": {
+        "type": "unit_complete",
+        "requires": [
+          "L_16f08c57d5",
+          "L_e35cf73891",
+          "L_ad5e311e60",
+          "L_c1105713b3",
+          "L_ec3d3cc344",
+          "L_227377942f",
+          "L_b946fb2369",
+          "L_f753a09003"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_55c10bf5",
+          "vi": "giám đốc",
+          "ipa": "",
+          "category": "title"
+        },
+        {
+          "id": "W_f395dffb",
+          "vi": "trưởng phòng",
+          "ipa": "",
+          "category": "title"
+        },
+        {
+          "id": "W_7c5fc6de",
+          "vi": "đồng nghiệp",
+          "ipa": "",
+          "category": "title"
+        },
+        {
+          "id": "W_432c388b",
+          "vi": "kính chào",
+          "ipa": "",
+          "category": "greeting"
+        },
+        {
+          "id": "W_61e9e2f7",
+          "vi": "cấp trên",
+          "ipa": "",
+          "category": "title"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_5ab052ff",
+          "vi": "Em xin phép giới thiệu."
+        }
+      ],
+      "matches": [
+        {
+          "id": "M_8d67c170",
+          "text": "giám đốc"
+        },
+        {
+          "id": "M_de41155d",
+          "text": "trưởng phòng"
+        },
+        {
+          "id": "M_434d4c0b",
+          "text": "đồng nghiệp"
+        },
+        {
+          "id": "M_88e80178",
+          "text": "kính chào"
+        }
+      ]
+    },
+    {
+      "id": "L_eb6307f192",
+      "node_id": "manager_u2_L010",
+      "quiz_id": null,
+      "unit_index": 2,
+      "unit_title": "Office Daily Communication",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Daily Office Actions",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_82da927d48"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_1e709857",
+          "vi": "đi làm",
+          "ipa": "",
+          "category": "office"
+        },
+        {
+          "id": "W_e6c1dbdc",
+          "vi": "về",
+          "ipa": "",
+          "category": "office"
+        },
+        {
+          "id": "W_00b0556e",
+          "vi": "đi công tác",
+          "ipa": "",
+          "category": "office"
+        },
+        {
+          "id": "W_3ea9e800",
+          "vi": "ra ngoài",
+          "ipa": "",
+          "category": "office"
+        },
+        {
+          "id": "W_22a07d83",
+          "vi": "nghỉ trưa",
+          "ipa": "",
+          "category": "office"
+        },
+        {
+          "id": "W_048f516f",
+          "vi": "vào phòng",
+          "ipa": "",
+          "category": "office"
+        },
+        {
+          "id": "W_9551fe4f",
+          "vi": "ra khỏi phòng",
+          "ipa": "",
+          "category": "office"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_319c0d50",
+          "text": "đi làm"
+        },
+        {
+          "id": "M_78c79531",
+          "text": "đi công tác"
+        },
+        {
+          "id": "M_9f13d8bf",
+          "text": "nghỉ trưa"
+        }
+      ]
+    },
+    {
+      "id": "L_cc09eb5967",
+      "node_id": "manager_u2_L011",
+      "quiz_id": null,
+      "unit_index": 2,
+      "unit_title": "Office Daily Communication",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Leave & Time Off",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_vi",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_eb6307f192"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_1ea37bf8",
+          "vi": "xin nghỉ",
+          "ipa": "",
+          "category": "leave"
+        },
+        {
+          "id": "W_b21faefd",
+          "vi": "nghỉ ốm",
+          "ipa": "",
+          "category": "leave"
+        },
+        {
+          "id": "W_2e821b72",
+          "vi": "nghỉ phép",
+          "ipa": "",
+          "category": "leave"
+        },
+        {
+          "id": "W_f6a28c04",
+          "vi": "việc gia đình",
+          "ipa": "",
+          "category": "leave"
+        },
+        {
+          "id": "W_84ee9c30",
+          "vi": "đơn xin nghỉ",
+          "ipa": "",
+          "category": "leave"
+        },
+        {
+          "id": "W_6126ab42",
+          "vi": "phê duyệt",
+          "ipa": "",
+          "category": "leave"
+        },
+        {
+          "id": "W_8583e241",
+          "vi": "tăng ca",
+          "ipa": "",
+          "category": "leave"
+        },
+        {
+          "id": "W_0cf1d9c9",
+          "vi": "làm thêm giờ",
+          "ipa": "",
+          "category": "leave"
+        }
+      ],
+      "sentences": [],
+      "matches": []
+    },
+    {
+      "id": "L_9990018e8c",
+      "node_id": "manager_u2_L012",
+      "quiz_id": null,
+      "unit_index": 2,
+      "unit_title": "Office Daily Communication",
+      "lesson_type": "Grammar",
+      "lesson_title": "Hedging with 'có lẽ' (probably)",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_cc09eb5967"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_0bfec0ce",
+          "vi": "có lẽ",
+          "ipa": "",
+          "category": "hedging"
+        },
+        {
+          "id": "W_8d50ca4d",
+          "vi": "hình như",
+          "ipa": "",
+          "category": "hedging"
+        },
+        {
+          "id": "W_547e94ba",
+          "vi": "chắc là",
+          "ipa": "",
+          "category": "hedging"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_0fb0043c",
+          "vi": "Có lẽ tôi sẽ đến muộn."
+        },
+        {
+          "id": "S_aa1afa8a",
+          "vi": "Hình như anh ấy đang họp."
+        },
+        {
+          "id": "S_b01a4ac2",
+          "vi": "Chắc là cuộc họp sẽ lùi lại."
+        },
+        {
+          "id": "S_5d31abc1",
+          "vi": "Có lẽ chúng ta nên xem lại."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_0e4dd48af0",
+      "node_id": "manager_u2_L013",
+      "quiz_id": null,
+      "unit_index": 2,
+      "unit_title": "Office Daily Communication",
+      "lesson_type": "Grammar",
+      "lesson_title": "Polite Permission 'Xin phép'",
+      "content_types": [
+        "fill_blank",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_9990018e8c"
+        ]
+      },
+      "grammar_tags": [
+        "GT005",
+        "GT044"
+      ],
+      "words": [
+        {
+          "id": "W_b22c3eae",
+          "vi": "xin phép",
+          "ipa": "",
+          "category": "request"
+        },
+        {
+          "id": "W_d2cb0168",
+          "vi": "cho phép",
+          "ipa": "",
+          "category": "request"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_c10cf7f1",
+          "vi": "Em xin phép nghỉ một ngày."
+        },
+        {
+          "id": "S_417afa9a",
+          "vi": "Tôi xin phép vào họp."
+        },
+        {
+          "id": "S_e3980003",
+          "vi": "Anh cho phép em về sớm được không?"
+        },
+        {
+          "id": "S_e4609358",
+          "vi": "Xin phép anh, em ra ngoài một chút."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_633a000add",
+      "node_id": "manager_u2_L014",
+      "quiz_id": null,
+      "unit_index": 2,
+      "unit_title": "Office Daily Communication",
+      "lesson_type": "Grammar",
+      "lesson_title": "Requesting Favors 'Nhờ anh/chị'",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_0e4dd48af0"
+        ]
+      },
+      "grammar_tags": [
+        "GT002",
+        "GT005",
+        "GT042"
+      ],
+      "words": [
+        {
+          "id": "W_63d42489",
+          "vi": "nhờ",
+          "ipa": "",
+          "category": "request"
+        },
+        {
+          "id": "W_9d1d0345",
+          "vi": "giúp",
+          "ipa": "",
+          "category": "request"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_4a44f15d",
+          "vi": "Nhờ anh xem giúp email này."
+        },
+        {
+          "id": "S_e82fb5f2",
+          "vi": "Nhờ chị chuyển file cho em."
+        },
+        {
+          "id": "S_ed254934",
+          "vi": "Em nhờ anh ký giúp em."
+        },
+        {
+          "id": "S_2200b40c",
+          "vi": "Làm phiền anh một chút được không?"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_0bcb39106d",
+      "node_id": "manager_u2_L015",
+      "quiz_id": null,
+      "unit_index": 2,
+      "unit_title": "Office Daily Communication",
+      "lesson_type": "Grammar",
+      "lesson_title": "Soft Disagreement",
+      "content_types": [
+        "fill_blank",
+        "mcq_translate_to_vi"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_633a000add"
+        ]
+      },
+      "grammar_tags": [
+        "GT004",
+        "GT019",
+        "GT028",
+        "GT042"
+      ],
+      "words": [
+        {
+          "id": "W_a26ae37f",
+          "vi": "có lẽ chưa chắc",
+          "ipa": "",
+          "category": "disagree"
+        },
+        {
+          "id": "W_558e05ea",
+          "vi": "tôi hiểu, nhưng",
+          "ipa": "",
+          "category": "disagree"
+        },
+        {
+          "id": "W_eff6fd94",
+          "vi": "có thể xem xét thêm",
+          "ipa": "",
+          "category": "disagree"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_eaaae774",
+          "vi": "Em hiểu ý anh, nhưng có lẽ nên cân nhắc thêm."
+        },
+        {
+          "id": "S_5d4ce4b1",
+          "vi": "Có lẽ phương án này chưa thật sự phù hợp."
+        },
+        {
+          "id": "S_45cdfe97",
+          "vi": "Anh có thể giải thích thêm được không ạ?"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_6396fac0da",
+      "node_id": "manager_u2_L016",
+      "quiz_id": null,
+      "unit_index": 2,
+      "unit_title": "Office Daily Communication",
+      "lesson_type": "Scene",
+      "lesson_title": "Requesting Sick Leave",
+      "content_types": [
+        "speak_sentence",
+        "listen_choose"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_0bcb39106d"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_567c7936",
+          "vi": "Anh ơi, em bị ốm, xin phép anh cho em nghỉ hôm nay."
+        },
+        {
+          "id": "S_6db7b87d",
+          "vi": "Em sẽ gửi đơn xin nghỉ qua email."
+        },
+        {
+          "id": "S_da4da152",
+          "vi": "Em xin lỗi vì đã báo muộn."
+        },
+        {
+          "id": "S_b6ea5378",
+          "vi": "Cảm ơn anh đã thông cảm."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_557ca4c2a0",
+      "node_id": "manager_u2_L017",
+      "quiz_id": null,
+      "unit_index": 2,
+      "unit_title": "Office Daily Communication",
+      "lesson_type": "Scene",
+      "lesson_title": "Asking a Colleague for Help",
+      "content_types": [
+        "listen_choose",
+        "translation_word_bank"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_6396fac0da"
+        ]
+      },
+      "grammar_tags": [
+        "GT004",
+        "GT005",
+        "GT042"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_5c414aa8",
+          "vi": "Chị ơi, chị có rảnh một chút không ạ?"
+        },
+        {
+          "id": "S_352b9b34",
+          "vi": "Em nhờ chị xem giúp file này."
+        },
+        {
+          "id": "S_df6ef383",
+          "vi": "Có điểm nào em cần chỉnh sửa không?"
+        },
+        {
+          "id": "S_3b61f53d",
+          "vi": "Dạ, em cảm ơn chị nhiều."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_035afd2485",
+      "node_id": "manager_u2_Q018",
+      "quiz_id": "manager_u2_Q018",
+      "unit_index": 2,
+      "unit_title": "Office Daily Communication",
+      "lesson_type": "Quiz",
+      "lesson_title": "Office Daily Review",
+      "content_types": [
+        "mcq_translate_to_en",
+        "listen_choose",
+        "match_pairs"
+      ],
+      "xp_reward": 20,
+      "unlock_rule": {
+        "type": "unit_complete",
+        "requires": [
+          "L_eb6307f192",
+          "L_cc09eb5967",
+          "L_9990018e8c",
+          "L_0e4dd48af0",
+          "L_633a000add",
+          "L_0bcb39106d",
+          "L_6396fac0da",
+          "L_557ca4c2a0"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_a7df0a21",
+          "vi": "có lẽ",
+          "ipa": "",
+          "category": "hedging"
+        },
+        {
+          "id": "W_4b144680",
+          "vi": "xin phép",
+          "ipa": "",
+          "category": "request"
+        },
+        {
+          "id": "W_8d2f0640",
+          "vi": "nhờ",
+          "ipa": "",
+          "category": "request"
+        },
+        {
+          "id": "W_9882eaaa",
+          "vi": "nghỉ ốm",
+          "ipa": "",
+          "category": "leave"
+        },
+        {
+          "id": "W_6247de67",
+          "vi": "phê duyệt",
+          "ipa": "",
+          "category": "leave"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_58db8ded",
+          "vi": "Em xin phép nghỉ một ngày."
+        }
+      ],
+      "matches": [
+        {
+          "id": "M_a9cbc642",
+          "text": "có lẽ"
+        },
+        {
+          "id": "M_b9d2b1e7",
+          "text": "xin phép"
+        },
+        {
+          "id": "M_cbc5391e",
+          "text": "nhờ"
+        },
+        {
+          "id": "M_082acc49",
+          "text": "nghỉ ốm"
+        }
+      ]
+    },
+    {
+      "id": "L_5e182d6688",
+      "node_id": "manager_u3_L019",
+      "quiz_id": null,
+      "unit_index": 3,
+      "unit_title": "Meetings: Opening & Participating",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Meeting Basics",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_035afd2485"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_8e22376d",
+          "vi": "cuộc họp",
+          "ipa": "",
+          "category": "meeting"
+        },
+        {
+          "id": "W_901b5931",
+          "vi": "chương trình",
+          "ipa": "",
+          "category": "meeting"
+        },
+        {
+          "id": "W_d1f5201b",
+          "vi": "tham dự",
+          "ipa": "",
+          "category": "meeting"
+        },
+        {
+          "id": "W_a3c9a3ed",
+          "vi": "chủ trì",
+          "ipa": "",
+          "category": "meeting"
+        },
+        {
+          "id": "W_45cb8f9a",
+          "vi": "phát biểu",
+          "ipa": "",
+          "category": "meeting"
+        },
+        {
+          "id": "W_77cb901b",
+          "vi": "tài liệu",
+          "ipa": "",
+          "category": "meeting"
+        },
+        {
+          "id": "W_874dbcc9",
+          "vi": "mục đích",
+          "ipa": "",
+          "category": "meeting"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_67779570",
+          "text": "cuộc họp"
+        },
+        {
+          "id": "M_88131e35",
+          "text": "chương trình"
+        },
+        {
+          "id": "M_b421de1d",
+          "text": "tham dự"
+        },
+        {
+          "id": "M_e9cb317e",
+          "text": "chủ trì"
+        }
+      ]
+    },
+    {
+      "id": "L_ebd33a0bea",
+      "node_id": "manager_u3_L020",
+      "quiz_id": null,
+      "unit_index": 3,
+      "unit_title": "Meetings: Opening & Participating",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Opinion Vocabulary",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_vi",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_5e182d6688"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_870dbb28",
+          "vi": "ý kiến",
+          "ipa": "",
+          "category": "opinion"
+        },
+        {
+          "id": "W_2540b31e",
+          "vi": "đồng ý",
+          "ipa": "",
+          "category": "opinion"
+        },
+        {
+          "id": "W_301c12be",
+          "vi": "không đồng ý",
+          "ipa": "",
+          "category": "opinion"
+        },
+        {
+          "id": "W_bc9f9238",
+          "vi": "đề xuất",
+          "ipa": "",
+          "category": "opinion"
+        },
+        {
+          "id": "W_5a535811",
+          "vi": "bổ sung",
+          "ipa": "",
+          "category": "opinion"
+        },
+        {
+          "id": "W_b8e4e1ab",
+          "vi": "xem xét",
+          "ipa": "",
+          "category": "opinion"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_335c17a3",
+          "text": "ý kiến"
+        },
+        {
+          "id": "M_7b5fb69a",
+          "text": "đồng ý"
+        },
+        {
+          "id": "M_b824ffd6",
+          "text": "đề xuất"
+        }
+      ]
+    },
+    {
+      "id": "L_ae4d79f842",
+      "node_id": "manager_u3_L021",
+      "quiz_id": null,
+      "unit_index": 3,
+      "unit_title": "Meetings: Opening & Participating",
+      "lesson_type": "Grammar",
+      "lesson_title": "Opening a Meeting",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_ebd33a0bea"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_cdc8fc6c",
+          "vi": "xin chào quý vị",
+          "ipa": "",
+          "category": "meeting"
+        },
+        {
+          "id": "W_55fb8f1e",
+          "vi": "xin phép khai mạc",
+          "ipa": "",
+          "category": "meeting"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_61e6e1d3",
+          "vi": "Kính chào các anh chị, chúng ta bắt đầu cuộc họp."
+        },
+        {
+          "id": "S_47e952ae",
+          "vi": "Hôm nay chúng ta sẽ bàn về kế hoạch quý 2."
+        },
+        {
+          "id": "S_ee081e96",
+          "vi": "Chương trình họp gồm ba phần chính."
+        },
+        {
+          "id": "S_c7c4977e",
+          "vi": "Xin mời anh Nam phát biểu trước."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_e7dc47a497",
+      "node_id": "manager_u3_L022",
+      "quiz_id": null,
+      "unit_index": 3,
+      "unit_title": "Meetings: Opening & Participating",
+      "lesson_type": "Grammar",
+      "lesson_title": "Expressing Opinion 'Theo tôi'",
+      "content_types": [
+        "fill_blank",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_ae4d79f842"
+        ]
+      },
+      "grammar_tags": [
+        "GT026",
+        "GT043"
+      ],
+      "words": [
+        {
+          "id": "W_20093945",
+          "vi": "theo tôi",
+          "ipa": "",
+          "category": "opinion"
+        },
+        {
+          "id": "W_6600c476",
+          "vi": "tôi nghĩ rằng",
+          "ipa": "",
+          "category": "opinion"
+        },
+        {
+          "id": "W_d4006056",
+          "vi": "tôi cho rằng",
+          "ipa": "",
+          "category": "opinion"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_cdcd2ba6",
+          "vi": "Theo tôi, đây là phương án hợp lý nhất."
+        },
+        {
+          "id": "S_57db608c",
+          "vi": "Tôi nghĩ rằng chúng ta nên đẩy nhanh tiến độ."
+        },
+        {
+          "id": "S_7f8a97f6",
+          "vi": "Tôi cho rằng cần thêm thời gian nghiên cứu."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_c283899644",
+      "node_id": "manager_u3_L023",
+      "quiz_id": null,
+      "unit_index": 3,
+      "unit_title": "Meetings: Opening & Participating",
+      "lesson_type": "Grammar",
+      "lesson_title": "Agreeing Professionally",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_e7dc47a497"
+        ]
+      },
+      "grammar_tags": [
+        "GT031",
+        "GT042"
+      ],
+      "words": [
+        {
+          "id": "W_2734620d",
+          "vi": "hoàn toàn đồng ý",
+          "ipa": "",
+          "category": "opinion"
+        },
+        {
+          "id": "W_19f01122",
+          "vi": "tôi cũng nghĩ vậy",
+          "ipa": "",
+          "category": "opinion"
+        },
+        {
+          "id": "W_c9931e16",
+          "vi": "rất có lý",
+          "ipa": "",
+          "category": "opinion"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_206fb089",
+          "vi": "Tôi hoàn toàn đồng ý với anh Nam."
+        },
+        {
+          "id": "S_bc915cc4",
+          "vi": "Ý kiến của chị rất có lý."
+        },
+        {
+          "id": "S_53419b0a",
+          "vi": "Tôi cũng nghĩ như vậy."
+        },
+        {
+          "id": "S_a813d47f",
+          "vi": "Phương án này rất khả thi."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_3bc41c17eb",
+      "node_id": "manager_u3_L024",
+      "quiz_id": null,
+      "unit_index": 3,
+      "unit_title": "Meetings: Opening & Participating",
+      "lesson_type": "Grammar",
+      "lesson_title": "Polite Disagreement",
+      "content_types": [
+        "fill_blank",
+        "mcq_translate_to_vi"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_c283899644"
+        ]
+      },
+      "grammar_tags": [
+        "GT031",
+        "GT042"
+      ],
+      "words": [
+        {
+          "id": "W_38976919",
+          "vi": "tuy nhiên",
+          "ipa": "",
+          "category": "disagree"
+        },
+        {
+          "id": "W_98f5a406",
+          "vi": "mặc dù...nhưng",
+          "ipa": "",
+          "category": "disagree"
+        },
+        {
+          "id": "W_2fd9297a",
+          "vi": "có lẽ chúng ta nên",
+          "ipa": "",
+          "category": "disagree"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_323164a6",
+          "vi": "Ý kiến của anh rất hay, tuy nhiên tôi có một lo ngại."
+        },
+        {
+          "id": "S_8ffbf4de",
+          "vi": "Mặc dù phương án này tốt nhưng chi phí cao."
+        },
+        {
+          "id": "S_2c0e8a77",
+          "vi": "Có lẽ chúng ta nên xem xét thêm một phương án nữa."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_329697a645",
+      "node_id": "manager_u3_L025",
+      "quiz_id": null,
+      "unit_index": 3,
+      "unit_title": "Meetings: Opening & Participating",
+      "lesson_type": "Scene",
+      "lesson_title": "Starting a Team Meeting",
+      "content_types": [
+        "speak_sentence",
+        "listen_choose"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_3bc41c17eb"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_13f8b449",
+          "vi": "Chào các anh chị, chúng ta bắt đầu nhé."
+        },
+        {
+          "id": "S_fd34b678",
+          "vi": "Hôm nay có ba vấn đề cần bàn."
+        },
+        {
+          "id": "S_ff734dbe",
+          "vi": "Vấn đề đầu tiên là tiến độ dự án."
+        },
+        {
+          "id": "S_4c2f8928",
+          "vi": "Xin mời chị Linh báo cáo."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_d4ac09320d",
+      "node_id": "manager_u3_L026",
+      "quiz_id": null,
+      "unit_index": 3,
+      "unit_title": "Meetings: Opening & Participating",
+      "lesson_type": "Scene",
+      "lesson_title": "Sharing an Opinion in a Meeting",
+      "content_types": [
+        "listen_choose",
+        "translation_word_bank"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_329697a645"
+        ]
+      },
+      "grammar_tags": [
+        "GT021",
+        "GT044"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_b4f0f925",
+          "vi": "Xin phép cho tôi phát biểu."
+        },
+        {
+          "id": "S_83ec6016",
+          "vi": "Theo tôi, chúng ta nên chia thành hai giai đoạn."
+        },
+        {
+          "id": "S_8bb8d056",
+          "vi": "Giai đoạn một tập trung vào thị trường Hà Nội."
+        },
+        {
+          "id": "S_237ae4a4",
+          "vi": "Anh chị thấy sao ạ?"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_9f68ac8cd5",
+      "node_id": "manager_u3_Q027",
+      "quiz_id": "manager_u3_Q027",
+      "unit_index": 3,
+      "unit_title": "Meetings: Opening & Participating",
+      "lesson_type": "Quiz",
+      "lesson_title": "Meetings Opening Review",
+      "content_types": [
+        "mcq_translate_to_en",
+        "listen_choose",
+        "match_pairs"
+      ],
+      "xp_reward": 20,
+      "unlock_rule": {
+        "type": "unit_complete",
+        "requires": [
+          "L_5e182d6688",
+          "L_ebd33a0bea",
+          "L_ae4d79f842",
+          "L_e7dc47a497",
+          "L_c283899644",
+          "L_3bc41c17eb",
+          "L_329697a645",
+          "L_d4ac09320d"
+        ]
+      },
+      "grammar_tags": [
+        "GT026",
+        "GT043"
+      ],
+      "words": [
+        {
+          "id": "W_397c5862",
+          "vi": "cuộc họp",
+          "ipa": "",
+          "category": "meeting"
+        },
+        {
+          "id": "W_998c4b05",
+          "vi": "ý kiến",
+          "ipa": "",
+          "category": "opinion"
+        },
+        {
+          "id": "W_cb29f203",
+          "vi": "theo tôi",
+          "ipa": "",
+          "category": "opinion"
+        },
+        {
+          "id": "W_37f3f56c",
+          "vi": "hoàn toàn đồng ý",
+          "ipa": "",
+          "category": "opinion"
+        },
+        {
+          "id": "W_3ff5f513",
+          "vi": "tuy nhiên",
+          "ipa": "",
+          "category": "disagree"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_c6ac4b7f",
+          "vi": "Theo tôi, đây là phương án hợp lý nhất."
+        }
+      ],
+      "matches": [
+        {
+          "id": "M_69764f20",
+          "text": "cuộc họp"
+        },
+        {
+          "id": "M_63854d0f",
+          "text": "ý kiến"
+        },
+        {
+          "id": "M_074fa623",
+          "text": "theo tôi"
+        },
+        {
+          "id": "M_5da39722",
+          "text": "tuy nhiên"
+        }
+      ]
+    },
+    {
+      "id": "L_230cfe3fe6",
+      "node_id": "manager_u4_L028",
+      "quiz_id": null,
+      "unit_index": 4,
+      "unit_title": "Meetings: Decisions & Follow-up",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Decisions & Actions",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_9f68ac8cd5"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_6cbb1511",
+          "vi": "quyết định",
+          "ipa": "",
+          "category": "meeting"
+        },
+        {
+          "id": "W_510baddf",
+          "vi": "thống nhất",
+          "ipa": "",
+          "category": "meeting"
+        },
+        {
+          "id": "W_e4f633a9",
+          "vi": "tổng kết",
+          "ipa": "",
+          "category": "meeting"
+        },
+        {
+          "id": "W_fdc2c2ac",
+          "vi": "kết luận",
+          "ipa": "",
+          "category": "meeting"
+        },
+        {
+          "id": "W_eb3783f9",
+          "vi": "hành động",
+          "ipa": "",
+          "category": "meeting"
+        },
+        {
+          "id": "W_4b787ad6",
+          "vi": "triển khai",
+          "ipa": "",
+          "category": "meeting"
+        },
+        {
+          "id": "W_4cadbf99",
+          "vi": "tiến độ",
+          "ipa": "",
+          "category": "meeting"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_66bcc0e0",
+          "text": "quyết định"
+        },
+        {
+          "id": "M_3d20dd7f",
+          "text": "tổng kết"
+        },
+        {
+          "id": "M_370c7a54",
+          "text": "triển khai"
+        }
+      ]
+    },
+    {
+      "id": "L_20eeb9913b",
+      "node_id": "manager_u4_L029",
+      "quiz_id": null,
+      "unit_index": 4,
+      "unit_title": "Meetings: Decisions & Follow-up",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Deadlines & Scheduling",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_vi",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_230cfe3fe6"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_99d63b2e",
+          "vi": "hạn chót",
+          "ipa": "",
+          "category": "meeting"
+        },
+        {
+          "id": "W_1f1647da",
+          "vi": "đúng hạn",
+          "ipa": "",
+          "category": "meeting"
+        },
+        {
+          "id": "W_8112791c",
+          "vi": "trễ hạn",
+          "ipa": "",
+          "category": "meeting"
+        },
+        {
+          "id": "W_7268b4d9",
+          "vi": "quá hạn",
+          "ipa": "",
+          "category": "meeting"
+        },
+        {
+          "id": "W_1dbb07c2",
+          "vi": "gia hạn",
+          "ipa": "",
+          "category": "meeting"
+        },
+        {
+          "id": "W_f7572f1d",
+          "vi": "lịch trình",
+          "ipa": "",
+          "category": "meeting"
+        },
+        {
+          "id": "W_582e6151",
+          "vi": "dời lịch",
+          "ipa": "",
+          "category": "meeting"
+        }
+      ],
+      "sentences": [],
+      "matches": []
+    },
+    {
+      "id": "L_b96695a1ef",
+      "node_id": "manager_u4_L030",
+      "quiz_id": null,
+      "unit_index": 4,
+      "unit_title": "Meetings: Decisions & Follow-up",
+      "lesson_type": "Grammar",
+      "lesson_title": "Reported Speech 'anh ấy nói rằng'",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_20eeb9913b"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_aca8908d",
+          "vi": "nói rằng",
+          "ipa": "",
+          "category": "reported"
+        },
+        {
+          "id": "W_99c96146",
+          "vi": "cho rằng",
+          "ipa": "",
+          "category": "reported"
+        },
+        {
+          "id": "W_23cb4436",
+          "vi": "nghe nói",
+          "ipa": "",
+          "category": "reported"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_927cd326",
+          "vi": "Anh Nam nói rằng dự án sẽ hoàn thành đúng hạn."
+        },
+        {
+          "id": "S_07e131a8",
+          "vi": "Chị Linh cho rằng chúng ta cần thêm người."
+        },
+        {
+          "id": "S_5485c55b",
+          "vi": "Tôi nghe nói sếp sắp đi công tác."
+        },
+        {
+          "id": "S_a7520611",
+          "vi": "Khách hàng nói rằng họ hài lòng với dịch vụ."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_af7bde2c09",
+      "node_id": "manager_u4_L031",
+      "quiz_id": null,
+      "unit_index": 4,
+      "unit_title": "Meetings: Decisions & Follow-up",
+      "lesson_type": "Grammar",
+      "lesson_title": "Time Markers 'sắp' and 'vừa mới'",
+      "content_types": [
+        "fill_blank",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_b96695a1ef"
+        ]
+      },
+      "grammar_tags": [
+        "GT002",
+        "GT018"
+      ],
+      "words": [
+        {
+          "id": "W_3d35fc98",
+          "vi": "sắp",
+          "ipa": "",
+          "category": "time"
+        },
+        {
+          "id": "W_f7968885",
+          "vi": "vừa mới",
+          "ipa": "",
+          "category": "time"
+        },
+        {
+          "id": "W_f74fce87",
+          "vi": "đã từng",
+          "ipa": "",
+          "category": "time"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_bb00160d",
+          "vi": "Chúng ta sắp kết thúc cuộc họp."
+        },
+        {
+          "id": "S_6b219229",
+          "vi": "Tôi vừa mới gửi email cho khách hàng."
+        },
+        {
+          "id": "S_c7a4db28",
+          "vi": "Anh ấy đã từng làm việc ở công ty chúng ta."
+        },
+        {
+          "id": "S_36bbdb9a",
+          "vi": "Báo cáo sắp xong rồi."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_7d8c91d8ed",
+      "node_id": "manager_u4_L032",
+      "quiz_id": null,
+      "unit_index": 4,
+      "unit_title": "Meetings: Decisions & Follow-up",
+      "lesson_type": "Grammar",
+      "lesson_title": "Summarizing: 'Tóm lại'",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_af7bde2c09"
+        ]
+      },
+      "grammar_tags": [
+        "GT026"
+      ],
+      "words": [
+        {
+          "id": "W_bd94e1bc",
+          "vi": "tóm lại",
+          "ipa": "",
+          "category": "meeting"
+        },
+        {
+          "id": "W_b17e1d2a",
+          "vi": "nói chung",
+          "ipa": "",
+          "category": "meeting"
+        },
+        {
+          "id": "W_b7083ea6",
+          "vi": "cuối cùng",
+          "ipa": "",
+          "category": "meeting"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_2387232d",
+          "vi": "Tóm lại, chúng ta thống nhất ba điểm chính."
+        },
+        {
+          "id": "S_69630c3a",
+          "vi": "Nói chung, dự án đang đi đúng hướng."
+        },
+        {
+          "id": "S_6466ae99",
+          "vi": "Cuối cùng, xin cảm ơn các anh chị đã tham dự."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_0e3109df60",
+      "node_id": "manager_u4_L033",
+      "quiz_id": null,
+      "unit_index": 4,
+      "unit_title": "Meetings: Decisions & Follow-up",
+      "lesson_type": "Grammar",
+      "lesson_title": "Action Item Assignment",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_7d8c91d8ed"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_e3225574",
+          "vi": "phụ trách",
+          "ipa": "",
+          "category": "responsibility"
+        },
+        {
+          "id": "W_45cbc69f",
+          "vi": "chịu trách nhiệm",
+          "ipa": "",
+          "category": "responsibility"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_f4c6b123",
+          "vi": "Anh Nam phụ trách phần báo cáo tài chính."
+        },
+        {
+          "id": "S_2f4f6f44",
+          "vi": "Chị Linh chịu trách nhiệm liên hệ khách hàng."
+        },
+        {
+          "id": "S_d2514861",
+          "vi": "Hạn chót là thứ Sáu tuần sau."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_209691404c",
+      "node_id": "manager_u4_L034",
+      "quiz_id": null,
+      "unit_index": 4,
+      "unit_title": "Meetings: Decisions & Follow-up",
+      "lesson_type": "Scene",
+      "lesson_title": "Wrapping Up a Meeting",
+      "content_types": [
+        "speak_sentence",
+        "listen_choose"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_0e3109df60"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_8a9522ac",
+          "vi": "Tóm lại, chúng ta có ba hành động chính."
+        },
+        {
+          "id": "S_971322ff",
+          "vi": "Anh Nam phụ trách tiếp thị, chị Linh phụ trách vận hành."
+        },
+        {
+          "id": "S_02c37c58",
+          "vi": "Hạn chót cho giai đoạn một là ngày 30."
+        },
+        {
+          "id": "S_4c14a022",
+          "vi": "Cảm ơn các anh chị. Cuộc họp kết thúc."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_dc42f4d4a4",
+      "node_id": "manager_u4_L035",
+      "quiz_id": null,
+      "unit_index": 4,
+      "unit_title": "Meetings: Decisions & Follow-up",
+      "lesson_type": "Scene",
+      "lesson_title": "Following Up on Action Items",
+      "content_types": [
+        "listen_choose",
+        "translation_word_bank"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_209691404c"
+        ]
+      },
+      "grammar_tags": [
+        "GT005",
+        "GT018"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_7a9d8f6e",
+          "vi": "Chị Linh ơi, tiến độ bên chị thế nào rồi?"
+        },
+        {
+          "id": "S_55375d87",
+          "vi": "Em vừa mới gửi báo cáo sơ bộ."
+        },
+        {
+          "id": "S_77dba091",
+          "vi": "Còn phần hợp đồng thì sắp xong rồi ạ."
+        },
+        {
+          "id": "S_243d0d0d",
+          "vi": "Em có cần hỗ trợ gì không?"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_c395f188f9",
+      "node_id": "manager_u4_Q036",
+      "quiz_id": "manager_u4_Q036",
+      "unit_index": 4,
+      "unit_title": "Meetings: Decisions & Follow-up",
+      "lesson_type": "Quiz",
+      "lesson_title": "Decisions Review",
+      "content_types": [
+        "mcq_translate_to_en",
+        "listen_choose",
+        "match_pairs"
+      ],
+      "xp_reward": 20,
+      "unlock_rule": {
+        "type": "unit_complete",
+        "requires": [
+          "L_230cfe3fe6",
+          "L_20eeb9913b",
+          "L_b96695a1ef",
+          "L_af7bde2c09",
+          "L_7d8c91d8ed",
+          "L_0e3109df60",
+          "L_209691404c",
+          "L_dc42f4d4a4"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_149fe32c",
+          "vi": "quyết định",
+          "ipa": "",
+          "category": "meeting"
+        },
+        {
+          "id": "W_9ad52b6c",
+          "vi": "hạn chót",
+          "ipa": "",
+          "category": "meeting"
+        },
+        {
+          "id": "W_6a309093",
+          "vi": "tóm lại",
+          "ipa": "",
+          "category": "meeting"
+        },
+        {
+          "id": "W_1e4ccec1",
+          "vi": "vừa mới",
+          "ipa": "",
+          "category": "time"
+        },
+        {
+          "id": "W_0c472832",
+          "vi": "phụ trách",
+          "ipa": "",
+          "category": "responsibility"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_5939c957",
+          "vi": "Anh Nam phụ trách phần báo cáo."
+        }
+      ],
+      "matches": [
+        {
+          "id": "M_9fbcf78c",
+          "text": "quyết định"
+        },
+        {
+          "id": "M_ea25948c",
+          "text": "hạn chót"
+        },
+        {
+          "id": "M_3a97621e",
+          "text": "tóm lại"
+        },
+        {
+          "id": "M_002d12c6",
+          "text": "phụ trách"
+        }
+      ]
+    },
+    {
+      "id": "L_22c0d8582a",
+      "node_id": "manager_u5_L037",
+      "quiz_id": null,
+      "unit_index": 5,
+      "unit_title": "Directives & Task Assignment",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Task Vocabulary",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_c395f188f9"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_fb20a942",
+          "vi": "công việc",
+          "ipa": "",
+          "category": "task"
+        },
+        {
+          "id": "W_d61c30c9",
+          "vi": "nhiệm vụ",
+          "ipa": "",
+          "category": "task"
+        },
+        {
+          "id": "W_37fdcb67",
+          "vi": "dự án",
+          "ipa": "",
+          "category": "task"
+        },
+        {
+          "id": "W_3b644676",
+          "vi": "giao việc",
+          "ipa": "",
+          "category": "task"
+        },
+        {
+          "id": "W_17ef0acf",
+          "vi": "nhận việc",
+          "ipa": "",
+          "category": "task"
+        },
+        {
+          "id": "W_7a2727dc",
+          "vi": "hoàn thành",
+          "ipa": "",
+          "category": "task"
+        },
+        {
+          "id": "W_89a18568",
+          "vi": "ưu tiên",
+          "ipa": "",
+          "category": "task"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_bec83e33",
+          "text": "công việc"
+        },
+        {
+          "id": "M_0846c68b",
+          "text": "nhiệm vụ"
+        },
+        {
+          "id": "M_f651cd47",
+          "text": "dự án"
+        },
+        {
+          "id": "M_817dca3d",
+          "text": "hoàn thành"
+        }
+      ]
+    },
+    {
+      "id": "L_71dd6c80d7",
+      "node_id": "manager_u5_L038",
+      "quiz_id": null,
+      "unit_index": 5,
+      "unit_title": "Directives & Task Assignment",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Priority Levels",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_vi",
+        "picture_choice"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_22c0d8582a"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_ed3d16ec",
+          "vi": "quan trọng",
+          "ipa": "",
+          "category": "priority"
+        },
+        {
+          "id": "W_c934c752",
+          "vi": "khẩn cấp",
+          "ipa": "",
+          "category": "priority"
+        },
+        {
+          "id": "W_d0c243a3",
+          "vi": "cần thiết",
+          "ipa": "",
+          "category": "priority"
+        },
+        {
+          "id": "W_f0ffe59a",
+          "vi": "gấp",
+          "ipa": "",
+          "category": "priority"
+        },
+        {
+          "id": "W_3f5a6518",
+          "vi": "bình thường",
+          "ipa": "",
+          "category": "priority"
+        },
+        {
+          "id": "W_d3487d55",
+          "vi": "không gấp",
+          "ipa": "",
+          "category": "priority"
+        }
+      ],
+      "sentences": [],
+      "matches": []
+    },
+    {
+      "id": "L_c49621e328",
+      "node_id": "manager_u5_L039",
+      "quiz_id": null,
+      "unit_index": 5,
+      "unit_title": "Directives & Task Assignment",
+      "lesson_type": "Grammar",
+      "lesson_title": "Soft Directive 'Nhờ anh/chị + V'",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_71dd6c80d7"
+        ]
+      },
+      "grammar_tags": [
+        "GT002"
+      ],
+      "words": [
+        {
+          "id": "W_ca7adedb",
+          "vi": "nhờ",
+          "ipa": "",
+          "category": "directive"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_1beff428",
+          "vi": "Nhờ anh làm báo cáo quý 2."
+        },
+        {
+          "id": "S_efab79a1",
+          "vi": "Nhờ chị gửi email cho khách hàng."
+        },
+        {
+          "id": "S_7de90c06",
+          "vi": "Nhờ em kiểm tra số liệu lại."
+        },
+        {
+          "id": "S_d1482988",
+          "vi": "Nhờ anh hoàn thành trước thứ Sáu."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_ce9a9c61f2",
+      "node_id": "manager_u5_L040",
+      "quiz_id": null,
+      "unit_index": 5,
+      "unit_title": "Directives & Task Assignment",
+      "lesson_type": "Grammar",
+      "lesson_title": "Firmer Directive 'Em hãy...'",
+      "content_types": [
+        "fill_blank",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_c49621e328"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_5acfcc63",
+          "vi": "hãy",
+          "ipa": "",
+          "category": "directive"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_44191bab",
+          "vi": "Em hãy hoàn thành báo cáo trước thứ Hai."
+        },
+        {
+          "id": "S_8e4a7947",
+          "vi": "Em hãy liên hệ với khách hàng ngay."
+        },
+        {
+          "id": "S_7103ec06",
+          "vi": "Em hãy kiểm tra kỹ trước khi gửi."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_232d4295d9",
+      "node_id": "manager_u5_L041",
+      "quiz_id": null,
+      "unit_index": 5,
+      "unit_title": "Directives & Task Assignment",
+      "lesson_type": "Grammar",
+      "lesson_title": "Setting Priority",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_ce9a9c61f2"
+        ]
+      },
+      "grammar_tags": [
+        "GT002",
+        "GT004",
+        "GT029",
+        "GT042"
+      ],
+      "words": [
+        {
+          "id": "W_09f2ced3",
+          "vi": "làm trước",
+          "ipa": "",
+          "category": "priority"
+        },
+        {
+          "id": "W_c5fad760",
+          "vi": "làm sau",
+          "ipa": "",
+          "category": "priority"
+        },
+        {
+          "id": "W_3f53c531",
+          "vi": "ưu tiên hàng đầu",
+          "ipa": "",
+          "category": "priority"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_7aea63a0",
+          "vi": "Việc này là ưu tiên hàng đầu."
+        },
+        {
+          "id": "S_5de57477",
+          "vi": "Em làm phần này trước, phần kia sau."
+        },
+        {
+          "id": "S_006afdc4",
+          "vi": "Việc của khách hàng A phải làm trước."
+        },
+        {
+          "id": "S_e8a7d65b",
+          "vi": "Không cần gấp, tuần sau cũng được."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_72e63e155b",
+      "node_id": "manager_u5_L042",
+      "quiz_id": null,
+      "unit_index": 5,
+      "unit_title": "Directives & Task Assignment",
+      "lesson_type": "Grammar",
+      "lesson_title": "Deadline Language 'trước + time'",
+      "content_types": [
+        "fill_blank",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_232d4295d9"
+        ]
+      },
+      "grammar_tags": [
+        "GT026",
+        "GT042"
+      ],
+      "words": [
+        {
+          "id": "W_6ef4a3fc",
+          "vi": "trước",
+          "ipa": "",
+          "category": "time"
+        },
+        {
+          "id": "W_382e9271",
+          "vi": "chậm nhất",
+          "ipa": "",
+          "category": "time"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_0d4796d2",
+          "vi": "Em gửi báo cáo trước 5 giờ chiều."
+        },
+        {
+          "id": "S_de54ba65",
+          "vi": "Chậm nhất là ngày mai."
+        },
+        {
+          "id": "S_f8f52413",
+          "vi": "Anh cần kết quả trước cuối tuần."
+        },
+        {
+          "id": "S_097725e3",
+          "vi": "Xin hoàn thành trước thứ Sáu tuần này."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_93ec528d88",
+      "node_id": "manager_u5_L043",
+      "quiz_id": null,
+      "unit_index": 5,
+      "unit_title": "Directives & Task Assignment",
+      "lesson_type": "Scene",
+      "lesson_title": "Assigning a New Task",
+      "content_types": [
+        "speak_sentence",
+        "listen_choose"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_72e63e155b"
+        ]
+      },
+      "grammar_tags": [
+        "GT002",
+        "GT005",
+        "GT022",
+        "GT042",
+        "GT043"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_710b5f8b",
+          "vi": "Linh ơi, em có rảnh một chút không?"
+        },
+        {
+          "id": "S_fbbb54ea",
+          "vi": "Anh muốn giao em làm báo cáo khách hàng ABC."
+        },
+        {
+          "id": "S_b2cb6302",
+          "vi": "Đây là ưu tiên hàng đầu của tuần này."
+        },
+        {
+          "id": "S_ea5d8e12",
+          "vi": "Nhờ em hoàn thành trước thứ Năm."
+        },
+        {
+          "id": "S_2d8dc249",
+          "vi": "Em có câu hỏi gì không?"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_7ae6d5b23e",
+      "node_id": "manager_u5_L044",
+      "quiz_id": null,
+      "unit_index": 5,
+      "unit_title": "Directives & Task Assignment",
+      "lesson_type": "Scene",
+      "lesson_title": "Receiving and Confirming a Task",
+      "content_types": [
+        "listen_choose",
+        "translation_word_bank"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_93ec528d88"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_e6f5bb97",
+          "vi": "Dạ, em đã hiểu ạ."
+        },
+        {
+          "id": "S_f2bf26cc",
+          "vi": "Em sẽ bắt đầu ngay hôm nay."
+        },
+        {
+          "id": "S_23f0368b",
+          "vi": "Em có một câu hỏi: số liệu lấy từ đâu ạ?"
+        },
+        {
+          "id": "S_864b4946",
+          "vi": "Em sẽ gửi bản nháp trước khi hoàn thiện."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_4bba10bb27",
+      "node_id": "manager_u5_Q045",
+      "quiz_id": "manager_u5_Q045",
+      "unit_index": 5,
+      "unit_title": "Directives & Task Assignment",
+      "lesson_type": "Quiz",
+      "lesson_title": "Task Assignment Review",
+      "content_types": [
+        "mcq_translate_to_en",
+        "listen_choose",
+        "match_pairs"
+      ],
+      "xp_reward": 20,
+      "unlock_rule": {
+        "type": "unit_complete",
+        "requires": [
+          "L_22c0d8582a",
+          "L_71dd6c80d7",
+          "L_c49621e328",
+          "L_ce9a9c61f2",
+          "L_232d4295d9",
+          "L_72e63e155b",
+          "L_93ec528d88",
+          "L_7ae6d5b23e"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_d34fa898",
+          "vi": "dự án",
+          "ipa": "",
+          "category": "task"
+        },
+        {
+          "id": "W_d98ed7b8",
+          "vi": "hoàn thành",
+          "ipa": "",
+          "category": "task"
+        },
+        {
+          "id": "W_2d5dd451",
+          "vi": "ưu tiên",
+          "ipa": "",
+          "category": "task"
+        },
+        {
+          "id": "W_83373630",
+          "vi": "khẩn cấp",
+          "ipa": "",
+          "category": "priority"
+        },
+        {
+          "id": "W_d33f73ad",
+          "vi": "nhờ",
+          "ipa": "",
+          "category": "directive"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_e91192e3",
+          "vi": "Nhờ em hoàn thành trước thứ Sáu."
+        }
+      ],
+      "matches": [
+        {
+          "id": "M_f7858183",
+          "text": "dự án"
+        },
+        {
+          "id": "M_5af4715e",
+          "text": "hoàn thành"
+        },
+        {
+          "id": "M_d2bbe905",
+          "text": "ưu tiên"
+        },
+        {
+          "id": "M_a786c8ab",
+          "text": "khẩn cấp"
+        }
+      ]
+    },
+    {
+      "id": "L_db76f10834",
+      "node_id": "manager_u6_L046",
+      "quiz_id": null,
+      "unit_index": 6,
+      "unit_title": "Performance Feedback",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Positive Feedback Words",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_4bba10bb27"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_f83c1c7b",
+          "vi": "tốt",
+          "ipa": "",
+          "category": "feedback"
+        },
+        {
+          "id": "W_f3994e5e",
+          "vi": "tốt lắm",
+          "ipa": "",
+          "category": "feedback"
+        },
+        {
+          "id": "W_1936a906",
+          "vi": "xuất sắc",
+          "ipa": "",
+          "category": "feedback"
+        },
+        {
+          "id": "W_a29d56a1",
+          "vi": "ấn tượng",
+          "ipa": "",
+          "category": "feedback"
+        },
+        {
+          "id": "W_c28b0188",
+          "vi": "chất lượng",
+          "ipa": "",
+          "category": "feedback"
+        },
+        {
+          "id": "W_e71cd331",
+          "vi": "đánh giá cao",
+          "ipa": "",
+          "category": "feedback"
+        },
+        {
+          "id": "W_d5be2653",
+          "vi": "khen",
+          "ipa": "",
+          "category": "feedback"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_1a96fe27",
+          "text": "tốt lắm"
+        },
+        {
+          "id": "M_3227f52d",
+          "text": "xuất sắc"
+        },
+        {
+          "id": "M_30d596b4",
+          "text": "ấn tượng"
+        },
+        {
+          "id": "M_a5c8fccd",
+          "text": "đánh giá cao"
+        }
+      ]
+    },
+    {
+      "id": "L_6b7bf9b9c5",
+      "node_id": "manager_u6_L047",
+      "quiz_id": null,
+      "unit_index": 6,
+      "unit_title": "Performance Feedback",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Constructive Feedback Words",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_vi",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_db76f10834"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_e77fc682",
+          "vi": "cải thiện",
+          "ipa": "",
+          "category": "feedback"
+        },
+        {
+          "id": "W_ee0231e6",
+          "vi": "điểm cần chú ý",
+          "ipa": "",
+          "category": "feedback"
+        },
+        {
+          "id": "W_dd5be9c2",
+          "vi": "góp ý",
+          "ipa": "",
+          "category": "feedback"
+        },
+        {
+          "id": "W_acd7f7e1",
+          "vi": "chỉnh sửa",
+          "ipa": "",
+          "category": "feedback"
+        },
+        {
+          "id": "W_889a5a73",
+          "vi": "điểm mạnh",
+          "ipa": "",
+          "category": "feedback"
+        },
+        {
+          "id": "W_7dda5f33",
+          "vi": "điểm yếu",
+          "ipa": "",
+          "category": "feedback"
+        },
+        {
+          "id": "W_faa17396",
+          "vi": "riêng",
+          "ipa": "",
+          "category": "feedback"
+        }
+      ],
+      "sentences": [],
+      "matches": []
+    },
+    {
+      "id": "L_caf70be3cf",
+      "node_id": "manager_u6_L048",
+      "quiz_id": null,
+      "unit_index": 6,
+      "unit_title": "Performance Feedback",
+      "lesson_type": "Grammar",
+      "lesson_title": "Giving Praise Publicly",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_6b7bf9b9c5"
+        ]
+      },
+      "grammar_tags": [
+        "GT002",
+        "GT031",
+        "GT042"
+      ],
+      "words": [
+        {
+          "id": "W_3b6f2142",
+          "vi": "cả nhóm",
+          "ipa": "",
+          "category": "feedback"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_e2847eff",
+          "vi": "Anh xin khen cả nhóm đã làm rất tốt."
+        },
+        {
+          "id": "S_fda7584c",
+          "vi": "Linh đã có một báo cáo rất xuất sắc."
+        },
+        {
+          "id": "S_6eba1c55",
+          "vi": "Tôi đánh giá cao tinh thần trách nhiệm của các em."
+        },
+        {
+          "id": "S_3c3546a1",
+          "vi": "Thành công này là của cả đội."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_23a2d6bb47",
+      "node_id": "manager_u6_L049",
+      "quiz_id": null,
+      "unit_index": 6,
+      "unit_title": "Performance Feedback",
+      "lesson_type": "Grammar",
+      "lesson_title": "Delivering Criticism Privately",
+      "content_types": [
+        "fill_blank",
+        "mcq_translate_to_vi"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_caf70be3cf"
+        ]
+      },
+      "grammar_tags": [
+        "GT004",
+        "GT022",
+        "GT029",
+        "GT042",
+        "GT043",
+        "GT044"
+      ],
+      "words": [
+        {
+          "id": "W_0e8c8cf7",
+          "vi": "gặp riêng",
+          "ipa": "",
+          "category": "feedback"
+        },
+        {
+          "id": "W_77a256c8",
+          "vi": "trao đổi riêng",
+          "ipa": "",
+          "category": "feedback"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_6a68f690",
+          "vi": "Anh muốn gặp riêng em một chút."
+        },
+        {
+          "id": "S_26879d6c",
+          "vi": "Có một vài điểm anh muốn trao đổi riêng với em."
+        },
+        {
+          "id": "S_548360e8",
+          "vi": "Đây là góp ý riêng, không phải để công khai."
+        },
+        {
+          "id": "S_187fd9ad",
+          "vi": "Anh nói thế này là vì muốn em tiến bộ."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_306d857600",
+      "node_id": "manager_u6_L050",
+      "quiz_id": null,
+      "unit_index": 6,
+      "unit_title": "Performance Feedback",
+      "lesson_type": "Grammar",
+      "lesson_title": "Soft Criticism 'càng ... càng ...'",
+      "content_types": [
+        "fill_blank",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_23a2d6bb47"
+        ]
+      },
+      "grammar_tags": [
+        "GT002",
+        "GT004",
+        "GT025",
+        "GT028",
+        "GT042"
+      ],
+      "words": [
+        {
+          "id": "W_385f5575",
+          "vi": "càng ... càng ...",
+          "ipa": "",
+          "category": "structure"
+        },
+        {
+          "id": "W_c17d1e78",
+          "vi": "không những ... mà còn",
+          "ipa": "",
+          "category": "structure"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_9a731bdf",
+          "vi": "Em càng cẩn thận, kết quả càng tốt."
+        },
+        {
+          "id": "S_5554cbfa",
+          "vi": "Dự án này không những phức tạp mà còn gấp."
+        },
+        {
+          "id": "S_fadfb26a",
+          "vi": "Em làm càng nhiều thì càng có kinh nghiệm."
+        },
+        {
+          "id": "S_64f07c12",
+          "vi": "Báo cáo của em tốt, nhưng phần phân tích có thể sâu hơn."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_4b993efec4",
+      "node_id": "manager_u6_L051",
+      "quiz_id": null,
+      "unit_index": 6,
+      "unit_title": "Performance Feedback",
+      "lesson_type": "Grammar",
+      "lesson_title": "Face-Saving Phrases",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_306d857600"
+        ]
+      },
+      "grammar_tags": [
+        "GT002",
+        "GT025",
+        "GT031",
+        "GT034",
+        "GT043"
+      ],
+      "words": [
+        {
+          "id": "W_3c2e930d",
+          "vi": "anh hiểu em đã cố gắng",
+          "ipa": "",
+          "category": "feedback"
+        },
+        {
+          "id": "W_10284efc",
+          "vi": "lần sau mình làm tốt hơn",
+          "ipa": "",
+          "category": "feedback"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_5989acd6",
+          "vi": "Anh biết em đã rất cố gắng."
+        },
+        {
+          "id": "S_07b01d16",
+          "vi": "Lần sau chúng ta sẽ làm tốt hơn."
+        },
+        {
+          "id": "S_7c38e802",
+          "vi": "Đây là bài học chung cho cả đội."
+        },
+        {
+          "id": "S_e456597f",
+          "vi": "Ai cũng có lúc mắc sai sót."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_8b3d912dd2",
+      "node_id": "manager_u6_L052",
+      "quiz_id": null,
+      "unit_index": 6,
+      "unit_title": "Performance Feedback",
+      "lesson_type": "Scene",
+      "lesson_title": "Positive Feedback in Team Meeting",
+      "content_types": [
+        "speak_sentence",
+        "listen_choose"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_4b993efec4"
+        ]
+      },
+      "grammar_tags": [
+        "GT002",
+        "GT022",
+        "GT026",
+        "GT031",
+        "GT042"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_33f111d0",
+          "vi": "Anh muốn cảm ơn cả đội vì dự án tuần này."
+        },
+        {
+          "id": "S_a3a83403",
+          "vi": "Linh đã phụ trách phần khó nhất và làm rất tốt."
+        },
+        {
+          "id": "S_1913851c",
+          "vi": "Nam đã hỗ trợ khách hàng rất chuyên nghiệp."
+        },
+        {
+          "id": "S_16f4b601",
+          "vi": "Tất cả mọi người đều xuất sắc."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_5a6026ac9e",
+      "node_id": "manager_u6_L053",
+      "quiz_id": null,
+      "unit_index": 6,
+      "unit_title": "Performance Feedback",
+      "lesson_type": "Scene",
+      "lesson_title": "Private Constructive Feedback",
+      "content_types": [
+        "listen_choose",
+        "translation_word_bank"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_8b3d912dd2"
+        ]
+      },
+      "grammar_tags": [
+        "GT002",
+        "GT005",
+        "GT022",
+        "GT025",
+        "GT028"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_d63f6df0",
+          "vi": "Linh ơi, em có chút thời gian không?"
+        },
+        {
+          "id": "S_a70c53e8",
+          "vi": "Anh muốn trao đổi riêng về báo cáo tuần trước."
+        },
+        {
+          "id": "S_41abc632",
+          "vi": "Báo cáo tốt, nhưng phần kết luận cần rõ ràng hơn."
+        },
+        {
+          "id": "S_4396db37",
+          "vi": "Em có thể chỉnh lại phần đó được không?"
+        },
+        {
+          "id": "S_6264e1bd",
+          "vi": "Anh biết em làm được."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_fa9c5227d3",
+      "node_id": "manager_u6_Q054",
+      "quiz_id": "manager_u6_Q054",
+      "unit_index": 6,
+      "unit_title": "Performance Feedback",
+      "lesson_type": "Quiz",
+      "lesson_title": "Feedback Review",
+      "content_types": [
+        "mcq_translate_to_en",
+        "listen_choose",
+        "match_pairs"
+      ],
+      "xp_reward": 20,
+      "unlock_rule": {
+        "type": "unit_complete",
+        "requires": [
+          "L_db76f10834",
+          "L_6b7bf9b9c5",
+          "L_caf70be3cf",
+          "L_23a2d6bb47",
+          "L_306d857600",
+          "L_4b993efec4",
+          "L_8b3d912dd2",
+          "L_5a6026ac9e"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_48080f78",
+          "vi": "tốt lắm",
+          "ipa": "",
+          "category": "feedback"
+        },
+        {
+          "id": "W_89b0b0f6",
+          "vi": "xuất sắc",
+          "ipa": "",
+          "category": "feedback"
+        },
+        {
+          "id": "W_3c1b7bc9",
+          "vi": "cải thiện",
+          "ipa": "",
+          "category": "feedback"
+        },
+        {
+          "id": "W_17b97982",
+          "vi": "góp ý",
+          "ipa": "",
+          "category": "feedback"
+        },
+        {
+          "id": "W_35e362a0",
+          "vi": "gặp riêng",
+          "ipa": "",
+          "category": "feedback"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_37e8b864",
+          "vi": "Em càng cẩn thận, kết quả càng tốt."
+        }
+      ],
+      "matches": [
+        {
+          "id": "M_36850c91",
+          "text": "tốt lắm"
+        },
+        {
+          "id": "M_0ce965fe",
+          "text": "xuất sắc"
+        },
+        {
+          "id": "M_49273cd0",
+          "text": "cải thiện"
+        },
+        {
+          "id": "M_3fc9f6be",
+          "text": "gặp riêng"
+        }
+      ]
+    },
+    {
+      "id": "L_7187c3feb4",
+      "node_id": "manager_u7_L055",
+      "quiz_id": null,
+      "unit_index": 7,
+      "unit_title": "Email Writing",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Email Opening Phrases",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_fa9c5227d3"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_933fe599",
+          "vi": "kính gửi",
+          "ipa": "",
+          "category": "email"
+        },
+        {
+          "id": "W_0fa6b5ff",
+          "vi": "thân gửi",
+          "ipa": "",
+          "category": "email"
+        },
+        {
+          "id": "W_c5aa7611",
+          "vi": "chào anh",
+          "ipa": "",
+          "category": "email"
+        },
+        {
+          "id": "W_777a11a7",
+          "vi": "chào chị",
+          "ipa": "",
+          "category": "email"
+        },
+        {
+          "id": "W_2eb89159",
+          "vi": "về việc",
+          "ipa": "",
+          "category": "email"
+        },
+        {
+          "id": "W_a373c8e3",
+          "vi": "liên quan đến",
+          "ipa": "",
+          "category": "email"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_3f2b043c",
+          "text": "kính gửi"
+        },
+        {
+          "id": "M_0e0cbfdc",
+          "text": "thân gửi"
+        },
+        {
+          "id": "M_270c74d5",
+          "text": "về việc"
+        }
+      ]
+    },
+    {
+      "id": "L_0004889169",
+      "node_id": "manager_u7_L056",
+      "quiz_id": null,
+      "unit_index": 7,
+      "unit_title": "Email Writing",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Email Closing Phrases",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_vi",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_7187c3feb4"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_e07377f2",
+          "vi": "trân trọng",
+          "ipa": "",
+          "category": "email"
+        },
+        {
+          "id": "W_f14a60bd",
+          "vi": "chân thành cảm ơn",
+          "ipa": "",
+          "category": "email"
+        },
+        {
+          "id": "W_b3d5baf9",
+          "vi": "mong sớm nhận được phản hồi",
+          "ipa": "",
+          "category": "email"
+        },
+        {
+          "id": "W_e3b7cd44",
+          "vi": "file đính kèm",
+          "ipa": "",
+          "category": "email"
+        },
+        {
+          "id": "W_1e2759b1",
+          "vi": "vui lòng xem xét",
+          "ipa": "",
+          "category": "email"
+        },
+        {
+          "id": "W_7a2d289c",
+          "vi": "chữ ký",
+          "ipa": "",
+          "category": "email"
+        },
+        {
+          "id": "W_be63ea7d",
+          "vi": "bcc / cc",
+          "ipa": "",
+          "category": "email"
+        }
+      ],
+      "sentences": [],
+      "matches": []
+    },
+    {
+      "id": "L_b989374c12",
+      "node_id": "manager_u7_L057",
+      "quiz_id": null,
+      "unit_index": 7,
+      "unit_title": "Email Writing",
+      "lesson_type": "Grammar",
+      "lesson_title": "Formal Written Register",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_0004889169"
+        ]
+      },
+      "grammar_tags": [
+        "GT022"
+      ],
+      "words": [
+        {
+          "id": "W_53e673b1",
+          "vi": "do đó",
+          "ipa": "",
+          "category": "connective"
+        },
+        {
+          "id": "W_418519fb",
+          "vi": "vì vậy",
+          "ipa": "",
+          "category": "connective"
+        },
+        {
+          "id": "W_259f9347",
+          "vi": "nhằm",
+          "ipa": "",
+          "category": "connective"
+        },
+        {
+          "id": "W_fa167eb6",
+          "vi": "tuy nhiên",
+          "ipa": "",
+          "category": "connective"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_21c3b633",
+          "vi": "Công ty đã hoàn thành dự án, do đó tôi muốn gửi báo cáo."
+        },
+        {
+          "id": "S_47023f0e",
+          "vi": "Nhằm đảm bảo tiến độ, chúng tôi đề xuất thêm nhân sự."
+        },
+        {
+          "id": "S_6eb87df9",
+          "vi": "Tuy nhiên, chúng tôi cần thêm thời gian cho giai đoạn hai."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_dd5f630cc4",
+      "node_id": "manager_u7_L058",
+      "quiz_id": null,
+      "unit_index": 7,
+      "unit_title": "Email Writing",
+      "lesson_type": "Grammar",
+      "lesson_title": "Polite Email Requests",
+      "content_types": [
+        "fill_blank",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_b989374c12"
+        ]
+      },
+      "grammar_tags": [
+        "GT031",
+        "GT042"
+      ],
+      "words": [
+        {
+          "id": "W_9257b085",
+          "vi": "vui lòng",
+          "ipa": "",
+          "category": "request"
+        },
+        {
+          "id": "W_b38ddda9",
+          "vi": "rất mong",
+          "ipa": "",
+          "category": "request"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_7f692349",
+          "vi": "Vui lòng xác nhận lịch họp."
+        },
+        {
+          "id": "S_8540eef2",
+          "vi": "Rất mong anh xem xét đề xuất này."
+        },
+        {
+          "id": "S_173a169c",
+          "vi": "Kính mong quý công ty phản hồi sớm."
+        },
+        {
+          "id": "S_4a2524d1",
+          "vi": "Xin vui lòng gửi lại tài liệu."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_3549daa636",
+      "node_id": "manager_u7_L059",
+      "quiz_id": null,
+      "unit_index": 7,
+      "unit_title": "Email Writing",
+      "lesson_type": "Grammar",
+      "lesson_title": "Attaching & Referring to Documents",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_dd5f630cc4"
+        ]
+      },
+      "grammar_tags": [
+        "GT021"
+      ],
+      "words": [
+        {
+          "id": "W_2e4672f1",
+          "vi": "đính kèm",
+          "ipa": "",
+          "category": "email"
+        },
+        {
+          "id": "W_f3677876",
+          "vi": "tham khảo",
+          "ipa": "",
+          "category": "email"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_19dd1973",
+          "vi": "Tôi đã đính kèm báo cáo tháng 3."
+        },
+        {
+          "id": "S_8135b0a5",
+          "vi": "Xin tham khảo file đính kèm."
+        },
+        {
+          "id": "S_28d8a805",
+          "vi": "Chi tiết xin xem file đính kèm."
+        },
+        {
+          "id": "S_7b51c50a",
+          "vi": "Nếu cần thêm thông tin, vui lòng cho tôi biết."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_f812bb26df",
+      "node_id": "manager_u7_L060",
+      "quiz_id": null,
+      "unit_index": 7,
+      "unit_title": "Email Writing",
+      "lesson_type": "Scene",
+      "lesson_title": "Email to a Client — Progress Update",
+      "content_types": [
+        "listen_choose",
+        "translation_word_bank"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_3549daa636"
+        ]
+      },
+      "grammar_tags": [
+        "GT031"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_2aed3b2c",
+          "vi": "Kính gửi anh Nam,"
+        },
+        {
+          "id": "S_dfdf1ec6",
+          "vi": "Về việc dự án X, chúng tôi đã hoàn thành 70%."
+        },
+        {
+          "id": "S_d8406eca",
+          "vi": "Vui lòng xem báo cáo đính kèm."
+        },
+        {
+          "id": "S_16ae3686",
+          "vi": "Rất mong nhận được phản hồi của anh."
+        },
+        {
+          "id": "S_c82c8416",
+          "vi": "Trân trọng, Linh."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_631a424e47",
+      "node_id": "manager_u7_L061",
+      "quiz_id": null,
+      "unit_index": 7,
+      "unit_title": "Email Writing",
+      "lesson_type": "Scene",
+      "lesson_title": "Internal Email — Meeting Invitation",
+      "content_types": [
+        "listen_choose",
+        "translation_word_bank"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_f812bb26df"
+        ]
+      },
+      "grammar_tags": [
+        "GT034"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_cb20d471",
+          "vi": "Chào cả nhóm,"
+        },
+        {
+          "id": "S_e923a58e",
+          "vi": "Mời mọi người tham dự cuộc họp lúc 2 giờ chiều thứ Tư."
+        },
+        {
+          "id": "S_1a6126f8",
+          "vi": "Chương trình họp đã đính kèm."
+        },
+        {
+          "id": "S_7235401c",
+          "vi": "Vui lòng chuẩn bị báo cáo của từng bộ phận."
+        },
+        {
+          "id": "S_3c0db6ce",
+          "vi": "Cảm ơn, Nam."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_ba9a7bca1b",
+      "node_id": "manager_u7_Q062",
+      "quiz_id": "manager_u7_Q062",
+      "unit_index": 7,
+      "unit_title": "Email Writing",
+      "lesson_type": "Quiz",
+      "lesson_title": "Email Review",
+      "content_types": [
+        "mcq_translate_to_en",
+        "listen_choose",
+        "match_pairs"
+      ],
+      "xp_reward": 20,
+      "unlock_rule": {
+        "type": "unit_complete",
+        "requires": [
+          "L_7187c3feb4",
+          "L_0004889169",
+          "L_b989374c12",
+          "L_dd5f630cc4",
+          "L_3549daa636",
+          "L_f812bb26df",
+          "L_631a424e47"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_5774c92e",
+          "vi": "kính gửi",
+          "ipa": "",
+          "category": "email"
+        },
+        {
+          "id": "W_f18cb341",
+          "vi": "trân trọng",
+          "ipa": "",
+          "category": "email"
+        },
+        {
+          "id": "W_ada3d423",
+          "vi": "vui lòng",
+          "ipa": "",
+          "category": "request"
+        },
+        {
+          "id": "W_07393824",
+          "vi": "đính kèm",
+          "ipa": "",
+          "category": "email"
+        },
+        {
+          "id": "W_f1e291f1",
+          "vi": "do đó",
+          "ipa": "",
+          "category": "connective"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_7f78d286",
+          "vi": "Vui lòng xem file đính kèm."
+        }
+      ],
+      "matches": [
+        {
+          "id": "M_11ecb122",
+          "text": "kính gửi"
+        },
+        {
+          "id": "M_721dd0b2",
+          "text": "trân trọng"
+        },
+        {
+          "id": "M_a2f407fe",
+          "text": "vui lòng"
+        },
+        {
+          "id": "M_3d43df7c",
+          "text": "đính kèm"
+        }
+      ]
+    },
+    {
+      "id": "L_91a6d1bf00",
+      "node_id": "manager_u8_L063",
+      "quiz_id": null,
+      "unit_index": 8,
+      "unit_title": "Zalo & Instant Messages",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Digital Messaging Basics",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_ba9a7bca1b"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_7cf3827f",
+          "vi": "zalo",
+          "ipa": "",
+          "category": "messaging"
+        },
+        {
+          "id": "W_5217e136",
+          "vi": "tin nhắn",
+          "ipa": "",
+          "category": "messaging"
+        },
+        {
+          "id": "W_856cc786",
+          "vi": "gửi",
+          "ipa": "",
+          "category": "messaging"
+        },
+        {
+          "id": "W_f5a8e635",
+          "vi": "nhận",
+          "ipa": "",
+          "category": "messaging"
+        },
+        {
+          "id": "W_e6f3dae1",
+          "vi": "nhóm chat",
+          "ipa": "",
+          "category": "messaging"
+        },
+        {
+          "id": "W_36d88307",
+          "vi": "tag",
+          "ipa": "",
+          "category": "messaging"
+        },
+        {
+          "id": "W_f5acefb5",
+          "vi": "sticker",
+          "ipa": "",
+          "category": "messaging"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_6ac6ebec",
+          "text": "tin nhắn"
+        },
+        {
+          "id": "M_11b3e45f",
+          "text": "nhóm chat"
+        },
+        {
+          "id": "M_b988cc02",
+          "text": "gửi"
+        }
+      ]
+    },
+    {
+      "id": "L_499ab36461",
+      "node_id": "manager_u8_L064",
+      "quiz_id": null,
+      "unit_index": 8,
+      "unit_title": "Zalo & Instant Messages",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Common Zalo Shortcuts",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_vi",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_91a6d1bf00"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_fe051cbd",
+          "vi": "ok",
+          "ipa": "",
+          "category": "messaging"
+        },
+        {
+          "id": "W_a80be6db",
+          "vi": "tks",
+          "ipa": "",
+          "category": "messaging"
+        },
+        {
+          "id": "W_adbd2fd7",
+          "vi": "dc",
+          "ipa": "",
+          "category": "messaging"
+        },
+        {
+          "id": "W_2aa670c1",
+          "vi": "k",
+          "ipa": "",
+          "category": "messaging"
+        },
+        {
+          "id": "W_c287d62a",
+          "vi": "ko",
+          "ipa": "",
+          "category": "messaging"
+        },
+        {
+          "id": "W_9b69e258",
+          "vi": "nhé",
+          "ipa": "",
+          "category": "messaging"
+        },
+        {
+          "id": "W_f6edc5b6",
+          "vi": "ạ",
+          "ipa": "",
+          "category": "messaging"
+        }
+      ],
+      "sentences": [],
+      "matches": []
+    },
+    {
+      "id": "L_5db850dbd9",
+      "node_id": "manager_u8_L065",
+      "quiz_id": null,
+      "unit_index": 8,
+      "unit_title": "Zalo & Instant Messages",
+      "lesson_type": "Grammar",
+      "lesson_title": "Casual vs Formal Register",
+      "content_types": [
+        "fill_blank",
+        "mcq_translate_to_vi"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_499ab36461"
+        ]
+      },
+      "grammar_tags": [
+        "GT004",
+        "GT018",
+        "GT028"
+      ],
+      "words": [
+        {
+          "id": "W_f3ede770",
+          "vi": "thân mật",
+          "ipa": "",
+          "category": "register"
+        },
+        {
+          "id": "W_1c039b95",
+          "vi": "trang trọng",
+          "ipa": "",
+          "category": "register"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_b3b5cda8",
+          "vi": "Anh ơi, em gửi anh file rồi nhé."
+        },
+        {
+          "id": "S_96f5a783",
+          "vi": "Kính gửi anh, em đã gửi tài liệu qua email."
+        },
+        {
+          "id": "S_4f263293",
+          "vi": "Chị rảnh chat tí k ạ?"
+        },
+        {
+          "id": "S_911da56b",
+          "vi": "Chị có thể dành chút thời gian được không ạ?"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_9ce999b3fa",
+      "node_id": "manager_u8_L066",
+      "quiz_id": null,
+      "unit_index": 8,
+      "unit_title": "Zalo & Instant Messages",
+      "lesson_type": "Grammar",
+      "lesson_title": "Quick Requests in Chat",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_5db850dbd9"
+        ]
+      },
+      "grammar_tags": [
+        "GT002",
+        "GT018",
+        "GT034",
+        "GT042"
+      ],
+      "words": [
+        {
+          "id": "W_ddc52a12",
+          "vi": "nhé",
+          "ipa": "",
+          "category": "particle"
+        },
+        {
+          "id": "W_f7dd0399",
+          "vi": "tí",
+          "ipa": "",
+          "category": "quantity"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_e01eec8b",
+          "vi": "Anh check giúp em cái này nhé."
+        },
+        {
+          "id": "S_dfc2ffc1",
+          "vi": "Chị gửi em file lúc nào cũng được nhé."
+        },
+        {
+          "id": "S_a5018976",
+          "vi": "Em cần anh duyệt tí là xong."
+        },
+        {
+          "id": "S_183b3e65",
+          "vi": "Em làm xong báo cáo rồi nhé."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_eaf543c7f7",
+      "node_id": "manager_u8_L067",
+      "quiz_id": null,
+      "unit_index": 8,
+      "unit_title": "Zalo & Instant Messages",
+      "lesson_type": "Grammar",
+      "lesson_title": "Acknowledging in Chat",
+      "content_types": [
+        "fill_blank",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_9ce999b3fa"
+        ]
+      },
+      "grammar_tags": [
+        "GT002",
+        "GT018"
+      ],
+      "words": [
+        {
+          "id": "W_fc6df286",
+          "vi": "nhận được rồi",
+          "ipa": "",
+          "category": "messaging"
+        },
+        {
+          "id": "W_2d5bffe6",
+          "vi": "đã xem",
+          "ipa": "",
+          "category": "messaging"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_2a3a3376",
+          "vi": "Em nhận được rồi ạ."
+        },
+        {
+          "id": "S_16a65822",
+          "vi": "OK anh, em sẽ xem ngay."
+        },
+        {
+          "id": "S_f324189d",
+          "vi": "Được, em làm ngay."
+        },
+        {
+          "id": "S_7947bbdd",
+          "vi": "Cảm ơn anh đã nhắc."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_057238f314",
+      "node_id": "manager_u8_L068",
+      "quiz_id": null,
+      "unit_index": 8,
+      "unit_title": "Zalo & Instant Messages",
+      "lesson_type": "Scene",
+      "lesson_title": "Quick Zalo Check-in with Colleague",
+      "content_types": [
+        "listen_choose",
+        "translation_word_bank"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_eaf543c7f7"
+        ]
+      },
+      "grammar_tags": [
+        "GT004"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_eed5b1a8",
+          "vi": "Linh ơi rảnh k?"
+        },
+        {
+          "id": "S_ef2542ff",
+          "vi": "Có gì không anh?"
+        },
+        {
+          "id": "S_b211437d",
+          "vi": "Em check giúp anh cái số liệu nhé."
+        },
+        {
+          "id": "S_8fb2799e",
+          "vi": "OK anh, 5 phút em gửi."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_863f46453f",
+      "node_id": "manager_u8_L069",
+      "quiz_id": null,
+      "unit_index": 8,
+      "unit_title": "Zalo & Instant Messages",
+      "lesson_type": "Scene",
+      "lesson_title": "Responding to Boss on Zalo",
+      "content_types": [
+        "listen_choose",
+        "translation_word_bank"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_057238f314"
+        ]
+      },
+      "grammar_tags": [
+        "GT018",
+        "GT019",
+        "GT041",
+        "GT042"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_40162be7",
+          "vi": "Em gửi anh báo cáo tuần này chưa?"
+        },
+        {
+          "id": "S_f6eff763",
+          "vi": "Dạ em gửi qua email rồi ạ."
+        },
+        {
+          "id": "S_406634d4",
+          "vi": "Anh chưa thấy, em gửi lại Zalo luôn nhé."
+        },
+        {
+          "id": "S_0ce1ca40",
+          "vi": "Dạ em gửi ngay ạ."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_1b23f17ed4",
+      "node_id": "manager_u8_Q070",
+      "quiz_id": "manager_u8_Q070",
+      "unit_index": 8,
+      "unit_title": "Zalo & Instant Messages",
+      "lesson_type": "Quiz",
+      "lesson_title": "Zalo & Messaging Review",
+      "content_types": [
+        "mcq_translate_to_en",
+        "listen_choose",
+        "match_pairs"
+      ],
+      "xp_reward": 20,
+      "unlock_rule": {
+        "type": "unit_complete",
+        "requires": [
+          "L_91a6d1bf00",
+          "L_499ab36461",
+          "L_5db850dbd9",
+          "L_9ce999b3fa",
+          "L_eaf543c7f7",
+          "L_057238f314",
+          "L_863f46453f"
+        ]
+      },
+      "grammar_tags": [
+        "GT042"
+      ],
+      "words": [
+        {
+          "id": "W_6f6bf117",
+          "vi": "tin nhắn",
+          "ipa": "",
+          "category": "messaging"
+        },
+        {
+          "id": "W_63d9aeb1",
+          "vi": "nhóm chat",
+          "ipa": "",
+          "category": "messaging"
+        },
+        {
+          "id": "W_0ab8da4e",
+          "vi": "nhé",
+          "ipa": "",
+          "category": "particle"
+        },
+        {
+          "id": "W_12734079",
+          "vi": "ko",
+          "ipa": "",
+          "category": "messaging"
+        },
+        {
+          "id": "W_248dee1b",
+          "vi": "gửi",
+          "ipa": "",
+          "category": "messaging"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_1d101259",
+          "vi": "Anh check giúp em cái này nhé."
+        }
+      ],
+      "matches": [
+        {
+          "id": "M_db2bdeb2",
+          "text": "tin nhắn"
+        },
+        {
+          "id": "M_ef342a20",
+          "text": "nhóm chat"
+        },
+        {
+          "id": "M_f07da2f2",
+          "text": "nhé"
+        },
+        {
+          "id": "M_14757a3a",
+          "text": "gửi"
+        }
+      ]
+    },
+    {
+      "id": "L_a5fd988858",
+      "node_id": "manager_u9_L071",
+      "quiz_id": null,
+      "unit_index": 9,
+      "unit_title": "Negotiation & Proposals",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Negotiation Vocabulary",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_1b23f17ed4"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_c41efc71",
+          "vi": "đàm phán",
+          "ipa": "",
+          "category": "negotiation"
+        },
+        {
+          "id": "W_9cd20e20",
+          "vi": "thương lượng",
+          "ipa": "",
+          "category": "negotiation"
+        },
+        {
+          "id": "W_75222a3f",
+          "vi": "đề xuất",
+          "ipa": "",
+          "category": "negotiation"
+        },
+        {
+          "id": "W_e7e7631a",
+          "vi": "đối tác",
+          "ipa": "",
+          "category": "negotiation"
+        },
+        {
+          "id": "W_a74867da",
+          "vi": "hợp tác",
+          "ipa": "",
+          "category": "negotiation"
+        },
+        {
+          "id": "W_1961ff82",
+          "vi": "điều khoản",
+          "ipa": "",
+          "category": "negotiation"
+        },
+        {
+          "id": "W_70d4cbaf",
+          "vi": "hợp đồng",
+          "ipa": "",
+          "category": "negotiation"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_5466044b",
+          "text": "đàm phán"
+        },
+        {
+          "id": "M_db94079f",
+          "text": "đối tác"
+        },
+        {
+          "id": "M_f27f21ec",
+          "text": "điều khoản"
+        },
+        {
+          "id": "M_c4fd8d2e",
+          "text": "hợp đồng"
+        }
+      ]
+    },
+    {
+      "id": "L_42fe14f84c",
+      "node_id": "manager_u9_L072",
+      "quiz_id": null,
+      "unit_index": 9,
+      "unit_title": "Negotiation & Proposals",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Concessions & Offers",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_vi",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_a5fd988858"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_6cad178f",
+          "vi": "mức giá",
+          "ipa": "",
+          "category": "negotiation"
+        },
+        {
+          "id": "W_cbc12763",
+          "vi": "giảm giá",
+          "ipa": "",
+          "category": "negotiation"
+        },
+        {
+          "id": "W_b17cf763",
+          "vi": "thanh toán",
+          "ipa": "",
+          "category": "negotiation"
+        },
+        {
+          "id": "W_cf927804",
+          "vi": "chiết khấu",
+          "ipa": "",
+          "category": "negotiation"
+        },
+        {
+          "id": "W_00b37aff",
+          "vi": "thỏa thuận",
+          "ipa": "",
+          "category": "negotiation"
+        },
+        {
+          "id": "W_6f84bd92",
+          "vi": "ký hợp đồng",
+          "ipa": "",
+          "category": "negotiation"
+        },
+        {
+          "id": "W_1043956b",
+          "vi": "điều chỉnh",
+          "ipa": "",
+          "category": "negotiation"
+        }
+      ],
+      "sentences": [],
+      "matches": []
+    },
+    {
+      "id": "L_4a593c9941",
+      "node_id": "manager_u9_L073",
+      "quiz_id": null,
+      "unit_index": 9,
+      "unit_title": "Negotiation & Proposals",
+      "lesson_type": "Grammar",
+      "lesson_title": "Stacked Conditional 'Nếu ... thì có thể'",
+      "content_types": [
+        "fill_blank",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_42fe14f84c"
+        ]
+      },
+      "grammar_tags": [
+        "GT025",
+        "GT028",
+        "GT042"
+      ],
+      "words": [
+        {
+          "id": "W_b3909318",
+          "vi": "nếu...thì có thể",
+          "ipa": "",
+          "category": "conditional"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_24fade2d",
+          "vi": "Nếu anh đồng ý mức này thì chúng tôi có thể ký ngay."
+        },
+        {
+          "id": "S_2ceb3a90",
+          "vi": "Nếu số lượng lớn hơn thì có thể giảm giá thêm."
+        },
+        {
+          "id": "S_abd7c39d",
+          "vi": "Nếu thanh toán trước thì sẽ có chiết khấu."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_57fc24a364",
+      "node_id": "manager_u9_L074",
+      "quiz_id": null,
+      "unit_index": 9,
+      "unit_title": "Negotiation & Proposals",
+      "lesson_type": "Grammar",
+      "lesson_title": "Making an Offer",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_4a593c9941"
+        ]
+      },
+      "grammar_tags": [
+        "GT026",
+        "GT028",
+        "GT031",
+        "GT043"
+      ],
+      "words": [
+        {
+          "id": "W_ca75d320",
+          "vi": "chúng tôi đề xuất",
+          "ipa": "",
+          "category": "negotiation"
+        },
+        {
+          "id": "W_06e14534",
+          "vi": "có thể chấp nhận",
+          "ipa": "",
+          "category": "negotiation"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_10296701",
+          "vi": "Chúng tôi đề xuất mức giá 500.000 đồng."
+        },
+        {
+          "id": "S_07a13fb5",
+          "vi": "Mức giá chúng tôi có thể chấp nhận là 450.000."
+        },
+        {
+          "id": "S_2ab91607",
+          "vi": "Đây là giá tốt nhất chúng tôi có thể đưa ra."
+        },
+        {
+          "id": "S_0db9a77c",
+          "vi": "Đề xuất của anh rất hấp dẫn, nhưng..."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_87387044d1",
+      "node_id": "manager_u9_L075",
+      "quiz_id": null,
+      "unit_index": 9,
+      "unit_title": "Negotiation & Proposals",
+      "lesson_type": "Grammar",
+      "lesson_title": "Countering & Conceding",
+      "content_types": [
+        "fill_blank",
+        "mcq_translate_to_vi"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_57fc24a364"
+        ]
+      },
+      "grammar_tags": [
+        "GT028",
+        "GT043"
+      ],
+      "words": [
+        {
+          "id": "W_d8d459cd",
+          "vi": "trường hợp đặc biệt",
+          "ipa": "",
+          "category": "negotiation"
+        },
+        {
+          "id": "W_8a52cc6c",
+          "vi": "có thể xem xét",
+          "ipa": "",
+          "category": "negotiation"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_a429fa9a",
+          "vi": "Có thể xem xét trong trường hợp đặc biệt."
+        },
+        {
+          "id": "S_6819982a",
+          "vi": "Nếu là lần đầu hợp tác thì chúng tôi có thể linh động."
+        },
+        {
+          "id": "S_739a1b82",
+          "vi": "Chúng tôi cần thảo luận nội bộ và phản hồi sau."
+        },
+        {
+          "id": "S_d669704c",
+          "vi": "Đây là mức cuối cùng chúng tôi có thể đồng ý."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_18f3321fea",
+      "node_id": "manager_u9_L076",
+      "quiz_id": null,
+      "unit_index": 9,
+      "unit_title": "Negotiation & Proposals",
+      "lesson_type": "Grammar",
+      "lesson_title": "Formal Commitment",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_87387044d1"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_d314a427",
+          "vi": "cam kết",
+          "ipa": "",
+          "category": "negotiation"
+        },
+        {
+          "id": "W_9f8b90ce",
+          "vi": "đảm bảo",
+          "ipa": "",
+          "category": "negotiation"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_1c1a7212",
+          "vi": "Chúng tôi cam kết giao hàng đúng hạn."
+        },
+        {
+          "id": "S_ebb9be21",
+          "vi": "Đảm bảo chất lượng là ưu tiên hàng đầu."
+        },
+        {
+          "id": "S_cbe748a1",
+          "vi": "Hai bên cam kết thực hiện đúng hợp đồng."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_4e63d083ea",
+      "node_id": "manager_u9_L077",
+      "quiz_id": null,
+      "unit_index": 9,
+      "unit_title": "Negotiation & Proposals",
+      "lesson_type": "Scene",
+      "lesson_title": "Opening a Negotiation",
+      "content_types": [
+        "listen_choose",
+        "translation_word_bank"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_18f3321fea"
+        ]
+      },
+      "grammar_tags": [
+        "GT022",
+        "GT044"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_cb2d120c",
+          "vi": "Cảm ơn anh đã dành thời gian."
+        },
+        {
+          "id": "S_2aba0111",
+          "vi": "Hôm nay chúng ta cùng trao đổi về hợp tác."
+        },
+        {
+          "id": "S_fefcbf96",
+          "vi": "Chúng tôi đã đọc đề xuất của quý công ty."
+        },
+        {
+          "id": "S_566ac8a2",
+          "vi": "Tôi muốn trao đổi về một vài điều khoản."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_861b88fb8c",
+      "node_id": "manager_u9_L078",
+      "quiz_id": null,
+      "unit_index": 9,
+      "unit_title": "Negotiation & Proposals",
+      "lesson_type": "Scene",
+      "lesson_title": "Reaching an Agreement",
+      "content_types": [
+        "listen_choose",
+        "speak_sentence"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_4e63d083ea"
+        ]
+      },
+      "grammar_tags": [
+        "GT026",
+        "GT031",
+        "GT036",
+        "GT042"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_207131b9",
+          "vi": "Vậy chúng ta thống nhất mức giá 480.000."
+        },
+        {
+          "id": "S_8e65b12a",
+          "vi": "Hạn giao hàng là ngày 30 tháng 5."
+        },
+        {
+          "id": "S_654c1ebc",
+          "vi": "Tôi sẽ gửi hợp đồng chính thức trong tuần này."
+        },
+        {
+          "id": "S_a1a69377",
+          "vi": "Rất vui được hợp tác với anh."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_bb7a0c0b9e",
+      "node_id": "manager_u9_Q079",
+      "quiz_id": "manager_u9_Q079",
+      "unit_index": 9,
+      "unit_title": "Negotiation & Proposals",
+      "lesson_type": "Quiz",
+      "lesson_title": "Negotiation Review",
+      "content_types": [
+        "mcq_translate_to_en",
+        "listen_choose",
+        "match_pairs"
+      ],
+      "xp_reward": 20,
+      "unlock_rule": {
+        "type": "unit_complete",
+        "requires": [
+          "L_a5fd988858",
+          "L_42fe14f84c",
+          "L_4a593c9941",
+          "L_57fc24a364",
+          "L_87387044d1",
+          "L_18f3321fea",
+          "L_4e63d083ea",
+          "L_861b88fb8c"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_081cbefe",
+          "vi": "đàm phán",
+          "ipa": "",
+          "category": "negotiation"
+        },
+        {
+          "id": "W_65d6873d",
+          "vi": "đối tác",
+          "ipa": "",
+          "category": "negotiation"
+        },
+        {
+          "id": "W_fea8408e",
+          "vi": "đề xuất",
+          "ipa": "",
+          "category": "negotiation"
+        },
+        {
+          "id": "W_8a255deb",
+          "vi": "hợp đồng",
+          "ipa": "",
+          "category": "negotiation"
+        },
+        {
+          "id": "W_66d960f6",
+          "vi": "cam kết",
+          "ipa": "",
+          "category": "negotiation"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_53200468",
+          "vi": "Chúng tôi cam kết giao hàng đúng hạn."
+        }
+      ],
+      "matches": [
+        {
+          "id": "M_3d6151a0",
+          "text": "đàm phán"
+        },
+        {
+          "id": "M_89793001",
+          "text": "đối tác"
+        },
+        {
+          "id": "M_1f92d2ac",
+          "text": "đề xuất"
+        },
+        {
+          "id": "M_d65e6f0b",
+          "text": "hợp đồng"
+        }
+      ]
+    },
+    {
+      "id": "L_37e366539e",
+      "node_id": "manager_u10_L080",
+      "quiz_id": null,
+      "unit_index": 10,
+      "unit_title": "Business Meals & Entertainment",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Restaurant & Seating",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_bb7a0c0b9e"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_f1cbc451",
+          "vi": "nhà hàng",
+          "ipa": "",
+          "category": "dining"
+        },
+        {
+          "id": "W_6e672daa",
+          "vi": "phòng riêng",
+          "ipa": "",
+          "category": "dining"
+        },
+        {
+          "id": "W_5ad4ba03",
+          "vi": "đặt bàn",
+          "ipa": "",
+          "category": "dining"
+        },
+        {
+          "id": "W_9d32d640",
+          "vi": "tiếp khách",
+          "ipa": "",
+          "category": "dining"
+        },
+        {
+          "id": "W_0de6da8a",
+          "vi": "chủ bàn",
+          "ipa": "",
+          "category": "dining"
+        },
+        {
+          "id": "W_7c1a44ad",
+          "vi": "khách mời",
+          "ipa": "",
+          "category": "dining"
+        },
+        {
+          "id": "W_e36883dc",
+          "vi": "chỗ ngồi",
+          "ipa": "",
+          "category": "dining"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_d5aa2d72",
+          "text": "nhà hàng"
+        },
+        {
+          "id": "M_899b0b43",
+          "text": "phòng riêng"
+        },
+        {
+          "id": "M_6a4c50cd",
+          "text": "đặt bàn"
+        },
+        {
+          "id": "M_c2377ad9",
+          "text": "khách mời"
+        }
+      ]
+    },
+    {
+      "id": "L_f977d18498",
+      "node_id": "manager_u10_L081",
+      "quiz_id": null,
+      "unit_index": 10,
+      "unit_title": "Business Meals & Entertainment",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Drinking Culture",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_vi",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_37e366539e"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_cc18090f",
+          "vi": "bia",
+          "ipa": "",
+          "category": "dining"
+        },
+        {
+          "id": "W_20a61893",
+          "vi": "rượu",
+          "ipa": "",
+          "category": "dining"
+        },
+        {
+          "id": "W_67b05927",
+          "vi": "chúc mừng",
+          "ipa": "",
+          "category": "dining"
+        },
+        {
+          "id": "W_c2e0d8a0",
+          "vi": "nâng ly",
+          "ipa": "",
+          "category": "dining"
+        },
+        {
+          "id": "W_57a348e1",
+          "vi": "một trăm phần trăm",
+          "ipa": "",
+          "category": "dining"
+        },
+        {
+          "id": "W_e64b161b",
+          "vi": "cạn ly",
+          "ipa": "",
+          "category": "dining"
+        },
+        {
+          "id": "W_80417d43",
+          "vi": "uống ít thôi",
+          "ipa": "",
+          "category": "dining"
+        }
+      ],
+      "sentences": [],
+      "matches": []
+    },
+    {
+      "id": "L_a31dec7130",
+      "node_id": "manager_u10_L082",
+      "quiz_id": null,
+      "unit_index": 10,
+      "unit_title": "Business Meals & Entertainment",
+      "lesson_type": "Grammar",
+      "lesson_title": "Toasting & Cheering",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_f977d18498"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_affb6e83",
+          "vi": "xin mời",
+          "ipa": "",
+          "category": "dining"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_b0d55c2d",
+          "vi": "Xin mời các anh chị nâng ly."
+        },
+        {
+          "id": "S_72d346e9",
+          "vi": "Chúc mừng hợp tác thành công!"
+        },
+        {
+          "id": "S_3d4d1f77",
+          "vi": "Chúc sức khỏe các anh chị!"
+        },
+        {
+          "id": "S_747fdf54",
+          "vi": "Một trăm phần trăm nào!"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_384b45f479",
+      "node_id": "manager_u10_L083",
+      "quiz_id": null,
+      "unit_index": 10,
+      "unit_title": "Business Meals & Entertainment",
+      "lesson_type": "Grammar",
+      "lesson_title": "Polite Refusals (drinking, food)",
+      "content_types": [
+        "fill_blank",
+        "mcq_translate_to_vi"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_a31dec7130"
+        ]
+      },
+      "grammar_tags": [
+        "GT004",
+        "GT018"
+      ],
+      "words": [
+        {
+          "id": "W_23e38f2a",
+          "vi": "xin phép không",
+          "ipa": "",
+          "category": "dining"
+        },
+        {
+          "id": "W_dfd992f4",
+          "vi": "tôi không uống được",
+          "ipa": "",
+          "category": "dining"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_6a27df4c",
+          "vi": "Em xin phép uống ít thôi ạ."
+        },
+        {
+          "id": "S_63578c91",
+          "vi": "Tôi lái xe nên không uống được."
+        },
+        {
+          "id": "S_a979c696",
+          "vi": "Cảm ơn anh, em no rồi."
+        },
+        {
+          "id": "S_5b6ce345",
+          "vi": "Em không ăn được cay, xin anh thông cảm."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_5a1c3d41c1",
+      "node_id": "manager_u10_L084",
+      "quiz_id": null,
+      "unit_index": 10,
+      "unit_title": "Business Meals & Entertainment",
+      "lesson_type": "Grammar",
+      "lesson_title": "Compliments to Host",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_384b45f479"
+        ]
+      },
+      "grammar_tags": [
+        "GT031",
+        "GT042"
+      ],
+      "words": [
+        {
+          "id": "W_00ef4e9e",
+          "vi": "ngon quá",
+          "ipa": "",
+          "category": "dining"
+        },
+        {
+          "id": "W_fd887817",
+          "vi": "chu đáo",
+          "ipa": "",
+          "category": "dining"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_06377578",
+          "vi": "Món này ngon quá, cảm ơn anh đã mời."
+        },
+        {
+          "id": "S_2a101a6c",
+          "vi": "Anh thật chu đáo khi chọn nhà hàng này."
+        },
+        {
+          "id": "S_ecab28d7",
+          "vi": "Bữa tối rất tuyệt vời."
+        },
+        {
+          "id": "S_0a9eaa09",
+          "vi": "Lần sau xin phép được mời lại."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_266f5d3005",
+      "node_id": "manager_u10_L085",
+      "quiz_id": null,
+      "unit_index": 10,
+      "unit_title": "Business Meals & Entertainment",
+      "lesson_type": "Scene",
+      "lesson_title": "Hosting a Client Dinner",
+      "content_types": [
+        "listen_choose",
+        "translation_word_bank"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_5a1c3d41c1"
+        ]
+      },
+      "grammar_tags": [
+        "GT018"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_cafde3b2",
+          "vi": "Xin mời anh chị ngồi."
+        },
+        {
+          "id": "S_4c4d3b0b",
+          "vi": "Tôi đã đặt phòng riêng rồi."
+        },
+        {
+          "id": "S_066173c8",
+          "vi": "Anh thích uống gì ạ? Bia hay rượu?"
+        },
+        {
+          "id": "S_602bf50c",
+          "vi": "Chúc mừng hợp tác thành công!"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_a5c78c8a08",
+      "node_id": "manager_u10_L086",
+      "quiz_id": null,
+      "unit_index": 10,
+      "unit_title": "Business Meals & Entertainment",
+      "lesson_type": "Scene",
+      "lesson_title": "Declining Extra Drinks Politely",
+      "content_types": [
+        "listen_choose",
+        "speak_sentence"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_266f5d3005"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_f6f5edb5",
+          "vi": "Anh ơi, thêm ly nữa nhé!"
+        },
+        {
+          "id": "S_6e423743",
+          "vi": "Em xin phép thôi, em lái xe ạ."
+        },
+        {
+          "id": "S_a67985d5",
+          "vi": "Em chúc cả bàn sức khỏe."
+        },
+        {
+          "id": "S_b436d040",
+          "vi": "Cảm ơn anh đã thông cảm."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_a996ba84c3",
+      "node_id": "manager_u10_Q087",
+      "quiz_id": "manager_u10_Q087",
+      "unit_index": 10,
+      "unit_title": "Business Meals & Entertainment",
+      "lesson_type": "Quiz",
+      "lesson_title": "Business Meals Review",
+      "content_types": [
+        "mcq_translate_to_en",
+        "listen_choose",
+        "match_pairs"
+      ],
+      "xp_reward": 20,
+      "unlock_rule": {
+        "type": "unit_complete",
+        "requires": [
+          "L_37e366539e",
+          "L_f977d18498",
+          "L_a31dec7130",
+          "L_384b45f479",
+          "L_5a1c3d41c1",
+          "L_266f5d3005",
+          "L_a5c78c8a08"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_d0a7f6e7",
+          "vi": "nhà hàng",
+          "ipa": "",
+          "category": "dining"
+        },
+        {
+          "id": "W_2175a3c5",
+          "vi": "phòng riêng",
+          "ipa": "",
+          "category": "dining"
+        },
+        {
+          "id": "W_7aca356d",
+          "vi": "chúc mừng",
+          "ipa": "",
+          "category": "dining"
+        },
+        {
+          "id": "W_dc81364c",
+          "vi": "nâng ly",
+          "ipa": "",
+          "category": "dining"
+        },
+        {
+          "id": "W_75fc05a9",
+          "vi": "một trăm phần trăm",
+          "ipa": "",
+          "category": "dining"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_35498136",
+          "vi": "Xin mời các anh chị nâng ly."
+        }
+      ],
+      "matches": [
+        {
+          "id": "M_af95609e",
+          "text": "nhà hàng"
+        },
+        {
+          "id": "M_100d9ed5",
+          "text": "phòng riêng"
+        },
+        {
+          "id": "M_8539edcb",
+          "text": "chúc mừng"
+        },
+        {
+          "id": "M_1abe805f",
+          "text": "nâng ly"
+        }
+      ]
+    },
+    {
+      "id": "L_748929d2a7",
+      "node_id": "manager_u11_L088",
+      "quiz_id": null,
+      "unit_index": 11,
+      "unit_title": "Government & Legal Errands",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Work Permits & Visas",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_a996ba84c3"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_7db57ad7",
+          "vi": "giấy phép lao động",
+          "ipa": "",
+          "category": "government"
+        },
+        {
+          "id": "W_49cd6d67",
+          "vi": "visa",
+          "ipa": "",
+          "category": "government"
+        },
+        {
+          "id": "W_98d46c0b",
+          "vi": "gia hạn",
+          "ipa": "",
+          "category": "government"
+        },
+        {
+          "id": "W_a1a7abca",
+          "vi": "hộ chiếu",
+          "ipa": "",
+          "category": "government"
+        },
+        {
+          "id": "W_b4d17891",
+          "vi": "thẻ tạm trú",
+          "ipa": "",
+          "category": "government"
+        },
+        {
+          "id": "W_c0e72e22",
+          "vi": "công chứng",
+          "ipa": "",
+          "category": "government"
+        },
+        {
+          "id": "W_1230367c",
+          "vi": "bản sao",
+          "ipa": "",
+          "category": "government"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_3300b329",
+          "text": "giấy phép lao động"
+        },
+        {
+          "id": "M_3077ee5b",
+          "text": "thẻ tạm trú"
+        },
+        {
+          "id": "M_64651f6e",
+          "text": "công chứng"
+        }
+      ]
+    },
+    {
+      "id": "L_eff9b6254c",
+      "node_id": "manager_u11_L089",
+      "quiz_id": null,
+      "unit_index": 11,
+      "unit_title": "Government & Legal Errands",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Bank & Tax",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_vi",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_748929d2a7"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_956fe503",
+          "vi": "tài khoản ngân hàng",
+          "ipa": "",
+          "category": "banking"
+        },
+        {
+          "id": "W_b6182863",
+          "vi": "mở tài khoản",
+          "ipa": "",
+          "category": "banking"
+        },
+        {
+          "id": "W_49968403",
+          "vi": "chuyển khoản",
+          "ipa": "",
+          "category": "banking"
+        },
+        {
+          "id": "W_af0d0f2e",
+          "vi": "hóa đơn VAT",
+          "ipa": "",
+          "category": "tax"
+        },
+        {
+          "id": "W_cdba0f21",
+          "vi": "mã số thuế",
+          "ipa": "",
+          "category": "tax"
+        },
+        {
+          "id": "W_acad2469",
+          "vi": "khai thuế",
+          "ipa": "",
+          "category": "tax"
+        },
+        {
+          "id": "W_3c1e11c5",
+          "vi": "doanh nghiệp",
+          "ipa": "",
+          "category": "tax"
+        }
+      ],
+      "sentences": [],
+      "matches": []
+    },
+    {
+      "id": "L_c02d54d53d",
+      "node_id": "manager_u11_L090",
+      "quiz_id": null,
+      "unit_index": 11,
+      "unit_title": "Government & Legal Errands",
+      "lesson_type": "Grammar",
+      "lesson_title": "Making Formal Inquiries",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_eff9b6254c"
+        ]
+      },
+      "grammar_tags": [
+        "GT005",
+        "GT021",
+        "GT028"
+      ],
+      "words": [
+        {
+          "id": "W_2692500a",
+          "vi": "xin hỏi",
+          "ipa": "",
+          "category": "request"
+        },
+        {
+          "id": "W_a080fa74",
+          "vi": "cho tôi hỏi",
+          "ipa": "",
+          "category": "request"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_f08587c6",
+          "vi": "Xin hỏi thủ tục gia hạn visa gồm những gì ạ?"
+        },
+        {
+          "id": "S_713453bd",
+          "vi": "Cho tôi hỏi, tôi cần chuẩn bị giấy tờ gì?"
+        },
+        {
+          "id": "S_d9c86e51",
+          "vi": "Xin cho biết mất bao lâu để xử lý?"
+        },
+        {
+          "id": "S_5dbbab5b",
+          "vi": "Anh có thể hướng dẫn giúp tôi không?"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_c83385a26c",
+      "node_id": "manager_u11_L091",
+      "quiz_id": null,
+      "unit_index": 11,
+      "unit_title": "Government & Legal Errands",
+      "lesson_type": "Grammar",
+      "lesson_title": "Document Requirements",
+      "content_types": [
+        "fill_blank",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_c02d54d53d"
+        ]
+      },
+      "grammar_tags": [
+        "GT002",
+        "GT029"
+      ],
+      "words": [
+        {
+          "id": "W_231cd0d1",
+          "vi": "cần phải có",
+          "ipa": "",
+          "category": "requirement"
+        },
+        {
+          "id": "W_ff8620ac",
+          "vi": "kèm theo",
+          "ipa": "",
+          "category": "requirement"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_e59a18e6",
+          "vi": "Hồ sơ cần phải có bản sao hộ chiếu."
+        },
+        {
+          "id": "S_53db80af",
+          "vi": "Kèm theo là hợp đồng lao động bản gốc."
+        },
+        {
+          "id": "S_8f08bd23",
+          "vi": "Tất cả giấy tờ phải được công chứng."
+        },
+        {
+          "id": "S_95dee613",
+          "vi": "Thời hạn xử lý là 15 ngày làm việc."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_ff836f68b6",
+      "node_id": "manager_u11_L092",
+      "quiz_id": null,
+      "unit_index": 11,
+      "unit_title": "Government & Legal Errands",
+      "lesson_type": "Grammar",
+      "lesson_title": "Describing Procedures",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_c83385a26c"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_5d016745",
+          "vi": "thủ tục",
+          "ipa": "",
+          "category": "government"
+        },
+        {
+          "id": "W_cc53ee7d",
+          "vi": "hồ sơ",
+          "ipa": "",
+          "category": "government"
+        },
+        {
+          "id": "W_cf0470ee",
+          "vi": "xử lý",
+          "ipa": "",
+          "category": "government"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_b955e81e",
+          "vi": "Thủ tục gồm ba bước chính."
+        },
+        {
+          "id": "S_a3e5effc",
+          "vi": "Đầu tiên là chuẩn bị hồ sơ."
+        },
+        {
+          "id": "S_744094ce",
+          "vi": "Tiếp theo nộp tại cơ quan chức năng."
+        },
+        {
+          "id": "S_18869114",
+          "vi": "Cuối cùng là chờ kết quả trong 15 ngày."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_a743c5f39c",
+      "node_id": "manager_u11_L093",
+      "quiz_id": null,
+      "unit_index": 11,
+      "unit_title": "Government & Legal Errands",
+      "lesson_type": "Scene",
+      "lesson_title": "At the Immigration Office",
+      "content_types": [
+        "listen_choose",
+        "translation_word_bank"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_ff836f68b6"
+        ]
+      },
+      "grammar_tags": [
+        "GT002",
+        "GT020",
+        "GT022"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_9066ecdd",
+          "vi": "Xin chào, tôi muốn gia hạn visa."
+        },
+        {
+          "id": "S_a309fca1",
+          "vi": "Anh cho xin hộ chiếu và hợp đồng lao động."
+        },
+        {
+          "id": "S_0290bbcf",
+          "vi": "Tôi cần đợi bao lâu ạ?"
+        },
+        {
+          "id": "S_aac118cf",
+          "vi": "Khoảng 7 ngày làm việc."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_f2ef360007",
+      "node_id": "manager_u11_L094",
+      "quiz_id": null,
+      "unit_index": 11,
+      "unit_title": "Government & Legal Errands",
+      "lesson_type": "Scene",
+      "lesson_title": "At the Bank — Opening Business Account",
+      "content_types": [
+        "listen_choose",
+        "speak_sentence"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_a743c5f39c"
+        ]
+      },
+      "grammar_tags": [
+        "GT018",
+        "GT022"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_b3ba7a41",
+          "vi": "Tôi muốn mở tài khoản cho công ty."
+        },
+        {
+          "id": "S_b1aec039",
+          "vi": "Anh cần giấy đăng ký kinh doanh và con dấu công ty."
+        },
+        {
+          "id": "S_5ba8922e",
+          "vi": "Tôi đã chuẩn bị đủ hồ sơ rồi."
+        },
+        {
+          "id": "S_8bd37dae",
+          "vi": "Khoảng 30 phút sẽ có tài khoản."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_6bdd32790c",
+      "node_id": "manager_u11_Q095",
+      "quiz_id": "manager_u11_Q095",
+      "unit_index": 11,
+      "unit_title": "Government & Legal Errands",
+      "lesson_type": "Quiz",
+      "lesson_title": "Government & Banking Review",
+      "content_types": [
+        "mcq_translate_to_en",
+        "listen_choose",
+        "match_pairs"
+      ],
+      "xp_reward": 20,
+      "unlock_rule": {
+        "type": "unit_complete",
+        "requires": [
+          "L_748929d2a7",
+          "L_eff9b6254c",
+          "L_c02d54d53d",
+          "L_c83385a26c",
+          "L_ff836f68b6",
+          "L_a743c5f39c",
+          "L_f2ef360007"
+        ]
+      },
+      "grammar_tags": [
+        "GT022"
+      ],
+      "words": [
+        {
+          "id": "W_98693aa2",
+          "vi": "giấy phép lao động",
+          "ipa": "",
+          "category": "government"
+        },
+        {
+          "id": "W_47b42f98",
+          "vi": "hộ chiếu",
+          "ipa": "",
+          "category": "government"
+        },
+        {
+          "id": "W_c526cd64",
+          "vi": "chuyển khoản",
+          "ipa": "",
+          "category": "banking"
+        },
+        {
+          "id": "W_22ede144",
+          "vi": "hồ sơ",
+          "ipa": "",
+          "category": "government"
+        },
+        {
+          "id": "W_84db7607",
+          "vi": "công chứng",
+          "ipa": "",
+          "category": "government"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_e78becc4",
+          "vi": "Tôi muốn gia hạn visa."
+        }
+      ],
+      "matches": [
+        {
+          "id": "M_e13df751",
+          "text": "giấy phép lao động"
+        },
+        {
+          "id": "M_c50cd7bb",
+          "text": "hộ chiếu"
+        },
+        {
+          "id": "M_37dee053",
+          "text": "chuyển khoản"
+        },
+        {
+          "id": "M_ba98e58d",
+          "text": "hồ sơ"
+        }
+      ]
+    },
+    {
+      "id": "L_56617046ad",
+      "node_id": "manager_u12_L096",
+      "quiz_id": null,
+      "unit_index": 12,
+      "unit_title": "Festivals & Employee Relations",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Tết (Lunar New Year)",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_6bdd32790c"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_0d036f37",
+          "vi": "tết",
+          "ipa": "",
+          "category": "festival"
+        },
+        {
+          "id": "W_72fe8beb",
+          "vi": "lì xì",
+          "ipa": "",
+          "category": "festival"
+        },
+        {
+          "id": "W_ff706161",
+          "vi": "tháng lương thứ 13",
+          "ipa": "",
+          "category": "festival"
+        },
+        {
+          "id": "W_faa3f253",
+          "vi": "nghỉ tết",
+          "ipa": "",
+          "category": "festival"
+        },
+        {
+          "id": "W_a85071c1",
+          "vi": "chúc mừng năm mới",
+          "ipa": "",
+          "category": "festival"
+        },
+        {
+          "id": "W_fcf619e7",
+          "vi": "bánh chưng",
+          "ipa": "",
+          "category": "festival"
+        },
+        {
+          "id": "W_9b39f17a",
+          "vi": "thưởng",
+          "ipa": "",
+          "category": "festival"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_30b3d4c3",
+          "text": "tết"
+        },
+        {
+          "id": "M_72d5d251",
+          "text": "lì xì"
+        },
+        {
+          "id": "M_0c8293d4",
+          "text": "tháng lương thứ 13"
+        },
+        {
+          "id": "M_5964eb19",
+          "text": "thưởng"
+        }
+      ]
+    },
+    {
+      "id": "L_16e8576861",
+      "node_id": "manager_u12_L097",
+      "quiz_id": null,
+      "unit_index": 12,
+      "unit_title": "Festivals & Employee Relations",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Other Holidays & Life Events",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_vi",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_56617046ad"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_551e9493",
+          "vi": "trung thu",
+          "ipa": "",
+          "category": "festival"
+        },
+        {
+          "id": "W_ad9cafdd",
+          "vi": "bánh trung thu",
+          "ipa": "",
+          "category": "festival"
+        },
+        {
+          "id": "W_88d1a0d0",
+          "vi": "8/3 (mùng 8 tháng 3)",
+          "ipa": "",
+          "category": "festival"
+        },
+        {
+          "id": "W_29eebed4",
+          "vi": "20/10 (hai mươi tháng mười)",
+          "ipa": "",
+          "category": "festival"
+        },
+        {
+          "id": "W_13d4f6cf",
+          "vi": "đám cưới",
+          "ipa": "",
+          "category": "event"
+        },
+        {
+          "id": "W_83f18dfa",
+          "vi": "đám tang",
+          "ipa": "",
+          "category": "event"
+        },
+        {
+          "id": "W_04c6eafd",
+          "vi": "mừng tuổi",
+          "ipa": "",
+          "category": "festival"
+        }
+      ],
+      "sentences": [],
+      "matches": []
+    },
+    {
+      "id": "L_c56c671490",
+      "node_id": "manager_u12_L098",
+      "quiz_id": null,
+      "unit_index": 12,
+      "unit_title": "Festivals & Employee Relations",
+      "lesson_type": "Grammar",
+      "lesson_title": "Festival Greetings",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_16e8576861"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_e3b16c6b",
+          "vi": "chúc mừng năm mới",
+          "ipa": "",
+          "category": "festival"
+        },
+        {
+          "id": "W_24e22814",
+          "vi": "an khang thịnh vượng",
+          "ipa": "",
+          "category": "festival"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_1551b965",
+          "vi": "Chúc mừng năm mới! Chúc anh chị an khang thịnh vượng."
+        },
+        {
+          "id": "S_4fa5ac9b",
+          "vi": "Chúc trung thu vui vẻ."
+        },
+        {
+          "id": "S_47e20eaf",
+          "vi": "Chúc chị 8/3 hạnh phúc."
+        },
+        {
+          "id": "S_3d372874",
+          "vi": "Chúc các anh chị một năm mới thành công."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_bd3dd79253",
+      "node_id": "manager_u12_L099",
+      "quiz_id": null,
+      "unit_index": 12,
+      "unit_title": "Festivals & Employee Relations",
+      "lesson_type": "Grammar",
+      "lesson_title": "Giving Condolences",
+      "content_types": [
+        "fill_blank",
+        "mcq_translate_to_vi"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_c56c671490"
+        ]
+      },
+      "grammar_tags": [
+        "GT031"
+      ],
+      "words": [
+        {
+          "id": "W_3b5e26f6",
+          "vi": "chia buồn",
+          "ipa": "",
+          "category": "event"
+        },
+        {
+          "id": "W_fc20e84b",
+          "vi": "thành kính",
+          "ipa": "",
+          "category": "event"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_cc21d6de",
+          "vi": "Xin chia buồn cùng gia đình anh."
+        },
+        {
+          "id": "S_338d9f94",
+          "vi": "Thành kính phân ưu cùng chị."
+        },
+        {
+          "id": "S_bba5266f",
+          "vi": "Cả công ty xin chia buồn cùng anh."
+        },
+        {
+          "id": "S_aaf1d700",
+          "vi": "Chúng tôi rất tiếc khi nghe tin."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_d897c0c381",
+      "node_id": "manager_u12_L100",
+      "quiz_id": null,
+      "unit_index": 12,
+      "unit_title": "Festivals & Employee Relations",
+      "lesson_type": "Grammar",
+      "lesson_title": "Congratulatory Language",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_bd3dd79253"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_25a4f64c",
+          "vi": "xin chúc mừng",
+          "ipa": "",
+          "category": "event"
+        },
+        {
+          "id": "W_65ce886a",
+          "vi": "vui vẻ hạnh phúc",
+          "ipa": "",
+          "category": "event"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_ce2a776d",
+          "vi": "Xin chúc mừng hạnh phúc anh chị."
+        },
+        {
+          "id": "S_6d38e37f",
+          "vi": "Chúc hai bạn trăm năm hạnh phúc."
+        },
+        {
+          "id": "S_07b1ebb8",
+          "vi": "Cả phòng chúc mừng em tròn 30 tuổi."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_7a62fe26d8",
+      "node_id": "manager_u12_L101",
+      "quiz_id": null,
+      "unit_index": 12,
+      "unit_title": "Festivals & Employee Relations",
+      "lesson_type": "Grammar",
+      "lesson_title": "Formal Sick Leave Requests",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_d897c0c381"
+        ]
+      },
+      "grammar_tags": [
+        "GT044"
+      ],
+      "words": [
+        {
+          "id": "W_3664cc10",
+          "vi": "vì lý do",
+          "ipa": "",
+          "category": "leave"
+        },
+        {
+          "id": "W_82894be5",
+          "vi": "gia đình có việc",
+          "ipa": "",
+          "category": "leave"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_d5c98add",
+          "vi": "Vì lý do sức khỏe, em xin phép nghỉ vài ngày."
+        },
+        {
+          "id": "S_523578ca",
+          "vi": "Gia đình em có việc, em xin nghỉ đột xuất."
+        },
+        {
+          "id": "S_8c3c8e88",
+          "vi": "Em đã sắp xếp người thay thế trong thời gian em nghỉ."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_41db7f4e4c",
+      "node_id": "manager_u12_L102",
+      "quiz_id": null,
+      "unit_index": 12,
+      "unit_title": "Festivals & Employee Relations",
+      "lesson_type": "Scene",
+      "lesson_title": "Giving a Tết Bonus Announcement",
+      "content_types": [
+        "listen_choose",
+        "translation_word_bank"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_7a62fe26d8"
+        ]
+      },
+      "grammar_tags": [
+        "GT002"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_a5581669",
+          "vi": "Thay mặt ban giám đốc, xin chúc cả công ty năm mới."
+        },
+        {
+          "id": "S_40ec3ac2",
+          "vi": "Năm nay công ty có tháng lương thứ 13."
+        },
+        {
+          "id": "S_2d9f1e34",
+          "vi": "Ngoài ra còn có thưởng hiệu suất."
+        },
+        {
+          "id": "S_1ac81ea2",
+          "vi": "Chúc các anh chị một mùa Tết an lành."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_b1202d70ba",
+      "node_id": "manager_u12_L103",
+      "quiz_id": null,
+      "unit_index": 12,
+      "unit_title": "Festivals & Employee Relations",
+      "lesson_type": "Scene",
+      "lesson_title": "Attending a Colleague's Wedding",
+      "content_types": [
+        "listen_choose",
+        "speak_sentence"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_41db7f4e4c"
+        ]
+      },
+      "grammar_tags": [
+        "GT043"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_5cc7bd8d",
+          "vi": "Xin chúc mừng hạnh phúc anh chị."
+        },
+        {
+          "id": "S_59be3413",
+          "vi": "Đây là chút quà mừng từ cả nhóm."
+        },
+        {
+          "id": "S_90a8b282",
+          "vi": "Chúc hai bạn trăm năm hạnh phúc."
+        },
+        {
+          "id": "S_20a0d521",
+          "vi": "Cảm ơn anh chị đã mời."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_0501dbbfe2",
+      "node_id": "manager_u12_Q104",
+      "quiz_id": "manager_u12_Q104",
+      "unit_index": 12,
+      "unit_title": "Festivals & Employee Relations",
+      "lesson_type": "Quiz",
+      "lesson_title": "Festivals & Relations Review",
+      "content_types": [
+        "mcq_translate_to_en",
+        "listen_choose",
+        "match_pairs"
+      ],
+      "xp_reward": 20,
+      "unlock_rule": {
+        "type": "unit_complete",
+        "requires": [
+          "L_56617046ad",
+          "L_16e8576861",
+          "L_c56c671490",
+          "L_bd3dd79253",
+          "L_d897c0c381",
+          "L_7a62fe26d8",
+          "L_41db7f4e4c",
+          "L_b1202d70ba"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_beda2ef9",
+          "vi": "tết",
+          "ipa": "",
+          "category": "festival"
+        },
+        {
+          "id": "W_f3dca7b9",
+          "vi": "lì xì",
+          "ipa": "",
+          "category": "festival"
+        },
+        {
+          "id": "W_4a580bda",
+          "vi": "thưởng",
+          "ipa": "",
+          "category": "festival"
+        },
+        {
+          "id": "W_fe32a8b5",
+          "vi": "chia buồn",
+          "ipa": "",
+          "category": "event"
+        },
+        {
+          "id": "W_9d86cb94",
+          "vi": "chúc mừng năm mới",
+          "ipa": "",
+          "category": "festival"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_b91b7132",
+          "vi": "Chúc mừng năm mới! Chúc anh chị an khang thịnh vượng."
+        }
+      ],
+      "matches": [
+        {
+          "id": "M_dd719d98",
+          "text": "tết"
+        },
+        {
+          "id": "M_39f0b157",
+          "text": "lì xì"
+        },
+        {
+          "id": "M_8d1f98c8",
+          "text": "thưởng"
+        },
+        {
+          "id": "M_e1e1731e",
+          "text": "chia buồn"
+        }
+      ]
+    }
+  ]
+}

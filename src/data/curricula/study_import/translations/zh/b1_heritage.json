@@ -1,0 +1,809 @@
+{
+  "meta": {
+    "base": "zh",
+    "level": "b1",
+    "track": "heritage",
+    "source": "vn_b1_heritage_tw_zh.xlsx",
+    "generated": "2026-04-28T09:02:31.276Z"
+  },
+  "translations": {
+    "L_53df881c44": {
+      "W_4f5ef2b7": "醫生 (博士 → bác sĩ)",
+      "W_2f3cca02": "老師 / 教員 (教員 → giáo viên)",
+      "W_2730b42f": "律師 (律師 → luật sư)",
+      "W_e1d51e87": "工程師 (技師 → kỹ sư)",
+      "W_d4642b7e": "學生 (學生 → học sinh)",
+      "W_e7b320bc": "大學生 (生員 → sinh viên)",
+      "W_f22ad479": "工人 (工人 → công nhân)",
+      "M_e4af12f3": "醫生",
+      "M_dcf2ef2a": "老師",
+      "M_9f501f18": "律師",
+      "M_2c149007": "學生"
+    },
+    "L_85653e3f72": {
+      "W_fca67597": "政府 (政府 → chính phủ)",
+      "W_330e32dc": "總統 (總統 → tổng thống)",
+      "W_00f95e15": "總理 (首相 → thủ tướng)",
+      "W_9c77c949": "國會 (國會 → quốc hội)",
+      "W_be051100": "選舉 (... → bầu cử)",
+      "W_0ceedfcc": "政策 (政策 → chính sách)",
+      "W_0e01c80e": "經濟 (經濟 → kinh tế)",
+      "M_9673f34d": "政府",
+      "M_cbeeb705": "總統",
+      "M_a66801fb": "經濟",
+      "M_b1e236ba": "國會"
+    },
+    "L_ed6d8db13b": {
+      "W_dc9248a6": "家庭 (家庭 → gia đình)",
+      "W_506cac5d": "文化 (文化 → văn hóa)",
+      "W_2bdac68a": "歷史 (歷史 → lịch sử)",
+      "W_8045ba15": "社會 (社會 → xã hội)",
+      "W_e00ad9d1": "宗教 (宗教 → tôn giáo)",
+      "W_e75fbc1c": "藝術 (藝術 → nghệ thuật)",
+      "W_08125f8e": "教育 (教育 → giáo dục)",
+      "W_ad2d47c4": "傳統 (傳統 → truyền thống)"
+    },
+    "L_91f8bc5baf": {
+      "W_e474a5cd": "Sino-Vietnamese vocabulary 漢越詞",
+      "W_3a823337": "loanwords from Chinese",
+      "S_1a8e70ec": "Over 60% of Vietnamese vocabulary is Sino-Vietnamese.",
+      "S_8c5d7207": "These words have identical meaning to Chinese, just different pronunciation.",
+      "S_9ed304fd": "You already know the concepts, you just need the sound patterns.",
+      "S_c186d2d6": "Examples: chính phủ = 政府, tổng thống = 總統."
+    },
+    "L_4895e656b9": {
+      "W_2aa56459": "越南 (越南 → Việt Nam)",
+      "W_33903c43": "中國 (中國 → Trung Quốc)",
+      "W_6151fa4e": "台灣 (台灣 → Đài Loan)",
+      "W_74026cca": "日本 (日本 → Nhật Bản)",
+      "W_9e03e137": "韓國 (韓國 → Hàn Quốc)",
+      "W_46c1f7c8": "河內 (河內 → Hà Nội)",
+      "S_59ff6bb8": "我是台灣人。",
+      "S_bd21841e": "我媽是越南人。",
+      "S_079af514": "我在台灣出生。"
+    },
+    "L_92551a6b2f": {
+      "S_79cfdb2b": "我媽是老師。 (giáo viên = 教員)",
+      "S_40b849fd": "我爸當工程師。 (kỹ sư = 技師)",
+      "S_1808cc63": "我想當醫生。 (bác sĩ = 博士)",
+      "S_d56e896f": "我姐念大學。 (đại học = 大學)"
+    },
+    "L_05e4e352e6": {
+      "S_cde09074": "政府公布新政策。(全是 Hán-Việt!)",
+      "S_a83ed147": "越南經濟成長 6%。",
+      "S_02b7cdbf": "總統會見日本首相。",
+      "S_e5b1939b": "教育是首要任務。"
+    },
+    "L_7e59a9c97e": {
+      "W_8723d1a0": "醫生",
+      "W_b6610488": "老師",
+      "W_8ebe458c": "政府",
+      "W_a83132e6": "經濟",
+      "W_ef1077d5": "家庭",
+      "S_98296a50": "我媽是老師。",
+      "M_17b4d410": "醫生",
+      "M_58f4a2db": "老師",
+      "M_53d8cbc4": "政府",
+      "M_2c1a8652": "經濟",
+      "M_764d4737": "家庭"
+    },
+    "L_961e2cdcc7": {
+      "W_0a4c94a3": "英 → anh (e.g. 英雄 → anh hùng)",
+      "W_48566d96": "京 → kinh (e.g. 北京 → Bắc Kinh)",
+      "W_9a68256e": "政 → chính (e.g. 政府 → chính phủ)",
+      "W_34d96e70": "生 → sinh (e.g. 學生 → học sinh)",
+      "W_80491fda": "情 → tình (e.g. 友情 → tình bạn)",
+      "M_4cbb7372": "anh",
+      "M_4c702000": "kinh",
+      "M_895b00ff": "chính",
+      "M_fd686ec9": "sinh"
+    },
+    "L_3ac5deb58b": {
+      "W_faf1fcaa": "王 → vương",
+      "W_80c64ff6": "長 → trường (e.g. 長遠 → trường kỳ)",
+      "W_f8830154": "上 → thượng (e.g. 上海 → Thượng Hải)",
+      "W_73a27c42": "方 → phương (e.g. 方向 → phương hướng)",
+      "W_bcdbf578": "想 → tưởng (e.g. 思想 → tư tưởng)",
+      "M_90c0fdee": "vương",
+      "M_d76b31e8": "trường",
+      "M_ec6f72f5": "thượng"
+    },
+    "L_6e4b985496": {
+      "W_6dd888de": "工 → công (e.g. 工人 → công nhân)",
+      "W_a9a7f116": "公 → công (e.g. 公司 → công ty)",
+      "W_3c6ae2bc": "東 → đông",
+      "W_4d01e8fb": "通 → thông (e.g. 交通 → giao thông)",
+      "W_fa341629": "從 → tùng/tòng",
+      "M_9dcde24e": "công",
+      "M_a292fff9": "đông",
+      "M_852491b9": "thông"
+    },
+    "L_3f6c134625": {
+      "W_1a7bd03d": "新 → tân (e.g. 新年 → Tân niên)",
+      "W_d8d6a47e": "先 → tiên (e.g. 祖先 → tổ tiên)",
+      "W_29dfbb96": "心 → tâm (e.g. 中心 → trung tâm)",
+      "W_b24227a8": "學 → học (e.g. 學校 → học hiệu)",
+      "W_ef95ff25": "想 → tưởng"
+    },
+    "L_a0b9c7d57c": {
+      "W_95363fc6": "中 → trung (e.g. 中國 → Trung Quốc)",
+      "W_3e7c30fc": "正 → chính (e.g. 正式 → chính thức)",
+      "W_ca4f4f63": "長 → trường",
+      "W_dcb8152f": "主 → chủ (e.g. 主題 → chủ đề)",
+      "W_854f53e2": "真 → chân (e.g. 真實 → chân thực)"
+    },
+    "L_1f79a0c64e": {
+      "W_9b096c96": "中心 (zhōng xīn → trung tâm)",
+      "W_788dce94": "主題 (zhǔ tí → chủ đề)",
+      "W_85951064": "祖先 (zǔ xiān → tổ tiên)",
+      "W_ccbccdfb": "時間 (shí jiān → thời gian)",
+      "W_8dcdeb1b": "發展 (fā zhǎn → phát triển)",
+      "S_e94537e7": "Shopping mall = commercial center.",
+      "S_2ad651a5": "What's today's topic?",
+      "S_b7571148": "My ancestors."
+    },
+    "L_723b3db187": {
+      "W_cc90cfdb": "eat = 吃 — NOT from Chinese",
+      "W_9a608ce9": "drink = 喝 — NOT from Chinese",
+      "W_d751c516": "house/home = 家 — NOT from Chinese (but 家庭 gia đình IS)",
+      "W_4919fc60": "go = 走 — NOT from Chinese",
+      "S_6c0c0220": "Home words tend to be pure Vietnamese.",
+      "S_8bd28847": "Abstract/formal words tend to be Sino-Vietnamese.",
+      "S_c20d6e80": "家 = nhà + gia — both forms exist."
+    },
+    "L_9cee972735": {
+      "S_28817e24": "bệnh viện = 病院; đa khoa = 多科.",
+      "S_b4dfb855": "trung tâm = 中心; thương mại = 商業.",
+      "S_ad9ba547": "công viên = 公園; quốc gia = 國家.",
+      "S_315a4929": "học viện = 學院; kinh tế = 經濟."
+    },
+    "L_2a7068988e": {
+      "S_ac0c04b2": "總統訪問中國。",
+      "S_d54bc414": "越南經濟發展。",
+      "S_cd2d3061": "學生參加國際考試。",
+      "S_5043abbb": "政府支持教育。"
+    },
+    "L_63a6e4814d": {
+      "W_2be2aabe": "中心",
+      "W_64e1c518": "主題",
+      "W_26e510db": "祖先",
+      "W_ec2421d5": "發展",
+      "W_8672ce77": "商業",
+      "S_ddb9cab1": "越南經濟發展。",
+      "M_2df1d0c8": "中心",
+      "M_112d9f6c": "發展",
+      "M_1f38d5d2": "主題",
+      "M_6dcafc7d": "商業"
+    },
+    "L_09fcf9a285": {
+      "W_5333818d": "英文字母 — 與英文發音相近",
+      "W_f7e508e6": "英文字母 — 但 f 在越南語不單獨使用 (用 ph)",
+      "W_f1732849": "英文字母 — 與英文相近",
+      "W_9c8cef30": "英文字母",
+      "W_8bbf330b": "越南語中不存在這些字母"
+    },
+    "L_4ae84a56d3": {
+      "W_3b23bd24": "短 a (比 a 更短促)",
+      "W_d68da903": "短「呃」(類似台語「兒」的母音)",
+      "W_0985ac8e": "「ㄝ」(類似 bet 的母音)",
+      "W_fb841918": "「ㄛ」(類似英文 go)",
+      "W_c861dd7a": "中元音「呃」(介於 ơ 和 â 之間)",
+      "W_72f98e18": "「ㄩ」(類似台語「有」)",
+      "W_94477b4c": "英文 d 的發音 (不加一橫的 d 是「Z/Y」)",
+      "M_08146899": "短 a",
+      "M_b4041fa5": "英文 d",
+      "M_799b00fe": "中元音「呃」"
+    },
+    "L_59266c2146": {
+      "W_cf8f696f": "(沒符號) 平聲 (類似注音一聲)",
+      "W_7167fbbd": "(grave) 下降聲 (類似注音四聲)",
+      "W_c84f72d8": "(acute) 上升聲 (類似注音二聲)",
+      "W_f49a4c50": "(hook) 降升聲 (類似注音三聲一部分)",
+      "W_202e3044": "(tilde) 高而緊的聲 (台語「走」的調)",
+      "W_96a6201c": "(dot) 重降短促聲 (類似注音四聲但更短)",
+      "S_9ff18d52": "相同字母不同聲調 = 不同意思!",
+      "S_82d77e2d": "六個聲調練習。"
+    },
+    "L_56c3137c40": {
+      "W_0d27407c": "華語有 4 個聲調 (一二三四)",
+      "W_92681277": "越南語有 6 個聲調 (平、下降、上升、降升、緊高、重降)",
+      "S_df05db5e": "Mandarin 媽 (1st) ≈ Vietnamese ma (level).",
+      "S_c45d15c2": "Mandarin 馬 ≈ Vietnamese mả.",
+      "S_6afd285d": "Mandarin 罵 (falling) ≠ Vietnamese má (rising = mom).",
+      "S_69524262": "Heritage learners often mix up tones."
+    },
+    "L_cf9fa23a18": {
+      "W_43b9b872": "類似英文 'ch' 或中文ㄐ",
+      "W_fdea6433": "類似西班牙文 ñ",
+      "W_59de3816": "類似英文 'singing' 的 ng",
+      "W_bf3bb83d": "類似英文 f (台灣「ㄈ」)",
+      "W_73bb9f42": "類似德文 ch (喉嚨音)",
+      "W_5dbd66f8": "北部類似英文 tr,南部類似 ch",
+      "W_4aa5d70b": "送氣的 t (類似英文 top 的 t)",
+      "W_c13815db": "北部讀「Z」,南部讀「Y」"
+    },
+    "L_8089c715f1": {
+      "W_5dab5e52": "阮 — 最常見的越南姓 (讀: 「nwin」)",
+      "W_b74f1b25": "陳 (讀: 「chun」)",
+      "W_0a8e1370": "黎",
+      "W_a44e924b": "范 (讀: 「fam」)",
+      "W_65aace8b": "黃 (南部寫法)",
+      "W_9a4b5d63": "武 (南/北寫法)",
+      "S_1fad300b": "我叫阮明英。",
+      "S_901a25e2": "我外婆叫陳氏幸。"
+    },
+    "L_3bb22cb243": {
+      "S_8f12705a": "孩子,媽媽煮好河粉了,回來吃吧!",
+      "S_b7ee3edc": "外婆明天想見你。",
+      "S_644f611d": "去哪都可以,記得 10 點前回家。",
+      "S_80418952": "今天去市場,要買什麼嗎?"
+    },
+    "L_269e558e40": {
+      "S_4a61cc66": "小心",
+      "S_f5edd37b": "禁止進入",
+      "S_b7d35e02": "出口",
+      "S_10920e46": "廁所",
+      "S_23a50a00": "公車站",
+      "S_5109fca3": "醫院 (Sino-Viet! bệnh viện = 病院)"
+    },
+    "L_4ad2192abb": {
+      "W_9c2f6696": "短 a",
+      "W_fab1e187": "英文 d",
+      "W_ee47fe64": "類似西班牙 ñ",
+      "W_c477de4f": "類似 f",
+      "W_12131480": "重降調記號",
+      "S_546f65c0": "我叫阮。",
+      "M_b618c3ee": "短 a",
+      "M_26a51d52": "英文 d",
+      "M_8b7f95f1": "西班牙 ñ",
+      "M_56c3a4c2": "重降聲調"
+    },
+    "L_b45cf0a42c": {
+      "W_9deca034": "降升調 — 華語沒有的聲調",
+      "W_e459f7a8": "降升調",
+      "W_a7a137ec": "降升調 — 非常常見的音",
+      "W_604724be": "降升調",
+      "S_439baa81": "This tone 'first drops then rises' — no direct Mandarin equivalent.",
+      "S_0e266566": "Compare to Mandarin 3rd tone, but Vietnamese hỏi is more pronounced.",
+      "S_fad17650": "Practice: hỏi — drops then rises."
+    },
+    "L_8914d97b4f": {
+      "W_fb90edac": "聲帶緊繃的高升調 — 華語完全沒有",
+      "W_c80d2407": "緊喉調 — 台灣學生最常唸錯的聲調",
+      "W_77b43850": "緊喉調",
+      "S_97ab0d7c": "This tone has a 'glottal catch' — a slight squeeze.",
+      "S_af88b734": "Taiwanese learners often mis-pronounce mã as má — different meanings!",
+      "S_a958cee8": "Four different words!"
+    },
+    "L_390c1828d3": {
+      "W_36a5bc8e": "đ 發音像英文 d",
+      "W_f5d73681": "d 發音像北部「Z」,南部「Y」",
+      "W_0d5965a7": "在越南語是兩個完全不同的字",
+      "W_0d85f73a": "đ 與 gi 也要分清",
+      "S_a7ba99a4": "Mandarin distinguishes d/z/y clearly.",
+      "S_6aa89de8": "Vietnamese has đ, d, gi — three separate letters."
+    },
+    "L_110e95e8b9": {
+      "W_01897997": "長 a — 類似華語「ㄢ」",
+      "W_e706a378": "短 a — 比 an 短促",
+      "W_1c1ff772": "短「呃」— 完全不同的音",
+      "W_981e9cc0": "三個都不一樣,意思也完全不同",
+      "S_02362f25": "Mandarin ㄢ is longer — learners often overpronounce ăn.",
+      "S_b830f15f": "Practice: bàn vs bận vs bận."
+    },
+    "L_c1614ab982": {
+      "W_0dcba34a": "例:bác (伯伯) — 結尾短促",
+      "W_1e731bb1": "例:bát (碗)",
+      "W_908762a2": "例:tập (書)",
+      "W_eb049f99": "例:ông (爺爺) — 類似華語「ㄥ」",
+      "S_6d410256": "Mandarin only has n/ng endings.",
+      "S_8d99a315": "If you know Taiwanese Hokkien (which has p/t/k finals), it's easier!",
+      "S_2a752298": "Practice: bác vs bát — different endings."
+    },
+    "L_949964f4e6": {
+      "W_64f0a051": "媽媽家鄉的腔調 — 可能跟標準不同",
+      "W_d562a6db": "通常指河內腔 (或南部的胡志明市腔)",
+      "W_30be6386": "概念類似:都是華語,但有差異",
+      "S_4cb2c592": "What you hear at home may differ from news pronunciation.",
+      "S_1ebff9cf": "Both are real Vietnamese; standard is better for formal contexts.",
+      "S_ce4f93a9": "Like Taiwanese know the difference between Taiwan Mandarin and PRC Mandarin."
+    },
+    "L_326b5eb814": {
+      "S_3903292d": "Practice 6 tones.",
+      "S_47b60317": "我叫阮明英。(練習聲調)",
+      "S_584e7d64": "我爸媽在西貢出生。",
+      "S_27f9d747": "我想把越南語學得更標準。"
+    },
+    "L_97f5cf4fd2": {
+      "S_727cf5fa": "阿姨,我說得對嗎?",
+      "S_724ca89c": "姐姐可以糾正我嗎?",
+      "S_a1e56893": "我在台灣學,所以發音有點不同。",
+      "S_6a97a561": "我想說得更標準。"
+    },
+    "L_ad17599f50": {
+      "W_2af7d284": "緊喉調 (ngã)",
+      "W_cbd61f41": "兩個不同的短母音",
+      "W_20388806": "-c vs -t 結尾不同",
+      "W_dc3f8221": "兩個不同字母",
+      "W_146df8a6": "降升調",
+      "S_7ab74193": "我想把越南語學得更標準。",
+      "M_948fa8d2": "緊喉調",
+      "M_0dbed69b": "結尾不同",
+      "M_9c832c69": "英文 d"
+    },
+    "L_9edc672b6f": {
+      "W_75b70782": "爸爸 — 北部用「bố」,南部用「ba」",
+      "W_e2fd7c1b": "媽媽 — 北部「mẹ」,南部「má」",
+      "W_a7dc8ca2": "碗 — 兩種說法",
+      "W_1740f08f": "千",
+      "W_f5ba1dad": "汽車",
+      "W_5c1b3dda": "轉彎",
+      "M_af6a2b17": "爸爸 (北)",
+      "M_1c2b4dcc": "媽媽 (南)",
+      "M_da3887c8": "碗 (南)"
+    },
+    "L_1fa74bd25e": {
+      "W_ec778548": "北:「zeh」,南:「yeh」",
+      "W_93601589": "北:「zow」,南:「yow」",
+      "W_c0ed2316": "北:「zoi」,南:「roi」",
+      "W_0ceb7c99": "兩個詞雖然發音接近,但意思不同",
+      "S_ef74cbf5": "Northern dialect merges d/gi/r into Z.",
+      "S_ca58aa39": "Southern dialect: d/gi = Y, r stays r.",
+      "S_c79e94b7": "At home you may mix these based on your mom's accent."
+    },
+    "L_fa76b1f24a": {
+      "W_5f3d75d5": "從媽媽 / 外婆那邊來的腔",
+      "W_3a4be669": "新住民母親多半來自南部 / 中部",
+      "W_0598cddd": "順化腔 — 聲調更複雜,音節較慢",
+      "S_a57f2b17": "Most 新住民 moms are from south or central Vietnam.",
+      "S_c0778851": "Southern accent softer, d/gi = Y sound.",
+      "S_ec7b8254": "Do you know where your mom is from? You can ask."
+    },
+    "L_e5b22a619b": {
+      "W_5d44d1f9": "跟媽媽、親戚用",
+      "W_e98e7ef5": "南/北腔都可,讓別人聽得懂",
+      "W_fb405981": "書面語通常是北部標準",
+      "S_3d9c77c6": "Speaking to mom, use home accent — fine.",
+      "S_8446d82d": "If you'll use Vietnamese at work, learn the standard.",
+      "S_0af580c5": "Vietnamese TV news is mostly Northern standard."
+    },
+    "L_5511704253": {
+      "W_7357f257": "華語只有 4 聲,越南有 6 聲",
+      "W_75536828": "新住民子女常把這兩個搞混",
+      "W_7904468c": "聽說讀寫都能幫助辨認",
+      "S_e198134a": "Listen to how mom pronounces — very helpful.",
+      "S_52d17769": "Can also learn from Vietnamese YouTubers.",
+      "S_9fff39b5": "Distinguish hỏi from ngã tones."
+    },
+    "L_599bd9effe": {
+      "S_56eed7fc": "媽,你家鄉在哪裡?",
+      "S_6daa3de1": "你家鄉有什麼特別的食物?",
+      "S_efd12347": "哪些詞只有你家鄉用?",
+      "S_5ce2d1ad": "我想多了解你家鄉的文化。"
+    },
+    "L_c1e3e10661": {
+      "S_6f9f42c1": "我媽是南部人。",
+      "S_a9e045f2": "但我在學標準腔。",
+      "S_ce41070f": "在家說南部腔,學校學河內腔。",
+      "S_7cf0fada": "兩種腔我都懂。"
+    },
+    "L_a247bc8ce4": {
+      "W_5e7dca41": "北 vs 南 (爸爸)",
+      "W_262e5563": "北 vs 南 (媽媽)",
+      "W_cdab9613": "南 vs 北 (碗)",
+      "W_aaf54a5f": "「zeh」(北部)",
+      "W_f0a0ccdc": "「yeh」(南部)",
+      "S_8d484aee": "我媽是南部人。",
+      "M_023f01fe": "爸爸 (北)",
+      "M_1a64c86f": "媽媽 (南)",
+      "M_086f84b8": "爸爸 (南)"
+    },
+    "L_66dc7bd0ac": {
+      "W_d4b04de3": "相當於華語「個」,但不能省略",
+      "W_c3a4f9a5": "相當於華語「隻」,必須用",
+      "W_22b279f6": "相當於華語「輛 / 台」",
+      "S_5d1b5021": "「我有兩隻狗」— 越南語量詞不能省!",
+      "S_1e98d6ed": "「媽買了三件衣服」— 量詞必加。",
+      "S_9bdaa246": "Vietnamese classifiers are stricter than Chinese.",
+      "S_33b13f94": "Classifier concept is familiar — just stricter."
+    },
+    "L_866b71cc4c": {
+      "W_e5a85c3e": "越南語:nhà đẹp (漂亮的房子)",
+      "W_2eaf160c": "「漂亮的房子」:中文「房子很漂亮」、越南 nhà đẹp",
+      "S_7d014c4b": "Same order as Chinese!",
+      "S_78d3b480": "Noun first.",
+      "S_c4eea7c0": "Good news: you won't make English-speakers' mistakes."
+    },
+    "L_9fef4a3e58": {
+      "W_1bcadc0c": "連接名詞的「是」,同華語",
+      "W_f04194ce": "華語:「她是漂亮的」(可以) vs 越南:不用 là",
+      "S_429d13b9": "Correct: use là with nouns.",
+      "S_eb7785e0": "Don't use là with adjectives in Vietnamese.",
+      "S_d8526cf5": "Chinese allows 'she is pretty' with 的; Vietnamese doesn't with là.",
+      "S_1432bdb0": "Mandarin 很 → Vietnamese rất / lắm, no là."
+    },
+    "L_931762e018": {
+      "W_f09389ec": "放句尾,類似中文的「了」",
+      "W_8455aef5": "放動詞前,類似「已經」",
+      "S_385503b7": "rồi at end of sentence.",
+      "S_3c6bfa47": "đã before verb.",
+      "S_929aff13": "Can combine: Tôi đã ăn cơm rồi.",
+      "S_ea1c4064": "For Mandarin speakers, rồi placement is intuitive — similar to 了."
+    },
+    "L_d768421c71": {
+      "W_8235c618": "越南:Tôi rất thích bạn / Tôi thích bạn lắm",
+      "W_fa2fe43d": "越南:「có ... không?」— 位置不同",
+      "W_4d938d49": "越南:「phải không?」— 位置不同",
+      "S_5ec53459": "Place 'không' at end.",
+      "S_bcc180bb": "'phải không' at end.",
+      "S_290c5962": "Don't translate word-for-word; some orders differ."
+    },
+    "L_04acc8ab02": {
+      "W_c3b1fa7b": "NEVER 對長輩用",
+      "W_ccefba38": "依年齡用",
+      "S_e718a578": "Don't say 'bạn' to an elder.",
+      "S_64d48c1c": "Use anh/chị with adults.",
+      "S_5f7a4adc": "Chinese '你' to elders is fine, Vietnamese 'bạn' is RUDE.",
+      "S_188e7d73": "Rule: 'bạn' only for peers or younger."
+    },
+    "L_8148ff47bd": {
+      "W_13602f3a": "在家省略沒事,外面一定要",
+      "S_7f948f95": "Home vs outside.",
+      "S_0a3b05cf": "Server situations: add ạ.",
+      "S_7b6e3616": "Formal: add ạ.",
+      "S_980db5ab": "Adding ạ with Vietnamese relatives shows politeness."
+    },
+    "L_a98b86e229": {
+      "S_d658e66c": "抱歉,我重說一次。",
+      "S_fc8bb606": "我的意思是...",
+      "S_e55ab7f9": "我越南語還不太標準。",
+      "S_45948690": "請阿姨教我正確說法。"
+    },
+    "L_aca4fe2a4f": {
+      "S_1aa72fce": "喔,我說錯了嗎?",
+      "S_3476fc47": "謝謝伯伯,我學到了。",
+      "S_fccb6f25": "伯伯幫我寫下來。",
+      "S_d1b2a6c1": "下次我會記得。"
+    },
+    "L_fa71ea36a4": {
+      "W_79cc22f8": "兩隻狗 = hai con chó,不是 hai chó",
+      "W_8b24975d": "對長輩 / 服務員",
+      "W_c0df23c1": "絕不對長輩用",
+      "W_1a49c62d": "cô ấy đẹp,不是 cô ấy là đẹp",
+      "W_43af738c": "類似華語「了」",
+      "S_417fedb3": "量詞必加。",
+      "M_0cca910e": "必加",
+      "M_821745a1": "禮貌詞",
+      "M_d8fbbdcc": "不對長輩用"
+    },
+    "L_00ced7b370": {
+      "W_bfb80d8d": "爸 / 媽 (南部家庭)",
+      "W_8b5c4606": "爺爺 / 奶奶",
+      "W_edaf6ad3": "我 (對爸媽自稱)",
+      "W_b3f90d8d": "吃飯了嗎? (家常打招呼)",
+      "W_98ca97df": "去哪啊? (親切問候)",
+      "W_2c0600d0": "回來了沒? (家人間的問候)",
+      "M_ee84bbb5": "爸 / 媽 (口語)",
+      "M_08f29f27": "我 (對長輩)",
+      "M_0afb2b62": "吃飯了嗎?"
+    },
+    "L_ab1c8d7fb7": {
+      "W_e83a5409": "爸 / 媽 (標準 / 書面)",
+      "W_da120d62": "各位 (正式,對多人)",
+      "W_e7c79eb5": "敬致 (正式書信開頭)",
+      "W_86dfd3c5": "敬上 (正式書信結尾)",
+      "W_e0ee20cc": "各位好 (正式開場)",
+      "W_5fb73cd6": "是的 (很禮貌)"
+    },
+    "L_0827a16a7d": {
+      "W_69f01a36": "用 ba/má + 短句 + 省略 ạ",
+      "W_b2e99f81": "用 anh/chị + 加 ạ + 完整句",
+      "W_57eac6c2": "用 bố/mẹ 拼法 + kính gửi + trân trọng",
+      "W_debc75e4": "用 cô/chú + 加 ạ",
+      "S_f7685821": "家裡對媽 vs 在餐廳點餐。",
+      "S_b002d089": "私下對外婆 vs 正式演講。",
+      "S_3d1df071": "Email 用標準寫法,口語可以用方言。"
+    },
+    "L_c4b1f2cde8": {
+      "W_808a6784": "老師 (男)",
+      "W_f84e7a06": "女老師",
+      "W_465a526d": "醫生 (= 博士 in Hán-Việt)",
+      "W_58af6be4": "佛教法師 / 和尚",
+      "W_8fb508fd": "天主教神父 (某些方言也指「爸爸」)",
+      "S_19ef3b08": "老師好。(正式)",
+      "S_a57be044": "謝謝醫生。",
+      "S_6a1877a3": "老師好。",
+      "S_e6753df3": "這些稱呼在家不太用到,特別學。"
+    },
+    "L_d1c10b85d5": {
+      "W_511da82e": "可能 / 也許 (委婉推測)",
+      "W_b652bc2c": "好像 / 似乎",
+      "W_2be3ba86": "我覺得 (謙虛)",
+      "W_3494ed73": "請問可不可以 / 容許",
+      "S_7421fc0b": "我覺得我們應該早點走。",
+      "S_38867df6": "可能是我理解錯了。",
+      "S_62e902dc": "姐,我可以問個問題嗎?",
+      "S_fbe9ca7e": "會議好像已經開始了。"
+    },
+    "L_f29d6cdb9a": {
+      "S_c7bf496c": "[家裡] 媽,我肚子餓。",
+      "S_e4e8265b": "[餐廳] 老闆,給我一份飯。",
+      "S_42b72234": "[家裡] 外婆,我放學了。",
+      "S_e5f42e14": "[學校] 老師好。"
+    },
+    "L_cb128021f3": {
+      "S_eac1c697": "爸,我去上班囉。(家常)",
+      "S_fc8fe7a8": "大家好,我剛到。(職場正式)",
+      "S_94cbf275": "老師今天講得真好。",
+      "S_9396f7e2": "晚上回家跟媽媽說。(又回到家常)"
+    },
+    "L_6d732fc69d": {
+      "W_a98e13b3": "爸 / 媽 (家常 / 南部)",
+      "W_64c26f4e": "爸 / 媽 (正式 / 書面)",
+      "W_528ebc10": "各位 (正式)",
+      "W_ffe214b1": "男老師",
+      "W_c2211afb": "請問可否 / 容許",
+      "S_5a5af823": "我覺得我們應該早點走。",
+      "M_65d0ff75": "爸 (家常)",
+      "M_b96ebfbe": "爸 (書面)",
+      "M_192e2cb2": "各位 (正式)"
+    },
+    "L_fe9f4fd66d": {
+      "W_8d4a3566": "越南血統 / 有越南背景",
+      "W_4e7e3a96": "越南媽媽",
+      "W_ba07274c": "台灣爸爸",
+      "W_2b3772fb": "有越南血統的台灣人",
+      "W_1283ed53": "會說兩種語言",
+      "W_5ba15fbe": "驕傲 / 自豪",
+      "W_835df4c2": "根 / 起源",
+      "M_3491f735": "越南血統",
+      "M_9454841c": "自豪",
+      "M_60657b70": "根 / 起源"
+    },
+    "L_f7afe1d2c9": {
+      "W_800f50ac": "移民的媽媽 / 新住民媽媽",
+      "W_82783173": "新住民的小孩 / 新住民子女",
+      "W_5fa02b73": "第二代",
+      "W_eece9e7c": "混血 / 有兩種血統",
+      "W_b719fdcf": "社群 / 社區",
+      "W_c56a0db9": "多元文化",
+      "W_1fe4f66f": "外婆家 (媽媽的家鄉)"
+    },
+    "L_233d17d17b": {
+      "W_3494ac42": "在...出生",
+      "W_22466602": "在...長大",
+      "W_40e6f706": "越南血統",
+      "S_4f739b7b": "我在台灣出生。",
+      "S_d57888ca": "我媽是越南人。",
+      "S_ca5fb1b6": "我是有越南血統的台灣人。",
+      "S_beac6306": "我會越南語和中文。"
+    },
+    "L_692ed86227": {
+      "W_ec031f9f": "會說",
+      "W_13ca10c5": "聽得懂 / 看得懂",
+      "W_19475a13": "還不會寫",
+      "S_7ea6e195": "我會說但還不會寫。",
+      "S_f93d9a8c": "我聽得懂的比會說的多。",
+      "S_565e883a": "我在學讀和寫。",
+      "S_b05184b5": "我聽得懂但發音還不標準。"
+    },
+    "L_dc1c15f574": {
+      "W_b4ece098": "幸運 / 很運氣好",
+      "W_8df88015": "特別",
+      "W_8115675e": "優勢",
+      "S_7278b8b1": "我很幸運會兩種語言。",
+      "S_9b831250": "擁有兩種文化是我的優勢。",
+      "S_34400832": "我以越南血統為傲。",
+      "S_91c88b0a": "我想保留兩種文化。"
+    },
+    "L_97ba19d019": {
+      "W_7732afd6": "問關於血統",
+      "W_3329e8e5": "好奇",
+      "S_dbd0f94e": "有人問:「你是越南人對吧?」",
+      "S_3e80bac4": "我答:「我是台灣人,但我媽是越南人。」",
+      "S_02be392e": "如果對方好奇,可以多分享家庭故事。",
+      "S_5ba13d0e": "不需要為自己的越南血統感到不好意思。"
+    },
+    "L_f4f490091a": {
+      "S_07f105d7": "阿姨您好,我是 Lan。",
+      "S_cf375508": "我媽是您的姐姐。",
+      "S_73f87835": "我在台灣出生。",
+      "S_785e06d1": "這是我第一次回越南看您。",
+      "S_82e66cac": "我正在多學越南語。"
+    },
+    "L_727a542617": {
+      "S_4af2e71e": "你是台灣人還是越南人?",
+      "S_a08dd629": "我是有越南血統的台灣人。",
+      "S_9155837a": "我媽是越南人。",
+      "S_01026cdb": "我來探望媽媽的親戚。",
+      "S_e189cb6b": "我為自己有兩種根源感到自豪。"
+    },
+    "L_bac78e43fc": {
+      "W_3cd81214": "越南血統",
+      "W_5c977bf0": "台越混血 / 有越南血統的台灣人",
+      "W_59e31897": "自豪",
+      "W_8d934a0e": "外婆家",
+      "W_0acc430c": "混血",
+      "S_1c0248ee": "我是有越南血統的台灣人。",
+      "M_0cb3ea74": "越南血統",
+      "M_91ba3f7d": "自豪",
+      "M_424daf3a": "外婆家"
+    },
+    "L_96dac04faf": {
+      "W_73be2e19": "回來探望",
+      "W_66f8771d": "親戚",
+      "W_b9eab6f0": "家族",
+      "W_1d93b3ba": "媽媽的家鄉",
+      "W_d50b0a24": "爸爸的家鄉 (若爸是越南人)",
+      "W_86e02c46": "外公外婆",
+      "W_0cedede9": "爺爺奶奶",
+      "W_41d1e29b": "村莊 / 老家",
+      "M_8d02bc07": "回來探望",
+      "M_2ca1661c": "親戚",
+      "M_004095fd": "外婆家",
+      "M_5587d95b": "外公外婆"
+    },
+    "L_9bcaee7fca": {
+      "W_08b92019": "禮物",
+      "W_9a829367": "當作禮物",
+      "W_b9289e4d": "台灣帶來的禮物",
+      "W_ee732025": "台灣餅乾 / 鳳梨酥",
+      "W_ad6f51df": "台灣茶",
+      "W_9462a294": "特產",
+      "W_c7d980cf": "紅包 (逢年過節或小孩)"
+    },
+    "L_d5da66418e": {
+      "W_1c7fa3d8": "第一次見面",
+      "W_2bdcc205": "認得出來 / 認出",
+      "S_33f591fd": "這是我第一次見到您,伯伯。",
+      "S_6d7ea26e": "我是媽媽 / Mai 阿姨的晚輩。",
+      "S_bee44e9e": "我媽常提到您。",
+      "S_8c0bcdae": "我長得像家裡誰?"
+    },
+    "L_1027642ff8": {
+      "W_772164bc": "送 / 贈",
+      "W_62e9cb27": "一點心意",
+      "S_6420669e": "這是從台灣帶來的一點心意。",
+      "S_17280e8e": "我送您台灣的鳳梨酥。",
+      "S_dce507d4": "媽媽要我帶回來給您。",
+      "S_ac1968a3": "太謝謝你了!(親戚會這樣說)"
+    },
+    "L_d1a06c90bb": {
+      "W_08e37cae": "我們的家鄉 (稱媽媽的家鄉時)",
+      "W_c024650e": "從前 / 以前",
+      "S_f95ca1c3": "我們家鄉以前是什麼樣子?",
+      "S_268c5498": "外婆跟我說說家族的故事。",
+      "S_b8b6e8c9": "我們村裡種什麼?",
+      "S_c5399db0": "我想多了解媽媽的家鄉。"
+    },
+    "L_ff65fd6c1b": {
+      "W_1dcaef6b": "上香",
+      "W_2a102001": "祖先的牌位 / 神桌",
+      "W_c500e187": "墳墓",
+      "W_4f6b6bb4": "祖先 (= 祖先 in Hán-Việt)",
+      "S_267d8ffc": "我來給祖先上香。",
+      "S_863bb4ea": "我們家的神桌在哪?",
+      "S_be2234f6": "我從沒去過祖墳。",
+      "S_1760c84f": "姑姑帶我去吧。"
+    },
+    "L_618f59dc23": {
+      "W_2cd7492d": "可以騎機車嗎",
+      "W_b20549b4": "睡在哪",
+      "W_2c65eddd": "有熱水嗎",
+      "S_797447a5": "從這到媽媽的家鄉多遠?",
+      "S_e50ec866": "我可以睡外婆家嗎?",
+      "S_f2de147a": "家裡有 wifi 嗎?",
+      "S_40bbbeb7": "我要去哪換錢?"
+    },
+    "L_07fa754cd5": {
+      "S_01f936ec": "外婆好!",
+      "S_41cfac82": "我是 Lan,Hoa 媽媽的女兒。",
+      "S_2cace337": "這是媽媽要我帶回來的。",
+      "S_05b3505a": "外婆身體好嗎?",
+      "S_57d16eb0": "路有點遠,但見到外婆就開心了。"
+    },
+    "L_37e992f68e": {
+      "S_960b43b4": "姑姑,這是我媽以前住的房子嗎?",
+      "S_dfa8eaeb": "對,你媽在這長大。",
+      "S_72493961": "我媽的小學在哪?",
+      "S_8fbac43e": "讓阿姨帶你去看看。",
+      "S_6e21ba74": "我想拍照給媽媽看。"
+    },
+    "L_c0db8a3b48": {
+      "W_9fee55e1": "回來探望",
+      "W_ddbdc76b": "親戚",
+      "W_5aca25dd": "外婆家",
+      "W_68cab694": "上香",
+      "W_d761d561": "當禮物",
+      "S_1d474e52": "這是從台灣帶來的一點心意。",
+      "M_0e9c9e59": "回來探望",
+      "M_647d766b": "親戚",
+      "M_7b184e0a": "外婆家",
+      "M_e9b5734d": "上香"
+    },
+    "L_2487d7f061": {
+      "W_fdcbc3d6": "越南農曆新年 (跟台灣春節同日)",
+      "W_c0a6d40c": "元旦春節 (正式名)",
+      "W_84a75c3e": "紅包 (台越都有)",
+      "W_fdc593b7": "越南年糕 (方形 / 圓柱)",
+      "W_6e3edb53": "春節花:黃梅花 (南) / 桃花 (北)",
+      "W_5320d98c": "拜年",
+      "M_39478097": "春節",
+      "M_bc900c94": "紅包",
+      "M_ef279170": "方形年糕",
+      "M_b37c5d07": "拜年"
+    },
+    "L_3ca66941f4": {
+      "W_d80a6031": "中秋節 (越南主要是兒童節)",
+      "W_b13ae37c": "月餅 (越南也有)",
+      "W_1d5dc739": "燈籠 (越南中秋特色)",
+      "W_40f9c76d": "舞獅 / 舞龍 (跟台灣一樣)",
+      "W_226b2e6f": "滿月",
+      "W_38fe5330": "賞月"
+    },
+    "L_5203f423cb": {
+      "W_08b2a1d3": "新年快樂",
+      "W_dfc4dad9": "安康興旺 (= 健康 + 繁榮)",
+      "W_2ce21917": "萬事如意",
+      "W_0235b5cd": "發財發祿",
+      "W_657b732d": "身體健康",
+      "S_912ca7f2": "新年快樂,祝全家安康興旺!",
+      "S_62f1675e": "祝爺爺奶奶長命百歲。",
+      "S_c2594001": "祝妹妹 / 弟弟功課好、乖乖。",
+      "S_be60fd28": "這些祝福語多半是漢越詞,你其實已經懂了!"
+    },
+    "L_a2592f4bde": {
+      "W_ff0b0602": "祭祖 (拜祖先)",
+      "W_23633587": "祭日 (祖先忌日,越南很重視)",
+      "W_d7fe4ad9": "上供 / 祭拜",
+      "S_0b3e2982": "跟台灣一樣,越南人也祭祖。",
+      "S_af91877e": "每年都有祖先的忌日。",
+      "S_974d64e3": "全家聚在一起祭拜然後吃飯。",
+      "S_4315bc80": "這是兩國共有的文化。"
+    },
+    "L_91adc3a579": {
+      "W_fb6ed5d8": "吃果子要記得種樹的人 (飲水思源)",
+      "W_6dce7d37": "落葉歸根",
+      "W_268b2a6d": "血濃於水 (血流腸也軟 = 家人有難心疼)",
+      "W_30561071": "兄弟如手足",
+      "W_1d21b75b": "一滴血濃過一池水 (血濃於水)",
+      "S_f3435e58": "這些諺語跟華語文化的概念幾乎一樣!",
+      "S_00adbd60": "ăn quả nhớ kẻ trồng cây = 飲水思源。",
+      "S_4b94db71": "lá rụng về cội = 落葉歸根."
+    },
+    "L_495a2ddff7": {
+      "W_80ca7bdd": "改變",
+      "W_79d55bc4": "想家",
+      "W_03459d44": "適應",
+      "S_4afb98c4": "我媽 2000 年來台灣。",
+      "S_8043019c": "媽媽得學中文,適應新文化。",
+      "S_e6c1c4d6": "但她為家人保留越南文化。",
+      "S_8ca2e14a": "我覺得媽媽很堅強。"
+    },
+    "L_1e6229a4c1": {
+      "S_9f659fc6": "媽,我想學包粽子。",
+      "S_36cc8216": "好,媽媽教你。",
+      "S_b9be4e94": "台灣也有粽子,但有點不一樣。",
+      "S_b8dd3112": "越南粽子方的,台灣粽子三角形。",
+      "S_a3befd40": "這是兩種文化的傳承。"
+    },
+    "L_605f638fc8": {
+      "S_261e7d3d": "我有兩種文化:台灣和越南。",
+      "S_a0822497": "過年我吃越南年糕和台灣肉粽。",
+      "S_a8880767": "我家吃河粉也吃牛肉麵。",
+      "S_2688e263": "我覺得很幸運同時擁有兩種文化。"
+    },
+    "L_b675498891": {
+      "W_197d753a": "農曆春節",
+      "W_025d4697": "紅包",
+      "W_a97137c2": "越式方形粽",
+      "W_88622317": "祭祖",
+      "W_16575bda": "落葉歸根",
+      "S_6261c3fc": "我有兩種文化:台灣和越南。",
+      "M_b9d7445e": "春節",
+      "M_86889cc3": "紅包",
+      "M_81e5c799": "方形粽",
+      "M_784e5306": "落葉歸根"
+    }
+  }
+}

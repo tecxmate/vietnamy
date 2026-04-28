@@ -1,0 +1,851 @@
+{
+  "meta": {
+    "base": "en",
+    "level": "a2",
+    "track": "core",
+    "source": "vn_a2_core.xlsx",
+    "generated": "2026-04-28T09:02:31.267Z"
+  },
+  "translations": {
+    "L_4ed5f1ae4b": {
+      "W_72517662": "one (standalone)",
+      "W_6d15711d": "twenty-one (use 'mốt' after mươi)",
+      "W_bf7c7d23": "thirty-one",
+      "W_b44f3387": "fifty-one",
+      "W_6c701fbf": "fifteen (use 'lăm' not 'năm' after mười)",
+      "W_1ac479c3": "twenty-five"
+    },
+    "L_8a229f0f46": {
+      "W_28b8445f": "husband",
+      "W_0ac2332b": "wife",
+      "W_34afa414": "son",
+      "W_8b4d55ab": "daughter",
+      "W_615ac92b": "grandchild / nephew / niece",
+      "W_1cd55cd1": "uncle (father's younger brother)",
+      "W_08829576": "aunt (father's sister)",
+      "W_f9135a53": "aunt (mother's sister)",
+      "W_7e157a4e": "uncle (mother's brother)",
+      "M_d6825382": "husband",
+      "M_06c1fbe3": "wife",
+      "M_b51b1090": "son",
+      "M_1112680c": "daughter"
+    },
+    "L_a6ba59cae0": {
+      "W_34ddd029": "twenty-one (mốt, not một)",
+      "W_a4d55395": "thirty",
+      "W_1d6a4aa9": "forty",
+      "W_23ac2388": "fifty",
+      "W_0b005750": "sixty",
+      "W_583cd519": "seventy",
+      "W_db2c1354": "one hundred",
+      "M_efe9ac79": "thirty",
+      "M_1d5e0624": "fifty",
+      "M_cbb1753a": "one hundred"
+    },
+    "L_8df30af5ff": {
+      "W_0011beb8": "one hundred",
+      "W_356f85d9": "five hundred",
+      "W_de2a9233": "one thousand (northern)",
+      "W_8f0ce6b5": "one thousand (southern)",
+      "W_64bcaded": "ten thousand",
+      "W_4657abd6": "one hundred thousand",
+      "W_400fc3d3": "one million",
+      "M_8b6bc72e": "one hundred",
+      "M_676799cb": "one thousand",
+      "M_0338e820": "one million"
+    },
+    "L_e98d3e02b6": {
+      "W_5bc5ae60": "age / year(s) old",
+      "W_7abc2248": "how old",
+      "S_52fe78e6": "How old are you?",
+      "S_0149afac": "I am twenty-five.",
+      "S_abe41306": "My younger sibling is eighteen.",
+      "S_6368a97e": "My grandfather is seventy."
+    },
+    "L_defd4e4bee": {
+      "W_6ebe28da": "to have / there is",
+      "W_54a5640a": "person",
+      "S_fabfbdc2": "My family has four people.",
+      "S_75ad7e8b": "How many siblings do you have?",
+      "S_8aa72125": "I have one older brother and one younger sister."
+    },
+    "L_cd655cee81": {
+      "W_b5d72fe0": "we (exclusive — not including listener)",
+      "W_3b0465b4": "we (inclusive — including listener)",
+      "S_76d92c08": "We are Americans. (not including you)",
+      "S_49eb5606": "Let's go eat! (including you)",
+      "S_aa83dd18": "We have two children. (my spouse and I)"
+    },
+    "L_c0e7aba67b": {
+      "W_b063ce46": "first (ordinal)",
+      "W_a7bc1c83": "second (ordinal) — or 'thứ hai'",
+      "W_8f4dcf42": "third",
+      "W_ac8af038": "fourth (tư, not bốn)",
+      "W_c78a0763": "last (in sequence)",
+      "S_d264f6a5": "My first child is a boy.",
+      "S_d355d824": "This is my second time in Vietnam.",
+      "S_fa850606": "She is the third daughter in the family.",
+      "S_8f7d1b00": "This is the last question."
+    },
+    "L_d2ce8a529a": {
+      "W_9a156746": "many / much / a lot",
+      "W_a2303d8c": "few / little",
+      "W_a448c3c3": "some (small amount)",
+      "W_93ef925b": "all",
+      "W_36b4ac72": "a few / several",
+      "S_108853c0": "My family has many people.",
+      "S_d3e9802b": "I have little money.",
+      "S_f5a4d981": "Some of my friends are Japanese.",
+      "S_b5c0eb7c": "All of us are students.",
+      "S_d6ee8d8c": "I have a few friends in Hanoi."
+    },
+    "L_3f444c55c0": {
+      "S_0f1d880c": "How many people are in your family?",
+      "S_a121bdff": "My family has five people.",
+      "S_711752b1": "My father is forty-five.",
+      "S_b5df6bb5": "My mother is a teacher.",
+      "S_14ea8025": "I have two children, a boy and a girl."
+    },
+    "L_cc85e23548": {
+      "S_ccf5eaa9": "Hello, uncle and aunt!",
+      "S_9e992251": "My husband is Nam.",
+      "S_1d90b58b": "How old are you, uncle?",
+      "S_2aafdee9": "I am sixty."
+    },
+    "L_f049d98b41": {
+      "W_cf5704eb": "husband",
+      "W_f7818671": "wife",
+      "W_251f627d": "age",
+      "W_584210ff": "one hundred",
+      "W_72156517": "we (exclusive)",
+      "S_58034828": "How old are you?",
+      "M_551784b8": "husband",
+      "M_5652645d": "wife",
+      "M_e3bd4e82": "age",
+      "M_c20cbab2": "one hundred"
+    },
+    "L_24f0fe876b": {
+      "W_959040ec": "(past marker — placed before verb)",
+      "W_a8f0cccc": "(progressive marker — 'be -ing')",
+      "W_9d633c17": "(future marker — 'will')",
+      "W_3335f7b8": "already (sentence-final)",
+      "W_59d4f76b": "not yet / yet?",
+      "M_98038e85": "past marker",
+      "M_85d8577d": "progressive marker",
+      "M_86b78df3": "future marker",
+      "M_bf131315": "not yet"
+    },
+    "L_2cf5cad560": {
+      "W_ed3554b5": "(past marker)",
+      "S_94bbfe84": "I ate / I have eaten.",
+      "S_7356b360": "Yesterday I went to work.",
+      "S_41f6c2f6": "She has gone home.",
+      "S_f5882117": "We met him."
+    },
+    "L_946ebe3bb5": {
+      "W_e38d9b62": "(progressive marker)",
+      "S_2636b08d": "I am learning Vietnamese.",
+      "S_69096d93": "What are you doing?",
+      "S_34931c01": "My father is sleeping.",
+      "S_39769e30": "We are going to the market."
+    },
+    "L_af2749345c": {
+      "W_6b3d2ceb": "(future marker)",
+      "S_45c81f45": "Tomorrow I will go to class.",
+      "S_67cd0a0e": "We will go to Hanoi.",
+      "S_741f0c7e": "What will you do this weekend?",
+      "S_29339c0f": "She will arrive at five."
+    },
+    "L_6dd76c1814": {
+      "W_ad79a2f2": "already",
+      "W_7170df03": "not yet / yet?",
+      "S_5c3b1173": "Have you eaten yet?",
+      "S_806fbbd0": "I have already eaten.",
+      "S_2f2650db": "I haven't eaten yet.",
+      "S_c61c25ac": "Have you been to Vietnam?"
+    },
+    "L_1e6dfc0f58": {
+      "W_4befb538": "before (+ verb)",
+      "W_a09e7590": "after (+ verb)",
+      "S_b38a286d": "Before going to work, I drink coffee.",
+      "S_6bf8ad4e": "After eating, I take a walk.",
+      "S_b0be3e72": "Let's meet after class."
+    },
+    "L_425c544013": {
+      "S_de1b9d01": "Hello, what are you doing?",
+      "S_ac89f671": "I'm eating. And you?",
+      "S_992eb0ce": "I already ate.",
+      "S_2f818933": "Where will you go this afternoon?"
+    },
+    "L_71bdf03c6a": {
+      "S_38234cea": "Have you tried pho?",
+      "S_ef17b7b2": "Yes, I have. It's delicious!",
+      "S_4b146ec2": "Have you been to Hanoi?",
+      "S_17c4679e": "No, I haven't."
+    },
+    "L_36c0072002": {
+      "W_88d84833": "past marker",
+      "W_a97bc180": "progressive marker",
+      "W_9f61a594": "future marker",
+      "W_d9453c04": "not yet",
+      "W_d7229058": "after",
+      "S_0d27c6d6": "Have you eaten yet?",
+      "M_58521613": "past marker",
+      "M_20c6ac07": "progressive marker",
+      "M_453e08b2": "future marker",
+      "M_90f73dfe": "not yet",
+      "M_0ff5ce81": "after"
+    },
+    "L_079c042040": {
+      "W_b6f04175": "teacher",
+      "W_d6b0f1cf": "doctor",
+      "W_62860bd2": "nurse",
+      "W_6eec8e67": "engineer",
+      "W_78dbc4dc": "lawyer",
+      "W_5a5f3fa1": "staff / employee",
+      "W_eba1a0e7": "university student",
+      "W_1ff06287": "school student",
+      "M_548fcf23": "teacher",
+      "M_b041b161": "doctor",
+      "M_5aaeff39": "engineer",
+      "M_4449d0b1": "university student"
+    },
+    "L_ead9f51549": {
+      "W_5f6b8b7c": "company",
+      "W_853e9243": "office",
+      "W_8440404b": "school",
+      "W_004509b9": "university",
+      "W_2b7bc6a8": "hospital",
+      "W_49dbc696": "factory"
+    },
+    "L_95fb6dce02": {
+      "W_834e4a88": "to do / to work",
+      "W_9e96cb47": "profession / occupation",
+      "S_14578672": "What's your profession?",
+      "S_cc8f87a8": "What do you do?",
+      "S_0f2d5b24": "I am a teacher.",
+      "S_3a417ecc": "I work as an engineer."
+    },
+    "L_5aa4c79d0d": {
+      "W_2e5e5bf6": "to work",
+      "S_c40b414e": "I work at ABC company.",
+      "S_9a551771": "She works at a hospital.",
+      "S_02d18700": "Where do you work?",
+      "S_642ee17d": "I work from 8 to 5."
+    },
+    "L_9a61c1a46b": {
+      "W_6c89bbd7": "to study / to learn",
+      "W_1e5d0675": "subject",
+      "S_57a034f6": "I am studying Vietnamese.",
+      "S_73f1fc46": "What subject do you study?",
+      "S_df7bf5ef": "My sibling studies at Hanoi University."
+    },
+    "L_a0adea6d85": {
+      "W_3b20b412": "(in order) to / for the purpose of",
+      "S_892763b3": "I study Vietnamese in order to travel.",
+      "S_5a551913": "She works to support her family.",
+      "S_d3485e95": "I go to the supermarket to buy food.",
+      "S_8600d297": "What do you study for?",
+      "S_3fe7ade1": "I need medicine to treat the illness."
+    },
+    "L_a78a2ac3c2": {
+      "S_b712c209": "Hello, my name is Linh.",
+      "S_2013e599": "I'm a new employee.",
+      "S_c7c541e4": "I work in the marketing department.",
+      "S_a19cea8e": "Pleased to work with you."
+    },
+    "L_726c66c76f": {
+      "S_cac282e1": "What do you do?",
+      "S_c0e12276": "I'm a lawyer. And you?",
+      "S_c27f8be4": "I'm an engineer in Da Nang.",
+      "S_6526128a": "How's your job?"
+    },
+    "L_0acadd0adf": {
+      "W_308bcc8d": "teacher",
+      "W_dd06bfbe": "doctor",
+      "W_a1d9f10b": "company",
+      "W_3e9f2959": "to work",
+      "W_1724f19d": "to study",
+      "S_0d41b328": "What do you do?",
+      "M_7c3ef7e6": "teacher",
+      "M_86faa268": "doctor",
+      "M_aba48ec3": "company",
+      "M_375bc204": "to study"
+    },
+    "L_85f7d697d5": {
+      "W_f8045049": "shirt / top",
+      "W_b864c0fa": "pants / trousers",
+      "W_3c964ce7": "skirt / dress",
+      "W_01870623": "shoes",
+      "W_b19eb1bc": "hat (northern)",
+      "W_94d6fde7": "hat / conical hat (southern)",
+      "W_75dad725": "jacket / coat",
+      "M_724138ef": "shirt",
+      "M_0d9ab5ba": "pants",
+      "M_4338742f": "shoes",
+      "M_3d09999f": "skirt"
+    },
+    "L_6662f63958": {
+      "W_a7f9d638": "red",
+      "W_d7a26e02": "blue",
+      "W_56502bc0": "green",
+      "W_51a6dc97": "yellow",
+      "W_1126fd72": "black",
+      "W_f565a74c": "white",
+      "W_500a5245": "pink",
+      "W_eff01cb0": "brown",
+      "M_1b40ff7a": "red",
+      "M_efe717c6": "blue",
+      "M_5c98e47c": "black",
+      "M_67c9ec33": "white"
+    },
+    "L_e616ad343f": {
+      "W_5e35cb7e": "big / large",
+      "W_426926f9": "small",
+      "W_613e61db": "just right / fits",
+      "W_ee38770e": "tight",
+      "W_4283c507": "loose / wide",
+      "W_5d994318": "long",
+      "W_788d031a": "short (length)"
+    },
+    "L_e292edde2d": {
+      "W_7696e339": "more than (comparative)",
+      "S_b6ddaced": "This one is prettier than that one.",
+      "S_530385c7": "The red shirt is cheaper than the blue one.",
+      "S_3fc97554": "My older brother is taller than me.",
+      "S_eff89e96": "Today is colder than yesterday."
+    },
+    "L_01701bb315": {
+      "W_73057dc1": "most (superlative)",
+      "S_442212af": "This is the prettiest one.",
+      "S_c3e7a0d6": "This shirt is the cheapest.",
+      "S_333b829e": "Summer is the hottest.",
+      "S_6bdd0ee6": "She is the tallest in class."
+    },
+    "L_94e8d19cc2": {
+      "W_13ee843c": "equal to / as... as",
+      "S_3b7bbec8": "I am as tall as my older brother.",
+      "S_96cb4ef6": "This is as expensive as that one.",
+      "S_a17b0bf1": "The younger sister is not as good as the older sister."
+    },
+    "L_5952c1bd5c": {
+      "W_0a5c2a44": "a bit / slightly",
+      "W_62ab6683": "quite / fairly",
+      "W_07934501": "very",
+      "W_4313257a": "too / excessively",
+      "S_7c0f92f7": "This is a bit tight.",
+      "S_f243b88e": "This shirt is quite nice.",
+      "S_149a1cd7": "Too expensive!"
+    },
+    "L_637c93028f": {
+      "W_87d1eea8": "but",
+      "W_fffbe58f": "or (either/or)",
+      "W_41d357bd": "with (accompaniment)",
+      "S_2dcb664a": "This shirt is nice but expensive.",
+      "S_3b75fa55": "Do you want red or blue?",
+      "S_4d9e474a": "I go to the market with my mother.",
+      "S_400878d5": "This is good but too small.",
+      "S_1b2350f0": "Coffee or tea?"
+    },
+    "L_30241bd079": {
+      "S_8cbf96ac": "I want to try this one.",
+      "S_7f67baf0": "This is a bit tight.",
+      "S_e6d6b7f5": "Do you have a bigger size?",
+      "S_f62ffdf1": "I like the red shirt."
+    },
+    "L_52e907a244": {
+      "S_1f6cfe9f": "How much is this?",
+      "S_f6cc3403": "Too expensive! Can you reduce?",
+      "S_78cf48dd": "Give me a small discount.",
+      "S_c5a858f8": "OK, I'll take this one."
+    },
+    "L_0b641954de": {
+      "W_d8ffd50a": "shirt",
+      "W_108da110": "red",
+      "W_57eb54a5": "more than",
+      "W_b2bfe791": "most",
+      "W_3763b72d": "a bit",
+      "S_60c922db": "How much is this?",
+      "M_6faf09df": "shirt",
+      "M_1aaa39d1": "red",
+      "M_24022b15": "more than",
+      "M_91ff9d62": "most"
+    },
+    "L_5dd09958dc": {
+      "W_de0b7532": "motorbike / scooter",
+      "W_d9044611": "car (northern)",
+      "W_0b08126a": "car (southern)",
+      "W_82c7e03e": "bus",
+      "W_6d025506": "bicycle",
+      "W_00f7ac67": "taxi",
+      "W_89afc4f9": "airplane",
+      "W_deb686f4": "train",
+      "M_9549f90c": "motorbike",
+      "M_d2e0ab01": "bus",
+      "M_0db2eeca": "bicycle",
+      "M_3928fe89": "airplane"
+    },
+    "L_4c4a033176": {
+      "W_91027854": "left",
+      "W_2787e74d": "right",
+      "W_54f58f70": "straight ahead",
+      "W_92bf0eca": "to turn (northern)",
+      "W_79b21e07": "to turn (southern)",
+      "W_28ecf979": "intersection (4-way)",
+      "W_69bc260b": "intersection (3-way / T junction)",
+      "M_38af4037": "left",
+      "M_1283c4df": "right",
+      "M_0a7e08d7": "straight ahead",
+      "M_a5b446f8": "intersection"
+    },
+    "L_b49ce5943b": {
+      "W_e1a7d30a": "bank",
+      "W_1c9440e8": "post office",
+      "W_dd29676f": "hospital",
+      "W_15f57d4f": "supermarket",
+      "W_94712378": "park",
+      "W_de9b6169": "restaurant",
+      "W_0a8838a3": "market",
+      "W_88870bca": "airport"
+    },
+    "L_fa4f9670ba": {
+      "W_9bb4db13": "by (means of)",
+      "S_acd1e4e1": "I go to work by motorbike.",
+      "S_bd21c5c6": "We go by bus.",
+      "S_1fc3abce": "What do you travel by?",
+      "S_59be1bf1": "I will fly to Hanoi."
+    },
+    "L_e9c19239a0": {
+      "W_cc9e8b38": "where",
+      "W_8fcd04b0": "near",
+      "W_6ab3a76e": "far",
+      "S_5ef86ed6": "Where is the bank?",
+      "S_1c5b87ef": "The supermarket is nearby.",
+      "S_af2f970e": "The hospital is on the right."
+    },
+    "L_106bb1392f": {
+      "W_ae573e0f": "how far",
+      "W_5925d073": "meter",
+      "W_d7b78660": "kilometer",
+      "S_c353d7ae": "How far from here to there?",
+      "S_0b508f9a": "About two kilometers.",
+      "S_3559a154": "Go straight one hundred meters."
+    },
+    "L_14cbb9a3ed": {
+      "S_bf96e7f1": "Excuse me, where is the post office?",
+      "S_ab8522b4": "Go straight two hundred meters.",
+      "S_d515398a": "Turn left at the intersection.",
+      "S_4d56ce34": "The post office is on the right."
+    },
+    "L_cd6309d4e4": {
+      "S_852dce90": "I want to book a Grab.",
+      "S_819448f5": "Go to this address.",
+      "S_6d9a8984": "How far from here?",
+      "S_586e4391": "About fifteen minutes."
+    },
+    "L_075688e1c0": {
+      "W_811e245a": "motorbike",
+      "W_cdeebbf8": "left",
+      "W_c908d15a": "right",
+      "W_f59b7a0a": "bank",
+      "W_b19f1e68": "how far",
+      "S_0430630b": "Where is the bank?",
+      "M_5617aad4": "motorbike",
+      "M_ab4ecf21": "left",
+      "M_6910fb87": "right",
+      "M_64eb9bd7": "bank"
+    },
+    "L_e26ec3e266": {
+      "W_fbbedd3a": "can / be able to",
+      "W_b7057acf": "must / have to",
+      "W_e19293b3": "should",
+      "W_1a9efe5c": "need",
+      "W_263ec2ce": "can / allowed to (after verb)",
+      "W_80a50c7f": "want to",
+      "M_acf21e23": "can",
+      "M_892e636e": "must",
+      "M_36a8088d": "should",
+      "M_1a539df1": "need"
+    },
+    "L_f9cfc2ec09": {
+      "W_dcabf1bc": "can / able to",
+      "S_ed5d567b": "Can you help me?",
+      "S_16ac86a5": "I can speak a little Vietnamese.",
+      "S_c243678b": "She can go.",
+      "S_cef10b76": "We can meet tomorrow."
+    },
+    "L_be5256f396": {
+      "W_be880dbd": "must",
+      "W_b0a3968c": "need",
+      "S_3f94e50f": "I have to go to work.",
+      "S_b267bcab": "You need to rest.",
+      "S_309f3b4b": "We must go home.",
+      "S_e868950b": "I need to buy medicine."
+    },
+    "L_d5774a2218": {
+      "W_1e569262": "should",
+      "W_f8451b1e": "shouldn't",
+      "S_faa0ae9c": "You should go to bed early.",
+      "S_a34da06a": "I should study more.",
+      "S_3a701c98": "You shouldn't drink a lot of coffee."
+    },
+    "L_1a31bf0562": {
+      "W_bb96c18d": "please (troubling someone)",
+      "W_f36a2695": "please (polite request)",
+      "S_2440edb2": "Please help me.",
+      "S_3db95770": "Please let me see the menu.",
+      "S_b428d0b5": "Please speak more slowly."
+    },
+    "L_6f12302064": {
+      "W_7c0637d0": "allowed / can (after verb)",
+      "W_e947bbf0": "not allowed",
+      "S_93ecdb31": "Can I go?",
+      "S_8f8c17dc": "You can come in.",
+      "S_eeb21e3b": "No smoking here."
+    },
+    "L_e849d039c8": {
+      "S_51ff0696": "Excuse me, can you help me?",
+      "S_4fac3725": "I need to find ABC hotel.",
+      "S_6d410da9": "Can you show me the way?",
+      "S_3ead04e7": "Thank you very much!"
+    },
+    "L_897d2cc706": {
+      "S_1e4a1c62": "Please give me the bill.",
+      "S_98f081e8": "Please wait a moment.",
+      "S_bd0b7140": "Can you speak louder?"
+    },
+    "L_1e853f1234": {
+      "W_c55e4f89": "can",
+      "W_0426b624": "must",
+      "W_b91c52fa": "need",
+      "W_b71a7a1d": "should",
+      "W_022e651d": "please",
+      "S_1517bac7": "Can you help me?",
+      "M_1850cac1": "can",
+      "M_bff984e4": "must",
+      "M_accdbb2a": "need",
+      "M_cd885afd": "should",
+      "M_b721293b": "please"
+    },
+    "L_7b7331e6c7": {
+      "W_22646c06": "hotel",
+      "W_004209a5": "room",
+      "W_88a2c238": "to book a room",
+      "W_73788da6": "to check in",
+      "W_eca64fb4": "to check out",
+      "W_7f2db913": "key",
+      "W_63a89fe9": "passport",
+      "M_76f1b20a": "hotel",
+      "M_6aa1901b": "room",
+      "M_b0ee5a44": "key",
+      "M_cc6131aa": "passport"
+    },
+    "L_900464b2c9": {
+      "W_d141b395": "wifi",
+      "W_76b5ab28": "air conditioner (northern)",
+      "W_686bf66d": "air conditioner (southern)",
+      "W_e21c621c": "breakfast",
+      "W_5f39e283": "bed",
+      "W_fc907404": "bathroom",
+      "W_9d310327": "swimming pool (northern)",
+      "W_45c63598": "swimming pool (southern)"
+    },
+    "L_ec1234750b": {
+      "W_7ce2e5f1": "have booked / booked",
+      "S_054feb9e": "I have booked a room.",
+      "S_a5692754": "We have booked two rooms.",
+      "S_e1d41024": "Have you booked yet?"
+    },
+    "L_130ddc8128": {
+      "W_12298914": "does it have ... ?",
+      "S_97d6af4e": "Does the room have wifi?",
+      "S_ed589514": "Does the hotel have breakfast?",
+      "S_7181344b": "Is there air conditioning?",
+      "S_0ee1d0db": "Is there a swimming pool?"
+    },
+    "L_8ca50b11ab": {
+      "W_eede50c1": "to suffer / be (negative passive)",
+      "W_f6d5c8f9": "to get / be (positive passive)",
+      "S_f5ff0158": "The AC is broken.",
+      "S_444ae75e": "I caught a cold.",
+      "S_8cef9e82": "I got a day off today.",
+      "S_2026270e": "She was praised."
+    },
+    "L_7b840da72e": {
+      "S_156d4035": "Hello, I have booked a room.",
+      "S_f79be58c": "Please give me your passport.",
+      "S_0b57551d": "Your room is 305.",
+      "S_101b8c2f": "Breakfast is from six to ten."
+    },
+    "L_7517db90ef": {
+      "S_a15a2e53": "I'm in room three-oh-five.",
+      "S_90605fa1": "The AC is broken.",
+      "S_9223d194": "Can you fix it?",
+      "S_c366c479": "Staff will come up right away."
+    },
+    "L_725ae6e85f": {
+      "W_2494fd4a": "hotel",
+      "W_24269462": "room",
+      "W_e107b428": "key",
+      "W_49f2f0ab": "passport",
+      "W_ea6a0306": "passive negative",
+      "S_998aadbf": "I have booked a room.",
+      "M_a12b3ceb": "hotel",
+      "M_e4bfb094": "room",
+      "M_80ddda19": "key",
+      "M_4a33479b": "passport"
+    },
+    "L_e010886160": {
+      "W_7399087f": "weather",
+      "W_6c00dacc": "sunny",
+      "W_b82b53cc": "rain / to rain",
+      "W_ef747502": "wind / windy",
+      "W_338f3496": "hot",
+      "W_d7ccc696": "cold",
+      "W_35ed5771": "cool",
+      "W_ed13c5c3": "warm",
+      "M_d841081d": "sunny",
+      "M_cca098e5": "rain",
+      "M_5083442d": "hot",
+      "M_152d1c6f": "cold"
+    },
+    "L_54af31b777": {
+      "W_952189d2": "spring",
+      "W_d1c295f3": "summer",
+      "W_67deec84": "autumn / fall",
+      "W_5fbf90cc": "winter",
+      "W_3a4b38c7": "month",
+      "W_d492e353": "year",
+      "M_1edc900e": "spring",
+      "M_77efad86": "summer",
+      "M_dd12919b": "autumn",
+      "M_555af2e9": "winter"
+    },
+    "L_338799da49": {
+      "W_10be9f14": "January (or 'tháng giêng')",
+      "W_33a890b4": "February",
+      "W_b803c953": "March",
+      "W_b9ddd968": "April (tư, not bốn)",
+      "W_7382fc46": "May",
+      "W_3ef276a8": "December (or 'tháng chạp')",
+      "M_6703af9f": "January",
+      "M_abe6fb18": "April",
+      "M_5d946ee4": "December"
+    },
+    "L_1dd19eb201": {
+      "W_a3128f17": "if",
+      "W_d0404736": "then",
+      "S_30bed3e9": "If it rains, I will stay home.",
+      "S_7fcd9324": "If you're busy, we'll meet later.",
+      "S_d9038bed": "If it's cheap, I'll buy it.",
+      "S_5cdbc6cd": "If you go, I'll go too."
+    },
+    "L_410f04cc43": {
+      "W_c0c726de": "how / what's it like",
+      "S_abeb13eb": "How's the weather today?",
+      "S_a2432a31": "Today is sunny.",
+      "S_6d9b1a20": "Tomorrow will rain.",
+      "S_c7980605": "Summer in Vietnam is very hot."
+    },
+    "L_cb5d97f29f": {
+      "W_7b84a822": "day / date",
+      "S_1b2fef89": "What's today's date?",
+      "S_ecafda03": "Today is March 5th.",
+      "S_b9a5d18c": "My birthday is October 20.",
+      "S_d7d9ccd2": "The year 2025."
+    },
+    "L_31a8ce76cc": {
+      "S_b9243a27": "The weather is so nice today!",
+      "S_116dfb2e": "Will it rain tomorrow?",
+      "S_bd0fa4df": "I prefer autumn to summer.",
+      "S_0a4cf201": "If it rains, we'll stay home."
+    },
+    "L_9bf94dd3fa": {
+      "S_70440aa6": "What will you do this weekend?",
+      "S_db177ca9": "If it's sunny, I'll go to the park.",
+      "S_aad4c185": "If it rains, I'll stay home and watch movies."
+    },
+    "L_32d7c43b7b": {
+      "W_bf00336a": "sunny",
+      "W_3e73cc40": "rain",
+      "W_63170050": "summer",
+      "W_8793fc34": "winter",
+      "W_95d57f9b": "if",
+      "S_9ed4c09a": "How's the weather today?",
+      "M_566eec75": "sunny",
+      "M_2fd756b5": "rain",
+      "M_0f79d23e": "summer",
+      "M_320e9481": "winter",
+      "M_8eed7fa1": "if"
+    },
+    "L_f4a16b29e5": {
+      "W_3455f3a5": "to wake up",
+      "W_493587ec": "to sleep",
+      "W_a567d87f": "to brush teeth",
+      "W_b5b3da5f": "to shower / bathe",
+      "W_f5506f64": "to go to school",
+      "W_c7524b91": "to go to work",
+      "W_fbe02708": "to go home",
+      "W_0acaca97": "to rest",
+      "M_a1fabce4": "to wake up",
+      "M_d5fdc7c1": "to sleep",
+      "M_239bf98f": "to go to work",
+      "M_48412be6": "to go home"
+    },
+    "L_b9f66dda7e": {
+      "W_e0f3b1ca": "hobby",
+      "W_e255281d": "to read books",
+      "W_66e6bdc2": "to watch movies",
+      "W_96069e17": "to listen to music",
+      "W_2a68cbab": "to play sports",
+      "W_4abc2375": "to cook",
+      "W_29743360": "to travel"
+    },
+    "L_8e80ec3a0e": {
+      "W_71ba671d": "often / usually",
+      "W_c2e73924": "always",
+      "W_1f6a9e61": "sometimes",
+      "W_01f5e73e": "rarely",
+      "W_11f4b178": "never",
+      "M_0f7dcae2": "often",
+      "M_9ce3f9eb": "always",
+      "M_93631695": "sometimes",
+      "M_fa8b30aa": "never"
+    },
+    "L_6edbd240ca": {
+      "W_770c3212": "at (time)",
+      "S_9b33250f": "What time do you wake up?",
+      "S_3cba54f9": "I wake up at six.",
+      "S_c422f398": "I go to work at eight.",
+      "S_c01c640a": "Let's meet at 7 PM."
+    },
+    "L_b9206e3aa3": {
+      "W_b6ce7c9a": "to like",
+      "W_7f43b75e": "to hate / dislike strongly",
+      "S_680f31fd": "I like to read books.",
+      "S_2a0f41de": "I don't like coffee.",
+      "S_6e670a28": "What do you like to do?",
+      "S_bdae8e33": "I hate traffic jams."
+    },
+    "L_7733247b0f": {
+      "W_e947afa4": "often",
+      "S_a94551da": "I often drink coffee in the morning.",
+      "S_1fea8cec": "She always goes to class on time.",
+      "S_8c6e63c1": "I never smoke.",
+      "S_87b77273": "Sometimes I go to the movies."
+    },
+    "L_8d6dcb55c9": {
+      "W_2cfdf8d6": "in / during",
+      "W_5be9df53": "hour (duration)",
+      "S_6dff6344": "I study for two hours.",
+      "S_d2638cb9": "I've been in Vietnam for three years.",
+      "S_1c60d1f3": "The meeting lasts one hour."
+    },
+    "L_be02938ecf": {
+      "S_fc010ca6": "I wake up at six in the morning.",
+      "S_788eb066": "I go to work at eight.",
+      "S_7c1f6ef3": "In the evening I watch movies or read books.",
+      "S_2b21cf32": "I sleep at eleven."
+    },
+    "L_e92c81556c": {
+      "S_11752615": "What do you usually do on weekends?",
+      "S_19e42cfe": "I usually go to the park.",
+      "S_ade3571f": "Sometimes I go to the movies.",
+      "S_df7f28b6": "Do you want to come along?"
+    },
+    "L_56b537a075": {
+      "W_3b1fbd4e": "to wake up",
+      "W_d40d0042": "to go to work",
+      "W_f45f9dff": "to like",
+      "W_616d0401": "often",
+      "W_469af70d": "in / during",
+      "S_c265fe3c": "I wake up at six.",
+      "M_6a045377": "to wake up",
+      "M_89bb86a3": "to go to work",
+      "M_4e7380f0": "to like",
+      "M_9f8a1aff": "often"
+    },
+    "L_9f5c3573cc": {
+      "W_62d31c8e": "head",
+      "W_6f9da4d8": "eye",
+      "W_fedec582": "nose",
+      "W_84637f2a": "mouth",
+      "W_81fbe6dc": "ear",
+      "W_558065f9": "hand / arm",
+      "W_730dcea6": "foot / leg",
+      "W_078db8a7": "stomach / belly",
+      "M_378e8d8a": "head",
+      "M_d10ebb49": "eye",
+      "M_35a976c4": "hand",
+      "M_7e7fc92b": "foot"
+    },
+    "L_1680165607": {
+      "W_0d2b8979": "to hurt / ache",
+      "W_544d7a3f": "sick (northern)",
+      "W_681e9e3a": "illness / to be ill",
+      "W_f584c96b": "cold (flu)",
+      "W_a58e2a83": "fever",
+      "W_f0ebe829": "medicine",
+      "W_07b7e91f": "healthy / well",
+      "W_bfea2d30": "tired"
+    },
+    "L_9304b974da": {
+      "W_a1e1840f": "happy / glad",
+      "W_2d7c40c3": "sad",
+      "W_c9c9fd03": "angry",
+      "W_50202a7f": "afraid / scared",
+      "W_1d9e4bfb": "surprised",
+      "W_d0a509bf": "comfortable / relaxed",
+      "M_e74b41ab": "happy",
+      "M_44bb6106": "sad",
+      "M_3e4f4a69": "angry",
+      "M_e4623ba6": "afraid"
+    },
+    "L_2b2d0291d9": {
+      "W_2a29c75c": "to suffer from (illness)",
+      "S_dd61eb1e": "I have a cold.",
+      "S_8d4bfe16": "I have a headache.",
+      "S_5c3b3523": "She has a fever.",
+      "S_90848e42": "Are you sick?"
+    },
+    "L_20f27ee8a3": {
+      "W_aacbfd8a": "to feel",
+      "S_3877e1fc": "I feel happy.",
+      "S_0b19c4b3": "She feels tired.",
+      "S_3417fc85": "I don't feel well.",
+      "S_8776603e": "How do you feel?"
+    },
+    "L_3c4018fe0d": {
+      "W_b740c6b3": "because",
+      "W_1f3b0f6d": "because (more emphatic)",
+      "S_d2b7a81d": "I didn't go to work because I'm sick.",
+      "S_0c58a7eb": "She's happy because she has a day off.",
+      "S_54eb3a50": "Because it's raining, I'm staying home."
+    },
+    "L_997354270d": {
+      "S_a899c666": "Hello doctor, I don't feel well.",
+      "S_1929e75e": "I have a headache and a fever.",
+      "S_f911c8dd": "Can the doctor give me medicine?",
+      "S_fb89b53b": "You need to rest."
+    },
+    "L_f448c583d6": {
+      "S_3379d55d": "How do you feel?",
+      "S_97c37e9c": "I'm a bit tired today.",
+      "S_ee12c510": "Why?",
+      "S_d145c9ee": "Because I worked too much."
+    },
+    "L_bab231eb26": {
+      "W_7c38d913": "head",
+      "W_da0ca600": "eye",
+      "W_4ee11d2e": "to hurt",
+      "W_1b4b750f": "happy",
+      "W_f7c2408c": "because",
+      "S_2b576a71": "I have a headache.",
+      "M_b0443f02": "head",
+      "M_44be8177": "eye",
+      "M_6b239176": "to hurt",
+      "M_f652ca87": "happy",
+      "M_c79213fd": "because"
+    }
+  }
+}

@@ -11,7 +11,8 @@
     "build": "npx vite build && cd server && npm install",
     "start": "node server/server.js",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "curriculum:build": "node scripts/build-curriculum.js --verify"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.99.3",

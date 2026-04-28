@@ -1,0 +1,751 @@
+{
+  "meta": {
+    "base": "en",
+    "level": "b1",
+    "track": "heritage",
+    "source": "vn_b1_heritage_en.xlsx",
+    "generated": "2026-04-28T09:02:31.269Z"
+  },
+  "translations": {
+    "L_70d74a3e77": {
+      "W_df689c06": "same as English (approximately)",
+      "W_fbe0a88c": "same as English",
+      "W_11cb5f5e": "same as English",
+      "W_5f777d4c": "same as English",
+      "W_944c1fa9": "same as English",
+      "W_9db71fa1": "DO NOT exist in Vietnamese",
+      "W_e65aaa88": "DOES NOT exist in Vietnamese (uses 'ph' instead)"
+    },
+    "L_b8d3455abc": {
+      "W_116fc2d6": "short 'a' (like 'ah' but clipped)",
+      "W_7fc969e3": "short 'uh' (different from 'a')",
+      "W_d702f7c4": "closed 'eh' (like French 'é')",
+      "W_328bdcff": "closed 'oh' (like English 'oh')",
+      "W_c3a85c25": "mid 'uh' (between ơ and â)",
+      "W_0943f7a2": "close 'u' made with spread lips",
+      "W_1dd01695": "'d' sound (while 'd' without bar = 'z' or 'y')",
+      "M_7fd5c3b8": "short 'a'",
+      "M_2734188d": "closed 'eh'",
+      "M_d0b9720c": "closed 'oh'",
+      "M_132926bf": "'d' sound"
+    },
+    "L_ffff469c34": {
+      "W_4344ece2": "most common surname (say: 'Ngwin')",
+      "W_479da92d": "second most common (say: 'Chun')",
+      "W_3fa1b99f": "common surname",
+      "W_ce7171f4": "common surname (say: 'Fam')",
+      "W_01ca08ec": "southern variant of Hoàng",
+      "W_42f86e4f": "common surname",
+      "W_10fb4266": "southern / northern variant",
+      "S_f0195d49": "My name is Nguyen Minh Anh. (read aloud)",
+      "S_96847c53": "My grandmother is Tran Thi Hanh."
+    },
+    "L_cf9fa23a18": {
+      "W_43b9b872": "like English 'ch' (in 'chair')",
+      "W_fdea6433": "like Spanish 'ñ' (in 'señor')",
+      "W_59de3816": "like English 'ng' (in 'singing')",
+      "W_bf3bb83d": "like English 'f'",
+      "W_73bb9f42": "throat 'k' (like German 'ch')",
+      "W_5dbd66f8": "close to English 'ch' (in south) or 'tr' (in north)",
+      "W_4aa5d70b": "aspirated 't' (like English 't' in 'top')",
+      "W_c13815db": "'z' in north, 'y' in south"
+    },
+    "L_c1693a51cb": {
+      "W_5ab772ae": "(no mark) — mid-level tone",
+      "W_98ba77d4": "(grave accent) — falling tone",
+      "W_26825d74": "(acute accent) — rising tone",
+      "W_b7352841": "(hook above) — falling-rising tone",
+      "W_38aad79f": "(tilde) — creaky rising tone",
+      "W_66a9599c": "(dot below) — heavy falling tone",
+      "S_19cc70d3": "Tone marks change meaning!",
+      "S_e2d4a6ff": "Practice reading with tones."
+    },
+    "L_473603357d": {
+      "S_862ac33b": "Kid, mom cooked pho, come home and eat! (likely said at home)",
+      "S_bae93a88": "Grandma wants to see you tomorrow.",
+      "S_b023787d": "Go wherever, just come back before 10."
+    },
+    "L_269e558e40": {
+      "S_4a61cc66": "CAREFUL",
+      "S_f5edd37b": "DO NOT ENTER",
+      "S_b7d35e02": "EXIT",
+      "S_10920e46": "TOILET",
+      "S_23a50a00": "BUS STOP",
+      "S_5109fca3": "HOSPITAL"
+    },
+    "L_4ad2192abb": {
+      "W_9c2f6696": "short 'a'",
+      "W_fab1e187": "'d' sound",
+      "W_ee47fe64": "like Spanish 'ñ'",
+      "W_c477de4f": "like 'f'",
+      "W_12131480": "heavy tone mark",
+      "S_546f65c0": "My name is Nguyen.",
+      "M_b618c3ee": "short 'a'",
+      "M_26a51d52": "'d' sound",
+      "M_8b7f95f1": "Spanish 'ñ'",
+      "M_56c3a4c2": "heavy tone"
+    },
+    "L_e6cf77d21e": {
+      "W_39857f42": "rice",
+      "W_fea56e64": "beef pho",
+      "W_0d755cf2": "chicken pho",
+      "W_a8bcda84": "beef vermicelli",
+      "W_b23cda39": "spring rolls",
+      "W_55652150": "soup",
+      "W_d2d93e4b": "stir-fried morning glory",
+      "W_8f95ba47": "braised meat",
+      "M_b570d246": "beef pho",
+      "M_55ae8022": "chicken pho",
+      "M_45111a36": "spring rolls",
+      "M_7a46eb42": "soup"
+    },
+    "L_2a1a77624e": {
+      "W_f5e964e0": "50,000 dong (written with period, not comma)",
+      "W_78a9902e": "100,000 (shortened)",
+      "W_54953feb": "2 million (triệu shortened)",
+      "W_a4103f93": "calculate the bill",
+      "W_962ad94f": "price",
+      "W_0590a8a8": "bill / receipt"
+    },
+    "L_79589ec347": {
+      "W_f518f2b8": "March 15 (day/month format)",
+      "W_d382e19b": "read as 'hai không hai bốn'",
+      "W_2bdd687c": "2:30 PM (24-hour format)",
+      "S_38bb96d4": "October 20, 2024.",
+      "S_2f5bfb70": "8 AM to 5 PM.",
+      "S_f3c2eaae": "Dad's birthday is August 15."
+    },
+    "L_1428f4b410": {
+      "W_fd21e26e": "house number",
+      "W_0c02172a": "street (south / north)",
+      "W_d880de58": "ward",
+      "W_39e1816e": "district (in cities)",
+      "W_a953d462": "province / city",
+      "S_56974eb8": "123 Le Loi St, Ben Nghe Ward, District 1, Ho Chi Minh City.",
+      "S_3ce5b670": "Which district is this address in?"
+    },
+    "L_ab5844f06b": {
+      "W_47d2da4a": "comment (abbreviated)",
+      "W_1c4c4ac2": "like / heart (casual)",
+      "W_5a0db1b3": "share this post",
+      "S_339edc32": "This post is great, share it!",
+      "S_4c7d48e9": "Anyone want to come with me?",
+      "S_088d5277": "Update: trip is cancelled."
+    },
+    "L_68e6dcda94": {
+      "S_e116172e": "Iced black coffee ........ 25k",
+      "S_fe5df3f6": "Iced milk coffee ......... 30k",
+      "S_7d41ba58": "Avocado smoothie ......... 45k",
+      "S_c3e35157": "Peach orange lemongrass tea .. 55k"
+    },
+    "L_43da0ef2c1": {
+      "S_9e35aaa6": "Where are you?",
+      "S_e650b6a8": "Mom is cooking, come home to eat.",
+      "S_fd8dccdf": "Remember to buy milk.",
+      "S_d5b16d55": "OK, home in 20 minutes."
+    },
+    "L_dd1b2dea4c": {
+      "W_ef2fa4c8": "beef pho",
+      "W_9597f4ef": "50k dong",
+      "W_a67bdb85": "street",
+      "W_67b3d494": "ward",
+      "W_75716a0e": "2:30 PM",
+      "S_3337c6b0": "October 20, 2024.",
+      "M_eedb50ae": "beef pho",
+      "M_d97b5ffe": "ward",
+      "M_741a6ad4": "street"
+    },
+    "L_fea5749f71": {
+      "W_4edb794c": "Telex — popular typing method (aa=â, dd=đ, as=á)",
+      "W_9a31f993": "VNI — typing method using numbers (a1=á, a6=â)",
+      "W_ecde43fa": "Unikey — Windows input software",
+      "W_f077c612": "input method tool",
+      "W_24e862eb": "mark / accent",
+      "W_bf4c3bf7": "without accents / no tones",
+      "M_bceab919": "typing method (aa=â, dd=đ)",
+      "M_303442c7": "no tones",
+      "M_002a9b00": "input tool"
+    },
+    "L_634508eb7b": {
+      "W_ebbb78c0": "double a becomes â",
+      "W_199526ad": "double d becomes đ",
+      "W_5765f457": "double o becomes ô",
+      "W_b31dd5da": "double e becomes ê",
+      "W_483317c0": "u + w becomes ư",
+      "W_fe2ee41d": "o + w becomes ơ",
+      "S_0893afc3": "Typing practice: thank you.",
+      "S_b1c1476a": "Typing practice: hello (f = à falling tone)."
+    },
+    "L_ed630e1d81": {
+      "W_b5f490e2": "f adds falling tone (à)",
+      "W_39113145": "s adds rising tone (á)",
+      "W_3321e067": "r adds falling-rising tone (ả)",
+      "W_78e493d0": "x adds creaky tone (ã)",
+      "W_50103a68": "j adds heavy tone (ạ)",
+      "S_ac130ce1": "Telex: order matters.",
+      "S_ea5619d7": "Heavy tone j makes 'bạn'."
+    },
+    "L_e89042acd5": {
+      "W_5b607f8f": "tay (hand) vs tai (ear)",
+      "W_fadff9f6": "cô (aunt) vs kê (chicken)",
+      "W_a11150ad": "con (child) vs quên (forget — uses qu)",
+      "W_e7d7825e": "nghĩ (think) vs người (person)",
+      "S_72becdb1": "nghe vs ngày — ngh only before i/e/ê",
+      "S_461f11a8": "ghi (remember) vs gì (what)."
+    },
+    "L_3624dfc1c8": {
+      "W_e6d7d70a": "hello (greeting)",
+      "W_2a1616f8": "thank you",
+      "W_9f670ec2": "ok, older brother",
+      "S_40a171b5": "Hi older brother, I'm at work.",
+      "S_66f99586": "I'll be home at 7 PM.",
+      "S_2d92846a": "Mom, I love you.",
+      "S_50654e15": "Good night, Mom."
+    },
+    "L_84cb1affa6": {
+      "S_5e91d619": "Grandma, it's me Lan.",
+      "S_3b7cf687": "I'm sending you a family photo.",
+      "S_3bd44650": "When are you going back to Vietnam?",
+      "S_c1816fe6": "I miss you a lot, Grandma."
+    },
+    "L_a927c1ef64": {
+      "S_7fdd26c2": "Beautiful photo, sister!",
+      "S_88d74b3f": "Happy birthday, younger one.",
+      "S_0edbc643": "Haven't seen you in so long, miss you.",
+      "S_778928ab": "When are you coming back to the US?"
+    },
+    "L_3b95ce8b69": {
+      "W_a2ef5609": "typing method",
+      "W_3c30087f": "doubling to add hat",
+      "W_a83affa1": "heavy tone mark",
+      "W_a8035687": "falling tone mark",
+      "W_ad8f8c7e": "no tones",
+      "S_80920b8a": "I love you, Mom.",
+      "M_bc362201": "doubling for hat",
+      "M_0a9454d3": "doubling for đ",
+      "M_381df876": "no tones"
+    },
+    "L_fc7852cfb9": {
+      "W_b8f463f1": "ă = short 'a', â = short 'uh'",
+      "W_9b553f5b": "ă vs â changes meaning",
+      "W_21a3a7da": "ă is short bright 'a'",
+      "W_9e5d7481": "ă = bright, â = dark",
+      "S_2deb2eee": "Bright, clipped sound.",
+      "S_2f5365d9": "Dark, clipped sound."
+    },
+    "L_d2a009363b": {
+      "W_f14b10a8": "bác (uncle) vs bát (bowl) — different endings",
+      "W_ef93190a": "tập (book) vs tất (socks)",
+      "W_3864dbe4": "sạch (clean) vs sạc (charger)",
+      "W_39b20fbc": "lang (itinerant) vs lan (orchid)",
+      "S_b3de6c9a": "Don't drop the -n.",
+      "S_58e98a64": "Crisp -c."
+    },
+    "L_ce420ae721": {
+      "W_c0fd09f8": "North: 'zeh'. South: 'yeh'.",
+      "W_a1c110b1": "North: 'zow'. South: 'yow'.",
+      "W_1f911f1f": "North: 'zoi'. South: 'roi'.",
+      "W_46a8b6ea": "DIFFERENT words; don't merge!",
+      "S_b8552397": "Both regions understand all.",
+      "S_d0ca8986": "Reading requires the distinction."
+    },
+    "L_60226e95ef": {
+      "W_944bbd43": "Some Hanoi speakers swap l and n",
+      "W_9b407836": "Meaning changes completely",
+      "W_6cd13912": "n stays n in standard",
+      "W_3049c07e": "Be aware without copying if standard is goal."
+    },
+    "L_7961c656aa": {
+      "W_6a339d13": "Tone = meaning",
+      "W_7a6235b7": "Same letters, different tone",
+      "W_8a8e35f7": "Tone critical for meaning",
+      "S_dcb90eb5": "My mother is a doctor. (practice tones)",
+      "S_b2e94038": "All 6 tones on 'ba' — practice distinction."
+    },
+    "L_827d752b9a": {
+      "W_278c1c61": "Regional differences in vocab & pronunciation",
+      "W_a4bd9501": "dad (north vs south)",
+      "W_5453b0d4": "mom (north vs south)",
+      "W_003872d5": "thousand (north vs south)",
+      "W_92fb0252": "to turn (north vs south)",
+      "S_fcdc523d": "Identify your family dialect.",
+      "S_a3a95ce2": "Reading requires flexibility."
+    },
+    "L_49b2750211": {
+      "S_b619d535": "My name is Minh, I am Vietnamese.",
+      "S_84fca0a9": "My parents were born in Saigon.",
+      "S_2098b008": "I want to learn standard Vietnamese better.",
+      "S_dba8330d": "My grandparents speak with a Hue accent."
+    },
+    "L_185aad5b90": {
+      "S_d0c0af7e": "Am I saying this correctly?",
+      "S_ae0dd4be": "Can you correct me?",
+      "S_52f23e44": "I learned abroad so my speech is a bit different.",
+      "S_e33f242f": "I want to speak more standard."
+    },
+    "L_1b88422cbc": {
+      "W_5ae7493e": "short bright vs short dark",
+      "W_f09ee2d5": "-c vs -t (different)",
+      "W_b6ced82e": "North: zeh; South: yeh",
+      "W_48789bf2": "tone = meaning",
+      "W_620b7069": "south vs north (mom)",
+      "S_9b45c62f": "I want to learn standard Vietnamese better.",
+      "M_ac1c6e3f": "short bright 'a'",
+      "M_747332e8": "different endings",
+      "M_e896ae87": "mom (southern)"
+    },
+    "L_e540445527": {
+      "W_c45f4366": "Don't forget classifiers!",
+      "W_c04ae46e": "Heritage speakers often drop this",
+      "W_6b799188": "Forgetting makes you sound childish",
+      "S_df85aefa": "Wrong: I have two dog. Right: two dogs.",
+      "S_7e3b0284": "Wrong: Mom bought three shirt. Right: three shirts.",
+      "S_f66a719e": "Wrong: I saw one vehicle. Right."
+    },
+    "L_5d1c41336a": {
+      "W_1612d5a4": "Drops in home speech, mandatory with elders/strangers",
+      "S_2d7bf337": "Add ạ with elders/strangers.",
+      "S_43b383d5": "Add ạ to be polite with servers.",
+      "S_4f534680": "In formal situations, add ạ.",
+      "S_f7f75918": "Context matters."
+    },
+    "L_9e6a53f540": {
+      "W_19fda050": "NEVER to elders",
+      "W_3c507e98": "Use based on age",
+      "W_8d554c49": "For grandparents' generation",
+      "S_13cd40ff": "NEVER say 'bạn' to an elder.",
+      "S_46387f73": "Use anh/chị with adults you don't know well.",
+      "S_1b026147": "Heritage learners often over-use 'bạn'."
+    },
+    "L_1fd3bdb0d5": {
+      "W_f6d055d7": "Vietnamese: noun first, adjective second",
+      "S_7d6345a3": "Reverse! Noun first.",
+      "S_1709257a": "Reverse! Noun first.",
+      "S_7b3ae735": "Classifier-noun-adjective order.",
+      "S_5c35cdb6": "Reverse order from English."
+    },
+    "L_8c2409a915": {
+      "W_aa15ac01": "Possessor comes AFTER possessed (opposite of English)",
+      "S_81686055": "House of my mom.",
+      "S_a47d04c1": "Book of me = my book.",
+      "S_83af1d6c": "Native speakers often drop 'của'.",
+      "S_03738880": "Order is reverse."
+    },
+    "L_0eded0a905": {
+      "W_98ec925c": "Heritage often over-uses or drops",
+      "W_e0ff7bdf": "Only when happening NOW",
+      "W_75403070": "Don't overuse — context often enough",
+      "S_c59517d2": "Yesterday I ate pho. (time marker 'hôm qua' — đã optional)",
+      "S_44f9e2b0": "I'm cooking rice. (right now)",
+      "S_401bb941": "đang = right now, incompatible with past time.",
+      "S_53cac906": "Context > markers."
+    },
+    "L_71caebb61a": {
+      "S_392ac2a7": "Sorry, let me say again.",
+      "S_8e21051c": "I mean...",
+      "S_fa20cb79": "My Vietnamese isn't standard yet.",
+      "S_bec35e2a": "Please teach me the right way."
+    },
+    "L_066a768c28": {
+      "S_46f2a0ab": "Oh, did I say it wrong?",
+      "S_42e1f115": "Thanks, I learned something new.",
+      "S_4749aba3": "Write it down for me.",
+      "S_2ed6d660": "Next time I'll remember."
+    },
+    "L_a814337ff7": {
+      "W_f941130a": "two dogs = hai con chó, not hai chó",
+      "W_56411944": "mandatory in formal",
+      "W_99291127": "NEVER to elders",
+      "W_6b3dd989": "nhà đẹp, not đẹp nhà",
+      "W_324657be": "sách của tôi, not tôi của sách",
+      "S_95931e85": "Classifier required.",
+      "M_24ca61e5": "required for counting",
+      "M_8dffa8a1": "politeness particle",
+      "M_2abbecfa": "NOT for elders"
+    },
+    "L_0492afdba9": {
+      "W_d5fadb1d": "dad / mom (southern, home)",
+      "W_217b3e8a": "grandpa / grandma (home)",
+      "W_64008df0": "child (self when talking to parents)",
+      "W_97d7a72e": "casual you / I (WITH PEERS ONLY, rude elsewhere)",
+      "W_5c470bf3": "eaten yet? (casual greeting)",
+      "M_5608cc37": "dad / mom (casual)",
+      "M_f1166856": "child (self-address)",
+      "M_39807adf": "casual with peers only"
+    },
+    "L_c92db77c70": {
+      "W_c32b76dc": "dad / mom (standard / written)",
+      "W_2202a1a8": "all of you (formal, public speaking)",
+      "W_b7d0877e": "all of you (formal-casual)",
+      "W_841fa407": "formal hello",
+      "W_8ae448cc": "dear (formal letter opener)",
+      "W_11eaaddf": "sincerely (formal letter close)"
+    },
+    "L_b49343b2ff": {
+      "W_93cfc05a": "ba/má/con + casual phrases",
+      "W_bb2d533b": "anh/chị + ạ + polite forms",
+      "W_ed1d8645": "anh/chị/ông/bà + formal + ạ",
+      "W_2a27be1a": "bố/mẹ spelling, kính gửi, trân trọng",
+      "S_7d0c29e5": "Register shift example.",
+      "S_49bd8584": "Context dictates formality.",
+      "S_1fe6277f": "Writing standardizes."
+    },
+    "L_c058bbdd00": {
+      "W_1daa3d98": "male teacher / master",
+      "W_858490ee": "female teacher",
+      "W_0d9abbc3": "doctor",
+      "W_2d0a1f68": "Buddhist monk",
+      "W_a6317765": "Catholic priest (also = father in some dialects)",
+      "S_b28d3a94": "Hello, teacher. (formal)",
+      "S_fd25ebfa": "Thank you, doctor.",
+      "S_001c4f9f": "Hello, teacher. (formal)"
+    },
+    "L_d1c10b85d5": {
+      "W_511da82e": "probably / perhaps",
+      "W_b652bc2c": "it seems / apparently",
+      "W_2be3ba86": "in my opinion (junior)",
+      "W_3494ed73": "may I / with permission",
+      "S_7421fc0b": "In my opinion, we should leave early.",
+      "S_38867df6": "Perhaps I misunderstood.",
+      "S_62e902dc": "May I ask a question?",
+      "S_fbe9ca7e": "It seems the meeting has started."
+    },
+    "L_a457e5f919": {
+      "S_48c12f02": "[Home] Mom, I'm hungry.",
+      "S_852ebb03": "[Restaurant] Miss, one rice plate please.",
+      "S_fa7fff2f": "[Home] Grandma, I'm back from school.",
+      "S_2d5ce678": "[School] Hello, teacher."
+    },
+    "L_75a72b4f4d": {
+      "S_1a1e62ee": "Dad, I'm heading to work. (casual)",
+      "S_d4affed0": "Hi everyone, I just arrived. (at work — formal)",
+      "S_f56a2ac0": "Teacher's topic today was great.",
+      "S_6d2eb191": "I'll tell mom about it tonight. (back to casual)"
+    },
+    "L_6d732fc69d": {
+      "W_a98e13b3": "casual home (south)",
+      "W_64c26f4e": "formal / written (north-standard)",
+      "W_528ebc10": "formal 'all of you'",
+      "W_ffe214b1": "male teacher",
+      "W_c2211afb": "may I / with permission",
+      "S_5a5af823": "In my opinion, we should leave early.",
+      "M_65d0ff75": "dad (casual)",
+      "M_b96ebfbe": "dad (formal/written)",
+      "M_192e2cb2": "all of you (formal)"
+    },
+    "L_665ebc13fc": {
+      "W_6ad75bf8": "company",
+      "W_f83a4980": "office",
+      "W_20ec16cf": "employee",
+      "W_614d15e3": "salary",
+      "W_def431ee": "tax",
+      "W_09ed2dea": "customer / client",
+      "W_2f143d97": "project",
+      "W_6396e7d7": "contract",
+      "M_c4de8e86": "company",
+      "M_a35c8a87": "salary",
+      "M_f804243c": "customer",
+      "M_8789fab8": "contract"
+    },
+    "L_cefbd15013": {
+      "W_81910a4a": "government",
+      "W_0f9a80d0": "election",
+      "W_81087809": "economy",
+      "W_2e625424": "society",
+      "W_80921b0a": "embassy",
+      "W_0694543d": "president",
+      "W_ad197198": "prime minister",
+      "W_925f5eaa": "law"
+    },
+    "L_3dd48365cf": {
+      "W_fd27eefd": "hospital",
+      "W_e782842d": "medical check-up",
+      "W_22ce5b9d": "specialist doctor",
+      "W_8cacbe0e": "diabetes",
+      "W_b19685aa": "blood pressure",
+      "W_ddaa49bd": "antibiotics",
+      "W_9d8de110": "vaccinate",
+      "M_8d349713": "hospital",
+      "M_407ec7b4": "blood pressure",
+      "M_bbaca860": "diabetes"
+    },
+    "L_36855972ac": {
+      "W_3833735f": "Chinese-origin words (used in formal/news)",
+      "W_18ad11d8": "Native words (used at home)",
+      "S_42b9f31c": "News uses phụ huynh; home uses ba mẹ.",
+      "S_f843bc53": "Formal = gia đình; informal = nhà.",
+      "S_80dd36c8": "News uses y tá.",
+      "S_18bd77b1": "Both are real Vietnamese."
+    },
+    "L_f5165acf94": {
+      "W_77d19095": "increase / decrease",
+      "W_bb171564": "announce",
+      "W_9d0dd8dc": "outbreak / surge",
+      "S_17c200d6": "Vietnam's economy grew 6% in 2024.",
+      "S_2cbad123": "Government announces new tax policy.",
+      "S_e20d8ca5": "COVID cases surge in Hanoi."
+    },
+    "L_3d365cfc84": {
+      "W_30721ee2": "recruiting / hiring",
+      "W_49d18e5a": "requirements",
+      "W_8c945af8": "experience",
+      "W_c0d0e4fb": "job description",
+      "W_f8e846aa": "send CV/application",
+      "S_9c4a2d48": "Company is hiring marketing staff.",
+      "S_6c859fe2": "Requirement: 2 years experience.",
+      "S_158b1ba0": "Please send CV via email."
+    },
+    "L_ff3886c59a": {
+      "S_915b874a": "HCMC: House prices up 15% in Q1.",
+      "S_18dcfe70": "Vietnam signs cooperation deal with Japan.",
+      "S_f37a8519": "Education Ministry releases graduation exam.",
+      "S_4fd25b4c": "Weather: Heavy rain in the North this weekend."
+    },
+    "L_609c48f28c": {
+      "S_d62f2151": "Hi doctor, I'm here for a routine check-up.",
+      "S_eafc6a4e": "My family has a history of diabetes.",
+      "S_c1811d22": "How's my blood pressure?",
+      "S_d7b2db83": "Do I need a flu vaccine?"
+    },
+    "L_a8bd184866": {
+      "W_f0345c48": "company",
+      "W_434e8748": "government",
+      "W_f5d172da": "hospital",
+      "W_4b0e1416": "parents (formal)",
+      "W_2ec934f3": "hiring",
+      "S_33368cf9": "Company is hiring marketing staff.",
+      "M_18ea9193": "company",
+      "M_116de651": "government",
+      "M_eb595fc4": "blood pressure"
+    },
+    "L_998a56cc0f": {
+      "W_5eb73e46": "nothing is impossible",
+      "W_d9e0a05e": "eating fruit, remember who planted the tree (gratitude)",
+      "W_70c68c5f": "a drop of blood is more precious than a pond of water (family)",
+      "W_dc53fe6c": "leaves fall back to the roots (return home)",
+      "W_f26c67d3": "with effort polishing iron, one day it becomes a needle (persistence)",
+      "M_a8f21d7c": "gratitude proverb",
+      "M_5db8e285": "return to origin"
+    },
+    "L_5645fadc15": {
+      "W_f2c6b08a": "siblings are like hands and feet (inseparable)",
+      "W_7ab6adcc": "parents raise children like a boundless sea (unconditional love)",
+      "W_1947d0aa": "a child surpassing the parent is a blessed home",
+      "W_e720d258": "when blood flows, the gut softens (family solidarity)",
+      "W_46666f72": "trees have roots, water has sources (know your origins)"
+    },
+    "L_322c917dd0": {
+      "W_03931d89": "our ancestors had a saying",
+      "W_f673d2d2": "as the saying goes",
+      "S_f0997a21": "Our ancestors said 'remember who planted the tree.'",
+      "S_ac5d701e": "As they say 'leaves return to roots', I want to return to Vietnam.",
+      "S_3b05235b": "There's a saying: a child surpassing the parent is a blessed home."
+    },
+    "L_01b9febe3f": {
+      "W_ba6ae6d2": "wish good health",
+      "W_12291931": "wish success",
+      "W_8a16b1b5": "wish all things as desired",
+      "W_5b694c0b": "wish peace",
+      "S_2fb16354": "Wishing grandparents health and peace.",
+      "S_04828011": "Wishing you all that you desire.",
+      "S_cbe96231": "Good luck on your exam!",
+      "S_9a42a502": "Wishing the family a successful new year."
+    },
+    "L_e66a2be748": {
+      "W_cb7a6a33": "Happy New Year",
+      "W_a0a8a9cb": "peace and prosperity",
+      "W_9baaddbe": "all things as desired",
+      "W_3c36c61b": "money flowing in like water",
+      "W_8bb2a243": "prosperity and fortune",
+      "S_212d8d6d": "Happy New Year, wishing everyone peace and prosperity.",
+      "S_ad0e8bc3": "Wishing grandparents a long life (to 100).",
+      "S_9400504a": "Wishing the kids great study and good behavior."
+    },
+    "L_3480635989": {
+      "S_aab4d18f": "Grandpa grandma, I came to wish you a happy Tết.",
+      "S_ee251bfc": "Wishing you a healthy new year.",
+      "S_f4ff479e": "May I have a red envelope? (younger asking elders)",
+      "S_c6c68cfa": "Thank you grandpa grandma!"
+    },
+    "L_2d27b07c6d": {
+      "S_5cd13bdc": "My mom taught me: remember who planted the tree.",
+      "S_d69ab926": "I'm grateful to my parents for the opportunity.",
+      "S_89033d62": "My dad often says this.",
+      "S_cfc77ac5": "Only now do I understand its meaning."
+    },
+    "L_60023025d2": {
+      "W_ea3691ce": "gratitude to those who came before",
+      "W_21b74c98": "return to origins",
+      "W_dfa6f0d0": "siblings like hands and feet",
+      "W_68f04a10": "Happy New Year",
+      "W_0ef372e2": "peace and prosperity",
+      "S_7badb38d": "Wishing grandparents health and peace.",
+      "M_473c6575": "gratitude",
+      "M_0b7b5ebd": "return home",
+      "M_30f09864": "Happy New Year"
+    },
+    "L_4a0243dba5": {
+      "W_e158d389": "wedding",
+      "W_bd473d09": "wedding ceremony (formal)",
+      "W_0683af69": "bride",
+      "W_de3d8807": "groom",
+      "W_be3ab062": "bride's family / house",
+      "W_e8a53014": "groom's family / house",
+      "W_bbcfd789": "red envelope gift (wedding)",
+      "M_f4caa9fa": "wedding",
+      "M_7bc78181": "bride",
+      "M_45251623": "groom"
+    },
+    "L_15e8b9ea28": {
+      "W_f27c61c8": "funeral",
+      "W_d0e2edbd": "funeral rite (formal)",
+      "W_f55fcb79": "the deceased",
+      "W_cf8a7560": "offer condolences",
+      "W_d9328bdc": "visit (pay respects at funeral)",
+      "W_701c6e3d": "incense",
+      "W_4d6a7d24": "grave"
+    },
+    "L_66798970e5": {
+      "W_62776aa4": "worship / venerate",
+      "W_cfe548c8": "ancestors",
+      "W_91edf0b3": "altar",
+      "W_217b7c45": "light incense",
+      "W_d4377ce1": "make offerings",
+      "W_e7cbc6cb": "Buddhist temple",
+      "W_e9bf2920": "go to worship / service",
+      "M_f3e33313": "ancestors",
+      "M_3de0725e": "altar",
+      "M_764824e5": "light incense"
+    },
+    "L_76d41b9c91": {
+      "W_ff6392ea": "offer congratulations",
+      "W_a6f1e1ef": "100 years of happiness (for weddings)",
+      "S_0cb0111e": "Congratulations to the bride and groom.",
+      "S_01a0ad2d": "Wishing you 100 years of happiness.",
+      "S_913ad330": "Wishing the family joy.",
+      "S_e65521b4": "On behalf of the family, thank you all."
+    },
+    "L_9a2f04e9b8": {
+      "W_0400c2fe": "offer condolences",
+      "W_b90d4c08": "respectfully share sorrow (very formal)",
+      "S_7648e8ef": "Condolences to the family.",
+      "S_0f296250": "Respectfully sharing your sorrow.",
+      "S_bcccea72": "May the departed rest peacefully.",
+      "S_039e9456": "Our whole family offers condolences."
+    },
+    "L_22195bbe8e": {
+      "W_86434cb5": "on behalf of",
+      "W_87fb5b77": "sincerely thank",
+      "S_c02c6d72": "On behalf of the family, sincerely thank you all.",
+      "S_67678682": "Thank you for coming to share our joy.",
+      "S_b7282a7c": "Thank you for coming to pay respects.",
+      "S_f7dbc676": "Your presence is our honor."
+    },
+    "L_1175a93dd3": {
+      "S_da5137a2": "Hi, congratulations on your big day.",
+      "S_3fe691af": "This is a red envelope from my family.",
+      "S_61fba187": "Wishing you 100 years of happiness.",
+      "S_c59275bd": "I'm so happy to attend."
+    },
+    "L_c7ee359714": {
+      "S_5ce768bc": "I came to light incense for grandpa.",
+      "S_df27be31": "Respectfully sharing your sorrow.",
+      "S_62272992": "I miss grandpa and grandma a lot.",
+      "S_bdd32b55": "My whole family offers condolences."
+    },
+    "L_a0fb16c396": {
+      "W_c4cb9d0b": "wedding",
+      "W_0b3782e1": "funeral",
+      "W_480833bf": "condolences",
+      "W_40644a2a": "light incense",
+      "W_66c8f3b9": "ancestors",
+      "S_bc318f4b": "Wishing you 100 years of happiness.",
+      "M_3a39b5cf": "wedding",
+      "M_fb88994e": "funeral",
+      "M_57bda301": "light incense",
+      "M_86fe47cb": "condolences"
+    },
+    "L_5cbf7aa830": {
+      "W_e0c977ac": "of Vietnamese descent / Vietnamese heritage",
+      "W_d10c527a": "overseas Vietnamese",
+      "W_a147df10": "second generation",
+      "W_6746d11d": "Vietnamese-American",
+      "W_09d9b000": "homeland",
+      "W_98b04eec": "roots / origin",
+      "W_f2a58f0a": "lost roots / disconnected (self-criticism)",
+      "M_038a1f7a": "Vietnamese descent",
+      "M_61e0e26c": "overseas Vietnamese",
+      "M_4e9beda5": "homeland"
+    },
+    "L_4eb26281aa": {
+      "W_19d93086": "return to homeland",
+      "W_e122f57d": "visit (return home)",
+      "W_1ba4f352": "relatives",
+      "W_9e31a4e5": "extended family",
+      "W_60d77318": "father's hometown",
+      "W_c06ef813": "mother's hometown",
+      "W_ef4e5973": "honor ancestors"
+    },
+    "L_cd859755ce": {
+      "W_0c383e66": "born in",
+      "W_ef969bfd": "grew up in",
+      "W_409d025a": "of Vietnamese descent",
+      "S_e37d6b1a": "I was born in America but am of Vietnamese descent.",
+      "S_431947bb": "My parents came from Vietnam to the US in 1975.",
+      "S_de7271f2": "I grew up speaking English but understand Vietnamese.",
+      "S_8cd70d18": "I want to learn Vietnamese to connect with the culture."
+    },
+    "L_1ae1c0757e": {
+      "W_f4cd2d80": "can speak",
+      "W_8f557492": "can understand",
+      "W_c2d70457": "can't write yet",
+      "S_e875b7d3": "I can speak but can't write yet.",
+      "S_0c63e888": "I understand more than I speak.",
+      "S_654d27ca": "I'm learning to read and write.",
+      "S_126b2ab8": "I can listen but my pronunciation isn't accurate."
+    },
+    "L_6a71a577d8": {
+      "W_434dfb3b": "first time meeting",
+      "W_392258ea": "recognize",
+      "S_539c2ca1": "This is my first time meeting you, Uncle.",
+      "S_9590eb6c": "I'm Aunt Mai's nephew/niece.",
+      "S_f5eadb70": "My dad often talks about you.",
+      "S_ac4995b8": "Who in the family do I resemble?"
+    },
+    "L_4c52505ee3": {
+      "W_deb39e3b": "moved / emotional",
+      "W_6034b935": "proud",
+      "W_0930dad8": "grateful",
+      "S_d55cdbee": "Returning to Vietnam I'm very moved.",
+      "S_c8ae157f": "I'm proud to be Vietnamese.",
+      "S_c2e3d314": "I'm grateful my parents kept Vietnamese for me.",
+      "S_fd30df9f": "This trip is very meaningful."
+    },
+    "L_56a00e0162": {
+      "S_cf29fb14": "Hello grandpa grandma.",
+      "S_5700bd5b": "I'm Aunt Huong's grandchild from America.",
+      "S_d441e635": "This is my first time back in Vietnam.",
+      "S_f4df7189": "I'm so happy to meet you.",
+      "S_ba49cbc5": "I understand Vietnamese but don't speak well yet."
+    },
+    "L_d6f421834e": {
+      "S_d08b53dc": "You're Vietnamese, right?",
+      "S_72d672ca": "Yes, I'm of Vietnamese descent, grew up in the US.",
+      "S_e2f8c06c": "I came back to find my roots.",
+      "S_99e3c344": "I'm learning Vietnamese to preserve the culture.",
+      "S_2ed76d30": "Next time I'll bring the whole family back."
+    },
+    "L_cd546f1eaf": {
+      "W_4fea0828": "Vietnamese descent",
+      "W_906cd04f": "overseas Vietnamese",
+      "W_d2de267b": "return to homeland",
+      "W_987d5016": "relatives",
+      "W_b692617e": "moved / emotional",
+      "S_b430878b": "I'm grateful my parents kept Vietnamese for me.",
+      "M_ad17f4ff": "Vietnamese descent",
+      "M_63dcfccf": "overseas Vietnamese",
+      "M_f3485560": "return to homeland",
+      "M_9f7dfa2c": "moved / emotional"
+    }
+  }
+}

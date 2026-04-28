@@ -1,0 +1,1052 @@
+{
+  "meta": {
+    "level": "placement",
+    "track": "placement",
+    "source": "vn_placement_test_en.xlsx",
+    "generated": "2026-04-28T09:02:31.265Z",
+    "stats": {
+      "units": 1,
+      "lessons": 6,
+      "words": 25,
+      "sentences": 15,
+      "matches": 164
+    }
+  },
+  "units": [
+    {
+      "index": 1,
+      "title": "Placement Test"
+    }
+  ],
+  "lessons": [
+    {
+      "id": "L_2db2fce555",
+      "node_id": "placement_u1_L001",
+      "quiz_id": null,
+      "unit_index": 1,
+      "unit_title": "Placement Test",
+      "lesson_type": "Placement",
+      "lesson_title": "Section 1: Your Background",
+      "content_types": [
+        "profile_single_choice"
+      ],
+      "xp_reward": 0,
+      "unlock_rule": {
+        "type": "start"
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_d1942a7f",
+          "vi": "profile_01",
+          "ipa": "",
+          "category": "profile"
+        },
+        {
+          "id": "W_dcdd45b9",
+          "vi": "profile_02",
+          "ipa": "",
+          "category": "profile"
+        },
+        {
+          "id": "W_364046b3",
+          "vi": "profile_03",
+          "ipa": "",
+          "category": "profile"
+        },
+        {
+          "id": "W_60d66307",
+          "vi": "profile_04",
+          "ipa": "",
+          "category": "profile"
+        },
+        {
+          "id": "W_3887957b",
+          "vi": "profile_05",
+          "ipa": "",
+          "category": "profile"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_85ce1e55",
+          "text": "I grew up hearing Vietnamese at home (parent/grandparent)"
+        },
+        {
+          "id": "M_bf71e257",
+          "text": "I have Vietnamese friends or a partner"
+        },
+        {
+          "id": "M_e773acfa",
+          "text": "I'm learning for a trip to Vietnam"
+        },
+        {
+          "id": "M_a4ad812b",
+          "text": "I'm learning for work (business with Vietnam)"
+        },
+        {
+          "id": "M_6743bb9f",
+          "text": "I'm learning out of general interest"
+        },
+        {
+          "id": "M_16c45dd5",
+          "text": "I can understand my family but can't really speak it back"
+        },
+        {
+          "id": "M_2d7572fa",
+          "text": "I can say a few words (hello, thank you)"
+        },
+        {
+          "id": "M_d79b3aff",
+          "text": "I can have simple conversations (food, directions)"
+        },
+        {
+          "id": "M_185da73a",
+          "text": "I can discuss everyday topics but struggle with abstract ones"
+        },
+        {
+          "id": "M_5896432a",
+          "text": "I have zero Vietnamese"
+        },
+        {
+          "id": "M_5854ed02",
+          "text": "Yes, I can read fluently"
+        },
+        {
+          "id": "M_da334c1b",
+          "text": "I can read simple signs and menus"
+        },
+        {
+          "id": "M_0b61089d",
+          "text": "I can read the alphabet but don't know many words"
+        },
+        {
+          "id": "M_f6613a3d",
+          "text": "I can't read Vietnamese at all (even though I can speak some)"
+        },
+        {
+          "id": "M_e5cc2fbc",
+          "text": "I don't know the Vietnamese alphabet yet"
+        },
+        {
+          "id": "M_64446754",
+          "text": "Connect with Vietnamese family / preserve heritage"
+        },
+        {
+          "id": "M_00827636",
+          "text": "Travel to Vietnam more confidently"
+        },
+        {
+          "id": "M_beb2caff",
+          "text": "Work with Vietnamese clients / colleagues"
+        },
+        {
+          "id": "M_c1808a3c",
+          "text": "Read Vietnamese news and media"
+        },
+        {
+          "id": "M_9376b5d4",
+          "text": "General curiosity about the language"
+        },
+        {
+          "id": "M_db17609c",
+          "text": "Less than 1 hour"
+        },
+        {
+          "id": "M_2da21f9b",
+          "text": "1-3 hours"
+        },
+        {
+          "id": "M_154b2d18",
+          "text": "3-7 hours"
+        },
+        {
+          "id": "M_bcd69852",
+          "text": "More than 7 hours (committed learner)"
+        }
+      ]
+    },
+    {
+      "id": "L_039583c30f",
+      "node_id": "placement_u1_L002",
+      "quiz_id": null,
+      "unit_index": 1,
+      "unit_title": "Placement Test",
+      "lesson_type": "Placement",
+      "lesson_title": "Section 2: Basics (A1)",
+      "content_types": [
+        "mcq_translate_to_en"
+      ],
+      "xp_reward": 0,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_2db2fce555"
+        ]
+      },
+      "grammar_tags": [
+        "GT005",
+        "GT021"
+      ],
+      "words": [
+        {
+          "id": "W_395db1bd",
+          "vi": "a1_01_xin_chao",
+          "ipa": "",
+          "category": "a1"
+        },
+        {
+          "id": "W_c7f40842",
+          "vi": "a1_02_cam_on",
+          "ipa": "",
+          "category": "a1"
+        },
+        {
+          "id": "W_46150721",
+          "vi": "a1_03_ba_me",
+          "ipa": "",
+          "category": "a1"
+        },
+        {
+          "id": "W_70071191",
+          "vi": "a1_05_five",
+          "ipa": "",
+          "category": "a1"
+        },
+        {
+          "id": "W_cfee6160",
+          "vi": "a1_08_sang",
+          "ipa": "",
+          "category": "a1"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_16c8e0b5",
+          "vi": "Tôi ___ là Nam."
+        },
+        {
+          "id": "S_e7665bf1",
+          "vi": "Bạn khỏe không?"
+        },
+        {
+          "id": "S_0f27d89c",
+          "vi": "Cho tôi một ___ cà phê."
+        }
+      ],
+      "matches": [
+        {
+          "id": "M_250c77ac",
+          "text": "Hello"
+        },
+        {
+          "id": "M_e42b4e3e",
+          "text": "Goodbye"
+        },
+        {
+          "id": "M_fc931f5f",
+          "text": "Thank you"
+        },
+        {
+          "id": "M_8938fb60",
+          "text": "Sorry"
+        },
+        {
+          "id": "M_b7b85211",
+          "text": "Thank you"
+        },
+        {
+          "id": "M_7ac1a9b9",
+          "text": "Sorry"
+        },
+        {
+          "id": "M_b24d7d90",
+          "text": "Please"
+        },
+        {
+          "id": "M_e3b5feff",
+          "text": "Hello"
+        },
+        {
+          "id": "M_ac339d1f",
+          "text": "Dad and mom"
+        },
+        {
+          "id": "M_8136f5a5",
+          "text": "Brother and sister"
+        },
+        {
+          "id": "M_f42d05d0",
+          "text": "Grandfather and grandmother"
+        },
+        {
+          "id": "M_5be822fb",
+          "text": "Uncle and aunt"
+        },
+        {
+          "id": "M_49dd943c",
+          "text": "tên"
+        },
+        {
+          "id": "M_87cf9ecc",
+          "text": "là"
+        },
+        {
+          "id": "M_2f975edd",
+          "text": "ở"
+        },
+        {
+          "id": "M_672e30df",
+          "text": "của"
+        },
+        {
+          "id": "M_62a81d7f",
+          "text": "năm"
+        },
+        {
+          "id": "M_f08d552a",
+          "text": "ba"
+        },
+        {
+          "id": "M_26993742",
+          "text": "bốn"
+        },
+        {
+          "id": "M_ab05f38d",
+          "text": "sáu"
+        },
+        {
+          "id": "M_2ad57c6b",
+          "text": "How are you?"
+        },
+        {
+          "id": "M_35e4ef14",
+          "text": "What's your name?"
+        },
+        {
+          "id": "M_97d38865",
+          "text": "Where are you from?"
+        },
+        {
+          "id": "M_101faa20",
+          "text": "Do you speak Vietnamese?"
+        },
+        {
+          "id": "M_1276a8a5",
+          "text": "ly"
+        },
+        {
+          "id": "M_f7b6ddf3",
+          "text": "con"
+        },
+        {
+          "id": "M_c28646f7",
+          "text": "cái"
+        },
+        {
+          "id": "M_77b5d5ec",
+          "text": "chiếc"
+        },
+        {
+          "id": "M_f1036f81",
+          "text": "Morning"
+        },
+        {
+          "id": "M_15074f07",
+          "text": "Afternoon"
+        },
+        {
+          "id": "M_6d60d172",
+          "text": "Evening"
+        },
+        {
+          "id": "M_64c1d3a3",
+          "text": "Night"
+        }
+      ]
+    },
+    {
+      "id": "L_845324a21b",
+      "node_id": "placement_u1_L003",
+      "quiz_id": null,
+      "unit_index": 1,
+      "unit_title": "Placement Test",
+      "lesson_type": "Placement",
+      "lesson_title": "Section 3: Intermediate (A2)",
+      "content_types": [
+        "fill_blank"
+      ],
+      "xp_reward": 0,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_039583c30f"
+        ]
+      },
+      "grammar_tags": [
+        "GT002",
+        "GT004",
+        "GT035",
+        "GT041",
+        "GT044"
+      ],
+      "words": [
+        {
+          "id": "W_f36e3b59",
+          "vi": "a2_03_co_the",
+          "ipa": "",
+          "category": "a2"
+        },
+        {
+          "id": "W_c54b51a8",
+          "vi": "a2_05_neu_thi",
+          "ipa": "",
+          "category": "a2"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_e2194e19",
+          "vi": "Hôm qua tôi ___ ăn phở."
+        },
+        {
+          "id": "S_a66a8f8b",
+          "vi": "Bạn ___ ăn cơm ___?"
+        },
+        {
+          "id": "S_c6fc1a04",
+          "vi": "Áo đỏ đẹp ___ áo xanh."
+        },
+        {
+          "id": "S_1fdadd9e",
+          "vi": "Tôi ___ cảm, hôm nay không đi làm được."
+        },
+        {
+          "id": "S_f9c6347d",
+          "vi": "Tôi thường uống cà phê vào buổi sáng."
+        },
+        {
+          "id": "S_75b77df7",
+          "vi": "Tôi học tiếng Việt ___ đi du lịch Việt Nam."
+        }
+      ],
+      "matches": [
+        {
+          "id": "M_0182a28e",
+          "text": "đã"
+        },
+        {
+          "id": "M_67b63a8d",
+          "text": "đang"
+        },
+        {
+          "id": "M_5ee89e5c",
+          "text": "sẽ"
+        },
+        {
+          "id": "M_04281ef3",
+          "text": "chưa"
+        },
+        {
+          "id": "M_3cb3d2a3",
+          "text": "đã ... chưa"
+        },
+        {
+          "id": "M_73087ad4",
+          "text": "đang ... rồi"
+        },
+        {
+          "id": "M_5b0e1b44",
+          "text": "sẽ ... chưa"
+        },
+        {
+          "id": "M_462e3b01",
+          "text": "đã ... rồi"
+        },
+        {
+          "id": "M_fdb4ef45",
+          "text": "can / be able to"
+        },
+        {
+          "id": "M_40c04705",
+          "text": "must / have to"
+        },
+        {
+          "id": "M_03baac89",
+          "text": "should"
+        },
+        {
+          "id": "M_b0224007",
+          "text": "want"
+        },
+        {
+          "id": "M_d2f1305a",
+          "text": "hơn"
+        },
+        {
+          "id": "M_2de15bc7",
+          "text": "nhất"
+        },
+        {
+          "id": "M_4ca180e8",
+          "text": "bằng"
+        },
+        {
+          "id": "M_b0de6ca0",
+          "text": "rất"
+        },
+        {
+          "id": "M_a1b67bad",
+          "text": "If it rains, I stay home."
+        },
+        {
+          "id": "M_d4d8c6bd",
+          "text": "When it rains, I go home."
+        },
+        {
+          "id": "M_1b22935e",
+          "text": "I stay home when the rain stops."
+        },
+        {
+          "id": "M_79e00686",
+          "text": "The rain will stop and I'll go home."
+        },
+        {
+          "id": "M_8e3d3336",
+          "text": "bị"
+        },
+        {
+          "id": "M_fa09c831",
+          "text": "được"
+        },
+        {
+          "id": "M_bd3865ae",
+          "text": "là"
+        },
+        {
+          "id": "M_3e8c0228",
+          "text": "có"
+        },
+        {
+          "id": "M_f7aa6beb",
+          "text": "I usually drink coffee in the morning."
+        },
+        {
+          "id": "M_a5c95c21",
+          "text": "I drank coffee this morning."
+        },
+        {
+          "id": "M_1f022051",
+          "text": "I will drink coffee tomorrow morning."
+        },
+        {
+          "id": "M_474fe9b7",
+          "text": "I don't drink coffee in the morning."
+        },
+        {
+          "id": "M_85f3c09b",
+          "text": "để"
+        },
+        {
+          "id": "M_61103e69",
+          "text": "vì"
+        },
+        {
+          "id": "M_48ed37e7",
+          "text": "nhưng"
+        },
+        {
+          "id": "M_9620ac8f",
+          "text": "và"
+        }
+      ]
+    },
+    {
+      "id": "L_49e3d7408e",
+      "node_id": "placement_u1_L004",
+      "quiz_id": null,
+      "unit_index": 1,
+      "unit_title": "Placement Test",
+      "lesson_type": "Placement",
+      "lesson_title": "Section 4: Advanced (B1)",
+      "content_types": [
+        "mcq_translate_to_en"
+      ],
+      "xp_reward": 0,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_845324a21b"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_5e1765c9",
+          "vi": "b1_01_co_le",
+          "ipa": "",
+          "category": "b1"
+        },
+        {
+          "id": "W_c225b8a7",
+          "vi": "b1_02_nghe_noi",
+          "ipa": "",
+          "category": "b1"
+        },
+        {
+          "id": "W_77f88b75",
+          "vi": "b1_05_tom_lai",
+          "ipa": "",
+          "category": "b1"
+        },
+        {
+          "id": "W_e2192199",
+          "vi": "b1_08_nang_ly",
+          "ipa": "",
+          "category": "b1"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_b907b7ef",
+          "vi": "Em xin ___ được nghỉ hôm nay ạ."
+        },
+        {
+          "id": "S_89dc4dcd",
+          "vi": "Càng đi ___ đẹp."
+        },
+        {
+          "id": "S_c199b6e6",
+          "vi": "___ gửi anh Nam,"
+        },
+        {
+          "id": "S_33b05303",
+          "vi": "Trong trường hợp trời mưa, tour sẽ bị hoãn."
+        }
+      ],
+      "matches": [
+        {
+          "id": "M_9201d856",
+          "text": "It will probably rain tomorrow."
+        },
+        {
+          "id": "M_c4726f0b",
+          "text": "It will definitely rain tomorrow."
+        },
+        {
+          "id": "M_e651407b",
+          "text": "It didn't rain today."
+        },
+        {
+          "id": "M_f10f38c6",
+          "text": "I hope it rains tomorrow."
+        },
+        {
+          "id": "M_7bd11026",
+          "text": "I heard the boss is about to go on a business trip."
+        },
+        {
+          "id": "M_841acd28",
+          "text": "The boss told me about his business trip."
+        },
+        {
+          "id": "M_7a4f2344",
+          "text": "I will go on a business trip with the boss."
+        },
+        {
+          "id": "M_38630b20",
+          "text": "The boss went on a business trip yesterday."
+        },
+        {
+          "id": "M_3a1ee50c",
+          "text": "phép"
+        },
+        {
+          "id": "M_e20f8d2d",
+          "text": "lỗi"
+        },
+        {
+          "id": "M_5cd23912",
+          "text": "chào"
+        },
+        {
+          "id": "M_cf8310d1",
+          "text": "vào"
+        },
+        {
+          "id": "M_d6dcd588",
+          "text": "càng"
+        },
+        {
+          "id": "M_ab6ec5fb",
+          "text": "rất"
+        },
+        {
+          "id": "M_e751e99e",
+          "text": "nhất"
+        },
+        {
+          "id": "M_5eeea7a9",
+          "text": "lắm"
+        },
+        {
+          "id": "M_a8a5895a",
+          "text": "In summary, we agree on three main points."
+        },
+        {
+          "id": "M_4e8240d3",
+          "text": "We argued about three main points."
+        },
+        {
+          "id": "M_eb89b909",
+          "text": "Three points are still being discussed."
+        },
+        {
+          "id": "M_4577f968",
+          "text": "We rejected three main points."
+        },
+        {
+          "id": "M_c18299cf",
+          "text": "Kính"
+        },
+        {
+          "id": "M_a06d8fed",
+          "text": "Chào"
+        },
+        {
+          "id": "M_8885dd11",
+          "text": "Thân"
+        },
+        {
+          "id": "M_8700b056",
+          "text": "Hi"
+        },
+        {
+          "id": "M_d569fc14",
+          "text": "In case of rain, the tour will be postponed."
+        },
+        {
+          "id": "M_2220252e",
+          "text": "The tour happens only when it rains."
+        },
+        {
+          "id": "M_17303160",
+          "text": "It's raining and the tour is happening."
+        },
+        {
+          "id": "M_19b7f78e",
+          "text": "The tour was cancelled because of rain yesterday."
+        },
+        {
+          "id": "M_8d845cdb",
+          "text": "Please everyone, raise your glasses! (cheers)"
+        },
+        {
+          "id": "M_f21e42b1",
+          "text": "Please, everyone stand up."
+        },
+        {
+          "id": "M_a0ed44db",
+          "text": "Please pass the glasses around."
+        },
+        {
+          "id": "M_421fcc08",
+          "text": "Everyone, please sit down."
+        }
+      ]
+    },
+    {
+      "id": "L_f2975713dc",
+      "node_id": "placement_u1_L005",
+      "quiz_id": null,
+      "unit_index": 1,
+      "unit_title": "Placement Test",
+      "lesson_type": "Placement",
+      "lesson_title": "Section 5: Which Track Fits You",
+      "content_types": [
+        "scenario_single_choice"
+      ],
+      "xp_reward": 0,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_49e3d7408e"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_1e4186ec",
+          "vi": "track_01",
+          "ipa": "",
+          "category": "track"
+        },
+        {
+          "id": "W_77771df1",
+          "vi": "track_02",
+          "ipa": "",
+          "category": "track"
+        },
+        {
+          "id": "W_0d3d03c2",
+          "vi": "track_03",
+          "ipa": "",
+          "category": "track"
+        },
+        {
+          "id": "W_aa5bb551",
+          "vi": "track_04",
+          "ipa": "",
+          "category": "track"
+        },
+        {
+          "id": "W_993113b9",
+          "vi": "track_05",
+          "ipa": "",
+          "category": "track"
+        },
+        {
+          "id": "W_8c66398e",
+          "vi": "track_06",
+          "ipa": "",
+          "category": "track"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_e3cfdc75",
+          "text": "Sending work emails to a Vietnamese team"
+        },
+        {
+          "id": "M_927ca820",
+          "text": "Ordering street food and bargaining at markets"
+        },
+        {
+          "id": "M_93222e88",
+          "text": "Talking to my Vietnamese grandparents"
+        },
+        {
+          "id": "M_b9d76f21",
+          "text": "Reading Vietnamese news articles"
+        },
+        {
+          "id": "M_40ae7909",
+          "text": "I don't know how to address people by title"
+        },
+        {
+          "id": "M_ed449e0c",
+          "text": "I'm not in meetings — I'm travelling in Vietnam"
+        },
+        {
+          "id": "M_7f4c1df9",
+          "text": "I can speak with family but meetings feel too formal"
+        },
+        {
+          "id": "M_89e5bf6b",
+          "text": "I don't have meetings yet but plan to"
+        },
+        {
+          "id": "M_b55dfc1c",
+          "text": "Business scenarios (emails, meetings, negotiations)"
+        },
+        {
+          "id": "M_a8849485",
+          "text": "Travel scenarios (booking, asking directions, street food)"
+        },
+        {
+          "id": "M_da95b9e2",
+          "text": "Family scenarios (talking to relatives, home life)"
+        },
+        {
+          "id": "M_b891883a",
+          "text": "Reading and writing (news, articles, text messages)"
+        },
+        {
+          "id": "M_857787fc",
+          "text": "I need this! I order food a lot in Vietnam"
+        },
+        {
+          "id": "M_de22c712",
+          "text": "I want to order food with my family"
+        },
+        {
+          "id": "M_07973e78",
+          "text": "Not directly relevant to my work context"
+        },
+        {
+          "id": "M_0e36a4bb",
+          "text": "I don't recognize this phrase"
+        },
+        {
+          "id": "M_ea719dec",
+          "text": "'I'd like to discuss the Q2 sales figures.' (work)"
+        },
+        {
+          "id": "M_eea4be3f",
+          "text": "'Can you show me the way to the old quarter?' (travel)"
+        },
+        {
+          "id": "M_409250ce",
+          "text": "'Grandma, I'm visiting next week.' (family)"
+        },
+        {
+          "id": "M_583f8e53",
+          "text": "'I'd like to buy souvenirs for my family.' (shopping)"
+        },
+        {
+          "id": "M_a2f4acda",
+          "text": "Writing formal emails and messages in Vietnamese"
+        },
+        {
+          "id": "M_81981b27",
+          "text": "Asking for directions and negotiating prices"
+        },
+        {
+          "id": "M_f451810d",
+          "text": "Correctly addressing older relatives and speaking politely"
+        },
+        {
+          "id": "M_f39a7d10",
+          "text": "Reading menus, signs, and short texts"
+        }
+      ]
+    },
+    {
+      "id": "L_e99ee18016",
+      "node_id": "placement_u1_L006",
+      "quiz_id": null,
+      "unit_index": 1,
+      "unit_title": "Placement Test",
+      "lesson_type": "Placement",
+      "lesson_title": "Section 6: Heritage Literacy (optional)",
+      "content_types": [
+        "literacy_check_listening"
+      ],
+      "xp_reward": 0,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_f2975713dc"
+        ]
+      },
+      "grammar_tags": [
+        "GT007",
+        "GT018"
+      ],
+      "words": [
+        {
+          "id": "W_feff4e3e",
+          "vi": "lit_03",
+          "ipa": "",
+          "category": "literacy"
+        },
+        {
+          "id": "W_869822c3",
+          "vi": "lit_04",
+          "ipa": "",
+          "category": "literacy"
+        },
+        {
+          "id": "W_28b30917",
+          "vi": "lit_05",
+          "ipa": "",
+          "category": "literacy"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_02c8b9fb",
+          "vi": "Má ơi, con đi học về rồi."
+        },
+        {
+          "id": "S_089e200d",
+          "vi": "Bố đang ở đâu?"
+        }
+      ],
+      "matches": [
+        {
+          "id": "M_1c64b3ee",
+          "text": "Yes, I understood it completely"
+        },
+        {
+          "id": "M_1989395d",
+          "text": "I understood most of it"
+        },
+        {
+          "id": "M_155deb37",
+          "text": "I understood 'mom' and a few words"
+        },
+        {
+          "id": "M_8b040455",
+          "text": "I didn't understand anything"
+        },
+        {
+          "id": "M_feb0996f",
+          "text": "Yes, I can read and understand it"
+        },
+        {
+          "id": "M_53af2e1f",
+          "text": "I can sound it out but meaning is fuzzy"
+        },
+        {
+          "id": "M_ebdb5e41",
+          "text": "I recognize some letters but not the whole phrase"
+        },
+        {
+          "id": "M_f9fdf603",
+          "text": "I can't read Vietnamese at all"
+        },
+        {
+          "id": "M_4d0bb4a6",
+          "text": "mẹ"
+        },
+        {
+          "id": "M_b6f3763a",
+          "text": "má"
+        },
+        {
+          "id": "M_2fdf26fb",
+          "text": "me"
+        },
+        {
+          "id": "M_9fd337a3",
+          "text": "mèo"
+        },
+        {
+          "id": "M_c6aae81c",
+          "text": "mej"
+        },
+        {
+          "id": "M_019e12b3",
+          "text": "me"
+        },
+        {
+          "id": "M_e446fc11",
+          "text": "mef"
+        },
+        {
+          "id": "M_9f6e911a",
+          "text": "I don't know / haven't used Telex"
+        },
+        {
+          "id": "M_384d8891",
+          "text": "Tôi có hai con chó."
+        },
+        {
+          "id": "M_0fe6fa3e",
+          "text": "Tôi có hai chó."
+        },
+        {
+          "id": "M_a508ebdf",
+          "text": "Hai chó tôi có."
+        },
+        {
+          "id": "M_9441c878",
+          "text": "Tôi hai con chó có."
+        }
+      ]
+    }
+  ]
+}

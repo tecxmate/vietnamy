@@ -1,0 +1,211 @@
+{
+  "bases": {
+    "en": {
+      "level_tracks": [
+        "a1_core",
+        "a2_core",
+        "b1_manager",
+        "b1_tourist",
+        "b1_heritage",
+        "placement"
+      ],
+      "missing": []
+    },
+    "zh": {
+      "level_tracks": [
+        "a1_core",
+        "a2_core",
+        "b1_manager",
+        "b1_tourist",
+        "b1_heritage",
+        "placement"
+      ],
+      "missing": []
+    },
+    "zh_cn": {
+      "level_tracks": [
+        "a1_core",
+        "a2_core",
+        "b1_manager",
+        "b1_tourist",
+        "placement"
+      ],
+      "missing": []
+    },
+    "ja": {
+      "level_tracks": [
+        "a1_core",
+        "a2_core",
+        "b1_manager",
+        "b1_tourist",
+        "placement"
+      ],
+      "missing": []
+    },
+    "ko": {
+      "level_tracks": [
+        "a1_core",
+        "a2_core",
+        "b1_manager",
+        "b1_tourist",
+        "placement"
+      ],
+      "missing": []
+    }
+  },
+  "levels_tracks": [
+    "a1_core",
+    "a2_core",
+    "b1_manager",
+    "b1_tourist",
+    "b1_heritage",
+    "placement"
+  ],
+  "generated": "2026-04-28T09:02:30.701Z",
+  "coverage": {
+    "a1_core": {
+      "authoritative": "en",
+      "total": 65,
+      "by_base": {
+        "en": {
+          "lessons": 65,
+          "matched_authoritative": 65
+        },
+        "zh": {
+          "lessons": 65,
+          "matched_authoritative": 65
+        },
+        "zh_cn": {
+          "lessons": 66,
+          "matched_authoritative": 44
+        },
+        "ja": {
+          "lessons": 31,
+          "matched_authoritative": 27
+        },
+        "ko": {
+          "lessons": 31,
+          "matched_authoritative": 27
+        }
+      }
+    },
+    "a2_core": {
+      "authoritative": "en",
+      "total": 95,
+      "by_base": {
+        "en": {
+          "lessons": 95,
+          "matched_authoritative": 95
+        },
+        "zh": {
+          "lessons": 95,
+          "matched_authoritative": 95
+        },
+        "zh_cn": {
+          "lessons": 96,
+          "matched_authoritative": 0
+        },
+        "ja": {
+          "lessons": 96,
+          "matched_authoritative": 0
+        },
+        "ko": {
+          "lessons": 96,
+          "matched_authoritative": 0
+        }
+      }
+    },
+    "b1_manager": {
+      "authoritative": "en",
+      "total": 104,
+      "by_base": {
+        "en": {
+          "lessons": 104,
+          "matched_authoritative": 104
+        },
+        "zh": {
+          "lessons": 104,
+          "matched_authoritative": 104
+        },
+        "zh_cn": {
+          "lessons": 101,
+          "matched_authoritative": 1
+        },
+        "ja": {
+          "lessons": 33,
+          "matched_authoritative": 0
+        },
+        "ko": {
+          "lessons": 101,
+          "matched_authoritative": 1
+        }
+      }
+    },
+    "b1_tourist": {
+      "authoritative": "en",
+      "total": 107,
+      "by_base": {
+        "en": {
+          "lessons": 107,
+          "matched_authoritative": 107
+        },
+        "zh": {
+          "lessons": 107,
+          "matched_authoritative": 107
+        },
+        "zh_cn": {
+          "lessons": 107,
+          "matched_authoritative": 97
+        },
+        "ja": {
+          "lessons": 107,
+          "matched_authoritative": 96
+        },
+        "ko": {
+          "lessons": 107,
+          "matched_authoritative": 61
+        }
+      }
+    },
+    "b1_heritage": {
+      "authoritative": "en",
+      "total": 85,
+      "by_base": {
+        "en": {
+          "lessons": 85,
+          "matched_authoritative": 85
+        },
+        "zh": {
+          "lessons": 90,
+          "matched_authoritative": 5
+        }
+      }
+    },
+    "placement": {
+      "authoritative": "en",
+      "total": 6,
+      "by_base": {
+        "en": {
+          "lessons": 6,
+          "matched_authoritative": 6
+        },
+        "zh": {
+          "lessons": 6,
+          "matched_authoritative": 0
+        },
+        "zh_cn": {
+          "lessons": 5,
+          "matched_authoritative": 0
+        },
+        "ja": {
+          "lessons": 5,
+          "matched_authoritative": 0
+        },
+        "ko": {
+          "lessons": 5,
+          "matched_authoritative": 0
+        }
+      }
+    }
+  }
+}

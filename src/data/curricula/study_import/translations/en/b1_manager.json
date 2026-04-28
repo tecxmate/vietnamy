@@ -1,0 +1,912 @@
+{
+  "meta": {
+    "base": "en",
+    "level": "b1",
+    "track": "manager",
+    "source": "vn_b1_manager_en.xlsx",
+    "generated": "2026-04-28T09:02:31.268Z"
+  },
+  "translations": {
+    "L_16f08c57d5": {
+      "W_c0991b6d": "boss (informal, common)",
+      "W_b2027a63": "director / general manager",
+      "W_267fc74f": "deputy director",
+      "W_2abe3ea6": "CEO / general director",
+      "W_a5d97c55": "department head / manager",
+      "W_1015cc79": "deputy department head",
+      "W_58917230": "chairman / chairperson",
+      "M_f84cf598": "director",
+      "M_038f78b7": "department head",
+      "M_5c5225d0": "CEO",
+      "M_5f2ab633": "chairman"
+    },
+    "L_e35cf73891": {
+      "W_3a0d4eac": "staff / employee",
+      "W_f03150c2": "specialist",
+      "W_bf5c4f8a": "secretary",
+      "W_2157454d": "assistant",
+      "W_e7d8a394": "colleague",
+      "W_7e4ff2d4": "superior / senior",
+      "W_727af98d": "subordinate"
+    },
+    "L_ad5e311e60": {
+      "W_2ab90fbf": "anh + Director (respectful, familiar)",
+      "W_88d623e9": "chị + Manager (respectful to female manager)",
+      "W_913b44bd": "ông + Director (very formal)",
+      "W_889ed902": "bà + Chairman (very formal, female)",
+      "M_1a030204": "anh + Director",
+      "M_62d55545": "ông + Director (formal)"
+    },
+    "L_c1105713b3": {
+      "W_1531dbe3": "familiar / warm",
+      "W_e97cf616": "formal / ceremonial",
+      "S_48c71cca": "Hello Minh! (colleague, casual-respectful)",
+      "S_d1ac16bd": "Hello Mr. Minh! (formal, first meeting)",
+      "S_c52d26c9": "Hello (younger staff to older male boss).",
+      "S_e992ee2d": "Respectfully, hello Director. (very formal)"
+    },
+    "L_ec3d3cc344": {
+      "W_70d9e96a": "I (neutral, professional adults)",
+      "W_ffaf3952": "I (when addressing clearly older)",
+      "W_4a84a762": "I (when addressing much older / elderly)",
+      "S_699592bc": "I am Linh, a new employee. (professional)",
+      "S_43ef844c": "May I come in? (younger to older manager)",
+      "S_0c6ce674": "Hello, uncle. (young staff to elderly client)",
+      "S_af1117ae": "I think this is a good option. (meeting)"
+    },
+    "L_227377942f": {
+      "W_ccb9d3c8": "respectful greeting (formal)",
+      "W_fb19b536": "respectfully inform (very formal opener)",
+      "W_0845974c": "respectfully to (formal letter opener)",
+      "S_1932c1af": "Respectful greetings, everyone.",
+      "S_5b4b3373": "Respectfully, Mr. Director.",
+      "S_cf848304": "Respectfully to Mr. Nam. (email)"
+    },
+    "L_b946fb2369": {
+      "S_349a2d8e": "May I introduce myself.",
+      "S_1e804df8": "I'm Linh, new staff in the marketing department.",
+      "S_58b13177": "I look forward to working with you all.",
+      "S_81c14e65": "I hope you'll mentor me."
+    },
+    "L_f753a09003": {
+      "S_3763eff6": "Respectful greetings, Director.",
+      "S_d5dd83c3": "I'm Nam, I just joined the company last week.",
+      "S_3578d545": "Is there anything you need me to help with?",
+      "S_38b150f9": "I will do my best."
+    },
+    "L_82da927d48": {
+      "W_55c10bf5": "director",
+      "W_f395dffb": "department head",
+      "W_7c5fc6de": "colleague",
+      "W_432c388b": "respectful greeting",
+      "W_61e9e2f7": "superior",
+      "S_5ab052ff": "May I introduce myself.",
+      "M_8d67c170": "director",
+      "M_de41155d": "department head",
+      "M_434d4c0b": "colleague",
+      "M_88e80178": "respectful greeting"
+    },
+    "L_eb6307f192": {
+      "W_1e709857": "go to work",
+      "W_e6c1dbdc": "leave / go home",
+      "W_00b0556e": "go on a business trip",
+      "W_3ea9e800": "go out (office)",
+      "W_22a07d83": "take lunch break",
+      "W_048f516f": "enter a room",
+      "W_9551fe4f": "leave a room",
+      "M_319c0d50": "go to work",
+      "M_78c79531": "business trip",
+      "M_9f13d8bf": "lunch break"
+    },
+    "L_cc09eb5967": {
+      "W_1ea37bf8": "request leave",
+      "W_b21faefd": "sick leave",
+      "W_2e821b72": "annual leave / vacation",
+      "W_f6a28c04": "family matter (leave reason)",
+      "W_84ee9c30": "leave request form",
+      "W_6126ab42": "approve (formal)",
+      "W_8583e241": "overtime (southern, common)",
+      "W_0cf1d9c9": "work extra hours (northern, formal)"
+    },
+    "L_9990018e8c": {
+      "W_0bfec0ce": "probably / perhaps",
+      "W_8d50ca4d": "seems like / apparently",
+      "W_547e94ba": "probably / I think",
+      "S_0fb0043c": "I'll probably be late.",
+      "S_aa1afa8a": "He seems to be in a meeting.",
+      "S_b01a4ac2": "The meeting will probably be postponed.",
+      "S_5d31abc1": "Perhaps we should review this."
+    },
+    "L_0e4dd48af0": {
+      "W_b22c3eae": "ask permission / if I may",
+      "W_d2cb0168": "allow / permit",
+      "S_c10cf7f1": "May I take a day off?",
+      "S_417afa9a": "May I join the meeting?",
+      "S_e3980003": "May I leave early?",
+      "S_e4609358": "With your permission, I'll step out briefly."
+    },
+    "L_633a000add": {
+      "W_63d42489": "ask a favor of / have someone do",
+      "W_9d1d0345": "help",
+      "S_4a44f15d": "Could you take a look at this email?",
+      "S_e82fb5f2": "Could you forward the file to me?",
+      "S_ed254934": "Could you sign this for me?",
+      "S_2200b40c": "May I trouble you for a moment?"
+    },
+    "L_0bcb39106d": {
+      "W_a26ae37f": "perhaps not necessarily (soft disagree)",
+      "W_558e05ea": "I understand, but (soft)",
+      "W_eff6fd94": "we can consider further (pushback)",
+      "S_eaaae774": "I understand, but we should consider further.",
+      "S_5d4ce4b1": "This option may not be the best fit.",
+      "S_45cdfe97": "Could you explain further?"
+    },
+    "L_6396fac0da": {
+      "S_567c7936": "Boss, I'm sick, may I take today off?",
+      "S_6db7b87d": "I'll send the leave form via email.",
+      "S_da4da152": "Sorry for the late notice.",
+      "S_b6ea5378": "Thank you for understanding."
+    },
+    "L_557ca4c2a0": {
+      "S_5c414aa8": "Do you have a moment?",
+      "S_352b9b34": "Could you review this file?",
+      "S_df6ef383": "Is there anything I should fix?",
+      "S_3b61f53d": "Thank you so much."
+    },
+    "L_035afd2485": {
+      "W_a7df0a21": "probably",
+      "W_4b144680": "may I / ask permission",
+      "W_8d2f0640": "ask a favor",
+      "W_9882eaaa": "sick leave",
+      "W_6247de67": "approve",
+      "S_58db8ded": "May I take a day off?",
+      "M_a9cbc642": "probably",
+      "M_b9d2b1e7": "may I",
+      "M_cbc5391e": "ask a favor",
+      "M_082acc49": "sick leave"
+    },
+    "L_5e182d6688": {
+      "W_8e22376d": "meeting",
+      "W_901b5931": "agenda / program",
+      "W_d1f5201b": "attend (formal)",
+      "W_a3c9a3ed": "chair / preside",
+      "W_45cb8f9a": "speak / give remarks (formal)",
+      "W_77cb901b": "materials / documents",
+      "W_874dbcc9": "purpose / objective",
+      "M_67779570": "meeting",
+      "M_88131e35": "agenda",
+      "M_b421de1d": "attend",
+      "M_e9cb317e": "chair"
+    },
+    "L_ebd33a0bea": {
+      "W_870dbb28": "opinion",
+      "W_2540b31e": "agree",
+      "W_301c12be": "disagree",
+      "W_bc9f9238": "propose / suggest",
+      "W_5a535811": "add / supplement",
+      "W_b8e4e1ab": "consider / review",
+      "M_335c17a3": "opinion",
+      "M_7b5fb69a": "agree",
+      "M_b824ffd6": "propose"
+    },
+    "L_ae4d79f842": {
+      "W_cdc8fc6c": "hello everyone (formal, multiple)",
+      "W_55fb8f1e": "may I open (the meeting)",
+      "S_61e6e1d3": "Hello everyone, let's start the meeting.",
+      "S_47e952ae": "Today we'll discuss the Q2 plan.",
+      "S_ee081e96": "The agenda has three main parts.",
+      "S_c7c4977e": "Please, Mr. Nam, speak first."
+    },
+    "L_e7dc47a497": {
+      "W_20093945": "in my opinion",
+      "W_6600c476": "I think that",
+      "W_d4006056": "I believe that (more formal)",
+      "S_cdcd2ba6": "In my opinion, this is the most reasonable option.",
+      "S_57db608c": "I think we should speed up progress.",
+      "S_7f8a97f6": "I believe we need more research time."
+    },
+    "L_c283899644": {
+      "W_2734620d": "completely agree",
+      "W_19f01122": "I think so too",
+      "W_c9931e16": "very reasonable / makes sense",
+      "S_206fb089": "I completely agree with Mr. Nam.",
+      "S_bc915cc4": "Your opinion is very reasonable.",
+      "S_53419b0a": "I think so too.",
+      "S_a813d47f": "This option is very feasible."
+    },
+    "L_3bc41c17eb": {
+      "W_38976919": "however",
+      "W_98f5a406": "although... still",
+      "W_2fd9297a": "perhaps we should",
+      "S_323164a6": "Your idea is great, however I have a concern.",
+      "S_8ffbf4de": "Although this option is good, the cost is high.",
+      "S_2c0e8a77": "Perhaps we should consider one more option."
+    },
+    "L_329697a645": {
+      "S_13f8b449": "Hi everyone, let's begin.",
+      "S_fd34b678": "Today we have three issues to discuss.",
+      "S_ff734dbe": "The first issue is project progress.",
+      "S_4c2f8928": "Please, Ms. Linh, give your report."
+    },
+    "L_d4ac09320d": {
+      "S_b4f0f925": "May I speak?",
+      "S_83ec6016": "In my opinion, we should split into two phases.",
+      "S_8bb8d056": "Phase one focuses on the Hanoi market.",
+      "S_237ae4a4": "What do you all think?"
+    },
+    "L_9f68ac8cd5": {
+      "W_397c5862": "meeting",
+      "W_998c4b05": "opinion",
+      "W_cb29f203": "in my opinion",
+      "W_37f3f56c": "completely agree",
+      "W_3ff5f513": "however",
+      "S_c6ac4b7f": "In my opinion, this is the most reasonable option.",
+      "M_69764f20": "meeting",
+      "M_63854d0f": "opinion",
+      "M_074fa623": "in my opinion",
+      "M_5da39722": "however"
+    },
+    "L_230cfe3fe6": {
+      "W_6cbb1511": "decision / to decide",
+      "W_510baddf": "reach consensus / unify",
+      "W_e4f633a9": "summarize / wrap up",
+      "W_fdc2c2ac": "conclusion",
+      "W_eb3783f9": "action (item)",
+      "W_4b787ad6": "implement / roll out",
+      "W_4cadbf99": "progress",
+      "M_66bcc0e0": "decision",
+      "M_3d20dd7f": "summarize",
+      "M_370c7a54": "implement"
+    },
+    "L_20eeb9913b": {
+      "W_99d63b2e": "deadline",
+      "W_1f1647da": "on time / on schedule",
+      "W_8112791c": "overdue (southern)",
+      "W_7268b4d9": "overdue (northern, formal)",
+      "W_1dbb07c2": "extend a deadline",
+      "W_f7572f1d": "schedule / timeline",
+      "W_582e6151": "reschedule"
+    },
+    "L_b96695a1ef": {
+      "W_aca8908d": "say that",
+      "W_99c96146": "believe / think that (formal)",
+      "W_23cb4436": "heard that",
+      "S_927cd326": "Nam said the project will be done on time.",
+      "S_07e131a8": "Linh believes we need more people.",
+      "S_5485c55b": "I heard the boss is going on a trip soon.",
+      "S_a7520611": "The client said they're satisfied with the service."
+    },
+    "L_af7bde2c09": {
+      "W_3d35fc98": "about to / soon",
+      "W_f7968885": "just / recently",
+      "W_f74fce87": "used to (past experience)",
+      "S_bb00160d": "We're about to end the meeting.",
+      "S_6b219229": "I just sent the email to the client.",
+      "S_c7a4db28": "He used to work at our company.",
+      "S_36bbdb9a": "The report is almost done."
+    },
+    "L_7d8c91d8ed": {
+      "W_bd94e1bc": "in summary / to sum up",
+      "W_b17e1d2a": "generally / overall",
+      "W_b7083ea6": "finally / in the end",
+      "S_2387232d": "In summary, we agree on three main points.",
+      "S_69630c3a": "Overall, the project is on track.",
+      "S_6466ae99": "Finally, thank you for attending."
+    },
+    "L_0e3109df60": {
+      "W_e3225574": "be in charge of",
+      "W_45cbc69f": "take responsibility for",
+      "S_f4c6b123": "Nam is in charge of the financial report.",
+      "S_2f4f6f44": "Linh is responsible for client contact.",
+      "S_d2514861": "The deadline is Friday next week."
+    },
+    "L_209691404c": {
+      "S_8a9522ac": "In summary, we have three main action items.",
+      "S_971322ff": "Nam handles marketing, Linh handles operations.",
+      "S_02c37c58": "The phase-one deadline is the 30th.",
+      "S_4c14a022": "Thank you everyone. Meeting adjourned."
+    },
+    "L_dc42f4d4a4": {
+      "S_7a9d8f6e": "Linh, how's the progress on your side?",
+      "S_55375d87": "I just sent the preliminary report.",
+      "S_77dba091": "The contract part is almost finished.",
+      "S_243d0d0d": "Do you need any support?"
+    },
+    "L_c395f188f9": {
+      "W_149fe32c": "decision",
+      "W_9ad52b6c": "deadline",
+      "W_6a309093": "in summary",
+      "W_1e4ccec1": "just / recently",
+      "W_0c472832": "in charge of",
+      "S_5939c957": "Nam is in charge of the report.",
+      "M_9fbcf78c": "decision",
+      "M_ea25948c": "deadline",
+      "M_3a97621e": "in summary",
+      "M_002d12c6": "in charge of"
+    },
+    "L_22c0d8582a": {
+      "W_fb20a942": "work / task",
+      "W_d61c30c9": "duty / assignment",
+      "W_37fdcb67": "project",
+      "W_3b644676": "assign work",
+      "W_17ef0acf": "take on work / accept",
+      "W_7a2727dc": "complete / finish",
+      "W_89a18568": "priority / prioritize",
+      "M_bec83e33": "work",
+      "M_0846c68b": "duty",
+      "M_f651cd47": "project",
+      "M_817dca3d": "complete"
+    },
+    "L_71dd6c80d7": {
+      "W_ed3d16ec": "important",
+      "W_c934c752": "urgent",
+      "W_d0c243a3": "necessary",
+      "W_f0ffe59a": "urgent / in a hurry (short)",
+      "W_3f5a6518": "normal / regular priority",
+      "W_d3487d55": "not urgent"
+    },
+    "L_c49621e328": {
+      "W_ca7adedb": "ask / have (someone do)",
+      "S_1beff428": "Could you prepare the Q2 report?",
+      "S_efab79a1": "Could you send the email to the client?",
+      "S_7de90c06": "Could you check the numbers again?",
+      "S_d1482988": "Please complete this before Friday."
+    },
+    "L_ce9a9c61f2": {
+      "W_5acfcc63": "(directive marker — imperative)",
+      "S_44191bab": "Please complete the report before Monday.",
+      "S_8e4a7947": "Please contact the client immediately.",
+      "S_7103ec06": "Please check carefully before sending."
+    },
+    "L_232d4295d9": {
+      "W_09f2ced3": "do first",
+      "W_c5fad760": "do later",
+      "W_3f53c531": "top priority",
+      "S_7aea63a0": "This is the top priority.",
+      "S_5de57477": "Do this part first, the other part later.",
+      "S_006afdc4": "Client A's work must come first.",
+      "S_e8a7d65b": "No rush, next week is fine."
+    },
+    "L_72e63e155b": {
+      "W_6ef4a3fc": "before (time)",
+      "W_382e9271": "at the latest",
+      "S_0d4796d2": "Send the report before 5 PM.",
+      "S_de54ba65": "Tomorrow at the latest.",
+      "S_f8f52413": "I need the results by the end of the week.",
+      "S_097725e3": "Please finish before this Friday."
+    },
+    "L_93ec528d88": {
+      "S_710b5f8b": "Linh, do you have a moment?",
+      "S_fbbb54ea": "I want to assign you the ABC client report.",
+      "S_b2cb6302": "This is the top priority this week.",
+      "S_ea5d8e12": "Please complete it before Thursday.",
+      "S_2d8dc249": "Any questions?"
+    },
+    "L_7ae6d5b23e": {
+      "S_e6f5bb97": "Yes, I understand.",
+      "S_f2bf26cc": "I'll start today.",
+      "S_23f0368b": "One question: where should I get the numbers?",
+      "S_864b4946": "I'll send a draft before finalizing."
+    },
+    "L_4bba10bb27": {
+      "W_d34fa898": "project",
+      "W_d98ed7b8": "complete",
+      "W_2d5dd451": "priority",
+      "W_83373630": "urgent",
+      "W_d33f73ad": "ask / have",
+      "S_e91192e3": "Please complete before Friday.",
+      "M_f7858183": "project",
+      "M_5af4715e": "complete",
+      "M_d2bbe905": "priority",
+      "M_a786c8ab": "urgent"
+    },
+    "L_db76f10834": {
+      "W_f83c1c7b": "good",
+      "W_f3994e5e": "very good / well done",
+      "W_1936a906": "excellent",
+      "W_a29d56a1": "impressive",
+      "W_c28b0188": "quality / high-quality",
+      "W_e71cd331": "highly appreciate / value",
+      "W_d5be2653": "praise",
+      "M_1a96fe27": "well done",
+      "M_3227f52d": "excellent",
+      "M_30d596b4": "impressive",
+      "M_a5c8fccd": "highly appreciate"
+    },
+    "L_6b7bf9b9c5": {
+      "W_e77fc682": "improve",
+      "W_ee0231e6": "points to note / things to improve",
+      "W_dd5be9c2": "suggest / give input",
+      "W_acd7f7e1": "edit / revise",
+      "W_889a5a73": "strength",
+      "W_7dda5f33": "weakness",
+      "W_faa17396": "private / in private"
+    },
+    "L_caf70be3cf": {
+      "W_3b6f2142": "the whole team",
+      "S_e2847eff": "I want to praise the whole team for their great work.",
+      "S_fda7584c": "Linh produced an excellent report.",
+      "S_6eba1c55": "I highly value your sense of responsibility.",
+      "S_3c3546a1": "This success belongs to the whole team."
+    },
+    "L_23a2d6bb47": {
+      "W_0e8c8cf7": "meet privately",
+      "W_77a256c8": "talk privately",
+      "S_6a68f690": "I'd like to meet you privately for a bit.",
+      "S_26879d6c": "There are a few points I'd like to discuss privately.",
+      "S_548360e8": "This is private feedback, not for public sharing.",
+      "S_187fd9ad": "I say this because I want you to improve."
+    },
+    "L_306d857600": {
+      "W_385f5575": "the more ... the more ...",
+      "W_c17d1e78": "not only ... but also",
+      "S_9a731bdf": "The more careful you are, the better the result.",
+      "S_5554cbfa": "This project is not only complex but also urgent.",
+      "S_fadfb26a": "The more you do, the more experience you get.",
+      "S_64f07c12": "Your report is good, but the analysis could be deeper."
+    },
+    "L_4b993efec4": {
+      "W_3c2e930d": "I understand you tried",
+      "W_10284efc": "next time we'll do better",
+      "S_5989acd6": "I know you tried very hard.",
+      "S_07b01d16": "Next time we'll do better.",
+      "S_7c38e802": "This is a lesson for the whole team.",
+      "S_e456597f": "Everyone makes mistakes sometimes."
+    },
+    "L_8b3d912dd2": {
+      "S_33f111d0": "I want to thank the whole team for this week's project.",
+      "S_a3a83403": "Linh handled the hardest part and did very well.",
+      "S_1913851c": "Nam supported the client very professionally.",
+      "S_16f4b601": "Everyone was excellent."
+    },
+    "L_5a6026ac9e": {
+      "S_d63f6df0": "Linh, do you have some time?",
+      "S_a70c53e8": "I'd like to discuss last week's report privately.",
+      "S_41abc632": "The report is good, but the conclusion needs to be clearer.",
+      "S_4396db37": "Could you revise that part?",
+      "S_6264e1bd": "I know you can do it."
+    },
+    "L_fa9c5227d3": {
+      "W_48080f78": "well done",
+      "W_89b0b0f6": "excellent",
+      "W_3c1b7bc9": "improve",
+      "W_17b97982": "suggest / give input",
+      "W_35e362a0": "meet privately",
+      "S_37e8b864": "The more careful, the better the result.",
+      "M_36850c91": "well done",
+      "M_0ce965fe": "excellent",
+      "M_49273cd0": "improve",
+      "M_3fc9f6be": "meet privately"
+    },
+    "L_7187c3feb4": {
+      "W_933fe599": "dear (formal, very respectful)",
+      "W_0fa6b5ff": "dear (semi-formal)",
+      "W_c5aa7611": "hi (to older male colleague)",
+      "W_777a11a7": "hi (to older female colleague)",
+      "W_2eb89159": "regarding / re:",
+      "W_a373c8e3": "relating to / concerning",
+      "M_3f2b043c": "dear (formal)",
+      "M_0e0cbfdc": "dear (semi-formal)",
+      "M_270c74d5": "regarding"
+    },
+    "L_0004889169": {
+      "W_e07377f2": "sincerely / respectfully (formal close)",
+      "W_f14a60bd": "sincerely thank you",
+      "W_b3d5baf9": "hope to hear from you soon",
+      "W_e3b7cd44": "attached file",
+      "W_1e2759b1": "please review / kindly consider",
+      "W_7a2d289c": "signature",
+      "W_be63ea7d": "bcc / cc"
+    },
+    "L_b989374c12": {
+      "W_53e673b1": "therefore (formal written)",
+      "W_418519fb": "therefore / so (written)",
+      "W_259f9347": "in order to (formal written)",
+      "W_fa167eb6": "however (formal)",
+      "S_21c3b633": "The company has completed the project, therefore I want to send the report.",
+      "S_47023f0e": "In order to ensure progress, we propose adding staff.",
+      "S_6eb87df9": "However, we need more time for phase two."
+    },
+    "L_dd5f630cc4": {
+      "W_9257b085": "please (formal written)",
+      "W_b38ddda9": "I would greatly appreciate",
+      "S_7f692349": "Please confirm the meeting schedule.",
+      "S_8540eef2": "I would greatly appreciate it if you reviewed this proposal.",
+      "S_173a169c": "We respectfully hope your company responds soon.",
+      "S_4a2524d1": "Please kindly send the documents again."
+    },
+    "L_3549daa636": {
+      "W_2e4672f1": "attached",
+      "W_f3677876": "refer to / for reference",
+      "S_19dd1973": "I've attached the March report.",
+      "S_8135b0a5": "Please refer to the attached file.",
+      "S_28d8a805": "For details, please see the attached file.",
+      "S_7b51c50a": "If you need more information, please let me know."
+    },
+    "L_f812bb26df": {
+      "S_2aed3b2c": "Dear Mr. Nam,",
+      "S_dfdf1ec6": "Regarding project X, we have completed 70%.",
+      "S_d8406eca": "Please see the attached report.",
+      "S_16ae3686": "I look forward to your response.",
+      "S_c82c8416": "Sincerely, Linh."
+    },
+    "L_631a424e47": {
+      "S_cb20d471": "Hi team,",
+      "S_e923a58e": "Please attend the meeting at 2 PM Wednesday.",
+      "S_1a6126f8": "The agenda is attached.",
+      "S_7235401c": "Please prepare the report from each department.",
+      "S_3c0db6ce": "Thanks, Nam."
+    },
+    "L_ba9a7bca1b": {
+      "W_5774c92e": "dear (formal)",
+      "W_f18cb341": "sincerely",
+      "W_ada3d423": "please (formal)",
+      "W_07393824": "attached",
+      "W_f1e291f1": "therefore",
+      "S_7f78d286": "Please see the attached file.",
+      "M_11ecb122": "dear (formal)",
+      "M_721dd0b2": "sincerely",
+      "M_a2f407fe": "please (formal)",
+      "M_3d43df7c": "attached"
+    },
+    "L_91a6d1bf00": {
+      "W_7cf3827f": "Zalo (Vietnam's dominant chat app)",
+      "W_5217e136": "message",
+      "W_856cc786": "send",
+      "W_f5a8e635": "receive",
+      "W_e6f3dae1": "chat group",
+      "W_36d88307": "tag / mention",
+      "W_f5acefb5": "sticker",
+      "M_6ac6ebec": "message",
+      "M_11b3e45f": "chat group",
+      "M_b988cc02": "send"
+    },
+    "L_499ab36461": {
+      "W_fe051cbd": "OK / agreed (casual)",
+      "W_a80be6db": "thanks (short)",
+      "W_adbd2fd7": "được (can / OK — abbreviated)",
+      "W_2aa670c1": "không (no — abbreviated)",
+      "W_c287d62a": "không (no — abbreviated)",
+      "W_9b69e258": "(friendly sentence ender)",
+      "W_f6edc5b6": "(polite sentence ender — still used in chat)"
+    },
+    "L_5db850dbd9": {
+      "W_f3ede770": "familiar / friendly",
+      "W_1c039b95": "formal",
+      "S_b3b5cda8": "Boss, I sent you the file. (friendly chat)",
+      "S_96f5a783": "Dear Sir, I've sent the document via email. (formal)",
+      "S_4f263293": "Are you free to chat a bit? (casual)",
+      "S_911da56b": "Could you spare a moment? (formal)"
+    },
+    "L_9ce999b3fa": {
+      "W_ddc52a12": "(soft ender — 'OK?' / 'alright?')",
+      "W_f7dd0399": "a bit (short for một tí)",
+      "S_e01eec8b": "Could you check this for me?",
+      "S_dfc2ffc1": "Send me the file whenever, OK?",
+      "S_a5018976": "I need you to approve, then it's done.",
+      "S_183b3e65": "I've finished the report, just letting you know."
+    },
+    "L_eaf543c7f7": {
+      "W_fc6df286": "got it / received",
+      "W_2d5bffe6": "read (message status)",
+      "S_2a3a3376": "I got it.",
+      "S_16a65822": "OK boss, I'll look right away.",
+      "S_f324189d": "OK, I'll do it right away.",
+      "S_7947bbdd": "Thanks for the reminder."
+    },
+    "L_057238f314": {
+      "S_eed5b1a8": "Linh, are you free?",
+      "S_ef2542ff": "What's up?",
+      "S_b211437d": "Could you check this number for me?",
+      "S_8fb2799e": "OK, I'll send in 5 minutes."
+    },
+    "L_863f46453f": {
+      "S_40162be7": "Did you send me this week's report?",
+      "S_f6eff763": "Yes, I sent it by email.",
+      "S_406634d4": "I haven't seen it, just send via Zalo too.",
+      "S_0ce1ca40": "Yes, sending right away."
+    },
+    "L_1b23f17ed4": {
+      "W_6f6bf117": "message",
+      "W_63d9aeb1": "chat group",
+      "W_0ab8da4e": "(soft ender)",
+      "W_12734079": "không (abbreviated)",
+      "W_248dee1b": "send",
+      "S_1d101259": "Could you check this for me?",
+      "M_db2bdeb2": "message",
+      "M_ef342a20": "chat group",
+      "M_f07da2f2": "(soft ender)",
+      "M_14757a3a": "send"
+    },
+    "L_a5fd988858": {
+      "W_c41efc71": "negotiate",
+      "W_9cd20e20": "negotiate / bargain",
+      "W_75222a3f": "proposal / propose",
+      "W_e7e7631a": "partner (business)",
+      "W_a74867da": "cooperation / collaborate",
+      "W_1961ff82": "terms / clauses",
+      "W_70d4cbaf": "contract",
+      "M_5466044b": "negotiate",
+      "M_db94079f": "partner",
+      "M_f27f21ec": "terms",
+      "M_c4fd8d2e": "contract"
+    },
+    "L_42fe14f84c": {
+      "W_6cad178f": "price level / price",
+      "W_cbc12763": "discount / reduce price",
+      "W_b17cf763": "payment",
+      "W_cf927804": "discount (commercial)",
+      "W_00b37aff": "agreement",
+      "W_6f84bd92": "sign a contract",
+      "W_1043956b": "adjust"
+    },
+    "L_4a593c9941": {
+      "W_b3909318": "if... then we can",
+      "S_24fade2d": "If you agree to this price, we can sign now.",
+      "S_2ceb3a90": "If the quantity is higher, we can discount further.",
+      "S_abd7c39d": "If you pay in advance, there will be a discount."
+    },
+    "L_57fc24a364": {
+      "W_ca75d320": "we propose",
+      "W_06e14534": "can accept",
+      "S_10296701": "We propose a price of 500,000 dong.",
+      "S_07a13fb5": "The price we can accept is 450,000.",
+      "S_2ab91607": "This is the best price we can offer.",
+      "S_0db9a77c": "Your proposal is attractive, but..."
+    },
+    "L_87387044d1": {
+      "W_d8d459cd": "special case",
+      "W_8a52cc6c": "we can consider",
+      "S_a429fa9a": "We can consider this as a special case.",
+      "S_6819982a": "For a first collaboration, we can be flexible.",
+      "S_739a1b82": "We need to discuss internally and respond later.",
+      "S_d669704c": "This is the final level we can agree to."
+    },
+    "L_18f3321fea": {
+      "W_d314a427": "commit to",
+      "W_9f8b90ce": "guarantee / ensure",
+      "S_1c1a7212": "We commit to on-time delivery.",
+      "S_ebb9be21": "Quality assurance is our top priority.",
+      "S_cbe748a1": "Both parties commit to fulfilling the contract."
+    },
+    "L_4e63d083ea": {
+      "S_cb2d120c": "Thank you for your time.",
+      "S_2aba0111": "Today let's discuss the collaboration.",
+      "S_fefcbf96": "We've read your company's proposal.",
+      "S_566ac8a2": "I'd like to discuss a few terms."
+    },
+    "L_861b88fb8c": {
+      "S_207131b9": "So we agree on the price of 480,000.",
+      "S_8e65b12a": "The delivery deadline is May 30.",
+      "S_654c1ebc": "I'll send the formal contract this week.",
+      "S_a1a69377": "Pleased to work with you."
+    },
+    "L_bb7a0c0b9e": {
+      "W_081cbefe": "negotiate",
+      "W_65d6873d": "partner",
+      "W_fea8408e": "proposal",
+      "W_8a255deb": "contract",
+      "W_66d960f6": "commit to",
+      "S_53200468": "We commit to on-time delivery.",
+      "M_3d6151a0": "negotiate",
+      "M_89793001": "partner",
+      "M_1f92d2ac": "proposal",
+      "M_d65e6f0b": "contract"
+    },
+    "L_37e366539e": {
+      "W_f1cbc451": "restaurant",
+      "W_6e672daa": "private room / VIP room",
+      "W_5ad4ba03": "reserve a table",
+      "W_9d32d640": "host a guest",
+      "W_0de6da8a": "host (at table)",
+      "W_7c1a44ad": "invited guest",
+      "W_e36883dc": "seat / seating",
+      "M_d5aa2d72": "restaurant",
+      "M_899b0b43": "private room",
+      "M_6a4c50cd": "reserve a table",
+      "M_c2377ad9": "invited guest"
+    },
+    "L_f977d18498": {
+      "W_cc18090f": "beer",
+      "W_20a61893": "liquor / spirits",
+      "W_67b05927": "congratulations / cheers",
+      "W_c2e0d8a0": "raise your glass",
+      "W_57a348e1": "bottoms up (100%)",
+      "W_e64b161b": "empty the glass",
+      "W_80417d43": "just a little (polite refusal)"
+    },
+    "L_a31dec7130": {
+      "W_affb6e83": "please / let me invite you",
+      "S_b0d55c2d": "Please, everyone, raise your glass.",
+      "S_72d346e9": "Cheers to a successful collaboration!",
+      "S_3d4d1f77": "To everyone's health!",
+      "S_747fdf54": "Bottoms up!"
+    },
+    "L_384b45f479": {
+      "W_23e38f2a": "may I decline",
+      "W_dfd992f4": "I can't drink",
+      "S_6a27df4c": "May I just have a little?",
+      "S_63578c91": "I'm driving, so I can't drink.",
+      "S_a979c696": "Thank you, I'm full.",
+      "S_5b6ce345": "I can't eat spicy, please understand."
+    },
+    "L_5a1c3d41c1": {
+      "W_00ef4e9e": "so delicious",
+      "W_fd887817": "thoughtful / considerate",
+      "S_06377578": "This is delicious, thank you for inviting me.",
+      "S_2a101a6c": "You're so thoughtful for choosing this restaurant.",
+      "S_ecab28d7": "Dinner was wonderful.",
+      "S_0a9eaa09": "Next time, please let me invite you."
+    },
+    "L_266f5d3005": {
+      "S_cafde3b2": "Please, everyone, have a seat.",
+      "S_4c4d3b0b": "I've reserved a private room.",
+      "S_066173c8": "What would you like to drink? Beer or spirits?",
+      "S_602bf50c": "Cheers to a successful collaboration!"
+    },
+    "L_a5c78c8a08": {
+      "S_f6f5edb5": "Brother, one more glass!",
+      "S_6e423743": "May I stop, I'm driving.",
+      "S_a67985d5": "Cheers to everyone's health.",
+      "S_b436d040": "Thank you for understanding."
+    },
+    "L_a996ba84c3": {
+      "W_d0a7f6e7": "restaurant",
+      "W_2175a3c5": "private room",
+      "W_7aca356d": "cheers",
+      "W_dc81364c": "raise your glass",
+      "W_75fc05a9": "bottoms up",
+      "S_35498136": "Please raise your glass.",
+      "M_af95609e": "restaurant",
+      "M_100d9ed5": "private room",
+      "M_8539edcb": "cheers",
+      "M_1abe805f": "raise your glass"
+    },
+    "L_748929d2a7": {
+      "W_7db57ad7": "work permit",
+      "W_49cd6d67": "visa",
+      "W_98d46c0b": "extend / renew",
+      "W_a1a7abca": "passport",
+      "W_b4d17891": "temporary residence card",
+      "W_c0e72e22": "notarize / notarization",
+      "W_1230367c": "copy (of a document)",
+      "M_3300b329": "work permit",
+      "M_3077ee5b": "temporary residence card",
+      "M_64651f6e": "notarize"
+    },
+    "L_eff9b6254c": {
+      "W_956fe503": "bank account",
+      "W_b6182863": "open an account",
+      "W_49968403": "bank transfer",
+      "W_af0d0f2e": "VAT invoice",
+      "W_cdba0f21": "tax code / TIN",
+      "W_acad2469": "file taxes",
+      "W_3c1e11c5": "business / enterprise"
+    },
+    "L_c02d54d53d": {
+      "W_2692500a": "may I ask (formal)",
+      "W_a080fa74": "let me ask",
+      "S_f08587c6": "May I ask what the visa extension procedure includes?",
+      "S_713453bd": "Let me ask, what documents do I need to prepare?",
+      "S_d9c86e51": "Please tell me how long processing takes?",
+      "S_5dbbab5b": "Could you guide me through this?"
+    },
+    "L_c83385a26c": {
+      "W_231cd0d1": "must have",
+      "W_ff8620ac": "along with / attached",
+      "S_e59a18e6": "The file must include a copy of the passport.",
+      "S_53db80af": "Attached is the original labor contract.",
+      "S_8f08bd23": "All documents must be notarized.",
+      "S_95dee613": "Processing time is 15 business days."
+    },
+    "L_ff836f68b6": {
+      "W_5d016745": "procedure",
+      "W_cc53ee7d": "file / paperwork",
+      "W_cf0470ee": "process / handle",
+      "S_b955e81e": "The procedure has three main steps.",
+      "S_a3e5effc": "First is preparing the file.",
+      "S_744094ce": "Next, submit at the relevant office.",
+      "S_18869114": "Finally, wait for the result for 15 days."
+    },
+    "L_a743c5f39c": {
+      "S_9066ecdd": "Hello, I want to extend my visa.",
+      "S_a309fca1": "Please give me your passport and labor contract.",
+      "S_0290bbcf": "How long do I need to wait?",
+      "S_aac118cf": "About 7 business days."
+    },
+    "L_f2ef360007": {
+      "S_b3ba7a41": "I want to open an account for the company.",
+      "S_b1aec039": "You need the business registration and company seal.",
+      "S_5ba8922e": "I've prepared all the documents.",
+      "S_8bd37dae": "The account will be ready in about 30 minutes."
+    },
+    "L_6bdd32790c": {
+      "W_98693aa2": "work permit",
+      "W_47b42f98": "passport",
+      "W_c526cd64": "bank transfer",
+      "W_22ede144": "file / paperwork",
+      "W_84db7607": "notarize",
+      "S_e78becc4": "I want to extend my visa.",
+      "M_e13df751": "work permit",
+      "M_c50cd7bb": "passport",
+      "M_37dee053": "bank transfer",
+      "M_ba98e58d": "paperwork"
+    },
+    "L_56617046ad": {
+      "W_0d036f37": "Lunar New Year / Tết",
+      "W_72fe8beb": "red envelope / lucky money",
+      "W_ff706161": "13th-month bonus",
+      "W_faa3f253": "Tết holiday",
+      "W_a85071c1": "Happy New Year",
+      "W_fcf619e7": "sticky rice cake (Tết food)",
+      "W_9b39f17a": "bonus",
+      "M_30b3d4c3": "Lunar New Year",
+      "M_72d5d251": "red envelope",
+      "M_0c8293d4": "13th-month bonus",
+      "M_5964eb19": "bonus"
+    },
+    "L_16e8576861": {
+      "W_551e9493": "Mid-Autumn Festival",
+      "W_ad9cafdd": "mooncake",
+      "W_88d1a0d0": "International Women's Day (Mar 8)",
+      "W_29eebed4": "Vietnamese Women's Day (Oct 20)",
+      "W_13d4f6cf": "wedding",
+      "W_83f18dfa": "funeral",
+      "W_04c6eafd": "give lucky money"
+    },
+    "L_c56c671490": {
+      "W_e3b16c6b": "Happy New Year",
+      "W_24e22814": "peace and prosperity (Tết blessing)",
+      "S_1551b965": "Happy New Year! Wishing you peace and prosperity.",
+      "S_4fa5ac9b": "Happy Mid-Autumn Festival.",
+      "S_47e20eaf": "Happy Women's Day, Chị.",
+      "S_3d372874": "Wishing everyone a successful new year."
+    },
+    "L_bd3dd79253": {
+      "W_3b5e26f6": "offer condolences",
+      "W_fc20e84b": "respectfully / solemnly",
+      "S_cc21d6de": "My condolences to your family.",
+      "S_338d9f94": "Deepest condolences.",
+      "S_bba5266f": "The whole company offers condolences.",
+      "S_aaf1d700": "We're so sorry to hear the news."
+    },
+    "L_d897c0c381": {
+      "W_25a4f64c": "congratulations",
+      "W_65ce886a": "joy and happiness",
+      "S_ce2a776d": "Congratulations on your happiness.",
+      "S_6d38e37f": "Wishing you a hundred years of happiness.",
+      "S_07b1ebb8": "The whole department congratulates you on turning 30."
+    },
+    "L_7a62fe26d8": {
+      "W_3664cc10": "for the reason of",
+      "W_82894be5": "family matter",
+      "S_d5c98add": "For health reasons, may I take a few days off.",
+      "S_523578ca": "My family has a matter, may I take urgent leave.",
+      "S_8c3c8e88": "I've arranged a replacement during my leave."
+    },
+    "L_41db7f4e4c": {
+      "S_a5581669": "On behalf of management, Happy New Year to the company.",
+      "S_40ec3ac2": "This year the company has a 13th-month bonus.",
+      "S_2d9f1e34": "There's also a performance bonus.",
+      "S_1ac81ea2": "Wishing everyone a peaceful Tết."
+    },
+    "L_b1202d70ba": {
+      "S_5cc7bd8d": "Congratulations on your happiness.",
+      "S_59be3413": "Here is a small gift from the whole team.",
+      "S_90a8b282": "Wishing you a hundred years of happiness.",
+      "S_20a0d521": "Thank you for the invitation."
+    },
+    "L_0501dbbfe2": {
+      "W_beda2ef9": "Lunar New Year",
+      "W_f3dca7b9": "red envelope",
+      "W_4a580bda": "bonus",
+      "W_fe32a8b5": "condolences",
+      "W_9d86cb94": "Happy New Year",
+      "S_b91b7132": "Happy New Year! Peace and prosperity.",
+      "M_dd719d98": "Lunar New Year",
+      "M_39f0b157": "red envelope",
+      "M_8d1f98c8": "bonus",
+      "M_e1e1731e": "condolences"
+    }
+  }
+}

@@ -1,0 +1,6977 @@
+{
+  "meta": {
+    "level": "b1",
+    "track": "tourist",
+    "source": "vn_b1_tourist_en.xlsx",
+    "generated": "2026-04-28T09:02:31.263Z",
+    "stats": {
+      "units": 12,
+      "lessons": 107,
+      "words": 362,
+      "sentences": 311,
+      "matches": 92
+    }
+  },
+  "units": [
+    {
+      "index": 1,
+      "title": "Arriving in Vietnam"
+    },
+    {
+      "index": 2,
+      "title": "Getting Around"
+    },
+    {
+      "index": 3,
+      "title": "Accommodation"
+    },
+    {
+      "index": 4,
+      "title": "Street Food & Markets"
+    },
+    {
+      "index": 5,
+      "title": "Day Trips & Tours"
+    },
+    {
+      "index": 6,
+      "title": "Shopping & Bargaining"
+    },
+    {
+      "index": 7,
+      "title": "Safety & Emergencies"
+    },
+    {
+      "index": 8,
+      "title": "Making Friends & Social Situations"
+    },
+    {
+      "index": 9,
+      "title": "Coffee Culture & Nightlife"
+    },
+    {
+      "index": 10,
+      "title": "Beaches & Nature"
+    },
+    {
+      "index": 11,
+      "title": "Photography & Culture"
+    },
+    {
+      "index": 12,
+      "title": "Leaving Vietnam / Returning"
+    }
+  ],
+  "lessons": [
+    {
+      "id": "L_45bd529bbc",
+      "node_id": "tourist_u1_L001",
+      "quiz_id": null,
+      "unit_index": 1,
+      "unit_title": "Arriving in Vietnam",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "At the Airport",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "start"
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_d2c5785b",
+          "vi": "sân bay",
+          "ipa": "",
+          "category": "arrival"
+        },
+        {
+          "id": "W_eedd2bfc",
+          "vi": "nhập cảnh",
+          "ipa": "",
+          "category": "arrival"
+        },
+        {
+          "id": "W_a3fb73e7",
+          "vi": "xuất cảnh",
+          "ipa": "",
+          "category": "arrival"
+        },
+        {
+          "id": "W_1ebe66c4",
+          "vi": "hải quan",
+          "ipa": "",
+          "category": "arrival"
+        },
+        {
+          "id": "W_8cf986db",
+          "vi": "hành lý",
+          "ipa": "",
+          "category": "arrival"
+        },
+        {
+          "id": "W_a6cf5ece",
+          "vi": "chuyến bay",
+          "ipa": "",
+          "category": "arrival"
+        },
+        {
+          "id": "W_0fe689da",
+          "vi": "quá cảnh",
+          "ipa": "",
+          "category": "arrival"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_fdf19551",
+          "text": "sân bay"
+        },
+        {
+          "id": "M_2f6a9e06",
+          "text": "hành lý"
+        },
+        {
+          "id": "M_20f3d850",
+          "text": "hải quan"
+        },
+        {
+          "id": "M_e7d1aeba",
+          "text": "chuyến bay"
+        }
+      ]
+    },
+    {
+      "id": "L_cbd3024d0d",
+      "node_id": "tourist_u1_L002",
+      "quiz_id": null,
+      "unit_index": 1,
+      "unit_title": "Arriving in Vietnam",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Visa & Documents",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_vi",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_45bd529bbc"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_85c1971c",
+          "vi": "hộ chiếu",
+          "ipa": "",
+          "category": "arrival"
+        },
+        {
+          "id": "W_e542d13c",
+          "vi": "visa du lịch",
+          "ipa": "",
+          "category": "arrival"
+        },
+        {
+          "id": "W_4ec83ae5",
+          "vi": "miễn visa",
+          "ipa": "",
+          "category": "arrival"
+        },
+        {
+          "id": "W_e4bc4696",
+          "vi": "e-visa",
+          "ipa": "",
+          "category": "arrival"
+        },
+        {
+          "id": "W_9a3c70b3",
+          "vi": "dấu nhập cảnh",
+          "ipa": "",
+          "category": "arrival"
+        },
+        {
+          "id": "W_7b6b9187",
+          "vi": "tờ khai",
+          "ipa": "",
+          "category": "arrival"
+        },
+        {
+          "id": "W_beecf5b8",
+          "vi": "đóng dấu",
+          "ipa": "",
+          "category": "arrival"
+        }
+      ],
+      "sentences": [],
+      "matches": []
+    },
+    {
+      "id": "L_cad4b0a88d",
+      "node_id": "tourist_u1_L003",
+      "quiz_id": null,
+      "unit_index": 1,
+      "unit_title": "Arriving in Vietnam",
+      "lesson_type": "Grammar",
+      "lesson_title": "Stating Purpose of Visit 'để'",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_cbd3024d0d"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_705c9b4e",
+          "vi": "để",
+          "ipa": "",
+          "category": "purpose"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_22ab123a",
+          "vi": "Tôi đến Việt Nam để du lịch."
+        },
+        {
+          "id": "S_b678719e",
+          "vi": "Tôi đến đây để thăm bạn."
+        },
+        {
+          "id": "S_58c2ab79",
+          "vi": "Chúng tôi đến để nghỉ mát."
+        },
+        {
+          "id": "S_28603dc3",
+          "vi": "Tôi sẽ ở đây hai tuần."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_78dba8d948",
+      "node_id": "tourist_u1_L004",
+      "quiz_id": null,
+      "unit_index": 1,
+      "unit_title": "Arriving in Vietnam",
+      "lesson_type": "Grammar",
+      "lesson_title": "Length of Stay (bao lâu, mấy ngày)",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_cad4b0a88d"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_e4262555",
+          "vi": "bao lâu",
+          "ipa": "",
+          "category": "question"
+        },
+        {
+          "id": "W_ec71a608",
+          "vi": "mấy ngày",
+          "ipa": "",
+          "category": "question"
+        },
+        {
+          "id": "W_d5871c37",
+          "vi": "khoảng",
+          "ipa": "",
+          "category": "time"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_619c9525",
+          "vi": "Bạn ở đây bao lâu?"
+        },
+        {
+          "id": "S_0f07ef09",
+          "vi": "Khoảng hai tuần."
+        },
+        {
+          "id": "S_afe7f1d5",
+          "vi": "Tôi sẽ ở Việt Nam 10 ngày."
+        },
+        {
+          "id": "S_ce0b1d61",
+          "vi": "Chuyến đi của tôi dài một tháng."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_e7233ba920",
+      "node_id": "tourist_u1_L005",
+      "quiz_id": null,
+      "unit_index": 1,
+      "unit_title": "Arriving in Vietnam",
+      "lesson_type": "Grammar",
+      "lesson_title": "First Time Questions (đã từng)",
+      "content_types": [
+        "fill_blank",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_78dba8d948"
+        ]
+      },
+      "grammar_tags": [
+        "GT019",
+        "GT043"
+      ],
+      "words": [
+        {
+          "id": "W_85b38294",
+          "vi": "đã từng",
+          "ipa": "",
+          "category": "experience"
+        },
+        {
+          "id": "W_79a3ebb0",
+          "vi": "lần đầu tiên",
+          "ipa": "",
+          "category": "experience"
+        },
+        {
+          "id": "W_749d4bf3",
+          "vi": "lần thứ",
+          "ipa": "",
+          "category": "experience"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_f58437a0",
+          "vi": "Bạn đã từng đến Việt Nam chưa?"
+        },
+        {
+          "id": "S_a2cda91f",
+          "vi": "Đây là lần đầu tiên tôi đến Việt Nam."
+        },
+        {
+          "id": "S_66f1fb22",
+          "vi": "Đây là lần thứ ba tôi quay lại."
+        },
+        {
+          "id": "S_5322bf4b",
+          "vi": "Tôi chưa từng đi Hà Nội."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_4eb8e46ca3",
+      "node_id": "tourist_u1_L006",
+      "quiz_id": null,
+      "unit_index": 1,
+      "unit_title": "Arriving in Vietnam",
+      "lesson_type": "Scene",
+      "lesson_title": "At Immigration",
+      "content_types": [
+        "listen_choose",
+        "translation_word_bank"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_e7233ba920"
+        ]
+      },
+      "grammar_tags": [
+        "GT002",
+        "GT020"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_f4c120ec",
+          "vi": "Xin chào. Cho xin hộ chiếu."
+        },
+        {
+          "id": "S_5005013b",
+          "vi": "Bạn đến Việt Nam làm gì?"
+        },
+        {
+          "id": "S_3c679e30",
+          "vi": "Tôi đến để du lịch."
+        },
+        {
+          "id": "S_f4a96181",
+          "vi": "Bạn ở đây bao lâu?"
+        },
+        {
+          "id": "S_436a8a30",
+          "vi": "Khoảng hai tuần."
+        },
+        {
+          "id": "S_2cedcce4",
+          "vi": "Chúc bạn có chuyến đi vui vẻ."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_013d40d8af",
+      "node_id": "tourist_u1_L007",
+      "quiz_id": null,
+      "unit_index": 1,
+      "unit_title": "Arriving in Vietnam",
+      "lesson_type": "Scene",
+      "lesson_title": "Lost Luggage",
+      "content_types": [
+        "listen_choose",
+        "speak_sentence"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_4eb8e46ca3"
+        ]
+      },
+      "grammar_tags": [
+        "GT004",
+        "GT008",
+        "GT043"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_d6078655",
+          "vi": "Xin lỗi, tôi không tìm thấy hành lý."
+        },
+        {
+          "id": "S_1eaef626",
+          "vi": "Tôi bay từ Singapore."
+        },
+        {
+          "id": "S_2d4fc802",
+          "vi": "Đây là vé và thẻ hành lý."
+        },
+        {
+          "id": "S_188b2757",
+          "vi": "Khi nào tôi sẽ nhận được?"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_322e02f699",
+      "node_id": "tourist_u1_Q008",
+      "quiz_id": "tourist_u1_Q008",
+      "unit_index": 1,
+      "unit_title": "Arriving in Vietnam",
+      "lesson_type": "Quiz",
+      "lesson_title": "Airport & Arrival Review",
+      "content_types": [
+        "mcq_translate_to_en",
+        "listen_choose",
+        "match_pairs"
+      ],
+      "xp_reward": 20,
+      "unlock_rule": {
+        "type": "unit_complete",
+        "requires": [
+          "L_45bd529bbc",
+          "L_cbd3024d0d",
+          "L_cad4b0a88d",
+          "L_78dba8d948",
+          "L_e7233ba920",
+          "L_4eb8e46ca3",
+          "L_013d40d8af"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_50a7ffc5",
+          "vi": "sân bay",
+          "ipa": "",
+          "category": "arrival"
+        },
+        {
+          "id": "W_69732842",
+          "vi": "hộ chiếu",
+          "ipa": "",
+          "category": "arrival"
+        },
+        {
+          "id": "W_d14cbbe7",
+          "vi": "visa du lịch",
+          "ipa": "",
+          "category": "arrival"
+        },
+        {
+          "id": "W_4baa0b54",
+          "vi": "để",
+          "ipa": "",
+          "category": "purpose"
+        },
+        {
+          "id": "W_408b0efa",
+          "vi": "bao lâu",
+          "ipa": "",
+          "category": "question"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_9ae65bab",
+          "vi": "Tôi đến Việt Nam để du lịch."
+        }
+      ],
+      "matches": [
+        {
+          "id": "M_7b7ed6cb",
+          "text": "sân bay"
+        },
+        {
+          "id": "M_df3a0f0b",
+          "text": "hộ chiếu"
+        },
+        {
+          "id": "M_77c78f6b",
+          "text": "để"
+        },
+        {
+          "id": "M_6e95fadc",
+          "text": "bao lâu"
+        }
+      ]
+    },
+    {
+      "id": "L_b3c88cb21e",
+      "node_id": "tourist_u2_L009",
+      "quiz_id": null,
+      "unit_index": 2,
+      "unit_title": "Getting Around",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Transport Apps & Services",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_322e02f699"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_49a67cad",
+          "vi": "grab",
+          "ipa": "",
+          "category": "transport"
+        },
+        {
+          "id": "W_44906c91",
+          "vi": "grab bike",
+          "ipa": "",
+          "category": "transport"
+        },
+        {
+          "id": "W_45934fc3",
+          "vi": "grab car",
+          "ipa": "",
+          "category": "transport"
+        },
+        {
+          "id": "W_2e80c7b0",
+          "vi": "xe ôm",
+          "ipa": "",
+          "category": "transport"
+        },
+        {
+          "id": "W_abbc2c5f",
+          "vi": "taxi truyền thống",
+          "ipa": "",
+          "category": "transport"
+        },
+        {
+          "id": "W_72b5bc4e",
+          "vi": "bãi đỗ xe",
+          "ipa": "",
+          "category": "transport"
+        },
+        {
+          "id": "W_d13d87d0",
+          "vi": "trạm xe",
+          "ipa": "",
+          "category": "transport"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_ca3cac1e",
+          "text": "grab"
+        },
+        {
+          "id": "M_e7e68774",
+          "text": "xe ôm"
+        },
+        {
+          "id": "M_7df522d0",
+          "text": "bãi đỗ xe"
+        }
+      ]
+    },
+    {
+      "id": "L_92e990339d",
+      "node_id": "tourist_u2_L010",
+      "quiz_id": null,
+      "unit_index": 2,
+      "unit_title": "Getting Around",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Renting Transport",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_vi",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_b3c88cb21e"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_291aa6e0",
+          "vi": "thuê",
+          "ipa": "",
+          "category": "transport"
+        },
+        {
+          "id": "W_dde96432",
+          "vi": "thuê xe máy",
+          "ipa": "",
+          "category": "transport"
+        },
+        {
+          "id": "W_f15f3bbf",
+          "vi": "bằng lái",
+          "ipa": "",
+          "category": "transport"
+        },
+        {
+          "id": "W_8db3cc18",
+          "vi": "bằng lái quốc tế",
+          "ipa": "",
+          "category": "transport"
+        },
+        {
+          "id": "W_f368f08d",
+          "vi": "mũ bảo hiểm",
+          "ipa": "",
+          "category": "transport"
+        },
+        {
+          "id": "W_b76fcd67",
+          "vi": "đặt cọc",
+          "ipa": "",
+          "category": "transport"
+        },
+        {
+          "id": "W_1c53b014",
+          "vi": "thuê theo ngày",
+          "ipa": "",
+          "category": "transport"
+        },
+        {
+          "id": "W_25ccbefc",
+          "vi": "đổ xăng",
+          "ipa": "",
+          "category": "transport"
+        }
+      ],
+      "sentences": [],
+      "matches": []
+    },
+    {
+      "id": "L_75bd7e2a0c",
+      "node_id": "tourist_u2_L011",
+      "quiz_id": null,
+      "unit_index": 2,
+      "unit_title": "Getting Around",
+      "lesson_type": "Grammar",
+      "lesson_title": "Negotiating Ride Prices",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_92e990339d"
+        ]
+      },
+      "grammar_tags": [
+        "GT005",
+        "GT010"
+      ],
+      "words": [
+        {
+          "id": "W_2453a95c",
+          "vi": "từ ... đến",
+          "ipa": "",
+          "category": "transport"
+        },
+        {
+          "id": "W_2064886d",
+          "vi": "bớt một chút",
+          "ipa": "",
+          "category": "bargaining"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_572bed67",
+          "vi": "Từ đây đến phố cổ bao nhiêu?"
+        },
+        {
+          "id": "S_9c871860",
+          "vi": "Hai trăm nghìn được không?"
+        },
+        {
+          "id": "S_bb36bd6b",
+          "vi": "Hơi đắt, bớt một chút nhé."
+        },
+        {
+          "id": "S_e1e7a4f3",
+          "vi": "Một trăm năm mươi được không?"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_93f5cc4ed8",
+      "node_id": "tourist_u2_L012",
+      "quiz_id": null,
+      "unit_index": 2,
+      "unit_title": "Getting Around",
+      "lesson_type": "Grammar",
+      "lesson_title": "Giving Specific Addresses",
+      "content_types": [
+        "fill_blank",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_75bd7e2a0c"
+        ]
+      },
+      "grammar_tags": [
+        "GT018",
+        "GT021",
+        "GT029"
+      ],
+      "words": [
+        {
+          "id": "W_7f3df542",
+          "vi": "số nhà",
+          "ipa": "",
+          "category": "direction"
+        },
+        {
+          "id": "W_ed618cd9",
+          "vi": "phường",
+          "ipa": "",
+          "category": "direction"
+        },
+        {
+          "id": "W_143f785f",
+          "vi": "quận",
+          "ipa": "",
+          "category": "direction"
+        },
+        {
+          "id": "W_8328e080",
+          "vi": "đường",
+          "ipa": "",
+          "category": "direction"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_9138f97a",
+          "vi": "Số nhà 25, đường Lê Lợi."
+        },
+        {
+          "id": "S_dea48c9c",
+          "vi": "Phường Bến Nghé, quận 1."
+        },
+        {
+          "id": "S_f9366068",
+          "vi": "Anh cho tôi xuống ở đây."
+        },
+        {
+          "id": "S_1888c23e",
+          "vi": "Đi thẳng rồi rẽ phải ở ngã tư."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_56032fa30f",
+      "node_id": "tourist_u2_L013",
+      "quiz_id": null,
+      "unit_index": 2,
+      "unit_title": "Getting Around",
+      "lesson_type": "Grammar",
+      "lesson_title": "Checking Distance & Time",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_93f5cc4ed8"
+        ]
+      },
+      "grammar_tags": [
+        "GT004",
+        "GT005",
+        "GT033"
+      ],
+      "words": [
+        {
+          "id": "W_d86757c1",
+          "vi": "mất bao lâu",
+          "ipa": "",
+          "category": "time"
+        },
+        {
+          "id": "W_962270f0",
+          "vi": "khoảng",
+          "ipa": "",
+          "category": "time"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_95cacd83",
+          "vi": "Đi từ đây đến sân bay mất bao lâu?"
+        },
+        {
+          "id": "S_cb6775f0",
+          "vi": "Khoảng 30 phút, nếu không kẹt xe."
+        },
+        {
+          "id": "S_79b8ce7f",
+          "vi": "Xa lắm không?"
+        },
+        {
+          "id": "S_b9c192ec",
+          "vi": "Không xa, chỉ 2 km thôi."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_101e2828f6",
+      "node_id": "tourist_u2_L014",
+      "quiz_id": null,
+      "unit_index": 2,
+      "unit_title": "Getting Around",
+      "lesson_type": "Grammar",
+      "lesson_title": "Polite Requests to Drivers",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_56032fa30f"
+        ]
+      },
+      "grammar_tags": [
+        "GT004",
+        "GT005"
+      ],
+      "words": [
+        {
+          "id": "W_6ad5f3b0",
+          "vi": "chậm lại",
+          "ipa": "",
+          "category": "request"
+        },
+        {
+          "id": "W_872405cf",
+          "vi": "đi cẩn thận",
+          "ipa": "",
+          "category": "request"
+        },
+        {
+          "id": "W_e8b22871",
+          "vi": "đường tắt",
+          "ipa": "",
+          "category": "direction"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_602e3171",
+          "vi": "Anh ơi, đi chậm lại một chút."
+        },
+        {
+          "id": "S_87ab6351",
+          "vi": "Anh đi đường nào cũng được."
+        },
+        {
+          "id": "S_4434ff0a",
+          "vi": "Tôi không biết đường, anh quyết định."
+        },
+        {
+          "id": "S_484505a0",
+          "vi": "Có đường tắt không?"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_2343f39a04",
+      "node_id": "tourist_u2_L015",
+      "quiz_id": null,
+      "unit_index": 2,
+      "unit_title": "Getting Around",
+      "lesson_type": "Scene",
+      "lesson_title": "Booking a Grab",
+      "content_types": [
+        "listen_choose",
+        "speak_sentence"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_101e2828f6"
+        ]
+      },
+      "grammar_tags": [
+        "GT007"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_02f2e9a9",
+          "vi": "A lô, tôi đặt Grab đi Bến Thành."
+        },
+        {
+          "id": "S_5ff503ae",
+          "vi": "Anh đang ở đâu?"
+        },
+        {
+          "id": "S_4d89b132",
+          "vi": "Tôi đứng trước khách sạn Rex."
+        },
+        {
+          "id": "S_1537d3e8",
+          "vi": "Xe đang đến, anh đợi 5 phút."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_ac1ebe1cda",
+      "node_id": "tourist_u2_L016",
+      "quiz_id": null,
+      "unit_index": 2,
+      "unit_title": "Getting Around",
+      "lesson_type": "Scene",
+      "lesson_title": "Renting a Motorbike",
+      "content_types": [
+        "listen_choose",
+        "translation_word_bank"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_2343f39a04"
+        ]
+      },
+      "grammar_tags": [
+        "GT010",
+        "GT022"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_7afce89b",
+          "vi": "Tôi muốn thuê xe máy một tuần."
+        },
+        {
+          "id": "S_90eec1d4",
+          "vi": "Bao nhiêu một ngày?"
+        },
+        {
+          "id": "S_3e884a7c",
+          "vi": "Một trăm năm mươi nghìn. Đặt cọc năm trăm."
+        },
+        {
+          "id": "S_14e90c30",
+          "vi": "Xăng tôi tự đổ."
+        },
+        {
+          "id": "S_0c4dbe0d",
+          "vi": "Trả xe trước 5 giờ chiều."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_456b9937d0",
+      "node_id": "tourist_u2_Q017",
+      "quiz_id": "tourist_u2_Q017",
+      "unit_index": 2,
+      "unit_title": "Getting Around",
+      "lesson_type": "Quiz",
+      "lesson_title": "Getting Around Review",
+      "content_types": [
+        "mcq_translate_to_en",
+        "listen_choose",
+        "match_pairs"
+      ],
+      "xp_reward": 20,
+      "unlock_rule": {
+        "type": "unit_complete",
+        "requires": [
+          "L_b3c88cb21e",
+          "L_92e990339d",
+          "L_75bd7e2a0c",
+          "L_93f5cc4ed8",
+          "L_56032fa30f",
+          "L_101e2828f6",
+          "L_2343f39a04",
+          "L_ac1ebe1cda"
+        ]
+      },
+      "grammar_tags": [
+        "GT010"
+      ],
+      "words": [
+        {
+          "id": "W_c039a97b",
+          "vi": "grab",
+          "ipa": "",
+          "category": "transport"
+        },
+        {
+          "id": "W_9564c5a0",
+          "vi": "xe ôm",
+          "ipa": "",
+          "category": "transport"
+        },
+        {
+          "id": "W_642ba67a",
+          "vi": "thuê xe máy",
+          "ipa": "",
+          "category": "transport"
+        },
+        {
+          "id": "W_baff8026",
+          "vi": "đặt cọc",
+          "ipa": "",
+          "category": "transport"
+        },
+        {
+          "id": "W_fd5d697e",
+          "vi": "mất bao lâu",
+          "ipa": "",
+          "category": "time"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_0f35f90b",
+          "vi": "Từ đây đến phố cổ bao nhiêu?"
+        }
+      ],
+      "matches": [
+        {
+          "id": "M_580ea7b0",
+          "text": "grab"
+        },
+        {
+          "id": "M_7a936698",
+          "text": "xe ôm"
+        },
+        {
+          "id": "M_b86eb8c8",
+          "text": "thuê xe máy"
+        },
+        {
+          "id": "M_de93a6e5",
+          "text": "đặt cọc"
+        }
+      ]
+    },
+    {
+      "id": "L_215981e604",
+      "node_id": "tourist_u3_L018",
+      "quiz_id": null,
+      "unit_index": 3,
+      "unit_title": "Accommodation",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Types of Accommodation",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_456b9937d0"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_ed098073",
+          "vi": "khách sạn",
+          "ipa": "",
+          "category": "accommodation"
+        },
+        {
+          "id": "W_37ce0b8c",
+          "vi": "nhà nghỉ",
+          "ipa": "",
+          "category": "accommodation"
+        },
+        {
+          "id": "W_81f29ee7",
+          "vi": "homestay",
+          "ipa": "",
+          "category": "accommodation"
+        },
+        {
+          "id": "W_7b89c88b",
+          "vi": "nhà trọ",
+          "ipa": "",
+          "category": "accommodation"
+        },
+        {
+          "id": "W_6a543a73",
+          "vi": "airbnb",
+          "ipa": "",
+          "category": "accommodation"
+        },
+        {
+          "id": "W_059e9128",
+          "vi": "căn hộ",
+          "ipa": "",
+          "category": "accommodation"
+        },
+        {
+          "id": "W_9ae0b2ba",
+          "vi": "resort",
+          "ipa": "",
+          "category": "accommodation"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_9202f7c5",
+          "text": "khách sạn"
+        },
+        {
+          "id": "M_92846d74",
+          "text": "nhà nghỉ"
+        },
+        {
+          "id": "M_fcef9c3d",
+          "text": "homestay"
+        },
+        {
+          "id": "M_e683e5c8",
+          "text": "nhà trọ"
+        }
+      ]
+    },
+    {
+      "id": "L_f8c40ab7ac",
+      "node_id": "tourist_u3_L019",
+      "quiz_id": null,
+      "unit_index": 3,
+      "unit_title": "Accommodation",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Room Features",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_vi",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_215981e604"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_33673814",
+          "vi": "phòng đơn",
+          "ipa": "",
+          "category": "accommodation"
+        },
+        {
+          "id": "W_a67faa80",
+          "vi": "phòng đôi",
+          "ipa": "",
+          "category": "accommodation"
+        },
+        {
+          "id": "W_8ffe2e1e",
+          "vi": "phòng giường đôi",
+          "ipa": "",
+          "category": "accommodation"
+        },
+        {
+          "id": "W_41cd1985",
+          "vi": "ban công",
+          "ipa": "",
+          "category": "accommodation"
+        },
+        {
+          "id": "W_34aabac7",
+          "vi": "view đẹp",
+          "ipa": "",
+          "category": "accommodation"
+        },
+        {
+          "id": "W_4e790342",
+          "vi": "yên tĩnh",
+          "ipa": "",
+          "category": "accommodation"
+        },
+        {
+          "id": "W_7d834902",
+          "vi": "ồn ào",
+          "ipa": "",
+          "category": "accommodation"
+        },
+        {
+          "id": "W_85e4a368",
+          "vi": "sạch sẽ",
+          "ipa": "",
+          "category": "accommodation"
+        }
+      ],
+      "sentences": [],
+      "matches": []
+    },
+    {
+      "id": "L_c0af7f9e60",
+      "node_id": "tourist_u3_L020",
+      "quiz_id": null,
+      "unit_index": 3,
+      "unit_title": "Accommodation",
+      "lesson_type": "Grammar",
+      "lesson_title": "Making a Reservation (đặt phòng)",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_f8c40ab7ac"
+        ]
+      },
+      "grammar_tags": [
+        "GT021",
+        "GT022"
+      ],
+      "words": [
+        {
+          "id": "W_67d6137f",
+          "vi": "đặt phòng",
+          "ipa": "",
+          "category": "accommodation"
+        },
+        {
+          "id": "W_6b1a0255",
+          "vi": "hai đêm",
+          "ipa": "",
+          "category": "time"
+        },
+        {
+          "id": "W_9b509c11",
+          "vi": "ngày đến",
+          "ipa": "",
+          "category": "accommodation"
+        },
+        {
+          "id": "W_c188862f",
+          "vi": "ngày đi",
+          "ipa": "",
+          "category": "accommodation"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_ad930e35",
+          "vi": "Tôi muốn đặt một phòng đôi."
+        },
+        {
+          "id": "S_6c7979a2",
+          "vi": "Từ ngày mùng 5 đến ngày mùng 10."
+        },
+        {
+          "id": "S_cf881b38",
+          "vi": "Năm đêm tất cả."
+        },
+        {
+          "id": "S_0496b191",
+          "vi": "Cho tôi phòng yên tĩnh nhé."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_c0e08f6d91",
+      "node_id": "tourist_u3_L021",
+      "quiz_id": null,
+      "unit_index": 3,
+      "unit_title": "Accommodation",
+      "lesson_type": "Grammar",
+      "lesson_title": "Asking About Amenities",
+      "content_types": [
+        "fill_blank",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_c0af7f9e60"
+        ]
+      },
+      "grammar_tags": [
+        "GT005"
+      ],
+      "words": [
+        {
+          "id": "W_e87c5782",
+          "vi": "bao gồm",
+          "ipa": "",
+          "category": "accommodation"
+        },
+        {
+          "id": "W_66bcb0ff",
+          "vi": "miễn phí",
+          "ipa": "",
+          "category": "accommodation"
+        },
+        {
+          "id": "W_5dad0385",
+          "vi": "tính thêm",
+          "ipa": "",
+          "category": "accommodation"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_6e32318d",
+          "vi": "Giá có bao gồm ăn sáng không?"
+        },
+        {
+          "id": "S_7ccd6a5a",
+          "vi": "Wifi có miễn phí không?"
+        },
+        {
+          "id": "S_6efce566",
+          "vi": "Hồ bơi miễn phí cho khách."
+        },
+        {
+          "id": "S_4b61876c",
+          "vi": "Giặt là tính thêm."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_0075fb3b88",
+      "node_id": "tourist_u3_L022",
+      "quiz_id": null,
+      "unit_index": 3,
+      "unit_title": "Accommodation",
+      "lesson_type": "Grammar",
+      "lesson_title": "Describing Problems (bị)",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_c0e08f6d91"
+        ]
+      },
+      "grammar_tags": [
+        "GT004"
+      ],
+      "words": [
+        {
+          "id": "W_8f75d65d",
+          "vi": "bị",
+          "ipa": "",
+          "category": "complaint"
+        },
+        {
+          "id": "W_44048a26",
+          "vi": "không hoạt động",
+          "ipa": "",
+          "category": "complaint"
+        },
+        {
+          "id": "W_38cf2b37",
+          "vi": "chảy",
+          "ipa": "",
+          "category": "complaint"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_1764e184",
+          "vi": "Vòi nước bị chảy."
+        },
+        {
+          "id": "S_dc15a00a",
+          "vi": "Wifi không hoạt động."
+        },
+        {
+          "id": "S_6215337c",
+          "vi": "Phòng tắm bị bẩn."
+        },
+        {
+          "id": "S_55d0094b",
+          "vi": "Điều hòa bị hỏng."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_9a0b22ad23",
+      "node_id": "tourist_u3_L023",
+      "quiz_id": null,
+      "unit_index": 3,
+      "unit_title": "Accommodation",
+      "lesson_type": "Grammar",
+      "lesson_title": "Asking for a Change",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_0075fb3b88"
+        ]
+      },
+      "grammar_tags": [
+        "GT005",
+        "GT022",
+        "GT025",
+        "GT028",
+        "GT042"
+      ],
+      "words": [
+        {
+          "id": "W_4186d3b5",
+          "vi": "đổi phòng",
+          "ipa": "",
+          "category": "accommodation"
+        },
+        {
+          "id": "W_118f6ef4",
+          "vi": "nâng cấp",
+          "ipa": "",
+          "category": "accommodation"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_9cad8963",
+          "vi": "Tôi có thể đổi phòng được không?"
+        },
+        {
+          "id": "S_c905fef1",
+          "vi": "Phòng này ồn quá."
+        },
+        {
+          "id": "S_31049d62",
+          "vi": "Có phòng nào khác không?"
+        },
+        {
+          "id": "S_a2b061a5",
+          "vi": "Tôi muốn nâng cấp lên phòng to hơn."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_5bacd5fc38",
+      "node_id": "tourist_u3_L024",
+      "quiz_id": null,
+      "unit_index": 3,
+      "unit_title": "Accommodation",
+      "lesson_type": "Scene",
+      "lesson_title": "Checking In at a Homestay",
+      "content_types": [
+        "listen_choose",
+        "speak_sentence"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_9a0b22ad23"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_0ede11c5",
+          "vi": "Chào chị, tôi đã đặt phòng qua Booking."
+        },
+        {
+          "id": "S_3b98a954",
+          "vi": "Tên của bạn là gì?"
+        },
+        {
+          "id": "S_15a36fb5",
+          "vi": "Tôi là James, ở 3 đêm."
+        },
+        {
+          "id": "S_c7b65c9c",
+          "vi": "Phòng của bạn ở tầng 2."
+        },
+        {
+          "id": "S_6d5f8f24",
+          "vi": "Nhà vệ sinh chung ở cuối hành lang."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_0d2c47c8b5",
+      "node_id": "tourist_u3_L025",
+      "quiz_id": null,
+      "unit_index": 3,
+      "unit_title": "Accommodation",
+      "lesson_type": "Scene",
+      "lesson_title": "Reporting a Room Problem",
+      "content_types": [
+        "listen_choose",
+        "translation_word_bank"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_5bacd5fc38"
+        ]
+      },
+      "grammar_tags": [
+        "GT004",
+        "GT005",
+        "GT021",
+        "GT028"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_22f173e4",
+          "vi": "Chào anh, tôi ở phòng 205."
+        },
+        {
+          "id": "S_13073a3b",
+          "vi": "Điều hòa không hoạt động."
+        },
+        {
+          "id": "S_d7da8933",
+          "vi": "Anh có thể cho người sửa không?"
+        },
+        {
+          "id": "S_514aa292",
+          "vi": "Hoặc đổi phòng cho tôi được không?"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_bf0e551edb",
+      "node_id": "tourist_u3_Q026",
+      "quiz_id": "tourist_u3_Q026",
+      "unit_index": 3,
+      "unit_title": "Accommodation",
+      "lesson_type": "Quiz",
+      "lesson_title": "Accommodation Review",
+      "content_types": [
+        "mcq_translate_to_en",
+        "listen_choose",
+        "match_pairs"
+      ],
+      "xp_reward": 20,
+      "unlock_rule": {
+        "type": "unit_complete",
+        "requires": [
+          "L_215981e604",
+          "L_f8c40ab7ac",
+          "L_c0af7f9e60",
+          "L_c0e08f6d91",
+          "L_0075fb3b88",
+          "L_9a0b22ad23",
+          "L_5bacd5fc38",
+          "L_0d2c47c8b5"
+        ]
+      },
+      "grammar_tags": [
+        "GT005"
+      ],
+      "words": [
+        {
+          "id": "W_61def24a",
+          "vi": "khách sạn",
+          "ipa": "",
+          "category": "accommodation"
+        },
+        {
+          "id": "W_aa091af6",
+          "vi": "homestay",
+          "ipa": "",
+          "category": "accommodation"
+        },
+        {
+          "id": "W_66cbbf7d",
+          "vi": "đặt phòng",
+          "ipa": "",
+          "category": "accommodation"
+        },
+        {
+          "id": "W_60d24adb",
+          "vi": "bao gồm",
+          "ipa": "",
+          "category": "accommodation"
+        },
+        {
+          "id": "W_17a5ca09",
+          "vi": "bị hỏng",
+          "ipa": "",
+          "category": "complaint"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_709763dd",
+          "vi": "Giá có bao gồm ăn sáng không?"
+        }
+      ],
+      "matches": [
+        {
+          "id": "M_c812538b",
+          "text": "khách sạn"
+        },
+        {
+          "id": "M_7b98ea31",
+          "text": "homestay"
+        },
+        {
+          "id": "M_a0789e4b",
+          "text": "đặt phòng"
+        },
+        {
+          "id": "M_ab1de993",
+          "text": "bao gồm"
+        }
+      ]
+    },
+    {
+      "id": "L_ef37713429",
+      "node_id": "tourist_u4_L027",
+      "quiz_id": null,
+      "unit_index": 4,
+      "unit_title": "Street Food & Markets",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Street Food Vendors",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_bf0e551edb"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_3a88fff5",
+          "vi": "hàng rong",
+          "ipa": "",
+          "category": "food"
+        },
+        {
+          "id": "W_aa24e354",
+          "vi": "quán vỉa hè",
+          "ipa": "",
+          "category": "food"
+        },
+        {
+          "id": "W_26054a15",
+          "vi": "xe đẩy",
+          "ipa": "",
+          "category": "food"
+        },
+        {
+          "id": "W_b20a51e8",
+          "vi": "gánh hàng",
+          "ipa": "",
+          "category": "food"
+        },
+        {
+          "id": "W_425e9dcd",
+          "vi": "quán ăn",
+          "ipa": "",
+          "category": "food"
+        },
+        {
+          "id": "W_bfaf17f9",
+          "vi": "nhà hàng",
+          "ipa": "",
+          "category": "food"
+        },
+        {
+          "id": "W_d8a80f3d",
+          "vi": "bàn nhựa",
+          "ipa": "",
+          "category": "food"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_6d144225",
+          "text": "hàng rong"
+        },
+        {
+          "id": "M_aa70c1eb",
+          "text": "quán vỉa hè"
+        },
+        {
+          "id": "M_2a07b46f",
+          "text": "quán ăn"
+        }
+      ]
+    },
+    {
+      "id": "L_4187a71c36",
+      "node_id": "tourist_u4_L028",
+      "quiz_id": null,
+      "unit_index": 4,
+      "unit_title": "Street Food & Markets",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Iconic Street Foods",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_vi",
+        "picture_choice"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_ef37713429"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_db8fd8f8",
+          "vi": "phở",
+          "ipa": "",
+          "category": "food"
+        },
+        {
+          "id": "W_dd9f6a5c",
+          "vi": "bún chả",
+          "ipa": "",
+          "category": "food"
+        },
+        {
+          "id": "W_79d73316",
+          "vi": "bánh mì",
+          "ipa": "",
+          "category": "food"
+        },
+        {
+          "id": "W_a423087c",
+          "vi": "gỏi cuốn",
+          "ipa": "",
+          "category": "food"
+        },
+        {
+          "id": "W_9a36841e",
+          "vi": "chả giò",
+          "ipa": "",
+          "category": "food"
+        },
+        {
+          "id": "W_925ddd1b",
+          "vi": "cơm tấm",
+          "ipa": "",
+          "category": "food"
+        },
+        {
+          "id": "W_d97fb101",
+          "vi": "bánh xèo",
+          "ipa": "",
+          "category": "food"
+        },
+        {
+          "id": "W_381335a7",
+          "vi": "bún bò Huế",
+          "ipa": "",
+          "category": "food"
+        }
+      ],
+      "sentences": [],
+      "matches": []
+    },
+    {
+      "id": "L_014507643d",
+      "node_id": "tourist_u4_L029",
+      "quiz_id": null,
+      "unit_index": 4,
+      "unit_title": "Street Food & Markets",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Drinks & Snacks",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_4187a71c36"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_01d04d9f",
+          "vi": "cà phê sữa đá",
+          "ipa": "",
+          "category": "drink"
+        },
+        {
+          "id": "W_5945a705",
+          "vi": "cà phê trứng",
+          "ipa": "",
+          "category": "drink"
+        },
+        {
+          "id": "W_4ac0f237",
+          "vi": "trà đá",
+          "ipa": "",
+          "category": "drink"
+        },
+        {
+          "id": "W_b4cefd29",
+          "vi": "sinh tố",
+          "ipa": "",
+          "category": "drink"
+        },
+        {
+          "id": "W_8d33fd85",
+          "vi": "nước mía",
+          "ipa": "",
+          "category": "drink"
+        },
+        {
+          "id": "W_c0e7de06",
+          "vi": "bia hơi",
+          "ipa": "",
+          "category": "drink"
+        },
+        {
+          "id": "W_82beb380",
+          "vi": "chè",
+          "ipa": "",
+          "category": "food"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_731cc0a6",
+          "text": "cà phê sữa đá"
+        },
+        {
+          "id": "M_07daee6b",
+          "text": "trà đá"
+        },
+        {
+          "id": "M_8ba50a19",
+          "text": "bia hơi"
+        }
+      ]
+    },
+    {
+      "id": "L_64491f151a",
+      "node_id": "tourist_u4_L030",
+      "quiz_id": null,
+      "unit_index": 4,
+      "unit_title": "Street Food & Markets",
+      "lesson_type": "Grammar",
+      "lesson_title": "Asking for Recommendations",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_014507643d"
+        ]
+      },
+      "grammar_tags": [
+        "GT032",
+        "GT042"
+      ],
+      "words": [
+        {
+          "id": "W_e706583b",
+          "vi": "nên ăn gì",
+          "ipa": "",
+          "category": "recommendation"
+        },
+        {
+          "id": "W_398f172d",
+          "vi": "đặc sản",
+          "ipa": "",
+          "category": "food"
+        },
+        {
+          "id": "W_b2ac1c9e",
+          "vi": "nổi tiếng",
+          "ipa": "",
+          "category": "recommendation"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_9a1e6161",
+          "vi": "Ở đây nên ăn gì?"
+        },
+        {
+          "id": "S_b8393801",
+          "vi": "Quán này nổi tiếng món gì?"
+        },
+        {
+          "id": "S_1e0b4090",
+          "vi": "Đặc sản của Hà Nội là gì?"
+        },
+        {
+          "id": "S_de2e3b55",
+          "vi": "Anh/chị giới thiệu giúp tôi."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_703a5cd62b",
+      "node_id": "tourist_u4_L031",
+      "quiz_id": null,
+      "unit_index": 4,
+      "unit_title": "Street Food & Markets",
+      "lesson_type": "Grammar",
+      "lesson_title": "Customizing Orders",
+      "content_types": [
+        "fill_blank",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_64491f151a"
+        ]
+      },
+      "grammar_tags": [
+        "GT004",
+        "GT021"
+      ],
+      "words": [
+        {
+          "id": "W_932a61cd",
+          "vi": "không cho",
+          "ipa": "",
+          "category": "food"
+        },
+        {
+          "id": "W_8496ecdf",
+          "vi": "cho thêm",
+          "ipa": "",
+          "category": "food"
+        },
+        {
+          "id": "W_1b8764cf",
+          "vi": "ít ... thôi",
+          "ipa": "",
+          "category": "food"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_d0d44a87",
+          "vi": "Cho tôi phở không rau."
+        },
+        {
+          "id": "S_cf16939f",
+          "vi": "Không cho ớt, tôi không ăn cay."
+        },
+        {
+          "id": "S_df699d9a",
+          "vi": "Cho thêm nước chấm."
+        },
+        {
+          "id": "S_f034c301",
+          "vi": "Ít đá thôi."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_7334232d40",
+      "node_id": "tourist_u4_L032",
+      "quiz_id": null,
+      "unit_index": 4,
+      "unit_title": "Street Food & Markets",
+      "lesson_type": "Grammar",
+      "lesson_title": "Bargaining at the Market",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_703a5cd62b"
+        ]
+      },
+      "grammar_tags": [
+        "GT010",
+        "GT021"
+      ],
+      "words": [
+        {
+          "id": "W_22162934",
+          "vi": "giá cuối",
+          "ipa": "",
+          "category": "bargaining"
+        },
+        {
+          "id": "W_5a57b2c5",
+          "vi": "mua giúp",
+          "ipa": "",
+          "category": "bargaining"
+        },
+        {
+          "id": "W_3a644f60",
+          "vi": "đắt quá",
+          "ipa": "",
+          "category": "bargaining"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_95b0d1e5",
+          "vi": "Bao nhiêu một kí?"
+        },
+        {
+          "id": "S_fadd86d1",
+          "vi": "Đắt quá! Bớt cho tôi đi."
+        },
+        {
+          "id": "S_1d2c338e",
+          "vi": "Mua giúp tôi đi, giá nào đây?"
+        },
+        {
+          "id": "S_03a9c18b",
+          "vi": "Giá cuối là bao nhiêu?"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_b7368f40e8",
+      "node_id": "tourist_u4_L033",
+      "quiz_id": null,
+      "unit_index": 4,
+      "unit_title": "Street Food & Markets",
+      "lesson_type": "Scene",
+      "lesson_title": "Ordering Street Pho",
+      "content_types": [
+        "listen_choose",
+        "translation_word_bank"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_7334232d40"
+        ]
+      },
+      "grammar_tags": [
+        "GT010"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_7ff212b6",
+          "vi": "Chị ơi, một tô phở bò."
+        },
+        {
+          "id": "S_a4aa828a",
+          "vi": "Tái hay chín?"
+        },
+        {
+          "id": "S_6c6da660",
+          "vi": "Tái, ít hành thôi."
+        },
+        {
+          "id": "S_2668005d",
+          "vi": "Nước ngọt uống gì?"
+        },
+        {
+          "id": "S_bddcb0c2",
+          "vi": "Một trà đá. Bao nhiêu tất cả?"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_fa7d7d0693",
+      "node_id": "tourist_u4_L034",
+      "quiz_id": null,
+      "unit_index": 4,
+      "unit_title": "Street Food & Markets",
+      "lesson_type": "Scene",
+      "lesson_title": "Buying Fruits at the Market",
+      "content_types": [
+        "listen_choose",
+        "speak_sentence"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_b7368f40e8"
+        ]
+      },
+      "grammar_tags": [
+        "GT005",
+        "GT010",
+        "GT021",
+        "GT042"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_22b5708f",
+          "vi": "Xoài này bao nhiêu một kí?"
+        },
+        {
+          "id": "S_de5fd3fe",
+          "vi": "Năm mươi nghìn."
+        },
+        {
+          "id": "S_91ae01af",
+          "vi": "Đắt quá! Bốn mươi được không?"
+        },
+        {
+          "id": "S_bb2d08f4",
+          "vi": "Bốn lăm nghìn, mua nhiều bớt nữa."
+        },
+        {
+          "id": "S_496fa137",
+          "vi": "Cho tôi hai kí."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_811ca0ef40",
+      "node_id": "tourist_u4_Q035",
+      "quiz_id": "tourist_u4_Q035",
+      "unit_index": 4,
+      "unit_title": "Street Food & Markets",
+      "lesson_type": "Quiz",
+      "lesson_title": "Street Food Review",
+      "content_types": [
+        "mcq_translate_to_en",
+        "listen_choose",
+        "match_pairs"
+      ],
+      "xp_reward": 20,
+      "unlock_rule": {
+        "type": "unit_complete",
+        "requires": [
+          "L_ef37713429",
+          "L_4187a71c36",
+          "L_014507643d",
+          "L_64491f151a",
+          "L_703a5cd62b",
+          "L_7334232d40",
+          "L_b7368f40e8",
+          "L_fa7d7d0693"
+        ]
+      },
+      "grammar_tags": [
+        "GT004",
+        "GT021"
+      ],
+      "words": [
+        {
+          "id": "W_7bb095ce",
+          "vi": "phở",
+          "ipa": "",
+          "category": "food"
+        },
+        {
+          "id": "W_af7dd3f6",
+          "vi": "bánh mì",
+          "ipa": "",
+          "category": "food"
+        },
+        {
+          "id": "W_50c0c4af",
+          "vi": "cà phê sữa đá",
+          "ipa": "",
+          "category": "drink"
+        },
+        {
+          "id": "W_0034ca97",
+          "vi": "đặc sản",
+          "ipa": "",
+          "category": "food"
+        },
+        {
+          "id": "W_de4f56b1",
+          "vi": "đắt quá",
+          "ipa": "",
+          "category": "bargaining"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_52f88781",
+          "vi": "Cho tôi phở không rau."
+        }
+      ],
+      "matches": [
+        {
+          "id": "M_6460f0a2",
+          "text": "phở"
+        },
+        {
+          "id": "M_34e49470",
+          "text": "bánh mì"
+        },
+        {
+          "id": "M_d47c5410",
+          "text": "cà phê sữa đá"
+        },
+        {
+          "id": "M_cbb295d9",
+          "text": "đặc sản"
+        }
+      ]
+    },
+    {
+      "id": "L_e43f615d8d",
+      "node_id": "tourist_u5_L036",
+      "quiz_id": null,
+      "unit_index": 5,
+      "unit_title": "Day Trips & Tours",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Tour Types",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_811ca0ef40"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_d659e4e1",
+          "vi": "tour",
+          "ipa": "",
+          "category": "tour"
+        },
+        {
+          "id": "W_535640de",
+          "vi": "tour một ngày",
+          "ipa": "",
+          "category": "tour"
+        },
+        {
+          "id": "W_ef7d64c3",
+          "vi": "tour qua đêm",
+          "ipa": "",
+          "category": "tour"
+        },
+        {
+          "id": "W_dcde5f49",
+          "vi": "hướng dẫn viên",
+          "ipa": "",
+          "category": "tour"
+        },
+        {
+          "id": "W_045a8a14",
+          "vi": "tự đi",
+          "ipa": "",
+          "category": "tour"
+        },
+        {
+          "id": "W_6f62b9ca",
+          "vi": "theo nhóm",
+          "ipa": "",
+          "category": "tour"
+        },
+        {
+          "id": "W_4558bd7a",
+          "vi": "tour riêng",
+          "ipa": "",
+          "category": "tour"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_6223ceac",
+          "text": "tour"
+        },
+        {
+          "id": "M_cce9d1b2",
+          "text": "hướng dẫn viên"
+        },
+        {
+          "id": "M_947c9d8a",
+          "text": "tour riêng"
+        }
+      ]
+    },
+    {
+      "id": "L_1c81c98425",
+      "node_id": "tourist_u5_L037",
+      "quiz_id": null,
+      "unit_index": 5,
+      "unit_title": "Day Trips & Tours",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Popular Destinations",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_vi",
+        "picture_choice"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_e43f615d8d"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_6a8735b7",
+          "vi": "vịnh Hạ Long",
+          "ipa": "",
+          "category": "destination"
+        },
+        {
+          "id": "W_3e2bcfac",
+          "vi": "phố cổ Hội An",
+          "ipa": "",
+          "category": "destination"
+        },
+        {
+          "id": "W_1312e358",
+          "vi": "phố cổ Hà Nội",
+          "ipa": "",
+          "category": "destination"
+        },
+        {
+          "id": "W_5bdd539c",
+          "vi": "Sa Pa",
+          "ipa": "",
+          "category": "destination"
+        },
+        {
+          "id": "W_368a04e3",
+          "vi": "Phú Quốc",
+          "ipa": "",
+          "category": "destination"
+        },
+        {
+          "id": "W_375fae3f",
+          "vi": "Mũi Né",
+          "ipa": "",
+          "category": "destination"
+        },
+        {
+          "id": "W_11dde434",
+          "vi": "đồng bằng sông Cửu Long",
+          "ipa": "",
+          "category": "destination"
+        }
+      ],
+      "sentences": [],
+      "matches": []
+    },
+    {
+      "id": "L_d4cb74d82e",
+      "node_id": "tourist_u5_L038",
+      "quiz_id": null,
+      "unit_index": 5,
+      "unit_title": "Day Trips & Tours",
+      "lesson_type": "Grammar",
+      "lesson_title": "Asking What's Included (bao gồm)",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_1c81c98425"
+        ]
+      },
+      "grammar_tags": [
+        "GT004",
+        "GT042",
+        "GT044"
+      ],
+      "words": [
+        {
+          "id": "W_0b0d69ae",
+          "vi": "bao gồm",
+          "ipa": "",
+          "category": "tour"
+        },
+        {
+          "id": "W_3be597c6",
+          "vi": "không bao gồm",
+          "ipa": "",
+          "category": "tour"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_00c64199",
+          "vi": "Tour này bao gồm những gì?"
+        },
+        {
+          "id": "S_3c3ea815",
+          "vi": "Đã bao gồm ăn trưa và xe đưa đón."
+        },
+        {
+          "id": "S_2bf22d69",
+          "vi": "Vé vào cửa không bao gồm."
+        },
+        {
+          "id": "S_635c2be4",
+          "vi": "Tip cho hướng dẫn viên tự nguyện."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_ba9a75c4bc",
+      "node_id": "tourist_u5_L039",
+      "quiz_id": null,
+      "unit_index": 5,
+      "unit_title": "Day Trips & Tours",
+      "lesson_type": "Grammar",
+      "lesson_title": "Scheduling & Pickup",
+      "content_types": [
+        "fill_blank",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_d4cb74d82e"
+        ]
+      },
+      "grammar_tags": [
+        "GT011",
+        "GT034"
+      ],
+      "words": [
+        {
+          "id": "W_767ddaf3",
+          "vi": "đón",
+          "ipa": "",
+          "category": "tour"
+        },
+        {
+          "id": "W_3ec9417d",
+          "vi": "trả",
+          "ipa": "",
+          "category": "tour"
+        },
+        {
+          "id": "W_30a22800",
+          "vi": "điểm hẹn",
+          "ipa": "",
+          "category": "tour"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_38db3102",
+          "vi": "Xe đón tôi lúc mấy giờ?"
+        },
+        {
+          "id": "S_a3bbb0b0",
+          "vi": "Bảy giờ sáng ở khách sạn."
+        },
+        {
+          "id": "S_03a6fb5b",
+          "vi": "Điểm hẹn ở cửa lớn."
+        },
+        {
+          "id": "S_1cc50715",
+          "vi": "Mấy giờ về lại thành phố?"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_14d205af54",
+      "node_id": "tourist_u5_L040",
+      "quiz_id": null,
+      "unit_index": 5,
+      "unit_title": "Day Trips & Tours",
+      "lesson_type": "Grammar",
+      "lesson_title": "Complex Conditionals for Tour Planning",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_ba9a75c4bc"
+        ]
+      },
+      "grammar_tags": [
+        "GT005",
+        "GT025"
+      ],
+      "words": [
+        {
+          "id": "W_c2fb6ae8",
+          "vi": "nếu ... thì có thể",
+          "ipa": "",
+          "category": "conditional"
+        },
+        {
+          "id": "W_d4bc3bf0",
+          "vi": "trong trường hợp",
+          "ipa": "",
+          "category": "conditional"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_dad2a6c4",
+          "vi": "Nếu mưa thì tour có bị hủy không?"
+        },
+        {
+          "id": "S_a0bf736f",
+          "vi": "Trong trường hợp xấu, tour sẽ đổi ngày."
+        },
+        {
+          "id": "S_8e5ba34a",
+          "vi": "Nếu trễ hơn 15 phút thì sao?"
+        },
+        {
+          "id": "S_2816b974",
+          "vi": "Nếu đặt sớm thì có giảm giá không?"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_909ed8b99a",
+      "node_id": "tourist_u5_L041",
+      "quiz_id": null,
+      "unit_index": 5,
+      "unit_title": "Day Trips & Tours",
+      "lesson_type": "Grammar",
+      "lesson_title": "Making Special Requests",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_14d205af54"
+        ]
+      },
+      "grammar_tags": [
+        "GT005"
+      ],
+      "words": [
+        {
+          "id": "W_f0a40258",
+          "vi": "ăn chay",
+          "ipa": "",
+          "category": "food"
+        },
+        {
+          "id": "W_72902654",
+          "vi": "dị ứng",
+          "ipa": "",
+          "category": "health"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_6ee52655",
+          "vi": "Tôi ăn chay, có đồ chay không?"
+        },
+        {
+          "id": "S_a6ff5696",
+          "vi": "Tôi bị dị ứng hải sản."
+        },
+        {
+          "id": "S_99c569dc",
+          "vi": "Chúng tôi có trẻ em đi cùng."
+        },
+        {
+          "id": "S_d3111792",
+          "vi": "Nhóm tôi 4 người lớn và 1 trẻ."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_d38bf583ac",
+      "node_id": "tourist_u5_L042",
+      "quiz_id": null,
+      "unit_index": 5,
+      "unit_title": "Day Trips & Tours",
+      "lesson_type": "Scene",
+      "lesson_title": "Booking a Halong Bay Tour",
+      "content_types": [
+        "listen_choose",
+        "speak_sentence"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_909ed8b99a"
+        ]
+      },
+      "grammar_tags": [
+        "GT010",
+        "GT022"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_a17afb95",
+          "vi": "Tôi muốn đi tour Hạ Long một ngày."
+        },
+        {
+          "id": "S_3161f38f",
+          "vi": "Tour gồm ăn trưa, đi thuyền, và hang động."
+        },
+        {
+          "id": "S_a4141074",
+          "vi": "Giá bao nhiêu một người?"
+        },
+        {
+          "id": "S_0a90f995",
+          "vi": "Hai đứa tôi, bao giờ xuất phát?"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_7e4dd779e2",
+      "node_id": "tourist_u5_L043",
+      "quiz_id": null,
+      "unit_index": 5,
+      "unit_title": "Day Trips & Tours",
+      "lesson_type": "Scene",
+      "lesson_title": "Asking the Tour Guide Questions",
+      "content_types": [
+        "listen_choose",
+        "translation_word_bank"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_d38bf583ac"
+        ]
+      },
+      "grammar_tags": [
+        "GT005",
+        "GT007",
+        "GT028"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_ba438a9e",
+          "vi": "Chúng ta sẽ ở đây bao lâu?"
+        },
+        {
+          "id": "S_00149673",
+          "vi": "Có thời gian đi dạo không?"
+        },
+        {
+          "id": "S_0abaf742",
+          "vi": "Tôi có thể chụp ảnh ở đây không?"
+        },
+        {
+          "id": "S_bb7b6e55",
+          "vi": "Nhà vệ sinh ở đâu?"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_76d711a6dc",
+      "node_id": "tourist_u5_Q044",
+      "quiz_id": "tourist_u5_Q044",
+      "unit_index": 5,
+      "unit_title": "Day Trips & Tours",
+      "lesson_type": "Quiz",
+      "lesson_title": "Tours Review",
+      "content_types": [
+        "mcq_translate_to_en",
+        "listen_choose",
+        "match_pairs"
+      ],
+      "xp_reward": 20,
+      "unlock_rule": {
+        "type": "unit_complete",
+        "requires": [
+          "L_e43f615d8d",
+          "L_1c81c98425",
+          "L_d4cb74d82e",
+          "L_ba9a75c4bc",
+          "L_14d205af54",
+          "L_909ed8b99a",
+          "L_d38bf583ac",
+          "L_7e4dd779e2"
+        ]
+      },
+      "grammar_tags": [
+        "GT042"
+      ],
+      "words": [
+        {
+          "id": "W_b5396ebe",
+          "vi": "tour một ngày",
+          "ipa": "",
+          "category": "tour"
+        },
+        {
+          "id": "W_23d1d6e3",
+          "vi": "hướng dẫn viên",
+          "ipa": "",
+          "category": "tour"
+        },
+        {
+          "id": "W_c9b5af05",
+          "vi": "vịnh Hạ Long",
+          "ipa": "",
+          "category": "destination"
+        },
+        {
+          "id": "W_3ec1e3f0",
+          "vi": "bao gồm",
+          "ipa": "",
+          "category": "tour"
+        },
+        {
+          "id": "W_5ea7e601",
+          "vi": "ăn chay",
+          "ipa": "",
+          "category": "food"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_4489a616",
+          "vi": "Tour này bao gồm những gì?"
+        }
+      ],
+      "matches": [
+        {
+          "id": "M_2f1bbee2",
+          "text": "tour một ngày"
+        },
+        {
+          "id": "M_3eecddd5",
+          "text": "hướng dẫn viên"
+        },
+        {
+          "id": "M_017b0088",
+          "text": "vịnh Hạ Long"
+        },
+        {
+          "id": "M_c20f4b51",
+          "text": "bao gồm"
+        }
+      ]
+    },
+    {
+      "id": "L_e95a196227",
+      "node_id": "tourist_u6_L045",
+      "quiz_id": null,
+      "unit_index": 6,
+      "unit_title": "Shopping & Bargaining",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Shopping Locations",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_76d711a6dc"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_004c2d46",
+          "vi": "chợ",
+          "ipa": "",
+          "category": "shopping"
+        },
+        {
+          "id": "W_5d6d88b9",
+          "vi": "chợ đêm",
+          "ipa": "",
+          "category": "shopping"
+        },
+        {
+          "id": "W_69814d4e",
+          "vi": "chợ Bến Thành",
+          "ipa": "",
+          "category": "shopping"
+        },
+        {
+          "id": "W_b54bd5ff",
+          "vi": "trung tâm thương mại",
+          "ipa": "",
+          "category": "shopping"
+        },
+        {
+          "id": "W_04f3e253",
+          "vi": "cửa hàng lưu niệm",
+          "ipa": "",
+          "category": "shopping"
+        },
+        {
+          "id": "W_012995e4",
+          "vi": "tiệm",
+          "ipa": "",
+          "category": "shopping"
+        },
+        {
+          "id": "W_3df0bf06",
+          "vi": "siêu thị",
+          "ipa": "",
+          "category": "shopping"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_d691551f",
+          "text": "chợ đêm"
+        },
+        {
+          "id": "M_8191d827",
+          "text": "trung tâm thương mại"
+        },
+        {
+          "id": "M_1838e6aa",
+          "text": "cửa hàng lưu niệm"
+        }
+      ]
+    },
+    {
+      "id": "L_998daa6104",
+      "node_id": "tourist_u6_L046",
+      "quiz_id": null,
+      "unit_index": 6,
+      "unit_title": "Shopping & Bargaining",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Souvenirs & Crafts",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_vi",
+        "picture_choice"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_e95a196227"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_ce44d520",
+          "vi": "quà lưu niệm",
+          "ipa": "",
+          "category": "souvenir"
+        },
+        {
+          "id": "W_be0a197a",
+          "vi": "áo dài",
+          "ipa": "",
+          "category": "souvenir"
+        },
+        {
+          "id": "W_b79d3d67",
+          "vi": "nón lá",
+          "ipa": "",
+          "category": "souvenir"
+        },
+        {
+          "id": "W_dc6846bf",
+          "vi": "tranh sơn mài",
+          "ipa": "",
+          "category": "souvenir"
+        },
+        {
+          "id": "W_0313fbb1",
+          "vi": "đồ gốm",
+          "ipa": "",
+          "category": "souvenir"
+        },
+        {
+          "id": "W_f9131961",
+          "vi": "lụa",
+          "ipa": "",
+          "category": "souvenir"
+        },
+        {
+          "id": "W_c9fb2eab",
+          "vi": "cà phê Việt Nam",
+          "ipa": "",
+          "category": "souvenir"
+        }
+      ],
+      "sentences": [],
+      "matches": []
+    },
+    {
+      "id": "L_b9b1b76620",
+      "node_id": "tourist_u6_L047",
+      "quiz_id": null,
+      "unit_index": 6,
+      "unit_title": "Shopping & Bargaining",
+      "lesson_type": "Grammar",
+      "lesson_title": "Heavy Bargaining Techniques",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_998daa6104"
+        ]
+      },
+      "grammar_tags": [
+        "GT005",
+        "GT010",
+        "GT021",
+        "GT026"
+      ],
+      "words": [
+        {
+          "id": "W_424989a7",
+          "vi": "giá gốc",
+          "ipa": "",
+          "category": "bargaining"
+        },
+        {
+          "id": "W_274e4305",
+          "vi": "giá rẻ nhất",
+          "ipa": "",
+          "category": "bargaining"
+        },
+        {
+          "id": "W_d6a07dd5",
+          "vi": "cho giá tốt",
+          "ipa": "",
+          "category": "bargaining"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_4b018732",
+          "vi": "Giá gốc bao nhiêu?"
+        },
+        {
+          "id": "S_92cd752e",
+          "vi": "Giá rẻ nhất là bao nhiêu?"
+        },
+        {
+          "id": "S_e56e7fa7",
+          "vi": "Cho tôi giá tốt nhé, tôi mua nhiều."
+        },
+        {
+          "id": "S_be5eb81e",
+          "vi": "Một nửa thôi, được không?"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_48e608147f",
+      "node_id": "tourist_u6_L048",
+      "quiz_id": null,
+      "unit_index": 6,
+      "unit_title": "Shopping & Bargaining",
+      "lesson_type": "Grammar",
+      "lesson_title": "Walking Away Strategy",
+      "content_types": [
+        "fill_blank",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_b9b1b76620"
+        ]
+      },
+      "grammar_tags": [
+        "GT018"
+      ],
+      "words": [
+        {
+          "id": "W_9e04fae3",
+          "vi": "để tôi suy nghĩ",
+          "ipa": "",
+          "category": "bargaining"
+        },
+        {
+          "id": "W_0a21d2ef",
+          "vi": "đi xem chỗ khác",
+          "ipa": "",
+          "category": "bargaining"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_ced27ef6",
+          "vi": "Để tôi suy nghĩ đã."
+        },
+        {
+          "id": "S_28d4ac2d",
+          "vi": "Tôi đi xem chỗ khác rồi quay lại."
+        },
+        {
+          "id": "S_7fcfa0cf",
+          "vi": "Đắt quá, cảm ơn anh/chị."
+        },
+        {
+          "id": "S_450cfb28",
+          "vi": "Thôi để lần sau."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_3fd3bd42e2",
+      "node_id": "tourist_u6_L049",
+      "quiz_id": null,
+      "unit_index": 6,
+      "unit_title": "Shopping & Bargaining",
+      "lesson_type": "Grammar",
+      "lesson_title": "Quality Check Language",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_48e608147f"
+        ]
+      },
+      "grammar_tags": [
+        "GT005",
+        "GT021",
+        "GT043"
+      ],
+      "words": [
+        {
+          "id": "W_47ed7772",
+          "vi": "hàng thật",
+          "ipa": "",
+          "category": "quality"
+        },
+        {
+          "id": "W_871fee49",
+          "vi": "hàng giả",
+          "ipa": "",
+          "category": "quality"
+        },
+        {
+          "id": "W_df17ce0e",
+          "vi": "chất lượng",
+          "ipa": "",
+          "category": "quality"
+        },
+        {
+          "id": "W_c3b315af",
+          "vi": "bảo hành",
+          "ipa": "",
+          "category": "quality"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_261daca5",
+          "vi": "Đây là hàng thật hay hàng giả?"
+        },
+        {
+          "id": "S_9938eb42",
+          "vi": "Có bảo hành không?"
+        },
+        {
+          "id": "S_1aaff90b",
+          "vi": "Chất lượng thế nào?"
+        },
+        {
+          "id": "S_19bc408c",
+          "vi": "Cho tôi xem kỹ một chút."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_9a494b13eb",
+      "node_id": "tourist_u6_L050",
+      "quiz_id": null,
+      "unit_index": 6,
+      "unit_title": "Shopping & Bargaining",
+      "lesson_type": "Grammar",
+      "lesson_title": "Paying & Receipts",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_3fd3bd42e2"
+        ]
+      },
+      "grammar_tags": [
+        "GT005",
+        "GT021"
+      ],
+      "words": [
+        {
+          "id": "W_553322b8",
+          "vi": "tiền mặt",
+          "ipa": "",
+          "category": "payment"
+        },
+        {
+          "id": "W_31b44433",
+          "vi": "chuyển khoản",
+          "ipa": "",
+          "category": "payment"
+        },
+        {
+          "id": "W_605e1453",
+          "vi": "quẹt thẻ",
+          "ipa": "",
+          "category": "payment"
+        },
+        {
+          "id": "W_48d9ed38",
+          "vi": "hóa đơn",
+          "ipa": "",
+          "category": "payment"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_0a3c5b7d",
+          "vi": "Anh nhận tiền mặt không?"
+        },
+        {
+          "id": "S_cd4b95a8",
+          "vi": "Có quẹt thẻ được không?"
+        },
+        {
+          "id": "S_23ac3237",
+          "vi": "Cho tôi hóa đơn."
+        },
+        {
+          "id": "S_b36f3830",
+          "vi": "Tôi chuyển khoản được không?"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_224aa9f22a",
+      "node_id": "tourist_u6_L051",
+      "quiz_id": null,
+      "unit_index": 6,
+      "unit_title": "Shopping & Bargaining",
+      "lesson_type": "Scene",
+      "lesson_title": "Bargaining at Ben Thanh Market",
+      "content_types": [
+        "listen_choose",
+        "speak_sentence"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_9a494b13eb"
+        ]
+      },
+      "grammar_tags": [
+        "GT004",
+        "GT005",
+        "GT010"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_9709742b",
+          "vi": "Chị ơi, cái nón lá bao nhiêu?"
+        },
+        {
+          "id": "S_49f6bc88",
+          "vi": "Ba trăm nghìn."
+        },
+        {
+          "id": "S_8ddbac95",
+          "vi": "Đắt quá! Một trăm rưỡi được không?"
+        },
+        {
+          "id": "S_ba7f446b",
+          "vi": "Không được, hai trăm năm thôi."
+        },
+        {
+          "id": "S_995697fc",
+          "vi": "Thôi để tôi xem chỗ khác."
+        },
+        {
+          "id": "S_a4176037",
+          "vi": "Thôi được, lấy một trăm tám chục."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_3d985d5813",
+      "node_id": "tourist_u6_L052",
+      "quiz_id": null,
+      "unit_index": 6,
+      "unit_title": "Shopping & Bargaining",
+      "lesson_type": "Scene",
+      "lesson_title": "Buying Coffee to Take Home",
+      "content_types": [
+        "listen_choose",
+        "translation_word_bank"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_224aa9f22a"
+        ]
+      },
+      "grammar_tags": [
+        "GT005",
+        "GT021",
+        "GT022",
+        "GT026"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_65723c31",
+          "vi": "Tôi muốn mua cà phê mang về nước."
+        },
+        {
+          "id": "S_65ee8672",
+          "vi": "Loại nào ngon nhất?"
+        },
+        {
+          "id": "S_a1f5cfd5",
+          "vi": "Robusta mạnh, Arabica nhẹ."
+        },
+        {
+          "id": "S_453a8427",
+          "vi": "Cho tôi 2 gói mỗi loại."
+        },
+        {
+          "id": "S_33682d90",
+          "vi": "Có hộp quà không?"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_47ef40af37",
+      "node_id": "tourist_u6_Q053",
+      "quiz_id": "tourist_u6_Q053",
+      "unit_index": 6,
+      "unit_title": "Shopping & Bargaining",
+      "lesson_type": "Quiz",
+      "lesson_title": "Shopping Review",
+      "content_types": [
+        "mcq_translate_to_en",
+        "listen_choose",
+        "match_pairs"
+      ],
+      "xp_reward": 20,
+      "unlock_rule": {
+        "type": "unit_complete",
+        "requires": [
+          "L_e95a196227",
+          "L_998daa6104",
+          "L_b9b1b76620",
+          "L_48e608147f",
+          "L_3fd3bd42e2",
+          "L_9a494b13eb",
+          "L_224aa9f22a",
+          "L_3d985d5813"
+        ]
+      },
+      "grammar_tags": [
+        "GT010",
+        "GT026"
+      ],
+      "words": [
+        {
+          "id": "W_21e36623",
+          "vi": "chợ đêm",
+          "ipa": "",
+          "category": "shopping"
+        },
+        {
+          "id": "W_48758efb",
+          "vi": "quà lưu niệm",
+          "ipa": "",
+          "category": "souvenir"
+        },
+        {
+          "id": "W_6289446b",
+          "vi": "giá gốc",
+          "ipa": "",
+          "category": "bargaining"
+        },
+        {
+          "id": "W_7da37d85",
+          "vi": "hóa đơn",
+          "ipa": "",
+          "category": "payment"
+        },
+        {
+          "id": "W_2e31be29",
+          "vi": "hàng giả",
+          "ipa": "",
+          "category": "quality"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_63a8b57b",
+          "vi": "Giá rẻ nhất là bao nhiêu?"
+        }
+      ],
+      "matches": [
+        {
+          "id": "M_146ffba3",
+          "text": "chợ đêm"
+        },
+        {
+          "id": "M_4fc37598",
+          "text": "quà lưu niệm"
+        },
+        {
+          "id": "M_6dd6b84e",
+          "text": "giá gốc"
+        },
+        {
+          "id": "M_bf366a7d",
+          "text": "hóa đơn"
+        }
+      ]
+    },
+    {
+      "id": "L_5c8befc7c5",
+      "node_id": "tourist_u7_L054",
+      "quiz_id": null,
+      "unit_index": 7,
+      "unit_title": "Safety & Emergencies",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Emergency Services",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_47ef40af37"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_c875d4f0",
+          "vi": "cảnh sát",
+          "ipa": "",
+          "category": "emergency"
+        },
+        {
+          "id": "W_6db4e258",
+          "vi": "công an",
+          "ipa": "",
+          "category": "emergency"
+        },
+        {
+          "id": "W_1a4f8c4f",
+          "vi": "bệnh viện",
+          "ipa": "",
+          "category": "emergency"
+        },
+        {
+          "id": "W_0ea1a239",
+          "vi": "bác sĩ",
+          "ipa": "",
+          "category": "emergency"
+        },
+        {
+          "id": "W_1d2c12b8",
+          "vi": "cấp cứu",
+          "ipa": "",
+          "category": "emergency"
+        },
+        {
+          "id": "W_dea9c1e5",
+          "vi": "đại sứ quán",
+          "ipa": "",
+          "category": "emergency"
+        },
+        {
+          "id": "W_d5c00e95",
+          "vi": "lãnh sự quán",
+          "ipa": "",
+          "category": "emergency"
+        },
+        {
+          "id": "W_ff413dcb",
+          "vi": "số khẩn cấp",
+          "ipa": "",
+          "category": "emergency"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_1a769780",
+          "text": "cảnh sát"
+        },
+        {
+          "id": "M_adfc6886",
+          "text": "bệnh viện"
+        },
+        {
+          "id": "M_2b8c665b",
+          "text": "cấp cứu"
+        },
+        {
+          "id": "M_e3a25aee",
+          "text": "đại sứ quán"
+        }
+      ]
+    },
+    {
+      "id": "L_f9d611084b",
+      "node_id": "tourist_u7_L055",
+      "quiz_id": null,
+      "unit_index": 7,
+      "unit_title": "Safety & Emergencies",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Common Problems",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_vi",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_5c8befc7c5"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_eb7e77a7",
+          "vi": "mất",
+          "ipa": "",
+          "category": "problem"
+        },
+        {
+          "id": "W_74175335",
+          "vi": "bị mất cắp",
+          "ipa": "",
+          "category": "problem"
+        },
+        {
+          "id": "W_00a506a5",
+          "vi": "bị lừa",
+          "ipa": "",
+          "category": "problem"
+        },
+        {
+          "id": "W_2e6d0d24",
+          "vi": "tai nạn",
+          "ipa": "",
+          "category": "problem"
+        },
+        {
+          "id": "W_31ee4ca1",
+          "vi": "đau bụng",
+          "ipa": "",
+          "category": "problem"
+        },
+        {
+          "id": "W_b305eae6",
+          "vi": "ngộ độc thức ăn",
+          "ipa": "",
+          "category": "problem"
+        },
+        {
+          "id": "W_e5be6c90",
+          "vi": "bị say nắng",
+          "ipa": "",
+          "category": "problem"
+        }
+      ],
+      "sentences": [],
+      "matches": []
+    },
+    {
+      "id": "L_e777540562",
+      "node_id": "tourist_u7_L056",
+      "quiz_id": null,
+      "unit_index": 7,
+      "unit_title": "Safety & Emergencies",
+      "lesson_type": "Grammar",
+      "lesson_title": "Reporting What Happened",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_f9d611084b"
+        ]
+      },
+      "grammar_tags": [
+        "GT004"
+      ],
+      "words": [
+        {
+          "id": "W_1e372120",
+          "vi": "xảy ra",
+          "ipa": "",
+          "category": "report"
+        },
+        {
+          "id": "W_79df529f",
+          "vi": "vừa mới",
+          "ipa": "",
+          "category": "time"
+        },
+        {
+          "id": "W_45c8fb8d",
+          "vi": "hồi nãy",
+          "ipa": "",
+          "category": "time"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_357f016a",
+          "vi": "Vừa mới xảy ra, tôi bị mất ví."
+        },
+        {
+          "id": "S_a74e9e75",
+          "vi": "Hồi nãy tôi bị một người lạ giật điện thoại."
+        },
+        {
+          "id": "S_b9b97b47",
+          "vi": "Tôi để hành lý ở đây nhưng không thấy nữa."
+        },
+        {
+          "id": "S_63b9e416",
+          "vi": "Anh ấy chạy xe máy bỏ chạy."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_ca9ddd61bc",
+      "node_id": "tourist_u7_L057",
+      "quiz_id": null,
+      "unit_index": 7,
+      "unit_title": "Safety & Emergencies",
+      "lesson_type": "Grammar",
+      "lesson_title": "Asking for Help Urgently",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_e777540562"
+        ]
+      },
+      "grammar_tags": [
+        "GT002",
+        "GT005"
+      ],
+      "words": [
+        {
+          "id": "W_4940e695",
+          "vi": "giúp tôi với",
+          "ipa": "",
+          "category": "emergency"
+        },
+        {
+          "id": "W_69787362",
+          "vi": "làm ơn gọi",
+          "ipa": "",
+          "category": "emergency"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_c5e48a42",
+          "vi": "Giúp tôi với! Có ai giúp tôi không?"
+        },
+        {
+          "id": "S_41aae013",
+          "vi": "Làm ơn gọi cảnh sát."
+        },
+        {
+          "id": "S_a6c7fec7",
+          "vi": "Tôi cần đi bệnh viện gấp."
+        },
+        {
+          "id": "S_0e7bfc5c",
+          "vi": "Ai biết tiếng Anh không?"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_81c789b639",
+      "node_id": "tourist_u7_L058",
+      "quiz_id": null,
+      "unit_index": 7,
+      "unit_title": "Safety & Emergencies",
+      "lesson_type": "Grammar",
+      "lesson_title": "Describing Pain & Symptoms",
+      "content_types": [
+        "fill_blank",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_ca9ddd61bc"
+        ]
+      },
+      "grammar_tags": [
+        "GT004",
+        "GT007"
+      ],
+      "words": [
+        {
+          "id": "W_73200ead",
+          "vi": "đau ở đâu",
+          "ipa": "",
+          "category": "health"
+        },
+        {
+          "id": "W_94fe357f",
+          "vi": "từ khi nào",
+          "ipa": "",
+          "category": "health"
+        },
+        {
+          "id": "W_eee76b34",
+          "vi": "cảm thấy",
+          "ipa": "",
+          "category": "health"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_9e1cc674",
+          "vi": "Bạn đau ở đâu?"
+        },
+        {
+          "id": "S_d0445b49",
+          "vi": "Tôi đau ở bụng."
+        },
+        {
+          "id": "S_d1582dd5",
+          "vi": "Từ tối qua, tôi cảm thấy chóng mặt."
+        },
+        {
+          "id": "S_f648331e",
+          "vi": "Tôi đã uống thuốc nhưng không đỡ."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_da640741f5",
+      "node_id": "tourist_u7_L059",
+      "quiz_id": null,
+      "unit_index": 7,
+      "unit_title": "Safety & Emergencies",
+      "lesson_type": "Grammar",
+      "lesson_title": "Giving Contact Info to Officials",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_81c789b639"
+        ]
+      },
+      "grammar_tags": [
+        "GT032",
+        "GT043"
+      ],
+      "words": [
+        {
+          "id": "W_75a4b544",
+          "vi": "số hộ chiếu",
+          "ipa": "",
+          "category": "document"
+        },
+        {
+          "id": "W_f1f2c071",
+          "vi": "địa chỉ khách sạn",
+          "ipa": "",
+          "category": "document"
+        },
+        {
+          "id": "W_ee175f01",
+          "vi": "số bảo hiểm",
+          "ipa": "",
+          "category": "document"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_d5df240e",
+          "vi": "Đây là số hộ chiếu của tôi."
+        },
+        {
+          "id": "S_5d553f4a",
+          "vi": "Tôi ở khách sạn ABC, phòng 305."
+        },
+        {
+          "id": "S_4ec7cba6",
+          "vi": "Tôi có bảo hiểm du lịch."
+        },
+        {
+          "id": "S_80a01e4c",
+          "vi": "Tôi sẽ gọi đại sứ quán."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_faee0a98dc",
+      "node_id": "tourist_u7_L060",
+      "quiz_id": null,
+      "unit_index": 7,
+      "unit_title": "Safety & Emergencies",
+      "lesson_type": "Scene",
+      "lesson_title": "Reporting a Stolen Phone",
+      "content_types": [
+        "listen_choose",
+        "speak_sentence"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_da640741f5"
+        ]
+      },
+      "grammar_tags": [
+        "GT007"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_830e5c38",
+          "vi": "Chào anh, tôi bị giật điện thoại."
+        },
+        {
+          "id": "S_33f6c1a4",
+          "vi": "Xảy ra ở đâu?"
+        },
+        {
+          "id": "S_c1314d2f",
+          "vi": "Hồi nãy ở đường Nguyễn Huệ, cách đây 10 phút."
+        },
+        {
+          "id": "S_1b40a31e",
+          "vi": "Người đó đi xe máy màu đỏ."
+        },
+        {
+          "id": "S_16885bab",
+          "vi": "Tôi cần giấy báo để đòi bảo hiểm."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_8cf59a85f9",
+      "node_id": "tourist_u7_L061",
+      "quiz_id": null,
+      "unit_index": 7,
+      "unit_title": "Safety & Emergencies",
+      "lesson_type": "Scene",
+      "lesson_title": "At the Clinic with Food Poisoning",
+      "content_types": [
+        "listen_choose",
+        "translation_word_bank"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_faee0a98dc"
+        ]
+      },
+      "grammar_tags": [
+        "GT005",
+        "GT021",
+        "GT028"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_a9b6f74e",
+          "vi": "Tôi bị đau bụng dữ dội từ sáng."
+        },
+        {
+          "id": "S_8538e8af",
+          "vi": "Có thể là ngộ độc thức ăn."
+        },
+        {
+          "id": "S_4220084b",
+          "vi": "Tôi ăn hải sản tối qua."
+        },
+        {
+          "id": "S_5815d6fc",
+          "vi": "Bác sĩ cho tôi thuốc gì?"
+        },
+        {
+          "id": "S_29cee7b7",
+          "vi": "Tôi có thể bay không?"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_361d3cecc8",
+      "node_id": "tourist_u7_Q062",
+      "quiz_id": "tourist_u7_Q062",
+      "unit_index": 7,
+      "unit_title": "Safety & Emergencies",
+      "lesson_type": "Quiz",
+      "lesson_title": "Safety Review",
+      "content_types": [
+        "mcq_translate_to_en",
+        "listen_choose",
+        "match_pairs"
+      ],
+      "xp_reward": 20,
+      "unlock_rule": {
+        "type": "unit_complete",
+        "requires": [
+          "L_5c8befc7c5",
+          "L_f9d611084b",
+          "L_e777540562",
+          "L_ca9ddd61bc",
+          "L_81c789b639",
+          "L_da640741f5",
+          "L_faee0a98dc",
+          "L_8cf59a85f9"
+        ]
+      },
+      "grammar_tags": [
+        "GT002"
+      ],
+      "words": [
+        {
+          "id": "W_267f25c5",
+          "vi": "cảnh sát",
+          "ipa": "",
+          "category": "emergency"
+        },
+        {
+          "id": "W_8a77328d",
+          "vi": "cấp cứu",
+          "ipa": "",
+          "category": "emergency"
+        },
+        {
+          "id": "W_8edcf8ce",
+          "vi": "bị mất cắp",
+          "ipa": "",
+          "category": "problem"
+        },
+        {
+          "id": "W_e02fbd16",
+          "vi": "đại sứ quán",
+          "ipa": "",
+          "category": "emergency"
+        },
+        {
+          "id": "W_7585c1d9",
+          "vi": "giúp tôi với",
+          "ipa": "",
+          "category": "emergency"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_c0bf4824",
+          "vi": "Làm ơn gọi cảnh sát."
+        }
+      ],
+      "matches": [
+        {
+          "id": "M_fc5fb5ea",
+          "text": "cảnh sát"
+        },
+        {
+          "id": "M_8cd65383",
+          "text": "cấp cứu"
+        },
+        {
+          "id": "M_70c08162",
+          "text": "bị mất cắp"
+        },
+        {
+          "id": "M_2849ef0c",
+          "text": "đại sứ quán"
+        }
+      ]
+    },
+    {
+      "id": "L_83a0dca053",
+      "node_id": "tourist_u8_L063",
+      "quiz_id": null,
+      "unit_index": 8,
+      "unit_title": "Making Friends & Social Situations",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Making Casual Friends",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_361d3cecc8"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_4f53dc22",
+          "vi": "bạn",
+          "ipa": "",
+          "category": "social"
+        },
+        {
+          "id": "W_47059968",
+          "vi": "làm quen",
+          "ipa": "",
+          "category": "social"
+        },
+        {
+          "id": "W_a71995bd",
+          "vi": "kết bạn",
+          "ipa": "",
+          "category": "social"
+        },
+        {
+          "id": "W_6b83be35",
+          "vi": "gặp lại",
+          "ipa": "",
+          "category": "social"
+        },
+        {
+          "id": "W_cd4414b2",
+          "vi": "đi chơi",
+          "ipa": "",
+          "category": "social"
+        },
+        {
+          "id": "W_72075d6d",
+          "vi": "hẹn hò",
+          "ipa": "",
+          "category": "social"
+        },
+        {
+          "id": "W_2330eff4",
+          "vi": "zalo / facebook",
+          "ipa": "",
+          "category": "social"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_6a979730",
+          "text": "làm quen"
+        },
+        {
+          "id": "M_ed83dbf9",
+          "text": "đi chơi"
+        },
+        {
+          "id": "M_2a99bc3c",
+          "text": "kết bạn"
+        }
+      ]
+    },
+    {
+      "id": "L_f043eaacfb",
+      "node_id": "tourist_u8_L064",
+      "quiz_id": null,
+      "unit_index": 8,
+      "unit_title": "Making Friends & Social Situations",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Chatting Topics",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_vi",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_83a0dca053"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_b4ced3b5",
+          "vi": "quê",
+          "ipa": "",
+          "category": "social"
+        },
+        {
+          "id": "W_76798fa9",
+          "vi": "nghề nghiệp",
+          "ipa": "",
+          "category": "social"
+        },
+        {
+          "id": "W_224a39ed",
+          "vi": "sở thích",
+          "ipa": "",
+          "category": "social"
+        },
+        {
+          "id": "W_298e0b20",
+          "vi": "du lịch",
+          "ipa": "",
+          "category": "social"
+        },
+        {
+          "id": "W_e65b5ca4",
+          "vi": "phim",
+          "ipa": "",
+          "category": "social"
+        },
+        {
+          "id": "W_6b60775d",
+          "vi": "nhạc",
+          "ipa": "",
+          "category": "social"
+        },
+        {
+          "id": "W_4fb1163c",
+          "vi": "đồ ăn",
+          "ipa": "",
+          "category": "social"
+        }
+      ],
+      "sentences": [],
+      "matches": []
+    },
+    {
+      "id": "L_2a1951c794",
+      "node_id": "tourist_u8_L065",
+      "quiz_id": null,
+      "unit_index": 8,
+      "unit_title": "Making Friends & Social Situations",
+      "lesson_type": "Grammar",
+      "lesson_title": "Exchanging Contact Info",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_f043eaacfb"
+        ]
+      },
+      "grammar_tags": [
+        "GT005",
+        "GT021"
+      ],
+      "words": [
+        {
+          "id": "W_527b535d",
+          "vi": "xin số",
+          "ipa": "",
+          "category": "social"
+        },
+        {
+          "id": "W_f417e3d6",
+          "vi": "kết bạn trên",
+          "ipa": "",
+          "category": "social"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_8623059e",
+          "vi": "Cho tôi xin số zalo của bạn nhé."
+        },
+        {
+          "id": "S_1e100d94",
+          "vi": "Kết bạn facebook với mình nhé."
+        },
+        {
+          "id": "S_56e31971",
+          "vi": "Bạn có instagram không?"
+        },
+        {
+          "id": "S_cd3c02de",
+          "vi": "Lưu số tôi đi."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_9ce40aaa31",
+      "node_id": "tourist_u8_L066",
+      "quiz_id": null,
+      "unit_index": 8,
+      "unit_title": "Making Friends & Social Situations",
+      "lesson_type": "Grammar",
+      "lesson_title": "Making Plans Together",
+      "content_types": [
+        "fill_blank",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_2a1951c794"
+        ]
+      },
+      "grammar_tags": [
+        "GT005",
+        "GT022"
+      ],
+      "words": [
+        {
+          "id": "W_7a1a82cd",
+          "vi": "rảnh",
+          "ipa": "",
+          "category": "social"
+        },
+        {
+          "id": "W_1f1a9620",
+          "vi": "bận",
+          "ipa": "",
+          "category": "social"
+        },
+        {
+          "id": "W_3750c42b",
+          "vi": "rủ đi",
+          "ipa": "",
+          "category": "social"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_0f4f6fd7",
+          "vi": "Tối nay bạn rảnh không?"
+        },
+        {
+          "id": "S_e7e3a46a",
+          "vi": "Tối mai đi uống cà phê nhé."
+        },
+        {
+          "id": "S_656f2f9f",
+          "vi": "Tôi rảnh cuối tuần."
+        },
+        {
+          "id": "S_cc3a5e99",
+          "vi": "Bạn có muốn đi cùng không?"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_35a0f3cf84",
+      "node_id": "tourist_u8_L067",
+      "quiz_id": null,
+      "unit_index": 8,
+      "unit_title": "Making Friends & Social Situations",
+      "lesson_type": "Grammar",
+      "lesson_title": "Compliments & Social Politeness",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_9ce40aaa31"
+        ]
+      },
+      "grammar_tags": [
+        "GT031"
+      ],
+      "words": [
+        {
+          "id": "W_10c3a649",
+          "vi": "hay quá",
+          "ipa": "",
+          "category": "compliment"
+        },
+        {
+          "id": "W_b2ef8504",
+          "vi": "thú vị",
+          "ipa": "",
+          "category": "compliment"
+        },
+        {
+          "id": "W_b33dd419",
+          "vi": "dễ thương",
+          "ipa": "",
+          "category": "compliment"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_67d0a480",
+          "vi": "Quê bạn hay quá!"
+        },
+        {
+          "id": "S_d680446d",
+          "vi": "Công việc của bạn thú vị thật."
+        },
+        {
+          "id": "S_6d0db650",
+          "vi": "Nói chuyện với bạn rất vui."
+        },
+        {
+          "id": "S_3c6dd87a",
+          "vi": "Mong được gặp lại."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_15604d9eb0",
+      "node_id": "tourist_u8_L068",
+      "quiz_id": null,
+      "unit_index": 8,
+      "unit_title": "Making Friends & Social Situations",
+      "lesson_type": "Grammar",
+      "lesson_title": "Declining Politely",
+      "content_types": [
+        "fill_blank",
+        "mcq_translate_to_vi"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_35a0f3cf84"
+        ]
+      },
+      "grammar_tags": [
+        "GT004",
+        "GT018"
+      ],
+      "words": [
+        {
+          "id": "W_8bf2c539",
+          "vi": "tiếc là",
+          "ipa": "",
+          "category": "decline"
+        },
+        {
+          "id": "W_5e7946d4",
+          "vi": "lần sau nhé",
+          "ipa": "",
+          "category": "decline"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_2e616a8c",
+          "vi": "Tiếc là tối nay tôi bận rồi."
+        },
+        {
+          "id": "S_9a34dbe2",
+          "vi": "Để lần sau nhé."
+        },
+        {
+          "id": "S_f2bf156c",
+          "vi": "Cảm ơn đã rủ, nhưng mình không đi được."
+        },
+        {
+          "id": "S_945eb4a1",
+          "vi": "Tôi đã có hẹn trước rồi."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_d0b92e7f92",
+      "node_id": "tourist_u8_L069",
+      "quiz_id": null,
+      "unit_index": 8,
+      "unit_title": "Making Friends & Social Situations",
+      "lesson_type": "Scene",
+      "lesson_title": "Making a New Friend at a Coffee Shop",
+      "content_types": [
+        "listen_choose",
+        "translation_word_bank"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_15604d9eb0"
+        ]
+      },
+      "grammar_tags": [
+        "GT005",
+        "GT018",
+        "GT028"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_88529ee3",
+          "vi": "Chào bạn, mình có thể ngồi đây không?"
+        },
+        {
+          "id": "S_4f64894e",
+          "vi": "Được, mời bạn."
+        },
+        {
+          "id": "S_08bc3e5b",
+          "vi": "Bạn là khách du lịch hả?"
+        },
+        {
+          "id": "S_17bdca8f",
+          "vi": "Đúng rồi, mình đến từ Canada."
+        },
+        {
+          "id": "S_8704696f",
+          "vi": "Bạn đi Việt Nam thấy sao?"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_dfcfe46051",
+      "node_id": "tourist_u8_L070",
+      "quiz_id": null,
+      "unit_index": 8,
+      "unit_title": "Making Friends & Social Situations",
+      "lesson_type": "Scene",
+      "lesson_title": "Being Invited to a Local Home",
+      "content_types": [
+        "listen_choose",
+        "speak_sentence"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_d0b92e7f92"
+        ]
+      },
+      "grammar_tags": [
+        "GT021",
+        "GT042"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_ac8249f6",
+          "vi": "Cảm ơn chị đã mời tôi."
+        },
+        {
+          "id": "S_08780134",
+          "vi": "Món này ngon quá, chị nấu à?"
+        },
+        {
+          "id": "S_5612e653",
+          "vi": "Gia đình chị đông vui quá!"
+        },
+        {
+          "id": "S_9df5a89c",
+          "vi": "Cho tôi xin công thức nhé."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_2000dd0203",
+      "node_id": "tourist_u8_Q071",
+      "quiz_id": "tourist_u8_Q071",
+      "unit_index": 8,
+      "unit_title": "Making Friends & Social Situations",
+      "lesson_type": "Quiz",
+      "lesson_title": "Social Review",
+      "content_types": [
+        "mcq_translate_to_en",
+        "listen_choose",
+        "match_pairs"
+      ],
+      "xp_reward": 20,
+      "unlock_rule": {
+        "type": "unit_complete",
+        "requires": [
+          "L_83a0dca053",
+          "L_f043eaacfb",
+          "L_2a1951c794",
+          "L_9ce40aaa31",
+          "L_35a0f3cf84",
+          "L_15604d9eb0",
+          "L_d0b92e7f92",
+          "L_dfcfe46051"
+        ]
+      },
+      "grammar_tags": [
+        "GT005"
+      ],
+      "words": [
+        {
+          "id": "W_d0552a6a",
+          "vi": "làm quen",
+          "ipa": "",
+          "category": "social"
+        },
+        {
+          "id": "W_881b7679",
+          "vi": "đi chơi",
+          "ipa": "",
+          "category": "social"
+        },
+        {
+          "id": "W_508f1786",
+          "vi": "rảnh",
+          "ipa": "",
+          "category": "social"
+        },
+        {
+          "id": "W_e99a338e",
+          "vi": "hay quá",
+          "ipa": "",
+          "category": "compliment"
+        },
+        {
+          "id": "W_ab0e9a5a",
+          "vi": "tiếc là",
+          "ipa": "",
+          "category": "decline"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_0436b0f2",
+          "vi": "Tối nay bạn rảnh không?"
+        }
+      ],
+      "matches": [
+        {
+          "id": "M_5c8bfdf1",
+          "text": "làm quen"
+        },
+        {
+          "id": "M_1552cb72",
+          "text": "đi chơi"
+        },
+        {
+          "id": "M_776e7909",
+          "text": "rảnh"
+        },
+        {
+          "id": "M_0f4cfa39",
+          "text": "hay quá"
+        }
+      ]
+    },
+    {
+      "id": "L_32b38cdcf1",
+      "node_id": "tourist_u9_L072",
+      "quiz_id": null,
+      "unit_index": 9,
+      "unit_title": "Coffee Culture & Nightlife",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Coffee Culture",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_2000dd0203"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_915ce607",
+          "vi": "cà phê phin",
+          "ipa": "",
+          "category": "coffee"
+        },
+        {
+          "id": "W_63f5c698",
+          "vi": "cà phê đen",
+          "ipa": "",
+          "category": "coffee"
+        },
+        {
+          "id": "W_5136438a",
+          "vi": "cà phê sữa",
+          "ipa": "",
+          "category": "coffee"
+        },
+        {
+          "id": "W_fec87f5b",
+          "vi": "cà phê dừa",
+          "ipa": "",
+          "category": "coffee"
+        },
+        {
+          "id": "W_22acaa8d",
+          "vi": "cà phê muối",
+          "ipa": "",
+          "category": "coffee"
+        },
+        {
+          "id": "W_e96e0c9d",
+          "vi": "đậm",
+          "ipa": "",
+          "category": "coffee"
+        },
+        {
+          "id": "W_2a967abb",
+          "vi": "nhạt",
+          "ipa": "",
+          "category": "coffee"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_1436198c",
+          "text": "cà phê phin"
+        },
+        {
+          "id": "M_8a7afacd",
+          "text": "cà phê đen"
+        },
+        {
+          "id": "M_7dc198e1",
+          "text": "cà phê trứng"
+        }
+      ]
+    },
+    {
+      "id": "L_3b89c20e97",
+      "node_id": "tourist_u9_L073",
+      "quiz_id": null,
+      "unit_index": 9,
+      "unit_title": "Coffee Culture & Nightlife",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Bar & Nightlife",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_vi",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_32b38cdcf1"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_43f86f1a",
+          "vi": "quán bar",
+          "ipa": "",
+          "category": "nightlife"
+        },
+        {
+          "id": "W_f137df92",
+          "vi": "quán bia",
+          "ipa": "",
+          "category": "nightlife"
+        },
+        {
+          "id": "W_cd57ce5d",
+          "vi": "rooftop",
+          "ipa": "",
+          "category": "nightlife"
+        },
+        {
+          "id": "W_838e642d",
+          "vi": "karaoke",
+          "ipa": "",
+          "category": "nightlife"
+        },
+        {
+          "id": "W_06e7c7f9",
+          "vi": "nhạc sống",
+          "ipa": "",
+          "category": "nightlife"
+        },
+        {
+          "id": "W_65894804",
+          "vi": "cocktail",
+          "ipa": "",
+          "category": "nightlife"
+        },
+        {
+          "id": "W_ddbc6793",
+          "vi": "bia tươi",
+          "ipa": "",
+          "category": "nightlife"
+        },
+        {
+          "id": "W_fe1e0211",
+          "vi": "phố đi bộ",
+          "ipa": "",
+          "category": "nightlife"
+        }
+      ],
+      "sentences": [],
+      "matches": []
+    },
+    {
+      "id": "L_6a2e3f54fe",
+      "node_id": "tourist_u9_L074",
+      "quiz_id": null,
+      "unit_index": 9,
+      "unit_title": "Coffee Culture & Nightlife",
+      "lesson_type": "Grammar",
+      "lesson_title": "Ordering Customized Drinks",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_3b89c20e97"
+        ]
+      },
+      "grammar_tags": [
+        "GT005",
+        "GT021",
+        "GT025"
+      ],
+      "words": [
+        {
+          "id": "W_fbf87785",
+          "vi": "ít ngọt",
+          "ipa": "",
+          "category": "drink"
+        },
+        {
+          "id": "W_b623de75",
+          "vi": "ít đá",
+          "ipa": "",
+          "category": "drink"
+        },
+        {
+          "id": "W_59bebc0e",
+          "vi": "không đường",
+          "ipa": "",
+          "category": "drink"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_b8a2eb9c",
+          "vi": "Cho tôi cà phê sữa đá, ít đường."
+        },
+        {
+          "id": "S_a419992f",
+          "vi": "Trà sữa size lớn, ít đá."
+        },
+        {
+          "id": "S_77fe7b4f",
+          "vi": "Bia nào đang khuyến mãi?"
+        },
+        {
+          "id": "S_a7d3782c",
+          "vi": "Cho tôi ly lớn hơn được không?"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_866ca0bd5b",
+      "node_id": "tourist_u9_L075",
+      "quiz_id": null,
+      "unit_index": 9,
+      "unit_title": "Coffee Culture & Nightlife",
+      "lesson_type": "Grammar",
+      "lesson_title": "Comparative Preferences",
+      "content_types": [
+        "fill_blank",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_6a2e3f54fe"
+        ]
+      },
+      "grammar_tags": [
+        "GT004",
+        "GT025",
+        "GT042"
+      ],
+      "words": [
+        {
+          "id": "W_7e928e09",
+          "vi": "tôi thích ... hơn",
+          "ipa": "",
+          "category": "preference"
+        },
+        {
+          "id": "W_dde407da",
+          "vi": "không hợp với",
+          "ipa": "",
+          "category": "preference"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_a8c7a3d8",
+          "vi": "Tôi thích cà phê đen hơn cà phê sữa."
+        },
+        {
+          "id": "S_18be51a7",
+          "vi": "Bia tươi ngon hơn bia chai."
+        },
+        {
+          "id": "S_18e9061c",
+          "vi": "Cà phê này hơi đậm với tôi."
+        },
+        {
+          "id": "S_8a07127a",
+          "vi": "Nhạc này không hợp với tôi."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_97048ff995",
+      "node_id": "tourist_u9_L076",
+      "quiz_id": null,
+      "unit_index": 9,
+      "unit_title": "Coffee Culture & Nightlife",
+      "lesson_type": "Grammar",
+      "lesson_title": "Describing Vibes / Atmosphere",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_866ca0bd5b"
+        ]
+      },
+      "grammar_tags": [
+        "GT004",
+        "GT005",
+        "GT022",
+        "GT025",
+        "GT031",
+        "GT032",
+        "GT042"
+      ],
+      "words": [
+        {
+          "id": "W_d7e045b4",
+          "vi": "không khí",
+          "ipa": "",
+          "category": "nightlife"
+        },
+        {
+          "id": "W_fa8a7bf6",
+          "vi": "sôi động",
+          "ipa": "",
+          "category": "nightlife"
+        },
+        {
+          "id": "W_a3502920",
+          "vi": "yên tĩnh",
+          "ipa": "",
+          "category": "nightlife"
+        },
+        {
+          "id": "W_0e16535b",
+          "vi": "lãng mạn",
+          "ipa": "",
+          "category": "nightlife"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_28fff56d",
+          "vi": "Quán này không khí rất sôi động."
+        },
+        {
+          "id": "S_e434a37f",
+          "vi": "Tôi muốn một nơi yên tĩnh hơn."
+        },
+        {
+          "id": "S_38398fbe",
+          "vi": "Nơi nào có nhạc sống?"
+        },
+        {
+          "id": "S_0dfea5e6",
+          "vi": "Bạn có gợi ý quán nào không?"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_8ae2269355",
+      "node_id": "tourist_u9_L077",
+      "quiz_id": null,
+      "unit_index": 9,
+      "unit_title": "Coffee Culture & Nightlife",
+      "lesson_type": "Grammar",
+      "lesson_title": "Making Plans for the Night",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_97048ff995"
+        ]
+      },
+      "grammar_tags": [
+        "GT005",
+        "GT034"
+      ],
+      "words": [
+        {
+          "id": "W_5ab17a3e",
+          "vi": "đi nhậu",
+          "ipa": "",
+          "category": "nightlife"
+        },
+        {
+          "id": "W_1a932fb0",
+          "vi": "tăng hai",
+          "ipa": "",
+          "category": "nightlife"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_9c81fcc9",
+          "vi": "Tối nay đi nhậu không?"
+        },
+        {
+          "id": "S_b40ed73a",
+          "vi": "Sau đó mình đi tăng hai."
+        },
+        {
+          "id": "S_d6f3e5e1",
+          "vi": "Gặp nhau ở phố Tây lúc 8 giờ nhé."
+        },
+        {
+          "id": "S_6cbce8db",
+          "vi": "Tôi đi về sớm, ngày mai có tour."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_bd0c30b197",
+      "node_id": "tourist_u9_L078",
+      "quiz_id": null,
+      "unit_index": 9,
+      "unit_title": "Coffee Culture & Nightlife",
+      "lesson_type": "Scene",
+      "lesson_title": "Ordering Egg Coffee in Hanoi",
+      "content_types": [
+        "listen_choose",
+        "speak_sentence"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_8ae2269355"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_1c30a1bd",
+          "vi": "Em cho anh một ly cà phê trứng."
+        },
+        {
+          "id": "S_9c5b65f3",
+          "vi": "Anh uống nóng hay đá?"
+        },
+        {
+          "id": "S_a75c2373",
+          "vi": "Cho anh nóng. Đặc biệt thế nào?"
+        },
+        {
+          "id": "S_c3839127",
+          "vi": "Trứng đánh bông với sữa đặc."
+        },
+        {
+          "id": "S_67af8b80",
+          "vi": "Đợi 5 phút nhé."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_3eb26ae57b",
+      "node_id": "tourist_u9_L079",
+      "quiz_id": null,
+      "unit_index": 9,
+      "unit_title": "Coffee Culture & Nightlife",
+      "lesson_type": "Scene",
+      "lesson_title": "At a Rooftop Bar",
+      "content_types": [
+        "listen_choose",
+        "translation_word_bank"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_bd0c30b197"
+        ]
+      },
+      "grammar_tags": [
+        "GT005"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_75235873",
+          "vi": "Có bàn cho 4 người không?"
+        },
+        {
+          "id": "S_d3b44cac",
+          "vi": "View thành phố đẹp quá!"
+        },
+        {
+          "id": "S_c66e28bd",
+          "vi": "Cocktail nào nổi tiếng ở đây?"
+        },
+        {
+          "id": "S_5de42735",
+          "vi": "Cho chúng tôi 4 ly bia tươi."
+        },
+        {
+          "id": "S_363d4498",
+          "vi": "Một trăm phần trăm!"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_0d4d7702c9",
+      "node_id": "tourist_u9_Q080",
+      "quiz_id": "tourist_u9_Q080",
+      "unit_index": 9,
+      "unit_title": "Coffee Culture & Nightlife",
+      "lesson_type": "Quiz",
+      "lesson_title": "Coffee & Nightlife Review",
+      "content_types": [
+        "mcq_translate_to_en",
+        "listen_choose",
+        "match_pairs"
+      ],
+      "xp_reward": 20,
+      "unlock_rule": {
+        "type": "unit_complete",
+        "requires": [
+          "L_32b38cdcf1",
+          "L_3b89c20e97",
+          "L_6a2e3f54fe",
+          "L_866ca0bd5b",
+          "L_97048ff995",
+          "L_8ae2269355",
+          "L_bd0c30b197",
+          "L_3eb26ae57b"
+        ]
+      },
+      "grammar_tags": [
+        "GT004",
+        "GT031",
+        "GT032",
+        "GT042"
+      ],
+      "words": [
+        {
+          "id": "W_4f6f626b",
+          "vi": "cà phê phin",
+          "ipa": "",
+          "category": "coffee"
+        },
+        {
+          "id": "W_0e5789f7",
+          "vi": "cà phê trứng",
+          "ipa": "",
+          "category": "coffee"
+        },
+        {
+          "id": "W_3b563a34",
+          "vi": "bia tươi",
+          "ipa": "",
+          "category": "nightlife"
+        },
+        {
+          "id": "W_0438719b",
+          "vi": "ít ngọt",
+          "ipa": "",
+          "category": "drink"
+        },
+        {
+          "id": "W_5a6d2b7e",
+          "vi": "không khí",
+          "ipa": "",
+          "category": "nightlife"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_786adaf4",
+          "vi": "Quán này không khí rất sôi động."
+        }
+      ],
+      "matches": [
+        {
+          "id": "M_d13bf542",
+          "text": "cà phê phin"
+        },
+        {
+          "id": "M_095b5776",
+          "text": "cà phê trứng"
+        },
+        {
+          "id": "M_4a9bc689",
+          "text": "bia tươi"
+        },
+        {
+          "id": "M_d5e499ba",
+          "text": "ít ngọt"
+        }
+      ]
+    },
+    {
+      "id": "L_5211744125",
+      "node_id": "tourist_u10_L081",
+      "quiz_id": null,
+      "unit_index": 10,
+      "unit_title": "Beaches & Nature",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Beach & Sea",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_0d4d7702c9"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_c9dca01f",
+          "vi": "biển",
+          "ipa": "",
+          "category": "nature"
+        },
+        {
+          "id": "W_6c4fb641",
+          "vi": "bãi biển",
+          "ipa": "",
+          "category": "nature"
+        },
+        {
+          "id": "W_893be605",
+          "vi": "cát",
+          "ipa": "",
+          "category": "nature"
+        },
+        {
+          "id": "W_aa779442",
+          "vi": "sóng",
+          "ipa": "",
+          "category": "nature"
+        },
+        {
+          "id": "W_85d84329",
+          "vi": "lặn",
+          "ipa": "",
+          "category": "nature"
+        },
+        {
+          "id": "W_f4b64172",
+          "vi": "bơi",
+          "ipa": "",
+          "category": "nature"
+        },
+        {
+          "id": "W_8cf247cc",
+          "vi": "tắm biển",
+          "ipa": "",
+          "category": "nature"
+        },
+        {
+          "id": "W_df11e265",
+          "vi": "ghế tắm nắng",
+          "ipa": "",
+          "category": "nature"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_f1d86579",
+          "text": "biển"
+        },
+        {
+          "id": "M_38bcf4ad",
+          "text": "bãi biển"
+        },
+        {
+          "id": "M_35d92ab8",
+          "text": "lặn"
+        },
+        {
+          "id": "M_7ed4f4ff",
+          "text": "bơi"
+        }
+      ]
+    },
+    {
+      "id": "L_a2729eac91",
+      "node_id": "tourist_u10_L082",
+      "quiz_id": null,
+      "unit_index": 10,
+      "unit_title": "Beaches & Nature",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Mountains & Jungle",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_vi",
+        "picture_choice"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_5211744125"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_3899d174",
+          "vi": "núi",
+          "ipa": "",
+          "category": "nature"
+        },
+        {
+          "id": "W_ecbd218a",
+          "vi": "thác",
+          "ipa": "",
+          "category": "nature"
+        },
+        {
+          "id": "W_f38142e2",
+          "vi": "hang",
+          "ipa": "",
+          "category": "nature"
+        },
+        {
+          "id": "W_edd4e590",
+          "vi": "rừng",
+          "ipa": "",
+          "category": "nature"
+        },
+        {
+          "id": "W_fc89120b",
+          "vi": "ruộng bậc thang",
+          "ipa": "",
+          "category": "nature"
+        },
+        {
+          "id": "W_58de62a8",
+          "vi": "trekking",
+          "ipa": "",
+          "category": "nature"
+        },
+        {
+          "id": "W_a127246b",
+          "vi": "leo núi",
+          "ipa": "",
+          "category": "nature"
+        },
+        {
+          "id": "W_d711590e",
+          "vi": "xe đạp địa hình",
+          "ipa": "",
+          "category": "nature"
+        }
+      ],
+      "sentences": [],
+      "matches": []
+    },
+    {
+      "id": "L_53a5bfd71f",
+      "node_id": "tourist_u10_L083",
+      "quiz_id": null,
+      "unit_index": 10,
+      "unit_title": "Beaches & Nature",
+      "lesson_type": "Grammar",
+      "lesson_title": "Weather-Based Planning",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_a2729eac91"
+        ]
+      },
+      "grammar_tags": [
+        "GT004",
+        "GT005",
+        "GT042"
+      ],
+      "words": [
+        {
+          "id": "W_933d65c0",
+          "vi": "thời tiết",
+          "ipa": "",
+          "category": "nature"
+        },
+        {
+          "id": "W_82f72cb8",
+          "vi": "dự báo",
+          "ipa": "",
+          "category": "nature"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_5e0e988a",
+          "vi": "Dự báo hôm nay có mưa không?"
+        },
+        {
+          "id": "S_e447f974",
+          "vi": "Nếu trời đẹp thì đi biển."
+        },
+        {
+          "id": "S_f870b22b",
+          "vi": "Hôm nay sóng cao quá, không bơi được."
+        },
+        {
+          "id": "S_2107de34",
+          "vi": "Mùa này có nên đi Sa Pa không?"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_d7389c644e",
+      "node_id": "tourist_u10_L084",
+      "quiz_id": null,
+      "unit_index": 10,
+      "unit_title": "Beaches & Nature",
+      "lesson_type": "Grammar",
+      "lesson_title": "Asking About Safety in Nature",
+      "content_types": [
+        "fill_blank",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_53a5bfd71f"
+        ]
+      },
+      "grammar_tags": [
+        "GT005",
+        "GT042"
+      ],
+      "words": [
+        {
+          "id": "W_e5f55cf8",
+          "vi": "an toàn",
+          "ipa": "",
+          "category": "safety"
+        },
+        {
+          "id": "W_0e14396c",
+          "vi": "nguy hiểm",
+          "ipa": "",
+          "category": "safety"
+        },
+        {
+          "id": "W_d2fc00a1",
+          "vi": "cẩn thận",
+          "ipa": "",
+          "category": "safety"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_98456d83",
+          "vi": "Chỗ này có an toàn để bơi không?"
+        },
+        {
+          "id": "S_a89dcbde",
+          "vi": "Có phần nào nguy hiểm không?"
+        },
+        {
+          "id": "S_000d79c1",
+          "vi": "Cẩn thận đá trơn."
+        },
+        {
+          "id": "S_9e43bf99",
+          "vi": "Nên đi có hướng dẫn viên."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_09bd1dd3b8",
+      "node_id": "tourist_u10_L085",
+      "quiz_id": null,
+      "unit_index": 10,
+      "unit_title": "Beaches & Nature",
+      "lesson_type": "Grammar",
+      "lesson_title": "Describing Experiences (càng...càng)",
+      "content_types": [
+        "fill_blank",
+        "mcq_translate_to_vi"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_d7389c644e"
+        ]
+      },
+      "grammar_tags": [
+        "GT004",
+        "GT019"
+      ],
+      "words": [
+        {
+          "id": "W_44333792",
+          "vi": "càng ... càng ...",
+          "ipa": "",
+          "category": "structure"
+        },
+        {
+          "id": "W_75ab4180",
+          "vi": "chưa từng thấy",
+          "ipa": "",
+          "category": "experience"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_3b72a502",
+          "vi": "Càng lên cao càng lạnh."
+        },
+        {
+          "id": "S_38e93825",
+          "vi": "Càng đi càng đẹp."
+        },
+        {
+          "id": "S_ec416aff",
+          "vi": "Tôi chưa từng thấy biển đẹp như vậy."
+        },
+        {
+          "id": "S_2fb7242d",
+          "vi": "Cảnh đẹp không tả được."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_f246581551",
+      "node_id": "tourist_u10_L086",
+      "quiz_id": null,
+      "unit_index": 10,
+      "unit_title": "Beaches & Nature",
+      "lesson_type": "Grammar",
+      "lesson_title": "Comparing Destinations",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_09bd1dd3b8"
+        ]
+      },
+      "grammar_tags": [
+        "GT025",
+        "GT042"
+      ],
+      "words": [
+        {
+          "id": "W_9766679b",
+          "vi": "đông người",
+          "ipa": "",
+          "category": "nature"
+        },
+        {
+          "id": "W_4c9b0bae",
+          "vi": "vắng vẻ",
+          "ipa": "",
+          "category": "nature"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_7fb2bdc6",
+          "vi": "Nha Trang đông hơn Phú Quốc."
+        },
+        {
+          "id": "S_12d4301c",
+          "vi": "Bãi này vắng vẻ hơn."
+        },
+        {
+          "id": "S_893e8141",
+          "vi": "Hạ Long đẹp nhưng Cát Bà yên bình hơn."
+        },
+        {
+          "id": "S_ca815be8",
+          "vi": "Đi đâu bạn nghĩ tốt hơn?"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_400ac1d6b7",
+      "node_id": "tourist_u10_L087",
+      "quiz_id": null,
+      "unit_index": 10,
+      "unit_title": "Beaches & Nature",
+      "lesson_type": "Scene",
+      "lesson_title": "Renting Snorkeling Gear",
+      "content_types": [
+        "listen_choose",
+        "speak_sentence"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_f246581551"
+        ]
+      },
+      "grammar_tags": [
+        "GT004",
+        "GT005",
+        "GT010",
+        "GT011",
+        "GT022",
+        "GT034"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_f3955f71",
+          "vi": "Tôi muốn thuê đồ lặn."
+        },
+        {
+          "id": "S_a17307a7",
+          "vi": "Bộ đầy đủ bao nhiêu một ngày?"
+        },
+        {
+          "id": "S_e48ef20a",
+          "vi": "Có thuyền đi ra đảo không?"
+        },
+        {
+          "id": "S_df2ea0ba",
+          "vi": "Đi lúc mấy giờ?"
+        },
+        {
+          "id": "S_156aeb77",
+          "vi": "Tôi không biết bơi giỏi."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_7f53e808f7",
+      "node_id": "tourist_u10_L088",
+      "quiz_id": null,
+      "unit_index": 10,
+      "unit_title": "Beaches & Nature",
+      "lesson_type": "Scene",
+      "lesson_title": "Trekking in Sapa",
+      "content_types": [
+        "listen_choose",
+        "translation_word_bank"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_400ac1d6b7"
+        ]
+      },
+      "grammar_tags": [
+        "GT005"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_5c0700f3",
+          "vi": "Đường lên bản Cát Cát có khó không?"
+        },
+        {
+          "id": "S_49c19f85",
+          "vi": "Dễ thôi, khoảng 2 tiếng đi bộ."
+        },
+        {
+          "id": "S_e30ae55b",
+          "vi": "Mình có cần giày chuyên dụng không?"
+        },
+        {
+          "id": "S_86655ff2",
+          "vi": "Nên có giày bám đất, mưa thì trơn."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_2b1d4e56d3",
+      "node_id": "tourist_u10_Q089",
+      "quiz_id": "tourist_u10_Q089",
+      "unit_index": 10,
+      "unit_title": "Beaches & Nature",
+      "lesson_type": "Quiz",
+      "lesson_title": "Nature Review",
+      "content_types": [
+        "mcq_translate_to_en",
+        "listen_choose",
+        "match_pairs"
+      ],
+      "xp_reward": 20,
+      "unlock_rule": {
+        "type": "unit_complete",
+        "requires": [
+          "L_5211744125",
+          "L_a2729eac91",
+          "L_53a5bfd71f",
+          "L_d7389c644e",
+          "L_09bd1dd3b8",
+          "L_f246581551",
+          "L_400ac1d6b7",
+          "L_7f53e808f7"
+        ]
+      },
+      "grammar_tags": [
+        "GT005",
+        "GT042"
+      ],
+      "words": [
+        {
+          "id": "W_71cc913f",
+          "vi": "bãi biển",
+          "ipa": "",
+          "category": "nature"
+        },
+        {
+          "id": "W_13132b43",
+          "vi": "lặn",
+          "ipa": "",
+          "category": "nature"
+        },
+        {
+          "id": "W_9615ba66",
+          "vi": "trekking",
+          "ipa": "",
+          "category": "nature"
+        },
+        {
+          "id": "W_5f94b263",
+          "vi": "thác",
+          "ipa": "",
+          "category": "nature"
+        },
+        {
+          "id": "W_6050139b",
+          "vi": "an toàn",
+          "ipa": "",
+          "category": "safety"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_9428bac2",
+          "vi": "Chỗ này có an toàn để bơi không?"
+        }
+      ],
+      "matches": [
+        {
+          "id": "M_fc9bdbdf",
+          "text": "bãi biển"
+        },
+        {
+          "id": "M_512f046e",
+          "text": "lặn"
+        },
+        {
+          "id": "M_d19bff8a",
+          "text": "trekking"
+        },
+        {
+          "id": "M_b200db5a",
+          "text": "thác"
+        }
+      ]
+    },
+    {
+      "id": "L_81779bff43",
+      "node_id": "tourist_u11_L090",
+      "quiz_id": null,
+      "unit_index": 11,
+      "unit_title": "Photography & Culture",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Photography Vocab",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_2b1d4e56d3"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_39f049a9",
+          "vi": "chụp ảnh",
+          "ipa": "",
+          "category": "photo"
+        },
+        {
+          "id": "W_ce5f55db",
+          "vi": "chụp giúp",
+          "ipa": "",
+          "category": "photo"
+        },
+        {
+          "id": "W_728ae893",
+          "vi": "selfie",
+          "ipa": "",
+          "category": "photo"
+        },
+        {
+          "id": "W_7de86fe6",
+          "vi": "tạo dáng",
+          "ipa": "",
+          "category": "photo"
+        },
+        {
+          "id": "W_1b3808f5",
+          "vi": "ánh sáng",
+          "ipa": "",
+          "category": "photo"
+        },
+        {
+          "id": "W_c5ce2a3c",
+          "vi": "nền",
+          "ipa": "",
+          "category": "photo"
+        },
+        {
+          "id": "W_a8d4407d",
+          "vi": "góc đẹp",
+          "ipa": "",
+          "category": "photo"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_f8798acd",
+          "text": "chụp ảnh"
+        },
+        {
+          "id": "M_f4054141",
+          "text": "chụp giúp"
+        },
+        {
+          "id": "M_de6144ed",
+          "text": "tạo dáng"
+        }
+      ]
+    },
+    {
+      "id": "L_0e9dd7eebe",
+      "node_id": "tourist_u11_L091",
+      "quiz_id": null,
+      "unit_index": 11,
+      "unit_title": "Photography & Culture",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Temples & Heritage Sites",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_vi",
+        "picture_choice"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_81779bff43"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_3b6c2a0c",
+          "vi": "chùa",
+          "ipa": "",
+          "category": "culture"
+        },
+        {
+          "id": "W_cf2a2b1a",
+          "vi": "đền",
+          "ipa": "",
+          "category": "culture"
+        },
+        {
+          "id": "W_65d418e9",
+          "vi": "nhà thờ",
+          "ipa": "",
+          "category": "culture"
+        },
+        {
+          "id": "W_8f4cb036",
+          "vi": "lăng",
+          "ipa": "",
+          "category": "culture"
+        },
+        {
+          "id": "W_6a3166f2",
+          "vi": "bảo tàng",
+          "ipa": "",
+          "category": "culture"
+        },
+        {
+          "id": "W_df457bc5",
+          "vi": "di tích",
+          "ipa": "",
+          "category": "culture"
+        },
+        {
+          "id": "W_edb5a6c2",
+          "vi": "di sản",
+          "ipa": "",
+          "category": "culture"
+        }
+      ],
+      "sentences": [],
+      "matches": []
+    },
+    {
+      "id": "L_cd525222f6",
+      "node_id": "tourist_u11_L092",
+      "quiz_id": null,
+      "unit_index": 11,
+      "unit_title": "Photography & Culture",
+      "lesson_type": "Grammar",
+      "lesson_title": "Asking to Take a Photo",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_0e9dd7eebe"
+        ]
+      },
+      "grammar_tags": [
+        "GT005",
+        "GT025",
+        "GT028"
+      ],
+      "words": [
+        {
+          "id": "W_af17a3dc",
+          "vi": "có thể chụp",
+          "ipa": "",
+          "category": "photo"
+        },
+        {
+          "id": "W_cd4d5153",
+          "vi": "được phép",
+          "ipa": "",
+          "category": "photo"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_c51b2076",
+          "vi": "Tôi có thể chụp ảnh ở đây không?"
+        },
+        {
+          "id": "S_212c6137",
+          "vi": "Chụp trong chùa có được không?"
+        },
+        {
+          "id": "S_ce72d329",
+          "vi": "Anh chụp giúp em một tấm nhé."
+        },
+        {
+          "id": "S_3a5002bb",
+          "vi": "Đứng ở đây, nền đẹp hơn."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_7eb9d1a7b5",
+      "node_id": "tourist_u11_L093",
+      "quiz_id": null,
+      "unit_index": 11,
+      "unit_title": "Photography & Culture",
+      "lesson_type": "Grammar",
+      "lesson_title": "Cultural Etiquette",
+      "content_types": [
+        "fill_blank",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_cd525222f6"
+        ]
+      },
+      "grammar_tags": [
+        "GT004",
+        "GT029",
+        "GT038",
+        "GT044"
+      ],
+      "words": [
+        {
+          "id": "W_30dc8a3f",
+          "vi": "tôn trọng",
+          "ipa": "",
+          "category": "culture"
+        },
+        {
+          "id": "W_c214bd83",
+          "vi": "cởi giày",
+          "ipa": "",
+          "category": "culture"
+        },
+        {
+          "id": "W_2ce9dd5c",
+          "vi": "ăn mặc kín đáo",
+          "ipa": "",
+          "category": "culture"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_96ba8381",
+          "vi": "Vào chùa phải cởi giày."
+        },
+        {
+          "id": "S_269f0d46",
+          "vi": "Nên ăn mặc kín đáo trong nơi thờ tự."
+        },
+        {
+          "id": "S_00b47c50",
+          "vi": "Không nên chụp ảnh người đang lễ."
+        },
+        {
+          "id": "S_523ca77b",
+          "vi": "Tôn trọng văn hóa địa phương."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_25192cd9ec",
+      "node_id": "tourist_u11_L094",
+      "quiz_id": null,
+      "unit_index": 11,
+      "unit_title": "Photography & Culture",
+      "lesson_type": "Grammar",
+      "lesson_title": "Asking About History",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_7eb9d1a7b5"
+        ]
+      },
+      "grammar_tags": [
+        "GT013",
+        "GT042"
+      ],
+      "words": [
+        {
+          "id": "W_6ffcec7d",
+          "vi": "bao nhiêu tuổi",
+          "ipa": "",
+          "category": "history"
+        },
+        {
+          "id": "W_eeb8140e",
+          "vi": "từ thế kỷ",
+          "ipa": "",
+          "category": "history"
+        },
+        {
+          "id": "W_c6c7168b",
+          "vi": "nổi tiếng vì",
+          "ipa": "",
+          "category": "history"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_637e265d",
+          "vi": "Ngôi chùa này bao nhiêu tuổi?"
+        },
+        {
+          "id": "S_07a09c4d",
+          "vi": "Được xây dựng từ thế kỷ 13."
+        },
+        {
+          "id": "S_951232bc",
+          "vi": "Nơi này nổi tiếng vì kiến trúc cổ."
+        },
+        {
+          "id": "S_106ae6b6",
+          "vi": "Ai đã xây nên nó?"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_f5b318336e",
+      "node_id": "tourist_u11_L095",
+      "quiz_id": null,
+      "unit_index": 11,
+      "unit_title": "Photography & Culture",
+      "lesson_type": "Grammar",
+      "lesson_title": "Reported Speech (Guide Explains)",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_25192cd9ec"
+        ]
+      },
+      "grammar_tags": [
+        "GT026",
+        "GT042"
+      ],
+      "words": [
+        {
+          "id": "W_45503fd4",
+          "vi": "hướng dẫn viên nói rằng",
+          "ipa": "",
+          "category": "tour"
+        },
+        {
+          "id": "W_3a317a10",
+          "vi": "theo sách",
+          "ipa": "",
+          "category": "tour"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_e043c713",
+          "vi": "Hướng dẫn viên nói rằng chùa này là chùa cổ nhất."
+        },
+        {
+          "id": "S_8280d715",
+          "vi": "Theo sách, Hội An là di sản thế giới từ 1999."
+        },
+        {
+          "id": "S_296b5a97",
+          "vi": "Người ta nói rằng trong chùa có bảo vật cổ."
+        },
+        {
+          "id": "S_d573185a",
+          "vi": "Tôi nghe nói mùa này đẹp nhất."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_602137323a",
+      "node_id": "tourist_u11_L096",
+      "quiz_id": null,
+      "unit_index": 11,
+      "unit_title": "Photography & Culture",
+      "lesson_type": "Scene",
+      "lesson_title": "At a Buddhist Temple",
+      "content_types": [
+        "listen_choose",
+        "speak_sentence"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_f5b318336e"
+        ]
+      },
+      "grammar_tags": [
+        "GT004",
+        "GT005",
+        "GT028",
+        "GT038"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_bfb6e475",
+          "vi": "Xin lỗi, tôi cần cởi giày không?"
+        },
+        {
+          "id": "S_b47bc60d",
+          "vi": "Có, để giày ở ngoài."
+        },
+        {
+          "id": "S_d4832683",
+          "vi": "Tôi có thể chụp ảnh không?"
+        },
+        {
+          "id": "S_b43906f0",
+          "vi": "Được, nhưng không chụp người đang thắp hương."
+        },
+        {
+          "id": "S_3ac2fea9",
+          "vi": "Cảm ơn, tôi sẽ tôn trọng."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_36dc8ba27b",
+      "node_id": "tourist_u11_L097",
+      "quiz_id": null,
+      "unit_index": 11,
+      "unit_title": "Photography & Culture",
+      "lesson_type": "Scene",
+      "lesson_title": "Getting a Photo Taken at a Landmark",
+      "content_types": [
+        "listen_choose",
+        "translation_word_bank"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_602137323a"
+        ]
+      },
+      "grammar_tags": [
+        "GT005",
+        "GT007"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_cbff5b00",
+          "vi": "Anh chị chụp giúp em một tấm được không?"
+        },
+        {
+          "id": "S_056424af",
+          "vi": "Được, đứng ở đâu?"
+        },
+        {
+          "id": "S_487293fd",
+          "vi": "Ở đây, lấy cả tòa tháp phía sau."
+        },
+        {
+          "id": "S_adc1987c",
+          "vi": "Một, hai, ba, cười!"
+        },
+        {
+          "id": "S_29bbf1a2",
+          "vi": "Cảm ơn nhiều!"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_6a791cbe37",
+      "node_id": "tourist_u11_Q098",
+      "quiz_id": "tourist_u11_Q098",
+      "unit_index": 11,
+      "unit_title": "Photography & Culture",
+      "lesson_type": "Quiz",
+      "lesson_title": "Photography & Culture Review",
+      "content_types": [
+        "mcq_translate_to_en",
+        "listen_choose",
+        "match_pairs"
+      ],
+      "xp_reward": 20,
+      "unlock_rule": {
+        "type": "unit_complete",
+        "requires": [
+          "L_81779bff43",
+          "L_0e9dd7eebe",
+          "L_cd525222f6",
+          "L_7eb9d1a7b5",
+          "L_25192cd9ec",
+          "L_f5b318336e",
+          "L_602137323a",
+          "L_36dc8ba27b"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_b385c18d",
+          "vi": "chụp ảnh",
+          "ipa": "",
+          "category": "photo"
+        },
+        {
+          "id": "W_d7a48f9a",
+          "vi": "chùa",
+          "ipa": "",
+          "category": "culture"
+        },
+        {
+          "id": "W_8a683298",
+          "vi": "bảo tàng",
+          "ipa": "",
+          "category": "culture"
+        },
+        {
+          "id": "W_240b0a07",
+          "vi": "tôn trọng",
+          "ipa": "",
+          "category": "culture"
+        },
+        {
+          "id": "W_d8434303",
+          "vi": "di sản",
+          "ipa": "",
+          "category": "culture"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_4d76df90",
+          "vi": "Anh chụp giúp em một tấm nhé."
+        }
+      ],
+      "matches": [
+        {
+          "id": "M_5c5fcb3c",
+          "text": "chụp ảnh"
+        },
+        {
+          "id": "M_9c865e7e",
+          "text": "chùa"
+        },
+        {
+          "id": "M_c9998795",
+          "text": "bảo tàng"
+        },
+        {
+          "id": "M_8fd795e6",
+          "text": "tôn trọng"
+        }
+      ]
+    },
+    {
+      "id": "L_d2319bff6c",
+      "node_id": "tourist_u12_L099",
+      "quiz_id": null,
+      "unit_index": 12,
+      "unit_title": "Leaving Vietnam / Returning",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Departure Vocabulary",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_6a791cbe37"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_06e369f4",
+          "vi": "ngày về",
+          "ipa": "",
+          "category": "departure"
+        },
+        {
+          "id": "W_7af71c5e",
+          "vi": "chuyến bay về",
+          "ipa": "",
+          "category": "departure"
+        },
+        {
+          "id": "W_21d10ae1",
+          "vi": "đồ lưu niệm",
+          "ipa": "",
+          "category": "departure"
+        },
+        {
+          "id": "W_45278ddb",
+          "vi": "hành lý xách tay",
+          "ipa": "",
+          "category": "departure"
+        },
+        {
+          "id": "W_34a7fceb",
+          "vi": "ký gửi",
+          "ipa": "",
+          "category": "departure"
+        },
+        {
+          "id": "W_1c674f6f",
+          "vi": "tiễn",
+          "ipa": "",
+          "category": "departure"
+        },
+        {
+          "id": "W_4ec6d047",
+          "vi": "quay lại",
+          "ipa": "",
+          "category": "departure"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_e334a138",
+          "text": "chuyến bay về"
+        },
+        {
+          "id": "M_578faa1f",
+          "text": "hành lý xách tay"
+        },
+        {
+          "id": "M_38e2de3f",
+          "text": "tiễn"
+        },
+        {
+          "id": "M_1f1c8d8e",
+          "text": "quay lại"
+        }
+      ]
+    },
+    {
+      "id": "L_9283aee867",
+      "node_id": "tourist_u12_L100",
+      "quiz_id": null,
+      "unit_index": 12,
+      "unit_title": "Leaving Vietnam / Returning",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Saying Goodbye",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_vi",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_d2319bff6c"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_fb135361",
+          "vi": "tạm biệt",
+          "ipa": "",
+          "category": "farewell"
+        },
+        {
+          "id": "W_4c133b2c",
+          "vi": "hẹn gặp lại",
+          "ipa": "",
+          "category": "farewell"
+        },
+        {
+          "id": "W_46771a45",
+          "vi": "giữ liên lạc",
+          "ipa": "",
+          "category": "farewell"
+        },
+        {
+          "id": "W_416efcf9",
+          "vi": "đi đường bình an",
+          "ipa": "",
+          "category": "farewell"
+        },
+        {
+          "id": "W_8207e36e",
+          "vi": "chúc may mắn",
+          "ipa": "",
+          "category": "farewell"
+        },
+        {
+          "id": "W_1e959ef7",
+          "vi": "nhớ lắm",
+          "ipa": "",
+          "category": "farewell"
+        },
+        {
+          "id": "W_9c214f6f",
+          "vi": "lần sau nhất định",
+          "ipa": "",
+          "category": "farewell"
+        }
+      ],
+      "sentences": [],
+      "matches": []
+    },
+    {
+      "id": "L_b43549c78a",
+      "node_id": "tourist_u12_L101",
+      "quiz_id": null,
+      "unit_index": 12,
+      "unit_title": "Leaving Vietnam / Returning",
+      "lesson_type": "Grammar",
+      "lesson_title": "Reflecting on the Trip (đã từng + past)",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_9283aee867"
+        ]
+      },
+      "grammar_tags": [
+        "GT019",
+        "GT026",
+        "GT042"
+      ],
+      "words": [
+        {
+          "id": "W_e5ada2fa",
+          "vi": "ấn tượng nhất",
+          "ipa": "",
+          "category": "reflection"
+        },
+        {
+          "id": "W_0b7510cc",
+          "vi": "nhớ nhất",
+          "ipa": "",
+          "category": "reflection"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_a67e6579",
+          "vi": "Chuyến đi này ấn tượng nhất là gì?"
+        },
+        {
+          "id": "S_f4b9814d",
+          "vi": "Tôi nhớ nhất đồ ăn đường phố."
+        },
+        {
+          "id": "S_8838ca7f",
+          "vi": "Đã từng ở đây 2 tuần, tôi sẽ quay lại."
+        },
+        {
+          "id": "S_3aedb552",
+          "vi": "Chưa bao giờ tôi cảm thấy được chào đón như vậy."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_ebed9ca49b",
+      "node_id": "tourist_u12_L102",
+      "quiz_id": null,
+      "unit_index": 12,
+      "unit_title": "Leaving Vietnam / Returning",
+      "lesson_type": "Grammar",
+      "lesson_title": "Thanking People Deeply",
+      "content_types": [
+        "fill_blank",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_b43549c78a"
+        ]
+      },
+      "grammar_tags": [
+        "GT004",
+        "GT042"
+      ],
+      "words": [
+        {
+          "id": "W_95c36f60",
+          "vi": "chân thành cảm ơn",
+          "ipa": "",
+          "category": "farewell"
+        },
+        {
+          "id": "W_36daa318",
+          "vi": "không quên",
+          "ipa": "",
+          "category": "farewell"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_5a4848db",
+          "vi": "Chân thành cảm ơn anh/chị đã giúp đỡ."
+        },
+        {
+          "id": "S_722709f9",
+          "vi": "Tôi sẽ không quên Việt Nam."
+        },
+        {
+          "id": "S_1b3ff801",
+          "vi": "Cảm ơn mọi người đã chào đón tôi."
+        },
+        {
+          "id": "S_98075845",
+          "vi": "Chuyến đi này thực sự đặc biệt."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_0c230cc9ed",
+      "node_id": "tourist_u12_L103",
+      "quiz_id": null,
+      "unit_index": 12,
+      "unit_title": "Leaving Vietnam / Returning",
+      "lesson_type": "Grammar",
+      "lesson_title": "Promising to Return",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_ebed9ca49b"
+        ]
+      },
+      "grammar_tags": [
+        "GT026"
+      ],
+      "words": [
+        {
+          "id": "W_55c75aa7",
+          "vi": "nhất định",
+          "ipa": "",
+          "category": "promise"
+        },
+        {
+          "id": "W_cabe9c98",
+          "vi": "lần sau",
+          "ipa": "",
+          "category": "promise"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_bb681d31",
+          "vi": "Tôi nhất định sẽ quay lại."
+        },
+        {
+          "id": "S_a57d4da7",
+          "vi": "Lần sau mình đưa gia đình đi."
+        },
+        {
+          "id": "S_9f656595",
+          "vi": "Mình sẽ giới thiệu Việt Nam cho bạn bè."
+        },
+        {
+          "id": "S_9a4dc256",
+          "vi": "Mong gặp lại bạn năm sau."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_cfec4ecd6a",
+      "node_id": "tourist_u12_L104",
+      "quiz_id": null,
+      "unit_index": 12,
+      "unit_title": "Leaving Vietnam / Returning",
+      "lesson_type": "Grammar",
+      "lesson_title": "Souvenir Packing Talk",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_0c230cc9ed"
+        ]
+      },
+      "grammar_tags": [
+        "GT002",
+        "GT005",
+        "GT029",
+        "GT042"
+      ],
+      "words": [
+        {
+          "id": "W_ebb77751",
+          "vi": "dành cho",
+          "ipa": "",
+          "category": "gift"
+        },
+        {
+          "id": "W_67e25a27",
+          "vi": "làm quà",
+          "ipa": "",
+          "category": "gift"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_96829586",
+          "vi": "Cái này dành cho mẹ tôi."
+        },
+        {
+          "id": "S_5f6658d6",
+          "vi": "Tôi mua cà phê làm quà."
+        },
+        {
+          "id": "S_808a9709",
+          "vi": "Có quá cân không?"
+        },
+        {
+          "id": "S_0f63b809",
+          "vi": "Tôi phải bỏ bớt đồ."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_118f780481",
+      "node_id": "tourist_u12_L105",
+      "quiz_id": null,
+      "unit_index": 12,
+      "unit_title": "Leaving Vietnam / Returning",
+      "lesson_type": "Scene",
+      "lesson_title": "At the Airport — Checking In to Leave",
+      "content_types": [
+        "listen_choose",
+        "translation_word_bank"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_cfec4ecd6a"
+        ]
+      },
+      "grammar_tags": [
+        "GT021",
+        "GT034"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_a7d37326",
+          "vi": "Cho tôi check-in chuyến bay về Singapore."
+        },
+        {
+          "id": "S_bd7c0b6a",
+          "vi": "Hành lý ký gửi mấy kí?"
+        },
+        {
+          "id": "S_a6884629",
+          "vi": "Cửa ra máy bay số mấy?"
+        },
+        {
+          "id": "S_c8cb8579",
+          "vi": "Bay lúc 10 giờ đêm."
+        },
+        {
+          "id": "S_2010b84f",
+          "vi": "Tạm biệt Việt Nam, hẹn gặp lại!"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_035d29428f",
+      "node_id": "tourist_u12_L106",
+      "quiz_id": null,
+      "unit_index": 12,
+      "unit_title": "Leaving Vietnam / Returning",
+      "lesson_type": "Scene",
+      "lesson_title": "Saying Goodbye to a Local Friend",
+      "content_types": [
+        "listen_choose",
+        "speak_sentence"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_118f780481"
+        ]
+      },
+      "grammar_tags": [
+        "GT026"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_17f1a692",
+          "vi": "Cảm ơn bạn đã dành thời gian với tôi."
+        },
+        {
+          "id": "S_e9116b87",
+          "vi": "Mình sẽ giữ liên lạc qua zalo."
+        },
+        {
+          "id": "S_6b566c8a",
+          "vi": "Nếu có dịp, bạn sang Mỹ chơi nhé."
+        },
+        {
+          "id": "S_7ba57ac6",
+          "vi": "Đi đường bình an!"
+        },
+        {
+          "id": "S_6336cd32",
+          "vi": "Lần sau nhất định quay lại."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_9b8ec58bc5",
+      "node_id": "tourist_u12_Q107",
+      "quiz_id": "tourist_u12_Q107",
+      "unit_index": 12,
+      "unit_title": "Leaving Vietnam / Returning",
+      "lesson_type": "Quiz",
+      "lesson_title": "Departure Review",
+      "content_types": [
+        "mcq_translate_to_en",
+        "listen_choose",
+        "match_pairs"
+      ],
+      "xp_reward": 20,
+      "unlock_rule": {
+        "type": "unit_complete",
+        "requires": [
+          "L_d2319bff6c",
+          "L_9283aee867",
+          "L_b43549c78a",
+          "L_ebed9ca49b",
+          "L_0c230cc9ed",
+          "L_cfec4ecd6a",
+          "L_118f780481",
+          "L_035d29428f"
+        ]
+      },
+      "grammar_tags": [
+        "GT026"
+      ],
+      "words": [
+        {
+          "id": "W_ff4d1648",
+          "vi": "chuyến bay về",
+          "ipa": "",
+          "category": "departure"
+        },
+        {
+          "id": "W_23b96dc0",
+          "vi": "tạm biệt",
+          "ipa": "",
+          "category": "farewell"
+        },
+        {
+          "id": "W_7e2aa34b",
+          "vi": "hẹn gặp lại",
+          "ipa": "",
+          "category": "farewell"
+        },
+        {
+          "id": "W_040f56c2",
+          "vi": "giữ liên lạc",
+          "ipa": "",
+          "category": "farewell"
+        },
+        {
+          "id": "W_4ce664e5",
+          "vi": "nhất định",
+          "ipa": "",
+          "category": "promise"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_0eab242f",
+          "vi": "Tôi nhất định sẽ quay lại."
+        }
+      ],
+      "matches": [
+        {
+          "id": "M_e5f9f683",
+          "text": "chuyến bay về"
+        },
+        {
+          "id": "M_e24b8290",
+          "text": "tạm biệt"
+        },
+        {
+          "id": "M_163c3e13",
+          "text": "hẹn gặp lại"
+        },
+        {
+          "id": "M_e7113c0a",
+          "text": "giữ liên lạc"
+        }
+      ]
+    }
+  ]
+}

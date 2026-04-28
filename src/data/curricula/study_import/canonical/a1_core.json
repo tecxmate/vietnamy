@@ -1,0 +1,3919 @@
+{
+  "meta": {
+    "level": "a1",
+    "track": "core",
+    "source": "vn_a1_core.xlsx",
+    "generated": "2026-04-28T09:02:31.257Z",
+    "stats": {
+      "units": 7,
+      "lessons": 65,
+      "words": 200,
+      "sentences": 134,
+      "matches": 73
+    }
+  },
+  "units": [
+    {
+      "index": 1,
+      "title": "Sounds & Tones"
+    },
+    {
+      "index": 2,
+      "title": "Greetings & Introductions"
+    },
+    {
+      "index": 3,
+      "title": "Family & Possession"
+    },
+    {
+      "index": 4,
+      "title": "Numbers & Counting"
+    },
+    {
+      "index": 5,
+      "title": "Food & Drink"
+    },
+    {
+      "index": 6,
+      "title": "Questions & Answers"
+    },
+    {
+      "index": 7,
+      "title": "Time, Days & Money"
+    }
+  ],
+  "lessons": [
+    {
+      "id": "L_d100db69f6",
+      "node_id": "core_u1_L001",
+      "quiz_id": null,
+      "unit_index": 1,
+      "unit_title": "Sounds & Tones",
+      "lesson_type": "Phonetics",
+      "lesson_title": "The Six Tones",
+      "content_types": [
+        "listen_choose",
+        "speak_sentence"
+      ],
+      "xp_reward": 8,
+      "unlock_rule": {
+        "type": "start"
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_5e709bec",
+          "vi": "ma",
+          "ipa": "",
+          "category": "tone"
+        },
+        {
+          "id": "W_0c25179c",
+          "vi": "mà",
+          "ipa": "",
+          "category": "tone"
+        },
+        {
+          "id": "W_365809df",
+          "vi": "má",
+          "ipa": "",
+          "category": "tone"
+        },
+        {
+          "id": "W_f0f43939",
+          "vi": "mả",
+          "ipa": "",
+          "category": "tone"
+        },
+        {
+          "id": "W_45de2361",
+          "vi": "mã",
+          "ipa": "",
+          "category": "tone"
+        },
+        {
+          "id": "W_ee018774",
+          "vi": "mạ",
+          "ipa": "",
+          "category": "tone"
+        }
+      ],
+      "sentences": [],
+      "matches": []
+    },
+    {
+      "id": "L_6441087fd5",
+      "node_id": "core_u1_L002",
+      "quiz_id": null,
+      "unit_index": 1,
+      "unit_title": "Sounds & Tones",
+      "lesson_type": "Phonetics",
+      "lesson_title": "Tone Contrast Practice",
+      "content_types": [
+        "listen_choose",
+        "speak_sentence"
+      ],
+      "xp_reward": 8,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_d100db69f6"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_5e587880",
+          "vi": "ba",
+          "ipa": "",
+          "category": "tone"
+        },
+        {
+          "id": "W_37800324",
+          "vi": "bà",
+          "ipa": "",
+          "category": "tone"
+        },
+        {
+          "id": "W_8bd83392",
+          "vi": "bá",
+          "ipa": "",
+          "category": "tone"
+        },
+        {
+          "id": "W_183b474e",
+          "vi": "bả",
+          "ipa": "",
+          "category": "tone"
+        },
+        {
+          "id": "W_3c3e5e2f",
+          "vi": "bạ",
+          "ipa": "",
+          "category": "tone"
+        }
+      ],
+      "sentences": [],
+      "matches": []
+    },
+    {
+      "id": "L_18f7e8adca",
+      "node_id": "core_u1_L003",
+      "quiz_id": null,
+      "unit_index": 1,
+      "unit_title": "Sounds & Tones",
+      "lesson_type": "Phonetics",
+      "lesson_title": "Core Vowels (12)",
+      "content_types": [
+        "listen_choose",
+        "listen_type"
+      ],
+      "xp_reward": 8,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_6441087fd5"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_337c6fb2",
+          "vi": "a",
+          "ipa": "",
+          "category": "vowel"
+        },
+        {
+          "id": "W_3ab380b0",
+          "vi": "ă",
+          "ipa": "",
+          "category": "vowel"
+        },
+        {
+          "id": "W_8f4b805e",
+          "vi": "â",
+          "ipa": "",
+          "category": "vowel"
+        },
+        {
+          "id": "W_56e99dcc",
+          "vi": "e",
+          "ipa": "",
+          "category": "vowel"
+        },
+        {
+          "id": "W_9daf4a15",
+          "vi": "ê",
+          "ipa": "",
+          "category": "vowel"
+        },
+        {
+          "id": "W_60d2f5c3",
+          "vi": "i",
+          "ipa": "",
+          "category": "vowel"
+        },
+        {
+          "id": "W_24c451c9",
+          "vi": "o",
+          "ipa": "",
+          "category": "vowel"
+        },
+        {
+          "id": "W_ce83ecdf",
+          "vi": "ô",
+          "ipa": "",
+          "category": "vowel"
+        },
+        {
+          "id": "W_10e2e21e",
+          "vi": "ơ",
+          "ipa": "",
+          "category": "vowel"
+        },
+        {
+          "id": "W_91393c7b",
+          "vi": "u",
+          "ipa": "",
+          "category": "vowel"
+        },
+        {
+          "id": "W_c9fb5909",
+          "vi": "ư",
+          "ipa": "",
+          "category": "vowel"
+        },
+        {
+          "id": "W_388e300f",
+          "vi": "y",
+          "ipa": "",
+          "category": "vowel"
+        }
+      ],
+      "sentences": [],
+      "matches": []
+    },
+    {
+      "id": "L_a5c8c1bffc",
+      "node_id": "core_u1_L004",
+      "quiz_id": null,
+      "unit_index": 1,
+      "unit_title": "Sounds & Tones",
+      "lesson_type": "Phonetics",
+      "lesson_title": "Tricky Consonants",
+      "content_types": [
+        "listen_choose",
+        "listen_type"
+      ],
+      "xp_reward": 8,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_18f7e8adca"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_ccb203c4",
+          "vi": "đ",
+          "ipa": "",
+          "category": "consonant"
+        },
+        {
+          "id": "W_684ed628",
+          "vi": "d",
+          "ipa": "",
+          "category": "consonant"
+        },
+        {
+          "id": "W_20456777",
+          "vi": "gi",
+          "ipa": "",
+          "category": "consonant"
+        },
+        {
+          "id": "W_ad618d3f",
+          "vi": "nh",
+          "ipa": "",
+          "category": "consonant"
+        },
+        {
+          "id": "W_60e417a4",
+          "vi": "ng",
+          "ipa": "",
+          "category": "consonant"
+        },
+        {
+          "id": "W_59bbfdba",
+          "vi": "kh",
+          "ipa": "",
+          "category": "consonant"
+        },
+        {
+          "id": "W_a4cd7735",
+          "vi": "tr",
+          "ipa": "",
+          "category": "consonant"
+        }
+      ],
+      "sentences": [],
+      "matches": []
+    },
+    {
+      "id": "L_f677bfd539",
+      "node_id": "core_u1_L005",
+      "quiz_id": null,
+      "unit_index": 1,
+      "unit_title": "Sounds & Tones",
+      "lesson_type": "Phonetics",
+      "lesson_title": "Diphthongs",
+      "content_types": [
+        "listen_choose",
+        "listen_type"
+      ],
+      "xp_reward": 8,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_a5c8c1bffc"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_7f305ee3",
+          "vi": "ai",
+          "ipa": "",
+          "category": "diphthong"
+        },
+        {
+          "id": "W_92bcd336",
+          "vi": "ao",
+          "ipa": "",
+          "category": "diphthong"
+        },
+        {
+          "id": "W_29727cba",
+          "vi": "oi",
+          "ipa": "",
+          "category": "diphthong"
+        },
+        {
+          "id": "W_03f4e159",
+          "vi": "ua",
+          "ipa": "",
+          "category": "diphthong"
+        },
+        {
+          "id": "W_fc3ef267",
+          "vi": "ưa",
+          "ipa": "",
+          "category": "diphthong"
+        },
+        {
+          "id": "W_916d4e14",
+          "vi": "iê",
+          "ipa": "",
+          "category": "diphthong"
+        }
+      ],
+      "sentences": [],
+      "matches": []
+    },
+    {
+      "id": "L_fed48045ee",
+      "node_id": "core_u1_L006",
+      "quiz_id": null,
+      "unit_index": 1,
+      "unit_title": "Sounds & Tones",
+      "lesson_type": "Phonetics",
+      "lesson_title": "Tones in Connected Speech",
+      "content_types": [
+        "listen_choose",
+        "speak_sentence",
+        "listen_type"
+      ],
+      "xp_reward": 8,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_f677bfd539"
+        ]
+      },
+      "grammar_tags": [
+        "GT031"
+      ],
+      "words": [
+        {
+          "id": "W_e030341e",
+          "vi": "xin chào",
+          "ipa": "",
+          "category": "connected"
+        },
+        {
+          "id": "W_1b1a8a5a",
+          "vi": "cảm ơn",
+          "ipa": "",
+          "category": "connected"
+        },
+        {
+          "id": "W_90a6053f",
+          "vi": "rất vui",
+          "ipa": "",
+          "category": "connected"
+        },
+        {
+          "id": "W_93e80b60",
+          "vi": "không sao",
+          "ipa": "",
+          "category": "connected"
+        },
+        {
+          "id": "W_cb0b1305",
+          "vi": "tạm biệt",
+          "ipa": "",
+          "category": "connected"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_766989ab",
+          "vi": "Xin chào, rất vui được gặp bạn."
+        },
+        {
+          "id": "S_b2af2b9d",
+          "vi": "Cảm ơn bạn rất nhiều."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_5a114871ab",
+      "node_id": "core_u2_L007",
+      "quiz_id": null,
+      "unit_index": 2,
+      "unit_title": "Greetings & Introductions",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Say Hello & Goodbye",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_fed48045ee"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_c291d1bc",
+          "vi": "xin chào",
+          "ipa": "",
+          "category": "greeting"
+        },
+        {
+          "id": "W_fdb6a7b3",
+          "vi": "chào",
+          "ipa": "",
+          "category": "greeting"
+        },
+        {
+          "id": "W_0ff865dc",
+          "vi": "tạm biệt",
+          "ipa": "",
+          "category": "greeting"
+        },
+        {
+          "id": "W_467cecbd",
+          "vi": "hẹn gặp lại",
+          "ipa": "",
+          "category": "greeting"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_4e44c2d7",
+          "text": "xin chào"
+        },
+        {
+          "id": "M_ffde7665",
+          "text": "chào"
+        },
+        {
+          "id": "M_872a6b02",
+          "text": "tạm biệt"
+        },
+        {
+          "id": "M_272bbaf1",
+          "text": "hẹn gặp lại"
+        }
+      ]
+    },
+    {
+      "id": "L_518e089b1e",
+      "node_id": "core_u2_L008",
+      "quiz_id": null,
+      "unit_index": 2,
+      "unit_title": "Greetings & Introductions",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Thank You & Sorry",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_5a114871ab"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_afd99afe",
+          "vi": "cảm ơn",
+          "ipa": "",
+          "category": "greeting"
+        },
+        {
+          "id": "W_a8258177",
+          "vi": "cảm ơn nhiều",
+          "ipa": "",
+          "category": "greeting"
+        },
+        {
+          "id": "W_471c60e9",
+          "vi": "không có gì",
+          "ipa": "",
+          "category": "polite"
+        },
+        {
+          "id": "W_8e2c37da",
+          "vi": "xin lỗi",
+          "ipa": "",
+          "category": "greeting"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_c699181b",
+          "text": "cảm ơn"
+        },
+        {
+          "id": "M_f96f3390",
+          "text": "xin lỗi"
+        },
+        {
+          "id": "M_a103b328",
+          "text": "không có gì"
+        }
+      ]
+    },
+    {
+      "id": "L_272b450c28",
+      "node_id": "core_u2_L009",
+      "quiz_id": null,
+      "unit_index": 2,
+      "unit_title": "Greetings & Introductions",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Yes & No",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_vi",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_518e089b1e"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_58313af7",
+          "vi": "vâng",
+          "ipa": "",
+          "category": "polite"
+        },
+        {
+          "id": "W_3f6d3eac",
+          "vi": "dạ",
+          "ipa": "",
+          "category": "polite"
+        },
+        {
+          "id": "W_329c4afc",
+          "vi": "có",
+          "ipa": "",
+          "category": "polite"
+        },
+        {
+          "id": "W_faca50f7",
+          "vi": "không",
+          "ipa": "",
+          "category": "polite"
+        },
+        {
+          "id": "W_8c43b835",
+          "vi": "được",
+          "ipa": "",
+          "category": "polite"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_1550d74a",
+          "text": "vâng"
+        },
+        {
+          "id": "M_2dec651c",
+          "text": "không"
+        },
+        {
+          "id": "M_07d2e4fc",
+          "text": "được"
+        }
+      ]
+    },
+    {
+      "id": "L_ada8f557c0",
+      "node_id": "core_u2_L010",
+      "quiz_id": null,
+      "unit_index": 2,
+      "unit_title": "Greetings & Introductions",
+      "lesson_type": "Grammar",
+      "lesson_title": "I and You (tôi, bạn)",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_272b450c28"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_523c2b61",
+          "vi": "tôi",
+          "ipa": "",
+          "category": "pronoun"
+        },
+        {
+          "id": "W_e64dbe1c",
+          "vi": "bạn",
+          "ipa": "",
+          "category": "pronoun"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_2a9f6a18",
+          "vi": "Tôi là sinh viên."
+        },
+        {
+          "id": "S_c978e9ff",
+          "vi": "Bạn tên là gì?"
+        },
+        {
+          "id": "S_addaeeaa",
+          "vi": "Tôi tên là Nam."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_fcf6d58449",
+      "node_id": "core_u2_L011",
+      "quiz_id": null,
+      "unit_index": 2,
+      "unit_title": "Greetings & Introductions",
+      "lesson_type": "Grammar",
+      "lesson_title": "Age-based Pronouns (anh, chị, em)",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_ada8f557c0"
+        ]
+      },
+      "grammar_tags": [
+        "GT013"
+      ],
+      "words": [
+        {
+          "id": "W_7dff9566",
+          "vi": "anh",
+          "ipa": "",
+          "category": "pronoun"
+        },
+        {
+          "id": "W_296d3267",
+          "vi": "chị",
+          "ipa": "",
+          "category": "pronoun"
+        },
+        {
+          "id": "W_a4a0da8a",
+          "vi": "em",
+          "ipa": "",
+          "category": "pronoun"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_4acf74f2",
+          "vi": "Chào anh!"
+        },
+        {
+          "id": "S_9b88adc2",
+          "vi": "Chị tên là gì?"
+        },
+        {
+          "id": "S_ca1932bf",
+          "vi": "Em bao nhiêu tuổi?"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_26d4453e18",
+      "node_id": "core_u2_L012",
+      "quiz_id": null,
+      "unit_index": 2,
+      "unit_title": "Greetings & Introductions",
+      "lesson_type": "Grammar",
+      "lesson_title": "Formal Pronouns (ông, bà, cô, bác)",
+      "content_types": [
+        "fill_blank",
+        "mcq_translate_to_vi"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_fcf6d58449"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_8d0b7276",
+          "vi": "ông",
+          "ipa": "",
+          "category": "pronoun"
+        },
+        {
+          "id": "W_01e83075",
+          "vi": "bà",
+          "ipa": "",
+          "category": "pronoun"
+        },
+        {
+          "id": "W_da7a4b3d",
+          "vi": "cô",
+          "ipa": "",
+          "category": "pronoun"
+        },
+        {
+          "id": "W_f2803aa9",
+          "vi": "bác",
+          "ipa": "",
+          "category": "pronoun"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_85608bd5",
+          "vi": "Chào ông!"
+        },
+        {
+          "id": "S_f48c66ef",
+          "vi": "Chào bà ạ!"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_8cf3142a29",
+      "node_id": "core_u2_L013",
+      "quiz_id": null,
+      "unit_index": 2,
+      "unit_title": "Greetings & Introductions",
+      "lesson_type": "Grammar",
+      "lesson_title": "Sentence Structure: S + là + N",
+      "content_types": [
+        "fill_blank",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_26d4453e18"
+        ]
+      },
+      "grammar_tags": [
+        "GT043"
+      ],
+      "words": [
+        {
+          "id": "W_9f17bc20",
+          "vi": "là",
+          "ipa": "",
+          "category": "verb"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_d083174a",
+          "vi": "Tôi là giáo viên."
+        },
+        {
+          "id": "S_ca4fda9b",
+          "vi": "Cô ấy là bác sĩ."
+        },
+        {
+          "id": "S_778025c1",
+          "vi": "Đây là bạn tôi."
+        },
+        {
+          "id": "S_719b8e4e",
+          "vi": "Anh ấy là người Việt."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_52dd88386e",
+      "node_id": "core_u2_L014",
+      "quiz_id": null,
+      "unit_index": 2,
+      "unit_title": "Greetings & Introductions",
+      "lesson_type": "Grammar",
+      "lesson_title": "Nationality (người + country)",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_8cf3142a29"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_a0fbbedc",
+          "vi": "người",
+          "ipa": "",
+          "category": "noun"
+        },
+        {
+          "id": "W_33a03f6e",
+          "vi": "Việt Nam",
+          "ipa": "",
+          "category": "country"
+        },
+        {
+          "id": "W_d5b6a5e5",
+          "vi": "Mỹ",
+          "ipa": "",
+          "category": "country"
+        },
+        {
+          "id": "W_3cfa4d4a",
+          "vi": "Nhật Bản",
+          "ipa": "",
+          "category": "country"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_434ad1b2",
+          "vi": "Tôi là người Việt Nam."
+        },
+        {
+          "id": "S_e161e6e7",
+          "vi": "Cô ấy là người Mỹ."
+        },
+        {
+          "id": "S_d0670b48",
+          "vi": "Bạn là người nước nào?"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_092d78f5ff",
+      "node_id": "core_u2_L015",
+      "quiz_id": null,
+      "unit_index": 2,
+      "unit_title": "Greetings & Introductions",
+      "lesson_type": "Grammar",
+      "lesson_title": "Polite Particle ạ",
+      "content_types": [
+        "fill_blank",
+        "reorder_words",
+        "listen_choose"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_52dd88386e"
+        ]
+      },
+      "grammar_tags": [
+        "GT004"
+      ],
+      "words": [
+        {
+          "id": "W_21d5114b",
+          "vi": "ạ",
+          "ipa": "",
+          "category": "particle"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_255241a6",
+          "vi": "Chào anh ạ!"
+        },
+        {
+          "id": "S_0bd43df9",
+          "vi": "Cảm ơn chị ạ."
+        },
+        {
+          "id": "S_8b9a3992",
+          "vi": "Vâng ạ."
+        },
+        {
+          "id": "S_17408f56",
+          "vi": "Ông khỏe không ạ?"
+        },
+        {
+          "id": "S_04bc7cfa",
+          "vi": "Em không biết ạ."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_038e49092d",
+      "node_id": "core_u2_L016",
+      "quiz_id": null,
+      "unit_index": 2,
+      "unit_title": "Greetings & Introductions",
+      "lesson_type": "Scene",
+      "lesson_title": "First Introduction",
+      "content_types": [
+        "speak_sentence",
+        "listen_choose"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_092d78f5ff"
+        ]
+      },
+      "grammar_tags": [
+        "GT031"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_ac00afa6",
+          "vi": "Xin chào! Tôi tên là Minh."
+        },
+        {
+          "id": "S_79c9904d",
+          "vi": "Rất vui được gặp bạn."
+        },
+        {
+          "id": "S_6c240415",
+          "vi": "Bạn tên là gì?"
+        },
+        {
+          "id": "S_44d65b47",
+          "vi": "Bạn là người nước nào?"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_f80d326b47",
+      "node_id": "core_u2_L017",
+      "quiz_id": null,
+      "unit_index": 2,
+      "unit_title": "Greetings & Introductions",
+      "lesson_type": "Scene",
+      "lesson_title": "Talking to Elders",
+      "content_types": [
+        "speak_sentence",
+        "listen_choose"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_038e49092d"
+        ]
+      },
+      "grammar_tags": [
+        "GT004"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_df5a973d",
+          "vi": "Chào ông ạ!"
+        },
+        {
+          "id": "S_dee939df",
+          "vi": "Cháu tên là Linh."
+        },
+        {
+          "id": "S_a85e7f43",
+          "vi": "Ông khỏe không ạ?"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_d8999d03cd",
+      "node_id": "core_u2_Q018",
+      "quiz_id": "core_u2_Q018",
+      "unit_index": 2,
+      "unit_title": "Greetings & Introductions",
+      "lesson_type": "Quiz",
+      "lesson_title": "Greetings & People Review",
+      "content_types": [
+        "mcq_translate_to_en",
+        "listen_choose",
+        "match_pairs"
+      ],
+      "xp_reward": 20,
+      "unlock_rule": {
+        "type": "unit_complete",
+        "requires": [
+          "L_5a114871ab",
+          "L_518e089b1e",
+          "L_272b450c28",
+          "L_ada8f557c0",
+          "L_fcf6d58449",
+          "L_26d4453e18",
+          "L_8cf3142a29",
+          "L_52dd88386e",
+          "L_092d78f5ff",
+          "L_038e49092d",
+          "L_f80d326b47"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_24f15627",
+          "vi": "xin chào",
+          "ipa": "",
+          "category": "greeting"
+        },
+        {
+          "id": "W_d7051ed1",
+          "vi": "cảm ơn",
+          "ipa": "",
+          "category": "greeting"
+        },
+        {
+          "id": "W_90b1287b",
+          "vi": "anh",
+          "ipa": "",
+          "category": "pronoun"
+        },
+        {
+          "id": "W_3cb145bd",
+          "vi": "chị",
+          "ipa": "",
+          "category": "pronoun"
+        },
+        {
+          "id": "W_956c3f24",
+          "vi": "ông",
+          "ipa": "",
+          "category": "pronoun"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_ad481895",
+          "vi": "Tôi là người Việt Nam."
+        }
+      ],
+      "matches": [
+        {
+          "id": "M_58ee1565",
+          "text": "xin chào"
+        },
+        {
+          "id": "M_f5e7ea6c",
+          "text": "cảm ơn"
+        },
+        {
+          "id": "M_878fbbe9",
+          "text": "anh"
+        },
+        {
+          "id": "M_782108d0",
+          "text": "ông"
+        }
+      ]
+    },
+    {
+      "id": "L_54b16a404c",
+      "node_id": "core_u3_L019",
+      "quiz_id": null,
+      "unit_index": 3,
+      "unit_title": "Family & Possession",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Family Members",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_d8999d03cd"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_db8da222",
+          "vi": "gia đình",
+          "ipa": "",
+          "category": "family"
+        },
+        {
+          "id": "W_472cb8f3",
+          "vi": "bố",
+          "ipa": "",
+          "category": "family"
+        },
+        {
+          "id": "W_ecc9aada",
+          "vi": "ba",
+          "ipa": "",
+          "category": "family"
+        },
+        {
+          "id": "W_6e347bf3",
+          "vi": "mẹ",
+          "ipa": "",
+          "category": "family"
+        },
+        {
+          "id": "W_498579a9",
+          "vi": "má",
+          "ipa": "",
+          "category": "family"
+        },
+        {
+          "id": "W_be3a7e25",
+          "vi": "con",
+          "ipa": "",
+          "category": "family"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_f337ec70",
+          "text": "gia đình"
+        },
+        {
+          "id": "M_601ef4de",
+          "text": "bố"
+        },
+        {
+          "id": "M_cbbb79f0",
+          "text": "mẹ"
+        },
+        {
+          "id": "M_53e0c792",
+          "text": "con"
+        }
+      ]
+    },
+    {
+      "id": "L_9f51b90332",
+      "node_id": "core_u3_L020",
+      "quiz_id": null,
+      "unit_index": 3,
+      "unit_title": "Family & Possession",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Siblings & Grandparents",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_vi",
+        "picture_choice"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_54b16a404c"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_58ffba9e",
+          "vi": "anh trai",
+          "ipa": "",
+          "category": "family"
+        },
+        {
+          "id": "W_58071786",
+          "vi": "em trai",
+          "ipa": "",
+          "category": "family"
+        },
+        {
+          "id": "W_53865229",
+          "vi": "chị gái",
+          "ipa": "",
+          "category": "family"
+        },
+        {
+          "id": "W_3826c5a7",
+          "vi": "em gái",
+          "ipa": "",
+          "category": "family"
+        },
+        {
+          "id": "W_8038499c",
+          "vi": "ông",
+          "ipa": "",
+          "category": "family"
+        },
+        {
+          "id": "W_4b309da0",
+          "vi": "bà",
+          "ipa": "",
+          "category": "family"
+        }
+      ],
+      "sentences": [],
+      "matches": []
+    },
+    {
+      "id": "L_bd1aecce8f",
+      "node_id": "core_u3_L021",
+      "quiz_id": null,
+      "unit_index": 3,
+      "unit_title": "Family & Possession",
+      "lesson_type": "Grammar",
+      "lesson_title": "Possession with của",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_9f51b90332"
+        ]
+      },
+      "grammar_tags": [
+        "GT033",
+        "GT043"
+      ],
+      "words": [
+        {
+          "id": "W_a3e07905",
+          "vi": "của",
+          "ipa": "",
+          "category": "preposition"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_9ce90609",
+          "vi": "Đây là mẹ của tôi."
+        },
+        {
+          "id": "S_ec4147cf",
+          "vi": "Tên của bạn là gì?"
+        },
+        {
+          "id": "S_75fbcbcf",
+          "vi": "Bố của tôi là bác sĩ."
+        },
+        {
+          "id": "S_07ba815a",
+          "vi": "Nhà của cô ấy đẹp lắm."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_9118495800",
+      "node_id": "core_u3_L022",
+      "quiz_id": null,
+      "unit_index": 3,
+      "unit_title": "Family & Possession",
+      "lesson_type": "Grammar",
+      "lesson_title": "This and That (đây, kia, đó)",
+      "content_types": [
+        "fill_blank",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_bd1aecce8f"
+        ]
+      },
+      "grammar_tags": [
+        "GT005",
+        "GT042",
+        "GT043"
+      ],
+      "words": [
+        {
+          "id": "W_cb299674",
+          "vi": "đây",
+          "ipa": "",
+          "category": "demonstrative"
+        },
+        {
+          "id": "W_dfa15002",
+          "vi": "kia",
+          "ipa": "",
+          "category": "demonstrative"
+        },
+        {
+          "id": "W_4f64869a",
+          "vi": "đó",
+          "ipa": "",
+          "category": "demonstrative"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_ce9ebee1",
+          "vi": "Đây là bạn tôi."
+        },
+        {
+          "id": "S_798205bd",
+          "vi": "Kia là nhà của tôi."
+        },
+        {
+          "id": "S_89bee443",
+          "vi": "Bạn thấy chị đó không?"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_510a6390b3",
+      "node_id": "core_u3_L023",
+      "quiz_id": null,
+      "unit_index": 3,
+      "unit_title": "Family & Possession",
+      "lesson_type": "Grammar",
+      "lesson_title": "Conjunction và (and)",
+      "content_types": [
+        "fill_blank",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_9118495800"
+        ]
+      },
+      "grammar_tags": [
+        "GT022"
+      ],
+      "words": [
+        {
+          "id": "W_27678977",
+          "vi": "và",
+          "ipa": "",
+          "category": "conjunction"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_6e804510",
+          "vi": "Tôi và bạn tôi đi học."
+        },
+        {
+          "id": "S_2e667e85",
+          "vi": "Bố và mẹ tôi là giáo viên."
+        },
+        {
+          "id": "S_27577d06",
+          "vi": "Tôi muốn cà phê và bánh mì."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_75156b8caa",
+      "node_id": "core_u3_L024",
+      "quiz_id": null,
+      "unit_index": 3,
+      "unit_title": "Family & Possession",
+      "lesson_type": "Scene",
+      "lesson_title": "Meet My Family",
+      "content_types": [
+        "speak_sentence",
+        "listen_choose"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_510a6390b3"
+        ]
+      },
+      "grammar_tags": [
+        "GT031",
+        "GT043"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_76cbdecf",
+          "vi": "Đây là gia đình của tôi."
+        },
+        {
+          "id": "S_abf6fe8c",
+          "vi": "Đây là bố và mẹ tôi."
+        },
+        {
+          "id": "S_a7c8f6ad",
+          "vi": "Tôi có một anh trai."
+        },
+        {
+          "id": "S_4e4d6116",
+          "vi": "Rất vui được gặp gia đình bạn."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_2a2d4153df",
+      "node_id": "core_u3_L025",
+      "quiz_id": null,
+      "unit_index": 3,
+      "unit_title": "Family & Possession",
+      "lesson_type": "Scene",
+      "lesson_title": "At Grandma's House",
+      "content_types": [
+        "listen_choose",
+        "speak_sentence"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_75156b8caa"
+        ]
+      },
+      "grammar_tags": [
+        "GT004",
+        "GT033",
+        "GT043"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_ebbde1f0",
+          "vi": "Cháu chào bà ạ!"
+        },
+        {
+          "id": "S_4daed4d8",
+          "vi": "Đây là mẹ của cháu."
+        },
+        {
+          "id": "S_21154e88",
+          "vi": "Bà khỏe không ạ?"
+        },
+        {
+          "id": "S_d04c1b30",
+          "vi": "Nhà của bà đẹp lắm."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_f2073515f1",
+      "node_id": "core_u3_Q026",
+      "quiz_id": "core_u3_Q026",
+      "unit_index": 3,
+      "unit_title": "Family & Possession",
+      "lesson_type": "Quiz",
+      "lesson_title": "Family Review",
+      "content_types": [
+        "mcq_translate_to_en",
+        "listen_choose",
+        "match_pairs"
+      ],
+      "xp_reward": 20,
+      "unlock_rule": {
+        "type": "unit_complete",
+        "requires": [
+          "L_54b16a404c",
+          "L_9f51b90332",
+          "L_bd1aecce8f",
+          "L_9118495800",
+          "L_510a6390b3",
+          "L_75156b8caa",
+          "L_2a2d4153df"
+        ]
+      },
+      "grammar_tags": [
+        "GT043"
+      ],
+      "words": [
+        {
+          "id": "W_0be088df",
+          "vi": "gia đình",
+          "ipa": "",
+          "category": "family"
+        },
+        {
+          "id": "W_1350f59e",
+          "vi": "bố",
+          "ipa": "",
+          "category": "family"
+        },
+        {
+          "id": "W_b0fe9188",
+          "vi": "mẹ",
+          "ipa": "",
+          "category": "family"
+        },
+        {
+          "id": "W_61236249",
+          "vi": "của",
+          "ipa": "",
+          "category": "preposition"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_499883db",
+          "vi": "Đây là gia đình của tôi."
+        }
+      ],
+      "matches": [
+        {
+          "id": "M_b2a368cc",
+          "text": "gia đình"
+        },
+        {
+          "id": "M_47d8652a",
+          "text": "bố"
+        },
+        {
+          "id": "M_52cf0034",
+          "text": "mẹ"
+        },
+        {
+          "id": "M_1214ada5",
+          "text": "của"
+        }
+      ]
+    },
+    {
+      "id": "L_87d70ce134",
+      "node_id": "core_u4_L027",
+      "quiz_id": null,
+      "unit_index": 4,
+      "unit_title": "Numbers & Counting",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Numbers 0–5",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_f2073515f1"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_0a8cf69f",
+          "vi": "không",
+          "ipa": "",
+          "category": "number"
+        },
+        {
+          "id": "W_83ac3eb3",
+          "vi": "một",
+          "ipa": "",
+          "category": "number"
+        },
+        {
+          "id": "W_72f3d747",
+          "vi": "hai",
+          "ipa": "",
+          "category": "number"
+        },
+        {
+          "id": "W_98525fdc",
+          "vi": "ba",
+          "ipa": "",
+          "category": "number"
+        },
+        {
+          "id": "W_a758efec",
+          "vi": "bốn",
+          "ipa": "",
+          "category": "number"
+        },
+        {
+          "id": "W_8151da06",
+          "vi": "năm",
+          "ipa": "",
+          "category": "number"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_2816b93b",
+          "text": "một"
+        },
+        {
+          "id": "M_8d5a0b13",
+          "text": "hai"
+        },
+        {
+          "id": "M_3a455b6f",
+          "text": "ba"
+        },
+        {
+          "id": "M_2238c953",
+          "text": "năm"
+        }
+      ]
+    },
+    {
+      "id": "L_f5d2ed3356",
+      "node_id": "core_u4_L028",
+      "quiz_id": null,
+      "unit_index": 4,
+      "unit_title": "Numbers & Counting",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Numbers 6–10",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_87d70ce134"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_f66dde97",
+          "vi": "sáu",
+          "ipa": "",
+          "category": "number"
+        },
+        {
+          "id": "W_6a13b46e",
+          "vi": "bảy",
+          "ipa": "",
+          "category": "number"
+        },
+        {
+          "id": "W_44beddd4",
+          "vi": "tám",
+          "ipa": "",
+          "category": "number"
+        },
+        {
+          "id": "W_4f2c2755",
+          "vi": "chín",
+          "ipa": "",
+          "category": "number"
+        },
+        {
+          "id": "W_7fb2f047",
+          "vi": "mười",
+          "ipa": "",
+          "category": "number"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_9e087492",
+          "text": "sáu"
+        },
+        {
+          "id": "M_6b01c579",
+          "text": "bảy"
+        },
+        {
+          "id": "M_eaebc1eb",
+          "text": "chín"
+        },
+        {
+          "id": "M_7151b8a3",
+          "text": "mười"
+        }
+      ]
+    },
+    {
+      "id": "L_4fc0ab4d3d",
+      "node_id": "core_u4_L029",
+      "quiz_id": null,
+      "unit_index": 4,
+      "unit_title": "Numbers & Counting",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Numbers 11–20",
+      "content_types": [
+        "listen_choose",
+        "reorder_words",
+        "picture_choice"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_f5d2ed3356"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_f0f66170",
+          "vi": "mười một",
+          "ipa": "",
+          "category": "number"
+        },
+        {
+          "id": "W_398cc635",
+          "vi": "mười hai",
+          "ipa": "",
+          "category": "number"
+        },
+        {
+          "id": "W_bde06f70",
+          "vi": "mười lăm",
+          "ipa": "",
+          "category": "number"
+        },
+        {
+          "id": "W_6d5f90c0",
+          "vi": "hai mươi",
+          "ipa": "",
+          "category": "number"
+        }
+      ],
+      "sentences": [],
+      "matches": []
+    },
+    {
+      "id": "L_ef78e11f1a",
+      "node_id": "core_u4_L030",
+      "quiz_id": null,
+      "unit_index": 4,
+      "unit_title": "Numbers & Counting",
+      "lesson_type": "Grammar",
+      "lesson_title": "Classifier: cái (objects)",
+      "content_types": [
+        "fill_blank",
+        "mcq_translate_to_vi"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_4fc0ab4d3d"
+        ]
+      },
+      "grammar_tags": [
+        "GT021",
+        "GT023",
+        "GT042"
+      ],
+      "words": [
+        {
+          "id": "W_4bccc31b",
+          "vi": "cái",
+          "ipa": "",
+          "category": "classifier"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_684f929b",
+          "vi": "Cho tôi một cái."
+        },
+        {
+          "id": "S_52260974",
+          "vi": "Cô ấy mua hai cái áo."
+        },
+        {
+          "id": "S_6411a026",
+          "vi": "Cái bàn này đẹp."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_81e73ab4b8",
+      "node_id": "core_u4_L031",
+      "quiz_id": null,
+      "unit_index": 4,
+      "unit_title": "Numbers & Counting",
+      "lesson_type": "Grammar",
+      "lesson_title": "Classifier: con (animals)",
+      "content_types": [
+        "fill_blank",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_ef78e11f1a"
+        ]
+      },
+      "grammar_tags": [
+        "GT023",
+        "GT033",
+        "GT042"
+      ],
+      "words": [
+        {
+          "id": "W_b51ef1cd",
+          "vi": "con",
+          "ipa": "",
+          "category": "classifier"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_2013b396",
+          "vi": "Tôi có ba con mèo."
+        },
+        {
+          "id": "S_0007ff3f",
+          "vi": "Con chó này to lắm."
+        },
+        {
+          "id": "S_b29f6e25",
+          "vi": "Cô ấy nuôi hai con cá."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_7dd1d98eed",
+      "node_id": "core_u4_L032",
+      "quiz_id": null,
+      "unit_index": 4,
+      "unit_title": "Numbers & Counting",
+      "lesson_type": "Grammar",
+      "lesson_title": "Classifiers: chiếc, quả",
+      "content_types": [
+        "fill_blank",
+        "mcq_translate_to_vi"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_81e73ab4b8"
+        ]
+      },
+      "grammar_tags": [
+        "GT021",
+        "GT023"
+      ],
+      "words": [
+        {
+          "id": "W_f5ce2d63",
+          "vi": "chiếc",
+          "ipa": "",
+          "category": "classifier"
+        },
+        {
+          "id": "W_a75bbe2b",
+          "vi": "quả",
+          "ipa": "",
+          "category": "classifier"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_a5f8b7d6",
+          "vi": "Tôi ăn một quả táo."
+        },
+        {
+          "id": "S_684c017e",
+          "vi": "Anh ấy có một chiếc xe máy."
+        },
+        {
+          "id": "S_3488f147",
+          "vi": "Cho tôi hai quả chuối."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_3ba567927a",
+      "node_id": "core_u4_L033",
+      "quiz_id": null,
+      "unit_index": 4,
+      "unit_title": "Numbers & Counting",
+      "lesson_type": "Grammar",
+      "lesson_title": "Measure Words for Food (phần, ly, bát)",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_7dd1d98eed"
+        ]
+      },
+      "grammar_tags": [
+        "GT021"
+      ],
+      "words": [
+        {
+          "id": "W_bff1eb81",
+          "vi": "phần",
+          "ipa": "",
+          "category": "measure_word"
+        },
+        {
+          "id": "W_07c4bd46",
+          "vi": "ly",
+          "ipa": "",
+          "category": "measure_word"
+        },
+        {
+          "id": "W_362cf181",
+          "vi": "cốc",
+          "ipa": "",
+          "category": "measure_word"
+        },
+        {
+          "id": "W_7cf873b8",
+          "vi": "bát",
+          "ipa": "",
+          "category": "measure_word"
+        },
+        {
+          "id": "W_1ccaf090",
+          "vi": "tô",
+          "ipa": "",
+          "category": "measure_word"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_47516b89",
+          "vi": "Cho tôi hai phần cơm."
+        },
+        {
+          "id": "S_c2f63bff",
+          "vi": "Một ly cà phê."
+        },
+        {
+          "id": "S_ecda1aed",
+          "vi": "Một bát phở."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_405d975c1f",
+      "node_id": "core_u4_L034",
+      "quiz_id": null,
+      "unit_index": 4,
+      "unit_title": "Numbers & Counting",
+      "lesson_type": "Scene",
+      "lesson_title": "Buying Fruits",
+      "content_types": [
+        "listen_choose",
+        "speak_sentence"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_3ba567927a"
+        ]
+      },
+      "grammar_tags": [
+        "GT010",
+        "GT021",
+        "GT022"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_e5b2e69e",
+          "vi": "Cho tôi ba quả xoài."
+        },
+        {
+          "id": "S_30029533",
+          "vi": "Tôi muốn hai quả táo."
+        },
+        {
+          "id": "S_ba38040c",
+          "vi": "Bao nhiêu tiền một quả?"
+        },
+        {
+          "id": "S_09f3f1d6",
+          "vi": "Cảm ơn, cho tôi năm quả."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_0cd2fc907a",
+      "node_id": "core_u4_L035",
+      "quiz_id": null,
+      "unit_index": 4,
+      "unit_title": "Numbers & Counting",
+      "lesson_type": "Scene",
+      "lesson_title": "Counting Pets",
+      "content_types": [
+        "listen_choose",
+        "translation_word_bank"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_405d975c1f"
+        ]
+      },
+      "grammar_tags": [
+        "GT033",
+        "GT042"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_de51506b",
+          "vi": "Nhà tôi có hai con mèo."
+        },
+        {
+          "id": "S_2938f8fb",
+          "vi": "Bạn có mấy con chó?"
+        },
+        {
+          "id": "S_2cb9477a",
+          "vi": "Tôi có một con chó và ba con cá."
+        },
+        {
+          "id": "S_25fb8554",
+          "vi": "Con mèo này đẹp lắm."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_ad5b71538e",
+      "node_id": "core_u4_Q036",
+      "quiz_id": "core_u4_Q036",
+      "unit_index": 4,
+      "unit_title": "Numbers & Counting",
+      "lesson_type": "Quiz",
+      "lesson_title": "Numbers Review",
+      "content_types": [
+        "mcq_translate_to_en",
+        "listen_choose",
+        "match_pairs"
+      ],
+      "xp_reward": 20,
+      "unlock_rule": {
+        "type": "unit_complete",
+        "requires": [
+          "L_87d70ce134",
+          "L_f5d2ed3356",
+          "L_4fc0ab4d3d",
+          "L_ef78e11f1a",
+          "L_81e73ab4b8",
+          "L_7dd1d98eed",
+          "L_3ba567927a",
+          "L_405d975c1f",
+          "L_0cd2fc907a"
+        ]
+      },
+      "grammar_tags": [
+        "GT023"
+      ],
+      "words": [
+        {
+          "id": "W_92f592fc",
+          "vi": "một",
+          "ipa": "",
+          "category": "number"
+        },
+        {
+          "id": "W_9aa5ce50",
+          "vi": "năm",
+          "ipa": "",
+          "category": "number"
+        },
+        {
+          "id": "W_98576b7a",
+          "vi": "mười",
+          "ipa": "",
+          "category": "number"
+        },
+        {
+          "id": "W_299c2d6f",
+          "vi": "cái",
+          "ipa": "",
+          "category": "classifier"
+        },
+        {
+          "id": "W_05ad96ae",
+          "vi": "con",
+          "ipa": "",
+          "category": "classifier"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_9b0e5b6c",
+          "vi": "Tôi có ba con mèo."
+        }
+      ],
+      "matches": [
+        {
+          "id": "M_671e9df3",
+          "text": "một"
+        },
+        {
+          "id": "M_e970c0f5",
+          "text": "năm"
+        },
+        {
+          "id": "M_c7566645",
+          "text": "mười"
+        },
+        {
+          "id": "M_6c79b248",
+          "text": "cái"
+        },
+        {
+          "id": "M_810cf5e4",
+          "text": "con"
+        }
+      ]
+    },
+    {
+      "id": "L_2ce1745be1",
+      "node_id": "core_u5_L037",
+      "quiz_id": null,
+      "unit_index": 5,
+      "unit_title": "Food & Drink",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Basic Foods",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_ad5b71538e"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_2684e183",
+          "vi": "cơm",
+          "ipa": "",
+          "category": "food"
+        },
+        {
+          "id": "W_c508e0f0",
+          "vi": "phở",
+          "ipa": "",
+          "category": "food"
+        },
+        {
+          "id": "W_0f5e5a49",
+          "vi": "bánh mì",
+          "ipa": "",
+          "category": "food"
+        },
+        {
+          "id": "W_6a514b34",
+          "vi": "thịt",
+          "ipa": "",
+          "category": "food"
+        },
+        {
+          "id": "W_17c13107",
+          "vi": "cá",
+          "ipa": "",
+          "category": "food"
+        },
+        {
+          "id": "W_c07da78a",
+          "vi": "rau",
+          "ipa": "",
+          "category": "food"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_8cb4cc88",
+          "text": "cơm"
+        },
+        {
+          "id": "M_7bb04172",
+          "text": "phở"
+        },
+        {
+          "id": "M_5f93657d",
+          "text": "bánh mì"
+        },
+        {
+          "id": "M_d09f451e",
+          "text": "cá"
+        }
+      ]
+    },
+    {
+      "id": "L_1e163e515c",
+      "node_id": "core_u5_L038",
+      "quiz_id": null,
+      "unit_index": 5,
+      "unit_title": "Food & Drink",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Drinks",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en",
+        "picture_choice"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_2ce1745be1"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_647bca28",
+          "vi": "nước",
+          "ipa": "",
+          "category": "drink"
+        },
+        {
+          "id": "W_96d226d0",
+          "vi": "cà phê",
+          "ipa": "",
+          "category": "drink"
+        },
+        {
+          "id": "W_114b9048",
+          "vi": "trà",
+          "ipa": "",
+          "category": "drink"
+        },
+        {
+          "id": "W_d079bed4",
+          "vi": "bia",
+          "ipa": "",
+          "category": "drink"
+        },
+        {
+          "id": "W_c1c570fc",
+          "vi": "nước cam",
+          "ipa": "",
+          "category": "drink"
+        },
+        {
+          "id": "W_b9e28006",
+          "vi": "nước đá",
+          "ipa": "",
+          "category": "drink"
+        }
+      ],
+      "sentences": [],
+      "matches": []
+    },
+    {
+      "id": "L_27f951008c",
+      "node_id": "core_u5_L039",
+      "quiz_id": null,
+      "unit_index": 5,
+      "unit_title": "Food & Drink",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Taste Words",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_vi",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_1e163e515c"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_f160f33a",
+          "vi": "ngon",
+          "ipa": "",
+          "category": "taste"
+        },
+        {
+          "id": "W_b7f6fdb5",
+          "vi": "ngọt",
+          "ipa": "",
+          "category": "taste"
+        },
+        {
+          "id": "W_0c7e4903",
+          "vi": "cay",
+          "ipa": "",
+          "category": "taste"
+        },
+        {
+          "id": "W_42cbd34d",
+          "vi": "mặn",
+          "ipa": "",
+          "category": "taste"
+        },
+        {
+          "id": "W_c4c1a82f",
+          "vi": "chua",
+          "ipa": "",
+          "category": "taste"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_6da75bd0",
+          "text": "ngon"
+        },
+        {
+          "id": "M_8c77afe8",
+          "text": "cay"
+        },
+        {
+          "id": "M_d0956bc1",
+          "text": "ngọt"
+        },
+        {
+          "id": "M_dd472198",
+          "text": "chua"
+        }
+      ]
+    },
+    {
+      "id": "L_b81c6ffd6d",
+      "node_id": "core_u5_L040",
+      "quiz_id": null,
+      "unit_index": 5,
+      "unit_title": "Food & Drink",
+      "lesson_type": "Grammar",
+      "lesson_title": "Eat & Drink (ăn, uống)",
+      "content_types": [
+        "fill_blank",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_27f951008c"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_f957a46a",
+          "vi": "ăn",
+          "ipa": "",
+          "category": "verb"
+        },
+        {
+          "id": "W_412a4706",
+          "vi": "uống",
+          "ipa": "",
+          "category": "verb"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_f69e66ce",
+          "vi": "Tôi ăn cơm."
+        },
+        {
+          "id": "S_fe950b56",
+          "vi": "Tôi uống cà phê."
+        },
+        {
+          "id": "S_c931a7b7",
+          "vi": "Bạn ăn gì?"
+        },
+        {
+          "id": "S_52d61ae8",
+          "vi": "Bạn uống gì?"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_01247898cb",
+      "node_id": "core_u5_L041",
+      "quiz_id": null,
+      "unit_index": 5,
+      "unit_title": "Food & Drink",
+      "lesson_type": "Grammar",
+      "lesson_title": "I Want (muốn)",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_b81c6ffd6d"
+        ]
+      },
+      "grammar_tags": [
+        "GT022"
+      ],
+      "words": [
+        {
+          "id": "W_e4eaa5a4",
+          "vi": "muốn",
+          "ipa": "",
+          "category": "verb"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_2574065d",
+          "vi": "Tôi muốn ăn phở."
+        },
+        {
+          "id": "S_9c2f2e40",
+          "vi": "Tôi muốn uống cà phê."
+        },
+        {
+          "id": "S_7f1acc8c",
+          "vi": "Bạn muốn gì?"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_4f6978084e",
+      "node_id": "core_u5_L042",
+      "quiz_id": null,
+      "unit_index": 5,
+      "unit_title": "Food & Drink",
+      "lesson_type": "Grammar",
+      "lesson_title": "Polite Requests (Cho tôi, Xin, Làm ơn)",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_01247898cb"
+        ]
+      },
+      "grammar_tags": [
+        "GT002",
+        "GT021"
+      ],
+      "words": [
+        {
+          "id": "W_867e56f7",
+          "vi": "cho tôi",
+          "ipa": "",
+          "category": "request"
+        },
+        {
+          "id": "W_a17fd9dc",
+          "vi": "xin",
+          "ipa": "",
+          "category": "request"
+        },
+        {
+          "id": "W_09231bad",
+          "vi": "làm ơn",
+          "ipa": "",
+          "category": "request"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_daf2b193",
+          "vi": "Cho tôi một cà phê."
+        },
+        {
+          "id": "S_0c4c7482",
+          "vi": "Xin cho tôi thực đơn."
+        },
+        {
+          "id": "S_f55caadd",
+          "vi": "Làm ơn giúp tôi."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_b45348eff4",
+      "node_id": "core_u5_L043",
+      "quiz_id": null,
+      "unit_index": 5,
+      "unit_title": "Food & Drink",
+      "lesson_type": "Scene",
+      "lesson_title": "Ordering at a Café",
+      "content_types": [
+        "listen_choose",
+        "speak_sentence"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_4f6978084e"
+        ]
+      },
+      "grammar_tags": [
+        "GT021"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_2dbb7f89",
+          "vi": "Cho tôi xin thực đơn."
+        },
+        {
+          "id": "S_9d8df01e",
+          "vi": "Cho tôi một cà phê đá."
+        },
+        {
+          "id": "S_0443f7a1",
+          "vi": "Cho tôi một bánh mì."
+        },
+        {
+          "id": "S_601c3787",
+          "vi": "Cảm ơn bạn."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_975fe327a1",
+      "node_id": "core_u5_L044",
+      "quiz_id": null,
+      "unit_index": 5,
+      "unit_title": "Food & Drink",
+      "lesson_type": "Scene",
+      "lesson_title": "At the Restaurant",
+      "content_types": [
+        "listen_choose",
+        "translation_word_bank"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_b45348eff4"
+        ]
+      },
+      "grammar_tags": [
+        "GT021",
+        "GT022",
+        "GT033",
+        "GT042"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_fde9ddaa",
+          "vi": "Bạn muốn ăn gì?"
+        },
+        {
+          "id": "S_82f680df",
+          "vi": "Tôi muốn hai bát phở."
+        },
+        {
+          "id": "S_4e7ca016",
+          "vi": "Phở này ngon lắm!"
+        },
+        {
+          "id": "S_bf7cfa43",
+          "vi": "Cho tôi hóa đơn."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_c0009f4e14",
+      "node_id": "core_u5_Q045",
+      "quiz_id": "core_u5_Q045",
+      "unit_index": 5,
+      "unit_title": "Food & Drink",
+      "lesson_type": "Quiz",
+      "lesson_title": "Food Review",
+      "content_types": [
+        "mcq_translate_to_en",
+        "listen_choose",
+        "match_pairs"
+      ],
+      "xp_reward": 20,
+      "unlock_rule": {
+        "type": "unit_complete",
+        "requires": [
+          "L_2ce1745be1",
+          "L_1e163e515c",
+          "L_27f951008c",
+          "L_b81c6ffd6d",
+          "L_01247898cb",
+          "L_4f6978084e",
+          "L_b45348eff4",
+          "L_975fe327a1"
+        ]
+      },
+      "grammar_tags": [
+        "GT022"
+      ],
+      "words": [
+        {
+          "id": "W_6e5dae42",
+          "vi": "cơm",
+          "ipa": "",
+          "category": "food"
+        },
+        {
+          "id": "W_966ba7a8",
+          "vi": "phở",
+          "ipa": "",
+          "category": "food"
+        },
+        {
+          "id": "W_ff848aa2",
+          "vi": "cà phê",
+          "ipa": "",
+          "category": "drink"
+        },
+        {
+          "id": "W_641086af",
+          "vi": "muốn",
+          "ipa": "",
+          "category": "verb"
+        },
+        {
+          "id": "W_8f3947b3",
+          "vi": "ngon",
+          "ipa": "",
+          "category": "taste"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_5d0a6bd4",
+          "vi": "Tôi muốn một bát phở."
+        }
+      ],
+      "matches": [
+        {
+          "id": "M_ee5b9324",
+          "text": "cơm"
+        },
+        {
+          "id": "M_324d270d",
+          "text": "phở"
+        },
+        {
+          "id": "M_bed55909",
+          "text": "cà phê"
+        },
+        {
+          "id": "M_c71cb407",
+          "text": "muốn"
+        },
+        {
+          "id": "M_23308f9f",
+          "text": "ngon"
+        }
+      ]
+    },
+    {
+      "id": "L_1748d9e812",
+      "node_id": "core_u6_L046",
+      "quiz_id": null,
+      "unit_index": 6,
+      "unit_title": "Questions & Answers",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "What, Who (gì, ai)",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_c0009f4e14"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_9b1b4076",
+          "vi": "gì",
+          "ipa": "",
+          "category": "question"
+        },
+        {
+          "id": "W_896c7226",
+          "vi": "ai",
+          "ipa": "",
+          "category": "question"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_29677468",
+          "text": "gì"
+        },
+        {
+          "id": "M_dedf8a3b",
+          "text": "ai"
+        }
+      ]
+    },
+    {
+      "id": "L_442b6e2b37",
+      "node_id": "core_u6_L047",
+      "quiz_id": null,
+      "unit_index": 6,
+      "unit_title": "Questions & Answers",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Where, When, Why (đâu, khi nào, sao)",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_1748d9e812"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_ea61950c",
+          "vi": "đâu",
+          "ipa": "",
+          "category": "question"
+        },
+        {
+          "id": "W_e917b5d4",
+          "vi": "khi nào",
+          "ipa": "",
+          "category": "question"
+        },
+        {
+          "id": "W_c08cf723",
+          "vi": "sao",
+          "ipa": "",
+          "category": "question"
+        },
+        {
+          "id": "W_86f42d86",
+          "vi": "tại sao",
+          "ipa": "",
+          "category": "question"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_200b5d55",
+          "text": "đâu"
+        },
+        {
+          "id": "M_fa7f5d5c",
+          "text": "khi nào"
+        },
+        {
+          "id": "M_c188b4bf",
+          "text": "tại sao"
+        }
+      ]
+    },
+    {
+      "id": "L_a25aeb9a4d",
+      "node_id": "core_u6_L048",
+      "quiz_id": null,
+      "unit_index": 6,
+      "unit_title": "Questions & Answers",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "How Much, How Many (bao nhiêu, mấy)",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_442b6e2b37"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_ba68491f",
+          "vi": "bao nhiêu",
+          "ipa": "",
+          "category": "question"
+        },
+        {
+          "id": "W_ecae4aca",
+          "vi": "mấy",
+          "ipa": "",
+          "category": "question"
+        },
+        {
+          "id": "W_5cd60844",
+          "vi": "thế nào",
+          "ipa": "",
+          "category": "question"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_160263af",
+          "text": "bao nhiêu"
+        },
+        {
+          "id": "M_a68b1e0a",
+          "text": "mấy"
+        },
+        {
+          "id": "M_29c6e02b",
+          "text": "thế nào"
+        }
+      ]
+    },
+    {
+      "id": "L_57f68d58ab",
+      "node_id": "core_u6_L049",
+      "quiz_id": null,
+      "unit_index": 6,
+      "unit_title": "Questions & Answers",
+      "lesson_type": "Grammar",
+      "lesson_title": "Yes/No Questions with không",
+      "content_types": [
+        "fill_blank",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_a25aeb9a4d"
+        ]
+      },
+      "grammar_tags": [
+        "GT004",
+        "GT005"
+      ],
+      "words": [
+        {
+          "id": "W_9c7d4724",
+          "vi": "không",
+          "ipa": "",
+          "category": "particle"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_8084a41d",
+          "vi": "Bạn khỏe không?"
+        },
+        {
+          "id": "S_271855f1",
+          "vi": "Bạn ăn cơm không?"
+        },
+        {
+          "id": "S_d0daa233",
+          "vi": "Có, tôi khỏe."
+        },
+        {
+          "id": "S_9e51eb70",
+          "vi": "Không, tôi không khỏe."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_cdabc12492",
+      "node_id": "core_u6_L050",
+      "quiz_id": null,
+      "unit_index": 6,
+      "unit_title": "Questions & Answers",
+      "lesson_type": "Grammar",
+      "lesson_title": "Negation (không + verb)",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_57f68d58ab"
+        ]
+      },
+      "grammar_tags": [
+        "GT004",
+        "GT029"
+      ],
+      "words": [
+        {
+          "id": "W_8dd907ea",
+          "vi": "không",
+          "ipa": "",
+          "category": "particle"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_d6c834f6",
+          "vi": "Tôi không biết."
+        },
+        {
+          "id": "S_d8f39417",
+          "vi": "Tôi không uống bia."
+        },
+        {
+          "id": "S_988aefc5",
+          "vi": "Cô ấy không phải là bác sĩ."
+        },
+        {
+          "id": "S_b4a38e83",
+          "vi": "Tôi không có tiền."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_3c16475dc7",
+      "node_id": "core_u6_L051",
+      "quiz_id": null,
+      "unit_index": 6,
+      "unit_title": "Questions & Answers",
+      "lesson_type": "Grammar",
+      "lesson_title": "Asking What (gì) at Sentence End",
+      "content_types": [
+        "fill_blank",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_cdabc12492"
+        ]
+      },
+      "grammar_tags": [
+        "GT002"
+      ],
+      "words": [
+        {
+          "id": "W_aa154220",
+          "vi": "gì",
+          "ipa": "",
+          "category": "question"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_2a6cac07",
+          "vi": "Bạn ăn gì?"
+        },
+        {
+          "id": "S_ee59844d",
+          "vi": "Bạn uống gì?"
+        },
+        {
+          "id": "S_e97be3fc",
+          "vi": "Bạn làm gì?"
+        },
+        {
+          "id": "S_a435afe7",
+          "vi": "Tên của bạn là gì?"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_e6d27ccd6c",
+      "node_id": "core_u6_L052",
+      "quiz_id": null,
+      "unit_index": 6,
+      "unit_title": "Questions & Answers",
+      "lesson_type": "Grammar",
+      "lesson_title": "Asking Where (ở đâu)",
+      "content_types": [
+        "fill_blank",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_3c16475dc7"
+        ]
+      },
+      "grammar_tags": [
+        "GT007"
+      ],
+      "words": [
+        {
+          "id": "W_affb5cff",
+          "vi": "ở đâu",
+          "ipa": "",
+          "category": "question"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_df5fb02c",
+          "vi": "Bạn ở đâu?"
+        },
+        {
+          "id": "S_3b695fe4",
+          "vi": "Nhà bạn ở đâu?"
+        },
+        {
+          "id": "S_72bf2948",
+          "vi": "Cà phê ở đâu?"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_2c4951f4cc",
+      "node_id": "core_u6_L053",
+      "quiz_id": null,
+      "unit_index": 6,
+      "unit_title": "Questions & Answers",
+      "lesson_type": "Scene",
+      "lesson_title": "How Are You?",
+      "content_types": [
+        "listen_choose",
+        "speak_sentence"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_e6d27ccd6c"
+        ]
+      },
+      "grammar_tags": [
+        "GT005"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_8394b2bf",
+          "vi": "Bạn khỏe không?"
+        },
+        {
+          "id": "S_d3c9e4f0",
+          "vi": "Tôi khỏe, cảm ơn. Còn bạn?"
+        },
+        {
+          "id": "S_2928810c",
+          "vi": "Tôi cũng khỏe."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_38282864f8",
+      "node_id": "core_u6_L054",
+      "quiz_id": null,
+      "unit_index": 6,
+      "unit_title": "Questions & Answers",
+      "lesson_type": "Scene",
+      "lesson_title": "Where Are You Going?",
+      "content_types": [
+        "listen_choose",
+        "translation_word_bank"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_2c4951f4cc"
+        ]
+      },
+      "grammar_tags": [
+        "GT002"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_f5e99b57",
+          "vi": "Bạn đi đâu?"
+        },
+        {
+          "id": "S_a2395ce9",
+          "vi": "Tôi đi học."
+        },
+        {
+          "id": "S_806ab9e7",
+          "vi": "Tôi đi làm."
+        },
+        {
+          "id": "S_cf64b7d4",
+          "vi": "Tôi về nhà."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_d148b98fb0",
+      "node_id": "core_u6_Q055",
+      "quiz_id": "core_u6_Q055",
+      "unit_index": 6,
+      "unit_title": "Questions & Answers",
+      "lesson_type": "Quiz",
+      "lesson_title": "Questions Review",
+      "content_types": [
+        "mcq_translate_to_en",
+        "listen_choose",
+        "match_pairs"
+      ],
+      "xp_reward": 20,
+      "unlock_rule": {
+        "type": "unit_complete",
+        "requires": [
+          "L_1748d9e812",
+          "L_442b6e2b37",
+          "L_a25aeb9a4d",
+          "L_57f68d58ab",
+          "L_cdabc12492",
+          "L_3c16475dc7",
+          "L_e6d27ccd6c",
+          "L_2c4951f4cc",
+          "L_38282864f8"
+        ]
+      },
+      "grammar_tags": [
+        "GT005"
+      ],
+      "words": [
+        {
+          "id": "W_d67ca24c",
+          "vi": "gì",
+          "ipa": "",
+          "category": "question"
+        },
+        {
+          "id": "W_09d22edb",
+          "vi": "ai",
+          "ipa": "",
+          "category": "question"
+        },
+        {
+          "id": "W_b4c78932",
+          "vi": "đâu",
+          "ipa": "",
+          "category": "question"
+        },
+        {
+          "id": "W_0b0bac84",
+          "vi": "bao nhiêu",
+          "ipa": "",
+          "category": "question"
+        },
+        {
+          "id": "W_3383586b",
+          "vi": "không",
+          "ipa": "",
+          "category": "particle"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_dafffc32",
+          "vi": "Bạn khỏe không?"
+        }
+      ],
+      "matches": [
+        {
+          "id": "M_3784e84a",
+          "text": "gì"
+        },
+        {
+          "id": "M_d0fd8157",
+          "text": "ai"
+        },
+        {
+          "id": "M_f570f355",
+          "text": "đâu"
+        },
+        {
+          "id": "M_795c4c87",
+          "text": "bao nhiêu"
+        }
+      ]
+    },
+    {
+      "id": "L_73bb2fef8c",
+      "node_id": "core_u7_L056",
+      "quiz_id": null,
+      "unit_index": 7,
+      "unit_title": "Time, Days & Money",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Times of Day",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_d148b98fb0"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_cc4c8020",
+          "vi": "buổi sáng",
+          "ipa": "",
+          "category": "time"
+        },
+        {
+          "id": "W_e6f974a1",
+          "vi": "buổi trưa",
+          "ipa": "",
+          "category": "time"
+        },
+        {
+          "id": "W_1baa73f8",
+          "vi": "buổi chiều",
+          "ipa": "",
+          "category": "time"
+        },
+        {
+          "id": "W_0e867f69",
+          "vi": "buổi tối",
+          "ipa": "",
+          "category": "time"
+        },
+        {
+          "id": "W_3ac13b14",
+          "vi": "đêm",
+          "ipa": "",
+          "category": "time"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_097de591",
+          "text": "buổi sáng"
+        },
+        {
+          "id": "M_587468f5",
+          "text": "buổi trưa"
+        },
+        {
+          "id": "M_eb558de2",
+          "text": "buổi chiều"
+        },
+        {
+          "id": "M_f49fb247",
+          "text": "buổi tối"
+        }
+      ]
+    },
+    {
+      "id": "L_61e1908933",
+      "node_id": "core_u7_L057",
+      "quiz_id": null,
+      "unit_index": 7,
+      "unit_title": "Time, Days & Money",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Today, Tomorrow, Yesterday",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_vi",
+        "picture_choice"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_73bb2fef8c"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_a89ea564",
+          "vi": "hôm nay",
+          "ipa": "",
+          "category": "time"
+        },
+        {
+          "id": "W_f7d37a1d",
+          "vi": "ngày mai",
+          "ipa": "",
+          "category": "time"
+        },
+        {
+          "id": "W_a20af928",
+          "vi": "hôm qua",
+          "ipa": "",
+          "category": "time"
+        },
+        {
+          "id": "W_2bd6f44e",
+          "vi": "bây giờ",
+          "ipa": "",
+          "category": "time"
+        }
+      ],
+      "sentences": [],
+      "matches": []
+    },
+    {
+      "id": "L_5d0be8e53b",
+      "node_id": "core_u7_L058",
+      "quiz_id": null,
+      "unit_index": 7,
+      "unit_title": "Time, Days & Money",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Days of the Week",
+      "content_types": [
+        "listen_choose",
+        "reorder_words",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_61e1908933"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_f4eb8950",
+          "vi": "thứ hai",
+          "ipa": "",
+          "category": "weekday"
+        },
+        {
+          "id": "W_0d06b6ad",
+          "vi": "thứ ba",
+          "ipa": "",
+          "category": "weekday"
+        },
+        {
+          "id": "W_5c3bb921",
+          "vi": "thứ tư",
+          "ipa": "",
+          "category": "weekday"
+        },
+        {
+          "id": "W_ca5f9cae",
+          "vi": "thứ năm",
+          "ipa": "",
+          "category": "weekday"
+        },
+        {
+          "id": "W_8f9e46cf",
+          "vi": "thứ sáu",
+          "ipa": "",
+          "category": "weekday"
+        },
+        {
+          "id": "W_6bfb4c5c",
+          "vi": "thứ bảy",
+          "ipa": "",
+          "category": "weekday"
+        },
+        {
+          "id": "W_e872e23b",
+          "vi": "chủ nhật",
+          "ipa": "",
+          "category": "weekday"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_deeacd49",
+          "text": "thứ hai"
+        },
+        {
+          "id": "M_50b9cecd",
+          "text": "thứ tư"
+        },
+        {
+          "id": "M_6934995d",
+          "text": "thứ sáu"
+        },
+        {
+          "id": "M_a91d2e37",
+          "text": "chủ nhật"
+        }
+      ]
+    },
+    {
+      "id": "L_8c1791cccd",
+      "node_id": "core_u7_L059",
+      "quiz_id": null,
+      "unit_index": 7,
+      "unit_title": "Time, Days & Money",
+      "lesson_type": "Grammar",
+      "lesson_title": "Telling Time (mấy giờ, giờ)",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_5d0be8e53b"
+        ]
+      },
+      "grammar_tags": [
+        "GT011",
+        "GT034"
+      ],
+      "words": [
+        {
+          "id": "W_fd2d4ea8",
+          "vi": "giờ",
+          "ipa": "",
+          "category": "time"
+        },
+        {
+          "id": "W_f00d3490",
+          "vi": "mấy giờ",
+          "ipa": "",
+          "category": "question"
+        },
+        {
+          "id": "W_d5d76861",
+          "vi": "rưỡi",
+          "ipa": "",
+          "category": "time"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_c65ef4e5",
+          "vi": "Bây giờ là mấy giờ?"
+        },
+        {
+          "id": "S_22f68083",
+          "vi": "Bây giờ là bảy giờ."
+        },
+        {
+          "id": "S_7e934d55",
+          "vi": "Tám giờ rưỡi."
+        },
+        {
+          "id": "S_343e09ab",
+          "vi": "Tôi ngủ lúc mười giờ."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_f6b02eb4fa",
+      "node_id": "core_u7_L060",
+      "quiz_id": null,
+      "unit_index": 7,
+      "unit_title": "Time, Days & Money",
+      "lesson_type": "Grammar",
+      "lesson_title": "Location with ở",
+      "content_types": [
+        "fill_blank",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_8c1791cccd"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_52d97f85",
+          "vi": "ở",
+          "ipa": "",
+          "category": "preposition"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_5903b650",
+          "vi": "Tôi ở nhà."
+        },
+        {
+          "id": "S_3bc02e23",
+          "vi": "Cô ấy ở trường."
+        },
+        {
+          "id": "S_5a2f51f8",
+          "vi": "Nhà tôi ở Hà Nội."
+        },
+        {
+          "id": "S_0daca48d",
+          "vi": "Sách ở trên bàn."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_504d876119",
+      "node_id": "core_u7_L061",
+      "quiz_id": null,
+      "unit_index": 7,
+      "unit_title": "Time, Days & Money",
+      "lesson_type": "Grammar",
+      "lesson_title": "Money & Prices",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_f6b02eb4fa"
+        ]
+      },
+      "grammar_tags": [
+        "GT010",
+        "GT042"
+      ],
+      "words": [
+        {
+          "id": "W_1d0db826",
+          "vi": "tiền",
+          "ipa": "",
+          "category": "money"
+        },
+        {
+          "id": "W_8e298d4f",
+          "vi": "đồng",
+          "ipa": "",
+          "category": "money"
+        },
+        {
+          "id": "W_c8be14e4",
+          "vi": "nghìn",
+          "ipa": "",
+          "category": "money"
+        },
+        {
+          "id": "W_79edbb75",
+          "vi": "ngàn",
+          "ipa": "",
+          "category": "money"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_869b6db9",
+          "vi": "Bao nhiêu tiền?"
+        },
+        {
+          "id": "S_7a0be0e6",
+          "vi": "Năm mươi nghìn đồng."
+        },
+        {
+          "id": "S_8c7262c4",
+          "vi": "Cái này hai trăm nghìn."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_d584c74edb",
+      "node_id": "core_u7_L062",
+      "quiz_id": null,
+      "unit_index": 7,
+      "unit_title": "Time, Days & Money",
+      "lesson_type": "Scene",
+      "lesson_title": "At the Market",
+      "content_types": [
+        "listen_choose",
+        "speak_sentence"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_504d876119"
+        ]
+      },
+      "grammar_tags": [
+        "GT010",
+        "GT021",
+        "GT022",
+        "GT042"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_9373b5d7",
+          "vi": "Cái này bao nhiêu tiền?"
+        },
+        {
+          "id": "S_969fafc0",
+          "vi": "Năm mươi nghìn đồng."
+        },
+        {
+          "id": "S_5b89624a",
+          "vi": "Cho tôi mua hai cái."
+        },
+        {
+          "id": "S_99ade891",
+          "vi": "Tôi muốn mua ba quả xoài."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_09ff6a2257",
+      "node_id": "core_u7_L063",
+      "quiz_id": null,
+      "unit_index": 7,
+      "unit_title": "Time, Days & Money",
+      "lesson_type": "Scene",
+      "lesson_title": "Making an Appointment",
+      "content_types": [
+        "listen_choose",
+        "speak_sentence"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_d584c74edb"
+        ]
+      },
+      "grammar_tags": [
+        "GT005",
+        "GT011",
+        "GT034"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_ab159334",
+          "vi": "Chúng ta gặp lúc mấy giờ?"
+        },
+        {
+          "id": "S_d8385497",
+          "vi": "Chín giờ sáng được không?"
+        },
+        {
+          "id": "S_d057fe3d",
+          "vi": "Được, hẹn gặp lại."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_a765e485e6",
+      "node_id": "core_u7_L064",
+      "quiz_id": null,
+      "unit_index": 7,
+      "unit_title": "Time, Days & Money",
+      "lesson_type": "Scene",
+      "lesson_title": "Asking Phone Numbers",
+      "content_types": [
+        "listen_type",
+        "speak_sentence"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_09ff6a2257"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_fb35a837",
+          "vi": "Số điện thoại của bạn là gì?"
+        },
+        {
+          "id": "S_983a0bbf",
+          "vi": "Số của tôi là 0912 345 678."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_a228b1c3fa",
+      "node_id": "core_u7_Q065",
+      "quiz_id": "core_u7_Q065",
+      "unit_index": 7,
+      "unit_title": "Time, Days & Money",
+      "lesson_type": "Quiz",
+      "lesson_title": "Time & Money Review",
+      "content_types": [
+        "mcq_translate_to_en",
+        "listen_choose",
+        "match_pairs"
+      ],
+      "xp_reward": 20,
+      "unlock_rule": {
+        "type": "unit_complete",
+        "requires": [
+          "L_73bb2fef8c",
+          "L_61e1908933",
+          "L_5d0be8e53b",
+          "L_8c1791cccd",
+          "L_f6b02eb4fa",
+          "L_504d876119",
+          "L_d584c74edb",
+          "L_09ff6a2257",
+          "L_a765e485e6"
+        ]
+      },
+      "grammar_tags": [
+        "GT010",
+        "GT011",
+        "GT042"
+      ],
+      "words": [
+        {
+          "id": "W_5ff6c5e8",
+          "vi": "hôm nay",
+          "ipa": "",
+          "category": "time"
+        },
+        {
+          "id": "W_dab090d2",
+          "vi": "ngày mai",
+          "ipa": "",
+          "category": "time"
+        },
+        {
+          "id": "W_765d3099",
+          "vi": "buổi sáng",
+          "ipa": "",
+          "category": "time"
+        },
+        {
+          "id": "W_355146fb",
+          "vi": "thứ hai",
+          "ipa": "",
+          "category": "weekday"
+        },
+        {
+          "id": "W_df14c418",
+          "vi": "tiền",
+          "ipa": "",
+          "category": "money"
+        },
+        {
+          "id": "W_f0e1f84e",
+          "vi": "ở",
+          "ipa": "",
+          "category": "preposition"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_2a1a31b1",
+          "vi": "Bây giờ là mấy giờ?"
+        },
+        {
+          "id": "S_65fa3750",
+          "vi": "Cái này bao nhiêu tiền?"
+        }
+      ],
+      "matches": [
+        {
+          "id": "M_5a1ec8c9",
+          "text": "hôm nay"
+        },
+        {
+          "id": "M_47f3b773",
+          "text": "ngày mai"
+        },
+        {
+          "id": "M_39749d39",
+          "text": "buổi sáng"
+        },
+        {
+          "id": "M_a4ae2ebc",
+          "text": "thứ hai"
+        },
+        {
+          "id": "M_9ee19484",
+          "text": "tiền"
+        }
+      ]
+    }
+  ]
+}

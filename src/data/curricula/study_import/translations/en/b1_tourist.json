@@ -1,0 +1,990 @@
+{
+  "meta": {
+    "base": "en",
+    "level": "b1",
+    "track": "tourist",
+    "source": "vn_b1_tourist_en.xlsx",
+    "generated": "2026-04-28T09:02:31.268Z"
+  },
+  "translations": {
+    "L_45bd529bbc": {
+      "W_d2c5785b": "airport",
+      "W_eedd2bfc": "immigration / entry",
+      "W_a3fb73e7": "departure / exit",
+      "W_1ebe66c4": "customs",
+      "W_8cf986db": "luggage",
+      "W_a6cf5ece": "flight",
+      "W_0fe689da": "transit",
+      "M_fdf19551": "airport",
+      "M_2f6a9e06": "luggage",
+      "M_20f3d850": "customs",
+      "M_e7d1aeba": "flight"
+    },
+    "L_cbd3024d0d": {
+      "W_85c1971c": "passport",
+      "W_e542d13c": "tourist visa",
+      "W_4ec83ae5": "visa-free",
+      "W_e4bc4696": "e-visa",
+      "W_9a3c70b3": "entry stamp",
+      "W_7b6b9187": "declaration form",
+      "W_beecf5b8": "to stamp (passport)"
+    },
+    "L_cad4b0a88d": {
+      "W_705c9b4e": "(in order) to / for the purpose of",
+      "S_22ab123a": "I came to Vietnam to travel.",
+      "S_b678719e": "I came here to visit a friend.",
+      "S_58c2ab79": "We came to vacation.",
+      "S_28603dc3": "I'll stay here two weeks."
+    },
+    "L_78dba8d948": {
+      "W_e4262555": "how long",
+      "W_ec71a608": "how many days",
+      "W_d5871c37": "approximately / about",
+      "S_619c9525": "How long are you staying?",
+      "S_0f07ef09": "About two weeks.",
+      "S_afe7f1d5": "I'll be in Vietnam for 10 days.",
+      "S_ce0b1d61": "My trip is one month long."
+    },
+    "L_e7233ba920": {
+      "W_85b38294": "ever (have experienced)",
+      "W_79a3ebb0": "first time",
+      "W_749d4bf3": "the ... time",
+      "S_f58437a0": "Have you ever been to Vietnam?",
+      "S_a2cda91f": "This is my first time in Vietnam.",
+      "S_66f1fb22": "This is my third time back.",
+      "S_5322bf4b": "I've never been to Hanoi."
+    },
+    "L_4eb8e46ca3": {
+      "S_f4c120ec": "Hello. May I have your passport?",
+      "S_5005013b": "What are you coming to Vietnam for?",
+      "S_3c679e30": "I came to travel.",
+      "S_f4a96181": "How long will you stay?",
+      "S_436a8a30": "About two weeks.",
+      "S_2cedcce4": "Have a good trip."
+    },
+    "L_013d40d8af": {
+      "S_d6078655": "Excuse me, I can't find my luggage.",
+      "S_1eaef626": "I flew from Singapore.",
+      "S_2d4fc802": "Here's my ticket and luggage tag.",
+      "S_188b2757": "When will I get it?"
+    },
+    "L_322e02f699": {
+      "W_50a7ffc5": "airport",
+      "W_69732842": "passport",
+      "W_d14cbbe7": "tourist visa",
+      "W_4baa0b54": "in order to",
+      "W_408b0efa": "how long",
+      "S_9ae65bab": "I came to Vietnam to travel.",
+      "M_7b7ed6cb": "airport",
+      "M_df3a0f0b": "passport",
+      "M_77c78f6b": "in order to",
+      "M_6e95fadc": "how long"
+    },
+    "L_b3c88cb21e": {
+      "W_49a67cad": "Grab (ride-hailing app)",
+      "W_44906c91": "motorbike taxi via Grab",
+      "W_45934fc3": "car via Grab",
+      "W_2e80c7b0": "traditional motorbike taxi",
+      "W_abbc2c5f": "traditional taxi",
+      "W_72b5bc4e": "parking lot",
+      "W_d13d87d0": "station / stop",
+      "M_ca3cac1e": "Grab app",
+      "M_e7e68774": "motorbike taxi",
+      "M_7df522d0": "parking lot"
+    },
+    "L_92e990339d": {
+      "W_291aa6e0": "to rent",
+      "W_dde96432": "rent a motorbike",
+      "W_f15f3bbf": "driver's license",
+      "W_8db3cc18": "international license",
+      "W_f368f08d": "helmet",
+      "W_b76fcd67": "deposit",
+      "W_1c53b014": "rent by the day",
+      "W_25ccbefc": "refuel / fill up"
+    },
+    "L_75bd7e2a0c": {
+      "W_2453a95c": "from ... to",
+      "W_2064886d": "reduce a bit / less",
+      "S_572bed67": "How much from here to the Old Quarter?",
+      "S_9c871860": "200,000 OK?",
+      "S_bb36bd6b": "A bit expensive, reduce a bit.",
+      "S_e1e7a4f3": "Is 150 OK?"
+    },
+    "L_93f5cc4ed8": {
+      "W_7f3df542": "house number",
+      "W_ed618cd9": "ward (administrative district)",
+      "W_143f785f": "district (in cities)",
+      "W_8328e080": "street / road",
+      "S_9138f97a": "Number 25, Le Loi street.",
+      "S_dea48c9c": "Ben Nghe ward, District 1.",
+      "S_f9366068": "Let me off here.",
+      "S_1888c23e": "Go straight, then turn right at the intersection."
+    },
+    "L_56032fa30f": {
+      "W_d86757c1": "how long does it take",
+      "W_962270f0": "approximately",
+      "S_95cacd83": "How long to the airport?",
+      "S_cb6775f0": "About 30 minutes, if no traffic.",
+      "S_79b8ce7f": "Is it very far?",
+      "S_b9c192ec": "Not far, just 2 km."
+    },
+    "L_101e2828f6": {
+      "W_6ad5f3b0": "slow down",
+      "W_872405cf": "drive carefully",
+      "W_e8b22871": "shortcut",
+      "S_602e3171": "Sir, please slow down.",
+      "S_87ab6351": "Any route is fine.",
+      "S_4434ff0a": "I don't know the way, you decide.",
+      "S_484505a0": "Is there a shortcut?"
+    },
+    "L_2343f39a04": {
+      "S_02f2e9a9": "Hello, I booked a Grab to Ben Thanh.",
+      "S_5ff503ae": "Where are you now?",
+      "S_4d89b132": "I'm in front of the Rex Hotel.",
+      "S_1537d3e8": "The car is coming, wait 5 minutes."
+    },
+    "L_ac1ebe1cda": {
+      "S_7afce89b": "I want to rent a motorbike for a week.",
+      "S_90eec1d4": "How much per day?",
+      "S_3e884a7c": "150,000 per day. 500,000 deposit.",
+      "S_14e90c30": "I'll refuel myself.",
+      "S_0c4dbe0d": "Return the bike before 5 PM."
+    },
+    "L_456b9937d0": {
+      "W_c039a97b": "Grab app",
+      "W_9564c5a0": "motorbike taxi",
+      "W_642ba67a": "rent a motorbike",
+      "W_baff8026": "deposit",
+      "W_fd5d697e": "how long does it take",
+      "S_0f35f90b": "How much from here to the Old Quarter?",
+      "M_580ea7b0": "Grab app",
+      "M_7a936698": "motorbike taxi",
+      "M_b86eb8c8": "rent a motorbike",
+      "M_de93a6e5": "deposit"
+    },
+    "L_215981e604": {
+      "W_ed098073": "hotel",
+      "W_37ce0b8c": "guest house / budget inn",
+      "W_81f29ee7": "homestay",
+      "W_7b89c88b": "hostel / rental room",
+      "W_6a543a73": "Airbnb",
+      "W_059e9128": "apartment",
+      "W_9ae0b2ba": "resort",
+      "M_9202f7c5": "hotel",
+      "M_92846d74": "guest house",
+      "M_fcef9c3d": "homestay",
+      "M_e683e5c8": "hostel"
+    },
+    "L_f8c40ab7ac": {
+      "W_33673814": "single room",
+      "W_a67faa80": "double room",
+      "W_8ffe2e1e": "double-bed room",
+      "W_41cd1985": "balcony",
+      "W_34aabac7": "nice view",
+      "W_4e790342": "quiet",
+      "W_7d834902": "noisy",
+      "W_85e4a368": "clean"
+    },
+    "L_c0af7f9e60": {
+      "W_67d6137f": "book a room",
+      "W_6b1a0255": "two nights",
+      "W_9b509c11": "check-in date",
+      "W_c188862f": "check-out date",
+      "S_ad930e35": "I want to book a double room.",
+      "S_6c7979a2": "From the 5th to the 10th.",
+      "S_cf881b38": "Five nights in total.",
+      "S_0496b191": "Give me a quiet room please."
+    },
+    "L_c0e08f6d91": {
+      "W_e87c5782": "includes",
+      "W_66bcb0ff": "free / included",
+      "W_5dad0385": "charged extra",
+      "S_6e32318d": "Does the price include breakfast?",
+      "S_7ccd6a5a": "Is wifi free?",
+      "S_6efce566": "The pool is free for guests.",
+      "S_4b61876c": "Laundry is charged extra."
+    },
+    "L_0075fb3b88": {
+      "W_8f75d65d": "to be (problem-marker)",
+      "W_44048a26": "not working",
+      "W_38cf2b37": "leaking",
+      "S_1764e184": "The tap is leaking.",
+      "S_dc15a00a": "The wifi isn't working.",
+      "S_6215337c": "The bathroom is dirty.",
+      "S_55d0094b": "The AC is broken."
+    },
+    "L_9a0b22ad23": {
+      "W_4186d3b5": "change rooms",
+      "W_118f6ef4": "upgrade",
+      "S_9cad8963": "Can I change rooms?",
+      "S_c905fef1": "This room is too noisy.",
+      "S_31049d62": "Is there another room?",
+      "S_a2b061a5": "I want to upgrade to a bigger room."
+    },
+    "L_5bacd5fc38": {
+      "S_0ede11c5": "Hi, I booked through Booking.",
+      "S_3b98a954": "What's your name?",
+      "S_15a36fb5": "I'm James, staying 3 nights.",
+      "S_c7b65c9c": "Your room is on the 2nd floor.",
+      "S_6d5f8f24": "Shared bathroom at the end of the hall."
+    },
+    "L_0d2c47c8b5": {
+      "S_22f173e4": "Hi, I'm in room 205.",
+      "S_13073a3b": "The AC isn't working.",
+      "S_d7da8933": "Can you send someone to fix it?",
+      "S_514aa292": "Or can I change rooms?"
+    },
+    "L_bf0e551edb": {
+      "W_61def24a": "hotel",
+      "W_aa091af6": "homestay",
+      "W_66cbbf7d": "book a room",
+      "W_60d24adb": "includes",
+      "W_17a5ca09": "broken",
+      "S_709763dd": "Does the price include breakfast?",
+      "M_c812538b": "hotel",
+      "M_7b98ea31": "homestay",
+      "M_a0789e4b": "book a room",
+      "M_ab1de993": "includes"
+    },
+    "L_ef37713429": {
+      "W_3a88fff5": "street vendor / hawker",
+      "W_aa24e354": "sidewalk stall",
+      "W_26054a15": "food cart",
+      "W_b20a51e8": "carrying-pole vendor",
+      "W_425e9dcd": "small eatery",
+      "W_bfaf17f9": "restaurant",
+      "W_d8a80f3d": "plastic table (street food)",
+      "M_6d144225": "street vendor",
+      "M_aa70c1eb": "sidewalk stall",
+      "M_2a07b46f": "eatery"
+    },
+    "L_4187a71c36": {
+      "W_db8fd8f8": "pho (noodle soup)",
+      "W_dd9f6a5c": "bun cha (grilled pork with noodles)",
+      "W_79d73316": "banh mi sandwich",
+      "W_a423087c": "fresh spring rolls",
+      "W_9a36841e": "fried spring rolls",
+      "W_925ddd1b": "broken rice plate",
+      "W_d97fb101": "Vietnamese pancake",
+      "W_381335a7": "Hue-style beef noodle"
+    },
+    "L_014507643d": {
+      "W_01d04d9f": "iced milk coffee",
+      "W_5945a705": "egg coffee",
+      "W_4ac0f237": "iced tea",
+      "W_b4cefd29": "smoothie",
+      "W_8d33fd85": "sugarcane juice",
+      "W_c0e7de06": "draft beer",
+      "W_82beb380": "sweet dessert soup",
+      "M_731cc0a6": "iced milk coffee",
+      "M_07daee6b": "iced tea",
+      "M_8ba50a19": "draft beer"
+    },
+    "L_64491f151a": {
+      "W_e706583b": "what should I eat",
+      "W_398f172d": "local specialty",
+      "W_b2ac1c9e": "famous",
+      "S_9a1e6161": "What should I eat here?",
+      "S_b8393801": "What is this place famous for?",
+      "S_1e0b4090": "What is Hanoi's specialty?",
+      "S_de2e3b55": "Please recommend something."
+    },
+    "L_703a5cd62b": {
+      "W_932a61cd": "without / don't add",
+      "W_8496ecdf": "add more",
+      "W_1b8764cf": "just a little ...",
+      "S_d0d44a87": "Give me pho without vegetables.",
+      "S_cf16939f": "No chili, I don't eat spicy.",
+      "S_df699d9a": "Add more dipping sauce.",
+      "S_f034c301": "Just a little ice."
+    },
+    "L_7334232d40": {
+      "W_22162934": "final price",
+      "W_5a57b2c5": "buy (as a help / favor)",
+      "W_3a644f60": "too expensive",
+      "S_95b0d1e5": "How much per kilo?",
+      "S_fadd86d1": "Too expensive! Give me a discount.",
+      "S_1d2c338e": "Help me out, what's your best price?",
+      "S_03a9c18b": "What's the final price?"
+    },
+    "L_b7368f40e8": {
+      "S_7ff212b6": "Auntie, one bowl of beef pho.",
+      "S_a4aa828a": "Rare or well-done?",
+      "S_6c6da660": "Rare, with just a little onion.",
+      "S_2668005d": "What drink?",
+      "S_bddcb0c2": "One iced tea. How much total?"
+    },
+    "L_fa7d7d0693": {
+      "S_22b5708f": "How much is this mango per kilo?",
+      "S_de5fd3fe": "Fifty thousand.",
+      "S_91ae01af": "Too expensive! 40 OK?",
+      "S_bb2d08f4": "45 thousand, buy more I'll discount.",
+      "S_496fa137": "Give me two kilos."
+    },
+    "L_811ca0ef40": {
+      "W_7bb095ce": "pho",
+      "W_af7dd3f6": "banh mi",
+      "W_50c0c4af": "iced milk coffee",
+      "W_0034ca97": "local specialty",
+      "W_de4f56b1": "too expensive",
+      "S_52f88781": "Give me pho without vegetables.",
+      "M_6460f0a2": "pho",
+      "M_34e49470": "banh mi",
+      "M_d47c5410": "iced milk coffee",
+      "M_cbb295d9": "local specialty"
+    },
+    "L_e43f615d8d": {
+      "W_d659e4e1": "tour",
+      "W_535640de": "day tour",
+      "W_ef7d64c3": "overnight tour",
+      "W_dcde5f49": "tour guide",
+      "W_045a8a14": "self-guided",
+      "W_6f62b9ca": "group tour",
+      "W_4558bd7a": "private tour",
+      "M_6223ceac": "tour",
+      "M_cce9d1b2": "tour guide",
+      "M_947c9d8a": "private tour"
+    },
+    "L_1c81c98425": {
+      "W_6a8735b7": "Halong Bay",
+      "W_3e2bcfac": "Hoi An Old Town",
+      "W_1312e358": "Hanoi Old Quarter",
+      "W_5bdd539c": "Sapa",
+      "W_368a04e3": "Phu Quoc island",
+      "W_375fae3f": "Mui Ne",
+      "W_11dde434": "Mekong Delta"
+    },
+    "L_d4cb74d82e": {
+      "W_0b0d69ae": "includes",
+      "W_3be597c6": "not included",
+      "S_00c64199": "What does this tour include?",
+      "S_3c3ea815": "Includes lunch and transportation.",
+      "S_2bf22d69": "Entrance tickets not included.",
+      "S_635c2be4": "Tip for the guide is optional."
+    },
+    "L_ba9a75c4bc": {
+      "W_767ddaf3": "pick up",
+      "W_3ec9417d": "drop off",
+      "W_30a22800": "meeting point",
+      "S_38db3102": "What time does the pickup come?",
+      "S_a3bbb0b0": "7 AM at the hotel.",
+      "S_03a6fb5b": "Meeting point at the main gate.",
+      "S_1cc50715": "What time do we return to the city?"
+    },
+    "L_14d205af54": {
+      "W_c2fb6ae8": "if ... we can",
+      "W_d4bc3bf0": "in case of",
+      "S_dad2a6c4": "If it rains, is the tour cancelled?",
+      "S_a0bf736f": "In bad weather, the tour will be rescheduled.",
+      "S_8e5ba34a": "What if I'm more than 15 minutes late?",
+      "S_2816b974": "Is there a discount for booking early?"
+    },
+    "L_909ed8b99a": {
+      "W_f0a40258": "vegetarian",
+      "W_72902654": "allergic",
+      "S_6ee52655": "I'm vegetarian, is there veg food?",
+      "S_a6ff5696": "I'm allergic to seafood.",
+      "S_99c569dc": "We have a child with us.",
+      "S_d3111792": "My group: 4 adults and 1 child."
+    },
+    "L_d38bf583ac": {
+      "S_a17afb95": "I want a Halong Bay day tour.",
+      "S_3161f38f": "The tour includes lunch, boat, and caves.",
+      "S_a4141074": "How much per person?",
+      "S_0a90f995": "Two of us, when do we leave?"
+    },
+    "L_7e4dd779e2": {
+      "S_ba438a9e": "How long will we be here?",
+      "S_00149673": "Is there time to walk around?",
+      "S_0abaf742": "Can I take photos here?",
+      "S_bb7b6e55": "Where's the restroom?"
+    },
+    "L_76d711a6dc": {
+      "W_b5396ebe": "day tour",
+      "W_23d1d6e3": "tour guide",
+      "W_c9b5af05": "Halong Bay",
+      "W_3ec1e3f0": "includes",
+      "W_5ea7e601": "vegetarian",
+      "S_4489a616": "What does this tour include?",
+      "M_2f1bbee2": "day tour",
+      "M_3eecddd5": "tour guide",
+      "M_017b0088": "Halong Bay",
+      "M_c20f4b51": "includes"
+    },
+    "L_e95a196227": {
+      "W_004c2d46": "market (traditional)",
+      "W_5d6d88b9": "night market",
+      "W_69814d4e": "Ben Thanh Market",
+      "W_b54bd5ff": "shopping mall",
+      "W_04f3e253": "souvenir shop",
+      "W_012995e4": "small shop",
+      "W_3df0bf06": "supermarket",
+      "M_d691551f": "night market",
+      "M_8191d827": "shopping mall",
+      "M_1838e6aa": "souvenir shop"
+    },
+    "L_998daa6104": {
+      "W_ce44d520": "souvenir",
+      "W_be0a197a": "ao dai (traditional dress)",
+      "W_b79d3d67": "conical hat",
+      "W_dc6846bf": "lacquer painting",
+      "W_0313fbb1": "ceramics",
+      "W_f9131961": "silk",
+      "W_c9fb2eab": "Vietnamese coffee"
+    },
+    "L_b9b1b76620": {
+      "W_424989a7": "original price",
+      "W_274e4305": "cheapest price",
+      "W_d6a07dd5": "give a good price",
+      "S_4b018732": "What's the original price?",
+      "S_92cd752e": "What's your lowest price?",
+      "S_e56e7fa7": "Give me a good price, I'm buying a lot.",
+      "S_be5eb81e": "Half price, OK?"
+    },
+    "L_48e608147f": {
+      "W_9e04fae3": "let me think",
+      "W_0a21d2ef": "go look elsewhere",
+      "S_ced27ef6": "Let me think first.",
+      "S_28d4ac2d": "I'll look elsewhere and come back.",
+      "S_7fcfa0cf": "Too expensive, thanks.",
+      "S_450cfb28": "OK, maybe next time."
+    },
+    "L_3fd3bd42e2": {
+      "W_47ed7772": "real / authentic",
+      "W_871fee49": "fake",
+      "W_df17ce0e": "quality",
+      "W_c3b315af": "warranty / guarantee",
+      "S_261daca5": "Is this real or fake?",
+      "S_9938eb42": "Is there a warranty?",
+      "S_1aaff90b": "How's the quality?",
+      "S_19bc408c": "Let me look closely."
+    },
+    "L_9a494b13eb": {
+      "W_553322b8": "cash",
+      "W_31b44433": "bank transfer",
+      "W_605e1453": "card payment (swipe)",
+      "W_48d9ed38": "receipt",
+      "S_0a3c5b7d": "Do you accept cash?",
+      "S_cd4b95a8": "Can I pay by card?",
+      "S_23ac3237": "Give me a receipt.",
+      "S_b36f3830": "Can I transfer?"
+    },
+    "L_224aa9f22a": {
+      "S_9709742b": "Auntie, how much for the conical hat?",
+      "S_49f6bc88": "Three hundred thousand.",
+      "S_8ddbac95": "Too expensive! 150 OK?",
+      "S_ba7f446b": "Not possible, 250 only.",
+      "S_995697fc": "OK, let me check elsewhere.",
+      "S_a4176037": "OK fine, 180."
+    },
+    "L_3d985d5813": {
+      "S_65723c31": "I want to buy coffee to take home.",
+      "S_65ee8672": "Which is the best?",
+      "S_a1f5cfd5": "Robusta is strong, Arabica is mild.",
+      "S_453a8427": "Give me 2 packs of each.",
+      "S_33682d90": "Do you have a gift box?"
+    },
+    "L_47ef40af37": {
+      "W_21e36623": "night market",
+      "W_48758efb": "souvenir",
+      "W_6289446b": "original price",
+      "W_7da37d85": "receipt",
+      "W_2e31be29": "fake",
+      "S_63a8b57b": "What's your lowest price?",
+      "M_146ffba3": "night market",
+      "M_4fc37598": "souvenir",
+      "M_6dd6b84e": "original price",
+      "M_bf366a7d": "receipt"
+    },
+    "L_5c8befc7c5": {
+      "W_c875d4f0": "police",
+      "W_6db4e258": "police (official term)",
+      "W_1a4f8c4f": "hospital",
+      "W_0ea1a239": "doctor",
+      "W_1d2c12b8": "emergency / ambulance",
+      "W_dea9c1e5": "embassy",
+      "W_d5c00e95": "consulate",
+      "W_ff413dcb": "emergency number",
+      "M_1a769780": "police",
+      "M_adfc6886": "hospital",
+      "M_2b8c665b": "emergency",
+      "M_e3a25aee": "embassy"
+    },
+    "L_f9d611084b": {
+      "W_eb7e77a7": "lost / lose",
+      "W_74175335": "robbed / stolen from",
+      "W_00a506a5": "scammed / cheated",
+      "W_2e6d0d24": "accident",
+      "W_31ee4ca1": "stomach ache",
+      "W_b305eae6": "food poisoning",
+      "W_e5be6c90": "heat exhaustion / sunstroke"
+    },
+    "L_e777540562": {
+      "W_1e372120": "happen",
+      "W_79df529f": "just (now)",
+      "W_45c8fb8d": "a moment ago",
+      "S_357f016a": "It just happened, I lost my wallet.",
+      "S_a74e9e75": "A stranger just snatched my phone.",
+      "S_b9b97b47": "I left my luggage here but it's gone.",
+      "S_63b9e416": "He fled on a motorbike."
+    },
+    "L_ca9ddd61bc": {
+      "W_4940e695": "help me (urgent)",
+      "W_69787362": "please call",
+      "S_c5e48a42": "Help! Can someone help me?",
+      "S_41aae013": "Please call the police.",
+      "S_a6c7fec7": "I need to go to the hospital urgently.",
+      "S_0e7bfc5c": "Does anyone speak English?"
+    },
+    "L_81c789b639": {
+      "W_73200ead": "where does it hurt",
+      "W_94fe357f": "since when",
+      "W_eee76b34": "feel",
+      "S_9e1cc674": "Where does it hurt?",
+      "S_d0445b49": "My stomach hurts.",
+      "S_d1582dd5": "Since last night, I've felt dizzy.",
+      "S_f648331e": "I took medicine but it didn't help."
+    },
+    "L_da640741f5": {
+      "W_75a4b544": "passport number",
+      "W_f1f2c071": "hotel address",
+      "W_ee175f01": "insurance number",
+      "S_d5df240e": "This is my passport number.",
+      "S_5d553f4a": "I'm at ABC hotel, room 305.",
+      "S_4ec7cba6": "I have travel insurance.",
+      "S_80a01e4c": "I will call the embassy."
+    },
+    "L_faee0a98dc": {
+      "S_830e5c38": "Hello, my phone was snatched.",
+      "S_33f6c1a4": "Where did it happen?",
+      "S_c1314d2f": "Just now on Nguyen Hue street, 10 minutes ago.",
+      "S_1b40a31e": "The person was on a red motorbike.",
+      "S_16885bab": "I need a report to claim insurance."
+    },
+    "L_8cf59a85f9": {
+      "S_a9b6f74e": "I've had a bad stomach ache since morning.",
+      "S_8538e8af": "It could be food poisoning.",
+      "S_4220084b": "I ate seafood last night.",
+      "S_5815d6fc": "What medicine can you give me?",
+      "S_29cee7b7": "Can I fly?"
+    },
+    "L_361d3cecc8": {
+      "W_267f25c5": "police",
+      "W_8a77328d": "emergency",
+      "W_8edcf8ce": "robbed",
+      "W_e02fbd16": "embassy",
+      "W_7585c1d9": "help me",
+      "S_c0bf4824": "Please call the police.",
+      "M_fc5fb5ea": "police",
+      "M_8cd65383": "emergency",
+      "M_70c08162": "robbed",
+      "M_2849ef0c": "embassy"
+    },
+    "L_83a0dca053": {
+      "W_4f53dc22": "friend / you",
+      "W_47059968": "get acquainted",
+      "W_a71995bd": "make friends",
+      "W_6b83be35": "meet again",
+      "W_cd4414b2": "hang out",
+      "W_72075d6d": "date / go out",
+      "W_2330eff4": "Zalo / Facebook",
+      "M_6a979730": "get acquainted",
+      "M_ed83dbf9": "hang out",
+      "M_2a99bc3c": "make friends"
+    },
+    "L_f043eaacfb": {
+      "W_b4ced3b5": "hometown",
+      "W_76798fa9": "profession",
+      "W_224a39ed": "hobby",
+      "W_298e0b20": "travel",
+      "W_e65b5ca4": "movies",
+      "W_6b60775d": "music",
+      "W_4fb1163c": "food (topic)"
+    },
+    "L_2a1951c794": {
+      "W_527b535d": "ask for number",
+      "W_f417e3d6": "add friend on",
+      "S_8623059e": "Can I have your Zalo number?",
+      "S_1e100d94": "Add me on Facebook.",
+      "S_56e31971": "Do you have Instagram?",
+      "S_cd3c02de": "Save my number."
+    },
+    "L_9ce40aaa31": {
+      "W_7a1a82cd": "free (available)",
+      "W_1f1a9620": "busy",
+      "W_3750c42b": "invite out",
+      "S_0f4f6fd7": "Are you free tonight?",
+      "S_e7e3a46a": "Let's get coffee tomorrow night.",
+      "S_656f2f9f": "I'm free on the weekend.",
+      "S_cc3a5e99": "Do you want to come along?"
+    },
+    "L_35a0f3cf84": {
+      "W_10c3a649": "so cool / great",
+      "W_b2ef8504": "interesting",
+      "W_b33dd419": "cute / sweet",
+      "S_67d0a480": "Your hometown sounds great!",
+      "S_d680446d": "Your job is really interesting.",
+      "S_6d0db650": "It's fun talking with you.",
+      "S_3c6dd87a": "Hope to see you again."
+    },
+    "L_15604d9eb0": {
+      "W_8bf2c539": "sadly / unfortunately",
+      "W_5e7946d4": "next time",
+      "S_2e616a8c": "Unfortunately I'm busy tonight.",
+      "S_9a34dbe2": "Let's do it next time.",
+      "S_f2bf156c": "Thanks for inviting me, but I can't make it.",
+      "S_945eb4a1": "I already have plans."
+    },
+    "L_d0b92e7f92": {
+      "S_88529ee3": "Hi, can I sit here?",
+      "S_4f64894e": "Sure, please.",
+      "S_08bc3e5b": "Are you a tourist?",
+      "S_17bdca8f": "Yes, I'm from Canada.",
+      "S_8704696f": "How do you find Vietnam?"
+    },
+    "L_dfcfe46051": {
+      "S_ac8249f6": "Thanks for inviting me.",
+      "S_08780134": "This is delicious, did you cook it?",
+      "S_5612e653": "Your family is so warm!",
+      "S_9df5a89c": "Can I have the recipe?"
+    },
+    "L_2000dd0203": {
+      "W_d0552a6a": "get acquainted",
+      "W_881b7679": "hang out",
+      "W_508f1786": "free (time)",
+      "W_e99a338e": "so cool",
+      "W_ab0e9a5a": "unfortunately",
+      "S_0436b0f2": "Are you free tonight?",
+      "M_5c8bfdf1": "get acquainted",
+      "M_1552cb72": "hang out",
+      "M_776e7909": "free (time)",
+      "M_0f4cfa39": "so cool"
+    },
+    "L_32b38cdcf1": {
+      "W_915ce607": "drip coffee (traditional Vietnamese)",
+      "W_63f5c698": "black coffee",
+      "W_5136438a": "coffee with milk",
+      "W_fec87f5b": "coconut coffee",
+      "W_22acaa8d": "salted coffee",
+      "W_e96e0c9d": "strong (of coffee)",
+      "W_2a967abb": "weak / light",
+      "M_1436198c": "drip coffee",
+      "M_8a7afacd": "black coffee",
+      "M_7dc198e1": "egg coffee"
+    },
+    "L_3b89c20e97": {
+      "W_43f86f1a": "bar",
+      "W_f137df92": "beer hall / pub",
+      "W_cd57ce5d": "rooftop (bar)",
+      "W_838e642d": "karaoke",
+      "W_06e7c7f9": "live music",
+      "W_65894804": "cocktail",
+      "W_ddbc6793": "craft / fresh beer",
+      "W_fe1e0211": "walking street"
+    },
+    "L_6a2e3f54fe": {
+      "W_fbf87785": "less sweet",
+      "W_b623de75": "less ice",
+      "W_59bebc0e": "no sugar",
+      "S_b8a2eb9c": "Iced milk coffee, less sugar.",
+      "S_a419992f": "Large bubble tea, less ice.",
+      "S_77fe7b4f": "Which beer is on promotion?",
+      "S_a7d3782c": "Can I get a larger glass?"
+    },
+    "L_866ca0bd5b": {
+      "W_7e928e09": "I prefer ...",
+      "W_dde407da": "doesn't suit me",
+      "S_a8c7a3d8": "I prefer black coffee to milk coffee.",
+      "S_18be51a7": "Fresh beer is better than bottled beer.",
+      "S_18e9061c": "This coffee is a bit strong for me.",
+      "S_8a07127a": "This music doesn't suit me."
+    },
+    "L_97048ff995": {
+      "W_d7e045b4": "atmosphere / vibe",
+      "W_fa8a7bf6": "lively / buzzing",
+      "W_a3502920": "quiet",
+      "W_0e16535b": "romantic",
+      "S_28fff56d": "This place has a lively vibe.",
+      "S_e434a37f": "I want somewhere quieter.",
+      "S_38398fbe": "Where has live music?",
+      "S_0dfea5e6": "Any recommendations?"
+    },
+    "L_8ae2269355": {
+      "W_5ab17a3e": "go drinking (casual, common)",
+      "W_1a932fb0": "second round / after-party",
+      "S_9c81fcc9": "Want to go drinking tonight?",
+      "S_b40ed73a": "After that let's go to the second round.",
+      "S_d6f3e5e1": "Meet me in the Western Quarter at 8.",
+      "S_6cbce8db": "I'll go home early, I have a tour tomorrow."
+    },
+    "L_bd0c30b197": {
+      "S_1c30a1bd": "Give me one egg coffee.",
+      "S_9c5b65f3": "Hot or iced?",
+      "S_a75c2373": "Hot. What's special about it?",
+      "S_c3839127": "Whipped egg with condensed milk.",
+      "S_67af8b80": "Please wait 5 minutes."
+    },
+    "L_3eb26ae57b": {
+      "S_75235873": "Table for 4?",
+      "S_d3b44cac": "The city view is amazing!",
+      "S_c66e28bd": "Which cocktail is famous here?",
+      "S_5de42735": "4 fresh beers please.",
+      "S_363d4498": "Cheers / bottoms up!"
+    },
+    "L_0d4d7702c9": {
+      "W_4f6f626b": "drip coffee",
+      "W_0e5789f7": "egg coffee",
+      "W_3b563a34": "craft beer",
+      "W_0438719b": "less sweet",
+      "W_5a6d2b7e": "atmosphere",
+      "S_786adaf4": "This place has a lively vibe.",
+      "M_d13bf542": "drip coffee",
+      "M_095b5776": "egg coffee",
+      "M_4a9bc689": "craft beer",
+      "M_d5e499ba": "less sweet"
+    },
+    "L_5211744125": {
+      "W_c9dca01f": "sea / beach",
+      "W_6c4fb641": "beach",
+      "W_893be605": "sand",
+      "W_aa779442": "wave",
+      "W_85d84329": "dive",
+      "W_f4b64172": "swim",
+      "W_8cf247cc": "swim in the sea",
+      "W_df11e265": "sunbed",
+      "M_f1d86579": "sea",
+      "M_38bcf4ad": "beach",
+      "M_35d92ab8": "dive",
+      "M_7ed4f4ff": "swim"
+    },
+    "L_a2729eac91": {
+      "W_3899d174": "mountain",
+      "W_ecbd218a": "waterfall",
+      "W_f38142e2": "cave",
+      "W_edd4e590": "jungle / forest",
+      "W_fc89120b": "rice terraces",
+      "W_58de62a8": "trekking",
+      "W_a127246b": "hiking / climbing",
+      "W_d711590e": "mountain bike"
+    },
+    "L_53a5bfd71f": {
+      "W_933d65c0": "weather",
+      "W_82f72cb8": "forecast",
+      "S_5e0e988a": "Is rain forecast today?",
+      "S_e447f974": "If the weather's nice, let's go to the beach.",
+      "S_f870b22b": "Waves are too high today, can't swim.",
+      "S_2107de34": "Is this a good season for Sapa?"
+    },
+    "L_d7389c644e": {
+      "W_e5f55cf8": "safe",
+      "W_0e14396c": "dangerous",
+      "W_d2fc00a1": "careful",
+      "S_98456d83": "Is it safe to swim here?",
+      "S_a89dcbde": "Is any part dangerous?",
+      "S_000d79c1": "Careful, rocks are slippery.",
+      "S_9e43bf99": "You should go with a guide."
+    },
+    "L_09bd1dd3b8": {
+      "W_44333792": "the more ... the more ...",
+      "W_75ab4180": "never seen before",
+      "S_3b72a502": "The higher up, the colder.",
+      "S_38e93825": "The further we go, the more beautiful.",
+      "S_ec416aff": "I've never seen such a beautiful sea.",
+      "S_2fb7242d": "The scenery is beyond words."
+    },
+    "L_f246581551": {
+      "W_9766679b": "crowded",
+      "W_4c9b0bae": "uncrowded / deserted",
+      "S_7fb2bdc6": "Nha Trang is more crowded than Phu Quoc.",
+      "S_12d4301c": "This beach is less crowded.",
+      "S_893e8141": "Halong is beautiful but Cat Ba is more peaceful.",
+      "S_ca815be8": "Where do you think is better?"
+    },
+    "L_400ac1d6b7": {
+      "S_f3955f71": "I want to rent snorkeling gear.",
+      "S_a17307a7": "How much for a full set per day?",
+      "S_e48ef20a": "Is there a boat to the islands?",
+      "S_df2ea0ba": "What time does it leave?",
+      "S_156aeb77": "I'm not a strong swimmer."
+    },
+    "L_7f53e808f7": {
+      "S_5c0700f3": "Is the trail to Cat Cat village difficult?",
+      "S_49c19f85": "Easy, about 2 hours walking.",
+      "S_e30ae55b": "Do I need special shoes?",
+      "S_86655ff2": "You should have grippy shoes, slippery when wet."
+    },
+    "L_2b1d4e56d3": {
+      "W_71cc913f": "beach",
+      "W_13132b43": "dive",
+      "W_9615ba66": "trekking",
+      "W_5f94b263": "waterfall",
+      "W_6050139b": "safe",
+      "S_9428bac2": "Is it safe to swim here?",
+      "M_fc9bdbdf": "beach",
+      "M_512f046e": "dive",
+      "M_d19bff8a": "trekking",
+      "M_b200db5a": "waterfall"
+    },
+    "L_81779bff43": {
+      "W_39f049a9": "take photos",
+      "W_ce5f55db": "take a photo for me",
+      "W_728ae893": "selfie",
+      "W_7de86fe6": "pose",
+      "W_1b3808f5": "lighting",
+      "W_c5ce2a3c": "background",
+      "W_a8d4407d": "good angle",
+      "M_f8798acd": "take photos",
+      "M_f4054141": "take a photo for me",
+      "M_de6144ed": "pose"
+    },
+    "L_0e9dd7eebe": {
+      "W_3b6c2a0c": "Buddhist temple",
+      "W_cf2a2b1a": "temple / shrine (other)",
+      "W_65d418e9": "church",
+      "W_8f4cb036": "tomb / mausoleum",
+      "W_6a3166f2": "museum",
+      "W_df457bc5": "historical site",
+      "W_edb5a6c2": "heritage"
+    },
+    "L_cd525222f6": {
+      "W_af17a3dc": "can I take",
+      "W_cd4d5153": "allowed",
+      "S_c51b2076": "May I take photos here?",
+      "S_212c6137": "Is it OK to photograph inside the temple?",
+      "S_ce72d329": "Could you take a photo of me?",
+      "S_3a5002bb": "Stand here, the background is nicer."
+    },
+    "L_7eb9d1a7b5": {
+      "W_30dc8a3f": "respect",
+      "W_c214bd83": "take off shoes",
+      "W_2ce9dd5c": "dress modestly",
+      "S_96ba8381": "You must take off shoes entering a temple.",
+      "S_269f0d46": "Dress modestly in places of worship.",
+      "S_00b47c50": "Don't photograph people who are praying.",
+      "S_523ca77b": "Respect the local culture."
+    },
+    "L_25192cd9ec": {
+      "W_6ffcec7d": "how old",
+      "W_eeb8140e": "from the century",
+      "W_c6c7168b": "famous for",
+      "S_637e265d": "How old is this temple?",
+      "S_07a09c4d": "Built in the 13th century.",
+      "S_951232bc": "This place is famous for its old architecture.",
+      "S_106ae6b6": "Who built it?"
+    },
+    "L_f5b318336e": {
+      "W_45503fd4": "the guide said that",
+      "W_3a317a10": "according to the book",
+      "S_e043c713": "The guide said this is the oldest temple.",
+      "S_8280d715": "According to the book, Hoi An is a World Heritage site since 1999.",
+      "S_296b5a97": "They say the temple has ancient treasures.",
+      "S_d573185a": "I heard this season is the prettiest."
+    },
+    "L_602137323a": {
+      "S_bfb6e475": "Excuse me, do I need to take off my shoes?",
+      "S_b47bc60d": "Yes, leave them outside.",
+      "S_d4832683": "May I take photos?",
+      "S_b43906f0": "Yes, but not people lighting incense.",
+      "S_3ac2fea9": "Thank you, I will respect that."
+    },
+    "L_36dc8ba27b": {
+      "S_cbff5b00": "Could you take a photo for me?",
+      "S_056424af": "Sure, where do you want to stand?",
+      "S_487293fd": "Here, include the tower behind.",
+      "S_adc1987c": "One, two, three, smile!",
+      "S_29bbf1a2": "Thanks a lot!"
+    },
+    "L_6a791cbe37": {
+      "W_b385c18d": "take photos",
+      "W_d7a48f9a": "temple",
+      "W_8a683298": "museum",
+      "W_240b0a07": "respect",
+      "W_d8434303": "heritage",
+      "S_4d76df90": "Could you take a photo of me?",
+      "M_5c5fcb3c": "take photos",
+      "M_9c865e7e": "temple",
+      "M_c9998795": "museum",
+      "M_8fd795e6": "respect"
+    },
+    "L_d2319bff6c": {
+      "W_06e369f4": "departure date",
+      "W_7af71c5e": "return flight",
+      "W_21d10ae1": "souvenirs",
+      "W_45278ddb": "carry-on luggage",
+      "W_34a7fceb": "check-in (luggage)",
+      "W_1c674f6f": "see off",
+      "W_4ec6d047": "come back / return",
+      "M_e334a138": "return flight",
+      "M_578faa1f": "carry-on",
+      "M_38e2de3f": "see off",
+      "M_1f1c8d8e": "come back"
+    },
+    "L_9283aee867": {
+      "W_fb135361": "goodbye",
+      "W_4c133b2c": "see you again",
+      "W_46771a45": "keep in touch",
+      "W_416efcf9": "safe travels",
+      "W_8207e36e": "good luck",
+      "W_1e959ef7": "miss (you/it) a lot",
+      "W_9c214f6f": "definitely next time"
+    },
+    "L_b43549c78a": {
+      "W_e5ada2fa": "most impressive",
+      "W_0b7510cc": "miss the most",
+      "S_a67e6579": "What was the most impressive part of the trip?",
+      "S_f4b9814d": "I miss the street food the most.",
+      "S_8838ca7f": "Having been here 2 weeks, I'll come back.",
+      "S_3aedb552": "I've never felt so welcomed."
+    },
+    "L_ebed9ca49b": {
+      "W_95c36f60": "sincerely thank",
+      "W_36daa318": "will not forget",
+      "S_5a4848db": "Sincerely thank you for helping.",
+      "S_722709f9": "I won't forget Vietnam.",
+      "S_1b3ff801": "Thank you everyone for welcoming me.",
+      "S_98075845": "This trip was really special."
+    },
+    "L_0c230cc9ed": {
+      "W_55c75aa7": "definitely / for sure",
+      "W_cabe9c98": "next time",
+      "S_bb681d31": "I'll definitely come back.",
+      "S_a57d4da7": "Next time I'll bring family.",
+      "S_9f656595": "I'll recommend Vietnam to my friends.",
+      "S_9a4dc256": "Hope to see you next year."
+    },
+    "L_cfec4ecd6a": {
+      "W_ebb77751": "for (a person)",
+      "W_67e25a27": "as a gift",
+      "S_96829586": "This is for my mom.",
+      "S_5f6658d6": "I bought coffee as a gift.",
+      "S_808a9709": "Is it overweight?",
+      "S_0f63b809": "I need to remove some things."
+    },
+    "L_118f780481": {
+      "S_a7d37326": "Check-in for the Singapore return flight.",
+      "S_bd7c0b6a": "How many kg checked luggage?",
+      "S_a6884629": "Which boarding gate?",
+      "S_c8cb8579": "Flight is 10 PM.",
+      "S_2010b84f": "Goodbye Vietnam, see you again!"
+    },
+    "L_035d29428f": {
+      "S_17f1a692": "Thank you for spending time with me.",
+      "S_e9116b87": "I'll keep in touch on Zalo.",
+      "S_6b566c8a": "If there's a chance, come visit the US.",
+      "S_7ba57ac6": "Safe travels!",
+      "S_6336cd32": "I'll definitely come back."
+    },
+    "L_9b8ec58bc5": {
+      "W_ff4d1648": "return flight",
+      "W_23b96dc0": "goodbye",
+      "W_7e2aa34b": "see you again",
+      "W_040f56c2": "keep in touch",
+      "W_4ce664e5": "definitely",
+      "S_0eab242f": "I'll definitely come back.",
+      "M_e5f9f683": "return flight",
+      "M_e24b8290": "goodbye",
+      "M_163c3e13": "see you again",
+      "M_e7113c0a": "keep in touch"
+    }
+  }
+}

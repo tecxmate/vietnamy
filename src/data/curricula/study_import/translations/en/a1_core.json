@@ -1,0 +1,548 @@
+{
+  "meta": {
+    "base": "en",
+    "level": "a1",
+    "track": "core",
+    "source": "vn_a1_core.xlsx",
+    "generated": "2026-04-28T09:02:31.266Z"
+  },
+  "translations": {
+    "L_d100db69f6": {
+      "W_5e709bec": "ghost (flat / ngang tone)",
+      "W_0c25179c": "but (falling / huyền tone)",
+      "W_365809df": "mother / cheek (rising / sắc tone)",
+      "W_f0f43939": "tomb (dipping / hỏi tone)",
+      "W_45de2361": "horse / code (creaky rising / ngã tone)",
+      "W_ee018774": "rice seedling (heavy falling / nặng tone)"
+    },
+    "L_6441087fd5": {
+      "W_5e587880": "three / father (flat tone)",
+      "W_37800324": "grandmother (falling tone)",
+      "W_8bd83392": "uncle (rising tone)",
+      "W_183b474e": "her / that person (dipping tone)",
+      "W_3c3e5e2f": "casually / randomly (heavy tone)"
+    },
+    "L_18f7e8adca": {
+      "W_337c6fb2": "(open central / 'ah')",
+      "W_3ab380b0": "(short open central)",
+      "W_8f4b805e": "(mid central short)",
+      "W_56e99dcc": "(open-mid front)",
+      "W_9daf4a15": "(close-mid front)",
+      "W_60d2f5c3": "(close front / 'ee')",
+      "W_24c451c9": "(open-mid back)",
+      "W_ce83ecdf": "(close-mid back)",
+      "W_10e2e21e": "(mid central)",
+      "W_91393c7b": "(close back / 'oo')",
+      "W_c9fb5909": "(close back unrounded)",
+      "W_388e300f": "(close front — same as i)"
+    },
+    "L_a5c8c1bffc": {
+      "W_ccb203c4": "(like English 'd')",
+      "W_684ed628": "(like 'z' in North, 'y' in South)",
+      "W_20456777": "(like 'z' in North, 'y' in South)",
+      "W_ad618d3f": "(like Spanish 'ñ')",
+      "W_60e417a4": "(as in English 'singing')",
+      "W_59bbfdba": "(like German 'ch' — back of throat)",
+      "W_a4cd7735": "(like 'tr' in 'tree')"
+    },
+    "L_f677bfd539": {
+      "W_7f305ee3": "(as in 'aisle')",
+      "W_92bcd336": "(as in 'cow')",
+      "W_29727cba": "(as in 'boy')",
+      "W_03f4e159": "(like 'wa')",
+      "W_fc3ef267": "(like 'uh-ah')",
+      "W_916d4e14": "(like 'ee-uh')"
+    },
+    "L_fed48045ee": {
+      "W_e030341e": "hello (two rising tones together)",
+      "W_1b1a8a5a": "thank you (dipping + flat)",
+      "W_90a6053f": "very happy (rising + flat)",
+      "W_93e80b60": "no problem (flat + flat)",
+      "W_cb0b1305": "goodbye (heavy + heavy)",
+      "S_766989ab": "Hello, nice to meet you. (flowing tones)",
+      "S_b2af2b9d": "Thank you very much. (tone transitions)"
+    },
+    "L_5a114871ab": {
+      "W_c291d1bc": "hello (polite)",
+      "W_fdb6a7b3": "hi (casual)",
+      "W_0ff865dc": "goodbye",
+      "W_467cecbd": "see you later",
+      "M_4e44c2d7": "hello",
+      "M_ffde7665": "hi",
+      "M_872a6b02": "goodbye",
+      "M_272bbaf1": "see you later"
+    },
+    "L_518e089b1e": {
+      "W_afd99afe": "thank you",
+      "W_a8258177": "thank you very much",
+      "W_471c60e9": "you're welcome / no problem",
+      "W_8e2c37da": "sorry / excuse me",
+      "M_c699181b": "thank you",
+      "M_f96f3390": "sorry",
+      "M_a103b328": "you're welcome"
+    },
+    "L_272b450c28": {
+      "W_58313af7": "yes (formal, northern)",
+      "W_3f6d3eac": "yes (very polite, southern)",
+      "W_329c4afc": "yes / have",
+      "W_faca50f7": "no",
+      "W_8c43b835": "OK / alright",
+      "M_1550d74a": "yes",
+      "M_2dec651c": "no",
+      "M_07d2e4fc": "OK"
+    },
+    "L_ada8f557c0": {
+      "W_523c2b61": "I / me",
+      "W_e64dbe1c": "you (neutral, friend)",
+      "S_2a9f6a18": "I am a student.",
+      "S_c978e9ff": "What is your name?",
+      "S_addaeeaa": "My name is Nam."
+    },
+    "L_fcf6d58449": {
+      "W_7dff9566": "you / older brother (male)",
+      "W_296d3267": "you / older sister (female)",
+      "W_a4a0da8a": "you / younger sibling",
+      "S_4acf74f2": "Hello (to older male).",
+      "S_9b88adc2": "What's your name? (to older female)",
+      "S_ca1932bf": "How old are you? (to younger)"
+    },
+    "L_26d4453e18": {
+      "W_8d0b7276": "sir / grandfather / elderly man",
+      "W_01e83075": "madam / grandmother / elderly woman",
+      "W_da7a4b3d": "miss / aunt (father's sister)",
+      "W_f2803aa9": "older uncle/aunt (polite)",
+      "S_85608bd5": "Hello, sir.",
+      "S_f48c66ef": "Hello, ma'am."
+    },
+    "L_8cf3142a29": {
+      "W_9f17bc20": "is / are / am",
+      "S_d083174a": "I am a teacher.",
+      "S_ca4fda9b": "She is a doctor.",
+      "S_778025c1": "This is my friend.",
+      "S_719b8e4e": "He is Vietnamese."
+    },
+    "L_52dd88386e": {
+      "W_a0fbbedc": "person",
+      "W_33a03f6e": "Vietnam",
+      "W_d5b6a5e5": "America / USA",
+      "W_3cfa4d4a": "Japan",
+      "S_434ad1b2": "I am Vietnamese.",
+      "S_e161e6e7": "She is American.",
+      "S_d0670b48": "What nationality are you?"
+    },
+    "L_092d78f5ff": {
+      "W_21d5114b": "(sentence-end politeness particle — shows respect)",
+      "S_255241a6": "Hello! (to older male, polite)",
+      "S_0bd43df9": "Thank you. (to older female, polite)",
+      "S_8b9a3992": "Yes. (very polite)",
+      "S_17408f56": "How are you, sir? (polite)",
+      "S_04bc7cfa": "I don't know. (young speaker, polite)"
+    },
+    "L_038e49092d": {
+      "S_ac00afa6": "Hello! My name is Minh.",
+      "S_79c9904d": "Nice to meet you.",
+      "S_6c240415": "What is your name?",
+      "S_44d65b47": "Where are you from?"
+    },
+    "L_f80d326b47": {
+      "S_df5a973d": "Hello, sir.",
+      "S_dee939df": "I am Linh. (speaking to elder)",
+      "S_a85e7f43": "How are you, sir?"
+    },
+    "L_d8999d03cd": {
+      "W_24f15627": "hello",
+      "W_d7051ed1": "thank you",
+      "W_90b1287b": "older brother / you",
+      "W_3cb145bd": "older sister / you",
+      "W_956c3f24": "sir / grandfather",
+      "S_ad481895": "I am Vietnamese.",
+      "M_58ee1565": "hello",
+      "M_f5e7ea6c": "thank you",
+      "M_878fbbe9": "older brother",
+      "M_782108d0": "sir"
+    },
+    "L_54b16a404c": {
+      "W_db8da222": "family",
+      "W_472cb8f3": "father (northern)",
+      "W_ecc9aada": "father (southern)",
+      "W_6e347bf3": "mother (northern)",
+      "W_498579a9": "mother (southern)",
+      "W_be3a7e25": "child",
+      "M_f337ec70": "family",
+      "M_601ef4de": "father",
+      "M_cbbb79f0": "mother",
+      "M_53e0c792": "child"
+    },
+    "L_9f51b90332": {
+      "W_58ffba9e": "older brother",
+      "W_58071786": "younger brother",
+      "W_53865229": "older sister",
+      "W_3826c5a7": "younger sister",
+      "W_8038499c": "grandfather",
+      "W_4b309da0": "grandmother"
+    },
+    "L_bd1aecce8f": {
+      "W_a3e07905": "of / belonging to",
+      "S_9ce90609": "This is my mother.",
+      "S_ec4147cf": "What is your name?",
+      "S_75fbcbcf": "My father is a doctor.",
+      "S_07ba815a": "Her house is very beautiful."
+    },
+    "L_9118495800": {
+      "W_cb299674": "this / here",
+      "W_dfa15002": "that (over there)",
+      "W_4f64869a": "that (nearby / just mentioned)",
+      "S_ce9ebee1": "This is my friend.",
+      "S_798205bd": "That is my house.",
+      "S_89bee443": "Do you see that lady?"
+    },
+    "L_510a6390b3": {
+      "W_27678977": "and",
+      "S_6e804510": "My friend and I go to school.",
+      "S_2e667e85": "My father and mother are teachers.",
+      "S_27577d06": "I want coffee and bread."
+    },
+    "L_75156b8caa": {
+      "S_76cbdecf": "This is my family.",
+      "S_abf6fe8c": "This is my dad and mom.",
+      "S_a7c8f6ad": "I have one older brother.",
+      "S_4e4d6116": "Nice to meet your family."
+    },
+    "L_2a2d4153df": {
+      "S_ebbde1f0": "Hello, Grandma! (polite)",
+      "S_4daed4d8": "This is my mother.",
+      "S_21154e88": "How are you, Grandma?",
+      "S_d04c1b30": "Your house is very beautiful."
+    },
+    "L_f2073515f1": {
+      "W_0be088df": "family",
+      "W_1350f59e": "father",
+      "W_b0fe9188": "mother",
+      "W_61236249": "of / belonging to",
+      "S_499883db": "This is my family.",
+      "M_b2a368cc": "family",
+      "M_47d8652a": "father",
+      "M_52cf0034": "mother",
+      "M_1214ada5": "of"
+    },
+    "L_87d70ce134": {
+      "W_0a8cf69f": "zero",
+      "W_83ac3eb3": "one",
+      "W_72f3d747": "two",
+      "W_98525fdc": "three",
+      "W_a758efec": "four",
+      "W_8151da06": "five",
+      "M_2816b93b": "one",
+      "M_8d5a0b13": "two",
+      "M_3a455b6f": "three",
+      "M_2238c953": "five"
+    },
+    "L_f5d2ed3356": {
+      "W_f66dde97": "six",
+      "W_6a13b46e": "seven",
+      "W_44beddd4": "eight",
+      "W_4f2c2755": "nine",
+      "W_7fb2f047": "ten",
+      "M_9e087492": "six",
+      "M_6b01c579": "seven",
+      "M_eaebc1eb": "nine",
+      "M_7151b8a3": "ten"
+    },
+    "L_4fc0ab4d3d": {
+      "W_f0f66170": "eleven",
+      "W_398cc635": "twelve",
+      "W_bde06f70": "fifteen (lăm, not năm, after mười)",
+      "W_6d5f90c0": "twenty"
+    },
+    "L_ef78e11f1a": {
+      "W_4bccc31b": "(classifier for inanimate objects)",
+      "S_684f929b": "Give me one.",
+      "S_52260974": "She bought two shirts.",
+      "S_6411a026": "This table is nice."
+    },
+    "L_81e73ab4b8": {
+      "W_b51ef1cd": "(classifier for animals)",
+      "S_2013b396": "I have three cats.",
+      "S_0007ff3f": "This dog is very big.",
+      "S_b29f6e25": "She keeps two fish."
+    },
+    "L_7dd1d98eed": {
+      "W_f5ce2d63": "(classifier for vehicles / one of a pair)",
+      "W_a75bbe2b": "(classifier for fruits / round objects)",
+      "S_a5f8b7d6": "I eat one apple.",
+      "S_684c017e": "He has one motorbike.",
+      "S_3488f147": "Give me two bananas."
+    },
+    "L_3ba567927a": {
+      "W_bff1eb81": "portion / serving",
+      "W_07c4bd46": "glass (southern)",
+      "W_362cf181": "glass (northern)",
+      "W_7cf873b8": "bowl (northern)",
+      "W_1ccaf090": "bowl (southern)",
+      "S_47516b89": "Give me two portions of rice.",
+      "S_c2f63bff": "One glass of coffee.",
+      "S_ecda1aed": "One bowl of pho."
+    },
+    "L_405d975c1f": {
+      "S_e5b2e69e": "Give me three mangoes.",
+      "S_30029533": "I want two apples.",
+      "S_ba38040c": "How much for one?",
+      "S_09f3f1d6": "Thank you, give me five."
+    },
+    "L_0cd2fc907a": {
+      "S_de51506b": "My house has two cats.",
+      "S_2938f8fb": "How many dogs do you have?",
+      "S_2cb9477a": "I have one dog and three fish.",
+      "S_25fb8554": "This cat is very pretty."
+    },
+    "L_ad5b71538e": {
+      "W_92f592fc": "one",
+      "W_9aa5ce50": "five",
+      "W_98576b7a": "ten",
+      "W_299c2d6f": "classifier for objects",
+      "W_05ad96ae": "classifier for animals",
+      "S_9b0e5b6c": "I have three cats.",
+      "M_671e9df3": "one",
+      "M_e970c0f5": "five",
+      "M_c7566645": "ten",
+      "M_6c79b248": "classifier for objects",
+      "M_810cf5e4": "classifier for animals"
+    },
+    "L_2ce1745be1": {
+      "W_2684e183": "rice (cooked)",
+      "W_c508e0f0": "pho (noodle soup)",
+      "W_0f5e5a49": "bread / Vietnamese sandwich",
+      "W_6a514b34": "meat",
+      "W_17c13107": "fish",
+      "W_c07da78a": "vegetables",
+      "M_8cb4cc88": "rice",
+      "M_7bb04172": "pho",
+      "M_5f93657d": "bread",
+      "M_d09f451e": "fish"
+    },
+    "L_1e163e515c": {
+      "W_647bca28": "water",
+      "W_96d226d0": "coffee",
+      "W_114b9048": "tea",
+      "W_d079bed4": "beer",
+      "W_c1c570fc": "orange juice",
+      "W_b9e28006": "ice water"
+    },
+    "L_27f951008c": {
+      "W_f160f33a": "delicious",
+      "W_b7f6fdb5": "sweet",
+      "W_0c7e4903": "spicy",
+      "W_42cbd34d": "salty",
+      "W_c4c1a82f": "sour",
+      "M_6da75bd0": "delicious",
+      "M_8c77afe8": "spicy",
+      "M_d0956bc1": "sweet",
+      "M_dd472198": "sour"
+    },
+    "L_b81c6ffd6d": {
+      "W_f957a46a": "to eat",
+      "W_412a4706": "to drink",
+      "S_f69e66ce": "I eat rice.",
+      "S_fe950b56": "I drink coffee.",
+      "S_c931a7b7": "What do you eat?",
+      "S_52d61ae8": "What do you drink?"
+    },
+    "L_01247898cb": {
+      "W_e4eaa5a4": "to want",
+      "S_2574065d": "I want to eat pho.",
+      "S_9c2f2e40": "I want to drink coffee.",
+      "S_7f1acc8c": "What do you want?"
+    },
+    "L_4f6978084e": {
+      "W_867e56f7": "give me / let me have",
+      "W_a17fd9dc": "please (polite request)",
+      "W_09231bad": "please (troubling someone)",
+      "S_daf2b193": "One coffee, please.",
+      "S_0c4c7482": "Please give me the menu.",
+      "S_f55caadd": "Please help me."
+    },
+    "L_b45348eff4": {
+      "S_2dbb7f89": "Please give me the menu.",
+      "S_9d8df01e": "One iced coffee, please.",
+      "S_0443f7a1": "One bánh mì, please.",
+      "S_601c3787": "Thank you."
+    },
+    "L_975fe327a1": {
+      "S_fde9ddaa": "What would you like to eat?",
+      "S_82f680df": "I want two bowls of pho.",
+      "S_4e7ca016": "This pho is very delicious!",
+      "S_bf7cfa43": "Give me the bill, please."
+    },
+    "L_c0009f4e14": {
+      "W_6e5dae42": "rice",
+      "W_966ba7a8": "pho",
+      "W_ff848aa2": "coffee",
+      "W_641086af": "to want",
+      "W_8f3947b3": "delicious",
+      "S_5d0a6bd4": "I want one bowl of pho.",
+      "M_ee5b9324": "rice",
+      "M_324d270d": "pho",
+      "M_bed55909": "coffee",
+      "M_c71cb407": "to want",
+      "M_23308f9f": "delicious"
+    },
+    "L_1748d9e812": {
+      "W_9b1b4076": "what",
+      "W_896c7226": "who",
+      "M_29677468": "what",
+      "M_dedf8a3b": "who"
+    },
+    "L_442b6e2b37": {
+      "W_ea61950c": "where",
+      "W_e917b5d4": "when",
+      "W_c08cf723": "why (short form of tại sao)",
+      "W_86f42d86": "why",
+      "M_200b5d55": "where",
+      "M_fa7f5d5c": "when",
+      "M_c188b4bf": "why"
+    },
+    "L_a25aeb9a4d": {
+      "W_ba68491f": "how much / how many (larger numbers)",
+      "W_ecae4aca": "how many (small numbers, 1-10)",
+      "W_5cd60844": "how / what's it like",
+      "M_160263af": "how much",
+      "M_a68b1e0a": "how many (small)",
+      "M_29c6e02b": "how"
+    },
+    "L_57f68d58ab": {
+      "W_9c7d4724": "(yes/no question marker)",
+      "S_8084a41d": "Are you well?",
+      "S_271855f1": "Do you eat rice?",
+      "S_d0daa233": "Yes, I am well.",
+      "S_9e51eb70": "No, I am not well."
+    },
+    "L_cdabc12492": {
+      "W_8dd907ea": "not (before verb)",
+      "S_d6c834f6": "I don't know.",
+      "S_d8f39417": "I don't drink beer.",
+      "S_988aefc5": "She is not a doctor.",
+      "S_b4a38e83": "I don't have money."
+    },
+    "L_3c16475dc7": {
+      "W_aa154220": "what",
+      "S_2a6cac07": "What do you eat?",
+      "S_ee59844d": "What do you drink?",
+      "S_e97be3fc": "What do you do?",
+      "S_a435afe7": "What is your name?"
+    },
+    "L_e6d27ccd6c": {
+      "W_affb5cff": "where",
+      "S_df5fb02c": "Where are you?",
+      "S_3b695fe4": "Where is your house?",
+      "S_72bf2948": "Where is the coffee?"
+    },
+    "L_2c4951f4cc": {
+      "S_8394b2bf": "How are you?",
+      "S_d3c9e4f0": "I'm well, thank you. And you?",
+      "S_2928810c": "I am also well."
+    },
+    "L_38282864f8": {
+      "S_f5e99b57": "Where are you going?",
+      "S_a2395ce9": "I'm going to class.",
+      "S_806ab9e7": "I'm going to work.",
+      "S_cf64b7d4": "I'm going home."
+    },
+    "L_d148b98fb0": {
+      "W_d67ca24c": "what",
+      "W_09d22edb": "who",
+      "W_b4c78932": "where",
+      "W_0b0bac84": "how much",
+      "W_3383586b": "not / question marker",
+      "S_dafffc32": "How are you?",
+      "M_3784e84a": "what",
+      "M_d0fd8157": "who",
+      "M_f570f355": "where",
+      "M_795c4c87": "how much"
+    },
+    "L_73bb2fef8c": {
+      "W_cc4c8020": "morning",
+      "W_e6f974a1": "noon / midday",
+      "W_1baa73f8": "afternoon",
+      "W_0e867f69": "evening",
+      "W_3ac13b14": "night",
+      "M_097de591": "morning",
+      "M_587468f5": "noon",
+      "M_eb558de2": "afternoon",
+      "M_f49fb247": "evening"
+    },
+    "L_61e1908933": {
+      "W_a89ea564": "today",
+      "W_f7d37a1d": "tomorrow",
+      "W_a20af928": "yesterday",
+      "W_2bd6f44e": "now"
+    },
+    "L_5d0be8e53b": {
+      "W_f4eb8950": "Monday",
+      "W_0d06b6ad": "Tuesday",
+      "W_5c3bb921": "Wednesday (note: tư, not bốn)",
+      "W_ca5f9cae": "Thursday",
+      "W_8f9e46cf": "Friday",
+      "W_6bfb4c5c": "Saturday",
+      "W_e872e23b": "Sunday (not thứ — irregular)",
+      "M_deeacd49": "Monday",
+      "M_50b9cecd": "Wednesday",
+      "M_6934995d": "Friday",
+      "M_a91d2e37": "Sunday"
+    },
+    "L_8c1791cccd": {
+      "W_fd2d4ea8": "hour / o'clock",
+      "W_f00d3490": "what time",
+      "W_d5d76861": "half past",
+      "S_c65ef4e5": "What time is it now?",
+      "S_22f68083": "It is seven o'clock.",
+      "S_7e934d55": "Half past eight.",
+      "S_343e09ab": "I sleep at ten."
+    },
+    "L_f6b02eb4fa": {
+      "W_52d97f85": "at / in / on (location)",
+      "S_5903b650": "I am at home.",
+      "S_3bc02e23": "She is at school.",
+      "S_5a2f51f8": "My house is in Hanoi.",
+      "S_0daca48d": "The book is on the table."
+    },
+    "L_504d876119": {
+      "W_1d0db826": "money",
+      "W_8e298d4f": "dong (Vietnamese currency)",
+      "W_c8be14e4": "thousand (northern)",
+      "W_79edbb75": "thousand (southern)",
+      "S_869b6db9": "How much money?",
+      "S_7a0be0e6": "Fifty thousand dong.",
+      "S_8c7262c4": "This is two hundred thousand."
+    },
+    "L_d584c74edb": {
+      "S_9373b5d7": "How much is this?",
+      "S_969fafc0": "Fifty thousand dong.",
+      "S_5b89624a": "Let me buy two.",
+      "S_99ade891": "I want to buy three mangoes."
+    },
+    "L_09ff6a2257": {
+      "S_ab159334": "What time shall we meet?",
+      "S_d8385497": "Is nine in the morning OK?",
+      "S_d057fe3d": "OK, see you then."
+    },
+    "L_a765e485e6": {
+      "S_fb35a837": "What is your phone number?",
+      "S_983a0bbf": "My number is 0912 345 678."
+    },
+    "L_a228b1c3fa": {
+      "W_5ff6c5e8": "today",
+      "W_dab090d2": "tomorrow",
+      "W_765d3099": "morning",
+      "W_355146fb": "Monday",
+      "W_df14c418": "money",
+      "W_f0e1f84e": "at / in / on",
+      "S_2a1a31b1": "What time is it?",
+      "S_65fa3750": "How much is this?",
+      "M_5a1ec8c9": "today",
+      "M_47f3b773": "tomorrow",
+      "M_39749d39": "morning",
+      "M_a4ae2ebc": "Monday",
+      "M_9ee19484": "money"
+    }
+  }
+}

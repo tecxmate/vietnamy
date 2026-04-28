@@ -1,0 +1,6001 @@
+{
+  "meta": {
+    "level": "a2",
+    "track": "core",
+    "source": "vn_a2_core.xlsx",
+    "generated": "2026-04-28T09:02:31.258Z",
+    "stats": {
+      "units": 10,
+      "lessons": 95,
+      "words": 299,
+      "sentences": 238,
+      "matches": 113
+    }
+  },
+  "units": [
+    {
+      "index": 1,
+      "title": "Family & Ages"
+    },
+    {
+      "index": 2,
+      "title": "Tense Markers"
+    },
+    {
+      "index": 3,
+      "title": "Work & Study"
+    },
+    {
+      "index": 4,
+      "title": "Shopping & Comparisons"
+    },
+    {
+      "index": 5,
+      "title": "Transport & Directions"
+    },
+    {
+      "index": 6,
+      "title": "Modals & Requests"
+    },
+    {
+      "index": 7,
+      "title": "Hotel & Travel"
+    },
+    {
+      "index": 8,
+      "title": "Weather & Conditions"
+    },
+    {
+      "index": 9,
+      "title": "Daily Life & Hobbies"
+    },
+    {
+      "index": 10,
+      "title": "Body, Health & Feelings"
+    }
+  ],
+  "lessons": [
+    {
+      "id": "L_4ed5f1ae4b",
+      "node_id": "core_u1_L001",
+      "quiz_id": null,
+      "unit_index": 1,
+      "unit_title": "Family & Ages",
+      "lesson_type": "Phonetics",
+      "lesson_title": "Connected Numbers: mốt vs một",
+      "content_types": [
+        "listen_choose",
+        "speak_sentence"
+      ],
+      "xp_reward": 8,
+      "unlock_rule": {
+        "type": "start"
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_72517662",
+          "vi": "một",
+          "ipa": "",
+          "category": "number+tone"
+        },
+        {
+          "id": "W_6d15711d",
+          "vi": "hai mươi mốt",
+          "ipa": "",
+          "category": "number+tone"
+        },
+        {
+          "id": "W_bf7c7d23",
+          "vi": "ba mươi mốt",
+          "ipa": "",
+          "category": "number+tone"
+        },
+        {
+          "id": "W_b44f3387",
+          "vi": "năm mươi mốt",
+          "ipa": "",
+          "category": "number+tone"
+        },
+        {
+          "id": "W_6c701fbf",
+          "vi": "mười lăm",
+          "ipa": "",
+          "category": "number+tone"
+        },
+        {
+          "id": "W_1ac479c3",
+          "vi": "hai mươi lăm",
+          "ipa": "",
+          "category": "number+tone"
+        }
+      ],
+      "sentences": [],
+      "matches": []
+    },
+    {
+      "id": "L_8a229f0f46",
+      "node_id": "core_u1_L002",
+      "quiz_id": null,
+      "unit_index": 1,
+      "unit_title": "Family & Ages",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Extended Family",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_4ed5f1ae4b"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_28b8445f",
+          "vi": "chồng",
+          "ipa": "",
+          "category": "family"
+        },
+        {
+          "id": "W_0ac2332b",
+          "vi": "vợ",
+          "ipa": "",
+          "category": "family"
+        },
+        {
+          "id": "W_34afa414",
+          "vi": "con trai",
+          "ipa": "",
+          "category": "family"
+        },
+        {
+          "id": "W_8b4d55ab",
+          "vi": "con gái",
+          "ipa": "",
+          "category": "family"
+        },
+        {
+          "id": "W_615ac92b",
+          "vi": "cháu",
+          "ipa": "",
+          "category": "family"
+        },
+        {
+          "id": "W_1cd55cd1",
+          "vi": "chú",
+          "ipa": "",
+          "category": "family"
+        },
+        {
+          "id": "W_08829576",
+          "vi": "cô",
+          "ipa": "",
+          "category": "family"
+        },
+        {
+          "id": "W_f9135a53",
+          "vi": "dì",
+          "ipa": "",
+          "category": "family"
+        },
+        {
+          "id": "W_7e157a4e",
+          "vi": "cậu",
+          "ipa": "",
+          "category": "family"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_d6825382",
+          "text": "chồng"
+        },
+        {
+          "id": "M_06c1fbe3",
+          "text": "vợ"
+        },
+        {
+          "id": "M_b51b1090",
+          "text": "con trai"
+        },
+        {
+          "id": "M_1112680c",
+          "text": "con gái"
+        }
+      ]
+    },
+    {
+      "id": "L_a6ba59cae0",
+      "node_id": "core_u1_L003",
+      "quiz_id": null,
+      "unit_index": 1,
+      "unit_title": "Family & Ages",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Numbers 20–100",
+      "content_types": [
+        "listen_choose",
+        "listen_type",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_8a229f0f46"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_34ddd029",
+          "vi": "hai mươi mốt",
+          "ipa": "",
+          "category": "number"
+        },
+        {
+          "id": "W_a4d55395",
+          "vi": "ba mươi",
+          "ipa": "",
+          "category": "number"
+        },
+        {
+          "id": "W_1d6a4aa9",
+          "vi": "bốn mươi",
+          "ipa": "",
+          "category": "number"
+        },
+        {
+          "id": "W_23ac2388",
+          "vi": "năm mươi",
+          "ipa": "",
+          "category": "number"
+        },
+        {
+          "id": "W_0b005750",
+          "vi": "sáu mươi",
+          "ipa": "",
+          "category": "number"
+        },
+        {
+          "id": "W_583cd519",
+          "vi": "bảy mươi",
+          "ipa": "",
+          "category": "number"
+        },
+        {
+          "id": "W_db2c1354",
+          "vi": "một trăm",
+          "ipa": "",
+          "category": "number"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_efe9ac79",
+          "text": "ba mươi"
+        },
+        {
+          "id": "M_1d5e0624",
+          "text": "năm mươi"
+        },
+        {
+          "id": "M_cbb1753a",
+          "text": "một trăm"
+        }
+      ]
+    },
+    {
+      "id": "L_8df30af5ff",
+      "node_id": "core_u1_L004",
+      "quiz_id": null,
+      "unit_index": 1,
+      "unit_title": "Family & Ages",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Large Numbers 100–1,000,000",
+      "content_types": [
+        "listen_choose",
+        "listen_type",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_a6ba59cae0"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_0011beb8",
+          "vi": "một trăm",
+          "ipa": "",
+          "category": "number"
+        },
+        {
+          "id": "W_356f85d9",
+          "vi": "năm trăm",
+          "ipa": "",
+          "category": "number"
+        },
+        {
+          "id": "W_de2a9233",
+          "vi": "một nghìn",
+          "ipa": "",
+          "category": "number"
+        },
+        {
+          "id": "W_8f0ce6b5",
+          "vi": "một ngàn",
+          "ipa": "",
+          "category": "number"
+        },
+        {
+          "id": "W_64bcaded",
+          "vi": "mười nghìn",
+          "ipa": "",
+          "category": "number"
+        },
+        {
+          "id": "W_4657abd6",
+          "vi": "một trăm nghìn",
+          "ipa": "",
+          "category": "number"
+        },
+        {
+          "id": "W_400fc3d3",
+          "vi": "một triệu",
+          "ipa": "",
+          "category": "number"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_8b6bc72e",
+          "text": "một trăm"
+        },
+        {
+          "id": "M_676799cb",
+          "text": "một nghìn"
+        },
+        {
+          "id": "M_0338e820",
+          "text": "một triệu"
+        }
+      ]
+    },
+    {
+      "id": "L_e98d3e02b6",
+      "node_id": "core_u1_L005",
+      "quiz_id": null,
+      "unit_index": 1,
+      "unit_title": "Family & Ages",
+      "lesson_type": "Grammar",
+      "lesson_title": "How Old? (bao nhiêu tuổi)",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_8df30af5ff"
+        ]
+      },
+      "grammar_tags": [
+        "GT013"
+      ],
+      "words": [
+        {
+          "id": "W_5bc5ae60",
+          "vi": "tuổi",
+          "ipa": "",
+          "category": "age"
+        },
+        {
+          "id": "W_7abc2248",
+          "vi": "bao nhiêu tuổi",
+          "ipa": "",
+          "category": "question"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_52fe78e6",
+          "vi": "Bạn bao nhiêu tuổi?"
+        },
+        {
+          "id": "S_0149afac",
+          "vi": "Tôi hai mươi lăm tuổi."
+        },
+        {
+          "id": "S_abe41306",
+          "vi": "Em tôi mười tám tuổi."
+        },
+        {
+          "id": "S_6368a97e",
+          "vi": "Ông tôi bảy mươi tuổi."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_defd4e4bee",
+      "node_id": "core_u1_L006",
+      "quiz_id": null,
+      "unit_index": 1,
+      "unit_title": "Family & Ages",
+      "lesson_type": "Grammar",
+      "lesson_title": "Counting People (có ... người)",
+      "content_types": [
+        "fill_blank",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_e98d3e02b6"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_6ebe28da",
+          "vi": "có",
+          "ipa": "",
+          "category": "verb"
+        },
+        {
+          "id": "W_54a5640a",
+          "vi": "người",
+          "ipa": "",
+          "category": "noun"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_fabfbdc2",
+          "vi": "Gia đình tôi có bốn người."
+        },
+        {
+          "id": "S_75ad7e8b",
+          "vi": "Bạn có mấy anh chị em?"
+        },
+        {
+          "id": "S_8aa72125",
+          "vi": "Tôi có một anh trai và một em gái."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_cd655cee81",
+      "node_id": "core_u1_L007",
+      "quiz_id": null,
+      "unit_index": 1,
+      "unit_title": "Family & Ages",
+      "lesson_type": "Grammar",
+      "lesson_title": "We: chúng tôi vs chúng ta",
+      "content_types": [
+        "fill_blank",
+        "mcq_translate_to_vi"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_defd4e4bee"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_b5d72fe0",
+          "vi": "chúng tôi",
+          "ipa": "",
+          "category": "pronoun"
+        },
+        {
+          "id": "W_3b0465b4",
+          "vi": "chúng ta",
+          "ipa": "",
+          "category": "pronoun"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_76d92c08",
+          "vi": "Chúng tôi là người Mỹ."
+        },
+        {
+          "id": "S_49eb5606",
+          "vi": "Chúng ta đi ăn!"
+        },
+        {
+          "id": "S_aa83dd18",
+          "vi": "Chúng tôi có hai con."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_c0e7aba67b",
+      "node_id": "core_u1_L008",
+      "quiz_id": null,
+      "unit_index": 1,
+      "unit_title": "Family & Ages",
+      "lesson_type": "Grammar",
+      "lesson_title": "Ordinal Numbers (thứ nhất, thứ nhì)",
+      "content_types": [
+        "fill_blank",
+        "mcq_translate_to_vi",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_cd655cee81"
+        ]
+      },
+      "grammar_tags": [
+        "GT026",
+        "GT043"
+      ],
+      "words": [
+        {
+          "id": "W_b063ce46",
+          "vi": "thứ nhất",
+          "ipa": "",
+          "category": "ordinal"
+        },
+        {
+          "id": "W_a7bc1c83",
+          "vi": "thứ nhì",
+          "ipa": "",
+          "category": "ordinal"
+        },
+        {
+          "id": "W_8f4dcf42",
+          "vi": "thứ ba",
+          "ipa": "",
+          "category": "ordinal"
+        },
+        {
+          "id": "W_ac8af038",
+          "vi": "thứ tư",
+          "ipa": "",
+          "category": "ordinal"
+        },
+        {
+          "id": "W_c78a0763",
+          "vi": "cuối cùng",
+          "ipa": "",
+          "category": "ordinal"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_d264f6a5",
+          "vi": "Con thứ nhất của tôi là con trai."
+        },
+        {
+          "id": "S_d355d824",
+          "vi": "Đây là lần thứ hai tôi đến Việt Nam."
+        },
+        {
+          "id": "S_fa850606",
+          "vi": "Cô ấy là con gái thứ ba trong gia đình."
+        },
+        {
+          "id": "S_8f7d1b00",
+          "vi": "Đây là câu hỏi cuối cùng."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_d2ce8a529a",
+      "node_id": "core_u1_L009",
+      "quiz_id": null,
+      "unit_index": 1,
+      "unit_title": "Family & Ages",
+      "lesson_type": "Grammar",
+      "lesson_title": "Quantifiers (nhiều, ít, một số, tất cả)",
+      "content_types": [
+        "fill_blank",
+        "mcq_translate_to_vi",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_c0e7aba67b"
+        ]
+      },
+      "grammar_tags": [
+        "GT044"
+      ],
+      "words": [
+        {
+          "id": "W_9a156746",
+          "vi": "nhiều",
+          "ipa": "",
+          "category": "quantifier"
+        },
+        {
+          "id": "W_a2303d8c",
+          "vi": "ít",
+          "ipa": "",
+          "category": "quantifier"
+        },
+        {
+          "id": "W_a448c3c3",
+          "vi": "một số",
+          "ipa": "",
+          "category": "quantifier"
+        },
+        {
+          "id": "W_93ef925b",
+          "vi": "tất cả",
+          "ipa": "",
+          "category": "quantifier"
+        },
+        {
+          "id": "W_36b4ac72",
+          "vi": "vài",
+          "ipa": "",
+          "category": "quantifier"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_108853c0",
+          "vi": "Gia đình tôi có nhiều người."
+        },
+        {
+          "id": "S_d3e9802b",
+          "vi": "Tôi có ít tiền."
+        },
+        {
+          "id": "S_f5a4d981",
+          "vi": "Một số bạn của tôi là người Nhật."
+        },
+        {
+          "id": "S_b5c0eb7c",
+          "vi": "Tất cả chúng tôi là sinh viên."
+        },
+        {
+          "id": "S_d6ee8d8c",
+          "vi": "Tôi có vài người bạn ở Hà Nội."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_3f444c55c0",
+      "node_id": "core_u1_L010",
+      "quiz_id": null,
+      "unit_index": 1,
+      "unit_title": "Family & Ages",
+      "lesson_type": "Scene",
+      "lesson_title": "Talking About Family",
+      "content_types": [
+        "speak_sentence",
+        "listen_choose"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_d2ce8a529a"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_0f1d880c",
+          "vi": "Gia đình bạn có mấy người?"
+        },
+        {
+          "id": "S_a121bdff",
+          "vi": "Gia đình tôi có năm người."
+        },
+        {
+          "id": "S_711752b1",
+          "vi": "Bố tôi bốn mươi lăm tuổi."
+        },
+        {
+          "id": "S_b5df6bb5",
+          "vi": "Mẹ tôi là giáo viên."
+        },
+        {
+          "id": "S_14ea8025",
+          "vi": "Tôi có hai con, một trai và một gái."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_cc85e23548",
+      "node_id": "core_u1_L011",
+      "quiz_id": null,
+      "unit_index": 1,
+      "unit_title": "Family & Ages",
+      "lesson_type": "Scene",
+      "lesson_title": "Meeting Your In-laws",
+      "content_types": [
+        "listen_choose",
+        "translation_word_bank"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_3f444c55c0"
+        ]
+      },
+      "grammar_tags": [
+        "GT013"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_ccf5eaa9",
+          "vi": "Chào chú, chào dì ạ!"
+        },
+        {
+          "id": "S_9e992251",
+          "vi": "Chồng của cháu là Nam."
+        },
+        {
+          "id": "S_1d90b58b",
+          "vi": "Chú bao nhiêu tuổi ạ?"
+        },
+        {
+          "id": "S_2aafdee9",
+          "vi": "Chú sáu mươi tuổi."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_f049d98b41",
+      "node_id": "core_u1_Q012",
+      "quiz_id": "core_u1_Q012",
+      "unit_index": 1,
+      "unit_title": "Family & Ages",
+      "lesson_type": "Quiz",
+      "lesson_title": "Family & Ages Review",
+      "content_types": [
+        "mcq_translate_to_en",
+        "listen_choose",
+        "match_pairs"
+      ],
+      "xp_reward": 20,
+      "unlock_rule": {
+        "type": "unit_complete",
+        "requires": [
+          "L_4ed5f1ae4b",
+          "L_8a229f0f46",
+          "L_a6ba59cae0",
+          "L_8df30af5ff",
+          "L_e98d3e02b6",
+          "L_defd4e4bee",
+          "L_cd655cee81",
+          "L_c0e7aba67b",
+          "L_d2ce8a529a",
+          "L_3f444c55c0",
+          "L_cc85e23548"
+        ]
+      },
+      "grammar_tags": [
+        "GT013"
+      ],
+      "words": [
+        {
+          "id": "W_cf5704eb",
+          "vi": "chồng",
+          "ipa": "",
+          "category": "family"
+        },
+        {
+          "id": "W_f7818671",
+          "vi": "vợ",
+          "ipa": "",
+          "category": "family"
+        },
+        {
+          "id": "W_251f627d",
+          "vi": "tuổi",
+          "ipa": "",
+          "category": "age"
+        },
+        {
+          "id": "W_584210ff",
+          "vi": "một trăm",
+          "ipa": "",
+          "category": "number"
+        },
+        {
+          "id": "W_72156517",
+          "vi": "chúng tôi",
+          "ipa": "",
+          "category": "pronoun"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_58034828",
+          "vi": "Bạn bao nhiêu tuổi?"
+        }
+      ],
+      "matches": [
+        {
+          "id": "M_551784b8",
+          "text": "chồng"
+        },
+        {
+          "id": "M_5652645d",
+          "text": "vợ"
+        },
+        {
+          "id": "M_e3bd4e82",
+          "text": "tuổi"
+        },
+        {
+          "id": "M_c20cbab2",
+          "text": "một trăm"
+        }
+      ]
+    },
+    {
+      "id": "L_24f0fe876b",
+      "node_id": "core_u2_L013",
+      "quiz_id": null,
+      "unit_index": 2,
+      "unit_title": "Tense Markers",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Time Particles",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_f049d98b41"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_959040ec",
+          "vi": "đã",
+          "ipa": "",
+          "category": "tense"
+        },
+        {
+          "id": "W_a8f0cccc",
+          "vi": "đang",
+          "ipa": "",
+          "category": "tense"
+        },
+        {
+          "id": "W_9d633c17",
+          "vi": "sẽ",
+          "ipa": "",
+          "category": "tense"
+        },
+        {
+          "id": "W_3335f7b8",
+          "vi": "rồi",
+          "ipa": "",
+          "category": "tense"
+        },
+        {
+          "id": "W_59d4f76b",
+          "vi": "chưa",
+          "ipa": "",
+          "category": "tense"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_98038e85",
+          "text": "đã"
+        },
+        {
+          "id": "M_85d8577d",
+          "text": "đang"
+        },
+        {
+          "id": "M_86b78df3",
+          "text": "sẽ"
+        },
+        {
+          "id": "M_bf131315",
+          "text": "chưa"
+        }
+      ]
+    },
+    {
+      "id": "L_2cf5cad560",
+      "node_id": "core_u2_L014",
+      "quiz_id": null,
+      "unit_index": 2,
+      "unit_title": "Tense Markers",
+      "lesson_type": "Grammar",
+      "lesson_title": "Past Tense: đã + verb",
+      "content_types": [
+        "fill_blank",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_24f0fe876b"
+        ]
+      },
+      "grammar_tags": [
+        "GT002"
+      ],
+      "words": [
+        {
+          "id": "W_ed3554b5",
+          "vi": "đã",
+          "ipa": "",
+          "category": "tense"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_94bbfe84",
+          "vi": "Tôi đã ăn cơm."
+        },
+        {
+          "id": "S_7356b360",
+          "vi": "Hôm qua tôi đã đi làm."
+        },
+        {
+          "id": "S_41f6c2f6",
+          "vi": "Cô ấy đã về nhà."
+        },
+        {
+          "id": "S_f5882117",
+          "vi": "Chúng tôi đã gặp anh ấy."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_946ebe3bb5",
+      "node_id": "core_u2_L015",
+      "quiz_id": null,
+      "unit_index": 2,
+      "unit_title": "Tense Markers",
+      "lesson_type": "Grammar",
+      "lesson_title": "Progressive: đang + verb",
+      "content_types": [
+        "fill_blank",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_2cf5cad560"
+        ]
+      },
+      "grammar_tags": [
+        "GT002"
+      ],
+      "words": [
+        {
+          "id": "W_e38d9b62",
+          "vi": "đang",
+          "ipa": "",
+          "category": "tense"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_2636b08d",
+          "vi": "Tôi đang học tiếng Việt."
+        },
+        {
+          "id": "S_69096d93",
+          "vi": "Bạn đang làm gì?"
+        },
+        {
+          "id": "S_34931c01",
+          "vi": "Bố tôi đang ngủ."
+        },
+        {
+          "id": "S_39769e30",
+          "vi": "Chúng tôi đang đi chợ."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_af2749345c",
+      "node_id": "core_u2_L016",
+      "quiz_id": null,
+      "unit_index": 2,
+      "unit_title": "Tense Markers",
+      "lesson_type": "Grammar",
+      "lesson_title": "Future: sẽ + verb",
+      "content_types": [
+        "fill_blank",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_946ebe3bb5"
+        ]
+      },
+      "grammar_tags": [
+        "GT002",
+        "GT034"
+      ],
+      "words": [
+        {
+          "id": "W_6b3d2ceb",
+          "vi": "sẽ",
+          "ipa": "",
+          "category": "tense"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_45c81f45",
+          "vi": "Ngày mai tôi sẽ đi học."
+        },
+        {
+          "id": "S_67cd0a0e",
+          "vi": "Chúng tôi sẽ đi Hà Nội."
+        },
+        {
+          "id": "S_741f0c7e",
+          "vi": "Bạn sẽ làm gì cuối tuần?"
+        },
+        {
+          "id": "S_29339c0f",
+          "vi": "Cô ấy sẽ đến lúc năm giờ."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_6dd76c1814",
+      "node_id": "core_u2_L017",
+      "quiz_id": null,
+      "unit_index": 2,
+      "unit_title": "Tense Markers",
+      "lesson_type": "Grammar",
+      "lesson_title": "Already / Not Yet (rồi / chưa)",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_af2749345c"
+        ]
+      },
+      "grammar_tags": [
+        "GT018",
+        "GT019"
+      ],
+      "words": [
+        {
+          "id": "W_ad79a2f2",
+          "vi": "rồi",
+          "ipa": "",
+          "category": "tense"
+        },
+        {
+          "id": "W_7170df03",
+          "vi": "chưa",
+          "ipa": "",
+          "category": "tense"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_5c3b1173",
+          "vi": "Bạn đã ăn cơm chưa?"
+        },
+        {
+          "id": "S_806fbbd0",
+          "vi": "Tôi đã ăn rồi."
+        },
+        {
+          "id": "S_2f2650db",
+          "vi": "Tôi chưa ăn."
+        },
+        {
+          "id": "S_c61c25ac",
+          "vi": "Bạn đã đi Việt Nam chưa?"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_1e6dfc0f58",
+      "node_id": "core_u2_L018",
+      "quiz_id": null,
+      "unit_index": 2,
+      "unit_title": "Tense Markers",
+      "lesson_type": "Grammar",
+      "lesson_title": "Time Sequencing (trước khi, sau khi)",
+      "content_types": [
+        "fill_blank",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_6dd76c1814"
+        ]
+      },
+      "grammar_tags": [
+        "GT002"
+      ],
+      "words": [
+        {
+          "id": "W_4befb538",
+          "vi": "trước khi",
+          "ipa": "",
+          "category": "conjunction"
+        },
+        {
+          "id": "W_a09e7590",
+          "vi": "sau khi",
+          "ipa": "",
+          "category": "conjunction"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_b38a286d",
+          "vi": "Trước khi đi làm, tôi uống cà phê."
+        },
+        {
+          "id": "S_6bf8ad4e",
+          "vi": "Sau khi ăn, tôi đi dạo."
+        },
+        {
+          "id": "S_b0be3e72",
+          "vi": "Chúng ta gặp sau khi học xong."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_425c544013",
+      "node_id": "core_u2_L019",
+      "quiz_id": null,
+      "unit_index": 2,
+      "unit_title": "Tense Markers",
+      "lesson_type": "Scene",
+      "lesson_title": "Phone Call: What Are You Doing?",
+      "content_types": [
+        "speak_sentence",
+        "listen_choose"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_1e6dfc0f58"
+        ]
+      },
+      "grammar_tags": [
+        "GT002",
+        "GT018"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_de1b9d01",
+          "vi": "A lô, bạn đang làm gì?"
+        },
+        {
+          "id": "S_ac89f671",
+          "vi": "Tôi đang ăn cơm. Còn bạn?"
+        },
+        {
+          "id": "S_992eb0ce",
+          "vi": "Tôi đã ăn rồi."
+        },
+        {
+          "id": "S_2f818933",
+          "vi": "Chiều nay bạn sẽ đi đâu?"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_71bdf03c6a",
+      "node_id": "core_u2_L020",
+      "quiz_id": null,
+      "unit_index": 2,
+      "unit_title": "Tense Markers",
+      "lesson_type": "Scene",
+      "lesson_title": "Have You Tried...?",
+      "content_types": [
+        "listen_choose",
+        "translation_word_bank"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_425c544013"
+        ]
+      },
+      "grammar_tags": [
+        "GT018",
+        "GT019",
+        "GT033"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_38234cea",
+          "vi": "Bạn đã ăn phở chưa?"
+        },
+        {
+          "id": "S_ef17b7b2",
+          "vi": "Rồi, tôi đã ăn rồi. Ngon lắm!"
+        },
+        {
+          "id": "S_4b146ec2",
+          "vi": "Bạn đã đi Hà Nội chưa?"
+        },
+        {
+          "id": "S_17c4679e",
+          "vi": "Chưa, tôi chưa đi."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_36c0072002",
+      "node_id": "core_u2_Q021",
+      "quiz_id": "core_u2_Q021",
+      "unit_index": 2,
+      "unit_title": "Tense Markers",
+      "lesson_type": "Quiz",
+      "lesson_title": "Tense Markers Review",
+      "content_types": [
+        "mcq_translate_to_en",
+        "listen_choose",
+        "match_pairs"
+      ],
+      "xp_reward": 20,
+      "unlock_rule": {
+        "type": "unit_complete",
+        "requires": [
+          "L_24f0fe876b",
+          "L_2cf5cad560",
+          "L_946ebe3bb5",
+          "L_af2749345c",
+          "L_6dd76c1814",
+          "L_1e6dfc0f58",
+          "L_425c544013",
+          "L_71bdf03c6a"
+        ]
+      },
+      "grammar_tags": [
+        "GT019"
+      ],
+      "words": [
+        {
+          "id": "W_88d84833",
+          "vi": "đã",
+          "ipa": "",
+          "category": "tense"
+        },
+        {
+          "id": "W_a97bc180",
+          "vi": "đang",
+          "ipa": "",
+          "category": "tense"
+        },
+        {
+          "id": "W_9f61a594",
+          "vi": "sẽ",
+          "ipa": "",
+          "category": "tense"
+        },
+        {
+          "id": "W_d9453c04",
+          "vi": "chưa",
+          "ipa": "",
+          "category": "tense"
+        },
+        {
+          "id": "W_d7229058",
+          "vi": "sau khi",
+          "ipa": "",
+          "category": "conjunction"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_0d27c6d6",
+          "vi": "Bạn đã ăn cơm chưa?"
+        }
+      ],
+      "matches": [
+        {
+          "id": "M_58521613",
+          "text": "đã"
+        },
+        {
+          "id": "M_20c6ac07",
+          "text": "đang"
+        },
+        {
+          "id": "M_453e08b2",
+          "text": "sẽ"
+        },
+        {
+          "id": "M_90f73dfe",
+          "text": "chưa"
+        },
+        {
+          "id": "M_0ff5ce81",
+          "text": "sau khi"
+        }
+      ]
+    },
+    {
+      "id": "L_079c042040",
+      "node_id": "core_u3_L022",
+      "quiz_id": null,
+      "unit_index": 3,
+      "unit_title": "Work & Study",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Professions",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_36c0072002"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_b6f04175",
+          "vi": "giáo viên",
+          "ipa": "",
+          "category": "profession"
+        },
+        {
+          "id": "W_d6b0f1cf",
+          "vi": "bác sĩ",
+          "ipa": "",
+          "category": "profession"
+        },
+        {
+          "id": "W_62860bd2",
+          "vi": "y tá",
+          "ipa": "",
+          "category": "profession"
+        },
+        {
+          "id": "W_6eec8e67",
+          "vi": "kỹ sư",
+          "ipa": "",
+          "category": "profession"
+        },
+        {
+          "id": "W_78dbc4dc",
+          "vi": "luật sư",
+          "ipa": "",
+          "category": "profession"
+        },
+        {
+          "id": "W_5a5f3fa1",
+          "vi": "nhân viên",
+          "ipa": "",
+          "category": "profession"
+        },
+        {
+          "id": "W_eba1a0e7",
+          "vi": "sinh viên",
+          "ipa": "",
+          "category": "profession"
+        },
+        {
+          "id": "W_1ff06287",
+          "vi": "học sinh",
+          "ipa": "",
+          "category": "profession"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_548fcf23",
+          "text": "giáo viên"
+        },
+        {
+          "id": "M_b041b161",
+          "text": "bác sĩ"
+        },
+        {
+          "id": "M_5aaeff39",
+          "text": "kỹ sư"
+        },
+        {
+          "id": "M_4449d0b1",
+          "text": "sinh viên"
+        }
+      ]
+    },
+    {
+      "id": "L_ead9f51549",
+      "node_id": "core_u3_L023",
+      "quiz_id": null,
+      "unit_index": 3,
+      "unit_title": "Work & Study",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Workplaces",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_vi",
+        "picture_choice"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_079c042040"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_5f6b8b7c",
+          "vi": "công ty",
+          "ipa": "",
+          "category": "workplace"
+        },
+        {
+          "id": "W_853e9243",
+          "vi": "văn phòng",
+          "ipa": "",
+          "category": "workplace"
+        },
+        {
+          "id": "W_8440404b",
+          "vi": "trường học",
+          "ipa": "",
+          "category": "workplace"
+        },
+        {
+          "id": "W_004509b9",
+          "vi": "đại học",
+          "ipa": "",
+          "category": "workplace"
+        },
+        {
+          "id": "W_2b7bc6a8",
+          "vi": "bệnh viện",
+          "ipa": "",
+          "category": "workplace"
+        },
+        {
+          "id": "W_49dbc696",
+          "vi": "nhà máy",
+          "ipa": "",
+          "category": "workplace"
+        }
+      ],
+      "sentences": [],
+      "matches": []
+    },
+    {
+      "id": "L_95fb6dce02",
+      "node_id": "core_u3_L024",
+      "quiz_id": null,
+      "unit_index": 3,
+      "unit_title": "Work & Study",
+      "lesson_type": "Grammar",
+      "lesson_title": "What Do You Do? (làm gì)",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_ead9f51549"
+        ]
+      },
+      "grammar_tags": [
+        "GT002"
+      ],
+      "words": [
+        {
+          "id": "W_834e4a88",
+          "vi": "làm",
+          "ipa": "",
+          "category": "verb"
+        },
+        {
+          "id": "W_9e96cb47",
+          "vi": "nghề",
+          "ipa": "",
+          "category": "noun"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_14578672",
+          "vi": "Bạn làm nghề gì?"
+        },
+        {
+          "id": "S_cc8f87a8",
+          "vi": "Bạn làm gì?"
+        },
+        {
+          "id": "S_0f2d5b24",
+          "vi": "Tôi là giáo viên."
+        },
+        {
+          "id": "S_3a417ecc",
+          "vi": "Tôi làm kỹ sư."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_5aa4c79d0d",
+      "node_id": "core_u3_L025",
+      "quiz_id": null,
+      "unit_index": 3,
+      "unit_title": "Work & Study",
+      "lesson_type": "Grammar",
+      "lesson_title": "Working At (làm việc ở)",
+      "content_types": [
+        "fill_blank",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_95fb6dce02"
+        ]
+      },
+      "grammar_tags": [
+        "GT002",
+        "GT007"
+      ],
+      "words": [
+        {
+          "id": "W_2e5e5bf6",
+          "vi": "làm việc",
+          "ipa": "",
+          "category": "verb"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_c40b414e",
+          "vi": "Tôi làm việc ở công ty ABC."
+        },
+        {
+          "id": "S_9a551771",
+          "vi": "Cô ấy làm việc ở bệnh viện."
+        },
+        {
+          "id": "S_02d18700",
+          "vi": "Bạn làm việc ở đâu?"
+        },
+        {
+          "id": "S_642ee17d",
+          "vi": "Tôi làm việc từ 8 giờ đến 5 giờ."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_9a61c1a46b",
+      "node_id": "core_u3_L026",
+      "quiz_id": null,
+      "unit_index": 3,
+      "unit_title": "Work & Study",
+      "lesson_type": "Grammar",
+      "lesson_title": "Studying (học)",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_5aa4c79d0d"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_6c89bbd7",
+          "vi": "học",
+          "ipa": "",
+          "category": "verb"
+        },
+        {
+          "id": "W_1e5d0675",
+          "vi": "môn",
+          "ipa": "",
+          "category": "noun"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_57a034f6",
+          "vi": "Tôi đang học tiếng Việt."
+        },
+        {
+          "id": "S_73f1fc46",
+          "vi": "Bạn học môn gì?"
+        },
+        {
+          "id": "S_df7bf5ef",
+          "vi": "Em tôi học ở đại học Hà Nội."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_a0adea6d85",
+      "node_id": "core_u3_L027",
+      "quiz_id": null,
+      "unit_index": 3,
+      "unit_title": "Work & Study",
+      "lesson_type": "Grammar",
+      "lesson_title": "Purpose Clause (để)",
+      "content_types": [
+        "fill_blank",
+        "reorder_words",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_9a61c1a46b"
+        ]
+      },
+      "grammar_tags": [
+        "GT002"
+      ],
+      "words": [
+        {
+          "id": "W_3b20b412",
+          "vi": "để",
+          "ipa": "",
+          "category": "conjunction"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_892763b3",
+          "vi": "Tôi học tiếng Việt để đi du lịch."
+        },
+        {
+          "id": "S_5a551913",
+          "vi": "Cô ấy làm việc để nuôi gia đình."
+        },
+        {
+          "id": "S_d3485e95",
+          "vi": "Tôi đi siêu thị để mua thức ăn."
+        },
+        {
+          "id": "S_8600d297",
+          "vi": "Bạn học để làm gì?"
+        },
+        {
+          "id": "S_3fe7ade1",
+          "vi": "Tôi cần thuốc để chữa bệnh."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_a78a2ac3c2",
+      "node_id": "core_u3_L028",
+      "quiz_id": null,
+      "unit_index": 3,
+      "unit_title": "Work & Study",
+      "lesson_type": "Scene",
+      "lesson_title": "Introducing Yourself at Work",
+      "content_types": [
+        "speak_sentence",
+        "listen_choose"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_a0adea6d85"
+        ]
+      },
+      "grammar_tags": [
+        "GT002",
+        "GT031"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_b712c209",
+          "vi": "Chào anh, tôi tên là Linh."
+        },
+        {
+          "id": "S_2013e599",
+          "vi": "Tôi là nhân viên mới."
+        },
+        {
+          "id": "S_c7c541e4",
+          "vi": "Tôi làm việc ở phòng marketing."
+        },
+        {
+          "id": "S_a19cea8e",
+          "vi": "Rất vui được làm việc với anh."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_726c66c76f",
+      "node_id": "core_u3_L029",
+      "quiz_id": null,
+      "unit_index": 3,
+      "unit_title": "Work & Study",
+      "lesson_type": "Scene",
+      "lesson_title": "Asking About Someone's Job",
+      "content_types": [
+        "listen_choose",
+        "translation_word_bank"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_a78a2ac3c2"
+        ]
+      },
+      "grammar_tags": [
+        "GT002"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_cac282e1",
+          "vi": "Bạn làm nghề gì?"
+        },
+        {
+          "id": "S_c0e12276",
+          "vi": "Tôi là luật sư. Còn bạn?"
+        },
+        {
+          "id": "S_c27f8be4",
+          "vi": "Tôi làm kỹ sư ở Đà Nẵng."
+        },
+        {
+          "id": "S_6526128a",
+          "vi": "Công việc của bạn thế nào?"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_0acadd0adf",
+      "node_id": "core_u3_Q030",
+      "quiz_id": "core_u3_Q030",
+      "unit_index": 3,
+      "unit_title": "Work & Study",
+      "lesson_type": "Quiz",
+      "lesson_title": "Work & Study Review",
+      "content_types": [
+        "mcq_translate_to_en",
+        "listen_choose",
+        "match_pairs"
+      ],
+      "xp_reward": 20,
+      "unlock_rule": {
+        "type": "unit_complete",
+        "requires": [
+          "L_079c042040",
+          "L_ead9f51549",
+          "L_95fb6dce02",
+          "L_5aa4c79d0d",
+          "L_9a61c1a46b",
+          "L_a0adea6d85",
+          "L_a78a2ac3c2",
+          "L_726c66c76f"
+        ]
+      },
+      "grammar_tags": [
+        "GT002"
+      ],
+      "words": [
+        {
+          "id": "W_308bcc8d",
+          "vi": "giáo viên",
+          "ipa": "",
+          "category": "profession"
+        },
+        {
+          "id": "W_dd06bfbe",
+          "vi": "bác sĩ",
+          "ipa": "",
+          "category": "profession"
+        },
+        {
+          "id": "W_a1d9f10b",
+          "vi": "công ty",
+          "ipa": "",
+          "category": "workplace"
+        },
+        {
+          "id": "W_3e9f2959",
+          "vi": "làm việc",
+          "ipa": "",
+          "category": "verb"
+        },
+        {
+          "id": "W_1724f19d",
+          "vi": "học",
+          "ipa": "",
+          "category": "verb"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_0d41b328",
+          "vi": "Bạn làm nghề gì?"
+        }
+      ],
+      "matches": [
+        {
+          "id": "M_7c3ef7e6",
+          "text": "giáo viên"
+        },
+        {
+          "id": "M_86faa268",
+          "text": "bác sĩ"
+        },
+        {
+          "id": "M_aba48ec3",
+          "text": "công ty"
+        },
+        {
+          "id": "M_375bc204",
+          "text": "học"
+        }
+      ]
+    },
+    {
+      "id": "L_85f7d697d5",
+      "node_id": "core_u4_L031",
+      "quiz_id": null,
+      "unit_index": 4,
+      "unit_title": "Shopping & Comparisons",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Clothing Items",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_0acadd0adf"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_f8045049",
+          "vi": "áo",
+          "ipa": "",
+          "category": "clothing"
+        },
+        {
+          "id": "W_b864c0fa",
+          "vi": "quần",
+          "ipa": "",
+          "category": "clothing"
+        },
+        {
+          "id": "W_3c964ce7",
+          "vi": "váy",
+          "ipa": "",
+          "category": "clothing"
+        },
+        {
+          "id": "W_01870623",
+          "vi": "giày",
+          "ipa": "",
+          "category": "clothing"
+        },
+        {
+          "id": "W_b19eb1bc",
+          "vi": "mũ",
+          "ipa": "",
+          "category": "clothing"
+        },
+        {
+          "id": "W_94d6fde7",
+          "vi": "nón",
+          "ipa": "",
+          "category": "clothing"
+        },
+        {
+          "id": "W_75dad725",
+          "vi": "áo khoác",
+          "ipa": "",
+          "category": "clothing"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_724138ef",
+          "text": "áo"
+        },
+        {
+          "id": "M_0d9ab5ba",
+          "text": "quần"
+        },
+        {
+          "id": "M_4338742f",
+          "text": "giày"
+        },
+        {
+          "id": "M_3d09999f",
+          "text": "váy"
+        }
+      ]
+    },
+    {
+      "id": "L_6662f63958",
+      "node_id": "core_u4_L032",
+      "quiz_id": null,
+      "unit_index": 4,
+      "unit_title": "Shopping & Comparisons",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Colors",
+      "content_types": [
+        "listen_choose",
+        "picture_choice",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_85f7d697d5"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_a7f9d638",
+          "vi": "đỏ",
+          "ipa": "",
+          "category": "color"
+        },
+        {
+          "id": "W_d7a26e02",
+          "vi": "xanh dương",
+          "ipa": "",
+          "category": "color"
+        },
+        {
+          "id": "W_56502bc0",
+          "vi": "xanh lá",
+          "ipa": "",
+          "category": "color"
+        },
+        {
+          "id": "W_51a6dc97",
+          "vi": "vàng",
+          "ipa": "",
+          "category": "color"
+        },
+        {
+          "id": "W_1126fd72",
+          "vi": "đen",
+          "ipa": "",
+          "category": "color"
+        },
+        {
+          "id": "W_f565a74c",
+          "vi": "trắng",
+          "ipa": "",
+          "category": "color"
+        },
+        {
+          "id": "W_500a5245",
+          "vi": "hồng",
+          "ipa": "",
+          "category": "color"
+        },
+        {
+          "id": "W_eff01cb0",
+          "vi": "nâu",
+          "ipa": "",
+          "category": "color"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_1b40ff7a",
+          "text": "đỏ"
+        },
+        {
+          "id": "M_efe717c6",
+          "text": "xanh dương"
+        },
+        {
+          "id": "M_5c98e47c",
+          "text": "đen"
+        },
+        {
+          "id": "M_67c9ec33",
+          "text": "trắng"
+        }
+      ]
+    },
+    {
+      "id": "L_e616ad343f",
+      "node_id": "core_u4_L033",
+      "quiz_id": null,
+      "unit_index": 4,
+      "unit_title": "Shopping & Comparisons",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Sizes & Fit",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_vi",
+        "picture_choice"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_6662f63958"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_5e35cb7e",
+          "vi": "lớn",
+          "ipa": "",
+          "category": "size"
+        },
+        {
+          "id": "W_426926f9",
+          "vi": "nhỏ",
+          "ipa": "",
+          "category": "size"
+        },
+        {
+          "id": "W_613e61db",
+          "vi": "vừa",
+          "ipa": "",
+          "category": "size"
+        },
+        {
+          "id": "W_ee38770e",
+          "vi": "chật",
+          "ipa": "",
+          "category": "size"
+        },
+        {
+          "id": "W_4283c507",
+          "vi": "rộng",
+          "ipa": "",
+          "category": "size"
+        },
+        {
+          "id": "W_5d994318",
+          "vi": "dài",
+          "ipa": "",
+          "category": "size"
+        },
+        {
+          "id": "W_788d031a",
+          "vi": "ngắn",
+          "ipa": "",
+          "category": "size"
+        }
+      ],
+      "sentences": [],
+      "matches": []
+    },
+    {
+      "id": "L_e292edde2d",
+      "node_id": "core_u4_L034",
+      "quiz_id": null,
+      "unit_index": 4,
+      "unit_title": "Shopping & Comparisons",
+      "lesson_type": "Grammar",
+      "lesson_title": "Comparing: hơn (more than)",
+      "content_types": [
+        "fill_blank",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_e616ad343f"
+        ]
+      },
+      "grammar_tags": [
+        "GT025",
+        "GT042"
+      ],
+      "words": [
+        {
+          "id": "W_7696e339",
+          "vi": "hơn",
+          "ipa": "",
+          "category": "comparison"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_b6ddaced",
+          "vi": "Cái này đẹp hơn cái kia."
+        },
+        {
+          "id": "S_530385c7",
+          "vi": "Áo đỏ rẻ hơn áo xanh."
+        },
+        {
+          "id": "S_3fc97554",
+          "vi": "Anh tôi cao hơn tôi."
+        },
+        {
+          "id": "S_eff89e96",
+          "vi": "Hôm nay lạnh hơn hôm qua."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_01701bb315",
+      "node_id": "core_u4_L035",
+      "quiz_id": null,
+      "unit_index": 4,
+      "unit_title": "Shopping & Comparisons",
+      "lesson_type": "Grammar",
+      "lesson_title": "Superlative: nhất (most)",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_e292edde2d"
+        ]
+      },
+      "grammar_tags": [
+        "GT026",
+        "GT042",
+        "GT043"
+      ],
+      "words": [
+        {
+          "id": "W_73057dc1",
+          "vi": "nhất",
+          "ipa": "",
+          "category": "comparison"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_442212af",
+          "vi": "Đây là cái đẹp nhất."
+        },
+        {
+          "id": "S_c3e7a0d6",
+          "vi": "Áo này rẻ nhất."
+        },
+        {
+          "id": "S_333b829e",
+          "vi": "Mùa hè nóng nhất."
+        },
+        {
+          "id": "S_6bdd0ee6",
+          "vi": "Cô ấy cao nhất lớp."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_94e8d19cc2",
+      "node_id": "core_u4_L036",
+      "quiz_id": null,
+      "unit_index": 4,
+      "unit_title": "Shopping & Comparisons",
+      "lesson_type": "Grammar",
+      "lesson_title": "As ... As (bằng)",
+      "content_types": [
+        "fill_blank",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_01701bb315"
+        ]
+      },
+      "grammar_tags": [
+        "GT004",
+        "GT027",
+        "GT042"
+      ],
+      "words": [
+        {
+          "id": "W_13ee843c",
+          "vi": "bằng",
+          "ipa": "",
+          "category": "comparison"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_3b7bbec8",
+          "vi": "Tôi cao bằng anh tôi."
+        },
+        {
+          "id": "S_96cb4ef6",
+          "vi": "Cái này đắt bằng cái kia."
+        },
+        {
+          "id": "S_a17b0bf1",
+          "vi": "Em không giỏi bằng chị."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_5952c1bd5c",
+      "node_id": "core_u4_L037",
+      "quiz_id": null,
+      "unit_index": 4,
+      "unit_title": "Shopping & Comparisons",
+      "lesson_type": "Grammar",
+      "lesson_title": "Degree (hơi, khá, rất, quá)",
+      "content_types": [
+        "fill_blank",
+        "mcq_translate_to_vi"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_94e8d19cc2"
+        ]
+      },
+      "grammar_tags": [
+        "GT042"
+      ],
+      "words": [
+        {
+          "id": "W_0a5c2a44",
+          "vi": "hơi",
+          "ipa": "",
+          "category": "degree"
+        },
+        {
+          "id": "W_62ab6683",
+          "vi": "khá",
+          "ipa": "",
+          "category": "degree"
+        },
+        {
+          "id": "W_07934501",
+          "vi": "rất",
+          "ipa": "",
+          "category": "degree"
+        },
+        {
+          "id": "W_4313257a",
+          "vi": "quá",
+          "ipa": "",
+          "category": "degree"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_7c0f92f7",
+          "vi": "Cái này hơi chật."
+        },
+        {
+          "id": "S_f243b88e",
+          "vi": "Áo này khá đẹp."
+        },
+        {
+          "id": "S_149a1cd7",
+          "vi": "Mắc quá!"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_637c93028f",
+      "node_id": "core_u4_L038",
+      "quiz_id": null,
+      "unit_index": 4,
+      "unit_title": "Shopping & Comparisons",
+      "lesson_type": "Grammar",
+      "lesson_title": "Connectives (nhưng, hoặc, với)",
+      "content_types": [
+        "fill_blank",
+        "reorder_words",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_5952c1bd5c"
+        ]
+      },
+      "grammar_tags": [
+        "GT022",
+        "GT042"
+      ],
+      "words": [
+        {
+          "id": "W_87d1eea8",
+          "vi": "nhưng",
+          "ipa": "",
+          "category": "conjunction"
+        },
+        {
+          "id": "W_fffbe58f",
+          "vi": "hoặc",
+          "ipa": "",
+          "category": "conjunction"
+        },
+        {
+          "id": "W_41d357bd",
+          "vi": "với",
+          "ipa": "",
+          "category": "preposition"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_2dcb664a",
+          "vi": "Áo này đẹp nhưng đắt."
+        },
+        {
+          "id": "S_3b75fa55",
+          "vi": "Bạn muốn đỏ hoặc xanh?"
+        },
+        {
+          "id": "S_4d9e474a",
+          "vi": "Tôi đi chợ với mẹ."
+        },
+        {
+          "id": "S_400878d5",
+          "vi": "Cái này tốt nhưng nhỏ quá."
+        },
+        {
+          "id": "S_1b2350f0",
+          "vi": "Cà phê hoặc trà?"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_30241bd079",
+      "node_id": "core_u4_L039",
+      "quiz_id": null,
+      "unit_index": 4,
+      "unit_title": "Shopping & Comparisons",
+      "lesson_type": "Scene",
+      "lesson_title": "Trying On Clothes",
+      "content_types": [
+        "listen_choose",
+        "speak_sentence"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_637c93028f"
+        ]
+      },
+      "grammar_tags": [
+        "GT005",
+        "GT022",
+        "GT025",
+        "GT042"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_8cbf96ac",
+          "vi": "Tôi muốn thử cái này."
+        },
+        {
+          "id": "S_7f67baf0",
+          "vi": "Cái này hơi chật."
+        },
+        {
+          "id": "S_e6d6b7f5",
+          "vi": "Có cỡ lớn hơn không?"
+        },
+        {
+          "id": "S_f62ffdf1",
+          "vi": "Tôi thích áo màu đỏ."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_52e907a244",
+      "node_id": "core_u4_L040",
+      "quiz_id": null,
+      "unit_index": 4,
+      "unit_title": "Shopping & Comparisons",
+      "lesson_type": "Scene",
+      "lesson_title": "Bargaining",
+      "content_types": [
+        "listen_choose",
+        "translation_word_bank"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_30241bd079"
+        ]
+      },
+      "grammar_tags": [
+        "GT005",
+        "GT010",
+        "GT042"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_1f6cfe9f",
+          "vi": "Cái này bao nhiêu?"
+        },
+        {
+          "id": "S_f6cc3403",
+          "vi": "Mắc quá! Bớt được không?"
+        },
+        {
+          "id": "S_78cf48dd",
+          "vi": "Giảm giá một chút nhé."
+        },
+        {
+          "id": "S_c5a858f8",
+          "vi": "Được, tôi lấy cái này."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_0b641954de",
+      "node_id": "core_u4_Q041",
+      "quiz_id": "core_u4_Q041",
+      "unit_index": 4,
+      "unit_title": "Shopping & Comparisons",
+      "lesson_type": "Quiz",
+      "lesson_title": "Shopping Review",
+      "content_types": [
+        "mcq_translate_to_en",
+        "listen_choose",
+        "match_pairs"
+      ],
+      "xp_reward": 20,
+      "unlock_rule": {
+        "type": "unit_complete",
+        "requires": [
+          "L_85f7d697d5",
+          "L_6662f63958",
+          "L_e616ad343f",
+          "L_e292edde2d",
+          "L_01701bb315",
+          "L_94e8d19cc2",
+          "L_5952c1bd5c",
+          "L_637c93028f",
+          "L_30241bd079",
+          "L_52e907a244"
+        ]
+      },
+      "grammar_tags": [
+        "GT010",
+        "GT042"
+      ],
+      "words": [
+        {
+          "id": "W_d8ffd50a",
+          "vi": "áo",
+          "ipa": "",
+          "category": "clothing"
+        },
+        {
+          "id": "W_108da110",
+          "vi": "đỏ",
+          "ipa": "",
+          "category": "color"
+        },
+        {
+          "id": "W_57eb54a5",
+          "vi": "hơn",
+          "ipa": "",
+          "category": "comparison"
+        },
+        {
+          "id": "W_b2bfe791",
+          "vi": "nhất",
+          "ipa": "",
+          "category": "comparison"
+        },
+        {
+          "id": "W_3763b72d",
+          "vi": "hơi",
+          "ipa": "",
+          "category": "degree"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_60c922db",
+          "vi": "Cái này bao nhiêu?"
+        }
+      ],
+      "matches": [
+        {
+          "id": "M_6faf09df",
+          "text": "áo"
+        },
+        {
+          "id": "M_1aaa39d1",
+          "text": "đỏ"
+        },
+        {
+          "id": "M_24022b15",
+          "text": "hơn"
+        },
+        {
+          "id": "M_91ff9d62",
+          "text": "nhất"
+        }
+      ]
+    },
+    {
+      "id": "L_5dd09958dc",
+      "node_id": "core_u5_L042",
+      "quiz_id": null,
+      "unit_index": 5,
+      "unit_title": "Transport & Directions",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Vehicles",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_0b641954de"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_de0b7532",
+          "vi": "xe máy",
+          "ipa": "",
+          "category": "transport"
+        },
+        {
+          "id": "W_d9044611",
+          "vi": "xe ô tô",
+          "ipa": "",
+          "category": "transport"
+        },
+        {
+          "id": "W_0b08126a",
+          "vi": "xe hơi",
+          "ipa": "",
+          "category": "transport"
+        },
+        {
+          "id": "W_82c7e03e",
+          "vi": "xe buýt",
+          "ipa": "",
+          "category": "transport"
+        },
+        {
+          "id": "W_6d025506",
+          "vi": "xe đạp",
+          "ipa": "",
+          "category": "transport"
+        },
+        {
+          "id": "W_00f7ac67",
+          "vi": "taxi",
+          "ipa": "",
+          "category": "transport"
+        },
+        {
+          "id": "W_89afc4f9",
+          "vi": "máy bay",
+          "ipa": "",
+          "category": "transport"
+        },
+        {
+          "id": "W_deb686f4",
+          "vi": "tàu hỏa",
+          "ipa": "",
+          "category": "transport"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_9549f90c",
+          "text": "xe máy"
+        },
+        {
+          "id": "M_d2e0ab01",
+          "text": "xe buýt"
+        },
+        {
+          "id": "M_0db2eeca",
+          "text": "xe đạp"
+        },
+        {
+          "id": "M_3928fe89",
+          "text": "máy bay"
+        }
+      ]
+    },
+    {
+      "id": "L_4c4a033176",
+      "node_id": "core_u5_L043",
+      "quiz_id": null,
+      "unit_index": 5,
+      "unit_title": "Transport & Directions",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Directions",
+      "content_types": [
+        "listen_choose",
+        "picture_choice",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_5dd09958dc"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_91027854",
+          "vi": "trái",
+          "ipa": "",
+          "category": "direction"
+        },
+        {
+          "id": "W_2787e74d",
+          "vi": "phải",
+          "ipa": "",
+          "category": "direction"
+        },
+        {
+          "id": "W_54f58f70",
+          "vi": "thẳng",
+          "ipa": "",
+          "category": "direction"
+        },
+        {
+          "id": "W_92bf0eca",
+          "vi": "rẽ",
+          "ipa": "",
+          "category": "direction"
+        },
+        {
+          "id": "W_79b21e07",
+          "vi": "quẹo",
+          "ipa": "",
+          "category": "direction"
+        },
+        {
+          "id": "W_28ecf979",
+          "vi": "ngã tư",
+          "ipa": "",
+          "category": "direction"
+        },
+        {
+          "id": "W_69bc260b",
+          "vi": "ngã ba",
+          "ipa": "",
+          "category": "direction"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_38af4037",
+          "text": "trái"
+        },
+        {
+          "id": "M_1283c4df",
+          "text": "phải"
+        },
+        {
+          "id": "M_0a7e08d7",
+          "text": "thẳng"
+        },
+        {
+          "id": "M_a5b446f8",
+          "text": "ngã tư"
+        }
+      ]
+    },
+    {
+      "id": "L_b49ce5943b",
+      "node_id": "core_u5_L044",
+      "quiz_id": null,
+      "unit_index": 5,
+      "unit_title": "Transport & Directions",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Places in Town",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_vi",
+        "picture_choice"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_4c4a033176"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_e1a7d30a",
+          "vi": "ngân hàng",
+          "ipa": "",
+          "category": "place"
+        },
+        {
+          "id": "W_1c9440e8",
+          "vi": "bưu điện",
+          "ipa": "",
+          "category": "place"
+        },
+        {
+          "id": "W_dd29676f",
+          "vi": "bệnh viện",
+          "ipa": "",
+          "category": "place"
+        },
+        {
+          "id": "W_15f57d4f",
+          "vi": "siêu thị",
+          "ipa": "",
+          "category": "place"
+        },
+        {
+          "id": "W_94712378",
+          "vi": "công viên",
+          "ipa": "",
+          "category": "place"
+        },
+        {
+          "id": "W_de9b6169",
+          "vi": "nhà hàng",
+          "ipa": "",
+          "category": "place"
+        },
+        {
+          "id": "W_0a8838a3",
+          "vi": "chợ",
+          "ipa": "",
+          "category": "place"
+        },
+        {
+          "id": "W_88870bca",
+          "vi": "sân bay",
+          "ipa": "",
+          "category": "place"
+        }
+      ],
+      "sentences": [],
+      "matches": []
+    },
+    {
+      "id": "L_fa4f9670ba",
+      "node_id": "core_u5_L045",
+      "quiz_id": null,
+      "unit_index": 5,
+      "unit_title": "Transport & Directions",
+      "lesson_type": "Grammar",
+      "lesson_title": "By + Vehicle (đi bằng)",
+      "content_types": [
+        "fill_blank",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_b49ce5943b"
+        ]
+      },
+      "grammar_tags": [
+        "GT002",
+        "GT027",
+        "GT040"
+      ],
+      "words": [
+        {
+          "id": "W_9bb4db13",
+          "vi": "bằng",
+          "ipa": "",
+          "category": "preposition"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_acd1e4e1",
+          "vi": "Tôi đi làm bằng xe máy."
+        },
+        {
+          "id": "S_bd21c5c6",
+          "vi": "Chúng tôi đi bằng xe buýt."
+        },
+        {
+          "id": "S_1fc3abce",
+          "vi": "Bạn đi bằng gì?"
+        },
+        {
+          "id": "S_59be1bf1",
+          "vi": "Tôi sẽ đi máy bay đến Hà Nội."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_e9c19239a0",
+      "node_id": "core_u5_L046",
+      "quiz_id": null,
+      "unit_index": 5,
+      "unit_title": "Transport & Directions",
+      "lesson_type": "Grammar",
+      "lesson_title": "Where Is ... ? (ở đâu)",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_fa4f9670ba"
+        ]
+      },
+      "grammar_tags": [
+        "GT007",
+        "GT029",
+        "GT039"
+      ],
+      "words": [
+        {
+          "id": "W_cc9e8b38",
+          "vi": "ở đâu",
+          "ipa": "",
+          "category": "question"
+        },
+        {
+          "id": "W_8fcd04b0",
+          "vi": "gần",
+          "ipa": "",
+          "category": "direction"
+        },
+        {
+          "id": "W_6ab3a76e",
+          "vi": "xa",
+          "ipa": "",
+          "category": "direction"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_5ef86ed6",
+          "vi": "Ngân hàng ở đâu?"
+        },
+        {
+          "id": "S_1c5b87ef",
+          "vi": "Siêu thị gần đây."
+        },
+        {
+          "id": "S_af2f970e",
+          "vi": "Bệnh viện ở bên phải."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_106bb1392f",
+      "node_id": "core_u5_L047",
+      "quiz_id": null,
+      "unit_index": 5,
+      "unit_title": "Transport & Directions",
+      "lesson_type": "Grammar",
+      "lesson_title": "Describing Distance (bao xa)",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_e9c19239a0"
+        ]
+      },
+      "grammar_tags": [
+        "GT023"
+      ],
+      "words": [
+        {
+          "id": "W_ae573e0f",
+          "vi": "bao xa",
+          "ipa": "",
+          "category": "question"
+        },
+        {
+          "id": "W_5925d073",
+          "vi": "mét",
+          "ipa": "",
+          "category": "measure"
+        },
+        {
+          "id": "W_d7b78660",
+          "vi": "ki-lô-mét",
+          "ipa": "",
+          "category": "measure"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_c353d7ae",
+          "vi": "Từ đây đến đó bao xa?"
+        },
+        {
+          "id": "S_0b508f9a",
+          "vi": "Khoảng hai ki-lô-mét."
+        },
+        {
+          "id": "S_3559a154",
+          "vi": "Đi thẳng một trăm mét."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_14cbb9a3ed",
+      "node_id": "core_u5_L048",
+      "quiz_id": null,
+      "unit_index": 5,
+      "unit_title": "Transport & Directions",
+      "lesson_type": "Scene",
+      "lesson_title": "Asking for Directions",
+      "content_types": [
+        "listen_choose",
+        "speak_sentence"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_106bb1392f"
+        ]
+      },
+      "grammar_tags": [
+        "GT007",
+        "GT029",
+        "GT039"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_bf96e7f1",
+          "vi": "Xin lỗi, bưu điện ở đâu?"
+        },
+        {
+          "id": "S_ab8522b4",
+          "vi": "Đi thẳng hai trăm mét."
+        },
+        {
+          "id": "S_d515398a",
+          "vi": "Rẽ trái ở ngã tư."
+        },
+        {
+          "id": "S_4d56ce34",
+          "vi": "Bưu điện ở bên phải."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_cd6309d4e4",
+      "node_id": "core_u5_L049",
+      "quiz_id": null,
+      "unit_index": 5,
+      "unit_title": "Transport & Directions",
+      "lesson_type": "Scene",
+      "lesson_title": "Booking a Grab",
+      "content_types": [
+        "listen_choose",
+        "translation_word_bank"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_14cbb9a3ed"
+        ]
+      },
+      "grammar_tags": [
+        "GT022",
+        "GT042"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_852dce90",
+          "vi": "Tôi muốn đặt Grab."
+        },
+        {
+          "id": "S_819448f5",
+          "vi": "Đi đến địa chỉ này."
+        },
+        {
+          "id": "S_6d9a8984",
+          "vi": "Bao xa từ đây?"
+        },
+        {
+          "id": "S_586e4391",
+          "vi": "Khoảng mười lăm phút."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_075688e1c0",
+      "node_id": "core_u5_Q050",
+      "quiz_id": "core_u5_Q050",
+      "unit_index": 5,
+      "unit_title": "Transport & Directions",
+      "lesson_type": "Quiz",
+      "lesson_title": "Transport Review",
+      "content_types": [
+        "mcq_translate_to_en",
+        "listen_choose",
+        "match_pairs"
+      ],
+      "xp_reward": 20,
+      "unlock_rule": {
+        "type": "unit_complete",
+        "requires": [
+          "L_5dd09958dc",
+          "L_4c4a033176",
+          "L_b49ce5943b",
+          "L_fa4f9670ba",
+          "L_e9c19239a0",
+          "L_106bb1392f",
+          "L_14cbb9a3ed",
+          "L_cd6309d4e4"
+        ]
+      },
+      "grammar_tags": [
+        "GT007"
+      ],
+      "words": [
+        {
+          "id": "W_811e245a",
+          "vi": "xe máy",
+          "ipa": "",
+          "category": "transport"
+        },
+        {
+          "id": "W_cdeebbf8",
+          "vi": "trái",
+          "ipa": "",
+          "category": "direction"
+        },
+        {
+          "id": "W_c908d15a",
+          "vi": "phải",
+          "ipa": "",
+          "category": "direction"
+        },
+        {
+          "id": "W_f59b7a0a",
+          "vi": "ngân hàng",
+          "ipa": "",
+          "category": "place"
+        },
+        {
+          "id": "W_b19f1e68",
+          "vi": "bao xa",
+          "ipa": "",
+          "category": "question"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_0430630b",
+          "vi": "Ngân hàng ở đâu?"
+        }
+      ],
+      "matches": [
+        {
+          "id": "M_5617aad4",
+          "text": "xe máy"
+        },
+        {
+          "id": "M_ab4ecf21",
+          "text": "trái"
+        },
+        {
+          "id": "M_6910fb87",
+          "text": "phải"
+        },
+        {
+          "id": "M_64eb9bd7",
+          "text": "ngân hàng"
+        }
+      ]
+    },
+    {
+      "id": "L_e26ec3e266",
+      "node_id": "core_u6_L051",
+      "quiz_id": null,
+      "unit_index": 6,
+      "unit_title": "Modals & Requests",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Modal Verbs",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_075688e1c0"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_fbbedd3a",
+          "vi": "có thể",
+          "ipa": "",
+          "category": "modal"
+        },
+        {
+          "id": "W_b7057acf",
+          "vi": "phải",
+          "ipa": "",
+          "category": "modal"
+        },
+        {
+          "id": "W_e19293b3",
+          "vi": "nên",
+          "ipa": "",
+          "category": "modal"
+        },
+        {
+          "id": "W_1a9efe5c",
+          "vi": "cần",
+          "ipa": "",
+          "category": "modal"
+        },
+        {
+          "id": "W_263ec2ce",
+          "vi": "được",
+          "ipa": "",
+          "category": "modal"
+        },
+        {
+          "id": "W_80a50c7f",
+          "vi": "muốn",
+          "ipa": "",
+          "category": "modal"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_acf21e23",
+          "text": "có thể"
+        },
+        {
+          "id": "M_892e636e",
+          "text": "phải"
+        },
+        {
+          "id": "M_36a8088d",
+          "text": "nên"
+        },
+        {
+          "id": "M_1a539df1",
+          "text": "cần"
+        }
+      ]
+    },
+    {
+      "id": "L_f9cfc2ec09",
+      "node_id": "core_u6_L052",
+      "quiz_id": null,
+      "unit_index": 6,
+      "unit_title": "Modals & Requests",
+      "lesson_type": "Grammar",
+      "lesson_title": "Can You ... ? (có thể)",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_e26ec3e266"
+        ]
+      },
+      "grammar_tags": [
+        "GT005",
+        "GT028"
+      ],
+      "words": [
+        {
+          "id": "W_dcabf1bc",
+          "vi": "có thể",
+          "ipa": "",
+          "category": "modal"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_ed5d567b",
+          "vi": "Bạn có thể giúp tôi không?"
+        },
+        {
+          "id": "S_16ac86a5",
+          "vi": "Tôi có thể nói tiếng Việt một chút."
+        },
+        {
+          "id": "S_c243678b",
+          "vi": "Cô ấy có thể đi được."
+        },
+        {
+          "id": "S_cef10b76",
+          "vi": "Chúng ta có thể gặp ngày mai."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_be5256f396",
+      "node_id": "core_u6_L053",
+      "quiz_id": null,
+      "unit_index": 6,
+      "unit_title": "Modals & Requests",
+      "lesson_type": "Grammar",
+      "lesson_title": "Must / Need (phải, cần)",
+      "content_types": [
+        "fill_blank",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_f9cfc2ec09"
+        ]
+      },
+      "grammar_tags": [
+        "GT002",
+        "GT029"
+      ],
+      "words": [
+        {
+          "id": "W_be880dbd",
+          "vi": "phải",
+          "ipa": "",
+          "category": "modal"
+        },
+        {
+          "id": "W_b0a3968c",
+          "vi": "cần",
+          "ipa": "",
+          "category": "modal"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_3f94e50f",
+          "vi": "Tôi phải đi làm."
+        },
+        {
+          "id": "S_b267bcab",
+          "vi": "Bạn cần nghỉ ngơi."
+        },
+        {
+          "id": "S_309f3b4b",
+          "vi": "Chúng tôi phải về nhà."
+        },
+        {
+          "id": "S_e868950b",
+          "vi": "Tôi cần mua thuốc."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_d5774a2218",
+      "node_id": "core_u6_L054",
+      "quiz_id": null,
+      "unit_index": 6,
+      "unit_title": "Modals & Requests",
+      "lesson_type": "Grammar",
+      "lesson_title": "Should (nên)",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_be5256f396"
+        ]
+      },
+      "grammar_tags": [
+        "GT004",
+        "GT025"
+      ],
+      "words": [
+        {
+          "id": "W_1e569262",
+          "vi": "nên",
+          "ipa": "",
+          "category": "modal"
+        },
+        {
+          "id": "W_f8451b1e",
+          "vi": "không nên",
+          "ipa": "",
+          "category": "modal"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_faa0ae9c",
+          "vi": "Bạn nên đi ngủ sớm."
+        },
+        {
+          "id": "S_a34da06a",
+          "vi": "Tôi nên học nhiều hơn."
+        },
+        {
+          "id": "S_3a701c98",
+          "vi": "Bạn không nên uống nhiều cà phê."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_1a31bf0562",
+      "node_id": "core_u6_L055",
+      "quiz_id": null,
+      "unit_index": 6,
+      "unit_title": "Modals & Requests",
+      "lesson_type": "Grammar",
+      "lesson_title": "Please (làm ơn, xin)",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_d5774a2218"
+        ]
+      },
+      "grammar_tags": [
+        "GT002",
+        "GT021",
+        "GT025"
+      ],
+      "words": [
+        {
+          "id": "W_bb96c18d",
+          "vi": "làm ơn",
+          "ipa": "",
+          "category": "politeness"
+        },
+        {
+          "id": "W_f36a2695",
+          "vi": "xin",
+          "ipa": "",
+          "category": "politeness"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_2440edb2",
+          "vi": "Làm ơn giúp tôi."
+        },
+        {
+          "id": "S_3db95770",
+          "vi": "Xin cho tôi xem thực đơn."
+        },
+        {
+          "id": "S_b428d0b5",
+          "vi": "Làm ơn nói chậm hơn."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_6f12302064",
+      "node_id": "core_u6_L056",
+      "quiz_id": null,
+      "unit_index": 6,
+      "unit_title": "Modals & Requests",
+      "lesson_type": "Grammar",
+      "lesson_title": "Allowed / Not Allowed (được / không được)",
+      "content_types": [
+        "fill_blank",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_1a31bf0562"
+        ]
+      },
+      "grammar_tags": [
+        "GT004",
+        "GT005",
+        "GT044"
+      ],
+      "words": [
+        {
+          "id": "W_7c0637d0",
+          "vi": "được",
+          "ipa": "",
+          "category": "modal"
+        },
+        {
+          "id": "W_e947bbf0",
+          "vi": "không được",
+          "ipa": "",
+          "category": "modal"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_93ecdb31",
+          "vi": "Tôi đi được không?"
+        },
+        {
+          "id": "S_8f8c17dc",
+          "vi": "Bạn vào được."
+        },
+        {
+          "id": "S_eeb21e3b",
+          "vi": "Không được hút thuốc ở đây."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_e849d039c8",
+      "node_id": "core_u6_L057",
+      "quiz_id": null,
+      "unit_index": 6,
+      "unit_title": "Modals & Requests",
+      "lesson_type": "Scene",
+      "lesson_title": "Asking for Help",
+      "content_types": [
+        "listen_choose",
+        "speak_sentence"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_6f12302064"
+        ]
+      },
+      "grammar_tags": [
+        "GT005",
+        "GT028",
+        "GT031"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_51ff0696",
+          "vi": "Xin lỗi, bạn có thể giúp tôi không?"
+        },
+        {
+          "id": "S_4fac3725",
+          "vi": "Tôi cần tìm khách sạn ABC."
+        },
+        {
+          "id": "S_6d410da9",
+          "vi": "Bạn có thể chỉ đường không?"
+        },
+        {
+          "id": "S_3ead04e7",
+          "vi": "Cảm ơn bạn rất nhiều!"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_897d2cc706",
+      "node_id": "core_u6_L058",
+      "quiz_id": null,
+      "unit_index": 6,
+      "unit_title": "Modals & Requests",
+      "lesson_type": "Scene",
+      "lesson_title": "Making Polite Requests",
+      "content_types": [
+        "speak_sentence",
+        "listen_choose"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_e849d039c8"
+        ]
+      },
+      "grammar_tags": [
+        "GT002",
+        "GT005",
+        "GT021",
+        "GT025",
+        "GT028"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_1e4a1c62",
+          "vi": "Làm ơn cho tôi xin hóa đơn."
+        },
+        {
+          "id": "S_98f081e8",
+          "vi": "Xin vui lòng đợi một chút."
+        },
+        {
+          "id": "S_bd0b7140",
+          "vi": "Anh có thể nói to hơn không?"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_1e853f1234",
+      "node_id": "core_u6_Q059",
+      "quiz_id": "core_u6_Q059",
+      "unit_index": 6,
+      "unit_title": "Modals & Requests",
+      "lesson_type": "Quiz",
+      "lesson_title": "Modals Review",
+      "content_types": [
+        "mcq_translate_to_en",
+        "listen_choose",
+        "match_pairs"
+      ],
+      "xp_reward": 20,
+      "unlock_rule": {
+        "type": "unit_complete",
+        "requires": [
+          "L_e26ec3e266",
+          "L_f9cfc2ec09",
+          "L_be5256f396",
+          "L_d5774a2218",
+          "L_1a31bf0562",
+          "L_6f12302064",
+          "L_e849d039c8",
+          "L_897d2cc706"
+        ]
+      },
+      "grammar_tags": [
+        "GT005",
+        "GT028"
+      ],
+      "words": [
+        {
+          "id": "W_c55e4f89",
+          "vi": "có thể",
+          "ipa": "",
+          "category": "modal"
+        },
+        {
+          "id": "W_0426b624",
+          "vi": "phải",
+          "ipa": "",
+          "category": "modal"
+        },
+        {
+          "id": "W_b91c52fa",
+          "vi": "cần",
+          "ipa": "",
+          "category": "modal"
+        },
+        {
+          "id": "W_b71a7a1d",
+          "vi": "nên",
+          "ipa": "",
+          "category": "modal"
+        },
+        {
+          "id": "W_022e651d",
+          "vi": "làm ơn",
+          "ipa": "",
+          "category": "politeness"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_1517bac7",
+          "vi": "Bạn có thể giúp tôi không?"
+        }
+      ],
+      "matches": [
+        {
+          "id": "M_1850cac1",
+          "text": "có thể"
+        },
+        {
+          "id": "M_bff984e4",
+          "text": "phải"
+        },
+        {
+          "id": "M_accdbb2a",
+          "text": "cần"
+        },
+        {
+          "id": "M_cd885afd",
+          "text": "nên"
+        },
+        {
+          "id": "M_b721293b",
+          "text": "làm ơn"
+        }
+      ]
+    },
+    {
+      "id": "L_7b7331e6c7",
+      "node_id": "core_u7_L060",
+      "quiz_id": null,
+      "unit_index": 7,
+      "unit_title": "Hotel & Travel",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Hotel Basics",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_1e853f1234"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_22646c06",
+          "vi": "khách sạn",
+          "ipa": "",
+          "category": "hotel"
+        },
+        {
+          "id": "W_004209a5",
+          "vi": "phòng",
+          "ipa": "",
+          "category": "hotel"
+        },
+        {
+          "id": "W_88a2c238",
+          "vi": "đặt phòng",
+          "ipa": "",
+          "category": "hotel"
+        },
+        {
+          "id": "W_73788da6",
+          "vi": "nhận phòng",
+          "ipa": "",
+          "category": "hotel"
+        },
+        {
+          "id": "W_eca64fb4",
+          "vi": "trả phòng",
+          "ipa": "",
+          "category": "hotel"
+        },
+        {
+          "id": "W_7f2db913",
+          "vi": "chìa khóa",
+          "ipa": "",
+          "category": "hotel"
+        },
+        {
+          "id": "W_63a89fe9",
+          "vi": "hộ chiếu",
+          "ipa": "",
+          "category": "hotel"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_76f1b20a",
+          "text": "khách sạn"
+        },
+        {
+          "id": "M_6aa1901b",
+          "text": "phòng"
+        },
+        {
+          "id": "M_b0ee5a44",
+          "text": "chìa khóa"
+        },
+        {
+          "id": "M_cc6131aa",
+          "text": "hộ chiếu"
+        }
+      ]
+    },
+    {
+      "id": "L_900464b2c9",
+      "node_id": "core_u7_L061",
+      "quiz_id": null,
+      "unit_index": 7,
+      "unit_title": "Hotel & Travel",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Room Amenities",
+      "content_types": [
+        "listen_choose",
+        "picture_choice",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_7b7331e6c7"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_d141b395",
+          "vi": "wifi",
+          "ipa": "",
+          "category": "hotel"
+        },
+        {
+          "id": "W_76b5ab28",
+          "vi": "điều hòa",
+          "ipa": "",
+          "category": "hotel"
+        },
+        {
+          "id": "W_686bf66d",
+          "vi": "máy lạnh",
+          "ipa": "",
+          "category": "hotel"
+        },
+        {
+          "id": "W_e21c621c",
+          "vi": "ăn sáng",
+          "ipa": "",
+          "category": "hotel"
+        },
+        {
+          "id": "W_5f39e283",
+          "vi": "giường",
+          "ipa": "",
+          "category": "hotel"
+        },
+        {
+          "id": "W_fc907404",
+          "vi": "phòng tắm",
+          "ipa": "",
+          "category": "hotel"
+        },
+        {
+          "id": "W_9d310327",
+          "vi": "bể bơi",
+          "ipa": "",
+          "category": "hotel"
+        },
+        {
+          "id": "W_45c63598",
+          "vi": "hồ bơi",
+          "ipa": "",
+          "category": "hotel"
+        }
+      ],
+      "sentences": [],
+      "matches": []
+    },
+    {
+      "id": "L_ec1234750b",
+      "node_id": "core_u7_L062",
+      "quiz_id": null,
+      "unit_index": 7,
+      "unit_title": "Hotel & Travel",
+      "lesson_type": "Grammar",
+      "lesson_title": "I Have Booked (đã + verb)",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_900464b2c9"
+        ]
+      },
+      "grammar_tags": [
+        "GT019"
+      ],
+      "words": [
+        {
+          "id": "W_7ce2e5f1",
+          "vi": "đã đặt",
+          "ipa": "",
+          "category": "tense+verb"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_054feb9e",
+          "vi": "Tôi đã đặt phòng."
+        },
+        {
+          "id": "S_a5692754",
+          "vi": "Chúng tôi đã đặt hai phòng."
+        },
+        {
+          "id": "S_e1d41024",
+          "vi": "Bạn đã đặt chưa?"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_130ddc8128",
+      "node_id": "core_u7_L063",
+      "quiz_id": null,
+      "unit_index": 7,
+      "unit_title": "Hotel & Travel",
+      "lesson_type": "Grammar",
+      "lesson_title": "Does the Room Have ... ? (có ... không)",
+      "content_types": [
+        "fill_blank",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_ec1234750b"
+        ]
+      },
+      "grammar_tags": [
+        "GT005"
+      ],
+      "words": [
+        {
+          "id": "W_12298914",
+          "vi": "có ... không",
+          "ipa": "",
+          "category": "question"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_97d6af4e",
+          "vi": "Phòng có wifi không?"
+        },
+        {
+          "id": "S_ed589514",
+          "vi": "Khách sạn có ăn sáng không?"
+        },
+        {
+          "id": "S_7181344b",
+          "vi": "Có điều hòa không?"
+        },
+        {
+          "id": "S_0ee1d0db",
+          "vi": "Có bể bơi không?"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_8ca50b11ab",
+      "node_id": "core_u7_L064",
+      "quiz_id": null,
+      "unit_index": 7,
+      "unit_title": "Hotel & Travel",
+      "lesson_type": "Grammar",
+      "lesson_title": "Passive / Problems (bị, được)",
+      "content_types": [
+        "fill_blank",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_130ddc8128"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_eede50c1",
+          "vi": "bị",
+          "ipa": "",
+          "category": "state"
+        },
+        {
+          "id": "W_f6d5c8f9",
+          "vi": "được",
+          "ipa": "",
+          "category": "state"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_f5ff0158",
+          "vi": "Điều hòa bị hỏng."
+        },
+        {
+          "id": "S_444ae75e",
+          "vi": "Tôi bị cảm."
+        },
+        {
+          "id": "S_8cef9e82",
+          "vi": "Tôi được nghỉ hôm nay."
+        },
+        {
+          "id": "S_2026270e",
+          "vi": "Cô ấy được khen."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_7b840da72e",
+      "node_id": "core_u7_L065",
+      "quiz_id": null,
+      "unit_index": 7,
+      "unit_title": "Hotel & Travel",
+      "lesson_type": "Scene",
+      "lesson_title": "Hotel Check-In",
+      "content_types": [
+        "listen_choose",
+        "speak_sentence"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_8ca50b11ab"
+        ]
+      },
+      "grammar_tags": [
+        "GT020"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_156d4035",
+          "vi": "Chào anh, tôi đã đặt phòng."
+        },
+        {
+          "id": "S_f79be58c",
+          "vi": "Cho xin hộ chiếu."
+        },
+        {
+          "id": "S_0b57551d",
+          "vi": "Phòng của anh là 305."
+        },
+        {
+          "id": "S_101b8c2f",
+          "vi": "Ăn sáng từ sáu đến mười giờ."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_7517db90ef",
+      "node_id": "core_u7_L066",
+      "quiz_id": null,
+      "unit_index": 7,
+      "unit_title": "Hotel & Travel",
+      "lesson_type": "Scene",
+      "lesson_title": "Room Problem",
+      "content_types": [
+        "listen_choose",
+        "translation_word_bank"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_7b840da72e"
+        ]
+      },
+      "grammar_tags": [
+        "GT004",
+        "GT005",
+        "GT028"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_a15a2e53",
+          "vi": "Tôi ở phòng ba-không-năm."
+        },
+        {
+          "id": "S_90605fa1",
+          "vi": "Điều hòa bị hỏng."
+        },
+        {
+          "id": "S_9223d194",
+          "vi": "Bạn có thể sửa được không?"
+        },
+        {
+          "id": "S_c366c479",
+          "vi": "Nhân viên sẽ lên ngay."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_725ae6e85f",
+      "node_id": "core_u7_Q067",
+      "quiz_id": "core_u7_Q067",
+      "unit_index": 7,
+      "unit_title": "Hotel & Travel",
+      "lesson_type": "Quiz",
+      "lesson_title": "Hotel Review",
+      "content_types": [
+        "mcq_translate_to_en",
+        "listen_choose",
+        "match_pairs"
+      ],
+      "xp_reward": 20,
+      "unlock_rule": {
+        "type": "unit_complete",
+        "requires": [
+          "L_7b7331e6c7",
+          "L_900464b2c9",
+          "L_ec1234750b",
+          "L_130ddc8128",
+          "L_8ca50b11ab",
+          "L_7b840da72e",
+          "L_7517db90ef"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_2494fd4a",
+          "vi": "khách sạn",
+          "ipa": "",
+          "category": "hotel"
+        },
+        {
+          "id": "W_24269462",
+          "vi": "phòng",
+          "ipa": "",
+          "category": "hotel"
+        },
+        {
+          "id": "W_e107b428",
+          "vi": "chìa khóa",
+          "ipa": "",
+          "category": "hotel"
+        },
+        {
+          "id": "W_49f2f0ab",
+          "vi": "hộ chiếu",
+          "ipa": "",
+          "category": "hotel"
+        },
+        {
+          "id": "W_ea6a0306",
+          "vi": "bị",
+          "ipa": "",
+          "category": "state"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_998aadbf",
+          "vi": "Tôi đã đặt phòng."
+        }
+      ],
+      "matches": [
+        {
+          "id": "M_a12b3ceb",
+          "text": "khách sạn"
+        },
+        {
+          "id": "M_e4bfb094",
+          "text": "phòng"
+        },
+        {
+          "id": "M_80ddda19",
+          "text": "chìa khóa"
+        },
+        {
+          "id": "M_4a33479b",
+          "text": "hộ chiếu"
+        }
+      ]
+    },
+    {
+      "id": "L_e010886160",
+      "node_id": "core_u8_L068",
+      "quiz_id": null,
+      "unit_index": 8,
+      "unit_title": "Weather & Conditions",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Weather Words",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_725ae6e85f"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_7399087f",
+          "vi": "thời tiết",
+          "ipa": "",
+          "category": "weather"
+        },
+        {
+          "id": "W_6c00dacc",
+          "vi": "nắng",
+          "ipa": "",
+          "category": "weather"
+        },
+        {
+          "id": "W_b82b53cc",
+          "vi": "mưa",
+          "ipa": "",
+          "category": "weather"
+        },
+        {
+          "id": "W_ef747502",
+          "vi": "gió",
+          "ipa": "",
+          "category": "weather"
+        },
+        {
+          "id": "W_338f3496",
+          "vi": "nóng",
+          "ipa": "",
+          "category": "weather"
+        },
+        {
+          "id": "W_d7ccc696",
+          "vi": "lạnh",
+          "ipa": "",
+          "category": "weather"
+        },
+        {
+          "id": "W_35ed5771",
+          "vi": "mát",
+          "ipa": "",
+          "category": "weather"
+        },
+        {
+          "id": "W_ed13c5c3",
+          "vi": "ấm",
+          "ipa": "",
+          "category": "weather"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_d841081d",
+          "text": "nắng"
+        },
+        {
+          "id": "M_cca098e5",
+          "text": "mưa"
+        },
+        {
+          "id": "M_5083442d",
+          "text": "nóng"
+        },
+        {
+          "id": "M_152d1c6f",
+          "text": "lạnh"
+        }
+      ]
+    },
+    {
+      "id": "L_54af31b777",
+      "node_id": "core_u8_L069",
+      "quiz_id": null,
+      "unit_index": 8,
+      "unit_title": "Weather & Conditions",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Seasons & Months",
+      "content_types": [
+        "listen_choose",
+        "picture_choice",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_e010886160"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_952189d2",
+          "vi": "mùa xuân",
+          "ipa": "",
+          "category": "season"
+        },
+        {
+          "id": "W_d1c295f3",
+          "vi": "mùa hè",
+          "ipa": "",
+          "category": "season"
+        },
+        {
+          "id": "W_67deec84",
+          "vi": "mùa thu",
+          "ipa": "",
+          "category": "season"
+        },
+        {
+          "id": "W_5fbf90cc",
+          "vi": "mùa đông",
+          "ipa": "",
+          "category": "season"
+        },
+        {
+          "id": "W_3a4b38c7",
+          "vi": "tháng",
+          "ipa": "",
+          "category": "time"
+        },
+        {
+          "id": "W_d492e353",
+          "vi": "năm",
+          "ipa": "",
+          "category": "time"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_1edc900e",
+          "text": "mùa xuân"
+        },
+        {
+          "id": "M_77efad86",
+          "text": "mùa hè"
+        },
+        {
+          "id": "M_dd12919b",
+          "text": "mùa thu"
+        },
+        {
+          "id": "M_555af2e9",
+          "text": "mùa đông"
+        }
+      ]
+    },
+    {
+      "id": "L_338799da49",
+      "node_id": "core_u8_L070",
+      "quiz_id": null,
+      "unit_index": 8,
+      "unit_title": "Weather & Conditions",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Months of the Year",
+      "content_types": [
+        "listen_choose",
+        "reorder_words",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_54af31b777"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_10be9f14",
+          "vi": "tháng một",
+          "ipa": "",
+          "category": "month"
+        },
+        {
+          "id": "W_33a890b4",
+          "vi": "tháng hai",
+          "ipa": "",
+          "category": "month"
+        },
+        {
+          "id": "W_b803c953",
+          "vi": "tháng ba",
+          "ipa": "",
+          "category": "month"
+        },
+        {
+          "id": "W_b9ddd968",
+          "vi": "tháng tư",
+          "ipa": "",
+          "category": "month"
+        },
+        {
+          "id": "W_7382fc46",
+          "vi": "tháng năm",
+          "ipa": "",
+          "category": "month"
+        },
+        {
+          "id": "W_3ef276a8",
+          "vi": "tháng mười hai",
+          "ipa": "",
+          "category": "month"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_6703af9f",
+          "text": "tháng một"
+        },
+        {
+          "id": "M_abe6fb18",
+          "text": "tháng tư"
+        },
+        {
+          "id": "M_5d946ee4",
+          "text": "tháng mười hai"
+        }
+      ]
+    },
+    {
+      "id": "L_1dd19eb201",
+      "node_id": "core_u8_L071",
+      "quiz_id": null,
+      "unit_index": 8,
+      "unit_title": "Weather & Conditions",
+      "lesson_type": "Grammar",
+      "lesson_title": "If ... Then (nếu ... thì)",
+      "content_types": [
+        "fill_blank",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_338799da49"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_a3128f17",
+          "vi": "nếu",
+          "ipa": "",
+          "category": "conjunction"
+        },
+        {
+          "id": "W_d0404736",
+          "vi": "thì",
+          "ipa": "",
+          "category": "conjunction"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_30bed3e9",
+          "vi": "Nếu trời mưa thì tôi ở nhà."
+        },
+        {
+          "id": "S_7fcd9324",
+          "vi": "Nếu bạn bận thì chúng ta gặp sau."
+        },
+        {
+          "id": "S_d9038bed",
+          "vi": "Nếu rẻ thì tôi mua."
+        },
+        {
+          "id": "S_5cdbc6cd",
+          "vi": "Nếu bạn đi thì tôi cũng đi."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_410f04cc43",
+      "node_id": "core_u8_L072",
+      "quiz_id": null,
+      "unit_index": 8,
+      "unit_title": "Weather & Conditions",
+      "lesson_type": "Grammar",
+      "lesson_title": "How's the Weather? (thời tiết thế nào)",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_1dd19eb201"
+        ]
+      },
+      "grammar_tags": [
+        "GT031"
+      ],
+      "words": [
+        {
+          "id": "W_c0c726de",
+          "vi": "thế nào",
+          "ipa": "",
+          "category": "question"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_abeb13eb",
+          "vi": "Hôm nay thời tiết thế nào?"
+        },
+        {
+          "id": "S_a2432a31",
+          "vi": "Hôm nay trời nắng."
+        },
+        {
+          "id": "S_6d9b1a20",
+          "vi": "Ngày mai sẽ mưa."
+        },
+        {
+          "id": "S_c7980605",
+          "vi": "Mùa hè ở Việt Nam rất nóng."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_cb5d97f29f",
+      "node_id": "core_u8_L073",
+      "quiz_id": null,
+      "unit_index": 8,
+      "unit_title": "Weather & Conditions",
+      "lesson_type": "Grammar",
+      "lesson_title": "Date Expressions (ngày ... tháng ... năm)",
+      "content_types": [
+        "fill_blank",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_410f04cc43"
+        ]
+      },
+      "grammar_tags": [
+        "GT010"
+      ],
+      "words": [
+        {
+          "id": "W_7b84a822",
+          "vi": "ngày",
+          "ipa": "",
+          "category": "time"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_1b2fef89",
+          "vi": "Hôm nay là ngày bao nhiêu?"
+        },
+        {
+          "id": "S_ecafda03",
+          "vi": "Hôm nay là ngày mùng năm tháng ba."
+        },
+        {
+          "id": "S_b9a5d18c",
+          "vi": "Sinh nhật tôi là ngày hai mươi tháng mười."
+        },
+        {
+          "id": "S_d7d9ccd2",
+          "vi": "Năm hai nghìn hai mươi lăm."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_31a8ce76cc",
+      "node_id": "core_u8_L074",
+      "quiz_id": null,
+      "unit_index": 8,
+      "unit_title": "Weather & Conditions",
+      "lesson_type": "Scene",
+      "lesson_title": "Chatting About Weather",
+      "content_types": [
+        "listen_choose",
+        "speak_sentence"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_cb5d97f29f"
+        ]
+      },
+      "grammar_tags": [
+        "GT005",
+        "GT025"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_b9243a27",
+          "vi": "Hôm nay trời đẹp quá!"
+        },
+        {
+          "id": "S_116dfb2e",
+          "vi": "Ngày mai có mưa không?"
+        },
+        {
+          "id": "S_bd0fa4df",
+          "vi": "Tôi thích mùa thu hơn mùa hè."
+        },
+        {
+          "id": "S_0a4cf201",
+          "vi": "Nếu mưa thì chúng ta ở nhà."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_9bf94dd3fa",
+      "node_id": "core_u8_L075",
+      "quiz_id": null,
+      "unit_index": 8,
+      "unit_title": "Weather & Conditions",
+      "lesson_type": "Scene",
+      "lesson_title": "Planning Based on Weather",
+      "content_types": [
+        "listen_choose",
+        "translation_word_bank"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_31a8ce76cc"
+        ]
+      },
+      "grammar_tags": [
+        "GT002"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_70440aa6",
+          "vi": "Cuối tuần bạn sẽ làm gì?"
+        },
+        {
+          "id": "S_db177ca9",
+          "vi": "Nếu trời nắng thì tôi đi công viên."
+        },
+        {
+          "id": "S_aad4c185",
+          "vi": "Nếu trời mưa thì tôi ở nhà xem phim."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_32d7c43b7b",
+      "node_id": "core_u8_Q076",
+      "quiz_id": "core_u8_Q076",
+      "unit_index": 8,
+      "unit_title": "Weather & Conditions",
+      "lesson_type": "Quiz",
+      "lesson_title": "Weather Review",
+      "content_types": [
+        "mcq_translate_to_en",
+        "listen_choose",
+        "match_pairs"
+      ],
+      "xp_reward": 20,
+      "unlock_rule": {
+        "type": "unit_complete",
+        "requires": [
+          "L_e010886160",
+          "L_54af31b777",
+          "L_338799da49",
+          "L_1dd19eb201",
+          "L_410f04cc43",
+          "L_cb5d97f29f",
+          "L_31a8ce76cc",
+          "L_9bf94dd3fa"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_bf00336a",
+          "vi": "nắng",
+          "ipa": "",
+          "category": "weather"
+        },
+        {
+          "id": "W_3e73cc40",
+          "vi": "mưa",
+          "ipa": "",
+          "category": "weather"
+        },
+        {
+          "id": "W_63170050",
+          "vi": "mùa hè",
+          "ipa": "",
+          "category": "season"
+        },
+        {
+          "id": "W_8793fc34",
+          "vi": "mùa đông",
+          "ipa": "",
+          "category": "season"
+        },
+        {
+          "id": "W_95d57f9b",
+          "vi": "nếu",
+          "ipa": "",
+          "category": "conjunction"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_9ed4c09a",
+          "vi": "Hôm nay thời tiết thế nào?"
+        }
+      ],
+      "matches": [
+        {
+          "id": "M_566eec75",
+          "text": "nắng"
+        },
+        {
+          "id": "M_2fd756b5",
+          "text": "mưa"
+        },
+        {
+          "id": "M_0f79d23e",
+          "text": "mùa hè"
+        },
+        {
+          "id": "M_320e9481",
+          "text": "mùa đông"
+        },
+        {
+          "id": "M_8eed7fa1",
+          "text": "nếu"
+        }
+      ]
+    },
+    {
+      "id": "L_f4a16b29e5",
+      "node_id": "core_u9_L077",
+      "quiz_id": null,
+      "unit_index": 9,
+      "unit_title": "Daily Life & Hobbies",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Daily Routines",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_32d7c43b7b"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_3455f3a5",
+          "vi": "thức dậy",
+          "ipa": "",
+          "category": "routine"
+        },
+        {
+          "id": "W_493587ec",
+          "vi": "ngủ",
+          "ipa": "",
+          "category": "routine"
+        },
+        {
+          "id": "W_a567d87f",
+          "vi": "đánh răng",
+          "ipa": "",
+          "category": "routine"
+        },
+        {
+          "id": "W_b5b3da5f",
+          "vi": "tắm",
+          "ipa": "",
+          "category": "routine"
+        },
+        {
+          "id": "W_f5506f64",
+          "vi": "đi học",
+          "ipa": "",
+          "category": "routine"
+        },
+        {
+          "id": "W_c7524b91",
+          "vi": "đi làm",
+          "ipa": "",
+          "category": "routine"
+        },
+        {
+          "id": "W_fbe02708",
+          "vi": "về nhà",
+          "ipa": "",
+          "category": "routine"
+        },
+        {
+          "id": "W_0acaca97",
+          "vi": "nghỉ ngơi",
+          "ipa": "",
+          "category": "routine"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_a1fabce4",
+          "text": "thức dậy"
+        },
+        {
+          "id": "M_d5fdc7c1",
+          "text": "ngủ"
+        },
+        {
+          "id": "M_239bf98f",
+          "text": "đi làm"
+        },
+        {
+          "id": "M_48412be6",
+          "text": "về nhà"
+        }
+      ]
+    },
+    {
+      "id": "L_b9f66dda7e",
+      "node_id": "core_u9_L078",
+      "quiz_id": null,
+      "unit_index": 9,
+      "unit_title": "Daily Life & Hobbies",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Hobbies",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_vi",
+        "picture_choice"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_f4a16b29e5"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_e0f3b1ca",
+          "vi": "sở thích",
+          "ipa": "",
+          "category": "hobby"
+        },
+        {
+          "id": "W_e255281d",
+          "vi": "đọc sách",
+          "ipa": "",
+          "category": "hobby"
+        },
+        {
+          "id": "W_66e6bdc2",
+          "vi": "xem phim",
+          "ipa": "",
+          "category": "hobby"
+        },
+        {
+          "id": "W_96069e17",
+          "vi": "nghe nhạc",
+          "ipa": "",
+          "category": "hobby"
+        },
+        {
+          "id": "W_2a68cbab",
+          "vi": "chơi thể thao",
+          "ipa": "",
+          "category": "hobby"
+        },
+        {
+          "id": "W_4abc2375",
+          "vi": "nấu ăn",
+          "ipa": "",
+          "category": "hobby"
+        },
+        {
+          "id": "W_29743360",
+          "vi": "du lịch",
+          "ipa": "",
+          "category": "hobby"
+        }
+      ],
+      "sentences": [],
+      "matches": []
+    },
+    {
+      "id": "L_8e80ec3a0e",
+      "node_id": "core_u9_L079",
+      "quiz_id": null,
+      "unit_index": 9,
+      "unit_title": "Daily Life & Hobbies",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Frequency Adverbs",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_b9f66dda7e"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_71ba671d",
+          "vi": "thường",
+          "ipa": "",
+          "category": "frequency"
+        },
+        {
+          "id": "W_c2e73924",
+          "vi": "luôn luôn",
+          "ipa": "",
+          "category": "frequency"
+        },
+        {
+          "id": "W_1f6a9e61",
+          "vi": "đôi khi",
+          "ipa": "",
+          "category": "frequency"
+        },
+        {
+          "id": "W_01f5e73e",
+          "vi": "hiếm khi",
+          "ipa": "",
+          "category": "frequency"
+        },
+        {
+          "id": "W_11f4b178",
+          "vi": "không bao giờ",
+          "ipa": "",
+          "category": "frequency"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_0f7dcae2",
+          "text": "thường"
+        },
+        {
+          "id": "M_9ce3f9eb",
+          "text": "luôn luôn"
+        },
+        {
+          "id": "M_93631695",
+          "text": "đôi khi"
+        },
+        {
+          "id": "M_fa8b30aa",
+          "text": "không bao giờ"
+        }
+      ]
+    },
+    {
+      "id": "L_6edbd240ca",
+      "node_id": "core_u9_L080",
+      "quiz_id": null,
+      "unit_index": 9,
+      "unit_title": "Daily Life & Hobbies",
+      "lesson_type": "Grammar",
+      "lesson_title": "At What Time? (lúc mấy giờ)",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_8e80ec3a0e"
+        ]
+      },
+      "grammar_tags": [
+        "GT002",
+        "GT011",
+        "GT034"
+      ],
+      "words": [
+        {
+          "id": "W_770c3212",
+          "vi": "lúc",
+          "ipa": "",
+          "category": "preposition"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_9b33250f",
+          "vi": "Bạn thức dậy lúc mấy giờ?"
+        },
+        {
+          "id": "S_3cba54f9",
+          "vi": "Tôi thức dậy lúc sáu giờ."
+        },
+        {
+          "id": "S_c422f398",
+          "vi": "Tôi đi làm lúc tám giờ."
+        },
+        {
+          "id": "S_c01c640a",
+          "vi": "Chúng ta gặp lúc bảy giờ tối."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_b9206e3aa3",
+      "node_id": "core_u9_L081",
+      "quiz_id": null,
+      "unit_index": 9,
+      "unit_title": "Daily Life & Hobbies",
+      "lesson_type": "Grammar",
+      "lesson_title": "I Like / Don't Like (thích)",
+      "content_types": [
+        "fill_blank",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_6edbd240ca"
+        ]
+      },
+      "grammar_tags": [
+        "GT002",
+        "GT004"
+      ],
+      "words": [
+        {
+          "id": "W_b6ce7c9a",
+          "vi": "thích",
+          "ipa": "",
+          "category": "verb"
+        },
+        {
+          "id": "W_7f43b75e",
+          "vi": "ghét",
+          "ipa": "",
+          "category": "verb"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_680f31fd",
+          "vi": "Tôi thích đọc sách."
+        },
+        {
+          "id": "S_2a0f41de",
+          "vi": "Tôi không thích cà phê."
+        },
+        {
+          "id": "S_6e670a28",
+          "vi": "Bạn thích làm gì?"
+        },
+        {
+          "id": "S_bdae8e33",
+          "vi": "Tôi ghét kẹt xe."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_7733247b0f",
+      "node_id": "core_u9_L082",
+      "quiz_id": null,
+      "unit_index": 9,
+      "unit_title": "Daily Life & Hobbies",
+      "lesson_type": "Grammar",
+      "lesson_title": "Frequency Word Order",
+      "content_types": [
+        "fill_blank",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_b9206e3aa3"
+        ]
+      },
+      "grammar_tags": [
+        "GT004",
+        "GT035",
+        "GT041"
+      ],
+      "words": [
+        {
+          "id": "W_e947afa4",
+          "vi": "thường",
+          "ipa": "",
+          "category": "frequency"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_a94551da",
+          "vi": "Tôi thường uống cà phê buổi sáng."
+        },
+        {
+          "id": "S_1fea8cec",
+          "vi": "Cô ấy luôn luôn đi học đúng giờ."
+        },
+        {
+          "id": "S_8c6e63c1",
+          "vi": "Tôi không bao giờ hút thuốc."
+        },
+        {
+          "id": "S_87b77273",
+          "vi": "Đôi khi tôi đi xem phim."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_8d6dcb55c9",
+      "node_id": "core_u9_L083",
+      "quiz_id": null,
+      "unit_index": 9,
+      "unit_title": "Daily Life & Hobbies",
+      "lesson_type": "Grammar",
+      "lesson_title": "Duration (trong ... tiếng / năm)",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_7733247b0f"
+        ]
+      },
+      "grammar_tags": [
+        "GT018"
+      ],
+      "words": [
+        {
+          "id": "W_2cfdf8d6",
+          "vi": "trong",
+          "ipa": "",
+          "category": "preposition"
+        },
+        {
+          "id": "W_5be9df53",
+          "vi": "tiếng",
+          "ipa": "",
+          "category": "time"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_6dff6344",
+          "vi": "Tôi học trong hai tiếng."
+        },
+        {
+          "id": "S_d2638cb9",
+          "vi": "Tôi đã ở Việt Nam được ba năm rồi."
+        },
+        {
+          "id": "S_1c60d1f3",
+          "vi": "Cuộc họp kéo dài một tiếng."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_be02938ecf",
+      "node_id": "core_u9_L084",
+      "quiz_id": null,
+      "unit_index": 9,
+      "unit_title": "Daily Life & Hobbies",
+      "lesson_type": "Scene",
+      "lesson_title": "My Daily Routine",
+      "content_types": [
+        "speak_sentence",
+        "listen_choose"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_8d6dcb55c9"
+        ]
+      },
+      "grammar_tags": [
+        "GT002",
+        "GT034",
+        "GT035"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_fc010ca6",
+          "vi": "Tôi thức dậy lúc sáu giờ sáng."
+        },
+        {
+          "id": "S_788eb066",
+          "vi": "Tôi đi làm lúc tám giờ."
+        },
+        {
+          "id": "S_7c1f6ef3",
+          "vi": "Buổi tối tôi xem phim hoặc đọc sách."
+        },
+        {
+          "id": "S_2b21cf32",
+          "vi": "Tôi ngủ lúc mười một giờ."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_e92c81556c",
+      "node_id": "core_u9_L085",
+      "quiz_id": null,
+      "unit_index": 9,
+      "unit_title": "Daily Life & Hobbies",
+      "lesson_type": "Scene",
+      "lesson_title": "Weekend Plans",
+      "content_types": [
+        "listen_choose",
+        "translation_word_bank"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_be02938ecf"
+        ]
+      },
+      "grammar_tags": [
+        "GT002",
+        "GT005",
+        "GT022",
+        "GT041"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_11752615",
+          "vi": "Cuối tuần bạn thường làm gì?"
+        },
+        {
+          "id": "S_19e42cfe",
+          "vi": "Tôi thường đi công viên."
+        },
+        {
+          "id": "S_ade3571f",
+          "vi": "Đôi khi tôi đi xem phim."
+        },
+        {
+          "id": "S_df7f28b6",
+          "vi": "Bạn có muốn đi cùng không?"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_56b537a075",
+      "node_id": "core_u9_Q086",
+      "quiz_id": "core_u9_Q086",
+      "unit_index": 9,
+      "unit_title": "Daily Life & Hobbies",
+      "lesson_type": "Quiz",
+      "lesson_title": "Daily Life Review",
+      "content_types": [
+        "mcq_translate_to_en",
+        "listen_choose",
+        "match_pairs"
+      ],
+      "xp_reward": 20,
+      "unlock_rule": {
+        "type": "unit_complete",
+        "requires": [
+          "L_f4a16b29e5",
+          "L_b9f66dda7e",
+          "L_8e80ec3a0e",
+          "L_6edbd240ca",
+          "L_b9206e3aa3",
+          "L_7733247b0f",
+          "L_8d6dcb55c9",
+          "L_be02938ecf",
+          "L_e92c81556c"
+        ]
+      },
+      "grammar_tags": [
+        "GT034"
+      ],
+      "words": [
+        {
+          "id": "W_3b1fbd4e",
+          "vi": "thức dậy",
+          "ipa": "",
+          "category": "routine"
+        },
+        {
+          "id": "W_d40d0042",
+          "vi": "đi làm",
+          "ipa": "",
+          "category": "routine"
+        },
+        {
+          "id": "W_f45f9dff",
+          "vi": "thích",
+          "ipa": "",
+          "category": "verb"
+        },
+        {
+          "id": "W_616d0401",
+          "vi": "thường",
+          "ipa": "",
+          "category": "frequency"
+        },
+        {
+          "id": "W_469af70d",
+          "vi": "trong",
+          "ipa": "",
+          "category": "preposition"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_c265fe3c",
+          "vi": "Tôi thức dậy lúc sáu giờ."
+        }
+      ],
+      "matches": [
+        {
+          "id": "M_6a045377",
+          "text": "thức dậy"
+        },
+        {
+          "id": "M_89bb86a3",
+          "text": "đi làm"
+        },
+        {
+          "id": "M_4e7380f0",
+          "text": "thích"
+        },
+        {
+          "id": "M_9f8a1aff",
+          "text": "thường"
+        }
+      ]
+    },
+    {
+      "id": "L_9f5c3573cc",
+      "node_id": "core_u10_L087",
+      "quiz_id": null,
+      "unit_index": 10,
+      "unit_title": "Body, Health & Feelings",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Body Parts",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_56b537a075"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_62d31c8e",
+          "vi": "đầu",
+          "ipa": "",
+          "category": "body"
+        },
+        {
+          "id": "W_6f9da4d8",
+          "vi": "mắt",
+          "ipa": "",
+          "category": "body"
+        },
+        {
+          "id": "W_fedec582",
+          "vi": "mũi",
+          "ipa": "",
+          "category": "body"
+        },
+        {
+          "id": "W_84637f2a",
+          "vi": "miệng",
+          "ipa": "",
+          "category": "body"
+        },
+        {
+          "id": "W_81fbe6dc",
+          "vi": "tai",
+          "ipa": "",
+          "category": "body"
+        },
+        {
+          "id": "W_558065f9",
+          "vi": "tay",
+          "ipa": "",
+          "category": "body"
+        },
+        {
+          "id": "W_730dcea6",
+          "vi": "chân",
+          "ipa": "",
+          "category": "body"
+        },
+        {
+          "id": "W_078db8a7",
+          "vi": "bụng",
+          "ipa": "",
+          "category": "body"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_378e8d8a",
+          "text": "đầu"
+        },
+        {
+          "id": "M_d10ebb49",
+          "text": "mắt"
+        },
+        {
+          "id": "M_35a976c4",
+          "text": "tay"
+        },
+        {
+          "id": "M_7e7fc92b",
+          "text": "chân"
+        }
+      ]
+    },
+    {
+      "id": "L_1680165607",
+      "node_id": "core_u10_L088",
+      "quiz_id": null,
+      "unit_index": 10,
+      "unit_title": "Body, Health & Feelings",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Health & Illness",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_vi",
+        "picture_choice"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_9f5c3573cc"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_0d2b8979",
+          "vi": "đau",
+          "ipa": "",
+          "category": "health"
+        },
+        {
+          "id": "W_544d7a3f",
+          "vi": "ốm",
+          "ipa": "",
+          "category": "health"
+        },
+        {
+          "id": "W_681e9e3a",
+          "vi": "bệnh",
+          "ipa": "",
+          "category": "health"
+        },
+        {
+          "id": "W_f584c96b",
+          "vi": "cảm",
+          "ipa": "",
+          "category": "health"
+        },
+        {
+          "id": "W_a58e2a83",
+          "vi": "sốt",
+          "ipa": "",
+          "category": "health"
+        },
+        {
+          "id": "W_f0ebe829",
+          "vi": "thuốc",
+          "ipa": "",
+          "category": "health"
+        },
+        {
+          "id": "W_07b7e91f",
+          "vi": "khỏe",
+          "ipa": "",
+          "category": "health"
+        },
+        {
+          "id": "W_bfea2d30",
+          "vi": "mệt",
+          "ipa": "",
+          "category": "health"
+        }
+      ],
+      "sentences": [],
+      "matches": []
+    },
+    {
+      "id": "L_9304b974da",
+      "node_id": "core_u10_L089",
+      "quiz_id": null,
+      "unit_index": 10,
+      "unit_title": "Body, Health & Feelings",
+      "lesson_type": "Vocabulary",
+      "lesson_title": "Feelings & Emotions",
+      "content_types": [
+        "listen_choose",
+        "mcq_translate_to_en",
+        "match_pairs"
+      ],
+      "xp_reward": 10,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_1680165607"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_a1e1840f",
+          "vi": "vui",
+          "ipa": "",
+          "category": "emotion"
+        },
+        {
+          "id": "W_2d7c40c3",
+          "vi": "buồn",
+          "ipa": "",
+          "category": "emotion"
+        },
+        {
+          "id": "W_c9c9fd03",
+          "vi": "giận",
+          "ipa": "",
+          "category": "emotion"
+        },
+        {
+          "id": "W_50202a7f",
+          "vi": "sợ",
+          "ipa": "",
+          "category": "emotion"
+        },
+        {
+          "id": "W_1d9e4bfb",
+          "vi": "ngạc nhiên",
+          "ipa": "",
+          "category": "emotion"
+        },
+        {
+          "id": "W_d0a509bf",
+          "vi": "thoải mái",
+          "ipa": "",
+          "category": "emotion"
+        }
+      ],
+      "sentences": [],
+      "matches": [
+        {
+          "id": "M_e74b41ab",
+          "text": "vui"
+        },
+        {
+          "id": "M_44bb6106",
+          "text": "buồn"
+        },
+        {
+          "id": "M_3e4f4a69",
+          "text": "giận"
+        },
+        {
+          "id": "M_e4623ba6",
+          "text": "sợ"
+        }
+      ]
+    },
+    {
+      "id": "L_2b2d0291d9",
+      "node_id": "core_u10_L090",
+      "quiz_id": null,
+      "unit_index": 10,
+      "unit_title": "Body, Health & Feelings",
+      "lesson_type": "Grammar",
+      "lesson_title": "I Am Sick (bị + illness)",
+      "content_types": [
+        "fill_blank",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_9304b974da"
+        ]
+      },
+      "grammar_tags": [
+        "GT005"
+      ],
+      "words": [
+        {
+          "id": "W_2a29c75c",
+          "vi": "bị",
+          "ipa": "",
+          "category": "state"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_dd61eb1e",
+          "vi": "Tôi bị cảm."
+        },
+        {
+          "id": "S_8d4bfe16",
+          "vi": "Tôi bị đau đầu."
+        },
+        {
+          "id": "S_5c3b3523",
+          "vi": "Cô ấy bị sốt."
+        },
+        {
+          "id": "S_90848e42",
+          "vi": "Bạn có bị bệnh không?"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_20f27ee8a3",
+      "node_id": "core_u10_L091",
+      "quiz_id": null,
+      "unit_index": 10,
+      "unit_title": "Body, Health & Feelings",
+      "lesson_type": "Grammar",
+      "lesson_title": "Feeling + Adjective (cảm thấy)",
+      "content_types": [
+        "fill_blank",
+        "translation_word_bank"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_2b2d0291d9"
+        ]
+      },
+      "grammar_tags": [
+        "GT004"
+      ],
+      "words": [
+        {
+          "id": "W_aacbfd8a",
+          "vi": "cảm thấy",
+          "ipa": "",
+          "category": "verb"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_3877e1fc",
+          "vi": "Tôi cảm thấy vui."
+        },
+        {
+          "id": "S_0b19c4b3",
+          "vi": "Cô ấy cảm thấy mệt."
+        },
+        {
+          "id": "S_3417fc85",
+          "vi": "Tôi cảm thấy không khỏe."
+        },
+        {
+          "id": "S_8776603e",
+          "vi": "Bạn cảm thấy thế nào?"
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_3c4018fe0d",
+      "node_id": "core_u10_L092",
+      "quiz_id": null,
+      "unit_index": 10,
+      "unit_title": "Body, Health & Feelings",
+      "lesson_type": "Grammar",
+      "lesson_title": "Because (vì, bởi vì)",
+      "content_types": [
+        "fill_blank",
+        "reorder_words"
+      ],
+      "xp_reward": 12,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_20f27ee8a3"
+        ]
+      },
+      "grammar_tags": [
+        "GT002",
+        "GT004",
+        "GT038"
+      ],
+      "words": [
+        {
+          "id": "W_b740c6b3",
+          "vi": "vì",
+          "ipa": "",
+          "category": "conjunction"
+        },
+        {
+          "id": "W_1f3b0f6d",
+          "vi": "bởi vì",
+          "ipa": "",
+          "category": "conjunction"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_d2b7a81d",
+          "vi": "Tôi không đi làm vì tôi bị ốm."
+        },
+        {
+          "id": "S_0c58a7eb",
+          "vi": "Cô ấy vui vì được nghỉ."
+        },
+        {
+          "id": "S_54eb3a50",
+          "vi": "Bởi vì trời mưa, tôi ở nhà."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_997354270d",
+      "node_id": "core_u10_L093",
+      "quiz_id": null,
+      "unit_index": 10,
+      "unit_title": "Body, Health & Feelings",
+      "lesson_type": "Scene",
+      "lesson_title": "At the Doctor",
+      "content_types": [
+        "listen_choose",
+        "speak_sentence"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_3c4018fe0d"
+        ]
+      },
+      "grammar_tags": [
+        "GT004",
+        "GT005",
+        "GT021",
+        "GT028"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_a899c666",
+          "vi": "Chào bác sĩ, tôi không khỏe."
+        },
+        {
+          "id": "S_1929e75e",
+          "vi": "Tôi bị đau đầu và sốt."
+        },
+        {
+          "id": "S_f911c8dd",
+          "vi": "Bác sĩ có thể cho tôi thuốc không?"
+        },
+        {
+          "id": "S_fb89b53b",
+          "vi": "Bạn cần nghỉ ngơi."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_f448c583d6",
+      "node_id": "core_u10_L094",
+      "quiz_id": null,
+      "unit_index": 10,
+      "unit_title": "Body, Health & Feelings",
+      "lesson_type": "Scene",
+      "lesson_title": "Checking In With a Friend",
+      "content_types": [
+        "listen_choose",
+        "translation_word_bank"
+      ],
+      "xp_reward": 14,
+      "unlock_rule": {
+        "type": "sequential",
+        "requires": [
+          "L_997354270d"
+        ]
+      },
+      "grammar_tags": [
+        "GT002"
+      ],
+      "words": [],
+      "sentences": [
+        {
+          "id": "S_3379d55d",
+          "vi": "Bạn cảm thấy thế nào?"
+        },
+        {
+          "id": "S_97c37e9c",
+          "vi": "Tôi hơi mệt hôm nay."
+        },
+        {
+          "id": "S_ee12c510",
+          "vi": "Tại sao vậy?"
+        },
+        {
+          "id": "S_d145c9ee",
+          "vi": "Vì tôi làm việc nhiều quá."
+        }
+      ],
+      "matches": []
+    },
+    {
+      "id": "L_bab231eb26",
+      "node_id": "core_u10_Q095",
+      "quiz_id": "core_u10_Q095",
+      "unit_index": 10,
+      "unit_title": "Body, Health & Feelings",
+      "lesson_type": "Quiz",
+      "lesson_title": "Body & Feelings Review",
+      "content_types": [
+        "mcq_translate_to_en",
+        "listen_choose",
+        "match_pairs"
+      ],
+      "xp_reward": 20,
+      "unlock_rule": {
+        "type": "unit_complete",
+        "requires": [
+          "L_9f5c3573cc",
+          "L_1680165607",
+          "L_9304b974da",
+          "L_2b2d0291d9",
+          "L_20f27ee8a3",
+          "L_3c4018fe0d",
+          "L_997354270d",
+          "L_f448c583d6"
+        ]
+      },
+      "grammar_tags": [],
+      "words": [
+        {
+          "id": "W_7c38d913",
+          "vi": "đầu",
+          "ipa": "",
+          "category": "body"
+        },
+        {
+          "id": "W_da0ca600",
+          "vi": "mắt",
+          "ipa": "",
+          "category": "body"
+        },
+        {
+          "id": "W_4ee11d2e",
+          "vi": "đau",
+          "ipa": "",
+          "category": "health"
+        },
+        {
+          "id": "W_1b4b750f",
+          "vi": "vui",
+          "ipa": "",
+          "category": "emotion"
+        },
+        {
+          "id": "W_f7c2408c",
+          "vi": "vì",
+          "ipa": "",
+          "category": "conjunction"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "S_2b576a71",
+          "vi": "Tôi bị đau đầu."
+        }
+      ],
+      "matches": [
+        {
+          "id": "M_b0443f02",
+          "text": "đầu"
+        },
+        {
+          "id": "M_44be8177",
+          "text": "mắt"
+        },
+        {
+          "id": "M_6b239176",
+          "text": "đau"
+        },
+        {
+          "id": "M_f652ca87",
+          "text": "vui"
+        },
+        {
+          "id": "M_c79213fd",
+          "text": "vì"
+        }
+      ]
+    }
+  ]
+}
