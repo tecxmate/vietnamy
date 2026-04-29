@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ChevronRight, ChevronDown, BookOpen, Volume2, Hash, MessageSquare, Users } from 'lucide-react';
+import { ChevronRight, ChevronDown, BookOpen, Volume2, Hash, MessageSquare, Users, Keyboard } from 'lucide-react';
 
 const LEVEL_COLORS = {
     A1: '#06D6A0',
@@ -29,6 +29,17 @@ const PRACTICE_MODULES = [
             { label: 'Teen Code: Basics', route: '/practice/teencode-1' },
             { label: 'Teen Code: Intermediate', route: '/practice/teencode-2' },
             { label: 'Teen Code: Advanced', route: '/practice/teencode-3' },
+        ],
+    },
+    {
+        id: 'telex',
+        title: 'TELEX Typing',
+        icon: Keyboard,
+        color: '#1CB0F6',
+        items: [
+            { label: 'TELEX: Tone Keys', desc: 'Type the 5 tone marks (s, f, r, x, j)', route: '/practice/telex-1' },
+            { label: 'TELEX: Vowel Mods', desc: 'Compose ă, â, ê, ô, ơ, ư, đ', route: '/practice/telex-2' },
+            { label: 'TELEX: Full Challenge', desc: 'Type any Vietnamese word', route: '/practice/telex-3' },
         ],
     },
     {
