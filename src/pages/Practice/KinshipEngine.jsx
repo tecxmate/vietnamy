@@ -1,25 +1,14 @@
 import { useState } from 'react';
 import { ArrowLeft, Volume2 } from 'lucide-react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
+import speak from '../../utils/speak';
 import './PracticeShared.css';
 import './KinshipEngine.css';
 
-function speakTerm(text) {
+const speakTerm = (text) => {
     if (!text) return;
-    const clean = text.split('/')[0].trim();
-    try {
-        const audio = new Audio(`/api/tts?text=${encodeURIComponent(clean)}&lang=vi`);
-        audio.play().catch(() => {
-            const u = new SpeechSynthesisUtterance(clean);
-            u.lang = 'vi-VN';
-            speechSynthesis.speak(u);
-        });
-    } catch {
-        const u = new SpeechSynthesisUtterance(clean);
-        u.lang = 'vi-VN';
-        speechSynthesis.speak(u);
-    }
-}
+    speak(text.split('/')[0].trim(), 1, 'vi');
+};
 
 // ─── Logic Engine ───────────────────────────────────────────
 function calculate({ category, generation, side, seniority, gender, region }) {

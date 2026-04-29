@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { ArrowLeft, Volume2, CheckCircle, XCircle, Trophy, ChevronDown, ChevronUp } from 'lucide-react';
 import SoundButton from '../../components/SoundButton';
 import { playSuccess, playError } from '../../utils/sound';
+import speak from '../../utils/speak';
 import { usePracticeCompletion } from '../../hooks/usePracticeCompletion';
 import './PracticeShared.css';
 import './KinshipFoundation.css';
@@ -90,20 +91,7 @@ const KINSHIP_TERMS = [
     },
 ];
 
-function speakTerm(text) {
-    try {
-        const audio = new Audio(`/api/tts?text=${encodeURIComponent(text)}&lang=vi`);
-        audio.play().catch(() => {
-            const u = new SpeechSynthesisUtterance(text);
-            u.lang = 'vi-VN';
-            speechSynthesis.speak(u);
-        });
-    } catch {
-        const u = new SpeechSynthesisUtterance(text);
-        u.lang = 'vi-VN';
-        speechSynthesis.speak(u);
-    }
-}
+const speakTerm = (text) => speak(text, 1, 'vi');
 
 function shuffleArray(arr) {
     const a = [...arr];

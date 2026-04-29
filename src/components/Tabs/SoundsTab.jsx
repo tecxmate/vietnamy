@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Volume2, Music } from 'lucide-react';
 import { TONE_LIST } from '../../data/toneContours';
+import speak from '../../utils/speak';
 
 // Vietnamese alphabet data
 const VOWELS = {
@@ -129,14 +130,7 @@ const CONSONANTS = {
 const SoundsTab = () => {
     const [activeSection, setActiveSection] = useState('alphabet');
 
-    const playTTS = (text) => {
-        if ('speechSynthesis' in window) {
-            const utterance = new SpeechSynthesisUtterance(text);
-            utterance.lang = 'vi-VN';
-            utterance.rate = 0.8;
-            speechSynthesis.speak(utterance);
-        }
-    };
+    const playTTS = (text) => speak(text, 0.8, 'vi');
 
     const sections = [
         { id: 'alphabet', label: 'Alphabet' },

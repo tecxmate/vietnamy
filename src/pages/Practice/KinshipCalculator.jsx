@@ -3,6 +3,7 @@ import { ArrowLeft, Delete, Volume2 } from 'lucide-react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import './PronounsPractice.css';
 import { playSuccess, playError } from '../../utils/sound';
+import speak from '../../utils/speak';
 
 // ─── Relationship Chain Resolver ────────────────────────────────────
 const TRANSITIONS = {
@@ -206,22 +207,11 @@ function resolveChain(chain, region = 'north') {
     return { term: entry.term, en: entry.en };
 }
 
-function speakVietnamese(text) {
+const speakVietnamese = (text) => {
     if (!text || text === '?') return;
     const clean = text.split('/')[0].trim().replace(/\s*\(.*?\)\s*/g, '');
-    try {
-        const audio = new Audio(`/api/tts?text=${encodeURIComponent(clean)}&lang=vi`);
-        audio.play().catch(() => {
-            const utterance = new SpeechSynthesisUtterance(clean);
-            utterance.lang = 'vi-VN';
-            speechSynthesis.speak(utterance);
-        });
-    } catch {
-        const utterance = new SpeechSynthesisUtterance(clean);
-        utterance.lang = 'vi-VN';
-        speechSynthesis.speak(utterance);
-    }
-}
+    speak(clean, 1, 'vi');
+};
 
 export default function KinshipCalculator() {
     const [searchParams] = useSearchParams();

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronRight, ChevronDown, BookOpen, Volume2, Hash, MessageSquare, Users, Keyboard } from 'lucide-react';
+import speak from '../../utils/speak';
 
 const LEVEL_COLORS = {
     A1: '#06D6A0',
@@ -62,14 +63,7 @@ const GrammarTab = () => {
     const [expandedModule, setExpandedModule] = useState(null);
     const [expandedUnit, setExpandedUnit] = useState(null);
 
-    const playTTS = (text) => {
-        if ('speechSynthesis' in window) {
-            const utterance = new SpeechSynthesisUtterance(text);
-            utterance.lang = 'vi-VN';
-            utterance.rate = 0.8;
-            speechSynthesis.speak(utterance);
-        }
-    };
+    const playTTS = (text) => speak(text, 0.8, 'vi');
 
     useEffect(() => {
         import('../../data/grammar_modules.json').then(mod => {
