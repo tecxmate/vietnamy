@@ -714,10 +714,20 @@ function buildFromStudyImport() {
 
         // Path node — derive cefr_level from the lesson's track level (a1/a2/b1)
         // so the roadmap can color-code units correctly. Quizzes get a +0.2 bump.
+        // module_type drives the node's color in RoadmapTab: orange=Vocab, blue=Phonetics,
+        // purple=Grammar, green=Scene, test=Quiz, gold=alt-Scene.
         const isQuiz = l.lesson_type === 'Quiz';
         const baseCefr = (l.cefr || 'A1');
         const cefr_level = isQuiz ? `${baseCefr}.2` : `${baseCefr}.1`;
         const difficulty = baseCefr === 'B1' ? 3 : (baseCefr === 'A2' ? 2 : 1);
+        const MODULE_TYPE_BY_LESSON_TYPE = {
+            Phonetics: 'blue',
+            Vocabulary: 'orange',
+            Grammar: 'purple',
+            Scene: 'green',
+            Quiz: 'test',
+            Placement: 'gold',
+        };
         if (l.node_id) {
             const node = {
                 id: l.node_id,
@@ -725,7 +735,7 @@ function buildFromStudyImport() {
                 unit_id: unitId,
                 node_index: lessonIdx,
                 node_type: isQuiz ? 'test' : 'lesson',
-                module_type: isQuiz ? 'test' : 'orange',
+                module_type: MODULE_TYPE_BY_LESSON_TYPE[l.lesson_type] || 'orange',
                 lesson_id: l.id,
                 difficulty,
                 cefr_level,

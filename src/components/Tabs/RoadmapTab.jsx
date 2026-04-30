@@ -304,9 +304,13 @@ const RoadmapTab = ({ onNavigateToVocabDeck } = {}) => {
                                     quizByParent[n.source_node_id] = n;
                                 }
                             });
+                            // Study_import units carry Phonetics (blue) and Grammar (purple)
+                                // as part of the main A1/A2/B1 curriculum, so we show them inline.
+                                // Legacy units route those into dedicated Sounds / Grammar tabs.
+                                const isStudyImportUnit = unit.id?.startsWith('si_unit_');
                             return nodes
                                 .filter(n => n.test_scope !== 'module')
-                                .filter(n => n.module_type !== 'blue' && n.module_type !== 'purple') // Grammar & Phonetics in separate tabs
+                                .filter(n => isStudyImportUnit || (n.module_type !== 'blue' && n.module_type !== 'purple'))
                                 .filter(n => activeTopics.has(n.topic) || activeTopics.size === allTopicIds.length)
                                 .map((node) => {
                                 const style = getNodeStyle(node);
