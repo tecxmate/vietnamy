@@ -26,25 +26,68 @@ import b1Heritage from './study_import/canonical/b1_heritage.json';
 import placement from './study_import/canonical/placement.json';
 import manifest from './study_import/manifest.json';
 
-// Translations per base × track. Glob import so adding a new base just means
-// dropping files into translations/<base>/ and rebuilding.
-const trModules = import.meta.glob('./study_import/translations/*/*.json', { eager: true });
-const TRANSLATIONS = {}; // { base: { ltKey: { lesson_id: { item_id: text } } } }
-for (const [path, mod] of Object.entries(trModules)) {
-    const m = path.match(/translations\/([^/]+)\/([^/]+)\.json$/);
+// Translations + titles per base × track.
+//
+// EN is eager-loaded — it's the default UI language, the fallback for missing
+// translations in any other base, and db.js consumes it synchronously at init.
+//
+// Non-EN bases are lazy-loaded via dynamic import. Each becomes its own chunk
+// in the Vite build, so a user on the EN UI never downloads the JA/KO/ZH/ZH-CN
+// translation tables. Call `loadBase(base)` before reading translations for a
+// non-EN base; until that promise resolves, lookups for that base will fall
+// back to EN.
+const TRANSLATIONS = {};
+const TITLES = {};
+
+const enTrEager    = import.meta.glob('./study_import/translations/en/*.json', { eager: true });
+const enTitleEager = import.meta.glob('./study_import/titles/en/*.json',       { eager: true });
+const trLazy       = import.meta.glob('./study_import/translations/*/*.json');
+const titleLazy    = import.meta.glob('./study_import/titles/*/*.json');
+
+for (const [path, mod] of Object.entries(enTrEager)) {
+    const m = path.match(/translations\/[^/]+\/([^/]+)\.json$/);
     if (!m) continue;
-    const [, base, ltKey] = m;
-    (TRANSLATIONS[base] = TRANSLATIONS[base] || {})[ltKey] = mod.default ?? mod;
+    (TRANSLATIONS.en = TRANSLATIONS.en || {})[m[1]] = mod.default ?? mod;
+}
+for (const [path, mod] of Object.entries(enTitleEager)) {
+    const m = path.match(/titles\/[^/]+\/([^/]+)\.json$/);
+    if (!m) continue;
+    (TITLES.en = TITLES.en || {})[m[1]] = mod.default ?? mod;
 }
 
-// Per-base lesson + unit titles, keyed by canonical lesson_id (or `unit:<index>`).
-const titleModules = import.meta.glob('./study_import/titles/*/*.json', { eager: true });
-const TITLES = {};
-for (const [path, mod] of Object.entries(titleModules)) {
-    const m = path.match(/titles\/([^/]+)\/([^/]+)\.json$/);
-    if (!m) continue;
-    const [, base, ltKey] = m;
-    (TITLES[base] = TITLES[base] || {})[ltKey] = mod.default ?? mod;
+const baseLoaded = new Set(['en']);
+const basePromises = {};
+
+export function loadBase(base) {
+    if (!base || base === 'en' || baseLoaded.has(base)) return Promise.resolve();
+    if (basePromises[base]) return basePromises[base];
+
+    const trEntries = Object.entries(trLazy).filter(([p]) => p.includes(`/translations/${base}/`));
+    const titleEntries = Object.entries(titleLazy).filter(([p]) => p.includes(`/titles/${base}/`));
+
+    if (trEntries.length === 0 && titleEntries.length === 0) {
+        baseLoaded.add(base); // nothing to load — mark done so we don't retry
+        return Promise.resolve();
+    }
+
+    basePromises[base] = Promise.all([
+        ...trEntries.map(async ([p, fn]) => {
+            const m = p.match(/translations\/[^/]+\/([^/]+)\.json$/);
+            const mod = await fn();
+            (TRANSLATIONS[base] = TRANSLATIONS[base] || {})[m[1]] = mod.default ?? mod;
+        }),
+        ...titleEntries.map(async ([p, fn]) => {
+            const m = p.match(/titles\/[^/]+\/([^/]+)\.json$/);
+            const mod = await fn();
+            (TITLES[base] = TITLES[base] || {})[m[1]] = mod.default ?? mod;
+        }),
+    ]).then(() => { baseLoaded.add(base); });
+
+    return basePromises[base];
+}
+
+export function isBaseLoaded(base) {
+    return baseLoaded.has(base);
 }
 
 const CANONICAL_BY_LT = {
@@ -156,6 +199,16 @@ export function getCurriculum(modeId = DEFAULT_MODE, uiLang = 'en') {
     };
 }
 
+/**
+ * Async variant: preloads the requested base before composing. Use this
+ * from React components when switching to a non-EN base for the first time
+ * to avoid a flash of EN-fallback content.
+ */
+export async function getCurriculumAsync(modeId = DEFAULT_MODE, uiLang = 'en') {
+    await loadBase(resolveBase(uiLang));
+    return getCurriculum(modeId, uiLang);
+}
+
 export function getLessonsForMode(modeId, uiLang = 'en', unitFilter = null) {
     const c = getCurriculum(modeId, uiLang);
     return unitFilter ? c.lessons.filter(l => l.unit_index === unitFilter) : c.lessons;
@@ -226,6 +279,9 @@ export function getCurriculumStats(modeId, uiLang = 'en') {
 
 export default {
     getCurriculum,
+    getCurriculumAsync,
+    loadBase,
+    isBaseLoaded,
     getLessonsForMode,
     getUnitsForMode,
     getLessonById,

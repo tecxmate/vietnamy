@@ -1,6 +1,6 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Play } from 'lucide-react';
-import { getCurriculum, getCoverage, getAvailableBases } from '../../data/curricula';
+import { getCurriculum, getCoverage, getAvailableBases, loadBase, isBaseLoaded } from '../../data/curricula';
 import CurriculumLessonPlayer from './CurriculumLessonPlayer';
 
 const MODES = [
@@ -45,6 +45,15 @@ export default function CurriculumPreview() {
     const [flagOn, setFlagOn] = useState(() => {
         try { return localStorage.getItem('vnme_use_study_import') === '1'; } catch { return false; }
     });
+    const [baseLoading, setBaseLoading] = useState(false);
+
+    // Preload non-EN translation/title chunks when the base picker changes.
+    // EN is always preloaded; other bases trigger an async fetch on first selection.
+    useEffect(() => {
+        if (base === 'en' || isBaseLoaded(base)) return;
+        setBaseLoading(true);
+        loadBase(base).finally(() => setBaseLoading(false));
+    }, [base]);
 
     const toggleFlag = () => {
         const next = !flagOn;
@@ -147,7 +156,10 @@ export default function CurriculumPreview() {
                     <Pill color="#A78BFA" bg="rgba(167,139,250,0.1)">{stats.words} words</Pill>
                     <Pill color="#F59E0B" bg="rgba(245,158,11,0.1)">{stats.sentences} sentences</Pill>
                     <Pill color="#F26B5A" bg="rgba(242,107,90,0.1)">{stats.matches} match-pairs</Pill>
-                    {base !== 'en' && trCoverage.total > 0 && (
+                    {baseLoading && (
+                        <Pill color="#A78BFA" bg="rgba(167,139,250,0.15)">Loading {base.toUpperCase()} chunk…</Pill>
+                    )}
+                    {!baseLoading && base !== 'en' && trCoverage.total > 0 && (
                         <Pill color={trCoverage.covered === trCoverage.total ? '#10B981' : '#F59E0B'} bg={trCoverage.covered === trCoverage.total ? 'rgba(16,185,129,0.1)' : 'rgba(245,158,11,0.15)'}>
                             {base.toUpperCase()} coverage: {trCoverage.covered}/{trCoverage.total} ({Math.round(trCoverage.covered / trCoverage.total * 100)}%) — gaps fall back to EN
                         </Pill>
