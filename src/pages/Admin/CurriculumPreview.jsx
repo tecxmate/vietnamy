@@ -57,10 +57,15 @@ export default function CurriculumPreview() {
 
     const toggleFlag = () => {
         const next = !flagOn;
-        try { localStorage.setItem('vnme_use_study_import', next ? '1' : '0'); } catch { /* ignore */ }
+        try {
+            localStorage.setItem('vnme_use_study_import', next ? '1' : '0');
+            // Force a clean DB re-init: the version-gate logic in db.js only
+            // re-initializes units/path_nodes when storedVersion < new version.
+            // Clearing the cv key drops storedVersion to 1, guaranteeing re-init
+            // regardless of which direction the flag is moving.
+            localStorage.removeItem('vnme_mock_db_v24_cv');
+        } catch { /* ignore */ }
         setFlagOn(next);
-        // db.js reads the flag at module load; force a reload so the new
-        // study_import path_nodes/units get built and merged into the DB.
         if (typeof window !== 'undefined') window.location.reload();
     };
 

@@ -625,11 +625,20 @@ const getStudyImportContext = () => {
  * at the previous non-quiz node in the same unit.
  */
 function buildFromStudyImport() {
-    if (!isStudyImportEnabled()) {
+    const enabled = isStudyImportEnabled();
+    if (typeof window !== 'undefined') {
+        // eslint-disable-next-line no-console
+        console.log(`[study_import] flag=${enabled ? 'ON' : 'OFF'} (toggle at /admin/curriculum-preview)`);
+    }
+    if (!enabled) {
         return { items: [], translations: [], blueprints: [], lessons: [], pathNodes: [], units: [] };
     }
     const { mode, uiLang } = getStudyImportContext();
     const curriculum = getStudyImportCurriculum(mode, uiLang);
+    if (typeof window !== 'undefined') {
+        // eslint-disable-next-line no-console
+        console.log(`[study_import] composed: mode=${mode} base=${uiLang} units=${curriculum.units.length} lessons=${curriculum.lessons.length}`);
+    }
 
     const items = [];
     const translations = [];

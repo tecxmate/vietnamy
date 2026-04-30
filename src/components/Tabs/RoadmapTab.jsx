@@ -156,8 +156,45 @@ const RoadmapTab = ({ onNavigateToVocabDeck } = {}) => {
 
     const ModeIcon = MODE_ICONS[modeConfig.icon] || Plane;
 
+    // study_import dev banner — visible only when units array contains study_import units
+    // OR when the flag is set in localStorage. Lets you flip the curriculum data source
+    // without leaving the Study tab.
+    const studyImportFlag = (() => { try { return localStorage.getItem('vnme_use_study_import') === '1'; } catch { return false; } })();
+    const hasStudyImportUnits = units.some(u => String(u.id).startsWith('si_unit_'));
+    const toggleStudyImport = () => {
+        try {
+            localStorage.setItem('vnme_use_study_import', studyImportFlag ? '0' : '1');
+            localStorage.removeItem('vnme_mock_db_v24_cv');
+        } catch { /* ignore */ }
+        if (typeof window !== 'undefined') window.location.reload();
+    };
+
     return (
         <div>
+            {/* study_import flag banner */}
+            <div style={{
+                padding: '8px 14px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12,
+                background: studyImportFlag ? 'rgba(16,185,129,0.10)' : 'rgba(167,139,250,0.10)',
+                borderBottom: '1px solid var(--border-color)', fontSize: 12,
+            }}>
+                <span style={{ color: studyImportFlag ? '#10B981' : '#A78BFA', fontWeight: 600 }}>
+                    {studyImportFlag
+                        ? (hasStudyImportUnits ? '✓ study_import live · ' + units.length + ' units' : '⚠ flag on but legacy units rendered (try refresh)')
+                        : '○ Legacy curriculum (study_import flag off)'}
+                </span>
+                <button
+                    onClick={toggleStudyImport}
+                    style={{
+                        padding: '4px 12px', fontSize: 11, fontWeight: 700, borderRadius: 6,
+                        border: '1px solid ' + (studyImportFlag ? '#10B981' : '#A78BFA'),
+                        background: 'transparent', color: studyImportFlag ? '#10B981' : '#A78BFA',
+                        cursor: 'pointer',
+                    }}
+                >
+                    {studyImportFlag ? 'Switch to legacy' : 'Try new curriculum'}
+                </button>
+            </div>
+
             {/* Mode switcher + Topic chips - same row, scrollable */}
             <div className="hide-scrollbar" style={{
                 display: 'flex', alignItems: 'center', gap: 8,
