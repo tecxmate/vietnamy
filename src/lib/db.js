@@ -677,9 +677,10 @@ function buildFromStudyImport() {
                     dialect: 'both',
                     pos: w.category || null,
                 });
-                if (w.translation) {
-                    translations.push({ item_id: w.id, lang: 'en', text: w.translation, is_alternate: false });
-                }
+                // Always push a translation row — resolveItems() drops items
+                // without one. Use vi as a benign fallback so Phonetics lessons
+                // (where translation is intentionally empty) still produce items.
+                translations.push({ item_id: w.id, lang: 'en', text: w.translation || w.vi, is_alternate: false });
             }
             itemIds.push(w.id);
         });
@@ -697,9 +698,7 @@ function buildFromStudyImport() {
                     dialect: 'both',
                     accepted: s.translation ? [s.translation] : [],
                 });
-                if (s.translation) {
-                    translations.push({ item_id: s.id, lang: 'en', text: s.translation, is_alternate: false });
-                }
+                translations.push({ item_id: s.id, lang: 'en', text: s.translation || s.vi, is_alternate: false });
             }
             itemIds.push(s.id);
         });
@@ -2151,7 +2150,7 @@ export const validateVocabPrerequisites = () => {
 // (items, lessons, lesson_blueprints, exercises are preserved from localStorage)
 // Bumped when the flag flips so toggling study_import on/off triggers a units +
 // path_nodes re-init from INIT_DATA on the next page load.
-const CURRICULUM_VERSION = isStudyImportEnabled() ? 14 : 13;
+const CURRICULUM_VERSION = isStudyImportEnabled() ? 15 : 13;
 const initDB = () => {
     const raw = localStorage.getItem(DB_KEY);
     if (!raw) {
@@ -2161,10 +2160,16 @@ const initDB = () => {
     }
     const storedVersion = parseInt(localStorage.getItem(DB_KEY + '_cv') || '1', 10);
     if (storedVersion < CURRICULUM_VERSION) {
-        // Overwrite units + path_nodes but keep user-edited content (items, exercises, etc.)
+        // Re-seed curriculum-derived tables. items/translations/lesson_blueprints/lessons
+        // must come from INIT_DATA so path_nodes pointing at study_import lesson IDs
+        // can resolve to real blueprint + items at runtime.
         const existing = JSON.parse(raw);
         existing.units = INIT_DATA.units;
         existing.path_nodes = INIT_DATA.path_nodes;
+        existing.items = INIT_DATA.items;
+        existing.translations = INIT_DATA.translations;
+        existing.lesson_blueprints = INIT_DATA.lesson_blueprints;
+        existing.lessons = INIT_DATA.lessons;
         existing.scenes = INIT_DATA.scenes;
         existing.scene_locations = INIT_DATA.scene_locations;
         localStorage.setItem(DB_KEY, JSON.stringify(existing));

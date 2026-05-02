@@ -1,0 +1,335 @@
+I have everything I need. Here's the comparison:                                                                  
+                                                                            
+  What's in /Users/niko/antigravity/vnme-curr/                                                                      
+                                                                                                                    
+  A complete Phase 1 curriculum — 27 XLSX files: 22 curricula + 5 placement tests. 1,925 lessons / 13,582 rows      
+  total.                                                                                                            
+                                                                                                                    
+  Structure (per HANDOFF.md):                                                                                       
+  - A1 + A2 — universal core (every learner takes the same path)
+  - B1 splits into 3 tracks — Manager (business), Tourist (travel), Heritage (diaspora literacy-first)              
+  - 5 base languages — EN, Traditional Chinese (TW), Simplified Chinese (CN), Japanese, Korean        
+  - Heritage track only exists for EN and TW (no diaspora demand for CN/JA/KO yet)                                  
+  - 5 placement tests with a documented scoring algorithm in PLACEMENT_SCORING_SPEC.md                              
+                                                                                                                    
+  Schema — single sheet, 16 columns (Study Import):                                                                 
+  unit_title | lesson_type | lesson_title | level | content_types                                                   
+  word_text | word_translation | ipa | category                                                                     
+  word_audio_url | word_image_url                                                                                   
+  sentence_text | sentence_translation | sentence_audio_url                                                         
+  match_text | match_target                                                                                         
+  - Each row is one of: vocabulary item / sentence / match-pair                                                     
+  - lesson_type ∈ {Phonetics, Vocabulary, Grammar, Scene, Quiz, Placement}                                          
+  - content_types is a comma-separated hint to the backend exercise generator (e.g.                                 
+  listen_choose,mcq_translate_to_en,match_pairs)                                                                    
+  - Vietnamese (*_text) is identical across all 5 language bases — only translations differ                         
+  - A1 unit order finalized: Greetings → Family → Numbers → Food → Q&A → Time/Money → Phonetics last (Unit 7) as    
+  consolidation                                                                                                     
+                                                                                                                    
+  How vnme-app works today                                                                                          
+                                                                                                                    
+  - src/data/curricula/explore_vietnam.json — single curriculum, 9 units, 32 lessons (unit_* IDs like               
+  unit_1_introduce_yourself)                   
+  - src/data/unified_db.json — 9 phases, 33 lessons (phase_* IDs)                                                   
+  - src/data/lessons.json — 360-line legacy format with embedded dialogue/sentences/audio paths                     
+  - src/data/learnerModes.js — defines 3 modes (explore_vietnam, professional, heritage) but only explore_vietnam   
+  has a curriculum loaded                                                                                           
+  - scripts/convert-curriculum.js — expects the OLD multi-sheet schema: Courses, Units, Lessons, GrammarTags,       
+  Vocabulary, Sentences, AcceptedTranslations, Conversations, ConversationLines, LessonTargets                      
+                                                                  
+  Gap analysis — how different is it?                                                                               
+                                                                  
+  ┌──────────────────────────┬──────────────────────────────────┬──────────────────────────────────────────────┐    
+  │        Dimension         │         Current vnme-app         │                New vnme-curr                 │
+  ├──────────────────────────┼──────────────────────────────────┼──────────────────────────────────────────────┤    
+  │ Sheet layout             │ 10 sheets, normalized tables     │ 1 sheet, denormalized, lesson identity =     │
+  │                          │ with FKs (lesson_id, tag_id)     │ (unit_title, lesson_type, lesson_title)      │
+  ├──────────────────────────┼──────────────────────────────────┼──────────────────────────────────────────────┤    
+  │ Lesson identity          │ explicit lesson_id / nodeId /    │ implicit — must be derived from grouping     │
+  │                          │ quizId columns                   │ rows                                         │    
+  ├──────────────────────────┼──────────────────────────────────┼──────────────────────────────────────────────┤
+  │ Coverage                 │ 1 mode × ~33 lessons (A1-only)   │ 4 tracks × 5 languages × A1+A2+B1 = 1,925    │    
+  │                          │                                  │ lessons                                      │    
+  ├──────────────────────────┼──────────────────────────────────┼──────────────────────────────────────────────┤
+  │ CEFR                     │ A1 only (informal)               │ A1 / A2 / B1 explicit, with B1 track         │    
+  │                          │                                  │ segmentation                                 │
+  ├──────────────────────────┼──────────────────────────────────┼──────────────────────────────────────────────┤    
+  │ Localization             │ en/cn translations inside JSON   │ 5 separate files per content set — text      │
+  │                          │                                  │ NEVER varies, translations do                │    
+  ├──────────────────────────┼──────────────────────────────────┼──────────────────────────────────────────────┤    
+  │ Exercises                │ Authored accepted translations,  │ content_types is just a hint — backend must  │
+  │                          │ dialogue lines, conversations    │ generate exercises from word/sentence rows   │    
+  ├──────────────────────────┼──────────────────────────────────┼──────────────────────────────────────────────┤    
+  │ Placement test           │ None                             │ 5 versions, formal section-based scoring     │
+  │                          │                                  │ spec                                         │    
+  ├──────────────────────────┼──────────────────────────────────┼──────────────────────────────────────────────┤    
+  │ Heritage track           │ mode shell exists, no content    │ full 570-row literacy-first curriculum (EN + │
+  │                          │                                  │  TW only)                                    │    
+  ├──────────────────────────┼──────────────────────────────────┼──────────────────────────────────────────────┤    
+  │ Gamification (xp_reward, │ embedded in lesson JSON          │ absent — must be derived/assigned during     │
+  │  node_id, quiz_id)       │                                  │ import                                       │    
+  └──────────────────────────┴──────────────────────────────────┴──────────────────────────────────────────────┘
+                                               
+  What integration would take
+
+  1. Rewrite scripts/convert-curriculum.js for the single-sheet schema. The current script reads 10 sheets that     
+  don't exist in these files.
+  2. Group rows into lessons by (unit_title, lesson_type, lesson_title). Generate stable lesson IDs, nodeId, quizId,
+   xp from ordering.                                                                                                
+  3. Map B1 tracks → learner modes: Manager → professional, Tourist → explore_vietnam (replacing current content),
+  Heritage → heritage. A1+A2 are shared prerequisites for all modes — the app currently has no concept of a shared  
+  core feeding 3 specialized tracks.                              
+  4. Multi-language translations: store the EN/CN/JA/KO/ZH-CN versions per row keyed by Vietnamese text, not as     
+  separate curriculum trees. The app's LanguageContext (currently en/cn) needs to expand to ja/kr/zh-cn or move from
+   JSON to a translation table.                
+  5. Exercise generator for the content_types hints (listen_choose, mcq_translate_to_en, match_pairs, fill_blank,   
+  translation_word_bank, speak_sentence, profile_single_choice …). The current LessonGame.jsx supports              
+  multiple_choice, listen_tap, speaking_repeat, reorder_words — partial overlap, several new types (e.g.
+  translation_word_bank, profile_single_choice) need new exercise components.                                       
+  6. Placement test flow: net-new feature. The app currently routes via LearnerModeContext/onboarding — placement
+  would replace or feed that.                                                                                       
+  7. A1 reordering: current unified_db.json puts greetings in phase 1 and doesn't have a phonetics phase 7 — content
+   needs a structural rewrite, not just an additive import.                                                         
+                                                                  
+  Want me to draft a concrete migration plan (new converter script + schema mapping) or prototype the converter for 
+  one file first?                                                 
+                                                                                                                    
+✻ Baked for 2m 34s                                                
+                                               
+❯ which data structure is better? more coherent and scalable?                                                       
+                                                               
+⏺ New study_import schema is better — but only after light normalization                                            
+                                                                  
+  Why it wins on coherence and scale:                                                                               
+                                                                                                                    
+  1. Single source of truth for Vietnamese text. word_text/sentence_text is byte-identical across all 5 language    
+  bases. Adding a 6th language (Thai, Indonesian) means one new translation column, not a new curriculum tree. The  
+  current app duplicates vi strings inside every locale block — drift is inevitable.                                
+  2. Track segmentation matches the product. A1+A2 shared core → B1 forks into Manager/Tourist/Heritage is a real   
+  pedagogical reality. The current app pretends 3 modes are peers with overlapping topics, which is why professional
+   and heritage sit empty — the model can't express "shared prerequisite."
+  3. Exercise generation is decoupled from authoring. content_types is a hint, not authored exercises. One row of   
+  vocab fuels listen-choose, MCQ, match-pairs, and fill-blank without re-authoring. The current lessons.json        
+  hard-codes dialogue lines and accepted translations — every new exercise type means a content rewrite.
+  4. Flat schema scales linearly. 13,582 rows in 27 files is reviewable in Excel by non-engineers (which is who's   
+  authoring it). The current 10-sheet relational layout requires FK discipline that breaks the moment a non-engineer
+   edits it.                                   
+  5. Placement test fits the same shape. Profile questions, diagnostics, and track selectors all use the same 16    
+  columns with match_text/match_target carrying signal weights. Extending the system doesn't mean a new schema.     
+                                               
+  Where it's weaker — and what to add on import:                                                                    
+                                                                  
+  - No stable lesson ID. Identity is (unit_title, lesson_type, lesson_title) — fragile if titles get renamed. Fix:  
+  assign deterministic hashed IDs at import time and persist them.
+  - No explicit ordering, XP, or unlock rules. Current app needs node_id, quiz_id, xp_reward, unlock_rule. Fix:     
+  derive from row order at import; store in a sidecar progression table, not in the curriculum file. Keeps authoring
+   concerns separate from gamification concerns.
+  - No grammar tag references. Current vn_grammar_bank_v2.json and GT*** tags are gone. Fix: keep grammar tags as a 
+  separate dimension; auto-link by matching category or grammar pattern keywords during import.                     
+  - Audio/image columns empty. Not a schema flaw — TTS pipeline fills them later, keyed by word_text/sentence_text.
+  Cleaner than the current /audio/xin_chao.mp3 strings hard-coded in JSON.                                          
+                                                                  
+  Recommended target architecture:                                                                                  
+                                                                  
+  content/                       (authored — Excel/CSV, single source of truth)
+    curricula/*.xlsx             ← study_import schema as-is                                                        
+    translations/{lang}.json     ← derived: vi_text → translation map                                               
+                                                                                                                    
+  generated/                     (built — never hand-edited)                                                        
+    lessons.db / lessons.json    ← lessons grouped, IDs hashed, ordering assigned                                   
+    progression.json             ← node_id, quiz_id, xp, unlock_rule                                                
+    grammar_links.json           ← auto-tagged grammar references                                                   
+                                                                                                                    
+  The study_import schema becomes the input layer; the current app's lesson/node/progression structures become a    
+  derived output layer rebuilt by the converter. Authors edit Excel, engineers edit the converter and the runtime — 
+  the two never collide.                                                                                            
+                                                                  
+  Verdict: migrate to study_import as the authoring format, keep a richer normalized form as the runtime artifact.  
+  Don't try to use study_import directly at runtime (you'd lose IDs and progression) and don't try to keep the
+  current normalized JSON as the authoring format (it doesn't scale to 5 languages × 4 tracks).                     
+                                                                  
+✻ Crunched for 26s                             
+                                                      
+❯ do we have more content per unit like a1 compared to the old json one?                                            
+                                                                                                                    
+⏺ Bash(node -e "                                                                                                    
+      const XLSX = require('xlsx');…)                                                                               
+  ⎿  === NEW vn_a1_core.xlsx (A1 only) ===                        
+     Sounds & Tones                                                                                                 
+       lessons: 6 | rows: 43 | words: 41 | sentences: 2 | match-pairs: 0
+     … +13 lines (ctrl+o to expand)                                                                                 
+                                                                  
+⏺ Bash(node -e "                                                                                                    
+      const fs = require('fs');…)                                                                 
+  ⎿  === OLD explore_vietnam.json (full curriculum, A1+A2 mixed) ===                                                
+     phase_1_first_words                                                                                            
+       lessons: 2 | words: 15 | sentences: 8 | conversations: 1
+     … +21 lines (ctrl+o to expand)                                                                                 
+                                                                  
+⏺ Yes — substantially more A1 content per unit                                                                      
+                                                                                                  
+  Direct A1 comparison (per unit)                                                                                   
+                                                                                                                    
+  ┌─────────────────┬─────────────────────────────────────┬─────────────────────────────────────────────────────┐   
+  │   Unit theme    │ Old explore_vietnam.json (closest   │                 New vn_a1_core.xlsx                 │   
+  │                 │               match)                │                                                     │   
+  ├─────────────────┼─────────────────────────────────────┼─────────────────────────────────────────────────────┤   
+  │ Greetings/Intro │ phase_1: 2 lessons / 15 words / 8   │ Greetings & Intros: 12 lessons / 33 words / 28 sent │
+  │                 │ sent                                │  / 14 match                                         │   
+  ├─────────────────┼─────────────────────────────────────┼─────────────────────────────────────────────────────┤
+  │ Family          │ (none in A1 scope)                  │ Family & Possession: 8 / 21 / 19 / 8                │   
+  ├─────────────────┼─────────────────────────────────────┼─────────────────────────────────────────────────────┤   
+  │ Numbers         │ phase_6: 5 / 33 / 12                │ Numbers & Counting: 10 / 29 / 21 / 13               │
+  ├─────────────────┼─────────────────────────────────────┼─────────────────────────────────────────────────────┤   
+  │ Food & Drink    │ phase_3+4: 9 / 94 / 37 (already     │ Food & Drink: 9 / 28 / 19 / 13                      │
+  │                 │ A2-ish)                             │                                                     │   
+  ├─────────────────┼─────────────────────────────────────┼─────────────────────────────────────────────────────┤
+  │ Questions       │ (scattered)                         │ Q&A: 10 / 18 / 23 / 12                              │   
+  ├─────────────────┼─────────────────────────────────────┼─────────────────────────────────────────────────────┤   
+  │ Time/Money      │ phase_6 partial                     │ Time, Days & Money: 10 / 30 / 22 / 13               │
+  ├─────────────────┼─────────────────────────────────────┼─────────────────────────────────────────────────────┤   
+  │ Phonetics/Tones │ none                                │ Sounds & Tones: 6 / 41 / 2                          │
+  └─────────────────┴─────────────────────────────────────┴─────────────────────────────────────────────────────┘   
+                                                                  
+  Totals                                                                                                            
+                                                                  
+  ┌─────────────┬─────────────────────────────────────┬──────────────────────────┐                                  
+  │             │ Old (whole curriculum, A1+A2 mixed) │       New A1 alone       │
+  ├─────────────┼─────────────────────────────────────┼──────────────────────────┤                                  
+  │ Lessons     │ 32                                  │ 65 (2.0×)                │
+  ├─────────────┼─────────────────────────────────────┼──────────────────────────┤
+  │ Vocabulary  │ 252                                 │ 200 (-21% — but A1-only) │                                  
+  ├─────────────┼─────────────────────────────────────┼──────────────────────────┤                                  
+  │ Sentences   │ 104                                 │ 134 (1.3× — A1-only)     │                                  
+  ├─────────────┼─────────────────────────────────────┼──────────────────────────┤                                  
+  │ Match-pairs │ 0                                   │ 73 (new exercise type)   │
+  ├─────────────┼─────────────────────────────────────┼──────────────────────────┤                                  
+  │ Units       │ 9 (all CEFR levels mixed)           │ 7 (A1-only)              │
+  └─────────────┴─────────────────────────────────────┴──────────────────────────┘                                  
+                                                                  
+  What this means                                                                                                   
+                                                                  
+  - Per-unit depth roughly tripled. Old greetings unit = 2 lessons; new = 12 lessons (5 Vocabulary, 4 Grammar, 2    
+  Scene, 1 Quiz). Each unit now has its own quiz lesson, dedicated grammar lessons, and scene-based dialogue
+  practice — the old format crammed all of those into 2 generic lessons per phase.                                  
+  - Vocabulary count looks lower (200 vs 252) but isn't. The old 252 was the entire curriculum; the new 200 is A1 
+  only. A2 adds 239 more vocab + 222 grammar lessons in vn_a2_core.xlsx (650 rows). Combined A1+A2 = ~440 vocab,    
+  well above the old 252.
+  - New lesson types the old format didn't have: explicit Phonetics lessons, dedicated Grammar lessons (separate    
+  from vocab), Scene lessons (situational dialogue), and per-unit Quiz lessons. The old format had conversations    
+  embedded in lessons but no quiz/grammar separation.
+  - Match-pair exercises (73 in A1) are entirely new — old curriculum had zero match-pair authoring.                
+  - Coverage gaps the old curriculum had that the new one fills: no Family unit, no dedicated Q&A unit, no          
+  Phonetics/tones unit, no per-unit review quizzes.                                                                 
+                                                                                                                    
+  Net: the new A1 alone is ~2× the lesson count of the entire old curriculum, with finer-grained lesson types and a 
+  quiz at the end of every unit. The old curriculum was effectively A1.5 squeezed into 9 thin phases; the new one
+  gives A1 the room it needs. 
+
+Build clean. Player is wired into the preview.
+                                                                                                                     
+  How to play through new lessons                                                                                    
+                                                                                                                     
+  1. Start dev server: npm run dev:all                                                                               
+  2. Open: http://localhost:5173/admin/curriculum-preview          
+  3. Pick a mode + base language, click any lesson on the left                                                       
+  4. Click the orange "Play" button in the lesson detail header                                                      
+  5. Play through generated exercises — exit anytime with the X (top-right) or ESC                                   
+                                                                                                                     
+  Exercise types generated automatically per lesson:                                                                 
+  - MCQ — Vietnamese word, 4 translation choices (one per word with translation)                                     
+  - Listen — TTS speaks the Vietnamese, you pick the meaning (auto-plays on load, replay button)                     
+  - Fill-blank — Vietnamese sentence with one word blanked, pick from 4 options (with translation hint)
+  - Match-pairs — 5 pairs to match (uses lesson's match_text/match_target if present, else builds from vocab)        
+                                                                                                                     
+  The player builds exercises on-the-fly from the lesson's words / sentences / matches arrays. Distractors come from 
+  other items in the same lesson, so "noise" stays thematically relevant.                                            
+                                                                                                                     
+  Important guardrails:                                                                                              
+  - No progress is saved — no XP, no hearts lost, no SRS state changes, no localStorage writes. Pure preview sandbox.
+  - Lessons with too few translatable items show a "Not enough content" screen instead of crashing — common for      
+  partial JA/KO lessons or pure-Phonetics lessons that only have IPA-style entries.                            
+  - TTS uses your existing /api/tts endpoint (Google Translate proxy via the Express server), so make sure dev:all is
+   running both processes.                                                                                           
+  - The "Play" button is disabled (greyed out) on lessons where it can't build any exercise.                         
+                                                                                            
+  A natural test loop:                                                                                               
+  - Switch base → "ja" → notice some lessons show "no JA translation, falls back to EN" pills → play one to confirm  
+  fallback works                                                                                                     
+  - Switch mode → "professional" → play a B1 manager lesson (workplace vocab) → check distractors stay in-domain     
+  - Try a placement Section 1 (profile question) → see how single-choice signal data renders
+
+
+❯ OK, now switch to the feature new curriculum brancg and continue to work on that. We need to perfect that to 
+   migrate to the main branch.    
+
+⏺ On feat/study-import-curriculum, merged main forward (4 fixes pulled in: dongCtx, TELEX tab, placeholder     
+  fallback, Google TTS routing). Build clean.                                                                  
+                                                                                                            
+  Roadmap to perfect this for main merge                                                                       
+                                                                                                               
+  Three blockers separate the current state from a confident merge:                                            
+                                                                                                               
+  1. Wire db.js to the new content (the big one)                                                               
+  The lesson engine still reads unified_db.json. The admin preview lets us inspect/play study_import lessons,  
+  but the main app's roadmap, RoadmapTab, and /lesson/:lessonId route don't see the 462 new lessons. This is   
+  the integration that retires the legacy data.                    
+                                                                                                               
+  2. Fix data-quality gaps surfaced by the coverage report                                                     
+  - JA/KO A1: 31/65 lessons (partial xlsx upload)
+  - JA Manager: 33/104 lessons                                                                                 
+  - ZH-CN A2/Manager: 0-1% canonical match (vi text drift)         
+  Either fix upstream in vnme-curr/ or add a fallback strategy in the loader.                                  
+                                                                                                               
+  3. Bundle-size mitigation                                                                                    
+  Currently +1MB to bundle from eagerly importing all canonical+translation JSONs. Lazy-load per (mode × base) 
+  so users only download their language pair.                                                                  
+                                                                   
+  Suggested order:                                                                                             
+                                                                   
+  ┌─────┬────────────────────────────────────────────────────────────────────────────────┬────────┬─────────┐  
+  │  #  │                                      Task                                      │ Effort │  Risk   │
+  ├─────┼────────────────────────────────────────────────────────────────────────────────┼────────┼─────────┤
+  │ 1   │ Lazy-load translations via import() instead of glob eager                      │ S      │ low     │
+  ├─────┼────────────────────────────────────────────────────────────────────────────────┼────────┼─────────┤
+  │ 2   │ Add a studyImport adapter in db.js that converts new lessons into the existing │ M      │ medium  │  
+  │     │  path_nodes / lesson_blueprints / items shape                                  │        │         │  
+  ├─────┼────────────────────────────────────────────────────────────────────────────────┼────────┼─────────┤  
+  │ 3   │ Feature-flag the new data path (env var or localStorage.vnme_use_study_import) │ S      │ low     │  
+  │     │  so we can A/B with legacy                                                     │        │         │  
+  ├─────┼────────────────────────────────────────────────────────────────────────────────┼────────┼─────────┤
+  Either fix upstream in vnme-curr/ or add a fallback strategy in the loader.
+
+  3. Bundle-size mitigation
+  Currently +1MB to bundle from eagerly importing all canonical+translation JSONs. Lazy-load per (mode × base)
+  so users only download their language pair.
+
+  Suggested order:
+
+  ┌─────┬────────────────────────────────────────────────────────────────────────────────┬────────┬─────────┐
+  │  #  │                                      Task                                      │ Effort │  Risk   │
+  ├─────┼────────────────────────────────────────────────────────────────────────────────┼────────┼─────────┤
+  │ 1   │ Lazy-load translations via import() instead of glob eager                      │ S      │ low     │
+  ├─────┼────────────────────────────────────────────────────────────────────────────────┼────────┼─────────┤
+  │ 2   │ Add a studyImport adapter in db.js that converts new lessons into the existing │ M      │ medium  │
+  │     │  path_nodes / lesson_blueprints / items shape                                  │        │         │
+  ├─────┼────────────────────────────────────────────────────────────────────────────────┼────────┼─────────┤
+  │ 3   │ Feature-flag the new data path (env var or localStorage.vnme_use_study_import) │ S      │ low     │
+  │     │  so we can A/B with legacy                                                     │        │         │
+  ├─────┼────────────────────────────────────────────────────────────────────────────────┼────────┼─────────┤
+  │ 4   │ Audit JA/KO/ZH-CN coverage and either re-export from xlsx or accept EN         │ M      │ depends │
+  │     │ fallback as final state                                                        │        │         │
+  ├─────┼────────────────────────────────────────────────────────────────────────────────┼────────┼─────────┤
+  │ 5   │ Migrate LessonGame.jsx to handle new exercise types (fill_blank,               │ M      │ medium  │
+  │     │ translation_word_bank, profile_single_choice)                                  │        │         │
+  ├─────┼────────────────────────────────────────────────────────────────────────────────┼────────┼─────────┤
+  │ 6   │ Migrate RoadmapTab.jsx to render unit/lesson tree from new content             │ S      │ low     │
+  ├─────┼────────────────────────────────────────────────────────────────────────────────┼────────┼─────────┤
+  │ 7   │ Remove legacy explore_vietnam.json / unified_db.json once flag flips           │ S      │ low     │
+  └─────┴────────────────────────────────────────────────────────────────────────────────┴────────┴─────────┘
+
+  I'd recommend tackling #1 + #2 + #3 first — that gives us a working flagged path on this branch while the
+  legacy app keeps running. Then we can verify with the curriculum preview, then do #5/#6 once the data path is
+   solid.
+
+  Where do you want to start? I'd vote #2 (the db.js adapter) since it unlocks everything else.                

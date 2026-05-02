@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {
     Target, Zap, User, X, ChevronDown, ChevronRight, RefreshCw,
-    Globe, Type, Volume2, Wrench, Clock, Bell, Gift, Tag, Compass,
+    Globe, Type, Volume2, Wrench, Clock, Bell, Gift, Tag, Compass, Menu,
 } from 'lucide-react';
 import { LEARNER_MODES, DEFAULT_LEARNER_MODE } from '../data/learnerModes';
 import { useNavigate } from 'react-router-dom';
@@ -92,13 +92,13 @@ const TopBar = ({ activeTab, subtitleOverride }) => {
                 <button
                     onClick={openMenu}
                     style={{
-                        padding: '8px', borderRadius: '50%',
-                        backgroundColor: 'var(--surface-color)', border: '1px solid var(--border-color)',
+                        padding: '8px', borderRadius: '8px',
+                        background: 'transparent', border: 'none',
                         marginRight: 'var(--spacing-3)', display: 'flex', alignItems: 'center',
-                        justifyContent: 'center', color: 'var(--primary-color)', flexShrink: 0,
+                        justifyContent: 'center', color: 'var(--text-main)', flexShrink: 0, cursor: 'pointer'
                     }}
                 >
-                    <User size={22} />
+                    <Menu size={26} />
                 </button>
 
                 {/* Center: greeting (home), progress bar (roadmap), or tab title */}
@@ -374,13 +374,11 @@ const TopBar = ({ activeTab, subtitleOverride }) => {
                                         }
                                     }}
                                 />
-                                {userProfile.isDeveloperMode && (
-                                    <SettingAction
-                                        label={t('admin_cms')}
-                                        icon={<Wrench size={16} />}
-                                        onClick={() => { closeMenu(); navigate('/admin'); }}
-                                    />
-                                )}
+                                <SettingAction
+                                    label={t('admin_cms')}
+                                    icon={<Wrench size={16} />}
+                                    onClick={() => { closeMenu(); navigate('/admin'); }}
+                                />
                                 <SettingAction
                                     label={t('reset_progress')}
                                     icon={<RefreshCw size={16} />}

@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "vnme-app",
+			"path": "../.."
+		},
+		{
+			"name": "vnme-data-v1.0",
+			"path": "../../../../Downloads/vnme-data-v1.0"
+		}
+	],
+	"settings": {}
+}

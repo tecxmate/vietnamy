@@ -650,7 +650,9 @@
     display: block;
   }
 
-  .study-tab-container .topbar-desktop-only {
+  /* On Study tab, hide the inner header but keep the wrapper mounted so the
+     position:fixed Settings slide-in panel (rendered inside TopBar) still works. */
+  .study-tab-container .topbar-desktop-only .top-bar {
     display: none !important;
   }
 
