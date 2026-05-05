@@ -18,6 +18,7 @@
  */
 
 // Canonical content (Vietnamese + structure). One file per (level, track).
+import { applyOverrides } from './overrides';
 import a1Core from './study_import/canonical/a1_core.json';
 import a2Core from './study_import/canonical/a2_core.json';
 import b1Manager from './study_import/canonical/b1_manager.json';
@@ -146,6 +147,7 @@ function composeTrack(ltKey, base) {
         level,
         track,
         cefr: level.toUpperCase(),
+        _unit_uid: `${track}:${l.unit_index}`,
         // Per-base lesson title with EN fallback (canonical title is base-language of
         // the seeding file — usually EN — so non-EN UIs need explicit lookup).
         lesson_title_localized: titlesForBase[l.id] || titlesEn[l.id] || l.lesson_title,
@@ -172,7 +174,12 @@ export function getCurriculum(modeId = DEFAULT_MODE, uiLang = 'en') {
     let unitOffset = 0;
     for (const track of composed) {
         for (const u of track.units) {
-            allUnits.push({ ...u, index: u.index + unitOffset, track: track.meta.track });
+            allUnits.push({
+                ...u,
+                index: u.index + unitOffset,
+                track: track.meta.track,
+                _uid: `${track.meta.track}:${u.index}`,
+            });
         }
         for (const l of track.lessons) {
             allLessons.push({ ...l, unit_index: l.unit_index + unitOffset });
@@ -180,23 +187,26 @@ export function getCurriculum(modeId = DEFAULT_MODE, uiLang = 'en') {
         unitOffset += track.units.length;
     }
 
-    return {
+    const composedCurriculum = applyOverrides({
         meta: {
             mode: modeId,
             base,
             generated: manifest.generated,
             tracks,
-            stats: {
-                units: allUnits.length,
-                lessons: allLessons.length,
-                words: allLessons.reduce((s, l) => s + l.words.length, 0),
-                sentences: allLessons.reduce((s, l) => s + l.sentences.length, 0),
-                matches: allLessons.reduce((s, l) => s + l.matches.length, 0),
-            },
         },
         units: allUnits,
         lessons: allLessons,
+    }, modeId);
+
+    composedCurriculum.meta.stats = {
+        units: composedCurriculum.units.length,
+        lessons: composedCurriculum.lessons.length,
+        words: composedCurriculum.lessons.reduce((s, l) => s + l.words.length, 0),
+        sentences: composedCurriculum.lessons.reduce((s, l) => s + l.sentences.length, 0),
+        matches: composedCurriculum.lessons.reduce((s, l) => s + l.matches.length, 0),
     };
+
+    return composedCurriculum;
 }
 
 /**

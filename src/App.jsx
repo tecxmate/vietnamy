@@ -323,7 +323,7 @@ function App() {
 
                 {/* Admin CMS Routes */}
                 <Route path="/admin" element={<AdminLayout />}>
-                  <Route index element={<Navigate to="mapper" />} />
+                  <Route index element={<Navigate to="curriculum-preview" />} />
                   <Route path="mapper" element={<RoadmapMapper />} />
                   <Route path="lesson" element={<LessonBuilder />} />
                   <Route path="grammar" element={<GrammarEditor />} />

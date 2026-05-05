@@ -1,6 +1,14 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import { Play } from 'lucide-react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { Play, ArrowUp, ArrowDown, RotateCcw, Download, Upload } from 'lucide-react';
 import { getCurriculum, getCoverage, getAvailableBases, loadBase, isBaseLoaded } from '../../data/curricula';
+import {
+    hasOverrides,
+    resetMode,
+    exportMode,
+    importMode,
+    moveUnit,
+    moveLesson,
+} from '../../data/curricula/overrides';
 import CurriculumLessonPlayer from './CurriculumLessonPlayer';
 
 const MODES = [
@@ -46,9 +54,9 @@ export default function CurriculumPreview() {
         try { return localStorage.getItem('vnme_use_study_import') === '1'; } catch { return false; }
     });
     const [baseLoading, setBaseLoading] = useState(false);
+    const [overridesNonce, setOverridesNonce] = useState(0); // bumps to re-read after mutations
+    const fileInputRef = useRef(null);
 
-    // Preload non-EN translation/title chunks when the base picker changes.
-    // EN is always preloaded; other bases trigger an async fetch on first selection.
     useEffect(() => {
         if (base === 'en' || isBaseLoaded(base)) return;
         setBaseLoading(true);
@@ -59,21 +67,32 @@ export default function CurriculumPreview() {
         const next = !flagOn;
         try {
             localStorage.setItem('vnme_use_study_import', next ? '1' : '0');
-            // Force a clean DB re-init: the version-gate logic in db.js only
-            // re-initializes units/path_nodes when storedVersion < new version.
-            // Clearing the cv key drops storedVersion to 1, guaranteeing re-init
-            // regardless of which direction the flag is moving.
             localStorage.removeItem('vnme_mock_db_v24_cv');
         } catch { /* ignore */ }
         setFlagOn(next);
         if (typeof window !== 'undefined') window.location.reload();
     };
 
-    const curriculum = useMemo(() => getCurriculum(mode, base), [mode, base]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const curriculum = useMemo(() => getCurriculum(mode, base), [mode, base, overridesNonce]);
     const coverage = useMemo(() => getCoverage(), []);
     const availableBases = useMemo(() => getAvailableBases(), []);
+    const isModified = useMemo(() => hasOverrides(mode), [mode, overridesNonce]);
 
-    const filteredLessons = useMemo(() => {
+    const filterActive = !!(filterType || search);
+
+    // Group lessons by their (now display-order) unit_index for the editable view.
+    const grouped = useMemo(() => {
+        const map = new Map();
+        for (const l of curriculum.lessons) {
+            const arr = map.get(l.unit_index) || [];
+            arr.push(l);
+            map.set(l.unit_index, arr);
+        }
+        return curriculum.units.map(u => ({ unit: u, lessons: map.get(u.index) || [] }));
+    }, [curriculum]);
+
+    const filteredFlatLessons = useMemo(() => {
         let l = curriculum.lessons;
         if (filterType) l = l.filter(x => x.lesson_type === filterType);
         if (search) {
@@ -93,7 +112,6 @@ export default function CurriculumPreview() {
         [curriculum, selectedLessonId]
     );
 
-    // Translation coverage for the active mode × base
     const trCoverage = useMemo(() => {
         const tracks = curriculum.meta.tracks || [];
         let total = 0, covered = 0;
@@ -109,26 +127,85 @@ export default function CurriculumPreview() {
 
     const stats = curriculum.meta.stats;
 
+    const onMoveUnit = (uid, direction) => {
+        moveUnit(mode, curriculum.units.map(u => u._uid), uid, direction);
+        setOverridesNonce(n => n + 1);
+    };
+    const onMoveLesson = (unitUid, currentIds, lessonId, direction) => {
+        moveLesson(mode, unitUid, currentIds, lessonId, direction);
+        setOverridesNonce(n => n + 1);
+    };
+    const onReset = () => {
+        if (!isModified) return;
+        if (!confirm(`Reset all reordering for "${MODES.find(m => m.id === mode)?.label}"?`)) return;
+        resetMode(mode);
+        setOverridesNonce(n => n + 1);
+    };
+    const onExport = () => {
+        const payload = exportMode(mode);
+        const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `vnme-curriculum-${mode}-${new Date().toISOString().slice(0,10)}.json`;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+    };
+    const onImportClick = () => fileInputRef.current?.click();
+    const onImportFile = async (e) => {
+        const file = e.target.files?.[0];
+        e.target.value = '';
+        if (!file) return;
+        try {
+            const text = await file.text();
+            const payload = JSON.parse(text);
+            importMode(mode, payload);
+            setOverridesNonce(n => n + 1);
+        } catch (err) {
+            alert(`Import failed: ${err.message || err}`);
+        }
+    };
+
     return (
         <div style={{ flex: 1, padding: 24, overflow: 'auto', display: 'grid', gridTemplateRows: 'auto auto 1fr', gap: 16, maxHeight: '100vh' }}>
             {/* Header */}
             <Card>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12 }}>
-                    <h1 style={{ margin: 0, fontSize: 22 }}>Curriculum Preview <span style={{ fontSize: 13, fontWeight: 400, color: 'var(--text-muted)' }}>study_import schema · {curriculum.meta.generated?.slice(0,10)}</span></h1>
-                    <button
-                        onClick={toggleFlag}
-                        title={flagOn ? 'Turn off — main app reverts to legacy unified_db.json' : 'Turn on — main app loads study_import lessons into the roadmap'}
-                        style={{
-                            padding: '8px 14px',
-                            borderRadius: 8,
-                            border: '2px solid ' + (flagOn ? '#10B981' : 'var(--border-color)'),
-                            background: flagOn ? 'rgba(16,185,129,0.12)' : 'transparent',
-                            color: flagOn ? '#10B981' : 'var(--text-muted)',
-                            fontWeight: 700, fontSize: 12, cursor: 'pointer', whiteSpace: 'nowrap',
-                        }}
-                    >
-                        {flagOn ? '✓ STUDY_IMPORT LIVE' : '○ Use legacy lessons'}
-                    </button>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12, flexWrap: 'wrap' }}>
+                    <h1 style={{ margin: 0, fontSize: 22 }}>
+                        Study Curriculum Editor{' '}
+                        <span style={{ fontSize: 13, fontWeight: 400, color: 'var(--text-muted)' }}>
+                            study_import schema · {curriculum.meta.generated?.slice(0,10)}
+                        </span>
+                        {isModified && <span style={{ marginLeft: 10 }}><Pill color="#F59E0B" bg="rgba(245,158,11,0.15)">MODIFIED</Pill></span>}
+                    </h1>
+                    <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+                        <button onClick={onReset} disabled={!isModified} title="Reset all reordering for this mode" style={toolbarBtn(!isModified)}>
+                            <RotateCcw size={14} /> Reset
+                        </button>
+                        <button onClick={onExport} title="Download overrides JSON for backup or sharing" style={toolbarBtn(false)}>
+                            <Download size={14} /> Export
+                        </button>
+                        <button onClick={onImportClick} title="Load overrides JSON from a file" style={toolbarBtn(false)}>
+                            <Upload size={14} /> Import
+                        </button>
+                        <input ref={fileInputRef} type="file" accept="application/json,.json" style={{ display: 'none' }} onChange={onImportFile} />
+                        <button
+                            onClick={toggleFlag}
+                            title={flagOn ? 'Turn off — main app reverts to legacy unified_db.json' : 'Turn on — main app loads study_import lessons into the roadmap'}
+                            style={{
+                                padding: '8px 14px',
+                                borderRadius: 8,
+                                border: '2px solid ' + (flagOn ? '#10B981' : 'var(--border-color)'),
+                                background: flagOn ? 'rgba(16,185,129,0.12)' : 'transparent',
+                                color: flagOn ? '#10B981' : 'var(--text-muted)',
+                                fontWeight: 700, fontSize: 12, cursor: 'pointer', whiteSpace: 'nowrap',
+                            }}
+                        >
+                            {flagOn ? '✓ STUDY_IMPORT LIVE' : '○ Use legacy lessons'}
+                        </button>
+                    </div>
                 </div>
                 <div style={{ display: 'flex', gap: 12, marginTop: 12, flexWrap: 'wrap' }}>
                     <label style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
@@ -155,57 +232,38 @@ export default function CurriculumPreview() {
                         <input value={search} onChange={e => setSearch(e.target.value)} placeholder="xin chào, greetings…" style={selectStyle} />
                     </label>
                 </div>
-                <div style={{ display: 'flex', gap: 8, marginTop: 12, flexWrap: 'wrap' }}>
+                <div style={{ display: 'flex', gap: 8, marginTop: 12, flexWrap: 'wrap', alignItems: 'center' }}>
                     <Pill color="#1CB0F6" bg="rgba(28,176,246,0.1)">{stats.units} units</Pill>
                     <Pill color="#10B981" bg="rgba(16,185,129,0.1)">{stats.lessons} lessons</Pill>
                     <Pill color="#A78BFA" bg="rgba(167,139,250,0.1)">{stats.words} words</Pill>
                     <Pill color="#F59E0B" bg="rgba(245,158,11,0.1)">{stats.sentences} sentences</Pill>
                     <Pill color="#F26B5A" bg="rgba(242,107,90,0.1)">{stats.matches} match-pairs</Pill>
-                    {baseLoading && (
-                        <Pill color="#A78BFA" bg="rgba(167,139,250,0.15)">Loading {base.toUpperCase()} chunk…</Pill>
-                    )}
+                    {baseLoading && <Pill color="#A78BFA" bg="rgba(167,139,250,0.15)">Loading {base.toUpperCase()} chunk…</Pill>}
                     {!baseLoading && base !== 'en' && trCoverage.total > 0 && (
                         <Pill color={trCoverage.covered === trCoverage.total ? '#10B981' : '#F59E0B'} bg={trCoverage.covered === trCoverage.total ? 'rgba(16,185,129,0.1)' : 'rgba(245,158,11,0.15)'}>
                             {base.toUpperCase()} coverage: {trCoverage.covered}/{trCoverage.total} ({Math.round(trCoverage.covered / trCoverage.total * 100)}%) — gaps fall back to EN
                         </Pill>
                     )}
+                    {filterActive && <Pill color="#F26B5A" bg="rgba(242,107,90,0.15)">Reordering disabled while filter/search is active</Pill>}
                 </div>
             </Card>
 
             {/* Two-pane: lesson list + detail */}
-            <div style={{ display: 'grid', gridTemplateColumns: '380px 1fr', gap: 16, minHeight: 0 }}>
-                {/* Lesson list */}
+            <div style={{ display: 'grid', gridTemplateColumns: '420px 1fr', gap: 16, minHeight: 0 }}>
                 <Card style={{ overflow: 'auto', padding: 0 }}>
-                    {filteredLessons.length === 0 && (
-                        <div style={{ padding: 16, color: 'var(--text-muted)', fontSize: 13 }}>No lessons match.</div>
+                    {filterActive ? (
+                        <FlatList lessons={filteredFlatLessons} selectedId={selectedLessonId} onSelect={setSelectedLessonId} />
+                    ) : (
+                        <GroupedList
+                            grouped={grouped}
+                            selectedId={selectedLessonId}
+                            onSelect={setSelectedLessonId}
+                            onMoveUnit={onMoveUnit}
+                            onMoveLesson={onMoveLesson}
+                        />
                     )}
-                    {filteredLessons.map(l => {
-                        const isSel = l.id === selectedLessonId;
-                        return (
-                            <button
-                                key={l.id}
-                                onClick={() => setSelectedLessonId(l.id)}
-                                style={{
-                                    width: '100%', textAlign: 'left', border: 'none', borderBottom: '1px solid var(--border-color)',
-                                    padding: '10px 14px', background: isSel ? 'rgba(242,107,90,0.1)' : 'transparent',
-                                    cursor: 'pointer', display: 'flex', flexDirection: 'column', gap: 4,
-                                    color: isSel ? 'var(--primary-color)' : 'var(--text-main)',
-                                }}
-                            >
-                                <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
-                                    <Pill color={TYPE_COLORS[l.lesson_type]} bg={`${TYPE_COLORS[l.lesson_type]}22`}>{l.lesson_type}</Pill>
-                                    <span style={{ fontSize: 11, color: 'var(--text-muted)' }}>{l.node_id}</span>
-                                </div>
-                                <div style={{ fontSize: 14, fontWeight: 600 }}>{l.lesson_title}</div>
-                                <div style={{ fontSize: 11, color: 'var(--text-muted)' }}>
-                                    {l.unit_title} · {l.words.length}w / {l.sentences.length}s / {l.matches.length}m · {l.xp_reward} XP
-                                </div>
-                            </button>
-                        );
-                    })}
                 </Card>
 
-                {/* Lesson detail */}
                 <Card style={{ overflow: 'auto' }}>
                     {!selected && (
                         <div style={{ color: 'var(--text-muted)', fontSize: 14, textAlign: 'center', padding: 40 }}>
@@ -221,6 +279,133 @@ export default function CurriculumPreview() {
     );
 }
 
+function GroupedList({ grouped, selectedId, onSelect, onMoveUnit, onMoveLesson }) {
+    if (grouped.length === 0) {
+        return <div style={{ padding: 16, color: 'var(--text-muted)', fontSize: 13 }}>No units.</div>;
+    }
+    const lastUnitIdx = grouped.length - 1;
+    return (
+        <div>
+            {grouped.map(({ unit, lessons }, ui) => {
+                const lessonIds = lessons.map(l => l.id);
+                const lastLessonIdx = lessons.length - 1;
+                return (
+                    <div key={unit._uid}>
+                        <div style={{
+                            display: 'flex', alignItems: 'center', gap: 8,
+                            padding: '10px 12px',
+                            background: 'rgba(0,0,0,0.04)',
+                            borderTop: ui === 0 ? 'none' : '1px solid var(--border-color)',
+                            borderBottom: '1px solid var(--border-color)',
+                            position: 'sticky', top: 0, zIndex: 1,
+                        }}>
+                            <div style={{ flex: 1, minWidth: 0 }}>
+                                <div style={{ fontSize: 11, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: 0.5 }}>
+                                    Unit {ui + 1} · {unit.track}
+                                </div>
+                                <div style={{ fontSize: 13, fontWeight: 700, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                                    {unit.title}
+                                </div>
+                            </div>
+                            <ReorderBtn disabled={ui === 0} onClick={() => onMoveUnit(unit._uid, 'up')} dir="up" label="Move unit up" />
+                            <ReorderBtn disabled={ui === lastUnitIdx} onClick={() => onMoveUnit(unit._uid, 'down')} dir="down" label="Move unit down" />
+                        </div>
+                        {lessons.length === 0 && (
+                            <div style={{ padding: '8px 14px', color: 'var(--text-muted)', fontSize: 12 }}>(empty unit)</div>
+                        )}
+                        {lessons.map((l, li) => {
+                            const isSel = l.id === selectedId;
+                            return (
+                                <div key={l.id} style={{
+                                    display: 'flex', alignItems: 'stretch',
+                                    borderBottom: '1px solid var(--border-color)',
+                                    background: isSel ? 'rgba(242,107,90,0.1)' : 'transparent',
+                                }}>
+                                    <button
+                                        onClick={() => onSelect(l.id)}
+                                        style={{
+                                            flex: 1, textAlign: 'left', border: 'none', background: 'transparent',
+                                            padding: '10px 12px', cursor: 'pointer',
+                                            display: 'flex', flexDirection: 'column', gap: 4,
+                                            color: isSel ? 'var(--primary-color)' : 'var(--text-main)',
+                                        }}
+                                    >
+                                        <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
+                                            <Pill color={TYPE_COLORS[l.lesson_type]} bg={`${TYPE_COLORS[l.lesson_type]}22`}>{l.lesson_type}</Pill>
+                                            <span style={{ fontSize: 11, color: 'var(--text-muted)' }}>{l.node_id}</span>
+                                        </div>
+                                        <div style={{ fontSize: 14, fontWeight: 600 }}>{l.lesson_title}</div>
+                                        <div style={{ fontSize: 11, color: 'var(--text-muted)' }}>
+                                            {l.words.length}w / {l.sentences.length}s / {l.matches.length}m · {l.xp_reward} XP
+                                        </div>
+                                    </button>
+                                    <div style={{ display: 'flex', flexDirection: 'column', gap: 4, padding: '8px 8px', justifyContent: 'center' }}>
+                                        <ReorderBtn disabled={li === 0} onClick={() => onMoveLesson(unit._uid, lessonIds, l.id, 'up')} dir="up" label="Move lesson up" small />
+                                        <ReorderBtn disabled={li === lastLessonIdx} onClick={() => onMoveLesson(unit._uid, lessonIds, l.id, 'down')} dir="down" label="Move lesson down" small />
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
+                );
+            })}
+        </div>
+    );
+}
+
+function FlatList({ lessons, selectedId, onSelect }) {
+    if (lessons.length === 0) {
+        return <div style={{ padding: 16, color: 'var(--text-muted)', fontSize: 13 }}>No lessons match.</div>;
+    }
+    return lessons.map(l => {
+        const isSel = l.id === selectedId;
+        return (
+            <button
+                key={l.id}
+                onClick={() => onSelect(l.id)}
+                style={{
+                    width: '100%', textAlign: 'left', border: 'none', borderBottom: '1px solid var(--border-color)',
+                    padding: '10px 14px', background: isSel ? 'rgba(242,107,90,0.1)' : 'transparent',
+                    cursor: 'pointer', display: 'flex', flexDirection: 'column', gap: 4,
+                    color: isSel ? 'var(--primary-color)' : 'var(--text-main)',
+                }}
+            >
+                <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
+                    <Pill color={TYPE_COLORS[l.lesson_type]} bg={`${TYPE_COLORS[l.lesson_type]}22`}>{l.lesson_type}</Pill>
+                    <span style={{ fontSize: 11, color: 'var(--text-muted)' }}>{l.node_id}</span>
+                </div>
+                <div style={{ fontSize: 14, fontWeight: 600 }}>{l.lesson_title}</div>
+                <div style={{ fontSize: 11, color: 'var(--text-muted)' }}>
+                    {l.unit_title} · {l.words.length}w / {l.sentences.length}s / {l.matches.length}m · {l.xp_reward} XP
+                </div>
+            </button>
+        );
+    });
+}
+
+function ReorderBtn({ disabled, onClick, dir, label, small = false }) {
+    const size = small ? 14 : 16;
+    return (
+        <button
+            onClick={onClick}
+            disabled={disabled}
+            title={label}
+            aria-label={label}
+            style={{
+                background: disabled ? 'transparent' : 'var(--bg-color)',
+                border: '1px solid ' + (disabled ? 'transparent' : 'var(--border-color)'),
+                borderRadius: 6,
+                padding: small ? 3 : 4,
+                cursor: disabled ? 'not-allowed' : 'pointer',
+                color: disabled ? 'var(--border-color)' : 'var(--text-muted)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+            }}
+        >
+            {dir === 'up' ? <ArrowUp size={size} /> : <ArrowDown size={size} />}
+        </button>
+    );
+}
+
 function LessonDetail({ lesson, base, onPlay }) {
     const playable = lesson.words.some(w => w.translation) || lesson.matches.length >= 3;
     return (
@@ -232,7 +417,7 @@ function LessonDetail({ lesson, base, onPlay }) {
                         <Pill>{lesson.node_id}</Pill>
                         {lesson.quiz_id && <Pill color="#F26B5A" bg="rgba(242,107,90,0.1)">{lesson.quiz_id}</Pill>}
                         <Pill>{lesson.xp_reward} XP</Pill>
-                        <Pill>unit {lesson.unit_index}</Pill>
+                        <Pill>unit {lesson.unit_index + 1}</Pill>
                     </div>
                     <h2 style={{ margin: 0, fontSize: 20 }}>{lesson.lesson_title}</h2>
                     <div style={{ fontSize: 13, color: 'var(--text-muted)', marginTop: 4 }}>{lesson.unit_title}</div>
@@ -240,7 +425,7 @@ function LessonDetail({ lesson, base, onPlay }) {
                 <button
                     onClick={onPlay}
                     disabled={!playable}
-                    title={playable ? 'Play this lesson (preview only — no progress saved)' : 'Not enough content for exercises'}
+                    title={playable ? 'Play this lesson (sandbox — no progress saved)' : 'Not enough content for exercises'}
                     style={{
                         padding: '10px 16px',
                         background: playable ? 'var(--primary-color)' : 'var(--border-color)',
@@ -249,7 +434,7 @@ function LessonDetail({ lesson, base, onPlay }) {
                         display: 'flex', alignItems: 'center', gap: 6, flexShrink: 0,
                     }}
                 >
-                    <Play size={16} /> Play
+                    <Play size={16} /> Play (sandbox)
                 </button>
             </div>
 
@@ -338,3 +523,14 @@ const selectStyle = {
     color: 'var(--text-main)',
     fontSize: 13,
 };
+
+const toolbarBtn = (disabled) => ({
+    padding: '8px 12px',
+    borderRadius: 8,
+    border: '1px solid var(--border-color)',
+    background: 'var(--bg-color)',
+    color: disabled ? 'var(--border-color)' : 'var(--text-main)',
+    fontWeight: 600, fontSize: 12,
+    cursor: disabled ? 'not-allowed' : 'pointer',
+    display: 'flex', alignItems: 'center', gap: 6,
+});

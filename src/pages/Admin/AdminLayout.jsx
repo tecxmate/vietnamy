@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, BookText, Languages, LogOut, FileText, BookOpen, Music, Users, PenTool, Sparkles } from 'lucide-react';
+import { LogOut, Sparkles } from 'lucide-react';
 
 const AdminLayout = () => {
     const navigate = useNavigate();
@@ -15,106 +15,6 @@ const AdminLayout = () => {
 
                 <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 8 }}>
                     <NavLink
-                        to="/admin/mapper"
-                        style={({ isActive }) => ({
-                            display: 'flex', alignItems: 'center', gap: 12, padding: '12px 16px',
-                            borderRadius: 'var(--radius-md)', textDecoration: 'none',
-                            backgroundColor: isActive ? 'rgba(242, 107, 90, 0.1)' : 'transparent',
-                            color: isActive ? 'var(--primary-color)' : 'var(--text-main)',
-                            fontWeight: isActive ? 700 : 400
-                        })}
-                    >
-                        <LayoutDashboard size={20} />
-                        Roadmap Mapper
-                    </NavLink>
-
-                    <NavLink
-                        to="/admin/lesson"
-                        style={({ isActive }) => ({
-                            display: 'flex', alignItems: 'center', gap: 12, padding: '12px 16px',
-                            borderRadius: 'var(--radius-md)', textDecoration: 'none',
-                            backgroundColor: isActive ? 'rgba(242, 107, 90, 0.1)' : 'transparent',
-                            color: isActive ? 'var(--primary-color)' : 'var(--text-main)',
-                            fontWeight: isActive ? 700 : 400
-                        })}
-                    >
-                        <BookText size={20} />
-                        Lesson Builder
-                    </NavLink>
-
-                    <NavLink
-                        to="/admin/grammar"
-                        style={({ isActive }) => ({
-                            display: 'flex', alignItems: 'center', gap: 12, padding: '12px 16px',
-                            borderRadius: 'var(--radius-md)', textDecoration: 'none',
-                            backgroundColor: isActive ? 'rgba(242, 107, 90, 0.1)' : 'transparent',
-                            color: isActive ? 'var(--primary-color)' : 'var(--text-main)',
-                            fontWeight: isActive ? 700 : 400
-                        })}
-                    >
-                        <Languages size={20} />
-                        Grammar Editor
-                    </NavLink>
-
-                    <div style={{ height: 1, backgroundColor: 'var(--border-color)', margin: '8px 0' }} />
-
-                    <NavLink
-                        to="/admin/articles"
-                        style={({ isActive }) => ({
-                            display: 'flex', alignItems: 'center', gap: 12, padding: '12px 16px',
-                            borderRadius: 'var(--radius-md)', textDecoration: 'none',
-                            backgroundColor: isActive ? 'rgba(242, 107, 90, 0.1)' : 'transparent',
-                            color: isActive ? 'var(--primary-color)' : 'var(--text-main)',
-                            fontWeight: isActive ? 700 : 400
-                        })}
-                    >
-                        <FileText size={20} />
-                        Articles
-                    </NavLink>
-
-                    <NavLink
-                        to="/admin/vocab"
-                        style={({ isActive }) => ({
-                            display: 'flex', alignItems: 'center', gap: 12, padding: '12px 16px',
-                            borderRadius: 'var(--radius-md)', textDecoration: 'none',
-                            backgroundColor: isActive ? 'rgba(242, 107, 90, 0.1)' : 'transparent',
-                            color: isActive ? 'var(--primary-color)' : 'var(--text-main)',
-                            fontWeight: isActive ? 700 : 400
-                        })}
-                    >
-                        <BookOpen size={20} />
-                        Vocabulary
-                    </NavLink>
-
-                    <NavLink
-                        to="/admin/tones"
-                        style={({ isActive }) => ({
-                            display: 'flex', alignItems: 'center', gap: 12, padding: '12px 16px',
-                            borderRadius: 'var(--radius-md)', textDecoration: 'none',
-                            backgroundColor: isActive ? 'rgba(242, 107, 90, 0.1)' : 'transparent',
-                            color: isActive ? 'var(--primary-color)' : 'var(--text-main)',
-                            fontWeight: isActive ? 700 : 400
-                        })}
-                    >
-                        <Music size={20} />
-                        Tone Words
-                    </NavLink>
-
-                    <NavLink
-                        to="/admin/drills"
-                        style={({ isActive }) => ({
-                            display: 'flex', alignItems: 'center', gap: 12, padding: '12px 16px',
-                            borderRadius: 'var(--radius-md)', textDecoration: 'none',
-                            backgroundColor: isActive ? 'rgba(242, 107, 90, 0.1)' : 'transparent',
-                            color: isActive ? 'var(--primary-color)' : 'var(--text-main)',
-                            fontWeight: isActive ? 700 : 400
-                        })}
-                    >
-                        <PenTool size={20} />
-                        Drill Modules
-                    </NavLink>
-
-                    <NavLink
                         to="/admin/curriculum-preview"
                         style={({ isActive }) => ({
                             display: 'flex', alignItems: 'center', gap: 12, padding: '12px 16px',
@@ -125,22 +25,12 @@ const AdminLayout = () => {
                         })}
                     >
                         <Sparkles size={20} />
-                        Curriculum Preview
+                        Study Curriculum
                     </NavLink>
 
-                    <NavLink
-                        to="/admin/kinship"
-                        style={({ isActive }) => ({
-                            display: 'flex', alignItems: 'center', gap: 12, padding: '12px 16px',
-                            borderRadius: 'var(--radius-md)', textDecoration: 'none',
-                            backgroundColor: isActive ? 'rgba(242, 107, 90, 0.1)' : 'transparent',
-                            color: isActive ? 'var(--primary-color)' : 'var(--text-main)',
-                            fontWeight: isActive ? 700 : 400
-                        })}
-                    >
-                        <Users size={20} />
-                        Kinship & Pronouns
-                    </NavLink>
+                    {/* Legacy editors (Roadmap Mapper, Lesson Builder, Grammar, Articles, Vocab,
+                        Tone Words, Drills, Kinship) are temporarily hidden from the sidebar.
+                        Routes still resolve at /admin/<name> if needed. */}
                 </div>
 
                 <button
