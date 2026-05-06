@@ -6,7 +6,7 @@
  * - nodeSessionCounts: How many sessions completed per node (4 = done)
  */
 import { createContext, useContext, useState, useEffect, useCallback, useMemo } from 'react';
-import { NODE_ID_MIGRATION } from '../lib/db';
+import { NODE_ID_MIGRATION, getNodeById } from '../lib/db';
 import { MODE_IDS, DEFAULT_LEARNER_MODE } from '../data/learnerModes';
 
 const ProgressContext = createContext();
@@ -107,7 +107,9 @@ export function ProgressProvider({ children }) {
         setNodeSessionCounts(prev => {
             const modeSessionCounts = prev[mode] || {};
             const newCount = (modeSessionCounts[nodeId] ?? 0) + 1;
-            const target = sessionsRequired ?? SESSIONS_TO_COMPLETE;
+            // Resolution order: explicit caller override > per-node sessions_required > engine default.
+            const nodeOverride = sessionsRequired == null ? getNodeById(nodeId)?.sessions_required : null;
+            const target = sessionsRequired ?? nodeOverride ?? SESSIONS_TO_COMPLETE;
             if (newCount >= target) {
                 setCompletedNodes(prevNodes => ({
                     ...prevNodes,

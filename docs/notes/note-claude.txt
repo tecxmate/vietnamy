@@ -332,4 +332,169 @@ Build clean. Player is wired into the preview.
   legacy app keeps running. Then we can verify with the curriculum preview, then do #5/#6 once the data path is
    solid.
 
-  Where do you want to start? I'd vote #2 (the db.js adapter) since it unlocks everything else.                
+  Where do you want to start? I'd vote #2 (the db.js adapter) since it unlocks everything else.  
+
+
+
+  Phase 4 done. Big change.                                                                                 
+                                                                                                            
+  src/data/curricula/overrides.js — array operations:                                                       
+  - New patch shape: _ops:words, _ops:sentences, _ops:matches keys carry { edits, added, removed } keyed by 
+  stable item id (not index — so adds/removes don't shift other paths).                                     
+  - applyArrayOp(arr, op) skips removed items, applies edits in place, appends added items at the end.      
+  - applyLessonPatch recognizes _ops: keys and dispatches them to applyArrayOp.                             
+  - New API: getArrayOp, editArrayItem, addArrayItem, removeArrayItem, revertArrayItem, newItemId.          
+  - editArrayItem is smart: edits to a newly-added item modify it in place; edits to canonical items go into
+   edits[id].                                                                                               
+  - removeArrayItem is smart: removing an added item splices it out; removing a canonical item adds the id  
+  to removed and clears its edits.                                                                          
+                                                                                                            
+  src/pages/Admin/CurriculumPreview.jsx — editable tables:         
+  - Vocabulary, Sentences, and Match-pairs sections replaced with EditableArrayTable.                       
+  - Click any cell to edit (Enter saves, Esc cancels, blur saves).                                          
+  - + Add button on each section creates a blank row.                                                       
+  - Trash icon per row removes it (with confirm).                                                           
+  - Undo icon per edited row reverts that row to canonical.                                                 
+  - Row visual cues: amber left-border + tint = edited; green = newly added.                                
+  - Section header shows op summary: "3 edited · 1 added · 2 removed".                                      
+  - Empty arrays now render a friendly empty-state with the + Add prompt instead of being hidden.           
+  - Removed orphaned Table and Missing helpers.                                                             
+                                                                                                            
+  The translation cell uses the composed translation value (from the translations index), so editing it     
+  overrides what the translation file would supply. New rows you add will need both vi and translation      
+  filled in by hand — there's no auto-translation.                                                          
+                                                                                                            
+  Phase 5 (frequency / sessions-to-complete + SRS weight wired into the engine) ready when you say.                
+
+═══════════════════════════════════════════════════════════════════════════════
+  STUDY CURRICULUM ADMIN — PHASES 1–3 CHANGES (clean reference)
+═══════════════════════════════════════════════════════════════════════════════
+
+Goal: long-term admin panel for the Study tab. Per teacher (localStorage today),
+later migratable to server. Canonical JSON in src/data/curricula/study_import/
+is NEVER mutated — every edit lives in an override layer keyed by mode.
+
+Storage key: `vnme_study_import_overrides`  (localStorage)
+
+  ─────────────────────────────────────────────────────────────────────────
+  PHASE 1 — Schema rails (no edit UI)
+  ─────────────────────────────────────────────────────────────────────────
+
+  File: src/data/curricula/overrides.js
+
+  - Bumped storage VERSION 1 → 2.
+  - Override shape per mode:
+        {
+          unitOrder:     ["a1_core:1", "a1_core:3", ...],   // Phase 0
+          lessonOrder:   { "<unitUid>": ["L001", "L003"] },  // Phase 0
+          lessonPatches: { "<lessonId>": { "<path>": value } } // Phase 1+
+        }
+  - Migration: v1 records load as v2 with lessonPatches: {}. Zero work.
+  - Path syntax for sparse field patches:
+        "lesson_title"
+        "xp_reward"
+        "words[2].vi"
+        "unlock_rule.type"
+    Implementation: parsePath() tokenises into {string|number} tokens.
+    applyPathToObject() returns a new root with the value set; if any
+    segment is missing or shape-wrong, returns root unchanged → stale
+    paths from canonical updates are silently ignored.
+  - applyLessonPatch(lesson, patch) loops patch entries → applyPathToObject.
+  - Public API added:
+        getLessonPatch(modeId, lessonId)
+        hasLessonPatch(modeId, lessonId)
+        setLessonField(modeId, lessonId, path, value)
+        revertLessonField(modeId, lessonId, path)
+        revertLesson(modeId, lessonId)
+  - applyOverrides() now applies patches during composition AND tags each
+    composed lesson with `_patched: true` when its patch object is non-empty.
+  - hasOverrides / setOverrides / exportMode / importMode all carry the new
+    lessonPatches field; isEmptyMode() considers it.
+
+  File: src/pages/Admin/CurriculumPreview.jsx
+
+  - Added `edited` amber pill in the lesson list when l._patched is true.
+  - No edit UI yet. Verifiable by hand-editing localStorage.
+
+  ─────────────────────────────────────────────────────────────────────────
+  PHASE 2 — Inline edit: title + XP
+  ─────────────────────────────────────────────────────────────────────────
+
+  File: src/pages/Admin/CurriculumPreview.jsx
+
+  - LessonDetail() now receives `mode` and `onPatched`. It reads
+    getLessonPatch(mode, lesson.id) on each render so patched-state styling
+    is always live.
+  - Helpers used by the detail pane:
+        commit(path, value)  → setLessonField + onPatched()
+        revert(path)         → revertLessonField + onPatched()
+        revertAll()          → revertLesson + onPatched() (with confirm)
+
+  - <EditableTitle/>:
+      • h2-sized text, click-to-edit with pencil hint icon.
+      • Enter saves, Esc cancels. Empty titles rejected.
+      • When patched: text colour becomes amber (#B45309), Undo button
+        appears next to it.
+
+  - <EditablePill/>:
+      • Pill-shaped numeric input for XP (clamped 0–999 via the commit
+        callback).
+      • Same Enter/Esc/blur semantics as title.
+      • Patched styling: amber bg + Undo button.
+
+  - "Revert all" pill appears in the header row when the lesson has any
+    patches; confirms then calls revertLesson().
+
+  - Helper styles: iconBtn(color, small) — small bordered icon button used
+    by all the inline editors.
+
+  ─────────────────────────────────────────────────────────────────────────
+  PHASE 3 — Lesson type dropdown (LABEL ONLY)
+  ─────────────────────────────────────────────────────────────────────────
+
+  File: src/pages/Admin/CurriculumPreview.jsx
+
+  - LESSON_TYPES = ['Phonetics','Vocabulary','Grammar','Scene','Quiz','Placement']
+  - <EditableTypePill/>:
+      • A native <select> styled to look like the existing colored Pill.
+      • Background uses TYPE_COLORS[value] + 22 alpha; outline turns amber
+        when the field is patched.
+      • Custom dropdown chevron (▾), pointer-events none.
+      • Undo button appears next to it when patched.
+
+  - IMPORTANT (intentional): type change is LABEL/COLOR ONLY at this stage.
+    The exercise engine still treats the lesson's existing words/sentences/
+    matches the same way — switching Phonetics → Grammar does NOT regenerate
+    exercises. Comment in code documents this.
+
+  - The list pill, "Filter type" dropdown, and detail header all stay
+    consistent because they read `lesson.lesson_type` AFTER applyOverrides
+    has run.
+
+  ─────────────────────────────────────────────────────────────────────────
+  CROSS-PHASE INVARIANTS
+  ─────────────────────────────────────────────────────────────────────────
+
+  1. Canonical JSON files are read-only. Anything writable lives in
+     localStorage under the single key above.
+  2. Every mutation goes through overrides.js. Components never write
+     directly to localStorage.
+  3. Stale ids and stale paths are silently dropped on apply, so a
+     canonical update never breaks the override layer.
+  4. setOverrides() with an empty mode object deletes the mode entry —
+     keeps localStorage clean.
+  5. After any patch, components bump `overridesNonce` (state in
+     CurriculumPreview) to force a re-read of getCurriculum().
+  6. Mode-level Reset button clears unitOrder, lessonOrder, AND
+     lessonPatches in one shot.
+
+  ─────────────────────────────────────────────────────────────────────────
+  WHAT IS NOT YET WIRED (deferred to later phases)
+  ─────────────────────────────────────────────────────────────────────────
+
+  - Editing words / sentences / matches arrays (Phase 4 — done after this note)
+  - Sessions-to-complete / SRS frequency  (Phase 5)
+  - Drag-to-reorder (nice-to-have, not on critical path)
+  - Server persistence (schema is already shaped to migrate)
+  - Type change driving engine behavior (deliberate "label only" today)
+

@@ -358,7 +358,7 @@ const RoadmapTab = ({ onNavigateToVocabDeck } = {}) => {
                                 const isLocked = !testMode || node.status === 'locked';
                                 const sublabel = getNodeLabel(node, style);
                                 const sessionCount = getNodeSessionCount(node.id, currentMode);
-                                const sessionsTarget = node.skill_content?.type === 'grammar_unit' ? 2 : SESSIONS_TO_COMPLETE;
+                                const sessionsTarget = node.sessions_required ?? (node.skill_content?.type === 'grammar_unit' ? 2 : SESSIONS_TO_COMPLETE);
                                 const hasProgress = testMode && sessionCount > 0 && !isCompleted;
                                 const quiz = quizByParent[node.id];
                                 const quizDone = quiz?.status === 'completed';

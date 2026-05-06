@@ -757,6 +757,8 @@ function buildFromStudyImport() {
             } else {
                 lastNodeByUnit[l.unit_index] = l.node_id;
             }
+            // Per-lesson sessions-to-complete override (Phase 5). Null/undefined → engine default.
+            if (l.sessions_required != null) node.sessions_required = l.sessions_required;
             pathNodes.push(node);
         }
     });

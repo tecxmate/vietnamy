@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { Play, ArrowUp, ArrowDown, RotateCcw, Download, Upload } from 'lucide-react';
+import { Play, ArrowUp, ArrowDown, RotateCcw, Download, Upload, Pencil, Check, X, Undo2, Plus, Trash2 } from 'lucide-react';
 import { getCurriculum, getCoverage, getAvailableBases, loadBase, isBaseLoaded } from '../../data/curricula';
 import {
     hasOverrides,
@@ -8,6 +8,16 @@ import {
     importMode,
     moveUnit,
     moveLesson,
+    getLessonPatch,
+    setLessonField,
+    revertLessonField,
+    revertLesson,
+    getArrayOp,
+    editArrayItem,
+    addArrayItem,
+    removeArrayItem,
+    revertArrayItem,
+    newItemId,
 } from '../../data/curricula/overrides';
 import CurriculumLessonPlayer from './CurriculumLessonPlayer';
 
@@ -137,7 +147,7 @@ export default function CurriculumPreview() {
     };
     const onReset = () => {
         if (!isModified) return;
-        if (!confirm(`Reset all reordering for "${MODES.find(m => m.id === mode)?.label}"?`)) return;
+        if (!confirm(`Reset all edits and reordering for "${MODES.find(m => m.id === mode)?.label}"?\n\nThis clears unit/lesson order, field edits, and added/removed words/sentences/matches.`)) return;
         resetMode(mode);
         setOverridesNonce(n => n + 1);
     };
@@ -270,7 +280,15 @@ export default function CurriculumPreview() {
                             Select a lesson on the left to inspect its content.
                         </div>
                     )}
-                    {selected && <LessonDetail lesson={selected} base={base} onPlay={() => setPlaying(selected)} />}
+                    {selected && (
+                        <LessonDetail
+                            lesson={selected}
+                            base={base}
+                            mode={mode}
+                            onPlay={() => setPlaying(selected)}
+                            onPatched={() => setOverridesNonce(n => n + 1)}
+                        />
+                    )}
                 </Card>
             </div>
 
@@ -333,6 +351,7 @@ function GroupedList({ grouped, selectedId, onSelect, onMoveUnit, onMoveLesson }
                                         <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
                                             <Pill color={TYPE_COLORS[l.lesson_type]} bg={`${TYPE_COLORS[l.lesson_type]}22`}>{l.lesson_type}</Pill>
                                             <span style={{ fontSize: 11, color: 'var(--text-muted)' }}>{l.node_id}</span>
+                                            {l._patched && <Pill color="#F59E0B" bg="rgba(245,158,11,0.15)">edited</Pill>}
                                         </div>
                                         <div style={{ fontSize: 14, fontWeight: 600 }}>{l.lesson_title}</div>
                                         <div style={{ fontSize: 11, color: 'var(--text-muted)' }}>
@@ -373,6 +392,7 @@ function FlatList({ lessons, selectedId, onSelect }) {
                 <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
                     <Pill color={TYPE_COLORS[l.lesson_type]} bg={`${TYPE_COLORS[l.lesson_type]}22`}>{l.lesson_type}</Pill>
                     <span style={{ fontSize: 11, color: 'var(--text-muted)' }}>{l.node_id}</span>
+                    {l._patched && <Pill color="#F59E0B" bg="rgba(245,158,11,0.15)">edited</Pill>}
                 </div>
                 <div style={{ fontSize: 14, fontWeight: 600 }}>{l.lesson_title}</div>
                 <div style={{ fontSize: 11, color: 'var(--text-muted)' }}>
@@ -406,20 +426,78 @@ function ReorderBtn({ disabled, onClick, dir, label, small = false }) {
     );
 }
 
-function LessonDetail({ lesson, base, onPlay }) {
+function LessonDetail({ lesson, base, mode, onPlay, onPatched }) {
     const playable = lesson.words.some(w => w.translation) || lesson.matches.length >= 3;
+    const patch = getLessonPatch(mode, lesson.id) || {};
+    const isPatched = (path) => Object.prototype.hasOwnProperty.call(patch, path);
+    const commit = (path, value) => { setLessonField(mode, lesson.id, path, value); onPatched?.(); };
+    const revert = (path) => { revertLessonField(mode, lesson.id, path); onPatched?.(); };
+    const revertAll = () => {
+        if (!Object.keys(patch).length) return;
+        if (!confirm(`Revert all ${Object.keys(patch).length} edits on this lesson?`)) return;
+        revertLesson(mode, lesson.id);
+        onPatched?.();
+    };
     return (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12 }}>
                 <div style={{ flex: 1, minWidth: 0 }}>
                     <div style={{ display: 'flex', gap: 8, alignItems: 'center', marginBottom: 6, flexWrap: 'wrap' }}>
-                        <Pill color={TYPE_COLORS[lesson.lesson_type]} bg={`${TYPE_COLORS[lesson.lesson_type]}22`}>{lesson.lesson_type}</Pill>
+                        <EditableTypePill
+                            value={lesson.lesson_type}
+                            patched={isPatched('lesson_type')}
+                            onCommit={(v) => commit('lesson_type', v)}
+                            onRevert={() => revert('lesson_type')}
+                        />
                         <Pill>{lesson.node_id}</Pill>
                         {lesson.quiz_id && <Pill color="#F26B5A" bg="rgba(242,107,90,0.1)">{lesson.quiz_id}</Pill>}
-                        <Pill>{lesson.xp_reward} XP</Pill>
+                        <EditablePill
+                            label="XP"
+                            value={lesson.xp_reward}
+                            type="number"
+                            min={0}
+                            max={999}
+                            patched={isPatched('xp_reward')}
+                            onCommit={(v) => commit('xp_reward', Math.max(0, Math.min(999, Number(v) || 0)))}
+                            onRevert={() => revert('xp_reward')}
+                        />
+                        <EditablePill
+                            label="sessions"
+                            value={lesson.sessions_required}
+                            placeholder="default"
+                            type="number"
+                            min={1}
+                            max={20}
+                            patched={isPatched('sessions_required')}
+                            onCommit={(v) => {
+                                const s = String(v).trim();
+                                if (!s) revert('sessions_required');
+                                else commit('sessions_required', Math.max(1, Math.min(20, Number(s) || 1)));
+                            }}
+                            onRevert={() => revert('sessions_required')}
+                        />
                         <Pill>unit {lesson.unit_index + 1}</Pill>
+                        {Object.keys(patch).length > 0 && (
+                            <button
+                                onClick={revertAll}
+                                title={`Revert all ${Object.keys(patch).length} edits on this lesson`}
+                                style={{
+                                    padding: '2px 8px', borderRadius: 999, border: '1px solid rgba(245,158,11,0.4)',
+                                    background: 'rgba(245,158,11,0.1)', color: '#B45309',
+                                    fontSize: 11, fontWeight: 600, cursor: 'pointer',
+                                    display: 'inline-flex', alignItems: 'center', gap: 4,
+                                }}
+                            >
+                                <Undo2 size={11} /> Revert all
+                            </button>
+                        )}
                     </div>
-                    <h2 style={{ margin: 0, fontSize: 20 }}>{lesson.lesson_title}</h2>
+                    <EditableTitle
+                        value={lesson.lesson_title}
+                        patched={isPatched('lesson_title')}
+                        onCommit={(v) => commit('lesson_title', v)}
+                        onRevert={() => revert('lesson_title')}
+                    />
                     <div style={{ fontSize: 13, color: 'var(--text-muted)', marginTop: 4 }}>{lesson.unit_title}</div>
                 </div>
                 <button
@@ -450,37 +528,386 @@ function LessonDetail({ lesson, base, onPlay }) {
                 } />
             </Section>
 
-            {lesson.words.length > 0 && (
-                <Section title={`Vocabulary (${lesson.words.length})`}>
-                    <Table cols={['Vietnamese', BASE_LABELS[base] || base, 'Category', 'IPA']} rows={lesson.words.map(w => [
-                        w.vi,
-                        w.translation || <Missing base={base} />,
-                        w.category,
-                        w.ipa || '—',
-                    ])} />
-                </Section>
-            )}
+            <EditableArrayTable
+                title="Vocabulary"
+                arrayName="words"
+                items={lesson.words}
+                fields={[
+                    { key: 'vi', label: 'Vietnamese' },
+                    { key: 'translation', label: BASE_LABELS[base] || base },
+                    { key: 'category', label: 'Category' },
+                    { key: 'ipa', label: 'IPA' },
+                ]}
+                op={getArrayOp(mode, lesson.id, 'words')}
+                base={base}
+                onEdit={(itemId, fields) => { editArrayItem(mode, lesson.id, 'words', itemId, fields); onPatched?.(); }}
+                onAdd={() => { addArrayItem(mode, lesson.id, 'words', { id: newItemId('w'), vi: '', translation: '', category: '', ipa: '' }); onPatched?.(); }}
+                onRemove={(itemId) => { removeArrayItem(mode, lesson.id, 'words', itemId); onPatched?.(); }}
+                onRevertItem={(itemId) => { revertArrayItem(mode, lesson.id, 'words', itemId); onPatched?.(); }}
+            />
 
-            {lesson.sentences.length > 0 && (
-                <Section title={`Sentences (${lesson.sentences.length})`}>
-                    <Table cols={['Vietnamese', BASE_LABELS[base] || base]} rows={lesson.sentences.map(s => [
-                        s.vi,
-                        s.translation || <Missing base={base} />,
-                    ])} />
-                </Section>
-            )}
+            <EditableArrayTable
+                title="Sentences"
+                arrayName="sentences"
+                items={lesson.sentences}
+                fields={[
+                    { key: 'vi', label: 'Vietnamese' },
+                    { key: 'translation', label: BASE_LABELS[base] || base },
+                ]}
+                op={getArrayOp(mode, lesson.id, 'sentences')}
+                base={base}
+                onEdit={(itemId, fields) => { editArrayItem(mode, lesson.id, 'sentences', itemId, fields); onPatched?.(); }}
+                onAdd={() => { addArrayItem(mode, lesson.id, 'sentences', { id: newItemId('s'), vi: '', translation: '' }); onPatched?.(); }}
+                onRemove={(itemId) => { removeArrayItem(mode, lesson.id, 'sentences', itemId); onPatched?.(); }}
+                onRevertItem={(itemId) => { revertArrayItem(mode, lesson.id, 'sentences', itemId); onPatched?.(); }}
+            />
 
-            {lesson.matches.length > 0 && (
-                <Section title={`Match-pairs (${lesson.matches.length})`}>
-                    <Table cols={['Text', 'Target']} rows={lesson.matches.map(m => [
-                        m.text,
-                        m.target || <Missing base={base} />,
-                    ])} />
-                </Section>
+            <EditableArrayTable
+                title="Match-pairs"
+                arrayName="matches"
+                items={lesson.matches}
+                fields={[
+                    { key: 'text', label: 'Text' },
+                    { key: 'target', label: 'Target' },
+                ]}
+                op={getArrayOp(mode, lesson.id, 'matches')}
+                base={base}
+                onEdit={(itemId, fields) => { editArrayItem(mode, lesson.id, 'matches', itemId, fields); onPatched?.(); }}
+                onAdd={() => { addArrayItem(mode, lesson.id, 'matches', { id: newItemId('m'), text: '', target: '' }); onPatched?.(); }}
+                onRemove={(itemId) => { removeArrayItem(mode, lesson.id, 'matches', itemId); onPatched?.(); }}
+                onRevertItem={(itemId) => { revertArrayItem(mode, lesson.id, 'matches', itemId); onPatched?.(); }}
+            />
+        </div>
+    );
+}
+
+// Fields whose edits are scoped to the current base language (so an EN teacher's
+// translation tweak doesn't leak into JA/ZH/KO views). Stored under `${key}_${base}`.
+const BASE_SCOPED_FIELDS = new Set(['translation', 'target']);
+
+function EditableArrayTable({ title, arrayName, items, fields, op, base, onEdit, onAdd, onRemove, onRevertItem }) {
+    const editedIds = new Set(Object.keys(op?.edits || {}));
+    const addedIds = new Set((op?.added || []).map(a => a.id));
+    const removedCount = (op?.removed || []).length;
+    const opActive = editedIds.size > 0 || addedIds.size > 0 || removedCount > 0;
+
+    return (
+        <div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
+                <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', color: 'var(--text-muted)', letterSpacing: 0.5 }}>
+                    {title} ({items.length})
+                </div>
+                {opActive && (
+                    <span style={{ fontSize: 10, color: '#B45309' }}>
+                        {editedIds.size > 0 && `${editedIds.size} edited`}
+                        {editedIds.size > 0 && (addedIds.size > 0 || removedCount > 0) && ' · '}
+                        {addedIds.size > 0 && `${addedIds.size} added`}
+                        {addedIds.size > 0 && removedCount > 0 && ' · '}
+                        {removedCount > 0 && `${removedCount} removed`}
+                    </span>
+                )}
+                <button
+                    onClick={onAdd}
+                    title={`Add new ${arrayName.replace(/s$/, '')}`}
+                    style={{
+                        marginLeft: 'auto',
+                        padding: '4px 10px', borderRadius: 6,
+                        border: '1px dashed var(--border-color)',
+                        background: 'transparent', color: 'var(--text-muted)',
+                        fontSize: 11, fontWeight: 600, cursor: 'pointer',
+                        display: 'inline-flex', alignItems: 'center', gap: 4,
+                    }}
+                >
+                    <Plus size={12} /> Add
+                </button>
+            </div>
+            {items.length === 0 ? (
+                <div style={{ padding: '12px', border: '1px dashed var(--border-color)', borderRadius: 'var(--radius-sm)', color: 'var(--text-muted)', fontSize: 12, textAlign: 'center' }}>
+                    No {arrayName} yet. Click <strong>+ Add</strong> to create one.
+                </div>
+            ) : (
+                <div style={{ border: '1px solid var(--border-color)', borderRadius: 'var(--radius-sm)', overflow: 'hidden', fontSize: 13 }}>
+                    <div style={{
+                        display: 'grid',
+                        gridTemplateColumns: `repeat(${fields.length}, 1fr) auto`,
+                        background: 'rgba(0,0,0,0.04)', padding: '6px 10px',
+                        fontWeight: 700, fontSize: 11, textTransform: 'uppercase', color: 'var(--text-muted)',
+                        gap: 8,
+                    }}>
+                        {fields.map(f => <div key={f.key}>{f.label}</div>)}
+                        <div style={{ width: 40 }}></div>
+                    </div>
+                    {items.map(item => {
+                        const isAdded = addedIds.has(item.id);
+                        const isEdited = editedIds.has(item.id);
+                        const rowAccent = isAdded ? 'rgba(16,185,129,0.08)' : isEdited ? 'rgba(245,158,11,0.08)' : 'transparent';
+                        const rowBorderLeft = isAdded ? '3px solid #10B981' : isEdited ? '3px solid #F59E0B' : '3px solid transparent';
+                        return (
+                            <div key={item.id} style={{
+                                display: 'grid',
+                                gridTemplateColumns: `repeat(${fields.length}, 1fr) auto`,
+                                padding: '4px 10px', borderTop: '1px solid var(--border-color)',
+                                background: rowAccent, borderLeft: rowBorderLeft,
+                                gap: 8, alignItems: 'center',
+                            }}>
+                                {fields.map(f => {
+                                    const storeKey = BASE_SCOPED_FIELDS.has(f.key) ? `${f.key}_${base}` : f.key;
+                                    return (
+                                        <EditableCell
+                                            key={f.key}
+                                            value={item[f.key] ?? ''}
+                                            placeholder={(f.key === 'translation' || f.key === 'target') && !item[f.key] ? `(no ${base.toUpperCase()})` : ''}
+                                            onCommit={(v) => onEdit(item.id, { [storeKey]: v })}
+                                        />
+                                    );
+                                })}
+                                <div style={{ display: 'flex', gap: 4, justifyContent: 'flex-end' }}>
+                                    {(isEdited || isAdded) && !isAdded && (
+                                        <button onClick={() => onRevertItem(item.id)} title="Revert this row" style={iconBtn('#F59E0B', true)}>
+                                            <Undo2 size={11} />
+                                        </button>
+                                    )}
+                                    <button onClick={() => { if (confirm(`Remove "${item[fields[0].key] || item.id}"?`)) onRemove(item.id); }} title="Remove this row" style={iconBtn('#F26B5A', true)}>
+                                        <Trash2 size={11} />
+                                    </button>
+                                </div>
+                            </div>
+                        );
+                    })}
+                </div>
             )}
         </div>
     );
 }
+
+function EditableCell({ value, placeholder, onCommit }) {
+    const [editing, setEditing] = useState(false);
+    const [draft, setDraft] = useState(String(value));
+    const inputRef = useRef(null);
+    useEffect(() => { setDraft(String(value)); }, [value]);
+    useEffect(() => { if (editing) { inputRef.current?.focus(); inputRef.current?.select(); } }, [editing]);
+
+    const save = () => {
+        if (draft !== String(value)) onCommit(draft);
+        setEditing(false);
+    };
+    const cancel = () => { setDraft(String(value)); setEditing(false); };
+
+    if (editing) {
+        return (
+            <input
+                ref={inputRef}
+                value={draft}
+                onChange={(e) => setDraft(e.target.value)}
+                onBlur={save}
+                onKeyDown={(e) => { if (e.key === 'Enter') save(); else if (e.key === 'Escape') cancel(); }}
+                style={{
+                    width: '100%', padding: '4px 6px',
+                    border: '2px solid var(--primary-color)', borderRadius: 4,
+                    background: 'var(--bg-color)', color: 'var(--text-main)',
+                    font: 'inherit',
+                }}
+            />
+        );
+    }
+    const empty = !value;
+    return (
+        <div
+            onClick={() => setEditing(true)}
+            title="Click to edit"
+            style={{
+                padding: '4px 6px', cursor: 'pointer',
+                borderRadius: 4, minHeight: 22,
+                color: empty ? 'var(--text-muted)' : 'var(--text-main)',
+                fontStyle: empty ? 'italic' : 'normal',
+                wordBreak: 'break-word',
+                border: '1px solid transparent',
+            }}
+            onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'var(--border-color)'; }}
+            onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'transparent'; }}
+        >
+            {empty ? (placeholder || '—') : value}
+        </div>
+    );
+}
+
+const LESSON_TYPES = ['Phonetics', 'Vocabulary', 'Grammar', 'Scene', 'Quiz', 'Placement'];
+
+// Note: type change is label/color only at this stage. The exercise engine still
+// treats the lesson's existing content (words/sentences/matches) the same way —
+// changing Phonetics → Grammar does NOT regenerate exercises or alter behavior.
+function EditableTypePill({ value, patched, onCommit, onRevert }) {
+    const color = TYPE_COLORS[value] || 'var(--text-muted)';
+    return (
+        <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+            <span style={{
+                position: 'relative',
+                fontSize: 11, fontWeight: 600,
+                borderRadius: 999,
+                background: `${color}22`,
+                color,
+                outline: patched ? '1px solid #F59E0B' : 'none',
+                outlineOffset: patched ? 1 : 0,
+            }}>
+                <select
+                    value={value}
+                    onChange={(e) => onCommit(e.target.value)}
+                    title="Change lesson type (label only — does not regenerate exercises)"
+                    style={{
+                        appearance: 'none',
+                        WebkitAppearance: 'none',
+                        background: 'transparent',
+                        border: 'none',
+                        color: 'inherit',
+                        font: 'inherit',
+                        padding: '2px 18px 2px 8px',
+                        cursor: 'pointer',
+                        borderRadius: 999,
+                    }}
+                >
+                    {LESSON_TYPES.map(t => <option key={t} value={t}>{t}</option>)}
+                </select>
+                <span style={{ position: 'absolute', right: 6, top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none', fontSize: 9 }}>▾</span>
+            </span>
+            {patched && (
+                <button onClick={onRevert} title="Revert type to canonical" style={iconBtn('#F59E0B', true)}>
+                    <Undo2 size={11} />
+                </button>
+            )}
+        </span>
+    );
+}
+
+function EditableTitle({ value, patched, onCommit, onRevert }) {
+    const [editing, setEditing] = useState(false);
+    const [draft, setDraft] = useState(value);
+    const inputRef = useRef(null);
+    useEffect(() => { setDraft(value); }, [value]);
+    useEffect(() => { if (editing) inputRef.current?.focus(); }, [editing]);
+
+    const save = () => {
+        const trimmed = draft.trim();
+        if (trimmed && trimmed !== value) onCommit(trimmed);
+        setEditing(false);
+    };
+    const cancel = () => { setDraft(value); setEditing(false); };
+
+    if (editing) {
+        return (
+            <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
+                <input
+                    ref={inputRef}
+                    value={draft}
+                    onChange={(e) => setDraft(e.target.value)}
+                    onKeyDown={(e) => { if (e.key === 'Enter') save(); else if (e.key === 'Escape') cancel(); }}
+                    style={{
+                        fontSize: 20, fontWeight: 700, padding: '4px 8px',
+                        border: '2px solid var(--primary-color)', borderRadius: 6,
+                        background: 'var(--bg-color)', color: 'var(--text-main)',
+                        flex: 1, minWidth: 0,
+                    }}
+                />
+                <button onClick={save} title="Save (Enter)" style={iconBtn('#10B981')}><Check size={16} /></button>
+                <button onClick={cancel} title="Cancel (Esc)" style={iconBtn('#F26B5A')}><X size={16} /></button>
+            </div>
+        );
+    }
+    return (
+        <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' }}>
+            <h2
+                onClick={() => setEditing(true)}
+                title="Click to edit title"
+                style={{
+                    margin: 0, fontSize: 20, cursor: 'pointer',
+                    borderBottom: '1px dashed transparent',
+                    padding: '2px 4px', borderRadius: 4,
+                    color: patched ? '#B45309' : 'var(--text-main)',
+                }}
+                onMouseEnter={(e) => { e.currentTarget.style.borderBottomColor = 'var(--border-color)'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.borderBottomColor = 'transparent'; }}
+            >
+                {value} <Pencil size={13} style={{ opacity: 0.4, verticalAlign: 'middle' }} />
+            </h2>
+            {patched && (
+                <button onClick={onRevert} title="Revert to canonical" style={iconBtn('#F59E0B', true)}>
+                    <Undo2 size={13} />
+                </button>
+            )}
+        </div>
+    );
+}
+
+function EditablePill({ label, value, placeholder, type = 'text', min, max, patched, onCommit, onRevert }) {
+    const valueStr = value == null ? '' : String(value);
+    const [editing, setEditing] = useState(false);
+    const [draft, setDraft] = useState(valueStr);
+    const inputRef = useRef(null);
+    useEffect(() => { setDraft(valueStr); }, [valueStr]);
+    useEffect(() => { if (editing) inputRef.current?.select(); }, [editing]);
+
+    const save = () => {
+        if (draft !== valueStr) onCommit(draft);
+        setEditing(false);
+    };
+    const cancel = () => { setDraft(valueStr); setEditing(false); };
+
+    if (editing) {
+        return (
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+                <input
+                    ref={inputRef}
+                    type={type}
+                    min={min}
+                    max={max}
+                    value={draft}
+                    onChange={(e) => setDraft(e.target.value)}
+                    onBlur={save}
+                    onKeyDown={(e) => { if (e.key === 'Enter') save(); else if (e.key === 'Escape') cancel(); }}
+                    style={{
+                        width: 60, fontSize: 11, fontWeight: 600,
+                        padding: '2px 6px', borderRadius: 999,
+                        border: '2px solid var(--primary-color)',
+                        background: 'var(--bg-color)', color: 'var(--text-main)',
+                    }}
+                />
+                <span style={{ fontSize: 11, color: 'var(--text-muted)' }}>{label}</span>
+            </span>
+        );
+    }
+    const empty = valueStr === '';
+    return (
+        <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+            <button
+                onClick={() => setEditing(true)}
+                title={`Click to edit ${label}`}
+                style={{
+                    fontSize: 11, fontWeight: 600, padding: '2px 8px', borderRadius: 999,
+                    background: patched ? 'rgba(245,158,11,0.15)' : 'rgba(0,0,0,0.05)',
+                    color: patched ? '#B45309' : 'var(--text-muted)',
+                    border: 'none', cursor: 'pointer', whiteSpace: 'nowrap',
+                    fontStyle: empty ? 'italic' : 'normal',
+                }}
+            >
+                {empty ? (placeholder || '—') : value} {label}
+            </button>
+            {patched && (
+                <button onClick={onRevert} title={`Revert ${label} to canonical`} style={iconBtn('#F59E0B', true)}>
+                    <Undo2 size={11} />
+                </button>
+            )}
+        </span>
+    );
+}
+
+const iconBtn = (color, small = false) => ({
+    background: 'transparent',
+    border: '1px solid ' + color,
+    color,
+    borderRadius: 6,
+    padding: small ? 2 : 4,
+    cursor: 'pointer',
+    display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+});
 
 const Section = ({ title, children }) => (
     <div>
@@ -494,25 +921,6 @@ const KV = ({ k, v }) => (
         <div style={{ width: 110, color: 'var(--text-muted)', flexShrink: 0 }}>{k}</div>
         <div style={{ flex: 1, fontFamily: 'ui-monospace, monospace', wordBreak: 'break-word' }}>{v}</div>
     </div>
-);
-
-const Table = ({ cols, rows }) => (
-    <div style={{ border: '1px solid var(--border-color)', borderRadius: 'var(--radius-sm)', overflow: 'hidden', fontSize: 13 }}>
-        <div style={{ display: 'grid', gridTemplateColumns: `repeat(${cols.length}, 1fr)`, background: 'rgba(0,0,0,0.04)', padding: '6px 10px', fontWeight: 700, fontSize: 11, textTransform: 'uppercase', color: 'var(--text-muted)' }}>
-            {cols.map(c => <div key={c}>{c}</div>)}
-        </div>
-        {rows.map((r, i) => (
-            <div key={i} style={{ display: 'grid', gridTemplateColumns: `repeat(${cols.length}, 1fr)`, padding: '6px 10px', borderTop: '1px solid var(--border-color)' }}>
-                {r.map((cell, j) => <div key={j} style={{ wordBreak: 'break-word' }}>{cell}</div>)}
-            </div>
-        ))}
-    </div>
-);
-
-const Missing = ({ base }) => (
-    <span style={{ color: 'var(--text-muted)', fontStyle: 'italic', fontSize: 12 }}>
-        — no {base.toUpperCase()} translation (falls back to EN at runtime)
-    </span>
 );
 
 const selectStyle = {

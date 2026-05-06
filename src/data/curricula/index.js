@@ -122,6 +122,14 @@ function resolveBase(uiLang) {
     return BASE_FROM_UI_LANG[uiLang] || uiLang || DEFAULT_BASE;
 }
 
+function unwrapBaseScoped(item, field, base) {
+    const key = `${field}_${base}`;
+    if (item && Object.prototype.hasOwnProperty.call(item, key)) {
+        return { ...item, [field]: item[key] };
+    }
+    return item;
+}
+
 function lookupTr(lessonId, itemId, ltKey, base) {
     const a = TRANSLATIONS[base]?.[ltKey]?.translations?.[lessonId]?.[itemId];
     if (a) return a;
@@ -152,6 +160,8 @@ function composeTrack(ltKey, base) {
         // the seeding file — usually EN — so non-EN UIs need explicit lookup).
         lesson_title_localized: titlesForBase[l.id] || titlesEn[l.id] || l.lesson_title,
         unit_title_localized: titlesForBase[`unit:${l.unit_index}`] || titlesEn[`unit:${l.unit_index}`] || l.unit_title,
+        // Seeded so admin patches at path "sessions_required" can land. null = use engine default.
+        sessions_required: l.sessions_required ?? null,
         words: l.words.map(w => ({ ...w, translation: lookupTr(l.id, w.id, ltKey, base) })),
         sentences: l.sentences.map(s => ({ ...s, translation: lookupTr(l.id, s.id, ltKey, base) })),
         matches: l.matches.map(m => ({ ...m, target: lookupTr(l.id, m.id, ltKey, base) })),
@@ -197,6 +207,18 @@ export function getCurriculum(modeId = DEFAULT_MODE, uiLang = 'en') {
         units: allUnits,
         lessons: allLessons,
     }, modeId);
+
+    // Unwrap base-scoped admin patches. Translation/target edits in the admin
+    // are stored as `translation_<base>` / `target_<base>` so an EN teacher's
+    // tweak doesn't leak into the JA/ZH/KO views. composeTrack put the
+    // looked-up base value on `translation`/`target`; here we let an explicit
+    // base-suffixed override win.
+    composedCurriculum.lessons = composedCurriculum.lessons.map(l => ({
+        ...l,
+        words:     l.words.map(w => unwrapBaseScoped(w, 'translation', base)),
+        sentences: l.sentences.map(s => unwrapBaseScoped(s, 'translation', base)),
+        matches:   l.matches.map(m => unwrapBaseScoped(m, 'target', base)),
+    }));
 
     composedCurriculum.meta.stats = {
         units: composedCurriculum.units.length,
