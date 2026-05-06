@@ -264,6 +264,13 @@ export function getAvailableBases() {
     return Object.keys(manifest.bases);
 }
 
+/** True iff this mode's tracks resolve to at least one lesson. */
+export function isModeAvailable(modeId) {
+    const tracks = MODE_TRACKS[modeId];
+    if (!tracks?.length) return false;
+    return tracks.some(lt => (CANONICAL_BY_LT[lt]?.lessons?.length || 0) > 0);
+}
+
 /**
  * Convert a study_import lesson into the LESSON_DEFS shape used by the existing
  * exercise generator (db.js → buildFromDefs). Words/sentences flattened, with

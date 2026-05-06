@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Play, ArrowUp, ArrowDown, RotateCcw, Download, Upload, Pencil, Check, X, Undo2, Plus, Trash2 } from 'lucide-react';
-import { getCurriculum, getCoverage, getAvailableBases, loadBase, isBaseLoaded } from '../../data/curricula';
+import { getCurriculum, getCoverage, getAvailableBases, loadBase, isBaseLoaded, isModeAvailable } from '../../data/curricula';
 import {
     hasOverrides,
     resetMode,
@@ -221,7 +221,7 @@ export default function CurriculumPreview() {
                     <label style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
                         <span style={{ fontSize: 11, color: 'var(--text-muted)' }}>Mode</span>
                         <select value={mode} onChange={e => { setMode(e.target.value); setSelectedLessonId(null); }} style={selectStyle}>
-                            {MODES.map(m => <option key={m.id} value={m.id}>{m.label}</option>)}
+                            {MODES.filter(m => isModeAvailable(m.id)).map(m => <option key={m.id} value={m.id}>{m.label}</option>)}
                         </select>
                     </label>
                     <label style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
