@@ -1,0 +1,582 @@
+{
+  "meta": {
+    "mode": "explore_vietnam",
+    "chapter": "c1",
+    "version": "1.0.0",
+    "generated": "2026-05-21T00:00:00.000Z",
+    "source": "authored",
+    "extends": "explore_vietnam_b2",
+    "stats": { "units": 6, "lessons": 20, "vocabulary": 160, "sentences": 80, "conversations": 20, "grammarTags": 18 },
+    "notes": "C1 advanced chapter: relationships, history, arts, law, healthcare, regional Vietnam. Continues Explore Vietnam after Unit 27. Rotates personal / cultural / civic / practical / place domains for balance."
+  },
+  "units": [
+    { "id": "unit_28_relationships", "order": 28, "title": "Relationships & Conflict", "description": "Dating, friendship, loyalty, apology. Emotional register and hedging." },
+    { "id": "unit_29_history", "order": 29, "title": "Vietnamese History", "description": "Dynasties, colonial era, wars of independence, modern Vietnam." },
+    { "id": "unit_30_arts", "order": 30, "title": "Arts, Music & Literature", "description": "Traditional music, poetry, visual arts. Figurative and descriptive language." },
+    { "id": "unit_31_law", "order": 31, "title": "Law & Civic Life", "description": "Government, legal procedures, rights and citizenship. Formal register." },
+    { "id": "unit_32_healthcare", "order": 32, "title": "Healthcare in Depth", "description": "Doctor visits, mental health, pharmacy, emergencies." },
+    { "id": "unit_33_regional", "order": 33, "title": "Regional Vietnam & Dialects", "description": "North–South–Central differences, ethnic minorities, regional cuisine." }
+  ],
+  "lessons": [
+    {
+      "id": "lesson_093", "unit": "phase_28_relationships", "title": "Dating & Romance", "nodeId": "u28_L093", "quizId": "u28_Q093", "quizLabel": "Dating Quiz", "nodeIndex": 1, "difficulty": 7, "cefr": "C1", "xp": 30, "topic": "basics", "focus": ["romance", "emotion"],
+      "words": [
+        { "id": "it_w_0733", "vi": "Hẹn hò", "en": "Date / dating", "pos": "verb", "difficulty": 7, "frequency": 733 },
+        { "id": "it_w_0734", "vi": "Người yêu", "en": "Romantic partner", "pos": "noun", "difficulty": 7, "frequency": 734 },
+        { "id": "it_w_0735", "vi": "Tỏ tình", "en": "Confess feelings", "pos": "verb", "difficulty": 7, "frequency": 735 },
+        { "id": "it_w_0736", "vi": "Cảm nắng", "en": "Have a crush (slang)", "pos": "verb", "difficulty": 7, "frequency": 736 },
+        { "id": "it_w_0737", "vi": "Chia tay", "en": "Break up", "pos": "verb", "difficulty": 7, "frequency": 737 },
+        { "id": "it_w_0738", "vi": "Đính hôn", "en": "Get engaged", "pos": "verb", "difficulty": 7, "frequency": 738 },
+        { "id": "it_w_0739", "vi": "Chân thành", "en": "Sincere", "pos": "adjective", "difficulty": 7, "frequency": 739 },
+        { "id": "it_w_0740", "vi": "Dành tình cảm", "en": "Develop feelings", "pos": "phrase", "difficulty": 7, "frequency": 740 }
+      ],
+      "sentences": [
+        { "id": "it_s_0540", "vi": "Bọn mình mới hẹn hò được ba tháng.", "en": "We just started dating three months ago.", "accepted": ["We just started dating three months ago."], "tokens": 8, "difficulty": 7 },
+        { "id": "it_s_0541", "vi": "Anh ấy đã tỏ tình một cách chân thành.", "en": "He confessed his feelings sincerely.", "accepted": ["He confessed his feelings sincerely."], "tokens": 8, "difficulty": 7 },
+        { "id": "it_s_0542", "vi": "Có vẻ như cô ấy đang cảm nắng ai đó.", "en": "It seems like she has a crush on someone.", "accepted": ["It seems like she has a crush on someone."], "tokens": 9, "difficulty": 7 },
+        { "id": "it_s_0543", "vi": "Họ đã đính hôn vào mùa xuân năm ngoái.", "en": "They got engaged last spring.", "accepted": ["They got engaged last spring."], "tokens": 8, "difficulty": 7 }
+      ],
+      "conversations": [
+        { "id": "CV086", "title": "Crushing", "context": "Two friends gossiping at a café.", "lines": [
+          { "speaker": "A", "vi": "Hình như mình đang cảm nắng anh đồng nghiệp mới.", "en": "I think I have a crush on the new coworker." },
+          { "speaker": "B", "vi": "Vậy thì rủ đi cà phê đi.", "en": "Then invite him for coffee." },
+          { "speaker": "A", "vi": "Sợ anh ấy có người yêu rồi.", "en": "I'm worried he already has a partner." },
+          { "speaker": "B", "vi": "Cứ thử, biết đâu duyên đến.", "en": "Just try, maybe fate's on your side." }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_094", "unit": "phase_28_relationships", "title": "Friendship & Loyalty", "nodeId": "u28_L094", "quizId": "u28_Q094", "quizLabel": "Friendship Quiz", "nodeIndex": 2, "difficulty": 7, "cefr": "C1", "xp": 30, "topic": "basics", "focus": ["friendship", "trust"],
+      "words": [
+        { "id": "it_w_0741", "vi": "Bạn thân", "en": "Close friend", "pos": "noun", "difficulty": 7, "frequency": 741 },
+        { "id": "it_w_0742", "vi": "Lòng trung thành", "en": "Loyalty", "pos": "noun", "difficulty": 7, "frequency": 742 },
+        { "id": "it_w_0743", "vi": "Phản bội", "en": "Betray", "pos": "verb", "difficulty": 7, "frequency": 743 },
+        { "id": "it_w_0744", "vi": "Bên cạnh", "en": "Be there for", "pos": "phrase", "difficulty": 7, "frequency": 744 },
+        { "id": "it_w_0745", "vi": "Thông cảm", "en": "Sympathize", "pos": "verb", "difficulty": 7, "frequency": 745 },
+        { "id": "it_w_0746", "vi": "Chia sẻ", "en": "Share / open up", "pos": "verb", "difficulty": 7, "frequency": 746 },
+        { "id": "it_w_0747", "vi": "Tâm sự", "en": "Confide", "pos": "verb", "difficulty": 7, "frequency": 747 },
+        { "id": "it_w_0748", "vi": "Gắn bó", "en": "Bonded / attached", "pos": "adjective", "difficulty": 7, "frequency": 748 }
+      ],
+      "sentences": [
+        { "id": "it_s_0544", "vi": "Mình và bạn ấy gắn bó từ thời cấp ba.", "en": "She and I have been close since high school.", "accepted": ["She and I have been close since high school."], "tokens": 9, "difficulty": 7 },
+        { "id": "it_s_0545", "vi": "Tôi luôn bên cạnh bạn lúc khó khăn.", "en": "I'll always be there for you in tough times.", "accepted": ["I'll always be there for you in tough times."], "tokens": 7, "difficulty": 7 },
+        { "id": "it_s_0546", "vi": "Sự phản bội ấy thật khó tha thứ.", "en": "That betrayal is hard to forgive.", "accepted": ["That betrayal is hard to forgive."], "tokens": 7, "difficulty": 7 },
+        { "id": "it_s_0547", "vi": "Cảm ơn vì đã lắng nghe mình tâm sự.", "en": "Thanks for listening to me open up.", "accepted": ["Thanks for listening to me open up."], "tokens": 8, "difficulty": 7 }
+      ],
+      "conversations": [
+        { "id": "CV087", "title": "Heart-to-heart", "context": "A friend leans on another.", "lines": [
+          { "speaker": "A", "vi": "Dạo này mình mệt mỏi quá.", "en": "I've been so worn out lately." },
+          { "speaker": "B", "vi": "Có chuyện gì kể mình nghe đi.", "en": "Tell me what's going on." },
+          { "speaker": "A", "vi": "Mình cảm thấy bị bạn thân phản bội.", "en": "I feel betrayed by a close friend." },
+          { "speaker": "B", "vi": "Mình thông cảm. Cứ tâm sự, mình ở đây.", "en": "I understand. Talk to me, I'm here." }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_095", "unit": "phase_28_relationships", "title": "Conflict & Apology", "nodeId": "u28_L095", "quizId": "u28_Q095", "quizLabel": "Conflict Quiz", "nodeIndex": 3, "difficulty": 7, "cefr": "C1", "xp": 30, "topic": "basics", "focus": ["conflict", "apology"],
+      "words": [
+        { "id": "it_w_0749", "vi": "Cãi nhau", "en": "Argue", "pos": "verb", "difficulty": 7, "frequency": 749 },
+        { "id": "it_w_0750", "vi": "Hiểu lầm", "en": "Misunderstand", "pos": "verb", "difficulty": 7, "frequency": 750 },
+        { "id": "it_w_0751", "vi": "Xin lỗi chân thành", "en": "Sincere apology", "pos": "phrase", "difficulty": 7, "frequency": 751 },
+        { "id": "it_w_0752", "vi": "Hòa giải", "en": "Reconcile", "pos": "verb", "difficulty": 7, "frequency": 752 },
+        { "id": "it_w_0753", "vi": "Tha thứ", "en": "Forgive", "pos": "verb", "difficulty": 7, "frequency": 753 },
+        { "id": "it_w_0754", "vi": "Tổn thương", "en": "Hurt (emotionally)", "pos": "verb", "difficulty": 7, "frequency": 754 },
+        { "id": "it_w_0755", "vi": "Giải thích", "en": "Explain", "pos": "verb", "difficulty": 7, "frequency": 755 },
+        { "id": "it_w_0756", "vi": "Bỏ qua", "en": "Let go / overlook", "pos": "verb", "difficulty": 7, "frequency": 756 }
+      ],
+      "sentences": [
+        { "id": "it_s_0548", "vi": "Có lẽ chúng ta đã hiểu lầm nhau.", "en": "Perhaps we've misunderstood each other.", "accepted": ["Perhaps we've misunderstood each other."], "tokens": 7, "difficulty": 7 },
+        { "id": "it_s_0549", "vi": "Mình xin lỗi vì đã làm bạn tổn thương.", "en": "I'm sorry for hurting you.", "accepted": ["I'm sorry for hurting you."], "tokens": 8, "difficulty": 7 },
+        { "id": "it_s_0550", "vi": "Mong bạn có thể tha thứ và bỏ qua.", "en": "I hope you can forgive and let it go.", "accepted": ["I hope you can forgive and let it go."], "tokens": 8, "difficulty": 7 },
+        { "id": "it_s_0551", "vi": "Hai bên đã hòa giải sau buổi nói chuyện.", "en": "The two sides reconciled after the talk.", "accepted": ["The two sides reconciled after the talk."], "tokens": 8, "difficulty": 7 }
+      ],
+      "conversations": [
+        { "id": "CV088", "title": "Making up", "context": "Resolving a fight.", "lines": [
+          { "speaker": "A", "vi": "Mình xin lỗi vì hôm qua đã to tiếng.", "en": "I'm sorry I raised my voice yesterday." },
+          { "speaker": "B", "vi": "Mình cũng có lỗi, đã không lắng nghe.", "en": "I was wrong too, I didn't listen." },
+          { "speaker": "A", "vi": "Mong bạn bỏ qua cho mình.", "en": "Please let it go." },
+          { "speaker": "B", "vi": "Tất nhiên rồi, mình hòa nhé.", "en": "Of course. Let's make up." }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_096", "unit": "phase_29_history", "title": "Dynasties & Heroes", "nodeId": "u29_L096", "quizId": "u29_Q096", "quizLabel": "Dynasties Quiz", "nodeIndex": 1, "difficulty": 7, "cefr": "C1", "xp": 30, "topic": "basics", "focus": ["history", "narrative"],
+      "words": [
+        { "id": "it_w_0757", "vi": "Triều đại", "en": "Dynasty", "pos": "noun", "difficulty": 7, "frequency": 757 },
+        { "id": "it_w_0758", "vi": "Vua", "en": "King", "pos": "noun", "difficulty": 7, "frequency": 758 },
+        { "id": "it_w_0759", "vi": "Anh hùng dân tộc", "en": "National hero", "pos": "noun", "difficulty": 7, "frequency": 759 },
+        { "id": "it_w_0760", "vi": "Khởi nghĩa", "en": "Uprising", "pos": "noun", "difficulty": 7, "frequency": 760 },
+        { "id": "it_w_0761", "vi": "Cổ đại", "en": "Ancient", "pos": "adjective", "difficulty": 7, "frequency": 761 },
+        { "id": "it_w_0762", "vi": "Sử sách", "en": "Historical records", "pos": "noun", "difficulty": 7, "frequency": 762 },
+        { "id": "it_w_0763", "vi": "Đánh bại", "en": "Defeat", "pos": "verb", "difficulty": 7, "frequency": 763 },
+        { "id": "it_w_0764", "vi": "Lãnh đạo", "en": "Lead / leader", "pos": "verb", "difficulty": 7, "frequency": 764 }
+      ],
+      "sentences": [
+        { "id": "it_s_0552", "vi": "Triều đại nhà Lý kéo dài hơn hai trăm năm.", "en": "The Ly dynasty lasted over two hundred years.", "accepted": ["The Ly dynasty lasted over two hundred years."], "tokens": 9, "difficulty": 7 },
+        { "id": "it_s_0553", "vi": "Hai Bà Trưng đã lãnh đạo cuộc khởi nghĩa năm 40.", "en": "The Trung Sisters led an uprising in year 40.", "accepted": ["The Trung Sisters led an uprising in year 40."], "tokens": 9, "difficulty": 7 },
+        { "id": "it_s_0554", "vi": "Trần Hưng Đạo đã đánh bại quân Nguyên Mông.", "en": "Tran Hung Dao defeated the Mongol armies.", "accepted": ["Tran Hung Dao defeated the Mongol armies."], "tokens": 8, "difficulty": 7 },
+        { "id": "it_s_0555", "vi": "Sử sách ghi lại nhiều câu chuyện cổ đại.", "en": "Historical records preserve many ancient stories.", "accepted": ["Historical records preserve many ancient stories."], "tokens": 8, "difficulty": 7 }
+      ],
+      "conversations": [
+        { "id": "CV089", "title": "At the museum", "context": "A guide and visitor.", "lines": [
+          { "speaker": "Guide", "vi": "Đây là tượng vua Lý Thái Tổ.", "en": "This is the statue of King Ly Thai To." },
+          { "speaker": "Visitor", "vi": "Ngài đã làm gì cho đất nước?", "en": "What did he do for the country?" },
+          { "speaker": "Guide", "vi": "Ngài dời đô về Thăng Long, nay là Hà Nội.", "en": "He moved the capital to Thang Long, now Hanoi." },
+          { "speaker": "Visitor", "vi": "Thật là một anh hùng dân tộc.", "en": "Truly a national hero." }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_097", "unit": "phase_29_history", "title": "French Colonial Era", "nodeId": "u29_L097", "quizId": "u29_Q097", "quizLabel": "Colonial Era Quiz", "nodeIndex": 2, "difficulty": 7, "cefr": "C1", "xp": 30, "topic": "basics", "focus": ["history", "colonial"],
+      "words": [
+        { "id": "it_w_0765", "vi": "Thuộc địa", "en": "Colony", "pos": "noun", "difficulty": 7, "frequency": 765 },
+        { "id": "it_w_0766", "vi": "Thực dân", "en": "Colonialist", "pos": "noun", "difficulty": 7, "frequency": 766 },
+        { "id": "it_w_0767", "vi": "Đô hộ", "en": "Rule / dominate", "pos": "verb", "difficulty": 7, "frequency": 767 },
+        { "id": "it_w_0768", "vi": "Kháng chiến", "en": "Resistance", "pos": "noun", "difficulty": 7, "frequency": 768 },
+        { "id": "it_w_0769", "vi": "Bóc lột", "en": "Exploit", "pos": "verb", "difficulty": 7, "frequency": 769 },
+        { "id": "it_w_0770", "vi": "Hiệp ước", "en": "Treaty", "pos": "noun", "difficulty": 7, "frequency": 770 },
+        { "id": "it_w_0771", "vi": "Phong trào", "en": "Movement", "pos": "noun", "difficulty": 7, "frequency": 771 },
+        { "id": "it_w_0772", "vi": "Yêu nước", "en": "Patriotic", "pos": "adjective", "difficulty": 7, "frequency": 772 }
+      ],
+      "sentences": [
+        { "id": "it_s_0556", "vi": "Việt Nam là thuộc địa của Pháp gần 80 năm.", "en": "Vietnam was a French colony for nearly 80 years.", "accepted": ["Vietnam was a French colony for nearly 80 years."], "tokens": 9, "difficulty": 7 },
+        { "id": "it_s_0557", "vi": "Nhiều phong trào yêu nước đã nổi lên.", "en": "Many patriotic movements arose.", "accepted": ["Many patriotic movements arose."], "tokens": 7, "difficulty": 7 },
+        { "id": "it_s_0558", "vi": "Người dân bị bóc lột nặng nề.", "en": "The people were heavily exploited.", "accepted": ["The people were heavily exploited."], "tokens": 6, "difficulty": 7 },
+        { "id": "it_s_0559", "vi": "Hiệp ước được ký kết vào năm 1884.", "en": "The treaty was signed in 1884.", "accepted": ["The treaty was signed in 1884."], "tokens": 7, "difficulty": 7 }
+      ],
+      "conversations": [
+        { "id": "CV090", "title": "Old quarter walk", "context": "A teacher explains colonial architecture.", "lines": [
+          { "speaker": "Teacher", "vi": "Tòa nhà này được xây từ thời Pháp thuộc.", "en": "This building dates from the French colonial period." },
+          { "speaker": "Student", "vi": "Lúc đó cuộc sống người dân ra sao ạ?", "en": "How was people's life back then?" },
+          { "speaker": "Teacher", "vi": "Rất khổ, người dân bị đô hộ và bóc lột.", "en": "Very hard — people were ruled and exploited." },
+          { "speaker": "Student", "vi": "Em hiểu vì sao phong trào yêu nước lại mạnh.", "en": "I see why the patriotic movements were strong." }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_098", "unit": "phase_29_history", "title": "Wars & Independence", "nodeId": "u29_L098", "quizId": "u29_Q098", "quizLabel": "Independence Quiz", "nodeIndex": 3, "difficulty": 7, "cefr": "C1", "xp": 30, "topic": "basics", "focus": ["war", "independence"],
+      "words": [
+        { "id": "it_w_0773", "vi": "Chiến tranh", "en": "War", "pos": "noun", "difficulty": 7, "frequency": 773 },
+        { "id": "it_w_0774", "vi": "Độc lập", "en": "Independence", "pos": "noun", "difficulty": 7, "frequency": 774 },
+        { "id": "it_w_0775", "vi": "Thống nhất", "en": "Reunify", "pos": "verb", "difficulty": 7, "frequency": 775 },
+        { "id": "it_w_0776", "vi": "Hy sinh", "en": "Sacrifice", "pos": "verb", "difficulty": 7, "frequency": 776 },
+        { "id": "it_w_0777", "vi": "Quân đội", "en": "Army", "pos": "noun", "difficulty": 7, "frequency": 777 },
+        { "id": "it_w_0778", "vi": "Hòa bình", "en": "Peace", "pos": "noun", "difficulty": 7, "frequency": 778 },
+        { "id": "it_w_0779", "vi": "Tuyên ngôn", "en": "Declaration", "pos": "noun", "difficulty": 7, "frequency": 779 },
+        { "id": "it_w_0780", "vi": "Giải phóng", "en": "Liberate", "pos": "verb", "difficulty": 7, "frequency": 780 }
+      ],
+      "sentences": [
+        { "id": "it_s_0560", "vi": "Năm 1945, Việt Nam tuyên bố độc lập.", "en": "In 1945, Vietnam declared independence.", "accepted": ["In 1945, Vietnam declared independence."], "tokens": 7, "difficulty": 7 },
+        { "id": "it_s_0561", "vi": "Đất nước thống nhất vào năm 1975.", "en": "The country was reunified in 1975.", "accepted": ["The country was reunified in 1975."], "tokens": 7, "difficulty": 7 },
+        { "id": "it_s_0562", "vi": "Nhiều thế hệ đã hy sinh vì hòa bình.", "en": "Many generations sacrificed for peace.", "accepted": ["Many generations sacrificed for peace."], "tokens": 8, "difficulty": 7 },
+        { "id": "it_s_0563", "vi": "Tuyên ngôn độc lập được đọc tại Ba Đình.", "en": "The Declaration of Independence was read at Ba Dinh.", "accepted": ["The Declaration of Independence was read at Ba Dinh."], "tokens": 8, "difficulty": 7 }
+      ],
+      "conversations": [
+        { "id": "CV091", "title": "National Day", "context": "Two friends visit Ba Dinh Square.", "lines": [
+          { "speaker": "A", "vi": "Đây là nơi đọc tuyên ngôn độc lập đó.", "en": "This is where the Declaration of Independence was read." },
+          { "speaker": "B", "vi": "Vào ngày mùng hai tháng chín năm 1945.", "en": "On the second of September, 1945." },
+          { "speaker": "A", "vi": "Bao nhiêu hy sinh để có hôm nay.", "en": "So many sacrifices for today." },
+          { "speaker": "B", "vi": "Phải biết trân trọng hòa bình.", "en": "We must cherish peace." }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_099", "unit": "phase_29_history", "title": "Modern Vietnam", "nodeId": "u29_L099", "quizId": "u29_Q099", "quizLabel": "Modern Quiz", "nodeIndex": 4, "difficulty": 7, "cefr": "C1", "xp": 30, "topic": "basics", "focus": ["modern", "reform"],
+      "words": [
+        { "id": "it_w_0781", "vi": "Đổi mới", "en": "Doi Moi (Renovation)", "pos": "noun", "difficulty": 7, "frequency": 781 },
+        { "id": "it_w_0782", "vi": "Cải cách", "en": "Reform", "pos": "noun", "difficulty": 7, "frequency": 782 },
+        { "id": "it_w_0783", "vi": "Hội nhập", "en": "Integrate", "pos": "verb", "difficulty": 7, "frequency": 783 },
+        { "id": "it_w_0784", "vi": "Phát triển kinh tế", "en": "Economic development", "pos": "noun", "difficulty": 7, "frequency": 784 },
+        { "id": "it_w_0785", "vi": "Mở cửa", "en": "Open up", "pos": "verb", "difficulty": 7, "frequency": 785 },
+        { "id": "it_w_0786", "vi": "Đầu tư nước ngoài", "en": "Foreign investment", "pos": "noun", "difficulty": 7, "frequency": 786 },
+        { "id": "it_w_0787", "vi": "Đô thị hóa", "en": "Urbanization", "pos": "noun", "difficulty": 7, "frequency": 787 },
+        { "id": "it_w_0788", "vi": "Thế hệ trẻ", "en": "Young generation", "pos": "noun", "difficulty": 7, "frequency": 788 }
+      ],
+      "sentences": [
+        { "id": "it_s_0564", "vi": "Chính sách Đổi mới bắt đầu từ năm 1986.", "en": "The Doi Moi policy began in 1986.", "accepted": ["The Doi Moi policy began in 1986."], "tokens": 8, "difficulty": 7 },
+        { "id": "it_s_0565", "vi": "Việt Nam đã mở cửa và hội nhập quốc tế.", "en": "Vietnam has opened up and integrated internationally.", "accepted": ["Vietnam has opened up and integrated internationally."], "tokens": 8, "difficulty": 7 },
+        { "id": "it_s_0566", "vi": "Đầu tư nước ngoài tăng mạnh trong hai thập kỷ.", "en": "Foreign investment has risen sharply over two decades.", "accepted": ["Foreign investment has risen sharply over two decades."], "tokens": 9, "difficulty": 7 },
+        { "id": "it_s_0567", "vi": "Thế hệ trẻ đóng vai trò quan trọng.", "en": "The young generation plays an important role.", "accepted": ["The young generation plays an important role."], "tokens": 7, "difficulty": 7 }
+      ],
+      "conversations": [
+        { "id": "CV092", "title": "Looking forward", "context": "Two analysts chatting.", "lines": [
+          { "speaker": "A", "vi": "Đổi mới đã thay đổi đất nước thế nào?", "en": "How has Doi Moi changed the country?" },
+          { "speaker": "B", "vi": "Kinh tế phát triển, đô thị hóa nhanh chóng.", "en": "The economy grew, urbanization accelerated." },
+          { "speaker": "A", "vi": "Còn thách thức thì sao?", "en": "And the challenges?" },
+          { "speaker": "B", "vi": "Khoảng cách giàu nghèo và môi trường.", "en": "Wealth gap and the environment." }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_100", "unit": "phase_30_arts", "title": "Traditional Music", "nodeId": "u30_L100", "quizId": "u30_Q100", "quizLabel": "Music Quiz", "nodeIndex": 1, "difficulty": 7, "cefr": "C1", "xp": 30, "topic": "basics", "focus": ["music", "tradition"],
+      "words": [
+        { "id": "it_w_0789", "vi": "Nhạc cụ", "en": "Musical instrument", "pos": "noun", "difficulty": 7, "frequency": 789 },
+        { "id": "it_w_0790", "vi": "Đàn bầu", "en": "Monochord (đàn bầu)", "pos": "noun", "difficulty": 7, "frequency": 790 },
+        { "id": "it_w_0791", "vi": "Quan họ", "en": "Quan ho folk singing", "pos": "noun", "difficulty": 7, "frequency": 791 },
+        { "id": "it_w_0792", "vi": "Ca trù", "en": "Ca tru chamber music", "pos": "noun", "difficulty": 7, "frequency": 792 },
+        { "id": "it_w_0793", "vi": "Giai điệu", "en": "Melody", "pos": "noun", "difficulty": 7, "frequency": 793 },
+        { "id": "it_w_0794", "vi": "Lời bài hát", "en": "Lyrics", "pos": "noun", "difficulty": 7, "frequency": 794 },
+        { "id": "it_w_0795", "vi": "Biểu diễn", "en": "Perform", "pos": "verb", "difficulty": 7, "frequency": 795 },
+        { "id": "it_w_0796", "vi": "Di sản văn hóa", "en": "Cultural heritage", "pos": "noun", "difficulty": 7, "frequency": 796 }
+      ],
+      "sentences": [
+        { "id": "it_s_0568", "vi": "Đàn bầu là nhạc cụ độc đáo của Việt Nam.", "en": "The đàn bầu is a unique Vietnamese instrument.", "accepted": ["The đàn bầu is a unique Vietnamese instrument."], "tokens": 9, "difficulty": 7 },
+        { "id": "it_s_0569", "vi": "Quan họ được UNESCO công nhận là di sản.", "en": "Quan ho is recognized by UNESCO as heritage.", "accepted": ["Quan ho is recognized by UNESCO as heritage."], "tokens": 8, "difficulty": 7 },
+        { "id": "it_s_0570", "vi": "Giai điệu nhẹ nhàng và lời sâu lắng.", "en": "The melody is gentle and the lyrics are deep.", "accepted": ["The melody is gentle and the lyrics are deep."], "tokens": 7, "difficulty": 7 },
+        { "id": "it_s_0571", "vi": "Buổi biểu diễn ca trù rất ấn tượng.", "en": "The ca tru performance was very impressive.", "accepted": ["The ca tru performance was very impressive."], "tokens": 7, "difficulty": 7 }
+      ],
+      "conversations": [
+        { "id": "CV093", "title": "Concert night", "context": "Two friends at a folk concert.", "lines": [
+          { "speaker": "A", "vi": "Bạn nghe quan họ bao giờ chưa?", "en": "Have you ever heard quan ho?" },
+          { "speaker": "B", "vi": "Rồi, lời bài hát rất tình cảm.", "en": "Yes, the lyrics are very tender." },
+          { "speaker": "A", "vi": "Mình thích nhất tiếng đàn bầu.", "en": "I love the sound of the đàn bầu most." },
+          { "speaker": "B", "vi": "Đúng là di sản văn hóa quý.", "en": "Truly a precious cultural heritage." }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_101", "unit": "phase_30_arts", "title": "Poetry & Literature", "nodeId": "u30_L101", "quizId": "u30_Q101", "quizLabel": "Literature Quiz", "nodeIndex": 2, "difficulty": 7, "cefr": "C1", "xp": 30, "topic": "basics", "focus": ["literature", "figurative"],
+      "words": [
+        { "id": "it_w_0797", "vi": "Thơ", "en": "Poetry", "pos": "noun", "difficulty": 7, "frequency": 797 },
+        { "id": "it_w_0798", "vi": "Nhà thơ", "en": "Poet", "pos": "noun", "difficulty": 7, "frequency": 798 },
+        { "id": "it_w_0799", "vi": "Tác phẩm", "en": "Work (literary)", "pos": "noun", "difficulty": 7, "frequency": 799 },
+        { "id": "it_w_0800", "vi": "Truyện Kiều", "en": "The Tale of Kieu", "pos": "noun", "difficulty": 7, "frequency": 800 },
+        { "id": "it_w_0801", "vi": "Ẩn dụ", "en": "Metaphor", "pos": "noun", "difficulty": 7, "frequency": 801 },
+        { "id": "it_w_0802", "vi": "Biểu tượng", "en": "Symbol", "pos": "noun", "difficulty": 7, "frequency": 802 },
+        { "id": "it_w_0803", "vi": "Nhân vật", "en": "Character", "pos": "noun", "difficulty": 7, "frequency": 803 },
+        { "id": "it_w_0804", "vi": "Cảm hứng", "en": "Inspiration", "pos": "noun", "difficulty": 7, "frequency": 804 }
+      ],
+      "sentences": [
+        { "id": "it_s_0572", "vi": "Truyện Kiều là tác phẩm nổi tiếng nhất.", "en": "The Tale of Kieu is the most famous work.", "accepted": ["The Tale of Kieu is the most famous work."], "tokens": 7, "difficulty": 7 },
+        { "id": "it_s_0573", "vi": "Nhà thơ thường dùng ẩn dụ và biểu tượng.", "en": "Poets often use metaphor and symbol.", "accepted": ["Poets often use metaphor and symbol."], "tokens": 8, "difficulty": 7 },
+        { "id": "it_s_0574", "vi": "Nhân vật chính rất phức tạp.", "en": "The main character is very complex.", "accepted": ["The main character is very complex."], "tokens": 5, "difficulty": 7 },
+        { "id": "it_s_0575", "vi": "Tôi tìm cảm hứng từ thơ ca Việt.", "en": "I find inspiration in Vietnamese poetry.", "accepted": ["I find inspiration in Vietnamese poetry."], "tokens": 7, "difficulty": 7 }
+      ],
+      "conversations": [
+        { "id": "CV094", "title": "Bookstore", "context": "Two readers in a bookstore.", "lines": [
+          { "speaker": "A", "vi": "Bạn đã đọc Truyện Kiều chưa?", "en": "Have you read The Tale of Kieu?" },
+          { "speaker": "B", "vi": "Rồi, từng câu thơ đều rất sâu sắc.", "en": "Yes, every verse is profound." },
+          { "speaker": "A", "vi": "Nhân vật Kiều thật đáng thương.", "en": "Kieu is such a tragic character." },
+          { "speaker": "B", "vi": "Đó là tác phẩm bất hủ.", "en": "It's an immortal work." }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_102", "unit": "phase_30_arts", "title": "Visual Arts & Crafts", "nodeId": "u30_L102", "quizId": "u30_Q102", "quizLabel": "Arts Quiz", "nodeIndex": 3, "difficulty": 7, "cefr": "C1", "xp": 30, "topic": "basics", "focus": ["arts", "craft"],
+      "words": [
+        { "id": "it_w_0805", "vi": "Tranh sơn mài", "en": "Lacquer painting", "pos": "noun", "difficulty": 7, "frequency": 805 },
+        { "id": "it_w_0806", "vi": "Tranh lụa", "en": "Silk painting", "pos": "noun", "difficulty": 7, "frequency": 806 },
+        { "id": "it_w_0807", "vi": "Họa sĩ", "en": "Painter", "pos": "noun", "difficulty": 7, "frequency": 807 },
+        { "id": "it_w_0808", "vi": "Triển lãm", "en": "Exhibition", "pos": "noun", "difficulty": 7, "frequency": 808 },
+        { "id": "it_w_0809", "vi": "Gốm sứ", "en": "Pottery / ceramics", "pos": "noun", "difficulty": 7, "frequency": 809 },
+        { "id": "it_w_0810", "vi": "Thủ công mỹ nghệ", "en": "Handicrafts", "pos": "noun", "difficulty": 7, "frequency": 810 },
+        { "id": "it_w_0811", "vi": "Phong cách", "en": "Style", "pos": "noun", "difficulty": 7, "frequency": 811 },
+        { "id": "it_w_0812", "vi": "Sáng tác", "en": "Create (art)", "pos": "verb", "difficulty": 7, "frequency": 812 }
+      ],
+      "sentences": [
+        { "id": "it_s_0576", "vi": "Tranh sơn mài Việt Nam rất nổi tiếng.", "en": "Vietnamese lacquer paintings are very famous.", "accepted": ["Vietnamese lacquer paintings are very famous."], "tokens": 7, "difficulty": 7 },
+        { "id": "it_s_0577", "vi": "Triển lãm sẽ mở cửa vào cuối tuần.", "en": "The exhibition opens this weekend.", "accepted": ["The exhibition opens this weekend."], "tokens": 7, "difficulty": 7 },
+        { "id": "it_s_0578", "vi": "Làng gốm Bát Tràng có truyền thống lâu đời.", "en": "Bat Trang pottery village has a long tradition.", "accepted": ["Bat Trang pottery village has a long tradition."], "tokens": 8, "difficulty": 7 },
+        { "id": "it_s_0579", "vi": "Họa sĩ này có phong cách rất riêng.", "en": "This painter has a very distinct style.", "accepted": ["This painter has a very distinct style."], "tokens": 7, "difficulty": 7 }
+      ],
+      "conversations": [
+        { "id": "CV095", "title": "Gallery visit", "context": "Two friends at an art gallery.", "lines": [
+          { "speaker": "A", "vi": "Bức tranh lụa này tinh tế quá.", "en": "This silk painting is so delicate." },
+          { "speaker": "B", "vi": "Đúng, phong cách rất Việt Nam.", "en": "Yes, very Vietnamese in style." },
+          { "speaker": "A", "vi": "Mình muốn mua một bức về treo.", "en": "I want to buy one to hang at home." },
+          { "speaker": "B", "vi": "Cuối tuần có triển lãm lớn đấy.", "en": "There's a big exhibition this weekend." }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_103", "unit": "phase_31_law", "title": "Government & Politics", "nodeId": "u31_L103", "quizId": "u31_Q103", "quizLabel": "Government Quiz", "nodeIndex": 1, "difficulty": 7, "cefr": "C1", "xp": 30, "topic": "basics", "focus": ["government", "formal"],
+      "words": [
+        { "id": "it_w_0813", "vi": "Chính phủ", "en": "Government", "pos": "noun", "difficulty": 7, "frequency": 813 },
+        { "id": "it_w_0814", "vi": "Quốc hội", "en": "National Assembly", "pos": "noun", "difficulty": 7, "frequency": 814 },
+        { "id": "it_w_0815", "vi": "Hiến pháp", "en": "Constitution", "pos": "noun", "difficulty": 7, "frequency": 815 },
+        { "id": "it_w_0816", "vi": "Bộ trưởng", "en": "Minister", "pos": "noun", "difficulty": 7, "frequency": 816 },
+        { "id": "it_w_0817", "vi": "Chính sách", "en": "Policy", "pos": "noun", "difficulty": 7, "frequency": 817 },
+        { "id": "it_w_0818", "vi": "Bầu cử", "en": "Election", "pos": "noun", "difficulty": 7, "frequency": 818 },
+        { "id": "it_w_0819", "vi": "Đại biểu", "en": "Representative", "pos": "noun", "difficulty": 7, "frequency": 819 },
+        { "id": "it_w_0820", "vi": "Ban hành", "en": "Promulgate / enact", "pos": "verb", "difficulty": 7, "frequency": 820 }
+      ],
+      "sentences": [
+        { "id": "it_s_0580", "vi": "Quốc hội đã ban hành luật mới.", "en": "The National Assembly enacted a new law.", "accepted": ["The National Assembly enacted a new law."], "tokens": 7, "difficulty": 7 },
+        { "id": "it_s_0581", "vi": "Hiến pháp được sửa đổi vào năm 2013.", "en": "The Constitution was amended in 2013.", "accepted": ["The Constitution was amended in 2013."], "tokens": 7, "difficulty": 7 },
+        { "id": "it_s_0582", "vi": "Chính sách mới sẽ có hiệu lực từ tháng sau.", "en": "The new policy takes effect next month.", "accepted": ["The new policy takes effect next month."], "tokens": 9, "difficulty": 7 },
+        { "id": "it_s_0583", "vi": "Bầu cử diễn ra năm năm một lần.", "en": "Elections occur once every five years.", "accepted": ["Elections occur once every five years."], "tokens": 8, "difficulty": 7 }
+      ],
+      "conversations": [
+        { "id": "CV096", "title": "Policy debate", "context": "A reporter and a representative.", "lines": [
+          { "speaker": "Reporter", "vi": "Xin ông cho biết về chính sách mới.", "en": "Could you tell us about the new policy?" },
+          { "speaker": "Rep", "vi": "Chính sách nhằm hỗ trợ doanh nghiệp nhỏ.", "en": "The policy aims to support small businesses." },
+          { "speaker": "Reporter", "vi": "Khi nào sẽ ban hành?", "en": "When will it be enacted?" },
+          { "speaker": "Rep", "vi": "Sau khi Quốc hội thông qua.", "en": "After the National Assembly approves it." }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_104", "unit": "phase_31_law", "title": "Legal Procedures", "nodeId": "u31_L104", "quizId": "u31_Q104", "quizLabel": "Legal Quiz", "nodeIndex": 2, "difficulty": 7, "cefr": "C1", "xp": 30, "topic": "basics", "focus": ["law", "procedure"],
+      "words": [
+        { "id": "it_w_0821", "vi": "Luật sư", "en": "Lawyer", "pos": "noun", "difficulty": 7, "frequency": 821 },
+        { "id": "it_w_0822", "vi": "Tòa án", "en": "Court", "pos": "noun", "difficulty": 7, "frequency": 822 },
+        { "id": "it_w_0823", "vi": "Thẩm phán", "en": "Judge", "pos": "noun", "difficulty": 7, "frequency": 823 },
+        { "id": "it_w_0824", "vi": "Hợp đồng", "en": "Contract", "pos": "noun", "difficulty": 7, "frequency": 824 },
+        { "id": "it_w_0825", "vi": "Vi phạm", "en": "Violate", "pos": "verb", "difficulty": 7, "frequency": 825 },
+        { "id": "it_w_0826", "vi": "Phán quyết", "en": "Verdict", "pos": "noun", "difficulty": 7, "frequency": 826 },
+        { "id": "it_w_0827", "vi": "Khởi kiện", "en": "File a lawsuit", "pos": "verb", "difficulty": 7, "frequency": 827 },
+        { "id": "it_w_0828", "vi": "Bồi thường", "en": "Compensate", "pos": "verb", "difficulty": 7, "frequency": 828 }
+      ],
+      "sentences": [
+        { "id": "it_s_0584", "vi": "Luật sư đang xem xét hợp đồng.", "en": "The lawyer is reviewing the contract.", "accepted": ["The lawyer is reviewing the contract."], "tokens": 6, "difficulty": 7 },
+        { "id": "it_s_0585", "vi": "Thẩm phán đã đưa ra phán quyết cuối cùng.", "en": "The judge issued the final verdict.", "accepted": ["The judge issued the final verdict."], "tokens": 8, "difficulty": 7 },
+        { "id": "it_s_0586", "vi": "Bên vi phạm phải bồi thường thiệt hại.", "en": "The violating party must compensate damages.", "accepted": ["The violating party must compensate damages."], "tokens": 7, "difficulty": 7 },
+        { "id": "it_s_0587", "vi": "Chúng tôi quyết định khởi kiện ra tòa.", "en": "We decided to file a lawsuit.", "accepted": ["We decided to file a lawsuit."], "tokens": 7, "difficulty": 7 }
+      ],
+      "conversations": [
+        { "id": "CV097", "title": "Consulting a lawyer", "context": "A client meets their lawyer.", "lines": [
+          { "speaker": "Client", "vi": "Hợp đồng này có vấn đề gì không ạ?", "en": "Are there any issues with this contract?" },
+          { "speaker": "Lawyer", "vi": "Có vài điều khoản cần làm rõ.", "en": "A few clauses need clarification." },
+          { "speaker": "Client", "vi": "Nếu họ vi phạm thì sao?", "en": "What if they violate it?" },
+          { "speaker": "Lawyer", "vi": "Chúng ta có quyền khởi kiện và đòi bồi thường.", "en": "We can file suit and claim damages." }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_105", "unit": "phase_31_law", "title": "Rights & Citizenship", "nodeId": "u31_L105", "quizId": "u31_Q105", "quizLabel": "Rights Quiz", "nodeIndex": 3, "difficulty": 7, "cefr": "C1", "xp": 30, "topic": "basics", "focus": ["rights", "citizenship"],
+      "words": [
+        { "id": "it_w_0829", "vi": "Quyền lợi", "en": "Right / interest", "pos": "noun", "difficulty": 7, "frequency": 829 },
+        { "id": "it_w_0830", "vi": "Nghĩa vụ", "en": "Duty / obligation", "pos": "noun", "difficulty": 7, "frequency": 830 },
+        { "id": "it_w_0831", "vi": "Công dân", "en": "Citizen", "pos": "noun", "difficulty": 7, "frequency": 831 },
+        { "id": "it_w_0832", "vi": "Quốc tịch", "en": "Nationality", "pos": "noun", "difficulty": 7, "frequency": 832 },
+        { "id": "it_w_0833", "vi": "Thị thực", "en": "Visa", "pos": "noun", "difficulty": 7, "frequency": 833 },
+        { "id": "it_w_0834", "vi": "Cư trú", "en": "Reside", "pos": "verb", "difficulty": 7, "frequency": 834 },
+        { "id": "it_w_0835", "vi": "Bình đẳng", "en": "Equal / equality", "pos": "adjective", "difficulty": 7, "frequency": 835 },
+        { "id": "it_w_0836", "vi": "Tự do ngôn luận", "en": "Free speech", "pos": "noun", "difficulty": 7, "frequency": 836 }
+      ],
+      "sentences": [
+        { "id": "it_s_0588", "vi": "Mọi công dân đều bình đẳng trước pháp luật.", "en": "All citizens are equal before the law.", "accepted": ["All citizens are equal before the law."], "tokens": 8, "difficulty": 7 },
+        { "id": "it_s_0589", "vi": "Tôi cần gia hạn thị thực cư trú.", "en": "I need to extend my residence visa.", "accepted": ["I need to extend my residence visa."], "tokens": 7, "difficulty": 7 },
+        { "id": "it_s_0590", "vi": "Quyền lợi đi đôi với nghĩa vụ.", "en": "Rights come with duties.", "accepted": ["Rights come with duties."], "tokens": 6, "difficulty": 7 },
+        { "id": "it_s_0591", "vi": "Tự do ngôn luận là quyền cơ bản.", "en": "Free speech is a basic right.", "accepted": ["Free speech is a basic right."], "tokens": 7, "difficulty": 7 }
+      ],
+      "conversations": [
+        { "id": "CV098", "title": "Immigration office", "context": "Foreigner asks about residency.", "lines": [
+          { "speaker": "User", "vi": "Tôi muốn xin thường trú.", "en": "I'd like to apply for permanent residency." },
+          { "speaker": "Officer", "vi": "Anh cần nộp hộ chiếu và hợp đồng lao động.", "en": "You need to submit passport and work contract." },
+          { "speaker": "User", "vi": "Bao lâu thì có kết quả?", "en": "How long until I get a result?" },
+          { "speaker": "Officer", "vi": "Khoảng ba tháng làm việc.", "en": "About three working months." }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_106", "unit": "phase_32_healthcare", "title": "Doctor Visits", "nodeId": "u32_L106", "quizId": "u32_Q106", "quizLabel": "Doctor Quiz", "nodeIndex": 1, "difficulty": 7, "cefr": "C1", "xp": 30, "topic": "basics", "focus": ["healthcare", "consultation"],
+      "words": [
+        { "id": "it_w_0837", "vi": "Bác sĩ", "en": "Doctor", "pos": "noun", "difficulty": 7, "frequency": 837 },
+        { "id": "it_w_0838", "vi": "Khám bệnh", "en": "Examine / consult", "pos": "verb", "difficulty": 7, "frequency": 838 },
+        { "id": "it_w_0839", "vi": "Triệu chứng", "en": "Symptom", "pos": "noun", "difficulty": 7, "frequency": 839 },
+        { "id": "it_w_0840", "vi": "Chẩn đoán", "en": "Diagnose", "pos": "verb", "difficulty": 7, "frequency": 840 },
+        { "id": "it_w_0841", "vi": "Bệnh án", "en": "Medical record", "pos": "noun", "difficulty": 7, "frequency": 841 },
+        { "id": "it_w_0842", "vi": "Xét nghiệm", "en": "Lab test", "pos": "noun", "difficulty": 7, "frequency": 842 },
+        { "id": "it_w_0843", "vi": "Đặt lịch", "en": "Book an appointment", "pos": "verb", "difficulty": 7, "frequency": 843 },
+        { "id": "it_w_0844", "vi": "Tái khám", "en": "Follow-up visit", "pos": "verb", "difficulty": 7, "frequency": 844 }
+      ],
+      "sentences": [
+        { "id": "it_s_0592", "vi": "Tôi muốn đặt lịch khám tổng quát.", "en": "I'd like to book a general check-up.", "accepted": ["I'd like to book a general check-up."], "tokens": 6, "difficulty": 7 },
+        { "id": "it_s_0593", "vi": "Triệu chứng của tôi là sốt và ho.", "en": "My symptoms are fever and cough.", "accepted": ["My symptoms are fever and cough."], "tokens": 7, "difficulty": 7 },
+        { "id": "it_s_0594", "vi": "Bác sĩ yêu cầu làm xét nghiệm máu.", "en": "The doctor asked for a blood test.", "accepted": ["The doctor asked for a blood test."], "tokens": 7, "difficulty": 7 },
+        { "id": "it_s_0595", "vi": "Tuần sau tôi cần tái khám.", "en": "Next week I need a follow-up.", "accepted": ["Next week I need a follow-up."], "tokens": 6, "difficulty": 7 }
+      ],
+      "conversations": [
+        { "id": "CV099", "title": "At the clinic", "context": "Patient meets a doctor.", "lines": [
+          { "speaker": "Doctor", "vi": "Anh thấy triệu chứng từ khi nào?", "en": "When did the symptoms start?" },
+          { "speaker": "Patient", "vi": "Khoảng ba ngày trước ạ.", "en": "About three days ago." },
+          { "speaker": "Doctor", "vi": "Ta cần làm xét nghiệm để chẩn đoán.", "en": "We need a test to diagnose." },
+          { "speaker": "Patient", "vi": "Vâng, lúc nào có kết quả ạ?", "en": "Okay, when will I have results?" }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_107", "unit": "phase_32_healthcare", "title": "Mental Health", "nodeId": "u32_L107", "quizId": "u32_Q107", "quizLabel": "Mental Health Quiz", "nodeIndex": 2, "difficulty": 7, "cefr": "C1", "xp": 30, "topic": "basics", "focus": ["mental_health", "wellbeing"],
+      "words": [
+        { "id": "it_w_0845", "vi": "Sức khỏe tinh thần", "en": "Mental health", "pos": "noun", "difficulty": 7, "frequency": 845 },
+        { "id": "it_w_0846", "vi": "Căng thẳng", "en": "Stress", "pos": "noun", "difficulty": 7, "frequency": 846 },
+        { "id": "it_w_0847", "vi": "Trầm cảm", "en": "Depression", "pos": "noun", "difficulty": 7, "frequency": 847 },
+        { "id": "it_w_0848", "vi": "Lo âu", "en": "Anxiety", "pos": "noun", "difficulty": 7, "frequency": 848 },
+        { "id": "it_w_0849", "vi": "Tâm lý", "en": "Psychology / mind", "pos": "noun", "difficulty": 7, "frequency": 849 },
+        { "id": "it_w_0850", "vi": "Tư vấn", "en": "Counsel", "pos": "verb", "difficulty": 7, "frequency": 850 },
+        { "id": "it_w_0851", "vi": "Chăm sóc bản thân", "en": "Self-care", "pos": "phrase", "difficulty": 7, "frequency": 851 },
+        { "id": "it_w_0852", "vi": "Cân bằng", "en": "Balance", "pos": "noun", "difficulty": 7, "frequency": 852 }
+      ],
+      "sentences": [
+        { "id": "it_s_0596", "vi": "Sức khỏe tinh thần cũng quan trọng như thể chất.", "en": "Mental health is as important as physical health.", "accepted": ["Mental health is as important as physical health."], "tokens": 9, "difficulty": 7 },
+        { "id": "it_s_0597", "vi": "Tôi đang gặp căng thẳng trong công việc.", "en": "I'm under stress at work.", "accepted": ["I'm under stress at work."], "tokens": 7, "difficulty": 7 },
+        { "id": "it_s_0598", "vi": "Bạn nên gặp chuyên gia tâm lý.", "en": "You should see a psychologist.", "accepted": ["You should see a psychologist."], "tokens": 6, "difficulty": 7 },
+        { "id": "it_s_0599", "vi": "Hãy dành thời gian chăm sóc bản thân.", "en": "Please make time for self-care.", "accepted": ["Please make time for self-care."], "tokens": 7, "difficulty": 7 }
+      ],
+      "conversations": [
+        { "id": "CV100", "title": "Reaching out", "context": "A friend encourages another to get help.", "lines": [
+          { "speaker": "A", "vi": "Dạo này mình hay mất ngủ và lo âu.", "en": "Lately I've been losing sleep and feeling anxious." },
+          { "speaker": "B", "vi": "Bạn đã thử tư vấn tâm lý chưa?", "en": "Have you tried counseling?" },
+          { "speaker": "A", "vi": "Chưa, mình còn ngại lắm.", "en": "Not yet, I'm still hesitant." },
+          { "speaker": "B", "vi": "Đừng ngại, sức khỏe tinh thần rất quan trọng.", "en": "Don't be — mental health really matters." }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_108", "unit": "phase_32_healthcare", "title": "Pharmacy & Treatment", "nodeId": "u32_L108", "quizId": "u32_Q108", "quizLabel": "Pharmacy Quiz", "nodeIndex": 3, "difficulty": 7, "cefr": "C1", "xp": 30, "topic": "basics", "focus": ["pharmacy", "treatment"],
+      "words": [
+        { "id": "it_w_0853", "vi": "Hiệu thuốc", "en": "Pharmacy", "pos": "noun", "difficulty": 7, "frequency": 853 },
+        { "id": "it_w_0854", "vi": "Đơn thuốc", "en": "Prescription", "pos": "noun", "difficulty": 7, "frequency": 854 },
+        { "id": "it_w_0855", "vi": "Liều dùng", "en": "Dosage", "pos": "noun", "difficulty": 7, "frequency": 855 },
+        { "id": "it_w_0856", "vi": "Tác dụng phụ", "en": "Side effect", "pos": "noun", "difficulty": 7, "frequency": 856 },
+        { "id": "it_w_0857", "vi": "Kháng sinh", "en": "Antibiotic", "pos": "noun", "difficulty": 7, "frequency": 857 },
+        { "id": "it_w_0858", "vi": "Vắc-xin", "en": "Vaccine", "pos": "noun", "difficulty": 7, "frequency": 858 },
+        { "id": "it_w_0859", "vi": "Điều trị", "en": "Treat", "pos": "verb", "difficulty": 7, "frequency": 859 },
+        { "id": "it_w_0860", "vi": "Phục hồi", "en": "Recover", "pos": "verb", "difficulty": 7, "frequency": 860 }
+      ],
+      "sentences": [
+        { "id": "it_s_0600", "vi": "Tôi cần mua thuốc theo đơn này.", "en": "I need to fill this prescription.", "accepted": ["I need to fill this prescription."], "tokens": 6, "difficulty": 7 },
+        { "id": "it_s_0601", "vi": "Liều dùng là hai viên một ngày.", "en": "The dosage is two pills a day.", "accepted": ["The dosage is two pills a day."], "tokens": 7, "difficulty": 7 },
+        { "id": "it_s_0602", "vi": "Thuốc này có tác dụng phụ gì không?", "en": "Does this medicine have side effects?", "accepted": ["Does this medicine have side effects?"], "tokens": 7, "difficulty": 7 },
+        { "id": "it_s_0603", "vi": "Anh cần ba ngày để phục hồi.", "en": "You need three days to recover.", "accepted": ["You need three days to recover."], "tokens": 7, "difficulty": 7 }
+      ],
+      "conversations": [
+        { "id": "CV101", "title": "At the pharmacy", "context": "Customer hands over a prescription.", "lines": [
+          { "speaker": "Customer", "vi": "Cho tôi lấy thuốc theo đơn này.", "en": "I'd like to fill this prescription." },
+          { "speaker": "Pharmacist", "vi": "Liều dùng ngày ba lần, sau ăn.", "en": "Three times a day, after meals." },
+          { "speaker": "Customer", "vi": "Có tác dụng phụ gì cần lưu ý không?", "en": "Any side effects to watch for?" },
+          { "speaker": "Pharmacist", "vi": "Có thể buồn ngủ, hạn chế lái xe.", "en": "May cause drowsiness, avoid driving." }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_109", "unit": "phase_32_healthcare", "title": "Emergency Care", "nodeId": "u32_L109", "quizId": "u32_Q109", "quizLabel": "Emergency Quiz", "nodeIndex": 4, "difficulty": 7, "cefr": "C1", "xp": 30, "topic": "basics", "focus": ["emergency", "first_aid"],
+      "words": [
+        { "id": "it_w_0861", "vi": "Cấp cứu", "en": "Emergency / ER", "pos": "noun", "difficulty": 7, "frequency": 861 },
+        { "id": "it_w_0862", "vi": "Tai nạn", "en": "Accident", "pos": "noun", "difficulty": 7, "frequency": 862 },
+        { "id": "it_w_0863", "vi": "Chảy máu", "en": "Bleed", "pos": "verb", "difficulty": 7, "frequency": 863 },
+        { "id": "it_w_0864", "vi": "Bất tỉnh", "en": "Unconscious", "pos": "adjective", "difficulty": 7, "frequency": 864 },
+        { "id": "it_w_0865", "vi": "Hô hấp", "en": "Breathing", "pos": "noun", "difficulty": 7, "frequency": 865 },
+        { "id": "it_w_0866", "vi": "Xe cứu thương", "en": "Ambulance", "pos": "noun", "difficulty": 7, "frequency": 866 },
+        { "id": "it_w_0867", "vi": "Sơ cứu", "en": "First aid", "pos": "noun", "difficulty": 7, "frequency": 867 },
+        { "id": "it_w_0868", "vi": "Bệnh viện", "en": "Hospital", "pos": "noun", "difficulty": 7, "frequency": 868 }
+      ],
+      "sentences": [
+        { "id": "it_s_0604", "vi": "Gọi xe cứu thương ngay đi!", "en": "Call an ambulance immediately!", "accepted": ["Call an ambulance immediately!"], "tokens": 5, "difficulty": 7 },
+        { "id": "it_s_0605", "vi": "Người này bị bất tỉnh và chảy máu.", "en": "This person is unconscious and bleeding.", "accepted": ["This person is unconscious and bleeding."], "tokens": 7, "difficulty": 7 },
+        { "id": "it_s_0606", "vi": "Hãy kiểm tra hô hấp trước.", "en": "Check the breathing first.", "accepted": ["Check the breathing first."], "tokens": 5, "difficulty": 7 },
+        { "id": "it_s_0607", "vi": "Đưa bệnh nhân đến phòng cấp cứu.", "en": "Take the patient to the ER.", "accepted": ["Take the patient to the ER."], "tokens": 6, "difficulty": 7 }
+      ],
+      "conversations": [
+        { "id": "CV102", "title": "Emergency call", "context": "Reporting an accident.", "lines": [
+          { "speaker": "Caller", "vi": "Có tai nạn xe máy trên đường Lê Lợi.", "en": "There's a motorbike accident on Le Loi Street." },
+          { "speaker": "115", "vi": "Có ai bị thương nặng không?", "en": "Is anyone badly injured?" },
+          { "speaker": "Caller", "vi": "Một người bất tỉnh, đang chảy máu.", "en": "One person unconscious, bleeding." },
+          { "speaker": "115", "vi": "Xe cứu thương đang đến, anh đừng di chuyển nạn nhân.", "en": "An ambulance is on the way — don't move the victim." }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_110", "unit": "phase_33_regional", "title": "North vs South", "nodeId": "u33_L110", "quizId": "u33_Q110", "quizLabel": "North-South Quiz", "nodeIndex": 1, "difficulty": 7, "cefr": "C1", "xp": 30, "topic": "basics", "focus": ["dialect", "region"],
+      "words": [
+        { "id": "it_w_0869", "vi": "Miền Bắc", "en": "Northern region", "pos": "noun", "difficulty": 7, "frequency": 869 },
+        { "id": "it_w_0870", "vi": "Miền Nam", "en": "Southern region", "pos": "noun", "difficulty": 7, "frequency": 870 },
+        { "id": "it_w_0871", "vi": "Giọng địa phương", "en": "Local accent", "pos": "noun", "difficulty": 7, "frequency": 871 },
+        { "id": "it_w_0872", "vi": "Phương ngữ", "en": "Dialect", "pos": "noun", "difficulty": 7, "frequency": 872 },
+        { "id": "it_w_0873", "vi": "Khác biệt", "en": "Difference", "pos": "noun", "difficulty": 7, "frequency": 873 },
+        { "id": "it_w_0874", "vi": "Tô (Bắc) / Tô lớn (Nam)", "en": "Bowl (regional variants)", "pos": "noun", "difficulty": 7, "frequency": 874 },
+        { "id": "it_w_0875", "vi": "Bố (Bắc) / Ba (Nam)", "en": "Father (regional variants)", "pos": "noun", "difficulty": 7, "frequency": 875 },
+        { "id": "it_w_0876", "vi": "Phát âm", "en": "Pronunciation", "pos": "noun", "difficulty": 7, "frequency": 876 }
+      ],
+      "sentences": [
+        { "id": "it_s_0608", "vi": "Giọng miền Bắc và miền Nam khá khác nhau.", "en": "Northern and Southern accents are quite different.", "accepted": ["Northern and Southern accents are quite different."], "tokens": 8, "difficulty": 7 },
+        { "id": "it_s_0609", "vi": "Ở miền Nam người ta gọi 'ba' thay vì 'bố'.", "en": "In the South people say 'ba' instead of 'bố'.", "accepted": ["In the South people say 'ba' instead of 'bố'."], "tokens": 9, "difficulty": 7 },
+        { "id": "it_s_0610", "vi": "Phát âm miền Trung khó nghe nhất.", "en": "The Central accent is the hardest to follow.", "accepted": ["The Central accent is the hardest to follow."], "tokens": 6, "difficulty": 7 },
+        { "id": "it_s_0611", "vi": "Mỗi vùng có phương ngữ riêng.", "en": "Each region has its own dialect.", "accepted": ["Each region has its own dialect."], "tokens": 5, "difficulty": 7 }
+      ],
+      "conversations": [
+        { "id": "CV103", "title": "Dialect chat", "context": "A learner asks a Vietnamese friend.", "lines": [
+          { "speaker": "Learner", "vi": "Mình nên học giọng nào?", "en": "Which accent should I learn?" },
+          { "speaker": "Friend", "vi": "Tùy bạn sống ở miền nào.", "en": "Depends on which region you live in." },
+          { "speaker": "Learner", "vi": "Khác biệt lớn nhất là gì?", "en": "What's the biggest difference?" },
+          { "speaker": "Friend", "vi": "Cách phát âm và một số từ vựng.", "en": "Pronunciation and some vocabulary." }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_111", "unit": "phase_33_regional", "title": "Central Vietnam & Hue", "nodeId": "u33_L111", "quizId": "u33_Q111", "quizLabel": "Central Quiz", "nodeIndex": 2, "difficulty": 7, "cefr": "C1", "xp": 30, "topic": "basics", "focus": ["region", "culture"],
+      "words": [
+        { "id": "it_w_0877", "vi": "Miền Trung", "en": "Central region", "pos": "noun", "difficulty": 7, "frequency": 877 },
+        { "id": "it_w_0878", "vi": "Cố đô Huế", "en": "Ancient capital Hue", "pos": "noun", "difficulty": 7, "frequency": 878 },
+        { "id": "it_w_0879", "vi": "Cung đình", "en": "Imperial court", "pos": "noun", "difficulty": 7, "frequency": 879 },
+        { "id": "it_w_0880", "vi": "Lăng tẩm", "en": "Royal tombs", "pos": "noun", "difficulty": 7, "frequency": 880 },
+        { "id": "it_w_0881", "vi": "Bão lụt", "en": "Storms and floods", "pos": "noun", "difficulty": 7, "frequency": 881 },
+        { "id": "it_w_0882", "vi": "Bún bò Huế", "en": "Hue beef noodle soup", "pos": "noun", "difficulty": 7, "frequency": 882 },
+        { "id": "it_w_0883", "vi": "Trầm lắng", "en": "Quiet / reserved", "pos": "adjective", "difficulty": 7, "frequency": 883 },
+        { "id": "it_w_0884", "vi": "Di tích", "en": "Relic / monument", "pos": "noun", "difficulty": 7, "frequency": 884 }
+      ],
+      "sentences": [
+        { "id": "it_s_0612", "vi": "Huế từng là cố đô của triều Nguyễn.", "en": "Hue was once the capital of the Nguyen dynasty.", "accepted": ["Hue was once the capital of the Nguyen dynasty."], "tokens": 8, "difficulty": 7 },
+        { "id": "it_s_0613", "vi": "Lăng tẩm các vua nằm rải rác quanh thành phố.", "en": "Royal tombs are scattered around the city.", "accepted": ["Royal tombs are scattered around the city."], "tokens": 9, "difficulty": 7 },
+        { "id": "it_s_0614", "vi": "Miền Trung thường xuyên bị bão lụt.", "en": "Central Vietnam often suffers storms and floods.", "accepted": ["Central Vietnam often suffers storms and floods."], "tokens": 7, "difficulty": 7 },
+        { "id": "it_s_0615", "vi": "Bún bò Huế nổi tiếng nhờ vị cay đậm.", "en": "Hue beef noodle soup is famous for its bold spice.", "accepted": ["Hue beef noodle soup is famous for its bold spice."], "tokens": 8, "difficulty": 7 }
+      ],
+      "conversations": [
+        { "id": "CV104", "title": "Visiting Hue", "context": "Two tourists in Hue.", "lines": [
+          { "speaker": "A", "vi": "Mình muốn thăm di tích cung đình.", "en": "I want to visit the imperial relics." },
+          { "speaker": "B", "vi": "Đại Nội rất đẹp, đừng bỏ qua.", "en": "The Citadel is beautiful, don't miss it." },
+          { "speaker": "A", "vi": "Trưa nay ăn gì nhỉ?", "en": "What should we eat for lunch?" },
+          { "speaker": "B", "vi": "Bún bò Huế chính gốc luôn.", "en": "Authentic Hue beef noodle soup." }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_112", "unit": "phase_33_regional", "title": "Ethnic Minorities", "nodeId": "u33_L112", "quizId": "u33_Q112", "quizLabel": "Ethnic Quiz", "nodeIndex": 3, "difficulty": 7, "cefr": "C1", "xp": 30, "topic": "basics", "focus": ["ethnic", "culture"],
+      "words": [
+        { "id": "it_w_0885", "vi": "Dân tộc thiểu số", "en": "Ethnic minority", "pos": "noun", "difficulty": 7, "frequency": 885 },
+        { "id": "it_w_0886", "vi": "Bản làng", "en": "Village (highland)", "pos": "noun", "difficulty": 7, "frequency": 886 },
+        { "id": "it_w_0887", "vi": "Trang phục truyền thống", "en": "Traditional dress", "pos": "noun", "difficulty": 7, "frequency": 887 },
+        { "id": "it_w_0888", "vi": "Tiếng dân tộc", "en": "Ethnic language", "pos": "noun", "difficulty": 7, "frequency": 888 },
+        { "id": "it_w_0889", "vi": "Phong tục", "en": "Custom", "pos": "noun", "difficulty": 7, "frequency": 889 },
+        { "id": "it_w_0890", "vi": "Người H'Mông", "en": "Hmong people", "pos": "noun", "difficulty": 7, "frequency": 890 },
+        { "id": "it_w_0891", "vi": "Người Thái", "en": "Tai people", "pos": "noun", "difficulty": 7, "frequency": 891 },
+        { "id": "it_w_0892", "vi": "Đa dạng văn hóa", "en": "Cultural diversity", "pos": "noun", "difficulty": 7, "frequency": 892 }
+      ],
+      "sentences": [
+        { "id": "it_s_0616", "vi": "Việt Nam có 54 dân tộc anh em.", "en": "Vietnam has 54 ethnic groups.", "accepted": ["Vietnam has 54 ethnic groups."], "tokens": 7, "difficulty": 7 },
+        { "id": "it_s_0617", "vi": "Người H'Mông có trang phục rất rực rỡ.", "en": "The Hmong people have very vibrant traditional dress.", "accepted": ["The Hmong people have very vibrant traditional dress."], "tokens": 7, "difficulty": 7 },
+        { "id": "it_s_0618", "vi": "Mỗi dân tộc có phong tục riêng.", "en": "Each ethnic group has its own customs.", "accepted": ["Each ethnic group has its own customs."], "tokens": 6, "difficulty": 7 },
+        { "id": "it_s_0619", "vi": "Đa dạng văn hóa là tài sản quý của đất nước.", "en": "Cultural diversity is a precious national asset.", "accepted": ["Cultural diversity is a precious national asset."], "tokens": 9, "difficulty": 7 }
+      ],
+      "conversations": [
+        { "id": "CV105", "title": "Sapa trek", "context": "A tourist and a local guide.", "lines": [
+          { "speaker": "Tourist", "vi": "Bản này thuộc dân tộc nào ạ?", "en": "Which ethnic group does this village belong to?" },
+          { "speaker": "Guide", "vi": "Đây là bản người H'Mông.", "en": "This is a Hmong village." },
+          { "speaker": "Tourist", "vi": "Mọi người vẫn nói tiếng dân tộc không?", "en": "Do people still speak the ethnic language?" },
+          { "speaker": "Guide", "vi": "Có, và giữ nhiều phong tục truyền thống.", "en": "Yes, and they keep many traditional customs." }
+        ]}
+      ]
+    }
+  ],
+  "grammarTags": [
+    { "id": "GT104", "category": "hedging", "description": "có vẻ / hình như / có lẽ (it seems / maybe — hedge)", "examples": "Có vẻ như cô ấy đang buồn." },
+    { "id": "GT105", "category": "emotion", "description": "dành tình cảm cho / cảm nắng (develop feelings / crush)", "examples": "Mình đang cảm nắng anh đồng nghiệp." },
+    { "id": "GT106", "category": "narrative_past", "description": "đã + verb + rồi / từng (completed past / experiential)", "examples": "Tôi đã từng đến Huế." },
+    { "id": "GT107", "category": "historical", "description": "vào năm + year (in the year ...)", "examples": "Vào năm 1945, Việt Nam giành độc lập." },
+    { "id": "GT108", "category": "passive_formal", "description": "được + verb (formal passive)", "examples": "Hiến pháp được sửa đổi năm 2013." },
+    { "id": "GT109", "category": "agent_passive", "description": "bị + verb + bởi (negative passive with agent)", "examples": "Họ bị bóc lột bởi thực dân." },
+    { "id": "GT110", "category": "figurative", "description": "ẩn dụ / biểu tượng (metaphor / symbol — literary)", "examples": "Hoa sen là biểu tượng của sự thuần khiết." },
+    { "id": "GT111", "category": "descriptive", "description": "intensifier reduplication (rực rỡ, lung linh, tinh tế)", "examples": "Trang phục rất rực rỡ." },
+    { "id": "GT112", "category": "formal_request", "description": "xin / xin được + verb (formal polite request)", "examples": "Xin ông cho biết về chính sách mới." },
+    { "id": "GT113", "category": "legal", "description": "theo quy định / theo luật (according to regulation / law)", "examples": "Theo luật, anh phải nộp thuế." },
+    { "id": "GT114", "category": "conditional_legal", "description": "nếu ... thì phải (if ... then must)", "examples": "Nếu vi phạm thì phải bồi thường." },
+    { "id": "GT115", "category": "duty", "description": "có quyền / có nghĩa vụ (have the right / duty to)", "examples": "Công dân có quyền tự do ngôn luận." },
+    { "id": "GT116", "category": "medical", "description": "triệu chứng + của + noun (symptom of ...)", "examples": "Triệu chứng của tôi là sốt." },
+    { "id": "GT117", "category": "instruction", "description": "ngày + frequency + lần (per day frequency)", "examples": "Ngày uống ba lần." },
+    { "id": "GT118", "category": "urgency", "description": "ngay + imperative (immediately)", "examples": "Gọi xe cứu thương ngay!" },
+    { "id": "GT119", "category": "regional", "description": "ở + region người ta gọi X thay vì Y (regional variation)", "examples": "Ở miền Nam người ta gọi 'ba' thay vì 'bố'." },
+    { "id": "GT120", "category": "comparison_regional", "description": "khác / khác nhau / khác biệt (difference between regions)", "examples": "Giọng Bắc và Nam khá khác nhau." },
+    { "id": "GT121", "category": "preservation", "description": "giữ / bảo tồn + noun (preserve)", "examples": "Họ giữ nhiều phong tục truyền thống." }
+  ]
+}

@@ -1,0 +1,582 @@
+{
+  "meta": {
+    "mode": "explore_vietnam",
+    "chapter": "b2",
+    "version": "1.0.0",
+    "generated": "2026-05-21T00:00:00.000Z",
+    "source": "authored",
+    "extends": "explore_vietnam_b1_plus",
+    "stats": { "units": 6, "lessons": 20, "vocabulary": 160, "sentences": 80, "conversations": 20, "grammarTags": 18 },
+    "notes": "B2 upper-intermediate chapter: debate, media, abstract concepts, environment, education, economy. Continues Explore Vietnam after Unit 21."
+  },
+  "units": [
+    { "id": "unit_22_debate", "order": 22, "title": "Debate & Argument", "description": "Stating opinions firmly, counter-arguments, persuasion." },
+    { "id": "unit_23_media_film", "order": 23, "title": "Media & Film", "description": "Movies, TV, news journalism, social media discourse." },
+    { "id": "unit_24_abstract", "order": 24, "title": "Abstract Concepts", "description": "Emotions in depth, values, philosophy, personality." },
+    { "id": "unit_25_environment", "order": 25, "title": "Environment & Sustainability", "description": "Climate, pollution, conservation, sustainable living." },
+    { "id": "unit_26_education", "order": 26, "title": "Education & Learning", "description": "School, university, skills, academic discussion." },
+    { "id": "unit_27_economy", "order": 27, "title": "Economy & Business", "description": "Market, finance, startups, global economy." }
+  ],
+  "lessons": [
+    {
+      "id": "lesson_073", "unit": "phase_22_debate", "title": "Stating Opinions Firmly", "nodeId": "u22_L073", "quizId": "u22_Q073", "quizLabel": "Opinions Quiz", "nodeIndex": 1, "difficulty": 6, "cefr": "B2", "xp": 25, "topic": "basics", "focus": ["opinion", "debate"],
+      "words": [
+        { "id": "it_w_0573", "vi": "Quan điểm", "en": "Viewpoint", "pos": "noun", "difficulty": 6, "frequency": 573 },
+        { "id": "it_w_0574", "vi": "Khẳng định", "en": "Affirm / assert", "pos": "verb", "difficulty": 6, "frequency": 574 },
+        { "id": "it_w_0575", "vi": "Lập luận", "en": "Argument / reasoning", "pos": "noun", "difficulty": 6, "frequency": 575 },
+        { "id": "it_w_0576", "vi": "Rõ ràng", "en": "Clearly", "pos": "adverb", "difficulty": 6, "frequency": 576 },
+        { "id": "it_w_0577", "vi": "Tuyệt đối", "en": "Absolutely", "pos": "adverb", "difficulty": 6, "frequency": 577 },
+        { "id": "it_w_0578", "vi": "Theo tôi", "en": "In my opinion", "pos": "phrase", "difficulty": 6, "frequency": 578 },
+        { "id": "it_w_0579", "vi": "Chắc chắn", "en": "Certainly", "pos": "adverb", "difficulty": 6, "frequency": 579 },
+        { "id": "it_w_0580", "vi": "Nhấn mạnh", "en": "Emphasize", "pos": "verb", "difficulty": 6, "frequency": 580 }
+      ],
+      "sentences": [
+        { "id": "it_s_0460", "vi": "Theo tôi, đây là vấn đề cần giải quyết ngay.", "en": "In my opinion, this issue must be addressed immediately.", "accepted": ["In my opinion, this issue must be addressed immediately."], "tokens": 9, "difficulty": 6 },
+        { "id": "it_s_0461", "vi": "Tôi xin khẳng định quan điểm của mình.", "en": "I would like to assert my position.", "accepted": ["I would like to assert my position."], "tokens": 7, "difficulty": 6 },
+        { "id": "it_s_0462", "vi": "Lập luận của bạn rất rõ ràng.", "en": "Your argument is very clear.", "accepted": ["Your argument is very clear."], "tokens": 6, "difficulty": 6 },
+        { "id": "it_s_0463", "vi": "Tôi muốn nhấn mạnh một điểm quan trọng.", "en": "I want to emphasize an important point.", "accepted": ["I want to emphasize an important point."], "tokens": 7, "difficulty": 6 }
+      ],
+      "conversations": [
+        { "id": "CV066", "title": "Stating a position", "context": "A panel discussion.", "lines": [
+          { "speaker": "A", "vi": "Anh có ý kiến gì về vấn đề này?", "en": "What's your view on this issue?" },
+          { "speaker": "B", "vi": "Theo tôi, chúng ta cần hành động ngay.", "en": "In my opinion, we need to act now." },
+          { "speaker": "A", "vi": "Anh có thể giải thích rõ hơn không?", "en": "Could you explain more clearly?" },
+          { "speaker": "B", "vi": "Tôi xin nhấn mạnh là thời gian không còn nhiều.", "en": "I want to emphasize that time is running out." }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_074", "unit": "phase_22_debate", "title": "Counter-arguments", "nodeId": "u22_L074", "quizId": "u22_Q074", "quizLabel": "Counter-arguments Quiz", "nodeIndex": 2, "difficulty": 6, "cefr": "B2", "xp": 25, "topic": "basics", "focus": ["opposition", "debate"],
+      "words": [
+        { "id": "it_w_0581", "vi": "Phản đối", "en": "Object / oppose", "pos": "verb", "difficulty": 6, "frequency": 581 },
+        { "id": "it_w_0582", "vi": "Không đồng ý", "en": "Disagree", "pos": "verb", "difficulty": 6, "frequency": 582 },
+        { "id": "it_w_0583", "vi": "Tuy nhiên", "en": "However", "pos": "conjunction", "difficulty": 6, "frequency": 583 },
+        { "id": "it_w_0584", "vi": "Mặt khác", "en": "On the other hand", "pos": "phrase", "difficulty": 6, "frequency": 584 },
+        { "id": "it_w_0585", "vi": "Ngược lại", "en": "On the contrary", "pos": "phrase", "difficulty": 6, "frequency": 585 },
+        { "id": "it_w_0586", "vi": "Phản biện", "en": "Counter-argue", "pos": "verb", "difficulty": 6, "frequency": 586 },
+        { "id": "it_w_0587", "vi": "Bằng chứng", "en": "Evidence", "pos": "noun", "difficulty": 6, "frequency": 587 },
+        { "id": "it_w_0588", "vi": "Sai lầm", "en": "Mistake / error", "pos": "noun", "difficulty": 6, "frequency": 588 }
+      ],
+      "sentences": [
+        { "id": "it_s_0464", "vi": "Tôi không đồng ý với ý kiến đó.", "en": "I don't agree with that opinion.", "accepted": ["I don't agree with that opinion."], "tokens": 7, "difficulty": 6 },
+        { "id": "it_s_0465", "vi": "Tuy nhiên, có một điểm cần xem lại.", "en": "However, there's a point that needs reviewing.", "accepted": ["However, there's a point that needs reviewing."], "tokens": 8, "difficulty": 6 },
+        { "id": "it_s_0466", "vi": "Ngược lại, dữ liệu cho thấy điều khác.", "en": "On the contrary, the data shows otherwise.", "accepted": ["On the contrary, the data shows otherwise."], "tokens": 7, "difficulty": 6 },
+        { "id": "it_s_0467", "vi": "Bạn có bằng chứng gì không?", "en": "Do you have any evidence?", "accepted": ["Do you have any evidence?"], "tokens": 5, "difficulty": 6 }
+      ],
+      "conversations": [
+        { "id": "CV067", "title": "Pushback", "context": "Two colleagues debating a proposal.", "lines": [
+          { "speaker": "A", "vi": "Tôi nghĩ kế hoạch này hoàn hảo.", "en": "I think this plan is perfect." },
+          { "speaker": "B", "vi": "Tuy nhiên, chi phí quá cao.", "en": "However, the cost is too high." },
+          { "speaker": "A", "vi": "Bạn có bằng chứng cụ thể không?", "en": "Do you have concrete evidence?" },
+          { "speaker": "B", "vi": "Có, tôi sẽ gửi báo cáo.", "en": "Yes, I'll send the report." }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_075", "unit": "phase_22_debate", "title": "Persuasion", "nodeId": "u22_L075", "quizId": "u22_Q075", "quizLabel": "Persuasion Quiz", "nodeIndex": 3, "difficulty": 6, "cefr": "B2", "xp": 25, "topic": "basics", "focus": ["persuasion", "rhetoric"],
+      "words": [
+        { "id": "it_w_0589", "vi": "Thuyết phục", "en": "Persuade", "pos": "verb", "difficulty": 6, "frequency": 589 },
+        { "id": "it_w_0590", "vi": "Lý do", "en": "Reason", "pos": "noun", "difficulty": 6, "frequency": 590 },
+        { "id": "it_w_0591", "vi": "Lợi ích", "en": "Benefit", "pos": "noun", "difficulty": 6, "frequency": 591 },
+        { "id": "it_w_0592", "vi": "Hậu quả", "en": "Consequence", "pos": "noun", "difficulty": 6, "frequency": 592 },
+        { "id": "it_w_0593", "vi": "Suy nghĩ kỹ", "en": "Think carefully", "pos": "phrase", "difficulty": 6, "frequency": 593 },
+        { "id": "it_w_0594", "vi": "Đề xuất", "en": "Suggest / propose", "pos": "verb", "difficulty": 6, "frequency": 594 },
+        { "id": "it_w_0595", "vi": "Hợp lý", "en": "Reasonable", "pos": "adjective", "difficulty": 6, "frequency": 595 },
+        { "id": "it_w_0596", "vi": "Tin tưởng", "en": "Trust / believe", "pos": "verb", "difficulty": 6, "frequency": 596 }
+      ],
+      "sentences": [
+        { "id": "it_s_0468", "vi": "Hãy suy nghĩ kỹ về lợi ích lâu dài.", "en": "Please think carefully about the long-term benefits.", "accepted": ["Please think carefully about the long-term benefits."], "tokens": 8, "difficulty": 6 },
+        { "id": "it_s_0469", "vi": "Tôi đề xuất một giải pháp hợp lý hơn.", "en": "I suggest a more reasonable solution.", "accepted": ["I suggest a more reasonable solution."], "tokens": 7, "difficulty": 6 },
+        { "id": "it_s_0470", "vi": "Hậu quả sẽ rất nghiêm trọng nếu không hành động.", "en": "The consequences will be severe if we don't act.", "accepted": ["The consequences will be severe if we don't act."], "tokens": 9, "difficulty": 6 },
+        { "id": "it_s_0471", "vi": "Hãy tin tưởng vào quyết định này.", "en": "Please trust this decision.", "accepted": ["Please trust this decision."], "tokens": 6, "difficulty": 6 }
+      ],
+      "conversations": [
+        { "id": "CV068", "title": "Convincing a friend", "context": "Persuading a friend to join a project.", "lines": [
+          { "speaker": "A", "vi": "Bạn nên tham gia dự án này.", "en": "You should join this project." },
+          { "speaker": "B", "vi": "Tại sao tôi nên tham gia?", "en": "Why should I join?" },
+          { "speaker": "A", "vi": "Lợi ích rất nhiều, hãy suy nghĩ kỹ.", "en": "There are many benefits, think carefully." },
+          { "speaker": "B", "vi": "Được, tôi sẽ cân nhắc.", "en": "Alright, I'll consider it." }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_076", "unit": "phase_23_media", "title": "Movies & TV", "nodeId": "u23_L076", "quizId": "u23_Q076", "quizLabel": "Movies Quiz", "nodeIndex": 1, "difficulty": 6, "cefr": "B2", "xp": 25, "topic": "basics", "focus": ["entertainment", "review"],
+      "words": [
+        { "id": "it_w_0597", "vi": "Đạo diễn", "en": "Director", "pos": "noun", "difficulty": 6, "frequency": 597 },
+        { "id": "it_w_0598", "vi": "Diễn viên", "en": "Actor", "pos": "noun", "difficulty": 6, "frequency": 598 },
+        { "id": "it_w_0599", "vi": "Cốt truyện", "en": "Plot", "pos": "noun", "difficulty": 6, "frequency": 599 },
+        { "id": "it_w_0600", "vi": "Bộ phim", "en": "Film / movie", "pos": "noun", "difficulty": 6, "frequency": 600 },
+        { "id": "it_w_0601", "vi": "Tập phim", "en": "Episode", "pos": "noun", "difficulty": 6, "frequency": 601 },
+        { "id": "it_w_0602", "vi": "Đánh giá", "en": "Review / rate", "pos": "verb", "difficulty": 6, "frequency": 602 },
+        { "id": "it_w_0603", "vi": "Phụ đề", "en": "Subtitle", "pos": "noun", "difficulty": 6, "frequency": 603 },
+        { "id": "it_w_0604", "vi": "Thể loại", "en": "Genre", "pos": "noun", "difficulty": 6, "frequency": 604 }
+      ],
+      "sentences": [
+        { "id": "it_s_0472", "vi": "Đạo diễn của bộ phim này rất nổi tiếng.", "en": "The director of this film is very famous.", "accepted": ["The director of this film is very famous."], "tokens": 8, "difficulty": 6 },
+        { "id": "it_s_0473", "vi": "Cốt truyện hơi phức tạp nhưng hay.", "en": "The plot is a bit complex but good.", "accepted": ["The plot is a bit complex but good."], "tokens": 7, "difficulty": 6 },
+        { "id": "it_s_0474", "vi": "Tôi thích thể loại phim tài liệu.", "en": "I like documentary films.", "accepted": ["I like documentary films."], "tokens": 6, "difficulty": 6 },
+        { "id": "it_s_0475", "vi": "Bạn xem có phụ đề không?", "en": "Do you watch with subtitles?", "accepted": ["Do you watch with subtitles?"], "tokens": 5, "difficulty": 6 }
+      ],
+      "conversations": [
+        { "id": "CV069", "title": "Movie chat", "context": "Two friends discussing a film.", "lines": [
+          { "speaker": "A", "vi": "Bạn đã xem bộ phim mới chưa?", "en": "Have you seen the new film?" },
+          { "speaker": "B", "vi": "Rồi, cốt truyện rất bất ngờ.", "en": "Yes, the plot is very surprising." },
+          { "speaker": "A", "vi": "Diễn viên chính đóng tốt không?", "en": "Did the lead actor perform well?" },
+          { "speaker": "B", "vi": "Tuyệt vời, tôi đánh giá 9 trên 10.", "en": "Excellent, I rate it 9 out of 10." }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_077", "unit": "phase_23_media", "title": "News & Journalism", "nodeId": "u23_L077", "quizId": "u23_Q077", "quizLabel": "News Quiz", "nodeIndex": 2, "difficulty": 6, "cefr": "B2", "xp": 25, "topic": "basics", "focus": ["news", "journalism"],
+      "words": [
+        { "id": "it_w_0605", "vi": "Phóng viên", "en": "Reporter", "pos": "noun", "difficulty": 6, "frequency": 605 },
+        { "id": "it_w_0606", "vi": "Bài báo", "en": "Article", "pos": "noun", "difficulty": 6, "frequency": 606 },
+        { "id": "it_w_0607", "vi": "Tin nóng", "en": "Breaking news", "pos": "noun", "difficulty": 6, "frequency": 607 },
+        { "id": "it_w_0608", "vi": "Tiêu đề", "en": "Headline", "pos": "noun", "difficulty": 6, "frequency": 608 },
+        { "id": "it_w_0609", "vi": "Nguồn tin", "en": "Source", "pos": "noun", "difficulty": 6, "frequency": 609 },
+        { "id": "it_w_0610", "vi": "Phỏng vấn", "en": "Interview", "pos": "verb", "difficulty": 6, "frequency": 610 },
+        { "id": "it_w_0611", "vi": "Đưa tin", "en": "Report (news)", "pos": "verb", "difficulty": 6, "frequency": 611 },
+        { "id": "it_w_0612", "vi": "Khách quan", "en": "Objective", "pos": "adjective", "difficulty": 6, "frequency": 612 }
+      ],
+      "sentences": [
+        { "id": "it_s_0476", "vi": "Phóng viên đang phỏng vấn người dân.", "en": "The reporter is interviewing residents.", "accepted": ["The reporter is interviewing residents."], "tokens": 6, "difficulty": 6 },
+        { "id": "it_s_0477", "vi": "Tiêu đề của bài báo gây tranh cãi.", "en": "The article's headline is controversial.", "accepted": ["The article's headline is controversial."], "tokens": 7, "difficulty": 6 },
+        { "id": "it_s_0478", "vi": "Bạn nên kiểm tra nguồn tin.", "en": "You should check the source.", "accepted": ["You should check the source."], "tokens": 5, "difficulty": 6 },
+        { "id": "it_s_0479", "vi": "Một bài báo tốt phải khách quan.", "en": "A good article must be objective.", "accepted": ["A good article must be objective."], "tokens": 6, "difficulty": 6 }
+      ],
+      "conversations": [
+        { "id": "CV070", "title": "Discussing news", "context": "Two colleagues read the morning news.", "lines": [
+          { "speaker": "A", "vi": "Bạn thấy tin nóng sáng nay chưa?", "en": "Have you seen this morning's breaking news?" },
+          { "speaker": "B", "vi": "Rồi, nhưng nguồn tin không rõ.", "en": "Yes, but the source is unclear." },
+          { "speaker": "A", "vi": "Đợi báo chính thống đưa tin đã.", "en": "Let's wait for mainstream media to report." },
+          { "speaker": "B", "vi": "Đúng vậy, phải khách quan.", "en": "Right, we need to stay objective." }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_078", "unit": "phase_23_media", "title": "Social Media", "nodeId": "u23_L078", "quizId": "u23_Q078", "quizLabel": "Social Media Quiz", "nodeIndex": 3, "difficulty": 6, "cefr": "B2", "xp": 25, "topic": "basics", "focus": ["social", "digital"],
+      "words": [
+        { "id": "it_w_0613", "vi": "Mạng xã hội", "en": "Social network", "pos": "noun", "difficulty": 6, "frequency": 613 },
+        { "id": "it_w_0614", "vi": "Bài đăng", "en": "Post", "pos": "noun", "difficulty": 6, "frequency": 614 },
+        { "id": "it_w_0615", "vi": "Bình luận", "en": "Comment", "pos": "noun", "difficulty": 6, "frequency": 615 },
+        { "id": "it_w_0616", "vi": "Chia sẻ", "en": "Share", "pos": "verb", "difficulty": 6, "frequency": 616 },
+        { "id": "it_w_0617", "vi": "Theo dõi", "en": "Follow", "pos": "verb", "difficulty": 6, "frequency": 617 },
+        { "id": "it_w_0618", "vi": "Lượt thích", "en": "Like (count)", "pos": "noun", "difficulty": 6, "frequency": 618 },
+        { "id": "it_w_0619", "vi": "Người ảnh hưởng", "en": "Influencer", "pos": "noun", "difficulty": 6, "frequency": 619 },
+        { "id": "it_w_0620", "vi": "Lan truyền", "en": "Go viral", "pos": "verb", "difficulty": 6, "frequency": 620 }
+      ],
+      "sentences": [
+        { "id": "it_s_0480", "vi": "Bài đăng của cô ấy lan truyền nhanh.", "en": "Her post went viral quickly.", "accepted": ["Her post went viral quickly."], "tokens": 7, "difficulty": 6 },
+        { "id": "it_s_0481", "vi": "Tôi không thích đọc bình luận tiêu cực.", "en": "I don't like reading negative comments.", "accepted": ["I don't like reading negative comments."], "tokens": 7, "difficulty": 6 },
+        { "id": "it_s_0482", "vi": "Bạn có theo dõi anh ấy không?", "en": "Do you follow him?", "accepted": ["Do you follow him?"], "tokens": 5, "difficulty": 6 },
+        { "id": "it_s_0483", "vi": "Mạng xã hội ảnh hưởng đến giới trẻ.", "en": "Social media affects young people.", "accepted": ["Social media affects young people."], "tokens": 7, "difficulty": 6 }
+      ],
+      "conversations": [
+        { "id": "CV071", "title": "Online buzz", "context": "Two friends discuss a viral post.", "lines": [
+          { "speaker": "A", "vi": "Bạn thấy bài đăng đó chưa?", "en": "Have you seen that post?" },
+          { "speaker": "B", "vi": "Rồi, được hơn 100 nghìn lượt thích.", "en": "Yes, it got over 100k likes." },
+          { "speaker": "A", "vi": "Người ảnh hưởng đó đang rất hot.", "en": "That influencer is really trending." },
+          { "speaker": "B", "vi": "Mạng xã hội bây giờ mạnh thật.", "en": "Social media is so powerful now." }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_079", "unit": "phase_24_abstract", "title": "Emotions in Depth", "nodeId": "u24_L079", "quizId": "u24_Q079", "quizLabel": "Emotions Quiz", "nodeIndex": 1, "difficulty": 6, "cefr": "B2", "xp": 25, "topic": "basics", "focus": ["emotion", "introspection"],
+      "words": [
+        { "id": "it_w_0621", "vi": "Hạnh phúc", "en": "Happiness", "pos": "noun", "difficulty": 6, "frequency": 621 },
+        { "id": "it_w_0622", "vi": "Cô đơn", "en": "Lonely", "pos": "adjective", "difficulty": 6, "frequency": 622 },
+        { "id": "it_w_0623", "vi": "Lo lắng", "en": "Anxious / worried", "pos": "adjective", "difficulty": 6, "frequency": 623 },
+        { "id": "it_w_0624", "vi": "Tự hào", "en": "Proud", "pos": "adjective", "difficulty": 6, "frequency": 624 },
+        { "id": "it_w_0625", "vi": "Hối hận", "en": "Regret", "pos": "verb", "difficulty": 6, "frequency": 625 },
+        { "id": "it_w_0626", "vi": "Biết ơn", "en": "Grateful", "pos": "adjective", "difficulty": 6, "frequency": 626 },
+        { "id": "it_w_0627", "vi": "Bình yên", "en": "Peaceful", "pos": "adjective", "difficulty": 6, "frequency": 627 },
+        { "id": "it_w_0628", "vi": "Xúc động", "en": "Moved / emotional", "pos": "adjective", "difficulty": 6, "frequency": 628 }
+      ],
+      "sentences": [
+        { "id": "it_s_0484", "vi": "Tôi cảm thấy bình yên khi ở quê.", "en": "I feel peaceful when in the countryside.", "accepted": ["I feel peaceful when in the countryside."], "tokens": 8, "difficulty": 6 },
+        { "id": "it_s_0485", "vi": "Cô ấy rất xúc động khi nghe tin.", "en": "She was very moved when she heard the news.", "accepted": ["She was very moved when she heard the news."], "tokens": 8, "difficulty": 6 },
+        { "id": "it_s_0486", "vi": "Tôi biết ơn vì có gia đình.", "en": "I'm grateful to have a family.", "accepted": ["I'm grateful to have a family."], "tokens": 6, "difficulty": 6 },
+        { "id": "it_s_0487", "vi": "Đôi khi tôi cảm thấy cô đơn.", "en": "Sometimes I feel lonely.", "accepted": ["Sometimes I feel lonely."], "tokens": 6, "difficulty": 6 }
+      ],
+      "conversations": [
+        { "id": "CV072", "title": "Heart-to-heart", "context": "Two close friends opening up.", "lines": [
+          { "speaker": "A", "vi": "Dạo này bạn thế nào?", "en": "How have you been lately?" },
+          { "speaker": "B", "vi": "Hơi lo lắng về công việc.", "en": "A bit anxious about work." },
+          { "speaker": "A", "vi": "Mình hiểu, mọi chuyện sẽ ổn thôi.", "en": "I understand, things will be okay." },
+          { "speaker": "B", "vi": "Cảm ơn bạn, mình biết ơn lắm.", "en": "Thank you, I'm really grateful." }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_080", "unit": "phase_24_abstract", "title": "Values & Philosophy", "nodeId": "u24_L080", "quizId": "u24_Q080", "quizLabel": "Values Quiz", "nodeIndex": 2, "difficulty": 6, "cefr": "B2", "xp": 25, "topic": "basics", "focus": ["values", "philosophy"],
+      "words": [
+        { "id": "it_w_0629", "vi": "Giá trị", "en": "Value", "pos": "noun", "difficulty": 6, "frequency": 629 },
+        { "id": "it_w_0630", "vi": "Đạo đức", "en": "Ethics / morality", "pos": "noun", "difficulty": 6, "frequency": 630 },
+        { "id": "it_w_0631", "vi": "Trách nhiệm", "en": "Responsibility", "pos": "noun", "difficulty": 6, "frequency": 631 },
+        { "id": "it_w_0632", "vi": "Công bằng", "en": "Fair / justice", "pos": "adjective", "difficulty": 6, "frequency": 632 },
+        { "id": "it_w_0633", "vi": "Tự do", "en": "Freedom", "pos": "noun", "difficulty": 6, "frequency": 633 },
+        { "id": "it_w_0634", "vi": "Niềm tin", "en": "Belief / faith", "pos": "noun", "difficulty": 6, "frequency": 634 },
+        { "id": "it_w_0635", "vi": "Ý nghĩa cuộc sống", "en": "Meaning of life", "pos": "phrase", "difficulty": 6, "frequency": 635 },
+        { "id": "it_w_0636", "vi": "Triết lý", "en": "Philosophy", "pos": "noun", "difficulty": 6, "frequency": 636 }
+      ],
+      "sentences": [
+        { "id": "it_s_0488", "vi": "Mỗi người có giá trị riêng.", "en": "Everyone has their own values.", "accepted": ["Everyone has their own values."], "tokens": 5, "difficulty": 6 },
+        { "id": "it_s_0489", "vi": "Tự do và trách nhiệm luôn đi đôi.", "en": "Freedom and responsibility go together.", "accepted": ["Freedom and responsibility go together."], "tokens": 7, "difficulty": 6 },
+        { "id": "it_s_0490", "vi": "Bạn nghĩ gì về ý nghĩa cuộc sống?", "en": "What do you think the meaning of life is?", "accepted": ["What do you think the meaning of life is?"], "tokens": 7, "difficulty": 6 },
+        { "id": "it_s_0491", "vi": "Triết lý sống của tôi là đơn giản.", "en": "My life philosophy is simplicity.", "accepted": ["My life philosophy is simplicity."], "tokens": 7, "difficulty": 6 }
+      ],
+      "conversations": [
+        { "id": "CV073", "title": "Late-night talk", "context": "Two friends discussing life.", "lines": [
+          { "speaker": "A", "vi": "Theo bạn, điều gì quan trọng nhất?", "en": "What do you think is most important?" },
+          { "speaker": "B", "vi": "Đối với mình, đó là gia đình.", "en": "For me, it's family." },
+          { "speaker": "A", "vi": "Còn tự do thì sao?", "en": "What about freedom?" },
+          { "speaker": "B", "vi": "Tự do cũng quan trọng, nhưng phải có trách nhiệm.", "en": "Freedom matters too, but with responsibility." }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_081", "unit": "phase_24_abstract", "title": "Personality Traits", "nodeId": "u24_L081", "quizId": "u24_Q081", "quizLabel": "Personality Quiz", "nodeIndex": 3, "difficulty": 6, "cefr": "B2", "xp": 25, "topic": "basics", "focus": ["personality", "description"],
+      "words": [
+        { "id": "it_w_0637", "vi": "Hướng nội", "en": "Introverted", "pos": "adjective", "difficulty": 6, "frequency": 637 },
+        { "id": "it_w_0638", "vi": "Hướng ngoại", "en": "Extroverted", "pos": "adjective", "difficulty": 6, "frequency": 638 },
+        { "id": "it_w_0639", "vi": "Kiên nhẫn", "en": "Patient", "pos": "adjective", "difficulty": 6, "frequency": 639 },
+        { "id": "it_w_0640", "vi": "Quyết đoán", "en": "Decisive", "pos": "adjective", "difficulty": 6, "frequency": 640 },
+        { "id": "it_w_0641", "vi": "Cởi mở", "en": "Open-minded", "pos": "adjective", "difficulty": 6, "frequency": 641 },
+        { "id": "it_w_0642", "vi": "Khiêm tốn", "en": "Humble", "pos": "adjective", "difficulty": 6, "frequency": 642 },
+        { "id": "it_w_0643", "vi": "Sáng tạo", "en": "Creative", "pos": "adjective", "difficulty": 6, "frequency": 643 },
+        { "id": "it_w_0644", "vi": "Đáng tin cậy", "en": "Reliable", "pos": "adjective", "difficulty": 6, "frequency": 644 }
+      ],
+      "sentences": [
+        { "id": "it_s_0492", "vi": "Tôi là người hướng nội nhưng cởi mở.", "en": "I'm introverted but open-minded.", "accepted": ["I'm introverted but open-minded."], "tokens": 7, "difficulty": 6 },
+        { "id": "it_s_0493", "vi": "Anh ấy rất quyết đoán trong công việc.", "en": "He's very decisive at work.", "accepted": ["He's very decisive at work."], "tokens": 7, "difficulty": 6 },
+        { "id": "it_s_0494", "vi": "Cô ấy sáng tạo và đáng tin cậy.", "en": "She is creative and reliable.", "accepted": ["She is creative and reliable."], "tokens": 7, "difficulty": 6 },
+        { "id": "it_s_0495", "vi": "Khiêm tốn là một đức tính quý.", "en": "Humility is a precious virtue.", "accepted": ["Humility is a precious virtue."], "tokens": 6, "difficulty": 6 }
+      ],
+      "conversations": [
+        { "id": "CV074", "title": "Describing a colleague", "context": "Two colleagues describe a new hire.", "lines": [
+          { "speaker": "A", "vi": "Bạn nghĩ sao về nhân viên mới?", "en": "What do you think of the new hire?" },
+          { "speaker": "B", "vi": "Cô ấy rất kiên nhẫn và sáng tạo.", "en": "She's very patient and creative." },
+          { "speaker": "A", "vi": "Có vẻ hơi hướng nội nhỉ?", "en": "She seems a bit introverted, no?" },
+          { "speaker": "B", "vi": "Đúng, nhưng rất đáng tin cậy.", "en": "Yes, but very reliable." }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_082", "unit": "phase_25_environment", "title": "Climate & Weather", "nodeId": "u25_L082", "quizId": "u25_Q082", "quizLabel": "Climate Quiz", "nodeIndex": 1, "difficulty": 6, "cefr": "B2", "xp": 25, "topic": "basics", "focus": ["climate", "environment"],
+      "words": [
+        { "id": "it_w_0645", "vi": "Khí hậu", "en": "Climate", "pos": "noun", "difficulty": 6, "frequency": 645 },
+        { "id": "it_w_0646", "vi": "Biến đổi khí hậu", "en": "Climate change", "pos": "noun", "difficulty": 6, "frequency": 646 },
+        { "id": "it_w_0647", "vi": "Nóng lên toàn cầu", "en": "Global warming", "pos": "noun", "difficulty": 6, "frequency": 647 },
+        { "id": "it_w_0648", "vi": "Bão", "en": "Storm", "pos": "noun", "difficulty": 6, "frequency": 648 },
+        { "id": "it_w_0649", "vi": "Lũ lụt", "en": "Flood", "pos": "noun", "difficulty": 6, "frequency": 649 },
+        { "id": "it_w_0650", "vi": "Hạn hán", "en": "Drought", "pos": "noun", "difficulty": 6, "frequency": 650 },
+        { "id": "it_w_0651", "vi": "Nhiệt độ", "en": "Temperature", "pos": "noun", "difficulty": 6, "frequency": 651 },
+        { "id": "it_w_0652", "vi": "Mực nước biển", "en": "Sea level", "pos": "noun", "difficulty": 6, "frequency": 652 }
+      ],
+      "sentences": [
+        { "id": "it_s_0496", "vi": "Biến đổi khí hậu là vấn đề toàn cầu.", "en": "Climate change is a global problem.", "accepted": ["Climate change is a global problem."], "tokens": 8, "difficulty": 6 },
+        { "id": "it_s_0497", "vi": "Việt Nam thường có bão vào mùa hè.", "en": "Vietnam often has storms in summer.", "accepted": ["Vietnam often has storms in summer."], "tokens": 8, "difficulty": 6 },
+        { "id": "it_s_0498", "vi": "Nhiệt độ năm nay cao kỷ lục.", "en": "Temperatures this year are record-high.", "accepted": ["Temperatures this year are record-high."], "tokens": 6, "difficulty": 6 },
+        { "id": "it_s_0499", "vi": "Mực nước biển đang dâng cao.", "en": "Sea levels are rising.", "accepted": ["Sea levels are rising."], "tokens": 5, "difficulty": 6 }
+      ],
+      "conversations": [
+        { "id": "CV075", "title": "Weather report", "context": "Two friends watching the news.", "lines": [
+          { "speaker": "A", "vi": "Năm nay nhiều bão quá.", "en": "There have been so many storms this year." },
+          { "speaker": "B", "vi": "Do biến đổi khí hậu cả thôi.", "en": "It's all due to climate change." },
+          { "speaker": "A", "vi": "Mực nước biển cũng dâng nhanh.", "en": "Sea levels are rising fast too." },
+          { "speaker": "B", "vi": "Phải hành động ngay mới được.", "en": "We must act now." }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_083", "unit": "phase_25_environment", "title": "Pollution", "nodeId": "u25_L083", "quizId": "u25_Q083", "quizLabel": "Pollution Quiz", "nodeIndex": 2, "difficulty": 6, "cefr": "B2", "xp": 25, "topic": "basics", "focus": ["pollution", "environment"],
+      "words": [
+        { "id": "it_w_0653", "vi": "Ô nhiễm", "en": "Pollution", "pos": "noun", "difficulty": 6, "frequency": 653 },
+        { "id": "it_w_0654", "vi": "Không khí", "en": "Air", "pos": "noun", "difficulty": 6, "frequency": 654 },
+        { "id": "it_w_0655", "vi": "Khói bụi", "en": "Smog / dust", "pos": "noun", "difficulty": 6, "frequency": 655 },
+        { "id": "it_w_0656", "vi": "Rác thải", "en": "Waste / trash", "pos": "noun", "difficulty": 6, "frequency": 656 },
+        { "id": "it_w_0657", "vi": "Nhựa", "en": "Plastic", "pos": "noun", "difficulty": 6, "frequency": 657 },
+        { "id": "it_w_0658", "vi": "Tái chế", "en": "Recycle", "pos": "verb", "difficulty": 6, "frequency": 658 },
+        { "id": "it_w_0659", "vi": "Phương tiện giao thông", "en": "Vehicles / transport", "pos": "noun", "difficulty": 6, "frequency": 659 },
+        { "id": "it_w_0660", "vi": "Khí thải", "en": "Emissions", "pos": "noun", "difficulty": 6, "frequency": 660 }
+      ],
+      "sentences": [
+        { "id": "it_s_0500", "vi": "Hà Nội bị ô nhiễm không khí nặng.", "en": "Hanoi has serious air pollution.", "accepted": ["Hanoi has serious air pollution."], "tokens": 7, "difficulty": 6 },
+        { "id": "it_s_0501", "vi": "Chúng ta nên giảm dùng nhựa.", "en": "We should reduce plastic use.", "accepted": ["We should reduce plastic use."], "tokens": 6, "difficulty": 6 },
+        { "id": "it_s_0502", "vi": "Tái chế giúp bảo vệ môi trường.", "en": "Recycling helps protect the environment.", "accepted": ["Recycling helps protect the environment."], "tokens": 6, "difficulty": 6 },
+        { "id": "it_s_0503", "vi": "Khí thải từ xe máy rất nhiều.", "en": "Emissions from motorbikes are very high.", "accepted": ["Emissions from motorbikes are very high."], "tokens": 7, "difficulty": 6 }
+      ],
+      "conversations": [
+        { "id": "CV076", "title": "City problem", "context": "Two friends in a smoggy city.", "lines": [
+          { "speaker": "A", "vi": "Hôm nay khói bụi quá.", "en": "It's so smoggy today." },
+          { "speaker": "B", "vi": "Do phương tiện giao thông nhiều.", "en": "Because there are too many vehicles." },
+          { "speaker": "A", "vi": "Mình nên đi xe đạp hơn.", "en": "We should bike more." },
+          { "speaker": "B", "vi": "Đúng, vừa khỏe vừa bảo vệ môi trường.", "en": "Right, good for health and the environment." }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_084", "unit": "phase_25_environment", "title": "Conservation", "nodeId": "u25_L084", "quizId": "u25_Q084", "quizLabel": "Conservation Quiz", "nodeIndex": 3, "difficulty": 6, "cefr": "B2", "xp": 25, "topic": "basics", "focus": ["conservation", "wildlife"],
+      "words": [
+        { "id": "it_w_0661", "vi": "Bảo tồn", "en": "Conserve / preserve", "pos": "verb", "difficulty": 6, "frequency": 661 },
+        { "id": "it_w_0662", "vi": "Rừng", "en": "Forest", "pos": "noun", "difficulty": 6, "frequency": 662 },
+        { "id": "it_w_0663", "vi": "Động vật hoang dã", "en": "Wildlife", "pos": "noun", "difficulty": 6, "frequency": 663 },
+        { "id": "it_w_0664", "vi": "Tuyệt chủng", "en": "Extinct", "pos": "adjective", "difficulty": 6, "frequency": 664 },
+        { "id": "it_w_0665", "vi": "Sinh thái", "en": "Ecology / ecosystem", "pos": "noun", "difficulty": 6, "frequency": 665 },
+        { "id": "it_w_0666", "vi": "Đa dạng sinh học", "en": "Biodiversity", "pos": "noun", "difficulty": 6, "frequency": 666 },
+        { "id": "it_w_0667", "vi": "Khu bảo tồn", "en": "Reserve / sanctuary", "pos": "noun", "difficulty": 6, "frequency": 667 },
+        { "id": "it_w_0668", "vi": "Phá rừng", "en": "Deforestation", "pos": "verb", "difficulty": 6, "frequency": 668 }
+      ],
+      "sentences": [
+        { "id": "it_s_0504", "vi": "Chúng ta phải bảo tồn rừng tự nhiên.", "en": "We must preserve natural forests.", "accepted": ["We must preserve natural forests."], "tokens": 7, "difficulty": 6 },
+        { "id": "it_s_0505", "vi": "Nhiều loài động vật đang bị tuyệt chủng.", "en": "Many animal species are going extinct.", "accepted": ["Many animal species are going extinct."], "tokens": 7, "difficulty": 6 },
+        { "id": "it_s_0506", "vi": "Đa dạng sinh học rất quan trọng.", "en": "Biodiversity is very important.", "accepted": ["Biodiversity is very important."], "tokens": 6, "difficulty": 6 },
+        { "id": "it_s_0507", "vi": "Khu bảo tồn này thành lập năm 1990.", "en": "This sanctuary was established in 1990.", "accepted": ["This sanctuary was established in 1990."], "tokens": 7, "difficulty": 6 }
+      ],
+      "conversations": [
+        { "id": "CV077", "title": "Visiting a reserve", "context": "A guide explains a nature reserve.", "lines": [
+          { "speaker": "Guide", "vi": "Đây là khu bảo tồn động vật hoang dã.", "en": "This is a wildlife reserve." },
+          { "speaker": "Tourist", "vi": "Có loài nào nguy cấp không?", "en": "Are there any endangered species?" },
+          { "speaker": "Guide", "vi": "Có voi và tê giác đang được bảo vệ.", "en": "Elephants and rhinos are being protected." },
+          { "speaker": "Tourist", "vi": "Thật ý nghĩa, cảm ơn anh.", "en": "How meaningful. Thank you." }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_085", "unit": "phase_25_environment", "title": "Sustainable Living", "nodeId": "u25_L085", "quizId": "u25_Q085", "quizLabel": "Sustainability Quiz", "nodeIndex": 4, "difficulty": 6, "cefr": "B2", "xp": 25, "topic": "basics", "focus": ["sustainability", "lifestyle"],
+      "words": [
+        { "id": "it_w_0669", "vi": "Bền vững", "en": "Sustainable", "pos": "adjective", "difficulty": 6, "frequency": 669 },
+        { "id": "it_w_0670", "vi": "Năng lượng sạch", "en": "Clean energy", "pos": "noun", "difficulty": 6, "frequency": 670 },
+        { "id": "it_w_0671", "vi": "Năng lượng mặt trời", "en": "Solar energy", "pos": "noun", "difficulty": 6, "frequency": 671 },
+        { "id": "it_w_0672", "vi": "Tiết kiệm", "en": "Save / economize", "pos": "verb", "difficulty": 6, "frequency": 672 },
+        { "id": "it_w_0673", "vi": "Hữu cơ", "en": "Organic", "pos": "adjective", "difficulty": 6, "frequency": 673 },
+        { "id": "it_w_0674", "vi": "Tiêu dùng", "en": "Consume", "pos": "verb", "difficulty": 6, "frequency": 674 },
+        { "id": "it_w_0675", "vi": "Lối sống xanh", "en": "Green lifestyle", "pos": "noun", "difficulty": 6, "frequency": 675 },
+        { "id": "it_w_0676", "vi": "Giảm thiểu", "en": "Minimize", "pos": "verb", "difficulty": 6, "frequency": 676 }
+      ],
+      "sentences": [
+        { "id": "it_s_0508", "vi": "Tôi đang theo lối sống xanh.", "en": "I'm following a green lifestyle.", "accepted": ["I'm following a green lifestyle."], "tokens": 6, "difficulty": 6 },
+        { "id": "it_s_0509", "vi": "Nhà tôi dùng năng lượng mặt trời.", "en": "My house uses solar energy.", "accepted": ["My house uses solar energy."], "tokens": 6, "difficulty": 6 },
+        { "id": "it_s_0510", "vi": "Tiêu dùng hữu cơ tốt cho sức khỏe.", "en": "Organic consumption is good for health.", "accepted": ["Organic consumption is good for health."], "tokens": 7, "difficulty": 6 },
+        { "id": "it_s_0511", "vi": "Hãy giảm thiểu rác thải hàng ngày.", "en": "Please minimize daily waste.", "accepted": ["Please minimize daily waste."], "tokens": 6, "difficulty": 6 }
+      ],
+      "conversations": [
+        { "id": "CV078", "title": "Green home", "context": "A friend visits an eco-friendly home.", "lines": [
+          { "speaker": "A", "vi": "Nhà bạn dùng năng lượng mặt trời à?", "en": "Your house uses solar power?" },
+          { "speaker": "B", "vi": "Ừ, tiết kiệm điện được nhiều.", "en": "Yes, it saves a lot of electricity." },
+          { "speaker": "A", "vi": "Bạn cũng dùng rau hữu cơ luôn?", "en": "You also use organic vegetables?" },
+          { "speaker": "B", "vi": "Đúng, mình theo lối sống xanh.", "en": "Yes, I follow a green lifestyle." }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_086", "unit": "phase_26_education", "title": "School & University", "nodeId": "u26_L086", "quizId": "u26_Q086", "quizLabel": "School Quiz", "nodeIndex": 1, "difficulty": 6, "cefr": "B2", "xp": 25, "topic": "basics", "focus": ["education", "school"],
+      "words": [
+        { "id": "it_w_0677", "vi": "Trường đại học", "en": "University", "pos": "noun", "difficulty": 6, "frequency": 677 },
+        { "id": "it_w_0678", "vi": "Sinh viên", "en": "University student", "pos": "noun", "difficulty": 6, "frequency": 678 },
+        { "id": "it_w_0679", "vi": "Giảng viên", "en": "Lecturer", "pos": "noun", "difficulty": 6, "frequency": 679 },
+        { "id": "it_w_0680", "vi": "Chuyên ngành", "en": "Major", "pos": "noun", "difficulty": 6, "frequency": 680 },
+        { "id": "it_w_0681", "vi": "Học bổng", "en": "Scholarship", "pos": "noun", "difficulty": 6, "frequency": 681 },
+        { "id": "it_w_0682", "vi": "Tốt nghiệp", "en": "Graduate", "pos": "verb", "difficulty": 6, "frequency": 682 },
+        { "id": "it_w_0683", "vi": "Bằng cấp", "en": "Degree / qualification", "pos": "noun", "difficulty": 6, "frequency": 683 },
+        { "id": "it_w_0684", "vi": "Thi cử", "en": "Exams", "pos": "noun", "difficulty": 6, "frequency": 684 }
+      ],
+      "sentences": [
+        { "id": "it_s_0512", "vi": "Tôi học chuyên ngành kinh tế.", "en": "I major in economics.", "accepted": ["I major in economics."], "tokens": 5, "difficulty": 6 },
+        { "id": "it_s_0513", "vi": "Cô ấy nhận học bổng toàn phần.", "en": "She received a full scholarship.", "accepted": ["She received a full scholarship."], "tokens": 6, "difficulty": 6 },
+        { "id": "it_s_0514", "vi": "Tôi sẽ tốt nghiệp vào tháng sáu.", "en": "I'll graduate in June.", "accepted": ["I'll graduate in June."], "tokens": 6, "difficulty": 6 },
+        { "id": "it_s_0515", "vi": "Bằng cấp không quan trọng bằng kinh nghiệm.", "en": "Degrees aren't as important as experience.", "accepted": ["Degrees aren't as important as experience."], "tokens": 7, "difficulty": 6 }
+      ],
+      "conversations": [
+        { "id": "CV079", "title": "Campus chat", "context": "Two university students talk.", "lines": [
+          { "speaker": "A", "vi": "Bạn học chuyên ngành gì?", "en": "What's your major?" },
+          { "speaker": "B", "vi": "Mình học khoa học máy tính.", "en": "I study computer science." },
+          { "speaker": "A", "vi": "Khi nào bạn tốt nghiệp?", "en": "When do you graduate?" },
+          { "speaker": "B", "vi": "Năm sau, đang chuẩn bị thi cử.", "en": "Next year, I'm preparing for exams." }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_087", "unit": "phase_26_education", "title": "Skills & Methods", "nodeId": "u26_L087", "quizId": "u26_Q087", "quizLabel": "Skills Quiz", "nodeIndex": 2, "difficulty": 6, "cefr": "B2", "xp": 25, "topic": "basics", "focus": ["skills", "learning"],
+      "words": [
+        { "id": "it_w_0685", "vi": "Kỹ năng", "en": "Skill", "pos": "noun", "difficulty": 6, "frequency": 685 },
+        { "id": "it_w_0686", "vi": "Tự học", "en": "Self-study", "pos": "verb", "difficulty": 6, "frequency": 686 },
+        { "id": "it_w_0687", "vi": "Trực tuyến", "en": "Online", "pos": "adjective", "difficulty": 6, "frequency": 687 },
+        { "id": "it_w_0688", "vi": "Khóa học", "en": "Course", "pos": "noun", "difficulty": 6, "frequency": 688 },
+        { "id": "it_w_0689", "vi": "Chứng chỉ", "en": "Certificate", "pos": "noun", "difficulty": 6, "frequency": 689 },
+        { "id": "it_w_0690", "vi": "Rèn luyện", "en": "Train / cultivate", "pos": "verb", "difficulty": 6, "frequency": 690 },
+        { "id": "it_w_0691", "vi": "Tư duy phản biện", "en": "Critical thinking", "pos": "noun", "difficulty": 6, "frequency": 691 },
+        { "id": "it_w_0692", "vi": "Áp dụng", "en": "Apply", "pos": "verb", "difficulty": 6, "frequency": 692 }
+      ],
+      "sentences": [
+        { "id": "it_s_0516", "vi": "Tôi đang học một khóa trực tuyến.", "en": "I'm taking an online course.", "accepted": ["I'm taking an online course."], "tokens": 6, "difficulty": 6 },
+        { "id": "it_s_0517", "vi": "Tự học rất hiệu quả nếu kiên trì.", "en": "Self-study is effective if you persist.", "accepted": ["Self-study is effective if you persist."], "tokens": 7, "difficulty": 6 },
+        { "id": "it_s_0518", "vi": "Tư duy phản biện rất cần thiết.", "en": "Critical thinking is essential.", "accepted": ["Critical thinking is essential."], "tokens": 6, "difficulty": 6 },
+        { "id": "it_s_0519", "vi": "Tôi muốn áp dụng kiến thức vào thực tế.", "en": "I want to apply knowledge in practice.", "accepted": ["I want to apply knowledge in practice."], "tokens": 8, "difficulty": 6 }
+      ],
+      "conversations": [
+        { "id": "CV080", "title": "Picking up skills", "context": "Two colleagues talk about learning.", "lines": [
+          { "speaker": "A", "vi": "Bạn học kỹ năng mới như thế nào?", "en": "How do you learn new skills?" },
+          { "speaker": "B", "vi": "Mình đăng ký khóa học trực tuyến.", "en": "I sign up for online courses." },
+          { "speaker": "A", "vi": "Có lấy được chứng chỉ không?", "en": "Do you get a certificate?" },
+          { "speaker": "B", "vi": "Có, nhưng quan trọng là biết áp dụng.", "en": "Yes, but applying the skills matters most." }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_088", "unit": "phase_26_education", "title": "Academic Discussion", "nodeId": "u26_L088", "quizId": "u26_Q088", "quizLabel": "Academic Quiz", "nodeIndex": 3, "difficulty": 6, "cefr": "B2", "xp": 25, "topic": "basics", "focus": ["academic", "research"],
+      "words": [
+        { "id": "it_w_0693", "vi": "Nghiên cứu", "en": "Research", "pos": "noun", "difficulty": 6, "frequency": 693 },
+        { "id": "it_w_0694", "vi": "Luận văn", "en": "Thesis", "pos": "noun", "difficulty": 6, "frequency": 694 },
+        { "id": "it_w_0695", "vi": "Phân tích", "en": "Analyze", "pos": "verb", "difficulty": 6, "frequency": 695 },
+        { "id": "it_w_0696", "vi": "Giả thuyết", "en": "Hypothesis", "pos": "noun", "difficulty": 6, "frequency": 696 },
+        { "id": "it_w_0697", "vi": "Kết quả", "en": "Result", "pos": "noun", "difficulty": 6, "frequency": 697 },
+        { "id": "it_w_0698", "vi": "Hội thảo", "en": "Conference / seminar", "pos": "noun", "difficulty": 6, "frequency": 698 },
+        { "id": "it_w_0699", "vi": "Trích dẫn", "en": "Cite / quote", "pos": "verb", "difficulty": 6, "frequency": 699 },
+        { "id": "it_w_0700", "vi": "Phương pháp", "en": "Method", "pos": "noun", "difficulty": 6, "frequency": 700 }
+      ],
+      "sentences": [
+        { "id": "it_s_0520", "vi": "Nghiên cứu này phân tích dữ liệu lớn.", "en": "This research analyzes big data.", "accepted": ["This research analyzes big data."], "tokens": 7, "difficulty": 6 },
+        { "id": "it_s_0521", "vi": "Giả thuyết của tôi được xác nhận.", "en": "My hypothesis was confirmed.", "accepted": ["My hypothesis was confirmed."], "tokens": 6, "difficulty": 6 },
+        { "id": "it_s_0522", "vi": "Cô ấy thuyết trình tại hội thảo quốc tế.", "en": "She presented at an international conference.", "accepted": ["She presented at an international conference."], "tokens": 8, "difficulty": 6 },
+        { "id": "it_s_0523", "vi": "Vui lòng trích dẫn nguồn đầy đủ.", "en": "Please cite the source in full.", "accepted": ["Please cite the source in full."], "tokens": 6, "difficulty": 6 }
+      ],
+      "conversations": [
+        { "id": "CV081", "title": "Thesis advisor", "context": "A student meets a thesis advisor.", "lines": [
+          { "speaker": "Student", "vi": "Em vừa hoàn thành phần phân tích.", "en": "I just finished the analysis section." },
+          { "speaker": "Advisor", "vi": "Kết quả ra sao em?", "en": "How are the results?" },
+          { "speaker": "Student", "vi": "Đúng với giả thuyết ban đầu ạ.", "en": "They match the initial hypothesis." },
+          { "speaker": "Advisor", "vi": "Tốt, nhớ trích dẫn đầy đủ nhé.", "en": "Good, remember to cite everything." }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_089", "unit": "phase_27_economy", "title": "Market & Trade", "nodeId": "u27_L089", "quizId": "u27_Q089", "quizLabel": "Market Quiz", "nodeIndex": 1, "difficulty": 6, "cefr": "B2", "xp": 25, "topic": "basics", "focus": ["economy", "trade"],
+      "words": [
+        { "id": "it_w_0701", "vi": "Thị trường", "en": "Market", "pos": "noun", "difficulty": 6, "frequency": 701 },
+        { "id": "it_w_0702", "vi": "Cung cầu", "en": "Supply and demand", "pos": "noun", "difficulty": 6, "frequency": 702 },
+        { "id": "it_w_0703", "vi": "Xuất khẩu", "en": "Export", "pos": "verb", "difficulty": 6, "frequency": 703 },
+        { "id": "it_w_0704", "vi": "Nhập khẩu", "en": "Import", "pos": "verb", "difficulty": 6, "frequency": 704 },
+        { "id": "it_w_0705", "vi": "Cạnh tranh", "en": "Compete / competition", "pos": "verb", "difficulty": 6, "frequency": 705 },
+        { "id": "it_w_0706", "vi": "Lợi nhuận", "en": "Profit", "pos": "noun", "difficulty": 6, "frequency": 706 },
+        { "id": "it_w_0707", "vi": "Doanh thu", "en": "Revenue", "pos": "noun", "difficulty": 6, "frequency": 707 },
+        { "id": "it_w_0708", "vi": "Khách hàng", "en": "Customer", "pos": "noun", "difficulty": 6, "frequency": 708 }
+      ],
+      "sentences": [
+        { "id": "it_s_0524", "vi": "Thị trường năm nay rất cạnh tranh.", "en": "The market is very competitive this year.", "accepted": ["The market is very competitive this year."], "tokens": 7, "difficulty": 6 },
+        { "id": "it_s_0525", "vi": "Việt Nam xuất khẩu nhiều cà phê.", "en": "Vietnam exports a lot of coffee.", "accepted": ["Vietnam exports a lot of coffee."], "tokens": 6, "difficulty": 6 },
+        { "id": "it_s_0526", "vi": "Doanh thu quý này tăng 20 phần trăm.", "en": "Revenue this quarter rose 20 percent.", "accepted": ["Revenue this quarter rose 20 percent."], "tokens": 8, "difficulty": 6 },
+        { "id": "it_s_0527", "vi": "Khách hàng là ưu tiên số một.", "en": "Customers are the top priority.", "accepted": ["Customers are the top priority."], "tokens": 6, "difficulty": 6 }
+      ],
+      "conversations": [
+        { "id": "CV082", "title": "Quarterly review", "context": "Two managers reviewing results.", "lines": [
+          { "speaker": "A", "vi": "Doanh thu quý này thế nào?", "en": "How was this quarter's revenue?" },
+          { "speaker": "B", "vi": "Tăng nhờ thị trường xuất khẩu.", "en": "Up thanks to the export market." },
+          { "speaker": "A", "vi": "Lợi nhuận có cải thiện không?", "en": "Did profit improve?" },
+          { "speaker": "B", "vi": "Có, nhưng cạnh tranh rất gắt gao.", "en": "Yes, but competition is fierce." }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_090", "unit": "phase_27_economy", "title": "Money & Finance", "nodeId": "u27_L090", "quizId": "u27_Q090", "quizLabel": "Finance Quiz", "nodeIndex": 2, "difficulty": 6, "cefr": "B2", "xp": 25, "topic": "basics", "focus": ["finance", "money"],
+      "words": [
+        { "id": "it_w_0709", "vi": "Đầu tư", "en": "Invest", "pos": "verb", "difficulty": 6, "frequency": 709 },
+        { "id": "it_w_0710", "vi": "Lãi suất", "en": "Interest rate", "pos": "noun", "difficulty": 6, "frequency": 710 },
+        { "id": "it_w_0711", "vi": "Ngân hàng", "en": "Bank", "pos": "noun", "difficulty": 6, "frequency": 711 },
+        { "id": "it_w_0712", "vi": "Vay", "en": "Borrow / loan", "pos": "verb", "difficulty": 6, "frequency": 712 },
+        { "id": "it_w_0713", "vi": "Cổ phiếu", "en": "Stock", "pos": "noun", "difficulty": 6, "frequency": 713 },
+        { "id": "it_w_0714", "vi": "Tỷ giá", "en": "Exchange rate", "pos": "noun", "difficulty": 6, "frequency": 714 },
+        { "id": "it_w_0715", "vi": "Rủi ro", "en": "Risk", "pos": "noun", "difficulty": 6, "frequency": 715 },
+        { "id": "it_w_0716", "vi": "Lạm phát", "en": "Inflation", "pos": "noun", "difficulty": 6, "frequency": 716 }
+      ],
+      "sentences": [
+        { "id": "it_s_0528", "vi": "Tôi đang đầu tư vào cổ phiếu.", "en": "I'm investing in stocks.", "accepted": ["I'm investing in stocks."], "tokens": 6, "difficulty": 6 },
+        { "id": "it_s_0529", "vi": "Lãi suất ngân hàng đang giảm.", "en": "Bank interest rates are falling.", "accepted": ["Bank interest rates are falling."], "tokens": 6, "difficulty": 6 },
+        { "id": "it_s_0530", "vi": "Lạm phát ảnh hưởng đến đời sống.", "en": "Inflation affects daily life.", "accepted": ["Inflation affects daily life."], "tokens": 6, "difficulty": 6 },
+        { "id": "it_s_0531", "vi": "Đầu tư luôn có rủi ro.", "en": "Investing always involves risk.", "accepted": ["Investing always involves risk."], "tokens": 5, "difficulty": 6 }
+      ],
+      "conversations": [
+        { "id": "CV083", "title": "At the bank", "context": "A customer asks about a loan.", "lines": [
+          { "speaker": "Customer", "vi": "Tôi muốn vay để mua nhà.", "en": "I want a loan to buy a house." },
+          { "speaker": "Staff", "vi": "Lãi suất hiện tại là 8 phần trăm.", "en": "The current rate is 8 percent." },
+          { "speaker": "Customer", "vi": "Có rủi ro gì không?", "en": "Are there any risks?" },
+          { "speaker": "Staff", "vi": "Có, anh cần cân nhắc khả năng trả nợ.", "en": "Yes, consider your repayment ability." }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_091", "unit": "phase_27_economy", "title": "Startups & Innovation", "nodeId": "u27_L091", "quizId": "u27_Q091", "quizLabel": "Startups Quiz", "nodeIndex": 3, "difficulty": 6, "cefr": "B2", "xp": 25, "topic": "basics", "focus": ["startup", "innovation"],
+      "words": [
+        { "id": "it_w_0717", "vi": "Khởi nghiệp", "en": "Startup / entrepreneurship", "pos": "noun", "difficulty": 6, "frequency": 717 },
+        { "id": "it_w_0718", "vi": "Sáng kiến", "en": "Initiative", "pos": "noun", "difficulty": 6, "frequency": 718 },
+        { "id": "it_w_0719", "vi": "Đổi mới", "en": "Innovate", "pos": "verb", "difficulty": 6, "frequency": 719 },
+        { "id": "it_w_0720", "vi": "Sản phẩm", "en": "Product", "pos": "noun", "difficulty": 6, "frequency": 720 },
+        { "id": "it_w_0721", "vi": "Gọi vốn", "en": "Raise funds", "pos": "verb", "difficulty": 6, "frequency": 721 },
+        { "id": "it_w_0722", "vi": "Nhà đầu tư", "en": "Investor", "pos": "noun", "difficulty": 6, "frequency": 722 },
+        { "id": "it_w_0723", "vi": "Mô hình kinh doanh", "en": "Business model", "pos": "noun", "difficulty": 6, "frequency": 723 },
+        { "id": "it_w_0724", "vi": "Phát triển", "en": "Develop", "pos": "verb", "difficulty": 6, "frequency": 724 }
+      ],
+      "sentences": [
+        { "id": "it_s_0532", "vi": "Công ty của tôi mới khởi nghiệp.", "en": "My company is a new startup.", "accepted": ["My company is a new startup."], "tokens": 6, "difficulty": 6 },
+        { "id": "it_s_0533", "vi": "Chúng tôi đang gọi vốn vòng đầu tiên.", "en": "We're raising our first round of funding.", "accepted": ["We're raising our first round of funding."], "tokens": 8, "difficulty": 6 },
+        { "id": "it_s_0534", "vi": "Mô hình kinh doanh phải bền vững.", "en": "The business model must be sustainable.", "accepted": ["The business model must be sustainable."], "tokens": 6, "difficulty": 6 },
+        { "id": "it_s_0535", "vi": "Đổi mới là chìa khóa thành công.", "en": "Innovation is the key to success.", "accepted": ["Innovation is the key to success."], "tokens": 6, "difficulty": 6 }
+      ],
+      "conversations": [
+        { "id": "CV084", "title": "Pitching investors", "context": "Founder talks to an investor.", "lines": [
+          { "speaker": "Founder", "vi": "Chúng tôi đang phát triển một sản phẩm mới.", "en": "We're developing a new product." },
+          { "speaker": "Investor", "vi": "Mô hình kinh doanh của các bạn ra sao?", "en": "What's your business model?" },
+          { "speaker": "Founder", "vi": "Chúng tôi thu phí theo đăng ký.", "en": "We charge a subscription fee." },
+          { "speaker": "Investor", "vi": "Nghe hợp lý, mình muốn tìm hiểu thêm.", "en": "Sounds reasonable. I'd like to learn more." }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_092", "unit": "phase_27_economy", "title": "Global Economy", "nodeId": "u27_L092", "quizId": "u27_Q092", "quizLabel": "Global Economy Quiz", "nodeIndex": 4, "difficulty": 6, "cefr": "B2", "xp": 25, "topic": "basics", "focus": ["global", "economy"],
+      "words": [
+        { "id": "it_w_0725", "vi": "Toàn cầu hóa", "en": "Globalization", "pos": "noun", "difficulty": 6, "frequency": 725 },
+        { "id": "it_w_0726", "vi": "Thương mại quốc tế", "en": "International trade", "pos": "noun", "difficulty": 6, "frequency": 726 },
+        { "id": "it_w_0727", "vi": "Hiệp định", "en": "Agreement / treaty", "pos": "noun", "difficulty": 6, "frequency": 727 },
+        { "id": "it_w_0728", "vi": "Thuế quan", "en": "Tariff", "pos": "noun", "difficulty": 6, "frequency": 728 },
+        { "id": "it_w_0729", "vi": "Chuỗi cung ứng", "en": "Supply chain", "pos": "noun", "difficulty": 6, "frequency": 729 },
+        { "id": "it_w_0730", "vi": "Suy thoái", "en": "Recession", "pos": "noun", "difficulty": 6, "frequency": 730 },
+        { "id": "it_w_0731", "vi": "Tăng trưởng", "en": "Growth", "pos": "noun", "difficulty": 6, "frequency": 731 },
+        { "id": "it_w_0732", "vi": "Đối tác", "en": "Partner", "pos": "noun", "difficulty": 6, "frequency": 732 }
+      ],
+      "sentences": [
+        { "id": "it_s_0536", "vi": "Toàn cầu hóa thay đổi thị trường lao động.", "en": "Globalization is changing the labor market.", "accepted": ["Globalization is changing the labor market."], "tokens": 7, "difficulty": 6 },
+        { "id": "it_s_0537", "vi": "Hiệp định này giảm thuế quan giữa hai nước.", "en": "This agreement reduces tariffs between the two countries.", "accepted": ["This agreement reduces tariffs between the two countries."], "tokens": 9, "difficulty": 6 },
+        { "id": "it_s_0538", "vi": "Chuỗi cung ứng toàn cầu đang bị gián đoạn.", "en": "Global supply chains are disrupted.", "accepted": ["Global supply chains are disrupted."], "tokens": 8, "difficulty": 6 },
+        { "id": "it_s_0539", "vi": "Kinh tế đang tăng trưởng trở lại.", "en": "The economy is growing again.", "accepted": ["The economy is growing again."], "tokens": 6, "difficulty": 6 }
+      ],
+      "conversations": [
+        { "id": "CV085", "title": "Trade news", "context": "Two analysts discuss world trade.", "lines": [
+          { "speaker": "A", "vi": "Hiệp định mới sẽ ảnh hưởng thế nào?", "en": "How will the new agreement affect things?" },
+          { "speaker": "B", "vi": "Giảm thuế, tăng xuất khẩu.", "en": "Lower tariffs, more exports." },
+          { "speaker": "A", "vi": "Còn chuỗi cung ứng thì sao?", "en": "What about supply chains?" },
+          { "speaker": "B", "vi": "Vẫn cần thời gian để phục hồi.", "en": "They still need time to recover." }
+        ]}
+      ]
+    }
+  ],
+  "grammarTags": [
+    { "id": "GT086", "category": "opinion", "description": "theo tôi / theo ý kiến của tôi (in my opinion)", "examples": "Theo tôi, đây là vấn đề lớn." },
+    { "id": "GT087", "category": "emphasis", "description": "xin / xin được + verb (formal request)", "examples": "Tôi xin khẳng định quan điểm." },
+    { "id": "GT088", "category": "contrast", "description": "tuy nhiên / mặt khác / ngược lại (however / on the other hand / on the contrary)", "examples": "Tuy nhiên, có một vấn đề." },
+    { "id": "GT089", "category": "persuasion", "description": "hãy + verb (please / let's, imperative softener)", "examples": "Hãy suy nghĩ kỹ." },
+    { "id": "GT090", "category": "conditional", "description": "nếu không + clause (if not / unless)", "examples": "Sẽ nghiêm trọng nếu không hành động." },
+    { "id": "GT091", "category": "topic_shift", "description": "còn ... thì sao? (what about...?)", "examples": "Còn tự do thì sao?" },
+    { "id": "GT092", "category": "passive", "description": "bị / được (passive marker)", "examples": "Khu bảo tồn được thành lập năm 1990." },
+    { "id": "GT093", "category": "comparison", "description": "không ... bằng (not as ... as)", "examples": "Bằng cấp không quan trọng bằng kinh nghiệm." },
+    { "id": "GT094", "category": "abstract", "description": "noun + của + pronoun (possessive abstract)", "examples": "Triết lý sống của tôi." },
+    { "id": "GT095", "category": "compound", "description": "compound abstract nouns (sự + verb, tính + adj)", "examples": "Sự cạnh tranh, tính khiêm tốn." },
+    { "id": "GT096", "category": "trend", "description": "đang + verb (ongoing trend)", "examples": "Mực nước biển đang dâng cao." },
+    { "id": "GT097", "category": "obligation", "description": "phải / cần / nên (must / need / should — strength scale)", "examples": "Chúng ta phải bảo tồn rừng." },
+    { "id": "GT098", "category": "purpose", "description": "để + verb (in order to)", "examples": "Tái chế để bảo vệ môi trường." },
+    { "id": "GT099", "category": "statistic", "description": "tăng / giảm + percentage (rose/fell by ...)", "examples": "Doanh thu tăng 20 phần trăm." },
+    { "id": "GT100", "category": "topic_marker", "description": "đối với (regarding / for)", "examples": "Đối với tôi, gia đình là quan trọng nhất." },
+    { "id": "GT101", "category": "causal", "description": "nhờ + noun/verb (thanks to)", "examples": "Tăng nhờ thị trường xuất khẩu." },
+    { "id": "GT102", "category": "academic", "description": "vui lòng + verb (please, formal)", "examples": "Vui lòng trích dẫn nguồn." },
+    { "id": "GT103", "category": "modal", "description": "có thể + verb (can / may, possibility)", "examples": "Bạn có thể giải thích rõ hơn không?" }
+  ]
+}

@@ -1,0 +1,582 @@
+{
+  "meta": {
+    "mode": "explore_vietnam",
+    "chapter": "c2",
+    "version": "1.0.0",
+    "generated": "2026-05-21T00:00:00.000Z",
+    "source": "authored",
+    "extends": "explore_vietnam_c1",
+    "stats": { "units": 6, "lessons": 20, "vocabulary": 160, "sentences": 80, "conversations": 20, "grammarTags": 18 },
+    "notes": "C2 mastery chapter: formal rhetoric, religion, diplomacy, science, regional cuisine, hospitality. Continues Explore Vietnam after Unit 33. Fills remaining domain gaps (religion, cuisine depth, service mastery)."
+  },
+  "units": [
+    { "id": "unit_34_rhetoric", "order": 34, "title": "Formal Writing & Rhetoric", "description": "Essays, formal letters, speeches, op-eds. Cohesion and rhetorical devices." },
+    { "id": "unit_35_religion", "order": 35, "title": "Religion & Spirituality", "description": "Buddhism, ancestor worship, folk beliefs, temple etiquette." },
+    { "id": "unit_36_diplomacy", "order": 36, "title": "Negotiation & Diplomacy", "description": "High-stakes negotiation, diplomatic register, mediation." },
+    { "id": "unit_37_science", "order": 37, "title": "Science & Technology", "description": "Research presentation, AI/tech discourse, ethics, scientific writing." },
+    { "id": "unit_38_cuisine", "order": 38, "title": "Regional Cuisine in Depth", "description": "Northern, Central, Southern dishes; cooking techniques and food culture." },
+    { "id": "unit_39_hospitality", "order": 39, "title": "Hospitality & Service Excellence", "description": "Concierge, fine dining, handling complex guest scenarios." }
+  ],
+  "lessons": [
+    {
+      "id": "lesson_113", "unit": "phase_34_rhetoric", "title": "Essay Writing", "nodeId": "u34_L113", "quizId": "u34_Q113", "quizLabel": "Essay Quiz", "nodeIndex": 1, "difficulty": 8, "cefr": "C2", "xp": 35, "topic": "basics", "focus": ["writing", "essay"],
+      "words": [
+        { "id": "it_w_0893", "vi": "Bài luận", "en": "Essay", "pos": "noun", "difficulty": 8, "frequency": 893 },
+        { "id": "it_w_0894", "vi": "Luận điểm", "en": "Thesis statement", "pos": "noun", "difficulty": 8, "frequency": 894 },
+        { "id": "it_w_0895", "vi": "Dẫn chứng", "en": "Evidence / citation", "pos": "noun", "difficulty": 8, "frequency": 895 },
+        { "id": "it_w_0896", "vi": "Lập dàn ý", "en": "Outline", "pos": "verb", "difficulty": 8, "frequency": 896 },
+        { "id": "it_w_0897", "vi": "Mở bài", "en": "Introduction", "pos": "noun", "difficulty": 8, "frequency": 897 },
+        { "id": "it_w_0898", "vi": "Thân bài", "en": "Body", "pos": "noun", "difficulty": 8, "frequency": 898 },
+        { "id": "it_w_0899", "vi": "Kết bài", "en": "Conclusion", "pos": "noun", "difficulty": 8, "frequency": 899 },
+        { "id": "it_w_0900", "vi": "Mạch lạc", "en": "Coherent", "pos": "adjective", "difficulty": 8, "frequency": 900 }
+      ],
+      "sentences": [
+        { "id": "it_s_0620", "vi": "Bài luận cần có luận điểm rõ ràng.", "en": "An essay needs a clear thesis.", "accepted": ["An essay needs a clear thesis."], "tokens": 7, "difficulty": 8 },
+        { "id": "it_s_0621", "vi": "Trước khi viết, hãy lập dàn ý chi tiết.", "en": "Before writing, draft a detailed outline.", "accepted": ["Before writing, draft a detailed outline."], "tokens": 8, "difficulty": 8 },
+        { "id": "it_s_0622", "vi": "Mỗi đoạn trong thân bài cần có dẫn chứng.", "en": "Each body paragraph needs evidence.", "accepted": ["Each body paragraph needs evidence."], "tokens": 8, "difficulty": 8 },
+        { "id": "it_s_0623", "vi": "Kết bài tóm tắt luận điểm một cách mạch lạc.", "en": "The conclusion summarizes the thesis coherently.", "accepted": ["The conclusion summarizes the thesis coherently."], "tokens": 9, "difficulty": 8 }
+      ],
+      "conversations": [
+        { "id": "CV106", "title": "Essay feedback", "context": "A teacher reviews a student essay.", "lines": [
+          { "speaker": "Teacher", "vi": "Luận điểm em chưa rõ ràng lắm.", "en": "Your thesis isn't quite clear." },
+          { "speaker": "Student", "vi": "Em nên sửa thế nào ạ?", "en": "How should I revise it?" },
+          { "speaker": "Teacher", "vi": "Bắt đầu bằng một câu khẳng định mạnh mẽ.", "en": "Begin with a strong claim." },
+          { "speaker": "Student", "vi": "Em sẽ lập lại dàn ý.", "en": "I'll redo the outline." }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_114", "unit": "phase_34_rhetoric", "title": "Formal Correspondence", "nodeId": "u34_L114", "quizId": "u34_Q114", "quizLabel": "Letter Quiz", "nodeIndex": 2, "difficulty": 8, "cefr": "C2", "xp": 35, "topic": "basics", "focus": ["writing", "formal"],
+      "words": [
+        { "id": "it_w_0901", "vi": "Kính gửi", "en": "Dear (formal)", "pos": "phrase", "difficulty": 8, "frequency": 901 },
+        { "id": "it_w_0902", "vi": "Trân trọng", "en": "Respectfully", "pos": "adverb", "difficulty": 8, "frequency": 902 },
+        { "id": "it_w_0903", "vi": "Đơn xin", "en": "Application letter", "pos": "noun", "difficulty": 8, "frequency": 903 },
+        { "id": "it_w_0904", "vi": "Đề nghị", "en": "Request / propose", "pos": "verb", "difficulty": 8, "frequency": 904 },
+        { "id": "it_w_0905", "vi": "Phúc đáp", "en": "Reply (formal)", "pos": "verb", "difficulty": 8, "frequency": 905 },
+        { "id": "it_w_0906", "vi": "Lưu ý", "en": "Note / attention", "pos": "noun", "difficulty": 8, "frequency": 906 },
+        { "id": "it_w_0907", "vi": "Chữ ký", "en": "Signature", "pos": "noun", "difficulty": 8, "frequency": 907 },
+        { "id": "it_w_0908", "vi": "Đính kèm", "en": "Attach (file)", "pos": "verb", "difficulty": 8, "frequency": 908 }
+      ],
+      "sentences": [
+        { "id": "it_s_0624", "vi": "Kính gửi quý công ty, tôi xin trình bày như sau.", "en": "Dear company, I respectfully wish to state the following.", "accepted": ["Dear company, I respectfully wish to state the following."], "tokens": 10, "difficulty": 8 },
+        { "id": "it_s_0625", "vi": "Tôi xin đề nghị quý ông xem xét hồ sơ.", "en": "I respectfully request that you review my application.", "accepted": ["I respectfully request that you review my application."], "tokens": 9, "difficulty": 8 },
+        { "id": "it_s_0626", "vi": "Rất mong nhận được phúc đáp sớm.", "en": "I look forward to your prompt reply.", "accepted": ["I look forward to your prompt reply."], "tokens": 7, "difficulty": 8 },
+        { "id": "it_s_0627", "vi": "Hồ sơ đính kèm gồm sơ yếu lý lịch và bằng cấp.", "en": "Attached are my CV and qualifications.", "accepted": ["Attached are my CV and qualifications."], "tokens": 10, "difficulty": 8 }
+      ],
+      "conversations": [
+        { "id": "CV107", "title": "Drafting a letter", "context": "Mentor helps draft an application.", "lines": [
+          { "speaker": "A", "vi": "Em viết 'Kính gửi' rồi tên công ty.", "en": "Start with 'Kính gửi' and the company name." },
+          { "speaker": "B", "vi": "Phần đề nghị em nên viết thế nào?", "en": "How should I phrase the request?" },
+          { "speaker": "A", "vi": "Dùng 'xin trân trọng đề nghị' cho lịch sự.", "en": "Use 'I respectfully request' to be polite." },
+          { "speaker": "B", "vi": "Cuối thư em ký tên ạ?", "en": "I sign my name at the end?" }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_115", "unit": "phase_34_rhetoric", "title": "Public Speaking", "nodeId": "u34_L115", "quizId": "u34_Q115", "quizLabel": "Speech Quiz", "nodeIndex": 3, "difficulty": 8, "cefr": "C2", "xp": 35, "topic": "basics", "focus": ["speech", "rhetoric"],
+      "words": [
+        { "id": "it_w_0909", "vi": "Diễn thuyết", "en": "Speech / address", "pos": "noun", "difficulty": 8, "frequency": 909 },
+        { "id": "it_w_0910", "vi": "Khán giả", "en": "Audience", "pos": "noun", "difficulty": 8, "frequency": 910 },
+        { "id": "it_w_0911", "vi": "Cử chỉ", "en": "Gesture", "pos": "noun", "difficulty": 8, "frequency": 911 },
+        { "id": "it_w_0912", "vi": "Ngữ điệu", "en": "Intonation", "pos": "noun", "difficulty": 8, "frequency": 912 },
+        { "id": "it_w_0913", "vi": "Hùng biện", "en": "Eloquent / oratory", "pos": "adjective", "difficulty": 8, "frequency": 913 },
+        { "id": "it_w_0914", "vi": "Truyền cảm hứng", "en": "Inspire", "pos": "verb", "difficulty": 8, "frequency": 914 },
+        { "id": "it_w_0915", "vi": "Câu chuyện mở đầu", "en": "Opening anecdote", "pos": "noun", "difficulty": 8, "frequency": 915 },
+        { "id": "it_w_0916", "vi": "Kêu gọi hành động", "en": "Call to action", "pos": "noun", "difficulty": 8, "frequency": 916 }
+      ],
+      "sentences": [
+        { "id": "it_s_0628", "vi": "Một bài diễn thuyết hay cần ngữ điệu rõ ràng.", "en": "A good speech needs clear intonation.", "accepted": ["A good speech needs clear intonation."], "tokens": 9, "difficulty": 8 },
+        { "id": "it_s_0629", "vi": "Hãy bắt đầu bằng một câu chuyện mở đầu.", "en": "Begin with an opening anecdote.", "accepted": ["Begin with an opening anecdote."], "tokens": 8, "difficulty": 8 },
+        { "id": "it_s_0630", "vi": "Cuối bài nên có lời kêu gọi hành động.", "en": "End with a call to action.", "accepted": ["End with a call to action."], "tokens": 8, "difficulty": 8 },
+        { "id": "it_s_0631", "vi": "Cô ấy hùng biện và truyền cảm hứng cho khán giả.", "en": "She is eloquent and inspires the audience.", "accepted": ["She is eloquent and inspires the audience."], "tokens": 9, "difficulty": 8 }
+      ],
+      "conversations": [
+        { "id": "CV108", "title": "Rehearsing a speech", "context": "Coach gives feedback to a speaker.", "lines": [
+          { "speaker": "Coach", "vi": "Ngữ điệu của em hơi đều.", "en": "Your intonation is a bit flat." },
+          { "speaker": "Speaker", "vi": "Em nên nhấn vào đâu ạ?", "en": "Where should I add emphasis?" },
+          { "speaker": "Coach", "vi": "Nhấn vào câu kêu gọi hành động cuối bài.", "en": "Emphasize the call to action at the end." },
+          { "speaker": "Speaker", "vi": "Vâng, em sẽ luyện lại.", "en": "Yes, I'll practice again." }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_116", "unit": "phase_34_rhetoric", "title": "Op-Ed & Commentary", "nodeId": "u34_L116", "quizId": "u34_Q116", "quizLabel": "Op-Ed Quiz", "nodeIndex": 4, "difficulty": 8, "cefr": "C2", "xp": 35, "topic": "basics", "focus": ["opinion", "media"],
+      "words": [
+        { "id": "it_w_0917", "vi": "Bài bình luận", "en": "Commentary / op-ed", "pos": "noun", "difficulty": 8, "frequency": 917 },
+        { "id": "it_w_0918", "vi": "Lập trường", "en": "Stance", "pos": "noun", "difficulty": 8, "frequency": 918 },
+        { "id": "it_w_0919", "vi": "Phản biện", "en": "Counter-argument", "pos": "noun", "difficulty": 8, "frequency": 919 },
+        { "id": "it_w_0920", "vi": "Sắc bén", "en": "Sharp / incisive", "pos": "adjective", "difficulty": 8, "frequency": 920 },
+        { "id": "it_w_0921", "vi": "Thuyết phục", "en": "Convincing", "pos": "adjective", "difficulty": 8, "frequency": 921 },
+        { "id": "it_w_0922", "vi": "Nhận định", "en": "Assessment / judgment", "pos": "noun", "difficulty": 8, "frequency": 922 },
+        { "id": "it_w_0923", "vi": "Định kiến", "en": "Prejudice / bias", "pos": "noun", "difficulty": 8, "frequency": 923 },
+        { "id": "it_w_0924", "vi": "Mang tính xây dựng", "en": "Constructive", "pos": "phrase", "difficulty": 8, "frequency": 924 }
+      ],
+      "sentences": [
+        { "id": "it_s_0632", "vi": "Bài bình luận cần có lập trường rõ ràng.", "en": "Commentary requires a clear stance.", "accepted": ["Commentary requires a clear stance."], "tokens": 8, "difficulty": 8 },
+        { "id": "it_s_0633", "vi": "Tác giả đưa ra nhận định sắc bén về vấn đề.", "en": "The author offers a sharp assessment of the issue.", "accepted": ["The author offers a sharp assessment of the issue."], "tokens": 9, "difficulty": 8 },
+        { "id": "it_s_0634", "vi": "Cần tránh định kiến trong khi viết.", "en": "Avoid prejudice while writing.", "accepted": ["Avoid prejudice while writing."], "tokens": 7, "difficulty": 8 },
+        { "id": "it_s_0635", "vi": "Phản biện mang tính xây dựng là cần thiết.", "en": "Constructive counter-arguments are necessary.", "accepted": ["Constructive counter-arguments are necessary."], "tokens": 8, "difficulty": 8 }
+      ],
+      "conversations": [
+        { "id": "CV109", "title": "Editing", "context": "Editor and a columnist.", "lines": [
+          { "speaker": "Editor", "vi": "Lập trường của anh trong bài chưa nhất quán.", "en": "Your stance in the piece is inconsistent." },
+          { "speaker": "Columnist", "vi": "Tôi sẽ làm rõ hơn ở đoạn cuối.", "en": "I'll clarify in the final paragraph." },
+          { "speaker": "Editor", "vi": "Nhớ thêm phản biện mang tính xây dựng.", "en": "Remember to add constructive counter-arguments." },
+          { "speaker": "Columnist", "vi": "Vâng, tôi sẽ sửa ngay.", "en": "Yes, I'll revise right away." }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_117", "unit": "phase_35_religion", "title": "Buddhism & Temples", "nodeId": "u35_L117", "quizId": "u35_Q117", "quizLabel": "Buddhism Quiz", "nodeIndex": 1, "difficulty": 8, "cefr": "C2", "xp": 35, "topic": "basics", "focus": ["religion", "buddhism"],
+      "words": [
+        { "id": "it_w_0925", "vi": "Phật giáo", "en": "Buddhism", "pos": "noun", "difficulty": 8, "frequency": 925 },
+        { "id": "it_w_0926", "vi": "Chùa", "en": "Pagoda / temple", "pos": "noun", "difficulty": 8, "frequency": 926 },
+        { "id": "it_w_0927", "vi": "Tu sĩ", "en": "Monk / nun", "pos": "noun", "difficulty": 8, "frequency": 927 },
+        { "id": "it_w_0928", "vi": "Cầu nguyện", "en": "Pray", "pos": "verb", "difficulty": 8, "frequency": 928 },
+        { "id": "it_w_0929", "vi": "Thiền", "en": "Meditation", "pos": "noun", "difficulty": 8, "frequency": 929 },
+        { "id": "it_w_0930", "vi": "Nghiệp", "en": "Karma", "pos": "noun", "difficulty": 8, "frequency": 930 },
+        { "id": "it_w_0931", "vi": "Từ bi", "en": "Compassion", "pos": "noun", "difficulty": 8, "frequency": 931 },
+        { "id": "it_w_0932", "vi": "Niết bàn", "en": "Nirvana", "pos": "noun", "difficulty": 8, "frequency": 932 }
+      ],
+      "sentences": [
+        { "id": "it_s_0636", "vi": "Phật giáo có ảnh hưởng sâu sắc đến văn hóa Việt.", "en": "Buddhism has profoundly influenced Vietnamese culture.", "accepted": ["Buddhism has profoundly influenced Vietnamese culture."], "tokens": 9, "difficulty": 8 },
+        { "id": "it_s_0637", "vi": "Vào chùa, hãy ăn mặc kín đáo và giữ im lặng.", "en": "When entering a pagoda, dress modestly and stay quiet.", "accepted": ["When entering a pagoda, dress modestly and stay quiet."], "tokens": 10, "difficulty": 8 },
+        { "id": "it_s_0638", "vi": "Thiền giúp tâm trí được bình an.", "en": "Meditation brings peace to the mind.", "accepted": ["Meditation brings peace to the mind."], "tokens": 6, "difficulty": 8 },
+        { "id": "it_s_0639", "vi": "Sống từ bi là một bài học của đạo Phật.", "en": "Living with compassion is a Buddhist teaching.", "accepted": ["Living with compassion is a Buddhist teaching."], "tokens": 9, "difficulty": 8 }
+      ],
+      "conversations": [
+        { "id": "CV110", "title": "Pagoda visit", "context": "A guide explains pagoda etiquette.", "lines": [
+          { "speaker": "Guide", "vi": "Trước khi vào, mình cởi giày nhé.", "en": "Before entering, please remove shoes." },
+          { "speaker": "Visitor", "vi": "Em có cần thắp hương không?", "en": "Do I need to light incense?" },
+          { "speaker": "Guide", "vi": "Tùy tâm. Quan trọng là sự thành kính.", "en": "It's up to you. What matters is sincerity." },
+          { "speaker": "Visitor", "vi": "Em xin cảm ơn, em sẽ giữ im lặng.", "en": "Thank you, I'll stay quiet." }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_118", "unit": "phase_35_religion", "title": "Ancestor Worship", "nodeId": "u35_L118", "quizId": "u35_Q118", "quizLabel": "Ancestor Quiz", "nodeIndex": 2, "difficulty": 8, "cefr": "C2", "xp": 35, "topic": "basics", "focus": ["ancestors", "ritual"],
+      "words": [
+        { "id": "it_w_0933", "vi": "Thờ cúng tổ tiên", "en": "Ancestor worship", "pos": "noun", "difficulty": 8, "frequency": 933 },
+        { "id": "it_w_0934", "vi": "Bàn thờ", "en": "Altar", "pos": "noun", "difficulty": 8, "frequency": 934 },
+        { "id": "it_w_0935", "vi": "Bát hương", "en": "Incense bowl", "pos": "noun", "difficulty": 8, "frequency": 935 },
+        { "id": "it_w_0936", "vi": "Giỗ", "en": "Death anniversary", "pos": "noun", "difficulty": 8, "frequency": 936 },
+        { "id": "it_w_0937", "vi": "Mâm cỗ", "en": "Offering tray", "pos": "noun", "difficulty": 8, "frequency": 937 },
+        { "id": "it_w_0938", "vi": "Khấn vái", "en": "Bow and pray", "pos": "verb", "difficulty": 8, "frequency": 938 },
+        { "id": "it_w_0939", "vi": "Hương khói", "en": "Incense smoke", "pos": "noun", "difficulty": 8, "frequency": 939 },
+        { "id": "it_w_0940", "vi": "Linh thiêng", "en": "Sacred", "pos": "adjective", "difficulty": 8, "frequency": 940 }
+      ],
+      "sentences": [
+        { "id": "it_s_0640", "vi": "Người Việt coi việc thờ cúng tổ tiên rất linh thiêng.", "en": "Vietnamese regard ancestor worship as deeply sacred.", "accepted": ["Vietnamese regard ancestor worship as deeply sacred."], "tokens": 10, "difficulty": 8 },
+        { "id": "it_s_0641", "vi": "Ngày giỗ, cả gia đình quây quần làm mâm cỗ.", "en": "On death anniversaries, the family gathers to prepare an offering tray.", "accepted": ["On death anniversaries, the family gathers to prepare an offering tray."], "tokens": 10, "difficulty": 8 },
+        { "id": "it_s_0642", "vi": "Trên bàn thờ luôn có bát hương.", "en": "There is always an incense bowl on the altar.", "accepted": ["There is always an incense bowl on the altar."], "tokens": 7, "difficulty": 8 },
+        { "id": "it_s_0643", "vi": "Con cháu khấn vái trước bàn thờ ông bà.", "en": "Descendants bow and pray before the ancestral altar.", "accepted": ["Descendants bow and pray before the ancestral altar."], "tokens": 8, "difficulty": 8 }
+      ],
+      "conversations": [
+        { "id": "CV111", "title": "Death anniversary", "context": "A grandchild asks about a giỗ ritual.", "lines": [
+          { "speaker": "Cháu", "vi": "Bà ơi, hôm nay là giỗ ai ạ?", "en": "Grandma, whose anniversary is it today?" },
+          { "speaker": "Bà", "vi": "Giỗ ông nội con đó.", "en": "Your paternal grandfather's." },
+          { "speaker": "Cháu", "vi": "Mình cần chuẩn bị mâm cỗ thế nào?", "en": "How should we prepare the offering tray?" },
+          { "speaker": "Bà", "vi": "Có xôi, gà luộc, và hoa tươi.", "en": "Sticky rice, boiled chicken, and fresh flowers." }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_119", "unit": "phase_35_religion", "title": "Folk Beliefs", "nodeId": "u35_L119", "quizId": "u35_Q119", "quizLabel": "Folk Beliefs Quiz", "nodeIndex": 3, "difficulty": 8, "cefr": "C2", "xp": 35, "topic": "basics", "focus": ["folk", "belief"],
+      "words": [
+        { "id": "it_w_0941", "vi": "Tín ngưỡng dân gian", "en": "Folk belief", "pos": "noun", "difficulty": 8, "frequency": 941 },
+        { "id": "it_w_0942", "vi": "Thần linh", "en": "Deity / spirit", "pos": "noun", "difficulty": 8, "frequency": 942 },
+        { "id": "it_w_0943", "vi": "Bùa", "en": "Charm / amulet", "pos": "noun", "difficulty": 8, "frequency": 943 },
+        { "id": "it_w_0944", "vi": "Phong thủy", "en": "Feng shui", "pos": "noun", "difficulty": 8, "frequency": 944 },
+        { "id": "it_w_0945", "vi": "Xem bói", "en": "Fortune-telling", "pos": "verb", "difficulty": 8, "frequency": 945 },
+        { "id": "it_w_0946", "vi": "Mê tín", "en": "Superstition", "pos": "noun", "difficulty": 8, "frequency": 946 },
+        { "id": "it_w_0947", "vi": "Lễ vật", "en": "Offering", "pos": "noun", "difficulty": 8, "frequency": 947 },
+        { "id": "it_w_0948", "vi": "Cầu may", "en": "Pray for luck", "pos": "verb", "difficulty": 8, "frequency": 948 }
+      ],
+      "sentences": [
+        { "id": "it_s_0644", "vi": "Người Việt tin vào tín ngưỡng dân gian từ xa xưa.", "en": "Vietnamese have long believed in folk traditions.", "accepted": ["Vietnamese have long believed in folk traditions."], "tokens": 10, "difficulty": 8 },
+        { "id": "it_s_0645", "vi": "Nhiều nhà coi phong thủy khi xây dựng.", "en": "Many households consult feng shui when building.", "accepted": ["Many households consult feng shui when building."], "tokens": 8, "difficulty": 8 },
+        { "id": "it_s_0646", "vi": "Đầu năm, người ta đi cầu may ở đền.", "en": "At the start of the year, people pray for luck at temples.", "accepted": ["At the start of the year, people pray for luck at temples."], "tokens": 9, "difficulty": 8 },
+        { "id": "it_s_0647", "vi": "Mê tín có thể dẫn đến những hành vi sai lầm.", "en": "Superstition can lead to misguided behavior.", "accepted": ["Superstition can lead to misguided behavior."], "tokens": 9, "difficulty": 8 }
+      ],
+      "conversations": [
+        { "id": "CV112", "title": "New year temple visit", "context": "Friends going to a temple on Tet.", "lines": [
+          { "speaker": "A", "vi": "Mai mình đi đền cầu may không?", "en": "Want to go to the temple to pray for luck tomorrow?" },
+          { "speaker": "B", "vi": "Có chứ, mua lễ vật trước đã.", "en": "Sure, let's buy offerings first." },
+          { "speaker": "A", "vi": "Năm nay mình cầu sức khỏe.", "en": "This year I'll pray for health." },
+          { "speaker": "B", "vi": "Mình cầu công việc thuận lợi.", "en": "I'll pray for smooth work." }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_120", "unit": "phase_36_diplomacy", "title": "High-Stakes Negotiation", "nodeId": "u36_L120", "quizId": "u36_Q120", "quizLabel": "Negotiation Quiz", "nodeIndex": 1, "difficulty": 8, "cefr": "C2", "xp": 35, "topic": "basics", "focus": ["negotiation", "diplomacy"],
+      "words": [
+        { "id": "it_w_0949", "vi": "Đàm phán", "en": "Negotiate", "pos": "verb", "difficulty": 8, "frequency": 949 },
+        { "id": "it_w_0950", "vi": "Nhượng bộ", "en": "Concede", "pos": "verb", "difficulty": 8, "frequency": 950 },
+        { "id": "it_w_0951", "vi": "Điều khoản", "en": "Term / clause", "pos": "noun", "difficulty": 8, "frequency": 951 },
+        { "id": "it_w_0952", "vi": "Thỏa thuận", "en": "Agreement", "pos": "noun", "difficulty": 8, "frequency": 952 },
+        { "id": "it_w_0953", "vi": "Lập trường", "en": "Position", "pos": "noun", "difficulty": 8, "frequency": 953 },
+        { "id": "it_w_0954", "vi": "Đôi bên cùng có lợi", "en": "Win-win", "pos": "phrase", "difficulty": 8, "frequency": 954 },
+        { "id": "it_w_0955", "vi": "Bế tắc", "en": "Deadlock", "pos": "noun", "difficulty": 8, "frequency": 955 },
+        { "id": "it_w_0956", "vi": "Hoãn", "en": "Postpone", "pos": "verb", "difficulty": 8, "frequency": 956 }
+      ],
+      "sentences": [
+        { "id": "it_s_0648", "vi": "Chúng ta nên tìm thỏa thuận đôi bên cùng có lợi.", "en": "We should seek a win-win agreement.", "accepted": ["We should seek a win-win agreement."], "tokens": 9, "difficulty": 8 },
+        { "id": "it_s_0649", "vi": "Tôi không thể nhượng bộ điều khoản này.", "en": "I cannot concede on this term.", "accepted": ["I cannot concede on this term."], "tokens": 7, "difficulty": 8 },
+        { "id": "it_s_0650", "vi": "Cuộc đàm phán đang rơi vào bế tắc.", "en": "The negotiation is at a deadlock.", "accepted": ["The negotiation is at a deadlock."], "tokens": 7, "difficulty": 8 },
+        { "id": "it_s_0651", "vi": "Đề nghị hoãn buổi họp sang tuần sau.", "en": "I propose postponing the meeting until next week.", "accepted": ["I propose postponing the meeting until next week."], "tokens": 8, "difficulty": 8 }
+      ],
+      "conversations": [
+        { "id": "CV113", "title": "Term sheet", "context": "Two negotiators across a table.", "lines": [
+          { "speaker": "A", "vi": "Chúng tôi không thể chấp nhận giá đó.", "en": "We cannot accept that price." },
+          { "speaker": "B", "vi": "Vậy đề xuất của các vị là gì?", "en": "What's your counter-proposal?" },
+          { "speaker": "A", "vi": "Giảm 10 phần trăm, kèm bảo hành 2 năm.", "en": "Ten percent lower, plus a two-year warranty." },
+          { "speaker": "B", "vi": "Để tôi trao đổi với đội rồi phúc đáp.", "en": "Let me consult my team and get back to you." }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_121", "unit": "phase_36_diplomacy", "title": "Diplomatic Register", "nodeId": "u36_L121", "quizId": "u36_Q121", "quizLabel": "Diplomacy Quiz", "nodeIndex": 2, "difficulty": 8, "cefr": "C2", "xp": 35, "topic": "basics", "focus": ["diplomacy", "register"],
+      "words": [
+        { "id": "it_w_0957", "vi": "Ngoại giao", "en": "Diplomacy", "pos": "noun", "difficulty": 8, "frequency": 957 },
+        { "id": "it_w_0958", "vi": "Đại sứ", "en": "Ambassador", "pos": "noun", "difficulty": 8, "frequency": 958 },
+        { "id": "it_w_0959", "vi": "Quan hệ song phương", "en": "Bilateral relations", "pos": "noun", "difficulty": 8, "frequency": 959 },
+        { "id": "it_w_0960", "vi": "Hợp tác", "en": "Cooperate / cooperation", "pos": "noun", "difficulty": 8, "frequency": 960 },
+        { "id": "it_w_0961", "vi": "Tiếp đón", "en": "Receive (a guest)", "pos": "verb", "difficulty": 8, "frequency": 961 },
+        { "id": "it_w_0962", "vi": "Hội đàm", "en": "Talks / conference", "pos": "noun", "difficulty": 8, "frequency": 962 },
+        { "id": "it_w_0963", "vi": "Thân thiện", "en": "Friendly", "pos": "adjective", "difficulty": 8, "frequency": 963 },
+        { "id": "it_w_0964", "vi": "Trang trọng", "en": "Formal / solemn", "pos": "adjective", "difficulty": 8, "frequency": 964 }
+      ],
+      "sentences": [
+        { "id": "it_s_0652", "vi": "Quan hệ song phương giữa hai nước ngày càng phát triển.", "en": "Bilateral relations between the two countries are deepening.", "accepted": ["Bilateral relations between the two countries are deepening."], "tokens": 10, "difficulty": 8 },
+        { "id": "it_s_0653", "vi": "Đại sứ đã tiếp đón đoàn khách một cách trang trọng.", "en": "The ambassador received the delegation with formality.", "accepted": ["The ambassador received the delegation with formality."], "tokens": 10, "difficulty": 8 },
+        { "id": "it_s_0654", "vi": "Hai bên nhất trí tăng cường hợp tác.", "en": "Both sides agreed to strengthen cooperation.", "accepted": ["Both sides agreed to strengthen cooperation."], "tokens": 8, "difficulty": 8 },
+        { "id": "it_s_0655", "vi": "Cuộc hội đàm diễn ra trong bầu không khí thân thiện.", "en": "The talks took place in a friendly atmosphere.", "accepted": ["The talks took place in a friendly atmosphere."], "tokens": 9, "difficulty": 8 }
+      ],
+      "conversations": [
+        { "id": "CV114", "title": "Reception", "context": "Two officials at a diplomatic reception.", "lines": [
+          { "speaker": "A", "vi": "Rất vinh dự được tiếp đón quý đoàn.", "en": "We are honored to receive your delegation." },
+          { "speaker": "B", "vi": "Cảm ơn sự đón tiếp nồng nhiệt.", "en": "Thank you for the warm reception." },
+          { "speaker": "A", "vi": "Hai bên còn nhiều dư địa hợp tác.", "en": "Both sides have ample room for cooperation." },
+          { "speaker": "B", "vi": "Chúng tôi rất mong đợi điều đó.", "en": "We look forward to that." }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_122", "unit": "phase_36_diplomacy", "title": "Mediation & Compromise", "nodeId": "u36_L122", "quizId": "u36_Q122", "quizLabel": "Mediation Quiz", "nodeIndex": 3, "difficulty": 8, "cefr": "C2", "xp": 35, "topic": "basics", "focus": ["mediation", "compromise"],
+      "words": [
+        { "id": "it_w_0965", "vi": "Hòa giải viên", "en": "Mediator", "pos": "noun", "difficulty": 8, "frequency": 965 },
+        { "id": "it_w_0966", "vi": "Trung lập", "en": "Neutral", "pos": "adjective", "difficulty": 8, "frequency": 966 },
+        { "id": "it_w_0967", "vi": "Lắng nghe chủ động", "en": "Active listening", "pos": "noun", "difficulty": 8, "frequency": 967 },
+        { "id": "it_w_0968", "vi": "Tìm tiếng nói chung", "en": "Find common ground", "pos": "phrase", "difficulty": 8, "frequency": 968 },
+        { "id": "it_w_0969", "vi": "Nhượng bộ tạm thời", "en": "Temporary concession", "pos": "noun", "difficulty": 8, "frequency": 969 },
+        { "id": "it_w_0970", "vi": "Đối thoại", "en": "Dialogue", "pos": "noun", "difficulty": 8, "frequency": 970 },
+        { "id": "it_w_0971", "vi": "Hàn gắn", "en": "Mend / heal", "pos": "verb", "difficulty": 8, "frequency": 971 },
+        { "id": "it_w_0972", "vi": "Thấu hiểu", "en": "Empathy / understanding", "pos": "noun", "difficulty": 8, "frequency": 972 }
+      ],
+      "sentences": [
+        { "id": "it_s_0656", "vi": "Hòa giải viên cần giữ vị trí trung lập.", "en": "Mediators must remain neutral.", "accepted": ["Mediators must remain neutral."], "tokens": 8, "difficulty": 8 },
+        { "id": "it_s_0657", "vi": "Lắng nghe chủ động giúp các bên thấu hiểu nhau.", "en": "Active listening helps the parties understand each other.", "accepted": ["Active listening helps the parties understand each other."], "tokens": 9, "difficulty": 8 },
+        { "id": "it_s_0658", "vi": "Chúng ta cần tìm tiếng nói chung trước.", "en": "We need to find common ground first.", "accepted": ["We need to find common ground first."], "tokens": 7, "difficulty": 8 },
+        { "id": "it_s_0659", "vi": "Đối thoại cởi mở có thể hàn gắn rạn nứt.", "en": "Open dialogue can mend rifts.", "accepted": ["Open dialogue can mend rifts."], "tokens": 8, "difficulty": 8 }
+      ],
+      "conversations": [
+        { "id": "CV115", "title": "Mediation session", "context": "A mediator opens a session.", "lines": [
+          { "speaker": "Mediator", "vi": "Mời mỗi bên trình bày trong năm phút.", "en": "Each side, please speak for five minutes." },
+          { "speaker": "Party A", "vi": "Chúng tôi cảm thấy không được lắng nghe.", "en": "We feel we haven't been heard." },
+          { "speaker": "Party B", "vi": "Chúng tôi sẵn sàng đối thoại.", "en": "We are ready to dialogue." },
+          { "speaker": "Mediator", "vi": "Tốt, hãy tìm tiếng nói chung.", "en": "Good, let's find common ground." }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_123", "unit": "phase_37_science", "title": "Research Presentation", "nodeId": "u37_L123", "quizId": "u37_Q123", "quizLabel": "Research Quiz", "nodeIndex": 1, "difficulty": 8, "cefr": "C2", "xp": 35, "topic": "basics", "focus": ["research", "presentation"],
+      "words": [
+        { "id": "it_w_0973", "vi": "Nghiên cứu khoa học", "en": "Scientific research", "pos": "noun", "difficulty": 8, "frequency": 973 },
+        { "id": "it_w_0974", "vi": "Thí nghiệm", "en": "Experiment", "pos": "noun", "difficulty": 8, "frequency": 974 },
+        { "id": "it_w_0975", "vi": "Số liệu", "en": "Data", "pos": "noun", "difficulty": 8, "frequency": 975 },
+        { "id": "it_w_0976", "vi": "Đồ thị", "en": "Graph / chart", "pos": "noun", "difficulty": 8, "frequency": 976 },
+        { "id": "it_w_0977", "vi": "Phương pháp luận", "en": "Methodology", "pos": "noun", "difficulty": 8, "frequency": 977 },
+        { "id": "it_w_0978", "vi": "Phản biện", "en": "Peer review", "pos": "noun", "difficulty": 8, "frequency": 978 },
+        { "id": "it_w_0979", "vi": "Kết luận", "en": "Conclude / conclusion", "pos": "verb", "difficulty": 8, "frequency": 979 },
+        { "id": "it_w_0980", "vi": "Sai số", "en": "Margin of error", "pos": "noun", "difficulty": 8, "frequency": 980 }
+      ],
+      "sentences": [
+        { "id": "it_s_0660", "vi": "Nghiên cứu này dựa trên số liệu thực nghiệm.", "en": "This research is based on empirical data.", "accepted": ["This research is based on empirical data."], "tokens": 8, "difficulty": 8 },
+        { "id": "it_s_0661", "vi": "Phương pháp luận được mô tả trong chương hai.", "en": "The methodology is described in chapter two.", "accepted": ["The methodology is described in chapter two."], "tokens": 8, "difficulty": 8 },
+        { "id": "it_s_0662", "vi": "Đồ thị cho thấy xu hướng tăng đều.", "en": "The graph shows a steady upward trend.", "accepted": ["The graph shows a steady upward trend."], "tokens": 7, "difficulty": 8 },
+        { "id": "it_s_0663", "vi": "Sai số nằm trong giới hạn chấp nhận được.", "en": "The margin of error is within acceptable limits.", "accepted": ["The margin of error is within acceptable limits."], "tokens": 8, "difficulty": 8 }
+      ],
+      "conversations": [
+        { "id": "CV116", "title": "Conference Q&A", "context": "After a paper presentation.", "lines": [
+          { "speaker": "A", "vi": "Phương pháp luận của anh có hạn chế gì?", "en": "What are the limits of your methodology?" },
+          { "speaker": "B", "vi": "Mẫu nghiên cứu còn nhỏ, cần mở rộng.", "en": "The sample is small; it needs expanding." },
+          { "speaker": "A", "vi": "Anh có kế hoạch tiếp theo không?", "en": "Do you have follow-up plans?" },
+          { "speaker": "B", "vi": "Có, một nghiên cứu đa trung tâm.", "en": "Yes, a multi-center study." }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_124", "unit": "phase_37_science", "title": "AI & Technology Discourse", "nodeId": "u37_L124", "quizId": "u37_Q124", "quizLabel": "AI Quiz", "nodeIndex": 2, "difficulty": 8, "cefr": "C2", "xp": 35, "topic": "basics", "focus": ["ai", "tech"],
+      "words": [
+        { "id": "it_w_0981", "vi": "Trí tuệ nhân tạo", "en": "Artificial intelligence", "pos": "noun", "difficulty": 8, "frequency": 981 },
+        { "id": "it_w_0982", "vi": "Học máy", "en": "Machine learning", "pos": "noun", "difficulty": 8, "frequency": 982 },
+        { "id": "it_w_0983", "vi": "Mô hình ngôn ngữ", "en": "Language model", "pos": "noun", "difficulty": 8, "frequency": 983 },
+        { "id": "it_w_0984", "vi": "Dữ liệu lớn", "en": "Big data", "pos": "noun", "difficulty": 8, "frequency": 984 },
+        { "id": "it_w_0985", "vi": "Thuật toán", "en": "Algorithm", "pos": "noun", "difficulty": 8, "frequency": 985 },
+        { "id": "it_w_0986", "vi": "Tự động hóa", "en": "Automation", "pos": "noun", "difficulty": 8, "frequency": 986 },
+        { "id": "it_w_0987", "vi": "Năng suất", "en": "Productivity", "pos": "noun", "difficulty": 8, "frequency": 987 },
+        { "id": "it_w_0988", "vi": "Đột phá", "en": "Breakthrough", "pos": "noun", "difficulty": 8, "frequency": 988 }
+      ],
+      "sentences": [
+        { "id": "it_s_0664", "vi": "Trí tuệ nhân tạo đang thay đổi mọi ngành.", "en": "AI is transforming every industry.", "accepted": ["AI is transforming every industry."], "tokens": 7, "difficulty": 8 },
+        { "id": "it_s_0665", "vi": "Mô hình ngôn ngữ lớn cần dữ liệu khổng lồ.", "en": "Large language models require massive data.", "accepted": ["Large language models require massive data."], "tokens": 9, "difficulty": 8 },
+        { "id": "it_s_0666", "vi": "Tự động hóa giúp tăng năng suất đáng kể.", "en": "Automation significantly boosts productivity.", "accepted": ["Automation significantly boosts productivity."], "tokens": 7, "difficulty": 8 },
+        { "id": "it_s_0667", "vi": "Đột phá này có thể thay đổi cuộc chơi.", "en": "This breakthrough could be a game-changer.", "accepted": ["This breakthrough could be a game-changer."], "tokens": 8, "difficulty": 8 }
+      ],
+      "conversations": [
+        { "id": "CV117", "title": "Tech panel", "context": "Two analysts at a tech forum.", "lines": [
+          { "speaker": "A", "vi": "Mô hình ngôn ngữ mới có gì đột phá?", "en": "What's the breakthrough in the new language model?" },
+          { "speaker": "B", "vi": "Hiểu ngữ cảnh dài hơn rất nhiều.", "en": "Much longer context understanding." },
+          { "speaker": "A", "vi": "Liệu nó có thay thế con người?", "en": "Will it replace humans?" },
+          { "speaker": "B", "vi": "Chưa, nhưng sẽ tăng năng suất.", "en": "Not yet, but it will boost productivity." }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_125", "unit": "phase_37_science", "title": "Tech Ethics", "nodeId": "u37_L125", "quizId": "u37_Q125", "quizLabel": "Tech Ethics Quiz", "nodeIndex": 3, "difficulty": 8, "cefr": "C2", "xp": 35, "topic": "basics", "focus": ["ethics", "tech"],
+      "words": [
+        { "id": "it_w_0989", "vi": "Đạo đức công nghệ", "en": "Tech ethics", "pos": "noun", "difficulty": 8, "frequency": 989 },
+        { "id": "it_w_0990", "vi": "Quyền riêng tư", "en": "Privacy", "pos": "noun", "difficulty": 8, "frequency": 990 },
+        { "id": "it_w_0991", "vi": "Bảo mật dữ liệu", "en": "Data security", "pos": "noun", "difficulty": 8, "frequency": 991 },
+        { "id": "it_w_0992", "vi": "Thành kiến thuật toán", "en": "Algorithmic bias", "pos": "noun", "difficulty": 8, "frequency": 992 },
+        { "id": "it_w_0993", "vi": "Minh bạch", "en": "Transparency", "pos": "noun", "difficulty": 8, "frequency": 993 },
+        { "id": "it_w_0994", "vi": "Trách nhiệm giải trình", "en": "Accountability", "pos": "noun", "difficulty": 8, "frequency": 994 },
+        { "id": "it_w_0995", "vi": "Lạm dụng", "en": "Misuse / abuse", "pos": "verb", "difficulty": 8, "frequency": 995 },
+        { "id": "it_w_0996", "vi": "Quy chuẩn", "en": "Standard / norm", "pos": "noun", "difficulty": 8, "frequency": 996 }
+      ],
+      "sentences": [
+        { "id": "it_s_0668", "vi": "Quyền riêng tư phải được tôn trọng.", "en": "Privacy must be respected.", "accepted": ["Privacy must be respected."], "tokens": 6, "difficulty": 8 },
+        { "id": "it_s_0669", "vi": "Thành kiến thuật toán gây bất công cho người dùng.", "en": "Algorithmic bias creates unfairness for users.", "accepted": ["Algorithmic bias creates unfairness for users."], "tokens": 9, "difficulty": 8 },
+        { "id": "it_s_0670", "vi": "Minh bạch là cốt lõi của niềm tin.", "en": "Transparency is at the core of trust.", "accepted": ["Transparency is at the core of trust."], "tokens": 7, "difficulty": 8 },
+        { "id": "it_s_0671", "vi": "Cần có quy chuẩn để tránh lạm dụng công nghệ.", "en": "Standards are needed to prevent misuse of technology.", "accepted": ["Standards are needed to prevent misuse of technology."], "tokens": 9, "difficulty": 8 }
+      ],
+      "conversations": [
+        { "id": "CV118", "title": "Ethics roundtable", "context": "Two researchers debate AI ethics.", "lines": [
+          { "speaker": "A", "vi": "Ai chịu trách nhiệm khi AI sai?", "en": "Who is accountable when AI is wrong?" },
+          { "speaker": "B", "vi": "Cả nhà phát triển và đơn vị triển khai.", "en": "Both developers and deployers." },
+          { "speaker": "A", "vi": "Vậy làm sao bảo đảm minh bạch?", "en": "Then how do we ensure transparency?" },
+          { "speaker": "B", "vi": "Bằng quy chuẩn và kiểm toán độc lập.", "en": "Through standards and independent audits." }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_126", "unit": "phase_37_science", "title": "Scientific Writing", "nodeId": "u37_L126", "quizId": "u37_Q126", "quizLabel": "Sci-Writing Quiz", "nodeIndex": 4, "difficulty": 8, "cefr": "C2", "xp": 35, "topic": "basics", "focus": ["academic", "writing"],
+      "words": [
+        { "id": "it_w_0997", "vi": "Bài báo khoa học", "en": "Scientific paper", "pos": "noun", "difficulty": 8, "frequency": 997 },
+        { "id": "it_w_0998", "vi": "Tóm tắt", "en": "Abstract", "pos": "noun", "difficulty": 8, "frequency": 998 },
+        { "id": "it_w_0999", "vi": "Tài liệu tham khảo", "en": "References", "pos": "noun", "difficulty": 8, "frequency": 999 },
+        { "id": "it_w_1000", "vi": "Suy diễn", "en": "Inference / deduction", "pos": "noun", "difficulty": 8, "frequency": 1000 },
+        { "id": "it_w_1001", "vi": "Khách quan", "en": "Objective", "pos": "adjective", "difficulty": 8, "frequency": 1001 },
+        { "id": "it_w_1002", "vi": "Chú thích", "en": "Footnote / annotation", "pos": "noun", "difficulty": 8, "frequency": 1002 },
+        { "id": "it_w_1003", "vi": "Định lượng", "en": "Quantitative", "pos": "adjective", "difficulty": 8, "frequency": 1003 },
+        { "id": "it_w_1004", "vi": "Định tính", "en": "Qualitative", "pos": "adjective", "difficulty": 8, "frequency": 1004 }
+      ],
+      "sentences": [
+        { "id": "it_s_0672", "vi": "Tóm tắt phải nêu rõ kết quả chính.", "en": "The abstract must clearly state the main findings.", "accepted": ["The abstract must clearly state the main findings."], "tokens": 8, "difficulty": 8 },
+        { "id": "it_s_0673", "vi": "Nghiên cứu kết hợp phương pháp định lượng và định tính.", "en": "The study combines quantitative and qualitative methods.", "accepted": ["The study combines quantitative and qualitative methods."], "tokens": 9, "difficulty": 8 },
+        { "id": "it_s_0674", "vi": "Mọi suy diễn cần dựa trên số liệu.", "en": "All inferences must be grounded in data.", "accepted": ["All inferences must be grounded in data."], "tokens": 7, "difficulty": 8 },
+        { "id": "it_s_0675", "vi": "Tài liệu tham khảo trình bày theo chuẩn APA.", "en": "References are formatted per APA style.", "accepted": ["References are formatted per APA style."], "tokens": 8, "difficulty": 8 }
+      ],
+      "conversations": [
+        { "id": "CV119", "title": "Manuscript review", "context": "An editor and an author.", "lines": [
+          { "speaker": "Editor", "vi": "Tóm tắt của anh quá dài.", "en": "Your abstract is too long." },
+          { "speaker": "Author", "vi": "Tôi sẽ rút xuống còn 200 từ.", "en": "I'll trim it to 200 words." },
+          { "speaker": "Editor", "vi": "Phần suy diễn cần khách quan hơn.", "en": "The inferences should be more objective." },
+          { "speaker": "Author", "vi": "Vâng, tôi sẽ rà soát lại.", "en": "Yes, I'll go through it again." }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_127", "unit": "phase_38_cuisine", "title": "Northern Cuisine", "nodeId": "u38_L127", "quizId": "u38_Q127", "quizLabel": "North Food Quiz", "nodeIndex": 1, "difficulty": 8, "cefr": "C2", "xp": 35, "topic": "basics", "focus": ["food", "north"],
+      "words": [
+        { "id": "it_w_1005", "vi": "Phở bò", "en": "Beef pho", "pos": "noun", "difficulty": 8, "frequency": 1005 },
+        { "id": "it_w_1006", "vi": "Bún chả", "en": "Bun cha (grilled pork & noodles)", "pos": "noun", "difficulty": 8, "frequency": 1006 },
+        { "id": "it_w_1007", "vi": "Chả cá Lã Vọng", "en": "La Vong turmeric fish", "pos": "noun", "difficulty": 8, "frequency": 1007 },
+        { "id": "it_w_1008", "vi": "Nước dùng", "en": "Broth", "pos": "noun", "difficulty": 8, "frequency": 1008 },
+        { "id": "it_w_1009", "vi": "Hương vị", "en": "Flavor", "pos": "noun", "difficulty": 8, "frequency": 1009 },
+        { "id": "it_w_1010", "vi": "Tinh tế", "en": "Subtle / refined", "pos": "adjective", "difficulty": 8, "frequency": 1010 },
+        { "id": "it_w_1011", "vi": "Thanh đạm", "en": "Light (in flavor)", "pos": "adjective", "difficulty": 8, "frequency": 1011 },
+        { "id": "it_w_1012", "vi": "Cốm", "en": "Young green rice", "pos": "noun", "difficulty": 8, "frequency": 1012 }
+      ],
+      "sentences": [
+        { "id": "it_s_0676", "vi": "Phở Hà Nội nổi tiếng với nước dùng thanh đạm.", "en": "Hanoi pho is famed for its light broth.", "accepted": ["Hanoi pho is famed for its light broth."], "tokens": 9, "difficulty": 8 },
+        { "id": "it_s_0677", "vi": "Bún chả từng được tổng thống Obama ăn thử.", "en": "Bun cha was tried by President Obama.", "accepted": ["Bun cha was tried by President Obama."], "tokens": 9, "difficulty": 8 },
+        { "id": "it_s_0678", "vi": "Hương vị miền Bắc thường tinh tế và không quá ngọt.", "en": "Northern flavors are subtle and not overly sweet.", "accepted": ["Northern flavors are subtle and not overly sweet."], "tokens": 10, "difficulty": 8 },
+        { "id": "it_s_0679", "vi": "Mùa thu Hà Nội thơm mùi cốm.", "en": "Hanoi autumn smells of young green rice.", "accepted": ["Hanoi autumn smells of young green rice."], "tokens": 7, "difficulty": 8 }
+      ],
+      "conversations": [
+        { "id": "CV120", "title": "Hanoi food tour", "context": "A guide and a foodie tourist.", "lines": [
+          { "speaker": "Guide", "vi": "Sáng nay ta ăn phở bò Bát Đàn nhé.", "en": "This morning we'll try Bat Dan beef pho." },
+          { "speaker": "Tourist", "vi": "Nước dùng có gì đặc biệt?", "en": "What's special about the broth?" },
+          { "speaker": "Guide", "vi": "Ninh xương bò mười hai tiếng, rất ngọt và thanh.", "en": "Beef bones simmered twelve hours — sweet and light." },
+          { "speaker": "Tourist", "vi": "Nghe đã thấy thèm!", "en": "Sounds delicious already!" }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_128", "unit": "phase_38_cuisine", "title": "Central Cuisine", "nodeId": "u38_L128", "quizId": "u38_Q128", "quizLabel": "Central Food Quiz", "nodeIndex": 2, "difficulty": 8, "cefr": "C2", "xp": 35, "topic": "basics", "focus": ["food", "central"],
+      "words": [
+        { "id": "it_w_1013", "vi": "Mì Quảng", "en": "Quang noodles", "pos": "noun", "difficulty": 8, "frequency": 1013 },
+        { "id": "it_w_1014", "vi": "Bánh xèo", "en": "Sizzling pancake", "pos": "noun", "difficulty": 8, "frequency": 1014 },
+        { "id": "it_w_1015", "vi": "Cao lầu", "en": "Cao lau (Hoi An noodles)", "pos": "noun", "difficulty": 8, "frequency": 1015 },
+        { "id": "it_w_1016", "vi": "Cay nồng", "en": "Spicy and pungent", "pos": "adjective", "difficulty": 8, "frequency": 1016 },
+        { "id": "it_w_1017", "vi": "Đậm đà", "en": "Rich / full-bodied", "pos": "adjective", "difficulty": 8, "frequency": 1017 },
+        { "id": "it_w_1018", "vi": "Ớt", "en": "Chili", "pos": "noun", "difficulty": 8, "frequency": 1018 },
+        { "id": "it_w_1019", "vi": "Mắm ruốc", "en": "Shrimp paste", "pos": "noun", "difficulty": 8, "frequency": 1019 },
+        { "id": "it_w_1020", "vi": "Tinh hoa ẩm thực", "en": "Culinary essence", "pos": "noun", "difficulty": 8, "frequency": 1020 }
+      ],
+      "sentences": [
+        { "id": "it_s_0680", "vi": "Ẩm thực miền Trung nổi tiếng cay nồng và đậm đà.", "en": "Central cuisine is famed for being spicy and rich.", "accepted": ["Central cuisine is famed for being spicy and rich."], "tokens": 10, "difficulty": 8 },
+        { "id": "it_s_0681", "vi": "Cao lầu chỉ ngon nhất khi ăn ở Hội An.", "en": "Cao lau tastes best only in Hoi An.", "accepted": ["Cao lau tastes best only in Hoi An."], "tokens": 9, "difficulty": 8 },
+        { "id": "it_s_0682", "vi": "Mắm ruốc là linh hồn của nhiều món Huế.", "en": "Shrimp paste is the soul of many Hue dishes.", "accepted": ["Shrimp paste is the soul of many Hue dishes."], "tokens": 9, "difficulty": 8 },
+        { "id": "it_s_0683", "vi": "Bánh xèo miền Trung mỏng và giòn.", "en": "Central-style sizzling pancakes are thin and crispy.", "accepted": ["Central-style sizzling pancakes are thin and crispy."], "tokens": 7, "difficulty": 8 }
+      ],
+      "conversations": [
+        { "id": "CV121", "title": "Hoi An lunch", "context": "Two travelers picking lunch.", "lines": [
+          { "speaker": "A", "vi": "Trưa nay thử cao lầu không?", "en": "Want to try cao lau for lunch?" },
+          { "speaker": "B", "vi": "Có, mình nghe nói rất đặc biệt.", "en": "Yes, I've heard it's very special." },
+          { "speaker": "A", "vi": "Nó dùng nước từ giếng cổ Hội An.", "en": "It uses water from the ancient Hoi An well." },
+          { "speaker": "B", "vi": "Vậy chỉ ở đây mới có vị thật.", "en": "So the real flavor exists only here." }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_129", "unit": "phase_38_cuisine", "title": "Southern Cuisine", "nodeId": "u38_L129", "quizId": "u38_Q129", "quizLabel": "South Food Quiz", "nodeIndex": 3, "difficulty": 8, "cefr": "C2", "xp": 35, "topic": "basics", "focus": ["food", "south"],
+      "words": [
+        { "id": "it_w_1021", "vi": "Hủ tiếu", "en": "Hu tieu noodles", "pos": "noun", "difficulty": 8, "frequency": 1021 },
+        { "id": "it_w_1022", "vi": "Cơm tấm", "en": "Broken rice", "pos": "noun", "difficulty": 8, "frequency": 1022 },
+        { "id": "it_w_1023", "vi": "Lẩu mắm", "en": "Fermented fish hotpot", "pos": "noun", "difficulty": 8, "frequency": 1023 },
+        { "id": "it_w_1024", "vi": "Ngọt thanh", "en": "Sweet (clean / mild)", "pos": "adjective", "difficulty": 8, "frequency": 1024 },
+        { "id": "it_w_1025", "vi": "Nước cốt dừa", "en": "Coconut milk", "pos": "noun", "difficulty": 8, "frequency": 1025 },
+        { "id": "it_w_1026", "vi": "Trái cây nhiệt đới", "en": "Tropical fruit", "pos": "noun", "difficulty": 8, "frequency": 1026 },
+        { "id": "it_w_1027", "vi": "Sông nước", "en": "Riverine (life)", "pos": "noun", "difficulty": 8, "frequency": 1027 },
+        { "id": "it_w_1028", "vi": "Đa dạng nguyên liệu", "en": "Ingredient variety", "pos": "noun", "difficulty": 8, "frequency": 1028 }
+      ],
+      "sentences": [
+        { "id": "it_s_0684", "vi": "Cơm tấm sườn bì chả là món yêu thích ở Sài Gòn.", "en": "Broken rice with pork chop is a Saigon favorite.", "accepted": ["Broken rice with pork chop is a Saigon favorite."], "tokens": 10, "difficulty": 8 },
+        { "id": "it_s_0685", "vi": "Vị ngọt thanh của miền Nam đến từ nước cốt dừa.", "en": "The mild sweetness of the South comes from coconut milk.", "accepted": ["The mild sweetness of the South comes from coconut milk."], "tokens": 10, "difficulty": 8 },
+        { "id": "it_s_0686", "vi": "Miền Tây nổi tiếng với lẩu mắm và trái cây nhiệt đới.", "en": "The Mekong Delta is known for fermented fish hotpot and tropical fruit.", "accepted": ["The Mekong Delta is known for fermented fish hotpot and tropical fruit."], "tokens": 10, "difficulty": 8 },
+        { "id": "it_s_0687", "vi": "Văn hóa sông nước ảnh hưởng sâu đậm đến ẩm thực.", "en": "Riverine culture deeply shapes the cuisine.", "accepted": ["Riverine culture deeply shapes the cuisine."], "tokens": 9, "difficulty": 8 }
+      ],
+      "conversations": [
+        { "id": "CV122", "title": "Saigon street food", "context": "Two friends pick a street stall.", "lines": [
+          { "speaker": "A", "vi": "Ăn cơm tấm hay hủ tiếu?", "en": "Broken rice or hu tieu?" },
+          { "speaker": "B", "vi": "Cơm tấm sườn nướng đi.", "en": "Let's get broken rice with grilled pork." },
+          { "speaker": "A", "vi": "Thêm bì và trứng ốp la nha.", "en": "Add shredded pork skin and a fried egg." },
+          { "speaker": "B", "vi": "Đúng món Sài Gòn rồi.", "en": "That's the true Saigon order." }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_130", "unit": "phase_39_hospitality", "title": "Concierge Service", "nodeId": "u39_L130", "quizId": "u39_Q130", "quizLabel": "Concierge Quiz", "nodeIndex": 1, "difficulty": 8, "cefr": "C2", "xp": 35, "topic": "basics", "focus": ["hospitality", "service"],
+      "words": [
+        { "id": "it_w_1029", "vi": "Lễ tân", "en": "Concierge / front desk", "pos": "noun", "difficulty": 8, "frequency": 1029 },
+        { "id": "it_w_1030", "vi": "Đặt phòng", "en": "Book a room", "pos": "verb", "difficulty": 8, "frequency": 1030 },
+        { "id": "it_w_1031", "vi": "Nâng hạng", "en": "Upgrade", "pos": "verb", "difficulty": 8, "frequency": 1031 },
+        { "id": "it_w_1032", "vi": "Phục vụ", "en": "Serve", "pos": "verb", "difficulty": 8, "frequency": 1032 },
+        { "id": "it_w_1033", "vi": "Yêu cầu đặc biệt", "en": "Special request", "pos": "noun", "difficulty": 8, "frequency": 1033 },
+        { "id": "it_w_1034", "vi": "Xe đưa đón", "en": "Shuttle service", "pos": "noun", "difficulty": 8, "frequency": 1034 },
+        { "id": "it_w_1035", "vi": "Quý khách", "en": "Esteemed guest", "pos": "noun", "difficulty": 8, "frequency": 1035 },
+        { "id": "it_w_1036", "vi": "Tận tình", "en": "Attentive / dedicated", "pos": "adjective", "difficulty": 8, "frequency": 1036 }
+      ],
+      "sentences": [
+        { "id": "it_s_0688", "vi": "Chúng tôi xin nâng hạng phòng cho quý khách.", "en": "We are upgrading your room.", "accepted": ["We are upgrading your room."], "tokens": 8, "difficulty": 8 },
+        { "id": "it_s_0689", "vi": "Quý khách có yêu cầu đặc biệt nào không ạ?", "en": "Do you have any special requests?", "accepted": ["Do you have any special requests?"], "tokens": 8, "difficulty": 8 },
+        { "id": "it_s_0690", "vi": "Xe đưa đón sẽ đón quý khách lúc 8 giờ.", "en": "The shuttle will pick you up at 8.", "accepted": ["The shuttle will pick you up at 8."], "tokens": 9, "difficulty": 8 },
+        { "id": "it_s_0691", "vi": "Đội ngũ lễ tân luôn sẵn sàng phục vụ tận tình.", "en": "Our concierge team is always ready to serve attentively.", "accepted": ["Our concierge team is always ready to serve attentively."], "tokens": 10, "difficulty": 8 }
+      ],
+      "conversations": [
+        { "id": "CV123", "title": "Front desk", "context": "A guest checking in.", "lines": [
+          { "speaker": "Concierge", "vi": "Chào mừng quý khách đến khách sạn.", "en": "Welcome to our hotel." },
+          { "speaker": "Guest", "vi": "Tôi đã đặt phòng dưới tên Smith.", "en": "I have a booking under Smith." },
+          { "speaker": "Concierge", "vi": "Chúng tôi đã nâng hạng phòng cho quý khách.", "en": "We've upgraded your room." },
+          { "speaker": "Guest", "vi": "Cảm ơn rất nhiều!", "en": "Thank you so much!" }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_131", "unit": "phase_39_hospitality", "title": "Fine Dining", "nodeId": "u39_L131", "quizId": "u39_Q131", "quizLabel": "Fine Dining Quiz", "nodeIndex": 2, "difficulty": 8, "cefr": "C2", "xp": 35, "topic": "basics", "focus": ["dining", "service"],
+      "words": [
+        { "id": "it_w_1037", "vi": "Nhà hàng sang trọng", "en": "Fine-dining restaurant", "pos": "noun", "difficulty": 8, "frequency": 1037 },
+        { "id": "it_w_1038", "vi": "Thực đơn nếm thử", "en": "Tasting menu", "pos": "noun", "difficulty": 8, "frequency": 1038 },
+        { "id": "it_w_1039", "vi": "Đầu bếp trưởng", "en": "Head chef", "pos": "noun", "difficulty": 8, "frequency": 1039 },
+        { "id": "it_w_1040", "vi": "Khai vị", "en": "Appetizer", "pos": "noun", "difficulty": 8, "frequency": 1040 },
+        { "id": "it_w_1041", "vi": "Món chính", "en": "Main course", "pos": "noun", "difficulty": 8, "frequency": 1041 },
+        { "id": "it_w_1042", "vi": "Tráng miệng", "en": "Dessert", "pos": "noun", "difficulty": 8, "frequency": 1042 },
+        { "id": "it_w_1043", "vi": "Rượu vang", "en": "Wine", "pos": "noun", "difficulty": 8, "frequency": 1043 },
+        { "id": "it_w_1044", "vi": "Phục vụ bàn", "en": "Wait staff", "pos": "noun", "difficulty": 8, "frequency": 1044 }
+      ],
+      "sentences": [
+        { "id": "it_s_0692", "vi": "Quý khách có muốn xem thực đơn nếm thử không?", "en": "Would you like to see the tasting menu?", "accepted": ["Would you like to see the tasting menu?"], "tokens": 8, "difficulty": 8 },
+        { "id": "it_s_0693", "vi": "Đầu bếp trưởng gợi ý món chính là cá hồi.", "en": "The head chef recommends salmon as the main.", "accepted": ["The head chef recommends salmon as the main."], "tokens": 9, "difficulty": 8 },
+        { "id": "it_s_0694", "vi": "Quý khách dùng rượu vang đỏ hay trắng ạ?", "en": "Would you prefer red or white wine?", "accepted": ["Would you prefer red or white wine?"], "tokens": 8, "difficulty": 8 },
+        { "id": "it_s_0695", "vi": "Tráng miệng hôm nay là kem vani và xoài.", "en": "Today's dessert is vanilla ice cream with mango.", "accepted": ["Today's dessert is vanilla ice cream with mango."], "tokens": 9, "difficulty": 8 }
+      ],
+      "conversations": [
+        { "id": "CV124", "title": "Tasting menu", "context": "A waiter at a fine restaurant.", "lines": [
+          { "speaker": "Waiter", "vi": "Quý khách có dị ứng món nào không ạ?", "en": "Any food allergies?" },
+          { "speaker": "Guest", "vi": "Tôi không ăn được hải sản.", "en": "I can't eat seafood." },
+          { "speaker": "Waiter", "vi": "Cảm ơn, đầu bếp sẽ điều chỉnh thực đơn.", "en": "Thank you, the chef will adjust the menu." },
+          { "speaker": "Guest", "vi": "Tuyệt vời, cảm ơn anh.", "en": "Wonderful, thank you." }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_132", "unit": "phase_39_hospitality", "title": "Handling Complaints", "nodeId": "u39_L132", "quizId": "u39_Q132", "quizLabel": "Complaints Quiz", "nodeIndex": 3, "difficulty": 8, "cefr": "C2", "xp": 35, "topic": "basics", "focus": ["service", "complaint"],
+      "words": [
+        { "id": "it_w_1045", "vi": "Phàn nàn", "en": "Complain", "pos": "verb", "difficulty": 8, "frequency": 1045 },
+        { "id": "it_w_1046", "vi": "Khiếu nại", "en": "Formal complaint", "pos": "noun", "difficulty": 8, "frequency": 1046 },
+        { "id": "it_w_1047", "vi": "Xin lỗi quý khách", "en": "Apology to guest", "pos": "phrase", "difficulty": 8, "frequency": 1047 },
+        { "id": "it_w_1048", "vi": "Khắc phục", "en": "Resolve / fix", "pos": "verb", "difficulty": 8, "frequency": 1048 },
+        { "id": "it_w_1049", "vi": "Đền bù", "en": "Compensation", "pos": "noun", "difficulty": 8, "frequency": 1049 },
+        { "id": "it_w_1050", "vi": "Quản lý", "en": "Manager", "pos": "noun", "difficulty": 8, "frequency": 1050 },
+        { "id": "it_w_1051", "vi": "Bình tĩnh", "en": "Stay calm", "pos": "adjective", "difficulty": 8, "frequency": 1051 },
+        { "id": "it_w_1052", "vi": "Trải nghiệm khách hàng", "en": "Customer experience", "pos": "noun", "difficulty": 8, "frequency": 1052 }
+      ],
+      "sentences": [
+        { "id": "it_s_0696", "vi": "Chúng tôi xin lỗi quý khách vì sự bất tiện.", "en": "We apologize for the inconvenience.", "accepted": ["We apologize for the inconvenience."], "tokens": 9, "difficulty": 8 },
+        { "id": "it_s_0697", "vi": "Chúng tôi sẽ khắc phục ngay lập tức.", "en": "We will fix it immediately.", "accepted": ["We will fix it immediately."], "tokens": 7, "difficulty": 8 },
+        { "id": "it_s_0698", "vi": "Đền bù bằng một bữa tối miễn phí.", "en": "Compensation with a complimentary dinner.", "accepted": ["Compensation with a complimentary dinner."], "tokens": 7, "difficulty": 8 },
+        { "id": "it_s_0699", "vi": "Quản lý sẽ trực tiếp gặp quý khách.", "en": "The manager will meet you in person.", "accepted": ["The manager will meet you in person."], "tokens": 8, "difficulty": 8 }
+      ],
+      "conversations": [
+        { "id": "CV125", "title": "Resolving a complaint", "context": "Manager handles a guest issue.", "lines": [
+          { "speaker": "Guest", "vi": "Phòng tôi bị ồn quá, không ngủ được.", "en": "My room is too noisy, I can't sleep." },
+          { "speaker": "Manager", "vi": "Chúng tôi thành thật xin lỗi quý khách.", "en": "We sincerely apologize." },
+          { "speaker": "Manager", "vi": "Chúng tôi sẽ đổi phòng ngay.", "en": "We'll change your room right away." },
+          { "speaker": "Guest", "vi": "Cảm ơn, mong cải thiện trải nghiệm.", "en": "Thank you, hope the experience improves." }
+        ]}
+      ]
+    }
+  ],
+  "grammarTags": [
+    { "id": "GT122", "category": "academic_structure", "description": "mở bài / thân bài / kết bài (essay structure)", "examples": "Mở bài, thân bài, kết bài rõ ràng." },
+    { "id": "GT123", "category": "cohesion", "description": "cohesive linkers (do đó / vì vậy / hơn nữa / ngoài ra)", "examples": "Do đó, chúng ta cần hành động." },
+    { "id": "GT124", "category": "formal_open", "description": "Kính gửi / Trân trọng / xin trân trọng (formal letter conventions)", "examples": "Kính gửi quý công ty." },
+    { "id": "GT125", "category": "performative", "description": "xin trân trọng + verb (formal performative)", "examples": "Tôi xin trân trọng đề nghị..." },
+    { "id": "GT126", "category": "rhetoric", "description": "rhetorical questions (chẳng phải ... sao?)", "examples": "Chẳng phải chúng ta đã thấy sao?" },
+    { "id": "GT127", "category": "literary_passive", "description": "được + verb in literary register (formal passive)", "examples": "Cô ấy được khán giả yêu mến." },
+    { "id": "GT128", "category": "religious", "description": "sacred-domain register (linh thiêng, từ bi, thành kính)", "examples": "Vào chùa với lòng thành kính." },
+    { "id": "GT129", "category": "ritual", "description": "ritual sequence markers (trước hết, tiếp theo, sau cùng)", "examples": "Trước hết thắp hương, tiếp theo khấn vái." },
+    { "id": "GT130", "category": "diplomatic", "description": "diplomatic register (rất vinh dự / xin chân thành / quý)", "examples": "Rất vinh dự được tiếp đón quý đoàn." },
+    { "id": "GT131", "category": "hedged_disagreement", "description": "softened disagreement (e rằng, có lẽ chưa, có thể không hoàn toàn)", "examples": "E rằng chúng tôi không đồng ý." },
+    { "id": "GT132", "category": "conditional_diplomatic", "description": "giá như / nếu có thể (if only / if possible)", "examples": "Nếu có thể, xin các vị xem xét lại." },
+    { "id": "GT133", "category": "scientific", "description": "academic citation (theo ... / dẫn chứng từ ...)", "examples": "Theo nghiên cứu của Nguyễn (2020)..." },
+    { "id": "GT134", "category": "quantification", "description": "quantitative hedges (khoảng / xấp xỉ / chiếm ... phần trăm)", "examples": "Khoảng 70 phần trăm người tham gia." },
+    { "id": "GT135", "category": "passive_scientific", "description": "được + verb (impersonal scientific passive)", "examples": "Số liệu được thu thập trong sáu tháng." },
+    { "id": "GT136", "category": "ethics_modal", "description": "phải / không được + verb (ethical obligation / prohibition)", "examples": "Không được lạm dụng dữ liệu cá nhân." },
+    { "id": "GT137", "category": "culinary_descriptor", "description": "compound flavor adjectives (đậm đà / thanh đạm / ngọt thanh / cay nồng)", "examples": "Nước dùng thanh đạm, vị ngọt thanh." },
+    { "id": "GT138", "category": "hospitality_honorific", "description": "quý + noun (esteemed honorific)", "examples": "Quý khách, quý ông, quý công ty." },
+    { "id": "GT139", "category": "apology_formal", "description": "thành thật xin lỗi / xin lỗi vì sự bất tiện (formal apology)", "examples": "Chúng tôi thành thật xin lỗi quý khách." }
+  ]
+}

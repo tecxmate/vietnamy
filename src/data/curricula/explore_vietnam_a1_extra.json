@@ -1,0 +1,204 @@
+{
+  "meta": {
+    "mode": "explore_vietnam",
+    "chapter": "a1_extra",
+    "version": "1.0.0",
+    "generated": "2026-05-21T00:00:00.000Z",
+    "source": "authored",
+    "stats": { "units": 0, "lessons": 7, "vocabulary": 56, "sentences": 28, "conversations": 7, "grammarTags": 0 },
+    "notes": "Depth top-ups for the five thinnest A1 units (U2, U3, U4, U5, U6). No new units; existing units gain 1–2 lessons each."
+  },
+  "units": [],
+  "lessons": [
+    {
+      "id": "lesson_133", "unit": "phase_2_polite", "title": "Yes, No & Polite Refusals", "nodeId": "u2_L133", "quizId": "u2_Q133", "quizLabel": "Yes/No Quiz", "nodeIndex": 8, "difficulty": 3, "cefr": "A1", "xp": 12, "topic": "basics", "focus": ["polite", "refusal"],
+      "words": [
+        { "id": "it_w_1053", "vi": "Vâng", "en": "Yes (polite, to elder)", "pos": "interjection", "difficulty": 3, "frequency": 1053 },
+        { "id": "it_w_1054", "vi": "Dạ", "en": "Yes (respectful)", "pos": "interjection", "difficulty": 3, "frequency": 1054 },
+        { "id": "it_w_1055", "vi": "Ừ", "en": "Yeah (casual)", "pos": "interjection", "difficulty": 3, "frequency": 1055 },
+        { "id": "it_w_1056", "vi": "Không", "en": "No / not", "pos": "adverb", "difficulty": 3, "frequency": 1056 },
+        { "id": "it_w_1057", "vi": "Không, cảm ơn", "en": "No, thank you", "pos": "phrase", "difficulty": 3, "frequency": 1057 },
+        { "id": "it_w_1058", "vi": "Xin lỗi, không", "en": "Sorry, no", "pos": "phrase", "difficulty": 3, "frequency": 1058 },
+        { "id": "it_w_1059", "vi": "Có thể", "en": "Maybe", "pos": "adverb", "difficulty": 3, "frequency": 1059 },
+        { "id": "it_w_1060", "vi": "Để tôi nghĩ", "en": "Let me think", "pos": "phrase", "difficulty": 3, "frequency": 1060 }
+      ],
+      "sentences": [
+        { "id": "it_s_0700", "vi": "Dạ vâng, em hiểu rồi.", "en": "Yes, I understand.", "accepted": ["Yes, I understand."], "tokens": 5, "difficulty": 3 },
+        { "id": "it_s_0701", "vi": "Không, cảm ơn anh.", "en": "No, thank you.", "accepted": ["No, thank you."], "tokens": 4, "difficulty": 3 },
+        { "id": "it_s_0702", "vi": "Xin lỗi, để tôi nghĩ đã.", "en": "Sorry, let me think first.", "accepted": ["Sorry, let me think first."], "tokens": 6, "difficulty": 3 },
+        { "id": "it_s_0703", "vi": "Có thể, mai trả lời nhé.", "en": "Maybe, I'll answer tomorrow.", "accepted": ["Maybe, I'll answer tomorrow."], "tokens": 6, "difficulty": 3 }
+      ],
+      "conversations": [
+        { "id": "CV126", "title": "Polite no", "context": "Declining an offer politely.", "lines": [
+          { "speaker": "A", "vi": "Em uống thêm trà không?", "en": "Would you like more tea?" },
+          { "speaker": "B", "vi": "Dạ không, em cảm ơn ạ.", "en": "No, thank you." },
+          { "speaker": "A", "vi": "Hay ăn thêm gì nhé?", "en": "Or eat something more?" },
+          { "speaker": "B", "vi": "Em no rồi ạ.", "en": "I'm full, thank you." }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_134", "unit": "phase_3_cafe", "title": "Drinks Menu", "nodeId": "u3_L134", "quizId": "u3_Q134", "quizLabel": "Drinks Quiz", "nodeIndex": 3, "difficulty": 5, "cefr": "A1", "xp": 15, "topic": "restaurant", "focus": ["drinks", "menu"],
+      "words": [
+        { "id": "it_w_1061", "vi": "Trà đá", "en": "Iced tea", "pos": "noun", "difficulty": 5, "frequency": 1061 },
+        { "id": "it_w_1062", "vi": "Cà phê sữa đá", "en": "Iced milk coffee", "pos": "noun", "difficulty": 5, "frequency": 1062 },
+        { "id": "it_w_1063", "vi": "Sinh tố", "en": "Smoothie", "pos": "noun", "difficulty": 5, "frequency": 1063 },
+        { "id": "it_w_1064", "vi": "Nước cam", "en": "Orange juice", "pos": "noun", "difficulty": 5, "frequency": 1064 },
+        { "id": "it_w_1065", "vi": "Trà sữa", "en": "Milk tea", "pos": "noun", "difficulty": 5, "frequency": 1065 },
+        { "id": "it_w_1066", "vi": "Nước suối", "en": "Bottled water", "pos": "noun", "difficulty": 5, "frequency": 1066 },
+        { "id": "it_w_1067", "vi": "Bia", "en": "Beer", "pos": "noun", "difficulty": 5, "frequency": 1067 },
+        { "id": "it_w_1068", "vi": "Ít đường", "en": "Less sugar", "pos": "phrase", "difficulty": 5, "frequency": 1068 }
+      ],
+      "sentences": [
+        { "id": "it_s_0704", "vi": "Cho tôi một cà phê sữa đá.", "en": "One iced milk coffee, please.", "accepted": ["One iced milk coffee, please."], "tokens": 6, "difficulty": 5 },
+        { "id": "it_s_0705", "vi": "Trà sữa ít đường nhé.", "en": "Milk tea, less sugar please.", "accepted": ["Milk tea, less sugar please."], "tokens": 5, "difficulty": 5 },
+        { "id": "it_s_0706", "vi": "Quán có sinh tố xoài không?", "en": "Do you have mango smoothie?", "accepted": ["Do you have mango smoothie?"], "tokens": 6, "difficulty": 5 },
+        { "id": "it_s_0707", "vi": "Một chai nước suối lạnh.", "en": "One cold bottled water.", "accepted": ["One cold bottled water."], "tokens": 5, "difficulty": 5 }
+      ],
+      "conversations": [
+        { "id": "CV127", "title": "Cafe order", "context": "Ordering drinks.", "lines": [
+          { "speaker": "Server", "vi": "Anh chị uống gì ạ?", "en": "What would you like to drink?" },
+          { "speaker": "A", "vi": "Cho mình cà phê sữa đá.", "en": "An iced milk coffee for me." },
+          { "speaker": "B", "vi": "Mình trà sữa ít đường.", "en": "Milk tea, less sugar for me." },
+          { "speaker": "Server", "vi": "Dạ, đợi em chút.", "en": "Sure, one moment." }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_135", "unit": "phase_3_cafe", "title": "Takeaway & Bills", "nodeId": "u3_L135", "quizId": "u3_Q135", "quizLabel": "Takeaway Quiz", "nodeIndex": 7, "difficulty": 6, "cefr": "A1", "xp": 15, "topic": "restaurant", "focus": ["takeaway", "bill"],
+      "words": [
+        { "id": "it_w_1069", "vi": "Mang đi", "en": "To go / takeaway", "pos": "phrase", "difficulty": 6, "frequency": 1069 },
+        { "id": "it_w_1070", "vi": "Ngồi đây", "en": "Eat in", "pos": "phrase", "difficulty": 6, "frequency": 1070 },
+        { "id": "it_w_1071", "vi": "Tính tiền", "en": "Bill, please", "pos": "phrase", "difficulty": 6, "frequency": 1071 },
+        { "id": "it_w_1072", "vi": "Hóa đơn", "en": "Receipt", "pos": "noun", "difficulty": 6, "frequency": 1072 },
+        { "id": "it_w_1073", "vi": "Tiền mặt", "en": "Cash", "pos": "noun", "difficulty": 6, "frequency": 1073 },
+        { "id": "it_w_1074", "vi": "Quẹt thẻ", "en": "Card payment", "pos": "verb", "difficulty": 6, "frequency": 1074 },
+        { "id": "it_w_1075", "vi": "Tiền lẻ", "en": "Change", "pos": "noun", "difficulty": 6, "frequency": 1075 },
+        { "id": "it_w_1076", "vi": "Tổng cộng", "en": "Total", "pos": "noun", "difficulty": 6, "frequency": 1076 }
+      ],
+      "sentences": [
+        { "id": "it_s_0708", "vi": "Cho mình mang đi nhé.", "en": "Make it to go, please.", "accepted": ["Make it to go, please."], "tokens": 5, "difficulty": 6 },
+        { "id": "it_s_0709", "vi": "Tính tiền giúp mình.", "en": "Check, please.", "accepted": ["Check, please."], "tokens": 4, "difficulty": 6 },
+        { "id": "it_s_0710", "vi": "Bên này có quẹt thẻ không?", "en": "Do you accept cards?", "accepted": ["Do you accept cards?"], "tokens": 6, "difficulty": 6 },
+        { "id": "it_s_0711", "vi": "Tổng cộng bao nhiêu ạ?", "en": "What's the total?", "accepted": ["What's the total?"], "tokens": 5, "difficulty": 6 }
+      ],
+      "conversations": [
+        { "id": "CV128", "title": "Pay & go", "context": "Finishing at a café.", "lines": [
+          { "speaker": "Customer", "vi": "Tính tiền giúp mình nhé.", "en": "Bill, please." },
+          { "speaker": "Server", "vi": "Dạ, tổng cộng 80 nghìn ạ.", "en": "Total is 80 thousand." },
+          { "speaker": "Customer", "vi": "Mình quẹt thẻ được không?", "en": "Can I pay by card?" },
+          { "speaker": "Server", "vi": "Được ạ, đây thẻ ạ.", "en": "Yes, here's the reader." }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_136", "unit": "phase_4_food", "title": "Food Categories", "nodeId": "u4_L136", "quizId": "u4_Q136", "quizLabel": "Food Categories Quiz", "nodeIndex": 2, "difficulty": 6, "cefr": "A1", "xp": 15, "topic": "restaurant", "focus": ["food", "categories"],
+      "words": [
+        { "id": "it_w_1077", "vi": "Món chay", "en": "Vegetarian dish", "pos": "noun", "difficulty": 6, "frequency": 1077 },
+        { "id": "it_w_1078", "vi": "Món mặn", "en": "Savory / meat dish", "pos": "noun", "difficulty": 6, "frequency": 1078 },
+        { "id": "it_w_1079", "vi": "Hải sản", "en": "Seafood", "pos": "noun", "difficulty": 6, "frequency": 1079 },
+        { "id": "it_w_1080", "vi": "Thịt heo", "en": "Pork", "pos": "noun", "difficulty": 6, "frequency": 1080 },
+        { "id": "it_w_1081", "vi": "Thịt bò", "en": "Beef", "pos": "noun", "difficulty": 6, "frequency": 1081 },
+        { "id": "it_w_1082", "vi": "Thịt gà", "en": "Chicken", "pos": "noun", "difficulty": 6, "frequency": 1082 },
+        { "id": "it_w_1083", "vi": "Cơm", "en": "Rice", "pos": "noun", "difficulty": 6, "frequency": 1083 },
+        { "id": "it_w_1084", "vi": "Mì", "en": "Noodles", "pos": "noun", "difficulty": 6, "frequency": 1084 }
+      ],
+      "sentences": [
+        { "id": "it_s_0712", "vi": "Tôi muốn ăn món chay.", "en": "I want a vegetarian dish.", "accepted": ["I want a vegetarian dish."], "tokens": 5, "difficulty": 6 },
+        { "id": "it_s_0713", "vi": "Có món hải sản không?", "en": "Do you have seafood?", "accepted": ["Do you have seafood?"], "tokens": 5, "difficulty": 6 },
+        { "id": "it_s_0714", "vi": "Cho tôi cơm gà.", "en": "Chicken rice, please.", "accepted": ["Chicken rice, please."], "tokens": 4, "difficulty": 6 },
+        { "id": "it_s_0715", "vi": "Một tô mì bò.", "en": "One bowl of beef noodles.", "accepted": ["One bowl of beef noodles."], "tokens": 5, "difficulty": 6 }
+      ],
+      "conversations": [
+        { "id": "CV129", "title": "Picking a dish", "context": "At a small eatery.", "lines": [
+          { "speaker": "Server", "vi": "Anh ăn gì ạ?", "en": "What will you have?" },
+          { "speaker": "Customer", "vi": "Có món chay nào ngon không?", "en": "Any good vegetarian option?" },
+          { "speaker": "Server", "vi": "Có đậu hũ sốt cà chua ạ.", "en": "Tofu with tomato sauce." },
+          { "speaker": "Customer", "vi": "Cho mình một phần.", "en": "I'll have one." }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_137", "unit": "phase_4_food", "title": "Allergies & Diet", "nodeId": "u4_L137", "quizId": "u4_Q137", "quizLabel": "Allergies Quiz", "nodeIndex": 6, "difficulty": 7, "cefr": "A1", "xp": 15, "topic": "restaurant", "focus": ["allergy", "diet"],
+      "words": [
+        { "id": "it_w_1085", "vi": "Dị ứng", "en": "Allergy / allergic", "pos": "noun", "difficulty": 7, "frequency": 1085 },
+        { "id": "it_w_1086", "vi": "Đậu phộng", "en": "Peanut", "pos": "noun", "difficulty": 7, "frequency": 1086 },
+        { "id": "it_w_1087", "vi": "Tôm cua", "en": "Shrimp & crab", "pos": "noun", "difficulty": 7, "frequency": 1087 },
+        { "id": "it_w_1088", "vi": "Không cay", "en": "Not spicy", "pos": "phrase", "difficulty": 7, "frequency": 1088 },
+        { "id": "it_w_1089", "vi": "Ít muối", "en": "Less salt", "pos": "phrase", "difficulty": 7, "frequency": 1089 },
+        { "id": "it_w_1090", "vi": "Không bột ngọt", "en": "No MSG", "pos": "phrase", "difficulty": 7, "frequency": 1090 },
+        { "id": "it_w_1091", "vi": "Ăn kiêng", "en": "On a diet", "pos": "verb", "difficulty": 7, "frequency": 1091 },
+        { "id": "it_w_1092", "vi": "Không thịt", "en": "No meat", "pos": "phrase", "difficulty": 7, "frequency": 1092 }
+      ],
+      "sentences": [
+        { "id": "it_s_0716", "vi": "Tôi bị dị ứng đậu phộng.", "en": "I'm allergic to peanuts.", "accepted": ["I'm allergic to peanuts."], "tokens": 5, "difficulty": 7 },
+        { "id": "it_s_0717", "vi": "Cho tôi món không cay.", "en": "A not-spicy dish, please.", "accepted": ["A not-spicy dish, please."], "tokens": 5, "difficulty": 7 },
+        { "id": "it_s_0718", "vi": "Không bột ngọt nhé.", "en": "No MSG, please.", "accepted": ["No MSG, please."], "tokens": 4, "difficulty": 7 },
+        { "id": "it_s_0719", "vi": "Tôi đang ăn kiêng, ít muối thôi.", "en": "I'm on a diet, low salt please.", "accepted": ["I'm on a diet, low salt please."], "tokens": 7, "difficulty": 7 }
+      ],
+      "conversations": [
+        { "id": "CV130", "title": "Telling the server", "context": "Letting the kitchen know.", "lines": [
+          { "speaker": "Customer", "vi": "Mình dị ứng tôm cua.", "en": "I'm allergic to shrimp and crab." },
+          { "speaker": "Server", "vi": "Em sẽ báo bếp ạ.", "en": "I'll tell the kitchen." },
+          { "speaker": "Customer", "vi": "Và không bột ngọt nhé.", "en": "And no MSG please." },
+          { "speaker": "Server", "vi": "Dạ vâng, em nhớ rồi.", "en": "Yes, noted." }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_138", "unit": "phase_5_market", "title": "Bargaining Phrases", "nodeId": "u5_L138", "quizId": "u5_Q138", "quizLabel": "Bargaining Quiz", "nodeIndex": 7, "difficulty": 7, "cefr": "A1", "xp": 15, "topic": "shopping", "focus": ["bargain", "market"],
+      "words": [
+        { "id": "it_w_1093", "vi": "Mắc quá", "en": "Too expensive", "pos": "phrase", "difficulty": 7, "frequency": 1093 },
+        { "id": "it_w_1094", "vi": "Bớt chút", "en": "A bit less, please", "pos": "phrase", "difficulty": 7, "frequency": 1094 },
+        { "id": "it_w_1095", "vi": "Giá cuối", "en": "Final price", "pos": "noun", "difficulty": 7, "frequency": 1095 },
+        { "id": "it_w_1096", "vi": "Để tôi xem", "en": "Let me see", "pos": "phrase", "difficulty": 7, "frequency": 1096 },
+        { "id": "it_w_1097", "vi": "Có rẻ hơn không?", "en": "Got anything cheaper?", "pos": "phrase", "difficulty": 7, "frequency": 1097 },
+        { "id": "it_w_1098", "vi": "Mua hai cái", "en": "Buy two", "pos": "phrase", "difficulty": 7, "frequency": 1098 },
+        { "id": "it_w_1099", "vi": "Đồng ý", "en": "Agreed / okay", "pos": "verb", "difficulty": 7, "frequency": 1099 },
+        { "id": "it_w_1100", "vi": "Thôi cảm ơn", "en": "Never mind, thanks", "pos": "phrase", "difficulty": 7, "frequency": 1100 }
+      ],
+      "sentences": [
+        { "id": "it_s_0720", "vi": "Mắc quá, bớt chút đi.", "en": "Too expensive, give me a discount.", "accepted": ["Too expensive, give me a discount."], "tokens": 5, "difficulty": 7 },
+        { "id": "it_s_0721", "vi": "Mua hai cái có rẻ hơn không?", "en": "Cheaper if I buy two?", "accepted": ["Cheaper if I buy two?"], "tokens": 7, "difficulty": 7 },
+        { "id": "it_s_0722", "vi": "Giá cuối là bao nhiêu?", "en": "What's the final price?", "accepted": ["What's the final price?"], "tokens": 5, "difficulty": 7 },
+        { "id": "it_s_0723", "vi": "Thôi cảm ơn, mắc quá.", "en": "Never mind, too pricey.", "accepted": ["Never mind, too pricey."], "tokens": 5, "difficulty": 7 }
+      ],
+      "conversations": [
+        { "id": "CV131", "title": "Haggling", "context": "Bargaining at a market stall.", "lines": [
+          { "speaker": "Vendor", "vi": "Cái này 200 nghìn em.", "en": "This one is 200 thousand." },
+          { "speaker": "Buyer", "vi": "Mắc quá, bớt chút đi cô.", "en": "Too expensive, lower it a bit." },
+          { "speaker": "Vendor", "vi": "150 nghìn, giá cuối.", "en": "150 thousand, final price." },
+          { "speaker": "Buyer", "vi": "Dạ đồng ý, em lấy.", "en": "Okay, I'll take it." }
+        ]}
+      ]
+    },
+    {
+      "id": "lesson_139", "unit": "phase_6_numbers", "title": "Counting Money", "nodeId": "u6_L139", "quizId": "u6_Q139", "quizLabel": "Money Quiz", "nodeIndex": 7, "difficulty": 7, "cefr": "A1", "xp": 15, "topic": "money", "focus": ["money", "numbers"],
+      "words": [
+        { "id": "it_w_1101", "vi": "Đồng", "en": "Dong (currency)", "pos": "noun", "difficulty": 7, "frequency": 1101 },
+        { "id": "it_w_1102", "vi": "Nghìn", "en": "Thousand", "pos": "numeral", "difficulty": 7, "frequency": 1102 },
+        { "id": "it_w_1103", "vi": "Mười nghìn", "en": "Ten thousand", "pos": "numeral", "difficulty": 7, "frequency": 1103 },
+        { "id": "it_w_1104", "vi": "Trăm nghìn", "en": "Hundred thousand", "pos": "numeral", "difficulty": 7, "frequency": 1104 },
+        { "id": "it_w_1105", "vi": "Triệu", "en": "Million", "pos": "numeral", "difficulty": 7, "frequency": 1105 },
+        { "id": "it_w_1106", "vi": "Tờ", "en": "Banknote (classifier)", "pos": "classifier", "difficulty": 7, "frequency": 1106 },
+        { "id": "it_w_1107", "vi": "Đổi tiền", "en": "Exchange money", "pos": "verb", "difficulty": 7, "frequency": 1107 },
+        { "id": "it_w_1108", "vi": "Ngân phiếu", "en": "Cheque", "pos": "noun", "difficulty": 7, "frequency": 1108 }
+      ],
+      "sentences": [
+        { "id": "it_s_0724", "vi": "Cái này một trăm nghìn đồng.", "en": "This is one hundred thousand dong.", "accepted": ["This is one hundred thousand dong."], "tokens": 6, "difficulty": 7 },
+        { "id": "it_s_0725", "vi": "Tôi cần đổi một trăm đô.", "en": "I need to exchange one hundred dollars.", "accepted": ["I need to exchange one hundred dollars."], "tokens": 6, "difficulty": 7 },
+        { "id": "it_s_0726", "vi": "Có tờ năm trăm nghìn không?", "en": "Do you have a five-hundred-thousand note?", "accepted": ["Do you have a five-hundred-thousand note?"], "tokens": 6, "difficulty": 7 },
+        { "id": "it_s_0727", "vi": "Tổng cộng hai triệu đồng.", "en": "Total: two million dong.", "accepted": ["Total: two million dong."], "tokens": 5, "difficulty": 7 }
+      ],
+      "conversations": [
+        { "id": "CV132", "title": "At the money changer", "context": "Exchanging cash.", "lines": [
+          { "speaker": "Tourist", "vi": "Tôi muốn đổi một trăm đô.", "en": "I want to exchange a hundred dollars." },
+          { "speaker": "Clerk", "vi": "Hôm nay tỷ giá hai bốn nghìn.", "en": "Today's rate is 24 thousand." },
+          { "speaker": "Tourist", "vi": "Cho tôi tờ năm trăm nghìn nhé.", "en": "Please give me 500k notes." },
+          { "speaker": "Clerk", "vi": "Dạ, đây hai triệu bốn.", "en": "Here you go, 2.4 million." }
+        ]}
+      ]
+    }
+  ],
+  "grammarTags": []
+}
