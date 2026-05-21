@@ -1,7 +1,7 @@
 import { INIT_DATA } from '../content/initialData';
 
 const DB_KEY = 'vnme_mock_db_v24'; // v24: unified_db.json as primary source
-const CURRICULUM_VERSION = 18; // v18: remove templated {NAME}/{ROLE} phrases
+const CURRICULUM_VERSION = 22; // v22: A1 depth top-ups (U2, U3, U4, U5, U6)
 
 let dbCache = null;
 
@@ -43,4 +43,37 @@ export const getDB = () => {
 export const saveDB = (data) => {
     dbCache = data;
     localStorage.setItem(DB_KEY, JSON.stringify(data));
+};
+
+const EXPORT_KIND = 'vnme_curriculum_edits';
+const EXPORT_VERSION = 1;
+
+// Serialize the entire mock DB (curriculum + edits + exercises) to a JSON
+// payload that can be re-imported on another browser/machine. Progress keys
+// (vietnamy_progress / vietnamy_dong) are intentionally excluded — this is
+// a curriculum backup, not a save game.
+export const exportDB = () => ({
+    kind: EXPORT_KIND,
+    version: EXPORT_VERSION,
+    exportedAt: new Date().toISOString(),
+    curriculumVersion: CURRICULUM_VERSION,
+    db: getDB(),
+});
+
+// Replace the current mock DB with an imported payload. Throws on malformed
+// input. The caller is responsible for any UI feedback (and for reloading
+// the page so React contexts re-read the new DB).
+export const importDB = (payload) => {
+    if (!payload || payload.kind !== EXPORT_KIND) {
+        throw new Error('Not a Vietnamy curriculum-edits file.');
+    }
+    if (!payload.db || typeof payload.db !== 'object') {
+        throw new Error('Import payload is missing the `db` object.');
+    }
+    localStorage.setItem(DB_KEY, JSON.stringify(payload.db));
+    // Pin the version to what was exported so the version-gate logic in
+    // initDB doesn't immediately overwrite the imported curriculum on next load.
+    const cv = Number.isFinite(payload.curriculumVersion) ? payload.curriculumVersion : CURRICULUM_VERSION;
+    localStorage.setItem(DB_KEY + '_cv', String(cv));
+    dbCache = payload.db;
 };

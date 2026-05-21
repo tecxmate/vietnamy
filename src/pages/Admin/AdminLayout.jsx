@@ -1,10 +1,72 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, BookText, Languages, LogOut, FileText, BookOpen, Music, Users, PenTool } from 'lucide-react';
+import { LayoutDashboard, BookText, Languages, LogOut, FileText, BookOpen, Music, Users, PenTool, FlaskConical, Download, Upload } from 'lucide-react';
 import { logoutAdmin } from '../../lib/adminAuth';
+import { exportDB, importDB } from '../../lib/storage/mockDbStore';
+
+const downloadJson = (data, filename) => {
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+};
+
+const handleExport = () => {
+    const payload = exportDB();
+    downloadJson(payload, `vnme-curriculum-edits-${new Date().toISOString().slice(0, 10)}.json`);
+};
+
+const handleImport = async (file) => {
+    if (!file) return;
+    const ok = confirm(
+        `Import "${file.name}"?\n\n` +
+        'This REPLACES your current curriculum (units, lessons, exercises). ' +
+        'Student progress is not affected. Tip: export first if you want a backup.'
+    );
+    if (!ok) return;
+    try {
+        const text = await file.text();
+        importDB(JSON.parse(text));
+        alert('Import successful. Reloading…');
+        window.location.reload();
+    } catch (err) {
+        alert(`Import failed: ${err.message || err}`);
+    }
+};
+
+// Open the live app as a fresh student: wipes lesson progress + coins/hearts/streak,
+// but keeps the user profile, onboarding state, and any curriculum edits made via the
+// CMS (those live in vnme_mock_db_v24, which is untouched here).
+const openAsFreshStudent = (navigate) => {
+    const ok = confirm(
+        'Reset all student progress (completed nodes, coins, hearts, streak) and open the app as a fresh student?\n\n' +
+        'Your curriculum edits will be preserved. Your user profile will be preserved.'
+    );
+    if (!ok) return;
+    try {
+        localStorage.removeItem('vietnamy_progress');
+        localStorage.removeItem('vietnamy_dong');
+    } catch { /* ignore */ }
+    navigate('/');
+    // Reload so every context re-reads localStorage from scratch.
+    if (typeof window !== 'undefined') setTimeout(() => window.location.reload(), 0);
+};
 
 const AdminLayout = () => {
     const navigate = useNavigate();
+    const importInputRef = useRef(null);
+    const sidebarBtn = {
+        display: 'flex', alignItems: 'center', gap: 10,
+        padding: '8px 12px', borderRadius: 'var(--radius-md)',
+        border: '1px solid var(--border-color)', background: 'transparent',
+        color: 'var(--text-muted)', fontSize: 13, fontWeight: 600,
+        cursor: 'pointer', textAlign: 'left',
+    };
 
     return (
         <div style={{ display: 'flex', height: '100vh', width: '100%', backgroundColor: 'var(--bg-color)', color: 'var(--text-main)', overflow: 'hidden' }}>
@@ -129,6 +191,37 @@ const AdminLayout = () => {
                         Kinship & Pronouns
                     </NavLink>
                 </div>
+
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginBottom: 8 }}>
+                    <button onClick={handleExport} style={sidebarBtn} title="Download a JSON backup of your curriculum edits (units, lessons, exercises). Excludes student progress.">
+                        <Download size={16} /> Export edits
+                    </button>
+                    <button onClick={() => importInputRef.current?.click()} style={sidebarBtn} title="Restore curriculum edits from a previously exported JSON file. Replaces current edits.">
+                        <Upload size={16} /> Import edits
+                    </button>
+                    <input
+                        ref={importInputRef}
+                        type="file"
+                        accept="application/json,.json"
+                        style={{ display: 'none' }}
+                        onChange={(e) => { const f = e.target.files?.[0]; e.target.value = ''; handleImport(f); }}
+                    />
+                </div>
+
+                <button
+                    onClick={() => openAsFreshStudent(navigate)}
+                    title="Wipe progress (coins/hearts/streak/completed nodes) and open the app as a fresh student. Curriculum edits and user profile are preserved."
+                    style={{
+                        display: 'flex', alignItems: 'center', justifyContent: 'flex-start', gap: 12,
+                        padding: '12px 16px', marginBottom: 8,
+                        borderRadius: 'var(--radius-md)', border: '1px solid var(--primary-color)',
+                        background: 'rgba(242, 107, 90, 0.08)', color: 'var(--primary-color)',
+                        fontWeight: 700, fontSize: 14, cursor: 'pointer',
+                    }}
+                >
+                    <FlaskConical size={20} />
+                    Test as fresh student
+                </button>
 
                 <button
                     className="ghost"
