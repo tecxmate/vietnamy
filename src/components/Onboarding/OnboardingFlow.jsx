@@ -78,9 +78,13 @@ const OnboardingFlow = ({ onComplete, requireAuth = false }) => {
         <div key="s0" className="onboarding-screen">
             <div className="onboarding-content">
                 <div className="flex justify-center mb-4">
-                    <div style={{ width: 120, height: 120, backgroundColor: 'var(--primary-color)', borderRadius: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <span style={{ fontSize: 64 }}>🇻🇳</span>
-                    </div>
+                    <img
+                        src="/icon-192.png"
+                        alt="Vietnamy"
+                        width="120"
+                        height="120"
+                        style={{ borderRadius: 24, display: 'block' }}
+                    />
                 </div>
                 <h1 className="onboarding-title" style={{ fontSize: 32 }}>Learn Vietnamese<br />the fun way.</h1>
             </div>
