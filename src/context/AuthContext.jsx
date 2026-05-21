@@ -30,13 +30,21 @@ export const AuthProvider = ({ children }) => {
       setUser(newUser);
 
       if (newUser && _event === 'SIGNED_IN') {
+        // Strip OAuth hash fragment (#access_token=...) from the URL so React
+        // Router and downstream components don't trip over it on first render.
+        if (window.location.hash.includes('access_token')) {
+          window.history.replaceState(null, '', window.location.pathname + window.location.search);
+        }
+
         // Check if user has cloud data to restore
         const hasOnboarding = localStorage.getItem('vnme_onboarding_completed') === 'true';
         const loaded = await loadProgressFromCloud(newUser.id);
 
         if (loaded && !hasOnboarding) {
-          // Cloud data restored to localStorage — reload to pick up state
-          window.location.reload();
+          // Cloud data restored to localStorage — navigate to a clean URL to
+          // discard the OAuth hash fragment (#access_token=...) before the
+          // app re-renders with the restored state.
+          window.location.replace(window.location.origin + '/');
         } else if (hasOnboarding) {
           // User has local progress — push to cloud
           await saveProgressToCloud(newUser.id);
