@@ -7,10 +7,14 @@
 
 // Import curriculum files (Vite handles JSON imports automatically).
 // These are authored chapter sources; the runtime roadmap reads from
-// src/data/unified_db.json (Units 10-21 are appended there).
+// src/data/unified_db.json (which contains the merged result for all 39 units).
 import exploreVietnamA1 from './explore_vietnam.json';
+import exploreVietnamA1Extra from './explore_vietnam_a1_extra.json';
 import exploreVietnamA2B1 from './explore_vietnam_a2_b1.json';
 import exploreVietnamB1Plus from './explore_vietnam_b1_plus.json';
+import exploreVietnamB2 from './explore_vietnam_b2.json';
+import exploreVietnamC1 from './explore_vietnam_c1.json';
+import exploreVietnamC2 from './explore_vietnam_c2.json';
 
 function mergeChapters(...chapters) {
     const base = chapters[0];
@@ -36,7 +40,15 @@ function mergeChapters(...chapters) {
     };
 }
 
-const exploreVietnam = mergeChapters(exploreVietnamA1, exploreVietnamA2B1, exploreVietnamB1Plus);
+const exploreVietnam = mergeChapters(
+    exploreVietnamA1,
+    exploreVietnamA1Extra,
+    exploreVietnamA2B1,
+    exploreVietnamB1Plus,
+    exploreVietnamB2,
+    exploreVietnamC1,
+    exploreVietnamC2,
+);
 
 // Registry of all curricula by mode ID
 const CURRICULA = {

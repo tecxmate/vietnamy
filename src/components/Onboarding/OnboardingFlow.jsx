@@ -1,7 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { Globe, Clock, Target, Star } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Globe, Clock, Target, Star, Play, Square } from 'lucide-react';
 import { useUser } from '../../context/UserContext';
 import { useAuth } from '../../context/AuthContext';
+
+const VOICE_OPTIONS = [
+    { id: 'azure-north', name: 'Nam Minh', label: 'Northern (Hanoi)', desc: 'Crisp, broadcast-style — what you hear on national TV.', dialect: 'north' },
+    { id: 'azure-south', name: 'Hoài My', label: 'Southern (Saigon)', desc: 'Warm, melodic — the most common accent in cities.', dialect: 'south' },
+    { id: 'google', name: 'Universal', label: 'Neutral voice', desc: 'Works everywhere. Pick this if you want a mix.', dialect: 'both' },
+];
+
+const VOICE_SAMPLE = 'Xin chào! Tôi rất vui được làm quen với bạn.';
 
 // Detect in-app browsers that block Google OAuth
 function isInAppBrowser() {
@@ -23,9 +31,38 @@ const OnboardingFlow = ({ onComplete, requireAuth = false }) => {
         name: '',
         goal: '',
         dialect: '',
+        voiceId: '',
         level: '',
         dailyMins: 10,
     });
+    const [playingVoice, setPlayingVoice] = useState(null);
+    const audioRef = useRef(null);
+
+    const playSample = (voiceId) => {
+        if (audioRef.current) {
+            audioRef.current.pause();
+            audioRef.current = null;
+        }
+        if (playingVoice === voiceId) {
+            setPlayingVoice(null);
+            return;
+        }
+        const url = `/api/tts?text=${encodeURIComponent(VOICE_SAMPLE)}&lang=vi&voice=${encodeURIComponent(voiceId)}`;
+        const audio = new Audio(url);
+        audioRef.current = audio;
+        setPlayingVoice(voiceId);
+        audio.play().catch(() => setPlayingVoice(null));
+        const clear = () => {
+            if (audioRef.current === audio) audioRef.current = null;
+            setPlayingVoice(prev => (prev === voiceId ? null : prev));
+        };
+        audio.addEventListener('ended', clear);
+        audio.addEventListener('error', clear);
+    };
+
+    useEffect(() => () => {
+        if (audioRef.current) audioRef.current.pause();
+    }, []);
 
     // Auto-populate name from Google profile
     useEffect(() => {
@@ -167,31 +204,45 @@ const OnboardingFlow = ({ onComplete, requireAuth = false }) => {
             </div>
         </div>,
 
-        // Screen 3: Dialect
+        // Screen 3: Voice picker (also sets dialect)
         <div key="s3" className="onboarding-screen">
             <div className="onboarding-content">
-                <h2 className="onboarding-title">Choose your dialect focus</h2>
-                <p className="text-center" style={{ color: 'var(--text-muted)', marginBottom: 32 }}>
-                    Vietnamese sounds different depending on the region.
+                <h2 className="onboarding-title">Pick a voice you'll learn with</h2>
+                <p className="text-center" style={{ color: 'var(--text-muted)', marginBottom: 24 }}>
+                    Tap ▶ to hear each one. Choose what sounds best to you.
                 </p>
-                {[
-                    { id: 'north', title: 'Northern (Hanoi)', desc: '' },
-                    { id: 'south', title: 'Southern (Saigon)', desc: '' },
-                    { id: 'both', title: 'Both', desc: 'I want to understand everyone!' }
-                ].map(item => (
-                    <button
-                        key={item.id}
-                        className={`option-btn w-full ${onboardingData.dialect === item.id ? 'selected' : ''}`}
-                        onClick={() => setOnboardingData({ ...onboardingData, dialect: item.id })}
-                        style={{ padding: '16px 20px', alignItems: 'flex-start', flexDirection: 'column', gap: 4 }}
-                    >
-                        <span style={{ fontSize: 18, fontWeight: 700 }}>{item.title}</span>
-                        {item.desc && <span style={{ fontSize: 14, fontWeight: 400, color: onboardingData.dialect === item.id ? 'inherit' : 'var(--text-muted)' }}>{item.desc}</span>}
-                    </button>
-                ))}
+                {VOICE_OPTIONS.map(v => {
+                    const selected = onboardingData.voiceId === v.id;
+                    const isPlaying = playingVoice === v.id;
+                    return (
+                        <button
+                            key={v.id}
+                            className={`option-btn w-full ${selected ? 'selected' : ''}`}
+                            onClick={() => setOnboardingData({ ...onboardingData, voiceId: v.id, dialect: v.dialect })}
+                            style={{ padding: '14px 16px', alignItems: 'center', gap: 12, marginBottom: 12 }}
+                        >
+                            <span
+                                onClick={(e) => { e.stopPropagation(); playSample(v.id); }}
+                                style={{
+                                    width: 44, height: 44, borderRadius: '50%',
+                                    background: isPlaying ? 'var(--secondary-color)' : 'var(--primary-color)',
+                                    color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                    flexShrink: 0, cursor: 'pointer',
+                                }}
+                                aria-label={isPlaying ? 'Stop sample' : 'Play sample'}
+                            >
+                                {isPlaying ? <Square size={18} fill="#fff" /> : <Play size={18} fill="#fff" style={{ marginLeft: 2 }} />}
+                            </span>
+                            <span style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 2, textAlign: 'left', flex: 1 }}>
+                                <span style={{ fontSize: 17, fontWeight: 700 }}>{v.name} <span style={{ fontSize: 13, fontWeight: 500, color: selected ? 'inherit' : 'var(--text-muted)' }}>· {v.label}</span></span>
+                                <span style={{ fontSize: 13, fontWeight: 400, color: selected ? 'inherit' : 'var(--text-muted)' }}>{v.desc}</span>
+                            </span>
+                        </button>
+                    );
+                })}
             </div>
             <div className="bottom-cta">
-                <button className="primary w-full" onClick={nextStep} disabled={!onboardingData.dialect}>
+                <button className="primary w-full" onClick={nextStep} disabled={!onboardingData.voiceId}>
                     Continue
                 </button>
             </div>
@@ -330,6 +381,14 @@ const OnboardingFlow = ({ onComplete, requireAuth = false }) => {
                         level: onboardingData.level,
                         dailyMins: onboardingData.dailyMins,
                     });
+                    if (onboardingData.voiceId) {
+                        try {
+                            const raw = localStorage.getItem('vnme_settings');
+                            const settings = raw ? JSON.parse(raw) : {};
+                            settings.ttsVoice = onboardingData.voiceId;
+                            localStorage.setItem('vnme_settings', JSON.stringify(settings));
+                        } catch { /* ignore */ }
+                    }
                     onComplete();
                 }}>
                     Continue to Roadmap
