@@ -41,3 +41,5 @@ public/opening.mov
 # Local editor state
 .claude/settings.json
 .obsidian/
+.vercel
+.env*.local
