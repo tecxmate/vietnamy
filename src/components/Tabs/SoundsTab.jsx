@@ -278,7 +278,7 @@ const SoundsTab = () => {
                                     </div>
                                 </div>
                                 <button
-                                    onClick={() => playTTS(tone.id === 'ngang' ? 'ma' : tone.id === 'sac' ? 'má' : tone.id === 'huyen' ? 'mà' : tone.id === 'hoi' ? 'mả' : tone.id === 'nga' ? 'mã' : 'mạ')}
+                                    onClick={() => playTTS(tone.mark)}
                                     style={{
                                         width: 36, height: 36, borderRadius: '50%',
                                         border: 'none',
