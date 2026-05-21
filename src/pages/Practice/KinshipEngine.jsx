@@ -259,7 +259,7 @@ export default function KinshipEngine() {
     const [searchParams] = useSearchParams();
     const navigate = useNavigate();
     const nodeId = searchParams.get('nodeId');
-    const goBack = () => navigate('/', { state: { tab: nodeId ? 'study' : 'practice' } });
+    const goBack = () => navigate('/', { state: { tab: nodeId ? 'study' : 'library' } });
     const [category, setCategory] = useState('blood');
     const [generation, setGeneration] = useState('parent_direct');
     const [side, setSide] = useState('paternal');

@@ -189,14 +189,19 @@ export const getNextNode = (nodeId) => {
 export const getNodeRoute = (node) => {
     if (!node) return '/';
     const type = node.node_type || node.type;
-    if (type === 'lesson') return `/lesson/${node.lesson_id || node.content_ref_id}`;
+    const lessonId = node.lesson_id || node.content_ref_id;
+    if (type === 'lesson') return lessonId ? `/lesson/${lessonId}` : '/';
     if (type === 'test') return `/test/${node.id}`;
-    if (type === 'scene') return `/scene/${node.scene_id}`;
+    if (type === 'scene') return node.scene_id ? `/scene/${node.scene_id}` : '/';
     if (type === 'skill') {
+        if (node.skill_content?.type === 'grammar_unit' && node.skill_content.grammar_unit_id) {
+            return `/grammar-unit/${node.skill_content.grammar_unit_id}?nodeId=${node.id}`;
+        }
         if (node.skill_content?.type === 'grammar_lesson') return `/grammar-lesson/${node.id}`;
         if (node.skill_content?.route) return `${node.skill_content.route}?nodeId=${node.id}`;
         if (node.practice_route) return `${node.practice_route}?nodeId=${node.id}`;
     }
+    if (node.practice_route) return `${node.practice_route}?nodeId=${node.id}`;
     return '/';
 };
 

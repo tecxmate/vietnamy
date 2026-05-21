@@ -90,6 +90,12 @@ const Quantifiers = lazy(() => import('./pages/Practice/Quantifiers'));
 const VisionVerbs = lazy(() => import('./pages/Practice/VisionVerbs'));
 const Prepositions = lazy(() => import('./pages/Practice/Prepositions'));
 
+const VALID_TABS = ['home', 'study', 'grammar', 'sounds', 'dictionary', 'library'];
+
+function normalizeTab(tab, fallback = 'home') {
+  return VALID_TABS.includes(tab) ? tab : fallback;
+}
+
 function LoadingScreen() {
   return (
     <div className="mobile-app-wrapper">
@@ -98,6 +104,50 @@ function LoadingScreen() {
       </div>
     </div>
   );
+}
+
+class RouteErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { error: null };
+  }
+
+  static getDerivedStateFromError(error) {
+    return { error };
+  }
+
+  componentDidCatch(error, info) {
+    console.error('Route render failed:', error, info);
+  }
+
+  render() {
+    if (!this.state.error) return this.props.children;
+
+    return (
+      <div className="mobile-app-wrapper">
+        <div style={{
+          minHeight: '100vh',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: 24,
+          gap: 14,
+          backgroundColor: 'var(--bg-color)',
+          color: 'var(--text-main)',
+          textAlign: 'center',
+        }}>
+          <h2 style={{ margin: 0, fontSize: 22 }}>Something went wrong.</h2>
+          <p style={{ margin: 0, maxWidth: 340, color: 'var(--text-muted)', lineHeight: 1.5 }}>
+            The app hit a navigation problem. Return home and try again.
+          </p>
+          <button className="primary" onClick={() => { window.location.href = '/'; }}>
+            Return Home
+          </button>
+        </div>
+      </div>
+    );
+  }
 }
 
 function AdminRoute() {
@@ -109,6 +159,7 @@ function AdminRoute() {
 
 function StudentApp({ initialTab = 'home' }) {
   const location = useLocation();
+  const initialTabSafe = normalizeTab(initialTab);
   const [hasCompletedOnboarding, setHasCompletedOnboarding] = useState(() => {
     return localStorage.getItem('vnme_onboarding_completed') === 'true';
   });
@@ -116,22 +167,23 @@ function StudentApp({ initialTab = 'home' }) {
     return localStorage.getItem('vnme_tutorial_completed') === 'true';
   });
   const [activeTab, setActiveTab] = useState(() => {
-    // Priority: location.state > localStorage > initialTab
+    // Priority: location.state > explicit route tab > localStorage
     // This handles PWA state loss on refresh/reopen
-    if (location.state?.tab) return location.state.tab;
+    if (location.state?.tab) return normalizeTab(location.state.tab, initialTabSafe);
+    if (initialTabSafe !== 'home') return initialTabSafe;
     const saved = localStorage.getItem('vnme_active_tab');
-    if (saved && ['home', 'study', 'grammar', 'sounds', 'dictionary', 'library'].includes(saved)) {
+    if (VALID_TABS.includes(saved)) {
       return saved;
     }
-    return initialTab;
+    return initialTabSafe;
   });
 
   // Sync location.state.tab when navigating back from lessons
   React.useEffect(() => {
     if (location.state?.tab) {
-      setActiveTab(location.state.tab);
+      setActiveTab(normalizeTab(location.state.tab, initialTabSafe));
     }
-  }, [location.state?.tab]);
+  }, [location.state?.tab, initialTabSafe]);
 
   // Persist active tab to localStorage for PWA recovery
   React.useEffect(() => {
@@ -231,6 +283,114 @@ function StudentApp({ initialTab = 'home' }) {
   );
 }
 
+function AppRoutes() {
+  const location = useLocation();
+
+  return (
+    <RouteErrorBoundary key={location.key}>
+      <Suspense fallback={<LoadingScreen />}>
+      <Routes>
+        <Route path="/" element={<StudentApp />} />
+        <Route path="/practice" element={<StudentApp initialTab="library" />} />
+        <Route path="/lesson/:lessonId" element={<div className="mobile-app-wrapper"><LessonGame /></div>} />
+        <Route path="/scene/:sceneId" element={<div className="mobile-app-wrapper"><SceneEngine /></div>} />
+        <Route path="/grammar-lesson/:nodeId" element={<div className="mobile-app-wrapper"><GrammarLesson /></div>} />
+        <Route path="/grammar-unit/:unitId" element={<div className="mobile-app-wrapper"><GrammarUnitLesson /></div>} />
+        <Route path="/test/:nodeId" element={<div className="mobile-app-wrapper"><UnitTest /></div>} />
+        {/* Full-screen Practice Routes */}
+        {/* Tone Listen sub-modules */}
+        <Route path="/practice/tones" element={<Navigate to="/practice/tones-1" replace />} />
+        <Route path="/practice/tones-1" element={<div className="mobile-app-wrapper"><TonePractice1 /></div>} />
+        <Route path="/practice/tones-2" element={<div className="mobile-app-wrapper"><TonePractice2 /></div>} />
+        <Route path="/practice/tones-3" element={<div className="mobile-app-wrapper"><TonePractice3 /></div>} />
+        <Route path="/practice/tones-4" element={<div className="mobile-app-wrapper"><TonePractice4 /></div>} />
+        {/* Pitch Training sub-modules */}
+        <Route path="/practice/pitch" element={<Navigate to="/practice/pitch-1" replace />} />
+        <Route path="/practice/pitch-1" element={<div className="mobile-app-wrapper"><TonePitchTraining1 /></div>} />
+        <Route path="/practice/pitch-2" element={<div className="mobile-app-wrapper"><TonePitchTraining2 /></div>} />
+        {/* Tone Marks sub-modules */}
+        <Route path="/practice/tonemarks" element={<Navigate to="/practice/tonemarks-basic" replace />} />
+        <Route path="/practice/tonemarks-basic" element={<div className="mobile-app-wrapper"><ToneMarksBasic /></div>} />
+        <Route path="/practice/tonemarks-special" element={<div className="mobile-app-wrapper"><ToneMarksSpecial /></div>} />
+        <Route path="/practice/tonemarks-master" element={<div className="mobile-app-wrapper"><ToneMarksMaster /></div>} />
+        {/* Vowels sub-modules */}
+        <Route path="/practice/vowels" element={<Navigate to="/practice/vowels-single-1" replace />} />
+        <Route path="/practice/vowels-single-1" element={<div className="mobile-app-wrapper"><VowelsSingle1 /></div>} />
+        <Route path="/practice/vowels-single-2" element={<div className="mobile-app-wrapper"><VowelsSingle2 /></div>} />
+        <Route path="/practice/vowels-diph-1" element={<div className="mobile-app-wrapper"><VowelsDiph1 /></div>} />
+        <Route path="/practice/vowels-diph-2" element={<div className="mobile-app-wrapper"><VowelsDiph2 /></div>} />
+        <Route path="/practice/vowels-diph-3" element={<div className="mobile-app-wrapper"><VowelsDiph3 /></div>} />
+        {/* Numbers sub-modules */}
+        <Route path="/practice/numbers" element={<Navigate to="/practice/numbers-1" replace />} />
+        <Route path="/practice/numbers-1" element={<div className="mobile-app-wrapper"><NumbersPractice1 /></div>} />
+        <Route path="/practice/numbers-2" element={<div className="mobile-app-wrapper"><NumbersPractice2 /></div>} />
+        <Route path="/practice/numbers-3" element={<div className="mobile-app-wrapper"><NumbersPractice3 /></div>} />
+        {/* Other practice */}
+        {/* Pronouns sub-modules */}
+        <Route path="/practice/kinship-foundation" element={<div className="mobile-app-wrapper"><KinshipFoundation /></div>} />
+        <Route path="/practice/pronouns" element={<Navigate to="/practice/pronouns-1" replace />} />
+        <Route path="/practice/pronouns-1" element={<div className="mobile-app-wrapper"><Pronouns1 /></div>} />
+        <Route path="/practice/pronouns-2" element={<div className="mobile-app-wrapper"><Pronouns2 /></div>} />
+        <Route path="/practice/kinship-calculator" element={<div className="mobile-app-wrapper"><KinshipCalculator /></div>} />
+        <Route path="/practice/kinship-engine" element={<div className="mobile-app-wrapper"><KinshipEngine /></div>} />
+        {/* TELEX sub-modules */}
+        <Route path="/practice/telex" element={<Navigate to="/practice/telex-1" replace />} />
+        <Route path="/practice/telex-1" element={<div className="mobile-app-wrapper"><TelexTyping1 /></div>} />
+        <Route path="/practice/telex-2" element={<div className="mobile-app-wrapper"><TelexTyping2 /></div>} />
+        <Route path="/practice/telex-3" element={<div className="mobile-app-wrapper"><TelexTyping3 /></div>} />
+        {/* Teen Code sub-modules */}
+        <Route path="/practice/teencode" element={<Navigate to="/practice/teencode-1" replace />} />
+        <Route path="/practice/teencode-1" element={<div className="mobile-app-wrapper"><TeenCode1 /></div>} />
+        <Route path="/practice/teencode-2" element={<div className="mobile-app-wrapper"><TeenCode2 /></div>} />
+        <Route path="/practice/teencode-3" element={<div className="mobile-app-wrapper"><TeenCode3 /></div>} />
+        {/* Drill-based practice modules */}
+        <Route path="/practice/consonants" element={<div className="mobile-app-wrapper"><ConsonantsPractice /></div>} />
+        <Route path="/practice/consonants-final" element={<div className="mobile-app-wrapper"><ConsonantsFinalPractice /></div>} />
+        <Route path="/practice/classifiers-1" element={<div className="mobile-app-wrapper"><ClassifiersBasics /></div>} />
+        <Route path="/practice/classifiers-2" element={<div className="mobile-app-wrapper"><ClassifiersExtended /></div>} />
+        <Route path="/practice/particles-1" element={<div className="mobile-app-wrapper"><ParticlesPoliteness /></div>} />
+        <Route path="/practice/particles-2" element={<div className="mobile-app-wrapper"><ParticlesEmotion /></div>} />
+        <Route path="/practice/question-words-1" element={<div className="mobile-app-wrapper"><QuestionWords /></div>} />
+        <Route path="/practice/question-words-2" element={<div className="mobile-app-wrapper"><QuestionWordsAdvanced /></div>} />
+        <Route path="/practice/aspect-markers" element={<div className="mobile-app-wrapper"><AspectMarkers /></div>} />
+        {/* Grammar drill modules (Units 26-30 + prepositions) */}
+        <Route path="/practice/connectors" element={<div className="mobile-app-wrapper"><Connectors /></div>} />
+        <Route path="/practice/intensifiers" element={<div className="mobile-app-wrapper"><Intensifiers /></div>} />
+        <Route path="/practice/degree-adverbs" element={<div className="mobile-app-wrapper"><DegreeAdverbs /></div>} />
+        <Route path="/practice/quantifiers" element={<div className="mobile-app-wrapper"><Quantifiers /></div>} />
+        <Route path="/practice/vision-verbs" element={<div className="mobile-app-wrapper"><VisionVerbs /></div>} />
+        <Route path="/practice/prepositions" element={<div className="mobile-app-wrapper"><Prepositions /></div>} />
+        <Route path="/practice/flashcards" element={<Navigate to="/practice" replace />} />
+
+        {/* Legal Routes */}
+        <Route path="/privacy" element={<div className="mobile-app-wrapper"><PrivacyPolicy /></div>} />
+        <Route path="/terms" element={<div className="mobile-app-wrapper"><TermsOfService /></div>} />
+
+        {/* Grammar Routes */}
+        <Route path="/grammar/:level" element={<div className="mobile-app-wrapper"><GrammarList /></div>} />
+        <Route path="/grammar/:level/:index" element={<div className="mobile-app-wrapper"><GrammarDetail /></div>} />
+
+        {/* Admin CMS Routes */}
+        <Route path="/admin" element={<AdminRoute />}>
+          <Route index element={<Navigate to="mapper" />} />
+          <Route path="mapper" element={<RoadmapMapper />} />
+          <Route path="lesson" element={<LessonBuilder />} />
+          <Route path="grammar" element={<GrammarEditor />} />
+          <Route path="articles" element={<ArticleEditor />} />
+          <Route path="vocab" element={<VocabEditor />} />
+          <Route path="tones" element={<ToneWordEditor />} />
+          <Route path="kinship" element={<KinshipEditor />} />
+          <Route path="drills" element={<DrillEditor />} />
+        </Route>
+
+        {/* Catch-all: redirect unknown routes to home */}
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+      </Suspense>
+    </RouteErrorBoundary>
+  );
+}
+
 function App() {
   return (
     <AuthProvider>
@@ -239,105 +399,7 @@ function App() {
         <UserProvider>
           <NotificationProvider>
             <BrowserRouter>
-              <Suspense fallback={<LoadingScreen />}>
-              <Routes>
-                <Route path="/" element={<StudentApp />} />
-                <Route path="/practice" element={<StudentApp initialTab="library" />} />
-                <Route path="/lesson/:lessonId" element={<div className="mobile-app-wrapper"><LessonGame /></div>} />
-                <Route path="/scene/:sceneId" element={<div className="mobile-app-wrapper"><SceneEngine /></div>} />
-                <Route path="/grammar-lesson/:nodeId" element={<div className="mobile-app-wrapper"><GrammarLesson /></div>} />
-                <Route path="/grammar-unit/:unitId" element={<div className="mobile-app-wrapper"><GrammarUnitLesson /></div>} />
-                <Route path="/test/:nodeId" element={<div className="mobile-app-wrapper"><UnitTest /></div>} />
-                {/* Full-screen Practice Routes */}
-                {/* Tone Listen sub-modules */}
-                <Route path="/practice/tones" element={<Navigate to="/practice/tones-1" replace />} />
-                <Route path="/practice/tones-1" element={<div className="mobile-app-wrapper"><TonePractice1 /></div>} />
-                <Route path="/practice/tones-2" element={<div className="mobile-app-wrapper"><TonePractice2 /></div>} />
-                <Route path="/practice/tones-3" element={<div className="mobile-app-wrapper"><TonePractice3 /></div>} />
-                <Route path="/practice/tones-4" element={<div className="mobile-app-wrapper"><TonePractice4 /></div>} />
-                {/* Pitch Training sub-modules */}
-                <Route path="/practice/pitch" element={<Navigate to="/practice/pitch-1" replace />} />
-                <Route path="/practice/pitch-1" element={<div className="mobile-app-wrapper"><TonePitchTraining1 /></div>} />
-                <Route path="/practice/pitch-2" element={<div className="mobile-app-wrapper"><TonePitchTraining2 /></div>} />
-                {/* Tone Marks sub-modules */}
-                <Route path="/practice/tonemarks" element={<Navigate to="/practice/tonemarks-basic" replace />} />
-                <Route path="/practice/tonemarks-basic" element={<div className="mobile-app-wrapper"><ToneMarksBasic /></div>} />
-                <Route path="/practice/tonemarks-special" element={<div className="mobile-app-wrapper"><ToneMarksSpecial /></div>} />
-                <Route path="/practice/tonemarks-master" element={<div className="mobile-app-wrapper"><ToneMarksMaster /></div>} />
-                {/* Vowels sub-modules */}
-                <Route path="/practice/vowels" element={<Navigate to="/practice/vowels-single-1" replace />} />
-                <Route path="/practice/vowels-single-1" element={<div className="mobile-app-wrapper"><VowelsSingle1 /></div>} />
-                <Route path="/practice/vowels-single-2" element={<div className="mobile-app-wrapper"><VowelsSingle2 /></div>} />
-                <Route path="/practice/vowels-diph-1" element={<div className="mobile-app-wrapper"><VowelsDiph1 /></div>} />
-                <Route path="/practice/vowels-diph-2" element={<div className="mobile-app-wrapper"><VowelsDiph2 /></div>} />
-                <Route path="/practice/vowels-diph-3" element={<div className="mobile-app-wrapper"><VowelsDiph3 /></div>} />
-                {/* Numbers sub-modules */}
-                <Route path="/practice/numbers" element={<Navigate to="/practice/numbers-1" replace />} />
-                <Route path="/practice/numbers-1" element={<div className="mobile-app-wrapper"><NumbersPractice1 /></div>} />
-                <Route path="/practice/numbers-2" element={<div className="mobile-app-wrapper"><NumbersPractice2 /></div>} />
-                <Route path="/practice/numbers-3" element={<div className="mobile-app-wrapper"><NumbersPractice3 /></div>} />
-                {/* Other practice */}
-                {/* Pronouns sub-modules */}
-                <Route path="/practice/kinship-foundation" element={<div className="mobile-app-wrapper"><KinshipFoundation /></div>} />
-                <Route path="/practice/pronouns" element={<Navigate to="/practice/pronouns-1" replace />} />
-                <Route path="/practice/pronouns-1" element={<div className="mobile-app-wrapper"><Pronouns1 /></div>} />
-                <Route path="/practice/pronouns-2" element={<div className="mobile-app-wrapper"><Pronouns2 /></div>} />
-                <Route path="/practice/kinship-calculator" element={<div className="mobile-app-wrapper"><KinshipCalculator /></div>} />
-                <Route path="/practice/kinship-engine" element={<div className="mobile-app-wrapper"><KinshipEngine /></div>} />
-                {/* TELEX sub-modules */}
-                <Route path="/practice/telex" element={<Navigate to="/practice/telex-1" replace />} />
-                <Route path="/practice/telex-1" element={<div className="mobile-app-wrapper"><TelexTyping1 /></div>} />
-                <Route path="/practice/telex-2" element={<div className="mobile-app-wrapper"><TelexTyping2 /></div>} />
-                <Route path="/practice/telex-3" element={<div className="mobile-app-wrapper"><TelexTyping3 /></div>} />
-                {/* Teen Code sub-modules */}
-                <Route path="/practice/teencode" element={<Navigate to="/practice/teencode-1" replace />} />
-                <Route path="/practice/teencode-1" element={<div className="mobile-app-wrapper"><TeenCode1 /></div>} />
-                <Route path="/practice/teencode-2" element={<div className="mobile-app-wrapper"><TeenCode2 /></div>} />
-                <Route path="/practice/teencode-3" element={<div className="mobile-app-wrapper"><TeenCode3 /></div>} />
-                {/* Drill-based practice modules */}
-                <Route path="/practice/consonants" element={<div className="mobile-app-wrapper"><ConsonantsPractice /></div>} />
-                <Route path="/practice/consonants-final" element={<div className="mobile-app-wrapper"><ConsonantsFinalPractice /></div>} />
-                <Route path="/practice/classifiers-1" element={<div className="mobile-app-wrapper"><ClassifiersBasics /></div>} />
-                <Route path="/practice/classifiers-2" element={<div className="mobile-app-wrapper"><ClassifiersExtended /></div>} />
-                <Route path="/practice/particles-1" element={<div className="mobile-app-wrapper"><ParticlesPoliteness /></div>} />
-                <Route path="/practice/particles-2" element={<div className="mobile-app-wrapper"><ParticlesEmotion /></div>} />
-                <Route path="/practice/question-words-1" element={<div className="mobile-app-wrapper"><QuestionWords /></div>} />
-                <Route path="/practice/question-words-2" element={<div className="mobile-app-wrapper"><QuestionWordsAdvanced /></div>} />
-                <Route path="/practice/aspect-markers" element={<div className="mobile-app-wrapper"><AspectMarkers /></div>} />
-                {/* Grammar drill modules (Units 26-30 + prepositions) */}
-                <Route path="/practice/connectors" element={<div className="mobile-app-wrapper"><Connectors /></div>} />
-                <Route path="/practice/intensifiers" element={<div className="mobile-app-wrapper"><Intensifiers /></div>} />
-                <Route path="/practice/degree-adverbs" element={<div className="mobile-app-wrapper"><DegreeAdverbs /></div>} />
-                <Route path="/practice/quantifiers" element={<div className="mobile-app-wrapper"><Quantifiers /></div>} />
-                <Route path="/practice/vision-verbs" element={<div className="mobile-app-wrapper"><VisionVerbs /></div>} />
-                <Route path="/practice/prepositions" element={<div className="mobile-app-wrapper"><Prepositions /></div>} />
-                <Route path="/practice/flashcards" element={<Navigate to="/practice" replace />} />
-
-                {/* Legal Routes */}
-                <Route path="/privacy" element={<div className="mobile-app-wrapper"><PrivacyPolicy /></div>} />
-                <Route path="/terms" element={<div className="mobile-app-wrapper"><TermsOfService /></div>} />
-
-                {/* Grammar Routes */}
-                <Route path="/grammar/:level" element={<div className="mobile-app-wrapper"><GrammarList /></div>} />
-                <Route path="/grammar/:level/:index" element={<div className="mobile-app-wrapper"><GrammarDetail /></div>} />
-
-                {/* Admin CMS Routes */}
-                <Route path="/admin" element={<AdminRoute />}>
-                  <Route index element={<Navigate to="mapper" />} />
-                  <Route path="mapper" element={<RoadmapMapper />} />
-                  <Route path="lesson" element={<LessonBuilder />} />
-                  <Route path="grammar" element={<GrammarEditor />} />
-                  <Route path="articles" element={<ArticleEditor />} />
-                  <Route path="vocab" element={<VocabEditor />} />
-                  <Route path="tones" element={<ToneWordEditor />} />
-                  <Route path="kinship" element={<KinshipEditor />} />
-                  <Route path="drills" element={<DrillEditor />} />
-                </Route>
-
-                {/* Catch-all: redirect unknown routes to home */}
-                <Route path="*" element={<Navigate to="/" replace />} />
-              </Routes>
-              </Suspense>
+              <AppRoutes />
             </BrowserRouter>
           </NotificationProvider>
         </UserProvider>

@@ -217,7 +217,7 @@ export default function KinshipCalculator() {
     const [searchParams] = useSearchParams();
     const navigate = useNavigate();
     const nodeId = searchParams.get('nodeId');
-    const goBack = () => navigate('/', { state: { tab: nodeId ? 'study' : 'practice' } });
+    const goBack = () => navigate('/', { state: { tab: nodeId ? 'study' : 'library' } });
     const [chain, setChain] = useState([]);
     const [result, setResult] = useState(null);
     const [region, setRegion] = useState('north');
