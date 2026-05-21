@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Check, X, Volume2 } from 'lucide-react';
-import speak from '../../utils/speak';
+import speak, { speakQueued } from '../../utils/speak';
 import { checkVietnameseInput } from '../../utils/fuzzyVietnamese';
 import SoundButton from '../SoundButton';
 import { playSuccess, playError } from '../../utils/sound';
@@ -155,7 +155,7 @@ const ScenePerform = ({ config, scene, onComplete }) => {
 
     const handleWordBankTap = (word) => {
         setOrderedTokens(prev => [...prev, word]);
-        speak(word);
+        speakQueued(word);
     };
 
     const handleRemoveToken = (idx) => {

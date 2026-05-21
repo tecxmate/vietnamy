@@ -4,7 +4,7 @@ import { X, Heart, Check, Trophy, Volume2, ChevronRight } from 'lucide-react';
 import { getNodeById, getExercisesForUnit, getExercisesForNode, getNextNode, getNodeRoute } from '../lib/db';
 import { useProgress } from '../context/ProgressContext';
 import { useUser } from '../context/UserContext';
-import speak from '../utils/speak';
+import speak, { speakQueued } from '../utils/speak';
 import { loadSettings } from '../lib/settings';
 import { checkVietnameseInput } from '../utils/fuzzyVietnamese';
 import { playSuccess, playError } from '../utils/sound';
@@ -465,7 +465,7 @@ const UnitTest = () => {
                             <div style={{ minHeight: 70, padding: '10px 0', borderBottom: '2px solid var(--border-color)', display: 'flex', flexWrap: 'wrap', gap: 10, marginBottom: 24, alignItems: 'center' }}>
                                 {orderedTokens.length === 0 && <span style={{ color: 'var(--text-muted)', padding: '10px 0', width: '100%' }}>Tap words below to build the sentence</span>}
                                 {orderedTokens.map((token, idx) => (
-                                    <button key={idx} style={{ padding: '10px 16px', backgroundColor: 'var(--surface-color)', border: '2px solid var(--border-color)', borderRadius: 12, cursor: isChecking ? 'default' : 'pointer', boxShadow: '0 2px 0 var(--border-color)', fontSize: 17, fontWeight: 500, color: 'var(--text-main)' }} onClick={() => { handleRemoveOrderedWord(idx); speak(token); }}>
+                                    <button key={idx} style={{ padding: '10px 16px', backgroundColor: 'var(--surface-color)', border: '2px solid var(--border-color)', borderRadius: 12, cursor: isChecking ? 'default' : 'pointer', boxShadow: '0 2px 0 var(--border-color)', fontSize: 17, fontWeight: 500, color: 'var(--text-main)' }} onClick={() => { handleRemoveOrderedWord(idx); speakQueued(token); }}>
                                         {token}
                                     </button>
                                 ))}
@@ -484,7 +484,7 @@ const UnitTest = () => {
                                             color: isUsed ? 'transparent' : 'var(--text-main)',
                                             cursor: isUsed || isChecking ? 'default' : 'pointer',
                                             pointerEvents: isUsed ? 'none' : 'auto',
-                                        }} onClick={() => { if (!isUsed) { handleWordBankClick(word); speak(word); } }} disabled={isUsed || isChecking}>
+                                        }} onClick={() => { if (!isUsed) { handleWordBankClick(word); speakQueued(word); } }} disabled={isUsed || isChecking}>
                                             {word}
                                         </button>
                                     );

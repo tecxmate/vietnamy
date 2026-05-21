@@ -5,7 +5,7 @@ import { lookupWords } from '../lib/dictionaryLookup';
 import { useProgress } from '../context/ProgressContext';
 import { useUser } from '../context/UserContext';
 import { getNodeByLessonId, getLessonBlueprint, getExercisesGenerated, getNextNode, getNodeRoute } from '../lib/db';
-import speak, { preloadSpeak } from '../utils/speak';
+import speak, { preloadSpeak, speakQueued } from '../utils/speak';
 import { addItemsFromLesson, recordReview } from '../lib/srs';
 import { recordExerciseResult, extractItemIds } from '../lib/wordGrades';
 import { getDB } from '../lib/db';
@@ -77,6 +77,7 @@ const LessonGame = () => {
     const [speechSupported, setSpeechSupported] = useState(true);
     const [speechError, setSpeechError] = useState('');
     const recognitionRef = useRef(null);
+    const speechStopIntentionalRef = useRef(false);
 
     // Image error fallback
     const [imageError, setImageError] = useState(false);
@@ -87,7 +88,25 @@ const LessonGame = () => {
 
     const rewardGivenRef = useRef(false);
 
+    const stopSpeechRecognition = React.useCallback(() => {
+        speechStopIntentionalRef.current = true;
+        const recognition = recognitionRef.current;
+        if (recognition) {
+            recognition.onresult = null;
+            recognition.onend = null;
+            recognition.onerror = null;
+            try {
+                recognition.abort();
+            } catch {
+                try { recognition.stop(); } catch { /* already stopped */ }
+            }
+        }
+        recognitionRef.current = null;
+        setIsRecording(false);
+    }, []);
+
     useEffect(() => {
+        stopSpeechRecognition();
         // Reset all state on every navigation (even same lessonId)
         setCurrentIndex(0);
         setSelectedAnswer(null);
@@ -154,12 +173,17 @@ const LessonGame = () => {
         // Check speech recognition support
         const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
         setSpeechSupported(!!SR);
-    }, [lessonId, location.key]);
+        return stopSpeechRecognition;
+    }, [lessonId, location.key, stopSpeechRecognition]);
 
     const currentEx = exercises[currentIndex];
     const progress = exercises.length > 0 ? (currentIndex / exercises.length) * 100 : 0;
 
     useEffect(() => {
+        if (currentEx?.exercise_type !== 'speak_sentence') {
+            stopSpeechRecognition();
+        }
+
         setSelectedAnswer(null);
         setIsChecking(false);
         setIsCorrect(null);
@@ -187,7 +211,7 @@ const LessonGame = () => {
         }
 
         // match_pairs: MatchPairs component handles its own state initialization
-    }, [currentIndex, currentEx]);
+    }, [currentIndex, currentEx, stopSpeechRecognition]);
 
     // Auto-play audio for exercises that present Vietnamese text
     useEffect(() => {
@@ -303,12 +327,12 @@ const LessonGame = () => {
         }
 
         if (isRecording && recognitionRef.current) {
-            recognitionRef.current.stop();
-            setIsRecording(false);
+            stopSpeechRecognition();
             return;
         }
 
         setSpeechError('');
+        speechStopIntentionalRef.current = false;
         const recognition = new SR();
         recognition.lang = 'vi-VN';
         recognition.continuous = false;
@@ -327,14 +351,20 @@ const LessonGame = () => {
         };
 
         recognition.onend = () => {
+            recognitionRef.current = null;
             setIsRecording(false);
+            if (speechStopIntentionalRef.current) return;
             if (!gotResult) {
                 setSpeechError('No speech detected. Try again or type below.');
             }
         };
 
         recognition.onerror = (event) => {
+            recognitionRef.current = null;
             setIsRecording(false);
+            if (speechStopIntentionalRef.current || event.error === 'aborted') {
+                return;
+            }
             console.warn('Speech recognition error:', event.error);
             if (event.error === 'not-allowed') {
                 setSpeechSupported(false);
@@ -343,8 +373,6 @@ const LessonGame = () => {
                 setSpeechError('No speech detected. Try again or type below.');
             } else if (event.error === 'network') {
                 setSpeechError('Network error. Check your connection or type below.');
-            } else if (event.error === 'aborted') {
-                // User aborted, no error to show
             } else {
                 setSpeechError(`Error: ${event.error}. You can type instead.`);
             }
@@ -363,6 +391,9 @@ const LessonGame = () => {
 
     const handleCheck = () => {
         if (!currentEx) return;
+        if (currentEx.exercise_type === 'speak_sentence') {
+            stopSpeechRecognition();
+        }
 
         let correct = false;
 
@@ -448,6 +479,7 @@ const LessonGame = () => {
 
     const handleSkip = () => {
         if (!testMode) return;
+        stopSpeechRecognition();
         setScore(s => s + 1);
         if (currentIndex < exercises.length - 1) {
             setCurrentIndex(prev => prev + 1);
@@ -457,6 +489,7 @@ const LessonGame = () => {
     };
 
     const handleNext = () => {
+        stopSpeechRecognition();
         if (hearts === 0) {
             navigate('/', { state: { tab: 'study' } });
             return;
@@ -986,7 +1019,7 @@ const LessonGame = () => {
                                                     userSelect: 'none', transition: 'all 0.1s', opacity: draggedItemIndex === idx ? 0.5 : 1,
                                                     color: 'var(--text-main)'
                                                 }}
-                                                onClick={() => { handleRemoveOrderedWord(idx); speak(token); }}
+                                                onClick={() => { handleRemoveOrderedWord(idx); speakQueued(token); }}
                                                 draggable={!isChecking}
                                                 onDragStart={(e) => onDragStart(e, idx)}
                                                 onDragOver={(e) => onDragOver(e, idx)}
@@ -1021,7 +1054,7 @@ const LessonGame = () => {
                                                 cursor: isUsed || isChecking ? 'default' : 'pointer',
                                                 pointerEvents: isUsed ? 'none' : 'auto',
                                             }}
-                                            onClick={() => { if (!isUsed) { handleWordBankClick(word); speak(word); } }}
+                                            onClick={() => { if (!isUsed) { handleWordBankClick(word); speakQueued(word); } }}
                                             disabled={isUsed || isChecking}
                                         >
                                             {word}
@@ -1184,6 +1217,16 @@ const LessonGame = () => {
                                 className="shadow-lg"
                                 style={{ padding: '0 20px', fontSize: 14, fontWeight: 700, backgroundColor: 'var(--primary-color)', color: '#1A1A1A', borderRadius: 'var(--radius-md)', border: 'none', boxShadow: '0 4px 0 var(--primary-color-hover)' }}
                                 onClick={handleSkip}
+                            >
+                                SKIP
+                            </button>
+                        )}
+                        {!testMode && currentEx?.exercise_type === 'speak_sentence' && (
+                            <button
+                                className="shadow-lg"
+                                style={{ padding: '0 20px', fontSize: 14, fontWeight: 700, backgroundColor: 'var(--surface-color)', color: 'var(--text-muted)', borderRadius: 'var(--radius-md)', border: '2px solid var(--border-color)', boxShadow: '0 4px 0 var(--border-color)' }}
+                                onClick={handleNext}
+                                title="Skip — useful when you can't speak out loud right now"
                             >
                                 SKIP
                             </button>

@@ -2,6 +2,10 @@
 let currentAudio = null;
 let lastSpeakTime = 0;
 const SPEAK_COOLDOWN = 50; // ms — ignore only true double-fires
+const MAX_QUEUED_CLIPS = 60;
+let queuedClips = [];
+let currentQueuedAudio = null;
+let queueWakeAudio = null;
 
 const TTS_VOICES = new Set([
     'google',
@@ -32,6 +36,27 @@ const buildTtsUrl = (text, lang) => {
     return `/api/tts?text=${encodeURIComponent(text)}&lang=${encodeURIComponent(lang)}&voice=${encodeURIComponent(voice)}&ck=${encodeURIComponent(cacheKey)}`;
 };
 
+const getPlaybackOptions = (rate, lang) => ({
+    ttsLang: typeof rate === 'string' ? rate : lang,
+    playRate: typeof rate === 'number' ? rate : 1,
+});
+
+export const clearSpeakQueue = ({ stopCurrent = false } = {}) => {
+    queuedClips = [];
+    queueWakeAudio = null;
+
+    if (stopCurrent && currentAudio) {
+        currentAudio.pause();
+        currentAudio = null;
+    }
+
+    if (stopCurrent && currentQueuedAudio) {
+        currentQueuedAudio.pause();
+    }
+
+    currentQueuedAudio = null;
+};
+
 // Warm the HTTP cache so subsequent speak() calls play instantly.
 const preloadedUrls = new Set();
 export const preloadSpeak = (texts, lang = 'vi') => {
@@ -54,6 +79,8 @@ const speak = (text, rate = 1, lang = 'vi') => {
     if (now - lastSpeakTime < SPEAK_COOLDOWN) return;
     lastSpeakTime = now;
 
+    clearSpeakQueue();
+
     // Stop any currently playing audio
     if (currentAudio) {
         currentAudio.pause();
@@ -62,8 +89,7 @@ const speak = (text, rate = 1, lang = 'vi') => {
 
     if (!text || text.length > 200) return;
 
-    const ttsLang = typeof rate === 'string' ? rate : lang;
-    const playRate = typeof rate === 'number' ? rate : 1;
+    const { ttsLang, playRate } = getPlaybackOptions(rate, lang);
 
     const url = buildTtsUrl(text, ttsLang);
     const audio = new Audio(url);
@@ -76,6 +102,59 @@ const speak = (text, rate = 1, lang = 'vi') => {
 
     audio.addEventListener('ended', () => { currentAudio = null; });
     audio.addEventListener('error', () => { currentAudio = null; });
+};
+
+const playNextQueued = () => {
+    if (currentAudio || queuedClips.length === 0) return;
+
+    const next = queuedClips.shift();
+    const url = buildTtsUrl(next.text, next.lang);
+    const audio = new Audio(url);
+    audio.playbackRate = next.rate;
+    currentAudio = audio;
+    currentQueuedAudio = audio;
+
+    const finish = () => {
+        if (currentAudio === audio) currentAudio = null;
+        if (currentQueuedAudio === audio) currentQueuedAudio = null;
+        playNextQueued();
+    };
+
+    audio.play().catch(finish);
+    audio.addEventListener('ended', finish, { once: true });
+    audio.addEventListener('error', finish, { once: true });
+};
+
+const scheduleQueuedPlayback = () => {
+    if (!currentAudio) {
+        playNextQueued();
+        return;
+    }
+
+    if (currentQueuedAudio === currentAudio || queueWakeAudio === currentAudio) return;
+
+    queueWakeAudio = currentAudio;
+    const wakeAudio = currentAudio;
+    const wake = () => {
+        if (queueWakeAudio === wakeAudio) queueWakeAudio = null;
+        setTimeout(playNextQueued, 0);
+    };
+
+    wakeAudio.addEventListener('ended', wake, { once: true });
+    wakeAudio.addEventListener('error', wake, { once: true });
+};
+
+export const speakQueued = (text, rate = 1, lang = 'vi') => {
+    if (!text || text.length > 200) return;
+
+    const { ttsLang, playRate } = getPlaybackOptions(rate, lang);
+    queuedClips.push({ text, lang: ttsLang, rate: playRate });
+
+    if (queuedClips.length > MAX_QUEUED_CLIPS) {
+        queuedClips = queuedClips.slice(-MAX_QUEUED_CLIPS);
+    }
+
+    scheduleQueuedPlayback();
 };
 
 export default speak;

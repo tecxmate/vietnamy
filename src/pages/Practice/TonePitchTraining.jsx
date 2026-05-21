@@ -170,6 +170,32 @@ export default function TonePitchTraining({ tones: toneIds = null, title = '🎤
     const trackerRef = useRef(null);
     const contourRef = useRef([]);
 
+    const releaseMic = useCallback(({ updateState = true } = {}) => {
+        if (trackerRef.current) {
+            trackerRef.current.stop();
+            trackerRef.current = null;
+        }
+
+        if (streamRef.current) {
+            streamRef.current.getTracks().forEach(track => track.stop());
+            streamRef.current = null;
+        }
+
+        if (audioCtxRef.current) {
+            const ctx = audioCtxRef.current;
+            audioCtxRef.current = null;
+            if (ctx.state !== 'closed') {
+                ctx.close().catch(() => {});
+            }
+        }
+
+        if (updateState) {
+            setRecording(false);
+            setCalibRecording(false);
+            setCalibrating(false);
+        }
+    }, []);
+
     const currentQuestion = questions[currentIdx];
     const currentToneData = currentQuestion ? TONE_CONTOURS[currentQuestion.tone] : null;
     const progress = questions.length > 0 ? (currentIdx / questions.length) * 100 : 0;
@@ -494,6 +520,7 @@ export default function TonePitchTraining({ tones: toneIds = null, title = '🎤
             contourRef.current = [];
         } else {
             markComplete();
+            releaseMic();
             setStage('summary');
         }
     };
@@ -508,12 +535,9 @@ export default function TonePitchTraining({ tones: toneIds = null, title = '🎤
     // ─── Cleanup ───────────────────────────────────────────────────
     useEffect(() => {
         return () => {
-            if (trackerRef.current) trackerRef.current.stop();
-            if (streamRef.current) {
-                streamRef.current.getTracks().forEach(t => t.stop());
-            }
+            releaseMic({ updateState: false });
         };
-    }, []);
+    }, [releaseMic]);
 
 
     // ═══════════════════════════════════════════════════════════════
