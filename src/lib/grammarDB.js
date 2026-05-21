@@ -18,17 +18,34 @@ _ensureLoaded();
 
 const STORAGE_KEY = 'vnme_grammar_bank';
 
+export const cleanGrammarHeading = (heading) => {
+    if (typeof heading !== 'string') return heading;
+    return heading
+        .replace(/\s+in\s+Vietnamese\b/gi, '')
+        .replace(/\b(with)\s+\1\b/gi, '$1')
+        .replace(/\s{2,}/g, ' ')
+        .trim();
+};
+
+const cleanGrammarItems = (items) => items.map(item => ({
+    ...item,
+    sections: (item.sections || []).map(section => ({
+        ...section,
+        heading: cleanGrammarHeading(section.heading),
+    })),
+}));
+
 export const getGrammarItems = () => {
     const stored = localStorage.getItem(STORAGE_KEY);
     if (stored) {
         try {
             const parsed = JSON.parse(stored);
             if (parsed.items && Array.isArray(parsed.items)) {
-                return parsed.items;
+                return cleanGrammarItems(parsed.items);
             }
         } catch { /* fall through to default */ }
     }
-    return _defaultData?.items || [];
+    return cleanGrammarItems(_defaultData?.items || []);
 };
 
 /** Async version — ensures data is loaded before returning */
