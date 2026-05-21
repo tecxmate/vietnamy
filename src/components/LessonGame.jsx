@@ -5,7 +5,7 @@ import { lookupWords } from '../lib/dictionaryLookup';
 import { useProgress } from '../context/ProgressContext';
 import { useUser } from '../context/UserContext';
 import { getNodeByLessonId, getLessonBlueprint, getExercisesGenerated, getNextNode, getNodeRoute } from '../lib/db';
-import speak from '../utils/speak';
+import speak, { preloadSpeak } from '../utils/speak';
 import { addItemsFromLesson, recordReview } from '../lib/srs';
 import { recordExerciseResult, extractItemIds } from '../lib/wordGrades';
 import { getDB } from '../lib/db';
@@ -172,6 +172,7 @@ const LessonGame = () => {
             setOrderedTokens([]);
             setDraggedItemIndex(null);
             setDropTargetIndex(null);
+            preloadSpeak(currentEx.prompt.tokens);
         }
 
         if (currentEx && currentEx.exercise_type === 'listen_type') {

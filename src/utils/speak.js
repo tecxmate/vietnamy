@@ -1,7 +1,7 @@
 // Speak text through the server TTS proxy with the configured voice provider.
 let currentAudio = null;
 let lastSpeakTime = 0;
-const SPEAK_COOLDOWN = 300; // ms — ignore rapid repeated calls
+const SPEAK_COOLDOWN = 50; // ms — ignore only true double-fires
 
 const TTS_VOICES = new Set([
     'google',
@@ -26,6 +26,29 @@ const loadTtsVoice = () => {
     }
 };
 
+const buildTtsUrl = (text, lang) => {
+    const voice = loadTtsVoice();
+    const cacheKey = `tts-v2-${voice}`;
+    return `/api/tts?text=${encodeURIComponent(text)}&lang=${encodeURIComponent(lang)}&voice=${encodeURIComponent(voice)}&ck=${encodeURIComponent(cacheKey)}`;
+};
+
+// Warm the HTTP cache so subsequent speak() calls play instantly.
+const preloadedUrls = new Set();
+export const preloadSpeak = (texts, lang = 'vi') => {
+    if (!Array.isArray(texts)) texts = [texts];
+    for (const text of texts) {
+        if (!text || text.length > 200) continue;
+        const url = buildTtsUrl(text, lang);
+        if (preloadedUrls.has(url)) continue;
+        preloadedUrls.add(url);
+        // Fetch into the browser HTTP cache. Audio element would also work but
+        // some browsers refuse to load() without user gesture; fetch is reliable.
+        fetch(url, { method: 'GET', cache: 'force-cache' }).catch(() => {
+            preloadedUrls.delete(url);
+        });
+    }
+};
+
 const speak = (text, rate = 1, lang = 'vi') => {
     const now = Date.now();
     if (now - lastSpeakTime < SPEAK_COOLDOWN) return;
@@ -42,9 +65,7 @@ const speak = (text, rate = 1, lang = 'vi') => {
     const ttsLang = typeof rate === 'string' ? rate : lang;
     const playRate = typeof rate === 'number' ? rate : 1;
 
-    const voice = loadTtsVoice();
-    const cacheKey = `tts-v2-${voice}`;
-    const url = `/api/tts?text=${encodeURIComponent(text)}&lang=${encodeURIComponent(ttsLang)}&voice=${encodeURIComponent(voice)}&ck=${encodeURIComponent(cacheKey)}`;
+    const url = buildTtsUrl(text, ttsLang);
     const audio = new Audio(url);
     audio.playbackRate = playRate;
     currentAudio = audio;
