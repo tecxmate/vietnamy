@@ -6,6 +6,10 @@ const MAX_QUEUED_CLIPS = 60;
 let queuedClips = [];
 let currentQueuedAudio = null;
 let queueWakeAudio = null;
+const MEDIA_ARTWORK = [
+    { src: '/icon-192.png', sizes: '192x192', type: 'image/png' },
+    { src: '/icon-512.png', sizes: '512x512', type: 'image/png' },
+];
 
 const TTS_VOICES = new Set([
     'google',
@@ -41,6 +45,25 @@ const getPlaybackOptions = (rate, lang) => ({
     playRate: typeof rate === 'number' ? rate : 1,
 });
 
+const setMediaSessionMetadata = (text) => {
+    if (typeof navigator === 'undefined') return;
+    if (!('mediaSession' in navigator) || typeof MediaMetadata === 'undefined') return;
+
+    navigator.mediaSession.metadata = new MediaMetadata({
+        title: text,
+        artist: 'Vietnamy',
+        album: 'Vietnamese audio',
+        artwork: MEDIA_ARTWORK,
+    });
+    navigator.mediaSession.playbackState = 'playing';
+};
+
+const clearMediaSessionPlayback = () => {
+    if (typeof navigator === 'undefined') return;
+    if (!('mediaSession' in navigator)) return;
+    navigator.mediaSession.playbackState = 'none';
+};
+
 export const clearSpeakQueue = ({ stopCurrent = false } = {}) => {
     queuedClips = [];
     queueWakeAudio = null;
@@ -55,6 +78,7 @@ export const clearSpeakQueue = ({ stopCurrent = false } = {}) => {
     }
 
     currentQueuedAudio = null;
+    if (stopCurrent) clearMediaSessionPlayback();
 };
 
 // Warm the HTTP cache so subsequent speak() calls play instantly.
@@ -95,13 +119,15 @@ const speak = (text, rate = 1, lang = 'vi') => {
     const audio = new Audio(url);
     audio.playbackRate = playRate;
     currentAudio = audio;
+    setMediaSessionMetadata(text);
 
     audio.play().catch(() => {
         currentAudio = null;
+        clearMediaSessionPlayback();
     });
 
-    audio.addEventListener('ended', () => { currentAudio = null; });
-    audio.addEventListener('error', () => { currentAudio = null; });
+    audio.addEventListener('ended', () => { currentAudio = null; clearMediaSessionPlayback(); });
+    audio.addEventListener('error', () => { currentAudio = null; clearMediaSessionPlayback(); });
 };
 
 const playNextQueued = () => {
@@ -113,10 +139,12 @@ const playNextQueued = () => {
     audio.playbackRate = next.rate;
     currentAudio = audio;
     currentQueuedAudio = audio;
+    setMediaSessionMetadata(next.text);
 
     const finish = () => {
         if (currentAudio === audio) currentAudio = null;
         if (currentQueuedAudio === audio) currentQueuedAudio = null;
+        if (!currentAudio && queuedClips.length === 0) clearMediaSessionPlayback();
         playNextQueued();
     };
 
