@@ -367,13 +367,13 @@ function generateWordInContextFillBlank(lessonId, wordItem, allItems, pool, exIn
  */
 const SESSION_PROFILES = [
     // Session 0: Introduction — some recognition, but contextual from the start
-    { match: true, picture: 1, mcqToEn: 2, listenChoose: 1, mcqToVi: 1, listenType: 1, wordBank: 2, reorder: 2, fillBlank: 3, speak: 0 },
+    { match: true, picture: 1, mcqToEn: 2, listenChoose: 1, mcqToVi: 1, listenType: 1, wordBank: 2, reorder: 2, fillBlank: 3, speak: 1 },
     // Session 1: Reinforcement — more production in context
-    { match: false, picture: 0, mcqToEn: 1, listenChoose: 1, mcqToVi: 1, listenType: 2, wordBank: 2, reorder: 2, fillBlank: 3, speak: 1 },
+    { match: false, picture: 0, mcqToEn: 1, listenChoose: 1, mcqToVi: 1, listenType: 2, wordBank: 2, reorder: 2, fillBlank: 3, speak: 2 },
     // Session 2: Production — heavy contextual
-    { match: false, picture: 0, mcqToEn: 1, listenChoose: 1, mcqToVi: 0, listenType: 2, wordBank: 3, reorder: 2, fillBlank: 3, speak: 1 },
+    { match: false, picture: 0, mcqToEn: 1, listenChoose: 1, mcqToVi: 0, listenType: 2, wordBank: 3, reorder: 2, fillBlank: 3, speak: 3 },
     // Session 3: Mastery — almost all production/context
-    { match: false, picture: 0, mcqToEn: 0, listenChoose: 1, mcqToVi: 0, listenType: 2, wordBank: 3, reorder: 2, fillBlank: 3, speak: 2 },
+    { match: false, picture: 0, mcqToEn: 0, listenChoose: 1, mcqToVi: 0, listenType: 2, wordBank: 3, reorder: 2, fillBlank: 3, speak: 4 },
 ];
 
 // --- Interleaving: distribute exercise types with soft difficulty curve ---
