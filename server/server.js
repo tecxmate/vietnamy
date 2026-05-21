@@ -870,6 +870,12 @@ const AZURE_VI_VOICES = {
 };
 const TTS_VOICES = new Set(['google', ...Object.keys(AZURE_VI_VOICES)]);
 const DEFAULT_TTS_VOICE = process.env.DEFAULT_TTS_VOICE || 'azure-south';
+const AZURE_PCM_SAMPLE_RATE = 24000;
+const AZURE_PCM_CHANNELS = 1;
+const AZURE_PCM_BYTES_PER_SAMPLE = 2;
+const TTS_SILENCE_THRESHOLD = 80;
+const TTS_SILENCE_WINDOW_MS = 10;
+const TTS_TRIM_PADDING_MS = 50;
 
 function escapeSsml(text) {
     return text
@@ -878,6 +884,75 @@ function escapeSsml(text) {
         .replace(/>/g, '&gt;')
         .replace(/"/g, '&quot;')
         .replace(/'/g, '&apos;');
+}
+
+function trimPcm16MonoSilence(buffer, {
+    sampleRate = AZURE_PCM_SAMPLE_RATE,
+    threshold = TTS_SILENCE_THRESHOLD,
+    windowMs = TTS_SILENCE_WINDOW_MS,
+    paddingMs = TTS_TRIM_PADDING_MS,
+} = {}) {
+    if (!Buffer.isBuffer(buffer) || buffer.length < AZURE_PCM_BYTES_PER_SAMPLE) return buffer;
+
+    const sampleCount = Math.floor(buffer.length / AZURE_PCM_BYTES_PER_SAMPLE);
+    const windowSamples = Math.max(1, Math.floor((sampleRate * windowMs) / 1000));
+    const paddingSamples = Math.max(0, Math.floor((sampleRate * paddingMs) / 1000));
+
+    const windowIsVoiced = (startSample) => {
+        const endSample = Math.min(sampleCount, startSample + windowSamples);
+        let sumSquares = 0;
+        for (let sample = startSample; sample < endSample; sample++) {
+            const value = buffer.readInt16LE(sample * AZURE_PCM_BYTES_PER_SAMPLE);
+            sumSquares += value * value;
+        }
+        const rms = Math.sqrt(sumSquares / Math.max(1, endSample - startSample));
+        return rms > threshold;
+    };
+
+    let firstVoiced = 0;
+    while (firstVoiced < sampleCount && !windowIsVoiced(firstVoiced)) {
+        firstVoiced += windowSamples;
+    }
+
+    if (firstVoiced >= sampleCount) return buffer;
+
+    let lastVoiced = sampleCount;
+    for (let start = Math.max(0, sampleCount - windowSamples); start >= 0; start -= windowSamples) {
+        if (windowIsVoiced(start)) {
+            lastVoiced = Math.min(sampleCount, start + windowSamples);
+            break;
+        }
+    }
+
+    const trimStart = Math.max(0, firstVoiced - paddingSamples);
+    const trimEnd = Math.min(sampleCount, lastVoiced + paddingSamples);
+    if (trimEnd <= trimStart) return buffer;
+
+    const startByte = trimStart * AZURE_PCM_BYTES_PER_SAMPLE;
+    const endByte = trimEnd * AZURE_PCM_BYTES_PER_SAMPLE;
+    return buffer.subarray(startByte, endByte);
+}
+
+function pcm16MonoToWav(buffer, sampleRate = AZURE_PCM_SAMPLE_RATE) {
+    const header = Buffer.alloc(44);
+    const byteRate = sampleRate * AZURE_PCM_CHANNELS * AZURE_PCM_BYTES_PER_SAMPLE;
+    const blockAlign = AZURE_PCM_CHANNELS * AZURE_PCM_BYTES_PER_SAMPLE;
+
+    header.write('RIFF', 0);
+    header.writeUInt32LE(36 + buffer.length, 4);
+    header.write('WAVE', 8);
+    header.write('fmt ', 12);
+    header.writeUInt32LE(16, 16);
+    header.writeUInt16LE(1, 20);
+    header.writeUInt16LE(AZURE_PCM_CHANNELS, 22);
+    header.writeUInt32LE(sampleRate, 24);
+    header.writeUInt32LE(byteRate, 28);
+    header.writeUInt16LE(blockAlign, 32);
+    header.writeUInt16LE(16, 34);
+    header.write('data', 36);
+    header.writeUInt32LE(buffer.length, 40);
+
+    return Buffer.concat([header, buffer]);
 }
 
 async function synthesizeWithAzure(text, lang, voice = 'azure-north') {
@@ -897,7 +972,7 @@ async function synthesizeWithAzure(text, lang, voice = 'azure-north') {
         headers: {
             'Ocp-Apim-Subscription-Key': AZURE_SPEECH_KEY,
             'Content-Type': 'application/ssml+xml',
-            'X-Microsoft-OutputFormat': 'audio-24khz-48kbitrate-mono-mp3',
+            'X-Microsoft-OutputFormat': 'raw-24khz-16bit-mono-pcm',
             'User-Agent': 'vietnamy-tts',
         },
         body: ssml,
@@ -908,7 +983,12 @@ async function synthesizeWithAzure(text, lang, voice = 'azure-north') {
         throw new Error(`Azure TTS ${response.status}: ${detail || response.statusText}`);
     }
 
-    return Buffer.from(await response.arrayBuffer());
+    const rawPcm = Buffer.from(await response.arrayBuffer());
+    const trimmedPcm = trimPcm16MonoSilence(rawPcm);
+    return {
+        buffer: pcm16MonoToWav(trimmedPcm),
+        contentType: 'audio/wav',
+    };
 }
 
 async function synthesizeWithGoogleTranslate(text, lang) {
@@ -943,25 +1023,30 @@ app.get('/api/tts', async (req, res) => {
     }
 
     try {
-        let buffer = null;
+        let audioResult = null;
         let provider = 'google-translate';
         if (voice !== 'google') {
             try {
-                buffer = await synthesizeWithAzure(text, lang, voice);
-                if (buffer) provider = 'azure';
+                audioResult = await synthesizeWithAzure(text, lang, voice);
+                if (audioResult) provider = 'azure';
             } catch (err) {
                 console.warn('Azure TTS fallback:', err.message);
             }
         }
-        if (!buffer) buffer = await synthesizeWithGoogleTranslate(text, lang);
+        if (!audioResult) {
+            audioResult = {
+                buffer: await synthesizeWithGoogleTranslate(text, lang),
+                contentType: 'audio/mpeg',
+            };
+        }
 
         res.set({
-            'Content-Type': 'audio/mpeg',
+            'Content-Type': audioResult.contentType,
             'Cache-Control': 'no-store',
             'X-TTS-Provider': provider,
             'X-TTS-Voice': voice,
         });
-        res.send(buffer);
+        res.send(audioResult.buffer);
     } catch (err) {
         console.error('TTS error:', err.message);
         res.status(502).json({ error: 'TTS fetch failed' });
