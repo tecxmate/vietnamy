@@ -1,0 +1,13 @@
+.grammar-topic-header {
+    position: relative;
+    z-index: 1;
+}
+
+@media (max-width: 768px) {
+    .grammar-topic.is-expanded > .grammar-topic-header {
+        position: sticky;
+        top: 74px;
+        z-index: 9;
+        box-shadow: 0 1px 0 var(--border-color), 0 8px 18px rgba(0, 0, 0, 0.08);
+    }
+}

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronRight, ChevronDown, BookOpen, Volume2, Hash, MessageSquare, Users, Keyboard } from 'lucide-react';
 import speak from '../../utils/speak';
+import './GrammarTab.css';
 
 const LEVEL_COLORS = {
     A1: '#06D6A0',
@@ -64,6 +65,10 @@ const GrammarTab = () => {
     const [expandedUnit, setExpandedUnit] = useState(null);
 
     const playTTS = (text) => speak(text, 0.8, 'vi');
+    const toggleModule = (moduleId) => {
+        setExpandedModule(current => current === moduleId ? null : moduleId);
+        setExpandedUnit(null);
+    };
 
     useEffect(() => {
         import('../../data/grammar_modules.json').then(mod => {
@@ -80,7 +85,7 @@ const GrammarTab = () => {
     }
 
     return (
-        <div style={{ paddingBottom: 100 }}>
+        <div className="grammar-guide-tab" style={{ paddingBottom: 100 }}>
             {/* Header */}
             <div style={{
                 padding: '24px 16px 16px',
@@ -105,7 +110,7 @@ const GrammarTab = () => {
             </div>
 
             {/* Level Tabs */}
-            <div style={{
+            <div className="grammar-level-tabs" style={{
                 display: 'flex',
                 gap: 8,
                 padding: '12px 16px',
@@ -151,10 +156,15 @@ const GrammarTab = () => {
                     {level.modules.map((mod, modIdx) => {
                         const isModExpanded = expandedModule === mod.id;
                         return (
-                            <div key={mod.id} style={{ borderBottom: '1px solid var(--border-color)' }}>
+                            <div
+                                key={mod.id}
+                                className={`grammar-topic ${isModExpanded ? 'is-expanded' : ''}`}
+                                style={{ borderBottom: '1px solid var(--border-color)' }}
+                            >
                                 {/* Module Header */}
                                 <button
-                                    onClick={() => { setExpandedModule(isModExpanded ? null : mod.id); setExpandedUnit(null); }}
+                                    className="grammar-topic-header"
+                                    onClick={() => toggleModule(mod.id)}
                                     style={{
                                         width: '100%',
                                         display: 'flex',
