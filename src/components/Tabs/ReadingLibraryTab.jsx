@@ -12,6 +12,7 @@ import { useUser } from '../../context/UserContext';
 import TappableVietnamese from '../TappableVietnamese';
 import WordPopup from '../WordPopup';
 import { lookupWords } from '../../lib/dictionaryLookup';
+import { Converter } from 'opencc-js';
 import {
     getDictSavedWords, toggleDictSavedWord, getDictDecks, createDictDeck,
     removeWordFromDictDeck,
@@ -44,6 +45,12 @@ const READING_LEVEL_META = {
     intermediate: { color: '#FFD166', bg: 'rgba(255,209,102,0.15)' },
     advanced: { color: '#EF476F', bg: 'rgba(239,71,111,0.15)' },
 };
+const s2t = Converter({ from: 'cn', to: 'tw' });
+
+const toTraditionalIfNeeded = (text, lang) => {
+    if (lang !== 'zh-t') return text || '';
+    return s2t(text || '');
+};
 
 // Build a unified content list from all sources (mockup timestamps)
 function buildLibraryItems() {
@@ -54,6 +61,7 @@ function buildLibraryItems() {
     ARTICLES.forEach((art, i) => {
         const catLabel = art.category.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
         const lvlMeta = READING_LEVEL_META[art.level] || READING_LEVEL_META.beginner;
+        const createdAt = typeof art.createdAt === 'number' ? art.createdAt : (now - (i + 1) * 86400000 * 5);
         items.push({
             id: `reading-${art.id}`,
             type: 'readings',
@@ -64,7 +72,7 @@ function buildLibraryItems() {
             itemColor: lvlMeta.color,
             itemBg: lvlMeta.bg,
             action: { type: 'openArticle', article: art },
-            createdAt: now - (i + 1) * 86400000 * 5,
+            createdAt,
             sortName: art.title_en,
             levelOrder: ['beginner', 'intermediate', 'advanced'].indexOf(art.level),
         });
@@ -510,7 +518,14 @@ function ArticleCard({ article, onSelect }) {
 function ArticleReaderView({ article, onBack }) {
     const { userProfile } = useUser();
     const [revealedSet, setRevealedSet] = useState(new Set());
-    const [translationLang, setTranslationLang] = useState('en');
+    const [translationLang, setTranslationLang] = useState(() => {
+        try {
+            const savedLang = localStorage.getItem('vnme_reading_translation_lang');
+            if (savedLang === 'en' || savedLang === 'zh-s' || savedLang === 'zh-t') return savedLang;
+            if (savedLang === 'zh') return 'zh-s';
+        } catch { }
+        return 'en';
+    });
     const [copiedCode, setCopiedCode] = useState(false);
 
     const toggleReveal = (idx) => {
@@ -539,6 +554,13 @@ function ArticleReaderView({ article, onBack }) {
         setTimeout(() => setCopiedCode(false), 2000);
     };
 
+    const setAndPersistLang = (lang) => {
+        setTranslationLang(lang);
+        try {
+            localStorage.setItem('vnme_reading_translation_lang', lang);
+        } catch { }
+    };
+
     return (
         <div className="rlib-reader-container">
             {/* Simple back arrow */}
@@ -558,16 +580,28 @@ function ArticleReaderView({ article, onBack }) {
                     <div className="rlib-lang-toggle">
                         <button
                             className={`rlib-lang-btn ${translationLang === 'en' ? 'active' : ''}`}
-                            onClick={() => setTranslationLang('en')}
-                        >EN</button>
+                            onClick={() => setAndPersistLang('en')}
+                        >
+                            EN
+                        </button>
                         <button
-                            className={`rlib-lang-btn ${translationLang === 'zh' ? 'active' : ''}`}
-                            onClick={() => setTranslationLang('zh')}
-                        >ZH</button>
+                            className={`rlib-lang-btn ${translationLang === 'zh-s' ? 'active' : ''}`}
+                            onClick={() => setAndPersistLang('zh-s')}
+                        >
+                            <span className="rlib-lang-full">简体</span>
+                            <span className="rlib-lang-short">简</span>
+                        </button>
+                        <button
+                            className={`rlib-lang-btn ${translationLang === 'zh-t' ? 'active' : ''}`}
+                            onClick={() => setAndPersistLang('zh-t')}
+                        >
+                            <span className="rlib-lang-full">繁體</span>
+                            <span className="rlib-lang-short">繁</span>
+                        </button>
                     </div>
                 </div>
                 <p className="rlib-reader-title-en">
-                    {translationLang === 'en' ? article.title_en : article.title_zh}
+                    {translationLang === 'en' ? article.title_en : toTraditionalIfNeeded(article.title_zh, translationLang)}
                 </p>
             </div>
 
@@ -594,7 +628,7 @@ function ArticleReaderView({ article, onBack }) {
                             </div>
                             {isRevealed && (
                                 <div className="rlib-translation">
-                                    {translationLang === 'en' ? s.en : s.zh}
+                                    {translationLang === 'en' ? s.en : toTraditionalIfNeeded(s.zh, translationLang)}
                                 </div>
                             )}
                         </div>
@@ -607,7 +641,7 @@ function ArticleReaderView({ article, onBack }) {
                 <WordPopup
                     word={popupWord.word}
                     anchorRect={popupWord.anchorRect}
-                    dictMode={translationLang === 'zh' ? 'zh-s' : 'en'}
+                    dictMode={translationLang === 'en' ? 'en' : translationLang}
                     isPhrase={popupWord.isPhrase}
                     onClose={() => setPopupWord(null)}
                     onNavigate={() => setPopupWord(null)}
@@ -625,10 +659,10 @@ function ArticleReaderView({ article, onBack }) {
                     />
                     <div className="rlib-cta-content">
                         <h3 className="rlib-cta-title">
-                            {translationLang === 'en' ? article.partnerCta.title_en : article.partnerCta.title_zh}
+                            {translationLang === 'en' ? article.partnerCta.title_en : toTraditionalIfNeeded(article.partnerCta.title_zh, translationLang)}
                         </h3>
                         <p className="rlib-cta-desc">
-                            {translationLang === 'en' ? article.partnerCta.desc_en : article.partnerCta.desc_zh}
+                            {translationLang === 'en' ? article.partnerCta.desc_en : toTraditionalIfNeeded(article.partnerCta.desc_zh, translationLang)}
                         </p>
 
                         <div className="rlib-cta-actions">
@@ -654,7 +688,7 @@ function ArticleReaderView({ article, onBack }) {
                                     color: '#fff'
                                 }}
                             >
-                                Get {translationLang === 'en' ? article.partnerCta.discount_en : article.partnerCta.discount_zh}
+                                Get {translationLang === 'en' ? article.partnerCta.discount_en : toTraditionalIfNeeded(article.partnerCta.discount_zh, translationLang)}
                             </a>
                         </div>
                     </div>
