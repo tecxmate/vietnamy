@@ -8,6 +8,7 @@ import { useUser } from '../context/UserContext';
 import speak from '../utils/speak';
 import { playSuccess, playError } from '../utils/sound';
 import SoundButton from '../components/SoundButton';
+import { getFillBlankCorrectSentence } from '../components/Exercise';
 import { DEFAULT_LEARNER_MODE, getProgressMode } from '../data/learnerModes';
 
 // Build tip cards from a grammar item's data
@@ -253,7 +254,13 @@ const GrammarLesson = () => {
 
         setIsCorrect(correct);
         setIsChecking(true);
-        if (correct) { playSuccess(); setScore(s => s + 1); }
+        if (correct) {
+            playSuccess();
+            setScore(s => s + 1);
+            if (currentEx.exercise_type === 'fill_blank') {
+                speak(getFillBlankCorrectSentence(currentEx.prompt));
+            }
+        }
         else { playError(); setHearts(h => Math.max(0, h - 1)); }
     };
 
@@ -527,7 +534,9 @@ const GrammarLesson = () => {
                         </div>
                         {!isCorrect && (
                             <div style={{ fontSize: 18, color: 'var(--danger-color)' }}>
-                                {currentEx?.prompt?.answer_vi || currentEx?.prompt?.answer_en}
+                                {currentEx?.exercise_type === 'fill_blank'
+                                    ? getFillBlankCorrectSentence(currentEx.prompt)
+                                    : (currentEx?.prompt?.answer_vi || currentEx?.prompt?.answer_en)}
                             </div>
                         )}
                         <SoundButton

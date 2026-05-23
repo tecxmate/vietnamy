@@ -23,7 +23,7 @@ import { playSuccess, playError } from '../utils/sound';
 import SoundButton from '../components/SoundButton';
 import {
     MCQOptions, FillBlankInput, ReorderWords, MatchPairs,
-    FeedbackBanner, ProgressBar, checkAnswer,
+    FeedbackBanner, ProgressBar, checkAnswer, getFillBlankCorrectSentence,
 } from '../components/Exercise';
 import { DEFAULT_LEARNER_MODE, getProgressMode } from '../data/learnerModes';
 
@@ -378,7 +378,13 @@ export default function GrammarUnitLesson() {
 
         setIsCorrect(correct);
         setIsChecking(true);
-        if (correct) { playSuccess(); setScore(s => s + 1); }
+        if (correct) {
+            playSuccess();
+            setScore(s => s + 1);
+            if (currentEx.exercise_type === 'fill_blank') {
+                speak(getFillBlankCorrectSentence(currentEx.prompt));
+            }
+        }
         else { playError(); setHearts(h => Math.max(0, h - 1)); }
     };
 
@@ -565,6 +571,11 @@ export default function GrammarUnitLesson() {
                     {isChecking ? (
                         <FeedbackBanner
                             isCorrect={isCorrect}
+                            correctAnswer={
+                                currentEx?.exercise_type === 'fill_blank'
+                                    ? getFillBlankCorrectSentence(currentEx.prompt)
+                                    : (currentEx?.prompt?.answer_vi || currentEx?.prompt?.answer_en)
+                            }
                             onContinue={handleNext}
                         />
                     ) : (

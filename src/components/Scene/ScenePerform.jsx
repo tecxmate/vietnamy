@@ -4,6 +4,7 @@ import speak, { speakQueued } from '../../utils/speak';
 import { checkVietnameseInput } from '../../utils/fuzzyVietnamese';
 import SoundButton from '../SoundButton';
 import { playSuccess, playError } from '../../utils/sound';
+import { buildFillBlankSentence, getFillBlankCorrectSentence } from '../Exercise';
 import TappableVietnamese from '../TappableVietnamese';
 import WordPopup from '../WordPopup';
 
@@ -391,7 +392,10 @@ const ScenePerform = ({ config, scene, onComplete }) => {
                                                     cursor: isUsed ? 'default' : 'pointer',
                                                     pointerEvents: isUsed ? 'none' : 'auto',
                                                 }}
-                                                onClick={() => { setFillAnswer(choice); speak(choice); }}
+                                                onClick={() => {
+                                                    setFillAnswer(choice);
+                                                    speak(buildFillBlankSentence(currentChallenge.template_vi, choice));
+                                                }}
                                             >
                                                 {choice}
                                             </button>
@@ -465,7 +469,7 @@ const ScenePerform = ({ config, scene, onComplete }) => {
                         )}
                         {!isCorrect && currentChallenge.type === 'fill_response' && (
                             <div style={{ fontSize: 15, color: 'var(--lesson-error-border)' }}>
-                                {currentChallenge.answer}
+                                {getFillBlankCorrectSentence(currentChallenge)}
                             </div>
                         )}
                         <SoundButton

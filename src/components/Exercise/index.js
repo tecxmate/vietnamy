@@ -5,3 +5,8 @@ export { default as ReorderWords } from './ReorderWords.jsx';
 export { default as MatchPairs } from './MatchPairs.jsx';
 export { default as FeedbackBanner } from './FeedbackBanner.jsx';
 export { default as ProgressBar } from './ProgressBar.jsx';
+export {
+    buildFillBlankSentence,
+    getFillBlankCorrectSentence,
+    getFillBlankTemplate,
+} from './fillBlankSentence.js';

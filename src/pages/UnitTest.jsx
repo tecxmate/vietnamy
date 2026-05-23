@@ -9,6 +9,7 @@ import { loadSettings } from '../lib/settings';
 import { checkVietnameseInput } from '../utils/fuzzyVietnamese';
 import { playSuccess, playError } from '../utils/sound';
 import SoundButton from '../components/SoundButton';
+import { buildFillBlankSentence, getFillBlankCorrectSentence } from '../components/Exercise';
 import { DEFAULT_LEARNER_MODE, getProgressMode } from '../data/learnerModes';
 
 const UNIT_QUIZ_SIZE = 20;
@@ -532,7 +533,12 @@ const UnitTest = () => {
                                                 cursor: isUsed || isChecking ? 'default' : 'pointer',
                                                 pointerEvents: isUsed ? 'none' : 'auto',
                                             }}
-                                            onClick={() => { if (!isChecking) { setSelectedAnswer(choice); speak(choice); } }}
+                                            onClick={() => {
+                                                if (!isChecking) {
+                                                    setSelectedAnswer(choice);
+                                                    speak(buildFillBlankSentence(prompt, choice));
+                                                }
+                                            }}
                                             disabled={isUsed || isChecking}
                                         >
                                             {choice}
@@ -643,7 +649,9 @@ const UnitTest = () => {
                         </div>
                         {!isCorrect && (
                             <div style={{ fontSize: 18, color: 'var(--danger-color)' }}>
-                                {currentEx?.prompt?.answer_vi || currentEx?.prompt?.answer_en || (currentEx?.prompt?.answer_tokens && currentEx.prompt.answer_tokens.join(' '))}
+                                {currentEx?.exercise_type === 'fill_blank'
+                                    ? getFillBlankCorrectSentence(currentEx.prompt)
+                                    : (currentEx?.prompt?.answer_vi || currentEx?.prompt?.answer_en || (currentEx?.prompt?.answer_tokens && currentEx.prompt.answer_tokens.join(' ')))}
                             </div>
                         )}
                         {isCorrect && fuzzyHint && (

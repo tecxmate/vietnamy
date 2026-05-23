@@ -14,7 +14,7 @@ import { loadSettings } from '../lib/settings';
 import { fireNotification } from '../context/NotificationContext';
 import { playSuccess, playError } from '../utils/sound';
 import SoundButton from './SoundButton';
-import { MCQOptions, MatchPairs, FeedbackBanner, ProgressBar } from './Exercise';
+import { MCQOptions, MatchPairs, FeedbackBanner, ProgressBar, buildFillBlankSentence, getFillBlankCorrectSentence } from './Exercise';
 import { DEFAULT_LEARNER_MODE, getProgressMode } from '../data/learnerModes';
 
 const LessonGame = () => {
@@ -1104,7 +1104,12 @@ const LessonGame = () => {
                                                 cursor: isUsed || isChecking ? 'default' : 'pointer',
                                                 pointerEvents: isUsed ? 'none' : 'auto',
                                             }}
-                                            onClick={() => { if (!isChecking) { setSelectedAnswer(choice); speak(choice); } }}
+                                            onClick={() => {
+                                                if (!isChecking) {
+                                                    setSelectedAnswer(choice);
+                                                    speak(buildFillBlankSentence(prompt, choice));
+                                                }
+                                            }}
                                             disabled={isUsed || isChecking}
                                         >
                                             {choice}
@@ -1189,7 +1194,9 @@ const LessonGame = () => {
                         isCorrect={isCorrect}
                         correctAnswer={
                             !isCorrect
-                                ? (currentEx?.prompt?.answer_vi || currentEx?.prompt?.answer_en || (currentEx?.prompt?.answer_tokens && currentEx.prompt.answer_tokens.join(' ')))
+                                ? (currentEx?.exercise_type === 'fill_blank'
+                                    ? getFillBlankCorrectSentence(currentEx.prompt)
+                                    : (currentEx?.prompt?.answer_vi || currentEx?.prompt?.answer_en || (currentEx?.prompt?.answer_tokens && currentEx.prompt.answer_tokens.join(' '))))
                                 : ''
                         }
                         fuzzyHint={fuzzyHint}
