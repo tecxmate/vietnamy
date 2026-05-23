@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {
     Target, Zap, User, X, ChevronDown, ChevronRight, RefreshCw,
     Globe, Type, Volume2, Wrench, Clock, Bell, Gift, Tag, Compass,
+    VolumeX,
 } from 'lucide-react';
 import { ENABLE_LEARNING_PATH_CHOOSER, LEARNER_MODES, DEFAULT_LEARNER_MODE } from '../data/learnerModes';
 import { useNavigate } from 'react-router-dom';
@@ -12,6 +13,7 @@ import { loadSettings, saveSettings } from '../lib/settings';
 import ReferralModal from './ReferralModal';
 import { useNotifications } from '../context/NotificationContext';
 import { getSoundEnabled, setSoundEnabled, playTap, playSelect, playTransitionUp, playTransitionDown } from '../utils/sound';
+import { clearSpeakQueue } from '../utils/speak';
 import { isAdminAuthenticated, loginAdmin } from '../lib/adminAuth';
 
 const TTS_VOICE_OPTIONS = [
@@ -32,6 +34,7 @@ const TAB_META = {
 const TopBar = ({ activeTab, subtitleOverride }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [menuVisible, setMenuVisible] = useState(false);
+    const [isQuickAudioOpen, setIsQuickAudioOpen] = useState(false);
     const [isReferralOpen, setIsReferralOpen] = useState(false);
     const navigate = useNavigate();
     const { userProfile, updateUserProfile } = useUser();
@@ -43,6 +46,7 @@ const TopBar = ({ activeTab, subtitleOverride }) => {
 
     const t = useT();
     const [settings, setSettings] = useState(() => loadSettings());
+    const [interactionAudioEnabled, setInteractionAudioEnabled] = useState(() => getSoundEnabled());
 
     const updateSetting = (key, value) => {
         const next = { ...settings, [key]: value };
@@ -54,6 +58,17 @@ const TopBar = ({ activeTab, subtitleOverride }) => {
         updateSetting('ttsVoice', value);
         if (value === 'azure-north') updateUserProfile({ dialect: 'north' });
         if (value === 'azure-south') updateUserProfile({ dialect: 'south' });
+    };
+
+    const updateInteractionAudio = (value) => {
+        setSoundEnabled(value);
+        setInteractionAudioEnabled(value);
+        if (value) playTap();
+    };
+
+    const updateSystemAudio = (value) => {
+        updateSetting('systemAudioEnabled', value);
+        if (!value) clearSpeakQueue({ stopCurrent: true });
     };
 
     const dialectLabel = userProfile.dialect === 'north' ? 'Northern' : userProfile.dialect === 'south' ? 'Southern' : userProfile.dialect === 'both' ? 'Both Dialects' : '';
@@ -164,6 +179,99 @@ const TopBar = ({ activeTab, subtitleOverride }) => {
                             <Gift size={20} />
                         </button>
                     )}
+                    <div style={{ position: 'relative' }}>
+                        <button
+                            className="notif-bell-btn"
+                            onClick={() => {
+                                playSelect();
+                                setIsQuickAudioOpen(v => !v);
+                            }}
+                            aria-label="Quick audio settings"
+                        >
+                            {settings.systemAudioEnabled === false || !interactionAudioEnabled ? <VolumeX size={20} /> : <Volume2 size={20} />}
+                        </button>
+                        {isQuickAudioOpen && (
+                            <>
+                                <div
+                                    style={{ position: 'fixed', inset: 0, zIndex: 8390 }}
+                                    onClick={() => setIsQuickAudioOpen(false)}
+                                />
+                                <div
+                                    style={{
+                                        position: 'absolute',
+                                        right: 0,
+                                        top: 'calc(100% + 10px)',
+                                        width: 292,
+                                        maxWidth: 'calc(100vw - 24px)',
+                                        zIndex: 8400,
+                                        background: 'var(--surface-color)',
+                                        border: '1px solid var(--border-color)',
+                                        borderRadius: 14,
+                                        boxShadow: '0 14px 42px rgba(0,0,0,0.34)',
+                                        padding: 12,
+                                    }}
+                                    onClick={(e) => e.stopPropagation()}
+                                >
+                                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8, marginBottom: 10 }}>
+                                        <div>
+                                            <div style={{ fontSize: 13, fontWeight: 800, color: 'var(--text-main)' }}>Audio</div>
+                                            <div style={{ fontSize: 11, color: 'var(--text-muted)', marginTop: 2 }}>Voice and sound</div>
+                                        </div>
+                                        <button
+                                            onClick={() => setIsQuickAudioOpen(false)}
+                                            style={{ background: 'transparent', border: 'none', color: 'var(--text-muted)', padding: 4, display: 'flex', cursor: 'pointer' }}
+                                            aria-label="Close audio settings"
+                                        >
+                                            <X size={16} />
+                                        </button>
+                                    </div>
+
+                                    <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 8, marginBottom: 12 }}>
+                                        {TTS_VOICE_OPTIONS.map(voice => {
+                                            const selected = resolvedTtsVoice === voice.v;
+                                            return (
+                                                <button
+                                                    key={voice.v}
+                                                    onClick={() => {
+                                                        playSelect();
+                                                        updateTtsVoice(voice.v);
+                                                    }}
+                                                    style={{
+                                                        display: 'flex',
+                                                        alignItems: 'center',
+                                                        justifyContent: 'space-between',
+                                                        gap: 10,
+                                                        padding: '10px 12px',
+                                                        borderRadius: 10,
+                                                        border: `1.5px solid ${selected ? 'var(--primary-color)' : 'var(--border-color)'}`,
+                                                        background: selected ? 'rgba(255,209,102,0.12)' : 'var(--bg-color)',
+                                                        color: selected ? 'var(--primary-color)' : 'var(--text-main)',
+                                                        fontFamily: 'inherit',
+                                                        cursor: 'pointer',
+                                                        textAlign: 'left',
+                                                    }}
+                                                >
+                                                    <span style={{ fontSize: 13, fontWeight: 750 }}>{voice.l}</span>
+                                                    {selected && <span style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--primary-color)', flexShrink: 0 }} />}
+                                                </button>
+                                            );
+                                        })}
+                                    </div>
+
+                                    <QuickAudioToggle
+                                        label="System audio"
+                                        checked={settings.systemAudioEnabled !== false}
+                                        onChange={updateSystemAudio}
+                                    />
+                                    <QuickAudioToggle
+                                        label="Interaction audio"
+                                        checked={interactionAudioEnabled}
+                                        onChange={updateInteractionAudio}
+                                    />
+                                </div>
+                            </>
+                        )}
+                    </div>
                     {/* Notification bell */}
                     <button
                         className="notif-bell-btn"
@@ -347,8 +455,14 @@ const TopBar = ({ activeTab, subtitleOverride }) => {
                                 <SettingToggle
                                     label="Sound Effects"
                                     icon={<Volume2 size={16} />}
-                                    checked={getSoundEnabled()}
-                                    onChange={v => { setSoundEnabled(v); if (v) playTap(); }}
+                                    checked={interactionAudioEnabled}
+                                    onChange={updateInteractionAudio}
+                                />
+                                <SettingToggle
+                                    label="System Audio"
+                                    icon={<Volume2 size={16} />}
+                                    checked={settings.systemAudioEnabled !== false}
+                                    onChange={updateSystemAudio}
                                 />
                             </SettingsGroup>
 
@@ -579,6 +693,49 @@ const SettingMultiSelect = ({ label, icon, values, options, onChange }) => {
         </div>
     );
 };
+
+const QuickAudioToggle = ({ label, checked, onChange }) => (
+    <button
+        onClick={() => onChange(!checked)}
+        style={{
+            width: '100%',
+            display: 'flex',
+            alignItems: 'center',
+            gap: 10,
+            padding: '10px 2px',
+            border: 'none',
+            borderTop: '1px solid var(--border-color)',
+            background: 'transparent',
+            color: 'var(--text-main)',
+            fontFamily: 'inherit',
+            cursor: 'pointer',
+        }}
+    >
+        <span style={{ flex: 1, textAlign: 'left', fontSize: 13, fontWeight: 700 }}>{label}</span>
+        <span style={{
+            width: 42,
+            height: 24,
+            borderRadius: 999,
+            background: checked ? 'var(--success-color)' : 'var(--surface-color-light)',
+            border: '1px solid var(--border-color)',
+            position: 'relative',
+            transition: 'background 0.18s',
+            flexShrink: 0,
+        }}>
+            <span style={{
+                position: 'absolute',
+                top: 2,
+                left: checked ? 20 : 2,
+                width: 18,
+                height: 18,
+                borderRadius: '50%',
+                background: '#fff',
+                boxShadow: '0 1px 3px rgba(0,0,0,0.2)',
+                transition: 'left 0.18s',
+            }} />
+        </span>
+    </button>
+);
 
 const SettingToggle = ({ label, icon, checked, onChange }) => (
     <div

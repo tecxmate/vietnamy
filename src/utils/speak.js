@@ -34,6 +34,16 @@ const loadTtsVoice = () => {
     }
 };
 
+const isSystemAudioEnabled = () => {
+    try {
+        const raw = localStorage.getItem('vnme_settings');
+        const settings = raw ? JSON.parse(raw) : {};
+        return settings.systemAudioEnabled !== false;
+    } catch {
+        return true;
+    }
+};
+
 export const buildTtsUrl = (text, lang = 'vi', voiceOverride = null) => {
     const voice = voiceOverride || loadTtsVoice();
     const cacheKey = `tts-v9-nam-minh-lower-${voice}`;
@@ -84,6 +94,7 @@ export const clearSpeakQueue = ({ stopCurrent = false } = {}) => {
 // Warm the HTTP cache so subsequent speak() calls play instantly.
 const preloadedUrls = new Set();
 export const preloadSpeak = (texts, lang = 'vi') => {
+    if (!isSystemAudioEnabled()) return;
     if (!Array.isArray(texts)) texts = [texts];
     for (const text of texts) {
         if (!text || text.length > 200) continue;
@@ -99,6 +110,8 @@ export const preloadSpeak = (texts, lang = 'vi') => {
 };
 
 const speak = (text, rate = 1, lang = 'vi') => {
+    if (!isSystemAudioEnabled()) return;
+
     const now = Date.now();
     if (now - lastSpeakTime < SPEAK_COOLDOWN) return;
     lastSpeakTime = now;
@@ -173,6 +186,7 @@ const scheduleQueuedPlayback = () => {
 };
 
 export const speakQueued = (text, rate = 1, lang = 'vi') => {
+    if (!isSystemAudioEnabled()) return;
     if (!text || text.length > 200) return;
 
     const { ttsLang, playRate } = getPlaybackOptions(rate, lang);
