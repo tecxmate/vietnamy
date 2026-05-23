@@ -1,0 +1,289 @@
+{
+  "meta": {
+    "mode": "professional",
+    "chapter": "a2_b1",
+    "version": "1.0.0",
+    "generated": "2026-05-24T00:00:00.000Z",
+    "source": "authored",
+    "stats": { "units": 3, "lessons": 10, "vocabulary": 80, "sentences": 40, "conversations": 10, "grammarTags": 0 },
+    "notes": "A2/B1 progression for Professional path. Adds project management, performance reviews, conflict resolution, contracts, and cross-cultural nuance. Hedging language, conditionals, and indirect register."
+  },
+  "units": [
+    { "id": "pu5_team_projects", "order": 5, "title": "Team & Projects", "description": "Running projects, managing teams, tracking deliverables." },
+    { "id": "pu6_difficult_talks", "order": 6, "title": "Difficult Conversations", "description": "Performance reviews, feedback, conflict and apologies." },
+    { "id": "pu7_deals_culture", "order": 7, "title": "Deals & Culture", "description": "Contracts, vendor calls, and cross-cultural business behavior." }
+  ],
+  "lessons": [
+    {
+      "id": "prof_lesson_11", "unit": "pu5_team_projects", "title": "Project Kickoff", "nodeId": "pu5_L11", "quizId": "pu5_Q11", "quizLabel": "Kickoff Quiz", "nodeIndex": 1, "difficulty": 5, "cefr": "A2", "xp": 18, "topic": "meetings", "focus": ["kickoff", "scope"],
+      "words": [
+        { "id": "pr_w_081", "vi": "Dự án", "en": "Project", "pos": "noun", "difficulty": 4, "frequency": 2081 },
+        { "id": "pr_w_082", "vi": "Khởi động", "en": "To kick off", "pos": "verb", "difficulty": 5, "frequency": 2082 },
+        { "id": "pr_w_083", "vi": "Mục tiêu", "en": "Goal / objective", "pos": "noun", "difficulty": 4, "frequency": 2083 },
+        { "id": "pr_w_084", "vi": "Phạm vi", "en": "Scope", "pos": "noun", "difficulty": 5, "frequency": 2084 },
+        { "id": "pr_w_085", "vi": "Trách nhiệm", "en": "Responsibility", "pos": "noun", "difficulty": 4, "frequency": 2085 },
+        { "id": "pr_w_086", "vi": "Phụ trách", "en": "To be in charge of", "pos": "verb", "difficulty": 5, "frequency": 2086 },
+        { "id": "pr_w_087", "vi": "Mốc thời gian", "en": "Timeline / milestone", "pos": "noun", "difficulty": 5, "frequency": 2087 },
+        { "id": "pr_w_088", "vi": "Bàn giao", "en": "To hand over", "pos": "verb", "difficulty": 5, "frequency": 2088 }
+      ],
+      "sentences": [
+        { "id": "pr_s_041", "vi": "Dự án này dự kiến khởi động vào tháng sau.", "en": "This project is expected to kick off next month.", "accepted": ["This project is expected to kick off next month."], "tokens": 9, "difficulty": 5 },
+        { "id": "pr_s_042", "vi": "Ai sẽ phụ trách phần kỹ thuật?", "en": "Who will be in charge of the technical side?", "accepted": ["Who will be in charge of the technical side?"], "tokens": 7, "difficulty": 5 },
+        { "id": "pr_s_043", "vi": "Phạm vi công việc cần được làm rõ trước.", "en": "The scope of work needs to be clarified first.", "accepted": ["The scope of work needs to be clarified first."], "tokens": 8, "difficulty": 5 },
+        { "id": "pr_s_044", "vi": "Chúng ta sẽ bàn giao trước cuối quý.", "en": "We will hand over before the end of the quarter.", "accepted": ["We will hand over before the end of the quarter."], "tokens": 8, "difficulty": 5 }
+      ],
+      "conversations": [
+        { "id": "PCV011", "title": "Kickoff alignment", "context": "Aligning on roles at a project kickoff.", "lines": [
+          { "speaker": "PM", "vi": "Hôm nay mình thống nhất mục tiêu dự án.", "en": "Today let's align on project goals." },
+          { "speaker": "Dev Lead", "vi": "Bên tôi phụ trách phần backend.", "en": "My team will handle the backend." },
+          { "speaker": "Designer", "vi": "Tôi lo phần giao diện và trải nghiệm.", "en": "I'll cover UI and UX." },
+          { "speaker": "PM", "vi": "Tốt, tôi sẽ gửi mốc thời gian chiều nay.", "en": "Great, I'll send the timeline this afternoon." }
+        ]}
+      ]
+    },
+    {
+      "id": "prof_lesson_12", "unit": "pu5_team_projects", "title": "Status Updates", "nodeId": "pu5_L12", "quizId": "pu5_Q12", "quizLabel": "Status Quiz", "nodeIndex": 2, "difficulty": 5, "cefr": "A2", "xp": 18, "topic": "meetings", "focus": ["progress", "blockers"],
+      "words": [
+        { "id": "pr_w_089", "vi": "Tiến độ", "en": "Progress", "pos": "noun", "difficulty": 4, "frequency": 2089 },
+        { "id": "pr_w_090", "vi": "Cập nhật", "en": "To update", "pos": "verb", "difficulty": 4, "frequency": 2090 },
+        { "id": "pr_w_091", "vi": "Vướng mắc", "en": "Blocker / obstacle", "pos": "noun", "difficulty": 5, "frequency": 2091 },
+        { "id": "pr_w_092", "vi": "Đúng hạn", "en": "On time", "pos": "adverb", "difficulty": 4, "frequency": 2092 },
+        { "id": "pr_w_093", "vi": "Trễ", "en": "Late / delayed", "pos": "adjective", "difficulty": 3, "frequency": 2093 },
+        { "id": "pr_w_094", "vi": "Ưu tiên", "en": "Priority", "pos": "noun", "difficulty": 4, "frequency": 2094 },
+        { "id": "pr_w_095", "vi": "Hoàn thành", "en": "To complete", "pos": "verb", "difficulty": 4, "frequency": 2095 },
+        { "id": "pr_w_096", "vi": "Báo cáo", "en": "Report", "pos": "noun", "difficulty": 3, "frequency": 2096 }
+      ],
+      "sentences": [
+        { "id": "pr_s_045", "vi": "Tiến độ tuần này hơi chậm hơn dự kiến.", "en": "This week's progress is a bit slower than expected.", "accepted": ["This week's progress is a bit slower than expected."], "tokens": 9, "difficulty": 5 },
+        { "id": "pr_s_046", "vi": "Chúng tôi gặp một vài vướng mắc kỹ thuật.", "en": "We've hit a few technical blockers.", "accepted": ["We've hit a few technical blockers."], "tokens": 8, "difficulty": 5 },
+        { "id": "pr_s_047", "vi": "Việc này nên được ưu tiên trước.", "en": "This should be prioritized first.", "accepted": ["This should be prioritized first."], "tokens": 7, "difficulty": 5 },
+        { "id": "pr_s_048", "vi": "Báo cáo sẽ được gửi vào thứ Sáu.", "en": "The report will be sent on Friday.", "accepted": ["The report will be sent on Friday."], "tokens": 8, "difficulty": 5 }
+      ],
+      "conversations": [
+        { "id": "PCV012", "title": "Weekly standup", "context": "Reporting status to the team lead.", "lines": [
+          { "speaker": "Lead", "vi": "Tuần này tiến độ ra sao em?", "en": "How's progress this week?" },
+          { "speaker": "Member", "vi": "Em hoàn thành được 70 phần trăm.", "en": "I've completed about 70 percent." },
+          { "speaker": "Lead", "vi": "Có vướng mắc gì không?", "en": "Any blockers?" },
+          { "speaker": "Member", "vi": "Chỉ chờ thiết kế từ phòng marketing.", "en": "Just waiting on design from marketing." }
+        ]}
+      ]
+    },
+    {
+      "id": "prof_lesson_13", "unit": "pu5_team_projects", "title": "Delegating Tasks", "nodeId": "pu5_L13", "quizId": "pu5_Q13", "quizLabel": "Delegating Quiz", "nodeIndex": 3, "difficulty": 5, "cefr": "B1", "xp": 20, "topic": "office", "focus": ["delegation", "deadlines"],
+      "words": [
+        { "id": "pr_w_097", "vi": "Giao việc", "en": "To delegate / assign", "pos": "verb", "difficulty": 4, "frequency": 2097 },
+        { "id": "pr_w_098", "vi": "Đầu việc", "en": "Task / work item", "pos": "noun", "difficulty": 5, "frequency": 2098 },
+        { "id": "pr_w_099", "vi": "Hạn chót", "en": "Deadline", "pos": "noun", "difficulty": 4, "frequency": 2099 },
+        { "id": "pr_w_100", "vi": "Khả năng", "en": "Capability", "pos": "noun", "difficulty": 5, "frequency": 2100 },
+        { "id": "pr_w_101", "vi": "Phân công", "en": "To assign roles", "pos": "verb", "difficulty": 5, "frequency": 2101 },
+        { "id": "pr_w_102", "vi": "Hỗ trợ", "en": "To support", "pos": "verb", "difficulty": 4, "frequency": 2102 },
+        { "id": "pr_w_103", "vi": "Theo dõi", "en": "To follow up / track", "pos": "verb", "difficulty": 4, "frequency": 2103 },
+        { "id": "pr_w_104", "vi": "Kết quả", "en": "Result / outcome", "pos": "noun", "difficulty": 3, "frequency": 2104 }
+      ],
+      "sentences": [
+        { "id": "pr_s_049", "vi": "Tôi muốn giao việc này cho em.", "en": "I'd like to assign this task to you.", "accepted": ["I'd like to assign this task to you."], "tokens": 7, "difficulty": 5 },
+        { "id": "pr_s_050", "vi": "Hạn chót là thứ Năm tuần sau.", "en": "The deadline is Thursday next week.", "accepted": ["The deadline is Thursday next week."], "tokens": 7, "difficulty": 5 },
+        { "id": "pr_s_051", "vi": "Nếu cần, em cứ hỏi để được hỗ trợ.", "en": "If you need anything, ask for support.", "accepted": ["If you need anything, ask for support."], "tokens": 9, "difficulty": 5 },
+        { "id": "pr_s_052", "vi": "Tôi sẽ theo dõi tiến độ hàng ngày.", "en": "I'll track progress daily.", "accepted": ["I'll track progress daily."], "tokens": 7, "difficulty": 5 }
+      ],
+      "conversations": [
+        { "id": "PCV013", "title": "Handing off a task", "context": "A manager handing off work to a team member.", "lines": [
+          { "speaker": "Manager", "vi": "Anh muốn giao đầu việc này cho em.", "en": "I'd like to hand this off to you." },
+          { "speaker": "Employee", "vi": "Dạ, hạn chót khi nào ạ?", "en": "Sure, when's the deadline?" },
+          { "speaker": "Manager", "vi": "Cuối tuần này, có gấp không em?", "en": "End of this week — is it doable?" },
+          { "speaker": "Employee", "vi": "Em sắp xếp được, có gì em báo lại.", "en": "I can fit it in; I'll keep you posted." }
+        ]}
+      ]
+    },
+    {
+      "id": "prof_lesson_14", "unit": "pu6_difficult_talks", "title": "Performance Review", "nodeId": "pu6_L14", "quizId": "pu6_Q14", "quizLabel": "Review Quiz", "nodeIndex": 1, "difficulty": 6, "cefr": "B1", "xp": 22, "topic": "office", "focus": ["feedback", "review"],
+      "words": [
+        { "id": "pr_w_105", "vi": "Đánh giá", "en": "Evaluation", "pos": "noun", "difficulty": 5, "frequency": 2105 },
+        { "id": "pr_w_106", "vi": "Phản hồi", "en": "Feedback", "pos": "noun", "difficulty": 5, "frequency": 2106 },
+        { "id": "pr_w_107", "vi": "Điểm mạnh", "en": "Strength", "pos": "noun", "difficulty": 5, "frequency": 2107 },
+        { "id": "pr_w_108", "vi": "Điểm yếu", "en": "Weakness", "pos": "noun", "difficulty": 5, "frequency": 2108 },
+        { "id": "pr_w_109", "vi": "Cải thiện", "en": "To improve", "pos": "verb", "difficulty": 5, "frequency": 2109 },
+        { "id": "pr_w_110", "vi": "Thành tích", "en": "Achievement", "pos": "noun", "difficulty": 5, "frequency": 2110 },
+        { "id": "pr_w_111", "vi": "Định hướng", "en": "Direction / orientation", "pos": "noun", "difficulty": 6, "frequency": 2111 },
+        { "id": "pr_w_112", "vi": "Tăng lương", "en": "Salary raise", "pos": "noun", "difficulty": 4, "frequency": 2112 }
+      ],
+      "sentences": [
+        { "id": "pr_s_053", "vi": "Năm nay em có nhiều thành tích đáng ghi nhận.", "en": "You've had notable achievements this year.", "accepted": ["You've had notable achievements this year."], "tokens": 9, "difficulty": 6 },
+        { "id": "pr_s_054", "vi": "Anh muốn nghe phản hồi thẳng thắn từ em.", "en": "I'd like honest feedback from you.", "accepted": ["I'd like honest feedback from you."], "tokens": 8, "difficulty": 6 },
+        { "id": "pr_s_055", "vi": "Có những điểm gì em muốn cải thiện?", "en": "What areas would you like to improve?", "accepted": ["What areas would you like to improve?"], "tokens": 7, "difficulty": 6 },
+        { "id": "pr_s_056", "vi": "Công ty sẽ xem xét việc tăng lương.", "en": "The company will consider a raise.", "accepted": ["The company will consider a raise."], "tokens": 7, "difficulty": 6 }
+      ],
+      "conversations": [
+        { "id": "PCV014", "title": "Annual review", "context": "End-of-year performance review with a manager.", "lines": [
+          { "speaker": "Manager", "vi": "Anh đánh giá cao thái độ làm việc của em.", "en": "I value your work attitude highly." },
+          { "speaker": "Employee", "vi": "Cảm ơn anh, em sẽ cố gắng hơn nữa.", "en": "Thank you, I'll keep working hard." },
+          { "speaker": "Manager", "vi": "Em có định hướng gì cho năm sau?", "en": "What direction are you aiming for next year?" },
+          { "speaker": "Employee", "vi": "Em muốn phụ trách dự án lớn hơn.", "en": "I'd like to lead a bigger project." }
+        ]}
+      ]
+    },
+    {
+      "id": "prof_lesson_15", "unit": "pu6_difficult_talks", "title": "Giving Feedback", "nodeId": "pu6_L15", "quizId": "pu6_Q15", "quizLabel": "Feedback Quiz", "nodeIndex": 2, "difficulty": 6, "cefr": "B1", "xp": 22, "topic": "office", "focus": ["constructive", "hedging"],
+      "words": [
+        { "id": "pr_w_113", "vi": "Góp ý", "en": "To give input / suggestion", "pos": "verb", "difficulty": 5, "frequency": 2113 },
+        { "id": "pr_w_114", "vi": "Thẳng thắn", "en": "Frank / straightforward", "pos": "adjective", "difficulty": 5, "frequency": 2114 },
+        { "id": "pr_w_115", "vi": "Tế nhị", "en": "Tactful", "pos": "adjective", "difficulty": 6, "frequency": 2115 },
+        { "id": "pr_w_116", "vi": "Khen", "en": "To praise", "pos": "verb", "difficulty": 4, "frequency": 2116 },
+        { "id": "pr_w_117", "vi": "Phê bình", "en": "To criticize", "pos": "verb", "difficulty": 5, "frequency": 2117 },
+        { "id": "pr_w_118", "vi": "Có lẽ", "en": "Perhaps", "pos": "adverb", "difficulty": 4, "frequency": 2118 },
+        { "id": "pr_w_119", "vi": "Nên", "en": "Should", "pos": "modal", "difficulty": 3, "frequency": 2119 },
+        { "id": "pr_w_120", "vi": "Suy nghĩ thêm", "en": "Think it over", "pos": "phrase", "difficulty": 5, "frequency": 2120 }
+      ],
+      "sentences": [
+        { "id": "pr_s_057", "vi": "Tôi muốn góp ý một chút về bài thuyết trình.", "en": "I'd like to give a small suggestion on the presentation.", "accepted": ["I'd like to give a small suggestion on the presentation."], "tokens": 10, "difficulty": 6 },
+        { "id": "pr_s_058", "vi": "Có lẽ em nên suy nghĩ thêm về cách diễn đạt.", "en": "Perhaps you should think more about how to phrase it.", "accepted": ["Perhaps you should think more about how to phrase it."], "tokens": 10, "difficulty": 6 },
+        { "id": "pr_s_059", "vi": "Tôi đánh giá cao sự thẳng thắn của em.", "en": "I appreciate your frankness.", "accepted": ["I appreciate your frankness."], "tokens": 7, "difficulty": 6 },
+        { "id": "pr_s_060", "vi": "Nên góp ý một cách tế nhị hơn.", "en": "It should be given more tactfully.", "accepted": ["It should be given more tactfully."], "tokens": 7, "difficulty": 6 }
+      ],
+      "conversations": [
+        { "id": "PCV015", "title": "Soft feedback", "context": "Giving constructive feedback to a colleague.", "lines": [
+          { "speaker": "A", "vi": "Em làm tốt phần này lắm.", "en": "You did this part really well." },
+          { "speaker": "B", "vi": "Em cảm ơn anh, có chỗ nào cần sửa không?", "en": "Thank you — anything to fix?" },
+          { "speaker": "A", "vi": "Có lẽ phần kết hơi ngắn.", "en": "Perhaps the conclusion is a bit short." },
+          { "speaker": "B", "vi": "Em sẽ suy nghĩ thêm, cảm ơn anh.", "en": "I'll think about it, thanks." }
+        ]}
+      ]
+    },
+    {
+      "id": "prof_lesson_16", "unit": "pu6_difficult_talks", "title": "Apologies & Conflict", "nodeId": "pu6_L16", "quizId": "pu6_Q16", "quizLabel": "Conflict Quiz", "nodeIndex": 3, "difficulty": 6, "cefr": "B1", "xp": 22, "topic": "office", "focus": ["apology", "resolve"],
+      "words": [
+        { "id": "pr_w_121", "vi": "Hiểu lầm", "en": "Misunderstanding", "pos": "noun", "difficulty": 5, "frequency": 2121 },
+        { "id": "pr_w_122", "vi": "Mâu thuẫn", "en": "Conflict", "pos": "noun", "difficulty": 6, "frequency": 2122 },
+        { "id": "pr_w_123", "vi": "Giải quyết", "en": "To resolve", "pos": "verb", "difficulty": 5, "frequency": 2123 },
+        { "id": "pr_w_124", "vi": "Thành thật", "en": "Sincerely", "pos": "adverb", "difficulty": 4, "frequency": 2124 },
+        { "id": "pr_w_125", "vi": "Xin lỗi", "en": "To apologize", "pos": "verb", "difficulty": 2, "frequency": 2125 },
+        { "id": "pr_w_126", "vi": "Trách nhiệm", "en": "Responsibility", "pos": "noun", "difficulty": 4, "frequency": 2126 },
+        { "id": "pr_w_127", "vi": "Sai sót", "en": "Mistake / oversight", "pos": "noun", "difficulty": 5, "frequency": 2127 },
+        { "id": "pr_w_128", "vi": "Khắc phục", "en": "To remedy", "pos": "verb", "difficulty": 6, "frequency": 2128 }
+      ],
+      "sentences": [
+        { "id": "pr_s_061", "vi": "Có lẽ đây chỉ là hiểu lầm thôi.", "en": "Maybe this is just a misunderstanding.", "accepted": ["Maybe this is just a misunderstanding."], "tokens": 8, "difficulty": 6 },
+        { "id": "pr_s_062", "vi": "Tôi thành thật xin lỗi về sai sót này.", "en": "I sincerely apologize for this mistake.", "accepted": ["I sincerely apologize for this mistake."], "tokens": 8, "difficulty": 6 },
+        { "id": "pr_s_063", "vi": "Tôi xin chịu trách nhiệm và khắc phục.", "en": "I take responsibility and will fix it.", "accepted": ["I take responsibility and will fix it."], "tokens": 7, "difficulty": 6 },
+        { "id": "pr_s_064", "vi": "Chúng ta cùng ngồi lại giải quyết nhé.", "en": "Let's sit down and resolve this together.", "accepted": ["Let's sit down and resolve this together."], "tokens": 7, "difficulty": 6 }
+      ],
+      "conversations": [
+        { "id": "PCV016", "title": "Resolving a slip", "context": "Apologizing for a missed deadline.", "lines": [
+          { "speaker": "Employee", "vi": "Em xin lỗi vì trễ hạn lần này.", "en": "I'm sorry for missing the deadline." },
+          { "speaker": "Manager", "vi": "Vì sao em trễ vậy?", "en": "Why were you late?" },
+          { "speaker": "Employee", "vi": "Em đánh giá sai thời gian, em xin nhận trách nhiệm.", "en": "I misjudged the time; I take responsibility." },
+          { "speaker": "Manager", "vi": "Lần sau cẩn thận hơn nhé.", "en": "Be more careful next time." }
+        ]}
+      ]
+    },
+    {
+      "id": "prof_lesson_17", "unit": "pu7_deals_culture", "title": "Contract Details", "nodeId": "pu7_L17", "quizId": "pu7_Q17", "quizLabel": "Contract Quiz", "nodeIndex": 1, "difficulty": 6, "cefr": "B1", "xp": 22, "topic": "negotiation", "focus": ["clauses", "review"],
+      "words": [
+        { "id": "pr_w_129", "vi": "Điều khoản", "en": "Clause / term", "pos": "noun", "difficulty": 5, "frequency": 2129 },
+        { "id": "pr_w_130", "vi": "Bảo mật", "en": "Confidentiality", "pos": "noun", "difficulty": 5, "frequency": 2130 },
+        { "id": "pr_w_131", "vi": "Vi phạm", "en": "To violate", "pos": "verb", "difficulty": 6, "frequency": 2131 },
+        { "id": "pr_w_132", "vi": "Bồi thường", "en": "To compensate", "pos": "verb", "difficulty": 6, "frequency": 2132 },
+        { "id": "pr_w_133", "vi": "Pháp lý", "en": "Legal", "pos": "adjective", "difficulty": 5, "frequency": 2133 },
+        { "id": "pr_w_134", "vi": "Chấm dứt", "en": "To terminate", "pos": "verb", "difficulty": 6, "frequency": 2134 },
+        { "id": "pr_w_135", "vi": "Sửa đổi", "en": "To amend", "pos": "verb", "difficulty": 5, "frequency": 2135 },
+        { "id": "pr_w_136", "vi": "Ký kết", "en": "To sign / conclude", "pos": "verb", "difficulty": 5, "frequency": 2136 }
+      ],
+      "sentences": [
+        { "id": "pr_s_065", "vi": "Điều khoản bảo mật cần được làm rõ.", "en": "The confidentiality clause needs to be clarified.", "accepted": ["The confidentiality clause needs to be clarified."], "tokens": 7, "difficulty": 6 },
+        { "id": "pr_s_066", "vi": "Nếu vi phạm, bên nào sẽ bồi thường?", "en": "In case of breach, which side pays compensation?", "accepted": ["In case of breach, which side pays compensation?"], "tokens": 8, "difficulty": 6 },
+        { "id": "pr_s_067", "vi": "Bộ phận pháp lý đang xem xét hợp đồng.", "en": "The legal team is reviewing the contract.", "accepted": ["The legal team is reviewing the contract."], "tokens": 8, "difficulty": 6 },
+        { "id": "pr_s_068", "vi": "Chúng ta có thể sửa đổi điều khoản này không?", "en": "Can we amend this clause?", "accepted": ["Can we amend this clause?"], "tokens": 8, "difficulty": 6 }
+      ],
+      "conversations": [
+        { "id": "PCV017", "title": "Reviewing a contract", "context": "Two parties walking through contract terms.", "lines": [
+          { "speaker": "A", "vi": "Bên anh đã đọc hết các điều khoản chưa?", "en": "Have you read through all the clauses?" },
+          { "speaker": "B", "vi": "Tôi xem rồi, có một số chỗ muốn sửa đổi.", "en": "Yes, I'd like to amend a few sections." },
+          { "speaker": "A", "vi": "Anh đánh dấu giúp tôi nhé.", "en": "Please mark them for me." },
+          { "speaker": "B", "vi": "Tôi sẽ gửi bản sửa trong hôm nay.", "en": "I'll send the revisions today." }
+        ]}
+      ]
+    },
+    {
+      "id": "prof_lesson_18", "unit": "pu7_deals_culture", "title": "Vendor Calls", "nodeId": "pu7_L18", "quizId": "pu7_Q18", "quizLabel": "Vendor Quiz", "nodeIndex": 2, "difficulty": 5, "cefr": "B1", "xp": 20, "topic": "negotiation", "focus": ["pricing", "delivery"],
+      "words": [
+        { "id": "pr_w_137", "vi": "Báo giá", "en": "Quote / quotation", "pos": "noun", "difficulty": 4, "frequency": 2137 },
+        { "id": "pr_w_138", "vi": "Đơn hàng", "en": "Order", "pos": "noun", "difficulty": 4, "frequency": 2138 },
+        { "id": "pr_w_139", "vi": "Giao hàng", "en": "Delivery", "pos": "noun", "difficulty": 3, "frequency": 2139 },
+        { "id": "pr_w_140", "vi": "Số lượng", "en": "Quantity", "pos": "noun", "difficulty": 3, "frequency": 2140 },
+        { "id": "pr_w_141", "vi": "Chất lượng", "en": "Quality", "pos": "noun", "difficulty": 4, "frequency": 2141 },
+        { "id": "pr_w_142", "vi": "Bảo hành", "en": "Warranty", "pos": "noun", "difficulty": 5, "frequency": 2142 },
+        { "id": "pr_w_143", "vi": "Đối tác", "en": "Partner / vendor", "pos": "noun", "difficulty": 5, "frequency": 2143 },
+        { "id": "pr_w_144", "vi": "Cam kết", "en": "To commit", "pos": "verb", "difficulty": 5, "frequency": 2144 }
+      ],
+      "sentences": [
+        { "id": "pr_s_069", "vi": "Bên em có thể gửi báo giá cho tôi không?", "en": "Could you send me a quotation?", "accepted": ["Could you send me a quotation?"], "tokens": 9, "difficulty": 5 },
+        { "id": "pr_s_070", "vi": "Số lượng đơn hàng là bao nhiêu?", "en": "What's the order quantity?", "accepted": ["What's the order quantity?"], "tokens": 6, "difficulty": 5 },
+        { "id": "pr_s_071", "vi": "Chúng tôi cam kết giao hàng đúng hạn.", "en": "We commit to delivering on time.", "accepted": ["We commit to delivering on time."], "tokens": 7, "difficulty": 5 },
+        { "id": "pr_s_072", "vi": "Chính sách bảo hành kéo dài bao lâu?", "en": "How long is the warranty?", "accepted": ["How long is the warranty?"], "tokens": 7, "difficulty": 5 }
+      ],
+      "conversations": [
+        { "id": "PCV018", "title": "Vendor pricing call", "context": "Discussing a quote with a vendor.", "lines": [
+          { "speaker": "Buyer", "vi": "Báo giá bên anh đắt hơn dự kiến.", "en": "Your quote is higher than expected." },
+          { "speaker": "Vendor", "vi": "Bên tôi có thể giảm 5 phần trăm.", "en": "We can come down 5 percent." },
+          { "speaker": "Buyer", "vi": "Thời gian giao hàng có rút ngắn được không?", "en": "Can the delivery time be shortened?" },
+          { "speaker": "Vendor", "vi": "Cam kết trong 2 tuần là tối đa.", "en": "Two weeks is the most we can commit to." }
+        ]}
+      ]
+    },
+    {
+      "id": "prof_lesson_19", "unit": "pu7_deals_culture", "title": "Cross-Cultural Etiquette", "nodeId": "pu7_L19", "quizId": "pu7_Q19", "quizLabel": "Culture Quiz", "nodeIndex": 3, "difficulty": 6, "cefr": "B1", "xp": 22, "topic": "networking", "focus": ["face", "hierarchy"],
+      "words": [
+        { "id": "pr_w_145", "vi": "Văn hóa", "en": "Culture", "pos": "noun", "difficulty": 4, "frequency": 2145 },
+        { "id": "pr_w_146", "vi": "Phép lịch sự", "en": "Politeness", "pos": "noun", "difficulty": 5, "frequency": 2146 },
+        { "id": "pr_w_147", "vi": "Giữ thể diện", "en": "Save face", "pos": "phrase", "difficulty": 6, "frequency": 2147 },
+        { "id": "pr_w_148", "vi": "Cấp bậc", "en": "Hierarchy / rank", "pos": "noun", "difficulty": 5, "frequency": 2148 },
+        { "id": "pr_w_149", "vi": "Khéo léo", "en": "Skillful / diplomatic", "pos": "adjective", "difficulty": 5, "frequency": 2149 },
+        { "id": "pr_w_150", "vi": "Quan hệ", "en": "Relationship", "pos": "noun", "difficulty": 4, "frequency": 2150 },
+        { "id": "pr_w_151", "vi": "Lâu dài", "en": "Long-term", "pos": "adjective", "difficulty": 4, "frequency": 2151 },
+        { "id": "pr_w_152", "vi": "Tôn trọng", "en": "To respect", "pos": "verb", "difficulty": 4, "frequency": 2152 }
+      ],
+      "sentences": [
+        { "id": "pr_s_073", "vi": "Trong văn hóa Việt, giữ thể diện rất quan trọng.", "en": "In Vietnamese culture, saving face is very important.", "accepted": ["In Vietnamese culture, saving face is very important."], "tokens": 9, "difficulty": 6 },
+        { "id": "pr_s_074", "vi": "Phải khéo léo khi từ chối cấp trên.", "en": "You must be diplomatic when refusing a superior.", "accepted": ["You must be diplomatic when refusing a superior."], "tokens": 8, "difficulty": 6 },
+        { "id": "pr_s_075", "vi": "Quan hệ lâu dài quan trọng hơn giao dịch nhanh.", "en": "Long-term relationships matter more than fast transactions.", "accepted": ["Long-term relationships matter more than fast transactions."], "tokens": 8, "difficulty": 6 },
+        { "id": "pr_s_076", "vi": "Tôn trọng cấp bậc là điều cơ bản.", "en": "Respecting hierarchy is fundamental.", "accepted": ["Respecting hierarchy is fundamental."], "tokens": 6, "difficulty": 6 }
+      ],
+      "conversations": [
+        { "id": "PCV019", "title": "Cross-cultural prep", "context": "Briefing a foreign colleague before a meeting in Vietnam.", "lines": [
+          { "speaker": "Local", "vi": "Anh nên chào người lớn tuổi nhất trước.", "en": "Greet the most senior person first." },
+          { "speaker": "Guest", "vi": "Phải tặng quà gì không?", "en": "Should I bring a gift?" },
+          { "speaker": "Local", "vi": "Một món nhỏ, lịch sự là đủ.", "en": "A small, tasteful gift is enough." },
+          { "speaker": "Guest", "vi": "Cảm ơn anh đã nhắc nhở.", "en": "Thanks for the heads up." }
+        ]}
+      ]
+    },
+    {
+      "id": "prof_lesson_20", "unit": "pu7_deals_culture", "title": "Closing the Quarter", "nodeId": "pu7_L20", "quizId": "pu7_Q20", "quizLabel": "Wrap-up Quiz", "nodeIndex": 4, "difficulty": 6, "cefr": "B1", "xp": 22, "topic": "presentations", "focus": ["summary", "next_steps"],
+      "words": [
+        { "id": "pr_w_153", "vi": "Tổng kết", "en": "To summarize", "pos": "verb", "difficulty": 5, "frequency": 2153 },
+        { "id": "pr_w_154", "vi": "Doanh thu", "en": "Revenue", "pos": "noun", "difficulty": 5, "frequency": 2154 },
+        { "id": "pr_w_155", "vi": "Lợi nhuận", "en": "Profit", "pos": "noun", "difficulty": 5, "frequency": 2155 },
+        { "id": "pr_w_156", "vi": "Thị trường", "en": "Market", "pos": "noun", "difficulty": 4, "frequency": 2156 },
+        { "id": "pr_w_157", "vi": "Tăng trưởng", "en": "Growth", "pos": "noun", "difficulty": 5, "frequency": 2157 },
+        { "id": "pr_w_158", "vi": "Chiến lược", "en": "Strategy", "pos": "noun", "difficulty": 5, "frequency": 2158 },
+        { "id": "pr_w_159", "vi": "Bước tiếp theo", "en": "Next step", "pos": "phrase", "difficulty": 4, "frequency": 2159 },
+        { "id": "pr_w_160", "vi": "Quý tới", "en": "Next quarter", "pos": "phrase", "difficulty": 4, "frequency": 2160 }
+      ],
+      "sentences": [
+        { "id": "pr_s_077", "vi": "Quý này doanh thu tăng trưởng 15 phần trăm.", "en": "Revenue grew 15 percent this quarter.", "accepted": ["Revenue grew 15 percent this quarter."], "tokens": 8, "difficulty": 6 },
+        { "id": "pr_s_078", "vi": "Chiến lược quý tới sẽ tập trung vào thị trường mới.", "en": "Next quarter's strategy will focus on new markets.", "accepted": ["Next quarter's strategy will focus on new markets."], "tokens": 9, "difficulty": 6 },
+        { "id": "pr_s_079", "vi": "Lợi nhuận đạt mức kỳ vọng.", "en": "Profit met expectations.", "accepted": ["Profit met expectations."], "tokens": 5, "difficulty": 6 },
+        { "id": "pr_s_080", "vi": "Bước tiếp theo là tổng kết và đề xuất.", "en": "Next step is to summarize and propose.", "accepted": ["Next step is to summarize and propose."], "tokens": 7, "difficulty": 6 }
+      ],
+      "conversations": [
+        { "id": "PCV020", "title": "Quarter-end report", "context": "Reporting quarterly results to leadership.", "lines": [
+          { "speaker": "Manager", "vi": "Doanh thu quý này thế nào em?", "en": "How was revenue this quarter?" },
+          { "speaker": "Analyst", "vi": "Tăng 15 phần trăm so với quý trước.", "en": "Up 15 percent quarter over quarter." },
+          { "speaker": "Manager", "vi": "Thị trường mới có triển vọng không?", "en": "Are the new markets promising?" },
+          { "speaker": "Analyst", "vi": "Có, em đề xuất tăng đầu tư quý tới.", "en": "Yes, I'd propose more investment next quarter." }
+        ]}
+      ]
+    }
+  ],
+  "grammarTags": []
+}
