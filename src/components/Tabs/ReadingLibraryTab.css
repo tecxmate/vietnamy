@@ -29,10 +29,11 @@
 
 /* ─── Primary Type Bar (floating pill) ──────────────────── */
 .lib-type-bar {
-    position: sticky;
-    bottom: 12px;
-    margin: 0 auto;
-    width: calc(100% - 32px);
+    position: fixed;
+    left: 50%;
+    bottom: calc(56px + env(safe-area-inset-bottom, 0px) + 12px);
+    transform: translateX(-50%);
+    width: calc(100vw - 32px);
     max-width: 448px;
     display: flex;
     align-items: center;
@@ -45,7 +46,7 @@
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.28), 0 2px 8px rgba(0, 0, 0, 0.16);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    z-index: 20;
+    z-index: 49;
 }
 
 .lib-type-btn {
@@ -75,6 +76,14 @@
 .lib-type-btn.active {
     background: var(--surface-color-light, rgba(255, 255, 255, 0.06));
     font-weight: 800;
+}
+
+@media (min-width: 768px) {
+    .lib-type-bar {
+        left: calc(220px + ((100vw - 220px) / 2));
+        bottom: 24px;
+        width: min(calc(100vw - 268px), 448px);
+    }
 }
 
 .lib-clear-btn {
