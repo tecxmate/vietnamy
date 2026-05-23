@@ -7,13 +7,29 @@ const STORAGE_KEY = 'vnme_sound_enabled';
 
 let snd = null;
 let ready = false;
+let loading = null;
 let muted = false; // temporary mute (e.g. during mic recording)
 
-// Lazy init — loads kit on first interaction
+function scheduleInteractionEffect(fn) {
+    if (typeof window === 'undefined') {
+        fn();
+        return;
+    }
+    window.setTimeout(fn, 0);
+}
+
+// Load the sound kit outside critical tap handlers when possible.
 function init() {
-    if (snd) return;
+    if (snd || loading) return loading;
     snd = new Snd();
-    snd.load(Snd.KITS.SND01).then(() => { ready = true; });
+    loading = snd.load(Snd.KITS.SND01)
+        .then(() => { ready = true; })
+        .catch(() => {
+            snd = null;
+            ready = false;
+            loading = null;
+        });
+    return loading;
 }
 
 function isEnabled() {
@@ -25,25 +41,44 @@ function isEnabled() {
 }
 
 function play(sound) {
-    init();
     if (!ready || !isEnabled()) return;
-    try { snd.play(sound, { volume: 0.5 }); } catch { /* swallow */ }
+    try { snd?.play(sound, { volume: 0.5 }); } catch { /* swallow */ }
+}
+
+function playOrWarm(sound) {
+    if (!isEnabled()) return;
+    if (!ready) {
+        init();
+        return;
+    }
+    play(sound);
+}
+
+function feedback(type, sound) {
+    scheduleInteractionEffect(() => {
+        haptic(type);
+        playOrWarm(sound);
+    });
 }
 
 // ─── Public API ──────────────────────────────────────────────────────────────
 
-export const playSuccess     = () => { haptic('success'); play(Snd.SOUNDS.TOGGLE_ON); };
-export const playError       = () => { haptic('error'); play(Snd.SOUNDS.TOGGLE_OFF); };
-export const playCelebration = () => { haptic('success'); play(Snd.SOUNDS.CELEBRATION); };
-export const playNotification= () => { haptic('notification'); play(Snd.SOUNDS.NOTIFICATION); };
-export const playButton      = () => { haptic('tap'); play(Snd.SOUNDS.BUTTON); };
-export const playSelect      = () => { haptic('select'); play(Snd.SOUNDS.SELECT); };
-export const playTap         = () => { haptic('tap'); play(Snd.SOUNDS.TAP); };
-export const playDisabled    = () => { haptic('disabled'); play(Snd.SOUNDS.DISABLED); };
-export const playToggleOn    = () => { haptic('select'); play(Snd.SOUNDS.TOGGLE_ON); };
-export const playToggleOff   = () => { haptic('select'); play(Snd.SOUNDS.TOGGLE_OFF); };
-export const playTransitionUp   = () => play(Snd.SOUNDS.TRANSITION_UP);
-export const playTransitionDown = () => play(Snd.SOUNDS.TRANSITION_DOWN);
+export const preloadUISounds = () => {
+    if (isEnabled()) init();
+};
+
+export const playSuccess     = () => feedback('success', Snd.SOUNDS.TOGGLE_ON);
+export const playError       = () => feedback('error', Snd.SOUNDS.TOGGLE_OFF);
+export const playCelebration = () => feedback('success', Snd.SOUNDS.CELEBRATION);
+export const playNotification= () => feedback('notification', Snd.SOUNDS.NOTIFICATION);
+export const playButton      = () => feedback('tap', Snd.SOUNDS.BUTTON);
+export const playSelect      = () => feedback('select', Snd.SOUNDS.SELECT);
+export const playTap         = () => feedback('tap', Snd.SOUNDS.TAP);
+export const playDisabled    = () => feedback('disabled', Snd.SOUNDS.DISABLED);
+export const playToggleOn    = () => feedback('select', Snd.SOUNDS.TOGGLE_ON);
+export const playToggleOff   = () => feedback('select', Snd.SOUNDS.TOGGLE_OFF);
+export const playTransitionUp   = () => scheduleInteractionEffect(() => playOrWarm(Snd.SOUNDS.TRANSITION_UP));
+export const playTransitionDown = () => scheduleInteractionEffect(() => playOrWarm(Snd.SOUNDS.TRANSITION_DOWN));
 
 // ─── Conflict guards (call from mic/pitch modules) ──────────────────────────
 
@@ -77,5 +112,5 @@ const NOTIF_SOUNDS = {
 
 export function playNotifSound(notifId) {
     const sound = NOTIF_SOUNDS[notifId];
-    if (sound) play(sound);
+    if (sound) scheduleInteractionEffect(() => playOrWarm(sound));
 }

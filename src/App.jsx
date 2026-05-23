@@ -16,6 +16,7 @@ import { NotificationToastStack, NotificationPanel } from './components/Notifica
 import TopBar from './components/TopBar';
 import InstallPrompt from './components/InstallPrompt';
 import { installGlobalHaptics } from './utils/haptics';
+import { preloadUISounds } from './utils/sound';
 
 const loadHomeTab = () => import('./components/Tabs/HomeTab');
 const loadRoadmapTab = () => import('./components/Tabs/RoadmapTab');
@@ -462,7 +463,14 @@ function AppRoutes() {
 }
 
 function App() {
-  React.useEffect(() => installGlobalHaptics(), []);
+  React.useEffect(() => {
+    const uninstallHaptics = installGlobalHaptics();
+    const timer = window.setTimeout(preloadUISounds, 800);
+    return () => {
+      uninstallHaptics?.();
+      window.clearTimeout(timer);
+    };
+  }, []);
 
   return (
     <AuthProvider>
