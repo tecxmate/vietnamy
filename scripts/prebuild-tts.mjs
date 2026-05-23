@@ -16,12 +16,13 @@
 import { readFileSync, readdirSync, statSync } from 'fs';
 import { join, dirname, extname } from 'path';
 import { fileURLToPath, pathToFileURL } from 'url';
+import { execFileSync } from 'child_process';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
 const DATA_DIR = join(ROOT, 'src', 'data');
 
-const VI_KEY_PATTERN = /^(vi|vi_text|vietnamese|target_vi|answer_vi|source_text_vi|template_vi|audio_text|vi_north|vi_south)$/;
+const VI_KEY_PATTERN = /^(vi|vi_text|vietnamese|target_vi|answer_vi|source_text_vi|template_vi|audio_text|vi_north|vi_south|title_vi)$/;
 
 // --- CLI args ---------------------------------------------------------------
 const args = Object.fromEntries(
@@ -34,6 +35,8 @@ const SERVER = (args.server || process.env.TTS_SERVER_URL || 'http://localhost:3
 const VOICES = (args.voices || 'azure-north,azure-south').split(',').map(s => s.trim()).filter(Boolean);
 const CONCURRENCY = Math.max(1, parseInt(args.concurrency, 10) || 5);
 const DRY_RUN = args['dry-run'] === 'true';
+const DICT_TOP = parseInt(args.dict, 10) || 0;
+const DICT_DB = args['dict-db'] || join(ROOT, 'server', 'databases', 'vn_en_dictionary_high.db');
 
 // --- Collect Vietnamese strings ---------------------------------------------
 function walk(node, out) {
@@ -86,6 +89,26 @@ for (const file of files) {
 }
 
 console.log(`Collected ${strings.size} unique Vietnamese strings from ${files.length} data files.`);
+
+// --- Optional: include top-N dictionary words ---------------------------------
+if (DICT_TOP > 0) {
+    try {
+        const sql = `SELECT w.word FROM words w JOIN word_metrics wm ON w.id = wm.word_id WHERE wm.subt_freq > 0 ORDER BY wm.subt_freq DESC LIMIT ${DICT_TOP};`;
+        const raw = execFileSync('sqlite3', [DICT_DB, sql], { encoding: 'utf8' });
+        let added = 0;
+        for (const line of raw.split('\n')) {
+            const w = line.trim();
+            if (!w || w.length > 200) continue;
+            // Skip technical/junk entries (must contain Vietnamese-ish characters or be short content words)
+            if (/[-_]/.test(w) || /^[0-9]/.test(w)) continue;
+            if (!strings.has(w)) { strings.add(w); added++; }
+        }
+        console.log(`+ ${added} new strings from top ${DICT_TOP} dictionary words`);
+    } catch (err) {
+        console.warn(`Could not read dict (${DICT_DB}): ${err.message}`);
+    }
+}
+
 console.log(`Voices: ${VOICES.join(', ')}`);
 console.log(`Total TTS requests: ${strings.size * VOICES.length}`);
 console.log(`Target server: ${SERVER}`);
