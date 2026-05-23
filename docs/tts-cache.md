@@ -101,6 +101,14 @@ The second run was faster because most strings were already cached → 302 redir
 - **Cache invalidation**: there is none. The hash includes the full text, so editing a sentence creates a new key automatically. Old keys remain orphaned until manually deleted via the Supabase Storage UI. If this grows large, add a cleanup script that diffs bucket keys against the live data set.
 - **Backups**: `scripts/backup-tts.mjs` downloads the entire bucket to a local folder (`tts-backup/`, gitignored). Run periodically and store the folder somewhere durable (private repo, external drive, second cloud) so audio survives Supabase project loss.
 
+## Pronunciation Assessment
+
+A related but separate endpoint `POST /api/pronunciation?text=<reference>` accepts a 16 kHz mono WAV body and proxies to Azure Speech's **Pronunciation Assessment** REST API. Returns accuracy / fluency / completeness / pronunciation scores 0–100, plus a per-word breakdown (each word includes its own accuracy + an `errorType` of `None`, `Mispronunciation`, `Omission`, or `Insertion`).
+
+The `speak_sentence` exercise in `LessonGame.jsx` records via `src/utils/recordPCM.js` (raw PCM 16 kHz via `AudioContext` → packed into a WAV Blob), uploads to this endpoint, and uses the returned `pronunciation` score as the grading signal (≥ 70 → correct). The per-word scores are rendered as a coloured chip strip so users see *which* syllables they got wrong — critical for a tonal language where transcript-based scoring misses tone errors entirely.
+
+Cost: Azure free tier is **5 hours/month of audio**. Beyond that, $1/hour of speech sent. A typical user practicing 10 min/day fits inside the free tier indefinitely.
+
 ## Failure modes
 
 | Symptom | Likely cause | Fix |

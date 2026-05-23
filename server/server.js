@@ -1226,6 +1226,86 @@ app.get('/api/tts', async (req, res) => {
 });
 
 // ---------------------------------------------------------------------------
+// POST /api/pronunciation?text=<reference>
+// Body: raw WAV audio (16kHz mono PCM). Returns Azure Speech pronunciation
+// assessment scores (accuracy, fluency, completeness + per-word breakdown).
+// ---------------------------------------------------------------------------
+app.post('/api/pronunciation', express.raw({ type: '*/*', limit: '10mb' }), async (req, res) => {
+    if (!AZURE_TTS_ENABLED) {
+        return res.status(503).json({ error: 'Azure Speech not configured' });
+    }
+    const referenceText = (req.query.text || '').trim();
+    if (!referenceText || referenceText.length > 500) {
+        return res.status(400).json({ error: 'text query param required (max 500 chars)' });
+    }
+    if (!req.body || req.body.length < 1024) {
+        return res.status(400).json({ error: 'audio body required (raw WAV PCM 16kHz mono)' });
+    }
+
+    const paConfig = {
+        ReferenceText: referenceText,
+        GradingSystem: 'HundredMark',
+        Granularity: 'Phoneme',
+        Dimension: 'Comprehensive',
+        EnableMiscue: 'True',
+    };
+    const paHeader = Buffer.from(JSON.stringify(paConfig)).toString('base64');
+
+    const endpoint = `https://${AZURE_SPEECH_REGION}.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?language=vi-VN&format=detailed`;
+
+    try {
+        const azureRes = await fetch(endpoint, {
+            method: 'POST',
+            headers: {
+                'Ocp-Apim-Subscription-Key': AZURE_SPEECH_KEY,
+                'Content-Type': 'audio/wav; codecs=audio/pcm; samplerate=16000',
+                'Pronunciation-Assessment': paHeader,
+                'Accept': 'application/json',
+            },
+            body: req.body,
+        });
+        const text = await azureRes.text();
+        if (!azureRes.ok) {
+            console.warn('Pronunciation Azure error:', azureRes.status, text.slice(0, 200));
+            return res.status(502).json({ error: 'Azure pronunciation failed', detail: text.slice(0, 500) });
+        }
+        const payload = JSON.parse(text);
+        const best = payload.NBest?.[0];
+        if (!best || best.RecognitionStatus !== 'Success' && !best.PronunciationAssessment) {
+            return res.json({
+                recognized: payload.DisplayText || '',
+                status: payload.RecognitionStatus || best?.RecognitionStatus || 'NoMatch',
+                scores: null,
+                words: [],
+            });
+        }
+        const pa = best.PronunciationAssessment || {};
+        res.json({
+            recognized: best.Display || best.Lexical || payload.DisplayText || '',
+            status: 'Success',
+            scores: {
+                accuracy: pa.AccuracyScore ?? null,
+                fluency: pa.FluencyScore ?? null,
+                completeness: pa.CompletenessScore ?? null,
+                pronunciation: pa.PronScore ?? null,
+            },
+            words: (best.Words || []).map(w => ({
+                word: w.Word,
+                accuracy: w.PronunciationAssessment?.AccuracyScore ?? null,
+                errorType: w.PronunciationAssessment?.ErrorType || 'None',
+                phonemes: (w.Phonemes || []).map(p => ({
+                    phoneme: p.Phoneme,
+                    accuracy: p.PronunciationAssessment?.AccuracyScore ?? null,
+                })),
+            })),
+        });
+    } catch (err) {
+        console.error('Pronunciation error:', err.message);
+        res.status(502).json({ error: 'pronunciation request failed' });
+    }
+});
+
+// ---------------------------------------------------------------------------
 // /api/translate?text=xin+chào&sl=vi&tl=en  → Google Translate proxy
 // ---------------------------------------------------------------------------
 app.get('/api/translate', async (req, res) => {

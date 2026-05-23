@@ -6,6 +6,7 @@ import { useProgress } from '../context/ProgressContext';
 import { useUser } from '../context/UserContext';
 import { getNodeByLessonId, getLessonBlueprint, getExercisesGenerated, getNextNode, getNodeRoute } from '../lib/db';
 import speak, { preloadSpeak, speakQueued } from '../utils/speak';
+import { startPCMRecording } from '../utils/recordPCM';
 import { addItemsFromLesson, recordReview } from '../lib/srs';
 import { recordExerciseResult, extractItemIds } from '../lib/wordGrades';
 import { getDB } from '../lib/db';
@@ -16,6 +17,25 @@ import { playSuccess, playError } from '../utils/sound';
 import SoundButton from './SoundButton';
 import { MCQOptions, MatchPairs, FeedbackBanner, ProgressBar, buildFillBlankSentence, getFillBlankCorrectSentence } from './Exercise';
 import { DEFAULT_LEARNER_MODE, getProgressMode } from '../data/learnerModes';
+
+function scoreColor(v) {
+    if (v == null) return 'var(--text-muted)';
+    if (v >= 80) return 'var(--success-color)';
+    if (v >= 60) return 'var(--accent-gold, #FFD166)';
+    return 'var(--danger-color)';
+}
+function scoreBg(v, errorType) {
+    if (errorType === 'Omission') return 'rgba(239, 71, 111, 0.15)';
+    if (errorType === 'Insertion') return 'rgba(255, 209, 102, 0.15)';
+    if (v == null) return 'var(--surface-color-light)';
+    if (v >= 80) return 'rgba(6, 214, 160, 0.18)';
+    if (v >= 60) return 'rgba(255, 209, 102, 0.18)';
+    return 'rgba(239, 71, 111, 0.18)';
+}
+function scoreFg(v, errorType) {
+    if (errorType === 'Omission' || errorType === 'Insertion') return 'var(--text-main)';
+    return scoreColor(v);
+}
 
 const LessonGame = () => {
     const { lessonId } = useParams();
@@ -79,6 +99,11 @@ const LessonGame = () => {
     const recognitionRef = useRef(null);
     const speechStopIntentionalRef = useRef(false);
 
+    // Pronunciation assessment
+    const [pronAssessing, setPronAssessing] = useState(false);
+    const [pronResult, setPronResult] = useState(null); // { scores, words[], recognized }
+    const pcmRecorderRef = useRef(null);
+
     // Image error fallback
     const [imageError, setImageError] = useState(false);
 
@@ -102,7 +127,14 @@ const LessonGame = () => {
             }
         }
         recognitionRef.current = null;
+        // Also tear down any in-progress PCM recording (no upload).
+        const recorder = pcmRecorderRef.current;
+        if (recorder) {
+            pcmRecorderRef.current = null;
+            recorder.stop().catch(() => {});
+        }
         setIsRecording(false);
+        setPronAssessing(false);
     }, []);
 
     useEffect(() => {
@@ -208,6 +240,8 @@ const LessonGame = () => {
             setTypedAnswer('');
             setIsRecording(false);
             setSpeechError('');
+            setPronResult(null);
+            setPronAssessing(false);
         }
 
         // match_pairs: MatchPairs component handles its own state initialization
@@ -323,73 +357,58 @@ const LessonGame = () => {
     };
     const onDragEnd = () => { setDraggedItemIndex(null); setDropTargetIndex(null); };
 
-    // Speech recognition handler
-    const handleSpeechRecord = () => {
-        const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-        if (!SR) {
-            setSpeechSupported(false);
-            return;
-        }
-
-        if (isRecording && recognitionRef.current) {
-            stopSpeechRecognition();
+    // Pronunciation-assessment recorder. On stop, uploads WAV audio to
+    // /api/pronunciation and stores the per-word score breakdown.
+    const handleSpeechRecord = async () => {
+        if (isRecording && pcmRecorderRef.current) {
+            const recorder = pcmRecorderRef.current;
+            pcmRecorderRef.current = null;
+            setIsRecording(false);
+            setPronAssessing(true);
+            try {
+                const blob = await recorder.stop();
+                if (!blob || blob.size < 1024) {
+                    setSpeechError('No speech detected. Try again or type below.');
+                    setPronAssessing(false);
+                    return;
+                }
+                const refText = currentEx?.prompt?.target_vi || '';
+                const r = await fetch(`/api/pronunciation?text=${encodeURIComponent(refText)}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'audio/wav' },
+                    body: blob,
+                });
+                if (!r.ok) throw new Error(`HTTP ${r.status}`);
+                const data = await r.json();
+                setPronResult(data);
+                setSpeechResult(data.recognized || '');
+                if (data.status !== 'Success') {
+                    setSpeechError('Could not score that take. Try again or type below.');
+                }
+            } catch (err) {
+                console.warn('Pronunciation request failed:', err.message);
+                setSpeechError('Scoring failed. Try again or type below.');
+            } finally {
+                setPronAssessing(false);
+            }
             return;
         }
 
         setSpeechError('');
-        speechStopIntentionalRef.current = false;
-        const recognition = new SR();
-        recognition.lang = 'vi-VN';
-        recognition.continuous = false;
-        recognition.interimResults = true;
-        recognition.maxAlternatives = 1;
-        recognitionRef.current = recognition;
-
-        let gotResult = false;
-
-        recognition.onresult = (event) => {
-            gotResult = true;
-            const transcript = Array.from(event.results)
-                .map(r => r[0].transcript)
-                .join('');
-            setSpeechResult(transcript);
-        };
-
-        recognition.onend = () => {
-            recognitionRef.current = null;
-            setIsRecording(false);
-            if (speechStopIntentionalRef.current) return;
-            if (!gotResult) {
-                setSpeechError('No speech detected. Try again or type below.');
-            }
-        };
-
-        recognition.onerror = (event) => {
-            recognitionRef.current = null;
-            setIsRecording(false);
-            if (speechStopIntentionalRef.current || event.error === 'aborted') {
-                return;
-            }
-            console.warn('Speech recognition error:', event.error);
-            if (event.error === 'not-allowed') {
+        setPronResult(null);
+        setSpeechResult('');
+        try {
+            const recorder = await startPCMRecording();
+            pcmRecorderRef.current = recorder;
+            setIsRecording(true);
+        } catch (err) {
+            console.warn('Mic access failed:', err.message);
+            if (err.name === 'NotAllowedError') {
                 setSpeechSupported(false);
                 setSpeechError('Microphone access denied. Please allow mic access or type below.');
-            } else if (event.error === 'no-speech') {
-                setSpeechError('No speech detected. Try again or type below.');
-            } else if (event.error === 'network') {
-                setSpeechError('Network error. Check your connection or type below.');
             } else {
-                setSpeechError(`Error: ${event.error}. You can type instead.`);
+                setSpeechError('Could not start microphone. Type instead.');
             }
-        };
-
-        try {
-            recognition.start();
-            setIsRecording(true);
-        } catch (e) {
-            console.warn('Failed to start speech recognition:', e);
-            setSpeechError('Could not start microphone. Type instead.');
-            setIsRecording(false);
         }
     };
 
@@ -432,15 +451,21 @@ const LessonGame = () => {
                 setFuzzyHint(currentEx.prompt.answer_vi);
             }
         } else if (currentEx.exercise_type === 'speak_sentence') {
-            const input = speechResult || typedAnswer;
-            const result = checkVietnameseInput(
-                input,
-                currentEx.prompt.answer_vi,
-                currentEx.prompt.answer_vi_no_diacritics
-            );
-            correct = result.exact || result.fuzzy;
-            if (result.fuzzy && !result.exact) {
-                setFuzzyHint(currentEx.prompt.answer_vi);
+            // Prefer Azure pronunciation score when available; otherwise
+            // fall back to fuzzy text match (typed answer path).
+            if (pronResult?.scores?.pronunciation != null) {
+                correct = pronResult.scores.pronunciation >= 70;
+            } else {
+                const input = speechResult || typedAnswer;
+                const result = checkVietnameseInput(
+                    input,
+                    currentEx.prompt.answer_vi,
+                    currentEx.prompt.answer_vi_no_diacritics
+                );
+                correct = result.exact || result.fuzzy;
+                if (result.fuzzy && !result.exact) {
+                    setFuzzyHint(currentEx.prompt.answer_vi);
+                }
             }
         } else {
             correct = true;
@@ -514,7 +539,7 @@ const LessonGame = () => {
         if (currentEx.exercise_type === 'match_pairs') return false; // auto-checks
         if (currentEx.exercise_type === 'reorder_words' || currentEx.exercise_type === 'translation_word_bank') return orderedTokens.length > 0;
         if (currentEx.exercise_type === 'listen_type') return typedAnswer.trim().length > 0;
-        if (currentEx.exercise_type === 'speak_sentence') return (speechResult || typedAnswer).trim().length > 0;
+        if (currentEx.exercise_type === 'speak_sentence') return Boolean(pronResult) || (speechResult || typedAnswer).trim().length > 0;
         if (currentEx.exercise_type === 'picture_choice') return selectedAnswer !== null;
         return selectedAnswer !== null && selectedAnswer !== '';
     };
@@ -942,13 +967,46 @@ const LessonGame = () => {
                                         {isRecording ? <MicOff size={36} color="var(--danger-color)" /> : <Mic size={36} color="var(--secondary-color)" />}
                                     </button>
                                     <span style={{ fontSize: 14, color: 'var(--text-muted)' }}>
-                                        {isRecording ? 'Listening... tap to stop' : 'Tap to speak'}
+                                        {pronAssessing ? 'Scoring your pronunciation…' : isRecording ? 'Listening... tap to stop' : 'Tap to speak'}
                                     </span>
                                 </div>
                             )}
 
-                            {/* Show recognized speech result */}
-                            {speechResult && (
+                            {/* Pronunciation assessment results */}
+                            {pronResult && pronResult.scores && (
+                                <div style={{
+                                    padding: 16, borderRadius: 'var(--radius-md)',
+                                    backgroundColor: 'var(--surface-color)', border: '2px solid var(--border-color)',
+                                    display: 'flex', flexDirection: 'column', gap: 10
+                                }}>
+                                    <div style={{ display: 'flex', justifyContent: 'space-around', textAlign: 'center', fontSize: 12, color: 'var(--text-muted)' }}>
+                                        {['accuracy', 'fluency', 'completeness', 'pronunciation'].map(k => (
+                                            <div key={k}>
+                                                <div style={{ fontSize: 22, fontWeight: 800, color: scoreColor(pronResult.scores[k]) }}>
+                                                    {pronResult.scores[k] != null ? Math.round(pronResult.scores[k]) : '–'}
+                                                </div>
+                                                <div style={{ textTransform: 'capitalize' }}>{k}</div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                    {pronResult.words?.length > 0 && (
+                                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, justifyContent: 'center', paddingTop: 6, borderTop: '1px solid var(--border-color)' }}>
+                                            {pronResult.words.map((w, i) => (
+                                                <span key={i} style={{
+                                                    padding: '4px 10px', borderRadius: 'var(--radius-sm)',
+                                                    fontSize: 16, fontWeight: 600,
+                                                    backgroundColor: scoreBg(w.accuracy, w.errorType),
+                                                    color: scoreFg(w.accuracy, w.errorType),
+                                                    textDecoration: w.errorType === 'Omission' ? 'line-through' : 'none',
+                                                }}>{w.word}</span>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
+                            )}
+
+                            {/* Show recognized speech result (if no pron breakdown) */}
+                            {speechResult && !pronResult && (
                                 <div style={{
                                     textAlign: 'center', padding: 16, borderRadius: 'var(--radius-md)',
                                     backgroundColor: 'rgba(6, 214, 160, 0.1)', border: '2px solid var(--success-color)'
