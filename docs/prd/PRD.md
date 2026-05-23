@@ -479,7 +479,6 @@ While initial revenue is not the core metric, VNME utilizes a freemium architect
 - **Local Device Processing:** On-device OCR (Tesseract.js) and speech recognition (Web Speech API) to reduce server friction and latency for free users.
 - **Data Persistence (Current):** localStorage for mock user data, SRS cards, saved words, and custom decks during development. PostgreSQL schema defined and ready for production migration (`schema.sql`).
 
-
 ❯ Is this app production ready and sell as a PWA? I know we're missing payment, leave that. But in terms of
 architecture, how many user concurrent can this system handle? I only worry about the TTS, which I think we
 should pre-download and store the audio in a bucket.
@@ -533,3 +532,83 @@ eliminates your biggest scaling risk.
 
 ✻ Crunched for 32s
 ❯ Keep a note about this in the docs folder. I do think we should move the dictionary to neon.
+
+
+
+
+› How about notification system? Rulingol has a very sophisticated AI trained notification system that measures
+how efficient each kind of message is based on how much people click on that notification to go back to the app.
+We need to create that thing, right? Start small and efficient. Also we are on PWA, is it harder to send
+messages on PWA? My doling go on desktops send me message all the time.
+
+• I’ll answer this as product + engineering scope, and I’ll verify the current PWA push-notification constraints
+because browser support changes over time, especially on iOS.
+
+• Searching the web
+
+• Searched MDN Push API service workers browser support PWA notifications iOS Safari 2026 ...
+
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+• Yes, we should build this, but start small.
+
+For a PWA, push notifications are very possible, but slightly more constrained than a native app:
+
+- Desktop Chrome/Edge/Safari: generally works well.
+- Android PWA/browser: generally works well.
+- iPhone/iPad: works on iOS 16.4+, but only after the user installs the PWA to the Home Screen and opens it from
+  there. Regular Safari tab push is not the same. Apple confirms iOS Home Screen web apps can use Web Push with
+  Service Workers, Push API, Notifications API, and Badging API. Sources: Apple Web Push docs, web.dev PWA push
+  notes.
+
+The smart version like Duolingo does not need to start as “AI trained.” We can build the data loop first:
+
+1. Notification permission + subscription
+   User opts in. We store browser push subscription per user/device.
+2. Small message library
+   Start with maybe 10-20 message templates:
+   Your Vietnamese streak misses you
+   2 minutes now keeps today alive
+   Review 5 words before they fade
+   You are close to finishing Unit 1
+3. Event tracking
+   Track:
+   notification_sent
+   notification_delivered if available
+   notification_clicked
+   session_started_after_notification
+   lesson_completed_after_notification
+4. Simple ranking
+   No AI first. Use click-through rate and return-to-app rate:
+   score = clicks / sends
+   Send when the user usually studies, not random time. First version can use “last active hour.”
+5. Guardrails
+   Max 1 notification per day, quiet hours, stop if ignored too many times, never guilt-heavy.
+
+Then later, yes, make it more intelligent:
+
+- choose message based on learner state
+- choose send time based on history
+- personalize by goal, streak, weak words, unfinished lesson
+- A/B test templates
+- bandit algorithm to prefer messages that bring users back
+
+For Vietnamy, the best small MVP is:
+
+- Daily reminder
+- Streak reminder
+- Review reminder
+- Unfinished lesson reminder
+- Social/community announcement
+
+Technically we need:
+
+- service-worker.js push handler
+- frontend opt-in UI
+- backend table for push subscriptions
+- scheduled job to send pushes
+- analytics events for sent/clicked/returned
+- message template table
+
+So yes: build it, but not as “AI notification system” first. Build the measurement loop first. Once we know which
+notifications actually bring learners back, then the AI layer has real data to learn from.

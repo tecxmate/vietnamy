@@ -1,6 +1,6 @@
-import React, { useState, useRef, useMemo } from 'react';
+import React, { useState, useRef, useMemo, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Volume2, BookOpen, Layers, ChevronRight, GraduationCap, BookOpenText, Search, Mic, X, Check, Sparkles, Lightbulb } from 'lucide-react';
+import { Volume2, BookOpen, Layers, ChevronRight, GraduationCap, BookOpenText, Search, Mic, X, Check, Sparkles, Lightbulb, BellRing } from 'lucide-react';
 import { useProgress } from '../../context/ProgressContext';
 import { useT } from '../../lib/i18n';
 import { getItems, getUnits, getNodesForUnitWithProgress } from '../../lib/db';
@@ -9,7 +9,9 @@ import ARTICLES from '../../data/articleData';
 import speak from '../../utils/speak';
 import SoundButton from '../SoundButton';
 import { useUser } from '../../context/UserContext';
+import { useAuth } from '../../context/AuthContext';
 import { DEFAULT_LEARNER_MODE, getProgressMode } from '../../data/learnerModes';
+import { enablePushReminders, getPushReminderStatus, trackPushReturnFromUrl } from '../../utils/pushNotifications';
 import './HomeTab.css';
 
 const TIPS = [
@@ -64,6 +66,7 @@ const WHATSAPP_GROUP = 'https://chat.whatsapp.com/EKFn6q6gXeZIT2ZcNDYOV4';
 
 const HomeTab = ({ onSearchWord }) => {
     const navigate = useNavigate();
+    const { user } = useAuth();
     const { completedNodes } = useProgress();
     const { userProfile } = useUser();
     const currentMode = userProfile?.learnerMode || DEFAULT_LEARNER_MODE;
@@ -77,12 +80,25 @@ const HomeTab = ({ onSearchWord }) => {
     const [inputLang, setInputLang] = useState('vi');
     const [copiedCode, setCopiedCode] = useState(null);
     const [bannerDismissed, setBannerDismissed] = useState(() => !!localStorage.getItem('vnme_banner_dismissed'));
+    const [pushReminderStatus, setPushReminderStatus] = useState('checking');
     const recognitionRef = useRef(null);
     const finalTextRef = useRef('');
 
     const partnerCtas = useMemo(() => {
         return ARTICLES.filter(a => a.partnerCta).map(a => a.partnerCta);
     }, []);
+
+    useEffect(() => {
+        let active = true;
+        getPushReminderStatus()
+            .then(status => { if (active) setPushReminderStatus(status); })
+            .catch(() => { if (active) setPushReminderStatus('unsupported'); });
+        return () => { active = false; };
+    }, []);
+
+    useEffect(() => {
+        trackPushReturnFromUrl(user?.id || 'anonymous');
+    }, [user?.id]);
 
     const VOICE_LANGUAGES = [
         { code: 'vi', bcp: 'vi-VN', label: 'Tiếng Việt' },
@@ -208,6 +224,27 @@ const HomeTab = ({ onSearchWord }) => {
         setTimeout(() => setCopiedCode(null), 2000);
     };
 
+    const handleEnablePushReminders = async () => {
+        setPushReminderStatus('saving');
+        const result = await enablePushReminders({
+            userId: user?.id || 'anonymous',
+            userName: userProfile?.name || '',
+        });
+        setPushReminderStatus(result.status || (result.ok ? 'enabled' : 'unsupported'));
+    };
+
+    const pushReminderLabel = {
+        checking: 'Checking reminders',
+        saving: 'Turning on reminders',
+        enabled: 'Study reminders on',
+        ready: 'Study reminders on this device',
+        default: 'Turn on study reminders',
+        blocked: 'Reminders blocked',
+        unsupported: 'Reminders unavailable',
+        'server-missing-key': 'Reminders need setup',
+        'subscribe-failed': 'Try reminders again',
+    }[pushReminderStatus] || 'Turn on study reminders';
+
     const feedbackFormUrl = userProfile?.nativeLang === 'zh-t' ? GOOGLE_FORM_TW : GOOGLE_FORM;
     const feedbackActionLabel = userProfile?.nativeLang === 'zh-t'
         ? '加入候補名單並分享建議'
@@ -263,6 +300,15 @@ const HomeTab = ({ onSearchWord }) => {
                                 <Lightbulb size={16} />
                                 <span>{feedbackActionLabel}</span>
                             </a>
+                            <button
+                                type="button"
+                                className="demo-action-btn"
+                                onClick={handleEnablePushReminders}
+                                disabled={pushReminderStatus === 'checking' || pushReminderStatus === 'saving' || pushReminderStatus === 'enabled' || pushReminderStatus === 'blocked' || pushReminderStatus === 'unsupported'}
+                            >
+                                <BellRing size={16} />
+                                <span>{pushReminderLabel}</span>
+                            </button>
                         </div>
                     </>
                 )}

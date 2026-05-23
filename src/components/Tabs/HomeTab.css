@@ -817,6 +817,12 @@
     transform: scale(0.97);
 }
 
+.demo-action-btn:disabled {
+    cursor: default;
+    opacity: 0.72;
+    transform: none;
+}
+
 .demo-community-row {
     display: flex;
     flex-direction: column;

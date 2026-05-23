@@ -4,7 +4,7 @@ import cors from 'cors';
 import crypto from 'crypto';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
-import { existsSync, readFileSync } from 'fs';
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
 import { Converter } from 'opencc-js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -31,9 +31,69 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 app.use(cors());
+app.use(express.json({ limit: '1mb' }));
 
 // Simplified ↔ Traditional Chinese converters
 const s2t = Converter({ from: 'cn', to: 'tw' });
+
+// ---------------------------------------------------------------------------
+// Push notification MVP
+// ---------------------------------------------------------------------------
+const PUSH_STORE_PATH = join(__dirname, 'databases', 'push_notifications.json');
+const PUSH_VAPID_PUBLIC_KEY = process.env.VAPID_PUBLIC_KEY || '';
+const PUSH_VAPID_PRIVATE_KEY = process.env.VAPID_PRIVATE_KEY || '';
+const PUSH_VAPID_SUBJECT = process.env.VAPID_SUBJECT || 'mailto:hello@vietnamy.app';
+const PUSH_ENABLED = Boolean(PUSH_VAPID_PUBLIC_KEY && PUSH_VAPID_PRIVATE_KEY);
+
+const PUSH_TEMPLATES = {
+    daily_review: {
+        title: 'Vietnamy review is ready',
+        body: 'Review a few Vietnamese words before they fade.',
+        url: '/practice/flashcards',
+    },
+    streak_save: {
+        title: 'Keep today alive',
+        body: 'Two minutes of Vietnamese keeps your learning rhythm going.',
+        url: '/',
+    },
+    unfinished_lesson: {
+        title: 'Your lesson is waiting',
+        body: 'Finish the next small step in Vietnamese today.',
+        url: '/study',
+    },
+};
+
+function readPushStore() {
+    try {
+        if (!existsSync(PUSH_STORE_PATH)) {
+            return { subscriptions: [], events: [] };
+        }
+        const parsed = JSON.parse(readFileSync(PUSH_STORE_PATH, 'utf8'));
+        return {
+            subscriptions: Array.isArray(parsed.subscriptions) ? parsed.subscriptions : [],
+            events: Array.isArray(parsed.events) ? parsed.events : [],
+        };
+    } catch (err) {
+        console.warn('Push store read failed:', err.message);
+        return { subscriptions: [], events: [] };
+    }
+}
+
+function writePushStore(store) {
+    mkdirSync(dirname(PUSH_STORE_PATH), { recursive: true });
+    writeFileSync(PUSH_STORE_PATH, JSON.stringify(store, null, 2));
+}
+
+function pushSubscriptionKey(subscription) {
+    return crypto.createHash('sha1').update(subscription?.endpoint || '').digest('hex');
+}
+
+async function loadWebPush() {
+    const webPush = await import('web-push');
+    const mod = webPush.default || webPush;
+    mod.setVapidDetails(PUSH_VAPID_SUBJECT, PUSH_VAPID_PUBLIC_KEY, PUSH_VAPID_PRIVATE_KEY);
+    return mod;
+}
 
 // ---------------------------------------------------------------------------
 // Language DB map — add new languages here
@@ -1344,6 +1404,133 @@ app.get('/api/translate', async (req, res) => {
         console.error('Translate error:', err.message);
         res.status(502).json({ error: 'Translation failed' });
     }
+});
+
+app.get('/api/push/vapid-public-key', (_req, res) => {
+    res.json({
+        enabled: PUSH_ENABLED,
+        publicKey: PUSH_VAPID_PUBLIC_KEY || null,
+    });
+});
+
+app.post('/api/push/subscribe', (req, res) => {
+    const { subscription, userId = 'anonymous', userName = '', platform = 'web' } = req.body || {};
+    if (!subscription?.endpoint || !subscription?.keys?.p256dh || !subscription?.keys?.auth) {
+        return res.status(400).json({ error: 'valid push subscription required' });
+    }
+
+    const store = readPushStore();
+    const id = pushSubscriptionKey(subscription);
+    const now = new Date().toISOString();
+    const existingIndex = store.subscriptions.findIndex(item => item.id === id);
+    const record = {
+        id,
+        userId,
+        userName,
+        platform,
+        subscription,
+        active: true,
+        createdAt: existingIndex >= 0 ? store.subscriptions[existingIndex].createdAt : now,
+        updatedAt: now,
+        sent: existingIndex >= 0 ? store.subscriptions[existingIndex].sent || 0 : 0,
+        clicked: existingIndex >= 0 ? store.subscriptions[existingIndex].clicked || 0 : 0,
+    };
+
+    if (existingIndex >= 0) store.subscriptions[existingIndex] = record;
+    else store.subscriptions.push(record);
+    store.events.push({ type: 'subscribed', subscriptionId: id, userId, platform, at: now });
+    writePushStore(store);
+
+    res.json({ ok: true, subscriptionId: id, enabled: PUSH_ENABLED });
+});
+
+app.post('/api/push/events', (req, res) => {
+    const { type, notificationId = '', templateId = '', subscriptionId = '', userId = 'anonymous', metadata = {} } = req.body || {};
+    if (!type) return res.status(400).json({ error: 'event type required' });
+
+    const store = readPushStore();
+    const now = new Date().toISOString();
+    store.events.push({ type, notificationId, templateId, subscriptionId, userId, metadata, at: now });
+
+    if (type === 'clicked' && subscriptionId) {
+        const sub = store.subscriptions.find(item => item.id === subscriptionId);
+        if (sub) sub.clicked = (sub.clicked || 0) + 1;
+    }
+
+    writePushStore(store);
+    res.json({ ok: true });
+});
+
+app.get('/api/push/stats', (_req, res) => {
+    const store = readPushStore();
+    const byTemplate = {};
+
+    for (const event of store.events) {
+        const templateId = event.templateId || 'unknown';
+        byTemplate[templateId] ||= { sent: 0, clicked: 0, openedApp: 0 };
+        if (event.type === 'sent') byTemplate[templateId].sent += 1;
+        if (event.type === 'clicked') byTemplate[templateId].clicked += 1;
+        if (event.type === 'opened_app') byTemplate[templateId].openedApp += 1;
+    }
+
+    const templates = Object.entries(byTemplate).map(([templateId, stats]) => ({
+        templateId,
+        ...stats,
+        clickRate: stats.sent ? stats.clicked / stats.sent : 0,
+        openRate: stats.sent ? stats.openedApp / stats.sent : 0,
+    })).sort((a, b) => b.openRate - a.openRate || b.clickRate - a.clickRate);
+
+    res.json({
+        subscriptions: store.subscriptions.filter(item => item.active).length,
+        templates,
+    });
+});
+
+app.post('/api/push/send', async (req, res) => {
+    if (!PUSH_ENABLED) {
+        return res.status(503).json({ error: 'push is not configured; set VAPID_PUBLIC_KEY and VAPID_PRIVATE_KEY' });
+    }
+
+    const { templateId = 'daily_review', userId = null } = req.body || {};
+    const template = PUSH_TEMPLATES[templateId] || PUSH_TEMPLATES.daily_review;
+    const store = readPushStore();
+    const subscriptions = store.subscriptions.filter(item => item.active && (!userId || item.userId === userId));
+    const webPush = await loadWebPush();
+    const now = new Date().toISOString();
+    const notificationId = crypto.randomUUID();
+    const results = { sent: 0, failed: 0, disabled: 0 };
+
+    for (const record of subscriptions) {
+        const payload = JSON.stringify({
+            notificationId,
+            templateId,
+            subscriptionId: record.id,
+            title: template.title,
+            body: template.body,
+            url: template.url,
+        });
+
+        try {
+            await webPush.sendNotification(record.subscription, payload);
+            record.sent = (record.sent || 0) + 1;
+            record.updatedAt = now;
+            store.events.push({ type: 'sent', notificationId, templateId, subscriptionId: record.id, userId: record.userId, at: now });
+            results.sent += 1;
+        } catch (err) {
+            if (err.statusCode === 404 || err.statusCode === 410) {
+                record.active = false;
+                record.updatedAt = now;
+                results.disabled += 1;
+            } else {
+                results.failed += 1;
+                console.warn('Push send failed:', err.message);
+            }
+            store.events.push({ type: 'send_failed', notificationId, templateId, subscriptionId: record.id, userId: record.userId, metadata: { statusCode: err.statusCode || null }, at: now });
+        }
+    }
+
+    writePushStore(store);
+    res.json({ ok: true, notificationId, ...results });
 });
 
 // Serve Vite build output in production (skip if dist doesn't exist, e.g. dev mode)
