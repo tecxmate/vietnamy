@@ -72,18 +72,34 @@ node scripts/prebuild-tts.mjs --dry-run
 
 # Limit voices
 node scripts/prebuild-tts.mjs --voices=azure-north --concurrency=3
+
+# Also pre-cache the top-N most frequent dictionary words
+node scripts/prebuild-tts.mjs --server=https://<host> --dict=3000
 ```
 
-Reference run (2026-05-23): 6,787 unique strings × 2 voices = 13,574 requests, ~40 min wall time at 5.7 req/s, 99.9% success rate. ~250 MB in the bucket.
+The `--dict=N` flag queries `server/databases/vn_en_dictionary_high.db` for the top-N Vietnamese words by subtitle frequency and adds them to the warm-up set. Useful for covering dictionary lookups so users never wait on common words.
 
 The script is **idempotent** — a second run skips already-cached strings (logged as `hit=N`). Safe to re-run any time new curriculum content lands.
 
+### Reference runs
+
+| Date | Scope | Strings | Requests | Wall time | Throughput | Success |
+| --- | --- | --- | --- | --- | --- | --- |
+| 2026-05-23 | Explore Vietnam only | 6,787 | 13,574 | ~40 min | 5.7 req/s | 99.9% |
+| 2026-05-24 | + Professional / Heritage curriculum | 7,589 | 15,178 | ~14 min | 18.6 req/s | 100% |
+| 2026-05-24 | + Article titles + top-3,000 dict words | 10,596 | 21,192 | ~25 min | 13.9 req/s | 100% |
+
+The second run was faster because most strings were already cached → 302 redirects (no Azure call). The throughput on a fully warm bucket is roughly 4× higher than a cold one.
+
 ## Operational notes
 
-- **First-render cost stays inside Azure free tier** (500K chars/month). After warm-up, baked-in content costs $0. Only user-typed dictionary lookups and brand-new curriculum strings incur new Azure spend.
+- **Azure usage so far** (combined across all warm-up runs on 2026-05-24): **~410K synthesized characters**, well under the 500K/month neural-TTS free tier. The free quota resets monthly. After the cache is warm, only brand-new strings (new curriculum, new user-typed dictionary words) consume characters.
+- **Watch the meter at** Azure Portal → Speech resource (`VNME-Asia` in this project) → Monitoring → **Metrics** → metric: *Synthesized Characters*, aggregation: *Sum*. The Activity Log panel will look empty — it only tracks resource-management events, not API calls.
+- **Cost after free tier** is roughly **$16 per 1M characters** (Neural TTS S0). To put it in perspective: 1,000 brand-new strings per day for a month is ~150K chars, ~$2.40. The cache makes that one-time per string forever.
 - **Cloudflare cache headers** on the served file come back as `cache-control: no-cache` from Supabase Storage (their default, ignores the `Cache-Control` header passed at upload). The browser still benefits because the URL is stable per `(voice, text)` — repeated playbacks reuse the same response. Investigating switching to `cacheControl` upload metadata or moving to R2 would improve this further but is not blocking.
-- **Failures during warm-up** (~0.1% in the reference run) are transient Azure timeouts. They self-heal on first user request, which then caches.
+- **Failures during warm-up** (~0.1% in the first run, 0% in subsequent runs) are transient Azure timeouts. They self-heal on first user request, which then caches.
 - **Cache invalidation**: there is none. The hash includes the full text, so editing a sentence creates a new key automatically. Old keys remain orphaned until manually deleted via the Supabase Storage UI. If this grows large, add a cleanup script that diffs bucket keys against the live data set.
+- **Backups**: `scripts/backup-tts.mjs` downloads the entire bucket to a local folder (`tts-backup/`, gitignored). Run periodically and store the folder somewhere durable (private repo, external drive, second cloud) so audio survives Supabase project loss.
 
 ## Failure modes
 
@@ -102,4 +118,22 @@ With the cache warm:
 - **Concurrent capacity** is now bound by SQLite dictionary queries (thousands of QPS easily) rather than TTS.
 - **CDN** (Cloudflare via Supabase) absorbs the audio traffic. Effectively unlimited concurrency for cached content.
 
-Estimated capacity on a single small Zeabur container after warm-up: **~1000+ concurrent active users**. The next bottleneck would be Supabase Storage egress quotas (free tier: 5 GB/month) — at ~25 KB per clip and ~50 clips per active session, that supports roughly 4,000 sessions/month before needing to upgrade Supabase or migrate the bucket to Cloudflare R2.
+### Production baseline (2026-05-24)
+
+Cache contents after the three warm-up runs:
+
+- **~21,200 audio files** in the `tts-cache` bucket (~10,600 unique strings × 2 voices)
+- Coverage: full Explore Vietnam + Professional + Heritage curricula (A1 → C2), all Reading Library article titles + sentences, and the top 3,000 Vietnamese words by subtitle frequency
+- Total Azure characters consumed: **~410K of the 500K monthly free tier** for May
+- Total bucket size: roughly **500–600 MB**
+
+### Capacity envelope
+
+| Layer | Bound | Headroom |
+| --- | --- | --- |
+| Zeabur container | ~50–150 concurrent requests | TTS no longer in the hot path; effectively unlimited for cached audio |
+| Supabase Storage egress | 5 GB/month (free tier) | ~200K cached audio plays/month before the quota — roughly 4,000 active sessions at ~50 plays each |
+| Azure free tier | 500K chars/month neural TTS | ~10K new strings/month before hitting paid; paid is $16 per 1M chars |
+| CDN (Cloudflare) | Unbounded | The actual ceiling — global edge caching, unmetered |
+
+**Realistic single-container capacity post-warm-up**: ~1,000+ concurrent active users. The first hard wall will be Supabase Storage egress, which is a $25/mo upgrade (Pro tier = 250 GB egress) or a one-time migration to Cloudflare R2 (free egress). Neither is urgent until DAU climbs into the thousands.
