@@ -4,7 +4,7 @@ import { X, Heart, Check, Trophy, Volume2, ChevronRight } from 'lucide-react';
 import { getNodeById, getExercisesForUnit, getExercisesForNode, getNextNode, getNodeRoute } from '../lib/db';
 import { useProgress } from '../context/ProgressContext';
 import { useUser } from '../context/UserContext';
-import speak, { speakQueued } from '../utils/speak';
+import speak, { scheduleSpeak, clearSpeakQueue } from '../utils/speak';
 import { loadSettings } from '../lib/settings';
 import { checkVietnameseInput } from '../utils/fuzzyVietnamese';
 import { playSuccess, playError } from '../utils/sound';
@@ -75,7 +75,12 @@ const UnitTest = () => {
     const [nextNodeRoute, setNextNodeRoute] = useState(null);
     const [nextNodeLabel, setNextNodeLabel] = useState('');
 
+    const stopTestAudio = React.useCallback(() => {
+        clearSpeakQueue({ stopCurrent: true });
+    }, []);
+
     useEffect(() => {
+        stopTestAudio();
         // Reset all state on every navigation (including retry)
         setCurrentIndex(0);
         setSelectedAnswer(null);
@@ -109,7 +114,8 @@ const UnitTest = () => {
             setNextNodeRoute(getNodeRoute(next));
             setNextNodeLabel(next.label || 'Next');
         }
-    }, [nodeId, location.key]);
+        return stopTestAudio;
+    }, [nodeId, location.key, stopTestAudio]);
 
     const passed = exercises.length > 0 && (score / exercises.length) >= PASS_THRESHOLD;
 
@@ -124,6 +130,7 @@ const UnitTest = () => {
     const progress = exercises.length > 0 ? (currentIndex / exercises.length) * 100 : 0;
 
     useEffect(() => {
+        stopTestAudio();
         setSelectedAnswer(null);
         setIsChecking(false);
         setIsCorrect(null);
@@ -140,9 +147,9 @@ const UnitTest = () => {
         if (currentEx) {
             const { exercise_type: et, prompt: p } = currentEx;
             if (et === 'listen_type' || et === 'listen_choose') {
-                if (p.audio_text) setTimeout(() => speak(p.audio_text), 300);
+                if (p.audio_text) scheduleSpeak(p.audio_text, 300);
             } else if (et === 'mcq_translate_to_en') {
-                if (p.source_text_vi) setTimeout(() => speak(p.source_text_vi), 300);
+                if (p.source_text_vi) scheduleSpeak(p.source_text_vi, 300);
             }
         }
         if (currentEx && currentEx.exercise_type === 'match_pairs') {
@@ -155,7 +162,7 @@ const UnitTest = () => {
             setMatchedSet(new Set());
             setMatchFlashWrong(false);
         }
-    }, [currentIndex, currentEx]);
+    }, [currentIndex, currentEx, stopTestAudio]);
 
     // Match pairs tap handler
     const handleMatchTap = (side, index) => {
@@ -241,7 +248,7 @@ const UnitTest = () => {
         if (correct) {
             playSuccess();
             const completedSentence = getCompletedSentenceAudio(currentEx);
-            if (completedSentence) setTimeout(() => speak(completedSentence), 300);
+            if (completedSentence) scheduleSpeak(completedSentence, 300);
             setScore(s => s + 1);
         }
         else { playError(); if (!testMode) progressCtx.loseHeart(); }
@@ -250,14 +257,20 @@ const UnitTest = () => {
     const handleNext = () => {
         if (hearts === 0) { navigate('/', { state: { tab: 'study' } }); return; }
         if (currentIndex < exercises.length - 1) setCurrentIndex(i => i + 1);
-        else setIsFinished(true);
+        else {
+            stopTestAudio();
+            setIsFinished(true);
+        }
     };
 
     const handleSkip = () => {
         if (!testMode) return;
         setScore(s => s + 1);
         if (currentIndex < exercises.length - 1) setCurrentIndex(i => i + 1);
-        else setIsFinished(true);
+        else {
+            stopTestAudio();
+            setIsFinished(true);
+        }
     };
 
     const canCheck = () => {
@@ -476,7 +489,7 @@ const UnitTest = () => {
                             <div style={{ minHeight: 70, padding: '10px 0', borderBottom: '2px solid var(--border-color)', display: 'flex', flexWrap: 'wrap', gap: 10, marginBottom: 24, alignItems: 'center' }}>
                                 {orderedTokens.length === 0 && <span style={{ color: 'var(--text-muted)', padding: '10px 0', width: '100%' }}>Tap words below to build the sentence</span>}
                                 {orderedTokens.map((token, idx) => (
-                                    <button key={idx} style={{ padding: '10px 16px', backgroundColor: 'var(--surface-color)', border: '2px solid var(--border-color)', borderRadius: 12, cursor: isChecking ? 'default' : 'pointer', boxShadow: '0 2px 0 var(--border-color)', fontSize: 17, fontWeight: 500, color: 'var(--text-main)' }} onClick={() => { handleRemoveOrderedWord(idx); speakQueued(token); }}>
+                                    <button key={idx} style={{ padding: '10px 16px', backgroundColor: 'var(--surface-color)', border: '2px solid var(--border-color)', borderRadius: 12, cursor: isChecking ? 'default' : 'pointer', boxShadow: '0 2px 0 var(--border-color)', fontSize: 17, fontWeight: 500, color: 'var(--text-main)' }} onClick={() => { handleRemoveOrderedWord(idx); speak(token); }}>
                                         {token}
                                     </button>
                                 ))}
@@ -495,7 +508,7 @@ const UnitTest = () => {
                                             color: isUsed ? 'transparent' : 'var(--text-main)',
                                             cursor: isUsed || isChecking ? 'default' : 'pointer',
                                             pointerEvents: isUsed ? 'none' : 'auto',
-                                        }} onClick={() => { if (!isUsed) { handleWordBankClick(word); speakQueued(word); } }} disabled={isUsed || isChecking}>
+                                        }} onClick={() => { if (!isUsed) { handleWordBankClick(word); speak(word); } }} disabled={isUsed || isChecking}>
                                             {word}
                                         </button>
                                     );

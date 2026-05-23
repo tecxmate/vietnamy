@@ -5,7 +5,7 @@ import { lookupWords } from '../lib/dictionaryLookup';
 import { useProgress } from '../context/ProgressContext';
 import { useUser } from '../context/UserContext';
 import { getNodeByLessonId, getLessonBlueprint, getExercisesGenerated, getNextNode, getNodeRoute } from '../lib/db';
-import speak, { preloadSpeak, speakQueued } from '../utils/speak';
+import speak, { preloadSpeak, scheduleSpeak, clearSpeakQueue } from '../utils/speak';
 import { startPCMRecording } from '../utils/recordPCM';
 import { addItemsFromLesson, recordReview } from '../lib/srs';
 import { recordExerciseResult, extractItemIds } from '../lib/wordGrades';
@@ -137,7 +137,12 @@ const LessonGame = () => {
         setPronAssessing(false);
     }, []);
 
+    const stopLessonAudio = React.useCallback(() => {
+        clearSpeakQueue({ stopCurrent: true });
+    }, []);
+
     useEffect(() => {
+        stopLessonAudio();
         stopSpeechRecognition();
         // Reset all state on every navigation (even same lessonId)
         setCurrentIndex(0);
@@ -191,11 +196,6 @@ const LessonGame = () => {
             setIntroSteps(steps);
             setShowWordIntro(steps.length > 0);
             setCurrentIntroStep(0);
-            // Auto-play audio for the first intro word
-            if (steps.length > 0 && steps[0].word?.vietnamese) {
-                setTimeout(() => speak(steps[0].word.vietnamese), 300);
-            }
-
             const viTexts = blueprint.words.map(w => w.vietnamese);
             lookupWords(viTexts).then(info => setDictInfo(info));
         } else {
@@ -205,8 +205,11 @@ const LessonGame = () => {
         // Check speech recognition support
         const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
         setSpeechSupported(!!SR);
-        return stopSpeechRecognition;
-    }, [lessonId, location.key, stopSpeechRecognition]);
+        return () => {
+            stopSpeechRecognition();
+            stopLessonAudio();
+        };
+    }, [lessonId, location.key, stopSpeechRecognition, stopLessonAudio]);
 
     const currentEx = exercises[currentIndex];
     const progress = exercises.length > 0 ? (currentIndex / exercises.length) * 100 : 0;
@@ -215,6 +218,8 @@ const LessonGame = () => {
         if (currentEx?.exercise_type !== 'speak_sentence') {
             stopSpeechRecognition();
         }
+
+        stopLessonAudio();
 
         setSelectedAnswer(null);
         setIsChecking(false);
@@ -252,9 +257,9 @@ const LessonGame = () => {
         if (!currentEx) return;
         const { exercise_type, prompt } = currentEx;
         if (exercise_type === 'listen_type' || exercise_type === 'listen_choose') {
-            if (prompt.audio_text) setTimeout(() => speak(prompt.audio_text), 300);
+            if (prompt.audio_text) scheduleSpeak(prompt.audio_text, 300);
         } else if (exercise_type === 'mcq_translate_to_en') {
-            if (prompt.source_text_vi) setTimeout(() => speak(prompt.source_text_vi), 300);
+            if (prompt.source_text_vi) scheduleSpeak(prompt.source_text_vi, 300);
         }
     }, [currentIndex]);
 
@@ -263,7 +268,7 @@ const LessonGame = () => {
         if (showWordIntro && introSteps.length > 0) {
             const step = introSteps[currentIntroStep];
             if (step?.type === 'vocab' && step.word?.vietnamese) {
-                setTimeout(() => speak(step.word.vietnamese), 300);
+                scheduleSpeak(step.word.vietnamese, 300);
             }
         }
     }, [currentIntroStep, showWordIntro]);
@@ -271,6 +276,7 @@ const LessonGame = () => {
     // Complete node and add words to SRS when lesson finishes
     useEffect(() => {
         if (isFinished && !rewardGivenRef.current) {
+            stopLessonAudio();
             rewardGivenRef.current = true;
 
             if (nodeId) {
@@ -525,7 +531,7 @@ const LessonGame = () => {
         if (correct) {
             playSuccess();
             const completedSentence = getCompletedSentenceAudio(currentEx);
-            if (completedSentence) setTimeout(() => speak(completedSentence), 300);
+            if (completedSentence) scheduleSpeak(completedSentence, 300);
             setScore(s => s + 1);
             const newStreak = currentStreak + 1;
             setCurrentStreak(newStreak);
@@ -1117,7 +1123,7 @@ const LessonGame = () => {
                                                     userSelect: 'none', transition: 'all 0.1s', opacity: draggedItemIndex === idx ? 0.5 : 1,
                                                     color: 'var(--text-main)'
                                                 }}
-                                                onClick={() => { handleRemoveOrderedWord(idx); speakQueued(token); }}
+                                                onClick={() => { handleRemoveOrderedWord(idx); speak(token); }}
                                                 draggable={!isChecking}
                                                 onDragStart={(e) => onDragStart(e, idx)}
                                                 onDragOver={(e) => onDragOver(e, idx)}
@@ -1152,7 +1158,7 @@ const LessonGame = () => {
                                                 cursor: isUsed || isChecking ? 'default' : 'pointer',
                                                 pointerEvents: isUsed ? 'none' : 'auto',
                                             }}
-                                            onClick={() => { if (!isUsed) { handleWordBankClick(word); speakQueued(word); } }}
+                                            onClick={() => { if (!isUsed) { handleWordBankClick(word); speak(word); } }}
                                             disabled={isUsed || isChecking}
                                         >
                                             {word}

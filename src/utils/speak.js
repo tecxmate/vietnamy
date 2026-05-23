@@ -6,6 +6,7 @@ const MAX_QUEUED_CLIPS = 60;
 let queuedClips = [];
 let currentQueuedAudio = null;
 let queueWakeAudio = null;
+const scheduledSpeakTimers = new Set();
 const MEDIA_ARTWORK = [
     { src: '/icon-192.png', sizes: '192x192', type: 'image/png' },
     { src: '/icon-512.png', sizes: '512x512', type: 'image/png' },
@@ -77,6 +78,8 @@ const clearMediaSessionPlayback = () => {
 export const clearSpeakQueue = ({ stopCurrent = false } = {}) => {
     queuedClips = [];
     queueWakeAudio = null;
+    scheduledSpeakTimers.forEach(timer => clearTimeout(timer));
+    scheduledSpeakTimers.clear();
 
     if (stopCurrent && currentAudio) {
         currentAudio.pause();
@@ -89,6 +92,18 @@ export const clearSpeakQueue = ({ stopCurrent = false } = {}) => {
 
     currentQueuedAudio = null;
     if (stopCurrent) clearMediaSessionPlayback();
+};
+
+export const scheduleSpeak = (text, delay = 0, rate = 1, lang = 'vi') => {
+    if (!isSystemAudioEnabled() || !text) return null;
+
+    const timer = setTimeout(() => {
+        scheduledSpeakTimers.delete(timer);
+        speak(text, rate, lang);
+    }, delay);
+
+    scheduledSpeakTimers.add(timer);
+    return timer;
 };
 
 // Warm the HTTP cache so subsequent speak() calls play instantly.

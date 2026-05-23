@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Check, X, Volume2 } from 'lucide-react';
-import speak, { speakQueued } from '../../utils/speak';
+import speak, { scheduleSpeak, clearSpeakQueue } from '../../utils/speak';
 import { checkVietnameseInput } from '../../utils/fuzzyVietnamese';
 import SoundButton from '../SoundButton';
 import { playSuccess, playError } from '../../utils/sound';
@@ -41,9 +41,16 @@ const ScenePerform = ({ config, scene, onComplete }) => {
     const currentChallenge = challenges[currentIdx];
     const isFinished = currentIdx >= challenges.length;
 
+    const stopSceneAudio = React.useCallback(() => {
+        clearSpeakQueue({ stopCurrent: true });
+    }, []);
+
+    useEffect(() => stopSceneAudio, [stopSceneAudio]);
+
     // Initialize word bank when challenge changes
     useEffect(() => {
         if (!currentChallenge) return;
+        stopSceneAudio();
         setSelectedAnswer(null);
         setIsChecking(false);
         setIsCorrect(null);
@@ -60,7 +67,7 @@ const ScenePerform = ({ config, scene, onComplete }) => {
             setAvailableTokens(all);
             setOrderedTokens([]);
         }
-    }, [currentIdx]);
+    }, [currentIdx, stopSceneAudio]);
 
     // Auto-play speaker prompt
     useEffect(() => {
@@ -134,7 +141,7 @@ const ScenePerform = ({ config, scene, onComplete }) => {
             playSuccess();
             if (currentChallenge.type === 'build_sentence') {
                 const completedSentence = (currentChallenge.answer_tokens || []).join(' ');
-                if (completedSentence) setTimeout(() => speak(completedSentence), 300);
+                if (completedSentence) scheduleSpeak(completedSentence, 300);
             }
         } else {
             playError();
@@ -152,6 +159,7 @@ const ScenePerform = ({ config, scene, onComplete }) => {
             setCurrentIdx(prev => prev + 1);
         } else {
             // Calculate performance tier
+            stopSceneAudio();
             const pct = score / challenges.length;
             const tier = pct >= 0.9 ? 'perfect' : pct >= 0.6 ? 'good' : 'retry';
             onComplete({ score, total: challenges.length, tier });
@@ -160,7 +168,7 @@ const ScenePerform = ({ config, scene, onComplete }) => {
 
     const handleWordBankTap = (word) => {
         setOrderedTokens(prev => [...prev, word]);
-        speakQueued(word);
+        speak(word);
     };
 
     const handleRemoveToken = (idx) => {
