@@ -132,6 +132,10 @@ const ScenePerform = ({ config, scene, onComplete }) => {
         if (correct) {
             setScore(prev => prev + 1);
             playSuccess();
+            if (currentChallenge.type === 'build_sentence') {
+                const completedSentence = (currentChallenge.answer_tokens || []).join(' ');
+                if (completedSentence) setTimeout(() => speak(completedSentence), 300);
+            }
         } else {
             playError();
             // Pick a wrong-answer NPC reaction if none from choice

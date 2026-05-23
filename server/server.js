@@ -871,7 +871,7 @@ const AZURE_VI_VOICES = {
 };
 const TTS_VOICES = new Set(['google', 'azure-north', 'azure-south']);
 const DEFAULT_TTS_VOICE = process.env.DEFAULT_TTS_VOICE || 'azure-north';
-const TTS_CACHE_VERSION = process.env.TTS_CACHE_VERSION || 'v3-trim';
+const TTS_CACHE_VERSION = process.env.TTS_CACHE_VERSION || 'v4-trim-loudness';
 
 // --- TTS bucket cache (Supabase Storage) -----------------------------------
 // Set SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY in env to enable. Bucket name
@@ -991,6 +991,38 @@ function trimPcm16MonoSilence(buffer, {
     return buffer.subarray(startByte, endByte);
 }
 
+function normalizePcm16MonoLoudness(buffer, targetRms = 0.16, maxGain = 3) {
+    if (!Buffer.isBuffer(buffer) || buffer.length < AZURE_PCM_BYTES_PER_SAMPLE) return buffer;
+
+    const sampleCount = Math.floor(buffer.length / AZURE_PCM_BYTES_PER_SAMPLE);
+    let sumSquares = 0;
+    let peak = 0;
+
+    for (let sample = 0; sample < sampleCount; sample++) {
+        const value = buffer.readInt16LE(sample * AZURE_PCM_BYTES_PER_SAMPLE);
+        const abs = Math.abs(value);
+        peak = Math.max(peak, abs);
+        const normalized = value / 32768;
+        sumSquares += normalized * normalized;
+    }
+
+    if (!sampleCount || !peak || !sumSquares) return buffer;
+
+    const rms = Math.sqrt(sumSquares / sampleCount);
+    const peakLimitedGain = (0.95 * 32767) / peak;
+    const gain = Math.max(1, Math.min(targetRms / rms, peakLimitedGain, maxGain));
+    if (gain <= 1.01) return buffer;
+
+    const amplifiedBuffer = Buffer.allocUnsafe(buffer.length);
+    for (let sample = 0; sample < sampleCount; sample++) {
+        const offset = sample * AZURE_PCM_BYTES_PER_SAMPLE;
+        const amplified = Math.round(buffer.readInt16LE(offset) * gain);
+        amplifiedBuffer.writeInt16LE(Math.max(-32768, Math.min(32767, amplified)), offset);
+    }
+
+    return amplifiedBuffer;
+}
+
 function pcm16MonoToWav(buffer, sampleRate = AZURE_PCM_SAMPLE_RATE) {
     const header = Buffer.alloc(44);
     const byteRate = sampleRate * AZURE_PCM_CHANNELS * AZURE_PCM_BYTES_PER_SAMPLE;
@@ -1043,8 +1075,9 @@ async function synthesizeWithAzure(text, lang, voice = 'azure-north') {
 
     const rawPcm = Buffer.from(await response.arrayBuffer());
     const trimmedPcm = trimPcm16MonoSilence(rawPcm);
+    const normalizedPcm = normalizePcm16MonoLoudness(trimmedPcm);
     return {
-        buffer: pcm16MonoToWav(trimmedPcm),
+        buffer: pcm16MonoToWav(normalizedPcm),
         contentType: 'audio/wav',
     };
 }
@@ -1090,24 +1123,68 @@ app.get('/api/tts', async (req, res) => {
     try {
         let audioResult = null;
         let provider = 'google-translate';
-        if (voice !== 'google') {
+        const attempts = [];
+
+        const addAttempt = (label, engine, voiceName, action) => {
+            attempts.push({ label, engine, voiceName, action });
+        };
+
+        if (voice === 'google') {
+            addAttempt('google-translate', 'google', 'google', async () => {
+                return {
+                    buffer: await synthesizeWithGoogleTranslate(text, lang),
+                    contentType: 'audio/mpeg',
+                };
+            });
+            if (lang === 'vi') {
+                addAttempt('azure-google-fallback', 'azure', 'azure-north', () => synthesizeWithAzure(text, lang, 'azure-north'));
+            }
+        } else {
+            addAttempt('azure', 'azure', voice, () => synthesizeWithAzure(text, lang, voice));
+            if (lang === 'vi' && voice === 'azure-south') {
+                addAttempt('azure-south-fallback', 'azure', 'azure-north', () => synthesizeWithAzure(text, lang, 'azure-north'));
+            }
+            if (lang === 'vi' && voice === 'azure-north') {
+                addAttempt('azure-north-fallback', 'azure', 'azure-south', () => synthesizeWithAzure(text, lang, 'azure-south'));
+            }
+            addAttempt('google-translate', 'google', 'google', async () => {
+                return {
+                    buffer: await synthesizeWithGoogleTranslate(text, lang),
+                    contentType: 'audio/mpeg',
+                };
+            });
+        }
+
+        for (const attempt of attempts) {
             try {
-                audioResult = await synthesizeWithAzure(text, lang, voice);
-                if (audioResult) provider = 'azure';
+                audioResult = await attempt.action();
+                if (audioResult) {
+                    provider = attempt.label;
+                    break;
+                }
             } catch (err) {
-                console.warn('Azure TTS fallback:', err.message);
+                if (attempt.engine === 'azure' && attempt.voiceName === 'google') {
+                    console.warn('Azure TTS fallback:', err.message);
+                } else if (attempt.label === 'azure-google-fallback') {
+                    console.warn('Azure TTS fallback after Google failure:', err.message);
+                } else if (attempt.label.includes('fallback')) {
+                    console.warn(`Fallback TTS attempt (${attempt.label}) failed:`, err.message);
+                } else {
+                    console.warn(`TTS attempt (${attempt.label}) failed:`, err.message);
+                }
             }
         }
+
         if (!audioResult) {
-            audioResult = {
-                buffer: await synthesizeWithGoogleTranslate(text, lang),
-                contentType: 'audio/mpeg',
-            };
+            throw new Error('TTS providers unavailable');
         }
 
         // 2) Bucket miss — upload to cache for next time (fire-and-forget so
         // the user doesn't wait for the round-trip).
-        ttsCachePut(cacheKey, audioResult.buffer, audioResult.contentType);
+        const canCacheAudio =
+            (voice === 'google' && provider === 'google-translate') ||
+            (voice !== 'google' && provider === 'azure');
+        if (canCacheAudio) ttsCachePut(cacheKey, audioResult.buffer, audioResult.contentType);
 
         res.set({
             'Content-Type': audioResult.contentType,

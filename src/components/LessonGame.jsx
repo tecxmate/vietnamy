@@ -256,6 +256,11 @@ const LessonGame = () => {
         if (text) speak(text);
     };
 
+    const getCompletedSentenceAudio = (exercise) => {
+        if (!exercise || !['reorder_words', 'translation_word_bank'].includes(exercise.exercise_type)) return '';
+        return exercise.prompt?.answer_vi || exercise.prompt?.answer_tokens?.join(' ') || '';
+    };
+
     // 🔔 Notify on answer streak milestones
     const notifiedStreakRef = useRef(0);
     useEffect(() => {
@@ -461,6 +466,8 @@ const LessonGame = () => {
 
         if (correct) {
             playSuccess();
+            const completedSentence = getCompletedSentenceAudio(currentEx);
+            if (completedSentence) setTimeout(() => speak(completedSentence), 300);
             setScore(s => s + 1);
             const newStreak = currentStreak + 1;
             setCurrentStreak(newStreak);

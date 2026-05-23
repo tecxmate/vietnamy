@@ -2,12 +2,15 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Globe, Clock, Target, Star, Play, Square } from 'lucide-react';
 import { useUser } from '../../context/UserContext';
 import { useAuth } from '../../context/AuthContext';
+import { buildTtsUrl } from '../../utils/speak';
 
 const VOICE_OPTIONS = [
-    { id: 'azure-north', name: 'Nam Minh', label: 'Northern (Hanoi)', desc: 'Crisp, broadcast-style — what you hear on national TV.', dialect: 'north' },
-    { id: 'azure-south', name: 'Hoài My', label: 'Southern (Saigon)', desc: 'Warm, melodic — the most common accent in cities.', dialect: 'south' },
-    { id: 'google', name: 'Universal', label: 'Neutral voice', desc: 'Works everywhere. Pick this if you want a mix.', dialect: 'both' },
+    { id: 'google', displayOrder: 1, displayName: 'Ms. Google - Northern Accent', dialect: 'north' },
+    { id: 'azure-south', displayOrder: 2, displayName: 'Hoài My · Southern Accent', dialect: 'south' },
+    { id: 'azure-north', displayOrder: 3, displayName: 'Nam Minh · Southern Accent', dialect: 'north' },
 ];
+
+const VOICE_OPTIONS_DISPLAY = [...VOICE_OPTIONS].sort((a, b) => a.displayOrder - b.displayOrder);
 
 const VOICE_SAMPLE = 'Xin chào! Tôi rất vui được làm quen với bạn.';
 
@@ -47,7 +50,7 @@ const OnboardingFlow = ({ onComplete, requireAuth = false }) => {
             setPlayingVoice(null);
             return;
         }
-        const url = `/api/tts?text=${encodeURIComponent(VOICE_SAMPLE)}&lang=vi&voice=${encodeURIComponent(voiceId)}`;
+        const url = buildTtsUrl(VOICE_SAMPLE, 'vi', voiceId);
         const audio = new Audio(url);
         audioRef.current = audio;
         setPlayingVoice(voiceId);
@@ -213,7 +216,7 @@ const OnboardingFlow = ({ onComplete, requireAuth = false }) => {
                 <p className="text-center" style={{ color: 'var(--text-muted)', marginBottom: 24 }}>
                     Tap ▶ to hear each one. Choose what sounds best to you.
                 </p>
-                {VOICE_OPTIONS.map(v => {
+                {VOICE_OPTIONS_DISPLAY.map(v => {
                     const selected = onboardingData.voiceId === v.id;
                     const isPlaying = playingVoice === v.id;
                     return (
@@ -236,8 +239,7 @@ const OnboardingFlow = ({ onComplete, requireAuth = false }) => {
                                 {isPlaying ? <Square size={18} fill="#fff" /> : <Play size={18} fill="#fff" style={{ marginLeft: 2 }} />}
                             </span>
                             <span style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 2, textAlign: 'left', flex: 1 }}>
-                                <span style={{ fontSize: 17, fontWeight: 700 }}>{v.name} <span style={{ fontSize: 13, fontWeight: 500, color: selected ? 'inherit' : 'var(--text-muted)' }}>· {v.label}</span></span>
-                                <span style={{ fontSize: 13, fontWeight: 400, color: selected ? 'inherit' : 'var(--text-muted)' }}>{v.desc}</span>
+                                <span style={{ fontSize: 17, fontWeight: 700 }}>{v.displayName}</span>
                             </span>
                         </button>
                     );

@@ -238,7 +238,12 @@ const UnitTest = () => {
 
         setIsCorrect(correct);
         setIsChecking(true);
-        if (correct) { playSuccess(); setScore(s => s + 1); }
+        if (correct) {
+            playSuccess();
+            const completedSentence = getCompletedSentenceAudio(currentEx);
+            if (completedSentence) setTimeout(() => speak(completedSentence), 300);
+            setScore(s => s + 1);
+        }
         else { playError(); if (!testMode) progressCtx.loseHeart(); }
     };
 
@@ -268,6 +273,11 @@ const UnitTest = () => {
     const handleRemoveOrderedWord = (index) => { if (!isChecking) { const t = [...orderedTokens]; t.splice(index, 1); setOrderedTokens(t); } };
 
     const handlePlayAudio = (text) => { if (text) speak(text); };
+
+    const getCompletedSentenceAudio = (exercise) => {
+        if (!exercise || !['reorder_words', 'translation_word_bank'].includes(exercise.exercise_type)) return '';
+        return exercise.prompt?.answer_vi || exercise.prompt?.answer_tokens?.join(' ') || '';
+    };
 
     useEffect(() => {
         const onKey = (e) => {

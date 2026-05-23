@@ -383,6 +383,9 @@ export default function GrammarUnitLesson() {
             setScore(s => s + 1);
             if (currentEx.exercise_type === 'fill_blank') {
                 speak(getFillBlankCorrectSentence(currentEx.prompt));
+            } else if (currentEx.exercise_type === 'reorder_words') {
+                const completedSentence = currentEx.prompt?.answer_vi || currentEx.prompt?.answer_tokens?.join(' ');
+                if (completedSentence) setTimeout(() => speak(completedSentence), 300);
             }
         }
         else { playError(); setHearts(h => Math.max(0, h - 1)); }
