@@ -198,8 +198,8 @@ const RoadmapMapper = () => {
     };
 
     return (
-        <div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 32 }}>
+        <div className="admin-roadmap">
+            <div className="admin-roadmap-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 32 }}>
                 <div>
                     <h1 style={{ fontSize: 32, margin: 0 }}>Roadmap Mapper</h1>
                     <span style={{ color: 'var(--text-muted)', fontSize: 14 }}>
@@ -212,7 +212,7 @@ const RoadmapMapper = () => {
             </div>
 
             {showAddUnit && (
-                <div className="glass-panel" style={{ marginBottom: 24, display: 'flex', gap: 16 }}>
+                <div className="glass-panel admin-roadmap-add-unit" style={{ marginBottom: 24, display: 'flex', gap: 16 }}>
                     <input
                         type="text"
                         placeholder="Unit Title (e.g. Food & Drink)"
@@ -231,9 +231,9 @@ const RoadmapMapper = () => {
                 {units.map(unit => {
                     const nodes = nodesMap[unit.id] || [];
                     return (
-                        <div key={unit.id} className="glass-panel" style={{ padding: 0, overflow: 'hidden' }}>
+                        <div key={unit.id} className="glass-panel admin-roadmap-unit" style={{ padding: 0, overflow: 'hidden' }}>
                             {/* Unit Header */}
-                            <div style={{ backgroundColor: 'var(--surface-color-light)', padding: '16px 20px', borderBottom: '1px solid var(--border-color)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                            <div className="admin-roadmap-unit-header" style={{ backgroundColor: 'var(--surface-color-light)', padding: '16px 20px', borderBottom: '1px solid var(--border-color)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                                 <div style={{ display: 'flex', alignItems: 'center', gap: 12, flex: 1 }}>
                                     <GripVertical size={20} color="var(--text-muted)" style={{ cursor: 'grab' }} />
                                     {editingUnit === unit.id ? (
@@ -265,7 +265,7 @@ const RoadmapMapper = () => {
                             </div>
 
                             {/* Node List */}
-                            <div style={{ padding: 20 }}>
+                            <div className="admin-roadmap-unit-body" style={{ padding: 20 }}>
                                 <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
                                     {nodes.map((node) => {
                                         const color = getModuleColor(node);
@@ -275,6 +275,7 @@ const RoadmapMapper = () => {
                                         return (
                                             <div
                                                 key={node.id}
+                                                className="admin-roadmap-node"
                                                 style={{
                                                     display: 'flex', alignItems: 'center', gap: 10,
                                                     padding: isMiniQuiz ? '6px 12px 6px 40px' : '10px 12px',
@@ -294,7 +295,7 @@ const RoadmapMapper = () => {
                                                 }} />
 
                                                 {/* Label */}
-                                                <div style={{ flex: 1, minWidth: 0 }}>
+                                                <div className="admin-roadmap-node-label" style={{ flex: 1, minWidth: 0 }}>
                                                     {editingNode === node.id ? (
                                                         <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
                                                             <input
@@ -327,7 +328,7 @@ const RoadmapMapper = () => {
                                                 </div>
 
                                                 {/* Type badge */}
-                                                <span style={{
+                                                <span className="admin-roadmap-node-badge" style={{
                                                     padding: '2px 8px', borderRadius: 4, fontSize: 11, fontWeight: 600,
                                                     backgroundColor: `${color}20`,
                                                     color: color,
@@ -337,7 +338,7 @@ const RoadmapMapper = () => {
                                                 </span>
 
                                                 {/* Content action */}
-                                                <div style={{ width: 56, textAlign: 'center', flexShrink: 0 }}>
+                                                <div className="admin-roadmap-node-content-action" style={{ width: 56, textAlign: 'center', flexShrink: 0 }}>
                                                     {contentAction ? (
                                                         <button
                                                             className="ghost"
@@ -353,7 +354,7 @@ const RoadmapMapper = () => {
 
                                                 {/* Actions (not for mini-quizzes) */}
                                                 {!isMiniQuiz && editingNode !== node.id && (
-                                                    <div style={{ display: 'flex', gap: 2, flexShrink: 0 }}>
+                                                    <div className="admin-roadmap-node-actions" style={{ display: 'flex', gap: 2, flexShrink: 0 }}>
                                                         <button style={s.iconBtn} onClick={() => handleMoveNode(unit.id, node.id, -1)} title="Move up"><ArrowUp size={14} /></button>
                                                         <button style={s.iconBtn} onClick={() => handleMoveNode(unit.id, node.id, 1)} title="Move down"><ArrowDown size={14} /></button>
                                                         <button style={s.iconBtn} onClick={() => startEditNode(node)} title="Rename"><Pencil size={14} /></button>
@@ -426,7 +427,7 @@ const RoadmapMapper = () => {
                                             )}
 
                                             {addType === 'grammar' && (
-                                                <div style={{ display: 'flex', gap: 12 }}>
+                                                <div className="admin-roadmap-grammar-grid" style={{ display: 'flex', gap: 12 }}>
                                                     <div style={{ flex: 1 }}>
                                                         <label style={{ fontSize: 12, color: 'var(--text-muted)', display: 'block', marginBottom: 4 }}>Level</label>
                                                         <select
@@ -470,7 +471,7 @@ const RoadmapMapper = () => {
                                         </div>
                                     </div>
                                 ) : (
-                                    <div style={{ marginTop: 16, display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+                                    <div className="admin-roadmap-add-node-row" style={{ marginTop: 16, display: 'flex', gap: 8, flexWrap: 'wrap' }}>
                                         {MODULE_TYPES.map(mt => (
                                             <button
                                                 key={mt.value}

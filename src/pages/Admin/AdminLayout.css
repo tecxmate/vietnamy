@@ -1,0 +1,481 @@
+.admin-shell {
+    --admin-sidebar-width: 280px;
+    --admin-sidebar-collapsed-width: 76px;
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    background: var(--bg-color);
+    color: var(--text-main);
+    overflow: hidden;
+}
+
+.admin-sidebar {
+    width: var(--admin-sidebar-width);
+    flex: 0 0 var(--admin-sidebar-width);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 18px;
+    background: var(--surface-color);
+    border-right: 1px solid var(--border-color);
+    transition: width 0.22s ease, flex-basis 0.22s ease, transform 0.22s ease;
+    z-index: 30;
+}
+
+.admin-sidebar-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 46px;
+}
+
+.admin-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+    flex: 1;
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 1.15;
+}
+
+.admin-brand-icon {
+    flex: 0 0 auto;
+    font-size: 24px;
+}
+
+.admin-brand-text,
+.admin-nav-label {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.admin-collapse-btn,
+.admin-mobile-close,
+.admin-mobile-menu {
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    background: var(--surface-color-light);
+    color: var(--text-main);
+    cursor: pointer;
+}
+
+.admin-mobile-close {
+    display: none;
+}
+
+.admin-nav-list {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-right: 2px;
+}
+
+.admin-nav-link,
+.admin-sidebar-btn,
+.admin-fresh-btn,
+.admin-back-btn {
+    min-height: 46px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    color: var(--text-main);
+    background: transparent;
+    border: 1px solid transparent;
+    padding: 11px 14px;
+    font: inherit;
+    font-size: 14px;
+    line-height: 1.2;
+    cursor: pointer;
+    text-align: left;
+}
+
+.admin-nav-link svg,
+.admin-sidebar-btn svg,
+.admin-fresh-btn svg,
+.admin-back-btn svg {
+    flex: 0 0 auto;
+}
+
+.admin-nav-link.active {
+    background: rgba(242, 107, 90, 0.12);
+    color: var(--primary-color);
+    font-weight: 800;
+}
+
+.admin-nav-divider {
+    height: 1px;
+    margin: 6px 0;
+    background: var(--border-color);
+}
+
+.admin-sidebar-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.admin-sidebar-btn {
+    width: 100%;
+    color: var(--text-muted);
+    border-color: var(--border-color);
+    background: transparent;
+    font-weight: 650;
+}
+
+.admin-fresh-btn {
+    width: 100%;
+    border-color: var(--primary-color);
+    background: rgba(242, 107, 90, 0.08);
+    color: var(--primary-color);
+    font-weight: 800;
+}
+
+.admin-back-btn {
+    width: 100%;
+    color: var(--text-muted);
+    justify-content: flex-start;
+}
+
+.admin-main {
+    flex: 1;
+    min-width: 0;
+    overflow-y: auto;
+    background: var(--bg-color);
+}
+
+.admin-main-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: var(--spacing-8);
+}
+
+.admin-mobile-topbar,
+.admin-sidebar-scrim {
+    display: none;
+}
+
+.admin-shell.sidebar-collapsed .admin-sidebar {
+    width: var(--admin-sidebar-collapsed-width);
+    flex-basis: var(--admin-sidebar-collapsed-width);
+    padding-inline: 12px;
+}
+
+.admin-shell.sidebar-collapsed .admin-brand-text,
+.admin-shell.sidebar-collapsed .admin-nav-label {
+    display: none;
+}
+
+.admin-shell.sidebar-collapsed .admin-brand,
+.admin-shell.sidebar-collapsed .admin-nav-link,
+.admin-shell.sidebar-collapsed .admin-sidebar-btn,
+.admin-shell.sidebar-collapsed .admin-fresh-btn,
+.admin-shell.sidebar-collapsed .admin-back-btn {
+    justify-content: center;
+}
+
+.admin-shell.sidebar-collapsed .admin-nav-link,
+.admin-shell.sidebar-collapsed .admin-sidebar-btn,
+.admin-shell.sidebar-collapsed .admin-fresh-btn,
+.admin-shell.sidebar-collapsed .admin-back-btn {
+    padding-inline: 0;
+}
+
+.admin-shell.sidebar-collapsed .admin-collapse-btn {
+    width: 100%;
+}
+
+@media (max-width: 760px) {
+    .admin-shell {
+        display: block;
+        height: 100dvh;
+        overflow: hidden;
+    }
+
+    .admin-sidebar {
+        position: fixed;
+        inset: 0 auto 0 0;
+        width: min(86vw, 340px);
+        flex-basis: auto;
+        padding: 16px;
+        transform: translateX(-105%);
+        box-shadow: 18px 0 40px rgba(0, 0, 0, 0.32);
+    }
+
+    .admin-shell.mobile-nav-open .admin-sidebar {
+        transform: translateX(0);
+    }
+
+    .admin-shell.mobile-nav-open .admin-sidebar-scrim {
+        display: block;
+        position: fixed;
+        inset: 0;
+        z-index: 20;
+        border: 0;
+        padding: 0;
+        background: rgba(0, 0, 0, 0.48);
+    }
+
+    .admin-collapse-btn {
+        display: none;
+    }
+
+    .admin-mobile-close {
+        display: inline-flex;
+    }
+
+    .admin-main {
+        height: 100dvh;
+        overflow-y: auto;
+    }
+
+    .admin-mobile-topbar {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-height: 64px;
+        padding: max(10px, env(safe-area-inset-top)) 14px 10px;
+        background: color-mix(in srgb, var(--bg-color) 92%, transparent);
+        border-bottom: 1px solid var(--border-color);
+        backdrop-filter: blur(16px);
+    }
+
+    .admin-mobile-title {
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+    }
+
+    .admin-mobile-title span {
+        color: var(--text-muted);
+        font-size: 12px;
+        font-weight: 650;
+    }
+
+    .admin-mobile-title strong {
+        max-width: calc(100vw - 90px);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        color: var(--text-main);
+        font-size: 17px;
+    }
+
+    .admin-main-inner {
+        max-width: none;
+        padding: 14px 12px 28px;
+    }
+}
+
+@media (max-width: 520px) {
+    .admin-nav-link,
+    .admin-sidebar-btn,
+    .admin-fresh-btn,
+    .admin-back-btn {
+        min-height: 44px;
+        padding: 10px 12px;
+    }
+}
+
+@media (max-width: 760px) {
+    .admin-roadmap-header {
+        align-items: stretch !important;
+        flex-direction: column;
+        gap: 14px;
+        margin-bottom: 18px !important;
+    }
+
+    .admin-roadmap-header h1 {
+        font-size: 24px !important;
+    }
+
+    .admin-roadmap-header > button,
+    .admin-roadmap-add-unit > button {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .admin-roadmap-add-unit {
+        flex-direction: column;
+    }
+
+    .admin-roadmap-unit-header {
+        align-items: flex-start !important;
+        gap: 10px;
+        padding: 14px !important;
+    }
+
+    .admin-roadmap-unit-header h3 {
+        font-size: 16px !important;
+        line-height: 1.35;
+    }
+
+    .admin-roadmap-unit-header h3 span {
+        display: block;
+        margin-left: 0 !important;
+        margin-top: 4px;
+    }
+
+    .admin-roadmap-unit-body {
+        padding: 12px !important;
+    }
+
+    .admin-roadmap-node {
+        align-items: flex-start !important;
+        flex-wrap: wrap;
+        gap: 8px !important;
+        padding: 10px !important;
+    }
+
+    .admin-roadmap-node-label {
+        flex: 1 1 calc(100% - 28px) !important;
+        order: 1;
+    }
+
+    .admin-roadmap-node-label > div {
+        align-items: flex-start !important;
+        flex-direction: column;
+        gap: 3px !important;
+    }
+
+    .admin-roadmap-node-label span {
+        max-width: 100%;
+    }
+
+    .admin-roadmap-node-badge {
+        order: 2;
+        margin-left: 18px;
+    }
+
+    .admin-roadmap-node-content-action {
+        order: 3;
+        width: auto !important;
+        min-height: 26px;
+        text-align: left !important;
+    }
+
+    .admin-roadmap-node-actions {
+        order: 4;
+        margin-left: auto;
+    }
+
+    .admin-roadmap-grammar-grid {
+        flex-direction: column;
+    }
+
+    .admin-roadmap-add-node-row {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .admin-roadmap-add-node-row > button {
+        width: 100%;
+        min-width: 0;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 390px) {
+    .admin-roadmap-add-node-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+.admin-shell.sidebar-collapsed .admin-sidebar-header {
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 12px;
+}
+
+.admin-shell.sidebar-collapsed .admin-brand {
+    flex: 0 0 auto;
+    justify-content: center;
+    width: 100%;
+}
+
+.admin-shell.sidebar-collapsed .admin-collapse-btn {
+    color: var(--primary-color);
+}
+
+.admin-collapse-btn svg,
+.admin-mobile-close svg,
+.admin-mobile-menu svg {
+    display: block;
+    stroke: currentColor;
+}
+
+.admin-collapse-icon {
+    position: relative;
+    width: 18px;
+    height: 14px;
+    display: block;
+}
+
+.admin-collapse-icon::before,
+.admin-collapse-icon::after {
+    content: '';
+    position: absolute;
+    top: 1px;
+    width: 9px;
+    height: 12px;
+    border: 2px solid currentColor;
+    box-sizing: border-box;
+}
+
+.admin-collapse-icon::before {
+    left: 0;
+    border-right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.admin-collapse-icon::after {
+    right: 0;
+    border-left: 0;
+    border-radius: 0 3px 3px 0;
+}
+
+.admin-collapse-btn::after {
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-top: 2px solid currentColor;
+    border-left: 2px solid currentColor;
+    transform: rotate(-45deg);
+    margin-left: -4px;
+}
+
+.admin-shell.sidebar-collapsed .admin-collapse-btn::after {
+    transform: rotate(135deg);
+    margin-left: -6px;
+}
+
+.admin-collapse-emoji {
+    display: block;
+    font-size: 22px;
+    line-height: 1;
+}
+
+.admin-collapse-icon,
+.admin-collapse-icon::before,
+.admin-collapse-icon::after,
+.admin-collapse-btn::after {
+    content: none !important;
+    display: none !important;
+}

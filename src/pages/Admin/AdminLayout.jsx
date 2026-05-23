@@ -1,8 +1,35 @@
-import React, { useRef } from 'react';
-import { NavLink, Outlet, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, BookText, Languages, LogOut, FileText, BookOpen, Music, Users, PenTool, FlaskConical, Download, Upload } from 'lucide-react';
+import React, { useRef, useState } from 'react';
+import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
+import {
+    LayoutDashboard, BookText, Languages, LogOut, FileText, BookOpen, Music,
+    Users, PenTool, FlaskConical, Download, Upload, Menu, X
+} from 'lucide-react';
 import { logoutAdmin } from '../../lib/adminAuth';
 import { exportDB, importDB } from '../../lib/storage/mockDbStore';
+import './AdminLayout.css';
+
+const NAV_ITEMS = [
+    { to: '/admin/mapper', label: 'Roadmap Mapper', icon: LayoutDashboard },
+    { to: '/admin/lesson', label: 'Lesson Builder', icon: BookText },
+    { to: '/admin/grammar', label: 'Grammar Editor', icon: Languages },
+    { divider: true },
+    { to: '/admin/articles', label: 'Articles', icon: FileText },
+    { to: '/admin/vocab', label: 'Vocabulary', icon: BookOpen },
+    { to: '/admin/tones', label: 'Tone Words', icon: Music },
+    { to: '/admin/drills', label: 'Drill Modules', icon: PenTool },
+    { to: '/admin/kinship', label: 'Kinship & Pronouns', icon: Users },
+];
+
+const PAGE_TITLES = {
+    '/admin/mapper': 'Roadmap Mapper',
+    '/admin/lesson': 'Lesson Builder',
+    '/admin/grammar': 'Grammar Editor',
+    '/admin/articles': 'Articles',
+    '/admin/vocab': 'Vocabulary',
+    '/admin/tones': 'Tone Words',
+    '/admin/drills': 'Drill Modules',
+    '/admin/kinship': 'Kinship & Pronouns',
+};
 
 const downloadJson = (data, filename) => {
     const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
@@ -32,7 +59,7 @@ const handleImport = async (file) => {
     try {
         const text = await file.text();
         importDB(JSON.parse(text));
-        alert('Import successful. Reloading…');
+        alert('Import successful. Reloading...');
         window.location.reload();
     } catch (err) {
         alert(`Import failed: ${err.message || err}`);
@@ -59,145 +86,61 @@ const openAsFreshStudent = (navigate) => {
 
 const AdminLayout = () => {
     const navigate = useNavigate();
+    const location = useLocation();
     const importInputRef = useRef(null);
-    const sidebarBtn = {
-        display: 'flex', alignItems: 'center', gap: 10,
-        padding: '8px 12px', borderRadius: 'var(--radius-md)',
-        border: '1px solid var(--border-color)', background: 'transparent',
-        color: 'var(--text-muted)', fontSize: 13, fontWeight: 600,
-        cursor: 'pointer', textAlign: 'left',
-    };
+    const [isCollapsed, setIsCollapsed] = useState(false);
+    const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
+    const pageTitle = PAGE_TITLES[location.pathname] || 'Admin';
+
+    const closeMobileNav = () => setIsMobileNavOpen(false);
+
+    const renderNavItems = () => NAV_ITEMS.map((item, index) => {
+        if (item.divider) return <div key={`divider-${index}`} className="admin-nav-divider" />;
+        const Icon = item.icon;
+        return (
+            <NavLink
+                key={item.to}
+                to={item.to}
+                className={({ isActive }) => `admin-nav-link${isActive ? ' active' : ''}`}
+                title={item.label}
+                onClick={closeMobileNav}
+            >
+                <Icon size={20} />
+                <span className="admin-nav-label">{item.label}</span>
+            </NavLink>
+        );
+    });
 
     return (
-        <div style={{ display: 'flex', height: '100vh', width: '100%', backgroundColor: 'var(--bg-color)', color: 'var(--text-main)', overflow: 'hidden' }}>
-            {/* Sidebar Navigation */}
-            <nav style={{ width: '250px', backgroundColor: 'var(--surface-color)', borderRight: '1px solid var(--border-color)', display: 'flex', flexDirection: 'column', padding: 'var(--spacing-4)' }}>
-                <h2 style={{ fontSize: 20, marginBottom: 32, display: 'flex', alignItems: 'center', gap: 8 }}>
-                    <span style={{ fontSize: 24 }}>⚙️</span> Vietnamy Admin
-                </h2>
+        <div className={`admin-shell${isCollapsed ? ' sidebar-collapsed' : ''}${isMobileNavOpen ? ' mobile-nav-open' : ''}`}>
+            <button className="admin-sidebar-scrim" type="button" aria-label="Close admin menu" onClick={closeMobileNav} />
 
-                <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 8 }}>
-                    <NavLink
-                        to="/admin/mapper"
-                        style={({ isActive }) => ({
-                            display: 'flex', alignItems: 'center', gap: 12, padding: '12px 16px',
-                            borderRadius: 'var(--radius-md)', textDecoration: 'none',
-                            backgroundColor: isActive ? 'rgba(242, 107, 90, 0.1)' : 'transparent',
-                            color: isActive ? 'var(--primary-color)' : 'var(--text-main)',
-                            fontWeight: isActive ? 700 : 400
-                        })}
+            <nav className="admin-sidebar" aria-label="Admin navigation">
+                <div className="admin-sidebar-header">
+                    <div className="admin-brand" title="Vietnamy Admin">
+                        <span className="admin-brand-text">Vietnamy Admin</span>
+                    </div>
+                    <button className="admin-mobile-close" type="button" aria-label="Close admin menu" onClick={closeMobileNav}>
+                        <X size={20} />
+                    </button>
+                    <button
+                        className="admin-collapse-btn"
+                        type="button"
+                        aria-label={isCollapsed ? 'Expand admin sidebar' : 'Collapse admin sidebar'}
+                        onClick={() => setIsCollapsed(value => !value)}
                     >
-                        <LayoutDashboard size={20} />
-                        Roadmap Mapper
-                    </NavLink>
-
-                    <NavLink
-                        to="/admin/lesson"
-                        style={({ isActive }) => ({
-                            display: 'flex', alignItems: 'center', gap: 12, padding: '12px 16px',
-                            borderRadius: 'var(--radius-md)', textDecoration: 'none',
-                            backgroundColor: isActive ? 'rgba(242, 107, 90, 0.1)' : 'transparent',
-                            color: isActive ? 'var(--primary-color)' : 'var(--text-main)',
-                            fontWeight: isActive ? 700 : 400
-                        })}
-                    >
-                        <BookText size={20} />
-                        Lesson Builder
-                    </NavLink>
-
-                    <NavLink
-                        to="/admin/grammar"
-                        style={({ isActive }) => ({
-                            display: 'flex', alignItems: 'center', gap: 12, padding: '12px 16px',
-                            borderRadius: 'var(--radius-md)', textDecoration: 'none',
-                            backgroundColor: isActive ? 'rgba(242, 107, 90, 0.1)' : 'transparent',
-                            color: isActive ? 'var(--primary-color)' : 'var(--text-main)',
-                            fontWeight: isActive ? 700 : 400
-                        })}
-                    >
-                        <Languages size={20} />
-                        Grammar Editor
-                    </NavLink>
-
-                    <div style={{ height: 1, backgroundColor: 'var(--border-color)', margin: '8px 0' }} />
-
-                    <NavLink
-                        to="/admin/articles"
-                        style={({ isActive }) => ({
-                            display: 'flex', alignItems: 'center', gap: 12, padding: '12px 16px',
-                            borderRadius: 'var(--radius-md)', textDecoration: 'none',
-                            backgroundColor: isActive ? 'rgba(242, 107, 90, 0.1)' : 'transparent',
-                            color: isActive ? 'var(--primary-color)' : 'var(--text-main)',
-                            fontWeight: isActive ? 700 : 400
-                        })}
-                    >
-                        <FileText size={20} />
-                        Articles
-                    </NavLink>
-
-                    <NavLink
-                        to="/admin/vocab"
-                        style={({ isActive }) => ({
-                            display: 'flex', alignItems: 'center', gap: 12, padding: '12px 16px',
-                            borderRadius: 'var(--radius-md)', textDecoration: 'none',
-                            backgroundColor: isActive ? 'rgba(242, 107, 90, 0.1)' : 'transparent',
-                            color: isActive ? 'var(--primary-color)' : 'var(--text-main)',
-                            fontWeight: isActive ? 700 : 400
-                        })}
-                    >
-                        <BookOpen size={20} />
-                        Vocabulary
-                    </NavLink>
-
-                    <NavLink
-                        to="/admin/tones"
-                        style={({ isActive }) => ({
-                            display: 'flex', alignItems: 'center', gap: 12, padding: '12px 16px',
-                            borderRadius: 'var(--radius-md)', textDecoration: 'none',
-                            backgroundColor: isActive ? 'rgba(242, 107, 90, 0.1)' : 'transparent',
-                            color: isActive ? 'var(--primary-color)' : 'var(--text-main)',
-                            fontWeight: isActive ? 700 : 400
-                        })}
-                    >
-                        <Music size={20} />
-                        Tone Words
-                    </NavLink>
-
-                    <NavLink
-                        to="/admin/drills"
-                        style={({ isActive }) => ({
-                            display: 'flex', alignItems: 'center', gap: 12, padding: '12px 16px',
-                            borderRadius: 'var(--radius-md)', textDecoration: 'none',
-                            backgroundColor: isActive ? 'rgba(242, 107, 90, 0.1)' : 'transparent',
-                            color: isActive ? 'var(--primary-color)' : 'var(--text-main)',
-                            fontWeight: isActive ? 700 : 400
-                        })}
-                    >
-                        <PenTool size={20} />
-                        Drill Modules
-                    </NavLink>
-
-                    <NavLink
-                        to="/admin/kinship"
-                        style={({ isActive }) => ({
-                            display: 'flex', alignItems: 'center', gap: 12, padding: '12px 16px',
-                            borderRadius: 'var(--radius-md)', textDecoration: 'none',
-                            backgroundColor: isActive ? 'rgba(242, 107, 90, 0.1)' : 'transparent',
-                            color: isActive ? 'var(--primary-color)' : 'var(--text-main)',
-                            fontWeight: isActive ? 700 : 400
-                        })}
-                    >
-                        <Users size={20} />
-                        Kinship & Pronouns
-                    </NavLink>
+                        <span className="admin-collapse-emoji" aria-hidden="true">⚙️</span>
+                    </button>
                 </div>
 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginBottom: 8 }}>
-                    <button onClick={handleExport} style={sidebarBtn} title="Download a JSON backup of your curriculum edits (units, lessons, exercises). Excludes student progress.">
-                        <Download size={16} /> Export edits
+                <div className="admin-nav-list">{renderNavItems()}</div>
+
+                <div className="admin-sidebar-actions">
+                    <button className="admin-sidebar-btn" onClick={handleExport} title="Download a JSON backup of your curriculum edits (units, lessons, exercises). Excludes student progress.">
+                        <Download size={16} /> <span className="admin-nav-label">Export edits</span>
                     </button>
-                    <button onClick={() => importInputRef.current?.click()} style={sidebarBtn} title="Restore curriculum edits from a previously exported JSON file. Replaces current edits.">
-                        <Upload size={16} /> Import edits
+                    <button className="admin-sidebar-btn" onClick={() => importInputRef.current?.click()} title="Restore curriculum edits from a previously exported JSON file. Replaces current edits.">
+                        <Upload size={16} /> <span className="admin-nav-label">Import edits</span>
                     </button>
                     <input
                         ref={importInputRef}
@@ -209,36 +152,38 @@ const AdminLayout = () => {
                 </div>
 
                 <button
+                    className="admin-fresh-btn"
                     onClick={() => openAsFreshStudent(navigate)}
                     title="Wipe progress (coins/hearts/streak/completed nodes) and open the app as a fresh student. Curriculum edits and user profile are preserved."
-                    style={{
-                        display: 'flex', alignItems: 'center', justifyContent: 'flex-start', gap: 12,
-                        padding: '12px 16px', marginBottom: 8,
-                        borderRadius: 'var(--radius-md)', border: '1px solid var(--primary-color)',
-                        background: 'rgba(242, 107, 90, 0.08)', color: 'var(--primary-color)',
-                        fontWeight: 700, fontSize: 14, cursor: 'pointer',
-                    }}
                 >
                     <FlaskConical size={20} />
-                    Test as fresh student
+                    <span className="admin-nav-label">Test as fresh student</span>
                 </button>
 
                 <button
-                    className="ghost"
+                    className="admin-back-btn"
                     onClick={() => {
                         logoutAdmin();
                         navigate('/');
                     }}
-                    style={{ display: 'flex', justifyContent: 'flex-start', color: 'var(--text-muted)' }}
+                    title="Back to App"
                 >
-                    <LogOut size={20} className="mr-2" />
-                    Back to App
+                    <LogOut size={20} />
+                    <span className="admin-nav-label">Back to App</span>
                 </button>
             </nav>
 
-            {/* Main Content Area */}
-            <main style={{ flex: 1, overflowY: 'auto', padding: 'var(--spacing-8)' }}>
-                <div style={{ maxWidth: 1000, margin: '0 auto' }}>
+            <main className="admin-main">
+                <header className="admin-mobile-topbar">
+                    <button className="admin-mobile-menu" type="button" aria-label="Open admin menu" onClick={() => setIsMobileNavOpen(true)}>
+                        <Menu size={22} />
+                    </button>
+                    <div className="admin-mobile-title">
+                        <span>Vietnamy Admin</span>
+                        <strong>{pageTitle}</strong>
+                    </div>
+                </header>
+                <div className="admin-main-inner">
                     <Outlet />
                 </div>
             </main>
