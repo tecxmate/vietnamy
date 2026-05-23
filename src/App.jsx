@@ -15,6 +15,7 @@ import BottomNav from './components/BottomNav';
 import { NotificationToastStack, NotificationPanel } from './components/NotificationToast';
 import TopBar from './components/TopBar';
 import InstallPrompt from './components/InstallPrompt';
+import { installGlobalHaptics } from './utils/haptics';
 
 const HomeTab = lazy(() => import('./components/Tabs/HomeTab'));
 const OnboardingFlow = lazy(() => import('./components/Onboarding/OnboardingFlow'));
@@ -392,6 +393,8 @@ function AppRoutes() {
 }
 
 function App() {
+  React.useEffect(() => installGlobalHaptics(), []);
+
   return (
     <AuthProvider>
     <LanguageProvider>

@@ -1,6 +1,7 @@
 // UI Sound Effects via snd-lib (SND01 "sine" kit)
 // Does NOT play when TTS or mic recording is active to avoid conflicts.
 import Snd from 'snd-lib';
+import { haptic } from './haptics';
 
 const STORAGE_KEY = 'vnme_sound_enabled';
 
@@ -31,16 +32,16 @@ function play(sound) {
 
 // ─── Public API ──────────────────────────────────────────────────────────────
 
-export const playSuccess     = () => play(Snd.SOUNDS.TOGGLE_ON);
-export const playError       = () => play(Snd.SOUNDS.TOGGLE_OFF);
-export const playCelebration = () => play(Snd.SOUNDS.CELEBRATION);
-export const playNotification= () => play(Snd.SOUNDS.NOTIFICATION);
-export const playButton      = () => play(Snd.SOUNDS.BUTTON);
-export const playSelect      = () => play(Snd.SOUNDS.SELECT);
-export const playTap         = () => play(Snd.SOUNDS.TAP);
-export const playDisabled    = () => play(Snd.SOUNDS.DISABLED);
-export const playToggleOn    = () => play(Snd.SOUNDS.TOGGLE_ON);
-export const playToggleOff   = () => play(Snd.SOUNDS.TOGGLE_OFF);
+export const playSuccess     = () => { haptic('success'); play(Snd.SOUNDS.TOGGLE_ON); };
+export const playError       = () => { haptic('error'); play(Snd.SOUNDS.TOGGLE_OFF); };
+export const playCelebration = () => { haptic('success'); play(Snd.SOUNDS.CELEBRATION); };
+export const playNotification= () => { haptic('notification'); play(Snd.SOUNDS.NOTIFICATION); };
+export const playButton      = () => { haptic('tap'); play(Snd.SOUNDS.BUTTON); };
+export const playSelect      = () => { haptic('select'); play(Snd.SOUNDS.SELECT); };
+export const playTap         = () => { haptic('tap'); play(Snd.SOUNDS.TAP); };
+export const playDisabled    = () => { haptic('disabled'); play(Snd.SOUNDS.DISABLED); };
+export const playToggleOn    = () => { haptic('select'); play(Snd.SOUNDS.TOGGLE_ON); };
+export const playToggleOff   = () => { haptic('select'); play(Snd.SOUNDS.TOGGLE_OFF); };
 export const playTransitionUp   = () => play(Snd.SOUNDS.TRANSITION_UP);
 export const playTransitionDown = () => play(Snd.SOUNDS.TRANSITION_DOWN);
 
