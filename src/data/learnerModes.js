@@ -66,7 +66,7 @@ export const LEARNER_MODES = {
         id: 'professional',
         label: 'Professional',
         description: 'For business and work in Vietnam',
-        enabled: false,
+        enabled: true,
         icon: 'Briefcase',
         color: '#A78BFA',
         topics: [
@@ -86,7 +86,7 @@ export const LEARNER_MODES = {
         id: 'heritage',
         label: 'Heritage',
         description: 'For connecting with Vietnamese roots and family',
-        enabled: false,
+        enabled: true,
         icon: 'Heart',
         color: '#F26B5A',
         topics: [

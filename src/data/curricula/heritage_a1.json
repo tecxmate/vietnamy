@@ -1,0 +1,289 @@
+{
+  "meta": {
+    "mode": "heritage",
+    "chapter": "a1",
+    "version": "1.0.0",
+    "generated": "2026-05-24T00:00:00.000Z",
+    "source": "authored",
+    "stats": { "units": 3, "lessons": 10, "vocabulary": 80, "sentences": 40, "conversations": 10, "grammarTags": 0 },
+    "notes": "A1 starter chapter for the Heritage path. Aimed at Vietnamese diaspora learners reconnecting with family language. Emphasizes kinship pronouns, home life, food, and traditions."
+  },
+  "units": [
+    { "id": "hu1_family_roots", "order": 1, "title": "Family Roots", "description": "Self-introduction, basic greetings, and naming family relationships." },
+    { "id": "hu2_home_life", "order": 2, "title": "Home Life", "description": "Daily life at home, chores, and cooking together." },
+    { "id": "hu3_culture", "order": 3, "title": "Culture", "description": "Traditions, holidays, ancestors, and family stories." }
+  ],
+  "lessons": [
+    {
+      "id": "her_lesson_1", "unit": "hu1_family_roots", "title": "Family Basics", "nodeId": "hu1_L1", "quizId": "hu1_Q1", "quizLabel": "Family Basics Quiz", "nodeIndex": 1, "difficulty": 2, "cefr": "A1", "xp": 10, "topic": "basics", "focus": ["self_intro", "origin"],
+      "words": [
+        { "id": "hr_w_001", "vi": "Quê", "en": "Hometown / homeland", "pos": "noun", "difficulty": 2, "frequency": 3001 },
+        { "id": "hr_w_002", "vi": "Người Việt", "en": "Vietnamese person", "pos": "noun", "difficulty": 2, "frequency": 3002 },
+        { "id": "hr_w_003", "vi": "Gốc", "en": "Roots / origin", "pos": "noun", "difficulty": 2, "frequency": 3003 },
+        { "id": "hr_w_004", "vi": "Sinh ra", "en": "To be born", "pos": "verb", "difficulty": 2, "frequency": 3004 },
+        { "id": "hr_w_005", "vi": "Lớn lên", "en": "To grow up", "pos": "verb", "difficulty": 2, "frequency": 3005 },
+        { "id": "hr_w_006", "vi": "Tiếng Việt", "en": "Vietnamese (language)", "pos": "noun", "difficulty": 2, "frequency": 3006 },
+        { "id": "hr_w_007", "vi": "Học", "en": "To learn", "pos": "verb", "difficulty": 1, "frequency": 3007 },
+        { "id": "hr_w_008", "vi": "Lại", "en": "Again", "pos": "adverb", "difficulty": 2, "frequency": 3008 }
+      ],
+      "sentences": [
+        { "id": "hr_s_001", "vi": "Quê tôi ở miền Nam.", "en": "My hometown is in the South.", "accepted": ["My hometown is in the South."], "tokens": 5, "difficulty": 2 },
+        { "id": "hr_s_002", "vi": "Tôi gốc Việt, sinh ra ở Mỹ.", "en": "I'm Vietnamese, born in America.", "accepted": ["I'm Vietnamese, born in America."], "tokens": 7, "difficulty": 2 },
+        { "id": "hr_s_003", "vi": "Tôi muốn học tiếng Việt lại.", "en": "I want to learn Vietnamese again.", "accepted": ["I want to learn Vietnamese again."], "tokens": 6, "difficulty": 2 },
+        { "id": "hr_s_004", "vi": "Tôi lớn lên ở nước ngoài.", "en": "I grew up abroad.", "accepted": ["I grew up abroad."], "tokens": 6, "difficulty": 2 }
+      ],
+      "conversations": [
+        { "id": "HCV001", "title": "Meeting a relative", "context": "Greeting an older relative for the first time as an adult.", "lines": [
+          { "speaker": "Aunt", "vi": "Con sinh ra ở đâu vậy?", "en": "Where were you born, dear?" },
+          { "speaker": "You", "vi": "Dạ con sinh ở Mỹ ạ.", "en": "I was born in America." },
+          { "speaker": "Aunt", "vi": "Con nói tiếng Việt được không?", "en": "Can you speak Vietnamese?" },
+          { "speaker": "You", "vi": "Dạ con đang học lại ạ.", "en": "I'm learning it again." }
+        ]}
+      ]
+    },
+    {
+      "id": "her_lesson_2", "unit": "hu1_family_roots", "title": "Greetings at Home", "nodeId": "hu1_L2", "quizId": "hu1_Q2", "quizLabel": "Greetings Quiz", "nodeIndex": 2, "difficulty": 2, "cefr": "A1", "xp": 10, "topic": "greetings", "focus": ["family", "respect"],
+      "words": [
+        { "id": "hr_w_009", "vi": "Chào bố", "en": "Hi Dad", "pos": "phrase", "difficulty": 2, "frequency": 3009 },
+        { "id": "hr_w_010", "vi": "Chào mẹ", "en": "Hi Mom", "pos": "phrase", "difficulty": 2, "frequency": 3010 },
+        { "id": "hr_w_011", "vi": "Thưa", "en": "Respectful address (to elders)", "pos": "phrase", "difficulty": 3, "frequency": 3011 },
+        { "id": "hr_w_012", "vi": "Khỏe không", "en": "Are you well?", "pos": "phrase", "difficulty": 2, "frequency": 3012 },
+        { "id": "hr_w_013", "vi": "Lâu rồi", "en": "It's been a while", "pos": "phrase", "difficulty": 2, "frequency": 3013 },
+        { "id": "hr_w_014", "vi": "Nhớ", "en": "To miss", "pos": "verb", "difficulty": 2, "frequency": 3014 },
+        { "id": "hr_w_015", "vi": "Thăm", "en": "To visit", "pos": "verb", "difficulty": 2, "frequency": 3015 },
+        { "id": "hr_w_016", "vi": "Về", "en": "To return / go back", "pos": "verb", "difficulty": 2, "frequency": 3016 }
+      ],
+      "sentences": [
+        { "id": "hr_s_005", "vi": "Thưa bà, con mới về.", "en": "Hello grandma, I just got back.", "accepted": ["Hello grandma, I just got back."], "tokens": 6, "difficulty": 2 },
+        { "id": "hr_s_006", "vi": "Lâu rồi không gặp mẹ.", "en": "It's been a while since I saw you, Mom.", "accepted": ["It's been a while since I saw you, Mom."], "tokens": 5, "difficulty": 2 },
+        { "id": "hr_s_007", "vi": "Con nhớ ông bà lắm.", "en": "I miss you, Grandma and Grandpa.", "accepted": ["I miss you, Grandma and Grandpa."], "tokens": 5, "difficulty": 2 },
+        { "id": "hr_s_008", "vi": "Năm nay con về thăm gia đình.", "en": "This year I'm visiting family.", "accepted": ["This year I'm visiting family."], "tokens": 7, "difficulty": 2 }
+      ],
+      "conversations": [
+        { "id": "HCV002", "title": "Coming home", "context": "Returning to visit family after a long time.", "lines": [
+          { "speaker": "You", "vi": "Thưa bà, con về thăm bà ạ.", "en": "Grandma, I came to visit." },
+          { "speaker": "Grandma", "vi": "Trời ơi, con lớn quá rồi!", "en": "Oh my, you've grown so much!" },
+          { "speaker": "You", "vi": "Bà khỏe không ạ?", "en": "Are you well, Grandma?" },
+          { "speaker": "Grandma", "vi": "Bà khỏe, vào nhà ăn cơm.", "en": "I'm fine, come in and eat." }
+        ]}
+      ]
+    },
+    {
+      "id": "her_lesson_3", "unit": "hu1_family_roots", "title": "Immediate Family", "nodeId": "hu1_L3", "quizId": "hu1_Q3", "quizLabel": "Family Quiz", "nodeIndex": 3, "difficulty": 2, "cefr": "A1", "xp": 12, "topic": "family", "focus": ["parents", "siblings"],
+      "words": [
+        { "id": "hr_w_017", "vi": "Bố / Ba", "en": "Father (North / South)", "pos": "noun", "difficulty": 1, "frequency": 3017 },
+        { "id": "hr_w_018", "vi": "Mẹ / Má", "en": "Mother (North / South)", "pos": "noun", "difficulty": 1, "frequency": 3018 },
+        { "id": "hr_w_019", "vi": "Anh trai", "en": "Older brother", "pos": "noun", "difficulty": 2, "frequency": 3019 },
+        { "id": "hr_w_020", "vi": "Chị gái", "en": "Older sister", "pos": "noun", "difficulty": 2, "frequency": 3020 },
+        { "id": "hr_w_021", "vi": "Em trai", "en": "Younger brother", "pos": "noun", "difficulty": 2, "frequency": 3021 },
+        { "id": "hr_w_022", "vi": "Em gái", "en": "Younger sister", "pos": "noun", "difficulty": 2, "frequency": 3022 },
+        { "id": "hr_w_023", "vi": "Con", "en": "Child", "pos": "noun", "difficulty": 1, "frequency": 3023 },
+        { "id": "hr_w_024", "vi": "Cha mẹ", "en": "Parents", "pos": "noun", "difficulty": 2, "frequency": 3024 }
+      ],
+      "sentences": [
+        { "id": "hr_s_009", "vi": "Bố tôi là người miền Trung.", "en": "My father is from central Vietnam.", "accepted": ["My father is from central Vietnam."], "tokens": 6, "difficulty": 2 },
+        { "id": "hr_s_010", "vi": "Tôi có một anh trai.", "en": "I have one older brother.", "accepted": ["I have one older brother."], "tokens": 5, "difficulty": 2 },
+        { "id": "hr_s_011", "vi": "Em gái tôi mười tuổi.", "en": "My younger sister is ten.", "accepted": ["My younger sister is ten."], "tokens": 5, "difficulty": 2 },
+        { "id": "hr_s_012", "vi": "Cha mẹ tôi vẫn ở Việt Nam.", "en": "My parents still live in Vietnam.", "accepted": ["My parents still live in Vietnam."], "tokens": 7, "difficulty": 2 }
+      ],
+      "conversations": [
+        { "id": "HCV003", "title": "Family photos", "context": "Showing family photos to a cousin.", "lines": [
+          { "speaker": "You", "vi": "Đây là bố mẹ tôi.", "en": "These are my parents." },
+          { "speaker": "Cousin", "vi": "Còn đây ai vậy?", "en": "And who is this?" },
+          { "speaker": "You", "vi": "Đây là anh trai và em gái.", "en": "My older brother and younger sister." },
+          { "speaker": "Cousin", "vi": "Cả nhà giống nhau quá!", "en": "Your whole family looks alike!" }
+        ]}
+      ]
+    },
+    {
+      "id": "her_lesson_4", "unit": "hu1_family_roots", "title": "Kinship Terms", "nodeId": "hu1_L4", "quizId": "hu1_Q4", "quizLabel": "Kinship Quiz", "nodeIndex": 4, "difficulty": 3, "cefr": "A1", "xp": 15, "topic": "kinship", "focus": ["extended_family", "address"],
+      "words": [
+        { "id": "hr_w_025", "vi": "Ông", "en": "Grandfather", "pos": "noun", "difficulty": 2, "frequency": 3025 },
+        { "id": "hr_w_026", "vi": "Bà", "en": "Grandmother", "pos": "noun", "difficulty": 2, "frequency": 3026 },
+        { "id": "hr_w_027", "vi": "Cô", "en": "Aunt (father's younger sister)", "pos": "noun", "difficulty": 3, "frequency": 3027 },
+        { "id": "hr_w_028", "vi": "Chú", "en": "Uncle (father's younger brother)", "pos": "noun", "difficulty": 3, "frequency": 3028 },
+        { "id": "hr_w_029", "vi": "Bác", "en": "Aunt/Uncle (older than parent)", "pos": "noun", "difficulty": 3, "frequency": 3029 },
+        { "id": "hr_w_030", "vi": "Dì", "en": "Aunt (mother's sister)", "pos": "noun", "difficulty": 3, "frequency": 3030 },
+        { "id": "hr_w_031", "vi": "Cậu", "en": "Uncle (mother's brother)", "pos": "noun", "difficulty": 3, "frequency": 3031 },
+        { "id": "hr_w_032", "vi": "Họ hàng", "en": "Relatives", "pos": "noun", "difficulty": 3, "frequency": 3032 }
+      ],
+      "sentences": [
+        { "id": "hr_s_013", "vi": "Chào cô, con là cháu của chú Nam.", "en": "Hello, I'm Uncle Nam's nephew.", "accepted": ["Hello, I'm Uncle Nam's nephew."], "tokens": 8, "difficulty": 3 },
+        { "id": "hr_s_014", "vi": "Bác đi đâu vậy ạ?", "en": "Where are you going, Bác?", "accepted": ["Where are you going, Bác?"], "tokens": 5, "difficulty": 3 },
+        { "id": "hr_s_015", "vi": "Họ hàng tôi đông lắm.", "en": "My relatives are many.", "accepted": ["My relatives are many."], "tokens": 5, "difficulty": 3 },
+        { "id": "hr_s_016", "vi": "Cậu Tư ở quê dưới.", "en": "Uncle Tu (mother's brother) is in the countryside.", "accepted": ["Uncle Tu lives in the countryside."], "tokens": 6, "difficulty": 3 }
+      ],
+      "conversations": [
+        { "id": "HCV004", "title": "Family reunion", "context": "Trying to remember who's who at a big family gathering.", "lines": [
+          { "speaker": "You", "vi": "Mẹ ơi, ai vậy?", "en": "Mom, who's that?" },
+          { "speaker": "Mom", "vi": "Đó là dì Hai, em mẹ.", "en": "That's Aunt Hai, my younger sister." },
+          { "speaker": "You", "vi": "Con phải gọi là dì hả?", "en": "I should call her dì?" },
+          { "speaker": "Mom", "vi": "Đúng rồi, lại chào dì đi.", "en": "Yes, go say hi to her." }
+        ]}
+      ]
+    },
+    {
+      "id": "her_lesson_5", "unit": "hu2_home_life", "title": "At Home", "nodeId": "hu2_L5", "quizId": "hu2_Q5", "quizLabel": "Home Quiz", "nodeIndex": 1, "difficulty": 2, "cefr": "A1", "xp": 12, "topic": "home", "focus": ["rooms", "chores"],
+      "words": [
+        { "id": "hr_w_033", "vi": "Nhà", "en": "House / home", "pos": "noun", "difficulty": 1, "frequency": 3033 },
+        { "id": "hr_w_034", "vi": "Phòng khách", "en": "Living room", "pos": "noun", "difficulty": 2, "frequency": 3034 },
+        { "id": "hr_w_035", "vi": "Nhà bếp", "en": "Kitchen", "pos": "noun", "difficulty": 2, "frequency": 3035 },
+        { "id": "hr_w_036", "vi": "Quét nhà", "en": "Sweep the house", "pos": "phrase", "difficulty": 2, "frequency": 3036 },
+        { "id": "hr_w_037", "vi": "Rửa chén", "en": "Wash dishes", "pos": "phrase", "difficulty": 2, "frequency": 3037 },
+        { "id": "hr_w_038", "vi": "Dọn", "en": "To tidy / clean", "pos": "verb", "difficulty": 2, "frequency": 3038 },
+        { "id": "hr_w_039", "vi": "Giặt đồ", "en": "Do laundry", "pos": "phrase", "difficulty": 2, "frequency": 3039 },
+        { "id": "hr_w_040", "vi": "Phụ", "en": "To help", "pos": "verb", "difficulty": 2, "frequency": 3040 }
+      ],
+      "sentences": [
+        { "id": "hr_s_017", "vi": "Con phụ mẹ rửa chén nhé.", "en": "I'll help you wash dishes, Mom.", "accepted": ["I'll help you wash dishes, Mom."], "tokens": 6, "difficulty": 2 },
+        { "id": "hr_s_018", "vi": "Sáng nay ai quét nhà?", "en": "Who swept the house this morning?", "accepted": ["Who swept the house this morning?"], "tokens": 5, "difficulty": 2 },
+        { "id": "hr_s_019", "vi": "Em dọn phòng khách rồi ạ.", "en": "I already tidied the living room.", "accepted": ["I already tidied the living room."], "tokens": 6, "difficulty": 2 },
+        { "id": "hr_s_020", "vi": "Chiều nay con giặt đồ.", "en": "I'll do laundry this afternoon.", "accepted": ["I'll do laundry this afternoon."], "tokens": 5, "difficulty": 2 }
+      ],
+      "conversations": [
+        { "id": "HCV005", "title": "Helping at home", "context": "Helping out around the house.", "lines": [
+          { "speaker": "Mom", "vi": "Con ơi, phụ mẹ một tay.", "en": "Sweetie, give me a hand." },
+          { "speaker": "You", "vi": "Dạ con làm gì ạ?", "en": "Sure, what should I do?" },
+          { "speaker": "Mom", "vi": "Con rửa chén giùm mẹ nhé.", "en": "Please wash the dishes for me." },
+          { "speaker": "You", "vi": "Dạ được, con làm liền.", "en": "Sure, I'll do it now." }
+        ]}
+      ]
+    },
+    {
+      "id": "her_lesson_6", "unit": "hu2_home_life", "title": "Cooking Together", "nodeId": "hu2_L6", "quizId": "hu2_Q6", "quizLabel": "Cooking Quiz", "nodeIndex": 2, "difficulty": 3, "cefr": "A1", "xp": 15, "topic": "cooking", "focus": ["recipes", "kitchen"],
+      "words": [
+        { "id": "hr_w_041", "vi": "Nấu ăn", "en": "To cook", "pos": "verb", "difficulty": 2, "frequency": 3041 },
+        { "id": "hr_w_042", "vi": "Công thức", "en": "Recipe", "pos": "noun", "difficulty": 3, "frequency": 3042 },
+        { "id": "hr_w_043", "vi": "Nguyên liệu", "en": "Ingredient", "pos": "noun", "difficulty": 3, "frequency": 3043 },
+        { "id": "hr_w_044", "vi": "Nước mắm", "en": "Fish sauce", "pos": "noun", "difficulty": 2, "frequency": 3044 },
+        { "id": "hr_w_045", "vi": "Gạo", "en": "Rice (uncooked)", "pos": "noun", "difficulty": 2, "frequency": 3045 },
+        { "id": "hr_w_046", "vi": "Nồi cơm", "en": "Rice cooker", "pos": "noun", "difficulty": 3, "frequency": 3046 },
+        { "id": "hr_w_047", "vi": "Nêm", "en": "To season", "pos": "verb", "difficulty": 3, "frequency": 3047 },
+        { "id": "hr_w_048", "vi": "Vừa miệng", "en": "Tastes right", "pos": "phrase", "difficulty": 3, "frequency": 3048 }
+      ],
+      "sentences": [
+        { "id": "hr_s_021", "vi": "Mẹ ơi, công thức làm phở thế nào?", "en": "Mom, how do you make pho?", "accepted": ["Mom, how do you make pho?"], "tokens": 7, "difficulty": 3 },
+        { "id": "hr_s_022", "vi": "Cho thêm chút nước mắm.", "en": "Add a bit of fish sauce.", "accepted": ["Add a bit of fish sauce."], "tokens": 5, "difficulty": 3 },
+        { "id": "hr_s_023", "vi": "Vo gạo rồi bỏ vào nồi cơm.", "en": "Rinse the rice, then put it in the cooker.", "accepted": ["Rinse the rice, then put it in the cooker."], "tokens": 7, "difficulty": 3 },
+        { "id": "hr_s_024", "vi": "Vừa miệng chưa con thử xem.", "en": "Taste it and see if it's right.", "accepted": ["Taste it and see if it's right."], "tokens": 6, "difficulty": 3 }
+      ],
+      "conversations": [
+        { "id": "HCV006", "title": "Learning Mom's recipe", "context": "Asking mom how to cook a family dish.", "lines": [
+          { "speaker": "You", "vi": "Mẹ chỉ con nấu canh chua đi.", "en": "Mom, teach me to cook sour soup." },
+          { "speaker": "Mom", "vi": "Nguyên liệu thì cá, dứa, cà chua.", "en": "Ingredients are fish, pineapple, tomato." },
+          { "speaker": "You", "vi": "Nêm sao cho vừa miệng vậy?", "en": "How do I season it just right?" },
+          { "speaker": "Mom", "vi": "Nêm từ từ, nếm rồi nêm tiếp.", "en": "Season gradually, taste, then more." }
+        ]}
+      ]
+    },
+    {
+      "id": "her_lesson_7", "unit": "hu3_culture", "title": "Traditions", "nodeId": "hu3_L7", "quizId": "hu3_Q7", "quizLabel": "Traditions Quiz", "nodeIndex": 1, "difficulty": 3, "cefr": "A1", "xp": 15, "topic": "traditions", "focus": ["custom", "respect"],
+      "words": [
+        { "id": "hr_w_049", "vi": "Truyền thống", "en": "Tradition", "pos": "noun", "difficulty": 3, "frequency": 3049 },
+        { "id": "hr_w_050", "vi": "Phong tục", "en": "Custom", "pos": "noun", "difficulty": 3, "frequency": 3050 },
+        { "id": "hr_w_051", "vi": "Cưới hỏi", "en": "Wedding (traditional)", "pos": "noun", "difficulty": 3, "frequency": 3051 },
+        { "id": "hr_w_052", "vi": "Áo dài", "en": "Áo dài (traditional dress)", "pos": "noun", "difficulty": 2, "frequency": 3052 },
+        { "id": "hr_w_053", "vi": "Lễ", "en": "Ceremony", "pos": "noun", "difficulty": 3, "frequency": 3053 },
+        { "id": "hr_w_054", "vi": "Kính trọng", "en": "To respect", "pos": "verb", "difficulty": 3, "frequency": 3054 },
+        { "id": "hr_w_055", "vi": "Mâm cúng", "en": "Offering tray", "pos": "noun", "difficulty": 4, "frequency": 3055 },
+        { "id": "hr_w_056", "vi": "Hương", "en": "Incense", "pos": "noun", "difficulty": 3, "frequency": 3056 }
+      ],
+      "sentences": [
+        { "id": "hr_s_025", "vi": "Đám cưới truyền thống rất đẹp.", "en": "Traditional weddings are beautiful.", "accepted": ["Traditional weddings are beautiful."], "tokens": 5, "difficulty": 3 },
+        { "id": "hr_s_026", "vi": "Con mặc áo dài đi lễ.", "en": "I'll wear an áo dài to the ceremony.", "accepted": ["I'll wear an áo dài to the ceremony."], "tokens": 6, "difficulty": 3 },
+        { "id": "hr_s_027", "vi": "Phong tục mỗi miền khác nhau.", "en": "Customs differ by region.", "accepted": ["Customs differ by region."], "tokens": 5, "difficulty": 3 },
+        { "id": "hr_s_028", "vi": "Người Việt rất kính trọng người lớn.", "en": "Vietnamese deeply respect elders.", "accepted": ["Vietnamese deeply respect elders."], "tokens": 6, "difficulty": 3 }
+      ],
+      "conversations": [
+        { "id": "HCV007", "title": "Wedding customs", "context": "Asking a parent about wedding traditions.", "lines": [
+          { "speaker": "You", "vi": "Đám cưới quê mình có gì khác?", "en": "What's different about weddings back home?" },
+          { "speaker": "Mom", "vi": "Có lễ ăn hỏi trước, rồi mới cưới.", "en": "There's the engagement ceremony first, then the wedding." },
+          { "speaker": "You", "vi": "Mặc áo dài hết hả mẹ?", "en": "Does everyone wear áo dài?" },
+          { "speaker": "Mom", "vi": "Cô dâu chú rể chắc chắn rồi.", "en": "The bride and groom definitely do." }
+        ]}
+      ]
+    },
+    {
+      "id": "her_lesson_8", "unit": "hu3_culture", "title": "Holidays", "nodeId": "hu3_L8", "quizId": "hu3_Q8", "quizLabel": "Holidays Quiz", "nodeIndex": 2, "difficulty": 3, "cefr": "A1", "xp": 15, "topic": "holidays", "focus": ["tet", "celebration"],
+      "words": [
+        { "id": "hr_w_057", "vi": "Tết", "en": "Lunar New Year", "pos": "noun", "difficulty": 2, "frequency": 3057 },
+        { "id": "hr_w_058", "vi": "Lì xì", "en": "Lucky money envelope", "pos": "noun", "difficulty": 3, "frequency": 3058 },
+        { "id": "hr_w_059", "vi": "Bánh chưng", "en": "Square sticky rice cake", "pos": "noun", "difficulty": 3, "frequency": 3059 },
+        { "id": "hr_w_060", "vi": "Trung Thu", "en": "Mid-Autumn Festival", "pos": "noun", "difficulty": 3, "frequency": 3060 },
+        { "id": "hr_w_061", "vi": "Bánh trung thu", "en": "Mooncake", "pos": "noun", "difficulty": 3, "frequency": 3061 },
+        { "id": "hr_w_062", "vi": "Chúc Tết", "en": "Tet greeting", "pos": "phrase", "difficulty": 3, "frequency": 3062 },
+        { "id": "hr_w_063", "vi": "Sum họp", "en": "To gather (family)", "pos": "verb", "difficulty": 3, "frequency": 3063 },
+        { "id": "hr_w_064", "vi": "An khang", "en": "Peace and well-being", "pos": "phrase", "difficulty": 4, "frequency": 3064 }
+      ],
+      "sentences": [
+        { "id": "hr_s_029", "vi": "Năm nay con về quê ăn Tết.", "en": "This year I'll come home for Tet.", "accepted": ["This year I'll come home for Tet."], "tokens": 7, "difficulty": 3 },
+        { "id": "hr_s_030", "vi": "Bà gói bánh chưng giỏi lắm.", "en": "Grandma makes great bánh chưng.", "accepted": ["Grandma makes great bánh chưng."], "tokens": 5, "difficulty": 3 },
+        { "id": "hr_s_031", "vi": "Chúc gia đình an khang thịnh vượng.", "en": "Wishing the family peace and prosperity.", "accepted": ["Wishing the family peace and prosperity."], "tokens": 6, "difficulty": 3 },
+        { "id": "hr_s_032", "vi": "Trung Thu năm nào cũng có lồng đèn.", "en": "Mid-Autumn always has lanterns.", "accepted": ["Mid-Autumn always has lanterns."], "tokens": 7, "difficulty": 3 }
+      ],
+      "conversations": [
+        { "id": "HCV008", "title": "Tet greetings", "context": "Greeting elders on the first day of Tet.", "lines": [
+          { "speaker": "You", "vi": "Chúc mừng năm mới ông bà ạ.", "en": "Happy New Year, Grandma and Grandpa." },
+          { "speaker": "Grandpa", "vi": "Chúc con học giỏi, an khang.", "en": "Wishing you good studies and well-being." },
+          { "speaker": "Grandma", "vi": "Đây là lì xì cho con.", "en": "Here's your lucky money." },
+          { "speaker": "You", "vi": "Con cảm ơn ông bà ạ.", "en": "Thank you so much." }
+        ]}
+      ]
+    },
+    {
+      "id": "her_lesson_9", "unit": "hu3_culture", "title": "Honoring Ancestors", "nodeId": "hu3_L9", "quizId": "hu3_Q9", "quizLabel": "Ancestors Quiz", "nodeIndex": 3, "difficulty": 4, "cefr": "A1", "xp": 15, "topic": "ancestors", "focus": ["worship", "memory"],
+      "words": [
+        { "id": "hr_w_065", "vi": "Tổ tiên", "en": "Ancestors", "pos": "noun", "difficulty": 3, "frequency": 3065 },
+        { "id": "hr_w_066", "vi": "Bàn thờ", "en": "Family altar", "pos": "noun", "difficulty": 3, "frequency": 3066 },
+        { "id": "hr_w_067", "vi": "Thắp hương", "en": "Light incense", "pos": "phrase", "difficulty": 3, "frequency": 3067 },
+        { "id": "hr_w_068", "vi": "Cúng", "en": "To offer (to ancestors)", "pos": "verb", "difficulty": 3, "frequency": 3068 },
+        { "id": "hr_w_069", "vi": "Giỗ", "en": "Death anniversary", "pos": "noun", "difficulty": 4, "frequency": 3069 },
+        { "id": "hr_w_070", "vi": "Khấn", "en": "To pray (quietly)", "pos": "verb", "difficulty": 4, "frequency": 3070 },
+        { "id": "hr_w_071", "vi": "Nhớ ơn", "en": "To be grateful", "pos": "phrase", "difficulty": 3, "frequency": 3071 },
+        { "id": "hr_w_072", "vi": "Đời", "en": "Generation / life", "pos": "noun", "difficulty": 2, "frequency": 3072 }
+      ],
+      "sentences": [
+        { "id": "hr_s_033", "vi": "Hôm nay là giỗ ông nội.", "en": "Today is Grandpa's death anniversary.", "accepted": ["Today is Grandpa's death anniversary."], "tokens": 6, "difficulty": 4 },
+        { "id": "hr_s_034", "vi": "Mẹ thắp hương trên bàn thờ.", "en": "Mom lights incense at the altar.", "accepted": ["Mom lights incense at the altar."], "tokens": 6, "difficulty": 4 },
+        { "id": "hr_s_035", "vi": "Mình nhớ ơn tổ tiên.", "en": "We honor our ancestors.", "accepted": ["We honor our ancestors."], "tokens": 5, "difficulty": 4 },
+        { "id": "hr_s_036", "vi": "Cả nhà cúng cơm tổ tiên.", "en": "The whole family offers rice to the ancestors.", "accepted": ["The whole family offers rice to the ancestors."], "tokens": 6, "difficulty": 4 }
+      ],
+      "conversations": [
+        { "id": "HCV009", "title": "At the altar", "context": "Joining family at the ancestral altar.", "lines": [
+          { "speaker": "Dad", "vi": "Con lại thắp hương cho ông nhé.", "en": "Come light incense for Grandpa." },
+          { "speaker": "You", "vi": "Con phải làm sao ạ?", "en": "How do I do it?" },
+          { "speaker": "Dad", "vi": "Châm hương, lạy ba lạy.", "en": "Light it, then bow three times." },
+          { "speaker": "You", "vi": "Dạ con khấn gì ạ?", "en": "What do I pray, Dad?" }
+        ]}
+      ]
+    },
+    {
+      "id": "her_lesson_10", "unit": "hu3_culture", "title": "Family Stories", "nodeId": "hu3_L10", "quizId": "hu3_Q10", "quizLabel": "Stories Quiz", "nodeIndex": 4, "difficulty": 4, "cefr": "A1", "xp": 15, "topic": "stories", "focus": ["listening", "proverbs"],
+      "words": [
+        { "id": "hr_w_073", "vi": "Kể chuyện", "en": "To tell a story", "pos": "verb", "difficulty": 2, "frequency": 3073 },
+        { "id": "hr_w_074", "vi": "Ngày xưa", "en": "Long ago", "pos": "phrase", "difficulty": 2, "frequency": 3074 },
+        { "id": "hr_w_075", "vi": "Câu chuyện", "en": "Story", "pos": "noun", "difficulty": 2, "frequency": 3075 },
+        { "id": "hr_w_076", "vi": "Tục ngữ", "en": "Proverb", "pos": "noun", "difficulty": 4, "frequency": 3076 },
+        { "id": "hr_w_077", "vi": "Bài học", "en": "Lesson (moral)", "pos": "noun", "difficulty": 3, "frequency": 3077 },
+        { "id": "hr_w_078", "vi": "Cội nguồn", "en": "Origin / roots", "pos": "noun", "difficulty": 4, "frequency": 3078 },
+        { "id": "hr_w_079", "vi": "Nhớ về", "en": "To remember / look back", "pos": "phrase", "difficulty": 3, "frequency": 3079 },
+        { "id": "hr_w_080", "vi": "Lá rụng về cội", "en": "Leaves fall to their roots (proverb)", "pos": "phrase", "difficulty": 4, "frequency": 3080 }
+      ],
+      "sentences": [
+        { "id": "hr_s_037", "vi": "Bà kể chuyện ngày xưa cho con.", "en": "Grandma tells me old stories.", "accepted": ["Grandma tells me old stories."], "tokens": 7, "difficulty": 4 },
+        { "id": "hr_s_038", "vi": "Câu chuyện này có bài học hay.", "en": "This story has a good lesson.", "accepted": ["This story has a good lesson."], "tokens": 6, "difficulty": 4 },
+        { "id": "hr_s_039", "vi": "Tục ngữ Việt Nam rất sâu sắc.", "en": "Vietnamese proverbs are very deep.", "accepted": ["Vietnamese proverbs are very deep."], "tokens": 6, "difficulty": 4 },
+        { "id": "hr_s_040", "vi": "Lá rụng về cội, người về quê.", "en": "Leaves return to roots; people return home.", "accepted": ["Leaves return to roots; people return home."], "tokens": 7, "difficulty": 4 }
+      ],
+      "conversations": [
+        { "id": "HCV010", "title": "Grandma's story", "context": "Grandma sharing a memory from her youth.", "lines": [
+          { "speaker": "Grandma", "vi": "Ngày xưa bà nhỏ xíu như con.", "en": "I was tiny like you long ago." },
+          { "speaker": "You", "vi": "Hồi đó bà sống ở đâu?", "en": "Where did you live then?" },
+          { "speaker": "Grandma", "vi": "Bà ở quê, nhà tranh vách đất.", "en": "In the countryside, in a thatched house." },
+          { "speaker": "You", "vi": "Con muốn nghe nữa bà ơi.", "en": "I want to hear more, Grandma." }
+        ]}
+      ]
+    }
+  ],
+  "grammarTags": []
+}

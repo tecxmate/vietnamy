@@ -1,0 +1,290 @@
+{
+  "meta": {
+    "mode": "professional",
+    "chapter": "a1",
+    "version": "1.0.0",
+    "generated": "2026-05-24T00:00:00.000Z",
+    "source": "authored",
+    "stats": { "units": 4, "lessons": 10, "vocabulary": 80, "sentences": 40, "conversations": 10, "grammarTags": 0 },
+    "notes": "A1 starter chapter for the Professional path. One lesson per Professional topic. Polite/formal Vietnamese register used in modern business settings."
+  },
+  "units": [
+    { "id": "pu1_workplace_basics", "order": 1, "title": "Workplace Basics", "description": "Self-introduction and office vocabulary for new hires." },
+    { "id": "pu2_communication", "order": 2, "title": "Communication", "description": "Meetings, email, and chat at work." },
+    { "id": "pu3_speaking_up", "order": 3, "title": "Speaking Up", "description": "Presentations and networking events." },
+    { "id": "pu4_business_world", "order": 4, "title": "Business World", "description": "Negotiation, travel, and client dining." }
+  ],
+  "lessons": [
+    {
+      "id": "prof_lesson_1", "unit": "pu1_workplace_basics", "title": "Workplace Basics", "nodeId": "pu1_L1", "quizId": "pu1_Q1", "quizLabel": "Basics Quiz", "nodeIndex": 1, "difficulty": 2, "cefr": "A1", "xp": 10, "topic": "basics", "focus": ["workplace", "self_intro"],
+      "words": [
+        { "id": "pr_w_001", "vi": "Công ty", "en": "Company", "pos": "noun", "difficulty": 2, "frequency": 2001 },
+        { "id": "pr_w_002", "vi": "Đồng nghiệp", "en": "Colleague", "pos": "noun", "difficulty": 2, "frequency": 2002 },
+        { "id": "pr_w_003", "vi": "Sếp", "en": "Boss", "pos": "noun", "difficulty": 2, "frequency": 2003 },
+        { "id": "pr_w_004", "vi": "Nhân viên", "en": "Employee", "pos": "noun", "difficulty": 2, "frequency": 2004 },
+        { "id": "pr_w_005", "vi": "Phòng ban", "en": "Department", "pos": "noun", "difficulty": 2, "frequency": 2005 },
+        { "id": "pr_w_006", "vi": "Chức vụ", "en": "Job title", "pos": "noun", "difficulty": 2, "frequency": 2006 },
+        { "id": "pr_w_007", "vi": "Mới vào", "en": "New (just joined)", "pos": "phrase", "difficulty": 2, "frequency": 2007 },
+        { "id": "pr_w_008", "vi": "Làm việc", "en": "To work", "pos": "verb", "difficulty": 2, "frequency": 2008 }
+      ],
+      "sentences": [
+        { "id": "pr_s_001", "vi": "Tôi mới vào công ty.", "en": "I just joined the company.", "accepted": ["I just joined the company."], "tokens": 5, "difficulty": 2 },
+        { "id": "pr_s_002", "vi": "Đây là đồng nghiệp của tôi.", "en": "This is my colleague.", "accepted": ["This is my colleague."], "tokens": 5, "difficulty": 2 },
+        { "id": "pr_s_003", "vi": "Sếp tôi rất thân thiện.", "en": "My boss is very friendly.", "accepted": ["My boss is very friendly."], "tokens": 5, "difficulty": 2 },
+        { "id": "pr_s_004", "vi": "Tôi làm ở phòng kinh doanh.", "en": "I work in the sales department.", "accepted": ["I work in the sales department."], "tokens": 6, "difficulty": 2 }
+      ],
+      "conversations": [
+        { "id": "PCV001", "title": "First day", "context": "Meeting a colleague on the first day at work.", "lines": [
+          { "speaker": "A", "vi": "Chào anh, tôi là nhân viên mới.", "en": "Hello, I'm a new employee." },
+          { "speaker": "B", "vi": "Chào em, em làm phòng nào?", "en": "Hi, which department are you in?" },
+          { "speaker": "A", "vi": "Dạ em ở phòng marketing ạ.", "en": "I'm in the marketing department." },
+          { "speaker": "B", "vi": "Tốt, chúc em làm việc vui vẻ.", "en": "Great, enjoy your work here." }
+        ]}
+      ]
+    },
+    {
+      "id": "prof_lesson_2", "unit": "pu1_workplace_basics", "title": "Professional Greetings", "nodeId": "pu1_L2", "quizId": "pu1_Q2", "quizLabel": "Greetings Quiz", "nodeIndex": 2, "difficulty": 2, "cefr": "A1", "xp": 10, "topic": "greetings", "focus": ["formal", "business"],
+      "words": [
+        { "id": "pr_w_009", "vi": "Xin chào", "en": "Hello (formal)", "pos": "interjection", "difficulty": 2, "frequency": 2009 },
+        { "id": "pr_w_010", "vi": "Rất hân hạnh", "en": "Pleased to meet you", "pos": "phrase", "difficulty": 3, "frequency": 2010 },
+        { "id": "pr_w_011", "vi": "Danh thiếp", "en": "Business card", "pos": "noun", "difficulty": 3, "frequency": 2011 },
+        { "id": "pr_w_012", "vi": "Xin gửi", "en": "Allow me to give", "pos": "phrase", "difficulty": 3, "frequency": 2012 },
+        { "id": "pr_w_013", "vi": "Liên hệ", "en": "To contact", "pos": "verb", "difficulty": 2, "frequency": 2013 },
+        { "id": "pr_w_014", "vi": "Hợp tác", "en": "To cooperate", "pos": "verb", "difficulty": 3, "frequency": 2014 },
+        { "id": "pr_w_015", "vi": "Anh / Chị", "en": "Sir / Madam (older)", "pos": "pronoun", "difficulty": 2, "frequency": 2015 },
+        { "id": "pr_w_016", "vi": "Quý công ty", "en": "Your esteemed company", "pos": "phrase", "difficulty": 3, "frequency": 2016 }
+      ],
+      "sentences": [
+        { "id": "pr_s_005", "vi": "Xin chào, rất hân hạnh được gặp anh.", "en": "Hello, pleased to meet you.", "accepted": ["Hello, pleased to meet you."], "tokens": 7, "difficulty": 3 },
+        { "id": "pr_s_006", "vi": "Đây là danh thiếp của tôi.", "en": "Here is my business card.", "accepted": ["Here is my business card."], "tokens": 6, "difficulty": 3 },
+        { "id": "pr_s_007", "vi": "Mong được hợp tác với quý công ty.", "en": "Looking forward to working with your company.", "accepted": ["Looking forward to working with your company."], "tokens": 7, "difficulty": 3 },
+        { "id": "pr_s_008", "vi": "Khi nào tiện, xin liên hệ tôi.", "en": "Please contact me when convenient.", "accepted": ["Please contact me when convenient."], "tokens": 6, "difficulty": 3 }
+      ],
+      "conversations": [
+        { "id": "PCV002", "title": "Exchanging cards", "context": "First business meeting between two professionals.", "lines": [
+          { "speaker": "A", "vi": "Xin chào, tôi là Minh, công ty ABC.", "en": "Hello, I'm Minh from ABC company." },
+          { "speaker": "B", "vi": "Rất hân hạnh, tôi là Lan.", "en": "Pleased to meet you, I'm Lan." },
+          { "speaker": "A", "vi": "Đây là danh thiếp của tôi.", "en": "Here's my business card." },
+          { "speaker": "B", "vi": "Cảm ơn, mong được hợp tác.", "en": "Thank you, looking forward to working together." }
+        ]}
+      ]
+    },
+    {
+      "id": "prof_lesson_3", "unit": "pu1_workplace_basics", "title": "Around the Office", "nodeId": "pu1_L3", "quizId": "pu1_Q3", "quizLabel": "Office Quiz", "nodeIndex": 3, "difficulty": 3, "cefr": "A1", "xp": 12, "topic": "office", "focus": ["objects", "spaces"],
+      "words": [
+        { "id": "pr_w_017", "vi": "Văn phòng", "en": "Office", "pos": "noun", "difficulty": 2, "frequency": 2017 },
+        { "id": "pr_w_018", "vi": "Bàn làm việc", "en": "Desk", "pos": "noun", "difficulty": 2, "frequency": 2018 },
+        { "id": "pr_w_019", "vi": "Máy tính", "en": "Computer", "pos": "noun", "difficulty": 2, "frequency": 2019 },
+        { "id": "pr_w_020", "vi": "Phòng họp", "en": "Meeting room", "pos": "noun", "difficulty": 2, "frequency": 2020 },
+        { "id": "pr_w_021", "vi": "Máy in", "en": "Printer", "pos": "noun", "difficulty": 3, "frequency": 2021 },
+        { "id": "pr_w_022", "vi": "Mật khẩu", "en": "Password", "pos": "noun", "difficulty": 3, "frequency": 2022 },
+        { "id": "pr_w_023", "vi": "Wifi", "en": "Wi-Fi", "pos": "noun", "difficulty": 2, "frequency": 2023 },
+        { "id": "pr_w_024", "vi": "Tài liệu", "en": "Document", "pos": "noun", "difficulty": 3, "frequency": 2024 }
+      ],
+      "sentences": [
+        { "id": "pr_s_009", "vi": "Bàn làm việc của tôi ở góc kia.", "en": "My desk is in that corner.", "accepted": ["My desk is in that corner."], "tokens": 7, "difficulty": 3 },
+        { "id": "pr_s_010", "vi": "Máy in ở đâu vậy?", "en": "Where is the printer?", "accepted": ["Where is the printer?"], "tokens": 5, "difficulty": 3 },
+        { "id": "pr_s_011", "vi": "Cho mình xin mật khẩu wifi.", "en": "Can I have the Wi-Fi password?", "accepted": ["Can I have the Wi-Fi password?"], "tokens": 6, "difficulty": 3 },
+        { "id": "pr_s_012", "vi": "Phòng họp đang trống không?", "en": "Is the meeting room free?", "accepted": ["Is the meeting room free?"], "tokens": 5, "difficulty": 3 }
+      ],
+      "conversations": [
+        { "id": "PCV003", "title": "Asking for the password", "context": "A new employee asking around the office.", "lines": [
+          { "speaker": "A", "vi": "Anh ơi, mật khẩu wifi là gì ạ?", "en": "Excuse me, what's the Wi-Fi password?" },
+          { "speaker": "B", "vi": "Em ghi trên bảng kìa.", "en": "It's written on that board." },
+          { "speaker": "A", "vi": "Dạ em thấy rồi, cảm ơn anh.", "en": "Ah, I see it. Thank you." },
+          { "speaker": "B", "vi": "Có gì cần thì hỏi nhé.", "en": "Let me know if you need anything." }
+        ]}
+      ]
+    },
+    {
+      "id": "prof_lesson_4", "unit": "pu2_communication", "title": "Meeting Basics", "nodeId": "pu2_L4", "quizId": "pu2_Q4", "quizLabel": "Meetings Quiz", "nodeIndex": 1, "difficulty": 3, "cefr": "A1", "xp": 12, "topic": "meetings", "focus": ["schedule", "agenda"],
+      "words": [
+        { "id": "pr_w_025", "vi": "Cuộc họp", "en": "Meeting", "pos": "noun", "difficulty": 2, "frequency": 2025 },
+        { "id": "pr_w_026", "vi": "Lịch họp", "en": "Meeting schedule", "pos": "noun", "difficulty": 3, "frequency": 2026 },
+        { "id": "pr_w_027", "vi": "Bắt đầu", "en": "To start", "pos": "verb", "difficulty": 2, "frequency": 2027 },
+        { "id": "pr_w_028", "vi": "Kết thúc", "en": "To end", "pos": "verb", "difficulty": 2, "frequency": 2028 },
+        { "id": "pr_w_029", "vi": "Tham dự", "en": "To attend", "pos": "verb", "difficulty": 3, "frequency": 2029 },
+        { "id": "pr_w_030", "vi": "Vắng mặt", "en": "Absent", "pos": "adjective", "difficulty": 3, "frequency": 2030 },
+        { "id": "pr_w_031", "vi": "Nội dung", "en": "Content / agenda", "pos": "noun", "difficulty": 3, "frequency": 2031 },
+        { "id": "pr_w_032", "vi": "Ghi chú", "en": "Notes", "pos": "noun", "difficulty": 2, "frequency": 2032 }
+      ],
+      "sentences": [
+        { "id": "pr_s_013", "vi": "Cuộc họp bắt đầu lúc 9 giờ.", "en": "The meeting starts at 9 o'clock.", "accepted": ["The meeting starts at 9 o'clock."], "tokens": 7, "difficulty": 3 },
+        { "id": "pr_s_014", "vi": "Anh có tham dự được không?", "en": "Can you attend?", "accepted": ["Can you attend?"], "tokens": 6, "difficulty": 3 },
+        { "id": "pr_s_015", "vi": "Hôm nay tôi vắng mặt, xin lỗi.", "en": "I'm absent today, sorry.", "accepted": ["I'm absent today, sorry."], "tokens": 6, "difficulty": 3 },
+        { "id": "pr_s_016", "vi": "Vui lòng gửi nội dung cuộc họp.", "en": "Please send the meeting agenda.", "accepted": ["Please send the meeting agenda."], "tokens": 6, "difficulty": 3 }
+      ],
+      "conversations": [
+        { "id": "PCV004", "title": "Confirming a meeting", "context": "Confirming attendance for a meeting.", "lines": [
+          { "speaker": "A", "vi": "Chiều nay 3 giờ có họp nhé.", "en": "There's a meeting at 3 this afternoon." },
+          { "speaker": "B", "vi": "Dạ em sẽ tham dự đầy đủ.", "en": "Sure, I'll be there." },
+          { "speaker": "A", "vi": "Em nhớ chuẩn bị ghi chú.", "en": "Please prepare your notes." },
+          { "speaker": "B", "vi": "Vâng, em chuẩn bị xong rồi.", "en": "Yes, I've prepared them." }
+        ]}
+      ]
+    },
+    {
+      "id": "prof_lesson_5", "unit": "pu2_communication", "title": "Email & Chat", "nodeId": "pu2_L5", "quizId": "pu2_Q5", "quizLabel": "Email Quiz", "nodeIndex": 2, "difficulty": 3, "cefr": "A1", "xp": 12, "topic": "email", "focus": ["greetings", "closings"],
+      "words": [
+        { "id": "pr_w_033", "vi": "Email", "en": "Email", "pos": "noun", "difficulty": 2, "frequency": 2033 },
+        { "id": "pr_w_034", "vi": "Tin nhắn", "en": "Message", "pos": "noun", "difficulty": 2, "frequency": 2034 },
+        { "id": "pr_w_035", "vi": "Gửi kèm", "en": "Attached", "pos": "phrase", "difficulty": 3, "frequency": 2035 },
+        { "id": "pr_w_036", "vi": "Trả lời", "en": "To reply", "pos": "verb", "difficulty": 2, "frequency": 2036 },
+        { "id": "pr_w_037", "vi": "Chuyển tiếp", "en": "To forward", "pos": "verb", "difficulty": 3, "frequency": 2037 },
+        { "id": "pr_w_038", "vi": "Kính gửi", "en": "Dear (formal)", "pos": "phrase", "difficulty": 3, "frequency": 2038 },
+        { "id": "pr_w_039", "vi": "Trân trọng", "en": "Best regards", "pos": "phrase", "difficulty": 3, "frequency": 2039 },
+        { "id": "pr_w_040", "vi": "Xác nhận", "en": "To confirm", "pos": "verb", "difficulty": 3, "frequency": 2040 }
+      ],
+      "sentences": [
+        { "id": "pr_s_017", "vi": "Tôi đã gửi email cho anh.", "en": "I've sent you an email.", "accepted": ["I've sent you an email."], "tokens": 6, "difficulty": 3 },
+        { "id": "pr_s_018", "vi": "Vui lòng xác nhận đã nhận.", "en": "Please confirm receipt.", "accepted": ["Please confirm receipt."], "tokens": 5, "difficulty": 3 },
+        { "id": "pr_s_019", "vi": "Tài liệu gửi kèm bên dưới.", "en": "The document is attached below.", "accepted": ["The document is attached below."], "tokens": 6, "difficulty": 3 },
+        { "id": "pr_s_020", "vi": "Tôi sẽ trả lời sớm nhất.", "en": "I will reply as soon as possible.", "accepted": ["I will reply as soon as possible."], "tokens": 6, "difficulty": 3 }
+      ],
+      "conversations": [
+        { "id": "PCV005", "title": "Email follow-up", "context": "Following up on a sent email.", "lines": [
+          { "speaker": "A", "vi": "Chị đã nhận email của em chưa?", "en": "Have you received my email?" },
+          { "speaker": "B", "vi": "Chị đọc rồi, sẽ trả lời chiều nay.", "en": "Yes, I'll reply this afternoon." },
+          { "speaker": "A", "vi": "Có tài liệu gửi kèm bên trong.", "en": "There's a document attached." },
+          { "speaker": "B", "vi": "Ok em, chị xem rồi xác nhận.", "en": "Got it, I'll review and confirm." }
+        ]}
+      ]
+    },
+    {
+      "id": "prof_lesson_6", "unit": "pu3_speaking_up", "title": "Giving a Presentation", "nodeId": "pu3_L6", "quizId": "pu3_Q6", "quizLabel": "Presentations Quiz", "nodeIndex": 1, "difficulty": 4, "cefr": "A1", "xp": 15, "topic": "presentations", "focus": ["intro", "slides"],
+      "words": [
+        { "id": "pr_w_041", "vi": "Bài thuyết trình", "en": "Presentation", "pos": "noun", "difficulty": 3, "frequency": 2041 },
+        { "id": "pr_w_042", "vi": "Slide", "en": "Slide", "pos": "noun", "difficulty": 2, "frequency": 2042 },
+        { "id": "pr_w_043", "vi": "Giới thiệu", "en": "To introduce", "pos": "verb", "difficulty": 3, "frequency": 2043 },
+        { "id": "pr_w_044", "vi": "Chủ đề", "en": "Topic", "pos": "noun", "difficulty": 3, "frequency": 2044 },
+        { "id": "pr_w_045", "vi": "Tiếp theo", "en": "Next", "pos": "adverb", "difficulty": 2, "frequency": 2045 },
+        { "id": "pr_w_046", "vi": "Câu hỏi", "en": "Question", "pos": "noun", "difficulty": 2, "frequency": 2046 },
+        { "id": "pr_w_047", "vi": "Cảm ơn lắng nghe", "en": "Thank you for listening", "pos": "phrase", "difficulty": 3, "frequency": 2047 },
+        { "id": "pr_w_048", "vi": "Phần kết", "en": "Conclusion", "pos": "noun", "difficulty": 3, "frequency": 2048 }
+      ],
+      "sentences": [
+        { "id": "pr_s_021", "vi": "Hôm nay tôi xin giới thiệu chủ đề mới.", "en": "Today I'd like to introduce a new topic.", "accepted": ["Today I'd like to introduce a new topic."], "tokens": 8, "difficulty": 4 },
+        { "id": "pr_s_022", "vi": "Mời mọi người xem slide tiếp theo.", "en": "Please look at the next slide.", "accepted": ["Please look at the next slide."], "tokens": 7, "difficulty": 4 },
+        { "id": "pr_s_023", "vi": "Có câu hỏi nào không ạ?", "en": "Are there any questions?", "accepted": ["Are there any questions?"], "tokens": 6, "difficulty": 4 },
+        { "id": "pr_s_024", "vi": "Cảm ơn mọi người đã lắng nghe.", "en": "Thank you all for listening.", "accepted": ["Thank you all for listening."], "tokens": 6, "difficulty": 4 }
+      ],
+      "conversations": [
+        { "id": "PCV006", "title": "Q&A session", "context": "Wrapping up a presentation.", "lines": [
+          { "speaker": "Presenter", "vi": "Đó là phần kết của tôi.", "en": "That concludes my presentation." },
+          { "speaker": "Audience", "vi": "Tôi có một câu hỏi.", "en": "I have a question." },
+          { "speaker": "Presenter", "vi": "Vâng, mời anh chị.", "en": "Yes, please go ahead." },
+          { "speaker": "Audience", "vi": "Anh có thể nói thêm về phần này?", "en": "Could you explain this part more?" }
+        ]}
+      ]
+    },
+    {
+      "id": "prof_lesson_7", "unit": "pu3_speaking_up", "title": "Networking", "nodeId": "pu3_L7", "quizId": "pu3_Q7", "quizLabel": "Networking Quiz", "nodeIndex": 2, "difficulty": 4, "cefr": "A1", "xp": 15, "topic": "networking", "focus": ["events", "connections"],
+      "words": [
+        { "id": "pr_w_049", "vi": "Sự kiện", "en": "Event", "pos": "noun", "difficulty": 3, "frequency": 2049 },
+        { "id": "pr_w_050", "vi": "Hội thảo", "en": "Conference", "pos": "noun", "difficulty": 3, "frequency": 2050 },
+        { "id": "pr_w_051", "vi": "Mạng lưới", "en": "Network", "pos": "noun", "difficulty": 4, "frequency": 2051 },
+        { "id": "pr_w_052", "vi": "Quen biết", "en": "To know (someone)", "pos": "verb", "difficulty": 3, "frequency": 2052 },
+        { "id": "pr_w_053", "vi": "Ngành nghề", "en": "Industry", "pos": "noun", "difficulty": 3, "frequency": 2053 },
+        { "id": "pr_w_054", "vi": "Kinh nghiệm", "en": "Experience", "pos": "noun", "difficulty": 3, "frequency": 2054 },
+        { "id": "pr_w_055", "vi": "Kết nối", "en": "To connect", "pos": "verb", "difficulty": 3, "frequency": 2055 },
+        { "id": "pr_w_056", "vi": "Giữ liên lạc", "en": "To stay in touch", "pos": "phrase", "difficulty": 3, "frequency": 2056 }
+      ],
+      "sentences": [
+        { "id": "pr_s_025", "vi": "Anh làm trong ngành nào?", "en": "What industry are you in?", "accepted": ["What industry are you in?"], "tokens": 5, "difficulty": 4 },
+        { "id": "pr_s_026", "vi": "Tôi có 5 năm kinh nghiệm.", "en": "I have 5 years of experience.", "accepted": ["I have 5 years of experience."], "tokens": 6, "difficulty": 4 },
+        { "id": "pr_s_027", "vi": "Mình kết nối qua LinkedIn nhé.", "en": "Let's connect on LinkedIn.", "accepted": ["Let's connect on LinkedIn."], "tokens": 5, "difficulty": 4 },
+        { "id": "pr_s_028", "vi": "Hy vọng giữ liên lạc thường xuyên.", "en": "Hope we stay in touch often.", "accepted": ["Hope we stay in touch often."], "tokens": 6, "difficulty": 4 }
+      ],
+      "conversations": [
+        { "id": "PCV007", "title": "Meeting at a conference", "context": "Two professionals at an industry event.", "lines": [
+          { "speaker": "A", "vi": "Anh làm ở công ty nào?", "en": "Which company do you work for?" },
+          { "speaker": "B", "vi": "Tôi làm bên fintech, còn anh?", "en": "I'm in fintech, how about you?" },
+          { "speaker": "A", "vi": "Tôi làm marketing, rất thú vị.", "en": "I'm in marketing, interesting field." },
+          { "speaker": "B", "vi": "Mình kết nối nhé, đây là card.", "en": "Let's connect, here's my card." }
+        ]}
+      ]
+    },
+    {
+      "id": "prof_lesson_8", "unit": "pu4_business_world", "title": "Negotiation Basics", "nodeId": "pu4_L8", "quizId": "pu4_Q8", "quizLabel": "Negotiation Quiz", "nodeIndex": 1, "difficulty": 4, "cefr": "A1", "xp": 15, "topic": "negotiation", "focus": ["price", "terms"],
+      "words": [
+        { "id": "pr_w_057", "vi": "Giá cả", "en": "Price", "pos": "noun", "difficulty": 3, "frequency": 2057 },
+        { "id": "pr_w_058", "vi": "Đàm phán", "en": "To negotiate", "pos": "verb", "difficulty": 4, "frequency": 2058 },
+        { "id": "pr_w_059", "vi": "Đề nghị", "en": "To propose", "pos": "verb", "difficulty": 3, "frequency": 2059 },
+        { "id": "pr_w_060", "vi": "Đồng ý", "en": "To agree", "pos": "verb", "difficulty": 2, "frequency": 2060 },
+        { "id": "pr_w_061", "vi": "Hợp đồng", "en": "Contract", "pos": "noun", "difficulty": 3, "frequency": 2061 },
+        { "id": "pr_w_062", "vi": "Điều khoản", "en": "Terms", "pos": "noun", "difficulty": 4, "frequency": 2062 },
+        { "id": "pr_w_063", "vi": "Thương lượng", "en": "To discuss / bargain", "pos": "verb", "difficulty": 4, "frequency": 2063 },
+        { "id": "pr_w_064", "vi": "Giảm giá", "en": "Discount", "pos": "noun", "difficulty": 3, "frequency": 2064 }
+      ],
+      "sentences": [
+        { "id": "pr_s_029", "vi": "Chúng ta có thể thương lượng giá.", "en": "We can negotiate the price.", "accepted": ["We can negotiate the price."], "tokens": 6, "difficulty": 4 },
+        { "id": "pr_s_030", "vi": "Tôi đề nghị giảm 10 phần trăm.", "en": "I propose a 10 percent discount.", "accepted": ["I propose a 10 percent discount."], "tokens": 6, "difficulty": 4 },
+        { "id": "pr_s_031", "vi": "Anh đồng ý điều khoản này không?", "en": "Do you agree with this term?", "accepted": ["Do you agree with this term?"], "tokens": 6, "difficulty": 4 },
+        { "id": "pr_s_032", "vi": "Khi nào ký hợp đồng được?", "en": "When can we sign the contract?", "accepted": ["When can we sign the contract?"], "tokens": 6, "difficulty": 4 }
+      ],
+      "conversations": [
+        { "id": "PCV008", "title": "Closing a deal", "context": "Negotiating final terms with a client.", "lines": [
+          { "speaker": "Seller", "vi": "Giá tốt nhất bên em là 50 triệu.", "en": "Our best price is 50 million." },
+          { "speaker": "Buyer", "vi": "Bên anh muốn giảm còn 45 triệu.", "en": "We'd like 45 million." },
+          { "speaker": "Seller", "vi": "Em sẽ hỏi sếp, anh chờ chút.", "en": "Let me check with my boss." },
+          { "speaker": "Buyer", "vi": "Vâng, mong sớm có câu trả lời.", "en": "Sure, looking forward to your reply." }
+        ]}
+      ]
+    },
+    {
+      "id": "prof_lesson_9", "unit": "pu4_business_world", "title": "Business Travel", "nodeId": "pu4_L9", "quizId": "pu4_Q9", "quizLabel": "Travel Quiz", "nodeIndex": 2, "difficulty": 4, "cefr": "A1", "xp": 15, "topic": "business_travel", "focus": ["trip", "hotel"],
+      "words": [
+        { "id": "pr_w_065", "vi": "Công tác", "en": "Business trip", "pos": "noun", "difficulty": 3, "frequency": 2065 },
+        { "id": "pr_w_066", "vi": "Đặt vé", "en": "To book a ticket", "pos": "verb", "difficulty": 2, "frequency": 2066 },
+        { "id": "pr_w_067", "vi": "Khách sạn", "en": "Hotel", "pos": "noun", "difficulty": 2, "frequency": 2067 },
+        { "id": "pr_w_068", "vi": "Đón sân bay", "en": "Airport pickup", "pos": "phrase", "difficulty": 3, "frequency": 2068 },
+        { "id": "pr_w_069", "vi": "Chuyến bay", "en": "Flight", "pos": "noun", "difficulty": 2, "frequency": 2069 },
+        { "id": "pr_w_070", "vi": "Lịch trình", "en": "Itinerary", "pos": "noun", "difficulty": 3, "frequency": 2070 },
+        { "id": "pr_w_071", "vi": "Chi phí", "en": "Expense", "pos": "noun", "difficulty": 3, "frequency": 2071 },
+        { "id": "pr_w_072", "vi": "Hoàn trả", "en": "To reimburse", "pos": "verb", "difficulty": 4, "frequency": 2072 }
+      ],
+      "sentences": [
+        { "id": "pr_s_033", "vi": "Tuần sau tôi đi công tác Hà Nội.", "en": "Next week I have a business trip to Hanoi.", "accepted": ["Next week I have a business trip to Hanoi."], "tokens": 8, "difficulty": 4 },
+        { "id": "pr_s_034", "vi": "Đã đặt khách sạn chưa?", "en": "Have you booked the hotel?", "accepted": ["Have you booked the hotel?"], "tokens": 5, "difficulty": 4 },
+        { "id": "pr_s_035", "vi": "Cho tôi xem lịch trình ngày mai.", "en": "Show me tomorrow's itinerary.", "accepted": ["Show me tomorrow's itinerary."], "tokens": 7, "difficulty": 4 },
+        { "id": "pr_s_036", "vi": "Chi phí công ty sẽ hoàn trả.", "en": "The company will reimburse the expenses.", "accepted": ["The company will reimburse the expenses."], "tokens": 6, "difficulty": 4 }
+      ],
+      "conversations": [
+        { "id": "PCV009", "title": "Trip planning", "context": "Planning a business trip with an assistant.", "lines": [
+          { "speaker": "Manager", "vi": "Em đặt vé cho chị ngày thứ Hai nhé.", "en": "Please book me a ticket for Monday." },
+          { "speaker": "Assistant", "vi": "Dạ, chị bay sáng hay chiều?", "en": "Morning or afternoon flight?" },
+          { "speaker": "Manager", "vi": "Sáng sớm để kịp họp 10 giờ.", "en": "Early morning so I make the 10 AM meeting." },
+          { "speaker": "Assistant", "vi": "Vâng, em đặt khách sạn gần đó.", "en": "Got it, I'll book a hotel nearby." }
+        ]}
+      ]
+    },
+    {
+      "id": "prof_lesson_10", "unit": "pu4_business_world", "title": "Business Dining", "nodeId": "pu4_L10", "quizId": "pu4_Q10", "quizLabel": "Dining Quiz", "nodeIndex": 3, "difficulty": 4, "cefr": "A1", "xp": 15, "topic": "dining", "focus": ["host", "toast"],
+      "words": [
+        { "id": "pr_w_073", "vi": "Tiếp khách", "en": "To host guests", "pos": "verb", "difficulty": 3, "frequency": 2073 },
+        { "id": "pr_w_074", "vi": "Đặt bàn", "en": "To reserve a table", "pos": "verb", "difficulty": 2, "frequency": 2074 },
+        { "id": "pr_w_075", "vi": "Nhà hàng", "en": "Restaurant", "pos": "noun", "difficulty": 2, "frequency": 2075 },
+        { "id": "pr_w_076", "vi": "Cụng ly", "en": "To clink glasses", "pos": "verb", "difficulty": 3, "frequency": 2076 },
+        { "id": "pr_w_077", "vi": "Chúc sức khỏe", "en": "Cheers / to your health", "pos": "phrase", "difficulty": 3, "frequency": 2077 },
+        { "id": "pr_w_078", "vi": "Mời", "en": "Please (eat)", "pos": "verb", "difficulty": 2, "frequency": 2078 },
+        { "id": "pr_w_079", "vi": "Thanh toán", "en": "To pay", "pos": "verb", "difficulty": 3, "frequency": 2079 },
+        { "id": "pr_w_080", "vi": "Bữa tối", "en": "Dinner", "pos": "noun", "difficulty": 2, "frequency": 2080 }
+      ],
+      "sentences": [
+        { "id": "pr_s_037", "vi": "Tối nay tôi tiếp khách hàng.", "en": "Tonight I'm hosting clients.", "accepted": ["Tonight I'm hosting clients."], "tokens": 5, "difficulty": 4 },
+        { "id": "pr_s_038", "vi": "Em đặt bàn nhà hàng nào?", "en": "Which restaurant did you book?", "accepted": ["Which restaurant did you book?"], "tokens": 6, "difficulty": 4 },
+        { "id": "pr_s_039", "vi": "Xin mời, chúc sức khỏe!", "en": "Please, to your health!", "accepted": ["Please, to your health!"], "tokens": 5, "difficulty": 4 },
+        { "id": "pr_s_040", "vi": "Để tôi thanh toán bữa tối.", "en": "Let me pay for dinner.", "accepted": ["Let me pay for dinner."], "tokens": 6, "difficulty": 4 }
+      ],
+      "conversations": [
+        { "id": "PCV010", "title": "Dinner toast", "context": "Hosting clients at dinner.", "lines": [
+          { "speaker": "Host", "vi": "Mời mọi người, ăn tự nhiên nhé.", "en": "Please everyone, help yourselves." },
+          { "speaker": "Guest", "vi": "Cảm ơn anh, nhà hàng tuyệt quá.", "en": "Thank you, what a great restaurant." },
+          { "speaker": "Host", "vi": "Mình cụng ly chúc hợp tác thành công.", "en": "Let's toast to a successful partnership." },
+          { "speaker": "Guest", "vi": "Chúc sức khỏe, hợp tác lâu dài!", "en": "Cheers, to a long partnership!" }
+        ]}
+      ]
+    }
+  ],
+  "grammarTags": []
+}
