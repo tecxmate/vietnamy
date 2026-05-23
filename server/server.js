@@ -952,8 +952,27 @@ function ttsCacheKey(voice, lang, text, cacheVersion = TTS_CACHE_VERSION) {
     return `${normalizeTtsCacheVersion(cacheVersion)}/${voice}/${hash}.${ext}`;
 }
 
+// "Source" cache is unversioned raw Azure PCM. Bumping TTS_CACHE_VERSION only
+// invalidates the derived (post-processed) WAV; the source PCM persists and is
+// re-processed locally with no Azure call needed.
+function ttsSourceKey(voice, lang, text) {
+    const hash = crypto.createHash('sha1').update(`${voice}|${lang}|${text}`).digest('hex');
+    return `source/${voice}/${hash}.pcm`;
+}
+
 function ttsPublicUrl(key) {
     return `${SUPABASE_URL}/storage/v1/object/public/${TTS_BUCKET}/${key}`;
+}
+
+async function ttsCacheGetBuffer(key) {
+    if (!TTS_CACHE_ENABLED) return null;
+    try {
+        const r = await fetch(ttsPublicUrl(key));
+        if (!r.ok) return null;
+        return Buffer.from(await r.arrayBuffer());
+    } catch {
+        return null;
+    }
 }
 
 async function ttsCacheHas(key) {
@@ -1128,7 +1147,10 @@ function pcm16MonoToWav(buffer, sampleRate = AZURE_PCM_SAMPLE_RATE) {
     return Buffer.concat([header, buffer]);
 }
 
-async function synthesizeWithAzure(text, lang, voice = 'azure-north') {
+// Raw Azure call. Returns trimmed PCM only — no clarity, no loudness, no WAV
+// wrapper. This is what we persist as "source" in the bucket so that future
+// post-processing tweaks can re-derive without paying Azure again.
+async function synthesizeWithAzureSourcePcm(text, lang, voice = 'azure-north') {
     if (!AZURE_TTS_ENABLED || lang !== 'vi') return null;
 
     const voiceName = AZURE_VI_VOICES[voice] || AZURE_VI_VOICES['azure-north'];
@@ -1160,16 +1182,35 @@ async function synthesizeWithAzure(text, lang, voice = 'azure-north') {
     }
 
     const rawPcm = Buffer.from(await response.arrayBuffer());
-    const trimmedPcm = trimPcm16MonoSilence(rawPcm);
+    return trimPcm16MonoSilence(rawPcm);
+}
+
+// Apply clarity + loudness post-processing to source PCM and wrap as WAV.
+// This is the part that changes when we iterate on voice quality — bumping
+// TTS_CACHE_VERSION invalidates derived WAVs so this function runs again with
+// the new parameters, without re-paying Azure.
+function deriveAzureWav(sourcePcm, voice) {
     const enhancedPcm = voice === 'azure-south'
-        ? addPcm16MonoClarity(trimmedPcm, 0.32)
-        : trimmedPcm;
+        ? addPcm16MonoClarity(sourcePcm, 0.32)
+        : sourcePcm;
     const targetRms = voice === 'azure-south' ? 0.2 : 0.13;
     const normalizedPcm = normalizePcm16MonoLoudness(enhancedPcm, targetRms);
     return {
         buffer: pcm16MonoToWav(normalizedPcm),
         contentType: 'audio/wav',
     };
+}
+
+// Convenience wrapper for callers that just want the final WAV. When
+// saveSource is true, the raw trimmed PCM is also uploaded to the bucket
+// under the unversioned source/ path so future iterations can skip Azure.
+async function synthesizeWithAzure(text, lang, voice = 'azure-north', { saveSource = false } = {}) {
+    const sourcePcm = await synthesizeWithAzureSourcePcm(text, lang, voice);
+    if (!sourcePcm) return null;
+    if (saveSource) {
+        ttsCachePut(ttsSourceKey(voice, lang, text), sourcePcm, 'application/octet-stream');
+    }
+    return deriveAzureWav(sourcePcm, voice);
 }
 
 async function synthesizeWithGoogleTranslate(text, lang) {
@@ -1203,11 +1244,30 @@ app.get('/api/tts', async (req, res) => {
         return res.status(400).json({ error: 'text required (max 200 chars)' });
     }
 
-    // 1) Bucket hit — redirect the client straight to the CDN URL.
+    // 1) Derived (versioned WAV) hit — redirect the client straight to the CDN.
     const cacheKey = ttsCacheKey(voice, lang, text, req.query.ck);
     if (await ttsCacheHas(cacheKey)) {
         res.set('X-TTS-Cache', 'hit');
         return res.redirect(302, ttsPublicUrl(cacheKey));
+    }
+
+    // 2) Source (unversioned raw PCM) hit — derive WAV locally, persist as
+    // derived, serve inline. No Azure call. This is the path that makes
+    // voice-quality iteration free after the first generation.
+    if (voice !== 'google' && TTS_CACHE_ENABLED) {
+        const sourcePcm = await ttsCacheGetBuffer(ttsSourceKey(voice, lang, text));
+        if (sourcePcm && sourcePcm.length > 0) {
+            const wav = deriveAzureWav(sourcePcm, voice);
+            ttsCachePut(cacheKey, wav.buffer, wav.contentType);
+            res.set({
+                'Content-Type': wav.contentType,
+                'Cache-Control': 'public, max-age=86400',
+                'X-TTS-Provider': 'azure-rederive',
+                'X-TTS-Voice': voice,
+                'X-TTS-Cache': 'hit-source',
+            });
+            return res.send(wav.buffer);
+        }
     }
 
     try {
@@ -1227,15 +1287,15 @@ app.get('/api/tts', async (req, res) => {
                 };
             });
             if (lang === 'vi') {
-                addAttempt('azure-google-fallback', 'azure', 'azure-north', () => synthesizeWithAzure(text, lang, 'azure-north'));
+                addAttempt('azure-google-fallback', 'azure', 'azure-north', () => synthesizeWithAzure(text, lang, 'azure-north', { saveSource: true }));
             }
         } else {
-            addAttempt('azure', 'azure', voice, () => synthesizeWithAzure(text, lang, voice));
+            addAttempt('azure', 'azure', voice, () => synthesizeWithAzure(text, lang, voice, { saveSource: true }));
             if (lang === 'vi' && voice === 'azure-south') {
-                addAttempt('azure-south-fallback', 'azure', 'azure-north', () => synthesizeWithAzure(text, lang, 'azure-north'));
+                addAttempt('azure-south-fallback', 'azure', 'azure-north', () => synthesizeWithAzure(text, lang, 'azure-north', { saveSource: true }));
             }
             if (lang === 'vi' && voice === 'azure-north') {
-                addAttempt('azure-north-fallback', 'azure', 'azure-south', () => synthesizeWithAzure(text, lang, 'azure-south'));
+                addAttempt('azure-north-fallback', 'azure', 'azure-south', () => synthesizeWithAzure(text, lang, 'azure-south', { saveSource: true }));
             }
             addAttempt('google-translate', 'google', 'google', async () => {
                 return {
