@@ -84,6 +84,41 @@ docker run -p 8080:8080 vietnamy
 
 In production, Express serves both the API and the built frontend from `/dist`.
 
+## TTS Bucket Cache
+
+The `/api/tts` endpoint caches generated audio in a public Supabase Storage bucket so most requests are served as 302 redirects from the CDN instead of regenerating from Azure / Google.
+
+### One-time setup
+
+1. In the Supabase Dashboard → **Storage**, create a bucket named `tts-cache` and mark it **Public**.
+2. Add these env vars on the server (Zeabur, local `.env`, etc.):
+   ```
+   SUPABASE_URL=https://<project-ref>.supabase.co
+   SUPABASE_SERVICE_ROLE_KEY=<service-role-key>
+   ```
+   (Optional: `TTS_BUCKET=tts-cache` to override the default bucket name.)
+3. Redeploy the server. On a cache miss it now uploads to the bucket; on a hit it 302-redirects.
+
+### Warm the cache for baked-in curriculum
+
+Run this once after setup so users never wait on a cold cache for built-in content:
+
+```bash
+# Local server
+node scripts/prebuild-tts.mjs
+
+# Or against the deployed server
+node scripts/prebuild-tts.mjs --server=https://your-server.zeabur.app
+
+# Limit voices / parallelism
+node scripts/prebuild-tts.mjs --voices=azure-north --concurrency=3
+
+# Just count strings without hitting the API
+node scripts/prebuild-tts.mjs --dry-run
+```
+
+The script collects every Vietnamese string under known keys (`vi`, `vi_text`, `target_vi`, etc.) across `src/data/`, dedupes, and walks them through `/api/tts` for each voice. Cache hits are skipped (302 from the server).
+
 ## Documentation
 
 See `docs/PROJECT_HANDOFF.md` for detailed architecture, data structures, and instructions on adapting this app for other language pairs.

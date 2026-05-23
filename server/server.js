@@ -1,6 +1,7 @@
 import express from 'express';
 import Database from 'better-sqlite3';
 import cors from 'cors';
+import crypto from 'crypto';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import { existsSync, readFileSync } from 'fs';
@@ -868,8 +869,61 @@ const AZURE_VI_VOICES = {
     'azure-north': process.env.AZURE_TTS_VOICE_NORTH || 'vi-VN-NamMinhNeural',
     'azure-south': process.env.AZURE_TTS_VOICE_SOUTH || 'vi-VN-HoaiMyNeural',
 };
-const TTS_VOICES = new Set(['google', ...Object.keys(AZURE_VI_VOICES)]);
-const DEFAULT_TTS_VOICE = process.env.DEFAULT_TTS_VOICE || 'azure-south';
+const TTS_VOICES = new Set(['google', 'azure-north']);
+const DEFAULT_TTS_VOICE = process.env.DEFAULT_TTS_VOICE || 'azure-north';
+
+// --- TTS bucket cache (Supabase Storage) -----------------------------------
+// Set SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY in env to enable. Bucket name
+// defaults to "tts-cache" and must be created as PUBLIC in the Supabase UI.
+const TTS_BUCKET = process.env.TTS_BUCKET || 'tts-cache';
+const SUPABASE_URL = (process.env.SUPABASE_URL || '').replace(/\/+$/, '');
+const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || '';
+const TTS_CACHE_ENABLED = Boolean(SUPABASE_URL && SUPABASE_SERVICE_ROLE_KEY);
+
+function ttsCacheKey(voice, lang, text) {
+    const hash = crypto.createHash('sha1').update(`${voice}|${lang}|${text}`).digest('hex');
+    const ext = voice === 'google' ? 'mp3' : 'wav';
+    return `${voice}/${hash}.${ext}`;
+}
+
+function ttsPublicUrl(key) {
+    return `${SUPABASE_URL}/storage/v1/object/public/${TTS_BUCKET}/${key}`;
+}
+
+async function ttsCacheHas(key) {
+    if (!TTS_CACHE_ENABLED) return false;
+    try {
+        const r = await fetch(ttsPublicUrl(key), { method: 'HEAD' });
+        return r.ok;
+    } catch {
+        return false;
+    }
+}
+
+async function ttsCachePut(key, buffer, contentType) {
+    if (!TTS_CACHE_ENABLED) return false;
+    try {
+        const r = await fetch(`${SUPABASE_URL}/storage/v1/object/${TTS_BUCKET}/${key}`, {
+            method: 'POST',
+            headers: {
+                Authorization: `Bearer ${SUPABASE_SERVICE_ROLE_KEY}`,
+                'Content-Type': contentType,
+                'x-upsert': 'true',
+                'Cache-Control': 'public, max-age=31536000, immutable',
+            },
+            body: buffer,
+        });
+        if (!r.ok) {
+            const detail = await r.text().catch(() => '');
+            console.warn(`TTS cache upload failed (${r.status}): ${detail.slice(0, 200)}`);
+            return false;
+        }
+        return true;
+    } catch (err) {
+        console.warn('TTS cache upload error:', err.message);
+        return false;
+    }
+}
 const AZURE_PCM_SAMPLE_RATE = 24000;
 const AZURE_PCM_CHANNELS = 1;
 const AZURE_PCM_BYTES_PER_SAMPLE = 2;
@@ -1009,17 +1063,24 @@ async function synthesizeWithGoogleTranslate(text, lang) {
     return Buffer.from(await response.arrayBuffer());
 }
 
-// /api/tts?text=xin+chào&lang=vi&voice=google|azure-north|azure-south
+// /api/tts?text=xin+chào&lang=vi&voice=google|azure-north
 app.get('/api/tts', async (req, res) => {
     const text = (req.query.text || '').trim();
     const lang = req.query.lang || 'vi';
-    const legacyAccent = req.query.accent === 'south' ? 'azure-south' : 'azure-north';
+    const legacyAccent = 'azure-north';
     const hasVoice = TTS_VOICES.has(req.query.voice);
     const voice = hasVoice
         ? req.query.voice
         : (req.query.accent ? legacyAccent : DEFAULT_TTS_VOICE);
     if (!text || text.length > 200) {
         return res.status(400).json({ error: 'text required (max 200 chars)' });
+    }
+
+    // 1) Bucket hit — redirect the client straight to the CDN URL.
+    const cacheKey = ttsCacheKey(voice, lang, text);
+    if (await ttsCacheHas(cacheKey)) {
+        res.set('X-TTS-Cache', 'hit');
+        return res.redirect(302, ttsPublicUrl(cacheKey));
     }
 
     try {
@@ -1040,11 +1101,16 @@ app.get('/api/tts', async (req, res) => {
             };
         }
 
+        // 2) Bucket miss — upload to cache for next time (fire-and-forget so
+        // the user doesn't wait for the round-trip).
+        ttsCachePut(cacheKey, audioResult.buffer, audioResult.contentType);
+
         res.set({
             'Content-Type': audioResult.contentType,
-            'Cache-Control': 'no-store',
+            'Cache-Control': TTS_CACHE_ENABLED ? 'public, max-age=86400' : 'no-store',
             'X-TTS-Provider': provider,
             'X-TTS-Voice': voice,
+            'X-TTS-Cache': TTS_CACHE_ENABLED ? 'miss' : 'disabled',
         });
         res.send(audioResult.buffer);
     } catch (err) {
