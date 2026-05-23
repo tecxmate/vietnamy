@@ -46,7 +46,7 @@ const isSystemAudioEnabled = () => {
 
 export const buildTtsUrl = (text, lang = 'vi', voiceOverride = null) => {
     const voice = voiceOverride || loadTtsVoice();
-    const cacheKey = `tts-v9-nam-minh-lower-${voice}`;
+    const cacheKey = `tts-v10-voice-preview-${voice}`;
     return `/api/tts?text=${encodeURIComponent(text)}&lang=${encodeURIComponent(lang)}&voice=${encodeURIComponent(voice)}&ck=${encodeURIComponent(cacheKey)}`;
 };
 

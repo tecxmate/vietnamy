@@ -941,10 +941,15 @@ const SUPABASE_URL = (process.env.SUPABASE_URL || '').replace(/\/+$/, '');
 const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || '';
 const TTS_CACHE_ENABLED = Boolean(SUPABASE_URL && SUPABASE_SERVICE_ROLE_KEY);
 
-function ttsCacheKey(voice, lang, text) {
+function normalizeTtsCacheVersion(value) {
+    const raw = typeof value === 'string' && value.trim() ? value.trim() : TTS_CACHE_VERSION;
+    return raw.replace(/[^A-Za-z0-9._-]/g, '-').slice(0, 80) || TTS_CACHE_VERSION;
+}
+
+function ttsCacheKey(voice, lang, text, cacheVersion = TTS_CACHE_VERSION) {
     const hash = crypto.createHash('sha1').update(`${voice}|${lang}|${text}`).digest('hex');
     const ext = voice === 'google' ? 'mp3' : 'wav';
-    return `${TTS_CACHE_VERSION}/${voice}/${hash}.${ext}`;
+    return `${normalizeTtsCacheVersion(cacheVersion)}/${voice}/${hash}.${ext}`;
 }
 
 function ttsPublicUrl(key) {
@@ -1199,7 +1204,7 @@ app.get('/api/tts', async (req, res) => {
     }
 
     // 1) Bucket hit — redirect the client straight to the CDN URL.
-    const cacheKey = ttsCacheKey(voice, lang, text);
+    const cacheKey = ttsCacheKey(voice, lang, text, req.query.ck);
     if (await ttsCacheHas(cacheKey)) {
         res.set('X-TTS-Cache', 'hit');
         return res.redirect(302, ttsPublicUrl(cacheKey));
