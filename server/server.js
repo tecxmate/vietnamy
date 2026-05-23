@@ -871,7 +871,7 @@ const AZURE_VI_VOICES = {
 };
 const TTS_VOICES = new Set(['google', 'azure-north', 'azure-south']);
 const DEFAULT_TTS_VOICE = process.env.DEFAULT_TTS_VOICE || 'azure-north';
-const TTS_CACHE_VERSION = process.env.TTS_CACHE_VERSION || 'v4-trim-loudness';
+const TTS_CACHE_VERSION = process.env.TTS_CACHE_VERSION || 'v9-nam-minh-lower';
 
 // --- TTS bucket cache (Supabase Storage) -----------------------------------
 // Set SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY in env to enable. Bucket name
@@ -1023,6 +1023,24 @@ function normalizePcm16MonoLoudness(buffer, targetRms = 0.16, maxGain = 3) {
     return amplifiedBuffer;
 }
 
+function addPcm16MonoClarity(buffer, amount = 0.18) {
+    if (!Buffer.isBuffer(buffer) || buffer.length < AZURE_PCM_BYTES_PER_SAMPLE * 2) return buffer;
+
+    const sampleCount = Math.floor(buffer.length / AZURE_PCM_BYTES_PER_SAMPLE);
+    const clarifiedBuffer = Buffer.allocUnsafe(buffer.length);
+    let previous = 0;
+
+    for (let sample = 0; sample < sampleCount; sample++) {
+        const offset = sample * AZURE_PCM_BYTES_PER_SAMPLE;
+        const value = buffer.readInt16LE(offset);
+        const clarified = Math.round(value + amount * (value - previous));
+        clarifiedBuffer.writeInt16LE(Math.max(-32768, Math.min(32767, clarified)), offset);
+        previous = value;
+    }
+
+    return clarifiedBuffer;
+}
+
 function pcm16MonoToWav(buffer, sampleRate = AZURE_PCM_SAMPLE_RATE) {
     const header = Buffer.alloc(44);
     const byteRate = sampleRate * AZURE_PCM_CHANNELS * AZURE_PCM_BYTES_PER_SAMPLE;
@@ -1049,11 +1067,14 @@ async function synthesizeWithAzure(text, lang, voice = 'azure-north') {
     if (!AZURE_TTS_ENABLED || lang !== 'vi') return null;
 
     const voiceName = AZURE_VI_VOICES[voice] || AZURE_VI_VOICES['azure-north'];
+    const prosodyAttrs = voice === 'azure-south'
+        ? 'volume="x-loud" pitch="+5%" rate="+4%"'
+        : 'volume="default"';
     const endpoint = `https://${AZURE_SPEECH_REGION}.tts.speech.microsoft.com/cognitiveservices/v1`;
     const ssml = `
 <speak version="1.0" xml:lang="vi-VN">
   <voice xml:lang="vi-VN" name="${voiceName}">
-    ${escapeSsml(text)}
+    <prosody ${prosodyAttrs}>${escapeSsml(text)}</prosody>
   </voice>
 </speak>`.trim();
 
@@ -1075,7 +1096,11 @@ async function synthesizeWithAzure(text, lang, voice = 'azure-north') {
 
     const rawPcm = Buffer.from(await response.arrayBuffer());
     const trimmedPcm = trimPcm16MonoSilence(rawPcm);
-    const normalizedPcm = normalizePcm16MonoLoudness(trimmedPcm);
+    const enhancedPcm = voice === 'azure-south'
+        ? addPcm16MonoClarity(trimmedPcm, 0.32)
+        : trimmedPcm;
+    const targetRms = voice === 'azure-south' ? 0.2 : 0.13;
+    const normalizedPcm = normalizePcm16MonoLoudness(enhancedPcm, targetRms);
     return {
         buffer: pcm16MonoToWav(normalizedPcm),
         contentType: 'audio/wav',

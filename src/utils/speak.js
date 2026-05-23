@@ -36,7 +36,7 @@ const loadTtsVoice = () => {
 
 export const buildTtsUrl = (text, lang = 'vi', voiceOverride = null) => {
     const voice = voiceOverride || loadTtsVoice();
-    const cacheKey = `tts-v4-trim-loudness-${voice}`;
+    const cacheKey = `tts-v9-nam-minh-lower-${voice}`;
     return `/api/tts?text=${encodeURIComponent(text)}&lang=${encodeURIComponent(lang)}&voice=${encodeURIComponent(voice)}&ck=${encodeURIComponent(cacheKey)}`;
 };
 

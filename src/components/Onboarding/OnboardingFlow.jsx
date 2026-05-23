@@ -5,9 +5,9 @@ import { useAuth } from '../../context/AuthContext';
 import { buildTtsUrl } from '../../utils/speak';
 
 const VOICE_OPTIONS = [
-    { id: 'google', displayOrder: 1, displayName: 'Ms. Google - Northern Accent', dialect: 'north' },
-    { id: 'azure-south', displayOrder: 2, displayName: 'Hoài My · Southern Accent', dialect: 'south' },
-    { id: 'azure-north', displayOrder: 3, displayName: 'Nam Minh · Southern Accent', dialect: 'north' },
+    { id: 'google', displayOrder: 1, displayName: 'Ms. Google', description: 'Female Northern Accent', dialect: 'north' },
+    { id: 'azure-south', displayOrder: 2, displayName: 'Hoài My', description: 'Female Southern Accent', dialect: 'south' },
+    { id: 'azure-north', displayOrder: 3, displayName: 'Nam Minh', description: 'Male Southern Accent', dialect: 'north' },
 ];
 
 const VOICE_OPTIONS_DISPLAY = [...VOICE_OPTIONS].sort((a, b) => a.displayOrder - b.displayOrder);
@@ -238,8 +238,9 @@ const OnboardingFlow = ({ onComplete, requireAuth = false }) => {
                             >
                                 {isPlaying ? <Square size={18} fill="#fff" /> : <Play size={18} fill="#fff" style={{ marginLeft: 2 }} />}
                             </span>
-                            <span style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 2, textAlign: 'left', flex: 1 }}>
+                            <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, textAlign: 'left', flex: 1, minWidth: 0 }}>
                                 <span style={{ fontSize: 17, fontWeight: 700 }}>{v.displayName}</span>
+                                <span style={{ fontSize: 13, fontWeight: 600, color: selected ? 'inherit' : 'var(--text-muted)', textAlign: 'right', marginLeft: 'auto' }}>{v.description}</span>
                             </span>
                         </button>
                     );
