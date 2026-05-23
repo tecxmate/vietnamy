@@ -4,7 +4,7 @@ import { useT } from '../lib/i18n';
 import { useUser } from '../context/UserContext';
 import { useNotifications } from '../context/NotificationContext';
 
-const BottomNav = ({ activeTab, setActiveTab }) => {
+const BottomNav = ({ activeTab, setActiveTab, onPreloadTab }) => {
     const t = useT();
     const { userProfile } = useUser();
     const { unreadCount, openPanel } = useNotifications();
@@ -33,6 +33,9 @@ const BottomNav = ({ activeTab, setActiveTab }) => {
                     <button
                         key={tab.id}
                         className={`nav-item ${activeTab === tab.id ? 'active' : ''}`}
+                        onPointerEnter={() => onPreloadTab?.(tab.id)}
+                        onPointerDown={() => onPreloadTab?.(tab.id)}
+                        onFocus={() => onPreloadTab?.(tab.id)}
                         onClick={() => setActiveTab(tab.id)}
                     >
                         {tab.icon}

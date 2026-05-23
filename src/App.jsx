@@ -17,14 +17,74 @@ import TopBar from './components/TopBar';
 import InstallPrompt from './components/InstallPrompt';
 import { installGlobalHaptics } from './utils/haptics';
 
-const HomeTab = lazy(() => import('./components/Tabs/HomeTab'));
+const loadHomeTab = () => import('./components/Tabs/HomeTab');
+const loadRoadmapTab = () => import('./components/Tabs/RoadmapTab');
+const loadGrammarTab = () => import('./components/Tabs/GrammarTab');
+const loadSoundsTab = () => import('./components/Tabs/SoundsTab');
+const loadDictionaryTab = () => import('./components/Tabs/DictionaryTab');
+const loadReadingLibraryTab = () => import('./components/Tabs/ReadingLibraryTab');
+
+const TAB_LOADERS = {
+  home: loadHomeTab,
+  study: loadRoadmapTab,
+  grammar: loadGrammarTab,
+  sounds: loadSoundsTab,
+  dictionary: loadDictionaryTab,
+  library: loadReadingLibraryTab,
+};
+
+const preloadedTabs = new Set();
+
+function canBackgroundPreload() {
+  const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+  if (connection?.saveData) return false;
+  return connection?.effectiveType !== 'slow-2g' && connection?.effectiveType !== '2g';
+}
+
+function preloadTab(tab) {
+  const loader = TAB_LOADERS[tab];
+  if (!loader || preloadedTabs.has(tab)) return;
+  preloadedTabs.add(tab);
+  loader().catch(() => {
+    preloadedTabs.delete(tab);
+  });
+}
+
+function preloadStudentTabs(activeTab) {
+  if (!canBackgroundPreload()) return () => {};
+
+  const tabs = ['study', 'dictionary', 'library', 'grammar', 'sounds', 'home'].filter(tab => tab !== activeTab);
+  const timers = [];
+  let idleId = null;
+
+  const start = () => {
+    tabs.forEach((tab, index) => {
+      timers.push(window.setTimeout(() => preloadTab(tab), index * 250));
+    });
+  };
+
+  if ('requestIdleCallback' in window) {
+    idleId = window.requestIdleCallback(start, { timeout: 1800 });
+  } else {
+    timers.push(window.setTimeout(start, 1200));
+  }
+
+  return () => {
+    if (idleId !== null && 'cancelIdleCallback' in window) {
+      window.cancelIdleCallback(idleId);
+    }
+    timers.forEach(timer => window.clearTimeout(timer));
+  };
+}
+
+const HomeTab = lazy(loadHomeTab);
 const OnboardingFlow = lazy(() => import('./components/Onboarding/OnboardingFlow'));
 const AppTutorial = lazy(() => import('./components/Onboarding/AppTutorial'));
-const RoadmapTab = lazy(() => import('./components/Tabs/RoadmapTab'));
-const GrammarTab = lazy(() => import('./components/Tabs/GrammarTab'));
-const SoundsTab = lazy(() => import('./components/Tabs/SoundsTab'));
-const DictionaryTab = lazy(() => import('./components/Tabs/DictionaryTab'));
-const ReadingLibraryTab = lazy(() => import('./components/Tabs/ReadingLibraryTab'));
+const RoadmapTab = lazy(loadRoadmapTab);
+const GrammarTab = lazy(loadGrammarTab);
+const SoundsTab = lazy(loadSoundsTab);
+const DictionaryTab = lazy(loadDictionaryTab);
+const ReadingLibraryTab = lazy(loadReadingLibraryTab);
 
 const GrammarList = lazy(() => import('./pages/Grammar/GrammarList'));
 const GrammarDetail = lazy(() => import('./pages/Grammar/GrammarDetail'));
@@ -213,6 +273,14 @@ function StudentApp({ initialTab = 'home' }) {
     setPendingVocabDeck(deckId);
     setActiveTab('library');
   };
+
+  const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+
+  React.useEffect(() => {
+    if (authLoading || !hasCompletedOnboarding || (!user && !isLocalhost)) return undefined;
+    return preloadStudentTabs(activeTab);
+  }, [activeTab, authLoading, hasCompletedOnboarding, isLocalhost, user]);
+
   const completeOnboarding = () => {
     localStorage.setItem('vnme_onboarding_completed', 'true');
     setHasCompletedOnboarding(true);
@@ -230,7 +298,6 @@ function StudentApp({ initialTab = 'home' }) {
   }
 
   // Must sign in before using the app (skip on localhost for dev)
-  const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
   if (!user && !isLocalhost) {
     return (
       <div className="mobile-app-wrapper">
@@ -268,7 +335,7 @@ function StudentApp({ initialTab = 'home' }) {
           </div>
           <main key={activeTab} className={`main-content ${activeTab}-tab ${activeTab !== 'home' ? ' no-topbar' : ''}`}>{renderTab()}</main>
         </div>
-        <BottomNav activeTab={activeTab} setActiveTab={setActiveTab} />
+        <BottomNav activeTab={activeTab} setActiveTab={setActiveTab} onPreloadTab={preloadTab} />
         {!hasCompletedTutorial && (
           <AppTutorial
             activeTab={activeTab}
