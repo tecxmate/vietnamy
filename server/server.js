@@ -931,7 +931,7 @@ const AZURE_VI_VOICES = {
 };
 const TTS_VOICES = new Set(['google', 'azure-north', 'azure-south']);
 const DEFAULT_TTS_VOICE = process.env.DEFAULT_TTS_VOICE || 'azure-north';
-const TTS_CACHE_VERSION = process.env.TTS_CACHE_VERSION || 'v9-nam-minh-lower';
+const TTS_CACHE_VERSION = process.env.TTS_CACHE_VERSION || 'v9-processed';
 
 // --- TTS bucket cache (Supabase Storage) -----------------------------------
 // Set SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY in env to enable. Bucket name

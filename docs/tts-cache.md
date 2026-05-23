@@ -52,7 +52,7 @@ tts-cache/
 ├── source/                              # unversioned, never invalidated
 │   ├── azure-north/<sha1>.pcm           # raw trimmed PCM from Azure
 │   └── azure-south/<sha1>.pcm
-└── <TTS_CACHE_VERSION>/                 # e.g. v9-nam-minh-lower
+└── <TTS_CACHE_VERSION>/                 # e.g. v9-processed
     ├── azure-north/<sha1>.wav           # post-processed WAV
     └── azure-south/<sha1>.wav
 ```
@@ -62,6 +62,7 @@ tts-cache/
 - **Google TTS path** (used only as last-resort fallback) bypasses post-processing and is cached only at the derived tier as `.mp3`.
 
 The version prefix is the lever for voice-quality iteration. Bumping `TTS_CACHE_VERSION='v10-foo'` and redeploying means:
+
 - Every request becomes a derived miss.
 - Server falls through to source check → source hit → re-derives WAV locally with the new clarity/loudness parameters → uploads under `v10-foo/`.
 - **Zero Azure calls** (after the one-time source backfill, see below).
@@ -69,18 +70,19 @@ The version prefix is the lever for voice-quality iteration. Bumping `TTS_CACHE_
 
 ## Files
 
-| File | Role |
-| --- | --- |
-| `server/server.js` | `/api/tts` handler, two-tier check, Azure + Google synthesizers, post-processing helpers (`trimPcm16MonoSilence`, `addPcm16MonoClarity`, `normalizePcm16MonoLoudness`, `pcm16MonoToWav`). |
-| `server/server.js` | `/api/pronunciation` endpoint — Azure Speech Pronunciation Assessment for `speak_sentence` and Tone Trainer. |
-| `scripts/prebuild-tts.mjs` | One-off warm-up. Walks `src/data/` for known Vietnamese keys, optionally adds top-N dictionary words, POSTs each `(text, voice)` pair to `/api/tts`. Idempotent. |
-| `scripts/backfill-tts-source.mjs` | One-shot source-tier backfill for strings that have a derived WAV but no source PCM (legacy from before the two-tier split). Forces fresh Azure calls via `?ck=migrate-source`. |
-| `scripts/backup-tts.mjs` | Downloads the entire `tts-cache` bucket to a local folder for cold-archive durability. |
-| `src/utils/recordPCM.js` | Client-side mic recorder. Captures 16 kHz mono PCM via `AudioContext`, packs as WAV Blob for upload to `/api/pronunciation`. |
-| `src/components/LessonGame.jsx` | Wires `speak_sentence` exercises to the pronunciation flow with parallel browser-STT fallback. |
-| `src/pages/Practice/ToneTrainer.jsx` | Dedicated tone-discrimination drill using pronunciation assessment scores. |
-| `src/data/toneTrainerData.js` | Minimal-pair clusters for the Tone Trainer (lives under `src/data/` so the prebuild walker picks them up). |
-| `README.md` § "TTS Bucket Cache" | User-facing setup quickstart. |
+
+| File                                 | Role                                                                                                                                                                                      |
+| ------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `server/server.js`                   | `/api/tts` handler, two-tier check, Azure + Google synthesizers, post-processing helpers (`trimPcm16MonoSilence`, `addPcm16MonoClarity`, `normalizePcm16MonoLoudness`, `pcm16MonoToWav`). |
+| `server/server.js`                   | `/api/pronunciation` endpoint — Azure Speech Pronunciation Assessment for `speak_sentence` and Tone Trainer.                                                                             |
+| `scripts/prebuild-tts.mjs`           | One-off warm-up. Walks`src/data/` for known Vietnamese keys, optionally adds top-N dictionary words, POSTs each `(text, voice)` pair to `/api/tts`. Idempotent.                           |
+| `scripts/backfill-tts-source.mjs`    | One-shot source-tier backfill for strings that have a derived WAV but no source PCM (legacy from before the two-tier split). Forces fresh Azure calls via`?ck=migrate-source`.            |
+| `scripts/backup-tts.mjs`             | Downloads the entire`tts-cache` bucket to a local folder for cold-archive durability.                                                                                                     |
+| `src/utils/recordPCM.js`             | Client-side mic recorder. Captures 16 kHz mono PCM via`AudioContext`, packs as WAV Blob for upload to `/api/pronunciation`.                                                               |
+| `src/components/LessonGame.jsx`      | Wires`speak_sentence` exercises to the pronunciation flow with parallel browser-STT fallback.                                                                                             |
+| `src/pages/Practice/ToneTrainer.jsx` | Dedicated tone-discrimination drill using pronunciation assessment scores.                                                                                                                |
+| `src/data/toneTrainerData.js`        | Minimal-pair clusters for the Tone Trainer (lives under`src/data/` so the prebuild walker picks them up).                                                                                 |
+| `README.md` § "TTS Bucket Cache"    | User-facing setup quickstart.                                                                                                                                                             |
 
 ## Setup
 
@@ -92,8 +94,9 @@ The version prefix is the lever for voice-quality iteration. Bumping `TTS_CACHE_
    AZURE_SPEECH_KEY=<key>
    AZURE_SPEECH_REGION=<region>      # e.g. eastasia
    TTS_BUCKET=tts-cache               # optional, default 'tts-cache'
-   TTS_CACHE_VERSION=v9-nam-minh-lower  # optional, default 'v9-nam-minh-lower'
+   TTS_CACHE_VERSION=v9-processed  # optional, default 'v9-processed'
    ```
+
    Service-role key (not anon) is required because uploads write to the bucket.
 3. **Azure Speech pricing tier**: in Azure Portal → Speech resource → **Pricing tier**, choose **S0 (Standard)** for production. F0 (Free) caps at 500K characters/month and returns 429 once exhausted — no automatic fallback to paid. The S0 rate is ~$16 per 1M characters; the $200 free Azure credit absorbs many years of organic usage.
 4. Redeploy. Verify with `curl -I "https://<host>/api/tts?text=xin%20ch%C3%A0o&voice=azure-north&lang=vi"`:
@@ -143,6 +146,7 @@ node scripts/backfill-tts-source.mjs --server=https://vietnamy.tecxmate.com --co
 ```
 
 The script:
+
 1. Walks every Vietnamese string the app uses (same key pattern as `prebuild-tts.mjs`, plus top dictionary words).
 2. HEADs `source/<voice>/<sha1>.pcm` for each.
 3. For misses, calls `/api/tts?ck=migrate-source&...` which forces a fresh Azure call. The server saves both `source/<voice>/<sha1>.pcm` (unversioned, permanent) and a throwaway `migrate-source/<voice>/<sha1>.wav` derived file.
@@ -152,13 +156,14 @@ Cost: ~$3 on S0 (about 90K characters × $16/1M for ~17K strings × 2 voices). R
 
 ### Reference runs
 
-| Date | Scope | Strings | Requests | Wall time | Throughput | Success |
-| --- | --- | --- | --- | --- | --- | --- |
-| 2026-05-23 | Explore Vietnam only | 6,787 | 13,574 | ~40 min | 5.7 req/s | 99.9% |
-| 2026-05-24 | + Professional / Heritage curriculum | 7,589 | 15,178 | ~14 min | 18.6 req/s | 100% |
-| 2026-05-24 | + Article titles + top-3,000 dict words | 10,596 | 21,192 | ~25 min | 13.9 req/s | 100% |
-| 2026-05-24 | + Tone Trainer pool + `word` keys | 8,846 | 17,692 | partial | n/a | 429s mid-run |
-| 2026-05-24 | Source-tier backfill | 11,192 | 22,384 | TBD | n/a | TBD |
+
+| Date       | Scope                                   | Strings | Requests | Wall time | Throughput | Success      |
+| ---------- | --------------------------------------- | ------- | -------- | --------- | ---------- | ------------ |
+| 2026-05-23 | Explore Vietnam only                    | 6,787   | 13,574   | ~40 min   | 5.7 req/s  | 99.9%        |
+| 2026-05-24 | + Professional / Heritage curriculum    | 7,589   | 15,178   | ~14 min   | 18.6 req/s | 100%         |
+| 2026-05-24 | + Article titles + top-3,000 dict words | 10,596  | 21,192   | ~25 min   | 13.9 req/s | 100%         |
+| 2026-05-24 | + Tone Trainer pool +`word` keys        | 8,846   | 17,692   | partial   | n/a        | 429s mid-run |
+| 2026-05-24 | Source-tier backfill                    | 11,192  | 22,384   | TBD       | n/a        | TBD          |
 
 Subsequent runs were faster because most strings were already cached → 302 redirects (no Azure call). The throughput on a fully warm bucket is roughly 4× higher than a cold one. The Tone Trainer run hit Azure's F0 quota mid-stream which prompted the move to S0 + the two-tier architecture.
 
@@ -169,7 +174,7 @@ Subsequent runs were faster because most strings were already cached → 302 red
 - **Cost after free tier** is roughly **$16 per 1M characters** (Neural TTS S0). To put it in perspective: 1,000 brand-new strings per day for a month is ~150K chars, ~$2.40. The cache makes that one-time per string forever.
 - **Cloudflare cache headers** on the served file come back as `cache-control: no-cache` from Supabase Storage (their default, ignores the `Cache-Control` header passed at upload). The browser still benefits because the URL is stable per `(voice, text, version)` — repeated playbacks reuse the same response. Investigating switching to `cacheControl` upload metadata or moving to R2 would improve this further but is not blocking.
 - **Failures during warm-up** (~0.1% in the first run, 0% in subsequent runs) are transient Azure timeouts. They self-heal on first user request, which then caches.
-- **Bucket size**: as of 2026-05-24, roughly **~1.2 GB total** including ~700 MB of orphaned files at the legacy unversioned path (pre-v9). The current `v9-nam-minh-lower/` tier is ~280 MB per voice. Delete the legacy `tts-cache/azure-north/` and `tts-cache/azure-south/` folders (no version prefix) to recover ~700 MB.
+- **Bucket size**: as of 2026-05-24, roughly **~1.2 GB total** including ~700 MB of orphaned files at the legacy unversioned path (pre-v9). The current `v9-processed/` tier is ~280 MB per voice. Delete the legacy `tts-cache/azure-north/` and `tts-cache/azure-south/` folders (no version prefix) to recover ~700 MB.
 - **Cache invalidation**: bumping `TTS_CACHE_VERSION` invalidates derived WAVs only. The hash on every key includes the full text, so editing a sentence creates a new key automatically; the obsolete one remains until manually deleted. Source PCM only changes if the Azure model changes (rare) — usually you never want to touch the `source/` tier.
 - **Backups**: `scripts/backup-tts.mjs` downloads the entire bucket to a local folder (`tts-backup/`, gitignored). Run periodically and store the folder somewhere durable (private repo, external drive, second cloud) so audio survives Supabase project loss.
 
@@ -186,15 +191,16 @@ Cost: Azure free tier includes **5 hours/month of audio**. Beyond that, ~$1/hour
 
 ## Failure modes
 
-| Symptom | Likely cause | Fix |
-| --- | --- | --- |
-| `X-TTS-Cache: disabled` | `SUPABASE_URL` or `SUPABASE_SERVICE_ROLE_KEY` not set on the server | Add env vars in Zeabur, redeploy. |
-| Always `miss`, never `hit` | Bucket exists but is private | Toggle bucket to Public in Supabase UI. The HEAD probe needs unauthenticated read. |
-| `429 Quota Exceeded` from Azure | F0 monthly quota exhausted (500K chars) | Switch the Speech resource to S0 in Azure Portal. Drains the $200 credit at $16/1M chars. |
-| Sudden flood of `miss` after working previously | `TTS_CACHE_VERSION` was bumped — derived WAVs at the old prefix are still there but no longer matched | Expected. Run the prebuild script (cheap if source PCM is populated) or wait for organic re-derives. Delete the old version folder afterwards. |
-| `502 TTS fetch failed` | Upstream Azure / Google failure | Server falls back from Azure to Google automatically; if both fail, returns 502. Not cached, retried on next request. |
-| Pre-gen script reports many `fail=` | Server overload or upstream throttling | Lower `--concurrency`. Re-run; only failed strings retry. |
-| Re-derive returns 502 with source-tier hit | Local post-processing threw (likely buffer length issue) | Check `server.js` post-processing helpers; if a bug, the safe rollback is reverting `TTS_CACHE_VERSION` to the last known good value. |
+
+| Symptom                                        | Likely cause                                                                                           | Fix                                                                                                                                            |
+| ---------------------------------------------- | ------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| `X-TTS-Cache: disabled`                        | `SUPABASE_URL` or `SUPABASE_SERVICE_ROLE_KEY` not set on the server                                    | Add env vars in Zeabur, redeploy.                                                                                                              |
+| Always`miss`, never `hit`                      | Bucket exists but is private                                                                           | Toggle bucket to Public in Supabase UI. The HEAD probe needs unauthenticated read.                                                             |
+| `429 Quota Exceeded` from Azure                | F0 monthly quota exhausted (500K chars)                                                                | Switch the Speech resource to S0 in Azure Portal. Drains the$200 credit at $16/1M chars.                                                       |
+| Sudden flood of`miss` after working previously | `TTS_CACHE_VERSION` was bumped — derived WAVs at the old prefix are still there but no longer matched | Expected. Run the prebuild script (cheap if source PCM is populated) or wait for organic re-derives. Delete the old version folder afterwards. |
+| `502 TTS fetch failed`                         | Upstream Azure / Google failure                                                                        | Server falls back from Azure to Google automatically; if both fail, returns 502. Not cached, retried on next request.                          |
+| Pre-gen script reports many`fail=`             | Server overload or upstream throttling                                                                 | Lower`--concurrency`. Re-run; only failed strings retry.                                                                                       |
+| Re-derive returns 502 with source-tier hit     | Local post-processing threw (likely buffer length issue)                                               | Check`server.js` post-processing helpers; if a bug, the safe rollback is reverting `TTS_CACHE_VERSION` to the last known good value.           |
 
 ## Scaling outlook
 
@@ -209,7 +215,7 @@ With the cache warm:
 
 Cache contents after the warm-up + Tone Trainer expansion + source backfill:
 
-- **~22,000 derived audio files** in `tts-cache/v9-nam-minh-lower/` (~11,000 unique strings × 2 voices)
+- **~22,000 derived audio files** in `tts-cache/v9-processed/` (~11,000 unique strings × 2 voices)
 - **~22,000 source PCM files** in `tts-cache/source/` (same coverage, persists across version bumps)
 - Coverage: full Explore Vietnam + Professional + Heritage curricula (A1 → C2), all Reading Library article titles + sentences, the top 3,000 Vietnamese words by subtitle frequency, and the ~468 Tone Trainer minimal-pair words
 - Total Azure characters consumed lifetime: **~700K** (free tier blown once, now on S0)
@@ -217,13 +223,14 @@ Cache contents after the warm-up + Tone Trainer expansion + source backfill:
 
 ### Capacity envelope
 
-| Layer | Bound | Headroom |
-| --- | --- | --- |
-| Zeabur container | ~50–150 concurrent requests | TTS no longer in the hot path; effectively unlimited for cached audio |
-| Supabase Storage size | 1 GB free / 100 GB Pro ($25/mo) | Already near 1 GB; clean up legacy folders or upgrade |
-| Supabase Storage egress | 5 GB/month (free tier) | ~200K cached audio plays/month before the quota — roughly 4,000 active sessions at ~50 plays each |
-| Azure free tier | 500K chars/month neural TTS | Already crossed. On S0 now; $200 credit covers years of organic usage |
-| CDN (Cloudflare) | Unbounded | The actual ceiling — global edge caching, unmetered |
+
+| Layer                   | Bound                           | Headroom                                                                                           |
+| ----------------------- | ------------------------------- | -------------------------------------------------------------------------------------------------- |
+| Zeabur container        | ~50–150 concurrent requests    | TTS no longer in the hot path; effectively unlimited for cached audio                              |
+| Supabase Storage size   | 1 GB free / 100 GB Pro ($25/mo) | Already near 1 GB; clean up legacy folders or upgrade                                              |
+| Supabase Storage egress | 5 GB/month (free tier)          | ~200K cached audio plays/month before the quota — roughly 4,000 active sessions at ~50 plays each |
+| Azure free tier         | 500K chars/month neural TTS     | Already crossed. On S0 now; $200 credit covers years of organic usage                              |
+| CDN (Cloudflare)        | Unbounded                       | The actual ceiling — global edge caching, unmetered                                               |
 
 **Realistic single-container capacity post-warm-up**: ~1,000+ concurrent active users. The first hard wall will be Supabase Storage egress or storage size, both of which are a $25/mo Pro upgrade or a one-time migration to Cloudflare R2 (free egress, 10 GB free storage). Neither is urgent until DAU climbs into the thousands.
 
@@ -234,3 +241,27 @@ Cache contents after the warm-up + Tone Trainer expansion + source backfill:
 - **Cleanup script**: walk the bucket, list all version folders, show their sizes, prompt to delete obsolete ones. Currently this requires the Supabase Storage UI.
 - **Source-tier compression**: raw 24 kHz mono 16-bit PCM is ~48 KB/sec. Could compress to FLAC (~50% size) before upload. Trade-off is server CPU vs. storage cost; not worth it until the bucket grows much larger.
 - **Per-string audit endpoint**: GET `/api/tts/info?text=...&voice=...` returns whether derived exists, whether source exists, and key URLs. Useful for debugging "why am I seeing a miss?"
+
+
+⏺ Done. Revised storage picture:
+
+- Legacy folders: gone (it was only 1 file, not the 700 MB I estimated — apologies for the overshoot).
+- Backfill in progress: 3,697 of ~22K migrate-source/ files written so far. Will reach ~22K when task bkudz8h1q finishes.
+- Source PCM tier: growing in parallel — same ~3,700 count.
+
+When backfill completes (~30 min from now), final layout:
+
+⏺ Done. Revised storage picture:
+
+- Legacy folders: gone (it was only 1 file, not the 700 MB I estimated — apologies for the overshoot).
+- Backfill in progress: 3,697 of ~22K migrate-source/ files written so far. Will reach ~22K when task bkudz8h1q finishes.
+- Source PCM tier: growing in parallel — same ~3,700 count.
+
+When backfill completes (~30 min from now), final layout:
+
+│       Folder                   │ Files   │  Size        │                                  Keep?                                   │
+│ v9-processed/  │ ~22K  │ ~700 MB │ ✅ active, serving users                                                 │
+│ source/                       │ ~22K  │ ~700 MB │ ✅ permanent — enables zero-Azure iteration                              │
+│ migrate-source/          │ ~22K  │ ~700 MB │ ❌ delete this — it's only the byproduct of forcing source re-generation │
+
+Total after deleting migrate-source/: ~1.4 GB. Still over the 1 GB free tier but much closer than my earlier projection.
