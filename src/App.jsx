@@ -135,6 +135,7 @@ const NumbersPractice2 = lazy(() => import('./pages/Practice/NumbersPractice2'))
 const NumbersPractice3 = lazy(() => import('./pages/Practice/NumbersPractice3'));
 const TonePitchTraining1 = lazy(() => import('./pages/Practice/TonePitchTraining1'));
 const TonePitchTraining2 = lazy(() => import('./pages/Practice/TonePitchTraining2'));
+const ToneTrainer = lazy(() => import('./pages/Practice/ToneTrainer'));
 const ConsonantsPractice = lazy(() => import('./pages/Practice/ConsonantsPractice'));
 const ConsonantsFinalPractice = lazy(() => import('./pages/Practice/ConsonantsFinalPractice'));
 const ClassifiersBasics = lazy(() => import('./pages/Practice/ClassifiersBasics'));
@@ -376,6 +377,7 @@ function AppRoutes() {
         <Route path="/practice/pitch" element={<Navigate to="/practice/pitch-1" replace />} />
         <Route path="/practice/pitch-1" element={<div className="mobile-app-wrapper"><TonePitchTraining1 /></div>} />
         <Route path="/practice/pitch-2" element={<div className="mobile-app-wrapper"><TonePitchTraining2 /></div>} />
+        <Route path="/practice/tone-trainer" element={<div className="mobile-app-wrapper"><ToneTrainer /></div>} />
         {/* Tone Marks sub-modules */}
         <Route path="/practice/tonemarks" element={<Navigate to="/practice/tonemarks-basic" replace />} />
         <Route path="/practice/tonemarks-basic" element={<div className="mobile-app-wrapper"><ToneMarksBasic /></div>} />

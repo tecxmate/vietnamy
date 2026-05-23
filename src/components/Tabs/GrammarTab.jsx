@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ChevronRight, ChevronDown, BookOpen, Volume2, Hash, MessageSquare, Users, Keyboard } from 'lucide-react';
+import { ChevronRight, ChevronDown, BookOpen, Volume2, Hash, MessageSquare, Users, Keyboard, Mic } from 'lucide-react';
 import speak from '../../utils/speak';
 import './GrammarTab.css';
 
@@ -11,6 +11,15 @@ const LEVEL_COLORS = {
 };
 
 const PRACTICE_MODULES = [
+    {
+        id: 'pronunciation',
+        title: 'Pronunciation',
+        icon: Mic,
+        color: '#EF476F',
+        items: [
+            { label: 'Tone Trainer', desc: 'Say words, get Azure-scored tone accuracy', route: '/practice/tone-trainer' },
+        ],
+    },
     {
         id: 'numbers',
         title: 'Numbers',
