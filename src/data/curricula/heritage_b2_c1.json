@@ -1,0 +1,289 @@
+{
+  "meta": {
+    "mode": "heritage",
+    "chapter": "b2_c1",
+    "version": "1.0.0",
+    "generated": "2026-05-24T00:00:00.000Z",
+    "source": "authored",
+    "stats": { "units": 3, "lessons": 10, "vocabulary": 80, "sentences": 40, "conversations": 10, "grammarTags": 0 },
+    "notes": "B2/C1 progression for Heritage path. Literary register: proverbs, folk poetry, philosophical and spiritual values, post-war memory, contemporary diaspora identity, reconciliation across generations."
+  },
+  "units": [
+    { "id": "hu7_language_arts", "order": 7, "title": "Language Arts", "description": "Proverbs, folk poetry, idiomatic expressions, literary Vietnamese." },
+    { "id": "hu8_values", "order": 8, "title": "Values & Spirituality", "description": "Filial piety, Buddhist and Confucian thought, spiritual practice in family life." },
+    { "id": "hu9_memory_history", "order": 9, "title": "Memory & History", "description": "War, post-war life, generational silence, reconciliation, contemporary diaspora identity." }
+  ],
+  "lessons": [
+    {
+      "id": "her_lesson_21", "unit": "hu7_language_arts", "title": "Proverbs of Family", "nodeId": "hu7_L21", "quizId": "hu7_Q21", "quizLabel": "Proverbs Quiz", "nodeIndex": 1, "difficulty": 7, "cefr": "B2", "xp": 25, "topic": "stories", "focus": ["proverbs", "wisdom"],
+      "words": [
+        { "id": "hr_w_161", "vi": "Ca dao", "en": "Folk verse", "pos": "noun", "difficulty": 7, "frequency": 3161 },
+        { "id": "hr_w_162", "vi": "Tục ngữ", "en": "Proverb", "pos": "noun", "difficulty": 6, "frequency": 3162 },
+        { "id": "hr_w_163", "vi": "Công cha như núi Thái Sơn", "en": "Father's love is as great as Mount Thai (proverb)", "pos": "phrase", "difficulty": 8, "frequency": 3163 },
+        { "id": "hr_w_164", "vi": "Nghĩa mẹ", "en": "A mother's devotion", "pos": "phrase", "difficulty": 7, "frequency": 3164 },
+        { "id": "hr_w_165", "vi": "Lòng hiếu thảo", "en": "Filial piety", "pos": "noun", "difficulty": 7, "frequency": 3165 },
+        { "id": "hr_w_166", "vi": "Bài học", "en": "Lesson / moral", "pos": "noun", "difficulty": 4, "frequency": 3166 },
+        { "id": "hr_w_167", "vi": "Truyền miệng", "en": "Passed by word of mouth", "pos": "phrase", "difficulty": 6, "frequency": 3167 },
+        { "id": "hr_w_168", "vi": "Bao đời nay", "en": "For generations", "pos": "phrase", "difficulty": 6, "frequency": 3168 }
+      ],
+      "sentences": [
+        { "id": "hr_s_081", "vi": "Câu ca dao này được truyền miệng bao đời nay.", "en": "This folk verse has been passed down for generations.", "accepted": ["This folk verse has been passed down for generations."], "tokens": 9, "difficulty": 7 },
+        { "id": "hr_s_082", "vi": "Công cha như núi Thái Sơn, nghĩa mẹ như nước trong nguồn.", "en": "Father's love is like Mount Thai; mother's like the spring's source.", "accepted": ["Father's love is like Mount Thai; mother's like the spring's source."], "tokens": 12, "difficulty": 7 },
+        { "id": "hr_s_083", "vi": "Tục ngữ Việt thường chứa bài học về lòng hiếu thảo.", "en": "Vietnamese proverbs often teach filial piety.", "accepted": ["Vietnamese proverbs often teach filial piety."], "tokens": 9, "difficulty": 7 },
+        { "id": "hr_s_084", "vi": "Mỗi câu ca dao là một mảnh ký ức dân tộc.", "en": "Each verse is a fragment of national memory.", "accepted": ["Each verse is a fragment of national memory."], "tokens": 9, "difficulty": 7 }
+      ],
+      "conversations": [
+        { "id": "HCV021", "title": "Grandma's proverb", "context": "Grandma quoting a proverb at the dinner table.", "lines": [
+          { "speaker": "Grandma", "vi": "Bà thường nói, công cha như núi Thái Sơn.", "en": "I often say, a father's love is mountain-high." },
+          { "speaker": "You", "vi": "Câu này nghĩa là gì hả bà?", "en": "What does it mean, Grandma?" },
+          { "speaker": "Grandma", "vi": "Là bài học về lòng hiếu thảo với cha mẹ.", "en": "A lesson about devotion to one's parents." },
+          { "speaker": "You", "vi": "Con sẽ ghi nhớ, cảm ơn bà.", "en": "I'll remember that, thank you Grandma." }
+        ]}
+      ]
+    },
+    {
+      "id": "her_lesson_22", "unit": "hu7_language_arts", "title": "Folk Poetry", "nodeId": "hu7_L22", "quizId": "hu7_Q22", "quizLabel": "Poetry Quiz", "nodeIndex": 2, "difficulty": 7, "cefr": "B2", "xp": 25, "topic": "stories", "focus": ["rhyme", "imagery"],
+      "words": [
+        { "id": "hr_w_169", "vi": "Vần điệu", "en": "Rhyme / cadence", "pos": "noun", "difficulty": 7, "frequency": 3169 },
+        { "id": "hr_w_170", "vi": "Hình ảnh", "en": "Imagery", "pos": "noun", "difficulty": 5, "frequency": 3170 },
+        { "id": "hr_w_171", "vi": "Mộc mạc", "en": "Plain / unaffected", "pos": "adjective", "difficulty": 7, "frequency": 3171 },
+        { "id": "hr_w_172", "vi": "Cánh đồng", "en": "Field", "pos": "noun", "difficulty": 4, "frequency": 3172 },
+        { "id": "hr_w_173", "vi": "Con sông", "en": "River", "pos": "noun", "difficulty": 3, "frequency": 3173 },
+        { "id": "hr_w_174", "vi": "Lời ru", "en": "Lullaby", "pos": "noun", "difficulty": 6, "frequency": 3174 },
+        { "id": "hr_w_175", "vi": "Văn vần", "en": "Verse / metric writing", "pos": "noun", "difficulty": 7, "frequency": 3175 },
+        { "id": "hr_w_176", "vi": "Dìu dặt", "en": "Gentle and rhythmic", "pos": "adjective", "difficulty": 8, "frequency": 3176 }
+      ],
+      "sentences": [
+        { "id": "hr_s_085", "vi": "Ca dao mộc mạc nhưng giàu hình ảnh.", "en": "Folk verses are plain yet rich in imagery.", "accepted": ["Folk verses are plain yet rich in imagery."], "tokens": 7, "difficulty": 7 },
+        { "id": "hr_s_086", "vi": "Lời ru của mẹ êm như dòng sông.", "en": "Mother's lullaby flows gentle as a river.", "accepted": ["Mother's lullaby flows gentle as a river."], "tokens": 8, "difficulty": 7 },
+        { "id": "hr_s_087", "vi": "Cánh đồng quê hương hiện lên trong từng câu thơ.", "en": "The homeland fields appear in every verse.", "accepted": ["The homeland fields appear in every verse."], "tokens": 9, "difficulty": 7 },
+        { "id": "hr_s_088", "vi": "Vần điệu dìu dặt khiến ta nhớ quê.", "en": "The gentle cadence makes one homesick.", "accepted": ["The gentle cadence makes one homesick."], "tokens": 7, "difficulty": 7 }
+      ],
+      "conversations": [
+        { "id": "HCV022", "title": "Reading a ca dao", "context": "Reading folk poetry with a parent.", "lines": [
+          { "speaker": "You", "vi": "Câu ca dao này hay quá mẹ ơi.", "en": "This folk verse is so beautiful, Mom." },
+          { "speaker": "Mom", "vi": "Hình ảnh dòng sông gợi nhớ quê hương.", "en": "The river image evokes the homeland." },
+          { "speaker": "You", "vi": "Vần điệu nghe dìu dặt thật.", "en": "The cadence really is gentle." },
+          { "speaker": "Mom", "vi": "Đó là cái hồn của tiếng Việt.", "en": "That's the soul of Vietnamese." }
+        ]}
+      ]
+    },
+    {
+      "id": "her_lesson_23", "unit": "hu7_language_arts", "title": "Idiomatic Expressions", "nodeId": "hu7_L23", "quizId": "hu7_Q23", "quizLabel": "Idioms Quiz", "nodeIndex": 3, "difficulty": 7, "cefr": "B2", "xp": 25, "topic": "basics", "focus": ["idiom", "everyday"],
+      "words": [
+        { "id": "hr_w_177", "vi": "Thành ngữ", "en": "Idiom", "pos": "noun", "difficulty": 6, "frequency": 3177 },
+        { "id": "hr_w_178", "vi": "Đầu xuôi đuôi lọt", "en": "A good start makes a smooth ending", "pos": "phrase", "difficulty": 7, "frequency": 3178 },
+        { "id": "hr_w_179", "vi": "Một con ngựa đau cả tàu bỏ cỏ", "en": "When one suffers, all share the pain", "pos": "phrase", "difficulty": 8, "frequency": 3179 },
+        { "id": "hr_w_180", "vi": "Có công mài sắt", "en": "Persistence rewards", "pos": "phrase", "difficulty": 7, "frequency": 3180 },
+        { "id": "hr_w_181", "vi": "Ăn quả nhớ kẻ trồng cây", "en": "Eat the fruit, remember the planter", "pos": "phrase", "difficulty": 7, "frequency": 3181 },
+        { "id": "hr_w_182", "vi": "Lá lành đùm lá rách", "en": "Healthy leaves shelter torn ones", "pos": "phrase", "difficulty": 7, "frequency": 3182 },
+        { "id": "hr_w_183", "vi": "Ý nghĩa", "en": "Meaning", "pos": "noun", "difficulty": 4, "frequency": 3183 },
+        { "id": "hr_w_184", "vi": "Tinh thần", "en": "Spirit (of a saying)", "pos": "noun", "difficulty": 4, "frequency": 3184 }
+      ],
+      "sentences": [
+        { "id": "hr_s_089", "vi": "Thành ngữ Việt thường có ý nghĩa sâu sắc.", "en": "Vietnamese idioms often carry deep meaning.", "accepted": ["Vietnamese idioms often carry deep meaning."], "tokens": 7, "difficulty": 7 },
+        { "id": "hr_s_090", "vi": "Lá lành đùm lá rách là tinh thần tương thân.", "en": "Healthy leaves shelter torn ones — the spirit of mutual support.", "accepted": ["Healthy leaves shelter torn ones — the spirit of mutual support."], "tokens": 10, "difficulty": 7 },
+        { "id": "hr_s_091", "vi": "Ăn quả nhớ kẻ trồng cây — đừng quên ơn người.", "en": "Eat fruit, remember the planter — never forget gratitude.", "accepted": ["Eat fruit, remember the planter — never forget gratitude."], "tokens": 11, "difficulty": 7 },
+        { "id": "hr_s_092", "vi": "Có công mài sắt, có ngày nên kim.", "en": "Polish iron with effort, one day it becomes a needle.", "accepted": ["Polish iron with effort, one day it becomes a needle."], "tokens": 10, "difficulty": 7 }
+      ],
+      "conversations": [
+        { "id": "HCV023", "title": "Idioms in everyday talk", "context": "Dad encouraging a child with proverbs.", "lines": [
+          { "speaker": "Dad", "vi": "Có công mài sắt, có ngày nên kim con à.", "en": "Persistence pays, child." },
+          { "speaker": "You", "vi": "Con học mãi mà vẫn khó quá.", "en": "I keep studying, but it's still so hard." },
+          { "speaker": "Dad", "vi": "Đầu xuôi đuôi lọt, cứ kiên trì.", "en": "Start well and it'll all flow — stay persistent." },
+          { "speaker": "You", "vi": "Dạ con sẽ cố gắng, cảm ơn bố.", "en": "I'll keep trying, thank you Dad." }
+        ]}
+      ]
+    },
+    {
+      "id": "her_lesson_24", "unit": "hu8_values", "title": "Filial Piety", "nodeId": "hu8_L24", "quizId": "hu8_Q24", "quizLabel": "Filial Quiz", "nodeIndex": 1, "difficulty": 7, "cefr": "B2", "xp": 25, "topic": "traditions", "focus": ["confucian", "duty"],
+      "words": [
+        { "id": "hr_w_185", "vi": "Hiếu", "en": "Filial / devoted to parents", "pos": "adjective", "difficulty": 7, "frequency": 3185 },
+        { "id": "hr_w_186", "vi": "Phụng dưỡng", "en": "To care for (parents)", "pos": "verb", "difficulty": 8, "frequency": 3186 },
+        { "id": "hr_w_187", "vi": "Kính lễ", "en": "Reverence", "pos": "noun", "difficulty": 8, "frequency": 3187 },
+        { "id": "hr_w_188", "vi": "Bổn phận", "en": "Duty", "pos": "noun", "difficulty": 7, "frequency": 3188 },
+        { "id": "hr_w_189", "vi": "Báo hiếu", "en": "To repay one's parents", "pos": "verb", "difficulty": 7, "frequency": 3189 },
+        { "id": "hr_w_190", "vi": "Khổng giáo", "en": "Confucianism", "pos": "noun", "difficulty": 8, "frequency": 3190 },
+        { "id": "hr_w_191", "vi": "Đạo lý", "en": "Moral principle", "pos": "noun", "difficulty": 7, "frequency": 3191 },
+        { "id": "hr_w_192", "vi": "Lễ phép", "en": "Mannered / well-behaved", "pos": "adjective", "difficulty": 6, "frequency": 3192 }
+      ],
+      "sentences": [
+        { "id": "hr_s_093", "vi": "Hiếu kính cha mẹ là đạo lý làm người.", "en": "Honoring parents is a fundamental moral principle.", "accepted": ["Honoring parents is a fundamental moral principle."], "tokens": 9, "difficulty": 7 },
+        { "id": "hr_s_094", "vi": "Phụng dưỡng cha mẹ khi về già là bổn phận.", "en": "Caring for aging parents is a duty.", "accepted": ["Caring for aging parents is a duty."], "tokens": 9, "difficulty": 7 },
+        { "id": "hr_s_095", "vi": "Khổng giáo ảnh hưởng sâu đến văn hóa Việt.", "en": "Confucianism deeply shaped Vietnamese culture.", "accepted": ["Confucianism deeply shaped Vietnamese culture."], "tokens": 7, "difficulty": 7 },
+        { "id": "hr_s_096", "vi": "Báo hiếu không phải bằng tiền, mà bằng sự quan tâm.", "en": "Filial repayment isn't in money, but in care.", "accepted": ["Filial repayment isn't in money, but in care."], "tokens": 10, "difficulty": 7 }
+      ],
+      "conversations": [
+        { "id": "HCV024", "title": "Caring for elders", "context": "Discussing with a sibling how to care for aging parents.", "lines": [
+          { "speaker": "Sibling", "vi": "Bố mẹ già rồi, mình phải báo hiếu.", "en": "Mom and dad are aging — we must repay them." },
+          { "speaker": "You", "vi": "Mình nên thường xuyên về thăm.", "en": "We should visit often." },
+          { "speaker": "Sibling", "vi": "Phụng dưỡng là bổn phận của con cái.", "en": "Caring for parents is a child's duty." },
+          { "speaker": "You", "vi": "Đúng vậy, đó là đạo lý ngàn đời.", "en": "Yes, that's a timeless principle." }
+        ]}
+      ]
+    },
+    {
+      "id": "her_lesson_25", "unit": "hu8_values", "title": "Buddhist Influence", "nodeId": "hu8_L25", "quizId": "hu8_Q25", "quizLabel": "Buddhism Quiz", "nodeIndex": 2, "difficulty": 7, "cefr": "B2", "xp": 25, "topic": "traditions", "focus": ["temple", "karma"],
+      "words": [
+        { "id": "hr_w_193", "vi": "Phật giáo", "en": "Buddhism", "pos": "noun", "difficulty": 6, "frequency": 3193 },
+        { "id": "hr_w_194", "vi": "Chùa", "en": "Temple / pagoda", "pos": "noun", "difficulty": 4, "frequency": 3194 },
+        { "id": "hr_w_195", "vi": "Tu", "en": "To practice (spiritually)", "pos": "verb", "difficulty": 6, "frequency": 3195 },
+        { "id": "hr_w_196", "vi": "Niệm Phật", "en": "Chant the Buddha's name", "pos": "phrase", "difficulty": 7, "frequency": 3196 },
+        { "id": "hr_w_197", "vi": "Nghiệp", "en": "Karma", "pos": "noun", "difficulty": 7, "frequency": 3197 },
+        { "id": "hr_w_198", "vi": "Từ bi", "en": "Compassion", "pos": "noun", "difficulty": 7, "frequency": 3198 },
+        { "id": "hr_w_199", "vi": "Vô thường", "en": "Impermanence", "pos": "noun", "difficulty": 8, "frequency": 3199 },
+        { "id": "hr_w_200", "vi": "Giải thoát", "en": "Liberation / enlightenment", "pos": "noun", "difficulty": 7, "frequency": 3200 }
+      ],
+      "sentences": [
+        { "id": "hr_s_097", "vi": "Bà thường đi chùa niệm Phật mỗi tháng.", "en": "Grandma goes to the temple to chant each month.", "accepted": ["Grandma goes to the temple to chant each month."], "tokens": 9, "difficulty": 7 },
+        { "id": "hr_s_098", "vi": "Phật giáo dạy về từ bi và vô thường.", "en": "Buddhism teaches compassion and impermanence.", "accepted": ["Buddhism teaches compassion and impermanence."], "tokens": 8, "difficulty": 7 },
+        { "id": "hr_s_099", "vi": "Mọi sự đều do nghiệp duyên mà ra.", "en": "Everything arises from karma and conditions.", "accepted": ["Everything arises from karma and conditions."], "tokens": 8, "difficulty": 7 },
+        { "id": "hr_s_100", "vi": "Tu tâm dưỡng tính để đời nhẹ nhàng.", "en": "Cultivate the heart to live with ease.", "accepted": ["Cultivate the heart to live with ease."], "tokens": 7, "difficulty": 7 }
+      ],
+      "conversations": [
+        { "id": "HCV025", "title": "Visiting the temple", "context": "Visiting a Buddhist pagoda with family during Tet.", "lines": [
+          { "speaker": "Mom", "vi": "Đầu năm cả nhà lên chùa nhé.", "en": "Let's all visit the temple at the new year." },
+          { "speaker": "You", "vi": "Mình cầu nguyện gì hả mẹ?", "en": "What do we pray for?" },
+          { "speaker": "Mom", "vi": "Bình an, sức khỏe, và lòng từ bi.", "en": "Peace, health, and compassion." },
+          { "speaker": "You", "vi": "Con cũng muốn niệm Phật một chút.", "en": "I want to chant a little too." }
+        ]}
+      ]
+    },
+    {
+      "id": "her_lesson_26", "unit": "hu8_values", "title": "Catholic Diaspora", "nodeId": "hu8_L26", "quizId": "hu8_Q26", "quizLabel": "Catholic Quiz", "nodeIndex": 3, "difficulty": 7, "cefr": "B2", "xp": 25, "topic": "traditions", "focus": ["mass", "community"],
+      "words": [
+        { "id": "hr_w_201", "vi": "Công giáo", "en": "Catholicism", "pos": "noun", "difficulty": 6, "frequency": 3201 },
+        { "id": "hr_w_202", "vi": "Nhà thờ", "en": "Church", "pos": "noun", "difficulty": 4, "frequency": 3202 },
+        { "id": "hr_w_203", "vi": "Lễ Misa", "en": "Mass (Catholic)", "pos": "noun", "difficulty": 6, "frequency": 3203 },
+        { "id": "hr_w_204", "vi": "Cộng đoàn", "en": "Parish community", "pos": "noun", "difficulty": 7, "frequency": 3204 },
+        { "id": "hr_w_205", "vi": "Đức tin", "en": "Faith", "pos": "noun", "difficulty": 6, "frequency": 3205 },
+        { "id": "hr_w_206", "vi": "Cầu nguyện", "en": "To pray", "pos": "verb", "difficulty": 5, "frequency": 3206 },
+        { "id": "hr_w_207", "vi": "Giáng sinh", "en": "Christmas", "pos": "noun", "difficulty": 5, "frequency": 3207 },
+        { "id": "hr_w_208", "vi": "Đoàn kết", "en": "Solidarity", "pos": "noun", "difficulty": 5, "frequency": 3208 }
+      ],
+      "sentences": [
+        { "id": "hr_s_101", "vi": "Cộng đoàn Việt ở đây rất đoàn kết.", "en": "The Vietnamese parish here is very tight-knit.", "accepted": ["The Vietnamese parish here is very tight-knit."], "tokens": 8, "difficulty": 7 },
+        { "id": "hr_s_102", "vi": "Mỗi Chúa Nhật chúng tôi đi lễ Misa.", "en": "Every Sunday we go to Mass.", "accepted": ["Every Sunday we go to Mass."], "tokens": 7, "difficulty": 7 },
+        { "id": "hr_s_103", "vi": "Đức tin nâng đỡ gia đình qua nhiều khó khăn.", "en": "Faith carried our family through hard times.", "accepted": ["Faith carried our family through hard times."], "tokens": 8, "difficulty": 7 },
+        { "id": "hr_s_104", "vi": "Giáng sinh ở cộng đoàn rất ấm cúng.", "en": "Christmas in the parish is very warm.", "accepted": ["Christmas in the parish is very warm."], "tokens": 7, "difficulty": 7 }
+      ],
+      "conversations": [
+        { "id": "HCV026", "title": "Parish life", "context": "A relative visiting from Vietnam, talking with a diaspora family.", "lines": [
+          { "speaker": "Visitor", "vi": "Ở đây có nhà thờ Việt không?", "en": "Is there a Vietnamese church here?" },
+          { "speaker": "You", "vi": "Có chứ, cộng đoàn rất đông.", "en": "Yes, the parish is large." },
+          { "speaker": "Visitor", "vi": "Đi lễ Misa bằng tiếng Việt được không?", "en": "Can we attend Mass in Vietnamese?" },
+          { "speaker": "You", "vi": "Mỗi sáng Chúa Nhật đều có.", "en": "Every Sunday morning." }
+        ]}
+      ]
+    },
+    {
+      "id": "her_lesson_27", "unit": "hu9_memory_history", "title": "War Memories", "nodeId": "hu9_L27", "quizId": "hu9_Q27", "quizLabel": "War Quiz", "nodeIndex": 1, "difficulty": 8, "cefr": "C1", "xp": 30, "topic": "stories", "focus": ["war", "loss"],
+      "words": [
+        { "id": "hr_w_209", "vi": "Chiến tranh", "en": "War", "pos": "noun", "difficulty": 5, "frequency": 3209 },
+        { "id": "hr_w_210", "vi": "Mất mát", "en": "Loss", "pos": "noun", "difficulty": 7, "frequency": 3210 },
+        { "id": "hr_w_211", "vi": "Chia ly", "en": "Separation", "pos": "noun", "difficulty": 7, "frequency": 3211 },
+        { "id": "hr_w_212", "vi": "Tị nạn", "en": "Refugee", "pos": "noun", "difficulty": 6, "frequency": 3212 },
+        { "id": "hr_w_213", "vi": "Đất khách quê người", "en": "Foreign land far from home", "pos": "phrase", "difficulty": 8, "frequency": 3213 },
+        { "id": "hr_w_214", "vi": "Quê cha đất tổ", "en": "Ancestral land", "pos": "phrase", "difficulty": 7, "frequency": 3214 },
+        { "id": "hr_w_215", "vi": "Hồi tưởng", "en": "To reminisce", "pos": "verb", "difficulty": 7, "frequency": 3215 },
+        { "id": "hr_w_216", "vi": "Vết thương lòng", "en": "Emotional wound", "pos": "phrase", "difficulty": 8, "frequency": 3216 }
+      ],
+      "sentences": [
+        { "id": "hr_s_105", "vi": "Chiến tranh để lại bao mất mát và chia ly.", "en": "War left countless losses and separations.", "accepted": ["War left countless losses and separations."], "tokens": 9, "difficulty": 8 },
+        { "id": "hr_s_106", "vi": "Sống nơi đất khách quê người không dễ.", "en": "Living far from home is never easy.", "accepted": ["Living far from home is never easy."], "tokens": 8, "difficulty": 8 },
+        { "id": "hr_s_107", "vi": "Ông hồi tưởng lại những năm tháng chiến tranh.", "en": "Grandfather reminisces about the war years.", "accepted": ["Grandfather reminisces about the war years."], "tokens": 8, "difficulty": 8 },
+        { "id": "hr_s_108", "vi": "Vết thương lòng cần thời gian rất dài để lành.", "en": "Emotional wounds take a long time to heal.", "accepted": ["Emotional wounds take a long time to heal."], "tokens": 9, "difficulty": 8 }
+      ],
+      "conversations": [
+        { "id": "HCV027", "title": "Asking grandpa about the war", "context": "An adult grandchild gently asking grandpa about the past.", "lines": [
+          { "speaker": "You", "vi": "Ông có hay nhớ về quê cha đất tổ không?", "en": "Do you often miss the ancestral land?" },
+          { "speaker": "Grandpa", "vi": "Có chứ, nhưng nhớ thì đau lắm.", "en": "Yes, but remembering hurts." },
+          { "speaker": "You", "vi": "Vết thương lòng vẫn chưa lành hả ông?", "en": "Are the wounds still unhealed?" },
+          { "speaker": "Grandpa", "vi": "Một số sẽ theo ông cả đời.", "en": "Some I'll carry all my life." }
+        ]}
+      ]
+    },
+    {
+      "id": "her_lesson_28", "unit": "hu9_memory_history", "title": "Generational Silence", "nodeId": "hu9_L28", "quizId": "hu9_Q28", "quizLabel": "Silence Quiz", "nodeIndex": 2, "difficulty": 8, "cefr": "C1", "xp": 30, "topic": "stories", "focus": ["unspoken", "intergenerational"],
+      "words": [
+        { "id": "hr_w_217", "vi": "Im lặng", "en": "Silence", "pos": "noun", "difficulty": 4, "frequency": 3217 },
+        { "id": "hr_w_218", "vi": "Né tránh", "en": "To avoid (a topic)", "pos": "verb", "difficulty": 7, "frequency": 3218 },
+        { "id": "hr_w_219", "vi": "Sang chấn", "en": "Trauma", "pos": "noun", "difficulty": 8, "frequency": 3219 },
+        { "id": "hr_w_220", "vi": "Thế hệ", "en": "Generation", "pos": "noun", "difficulty": 5, "frequency": 3220 },
+        { "id": "hr_w_221", "vi": "Chia sẻ", "en": "To share", "pos": "verb", "difficulty": 4, "frequency": 3221 },
+        { "id": "hr_w_222", "vi": "Cảm thông", "en": "To empathize", "pos": "verb", "difficulty": 6, "frequency": 3222 },
+        { "id": "hr_w_223", "vi": "Vết thương cũ", "en": "Old wound", "pos": "phrase", "difficulty": 7, "frequency": 3223 },
+        { "id": "hr_w_224", "vi": "Lắng nghe", "en": "To listen attentively", "pos": "verb", "difficulty": 5, "frequency": 3224 }
+      ],
+      "sentences": [
+        { "id": "hr_s_109", "vi": "Cha mẹ thường im lặng về quá khứ.", "en": "Parents often stay silent about the past.", "accepted": ["Parents often stay silent about the past."], "tokens": 8, "difficulty": 8 },
+        { "id": "hr_s_110", "vi": "Sang chấn truyền qua nhiều thế hệ.", "en": "Trauma passes through generations.", "accepted": ["Trauma passes through generations."], "tokens": 7, "difficulty": 8 },
+        { "id": "hr_s_111", "vi": "Chia sẻ giúp chữa lành vết thương cũ.", "en": "Sharing helps heal old wounds.", "accepted": ["Sharing helps heal old wounds."], "tokens": 7, "difficulty": 8 },
+        { "id": "hr_s_112", "vi": "Lắng nghe là cách thể hiện sự cảm thông.", "en": "Listening is how empathy is shown.", "accepted": ["Listening is how empathy is shown."], "tokens": 8, "difficulty": 8 }
+      ],
+      "conversations": [
+        { "id": "HCV028", "title": "Breaking the silence", "context": "A grown child gently encouraging a parent to share.", "lines": [
+          { "speaker": "You", "vi": "Bố có muốn kể con nghe không?", "en": "Would you want to tell me, Dad?" },
+          { "speaker": "Dad", "vi": "Bố né tránh chuyện này nhiều năm rồi.", "en": "I've avoided this for years." },
+          { "speaker": "You", "vi": "Con sẽ lắng nghe, không phán xét.", "en": "I'll listen without judgment." },
+          { "speaker": "Dad", "vi": "Cảm ơn con, có lẽ đã đến lúc.", "en": "Thank you — perhaps it's time." }
+        ]}
+      ]
+    },
+    {
+      "id": "her_lesson_29", "unit": "hu9_memory_history", "title": "Returning Home", "nodeId": "hu9_L29", "quizId": "hu9_Q29", "quizLabel": "Returning Quiz", "nodeIndex": 3, "difficulty": 8, "cefr": "C1", "xp": 30, "topic": "stories", "focus": ["return", "rediscover"],
+      "words": [
+        { "id": "hr_w_225", "vi": "Trở về", "en": "To return", "pos": "verb", "difficulty": 5, "frequency": 3225 },
+        { "id": "hr_w_226", "vi": "Bồi hồi", "en": "Stirred emotionally", "pos": "adjective", "difficulty": 8, "frequency": 3226 },
+        { "id": "hr_w_227", "vi": "Xa lạ", "en": "Unfamiliar", "pos": "adjective", "difficulty": 6, "frequency": 3227 },
+        { "id": "hr_w_228", "vi": "Thân thuộc", "en": "Familiar / dear", "pos": "adjective", "difficulty": 6, "frequency": 3228 },
+        { "id": "hr_w_229", "vi": "Đổi thay", "en": "Change (of place over time)", "pos": "noun", "difficulty": 7, "frequency": 3229 },
+        { "id": "hr_w_230", "vi": "Tìm lại", "en": "To find again", "pos": "verb", "difficulty": 6, "frequency": 3230 },
+        { "id": "hr_w_231", "vi": "Nguồn cội", "en": "Origin / roots", "pos": "noun", "difficulty": 7, "frequency": 3231 },
+        { "id": "hr_w_232", "vi": "Hành trình tìm về", "en": "Journey of return", "pos": "phrase", "difficulty": 7, "frequency": 3232 }
+      ],
+      "sentences": [
+        { "id": "hr_s_113", "vi": "Lần đầu trở về quê, tôi rất bồi hồi.", "en": "Returning home for the first time, I was deeply moved.", "accepted": ["Returning home for the first time, I was deeply moved."], "tokens": 9, "difficulty": 8 },
+        { "id": "hr_s_114", "vi": "Quê hương vừa xa lạ vừa thân thuộc.", "en": "Home felt both unfamiliar and familiar.", "accepted": ["Home felt both unfamiliar and familiar."], "tokens": 7, "difficulty": 8 },
+        { "id": "hr_s_115", "vi": "Mọi thứ đã đổi thay rất nhiều.", "en": "Everything had changed so much.", "accepted": ["Everything had changed so much."], "tokens": 6, "difficulty": 8 },
+        { "id": "hr_s_116", "vi": "Tôi tìm lại được nguồn cội của mình.", "en": "I rediscovered my roots.", "accepted": ["I rediscovered my roots."], "tokens": 7, "difficulty": 8 }
+      ],
+      "conversations": [
+        { "id": "HCV029", "title": "First return", "context": "Telling a friend about the first trip back to Vietnam.", "lines": [
+          { "speaker": "Friend", "vi": "Lần đầu về Việt Nam cảm giác thế nào?", "en": "How did your first trip to Vietnam feel?" },
+          { "speaker": "You", "vi": "Bồi hồi lắm, vừa xa lạ vừa thân thuộc.", "en": "Deeply moving — both unfamiliar and familiar." },
+          { "speaker": "Friend", "vi": "Có tìm được gì không?", "en": "Did you find something?" },
+          { "speaker": "You", "vi": "Mình tìm lại được nguồn cội.", "en": "I found my roots again." }
+        ]}
+      ]
+    },
+    {
+      "id": "her_lesson_30", "unit": "hu9_memory_history", "title": "Diaspora Identity", "nodeId": "hu9_L30", "quizId": "hu9_Q30", "quizLabel": "Diaspora Quiz", "nodeIndex": 4, "difficulty": 8, "cefr": "C1", "xp": 30, "topic": "stories", "focus": ["between_cultures", "future"],
+      "words": [
+        { "id": "hr_w_233", "vi": "Việt kiều", "en": "Overseas Vietnamese", "pos": "noun", "difficulty": 6, "frequency": 3233 },
+        { "id": "hr_w_234", "vi": "Cộng đồng", "en": "Community", "pos": "noun", "difficulty": 5, "frequency": 3234 },
+        { "id": "hr_w_235", "vi": "Bản dạng", "en": "Identity (self)", "pos": "noun", "difficulty": 8, "frequency": 3235 },
+        { "id": "hr_w_236", "vi": "Giao thoa", "en": "Intersection / blending", "pos": "noun", "difficulty": 8, "frequency": 3236 },
+        { "id": "hr_w_237", "vi": "Tôn vinh", "en": "To honor / celebrate", "pos": "verb", "difficulty": 7, "frequency": 3237 },
+        { "id": "hr_w_238", "vi": "Cội nguồn", "en": "Roots / origin", "pos": "noun", "difficulty": 7, "frequency": 3238 },
+        { "id": "hr_w_239", "vi": "Tiếp nối", "en": "To continue / carry on", "pos": "verb", "difficulty": 6, "frequency": 3239 },
+        { "id": "hr_w_240", "vi": "Tương lai", "en": "Future", "pos": "noun", "difficulty": 4, "frequency": 3240 }
+      ],
+      "sentences": [
+        { "id": "hr_s_117", "vi": "Người Việt kiều sống giữa hai nền văn hóa.", "en": "Overseas Vietnamese live between two cultures.", "accepted": ["Overseas Vietnamese live between two cultures."], "tokens": 8, "difficulty": 8 },
+        { "id": "hr_s_118", "vi": "Bản dạng là sự giao thoa giữa quá khứ và hiện tại.", "en": "Identity is the intersection of past and present.", "accepted": ["Identity is the intersection of past and present."], "tokens": 10, "difficulty": 8 },
+        { "id": "hr_s_119", "vi": "Cộng đồng giúp nhau giữ gìn cội nguồn.", "en": "The community helps preserve our roots together.", "accepted": ["The community helps preserve our roots together."], "tokens": 8, "difficulty": 8 },
+        { "id": "hr_s_120", "vi": "Tiếp nối truyền thống là món quà cho tương lai.", "en": "Carrying on tradition is a gift to the future.", "accepted": ["Carrying on tradition is a gift to the future."], "tokens": 9, "difficulty": 8 }
+      ],
+      "conversations": [
+        { "id": "HCV030", "title": "What we pass on", "context": "Two friends in the diaspora reflecting on what they want to pass to their kids.", "lines": [
+          { "speaker": "Friend", "vi": "Cậu sẽ truyền lại gì cho con cậu?", "en": "What will you pass on to your kids?" },
+          { "speaker": "You", "vi": "Tiếng Việt, lòng tự hào, và cội nguồn.", "en": "The language, pride, and our roots." },
+          { "speaker": "Friend", "vi": "Còn món ăn nữa, không thể thiếu.", "en": "And the food — can't leave that out." },
+          { "speaker": "You", "vi": "Đúng, đó là cách tôn vinh đất tổ.", "en": "Right — that's how we honor the homeland." }
+        ]}
+      ]
+    }
+  ],
+  "grammarTags": []
+}

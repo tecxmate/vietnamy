@@ -1,0 +1,289 @@
+{
+  "meta": {
+    "mode": "professional",
+    "chapter": "b2_c1",
+    "version": "1.0.0",
+    "generated": "2026-05-24T00:00:00.000Z",
+    "source": "authored",
+    "stats": { "units": 3, "lessons": 10, "vocabulary": 80, "sentences": 40, "conversations": 10, "grammarTags": 0 },
+    "notes": "B2/C1 progression for Professional path. Executive register: strategy, change management, M&A, governance, crisis comms, ethics. Abstract nouns, nominalisation, formal hedging."
+  },
+  "units": [
+    { "id": "pu8_leadership", "order": 8, "title": "Leadership", "description": "Executive presence, public speaking, internal communications." },
+    { "id": "pu9_strategy_change", "order": 9, "title": "Strategy & Change", "description": "Strategic planning, organizational change, mergers and acquisitions." },
+    { "id": "pu10_governance_risk", "order": 10, "title": "Governance & Risk", "description": "Compliance, crisis communication, board reporting, ethics." }
+  ],
+  "lessons": [
+    {
+      "id": "prof_lesson_21", "unit": "pu8_leadership", "title": "Executive Presence", "nodeId": "pu8_L21", "quizId": "pu8_Q21", "quizLabel": "Leadership Quiz", "nodeIndex": 1, "difficulty": 7, "cefr": "B2", "xp": 25, "topic": "presentations", "focus": ["gravitas", "framing"],
+      "words": [
+        { "id": "pr_w_161", "vi": "Phong thái", "en": "Bearing / demeanor", "pos": "noun", "difficulty": 7, "frequency": 2161 },
+        { "id": "pr_w_162", "vi": "Uy tín", "en": "Credibility / prestige", "pos": "noun", "difficulty": 6, "frequency": 2162 },
+        { "id": "pr_w_163", "vi": "Truyền cảm hứng", "en": "To inspire", "pos": "verb", "difficulty": 6, "frequency": 2163 },
+        { "id": "pr_w_164", "vi": "Tầm nhìn", "en": "Vision", "pos": "noun", "difficulty": 5, "frequency": 2164 },
+        { "id": "pr_w_165", "vi": "Truyền đạt", "en": "To convey / articulate", "pos": "verb", "difficulty": 6, "frequency": 2165 },
+        { "id": "pr_w_166", "vi": "Quyết đoán", "en": "Decisive", "pos": "adjective", "difficulty": 6, "frequency": 2166 },
+        { "id": "pr_w_167", "vi": "Bình tĩnh", "en": "Composed / calm", "pos": "adjective", "difficulty": 5, "frequency": 2167 },
+        { "id": "pr_w_168", "vi": "Định hình", "en": "To shape (a narrative)", "pos": "verb", "difficulty": 7, "frequency": 2168 }
+      ],
+      "sentences": [
+        { "id": "pr_s_081", "vi": "Một nhà lãnh đạo cần có tầm nhìn rõ ràng.", "en": "A leader needs a clear vision.", "accepted": ["A leader needs a clear vision."], "tokens": 9, "difficulty": 7 },
+        { "id": "pr_s_082", "vi": "Phong thái quyết đoán tạo nên uy tín.", "en": "A decisive bearing builds credibility.", "accepted": ["A decisive bearing builds credibility."], "tokens": 7, "difficulty": 7 },
+        { "id": "pr_s_083", "vi": "Anh ấy truyền cảm hứng cho cả tổ chức.", "en": "He inspires the entire organization.", "accepted": ["He inspires the entire organization."], "tokens": 8, "difficulty": 7 },
+        { "id": "pr_s_084", "vi": "Cách định hình câu chuyện ảnh hưởng đến quyết định.", "en": "How a narrative is shaped affects decisions.", "accepted": ["How a narrative is shaped affects decisions."], "tokens": 9, "difficulty": 7 }
+      ],
+      "conversations": [
+        { "id": "PCV021", "title": "Coaching on presence", "context": "An executive coach giving advice before a major announcement.", "lines": [
+          { "speaker": "Coach", "vi": "Khi đứng trên sân khấu, hãy bình tĩnh và quyết đoán.", "en": "On stage, be composed and decisive." },
+          { "speaker": "Executive", "vi": "Tôi nên truyền đạt tầm nhìn ra sao?", "en": "How should I articulate the vision?" },
+          { "speaker": "Coach", "vi": "Ngắn gọn, dùng hình ảnh cụ thể.", "en": "Briefly, with concrete imagery." },
+          { "speaker": "Executive", "vi": "Cảm ơn, tôi sẽ luyện thêm phong thái.", "en": "Thanks, I'll work on my bearing." }
+        ]}
+      ]
+    },
+    {
+      "id": "prof_lesson_22", "unit": "pu8_leadership", "title": "Public Speaking", "nodeId": "pu8_L22", "quizId": "pu8_Q22", "quizLabel": "Speaking Quiz", "nodeIndex": 2, "difficulty": 7, "cefr": "B2", "xp": 25, "topic": "presentations", "focus": ["keynote", "storytelling"],
+      "words": [
+        { "id": "pr_w_169", "vi": "Diễn thuyết", "en": "Public speech", "pos": "noun", "difficulty": 7, "frequency": 2169 },
+        { "id": "pr_w_170", "vi": "Khán giả", "en": "Audience", "pos": "noun", "difficulty": 5, "frequency": 2170 },
+        { "id": "pr_w_171", "vi": "Mở đầu", "en": "Opening (of speech)", "pos": "noun", "difficulty": 5, "frequency": 2171 },
+        { "id": "pr_w_172", "vi": "Lập luận", "en": "Argument", "pos": "noun", "difficulty": 6, "frequency": 2172 },
+        { "id": "pr_w_173", "vi": "Dẫn chứng", "en": "Evidence", "pos": "noun", "difficulty": 6, "frequency": 2173 },
+        { "id": "pr_w_174", "vi": "Thuyết phục", "en": "Persuasive / to persuade", "pos": "verb", "difficulty": 5, "frequency": 2174 },
+        { "id": "pr_w_175", "vi": "Nhịp điệu", "en": "Pacing / rhythm", "pos": "noun", "difficulty": 7, "frequency": 2175 },
+        { "id": "pr_w_176", "vi": "Đọng lại", "en": "To linger / resonate", "pos": "verb", "difficulty": 7, "frequency": 2176 }
+      ],
+      "sentences": [
+        { "id": "pr_s_085", "vi": "Mở đầu thuyết phục giữ chân khán giả.", "en": "A persuasive opening holds the audience.", "accepted": ["A persuasive opening holds the audience."], "tokens": 7, "difficulty": 7 },
+        { "id": "pr_s_086", "vi": "Lập luận cần đi kèm dẫn chứng cụ thể.", "en": "Arguments must be paired with concrete evidence.", "accepted": ["Arguments must be paired with concrete evidence."], "tokens": 8, "difficulty": 7 },
+        { "id": "pr_s_087", "vi": "Nhịp điệu chậm rãi tạo cảm xúc đọng lại.", "en": "Slow pacing creates a lingering emotional effect.", "accepted": ["Slow pacing creates a lingering emotional effect."], "tokens": 8, "difficulty": 7 },
+        { "id": "pr_s_088", "vi": "Bài diễn thuyết ngắn nhưng đầy sức nặng.", "en": "A short but weighty speech.", "accepted": ["A short but weighty speech."], "tokens": 7, "difficulty": 7 }
+      ],
+      "conversations": [
+        { "id": "PCV022", "title": "Polishing a keynote", "context": "Workshopping a keynote speech with a peer.", "lines": [
+          { "speaker": "Speaker", "vi": "Bạn thấy mở đầu của tôi thế nào?", "en": "How does my opening sound?" },
+          { "speaker": "Peer", "vi": "Hấp dẫn, nhưng lập luận cần thêm dẫn chứng.", "en": "Engaging, but the argument needs more evidence." },
+          { "speaker": "Speaker", "vi": "Có chỗ nào nhịp điệu chưa ổn?", "en": "Any uneven pacing?" },
+          { "speaker": "Peer", "vi": "Đoạn giữa nên chậm lại để cảm xúc đọng lại.", "en": "Slow the middle so emotion can land." }
+        ]}
+      ]
+    },
+    {
+      "id": "prof_lesson_23", "unit": "pu8_leadership", "title": "Internal Communications", "nodeId": "pu8_L23", "quizId": "pu8_Q23", "quizLabel": "Comms Quiz", "nodeIndex": 3, "difficulty": 7, "cefr": "B2", "xp": 25, "topic": "email", "focus": ["all_hands", "memo"],
+      "words": [
+        { "id": "pr_w_177", "vi": "Toàn công ty", "en": "All-hands / company-wide", "pos": "phrase", "difficulty": 5, "frequency": 2177 },
+        { "id": "pr_w_178", "vi": "Thông báo", "en": "Announcement", "pos": "noun", "difficulty": 4, "frequency": 2178 },
+        { "id": "pr_w_179", "vi": "Minh bạch", "en": "Transparent", "pos": "adjective", "difficulty": 6, "frequency": 2179 },
+        { "id": "pr_w_180", "vi": "Tinh thần", "en": "Morale / spirit", "pos": "noun", "difficulty": 5, "frequency": 2180 },
+        { "id": "pr_w_181", "vi": "Trấn an", "en": "To reassure", "pos": "verb", "difficulty": 7, "frequency": 2181 },
+        { "id": "pr_w_182", "vi": "Định hướng", "en": "Direction / north star", "pos": "noun", "difficulty": 6, "frequency": 2182 },
+        { "id": "pr_w_183", "vi": "Đồng lòng", "en": "Aligned / unified", "pos": "adjective", "difficulty": 6, "frequency": 2183 },
+        { "id": "pr_w_184", "vi": "Văn hóa công ty", "en": "Company culture", "pos": "phrase", "difficulty": 5, "frequency": 2184 }
+      ],
+      "sentences": [
+        { "id": "pr_s_089", "vi": "Thông báo toàn công ty cần minh bạch và rõ ràng.", "en": "Company-wide announcements should be transparent and clear.", "accepted": ["Company-wide announcements should be transparent and clear."], "tokens": 9, "difficulty": 7 },
+        { "id": "pr_s_090", "vi": "Trong khó khăn, lãnh đạo cần trấn an nhân viên.", "en": "In hard times, leaders must reassure staff.", "accepted": ["In hard times, leaders must reassure staff."], "tokens": 8, "difficulty": 7 },
+        { "id": "pr_s_091", "vi": "Tinh thần đồng lòng giúp công ty vượt khó.", "en": "Aligned morale helps a company push through.", "accepted": ["Aligned morale helps a company push through."], "tokens": 8, "difficulty": 7 },
+        { "id": "pr_s_092", "vi": "Định hướng lâu dài phản ánh văn hóa công ty.", "en": "Long-term direction reflects company culture.", "accepted": ["Long-term direction reflects company culture."], "tokens": 8, "difficulty": 7 }
+      ],
+      "conversations": [
+        { "id": "PCV023", "title": "Drafting an all-hands", "context": "Two execs reviewing an all-hands memo before sending.", "lines": [
+          { "speaker": "CEO", "vi": "Bản nháp cần thêm phần trấn an không?", "en": "Does the draft need more reassurance?" },
+          { "speaker": "Comms Lead", "vi": "Nên có, để giữ tinh thần nhân viên.", "en": "Yes, to maintain morale." },
+          { "speaker": "CEO", "vi": "Mình muốn giữ giọng minh bạch.", "en": "I want to keep a transparent tone." },
+          { "speaker": "Comms Lead", "vi": "Tôi sẽ chỉnh lại để vừa minh bạch vừa định hướng.", "en": "I'll revise — both transparent and forward-looking." }
+        ]}
+      ]
+    },
+    {
+      "id": "prof_lesson_24", "unit": "pu9_strategy_change", "title": "Strategic Planning", "nodeId": "pu9_L24", "quizId": "pu9_Q24", "quizLabel": "Strategy Quiz", "nodeIndex": 1, "difficulty": 7, "cefr": "B2", "xp": 25, "topic": "meetings", "focus": ["roadmap", "priorities"],
+      "words": [
+        { "id": "pr_w_185", "vi": "Hoạch định", "en": "To plan strategically", "pos": "verb", "difficulty": 7, "frequency": 2185 },
+        { "id": "pr_w_186", "vi": "Lộ trình", "en": "Roadmap", "pos": "noun", "difficulty": 6, "frequency": 2186 },
+        { "id": "pr_w_187", "vi": "Bối cảnh", "en": "Context / landscape", "pos": "noun", "difficulty": 6, "frequency": 2187 },
+        { "id": "pr_w_188", "vi": "Cơ hội", "en": "Opportunity", "pos": "noun", "difficulty": 4, "frequency": 2188 },
+        { "id": "pr_w_189", "vi": "Rủi ro", "en": "Risk", "pos": "noun", "difficulty": 5, "frequency": 2189 },
+        { "id": "pr_w_190", "vi": "Lợi thế cạnh tranh", "en": "Competitive advantage", "pos": "phrase", "difficulty": 7, "frequency": 2190 },
+        { "id": "pr_w_191", "vi": "Tái cấu trúc", "en": "Restructure", "pos": "verb", "difficulty": 7, "frequency": 2191 },
+        { "id": "pr_w_192", "vi": "Bền vững", "en": "Sustainable", "pos": "adjective", "difficulty": 5, "frequency": 2192 }
+      ],
+      "sentences": [
+        { "id": "pr_s_093", "vi": "Lộ trình phải dựa trên bối cảnh thị trường.", "en": "The roadmap must reflect market context.", "accepted": ["The roadmap must reflect market context."], "tokens": 8, "difficulty": 7 },
+        { "id": "pr_s_094", "vi": "Lợi thế cạnh tranh đến từ năng lực bền vững.", "en": "Competitive advantage comes from sustainable capability.", "accepted": ["Competitive advantage comes from sustainable capability."], "tokens": 8, "difficulty": 7 },
+        { "id": "pr_s_095", "vi": "Đây là cơ hội đáng đầu tư dù có rủi ro.", "en": "It's an opportunity worth investing in despite the risk.", "accepted": ["It's an opportunity worth investing in despite the risk."], "tokens": 10, "difficulty": 7 },
+        { "id": "pr_s_096", "vi": "Chúng ta cần tái cấu trúc để linh hoạt hơn.", "en": "We must restructure to become more agile.", "accepted": ["We must restructure to become more agile."], "tokens": 8, "difficulty": 7 }
+      ],
+      "conversations": [
+        { "id": "PCV024", "title": "Off-site planning", "context": "Leadership team at an annual strategy off-site.", "lines": [
+          { "speaker": "CEO", "vi": "Bối cảnh năm sau khá nhiều biến động.", "en": "Next year's context is quite volatile." },
+          { "speaker": "Strategy Lead", "vi": "Vậy lộ trình của chúng ta phải linh hoạt.", "en": "Then our roadmap must stay flexible." },
+          { "speaker": "CEO", "vi": "Rủi ro lớn nhất là gì?", "en": "What's our biggest risk?" },
+          { "speaker": "Strategy Lead", "vi": "Phụ thuộc một thị trường duy nhất.", "en": "Single-market dependence." }
+        ]}
+      ]
+    },
+    {
+      "id": "prof_lesson_25", "unit": "pu9_strategy_change", "title": "Change Management", "nodeId": "pu9_L25", "quizId": "pu9_Q25", "quizLabel": "Change Quiz", "nodeIndex": 2, "difficulty": 7, "cefr": "C1", "xp": 28, "topic": "office", "focus": ["transformation", "resistance"],
+      "words": [
+        { "id": "pr_w_193", "vi": "Chuyển đổi", "en": "Transformation", "pos": "noun", "difficulty": 6, "frequency": 2193 },
+        { "id": "pr_w_194", "vi": "Kháng cự", "en": "Resistance", "pos": "noun", "difficulty": 7, "frequency": 2194 },
+        { "id": "pr_w_195", "vi": "Thích nghi", "en": "To adapt", "pos": "verb", "difficulty": 6, "frequency": 2195 },
+        { "id": "pr_w_196", "vi": "Lan tỏa", "en": "To spread / cascade", "pos": "verb", "difficulty": 7, "frequency": 2196 },
+        { "id": "pr_w_197", "vi": "Nhân rộng", "en": "To scale up", "pos": "verb", "difficulty": 7, "frequency": 2197 },
+        { "id": "pr_w_198", "vi": "Văn hóa thay đổi", "en": "Change culture", "pos": "phrase", "difficulty": 6, "frequency": 2198 },
+        { "id": "pr_w_199", "vi": "Người dẫn đường", "en": "Change champion", "pos": "phrase", "difficulty": 7, "frequency": 2199 },
+        { "id": "pr_w_200", "vi": "Bài học rút ra", "en": "Lesson learned", "pos": "phrase", "difficulty": 7, "frequency": 2200 }
+      ],
+      "sentences": [
+        { "id": "pr_s_097", "vi": "Mọi cuộc chuyển đổi đều gặp kháng cự ban đầu.", "en": "Every transformation faces initial resistance.", "accepted": ["Every transformation faces initial resistance."], "tokens": 9, "difficulty": 7 },
+        { "id": "pr_s_098", "vi": "Cần có người dẫn đường để lan tỏa thay đổi.", "en": "Change needs champions to cascade through the org.", "accepted": ["Change needs champions to cascade through the org."], "tokens": 9, "difficulty": 7 },
+        { "id": "pr_s_099", "vi": "Bài học rút ra giúp chúng ta thích nghi nhanh hơn.", "en": "Lessons learned help us adapt faster.", "accepted": ["Lessons learned help us adapt faster."], "tokens": 9, "difficulty": 7 },
+        { "id": "pr_s_100", "vi": "Sau pilot, chúng ta sẽ nhân rộng toàn công ty.", "en": "After the pilot, we'll scale company-wide.", "accepted": ["After the pilot, we'll scale company-wide."], "tokens": 9, "difficulty": 7 }
+      ],
+      "conversations": [
+        { "id": "PCV025", "title": "Rolling out change", "context": "A change manager discussing rollout with a sponsor.", "lines": [
+          { "speaker": "Sponsor", "vi": "Nhóm sales có vẻ kháng cự nhất.", "en": "Sales seems most resistant." },
+          { "speaker": "Change Mgr", "vi": "Tôi sẽ tìm người dẫn đường ở đó.", "en": "I'll find a champion in that team." },
+          { "speaker": "Sponsor", "vi": "Khi nào sẵn sàng nhân rộng?", "en": "When are we ready to scale up?" },
+          { "speaker": "Change Mgr", "vi": "Sau khi có bài học từ pilot đầu tiên.", "en": "After we've captured lessons from the first pilot." }
+        ]}
+      ]
+    },
+    {
+      "id": "prof_lesson_26", "unit": "pu9_strategy_change", "title": "M&A Conversations", "nodeId": "pu9_L26", "quizId": "pu9_Q26", "quizLabel": "M&A Quiz", "nodeIndex": 3, "difficulty": 8, "cefr": "C1", "xp": 30, "topic": "negotiation", "focus": ["valuation", "due_diligence"],
+      "words": [
+        { "id": "pr_w_201", "vi": "Sáp nhập", "en": "Merger", "pos": "noun", "difficulty": 7, "frequency": 2201 },
+        { "id": "pr_w_202", "vi": "Mua lại", "en": "Acquisition", "pos": "noun", "difficulty": 6, "frequency": 2202 },
+        { "id": "pr_w_203", "vi": "Định giá", "en": "Valuation", "pos": "noun", "difficulty": 7, "frequency": 2203 },
+        { "id": "pr_w_204", "vi": "Thẩm định", "en": "Due diligence", "pos": "noun", "difficulty": 8, "frequency": 2204 },
+        { "id": "pr_w_205", "vi": "Cổ phần", "en": "Share / equity", "pos": "noun", "difficulty": 6, "frequency": 2205 },
+        { "id": "pr_w_206", "vi": "Hiệp lực", "en": "Synergy", "pos": "noun", "difficulty": 7, "frequency": 2206 },
+        { "id": "pr_w_207", "vi": "Bí mật kinh doanh", "en": "Trade secret", "pos": "phrase", "difficulty": 7, "frequency": 2207 },
+        { "id": "pr_w_208", "vi": "Hoàn tất giao dịch", "en": "Close the deal", "pos": "phrase", "difficulty": 7, "frequency": 2208 }
+      ],
+      "sentences": [
+        { "id": "pr_s_101", "vi": "Định giá hợp lý là chìa khóa của giao dịch.", "en": "A fair valuation is key to the deal.", "accepted": ["A fair valuation is key to the deal."], "tokens": 9, "difficulty": 8 },
+        { "id": "pr_s_102", "vi": "Thẩm định pháp lý phải hoàn tất trước khi ký.", "en": "Legal due diligence must finish before signing.", "accepted": ["Legal due diligence must finish before signing."], "tokens": 9, "difficulty": 8 },
+        { "id": "pr_s_103", "vi": "Hiệp lực giữa hai công ty rất tiềm năng.", "en": "The synergy between the two firms is significant.", "accepted": ["The synergy between the two firms is significant."], "tokens": 8, "difficulty": 8 },
+        { "id": "pr_s_104", "vi": "Chúng ta dự kiến hoàn tất giao dịch trong quý này.", "en": "We expect to close the deal this quarter.", "accepted": ["We expect to close the deal this quarter."], "tokens": 9, "difficulty": 8 }
+      ],
+      "conversations": [
+        { "id": "PCV026", "title": "Deal status", "context": "Executive updating the board on an acquisition.", "lines": [
+          { "speaker": "CEO", "vi": "Tiến độ thẩm định đến đâu rồi?", "en": "How's due diligence progressing?" },
+          { "speaker": "CFO", "vi": "Phần tài chính xong, phần pháp lý còn lại.", "en": "Financial is done; legal is still in progress." },
+          { "speaker": "CEO", "vi": "Định giá có gì điều chỉnh không?", "en": "Any valuation adjustments?" },
+          { "speaker": "CFO", "vi": "Có, chúng ta sẽ thương lượng lại tuần sau.", "en": "Yes, we'll renegotiate next week." }
+        ]}
+      ]
+    },
+    {
+      "id": "prof_lesson_27", "unit": "pu10_governance_risk", "title": "Compliance & Regulation", "nodeId": "pu10_L27", "quizId": "pu10_Q27", "quizLabel": "Compliance Quiz", "nodeIndex": 1, "difficulty": 8, "cefr": "C1", "xp": 30, "topic": "negotiation", "focus": ["regulation", "audit"],
+      "words": [
+        { "id": "pr_w_209", "vi": "Tuân thủ", "en": "Compliance", "pos": "noun", "difficulty": 7, "frequency": 2209 },
+        { "id": "pr_w_210", "vi": "Quy định", "en": "Regulation", "pos": "noun", "difficulty": 5, "frequency": 2210 },
+        { "id": "pr_w_211", "vi": "Kiểm toán", "en": "Audit", "pos": "noun", "difficulty": 6, "frequency": 2211 },
+        { "id": "pr_w_212", "vi": "Cơ quan quản lý", "en": "Regulator", "pos": "noun", "difficulty": 7, "frequency": 2212 },
+        { "id": "pr_w_213", "vi": "Báo cáo tài chính", "en": "Financial report", "pos": "noun", "difficulty": 6, "frequency": 2213 },
+        { "id": "pr_w_214", "vi": "Vi phạm", "en": "Violation / breach", "pos": "noun", "difficulty": 6, "frequency": 2214 },
+        { "id": "pr_w_215", "vi": "Phạt", "en": "Penalty / fine", "pos": "noun", "difficulty": 5, "frequency": 2215 },
+        { "id": "pr_w_216", "vi": "Minh chứng", "en": "Documentation / proof", "pos": "noun", "difficulty": 7, "frequency": 2216 }
+      ],
+      "sentences": [
+        { "id": "pr_s_105", "vi": "Tuân thủ quy định mới là bắt buộc.", "en": "Compliance with the new regulation is mandatory.", "accepted": ["Compliance with the new regulation is mandatory."], "tokens": 7, "difficulty": 8 },
+        { "id": "pr_s_106", "vi": "Cơ quan quản lý sẽ kiểm toán quý sau.", "en": "The regulator will audit us next quarter.", "accepted": ["The regulator will audit us next quarter."], "tokens": 8, "difficulty": 8 },
+        { "id": "pr_s_107", "vi": "Mọi giao dịch đều cần minh chứng đầy đủ.", "en": "Every transaction requires complete documentation.", "accepted": ["Every transaction requires complete documentation."], "tokens": 8, "difficulty": 8 },
+        { "id": "pr_s_108", "vi": "Vi phạm có thể bị phạt rất nặng.", "en": "Violations may carry heavy penalties.", "accepted": ["Violations may carry heavy penalties."], "tokens": 7, "difficulty": 8 }
+      ],
+      "conversations": [
+        { "id": "PCV027", "title": "Audit prep", "context": "Compliance officer briefing the CFO.", "lines": [
+          { "speaker": "Compliance", "vi": "Kiểm toán dự kiến tháng sau.", "en": "Audit is scheduled next month." },
+          { "speaker": "CFO", "vi": "Báo cáo tài chính đã sẵn sàng chưa?", "en": "Are financial reports ready?" },
+          { "speaker": "Compliance", "vi": "Đầy đủ minh chứng, không có sai sót.", "en": "Fully documented, no irregularities." },
+          { "speaker": "CFO", "vi": "Tốt, mọi thứ phải tuân thủ tuyệt đối.", "en": "Good, we must be strictly compliant." }
+        ]}
+      ]
+    },
+    {
+      "id": "prof_lesson_28", "unit": "pu10_governance_risk", "title": "Crisis Communication", "nodeId": "pu10_L28", "quizId": "pu10_Q28", "quizLabel": "Crisis Quiz", "nodeIndex": 2, "difficulty": 8, "cefr": "C1", "xp": 30, "topic": "presentations", "focus": ["statement", "media"],
+      "words": [
+        { "id": "pr_w_217", "vi": "Khủng hoảng", "en": "Crisis", "pos": "noun", "difficulty": 6, "frequency": 2217 },
+        { "id": "pr_w_218", "vi": "Tuyên bố", "en": "Statement / declaration", "pos": "noun", "difficulty": 6, "frequency": 2218 },
+        { "id": "pr_w_219", "vi": "Truyền thông", "en": "Media / communications", "pos": "noun", "difficulty": 5, "frequency": 2219 },
+        { "id": "pr_w_220", "vi": "Phản ứng", "en": "Reaction / response", "pos": "noun", "difficulty": 5, "frequency": 2220 },
+        { "id": "pr_w_221", "vi": "Kiểm soát thông điệp", "en": "Control the message", "pos": "phrase", "difficulty": 7, "frequency": 2221 },
+        { "id": "pr_w_222", "vi": "Phục hồi", "en": "To recover", "pos": "verb", "difficulty": 5, "frequency": 2222 },
+        { "id": "pr_w_223", "vi": "Niềm tin", "en": "Trust", "pos": "noun", "difficulty": 4, "frequency": 2223 },
+        { "id": "pr_w_224", "vi": "Trung thực", "en": "Honest", "pos": "adjective", "difficulty": 5, "frequency": 2224 }
+      ],
+      "sentences": [
+        { "id": "pr_s_109", "vi": "Trong khủng hoảng, tốc độ phản ứng rất quan trọng.", "en": "In a crisis, speed of response is critical.", "accepted": ["In a crisis, speed of response is critical."], "tokens": 8, "difficulty": 8 },
+        { "id": "pr_s_110", "vi": "Tuyên bố phải trung thực và rõ ràng.", "en": "Statements must be honest and clear.", "accepted": ["Statements must be honest and clear."], "tokens": 7, "difficulty": 8 },
+        { "id": "pr_s_111", "vi": "Cần kiểm soát thông điệp gửi tới truyền thông.", "en": "We need to control the message to the media.", "accepted": ["We need to control the message to the media."], "tokens": 8, "difficulty": 8 },
+        { "id": "pr_s_112", "vi": "Phục hồi niềm tin là mục tiêu lâu dài.", "en": "Restoring trust is the long-term goal.", "accepted": ["Restoring trust is the long-term goal."], "tokens": 8, "difficulty": 8 }
+      ],
+      "conversations": [
+        { "id": "PCV028", "title": "Crisis briefing", "context": "PR head briefing the CEO during a crisis.", "lines": [
+          { "speaker": "PR", "vi": "Báo chí đã liên hệ, cần tuyên bố sớm.", "en": "Press has reached out — we need a statement soon." },
+          { "speaker": "CEO", "vi": "Giọng điệu sẽ thế nào?", "en": "What tone should we use?" },
+          { "speaker": "PR", "vi": "Trung thực, có trách nhiệm, và hướng tới phục hồi.", "en": "Honest, accountable, and recovery-focused." },
+          { "speaker": "CEO", "vi": "Tốt, đảm bảo thông điệp nhất quán.", "en": "Good — keep the message consistent." }
+        ]}
+      ]
+    },
+    {
+      "id": "prof_lesson_29", "unit": "pu10_governance_risk", "title": "Board Reporting", "nodeId": "pu10_L29", "quizId": "pu10_Q29", "quizLabel": "Board Quiz", "nodeIndex": 3, "difficulty": 8, "cefr": "C1", "xp": 30, "topic": "presentations", "focus": ["board", "fiduciary"],
+      "words": [
+        { "id": "pr_w_225", "vi": "Hội đồng quản trị", "en": "Board of directors", "pos": "noun", "difficulty": 7, "frequency": 2225 },
+        { "id": "pr_w_226", "vi": "Chủ tịch", "en": "Chairman", "pos": "noun", "difficulty": 5, "frequency": 2226 },
+        { "id": "pr_w_227", "vi": "Nhiệm kỳ", "en": "Term (of office)", "pos": "noun", "difficulty": 7, "frequency": 2227 },
+        { "id": "pr_w_228", "vi": "Cổ đông", "en": "Shareholder", "pos": "noun", "difficulty": 6, "frequency": 2228 },
+        { "id": "pr_w_229", "vi": "Trách nhiệm tín nhiệm", "en": "Fiduciary duty", "pos": "phrase", "difficulty": 8, "frequency": 2229 },
+        { "id": "pr_w_230", "vi": "Biểu quyết", "en": "To vote (in board/meeting)", "pos": "verb", "difficulty": 6, "frequency": 2230 },
+        { "id": "pr_w_231", "vi": "Quyết nghị", "en": "Resolution (board)", "pos": "noun", "difficulty": 8, "frequency": 2231 },
+        { "id": "pr_w_232", "vi": "Hiệu suất", "en": "Performance", "pos": "noun", "difficulty": 6, "frequency": 2232 }
+      ],
+      "sentences": [
+        { "id": "pr_s_113", "vi": "Hội đồng quản trị họp hàng quý.", "en": "The board meets quarterly.", "accepted": ["The board meets quarterly."], "tokens": 6, "difficulty": 8 },
+        { "id": "pr_s_114", "vi": "Báo cáo hiệu suất phải đến tay cổ đông.", "en": "Performance reports must reach shareholders.", "accepted": ["Performance reports must reach shareholders."], "tokens": 7, "difficulty": 8 },
+        { "id": "pr_s_115", "vi": "Mỗi quyết nghị cần biểu quyết đa số.", "en": "Each resolution requires a majority vote.", "accepted": ["Each resolution requires a majority vote."], "tokens": 7, "difficulty": 8 },
+        { "id": "pr_s_116", "vi": "Trách nhiệm tín nhiệm là nguyên tắc hàng đầu.", "en": "Fiduciary duty is the highest principle.", "accepted": ["Fiduciary duty is the highest principle."], "tokens": 7, "difficulty": 8 }
+      ],
+      "conversations": [
+        { "id": "PCV029", "title": "Pre-board prep", "context": "CEO preparing CFO before a board meeting.", "lines": [
+          { "speaker": "CEO", "vi": "Báo cáo cho cổ đông đã sẵn sàng chưa?", "en": "Is the shareholder report ready?" },
+          { "speaker": "CFO", "vi": "Sẵn sàng, hiệu suất khá tốt.", "en": "Yes, performance is solid." },
+          { "speaker": "CEO", "vi": "Có quyết nghị nào cần biểu quyết không?", "en": "Any resolutions to vote on?" },
+          { "speaker": "CFO", "vi": "Có, một quyết nghị về đầu tư mở rộng.", "en": "Yes, one on expansion investment." }
+        ]}
+      ]
+    },
+    {
+      "id": "prof_lesson_30", "unit": "pu10_governance_risk", "title": "Ethics & Integrity", "nodeId": "pu10_L30", "quizId": "pu10_Q30", "quizLabel": "Ethics Quiz", "nodeIndex": 4, "difficulty": 8, "cefr": "C1", "xp": 30, "topic": "office", "focus": ["values", "whistleblowing"],
+      "words": [
+        { "id": "pr_w_233", "vi": "Đạo đức", "en": "Ethics", "pos": "noun", "difficulty": 6, "frequency": 2233 },
+        { "id": "pr_w_234", "vi": "Liêm chính", "en": "Integrity", "pos": "noun", "difficulty": 8, "frequency": 2234 },
+        { "id": "pr_w_235", "vi": "Xung đột lợi ích", "en": "Conflict of interest", "pos": "phrase", "difficulty": 7, "frequency": 2235 },
+        { "id": "pr_w_236", "vi": "Tố giác", "en": "Whistleblowing", "pos": "noun", "difficulty": 8, "frequency": 2236 },
+        { "id": "pr_w_237", "vi": "Bảo vệ", "en": "To protect", "pos": "verb", "difficulty": 4, "frequency": 2237 },
+        { "id": "pr_w_238", "vi": "Quy tắc ứng xử", "en": "Code of conduct", "pos": "phrase", "difficulty": 7, "frequency": 2238 },
+        { "id": "pr_w_239", "vi": "Vùng xám", "en": "Gray area", "pos": "phrase", "difficulty": 7, "frequency": 2239 },
+        { "id": "pr_w_240", "vi": "Giá trị cốt lõi", "en": "Core values", "pos": "phrase", "difficulty": 7, "frequency": 2240 }
+      ],
+      "sentences": [
+        { "id": "pr_s_117", "vi": "Liêm chính là giá trị cốt lõi của công ty.", "en": "Integrity is a core company value.", "accepted": ["Integrity is a core company value."], "tokens": 8, "difficulty": 8 },
+        { "id": "pr_s_118", "vi": "Xung đột lợi ích cần được báo cáo ngay.", "en": "Conflicts of interest must be reported immediately.", "accepted": ["Conflicts of interest must be reported immediately."], "tokens": 8, "difficulty": 8 },
+        { "id": "pr_s_119", "vi": "Người tố giác cần được bảo vệ pháp lý.", "en": "Whistleblowers must be legally protected.", "accepted": ["Whistleblowers must be legally protected."], "tokens": 8, "difficulty": 8 },
+        { "id": "pr_s_120", "vi": "Trong vùng xám, hãy hỏi quy tắc ứng xử.", "en": "In gray areas, consult the code of conduct.", "accepted": ["In gray areas, consult the code of conduct."], "tokens": 8, "difficulty": 8 }
+      ],
+      "conversations": [
+        { "id": "PCV030", "title": "Ethics escalation", "context": "Employee bringing an ethics concern to a leader.", "lines": [
+          { "speaker": "Employee", "vi": "Tôi nghĩ có xung đột lợi ích ở đây.", "en": "I think there's a conflict of interest here." },
+          { "speaker": "Leader", "vi": "Cảm ơn em đã nói thẳng.", "en": "Thank you for raising it directly." },
+          { "speaker": "Employee", "vi": "Việc tố giác có an toàn không ạ?", "en": "Is reporting safe?" },
+          { "speaker": "Leader", "vi": "Người tố giác luôn được bảo vệ.", "en": "Whistleblowers are always protected." }
+        ]}
+      ]
+    }
+  ],
+  "grammarTags": []
+}

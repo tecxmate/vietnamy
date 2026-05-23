@@ -17,8 +17,10 @@ import exploreVietnamC1 from './explore_vietnam_c1.json';
 import exploreVietnamC2 from './explore_vietnam_c2.json';
 import professionalA1 from './professional_a1.json';
 import professionalA2B1 from './professional_a2_b1.json';
+import professionalB2C1 from './professional_b2_c1.json';
 import heritageA1 from './heritage_a1.json';
 import heritageA2B1 from './heritage_a2_b1.json';
+import heritageB2C1 from './heritage_b2_c1.json';
 
 function mergeChapters(...chapters) {
     const base = chapters[0];
@@ -54,8 +56,8 @@ const exploreVietnam = mergeChapters(
     exploreVietnamC2,
 );
 
-const professional = mergeChapters(professionalA1, professionalA2B1);
-const heritage = mergeChapters(heritageA1, heritageA2B1);
+const professional = mergeChapters(professionalA1, professionalA2B1, professionalB2C1);
+const heritage = mergeChapters(heritageA1, heritageA2B1, heritageB2C1);
 
 // Registry of all curricula by mode ID
 const CURRICULA = {
