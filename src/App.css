@@ -71,6 +71,10 @@
   pointer-events: auto;
 }
 
+.roadmap-bottom-spacer {
+  height: calc(112px + env(safe-area-inset-bottom, 0px));
+}
+
 /* Duolingo path style container */
 .path-container {
   display: flex;
@@ -729,6 +733,10 @@
   /* ─── Path Container: less bottom padding ──────── */
   .path-container {
     padding-bottom: 60px;
+  }
+
+  .roadmap-bottom-spacer {
+    height: 56px;
   }
 
   /* ─── Dict popup: reposition for sidebar layout ── */

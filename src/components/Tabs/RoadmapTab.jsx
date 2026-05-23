@@ -478,6 +478,8 @@ const RoadmapTab = () => {
                 );
             })}
 
+            <div className="roadmap-bottom-spacer" aria-hidden="true" />
+
             <div className="roadmap-continue-wrapper">
                 {testMode ? (
                     <SoundButton
