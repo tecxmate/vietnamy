@@ -36,7 +36,7 @@ const loadTtsVoice = () => {
 
 const buildTtsUrl = (text, lang) => {
     const voice = loadTtsVoice();
-    const cacheKey = `tts-v2-${voice}`;
+    const cacheKey = `tts-v3-trim-${voice}`;
     return `/api/tts?text=${encodeURIComponent(text)}&lang=${encodeURIComponent(lang)}&voice=${encodeURIComponent(voice)}&ck=${encodeURIComponent(cacheKey)}`;
 };
 

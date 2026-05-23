@@ -869,8 +869,9 @@ const AZURE_VI_VOICES = {
     'azure-north': process.env.AZURE_TTS_VOICE_NORTH || 'vi-VN-NamMinhNeural',
     'azure-south': process.env.AZURE_TTS_VOICE_SOUTH || 'vi-VN-HoaiMyNeural',
 };
-const TTS_VOICES = new Set(['google', 'azure-north']);
+const TTS_VOICES = new Set(['google', 'azure-north', 'azure-south']);
 const DEFAULT_TTS_VOICE = process.env.DEFAULT_TTS_VOICE || 'azure-north';
+const TTS_CACHE_VERSION = process.env.TTS_CACHE_VERSION || 'v3-trim';
 
 // --- TTS bucket cache (Supabase Storage) -----------------------------------
 // Set SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY in env to enable. Bucket name
@@ -883,7 +884,7 @@ const TTS_CACHE_ENABLED = Boolean(SUPABASE_URL && SUPABASE_SERVICE_ROLE_KEY);
 function ttsCacheKey(voice, lang, text) {
     const hash = crypto.createHash('sha1').update(`${voice}|${lang}|${text}`).digest('hex');
     const ext = voice === 'google' ? 'mp3' : 'wav';
-    return `${voice}/${hash}.${ext}`;
+    return `${TTS_CACHE_VERSION}/${voice}/${hash}.${ext}`;
 }
 
 function ttsPublicUrl(key) {
@@ -927,9 +928,10 @@ async function ttsCachePut(key, buffer, contentType) {
 const AZURE_PCM_SAMPLE_RATE = 24000;
 const AZURE_PCM_CHANNELS = 1;
 const AZURE_PCM_BYTES_PER_SAMPLE = 2;
-const TTS_SILENCE_THRESHOLD = 80;
+const TTS_SILENCE_THRESHOLD = 120;
 const TTS_SILENCE_WINDOW_MS = 10;
-const TTS_TRIM_PADDING_MS = 50;
+const TTS_TRIM_START_PADDING_MS = 8;
+const TTS_TRIM_END_PADDING_MS = 50;
 
 function escapeSsml(text) {
     return text
@@ -944,13 +946,15 @@ function trimPcm16MonoSilence(buffer, {
     sampleRate = AZURE_PCM_SAMPLE_RATE,
     threshold = TTS_SILENCE_THRESHOLD,
     windowMs = TTS_SILENCE_WINDOW_MS,
-    paddingMs = TTS_TRIM_PADDING_MS,
+    startPaddingMs = TTS_TRIM_START_PADDING_MS,
+    endPaddingMs = TTS_TRIM_END_PADDING_MS,
 } = {}) {
     if (!Buffer.isBuffer(buffer) || buffer.length < AZURE_PCM_BYTES_PER_SAMPLE) return buffer;
 
     const sampleCount = Math.floor(buffer.length / AZURE_PCM_BYTES_PER_SAMPLE);
     const windowSamples = Math.max(1, Math.floor((sampleRate * windowMs) / 1000));
-    const paddingSamples = Math.max(0, Math.floor((sampleRate * paddingMs) / 1000));
+    const startPaddingSamples = Math.max(0, Math.floor((sampleRate * startPaddingMs) / 1000));
+    const endPaddingSamples = Math.max(0, Math.floor((sampleRate * endPaddingMs) / 1000));
 
     const windowIsVoiced = (startSample) => {
         const endSample = Math.min(sampleCount, startSample + windowSamples);
@@ -978,8 +982,8 @@ function trimPcm16MonoSilence(buffer, {
         }
     }
 
-    const trimStart = Math.max(0, firstVoiced - paddingSamples);
-    const trimEnd = Math.min(sampleCount, lastVoiced + paddingSamples);
+    const trimStart = Math.max(0, firstVoiced - startPaddingSamples);
+    const trimEnd = Math.min(sampleCount, lastVoiced + endPaddingSamples);
     if (trimEnd <= trimStart) return buffer;
 
     const startByte = trimStart * AZURE_PCM_BYTES_PER_SAMPLE;
