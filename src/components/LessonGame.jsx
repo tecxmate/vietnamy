@@ -357,12 +357,20 @@ const LessonGame = () => {
     };
     const onDragEnd = () => { setDraggedItemIndex(null); setDropTargetIndex(null); };
 
-    // Pronunciation-assessment recorder. On stop, uploads WAV audio to
-    // /api/pronunciation and stores the per-word score breakdown.
+    // Pronunciation-assessment recorder. PCM is uploaded to /api/pronunciation
+    // for tone-aware scoring. Browser STT runs in parallel as a tier-2 fallback
+    // — if Azure fails, we still have a transcript to grade against.
     const handleSpeechRecord = async () => {
         if (isRecording && pcmRecorderRef.current) {
             const recorder = pcmRecorderRef.current;
             pcmRecorderRef.current = null;
+            // Stop the parallel browser STT (will fire onend; transcript already
+            // captured into speechResult via onresult).
+            const recognition = recognitionRef.current;
+            speechStopIntentionalRef.current = true;
+            if (recognition) {
+                try { recognition.stop(); } catch { /* already stopped */ }
+            }
             setIsRecording(false);
             setPronAssessing(true);
             try {
@@ -381,13 +389,18 @@ const LessonGame = () => {
                 if (!r.ok) throw new Error(`HTTP ${r.status}`);
                 const data = await r.json();
                 setPronResult(data);
-                setSpeechResult(data.recognized || '');
+                setSpeechResult(prev => data.recognized || prev || '');
                 if (data.status !== 'Success') {
                     setSpeechError('Could not score that take. Try again or type below.');
                 }
             } catch (err) {
-                console.warn('Pronunciation request failed:', err.message);
-                setSpeechError('Scoring failed. Try again or type below.');
+                console.warn('Pronunciation request failed, using browser STT result:', err.message);
+                // No setSpeechError — if browser STT got a transcript, the user
+                // can still submit. Only show an error if we have nothing.
+                setSpeechResult(prev => {
+                    if (!prev) setSpeechError('Scoring failed. Try again or type below.');
+                    return prev;
+                });
             } finally {
                 setPronAssessing(false);
             }
@@ -401,6 +414,26 @@ const LessonGame = () => {
             const recorder = await startPCMRecording();
             pcmRecorderRef.current = recorder;
             setIsRecording(true);
+            // Start browser STT in parallel as fallback transcript source.
+            const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if (SR) {
+                speechStopIntentionalRef.current = false;
+                const recognition = new SR();
+                recognition.lang = 'vi-VN';
+                recognition.continuous = false;
+                recognition.interimResults = true;
+                recognition.maxAlternatives = 1;
+                recognition.onresult = (event) => {
+                    const transcript = Array.from(event.results).map(r => r[0].transcript).join('');
+                    setSpeechResult(transcript);
+                };
+                recognition.onend = () => { recognitionRef.current = null; };
+                recognition.onerror = () => { recognitionRef.current = null; };
+                try {
+                    recognition.start();
+                    recognitionRef.current = recognition;
+                } catch { /* not critical — Azure is primary */ }
+            }
         } catch (err) {
             console.warn('Mic access failed:', err.message);
             if (err.name === 'NotAllowedError') {
