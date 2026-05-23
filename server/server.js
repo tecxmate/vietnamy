@@ -1394,20 +1394,31 @@ app.post('/api/pronunciation', express.raw({ type: '*/*', limit: '10mb' }), asyn
             console.warn('Pronunciation Azure error:', azureRes.status, text.slice(0, 200));
             return res.status(502).json({ error: 'Azure pronunciation failed', detail: text.slice(0, 500) });
         }
-        const payload = JSON.parse(text);
-        const best = payload.NBest?.[0];
-        if (!best || best.RecognitionStatus !== 'Success' && !best.PronunciationAssessment) {
+        let payload;
+        try {
+            payload = JSON.parse(text);
+        } catch {
+            console.warn('Pronunciation Azure invalid JSON:', text.slice(0, 200));
+            return res.status(502).json({ error: 'Azure pronunciation returned invalid JSON', detail: text.slice(0, 500) });
+        }
+
+        const best = payload.NBest?.[0] || null;
+        const assessment = best?.PronunciationAssessment || payload.PronunciationAssessment || null;
+        const status = payload.RecognitionStatus || best?.RecognitionStatus || 'NoMatch';
+
+        if (!best || (status !== 'Success' && !assessment)) {
             return res.json({
                 recognized: payload.DisplayText || '',
-                status: payload.RecognitionStatus || best?.RecognitionStatus || 'NoMatch',
+                status,
                 scores: null,
                 words: [],
             });
         }
-        const pa = best.PronunciationAssessment || {};
+
+        const pa = assessment || {};
         res.json({
             recognized: best.Display || best.Lexical || payload.DisplayText || '',
-            status: 'Success',
+            status,
             scores: {
                 accuracy: pa.AccuracyScore ?? null,
                 fluency: pa.FluencyScore ?? null,

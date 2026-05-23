@@ -392,7 +392,16 @@ const LessonGame = () => {
                     headers: { 'Content-Type': 'audio/wav' },
                     body: blob,
                 });
-                if (!r.ok) throw new Error(`HTTP ${r.status}`);
+                if (!r.ok) {
+                    let detail = '';
+                    try {
+                        const errorPayload = await r.json();
+                        detail = errorPayload.detail || errorPayload.error || '';
+                    } catch {
+                        detail = await r.text().catch(() => '');
+                    }
+                    throw new Error(detail || `HTTP ${r.status}`);
+                }
                 const data = await r.json();
                 setPronResult(data);
                 setSpeechResult(prev => data.recognized || prev || '');
@@ -404,7 +413,11 @@ const LessonGame = () => {
                 // No setSpeechError — if browser STT got a transcript, the user
                 // can still submit. Only show an error if we have nothing.
                 setSpeechResult(prev => {
-                    if (!prev) setSpeechError('Scoring failed. Try again or type below.');
+                    if (!prev) {
+                        setSpeechError('Scoring failed. Try again or type below.');
+                    } else {
+                        setSpeechError('Azure scoring failed, so this attempt will use text matching.');
+                    }
                     return prev;
                 });
             } finally {
@@ -578,7 +591,10 @@ const LessonGame = () => {
         if (currentEx.exercise_type === 'match_pairs') return false; // auto-checks
         if (currentEx.exercise_type === 'reorder_words' || currentEx.exercise_type === 'translation_word_bank') return orderedTokens.length > 0;
         if (currentEx.exercise_type === 'listen_type') return typedAnswer.trim().length > 0;
-        if (currentEx.exercise_type === 'speak_sentence') return Boolean(pronResult) || (speechResult || typedAnswer).trim().length > 0;
+        if (currentEx.exercise_type === 'speak_sentence') {
+            if (isRecording || pronAssessing) return false;
+            return Boolean(pronResult?.scores) || (speechResult || typedAnswer).trim().length > 0;
+        }
         if (currentEx.exercise_type === 'picture_choice') return selectedAnswer !== null;
         return selectedAnswer !== null && selectedAnswer !== '';
     };
