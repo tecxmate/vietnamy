@@ -26,6 +26,7 @@ import {
     FeedbackBanner, ProgressBar, checkAnswer, getFillBlankCorrectSentence,
 } from '../components/Exercise';
 import { DEFAULT_LEARNER_MODE, getProgressMode } from '../data/learnerModes';
+import { useT } from '../lib/i18n';
 
 const ACCENT = '#A78BFA'; // purple — matches roadmap node color
 const EXERCISES_PER_LESSON = 6;
@@ -178,7 +179,7 @@ function renderTipCard(card) {
 
 // ─── Exercise Renderer (uses shared components) ─────────────────
 
-function renderExercise(exercise, selectedAnswer, onSelect, isChecking, isCorrect, reorderWords, setReorderWords) {
+function renderExercise(exercise, selectedAnswer, onSelect, isChecking, isCorrect, reorderWords, setReorderWords, t) {
     const type = exercise.exercise_type;
     const prompt = exercise.prompt;
 
@@ -204,9 +205,9 @@ function renderExercise(exercise, selectedAnswer, onSelect, isChecking, isCorrec
                         fontSize: 12, fontWeight: 700, textTransform: 'uppercase',
                         letterSpacing: 1, color: 'var(--text-muted)', marginBottom: 8,
                     }}>
-                        {isMCQToEn ? 'Translate to English' :
-                            isMCQToVi ? 'Translate to Vietnamese' :
-                                'Listen and choose'}
+                        {isMCQToEn ? t('translate_to_english') :
+                            isMCQToVi ? t('translate_to_vietnamese') :
+                                t('listen_and_choose')}
                     </div>
                     <div style={{
                         display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
@@ -310,6 +311,7 @@ function renderExercise(exercise, selectedAnswer, onSelect, isChecking, isCorrec
 export default function GrammarUnitLesson() {
     const { unitId } = useParams();
     const navigate = useNavigate();
+    const t = useT();
     const [searchParams] = useSearchParams();
     const roadmapNodeId = searchParams.get('nodeId'); // path_node ID from roadmap
     const progressCtx = useProgress();
@@ -511,11 +513,11 @@ export default function GrammarUnitLesson() {
                         }}
                     >
                         {cardIndex < tipCards.length - 1 ? (
-                            <>NEXT <ArrowRight size={18} /></>
+                            <>{t('next_upper')} <ArrowRight size={18} /></>
                         ) : exercises.length > 0 ? (
-                            'START LESSON'
+                            t('start_lesson_upper')
                         ) : (
-                            'DONE'
+                            t('done_upper')
                         )}
                     </SoundButton>
                 </div>
@@ -563,7 +565,7 @@ export default function GrammarUnitLesson() {
                     flex: 1, padding: '24px 20px',
                     overflowY: 'auto',
                 }}>
-                    {currentEx && renderExercise(currentEx, selectedAnswer, setSelectedAnswer, isChecking, isCorrect, reorderWords, setReorderWords)}
+                    {currentEx && renderExercise(currentEx, selectedAnswer, setSelectedAnswer, isChecking, isCorrect, reorderWords, setReorderWords, t)}
                 </div>
 
                 {/* Check / Next button */}
@@ -594,7 +596,7 @@ export default function GrammarUnitLesson() {
                                 boxShadow: canCheck() ? `0 4px 0 #7C3AED` : 'none',
                             }}
                         >
-                            CHECK
+                            {t('check_upper')}
                         </SoundButton>
                     )}
                 </div>
@@ -624,7 +626,7 @@ export default function GrammarUnitLesson() {
                 fontSize: 24, fontWeight: 800, margin: 0,
                 textAlign: 'center', color: 'var(--text-main)',
             }}>
-                Lesson Complete!
+                {t('lesson_complete')}
             </h2>
 
             <div style={{
@@ -633,7 +635,7 @@ export default function GrammarUnitLesson() {
             }}>
                 <strong style={{ color: ACCENT }}>{unit.title}</strong>
                 <br />
-                You scored {score}/{exercises.length}
+                {t('you_scored').replace('{score}', score).replace('{total}', exercises.length)}
             </div>
 
             {/* Stats row */}
@@ -647,7 +649,7 @@ export default function GrammarUnitLesson() {
                     border: '1px solid var(--border-color)',
                 }}>
                     <div style={{ fontSize: 20, fontWeight: 800, color: ACCENT }}>{score}</div>
-                    <div style={{ fontSize: 11, color: 'var(--text-muted)', fontWeight: 600 }}>Correct</div>
+                    <div style={{ fontSize: 11, color: 'var(--text-muted)', fontWeight: 600 }}>{t('stat_correct')}</div>
                 </div>
                 <div style={{
                     textAlign: 'center', padding: '12px 20px',
@@ -655,7 +657,7 @@ export default function GrammarUnitLesson() {
                     border: '1px solid var(--border-color)',
                 }}>
                     <div style={{ fontSize: 20, fontWeight: 800, color: '#F59E0B' }}>+10</div>
-                    <div style={{ fontSize: 11, color: 'var(--text-muted)', fontWeight: 600 }}>Coins</div>
+                    <div style={{ fontSize: 11, color: 'var(--text-muted)', fontWeight: 600 }}>{t('stat_coins')}</div>
                 </div>
                 <div style={{
                     textAlign: 'center', padding: '12px 20px',
@@ -665,7 +667,7 @@ export default function GrammarUnitLesson() {
                     <div style={{ fontSize: 20, fontWeight: 800, color: '#EF4444' }}>
                         {hearts}/{5}
                     </div>
-                    <div style={{ fontSize: 11, color: 'var(--text-muted)', fontWeight: 600 }}>Hearts</div>
+                    <div style={{ fontSize: 11, color: 'var(--text-muted)', fontWeight: 600 }}>{t('stat_hearts')}</div>
                 </div>
             </div>
 
@@ -679,7 +681,7 @@ export default function GrammarUnitLesson() {
                     boxShadow: `0 4px 0 #7C3AED`,
                 }}
             >
-                CONTINUE
+                {t('continue_upper')}
             </SoundButton>
         </div>
     );

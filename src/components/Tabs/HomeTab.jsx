@@ -14,23 +14,7 @@ import { DEFAULT_LEARNER_MODE, getProgressMode } from '../../data/learnerModes';
 import { enablePushReminders, getPushReminderStatus, trackPushReturnFromUrl } from '../../utils/pushNotifications';
 import './HomeTab.css';
 
-const TIPS = [
-    { title: 'Six Tones', body: 'Vietnamese has 6 tones. The same syllable "ma" can mean ghost, mother, but, horse, tomb, or rice seedling — depending on the tone!' },
-    { title: 'No Conjugation', body: 'Vietnamese verbs never change form. "Tôi ăn", "bạn ăn", "họ ăn" — the verb stays the same regardless of subject or tense.' },
-    { title: 'Adjectives After Nouns', body: 'Unlike English, adjectives come AFTER the noun: "cà phê đen" literally means "coffee black".' },
-    { title: 'Pronouns = Relationships', body: 'Vietnamese has dozens of pronouns based on age, gender, and relationship. "Anh" (older brother), "chị" (older sister), "em" (younger sibling) are all "you".' },
-    { title: 'North vs South', body: 'Northern and Southern Vietnamese sound very different. "V" is pronounced "v" in the North but "y" in the South. "R" is "z" in the North but "r" in the South.' },
-    { title: 'Classifiers Matter', body: 'Vietnamese uses classifiers before nouns: "một con chó" (an animal-dog), "một cái bàn" (a thing-table). "Con" for animals, "cái" for objects.' },
-    { title: 'Question with "Không?"', body: 'Turn any statement into a yes/no question by adding "không?" at the end: "Bạn khỏe" (you\'re well) → "Bạn khỏe không?" (are you well?).' },
-    { title: 'Numbers Are Easy', body: 'Vietnamese numbers are logical: 11 = "mười một" (ten-one), 21 = "hai mươi một" (two-ten-one). No irregular teens!' },
-    { title: 'Phở Pronunciation', body: '"Phở" is pronounced "fuh" with a rising tone — not "foe". The hook above (ở) signals a broken rising tone.' },
-    { title: '"Đ" vs "D"', body: '"Đ" (with a stroke) sounds like English "d". But plain "D" sounds like "z" in the North and "y" in the South — a common trap for beginners!' },
-    { title: 'Time Words, Not Tenses', body: 'Instead of verb tenses, Vietnamese uses time markers: "đã" (past), "đang" (ongoing), "sẽ" (future). "Tôi đã ăn" = "I already ate".' },
-    { title: 'The Magic of "Ơi"', body: '"Ơi" is how you call someone\'s attention. "Anh ơi!" (hey, older brother!), "Em ơi!" (hey, younger one!). You\'ll hear it everywhere.' },
-    { title: 'Polite Particles', body: '"Ạ" at the end of a sentence makes it polite: "Cảm ơn ạ" (thank you, respectfully). Use it with elders and strangers.' },
-    { title: 'TELEX Typing', body: 'Type Vietnamese on any keyboard with TELEX: "a" + "w" = "ă", "o" + "w" = "ơ". Tones: s=sắc, f=huyền, r=hỏi, x=ngã, j=nặng.' },
-    { title: '"Xin" = Please / Ask', body: '"Xin chào" literally means "ask hello" — a formal greeting. "Xin lỗi" = "ask pardon" (sorry). "Xin" adds formality to any request.' },
-];
+const TIP_KEYS = Array.from({ length: 15 }, (_, idx) => idx + 1);
 
 
 
@@ -47,12 +31,13 @@ function getWordsOfTheDay(items, count = 5) {
     return result;
 }
 
-function getTodayTips() {
+function getTodayTips(t) {
     const dayOfYear = Math.floor((Date.now() - new Date(new Date().getFullYear(), 0, 0)) / 86400000);
-    const start = (dayOfYear * 3) % TIPS.length;
+    const start = (dayOfYear * 3) % TIP_KEYS.length;
     const result = [];
     for (let i = 0; i < 3; i++) {
-        result.push(TIPS[(start + i) % TIPS.length]);
+        const n = TIP_KEYS[(start + i) % TIP_KEYS.length];
+        result.push({ title: t(`tip_title_${n}`), body: t(`tip_body_${n}`) });
     }
     return result;
 }
@@ -103,36 +88,8 @@ const HomeTab = ({ onSearchWord }) => {
     const VOICE_LANGUAGES = [
         { code: 'vi', bcp: 'vi-VN', label: 'Tiếng Việt' },
         { code: 'en', bcp: 'en-US', label: 'English' },
-        { code: 'zh-s', bcp: 'zh-CN', label: '中文' },
-        { code: 'ja', bcp: 'ja-JP', label: '日本語' },
-        { code: 'ko', bcp: 'ko-KR', label: '한국어' },
-        { code: 'fr', bcp: 'fr-FR', label: 'Français' },
-        { code: 'de', bcp: 'de-DE', label: 'Deutsch' },
-        { code: 'es', bcp: 'es-ES', label: 'Español' },
-        { code: 'it', bcp: 'it-IT', label: 'Italiano' },
-        { code: 'pt', bcp: 'pt-BR', label: 'Português' },
-        { code: 'ru', bcp: 'ru-RU', label: 'Русский' },
-        { code: 'ar', bcp: 'ar-SA', label: 'العربية' },
-        { code: 'hi', bcp: 'hi-IN', label: 'हिन्दी' },
-        { code: 'th', bcp: 'th-TH', label: 'ภาษาไทย' },
-        { code: 'id', bcp: 'id-ID', label: 'Bahasa Indonesia' },
-        { code: 'ms', bcp: 'ms-MY', label: 'Bahasa Melayu' },
-        { code: 'tl', bcp: 'fil-PH', label: 'Filipino' },
-        { code: 'nl', bcp: 'nl-NL', label: 'Nederlands' },
-        { code: 'pl', bcp: 'pl-PL', label: 'Polski' },
-        { code: 'uk', bcp: 'uk-UA', label: 'Українська' },
-        { code: 'cs', bcp: 'cs-CZ', label: 'Čeština' },
-        { code: 'ro', bcp: 'ro-RO', label: 'Română' },
-        { code: 'sv', bcp: 'sv-SE', label: 'Svenska' },
-        { code: 'no', bcp: 'no-NO', label: 'Norsk' },
-        { code: 'da', bcp: 'da-DK', label: 'Dansk' },
-        { code: 'fi', bcp: 'fi-FI', label: 'Suomi' },
-        { code: 'el', bcp: 'el-GR', label: 'Ελληνικά' },
-        { code: 'tr', bcp: 'tr-TR', label: 'Türkçe' },
-        { code: 'he', bcp: 'he-IL', label: 'עברית' },
-        { code: 'hu', bcp: 'hu-HU', label: 'Magyar' },
-        { code: 'bn', bcp: 'bn-BD', label: 'বাংলা' },
-        { code: 'ta', bcp: 'ta-IN', label: 'தமிழ்' },
+        { code: 'zh-s', bcp: 'zh-CN', label: '简体中文' },
+        { code: 'zh-t', bcp: 'zh-TW', label: '繁體中文' },
     ];
 
     const submitSearch = (text) => {
@@ -199,7 +156,7 @@ const HomeTab = ({ onSearchWord }) => {
 
     const items = useMemo(() => getItems(), []);
     const wordsOfDay = useMemo(() => getWordsOfTheDay(items), [items]);
-    const tips = useMemo(() => getTodayTips(), []);
+    const tips = useMemo(() => getTodayTips(t), [t]);
     const dueCount = useMemo(() => getDueItems().length, []);
     const totalWords = useMemo(() => getTotalItems(), []);
     const handleContinue = () => {
@@ -234,21 +191,19 @@ const HomeTab = ({ onSearchWord }) => {
     };
 
     const pushReminderLabel = {
-        checking: 'Checking reminders',
-        saving: 'Turning on reminders',
-        enabled: 'Study reminders on',
-        ready: 'Study reminders on this device',
-        default: 'Turn on study reminders',
-        blocked: 'Reminders blocked',
-        unsupported: 'Reminders unavailable',
-        'server-missing-key': 'Reminders need setup',
-        'subscribe-failed': 'Try reminders again',
-    }[pushReminderStatus] || 'Turn on study reminders';
+        checking: t('home_push_label_checking'),
+        saving: t('home_push_label_saving'),
+        enabled: t('home_push_label_enabled'),
+        ready: t('home_push_label_ready'),
+        default: t('home_push_label_default'),
+        blocked: t('home_push_label_blocked'),
+        unsupported: t('home_push_label_unsupported'),
+        'server-missing-key': t('home_push_label_server_missing_key'),
+        'subscribe-failed': t('home_push_label_subscribe_failed'),
+    }[pushReminderStatus] || t('home_push_label_default_fallback');
 
     const feedbackFormUrl = userProfile?.nativeLang === 'zh-t' ? GOOGLE_FORM_TW : GOOGLE_FORM;
-    const feedbackActionLabel = userProfile?.nativeLang === 'zh-t'
-        ? '加入候補名單並分享建議'
-        : 'Join Waitlist & Share Ideas';
+    const feedbackActionLabel = t('home_feedback_label');
 
     return (
         <div className="home-tab">
@@ -267,8 +222,8 @@ const HomeTab = ({ onSearchWord }) => {
                     }}
                 >
                     <BookOpen size={20} />
-                    <span>{dueCount} word{dueCount > 1 ? 's' : ''} to review</span>
-                    <span style={{ marginLeft: 'auto', fontSize: 12, opacity: 0.7 }}>Tap to review</span>
+                    <span>{dueCount} {dueCount > 1 ? t('home_cards_to_review_unit') : t('home_cards_to_review_unit_singular')}</span>
+                    <span style={{ marginLeft: 'auto', fontSize: 12, opacity: 0.7 }}>{t('home_tap_to_review')}</span>
                 </button>
             )}
 
@@ -285,8 +240,8 @@ const HomeTab = ({ onSearchWord }) => {
                         </button>
                         <span className="demo-banner-tag"><Sparkles size={12} /> Vietnamy v0.3.15</span>
                         <div className="demo-banner-header">
-                            <h3 className="demo-banner-title">Welcome to Vietnamy!</h3>
-                            <p className="demo-banner-subtitle">We are glad to have you here. This is a research prototype of the world's 1st Vietnamese Learning App. We aim to provide high-quality lessons and tools for anyone who love to learn and explore Vietnamese. Feel free to join the waitlist and let us know any features you want. Welcome to being a part of our community!</p>
+                            <h3 className="demo-banner-title">{t('home_welcome_title')}</h3>
+                            <p className="demo-banner-subtitle">{t('home_welcome_subtitle')}</p>
                             <p className="demo-banner-founder"></p>
                         </div>
 
@@ -314,7 +269,7 @@ const HomeTab = ({ onSearchWord }) => {
                 )}
 
                 <div className="demo-community-row">
-                    <span className="demo-community-label">Join Vietnamy Community</span>
+                    <span className="demo-community-label">{t('home_community_label')}</span>
                     <div className="demo-community-links">
                         <a href={FACEBOOK_GROUP} target="_blank" rel="noopener noreferrer" className="demo-community-chip" style={{ '--chip-color': '#1877F2' }}>
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" /></svg>
@@ -342,7 +297,7 @@ const HomeTab = ({ onSearchWord }) => {
                     <div className="search-input-wrapper">
                         <input
                             type="text"
-                            placeholder={t('search_placeholder')}
+                            placeholder={t('home_word_search_placeholder')}
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                             className="search-input"
@@ -366,7 +321,7 @@ const HomeTab = ({ onSearchWord }) => {
                         {/* Top area: language grid or listening indicator */}
                         {!listening ? (
                             <>
-                                <h3 className="voice-modal-title">What language will you speak?</h3>
+                                <h3 className="voice-modal-title">{t('home_search_prompt')}</h3>
                                 <div className="lang-picker-scroll-wrap">
                                     <div className="lang-picker-grid">
                                         {VOICE_LANGUAGES.map(lang => (
@@ -386,7 +341,7 @@ const HomeTab = ({ onSearchWord }) => {
                                 <div className="voice-listening-icon">
                                     <Mic size={36} color="var(--primary-color)" />
                                 </div>
-                                <h3 className="voice-modal-title">Listening...</h3>
+                                <h3 className="voice-modal-title">{t('listening')}</h3>
                                 {interimText && (
                                     <p className="voice-interim-text">{interimText}</p>
                                 )}
@@ -396,15 +351,15 @@ const HomeTab = ({ onSearchWord }) => {
                         {/* Bottom actions — always in same position */}
                         <div className="voice-modal-actions">
                             <button className="voice-modal-cancel-btn" onClick={() => { if (listening) cancelVoice(); setShowLangPicker(false); }}>
-                                <X size={16} /> Cancel
+                                <X size={16} /> {t('cancel')}
                             </button>
                             {!listening ? (
                                 <button className="voice-modal-primary-btn" onClick={startVoiceWithLangs}>
-                                    <Mic size={18} /> Start Listening
+                                    <Mic size={18} /> {t('start_listening')}
                                 </button>
                             ) : (
                                 <button className="voice-modal-primary-btn" onClick={stopVoice}>
-                                    <Check size={16} /> Done
+                                    <Check size={16} /> {t('done')}
                                 </button>
                             )}
                         </div>
@@ -418,13 +373,13 @@ const HomeTab = ({ onSearchWord }) => {
                     <div className="home-progress-stat">
                         <BookOpenText size={16} color="#FFB703" />
                         <span className="home-progress-number">{totalWords}</span>
-                        <span className="home-progress-label">{t('words')}</span>
+                        <span className="home-progress-label">{t('home_stats_daily_words')}</span>
                     </div>
                     <div className="home-progress-divider" />
                     <div className="home-progress-stat">
                         <GraduationCap size={16} color="#06D6A0" />
                         <span className="home-progress-number">{modeCompletedNodes.size}</span>
-                        <span className="home-progress-label">{t('lessons')}</span>
+                        <span className="home-progress-label">{t('home_stats_lessons')}</span>
                     </div>
                 </div>
             </div>
@@ -433,13 +388,13 @@ const HomeTab = ({ onSearchWord }) => {
             <div className="home-actions">
                 <SoundButton className="home-action-card home-action-study" sound="button" onClick={handleContinue}>
                     <BookOpen size={22} />
-                    <span>{t('continue_lesson')}</span>
+                    <span>{t('home_continue_lesson')}</span>
                     <ChevronRight size={18} />
                 </SoundButton>
                 {dueCount > 0 && (
                     <SoundButton className="home-action-card home-action-review" sound="button" onClick={() => navigate('/practice/flashcards')}>
                         <Layers size={22} />
-                        <span>{dueCount} {t('cards_to_review')}</span>
+                        <span>{dueCount} {t('home_cards_to_review_unit')}</span>
                         <ChevronRight size={18} />
                     </SoundButton>
                 )}
@@ -448,7 +403,7 @@ const HomeTab = ({ onSearchWord }) => {
             {/* Words of the Day */}
             {wordsOfDay.length > 0 && (
                 <>
-                    <div className="home-section-header">{t('words_of_the_day')}</div>
+                    <div className="home-section-header">{t('home_votd')}</div>
                     <div className="home-tips-scroll">
                         {wordsOfDay.map((word, i) => (
                             <div key={i} className="home-wotd-card" onClick={() => onSearchWord(word.vi_text)} style={{ cursor: 'pointer' }}>
@@ -467,7 +422,7 @@ const HomeTab = ({ onSearchWord }) => {
 
             {/* Tips */}
             <div className="home-section-header">
-                <span>{t('tips_tricks')}</span>
+                <span>{t('home_tips_title')}</span>
             </div>
             <div className="home-tips-scroll">
                 {tips.map((tip, i) => (
@@ -482,7 +437,7 @@ const HomeTab = ({ onSearchWord }) => {
             {userProfile?.isDeveloperMode && (
                 <>
                     <div className="home-section-header">
-                        <span>{t('explore_vietnam')}</span>
+                        <span>{t('home_explore_title')}</span>
                     </div>
                     <div className="home-tips-scroll" style={{ paddingBottom: 16 }}>
                         {partnerCtas.map((cta, i) => (
@@ -502,13 +457,13 @@ const HomeTab = ({ onSearchWord }) => {
 
                                     <div className="home-partner-cta-actions">
                                         <div className="home-partner-cta-code-box">
-                                            <span className="home-partner-cta-code-label">CODE:</span>
+                                            <span className="home-partner-cta-code-label">{t('dict_partner_code')}</span>
                                             <span className="home-partner-cta-code-val">{cta.code}</span>
                                             <button
                                                 className={`home-partner-cta-copy-btn ${copiedCode === cta.code ? 'copied' : ''}`}
                                                 onClick={() => handleCopyCode(cta.code)}
                                             >
-                                                {copiedCode === cta.code ? 'Copied!' : 'Copy'}
+                                                {copiedCode === cta.code ? t('copied') : t('copy')}
                                             </button>
                                         </div>
 

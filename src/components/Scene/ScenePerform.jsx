@@ -7,6 +7,7 @@ import { playSuccess, playError } from '../../utils/sound';
 import { buildFillBlankSentence, getFillBlankCorrectSentence } from '../Exercise';
 import TappableVietnamese from '../TappableVietnamese';
 import WordPopup from '../WordPopup';
+import { useT } from '../../lib/i18n';
 
 const EMOTION_MAP = {
     friendly: '😊', confident: '😎', attentive: '🤔', satisfied: '😌',
@@ -15,6 +16,7 @@ const EMOTION_MAP = {
 };
 
 const ScenePerform = ({ config, scene, onComplete }) => {
+    const t = useT();
     const challenges = config.challenges || [];
     const [currentIdx, setCurrentIdx] = useState(0);
     const [score, setScore] = useState(0);
@@ -471,7 +473,7 @@ const ScenePerform = ({ config, scene, onComplete }) => {
                                 {isCorrect ? <Check size={16} color="white" strokeWidth={3} /> : <X size={16} color="white" strokeWidth={3} />}
                             </div>
                             <span style={{ fontSize: 20, fontWeight: 800, color: isCorrect ? 'var(--success-color)' : 'var(--lesson-error-border)' }}>
-                                {isCorrect ? 'Nice!' : 'Not quite'}
+                                {isCorrect ? t('nice') : t('not_quite')}
                             </span>
                         </div>
                         {!isCorrect && currentChallenge.type === 'build_sentence' && (
@@ -496,7 +498,7 @@ const ScenePerform = ({ config, scene, onComplete }) => {
                             }}
                             onClick={handleNext}
                         >
-                            CONTINUE
+                            {t('continue_upper')}
                         </SoundButton>
                     </div>
                 ) : (
@@ -512,7 +514,7 @@ const ScenePerform = ({ config, scene, onComplete }) => {
                         }}
                         onClick={handleCheck}
                     >
-                        CHECK
+                        {t('check_upper')}
                     </SoundButton>
                 )}
             </div>

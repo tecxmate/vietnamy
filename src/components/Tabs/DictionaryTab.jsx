@@ -8,6 +8,7 @@ import { isDictWordSaved, toggleDictSavedWord } from '../../lib/dictSavedWords';
 import DeckPickerModal from '../DeckPickerModal';
 import TappableVietnamese from '../TappableVietnamese';
 import WordPopup from '../WordPopup';
+import { useT } from '../../lib/i18n';
 import './DictionaryTab.css';
 
 const s2t = Converter({ from: 'cn', to: 'tw' });
@@ -40,19 +41,6 @@ const BASE_MODES = [
     { id: 'zh-t', label: '\u7E41', flag: '\uD83C\uDDF9\uD83C\uDDFC' },
 ];
 
-// Extra language modes (populated from /api/languages)
-const EXTRA_LANG_CODES = ['ja', 'fr', 'de', 'ru', 'it', 'no', 'es'];
-const EXTRA_LANG_LABELS = {
-    ja: { label: '\uD83C\uDDEF\uD83C\uDDF5 JA', short: 'JA' },
-    fr: { label: '\uD83C\uDDEB\uD83C\uDDF7 FR', short: 'FR' },
-    de: { label: '\uD83C\uDDE9\uD83C\uDDEA DE', short: 'DE' },
-    ru: { label: '\uD83C\uDDF7\uD83C\uDDFA RU', short: 'RU' },
-    it: { label: '🇮🇹 IT', short: 'IT' },
-    no: { label: '🇳🇴 NO', short: 'NO' },
-    es: { label: '🇪🇸 ES', short: 'ES' },
-};
-
-
 const SOURCE_LABELS = {
     'VE': 'English',
     '3-dict-combination': 'Tiếng Việt',
@@ -62,21 +50,8 @@ const SOURCE_LABELS = {
     'HanViet': '漢越 Hán Việt',
     'Wiktionary': 'Wiktionary',
     'FVDP (GPL)': 'English → Tiếng Việt',
-    // New Stardict sources
-    'NhatViet': '日本語 → Tiếng Việt',
-    'PhapViet': 'Français → Tiếng Việt',
-    'VietPhap': 'Tiếng Việt → Français',
-    'DucViet': 'Deutsch → Tiếng Việt',
-    'VietDuc': 'Tiếng Việt → Deutsch',
-    'NgaViet': 'Русский → Tiếng Việt',
-    'VietNga': 'Tiếng Việt → Русский',
-    'NauyViet': 'Norsk → Tiếng Việt',
     'TrungViet': '中文 → Tiếng Việt',
-    'VietNhat': 'Tiếng Việt → 日本語',
     'VietAnh_Stardict': 'Tiếng Việt → English',
-    'VietHan': 'Tiếng Việt → 한국어',
-    'VietTBN': 'Tiếng Việt → Español',
-    'TBNViet': 'Español → Tiếng Việt',
 };
 
 
@@ -185,46 +160,13 @@ const parseVietPhap = (text) => {
 const VOICE_LANGUAGES = [
     { code: 'vi', bcp: 'vi-VN', label: 'Tiếng Việt' },
     { code: 'en', bcp: 'en-US', label: 'English' },
-    { code: 'zh-s', bcp: 'zh-CN', label: '中文' },
-    { code: 'ja', bcp: 'ja-JP', label: '日本語' },
-    { code: 'ko', bcp: 'ko-KR', label: '한국어' },
-    { code: 'fr', bcp: 'fr-FR', label: 'Français' },
-    { code: 'de', bcp: 'de-DE', label: 'Deutsch' },
-    { code: 'es', bcp: 'es-ES', label: 'Español' },
-    { code: 'it', bcp: 'it-IT', label: 'Italiano' },
-    { code: 'pt', bcp: 'pt-BR', label: 'Português' },
-    { code: 'ru', bcp: 'ru-RU', label: 'Русский' },
-    { code: 'ar', bcp: 'ar-SA', label: 'العربية' },
-    { code: 'hi', bcp: 'hi-IN', label: 'हिन्दी' },
-    { code: 'th', bcp: 'th-TH', label: 'ภาษาไทย' },
-    { code: 'id', bcp: 'id-ID', label: 'Bahasa Indonesia' },
-    { code: 'ms', bcp: 'ms-MY', label: 'Bahasa Melayu' },
-    { code: 'tl', bcp: 'fil-PH', label: 'Filipino' },
-    { code: 'nl', bcp: 'nl-NL', label: 'Nederlands' },
-    { code: 'pl', bcp: 'pl-PL', label: 'Polski' },
-    { code: 'uk', bcp: 'uk-UA', label: 'Українська' },
-    { code: 'cs', bcp: 'cs-CZ', label: 'Čeština' },
-    { code: 'ro', bcp: 'ro-RO', label: 'Română' },
-    { code: 'sv', bcp: 'sv-SE', label: 'Svenska' },
-    { code: 'no', bcp: 'no-NO', label: 'Norsk' },
-    { code: 'da', bcp: 'da-DK', label: 'Dansk' },
-    { code: 'fi', bcp: 'fi-FI', label: 'Suomi' },
-    { code: 'el', bcp: 'el-GR', label: 'Ελληνικά' },
-    { code: 'tr', bcp: 'tr-TR', label: 'Türkçe' },
-    { code: 'he', bcp: 'he-IL', label: 'עברית' },
-    { code: 'hu', bcp: 'hu-HU', label: 'Magyar' },
-    { code: 'bn', bcp: 'bn-BD', label: 'বাংলা' },
-    { code: 'ta', bcp: 'ta-IN', label: 'தமிழ்' },
+    { code: 'zh-s', bcp: 'zh-CN', label: '简体中文' },
+    { code: 'zh-t', bcp: 'zh-TW', label: '繁體中文' },
 ];
 
-const isStardictSource = (name) => [
-    'VietPhap', 'PhapViet', 'VietDuc', 'DucViet',
-    'VietNga', 'NgaViet', 'VietNhat', 'NhatViet',
-    'NauyViet', 'TrungViet', 'VietHan',
-    'VietAnh_Stardict', 'VietTBN', 'TBNViet',
-].includes(name);
+const isStardictSource = (name) => ['TrungViet', 'VietAnh_Stardict'].includes(name);
 
-const renderSources = (sources, convert = null, searchQuery = '', onWordTap = null) => {
+const renderSources = (sources, convert = null, searchQuery = '', onWordTap = null, uiT = (key) => key) => {
     if (!sources || sources.length === 0) return null;
     const t = (text) => convert ? convert(text) : text;
     return sources.map((src) => (
@@ -282,7 +224,7 @@ const renderSources = (sources, convert = null, searchQuery = '', onWordTap = nu
                                                             <button
                                                                 className="speak-btn speak-btn--sm"
                                                                 onClick={() => speak(ex.vi)}
-                                                                title="Listen"
+                                                                title={uiT('dict_listen')}
                                                             >
                                                                 <Volume2 size={14} />
                                                             </button>
@@ -315,7 +257,7 @@ const renderSources = (sources, convert = null, searchQuery = '', onWordTap = nu
                                                 <button
                                                     className="speak-btn speak-btn--sm"
                                                     onClick={() => speak(ex.vietnamese_text)}
-                                                    title="Listen"
+                                                    title={uiT('dict_listen')}
                                                 >
                                                     <Volume2 size={14} />
                                                 </button>
@@ -334,13 +276,13 @@ const renderSources = (sources, convert = null, searchQuery = '', onWordTap = nu
                                 <div className="premium-audio-request">
                                     <div className="premium-audio-info">
                                         <Sparkles size={20} color="#CE82FF" fill="#CE82FF" />
-                                        <span>Need to sound perfect?</span>
+                                        <span>{uiT('dict_need_pronunciation')}</span>
                                     </div>
                                     <button
                                         className="premium-audio-btn"
-                                        onClick={() => alert("MOCKUP: This would charge $1 or ₫5000 to send this sentence to a native Vietnamese speaker for a perfect, custom audio recording within 24 hours.")}
+                                        onClick={() => alert(uiT('dict_human_pronunciation_alert'))}
                                     >
-                                        Order Human Pronunciation
+                                        {uiT('dict_order_human_pronunciation')}
                                     </button>
                                 </div>
                             )
@@ -354,6 +296,7 @@ const renderSources = (sources, convert = null, searchQuery = '', onWordTap = nu
 
 const DictionaryTab = ({ pendingInput, clearPendingInput, onNavigateToLibrary }) => {
     const { userProfile, updateUserProfile } = useUser();
+    const t = useT();
     const dictMode = userProfile.dictMode || 'en';
     const setDictMode = (mode) => updateUserProfile({ dictMode: mode });
     const [query, setQuery] = useState('');
@@ -364,7 +307,6 @@ const DictionaryTab = ({ pendingInput, clearPendingInput, onNavigateToLibrary })
     const [localTranslation, setLocalTranslation] = useState('');
     const [translating, setTranslating] = useState(false);
     const [translationError, setTranslationError] = useState(false);
-    const [availableLangs, setAvailableLangs] = useState([]);
 
     // Search history for back navigation
     const searchHistoryRef = useRef([]);
@@ -395,27 +337,13 @@ const DictionaryTab = ({ pendingInput, clearPendingInput, onNavigateToLibrary })
     const recognitionRef = useRef(null);
     const skipAutoSearch = useRef(false);
 
-    // Fetch available languages from the server on mount
-    useEffect(() => {
-        fetch('/api/languages')
-            .then(r => r.ok ? r.json() : [])
-            .then(langs => setAvailableLangs(langs.map(l => l.lang)))
-            .catch(() => { });
-    }, []);
-
-    // Build the active MODES list: base modes + user-visible extra langs
+    // Build the active MODES list from the temporarily supported dictionary languages.
     const visibleDicts = userProfile?.visibleDicts || ['en', 'zh-s', 'zh-t'];
     const activeModes = [
-        { id: 'all', label: 'All' },
-        { id: 'vi', label: 'VI' },
-        ...(visibleDicts.includes('en') ? [{ id: 'en', label: 'EN' }] : []),
-        ...(visibleDicts.includes('zh-s') ? [{ id: 'zh-s', label: '\u7B80' }] : []),
-        ...(visibleDicts.includes('zh-t') ? [{ id: 'zh-t', label: '\u7E41' }] : []),
-        ...(visibleDicts.includes('hanviet') ? [{ id: 'hanviet', label: '漢越' }] : []),
-        ...(visibleDicts.includes('viethan') ? [{ id: 'viethan', label: 'KR' }] : []),
-        ...EXTRA_LANG_CODES
-            .filter(lc => availableLangs.includes(lc) && visibleDicts.includes(lc))
-            .map(lc => ({ id: lc, label: EXTRA_LANG_LABELS[lc]?.short || lc.toUpperCase() })),
+        { id: 'all', label: t('dict_mode_all') },
+        ...(visibleDicts.includes('en') ? [{ id: 'en', label: t('dict_mode_en') }] : []),
+        ...(visibleDicts.includes('zh-s') ? [{ id: 'zh-s', label: t('dict_mode_zh_s') }] : []),
+        ...(visibleDicts.includes('zh-t') ? [{ id: 'zh-t', label: t('dict_mode_zh_t') }] : []),
     ];
 
     useEffect(() => {
@@ -436,39 +364,7 @@ const DictionaryTab = ({ pendingInput, clearPendingInput, onNavigateToLibrary })
         const langMap = {
             'zh-s': 'zh-CN',
             'zh-t': 'zh-TW',
-            'ja': 'ja',
-            'fr': 'fr',
-            'de': 'de',
-            'ru': 'ru',
-            'no': 'no',
-            'es': 'es',
-            'it': 'it',
-            'pt': 'pt',
-            'ar': 'ar',
-            'hi': 'hi',
-            'th': 'th',
-            'id': 'id',
-            'ms': 'ms',
-            'tl': 'tl',
-            'nl': 'nl',
-            'pl': 'pl',
-            'uk': 'uk',
-            'cs': 'cs',
-            'ro': 'ro',
-            'sv': 'sv',
-            'da': 'da',
-            'fi': 'fi',
-            'el': 'el',
-            'tr': 'tr',
-            'he': 'iw',
-            'hu': 'hu',
-            'bn': 'bn',
-            'ta': 'ta',
-            'ko': 'ko',
-            'viethan': 'ko',
-            'hanviet': 'zh-CN',
         };
-        if (dictMode === 'vi') return nonVi ? { sl: 'auto', tl: 'vi' } : { sl: 'vi', tl: 'vi' };
         const tl = langMap[dictMode] || 'en';
         return nonVi ? { sl: 'auto', tl: 'vi' } : { sl: 'vi', tl };
     };
@@ -588,11 +484,6 @@ const DictionaryTab = ({ pendingInput, clearPendingInput, onNavigateToLibrary })
     useEffect(() => {
         setLocalTranslation('');
 
-        // If we have a searched word and switched to an extra lang that isn't loaded yet,
-        // re-run the search to fetch that language's data
-        if (searchedWord && EXTRA_LANG_CODES.includes(dictMode) && allData && !allData[dictMode]) {
-            runSearch(searchedWord);
-        }
     }, [dictMode]);
 
     // Handle input from BottomNav (OCR / voice)
@@ -621,20 +512,16 @@ const DictionaryTab = ({ pendingInput, clearPendingInput, onNavigateToLibrary })
         try {
             const enc = encodeURIComponent(word.trim());
 
-            // Always fetch EN + ZH; also fetch the active extra lang if selected
-            const extraLang = EXTRA_LANG_CODES.includes(dictMode) ? dictMode : null;
             const fetches = [
                 fetch(`/api/search?q=${enc}&lang=en`),
-                fetch(`/api/search?q=${enc}&lang=zh`),
-                ...(extraLang ? [fetch(`/api/search?q=${enc}&lang=${extraLang}`)] : []),
+                fetch(`/api/search?q=${enc}&lang=zh-s`),
             ];
             const responses = await Promise.all(fetches);
             if (responses.some(r => !r.ok)) throw new Error('Search failed');
-            const [enData, zhData, extraData] = await Promise.all(responses.map(r => r.json()));
+            const [enData, zhData] = await Promise.all(responses.map(r => r.json()));
 
             const zhSources = zhData.structured ? zhData.data : [];
             const enSources = enData.structured ? enData.data : [];
-            const extraSources = extraData?.structured ? extraData.data : [];
             const parsedData = {
                 word: word.trim(),
                 en: enSources.filter(s => ['VE', 'AI_Generated_EN', 'Wiktionary'].includes(s.source_name)),
@@ -642,8 +529,6 @@ const DictionaryTab = ({ pendingInput, clearPendingInput, onNavigateToLibrary })
                 zh: zhSources,
                 components: enData.components || null,
                 hanvietComponents: zhData.hanvietComponents || null,
-                // extra lang results keyed by lang code
-                ...(extraLang ? { [extraLang]: extraSources } : {}),
             };
             setLocalTranslation('');
             setTranslating(false);
@@ -655,7 +540,7 @@ const DictionaryTab = ({ pendingInput, clearPendingInput, onNavigateToLibrary })
             // If no results, refresh suggestions for the searched word so "did you mean" shows
             const hasAny = Object.entries(parsedData).some(([k, v]) =>
                 k !== 'word' && k !== 'components' && k !== 'hanvietComponents' && Array.isArray(v) && v.some(s => s.meanings?.length > 0)
-            ) || (parsedData.hanvietComponents && parsedData.hanvietComponents.length > 0);
+            );
             if (!hasAny) fetchSuggestionsImmediate(word.trim());
 
         } catch (err) {
@@ -697,18 +582,12 @@ const DictionaryTab = ({ pendingInput, clearPendingInput, onNavigateToLibrary })
         const filterSpecial = (sources) => sources.filter(s => s.source_name !== 'HanViet' && s.source_name !== 'VietHan');
         switch (dictMode) {
             case 'en': return allData.en || [];
-            case 'vi': return allData.vi || [];
             case 'zh-s': return filterSpecial(allData.zh || []);
             case 'zh-t': return filterSpecial(allData.zh || []);
-            case 'hanviet': return []; // hanviet decomposition cards are rendered separately
-            case 'viethan': return (allData.zh || []).filter(s => s.source_name === 'VietHan');
             case 'all': {
                 const all = [
                     ...(visibleDicts.includes('en') ? (allData.en || []) : []),
-                    ...(allData.vi || []),
                     ...((visibleDicts.includes('zh-s') || visibleDicts.includes('zh-t')) ? filterSpecial(allData.zh || []) : []),
-                    ...(visibleDicts.includes('viethan') ? (allData.zh || []).filter(s => s.source_name === 'VietHan') : []),
-                    ...EXTRA_LANG_CODES.filter(lc => visibleDicts.includes(lc)).flatMap(lc => allData[lc] || []),
                 ];
                 // Deduplicate by source_name
                 const seen = new Set();
@@ -741,15 +620,14 @@ const DictionaryTab = ({ pendingInput, clearPendingInput, onNavigateToLibrary })
                 });
             }
             default:
-                // Extra lang modes (ja, fr, de, ru, no)
-                return allData[dictMode] || [];
+                return [];
         }
     };
 
     const startVoiceWithLang = () => {
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
         if (!SpeechRecognition) {
-            alert('Speech recognition is not supported in this browser.');
+            alert(t('speech_not_supported', 'Speech recognition is not supported in this browser.'));
             return;
         }
         const recognition = new SpeechRecognition();
@@ -815,8 +693,7 @@ const DictionaryTab = ({ pendingInput, clearPendingInput, onNavigateToLibrary })
     };
 
     const displaySources = getDisplaySources();
-    const hasValidResults = (displaySources.length > 0 && displaySources.some(s => s.meanings?.length > 0))
-        || (dictMode === 'hanviet' && allData?.hanvietComponents?.length > 0);
+    const hasValidResults = displaySources.length > 0 && displaySources.some(s => s.meanings?.length > 0);
     const firstSourceWithMetrics = displaySources.find(s => s.metrics && (s.metrics.ipa || s.metrics.subt_freq || s.metrics.mi));
     const metrics = firstSourceWithMetrics ? firstSourceWithMetrics.metrics : null;
 
@@ -831,7 +708,7 @@ const DictionaryTab = ({ pendingInput, clearPendingInput, onNavigateToLibrary })
                             <div className="dict-recent">
                                 <div className="dict-recent-header">
                                     <Clock size={14} />
-                                    <span>Recent Searches</span>
+                                    <span>{t('dict_recent_searches')}</span>
                                     <button className="dict-recent-clear" onClick={() => { clearSearchHistory(); setRecentSearches([]); }}>
                                         <Trash2 size={13} />
                                     </button>
@@ -849,23 +726,23 @@ const DictionaryTab = ({ pendingInput, clearPendingInput, onNavigateToLibrary })
                         <div className="dict-guide">
                             <div className="dict-guide-item">
                                 <div className="dict-guide-icon"><Type size={16} /></div>
-                                <p>Type or paste a word in the search bar below</p>
+                                <p>{t('dict_guide_type')}</p>
                             </div>
                             <div className="dict-guide-item">
                                 <div className="dict-guide-icon"><Mic size={16} /></div>
-                                <p>Tap the mic to search by voice, or use the camera for text in images</p>
+                                <p>{t('dict_guide_mic')}</p>
                             </div>
                             <div className="dict-guide-item">
                                 <div className="dict-guide-icon"><BookA size={16} /></div>
-                                <p>Switch between EN, VI, Chinese, or All with the language pills</p>
+                                <p>{t('dict_guide_switch')}</p>
                             </div>
                             <div className="dict-guide-item">
                                 <div className="dict-guide-icon"><ChevronLeft size={16} /></div>
-                                <p>Tap any word in results to look it up — use the back arrow to return</p>
+                                <p>{t('dict_guide_back')}</p>
                             </div>
                             <div className="dict-guide-item">
                                 <div className="dict-guide-icon"><BookmarkPlus size={16} /></div>
-                                <p>Tap the bookmark to save a word, or hold it to pick a flashcard deck</p>
+                                <p>{t('dict_guide_bookmark')}</p>
                             </div>
                         </div>
                     </div>
@@ -874,7 +751,7 @@ const DictionaryTab = ({ pendingInput, clearPendingInput, onNavigateToLibrary })
                 {allData && allData.word && !allData.error && (
                     <div className="word-heading-card-row">
                         {searchHistoryRef.current.length > 0 && (
-                            <button className="back-btn" onClick={goBack} title="Back">
+                            <button className="back-btn" onClick={goBack} title={t('dict_back')}>
                                 <ArrowLeft size={20} />
                             </button>
                         )}
@@ -885,14 +762,14 @@ const DictionaryTab = ({ pendingInput, clearPendingInput, onNavigateToLibrary })
                                     <button
                                         className="speak-btn"
                                         onClick={() => speak(allData.word)}
-                                        title="Listen"
+                                        title={t('dict_listen')}
                                     >
                                         <Volume2 size={24} />
                                     </button>
                                     <button
                                         className={`dict-save-btn ${wordSaved ? 'saved' : ''}`}
                                         onClick={handleSaveTap}
-                                        title={wordSaved ? 'Saved — tap to manage decks' : 'Save word'}
+                                        title={wordSaved ? t('dict_saved_manage') : t('dict_save_word')}
                                     >
                                         <Bookmark size={22} strokeWidth={2} fill={wordSaved ? 'currentColor' : 'none'} />
                                     </button>
@@ -915,7 +792,7 @@ const DictionaryTab = ({ pendingInput, clearPendingInput, onNavigateToLibrary })
                             <Sparkles size={20} color="var(--primary-color)" fill="var(--primary-color)" opacity={0.8} />
                         </div>
                         <div style={{ flex: 1 }}>
-                            <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: 1, marginBottom: 6 }}>Explore Vietnam</div>
+                            <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: 1, marginBottom: 6 }}>{t('dict_partner_title')}</div>
                             <div style={{ fontSize: 15, color: 'var(--text-main)', lineHeight: 1.5 }}>
                                 {['cà phê', 'cafe'].includes(searchedWord.toLowerCase()) && <span>Vietnam is the world's second-largest coffee producer, famous for its strong Robusta beans often served with sweetened condensed milk. <button className="ghost" style={{ padding: 0, color: 'var(--primary-color)', cursor: 'pointer', fontWeight: 600, textDecoration: 'none', display: 'inline' }} onClick={() => onNavigateToLibrary?.('best-cafes')}>Read: Best Cafes in Hanoi & HCMC →</button></span>}
                                 {['phở', 'bánh mì'].includes(searchedWord.toLowerCase()) && <span>Street food is the heart of Vietnamese culinary culture. The best dishes are often found at small, family-run stalls rather than large restaurants. <button className="ghost" style={{ padding: 0, color: 'var(--primary-color)', cursor: 'pointer', fontWeight: 600, textDecoration: 'none', display: 'inline' }} onClick={() => onNavigateToLibrary?.('street-food-guide')}>Read: A guide to Vietnamese Street food →</button></span>}
@@ -928,7 +805,7 @@ const DictionaryTab = ({ pendingInput, clearPendingInput, onNavigateToLibrary })
                 {allData && allData.error && (
                     <div className="no-results">
                         <Loader2 size={32} className="no-results-icon" style={{ margin: '0 auto 16px', color: 'var(--text-muted)' }} />
-                        <p>Unable to connect to dictionary server. Make sure it's running on port 3001.</p>
+                        <p>{t('dict_no_server')}</p>
                     </div>
                 )}
 
@@ -938,14 +815,14 @@ const DictionaryTab = ({ pendingInput, clearPendingInput, onNavigateToLibrary })
                         {!localTranslation && !translating && (
                             <>
                                 <Search size={32} className="no-results-icon" />
-                                <p>No definitions found for "<strong>{searchedWord}</strong>" in this dictionary.</p>
+                                <p>{t('dict_no_definition_in_dictionary').replace('{word}', searchedWord)}</p>
                             </>
                         )}
 
 
                         {suggestions.length > 0 && (
                             <div className="did-you-mean fade-in">
-                                <span className="dym-label">Did you mean?</span>
+                                <span className="dym-label">{t('dict_suggest_title')}</span>
                                 <div className="dym-chips">
                                     {suggestions.slice(0, 5).map((s, i) => (
                                         <button
@@ -964,18 +841,17 @@ const DictionaryTab = ({ pendingInput, clearPendingInput, onNavigateToLibrary })
                         {translating && (
                             <div className="local-translation-card translating fade-in">
                                 <Loader2 size={24} className="loading-icon" />
-                                <span>{dictMode === 'vi' ? 'Correcting with Google...' : 'Translating with Google...'}</span>
+                                <span>{t('dict_translate_label')}</span>
                             </div>
                         )}
 
                         {localTranslation && !translating && (
                             <div className="local-translation-card success fade-in">
-                                {dictMode === 'vi' && localTranslation.toLowerCase() !== searchedWord.toLowerCase() && (
-                                    <span className="correction-label">Did you mean?</span>
+                                {localTranslation.toLowerCase() !== searchedWord.toLowerCase() && (
+                                    <span className="correction-label">{t('dict_correction')}</span>
                                 )}
                                 <h3
-                                    className={`local-translation-result ${dictMode === 'vi' ? 'clickable' : ''}`}
-                                    onClick={dictMode === 'vi' ? () => handleSuggestionClick(localTranslation) : undefined}
+                                    className="local-translation-result"
                                 >
                                     {localTranslation}
                                 </h3>
@@ -984,44 +860,6 @@ const DictionaryTab = ({ pendingInput, clearPendingInput, onNavigateToLibrary })
                     </div>
                 )}
 
-                {(hasValidResults || localTranslation || dictMode === 'hanviet') && visibleDicts.includes('hanviet') && (dictMode === 'hanviet' || dictMode === 'all') && allData?.hanvietComponents && (
-                    <div className="hanviet-decomposition">
-                        <div className="source-header">
-                            <BookA size={16} />
-                            <span className="source-name">漢越 HAN - VIET</span>
-                        </div>
-                        {(() => {
-                            const best = [];
-                            const rest = [];
-                            allData.hanvietComponents.forEach((comp, i) => {
-                                if (!comp.entries || comp.entries.length === 0) return;
-                                comp.entries.forEach((entry, j) => {
-                                    const card = { comp, entry, key: `${i}-${j}`, isBest: j === 0 };
-                                    if (j === 0) best.push(card);
-                                    else rest.push(card);
-                                });
-                            });
-                            const cards = [...best, ...rest];
-                            const n = Math.min(cards.length, 4);
-                            const basis = n === 1 ? '100%' : `calc(${100 / n}% - ${6 * (n - 1) / n}px)`;
-                            return (
-                                <div className={`hanviet-cards${cards.length > 4 ? ' has-overflow' : ''}`} style={{ '--card-basis': basis }}>
-                                    {cards.map(({ comp, entry, key, isBest }) => {
-                                        const chinese = dictMode === 'zh-t' ? s2t(entry.chinese) : entry.chinese;
-                                        return (
-                                            <div key={key} className={`hanviet-card${isBest ? ' hanviet-card--best' : ''}`} onClick={() => handleSuggestionClick(comp.syllable)}>
-                                                <div className="hanviet-card-vi">{comp.syllable}</div>
-                                                <div className="hanviet-card-zh">{chinese}</div>
-                                                {entry.pinyin && <div className="hanviet-card-pinyin">{entry.pinyin}</div>}
-                                                {entry.gloss && <div className="hanviet-card-gloss">{dictMode === 'zh-t' ? s2t(entry.gloss) : entry.gloss}</div>}
-                                            </div>
-                                        );
-                                    })}
-                                </div>
-                            );
-                        })()}
-                    </div>
-                )}
                 {hasValidResults && (() => {
                     const convert = dictMode === 'zh-t' ? s2t : null;
                     const MAX_VISIBLE = 2;
@@ -1030,14 +868,14 @@ const DictionaryTab = ({ pendingInput, clearPendingInput, onNavigateToLibrary })
                     const hiddenCount = displaySources.length - MAX_VISIBLE;
                     return (
                         <>
-                            {renderSources(visible, convert, '', handleWordTap)}
+                            {renderSources(visible, convert, '', handleWordTap, t)}
                             {hasMore && !sourcesExpanded && (
                                 <button className="sources-expand-btn" onClick={() => setSourcesExpanded(true)}>
-                                    <span>Show {hiddenCount} more source{hiddenCount > 1 ? 's' : ''}</span>
+                                    <span>{t('dict_show_more_sources').replace('{count}', hiddenCount)}</span>
                                     <ChevronDown size={16} />
                                 </button>
                             )}
-                            {hasMore && sourcesExpanded && renderSources(displaySources.slice(MAX_VISIBLE), convert, '', handleWordTap)}
+                            {hasMore && sourcesExpanded && renderSources(displaySources.slice(MAX_VISIBLE), convert, '', handleWordTap, t)}
                         </>
                     );
                 })()}
@@ -1080,17 +918,14 @@ const DictionaryTab = ({ pendingInput, clearPendingInput, onNavigateToLibrary })
                     {showLangPicker && (
                         <div className="lang-picker-popup">
                             <div className="lang-picker-header">
-                                <span className="lang-picker-title">Search meaning in:</span>
+                                <span className="lang-picker-title">{t('dict_lang_picker_title')}</span>
                                 <button className="lang-picker-close" onClick={() => setShowLangPicker(false)}>
                                     <X size={14} />
                                 </button>
                             </div>
                             <div className="lang-picker-grid">
                                 {[
-                                    { v: 'en', l: 'English' }, { v: 'zh-s', l: '简体中文' }, { v: 'zh-t', l: '繁體中文' },
-                                    { v: 'hanviet', l: '漢越 Hán Việt' }, { v: 'viethan', l: '한국어' },
-                                    { v: 'ja', l: '日本語' }, { v: 'fr', l: 'Français' }, { v: 'de', l: 'Deutsch' },
-                                    { v: 'ru', l: 'Русский' }, { v: 'it', l: 'Italiano' }, { v: 'no', l: 'Norsk' }, { v: 'es', l: 'Español' },
+                                    { v: 'en', l: t('onboarding_lang_en') }, { v: 'zh-s', l: t('onboarding_lang_zh_s') }, { v: 'zh-t', l: t('onboarding_lang_zh_t') },
                                 ].map(lang => (
                                     <button
                                         key={lang.v}
@@ -1115,7 +950,7 @@ const DictionaryTab = ({ pendingInput, clearPendingInput, onNavigateToLibrary })
                         <input
                             id="dict-search-input"
                             type="text"
-                            placeholder="Search Vietnamese, English, or Chinese..."
+                            placeholder={t('dict_search_placeholder')}
                             value={query}
                             onChange={(e) => setQuery(e.target.value)}
                             className="search-input"
@@ -1143,7 +978,7 @@ const DictionaryTab = ({ pendingInput, clearPendingInput, onNavigateToLibrary })
                     <div className="voice-modal" onClick={(e) => e.stopPropagation()}>
                         {!listening ? (
                             <>
-                                <h3 className="voice-modal-title">What language will you speak?</h3>
+                                <h3 className="voice-modal-title">{t('dict_searching_voice_title')}</h3>
                                 <div className="lang-picker-scroll-wrap">
                                     <div className="lang-picker-grid">
                                         {VOICE_LANGUAGES.map(lang => (
@@ -1161,16 +996,16 @@ const DictionaryTab = ({ pendingInput, clearPendingInput, onNavigateToLibrary })
                         ) : (
                             <div className="voice-listening-body">
                                 <div className="voice-listening-icon"><Mic size={36} color="var(--primary-color)" /></div>
-                                <h3 className="voice-modal-title">Listening...</h3>
+                                <h3 className="voice-modal-title">{t('listening')}</h3>
                                 {interimText && <p className="voice-interim-text">{interimText}</p>}
                             </div>
                         )}
                         <div className="voice-modal-actions">
-                            <button className="voice-modal-cancel-btn" onClick={cancelVoice}><X size={16} /> Cancel</button>
+                            <button className="voice-modal-cancel-btn" onClick={cancelVoice}><X size={16} /> {t('cancel')}</button>
                             {!listening ? (
-                                <button className="voice-modal-primary-btn" onClick={startVoiceWithLang}><Mic size={16} /> Start Listening</button>
+                                <button className="voice-modal-primary-btn" onClick={startVoiceWithLang}><Mic size={16} /> {t('start_listening')}</button>
                             ) : (
-                                <button className="voice-modal-primary-btn" onClick={stopVoice}><Check size={16} /> Done</button>
+                                <button className="voice-modal-primary-btn" onClick={stopVoice}><Check size={16} /> {t('done')}</button>
                             )}
                         </div>
                     </div>

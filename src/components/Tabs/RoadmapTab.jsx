@@ -7,6 +7,7 @@ import { useUser } from '../../context/UserContext';
 import { loadSettings } from '../../lib/settings';
 import SoundButton from '../SoundButton';
 import { DEFAULT_LEARNER_MODE, ENABLE_LEARNING_PATH_CHOOSER, getProgressMode, getTopicsForMode, getModeConfig, LEARNER_MODES } from '../../data/learnerModes';
+import { useT } from '../../lib/i18n';
 
 const MODE_ICONS = { BookOpen, Plane, Briefcase, Heart };
 
@@ -36,15 +37,23 @@ function getNodeStyle(node) {
     return NODE_STYLES.orange;
 }
 
-function getNodeLabel(node, style) {
+function getNodeLabel(node, style, t) {
     // Mini-tests get "Quiz" label, module tests show their module type
-    if (node.test_scope === 'module') return 'Quiz';
-    if (node.test_scope === 'unit') return 'Quizzes';
-    return style.label;
+    if (node.test_scope === 'module') return t('roadmap_type_quiz');
+    if (node.test_scope === 'unit') return t('roadmap_type_quizzes');
+    const labels = {
+        Vocabulary: 'roadmap_type_vocabulary',
+        Phonetics: 'roadmap_type_phonetics',
+        Grammar: 'roadmap_type_grammar',
+        Scene: 'roadmap_type_scene',
+        Quiz: 'roadmap_type_quiz',
+    };
+    return labels[style.label] ? t(labels[style.label]) : style.label;
 }
 
 const RoadmapTab = () => {
     const navigate = useNavigate();
+    const t = useT();
     const { completedNodes, getNodeSessionCount, SESSIONS_TO_COMPLETE } = useProgress();
     const { userProfile, updateUserProfile } = useUser();
     const currentMode = userProfile?.learnerMode || DEFAULT_LEARNER_MODE;
@@ -147,6 +156,14 @@ const RoadmapTab = () => {
     };
 
     const ModeIcon = MODE_ICONS[modeConfig.icon] || Plane;
+    const translateUnitTitle = (unit) => {
+        const rawTitle = unit.title.replace(/^Unit\s+\d+\s+[—-]\s+/i, '');
+        const title = t(`roadmap_unit_${unit.id}`, rawTitle);
+        return t('roadmap_unit_title')
+            .replace('{unit}', unit.order_index)
+            .replace('{title}', title);
+    };
+    const translateNodeLabel = (node) => t(`roadmap_node_${node.id}`, node.label);
 
     return (
         <div>
@@ -206,7 +223,7 @@ const RoadmapTab = () => {
                         flexShrink: 0,
                     }}
                 >
-                    All
+                    {t('roadmap_filter_all')}
                 </button>
                 {visibleTopics.map(topic => {
                     const isActive = activeTopic === topic.id;
@@ -228,7 +245,7 @@ const RoadmapTab = () => {
                                 flexShrink: 0,
                             }}
                         >
-                            {topic.label}
+                            {t(`roadmap_topic_${topic.id}`, topic.label)}
                             <span style={{
                                 fontSize: 11,
                                 lineHeight: 1,
@@ -263,7 +280,7 @@ const RoadmapTab = () => {
                         onClick={(e) => e.stopPropagation()}
                     >
                         <h3 style={{ margin: '0 0 16px', fontSize: 18, fontWeight: 800, color: 'var(--text-main)', textAlign: 'center' }}>
-                            Choose Learning Path
+                            {t('learning_path')}
                         </h3>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
                             {Object.values(LEARNER_MODES).map(mode => {
@@ -299,10 +316,10 @@ const RoadmapTab = () => {
                                         </div>
                                         <div style={{ flex: 1, textAlign: 'left' }}>
                                             <div style={{ fontWeight: 700, fontSize: 15, color: isActive ? mode.color : 'var(--text-main)' }}>
-                                                {mode.label}
+                                                {t(`learner_mode_${mode.id}`, mode.label)}
                                             </div>
                                             <div style={{ fontSize: 12, color: 'var(--text-muted)', marginTop: 2 }}>
-                                                {isEnabled ? mode.description : 'Coming later'}
+                                                {isEnabled ? t(`learner_mode_${mode.id}_description`, mode.description) : t('roadmap_coming_later')}
                                             </div>
                                         </div>
                                         {isActive && (
@@ -331,7 +348,7 @@ const RoadmapTab = () => {
                 return (
                     <div key={unit.id} style={{ marginBottom: 16 }}>
                         <div style={{ backgroundColor: 'var(--surface-color)', padding: 'var(--spacing-4)', position: 'sticky', top: 54, zIndex: 5, borderBottom: '1px solid var(--border-color)' }}>
-                            <h2 style={{ margin: 0, fontSize: 18 }}>{unit.title}</h2>
+                            <h2 style={{ margin: 0, fontSize: 18 }}>{translateUnitTitle(unit)}</h2>
                         </div>
 
                         <div style={{ padding: 16, display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -342,7 +359,7 @@ const RoadmapTab = () => {
                                 const isCompleted = node.status === 'completed';
                                 // When testMode is off, treat ALL nodes as locked
                                 const isLocked = !testMode || node.status === 'locked';
-                                const sublabel = getNodeLabel(node, style);
+                                const sublabel = getNodeLabel(node, style, t);
                                 const sessionCount = getNodeSessionCount(node.id, progressMode);
                                 const sessionsTarget = node.skill_content?.type === 'grammar_unit' ? 2 : SESSIONS_TO_COMPLETE;
                                 const hasProgress = testMode && sessionCount > 0 && !isCompleted;
@@ -386,7 +403,7 @@ const RoadmapTab = () => {
                                                 </div>
                                                 <div style={{ flex: 1, minWidth: 0 }}>
                                                     <div style={{ fontWeight: 700, fontSize: 15, color: isLocked ? style.mutedIcon : 'var(--text-main)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                                                        {node.label}
+                                                        {translateNodeLabel(node)}
                                                     </div>
                                                     <div style={{ fontSize: 12, color: isLocked ? style.muted : style.color, fontWeight: 600, marginTop: 2 }}>
                                                         {sublabel}{hasProgress && ` · ${sessionCount}/${sessionsTarget}`}
@@ -418,12 +435,12 @@ const RoadmapTab = () => {
                                                 </div>
                                                 {testMode && isActive && !hasProgress && (
                                                     <div style={{ fontSize: 12, fontWeight: 800, color: style.color, textTransform: 'uppercase', letterSpacing: '0.5px', flexShrink: 0 }}>
-                                                        START
+                                                        {t('start_upper')}
                                                     </div>
                                                 )}
                                                 {testMode && hasProgress && (
                                                     <div style={{ fontSize: 12, fontWeight: 800, color: style.color, textTransform: 'uppercase', letterSpacing: '0.5px', flexShrink: 0 }}>
-                                                        CONTINUE
+                                                        {t('continue_upper')}
                                                     </div>
                                                 )}
                                             </div>
@@ -496,7 +513,7 @@ const RoadmapTab = () => {
                         }}
                         onClick={handleContinueClick}
                     >
-                        CONTINUE
+                        {t('continue_upper')}
                     </SoundButton>
                 ) : (
                     <SoundButton
@@ -514,7 +531,7 @@ const RoadmapTab = () => {
                             cursor: 'not-allowed',
                         }}
                     >
-                        COMING SOON
+                        {t('coming_soon_upper')}
                     </SoundButton>
                 )}
             </div>
@@ -544,9 +561,9 @@ const RoadmapTab = () => {
                         }}>
                             {React.createElement(getNodeStyle(redoNode).icon, { size: 28, fill: '#fff', color: '#fff' })}
                         </div>
-                        <h3 style={{ margin: '0 0 8px', fontSize: 18, color: 'var(--text-main)' }}>{redoNode.label}</h3>
+                        <h3 style={{ margin: '0 0 8px', fontSize: 18, color: 'var(--text-main)' }}>{translateNodeLabel(redoNode)}</h3>
                         <p style={{ margin: '0 0 24px', fontSize: 14, color: 'var(--text-muted)' }}>
-                            You already completed this. Redo it?
+                            {t('roadmap_redo_prompt')}
                         </p>
                         <div style={{ display: 'flex', gap: 12 }}>
                             <button
@@ -554,7 +571,7 @@ const RoadmapTab = () => {
                                 style={{ flex: 1, padding: '14px 16px', fontSize: 15, fontWeight: 700, borderRadius: 12 }}
                                 onClick={() => setRedoNode(null)}
                             >
-                                Cancel
+                                {t('cancel')}
                             </button>
                             <button
                                 className="primary"
@@ -565,7 +582,7 @@ const RoadmapTab = () => {
                                 }}
                                 onClick={() => { setRedoNode(null); navigateNode(redoNode); }}
                             >
-                                Redo
+                                {t('roadmap_redo')}
                             </button>
                         </div>
                     </div>

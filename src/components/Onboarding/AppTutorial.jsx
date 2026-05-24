@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { ArrowRight, CheckCircle, Navigation } from 'lucide-react';
+import { useT } from '../../lib/i18n';
 import './AppTutorial.css';
 
 // ─── Tutorial step definitions ────────────────────────────────────────────────
@@ -14,82 +15,74 @@ import './AppTutorial.css';
 //   desc        — tooltip body
 //   tabLabel    — if defined, shown as "switching to X" hint
 
-const STEPS = [
+const STEP_DEFS = [
     {
         tab: 'home',
         targetClass: '.demo-banner',
         position: 'bottom',
-        emoji: '👋',
-        badge: 'Welcome',
-        title: 'Your Vietnamy Home',
-        desc: "Stay up-to-date, join our community, and request features here. We're building this with you!",
+        badge: 'app_tutorial_welcome_badge',
+        title: 'app_tutorial_home_title',
+        desc: 'app_tutorial_home_desc',
     },
     {
         tab: 'home',
         targetClass: '.home-dict-search',
         position: 'bottom',
-        emoji: '🔍',
-        badge: 'Quick Search',
-        title: 'Instant Dictionary Access',
-        desc: 'Type or speak any word in Vietnamese, English, or your native language — get instant definitions right from home.',
+        badge: 'app_tutorial_quick_search_badge',
+        title: 'app_tutorial_quick_search_title',
+        desc: 'app_tutorial_quick_search_desc',
     },
     {
         tab: 'home',
         targetClass: '.home-streak-card',
         position: 'bottom',
-        emoji: '🔥',
-        badge: 'Progress',
-        title: 'Your Daily Streak & Stats',
-        desc: 'Track your learning streak, total words studied, and lessons completed. Keep the flame alive every day!',
+        badge: 'app_tutorial_progress_badge',
+        title: 'app_tutorial_progress_title',
+        desc: 'app_tutorial_progress_desc',
     },
     {
         tab: 'home',
         targetClass: '.home-actions',
         position: 'top',
-        emoji: '▶️',
-        badge: 'Quick Actions',
-        title: 'Jump Right Back In',
-        desc: 'Continue your active lesson or review flashcards that are due. One tap to keep learning.',
+        badge: 'app_tutorial_actions_badge',
+        title: 'app_tutorial_actions_title',
+        desc: 'app_tutorial_actions_desc',
     },
     {
         tab: 'study',
         targetId: 'roadmap-continue-btn',
         position: 'center',
-        emoji: '🗺️',
-        badge: 'Study Roadmap',
-        title: 'Your Learning Path',
-        desc: 'Lessons, grammar skills, and quizzes laid out step-by-step. Tap CONTINUE to pick up where you left off.',
-        tabLabel: 'Study',
+        badge: 'app_tutorial_roadmap_badge',
+        title: 'app_tutorial_roadmap_title',
+        desc: 'app_tutorial_roadmap_desc',
+        tabLabel: 'nav_study',
     },
     {
         tab: 'dictionary',
         targetId: 'dict-search-input',
         position: 'bottom',
-        emoji: '📖',
-        badge: 'Dictionary',
-        title: 'Full Power Dictionary',
-        desc: 'Search Vietnamese ↔ 9 global languages with tone marks, frequency badges, audio pronunciation, and Google Translate fallback.',
-        tabLabel: 'Dictionary',
+        badge: 'app_tutorial_dictionary_badge',
+        title: 'app_tutorial_dictionary_title',
+        desc: 'app_tutorial_dictionary_desc',
+        tabLabel: 'nav_dictionary',
     },
     {
         tab: 'library',
         targetId: 'library-tag-bar',
         position: 'top',
-        emoji: '📚',
-        badge: 'Reading Library',
-        title: 'Real Articles & Readings',
-        desc: 'Immerse yourself in authentic Vietnamese content. Tap any word to look it up instantly without losing your place.',
-        tabLabel: 'Library',
+        badge: 'app_tutorial_library_badge',
+        title: 'app_tutorial_library_title',
+        desc: 'app_tutorial_library_desc',
+        tabLabel: 'nav_library',
     },
     {
         tab: 'home',
         targetClass: '.bottom-nav',
         position: 'top',
-        emoji: '🧭',
-        badge: 'Navigation',
-        title: "You're All Set!",
-        desc: 'Use the bottom bar to switch between Home, Roadmap, Dictionary, Library, and Community anytime.',
-        tabLabel: 'Home',
+        badge: 'app_tutorial_navigation_badge',
+        title: 'app_tutorial_navigation_title',
+        desc: 'app_tutorial_navigation_desc',
+        tabLabel: 'nav_home',
     },
 ];
 
@@ -119,6 +112,7 @@ const PAD = 8; // spotlight padding around element
 
 // ─── AppTutorial component ────────────────────────────────────────────────────
 const AppTutorial = ({ activeTab, setActiveTab, onComplete }) => {
+    const t = useT();
     const [stepIdx, setStepIdx] = useState(0);
     const [rect, setRect] = useState(null);
     const [exiting, setExiting] = useState(false);
@@ -126,12 +120,19 @@ const AppTutorial = ({ activeTab, setActiveTab, onComplete }) => {
     const tooltipRef = useRef(null);
     const rafRef = useRef(null);
 
-    const step = STEPS[stepIdx];
-    const isLast = stepIdx === STEPS.length - 1;
+    const steps = STEP_DEFS.map(step => ({
+        ...step,
+        badge: t(step.badge),
+        title: t(step.title),
+        desc: t(step.desc),
+        tabLabel: step.tabLabel ? t(step.tabLabel) : undefined,
+    }));
+    const step = steps[stepIdx];
+    const isLast = stepIdx === steps.length - 1;
 
     // ── Switch tab if needed, then update rect ──────────────────────────────
     const applyStep = useCallback((idx) => {
-        const s = STEPS[idx];
+        const s = STEP_DEFS[idx];
         if (!s) return;
         if (activeTab !== s.tab) {
             setSwitching(true);
@@ -151,7 +152,7 @@ const AppTutorial = ({ activeTab, setActiveTab, onComplete }) => {
         const STABLE_NEEDED = 2; // rect must be the same for 2 consecutive checks
 
         const tryMeasure = () => {
-            const s = STEPS[stepIdx];
+            const s = STEP_DEFS[stepIdx];
             if (!s || activeTab !== s.tab) return;
 
             const r = getRect(s);
@@ -191,7 +192,7 @@ const AppTutorial = ({ activeTab, setActiveTab, onComplete }) => {
         };
 
         // Initial delay: longer for steps that require a tab switch
-        const step = STEPS[stepIdx];
+        const step = STEP_DEFS[stepIdx];
         const needsSwitch = step && activeTab !== step.tab;
         rafRef.current = setTimeout(tryMeasure, needsSwitch ? 200 : 80);
 
@@ -299,16 +300,15 @@ const AppTutorial = ({ activeTab, setActiveTab, onComplete }) => {
                     style={tooltipStyle}
                 >
                     {/* Tab switch hint */}
-                    {step.tabLabel && stepIdx > 0 && STEPS[stepIdx - 1]?.tab !== step.tab && (
+                    {step.tabLabel && stepIdx > 0 && STEP_DEFS[stepIdx - 1]?.tab !== step.tab && (
                         <div className="tutorial-tab-hint">
                             <Navigation size={12} />
-                            Moved you to the {step.tabLabel} tab
+                            {t('app_tutorial_moved_to').replace('{tab}', step.tabLabel)}
                         </div>
                     )}
 
                     {/* Step badge */}
                     <div className="tutorial-step-badge">
-                        <span className="tutorial-step-emoji">{step.emoji}</span>
                         {step.badge}
                     </div>
 
@@ -318,7 +318,7 @@ const AppTutorial = ({ activeTab, setActiveTab, onComplete }) => {
 
                     {/* Progress dots */}
                     <div className="tutorial-progress">
-                        {STEPS.map((_, i) => (
+                        {steps.map((_, i) => (
                             <div
                                 key={i}
                                 className={`tutorial-dot ${i === stepIdx ? 'active' : i < stepIdx ? 'done' : ''}`}
@@ -329,7 +329,7 @@ const AppTutorial = ({ activeTab, setActiveTab, onComplete }) => {
                     {/* Actions */}
                     <div className="tutorial-actions">
                         <button className="tutorial-skip-btn" onClick={finish}>
-                            Skip
+                            {t('app_tutorial_skip')}
                         </button>
                         <button
                             className={`tutorial-next-btn ${isLast ? 'finish' : ''}`}
@@ -338,11 +338,11 @@ const AppTutorial = ({ activeTab, setActiveTab, onComplete }) => {
                             {isLast ? (
                                 <>
                                     <CheckCircle size={17} />
-                                    Let's go!
+                                    {t('app_tutorial_lets_go')}
                                 </>
                             ) : (
                                 <>
-                                    Next
+                                    {t('app_tutorial_next')}
                                     <ArrowRight size={17} />
                                 </>
                             )}
@@ -375,7 +375,7 @@ const AppTutorial = ({ activeTab, setActiveTab, onComplete }) => {
                     }}
                 >
                     <Navigation size={16} />
-                    Heading to {step.tabLabel || step.tab}…
+                    {t('app_tutorial_heading_to').replace('{tab}', step.tabLabel || step.tab)}
                 </div>
             )}
         </div>

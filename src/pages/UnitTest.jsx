@@ -11,6 +11,7 @@ import { playSuccess, playError } from '../utils/sound';
 import SoundButton from '../components/SoundButton';
 import { buildFillBlankSentence, getFillBlankCorrectSentence } from '../components/Exercise';
 import { DEFAULT_LEARNER_MODE, getProgressMode } from '../data/learnerModes';
+import { useT } from '../lib/i18n';
 
 const UNIT_QUIZ_SIZE = 20;
 const MODULE_QUIZ_SIZE = 6;
@@ -29,6 +30,7 @@ const UnitTest = () => {
     const { nodeId } = useParams();
     const navigate = useNavigate();
     const location = useLocation();
+    const t = useT();
     const progressCtx = useProgress();
     const { userProfile } = useUser();
     const currentMode = userProfile?.learnerMode || DEFAULT_LEARNER_MODE;
@@ -330,16 +332,16 @@ const UnitTest = () => {
                     </div>
                     <h1 style={{ color: passed ? '#F97316' : 'var(--danger-color)', fontSize: 24, margin: 0, fontWeight: 800 }}>
                         {passed
-                            ? (isModuleTest ? 'Quiz Complete!' : 'Test Passed!')
-                            : 'Not Quite!'}
+                            ? (isModuleTest ? t('test_quiz_complete') : t('test_passed'))
+                            : t('test_not_quite')}
                     </h1>
                     <div style={{ fontSize: 15, color: 'var(--text-muted)', lineHeight: 1.5 }}>
-                        <strong style={{ color: passed ? '#F97316' : 'var(--danger-color)' }}>{score}/{exercises.length}</strong> correct ({pct}%)
+                        <strong style={{ color: passed ? '#F97316' : 'var(--danger-color)' }}>{score}/{exercises.length}</strong> {t('test_correct')} ({pct}%)
                     </div>
                     <p style={{ color: 'var(--text-muted)', fontSize: 14, margin: 0 }}>
                         {passed
-                            ? (isModuleTest ? 'Next module unlocked!' : 'Next unit unlocked!')
-                            : `You need ${thresholdPct}% to pass. Review the lesson and try again!`}
+                            ? (isModuleTest ? t('test_next_module_unlocked') : t('test_next_unit_unlocked'))
+                            : t('test_need_to_pass').replace('{percent}', thresholdPct)}
                     </p>
                 </div>
                 <div style={{ padding: '24px 16px', borderTop: '2px solid var(--border-color)', backgroundColor: 'var(--surface-color)', display: 'flex', flexDirection: 'column', gap: 10, minHeight: 140, justifyContent: 'center' }}>
@@ -347,24 +349,24 @@ const UnitTest = () => {
                         <>
                             {nextNodeRoute && (
                                 <button className="ghost" onClick={() => navigate('/', { state: { tab: 'study' } })} style={{ width: '100%', color: 'var(--text-muted)', fontWeight: 600 }}>
-                                    Back to Roadmap
+                                    {t('test_back_to_roadmap')}
                                 </button>
                             )}
                             <SoundButton className="primary w-full shadow-lg" onClick={() => navigate(nextNodeRoute || '/')} style={{ fontSize: 18, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
-                                CONTINUE {nextNodeRoute && <ChevronRight size={20} />}
+                                {t('continue_upper')} {nextNodeRoute && <ChevronRight size={20} />}
                             </SoundButton>
                         </>
                     ) : (
                         <>
                             <button className="ghost" onClick={() => navigate('/', { state: { tab: 'study' } })} style={{ width: '100%', color: 'var(--text-muted)', fontWeight: 600 }}>
-                                Back to Roadmap
+                                {t('test_back_to_roadmap')}
                             </button>
                             <SoundButton
                                 className="primary w-full shadow-lg"
                                 style={{ fontSize: 18, backgroundColor: 'var(--danger-color)', boxShadow: '0 4px 0 #B52F4E' }}
                                 onClick={() => navigate(`/test/${nodeId}`, { replace: true })}
                             >
-                                TRY AGAIN
+                                {t('test_try_again')}
                             </SoundButton>
                         </>
                     )}
@@ -487,7 +489,7 @@ const UnitTest = () => {
                     {['reorder_words', 'translation_word_bank'].includes(exercise_type) && (
                         <>
                             <div style={{ minHeight: 70, padding: '10px 0', borderBottom: '2px solid var(--border-color)', display: 'flex', flexWrap: 'wrap', gap: 10, marginBottom: 24, alignItems: 'center' }}>
-                                {orderedTokens.length === 0 && <span style={{ color: 'var(--text-muted)', padding: '10px 0', width: '100%' }}>Tap words below to build the sentence</span>}
+                                {orderedTokens.length === 0 && <span style={{ color: 'var(--text-muted)', padding: '10px 0', width: '100%' }}>{t('test_tap_words')}</span>}
                                 {orderedTokens.map((token, idx) => (
                                     <button key={idx} style={{ padding: '10px 16px', backgroundColor: 'var(--surface-color)', border: '2px solid var(--border-color)', borderRadius: 12, cursor: isChecking ? 'default' : 'pointer', boxShadow: '0 2px 0 var(--border-color)', fontSize: 17, fontWeight: 500, color: 'var(--text-main)' }} onClick={() => { handleRemoveOrderedWord(idx); speak(token); }}>
                                         {token}
@@ -643,7 +645,7 @@ const UnitTest = () => {
                     {hearts === 0 ? (
                         <div style={{ textAlign: 'center' }}>
                             <h2 style={{ fontSize: 32, color: 'var(--danger-color)' }}>Out of Hearts!</h2>
-                            <p style={{ color: 'var(--text-muted)' }}>Keep practicing to earn more.</p>
+                            <p style={{ color: 'var(--text-muted)' }}>{t('test_keep_practicing')}</p>
                         </div>
                     ) : renderExercise()}
                 </div>
@@ -667,7 +669,7 @@ const UnitTest = () => {
                                 {isCorrect ? <Check size={20} color="#1A1A1A" strokeWidth={3} /> : <X size={20} color="white" strokeWidth={3} />}
                             </div>
                             <h3 style={{ margin: 0, fontSize: 24, color: isCorrect ? 'var(--success-color)' : 'var(--danger-color)' }}>
-                                {isCorrect ? (fuzzyHint ? 'Good! Try with diacritics:' : 'Nicely done!') : 'Correct solution:'}
+                                {isCorrect ? (fuzzyHint ? t('test_good_diacritics') : t('test_nicely_done')) : t('test_correct_solution')}
                             </h3>
                         </div>
                         {!isCorrect && (
@@ -690,7 +692,7 @@ const UnitTest = () => {
                             }}
                             onClick={handleNext}
                         >
-                            CONTINUE
+                            {t('continue_upper')}
                         </SoundButton>
                     </div>
                 ) : (
@@ -700,7 +702,7 @@ const UnitTest = () => {
                             style={{ flex: 1, fontSize: 18, opacity: canCheck() ? 1 : 0.5, backgroundColor: '#F97316', boxShadow: '0 4px 0 #C2410C' }}
                             onClick={handleCheck}
                         >
-                            CHECK
+                            {t('test_check')}
                         </SoundButton>
                         {testMode && (
                             <button
@@ -708,7 +710,7 @@ const UnitTest = () => {
                                 style={{ padding: '0 20px', fontSize: 14, fontWeight: 700, backgroundColor: 'var(--warning-color)', color: '#1A1A1A', borderRadius: 12, border: 'none', boxShadow: '0 4px 0 #c77b00' }}
                                 onClick={handleSkip}
                             >
-                                SKIP
+                                {t('test_skip')}
                             </button>
                         )}
                     </div>

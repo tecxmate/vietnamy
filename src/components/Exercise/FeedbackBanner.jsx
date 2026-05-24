@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Check, X } from 'lucide-react';
 import { playTap } from '../../utils/sound';
+import { useT } from '../../lib/i18n';
 
 /**
  * FeedbackBanner — Colored banner showing correct/incorrect feedback
@@ -18,6 +19,7 @@ export default function FeedbackBanner({
     fuzzyHint = null,
     alternatives = null, // Array of alternative accepted translations
 }) {
+    const t = useT();
     const [isVisible, setIsVisible] = useState(false);
     const [isPressed, setIsPressed] = useState(false);
     const [shouldShake, setShouldShake] = useState(false);
@@ -98,9 +100,9 @@ export default function FeedbackBanner({
                     }}>
                         {isCorrect
                             ? fuzzyHint
-                                ? 'Good!'
-                                : 'Correct!'
-                            : 'Incorrect'}
+                                ? t('feedback_good')
+                                : t('feedback_correct')
+                            : t('feedback_incorrect')}
                     </span>
                     {/* Show fuzzy hint or correct answer */}
                     {isCorrect && fuzzyHint && (
@@ -108,7 +110,7 @@ export default function FeedbackBanner({
                             fontSize: 14, color: 'var(--text-muted)',
                             marginTop: 4,
                         }}>
-                            Perfect spelling: <strong style={{ color: 'var(--text-main)' }}>{fuzzyHint}</strong>
+                            {t('feedback_perfect_spelling')}: <strong style={{ color: 'var(--text-main)' }}>{fuzzyHint}</strong>
                         </div>
                     )}
                     {/* Show alternative translations when correct */}
@@ -117,7 +119,7 @@ export default function FeedbackBanner({
                             fontSize: 13, color: 'var(--text-muted)',
                             marginTop: 4,
                         }}>
-                            Also: {alternatives.slice(1, 3).join(', ')}
+                            {t('feedback_also')}: {alternatives.slice(1, 3).join(', ')}
                         </div>
                     )}
                     {!isCorrect && correctAnswer && (
@@ -125,7 +127,7 @@ export default function FeedbackBanner({
                             fontSize: 14, color: 'var(--text-muted)',
                             marginTop: 4,
                         }}>
-                            Correct answer: <strong style={{ color: 'var(--text-main)' }}>{correctAnswer}</strong>
+                            {t('feedback_correct_answer')}: <strong style={{ color: 'var(--text-main)' }}>{correctAnswer}</strong>
                         </div>
                     )}
                 </div>
@@ -154,7 +156,7 @@ export default function FeedbackBanner({
                     WebkitTapHighlightColor: 'transparent',
                 }}
             >
-                CONTINUE
+                {t('continue_upper')}
             </button>
         </div>
     );

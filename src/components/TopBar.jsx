@@ -17,18 +17,18 @@ import { clearSpeakQueue } from '../utils/speak';
 import { isAdminAuthenticated, loginAdmin } from '../lib/adminAuth';
 
 const TTS_VOICE_OPTIONS = [
-    { v: 'google', l: 'Google Northern' },
-    { v: 'azure-north', l: 'Azure Northern (NamMinh)' },
-    { v: 'azure-south', l: 'Azure Southern (HoaiMy)' },
+    { v: 'google', key: 'tts_voice_google_north' },
+    { v: 'azure-north', key: 'tts_voice_azure_north' },
+    { v: 'azure-south', key: 'tts_voice_azure_south' },
 ];
 const TTS_VOICE_IDS = new Set(TTS_VOICE_OPTIONS.map(voice => voice.v));
 
 const TAB_META = {
     home: null,
     study: null,
-    dictionary: { title: 'Dictionary', subtitle: 'Search Vietnamese words' },
-    grammar: { title: 'Grammar', subtitle: 'Browse patterns by level' },
-    library: { title: 'Library', subtitle: 'Grammar, readings & vocabulary' },
+    dictionary: { title: 'tab_dictionary_title', subtitle: 'tab_dictionary_subtitle' },
+    grammar: { title: 'tab_grammar_title', subtitle: 'tab_grammar_subtitle' },
+    library: { title: 'tab_library_title', subtitle: 'tab_library_subtitle' },
 };
 
 const TopBar = ({ activeTab, subtitleOverride }) => {
@@ -71,7 +71,7 @@ const TopBar = ({ activeTab, subtitleOverride }) => {
         if (!value) clearSpeakQueue({ stopCurrent: true });
     };
 
-    const dialectLabel = userProfile.dialect === 'north' ? 'Northern' : userProfile.dialect === 'south' ? 'Southern' : userProfile.dialect === 'both' ? 'Both Dialects' : '';
+    const dialectLabel = userProfile.dialect === 'north' ? t('dialect_northern') : userProfile.dialect === 'south' ? t('dialect_southern') : userProfile.dialect === 'both' ? t('dialect_both') : '';
     const goalLabel = userProfile.dailyMins ? `${userProfile.dailyMins}m/day` : '';
     const resolvedTtsVoice = TTS_VOICE_IDS.has(settings.ttsVoice)
         ? settings.ttsVoice
@@ -108,12 +108,12 @@ const TopBar = ({ activeTab, subtitleOverride }) => {
 
     const handleAdminOpen = () => {
         if (!isAdminAuthenticated()) {
-            const username = window.prompt('Admin username:');
+            const username = window.prompt(t('admin_username_prompt'));
             if (username === null) return;
-            const password = window.prompt('Admin password:');
+            const password = window.prompt(t('admin_password_prompt'));
             if (password === null) return;
             if (!loginAdmin(username.trim(), password)) {
-                alert('Incorrect admin username or password.');
+                alert(t('admin_login_failed'));
                 return;
             }
         }
@@ -164,10 +164,10 @@ const TopBar = ({ activeTab, subtitleOverride }) => {
                 ) : (
                     <div style={{ flex: 1, marginRight: 'var(--spacing-3)', overflow: 'hidden' }}>
                         <p style={{ margin: 0, fontWeight: 700, fontSize: 15, lineHeight: 1.2, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                            {meta?.title}
+                            {meta?.title ? t(meta.title) : ''}
                         </p>
                         <p style={{ margin: 0, fontSize: 11, color: 'var(--text-muted)', lineHeight: 1.3 }}>
-                            {subtitleOverride || meta?.subtitle}
+                            {subtitleOverride || (meta?.subtitle ? t(meta.subtitle) : '')}
                         </p>
                     </div>
                 )}
@@ -186,7 +186,7 @@ const TopBar = ({ activeTab, subtitleOverride }) => {
                                 playSelect();
                                 setIsQuickAudioOpen(v => !v);
                             }}
-                            aria-label="Quick audio settings"
+                            aria-label={t('quick_audio_open')}
                         >
                             {settings.systemAudioEnabled === false || !interactionAudioEnabled ? <VolumeX size={20} /> : <Volume2 size={20} />}
                         </button>
@@ -214,13 +214,13 @@ const TopBar = ({ activeTab, subtitleOverride }) => {
                                 >
                                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8, marginBottom: 10 }}>
                                         <div>
-                                            <div style={{ fontSize: 13, fontWeight: 800, color: 'var(--text-main)' }}>Audio</div>
-                                            <div style={{ fontSize: 11, color: 'var(--text-muted)', marginTop: 2 }}>Voice and sound</div>
+                                            <div style={{ fontSize: 13, fontWeight: 800, color: 'var(--text-main)' }}>{t('quick_audio_title')}</div>
+                                            <div style={{ fontSize: 11, color: 'var(--text-muted)', marginTop: 2 }}>{t('quick_audio_subtitle')}</div>
                                         </div>
                                         <button
                                             onClick={() => setIsQuickAudioOpen(false)}
                                             style={{ background: 'transparent', border: 'none', color: 'var(--text-muted)', padding: 4, display: 'flex', cursor: 'pointer' }}
-                                            aria-label="Close audio settings"
+                                            aria-label={t('quick_audio_close')}
                                         >
                                             <X size={16} />
                                         </button>
@@ -251,7 +251,7 @@ const TopBar = ({ activeTab, subtitleOverride }) => {
                                                         textAlign: 'left',
                                                     }}
                                                 >
-                                                    <span style={{ fontSize: 13, fontWeight: 750 }}>{voice.l}</span>
+                                                    <span style={{ fontSize: 13, fontWeight: 750 }}>{t(voice.key)}</span>
                                                     {selected && <span style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--primary-color)', flexShrink: 0 }} />}
                                                 </button>
                                             );
@@ -259,12 +259,12 @@ const TopBar = ({ activeTab, subtitleOverride }) => {
                                     </div>
 
                                     <QuickAudioToggle
-                                        label="System audio"
+                                        label={t('quick_audio_system')}
                                         checked={settings.systemAudioEnabled !== false}
                                         onChange={updateSystemAudio}
                                     />
                                     <QuickAudioToggle
-                                        label="Interaction audio"
+                                        label={t('voice_interaction_audio')}
                                         checked={interactionAudioEnabled}
                                         onChange={updateInteractionAudio}
                                     />
@@ -276,7 +276,7 @@ const TopBar = ({ activeTab, subtitleOverride }) => {
                     <button
                         className="notif-bell-btn"
                         onClick={() => { playTransitionUp(); openPanel(); }}
-                        aria-label="Notifications"
+                        aria-label={t('notifications')}
                     >
                         <Bell size={20} />
                         {unreadCount > 0 && (
@@ -359,10 +359,10 @@ const TopBar = ({ activeTab, subtitleOverride }) => {
                             )}
                             <div style={{ flex: 1, minWidth: 0 }}>
                                 <div style={{ fontSize: 15, fontWeight: 800, color: 'var(--text-main)', lineHeight: 1.2 }}>
-                                    {userProfile.name || 'Learner'}
+                                    {userProfile.name || t('nav_sidebar_profile_name')}
                                 </div>
                                 <div style={{ fontSize: 11, color: 'var(--text-muted)' }}>
-                                    {authProfile?.email || [dialectLabel, goalLabel].filter(Boolean).join(' · ') || 'Vietnamese Learner'}
+                                    {authProfile?.email || [dialectLabel, goalLabel].filter(Boolean).join(' · ') || t('nav_sidebar_profile_subtitle')}
                                 </div>
                             </div>
                         </div>
@@ -379,16 +379,8 @@ const TopBar = ({ activeTab, subtitleOverride }) => {
                                     value={userProfile.nativeLang || 'en'}
                                     options={[
                                         { v: 'en', l: 'English' },
-                                        { v: 'zh', l: '简体中文' },
+                                        { v: 'zh-s', l: '简体中文' },
                                         { v: 'zh-t', l: '繁體中文' },
-                                        { v: 'ja', l: '日本語' },
-                                        { v: 'fr', l: 'Français' },
-                                        { v: 'de', l: 'Deutsch' },
-                                        { v: 'ru', l: 'Русский' },
-                                        { v: 'it', l: 'Italiano' },
-                                        { v: 'no', l: 'Norsk' },
-                                        { v: 'es', l: 'Español' },
-                                        { v: 'ko', l: '한국어' },
                                     ]}
                                     onChange={v => updateUserProfile({ nativeLang: v })}
                                 />
@@ -403,12 +395,12 @@ const TopBar = ({ activeTab, subtitleOverride }) => {
                                     label={t('level')}
                                     icon={<Target size={16} />}
                                     value={userProfile.level || 'new'}
-                                    options={[{ v: 'new', l: 'Beginner' }, { v: 'basic', l: 'Elementary' }, { v: 'intermediate', l: 'Intermediate' }]}
+                                    options={[{ v: 'new', l: t('level_beginner') }, { v: 'basic', l: t('level_elementary') }, { v: 'intermediate', l: t('level_intermediate_short') }]}
                                     onChange={v => updateUserProfile({ level: v })}
                                 />
                                 {ENABLE_LEARNING_PATH_CHOOSER && (
                                     <SettingSelect
-                                        label="Learning Path"
+                                        label={t('learning_path')}
                                         icon={<Compass size={16} />}
                                         value={userProfile.learnerMode || DEFAULT_LEARNER_MODE}
                                         options={Object.values(LEARNER_MODES).map(m => ({ v: m.id, l: m.label, disabled: m.enabled === false }))}
@@ -421,16 +413,8 @@ const TopBar = ({ activeTab, subtitleOverride }) => {
                                     values={userProfile.visibleDicts || ['en', 'zh-s', 'zh-t']}
                                     options={[
                                         { v: 'en', l: 'English' },
-                                        { v: 'zh-s', l: 'Chinese (Simplified)' },
-                                        { v: 'zh-t', l: 'Chinese (Traditional)' },
-                                        { v: 'hanviet', l: 'Han-Viet' },
-                                        { v: 'ja', l: 'Japanese' },
-                                        { v: 'fr', l: 'French' },
-                                        { v: 'de', l: 'German' },
-                                        { v: 'ru', l: 'Russian' },
-                                        { v: 'it', l: 'Italian' },
-                                        { v: 'no', l: 'Norwegian' },
-                                        { v: 'es', l: 'Spanish' },
+                                        { v: 'zh-s', l: t('onboarding_lang_zh_s') },
+                                        { v: 'zh-t', l: t('onboarding_lang_zh_t') },
                                     ]}
                                     onChange={next => updateUserProfile({ visibleDicts: next.length > 0 ? next : ['en'] })}
                                 />
@@ -439,27 +423,27 @@ const TopBar = ({ activeTab, subtitleOverride }) => {
                             {/* Voice & Sound */}
                             <SettingsGroup title={t('voice_sound')}>
                                 <SettingSelect
-                                    label="Vietnamese Voice"
+                                    label={t('tts_voice')}
                                     icon={<Volume2 size={16} />}
                                     value={resolvedTtsVoice}
-                                    options={TTS_VOICE_OPTIONS}
+                                    options={TTS_VOICE_OPTIONS.map(voice => ({ ...voice, l: t(voice.key) }))}
                                     onChange={updateTtsVoice}
                                 />
                                 <SettingSelect
                                     label={t('tts_speed')}
                                     icon={<Volume2 size={16} />}
                                     value={settings.ttsSpeed || '0.9'}
-                                    options={[{ v: '0.6', l: 'Slow' }, { v: '0.9', l: 'Normal' }, { v: '1.2', l: 'Fast' }]}
+                                    options={[{ v: '0.6', l: t('speed_slow') }, { v: '0.9', l: t('speed_normal') }, { v: '1.2', l: t('speed_fast') }]}
                                     onChange={v => updateSetting('ttsSpeed', v)}
                                 />
                                 <SettingToggle
-                                    label="Sound Effects"
+                                    label={t('sound_effects')}
                                     icon={<Volume2 size={16} />}
                                     checked={interactionAudioEnabled}
                                     onChange={updateInteractionAudio}
                                 />
                                 <SettingToggle
-                                    label="System Audio"
+                                    label={t('system_audio')}
                                     icon={<Volume2 size={16} />}
                                     checked={settings.systemAudioEnabled !== false}
                                     onChange={updateSystemAudio}
@@ -472,11 +456,11 @@ const TopBar = ({ activeTab, subtitleOverride }) => {
                                     label={t('font_size')}
                                     icon={<Type size={16} />}
                                     value={settings.fontSize || 'medium'}
-                                    options={[{ v: 'small', l: 'Small' }, { v: 'medium', l: 'Medium' }, { v: 'large', l: 'Large' }]}
+                                    options={[{ v: 'small', l: t('font_small') }, { v: 'medium', l: t('font_medium') }, { v: 'large', l: t('font_large') }]}
                                     onChange={v => updateSetting('fontSize', v)}
                                 />
                                 <SettingToggle
-                                    label="Show CEFR Level Tags"
+                                    label={t('show_cefr')}
                                     icon={<Tag size={16} />}
                                     checked={settings.showCefrTags !== false}
                                     onChange={v => updateSetting('showCefrTags', v)}
@@ -502,16 +486,16 @@ const TopBar = ({ activeTab, subtitleOverride }) => {
                                     onChange={v => updateSetting('testMode', v)}
                                 />
                                 <SettingToggle
-                                    label="Developer Preview"
+                                    label={t('developer_preview')}
                                     icon={<Wrench size={16} />}
                                     checked={userProfile.isDeveloperMode === true}
                                     onChange={v => {
                                         if (v) {
-                                            const pwd = window.prompt("Enter preview password:");
+                                            const pwd = window.prompt(t('developer_password_prompt'));
                                             if (pwd === "tecxmate2026") {
                                                 updateUserProfile({ isDeveloperMode: true });
                                             } else {
-                                                alert("Incorrect password.");
+                                                alert(t('password_incorrect'));
                                             }
                                         } else {
                                             updateUserProfile({ isDeveloperMode: false });
@@ -519,7 +503,7 @@ const TopBar = ({ activeTab, subtitleOverride }) => {
                                     }}
                                 />
                                 <SettingAction
-                                    label={isAdminAuthenticated() ? t('admin_cms') : 'Admin Login'}
+                                    label={isAdminAuthenticated() ? t('admin_cms') : t('admin_login')}
                                     icon={<Wrench size={16} />}
                                     onClick={handleAdminOpen}
                                 />
@@ -532,7 +516,7 @@ const TopBar = ({ activeTab, subtitleOverride }) => {
                             </SettingsGroup>
 
                             {/* Account */}
-                            <SettingsGroup title="Account">
+                            <SettingsGroup title={t('account')}>
                                 {authProfile ? (
                                     <>
                                         <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '14px 16px', borderBottom: '1px solid var(--border-color)' }}>
@@ -540,7 +524,7 @@ const TopBar = ({ activeTab, subtitleOverride }) => {
                                             <span style={{ flex: 1, fontSize: 15 }}>{authProfile.email}</span>
                                         </div>
                                         <SettingAction
-                                            label="Sign out"
+                                            label={t('sign_out')}
                                             icon={<X size={16} />}
                                             color="var(--danger-color)"
                                             onClick={signOut}
@@ -548,13 +532,13 @@ const TopBar = ({ activeTab, subtitleOverride }) => {
                                     </>
                                 ) : signInWithGoogle ? (
                                     <SettingAction
-                                        label="Sign in with Google"
+                                        label={t('sign_in_google')}
                                         icon={<User size={16} />}
                                         onClick={signInWithGoogle}
                                     />
                                 ) : (
                                     <div style={{ padding: '14px 16px', fontSize: 13, color: 'var(--text-muted)' }}>
-                                        Guest mode (no Supabase configured)
+                                        {t('guest_mode_text')}
                                     </div>
                                 )}
                             </SettingsGroup>
@@ -562,17 +546,17 @@ const TopBar = ({ activeTab, subtitleOverride }) => {
                             {/* Credits */}
                             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', padding: '20px 0 12px', color: 'var(--text-muted)', fontSize: 12, lineHeight: 1.6, gap: 4 }}>
                                 <p style={{ margin: 0, fontWeight: 700, fontSize: 13, color: 'var(--text-main)' }}>Vietnamy</p>
-                                <p style={{ margin: 0 }}>Developed by <a href="https://www.tecxmate.com" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--primary-color)', textDecoration: 'none' }}>TECXMATE.COM</a></p>
+                                <p style={{ margin: 0 }}>{t('developed_by')} <a href="https://www.tecxmate.com" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--primary-color)', textDecoration: 'none' }}>TECXMATE.COM</a></p>
                                 <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 6 }}>
                                     <button
                                         onClick={() => { closeMenu(); navigate('/terms'); }}
                                         style={{ background: 'none', border: 'none', padding: 0, color: 'var(--text-muted)', textDecoration: 'underline', cursor: 'pointer', fontSize: 11, fontFamily: 'inherit' }}
-                                    >Terms</button>
+                                    >{t('terms')}</button>
                                     <span style={{ color: 'var(--text-muted)', opacity: 0.5 }}>·</span>
                                     <button
                                         onClick={() => { closeMenu(); navigate('/privacy'); }}
                                         style={{ background: 'none', border: 'none', padding: 0, color: 'var(--text-muted)', textDecoration: 'underline', cursor: 'pointer', fontSize: 11, fontFamily: 'inherit' }}
-                                    >Privacy</button>
+                                    >{t('privacy')}</button>
                                 </div>
                             </div>
                         </div>
@@ -648,6 +632,7 @@ const SettingSelect = ({ label, icon, value, options, onChange }) => {
 
 const SettingMultiSelect = ({ label, icon, values, options, onChange }) => {
     const [open, setOpen] = useState(false);
+    const t = useT();
 
     return (
         <div style={{ borderBottom: '1px solid var(--border-color)' }}>
@@ -658,7 +643,7 @@ const SettingMultiSelect = ({ label, icon, values, options, onChange }) => {
                 <span style={{ color: 'var(--primary-color)', display: 'flex' }}>{icon}</span>
                 <span style={{ flex: 1, fontSize: 15 }}>{label}</span>
                 <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--text-muted)', backgroundColor: 'var(--surface-color-light)', padding: '4px 10px', borderRadius: 8, maxWidth: 140, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                    {values.length} selected
+                    {t('dict_selected_count').replace('{count}', values.length)}
                 </span>
                 <ChevronDown size={14} color="var(--text-muted)" style={{ transform: open ? 'rotate(180deg)' : 'none', transition: '0.2s' }} />
             </div>

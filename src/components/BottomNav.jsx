@@ -12,8 +12,8 @@ const BottomNav = ({ activeTab, setActiveTab, onPreloadTab }) => {
     const tabs = [
         { id: 'home', icon: <Home size={24} />, label: t('nav_home') },
         { id: 'study', icon: <BookOpen size={24} />, label: t('nav_study') },
-        { id: 'grammar', icon: <Pen size={24} />, label: 'Grammar' },
-        { id: 'sounds', icon: <Music size={24} />, label: 'Sounds' },
+        { id: 'grammar', icon: <Pen size={24} />, label: t('nav_grammar') },
+        { id: 'sounds', icon: <Music size={24} />, label: t('nav_sounds') },
         { id: 'dictionary', icon: <Search size={24} />, label: t('nav_dictionary') },
         { id: 'library', icon: <Library size={24} />, label: t('nav_library') },
     ];
@@ -47,20 +47,20 @@ const BottomNav = ({ activeTab, setActiveTab, onPreloadTab }) => {
                 <div className="sidebar-footer">
                     <button className="nav-item" onClick={() => openPanel()}>
                         <Bell size={24} />
-                        <span>Notifications</span>
+                        <span>{t('nav_notifications')}</span>
                         {unreadCount > 0 && <span className="sidebar-notif-badge">{unreadCount > 9 ? '9+' : unreadCount}</span>}
                     </button>
                     <button className="nav-item" onClick={openSettings}>
                         <Settings size={24} />
-                        <span>Settings</span>
+                        <span>{t('nav_settings')}</span>
                     </button>
                     <div className="sidebar-profile" onClick={openSettings}>
                         <div className="sidebar-avatar">
                             <User size={18} />
                         </div>
                         <div className="sidebar-profile-info">
-                            <span className="sidebar-profile-name">{userProfile.name || 'Learner'}</span>
-                            <span className="sidebar-profile-sub">{userProfile.dailyMins ? `${userProfile.dailyMins}m/day` : 'Vietnamese Learner'}</span>
+                            <span className="sidebar-profile-name">{userProfile.name || t('nav_sidebar_profile_name')}</span>
+                            <span className="sidebar-profile-sub">{userProfile.dailyMins ? `${userProfile.dailyMins}m/day` : t('nav_sidebar_profile_subtitle')}</span>
                         </div>
                     </div>
                 </div>

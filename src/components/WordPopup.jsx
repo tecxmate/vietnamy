@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Volume2, ArrowRight, Bookmark } from 'lucide-react';
 import speak from '../utils/speak';
+import { useT } from '../lib/i18n';
 
 const popupCache = new Map();
 
@@ -9,8 +10,9 @@ const WordPopup = ({ word, anchorRect, dictMode, onClose, onNavigate, isPhrase, 
     const [loading, setLoading] = useState(true);
     const cardRef = useRef(null);
     const [pos, setPos] = useState(null);
+    const t = useT();
 
-    const lang = dictMode === 'zh-s' || dictMode === 'zh-t' ? 'zh' : (dictMode || 'en');
+    const lang = dictMode === 'zh-s' || dictMode === 'zh-t' ? dictMode : 'en';
 
     useEffect(() => {
         const cacheKey = `${word.toLowerCase()}|${lang}|${isPhrase ? 'p' : 'w'}`;
@@ -25,7 +27,7 @@ const WordPopup = ({ word, anchorRect, dictMode, onClose, onNavigate, isPhrase, 
         setLoading(true);
 
         const fetchTranslate = () => {
-            const tl = lang === 'zh' ? 'zh-CN' : (lang === 'en' ? 'en' : lang);
+            const tl = lang === 'zh-s' ? 'zh-CN' : lang === 'zh-t' ? 'zh-TW' : 'en';
             fetch(`/api/translate?text=${encodeURIComponent(word)}&sl=vi&tl=${encodeURIComponent(tl)}`)
                 .then(r => r.ok ? r.json() : Promise.reject())
                 .then(tr => {
@@ -136,7 +138,7 @@ const WordPopup = ({ word, anchorRect, dictMode, onClose, onNavigate, isPhrase, 
             style={pos || { left: -9999, top: -9999, width: 260 }}
         >
             {loading ? (
-                <div className="word-popup-loading">Looking up...</div>
+                <div className="word-popup-loading">{t('popup_loading')}</div>
             ) : data ? (
                 <>
                     <div className="word-popup-header">
@@ -144,7 +146,7 @@ const WordPopup = ({ word, anchorRect, dictMode, onClose, onNavigate, isPhrase, 
                         <button
                             className="speak-btn speak-btn--sm"
                             onClick={() => speak(word)}
-                            title="Listen"
+                            title={t('popup_listen')}
                         >
                             <Volume2 size={16} />
                         </button>
@@ -157,7 +159,7 @@ const WordPopup = ({ word, anchorRect, dictMode, onClose, onNavigate, isPhrase, 
                             {data.translated && <span className="word-popup-badge">GT</span>}
                         </p>
                     ) : (
-                        <p className="word-popup-def word-popup-def--empty">No definition found</p>
+                        <p className="word-popup-def word-popup-def--empty">{t('popup_no_definition')}</p>
                     )}
                     <div className="word-popup-actions">
                         {onSave && (
@@ -165,14 +167,14 @@ const WordPopup = ({ word, anchorRect, dictMode, onClose, onNavigate, isPhrase, 
                                 className="word-popup-save"
                                 onClick={() => onSave(word)}
                             >
-                                <Bookmark size={13} /> Save
+                                <Bookmark size={13} /> {t('popup_save')}
                             </button>
                         )}
                         <button
                             className="word-popup-more"
                             onClick={() => onNavigate(word)}
                         >
-                            More <ArrowRight size={12} />
+                            {t('popup_more')} <ArrowRight size={12} />
                         </button>
                     </div>
                 </>

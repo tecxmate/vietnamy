@@ -3,6 +3,7 @@ import { Globe, Clock, Target, Star, Play, Square } from 'lucide-react';
 import { useUser } from '../../context/UserContext';
 import { useAuth } from '../../context/AuthContext';
 import { buildTtsUrl } from '../../utils/speak';
+import { useT } from '../../lib/i18n';
 
 const VOICE_OPTIONS = [
     { id: 'google', displayOrder: 1, displayName: 'Ms. Google', description: 'Female Northern Accent', dialect: 'north' },
@@ -27,6 +28,7 @@ function isInAppBrowser() {
 const OnboardingFlow = ({ onComplete, requireAuth = false }) => {
     const { updateUserProfile } = useUser();
     const { signInWithGoogle, profile: authProfile } = useAuth();
+    const t = useT();
     const [currentStep, setCurrentStep] = useState(requireAuth ? 0 : 1);
     const inAppBrowser = isInAppBrowser();
     const [onboardingData, setOnboardingData] = useState({
@@ -89,26 +91,26 @@ const OnboardingFlow = ({ onComplete, requireAuth = false }) => {
                         style={{ borderRadius: 24, display: 'block' }}
                     />
                 </div>
-                <h1 className="onboarding-title" style={{ fontSize: 32 }}>Learn Vietnamese<br />the fun way.</h1>
+                <h1 className="onboarding-title" style={{ fontSize: 32 }}>{t('onboarding_welcome_title')}</h1>
             </div>
             <div className="flex-col gap-4">
                 {requireAuth ? (
                     <>
                         {inAppBrowser ? (
                             <div style={{ textAlign: 'center', padding: '20px 16px', backgroundColor: 'var(--surface-color-light)', borderRadius: 12 }}>
-                                <p style={{ fontSize: 18, fontWeight: 600, marginBottom: 8, marginTop: 0 }}>Open in Safari to continue</p>
+                                <p style={{ fontSize: 18, fontWeight: 600, marginBottom: 8, marginTop: 0 }}>{t('onboarding_name_open_browser_title')}</p>
                                 <p style={{ fontSize: 14, color: 'var(--text-muted)', marginBottom: 16 }}>
-                                    Google sign-in is not supported in this browser. Copy the link and paste it in Safari or Chrome.
+                                    {t('onboarding_open_browser_desc')}
                                 </p>
                                 <button
                                     className="primary w-full"
                                     onClick={() => {
                                         navigator.clipboard?.writeText(window.location.href);
-                                        alert('Link copied! Open Safari or Chrome and paste it.');
+                                        alert(t('onboarding_copy_link_hint'));
                                     }}
                                     style={{ fontSize: 18, padding: '16px' }}
                                 >
-                                    Copy link
+                                    {t('onboarding_copy_link')}
                                 </button>
                             </div>
                         ) : (
@@ -117,17 +119,17 @@ const OnboardingFlow = ({ onComplete, requireAuth = false }) => {
                                 onClick={signInWithGoogle}
                                 style={{ fontSize: 18, padding: '16px' }}
                             >
-                                Sign in with Google
+                                {t('onboarding_sign_in_google')}
                             </button>
                         )}
                         <p style={{ fontSize: 13, color: 'var(--text-muted)', textAlign: 'center', margin: 0 }}>
-                            Sign in to get started
+                            {t('onboarding_sign_in_help')}
                         </p>
                     </>
                 ) : (
                     <>
                         <button className="primary w-full" onClick={nextStep} style={{ fontSize: 18, padding: '16px' }}>
-                            Get started
+                            {t('onboarding_get_started')}
                         </button>
                         {signInWithGoogle && (
                             <button
@@ -135,11 +137,11 @@ const OnboardingFlow = ({ onComplete, requireAuth = false }) => {
                                 onClick={signInWithGoogle}
                                 style={{ fontSize: 18, padding: '16px' }}
                             >
-                                Sign in with Google
+                                {t('onboarding_sign_in_google')}
                             </button>
                         )}
                         <button className="ghost w-full" onClick={() => onComplete()} style={{ fontSize: 16, padding: '12px' }}>
-                            I already have an account
+                            {t('onboarding_have_account')}
                         </button>
                     </>
                 )}
@@ -149,15 +151,15 @@ const OnboardingFlow = ({ onComplete, requireAuth = false }) => {
         // Screen 1: Name
         <div key="s1" className="onboarding-screen">
             <div className="onboarding-content">
-                <h2 className="onboarding-title">What's your name?</h2>
+                <h2 className="onboarding-title">{t('onboarding_name_label')}</h2>
                 <p className="text-center" style={{ color: 'var(--text-muted)', marginBottom: 32 }}>
-                    So we can personalize your experience.
+                    {t('onboarding_name_help')}
                 </p>
                 <input
                     type="text"
                     value={onboardingData.name}
                     onChange={(e) => setOnboardingData({ ...onboardingData, name: e.target.value })}
-                    placeholder="Enter your name"
+                    placeholder={t('onboarding_name_placeholder')}
                     autoFocus
                     maxLength={30}
                     style={{
@@ -173,7 +175,7 @@ const OnboardingFlow = ({ onComplete, requireAuth = false }) => {
             </div>
             <div className="bottom-cta">
                 <button className="primary w-full" onClick={nextStep} disabled={!onboardingData.name.trim()}>
-                    Continue
+                    {t('onboarding_continue')}
                 </button>
             </div>
         </div>,
@@ -181,12 +183,12 @@ const OnboardingFlow = ({ onComplete, requireAuth = false }) => {
         // Screen 2: Goal & Motivation
         <div key="s2" className="onboarding-screen">
             <div className="onboarding-content">
-                <h2 className="onboarding-title">Why are you learning Vietnamese?</h2>
+                <h2 className="onboarding-title">{t('onboarding_goal_title')}</h2>
                 {[
-                    { id: 'travel', icon: <Globe />, label: 'Travel basics' },
-                    { id: 'family', icon: <Target />, label: 'Talk with family' },
-                    { id: 'work', icon: <Clock />, label: 'Work' },
-                    { id: 'fun', icon: <Star />, label: 'Just for fun' }
+                    { id: 'travel', icon: <Globe />, label: t('onboarding_goal_travel') },
+                    { id: 'family', icon: <Target />, label: t('onboarding_goal_family') },
+                    { id: 'work', icon: <Clock />, label: t('onboarding_goal_work') },
+                    { id: 'fun', icon: <Star />, label: t('onboarding_goal_fun') }
                 ].map(item => (
                     <button
                         key={item.id}
@@ -204,7 +206,7 @@ const OnboardingFlow = ({ onComplete, requireAuth = false }) => {
             </div>
             <div className="bottom-cta">
                 <button className="primary w-full" onClick={nextStep} disabled={!onboardingData.goal}>
-                    Continue
+                    {t('onboarding_continue')}
                 </button>
             </div>
         </div>,
@@ -212,9 +214,9 @@ const OnboardingFlow = ({ onComplete, requireAuth = false }) => {
         // Screen 3: Voice picker (also sets dialect)
         <div key="s3" className="onboarding-screen">
             <div className="onboarding-content">
-                <h2 className="onboarding-title">Pick a voice you'll learn with</h2>
+                <h2 className="onboarding-title">{t('onboarding_voice_title')}</h2>
                 <p className="text-center" style={{ color: 'var(--text-muted)', marginBottom: 24 }}>
-                    Tap ▶ to hear each one. Choose what sounds best to you.
+                    {t('onboarding_voice_help')}
                 </p>
                 {VOICE_OPTIONS_DISPLAY.map(v => {
                     const selected = onboardingData.voiceId === v.id;
@@ -234,7 +236,7 @@ const OnboardingFlow = ({ onComplete, requireAuth = false }) => {
                                     color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center',
                                     flexShrink: 0, cursor: 'pointer',
                                 }}
-                                aria-label={isPlaying ? 'Stop sample' : 'Play sample'}
+                                aria-label={isPlaying ? t('onboarding_voice_stop_sample') : t('onboarding_voice_play_sample')}
                             >
                                 {isPlaying ? <Square size={18} fill="#fff" /> : <Play size={18} fill="#fff" style={{ marginLeft: 2 }} />}
                             </span>
@@ -248,7 +250,7 @@ const OnboardingFlow = ({ onComplete, requireAuth = false }) => {
             </div>
             <div className="bottom-cta">
                 <button className="primary w-full" onClick={nextStep} disabled={!onboardingData.voiceId}>
-                    Continue
+                    {t('onboarding_continue')}
                 </button>
             </div>
         </div>,
@@ -256,11 +258,11 @@ const OnboardingFlow = ({ onComplete, requireAuth = false }) => {
         // Screen 4: Level
         <div key="s4" className="onboarding-screen">
             <div className="onboarding-content">
-                <h2 className="onboarding-title">How much Vietnamese do you know?</h2>
+                <h2 className="onboarding-title">{t('onboarding_level_title')}</h2>
                 {[
-                    { id: 'new', label: 'I am new to Vietnamese' },
-                    { id: 'basic', label: 'I know some basics' },
-                    { id: 'intermediate', label: 'I am at an intermediate level' }
+                    { id: 'new', label: t('onboarding_level_new') },
+                    { id: 'basic', label: t('onboarding_level_basic') },
+                    { id: 'intermediate', label: t('onboarding_level_intermediate') }
                 ].map(item => (
                     <button
                         key={item.id}
@@ -274,7 +276,7 @@ const OnboardingFlow = ({ onComplete, requireAuth = false }) => {
             </div>
             <div className="bottom-cta">
                 <button className="primary w-full" onClick={nextStep} disabled={!onboardingData.level}>
-                    Continue
+                    {t('onboarding_continue')}
                 </button>
             </div>
         </div>,
@@ -282,9 +284,9 @@ const OnboardingFlow = ({ onComplete, requireAuth = false }) => {
         // Screen 5: Daily Goal
         <div key="s5" className="onboarding-screen">
             <div className="onboarding-content">
-                <h2 className="onboarding-title">Set your daily goal</h2>
+                <h2 className="onboarding-title">{t('onboarding_daily_goal_title')}</h2>
                 <p className="text-center" style={{ color: 'var(--text-muted)', marginBottom: 32 }}>
-                    Consistent practice is the key to fluency.
+                    {t('onboarding_daily_goal_help')}
                 </p>
                 <div className="flex-col gap-4">
                     {[5, 10, 15, 20].map(mins => (
@@ -294,9 +296,9 @@ const OnboardingFlow = ({ onComplete, requireAuth = false }) => {
                             onClick={() => setOnboardingData({ ...onboardingData, dailyMins: mins })}
                         >
                             <div className="flex justify-between w-full p-2">
-                                <span style={{ fontSize: 18, fontWeight: 700 }}>{mins} mins / day</span>
+                                <span style={{ fontSize: 18, fontWeight: 700 }}>{t(`onboarding_goal_${mins}`)}</span>
                                 <span style={{ color: onboardingData.dailyMins === mins ? 'var(--primary-color)' : 'var(--text-muted)', fontWeight: 400 }}>
-                                    {mins === 5 ? 'Casual' : mins === 10 ? 'Regular' : mins === 15 ? 'Serious' : 'Intense'}
+                                    {mins === 5 ? t('onboarding_goal_casual') : mins === 10 ? t('onboarding_goal_regular') : mins === 15 ? t('onboarding_goal_serious') : t('onboarding_goal_intense')}
                                 </span>
                             </div>
                         </button>
@@ -305,7 +307,7 @@ const OnboardingFlow = ({ onComplete, requireAuth = false }) => {
             </div>
             <div className="bottom-cta">
                 <button className="primary w-full" onClick={nextStep}>
-                    Continue
+                    {t('onboarding_continue')}
                 </button>
             </div>
         </div>,
@@ -313,23 +315,15 @@ const OnboardingFlow = ({ onComplete, requireAuth = false }) => {
         // Screen 6: App Language Selection
         <div key="s_lang" className="onboarding-screen">
             <div className="onboarding-content">
-                <h2 className="onboarding-title">App Language</h2>
+                <h2 className="onboarding-title">{t('onboarding_app_lang_title')}</h2>
                 <p className="text-center" style={{ color: 'var(--text-muted)', marginBottom: 24 }}>
-                    Select your default language.
+                    {t('onboarding_app_lang_help')}
                 </p>
                 <div className="flex-col gap-3" style={{ overflowY: 'auto', maxHeight: '50vh', padding: '4px' }}>
                     {[
-                        { id: 'en', label: 'English' },
-                        { id: 'zh', label: '简体中文' },
-                        { id: 'zh-t', label: '繁體中文' },
-                        { id: 'ja', label: '日本語' },
-                        { id: 'ko', label: '한국어' },
-                        { id: 'es', label: 'Español' },
-                        { id: 'fr', label: 'Français' },
-                        { id: 'de', label: 'Deutsch' },
-                        { id: 'it', label: 'Italiano' },
-                        { id: 'ru', label: 'Русский' },
-                        { id: 'no', label: 'Norsk' }
+                        { id: 'en', label: t('onboarding_lang_en') },
+                        { id: 'zh-s', label: t('onboarding_lang_zh_s') },
+                        { id: 'zh-t', label: t('onboarding_lang_zh_t') },
                     ].map(lang => (
                         <button
                             key={lang.id}
@@ -347,7 +341,7 @@ const OnboardingFlow = ({ onComplete, requireAuth = false }) => {
             </div>
             <div className="bottom-cta">
                 <button className="primary w-full" onClick={nextStep} disabled={!onboardingData.nativeLang}>
-                    Continue
+                    {t('onboarding_continue')}
                 </button>
             </div>
         </div>,
@@ -360,19 +354,19 @@ const OnboardingFlow = ({ onComplete, requireAuth = false }) => {
                 </div>
             </div>
             <div className="onboarding-content items-center text-center" style={{ paddingTop: 0 }}>
-                <h2 style={{ fontSize: 24, marginBottom: 8 }}>Lesson 1 Complete!</h2>
+                <h2 style={{ fontSize: 24, marginBottom: 8 }}>{t('onboarding_first_win_title')}</h2>
                 <div style={{ width: 120, height: 120, backgroundColor: 'var(--primary-color)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '32px 0' }}>
                     <Star size={64} color="#1A1A1A" fill="#1A1A1A" />
                 </div>
-                <p style={{ fontSize: 18, color: 'var(--text-muted)' }}>You just learned your first basic greeting and tone. Great job!</p>
+                <p style={{ fontSize: 18, color: 'var(--text-muted)' }}>{t('onboarding_first_win_desc')}</p>
                 <div className="flex gap-4 mt-6">
                     <div className="glass-panel text-center">
                         <span style={{ display: 'block', fontSize: 24, fontWeight: 700, color: 'var(--secondary-color)' }}>+10</span>
-                        <span style={{ fontSize: 12, color: 'var(--text-muted)' }}>XP Earned</span>
+                        <span style={{ fontSize: 12, color: 'var(--text-muted)' }}>{t('onboarding_first_win_xp')}</span>
                     </div>
                     <div className="glass-panel text-center">
                         <span style={{ display: 'block', fontSize: 24, fontWeight: 700, color: '#FF9F1C' }}>1</span>
-                        <span style={{ fontSize: 12, color: 'var(--text-muted)' }}>Day Streak</span>
+                        <span style={{ fontSize: 12, color: 'var(--text-muted)' }}>{t('onboarding_first_win_streak')}</span>
                     </div>
                 </div>
             </div>
@@ -396,7 +390,7 @@ const OnboardingFlow = ({ onComplete, requireAuth = false }) => {
                     }
                     onComplete();
                 }}>
-                    Continue to Roadmap
+                    {t('onboarding_continue_to_roadmap')}
                 </button>
             </div>
         </div>

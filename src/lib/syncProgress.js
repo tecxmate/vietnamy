@@ -11,7 +11,7 @@ const SYNC_KEYS = [
   'vnme_dict_decks',
   'vnme_onboarding_completed',
   'vnme_tutorial_completed',
-  'vietnamy_language',
+  'vnme_app_language',
   'vnme_settings',
 ];
 
@@ -62,6 +62,9 @@ export async function loadProgressFromCloud(userId) {
       if (SYNC_KEYS.includes(key) && val !== null && val !== undefined) {
         localStorage.setItem(key, val);
       }
+    }
+    if (!cloudData.vnme_app_language && cloudData.vietnamy_language) {
+      localStorage.setItem('vnme_app_language', cloudData.vietnamy_language);
     }
     return true;
   } catch (err) {

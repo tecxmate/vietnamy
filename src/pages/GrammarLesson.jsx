@@ -10,6 +10,7 @@ import { playSuccess, playError } from '../utils/sound';
 import SoundButton from '../components/SoundButton';
 import { getFillBlankCorrectSentence } from '../components/Exercise';
 import { DEFAULT_LEARNER_MODE, getProgressMode } from '../data/learnerModes';
+import { useT } from '../lib/i18n';
 
 // Build tip cards from a grammar item's data
 function buildTipCards(item) {
@@ -191,6 +192,7 @@ function renderCard(card) {
 const GrammarLesson = () => {
     const { nodeId } = useParams();
     const navigate = useNavigate();
+    const t = useT();
     const progressCtx = useProgress();
     const { userProfile } = useUser();
     const currentMode = userProfile?.learnerMode || DEFAULT_LEARNER_MODE;
@@ -368,8 +370,8 @@ const GrammarLesson = () => {
                             }}
                         >
                             {isLastCard
-                                ? (exercises.length > 0 ? 'START LESSON' : 'DONE')
-                                : <>CONTINUE <ArrowRight size={18} /></>
+                                ? (exercises.length > 0 ? t('start_lesson_upper') : t('done_upper'))
+                                : <>{t('continue_upper')} <ArrowRight size={18} /></>
                             }
                         </SoundButton>
                     </div>
@@ -397,26 +399,26 @@ const GrammarLesson = () => {
                 </div>
 
                 <h2 style={{ fontSize: 24, fontWeight: 800, margin: 0, textAlign: 'center' }}>
-                    Grammar Complete!
+                    {t('grammar_complete')}
                 </h2>
 
                 <div style={{ fontSize: 15, color: 'var(--text-muted)', textAlign: 'center', lineHeight: 1.5 }}>
-                    You scored <strong style={{ color: ACCENT }}>{score}/{exercises.length}</strong>
+                    {t('you_scored').replace('{score}', score).replace('{total}', exercises.length)}
                 </div>
 
                 {/* Stats row */}
                 <div style={{ display: 'flex', gap: 16, justifyContent: 'center' }}>
                     <div style={{ textAlign: 'center', padding: '12px 20px', borderRadius: 12, backgroundColor: 'var(--surface-color)', border: '1px solid var(--border-color)' }}>
                         <div style={{ fontSize: 20, fontWeight: 800, color: ACCENT }}>{score}</div>
-                        <div style={{ fontSize: 11, color: 'var(--text-muted)', fontWeight: 600 }}>Correct</div>
+                        <div style={{ fontSize: 11, color: 'var(--text-muted)', fontWeight: 600 }}>{t('stat_correct')}</div>
                     </div>
                     <div style={{ textAlign: 'center', padding: '12px 20px', borderRadius: 12, backgroundColor: 'var(--surface-color)', border: '1px solid var(--border-color)' }}>
                         <div style={{ fontSize: 20, fontWeight: 800, color: '#F59E0B' }}>+10</div>
-                        <div style={{ fontSize: 11, color: 'var(--text-muted)', fontWeight: 600 }}>Coins</div>
+                        <div style={{ fontSize: 11, color: 'var(--text-muted)', fontWeight: 600 }}>{t('stat_coins')}</div>
                     </div>
                     <div style={{ textAlign: 'center', padding: '12px 20px', borderRadius: 12, backgroundColor: 'var(--surface-color)', border: '1px solid var(--border-color)' }}>
                         <div style={{ fontSize: 20, fontWeight: 800, color: '#EF4444' }}>{hearts}/{5}</div>
-                        <div style={{ fontSize: 11, color: 'var(--text-muted)', fontWeight: 600 }}>Hearts</div>
+                        <div style={{ fontSize: 11, color: 'var(--text-muted)', fontWeight: 600 }}>{t('stat_hearts')}</div>
                     </div>
                 </div>
 
@@ -431,7 +433,7 @@ const GrammarLesson = () => {
                         }}
                         onClick={() => navigate('/', { state: { tab: 'study' } })}
                     >
-                        CONTINUE
+                        {t('continue_upper')}
                     </SoundButton>
                 </div>
             </div>
@@ -459,8 +461,8 @@ const GrammarLesson = () => {
                 <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                     {hearts === 0 ? (
                         <div style={{ textAlign: 'center' }}>
-                            <h2 style={{ fontSize: 32, color: 'var(--danger-color)' }}>Out of Hearts!</h2>
-                            <p style={{ color: 'var(--text-muted)' }}>Keep practicing to earn more.</p>
+                            <h2 style={{ fontSize: 32, color: 'var(--danger-color)' }}>{t('test_not_quite')}</h2>
+                            <p style={{ color: 'var(--text-muted)' }}>{t('test_keep_practicing')}</p>
                         </div>
                     ) : currentEx ? (
                         <div style={{ width: '100%', maxWidth: 600, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 24 }}>
@@ -529,7 +531,7 @@ const GrammarLesson = () => {
                                 {isCorrect ? <Check size={20} color="#1A1A1A" strokeWidth={3} /> : <X size={20} color="white" strokeWidth={3} />}
                             </div>
                             <h3 style={{ margin: 0, fontSize: 24, color: isCorrect ? 'var(--success-color)' : 'var(--danger-color)' }}>
-                                {isCorrect ? 'Nicely done!' : 'Correct solution:'}
+                                {isCorrect ? t('test_nicely_done') : t('test_correct_solution')}
                             </h3>
                         </div>
                         {!isCorrect && (
@@ -549,7 +551,7 @@ const GrammarLesson = () => {
                             }}
                             onClick={handleNext}
                         >
-                            CONTINUE
+                            {t('continue_upper')}
                         </SoundButton>
                     </div>
                 ) : (
@@ -558,7 +560,7 @@ const GrammarLesson = () => {
                         style={{ width: '100%', fontSize: 18, opacity: canCheck() ? 1 : 0.5, backgroundColor: '#06D6A0', boxShadow: '0 4px 0 #05A67D' }}
                         onClick={handleCheck}
                     >
-                        CHECK
+                        {t('check_upper')}
                     </SoundButton>
                 )}
             </div>

@@ -17,6 +17,7 @@ import { playSuccess, playError } from '../utils/sound';
 import SoundButton from './SoundButton';
 import { MCQOptions, MatchPairs, FeedbackBanner, ProgressBar, buildFillBlankSentence, getFillBlankCorrectSentence } from './Exercise';
 import { DEFAULT_LEARNER_MODE, getProgressMode } from '../data/learnerModes';
+import { useT } from '../lib/i18n';
 
 function scoreColor(v) {
     if (v == null) return 'var(--text-muted)';
@@ -41,6 +42,7 @@ const LessonGame = () => {
     const { lessonId } = useParams();
     const navigate = useNavigate();
     const location = useLocation();
+    const t = useT();
     const progressCtx = useProgress();
     const { userProfile } = useUser();
     const currentMode = userProfile?.learnerMode || DEFAULT_LEARNER_MODE;
@@ -705,7 +707,7 @@ const LessonGame = () => {
                         style={{ width: '100%', fontSize: 18, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, height: 56 }}
                         onClick={handleNext}
                     >
-                        {currentIntroStep < introSteps.length - 1 ? 'CONTINUE' : 'START'} <ChevronRight size={20} />
+                        {currentIntroStep < introSteps.length - 1 ? t('continue_upper') : t('start_upper')} <ChevronRight size={20} />
                     </SoundButton>
                 </div>
             </div>
@@ -731,34 +733,34 @@ const LessonGame = () => {
                 </div>
 
                 <h2 style={{ fontSize: 24, fontWeight: 800, margin: 0, textAlign: 'center' }}>
-                    Lesson Complete!
+                    {t('lesson_complete')}
                 </h2>
 
                 <div style={{ fontSize: 15, color: 'var(--text-muted)', textAlign: 'center', lineHeight: 1.5 }}>
                     <strong style={{ color: ACCENT }}>{lessonBlueprint?.title || lessonId}</strong>
-                    <br />You scored {score}/{exercises.length}
+                    <br />{t('you_scored').replace('{score}', score).replace('{total}', exercises.length)}
                 </div>
 
                 {/* Stats row */}
                 <div style={{ display: 'flex', gap: 16, justifyContent: 'center' }}>
                     <div style={{ textAlign: 'center', padding: '12px 20px', borderRadius: 12, backgroundColor: 'var(--surface-color)', border: '1px solid var(--border-color)' }}>
                         <div style={{ fontSize: 20, fontWeight: 800, color: ACCENT }}>{score}</div>
-                        <div style={{ fontSize: 11, color: 'var(--text-muted)', fontWeight: 600 }}>Correct</div>
+                        <div style={{ fontSize: 11, color: 'var(--text-muted)', fontWeight: 600 }}>{t('stat_correct')}</div>
                     </div>
                     <div style={{ textAlign: 'center', padding: '12px 20px', borderRadius: 12, backgroundColor: 'var(--surface-color)', border: '1px solid var(--border-color)' }}>
                         <div style={{ fontSize: 20, fontWeight: 800, color: '#F59E0B' }}>+10</div>
-                        <div style={{ fontSize: 11, color: 'var(--text-muted)', fontWeight: 600 }}>Coins</div>
+                        <div style={{ fontSize: 11, color: 'var(--text-muted)', fontWeight: 600 }}>{t('stat_coins')}</div>
                     </div>
                     <div style={{ textAlign: 'center', padding: '12px 20px', borderRadius: 12, backgroundColor: 'var(--surface-color)', border: '1px solid var(--border-color)' }}>
                         <div style={{ fontSize: 20, fontWeight: 800, color: '#EF4444' }}>{hearts === Infinity ? '∞' : hearts}/{5}</div>
-                        <div style={{ fontSize: 11, color: 'var(--text-muted)', fontWeight: 600 }}>Hearts</div>
+                        <div style={{ fontSize: 11, color: 'var(--text-muted)', fontWeight: 600 }}>{t('stat_hearts')}</div>
                     </div>
                 </div>
 
                 {/* Words learned */}
                 {lessonWords.length > 0 && (
                     <div style={{ width: '100%', maxWidth: 360, textAlign: 'left' }}>
-                        <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: 1.5, color: 'var(--text-muted)', marginBottom: 8 }}>Words learned</div>
+                        <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: 1.5, color: 'var(--text-muted)', marginBottom: 8 }}>{t('words_learned')}</div>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
                             {lessonWords.map((w, i) => (
                                 <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '8px 14px', backgroundColor: 'var(--surface-color)', borderRadius: 10, border: '1px solid var(--border-color)' }}>
@@ -783,7 +785,7 @@ const LessonGame = () => {
                                 boxShadow: '0 4px 0 #B03E2D',
                             }}
                         >
-                            {nextNodeLabel || 'NEXT LESSON'}
+                            {nextNodeLabel || t('next_lesson_upper')}
                         </SoundButton>
                     )}
                     <SoundButton
@@ -791,7 +793,7 @@ const LessonGame = () => {
                         style={{ width: '100%', fontSize: 14, color: 'var(--text-muted)', fontWeight: 600 }}
                         onClick={() => navigate('/', { state: { tab: 'study' } })}
                     >
-                        BACK TO ROADMAP
+                        {t('back_to_roadmap_upper')}
                     </SoundButton>
                 </div>
             </div>
@@ -1289,8 +1291,8 @@ const LessonGame = () => {
                 <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                     {hearts === 0 ? (
                         <div style={{ textAlign: 'center' }}>
-                            <h2 style={{ fontSize: 32, color: 'var(--danger-color)' }}>Out of Hearts!</h2>
-                            <p style={{ color: 'var(--text-muted)' }}>Keep practicing to earn more.</p>
+                            <h2 style={{ fontSize: 32, color: 'var(--danger-color)' }}>{t('test_not_quite')}</h2>
+                            <p style={{ color: 'var(--text-muted)' }}>{t('test_keep_practicing')}</p>
                         </div>
                     ) : (
                         renderExercise()
@@ -1337,7 +1339,7 @@ const LessonGame = () => {
                             }}
                             onClick={handleCheck}
                         >
-                            CHECK
+                            {t('check_upper')}
                         </SoundButton>
                         {testMode && (
                             <button
@@ -1345,7 +1347,7 @@ const LessonGame = () => {
                                 style={{ padding: '0 20px', fontSize: 14, fontWeight: 700, backgroundColor: 'var(--primary-color)', color: '#1A1A1A', borderRadius: 'var(--radius-md)', border: 'none', boxShadow: '0 4px 0 var(--primary-color-hover)' }}
                                 onClick={handleSkip}
                             >
-                                SKIP
+                                {t('skip_upper')}
                             </button>
                         )}
                         {!testMode && currentEx?.exercise_type === 'speak_sentence' && (
@@ -1355,7 +1357,7 @@ const LessonGame = () => {
                                 onClick={handleNext}
                                 title="Skip — useful when you can't speak out loud right now"
                             >
-                                SKIP
+                                {t('skip_upper')}
                             </button>
                         )}
                     </div>

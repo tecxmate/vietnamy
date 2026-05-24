@@ -4,6 +4,7 @@ import speak from '../../utils/speak';
 import SoundButton from '../SoundButton';
 import TappableVietnamese from '../TappableVietnamese';
 import WordPopup from '../WordPopup';
+import { useT } from '../../lib/i18n';
 
 const EMOTION_MAP = {
     friendly: '😊', confident: '😎', attentive: '🤔', satisfied: '😌',
@@ -74,6 +75,7 @@ const DialogueBubble = ({ line, character, isPlayer, onWordTap }) => {
 };
 
 const SceneObserve = ({ config, scene, onComplete }) => {
+    const t = useT();
     const [visibleLines, setVisibleLines] = useState(1);
     const [popupWord, setPopupWord] = useState(null);
     const script = config.script || [];
@@ -151,7 +153,7 @@ const SceneObserve = ({ config, scene, onComplete }) => {
                             style={{ flex: 1, fontSize: 17 }}
                             onClick={onComplete}
                         >
-                            YOUR TURN <ChevronRight size={18} />
+                            {t('your_turn_upper')} <ChevronRight size={18} />
                         </SoundButton>
                     </>
                 ) : (
@@ -160,7 +162,7 @@ const SceneObserve = ({ config, scene, onComplete }) => {
                         style={{ flex: 1, fontSize: 17 }}
                         onClick={handleAdvance}
                     >
-                        {visibleLines === 0 ? 'START' : 'NEXT'} <ChevronRight size={18} />
+                        {visibleLines === 0 ? t('start_upper') : t('next_upper')} <ChevronRight size={18} />
                     </SoundButton>
                 )}
             </div>

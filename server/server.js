@@ -96,25 +96,19 @@ async function loadWebPush() {
 }
 
 // ---------------------------------------------------------------------------
-// Language DB map — add new languages here
+// Language DB map. Only English, Simplified Chinese, and Traditional Chinese are active.
 // ---------------------------------------------------------------------------
-const ALL_LANGS = {
+const SUPPORTED_LANGS = ['en', 'zh-s', 'zh-t'];
+const LANG_META = {
     en: { label: 'English', flag: '🇬🇧', file: 'vn_en_dictionary.db' },
-    zh: { label: 'Chinese', flag: '🇨🇳', file: 'vn_zh_dictionary.db' },
-    ja: { label: 'Japanese', flag: '🇯🇵', file: 'vn_ja_dictionary.db' },
-    fr: { label: 'French', flag: '🇫🇷', file: 'vn_fr_dictionary.db' },
-    de: { label: 'German', flag: '🇩🇪', file: 'vn_de_dictionary.db' },
-    ru: { label: 'Russian', flag: '🇷🇺', file: 'vn_ru_dictionary.db' },
-    no: { label: 'Norwegian', flag: '🇳🇴', file: 'vn_no_dictionary.db' },
-    es: { label: 'Spanish', flag: '🇪🇸', file: 'vn_es_dictionary.db' },
-    it: { label: 'Italian', flag: '🇮🇹', file: 'vn_it_dictionary.db' },
+    'zh-s': { label: 'Chinese (Simplified)', flag: '🇨🇳', file: 'vn_zh_dictionary.db' },
+    'zh-t': { label: 'Chinese (Traditional)', flag: '🇹🇼', file: 'vn_zh_dictionary.db' },
 };
 
-// In production only load EN + ZH; locally load all available dicts
-const PROD_LANGS = ['en', 'zh'];
-const LANG_META = process.env.NODE_ENV === 'production'
-    ? Object.fromEntries(Object.entries(ALL_LANGS).filter(([k]) => PROD_LANGS.includes(k)))
-    : ALL_LANGS;
+function normalizeSearchLang(lang) {
+    if (lang === 'zh') return 'zh-s';
+    return SUPPORTED_LANGS.includes(lang) ? lang : 'en';
+}
 
 // Open DBs that exist on disk
 const dbs = {};
@@ -147,6 +141,9 @@ for (const [lang, meta] of Object.entries(LANG_META)) {
     }
 }
 
+if (dbs['zh-s'] && !dbs['zh-t']) dbs['zh-t'] = dbs['zh-s'];
+if (dbs['zh-t'] && !dbs['zh-s']) dbs['zh-s'] = dbs['zh-t'];
+
 // Set up EN databases (split or single)
 let dbEnHigh, dbEnLow;
 if (hasSplitDbs) {
@@ -163,7 +160,7 @@ if (hasSplitDbs) {
 
 // Convenience aliases used throughout the existing code
 const dbEn = dbs['en'];
-const dbZh = dbs['zh'];
+const dbZh = dbs['zh-s'] || dbs['zh-t'];
 
 // ---------------------------------------------------------------------------
 // Normalize Vietnamese text to ASCII (strip diacritics)
@@ -496,11 +493,11 @@ app.get('/api/languages', (req, res) => {
 });
 
 // ---------------------------------------------------------------------------
-// /api/search?q=word&lang=en|zh|ja|fr|de|ru|no
+// /api/search?q=word&lang=en|zh-s|zh-t
 // ---------------------------------------------------------------------------
 app.get('/api/search', (req, res) => {
     const rawQuery = req.query.q;
-    const lang = req.query.lang || 'en';
+    const lang = normalizeSearchLang(req.query.lang || 'en');
     if (!rawQuery) return res.json([]);
     const query = rawQuery.toLowerCase();
 
@@ -575,7 +572,7 @@ app.get('/api/search', (req, res) => {
 
             // Only fetch examples for DBs that have the examples table (EN, ZH)
             let examples = [];
-            if (lang === 'en' || lang === 'zh') {
+            if (lang === 'en' || lang === 'zh-s' || lang === 'zh-t') {
                 try {
                     const exDb = lang === 'en' ? searchDb : db;
                     const exStmt = exDb.prepare(
@@ -612,8 +609,8 @@ app.get('/api/search', (req, res) => {
         // look up each syllable's HanViet entries (Chinese character + pinyin)
         let hanvietComponents = null;
 
-        if (lang === 'zh' || queryIsCJK) {
-            const activeDbZh = dbs['zh'] || dbEn;
+        if (lang === 'zh-s' || lang === 'zh-t' || queryIsCJK) {
+            const activeDbZh = dbZh || dbEn;
             if (queryIsCJK) {
                 // If the user's query is purely Chinese characters, break it down character by character
                 const cjkChars = [...query.replace(/\s+/g, '')];
@@ -856,7 +853,7 @@ app.get('/api/segment', (req, res) => {
 // ---------------------------------------------------------------------------
 app.get('/api/word-popup', (req, res) => {
     const rawQuery = (req.query.q || '').trim();
-    const lang = req.query.lang || 'en';
+    const lang = normalizeSearchLang(req.query.lang || 'en');
     if (!rawQuery) return res.json({ found: false });
 
     const query = rawQuery.toLowerCase();
