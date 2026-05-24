@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronRight, ChevronDown, BookOpen, Volume2, Hash, MessageSquare, Users, Keyboard, Mic } from 'lucide-react';
 import speak from '../../utils/speak';
+import { useT } from '../../lib/i18n';
 import './GrammarTab.css';
 
 const LEVEL_COLORS = {
@@ -68,6 +69,7 @@ const PRACTICE_MODULES = [
 
 const GrammarTab = () => {
     const navigate = useNavigate();
+    const t = useT();
     const [modules, setModules] = useState(null);
     const [expandedLevel, setExpandedLevel] = useState('A1');
     const [expandedModule, setExpandedModule] = useState(null);
@@ -88,7 +90,7 @@ const GrammarTab = () => {
     if (!modules) {
         return (
             <div style={{ padding: 40, textAlign: 'center', color: 'var(--text-muted)' }}>
-                Loading grammar guide...
+                {t('grammar_loading')}
             </div>
         );
     }
@@ -110,9 +112,9 @@ const GrammarTab = () => {
                         <BookOpen size={24} color="#A78BFA" />
                     </div>
                     <div>
-                        <h1 style={{ margin: 0, fontSize: 22, fontWeight: 800 }}>Grammar Guide</h1>
+                        <h1 style={{ margin: 0, fontSize: 22, fontWeight: 800 }}>{t('grammar_guide_title')}</h1>
                         <p style={{ margin: 0, fontSize: 13, color: 'var(--text-muted)' }}>
-                            Reference for Vietnamese patterns
+                            {t('grammar_guide_subtitle')}
                         </p>
                     </div>
                 </div>
@@ -149,7 +151,7 @@ const GrammarTab = () => {
                     >
                         {level.id}
                         <div style={{ fontSize: 10, fontWeight: 500, marginTop: 2 }}>
-                            {level.module_count} topics
+                            {t('grammar_topics_count').replace('{count}', level.module_count)}
                         </div>
                     </button>
                 ))}
@@ -159,7 +161,7 @@ const GrammarTab = () => {
             {modules.levels.filter(l => l.id === expandedLevel).map(level => (
                 <div key={level.id}>
                     <div style={{ padding: '12px 16px', color: 'var(--text-muted)', fontSize: 13 }}>
-                        {level.description}
+                        {t(`grammar_level_${level.id}_description`, level.description)}
                     </div>
 
                     {level.modules.map((mod, modIdx) => {
@@ -296,7 +298,7 @@ const GrammarTab = () => {
                                                                 {unit.examples && unit.examples.length > 0 && (
                                                                     <div style={{ marginTop: 12 }}>
                                                                         <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--text-muted)', marginBottom: 8, textTransform: 'uppercase' }}>
-                                                                            Examples
+                                                                            {t('grammar_examples')}
                                                                         </div>
                                                                         <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
                                                                             {unit.examples.slice(0, 4).map((ex, i) => (
@@ -338,7 +340,7 @@ const GrammarTab = () => {
                                         {mod.faqs && mod.faqs.length > 0 && (
                                             <div style={{ marginTop: 16 }}>
                                                 <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--text-muted)', marginBottom: 8, textTransform: 'uppercase' }}>
-                                                    Common Questions
+                                                    {t('grammar_common_questions')}
                                                 </div>
                                                 {mod.faqs.map((faq, i) => (
                                                     <div key={i} style={{
@@ -368,7 +370,7 @@ const GrammarTab = () => {
             {/* Extras */}
             <div style={{ padding: '16px', borderTop: '1px solid var(--border-color)', marginTop: 16 }}>
                 <h2 style={{ margin: '0 0 16px', fontSize: 18, fontWeight: 800, color: 'var(--text-main)' }}>
-                    Extras
+                    {t('grammar_extras')}
                 </h2>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
                     {PRACTICE_MODULES.map(mod => {
@@ -393,7 +395,7 @@ const GrammarTab = () => {
                                         <Icon size={20} color={mod.color} />
                                     </div>
                                     <span style={{ fontWeight: 700, fontSize: 16, color: 'var(--text-main)' }}>
-                                        {mod.title}
+                                        {t(`grammar_extra_${mod.id}`, mod.title)}
                                     </span>
                                 </div>
                                 <div style={{ display: 'flex', flexDirection: 'column' }}>
@@ -409,8 +411,8 @@ const GrammarTab = () => {
                                             }}
                                         >
                                             <div>
-                                                <div style={{ fontSize: 14, color: 'var(--text-main)', fontWeight: item.desc ? 600 : 400 }}>{item.label}</div>
-                                                {item.desc && <div style={{ fontSize: 12, color: 'var(--text-muted)', marginTop: 2 }}>{item.desc}</div>}
+                                                <div style={{ fontSize: 14, color: 'var(--text-main)', fontWeight: item.desc ? 600 : 400 }}>{t(`grammar_extra_item_${mod.id}_${i}`, item.label)}</div>
+                                                {item.desc && <div style={{ fontSize: 12, color: 'var(--text-muted)', marginTop: 2 }}>{t(`grammar_extra_item_${mod.id}_${i}_desc`, item.desc)}</div>}
                                             </div>
                                             <ChevronRight size={18} color={mod.color} style={{ flexShrink: 0 }} />
                                         </div>

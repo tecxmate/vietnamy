@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Volume2, Music } from 'lucide-react';
 import { TONE_LIST } from '../../data/toneContours';
 import speak from '../../utils/speak';
+import { useT } from '../../lib/i18n';
 
 // Vietnamese alphabet data
 const VOWELS = {
@@ -128,15 +129,16 @@ const CONSONANTS = {
 };
 
 const SoundsTab = () => {
+    const t = useT();
     const [activeSection, setActiveSection] = useState('alphabet');
 
     const playTTS = (text) => speak(text, 0.8, 'vi');
 
     const sections = [
-        { id: 'alphabet', label: 'Alphabet' },
-        { id: 'tones', label: 'Tones' },
-        { id: 'vowels', label: 'Vowels' },
-        { id: 'consonants', label: 'Consonants' },
+        { id: 'alphabet', label: t('sounds_section_alphabet') },
+        { id: 'tones', label: t('sounds_section_tones') },
+        { id: 'vowels', label: t('sounds_section_vowels') },
+        { id: 'consonants', label: t('sounds_section_consonants') },
     ];
 
     return (
@@ -156,9 +158,9 @@ const SoundsTab = () => {
                         <Music size={24} color="#1CB0F6" />
                     </div>
                     <div>
-                        <h1 style={{ margin: 0, fontSize: 22, fontWeight: 800 }}>Sounds & Alphabet</h1>
+                        <h1 style={{ margin: 0, fontSize: 22, fontWeight: 800 }}>{t('sounds_title')}</h1>
                         <p style={{ margin: 0, fontSize: 13, color: 'var(--text-muted)' }}>
-                            Vietnamese pronunciation reference
+                            {t('sounds_subtitle')}
                         </p>
                     </div>
                 </div>
@@ -202,7 +204,7 @@ const SoundsTab = () => {
             {activeSection === 'alphabet' && (
                 <div style={{ padding: 16 }}>
                     <p style={{ margin: '0 0 16px', fontSize: 13, color: 'var(--text-muted)', lineHeight: 1.5 }}>
-                        The Vietnamese alphabet has 29 letters. It uses the Latin script with additional diacritics.
+                        {t('sounds_alphabet_intro')}
                     </p>
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 8 }}>
                         {ALPHABET.map((item, i) => (
@@ -234,7 +236,7 @@ const SoundsTab = () => {
             {activeSection === 'tones' && (
                 <div style={{ padding: 16 }}>
                     <p style={{ margin: '0 0 16px', fontSize: 13, color: 'var(--text-muted)', lineHeight: 1.5 }}>
-                        Vietnamese has 6 tones. The same syllable with different tones means completely different words.
+                        {t('sounds_tones_intro')}
                     </p>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
                         {TONE_LIST.map(tone => (
@@ -270,11 +272,11 @@ const SoundsTab = () => {
                                             backgroundColor: `${tone.color}20`,
                                             color: tone.color,
                                         }}>
-                                            {tone.label}
+                                            {t(`sounds_tone_${tone.id}_label`, tone.label)}
                                         </span>
                                     </div>
                                     <div style={{ fontSize: 13, color: 'var(--text-muted)', marginTop: 2 }}>
-                                        {tone.description}
+                                        {t(`sounds_tone_${tone.id}_desc`, tone.description)}
                                     </div>
                                 </div>
                                 <button
@@ -303,16 +305,16 @@ const SoundsTab = () => {
                         border: '1px solid var(--border-color)',
                     }}>
                         <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--text-muted)', marginBottom: 12, textTransform: 'uppercase' }}>
-                            Same syllable, different tones
+                            {t('sounds_tone_comparison')}
                         </div>
                         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 8 }}>
                             {[
-                                { word: 'ma', tone: 'ghost', color: '#4CAF50' },
-                                { word: 'má', tone: 'mom', color: '#2196F3' },
-                                { word: 'mà', tone: 'but', color: '#9C27B0' },
-                                { word: 'mả', tone: 'tomb', color: '#FF9800' },
-                                { word: 'mã', tone: 'horse', color: '#E91E63' },
-                                { word: 'mạ', tone: 'rice seedling', color: '#795548' },
+                                { word: 'ma', tone: t('sounds_ma_ghost'), color: '#4CAF50' },
+                                { word: 'má', tone: t('sounds_ma_mom'), color: '#2196F3' },
+                                { word: 'mà', tone: t('sounds_ma_but'), color: '#9C27B0' },
+                                { word: 'mả', tone: t('sounds_ma_tomb'), color: '#FF9800' },
+                                { word: 'mã', tone: t('sounds_ma_horse'), color: '#E91E63' },
+                                { word: 'mạ', tone: t('sounds_ma_seedling'), color: '#795548' },
                             ].map(item => (
                                 <button
                                     key={item.word}
@@ -341,7 +343,7 @@ const SoundsTab = () => {
                 <div style={{ padding: 16 }}>
                     <div style={{ marginBottom: 20 }}>
                         <h3 style={{ margin: '0 0 12px', fontSize: 15, fontWeight: 700, color: 'var(--text-main)' }}>
-                            Single Vowels
+                            {t('sounds_single_vowels')}
                         </h3>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
                             {VOWELS.basic.map(v => (
@@ -359,7 +361,7 @@ const SoundsTab = () => {
                                 >
                                     <span style={{ fontSize: 22, fontWeight: 700, color: '#1CB0F6', minWidth: 36 }}>{v.letter}</span>
                                     <span style={{ fontSize: 12, color: 'var(--text-muted)', minWidth: 40 }}>{v.ipa}</span>
-                                    <span style={{ flex: 1, fontSize: 13, color: 'var(--text-main)' }}>{v.sound}</span>
+                                    <span style={{ flex: 1, fontSize: 13, color: 'var(--text-main)' }}>{t(`sounds_vowel_basic_${VOWELS.basic.indexOf(v)}_sound`, v.sound)}</span>
                                     <span style={{ fontSize: 12, color: 'var(--text-muted)' }}>{v.example}</span>
                                     <Volume2 size={16} color="#1CB0F6" style={{ flexShrink: 0 }} />
                                 </div>
@@ -369,7 +371,7 @@ const SoundsTab = () => {
 
                     <div style={{ marginBottom: 20 }}>
                         <h3 style={{ margin: '0 0 12px', fontSize: 15, fontWeight: 700, color: 'var(--text-main)' }}>
-                            Diphthongs (2 vowels)
+                            {t('sounds_diphthongs')}
                         </h3>
                         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 6 }}>
                             {VOWELS.diphthongs.map(v => (
@@ -396,7 +398,7 @@ const SoundsTab = () => {
 
                     <div>
                         <h3 style={{ margin: '0 0 12px', fontSize: 15, fontWeight: 700, color: 'var(--text-main)' }}>
-                            Triphthongs (3 vowels)
+                            {t('sounds_triphthongs')}
                         </h3>
                         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 6 }}>
                             {VOWELS.triphthongs.map(v => (
@@ -428,10 +430,10 @@ const SoundsTab = () => {
                 <div style={{ padding: 16 }}>
                     <div style={{ marginBottom: 20 }}>
                         <h3 style={{ margin: '0 0 12px', fontSize: 15, fontWeight: 700, color: 'var(--text-main)' }}>
-                            Initial Consonants
+                            {t('sounds_initial_consonants')}
                         </h3>
                         <p style={{ margin: '0 0 12px', fontSize: 12, color: 'var(--text-muted)' }}>
-                            (N) = Northern dialect, (S) = Southern dialect
+                            {t('sounds_dialect_note')}
                         </p>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
                             {CONSONANTS.initial.map(c => (
@@ -448,7 +450,7 @@ const SoundsTab = () => {
                                 >
                                     <span style={{ fontSize: 18, fontWeight: 700, color: '#06D6A0', minWidth: 44 }}>{c.letter}</span>
                                     <span style={{ fontSize: 11, color: 'var(--text-muted)', minWidth: 70 }}>{c.ipa}</span>
-                                    <span style={{ flex: 1, fontSize: 12, color: 'var(--text-main)' }}>{c.sound}</span>
+                                    <span style={{ flex: 1, fontSize: 12, color: 'var(--text-main)' }}>{t(`sounds_consonant_initial_${CONSONANTS.initial.indexOf(c)}_sound`, c.sound)}</span>
                                     <span style={{ fontSize: 12, color: 'var(--text-muted)' }}>{c.example}</span>
                                     <Volume2 size={16} color="#06D6A0" style={{ flexShrink: 0 }} />
                                 </div>
@@ -458,7 +460,7 @@ const SoundsTab = () => {
 
                     <div>
                         <h3 style={{ margin: '0 0 12px', fontSize: 15, fontWeight: 700, color: 'var(--text-main)' }}>
-                            Final Consonants
+                            {t('sounds_final_consonants')}
                         </h3>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
                             {CONSONANTS.final.map(c => (
@@ -475,7 +477,7 @@ const SoundsTab = () => {
                                 >
                                     <span style={{ fontSize: 18, fontWeight: 700, color: '#EF476F', minWidth: 60 }}>{c.letter}</span>
                                     <span style={{ fontSize: 11, color: 'var(--text-muted)', minWidth: 50 }}>{c.ipa}</span>
-                                    <span style={{ flex: 1, fontSize: 12, color: 'var(--text-main)' }}>{c.sound}</span>
+                                    <span style={{ flex: 1, fontSize: 12, color: 'var(--text-main)' }}>{t(`sounds_consonant_final_${CONSONANTS.final.indexOf(c)}_sound`, c.sound)}</span>
                                     <span style={{ fontSize: 12, color: 'var(--text-muted)' }}>{c.example}</span>
                                     <Volume2 size={16} color="#EF476F" style={{ flexShrink: 0 }} />
                                 </div>
