@@ -17,6 +17,7 @@ import {
     getDictSavedWords, toggleDictSavedWord, getDictDecks, createDictDeck,
     removeWordFromDictDeck,
 } from '../../lib/dictSavedWords';
+import { useT } from '../../lib/i18n';
 import './ReadingLibraryTab.css';
 
 const LEVEL_COLORS = { beginner: '#06D6A0', intermediate: '#FFD166', advanced: '#EF476F' };
@@ -25,19 +26,30 @@ const LEVEL_COLORS = { beginner: '#06D6A0', intermediate: '#FFD166', advanced: '
 // Content type configs for the tag filter system
 // ═══════════════════════════════════════════════════════════════
 const CONTENT_TYPES = {
-    readings: { label: 'Readings', icon: BookOpen, color: '#1CB0F6', bg: 'rgba(28,176,246,0.15)', border: 'rgba(28,176,246,0.3)' },
-    vocabulary: { label: 'Vocabulary', icon: Layers, color: '#FF9F43', bg: 'rgba(255,159,67,0.15)', border: 'rgba(255,159,67,0.3)' },
+    readings: { labelKey: 'library_readings', icon: BookOpen, color: '#1CB0F6', bg: 'rgba(28,176,246,0.15)', border: 'rgba(28,176,246,0.3)' },
+    vocabulary: { labelKey: 'library_vocabulary', icon: Layers, color: '#FF9F43', bg: 'rgba(255,159,67,0.15)', border: 'rgba(255,159,67,0.3)' },
 };
 
 const SUB_TAGS = {
-    readings: ['Culture', 'Food', 'Travel', 'Daily Life', 'History', 'Business'],
-    vocabulary: ['Saved', 'Custom Decks', 'Pre-built'],
+    readings: [
+        { id: 'Culture', key: 'library_tag_culture' },
+        { id: 'Food', key: 'library_tag_food' },
+        { id: 'Travel', key: 'library_tag_travel' },
+        { id: 'Daily Life', key: 'library_tag_daily_life' },
+        { id: 'History', key: 'library_tag_history' },
+        { id: 'Business', key: 'library_tag_business' },
+    ],
+    vocabulary: [
+        { id: 'Saved', key: 'library_tag_saved' },
+        { id: 'Custom Decks', key: 'library_tag_custom_decks' },
+        { id: 'Pre-built', key: 'library_tag_prebuilt' },
+    ],
 };
 
 const SORT_OPTIONS = [
-    { key: 'recent', label: 'Recent' },
-    { key: 'name', label: 'Name' },
-    { key: 'level', label: 'Level' },
+    { key: 'recent', labelKey: 'library_sort_recent' },
+    { key: 'name', labelKey: 'library_sort_name' },
+    { key: 'level', labelKey: 'library_sort_level' },
 ];
 
 const READING_LEVEL_META = {
@@ -53,7 +65,11 @@ const toTraditionalIfNeeded = (text, lang) => {
 };
 
 // Build a unified content list from all sources (mockup timestamps)
-function buildLibraryItems() {
+function libraryCount(t, count, singularKey = 'library_word_singular', pluralKey = 'library_word_plural') {
+    return `${count} ${t(count === 1 ? singularKey : pluralKey)}`;
+}
+
+function buildLibraryItems(t) {
     const items = [];
     const now = Date.now();
 
@@ -67,7 +83,9 @@ function buildLibraryItems() {
             type: 'readings',
             subTag: catLabel,
             title: art.title_en,
-            subtitle: `${art.readingTimeMins} min · ${catLabel}`,
+            subtitle: t('library_article_meta')
+                .replace('{minutes}', art.readingTimeMins)
+                .replace('{category}', catLabel),
             itemIcon: BookOpen,
             itemColor: lvlMeta.color,
             itemBg: lvlMeta.bg,
@@ -85,8 +103,8 @@ function buildLibraryItems() {
         id: 'vocab-srs',
         type: 'vocabulary',
         subTag: 'Saved',
-        title: 'SRS Review',
-        subtitle: dueCount > 0 ? `${dueCount} word${dueCount !== 1 ? 's' : ''} due` : 'All caught up',
+        title: t('library_srs_review'),
+        subtitle: dueCount > 0 ? t('library_words_due').replace('{count}', dueCount) : t('library_all_caught_up'),
         itemIcon: Flame,
         itemColor: '#FF5722',
         itemBg: 'rgba(255,87,34,0.15)',
@@ -101,8 +119,8 @@ function buildLibraryItems() {
             id: 'vocab-saved',
             type: 'vocabulary',
             subTag: 'Saved',
-            title: 'Saved Words',
-            subtitle: `${savedWords.length} word${savedWords.length !== 1 ? 's' : ''}`,
+            title: t('library_saved_words'),
+            subtitle: libraryCount(t, savedWords.length),
             itemIcon: BookmarkCheck,
             itemColor: '#06D6A0',
             itemBg: 'rgba(6,214,160,0.15)',
@@ -118,7 +136,7 @@ function buildLibraryItems() {
             type: 'vocabulary',
             subTag: 'Custom Decks',
             title: deck.name,
-            subtitle: `${deck.words?.length || 0} words`,
+            subtitle: libraryCount(t, deck.words?.length || 0),
             itemIcon: Layers,
             itemColor: '#FF9F43',
             itemBg: 'rgba(255,159,67,0.15)',
@@ -135,7 +153,7 @@ function buildLibraryItems() {
             type: 'vocabulary',
             subTag: 'Pre-built',
             title: cat.label,
-            subtitle: `${VOCAB_WORDS.filter(w => w.category === cat.key).length} words`,
+            subtitle: libraryCount(t, VOCAB_WORDS.filter(w => w.category === cat.key).length),
             itemIcon: Layers,
             itemColor: '#3B82F6',
             itemBg: 'rgba(59,130,246,0.15)',
@@ -154,6 +172,7 @@ function buildLibraryItems() {
 // ═══════════════════════════════════════════════════════════════
 function LibraryLanding({ onSelectModule, onOpenArticle }) {
     const navigate = useNavigate();
+    const t = useT();
     const [activeType, setActiveType] = useState(() => {
         try { return localStorage.getItem('vnme_lib_type') || 'readings'; } catch { return 'readings'; }
     });
@@ -162,7 +181,7 @@ function LibraryLanding({ onSelectModule, onOpenArticle }) {
     const [sortAsc, setSortAsc] = useState(false);
     const [viewMode, setViewMode] = useState('list'); // 'list' | 'grid'
 
-    const allItems = useMemo(() => buildLibraryItems(), []);
+    const allItems = useMemo(() => buildLibraryItems(t), [t]);
 
     const filtered = useMemo(() => {
         let list = allItems;
@@ -228,15 +247,15 @@ function LibraryLanding({ onSelectModule, onOpenArticle }) {
                 <div className="lib-filter-row lib-subtag-row">
                     {SUB_TAGS[activeType].map(tag => {
                         const typeCfg = CONTENT_TYPES[activeType];
-                        const isActive = activeSubTag === tag;
+                        const isActive = activeSubTag === tag.id;
                         return (
                             <button
-                                key={tag}
+                                key={tag.id}
                                 className={`lib-tag-chip lib-subtag ${isActive ? 'active' : ''}`}
                                 style={isActive ? { backgroundColor: typeCfg.bg, borderColor: typeCfg.color, color: typeCfg.color } : {}}
-                                onClick={() => toggleSubTag(tag)}
+                                onClick={() => toggleSubTag(tag.id)}
                             >
-                                {tag}
+                                {t(tag.key)}
                             </button>
                         );
                     })}
@@ -247,20 +266,20 @@ function LibraryLanding({ onSelectModule, onOpenArticle }) {
             <div className="lib-sort-bar">
                 <button className="lib-sort-btn" onClick={cycleSortBy}>
                     <ArrowUpDown size={14} />
-                    {SORT_OPTIONS.find(o => o.key === sortBy)?.label}
+                    {t(SORT_OPTIONS.find(o => o.key === sortBy)?.labelKey || 'library_sort_recent')}
                 </button>
                 <button
                     className="lib-sort-dir-btn"
                     onClick={() => setSortAsc(!sortAsc)}
-                    title={sortAsc ? 'Ascending' : 'Descending'}
+                    title={sortAsc ? t('library_sort_ascending') : t('library_sort_descending')}
                 >
                     {sortAsc ? <SortAsc size={16} /> : <SortDesc size={16} />}
                 </button>
-                <span className="lib-result-count">{filtered.length} items</span>
+                <span className="lib-result-count">{t('library_items_count').replace('{count}', filtered.length)}</span>
                 <button
                     className="lib-view-toggle"
                     onClick={() => setViewMode(v => v === 'list' ? 'grid' : 'list')}
-                    title={viewMode === 'list' ? 'Grid view' : 'List view'}
+                    title={viewMode === 'list' ? t('library_grid_view') : t('library_list_view')}
                 >
                     {viewMode === 'list' ? <LayoutGrid size={16} /> : <LayoutList size={16} />}
                 </button>
@@ -273,15 +292,15 @@ function LibraryLanding({ onSelectModule, onOpenArticle }) {
                     return viewMode === 'grid' ? (
                         <button className="lib-grid-card lib-card-dashed" style={{ borderColor: c }} onClick={() => onSelectModule({ view: 'vocabulary', deckId: '__create__' })}>
                             <div className="lib-grid-icon lib-icon-dashed" style={{ borderColor: c }}><Plus size={28} color={c} /></div>
-                            <div className="lib-grid-title" style={{ color: c }}>New Deck</div>
-                            <div className="lib-grid-subtitle">Create a custom deck</div>
+                            <div className="lib-grid-title" style={{ color: c }}>{t('library_new_deck')}</div>
+                            <div className="lib-grid-subtitle">{t('library_create_custom_deck_short')}</div>
                         </button>
                     ) : (
                         <button className="lib-content-card lib-card-dashed" style={{ borderColor: c }} onClick={() => onSelectModule({ view: 'vocabulary', deckId: '__create__' })}>
                             <div className="lib-card-icon lib-icon-dashed" style={{ borderColor: c }}><Plus size={22} color={c} /></div>
                             <div className="lib-card-info">
-                                <div className="lib-card-title" style={{ color: c }}>New Deck</div>
-                                <div className="lib-card-subtitle">Create a custom vocabulary deck</div>
+                                <div className="lib-card-title" style={{ color: c }}>{t('library_new_deck')}</div>
+                                <div className="lib-card-subtitle">{t('library_create_custom_deck')}</div>
                             </div>
                         </button>
                     );
@@ -307,7 +326,7 @@ function LibraryLanding({ onSelectModule, onOpenArticle }) {
                                 <div className="lib-grid-subtitle">{item.subtitle}</div>
                                 {!activeType && (
                                     <span className="lib-card-type-badge" style={{ color: cfg.color, backgroundColor: cfg.bg, marginTop: 6 }}>
-                                        {cfg.label}
+                                        {t(cfg.labelKey)}
                                     </span>
                                 )}
                             </button>
@@ -331,7 +350,7 @@ function LibraryLanding({ onSelectModule, onOpenArticle }) {
                             <div className="lib-card-meta">
                                 {!activeType && (
                                     <span className="lib-card-type-badge" style={{ color: cfg.color, backgroundColor: cfg.bg }}>
-                                        {cfg.label}
+                                        {t(cfg.labelKey)}
                                     </span>
                                 )}
                                 <ChevronRight size={16} color="var(--text-muted)" />
@@ -343,7 +362,7 @@ function LibraryLanding({ onSelectModule, onOpenArticle }) {
                 {filtered.length === 0 && (
                     <div className="lib-empty-state">
                         <ListFilter size={32} />
-                        <p>No items match your filters</p>
+                        <p>{t('library_no_items')}</p>
                     </div>
                 )}
             </div>
@@ -361,7 +380,7 @@ function LibraryLanding({ onSelectModule, onOpenArticle }) {
                             onClick={() => toggleType(key)}
                         >
                             <Icon size={20} />
-                            <span>{cfg.label}</span>
+                            <span>{t(cfg.labelKey)}</span>
                         </button>
                     );
                 })}
@@ -428,6 +447,7 @@ function GrammarBrowseView({ onBack }) {
 // Article Browse View
 // ═══════════════════════════════════════════════════════════════
 function ArticleBrowseView({ onSelectArticle, onBack }) {
+    const t = useT();
     const [categoryFilter, setCategoryFilter] = useState('all');
     const [levelFilter, setLevelFilter] = useState('all');
 
@@ -444,7 +464,7 @@ function ArticleBrowseView({ onSelectArticle, onBack }) {
                 <button onClick={onBack} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 4, color: 'var(--text-main)' }}>
                     <ChevronLeft size={24} />
                 </button>
-                <h2 style={{ margin: 0, fontSize: 18 }}>Readings</h2>
+                <h2 style={{ margin: 0, fontSize: 18 }}>{t('library_readings')}</h2>
             </div>
 
             {/* Category pills */}
@@ -485,7 +505,7 @@ function ArticleBrowseView({ onSelectArticle, onBack }) {
             {filtered.length === 0 && (
                 <div className="rlib-empty">
                     <BookOpen size={40} />
-                    <p>No articles match your filters.</p>
+                    <p>{t('library_no_articles')}</p>
                 </div>
             )}
         </div>
@@ -516,6 +536,7 @@ function ArticleCard({ article, onSelect }) {
 // Article Reader View (tap-to-reveal)
 // ═══════════════════════════════════════════════════════════════
 function ArticleReaderView({ article, onBack }) {
+    const t = useT();
     const { userProfile } = useUser();
     const [revealedSet, setRevealedSet] = useState(new Set());
     const [translationLang, setTranslationLang] = useState(() => {
@@ -667,13 +688,13 @@ function ArticleReaderView({ article, onBack }) {
 
                         <div className="rlib-cta-actions">
                             <div className="rlib-cta-code-box">
-                                <span className="rlib-cta-code-label">CODE:</span>
+                                <span className="rlib-cta-code-label">{t('dict_partner_code')}</span>
                                 <span className="rlib-cta-code-val">{article.partnerCta.code}</span>
                                 <button
                                     className={`rlib-cta-copy-btn ${copiedCode ? 'copied' : ''}`}
                                     onClick={() => handleCopyCode(article.partnerCta.code)}
                                 >
-                                    {copiedCode ? 'Copied!' : 'Copy'}
+                                    {copiedCode ? t('copied') : t('copy')}
                                 </button>
                             </div>
 
@@ -688,7 +709,7 @@ function ArticleReaderView({ article, onBack }) {
                                     color: '#fff'
                                 }}
                             >
-                                Get {translationLang === 'en' ? article.partnerCta.discount_en : toTraditionalIfNeeded(article.partnerCta.discount_zh, translationLang)}
+                                {t('library_get_discount').replace('{discount}', translationLang === 'en' ? article.partnerCta.discount_en : toTraditionalIfNeeded(article.partnerCta.discount_zh, translationLang))}
                             </a>
                         </div>
                     </div>
@@ -716,6 +737,7 @@ const shuffle = (arr) => [...arr].sort(() => Math.random() - 0.5);
 // Flashcard Study View — all cards are plain Vietnamese word strings
 // ═══════════════════════════════════════════════════════════════
 function FlashcardStudyView({ deckName, cards, onBack }) {
+    const t = useT();
     const [shuffled] = useState(() => shuffle(cards));
     const [index, setIndex] = useState(0);
     const [revealed, setRevealed] = useState(false);
@@ -798,7 +820,7 @@ function FlashcardStudyView({ deckName, cards, onBack }) {
         return (
             <div className="fc-study-container">
                 <div className="fc-study-header">
-                    <button className="vocab-back-btn" onClick={onBack}><ChevronLeft size={20} /> Done</button>
+                    <button className="vocab-back-btn" onClick={onBack}><ChevronLeft size={20} /> {t('done')}</button>
                     <span className="fc-study-name">{deckName}</span>
                 </div>
                 <div className="fc-score-screen">
@@ -807,18 +829,18 @@ function FlashcardStudyView({ deckName, cards, onBack }) {
                         <span className="fc-score-label">/ 100</span>
                     </div>
                     <h2 className="fc-score-title">
-                        {scoreOf100 >= 90 ? 'Excellent!' : scoreOf100 >= 70 ? 'Great job!' : scoreOf100 >= 50 ? 'Good effort!' : 'Keep practicing!'}
+                        {scoreOf100 >= 90 ? t('library_score_excellent') : scoreOf100 >= 70 ? t('library_score_great') : scoreOf100 >= 50 ? t('library_score_good_effort') : t('library_score_keep_practicing')}
                     </h2>
                     <div className="fc-score-stats">
-                        <div className="fc-stat know"><Check size={16} /> {knownCount} Known</div>
-                        <div className="fc-stat unknown"><X size={16} /> {unknownCount} Don't know</div>
+                        <div className="fc-stat know"><Check size={16} /> {knownCount} {t('library_known')}</div>
+                        <div className="fc-stat unknown"><X size={16} /> {unknownCount} {t('library_dont_know')}</div>
                     </div>
                     {unknownCards.length > 0 && (
                         <button className="fc-retry-btn" onClick={handleRetry}>
-                            <RotateCw size={16} /> Practice {unknownCards.length} again
+                            <RotateCw size={16} /> {t('library_practice_again').replace('{count}', unknownCards.length)}
                         </button>
                     )}
-                    <button className="fc-back-btn" onClick={onBack}>Back to Decks</button>
+                    <button className="fc-back-btn" onClick={onBack}>{t('library_back_to_decks')}</button>
                 </div>
             </div>
         );
@@ -847,12 +869,12 @@ function FlashcardStudyView({ deckName, cards, onBack }) {
                     <div className="fc-card-inner">
                         <div className="fc-card-front">
                             <span className="fc-card-vi" style={{ fontSize: 32 }}>{card}</span>
-                            <span className="fc-card-tap">tap to reveal — do you know this word?</span>
+                            <span className="fc-card-tap">{t('library_tap_to_reveal')}</span>
                         </div>
                         <div className="fc-card-back">
                             <span className="fc-card-vi">{card}</span>
                             <button className="fc-card-listen" onClick={(e) => { e.stopPropagation(); speak(card); }}>
-                                <Volume2 size={18} /> Listen
+                                <Volume2 size={18} /> {t('listen')}
                             </button>
                             <div className="fc-card-divider" />
                             {dictInfo.get(card) ? (
@@ -867,7 +889,7 @@ function FlashcardStudyView({ deckName, cards, onBack }) {
                                     )}
                                 </>
                             ) : (
-                                <span className="fc-card-hint">Did you know it?</span>
+                                <span className="fc-card-hint">{t('library_did_you_know')}</span>
                             )}
                         </div>
                     </div>
@@ -876,10 +898,10 @@ function FlashcardStudyView({ deckName, cards, onBack }) {
             </div>
             <div className="fc-actions">
                 <button className="fc-btn dont-know" onClick={() => advance('unknown')}>
-                    <X size={22} /> Don't know
+                    <X size={22} /> {t('library_dont_know')}
                 </button>
                 <button className="fc-btn know" onClick={() => advance('know')}>
-                    <Check size={22} /> Know
+                    <Check size={22} /> {t('library_know')}
                 </button>
             </div>
         </div>
@@ -892,6 +914,7 @@ function FlashcardStudyView({ deckName, cards, onBack }) {
 const quizShuffle = (arr) => [...arr].sort(() => Math.random() - 0.5);
 
 function VocabQuizView({ deckName, words, onBack }) {
+    const t = useT();
     const [questions] = useState(() => {
         const pool = VOCAB_WORDS;
         const deckWords = pool.filter(w => words.includes(w.vietnamese));
@@ -899,7 +922,7 @@ function VocabQuizView({ deckName, words, onBack }) {
         return shuffled.map(word => {
             const correct = word.vietnamese;
             const distractors = quizShuffle(pool.filter(w => w.vietnamese !== correct).map(w => w.vietnamese)).slice(0, 3);
-            return { word, question: 'What is this in Vietnamese?', correct, options: quizShuffle([correct, ...distractors]) };
+            return { word, question: t('library_quiz_question'), correct, options: quizShuffle([correct, ...distractors]) };
         });
     });
     const [qIndex, setQIndex] = useState(0);
@@ -955,12 +978,12 @@ function VocabQuizView({ deckName, words, onBack }) {
         return (
             <div className="fc-study-container">
                 <div className="fc-study-header">
-                    <button className="vocab-back-btn" onClick={onBack}><ChevronLeft size={20} /> Back</button>
-                    <span className="fc-study-name">{deckName} — Quiz</span>
+                    <button className="vocab-back-btn" onClick={onBack}><ChevronLeft size={20} /> {t('dict_back')}</button>
+                    <span className="fc-study-name">{deckName} — {t('roadmap_type_quiz')}</span>
                 </div>
                 <div className="fc-score-screen">
-                    <p style={{ color: 'var(--text-muted)' }}>Not enough words for a quiz. Add more words to this deck.</p>
-                    <button className="fc-back-btn" onClick={onBack}>Back to Decks</button>
+                    <p style={{ color: 'var(--text-muted)' }}>{t('library_not_enough_words')}</p>
+                    <button className="fc-back-btn" onClick={onBack}>{t('library_back_to_decks')}</button>
                 </div>
             </div>
         );
@@ -968,15 +991,15 @@ function VocabQuizView({ deckName, words, onBack }) {
 
     if (showSummary) {
         const pct = Math.round((score / total) * 100);
-        let msg = 'Keep practicing!';
-        if (pct >= 90) msg = 'Vocabulary master!';
-        else if (pct >= 70) msg = 'Great memory!';
-        else if (pct >= 50) msg = 'Good progress!';
+        let msg = t('library_score_keep_practicing');
+        if (pct >= 90) msg = t('library_vocab_master');
+        else if (pct >= 70) msg = t('library_great_memory');
+        else if (pct >= 50) msg = t('library_good_progress');
         return (
             <div className="fc-study-container">
                 <div className="fc-study-header">
-                    <button className="vocab-back-btn" onClick={onBack}><ChevronLeft size={20} /> Done</button>
-                    <span className="fc-study-name">{deckName} — Quiz</span>
+                    <button className="vocab-back-btn" onClick={onBack}><ChevronLeft size={20} /> {t('done')}</button>
+                    <span className="fc-study-name">{deckName} — {t('roadmap_type_quiz')}</span>
                 </div>
                 <div className="fc-score-screen">
                     <Trophy size={48} style={{ color: 'var(--primary-color)', marginBottom: 12 }} />
@@ -986,11 +1009,11 @@ function VocabQuizView({ deckName, words, onBack }) {
                     </div>
                     <h2 className="fc-score-title">{msg}</h2>
                     <div className="fc-score-stats">
-                        <div className="fc-stat know"><Check size={16} /> {score} Correct</div>
-                        <div className="fc-stat unknown"><X size={16} /> {total - score} Wrong</div>
+                        <div className="fc-stat know"><Check size={16} /> {score} {t('stat_correct')}</div>
+                        <div className="fc-stat unknown"><X size={16} /> {total - score} {t('library_wrong')}</div>
                     </div>
-                    {bestStreak > 1 && <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>Best streak: {bestStreak}</p>}
-                    <button className="fc-back-btn" onClick={onBack}>Back to Decks</button>
+                    {bestStreak > 1 && <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>{t('library_best_streak').replace('{count}', bestStreak)}</p>}
+                    <button className="fc-back-btn" onClick={onBack}>{t('library_back_to_decks')}</button>
                 </div>
             </div>
         );
@@ -1000,7 +1023,7 @@ function VocabQuizView({ deckName, words, onBack }) {
         <div className="fc-study-container">
             <div className="fc-study-header">
                 <button className="vocab-back-btn" onClick={onBack}><ChevronLeft size={20} /></button>
-                <span className="fc-study-name">{deckName} — Quiz</span>
+                <span className="fc-study-name">{deckName} — {t('roadmap_type_quiz')}</span>
                 <span className="fc-study-counter">{qIndex + 1} / {total}</span>
             </div>
             <div className="fc-progress-bar">
@@ -1029,10 +1052,10 @@ function VocabQuizView({ deckName, words, onBack }) {
                 </div>
                 <div className="vq-quiz-bottom">
                     {feedback === 'idle' ? (
-                        <button className={`vq-action-btn ${selected ? 'primary' : 'disabled'}`} onClick={handleCheck} disabled={!selected}>Check</button>
+                        <button className={`vq-action-btn ${selected ? 'primary' : 'disabled'}`} onClick={handleCheck} disabled={!selected}>{t('check_upper')}</button>
                     ) : (
                         <button className={`vq-action-btn ${feedback === 'correct' ? 'success' : 'danger'}`} onClick={handleContinue}>
-                            {feedback === 'correct' ? 'Correct!' : `Wrong — ${currentQ.correct}`} — Continue
+                            {feedback === 'correct' ? t('feedback_correct') : `${t('library_wrong')} — ${currentQ.correct}`} — {t('continue')}
                         </button>
                     )}
                 </div>
@@ -1045,6 +1068,7 @@ function VocabQuizView({ deckName, words, onBack }) {
 // Vocab SRS Review View — spaced repetition review
 // ═══════════════════════════════════════════════════════════════
 function VocabReviewView({ onBack }) {
+    const t = useT();
     const [dueItems] = useState(() => getDueItems());
     const totalSRS = getTotalItems();
     const [qIndex, setQIndex] = useState(0);
@@ -1062,7 +1086,7 @@ function VocabReviewView({ onBack }) {
             ).slice(0, 3);
             return {
                 item,
-                question: `What is "${item.english}" in Vietnamese?`,
+                question: t('library_review_question').replace('{word}', item.english),
                 correct: item.vietnamese,
                 options: quizShuffle([item.vietnamese, ...distractors]),
             };
@@ -1073,18 +1097,18 @@ function VocabReviewView({ onBack }) {
         return (
             <div className="fc-study-container">
                 <div className="fc-study-header">
-                    <button className="vocab-back-btn" onClick={onBack}><ChevronLeft size={20} /> Back</button>
-                    <span className="fc-study-name">SRS Review</span>
+                    <button className="vocab-back-btn" onClick={onBack}><ChevronLeft size={20} /> {t('dict_back')}</button>
+                    <span className="fc-study-name">{t('library_srs_review')}</span>
                 </div>
                 <div className="fc-score-screen">
                     <Check size={48} style={{ color: 'var(--success-color)', marginBottom: 12 }} />
-                    <h2 className="fc-score-title">All caught up!</h2>
+                    <h2 className="fc-score-title">{t('library_all_caught_up')}</h2>
                     <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', textAlign: 'center' }}>
                         {totalSRS > 0
-                            ? `${totalSRS} words in your review deck. Complete more lessons to add words.`
-                            : 'Complete lessons to add words to your review deck.'}
+                            ? t('library_review_deck_count').replace('{count}', totalSRS)
+                            : t('library_review_empty_help')}
                     </p>
-                    <button className="fc-back-btn" onClick={onBack}>Back to Decks</button>
+                    <button className="fc-back-btn" onClick={onBack}>{t('library_back_to_decks')}</button>
                 </div>
             </div>
         );
@@ -1094,8 +1118,8 @@ function VocabReviewView({ onBack }) {
         return (
             <div className="fc-study-container">
                 <div className="fc-study-header">
-                    <button className="vocab-back-btn" onClick={onBack}><ChevronLeft size={20} /> Done</button>
-                    <span className="fc-study-name">SRS Review</span>
+                    <button className="vocab-back-btn" onClick={onBack}><ChevronLeft size={20} /> {t('done')}</button>
+                    <span className="fc-study-name">{t('library_srs_review')}</span>
                 </div>
                 <div className="fc-score-screen">
                     <Trophy size={48} style={{ color: 'var(--primary-color)', marginBottom: 12 }} />
@@ -1103,8 +1127,8 @@ function VocabReviewView({ onBack }) {
                         <span className="fc-score-number">{score}</span>
                         <span className="fc-score-label">/ {questions.length}</span>
                     </div>
-                    <h2 className="fc-score-title">Review Complete!</h2>
-                    <button className="fc-back-btn" onClick={onBack}>Back to Decks</button>
+                    <h2 className="fc-score-title">{t('library_review_complete')}</h2>
+                    <button className="fc-back-btn" onClick={onBack}>{t('library_back_to_decks')}</button>
                 </div>
             </div>
         );
@@ -1143,7 +1167,7 @@ function VocabReviewView({ onBack }) {
         <div className="fc-study-container">
             <div className="fc-study-header">
                 <button className="vocab-back-btn" onClick={onBack}><ChevronLeft size={20} /></button>
-                <span className="fc-study-name">SRS Review</span>
+                <span className="fc-study-name">{t('library_srs_review')}</span>
                 <span className="fc-study-counter">{qIndex + 1} / {questions.length}</span>
             </div>
             <div className="fc-progress-bar">
@@ -1166,10 +1190,10 @@ function VocabReviewView({ onBack }) {
                 </div>
                 <div className="vq-quiz-bottom">
                     {feedback === 'idle' ? (
-                        <button className={`vq-action-btn ${selected ? 'primary' : 'disabled'}`} onClick={handleCheck} disabled={!selected}>Check</button>
+                        <button className={`vq-action-btn ${selected ? 'primary' : 'disabled'}`} onClick={handleCheck} disabled={!selected}>{t('check_upper')}</button>
                     ) : (
                         <button className={`vq-action-btn ${feedback === 'correct' ? 'success' : 'danger'}`} onClick={handleContinue}>
-                            {feedback === 'correct' ? 'Correct!' : `Answer: ${currentQ.correct}`} — Continue
+                            {feedback === 'correct' ? t('feedback_correct') : `${t('feedback_correct_answer')}: ${currentQ.correct}`} — {t('continue')}
                         </button>
                     )}
                 </div>
@@ -1182,6 +1206,7 @@ function VocabReviewView({ onBack }) {
 // Vocabulary Browse View (combined: dict saved + custom + pre-built)
 // ═══════════════════════════════════════════════════════════════
 function VocabularyBrowseView({ onBack, onSearchWord, initialDeckId }) {
+    const t = useT();
     const [savedWords, setSavedWords] = useState(() => getDictSavedWords());
     const [customDecks, setCustomDecks] = useState(() => getDictDecks());
     const [studyDeck, setStudyDeck] = useState(null);
@@ -1192,7 +1217,7 @@ function VocabularyBrowseView({ onBack, onSearchWord, initialDeckId }) {
     // Resolve initialDeckId into the right view
     const [activeDeck] = useState(() => {
         if (!initialDeckId || initialDeckId === '__srs__' || initialDeckId === '__create__') return null;
-        if (initialDeckId === '__saved__') return { id: '__saved__', name: 'Saved Words' };
+        if (initialDeckId === '__saved__') return { id: '__saved__', name: t('library_saved_words') };
         if (initialDeckId.startsWith('preset_')) return { id: initialDeckId, type: 'preset' };
         const custom = getDictDecks().find(d => d.id === initialDeckId);
         if (custom) return { ...custom, type: 'custom' };
@@ -1254,21 +1279,21 @@ function VocabularyBrowseView({ onBack, onSearchWord, initialDeckId }) {
                     <button onClick={onBack} className="vocab-back-btn">
                         <ChevronLeft size={24} />
                     </button>
-                    <h2 className="vocab-browse-title">New Deck</h2>
+                    <h2 className="vocab-browse-title">{t('library_new_deck')}</h2>
                 </div>
                 <div className="vocab-create-form" style={{ margin: 16 }}>
                     <input
                         type="text"
                         className="vocab-create-input"
-                        placeholder="Deck name..."
+                        placeholder={t('library_deck_name_placeholder')}
                         value={newName}
                         onChange={e => setNewName(e.target.value)}
                         onKeyDown={e => e.key === 'Enter' && handleCreate()}
                         autoFocus
                     />
                     <div className="vocab-create-actions">
-                        <button className="vocab-create-btn primary" onClick={handleCreate} disabled={!newName.trim()}>Create</button>
-                        <button className="vocab-create-btn ghost" onClick={onBack}>Cancel</button>
+                        <button className="vocab-create-btn primary" onClick={handleCreate} disabled={!newName.trim()}>{t('library_create')}</button>
+                        <button className="vocab-create-btn ghost" onClick={onBack}>{t('cancel')}</button>
                     </div>
                 </div>
             </div>
@@ -1283,17 +1308,17 @@ function VocabularyBrowseView({ onBack, onSearchWord, initialDeckId }) {
                     <button onClick={onBack} className="vocab-back-btn">
                         <ChevronLeft size={24} />
                     </button>
-                    <h2 className="vocab-browse-title">Saved Words</h2>
+                    <h2 className="vocab-browse-title">{t('library_saved_words')}</h2>
                     {savedWords.length > 0 && (
-                        <button className="vocab-study-btn" onClick={() => startStudy('Saved Words', savedWords)}>
-                            <Play size={14} /> Study
+                        <button className="vocab-study-btn" onClick={() => startStudy(t('library_saved_words'), savedWords)}>
+                            <Play size={14} /> {t('library_study')}
                         </button>
                     )}
                 </div>
                 {savedWords.length === 0 ? (
                     <div className="vocab-empty">
                         <BookmarkCheck size={40} />
-                        <p>No saved words yet. Use the bookmark button in the dictionary!</p>
+                        <p>{t('library_no_saved_words')}</p>
                     </div>
                 ) : (
                     <div className="vocab-card-list">
@@ -1329,17 +1354,17 @@ function VocabularyBrowseView({ onBack, onSearchWord, initialDeckId }) {
                     <button onClick={onBack} className="vocab-back-btn">
                         <ChevronLeft size={24} />
                     </button>
-                    <h2 className="vocab-browse-title">{deck?.name || 'Deck'}</h2>
+                    <h2 className="vocab-browse-title">{deck?.name || t('library_deck')}</h2>
                     {words.length > 0 && (
                         <button className="vocab-study-btn" onClick={() => startStudy(deck.name, words)}>
-                            <Play size={14} /> Study
+                            <Play size={14} /> {t('library_study')}
                         </button>
                     )}
                 </div>
                 {words.length === 0 ? (
                     <div className="vocab-empty">
                         <Layers size={40} />
-                        <p>No words in this deck yet. Save words from the dictionary!</p>
+                        <p>{t('library_no_words_in_deck')}</p>
                     </div>
                 ) : (
                     <div className="vocab-card-list">
@@ -1376,10 +1401,10 @@ function VocabularyBrowseView({ onBack, onSearchWord, initialDeckId }) {
                     <h2 className="vocab-browse-title">{deck.name}</h2>
                     <div className="vocab-header-actions">
                         <button className="vocab-study-btn" onClick={() => startStudy(deck.name, deck.words)}>
-                            <Play size={14} /> Study
+                            <Play size={14} /> {t('library_study')}
                         </button>
                         <button className="vocab-study-btn quiz" onClick={() => startQuiz(deck.name, deck.words)}>
-                            <Star size={14} /> Quiz
+                            <Star size={14} /> {t('roadmap_type_quiz')}
                         </button>
                     </div>
                 </div>
@@ -1413,11 +1438,11 @@ function VocabularyBrowseView({ onBack, onSearchWord, initialDeckId }) {
                 <button onClick={onBack} className="vocab-back-btn">
                     <ChevronLeft size={24} />
                 </button>
-                <h2 className="vocab-browse-title">Vocabulary</h2>
+                <h2 className="vocab-browse-title">{t('library_vocabulary')}</h2>
             </div>
             <div className="vocab-empty">
                 <Layers size={40} />
-                <p>Select a deck from the Library to get started.</p>
+                <p>{t('library_select_deck')}</p>
             </div>
         </div>
     );
@@ -1427,6 +1452,7 @@ function VocabularyBrowseView({ onBack, onSearchWord, initialDeckId }) {
 // Main Tab Component
 // ═══════════════════════════════════════════════════════════════
 export default function ReadingLibraryTab({ onSubtitleChange, onSearchWord, pendingArticle, clearPendingArticle, pendingVocabDeck, clearPendingVocabDeck }) {
+    const t = useT();
     const [view, setView] = useState('landing');
     const [activeArticle, setActiveArticle] = useState(null);
     const [vocabInitialDeck, setVocabInitialDeck] = useState(null);
@@ -1452,7 +1478,7 @@ export default function ReadingLibraryTab({ onSubtitleChange, onSearchWord, pend
     const enterReader = (article) => {
         setActiveArticle(article);
         setView('reader');
-        onSubtitleChange?.('Tap any sentence to reveal translation');
+        onSubtitleChange?.(t('library_reader_subtitle'));
     };
 
     const goToLanding = () => {
