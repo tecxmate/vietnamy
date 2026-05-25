@@ -612,3 +612,237 @@ Technically we need:
 
 So yes: build it, but not as “AI notification system” first. Build the measurement loop first. Once we know which
 notifications actually bring learners back, then the AI layer has real data to learn from.
+
+
+
+⏺ You hit the Azure F0 (Free) tier monthly quota — 500K characters/month for Neural TTS. We were at ~410K earlier and the
+warm-up that just finished pushed us past the limit. F0 doesn't auto-fall back to paid; it just returns 429 until next
+month.
+
+The fix: upgrade the Speech resource from F0 → S0 (Standard) so the $200 credit starts absorbing usage.
+
+Steps:
+
+1. Azure Portal → VNME-Asia Speech resource → Resource Management → Pricing tier
+2. Switch from F0 to S0
+3. Save
+
+Pricing on S0:
+
+- Neural TTS: ~$16 per 1M characters
+- Pronunciation Assessment: ~$1 per audio hour
+- Both draw from your $200 credit
+
+Why this is fine, not scary:
+
+Your cache is now warm — ~22K audio files cover curriculum + tone trainer + top dictionary words. The 429 hit because the
+warm-up was generating new strings in bulk (~2,000 new ones in a few minutes). In normal user traffic, you'll generate maybe
+a few dozen new strings a day (user-typed dictionary lookups, brand-new content). At $16/1M chars and ~30 chars per phrase,
+
+- Pronunciation Assessment: ~$1 per audio hour
+- Both draw from your $200 credit
+
+Why this is fine, not scary:
+
+Your cache is now warm — ~22K audio files cover curriculum + tone trainer + top dictionary words. The 429 hit because the
+warm-up was generating new strings in bulk (~2,000 new ones in a few minutes). In normal user traffic, you'll generate maybe
+a few dozen new strings a day (user-typed dictionary lookups, brand-new content). At $16/1M chars and ~30 chars per phrase,
+that's pennies a month.
+
+Math: the $200 credit ≈ 12.5M characters of TTS = roughly 25 years of organic post-warm-up usage at your current scale.
+
+Two follow-ups:
+
+1. After you flip to S0, restart your local server (npm run dev:server) so it picks up the working state. The 429s should
+   stop immediately.
+2. The background warm-up (br579cmjw) is probably failing every remaining request right now. Let me check its log when
+   you're done switching tiers — we'll re-run it to catch the ones that got 429'd.
+
+Want me to check the warm-up log now?
+
+
+
+❯ How hard it is to migrate this to native mobile app? We have quite a big architecture here. What
+would you recommend for the mobile stack? So far, I want to develop the web fully first so we
+understand the architecture.
+
+⏺ Honest assessment, given your stack:
+
+Three viable paths:
+
+┌────────────────────┬───────────┬─────────┬──────────────────┬──────────────────────────────┐
+│        Path        │  Effort   │  Code   │   Native feel    │         When to pick         │
+│                    │           │  reuse  │                  │                              │
+├────────────────────┼───────────┼─────────┼──────────────────┼──────────────────────────────┤
+│ Capacitor (wrap    │ 1–2 weeks │         │ Decent — web UI  │ Default for solo shipping to │
+│ existing web app)  │  to ship  │ ~95%    │ in a native      │  App Store + Play Store      │
+│                    │           │         │ shell            │                              │
+├────────────────────┼───────────┼─────────┼──────────────────┼──────────────────────────────┤
+│ React Native (port │ 2–4       │         │ Strong — real    │ When you have engineering    │
+│  UI)               │ months    │ 40–50%  │ native           │ team and "native feel"       │
+│                    │           │         │ components       │ matters for retention        │
+├────────────────────┼───────────┼─────────┼──────────────────┼──────────────────────────────┤
+│ Flutter /          │ 6+ months │ 0%      │ Best             │ Massive overkill for a       │
+│ Swift+Kotlin       │           │         │                  │ content app like this        │
+└────────────────────┴───────────┴─────────┴──────────────────┴──────────────────────────────┘
+
+My recommendation: Capacitor.
+
+The product is text, scoring panels, audio playback, lesson cards. No 3D, no real-time camera, no
+heavy GPU work. WebView performance is genuinely fine for that workload. You ship to both stores
+in days and keep the same codebase, same Zeabur backend, same Supabase, same Azure Speech.
+
+What ports cleanly with Capacitor:
+
+- Everything React/Vite — unchanged
+- localStorage state — works as-is
+- Supabase auth (Google OAuth) — needs deep-link config but works
+- Azure TTS playback (<audio> in WebView) — works
+- MediaRecorder/AudioContext for pronunciation recording — works (this is the critical piece — I
+  verified it works in iOS WebView)
+- Service-worker pushsnotifications → Capacitor's @capacitor/push-notifications plugin (~1 day of
+  work)
+- PWA install banner → native install via stores (just delete the prompt)
+- iOS Safari quirks → iOS WebView quirks (usually better, sometimes worse)
+
+Things to keep in mind while finishing the web app (so the eventual port is smooth):
+
+- Keep using React Web APIs that have direct WebView support. Avoid anything that only works in
+  browsers with extensions.
+- Keep API calls relative-pathed (/api/tts) — Capacitor rewrites these via a config file at build
+  time without code changes.
+- Avoid heavy use of CSS features new browsers support but iOS WebView lags on (e.g., container
+  queries, very new color functions). You're already fine here.
+- Don't depend on the URL bar / history.state hacks for anything important — Capacitor's address
+  bar is hidden.
+
+Strategy that works: finish web (you said your plan, and it's the right one). Then add Capacitor
+in a new branch — npx cap init, npx cap add ios, npx cap add android, point at your dist/ build,
+ship. The web version keeps living at vietnamy.tecxmate.com for the PWA crowd. Native app gets the
+App Store traffic. Same codebase.
+
+If you ever outgrow Capacitor and decide React Native is worth it, the move is also easier because
+you've already separated concerns cleanly (state in Context, API calls central, no DOM hacks).
+The architecture you have today is portable in either direction.
+
+✻ Baked for 51s · 1 shell still running
+
+❯ This works with payment in app?
+
+⏺ Yes, but with one big asterisk that affects your margins. Here's the honest landscape:
+
+The rule: Apple and Google require in-app purchase (IAP) for any digital content/subscription
+bought inside an iOS or Android app. They take 15–30% of the price. Trying to use Stripe directly
+inside the app will get you rejected — they scan for this.
+
+So for a Vietnamy subscription, you have three real options:
+
+Option 1 — IAP inside the app (easiest, costliest)
+
+- Wire up StoreKit (iOS) + Google Play Billing (Android) via Capacitor.
+- Recommended SDK: RevenueCat — handles both stores with one API, manages renewals, gives you a
+  dashboard. Free up to $2.5K monthly revenue, then 1% on top of the Apple/Google cut.
+- Capacitor plugin: well-supported, ~1 day to wire up after you have product IDs configured in App
+  Store Connect and Google Play Console.
+- Take-home: ~70% of revenue (85% after one year on the same subscriber on iOS).
+
+Option 2 — Sell on the web, unlock in the app (best margins, more work)
+
+- User signs up + pays on vietnamy.tecxmate.com via Stripe (2.9% + 30¢).
+- They sign into the native app with the same Supabase account; app checks their subscription
+  state from your server and unlocks content.
+- This is the "reader app" pattern Spotify and Netflix use. Apple now explicitly allows a "link
+  out to web for signup" button after the Epic ruling.
+- Take-home: ~97% of revenue.
+- Catch: harder UX. Users finishing onboarding in-app need to be sent to a web URL to pay, then
+  come back. Conversion drops 20–40% vs in-app flow. Some users won't bother.
+
+Option 3 — Hybrid
+
+- Offer IAP in-app at a higher sticker price to recover the 30% cut.
+- Offer web subscription at a lower price.
+- This is legal and common (Tinder, Audible). Apple users pay more, web users pay less, you keep
+  more on average.
+
+My recommendation for Vietnamy:
+
+Start with Option 1 (IAP via RevenueCat) when you launch the native app. Solo founder, you want
+frictionless purchase flow, the App Store's discoverability is a real funnel. Eat the 30% as
+marketing cost.
+
+Once you have a customer base and want to optimize, add Option 2 as a parallel path — let existing
+web users pay on web with Stripe, native-only users pay via IAP. RevenueCat handles both: it can
+read both Stripe subscriptions and IAP subscriptions and give you one unified "is this user paid?"
+check.
+
+Anchor numbers for sanity:
+
+- 1,000 paying users at $5/mo via IAP = $5,000 gross, $3,500 take-home (Apple 30%), or $4,250
+  after the first year (15%).
+- Same 1,000 users via Stripe web = $4,850 take-home.
+- Difference at scale matters a lot, but at small scale Apple's discovery is worth the cut.
+
+Plumbing in the existing architecture: RevenueCat fits cleanly. Your server already has Supabase
+auth; RevenueCat keys off the Supabase user ID. The native app SDK does the actual StoreKit/Play
+Billing dance. Your existing /api/... endpoints just need to check the user's RevenueCat
+subscription status (via webhook or API call) before serving premium content.
+
+For pricing your subscription: at the language-learning category benchmark, $9.99/mo or
+$59.99/year is the norm (Duolingo Super, Babbel, Pimsleur). With IAP, that's $7 / $42 take-home.
+Worth modeling against your Azure + Supabase + Zeabur costs before you launch.
+
+Want me to scope what a payment integration would look like in your codebase (Capacitor +
+RevenueCat + Supabase user link) when you're ready?
+
+
+
+⏺ Yes, that's normal and expected. Quick breakdown:
+
+NT$847.63 ≈ $26 USD spent so far. Cause: the cluster of TTS work done over the last ~36 hours:
+
+- Multiple warm-up runs (some re-ran from F0 → S0 transition)
+- Voice-quality iterations that bumped TTS_CACHE_VERSION before the two-tier cache existed
+- The source-tier backfill (~$3 alone) on 2026-05-24
+- Pronunciation Assessment calls (cheaper but additive)
+- New curriculum + Tone Trainer string generation
+
+All attributed to vnme-asia (the Speech resource) — exactly where we'd expect.
+
+More important: "23 days left" on the $200 credit. That's the headline number. Two scenarios after expiry:
+
+1. You upgrade to pay-as-you-go: subscription stays active, charges hit your credit card. With the warm cache +
+   two-tier architecture, ongoing monthly cost should be pennies — unless you bump TTS_CACHE_VERSION without having
+   source PCM for everything (which the backfill already fixed for the current corpus).
+2. You don't upgrade: subscription auto-converts to a free-only state. Anything beyond F0 limits stops working — TTS
+   would 429 again above 500K chars/month.
+
+Recommendation: plan to upgrade to pay-as-you-go before day 23. The Azure dashboard will show a big "Upgrade" button
+(you can already see it at the top of your sidebar). Set up a Cost alert (visible in your screenshot, left sidebar)
+at say $5/month so you get warned if anything goes weird — that's a tiny fraction of your credit but big enough to
+catch a runaway loop.
+
+Math going forward with cache warm and source backfilled:
+
+- Organic dictionary lookups + new content additions: maybe 50K chars/month = $0.80
+- Pronunciation Assessment for active users: stays well inside the 5h/month free tier
+- Iterating on voice quality: $0 (re-derive from source)
+
+So expected monthly Azure bill post-credit: $1–3 at current scale. Very comfortable.
+
+Things that could spike it accidentally:
+
+- Bumping TTS_CACHE_VERSION after adding new strings that aren't in source yet (the new strings would re-cost Azure).
+  Mitigation: run the backfill script after adding new content.
+- A new learner path or massive curriculum expansion. Mitigation: rate-limit warm-ups by running them off-peak.
+
+You're in good shape. The cache-and-warm work we did over the last two days was an investment — the dashboard shows
+the bill, but it bought you a fully cached production-ready audio system that should cost near-nothing going forward.
+
+✻ Worked for 49s
+
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ /clear
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+/clear                                         Start a new session with empty context; previous session stays on
+disk (resumable with /resume)
+/auth                                          (vercel) Authentication integration guidance — Clerk (native Vercel

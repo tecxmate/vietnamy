@@ -34,6 +34,30 @@ Niko asked how hard it would be to migrate Vietnamy to a native mobile app and w
 - Payment integration aligned with this choice — IAP via RevenueCat (see [payment-strategy]).
 - No code change today. The decision shapes ongoing web-app development to keep the eventual port frictionless.
 
+## Repository Strategy
+Keep iOS and Android in the main repository once Capacitor is introduced. Do not maintain long-lived `ios` and `android` branches.
+
+Recommended shape:
+- Add Capacitor from a short-lived integration branch, for example `mobile/capacitor-bootstrap`.
+- Commit `capacitor.config.*`, `ios/`, and `android/` into the main repo after the bootstrap works.
+- Keep shared React/Vite code in `src/`, shared backend code in `server/`, and platform-specific native files only inside `ios/` and `android/`.
+- Use normal temporary branches for platform work, for example `mobile/ios-iap`, `mobile/android-push`, or `mobile/deep-links`, then merge them back to `main`.
+
+Why:
+- Capacitor is a single web app with native shells, not two separate apps. Permanent platform branches would cause drift in app logic, dependencies, assets, and release behavior.
+- Native project files are part of the distributable product and need to evolve with web code, package versions, plugin versions, icons, permissions, deep links, and release settings.
+- A single mainline keeps CI, QA, and store builds reproducible: one commit should answer "what exact web, iOS, and Android app are we shipping?"
+
+The practical exception is credentials and generated build output: signing keys, provisioning profiles, keystores, `DerivedData`, Gradle build output, and local Xcode/Android Studio state should stay out of git.
+
+## Implementation Path
+1. Finish the web app features and stabilize the browser/PWA path.
+2. Add a small API base resolver before the Capacitor bootstrap. Relative `/api` works for local Vite proxy and same-origin web deploys, but packaged mobile assets run from the Capacitor WebView origin, so production mobile builds need an explicit backend origin such as the Zeabur API URL.
+3. Install Capacitor dependencies and initialize the app using the existing Vite `dist` build output.
+4. Add iOS and Android projects with Capacitor, then commit the generated native directories after reviewing the native config.
+5. Verify the critical mobile flows on real devices or simulators: auth/deep links, recording, playback, lesson navigation, offline behavior, and subscription/paywall behavior.
+6. Add native-only features incrementally: push notifications, RevenueCat/IAP, app icons/splash screens, and store metadata.
+
 ## Provenance
 - Discussed 2026-05-24 between [niko] and [claude-opus].
 - No commits yet — the decision is "what to do next" rather than "what to build now."
