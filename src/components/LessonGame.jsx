@@ -571,7 +571,7 @@ const LessonGame = () => {
 
     if (showQuitConfirm) {
         return (
-            <div style={{ display: 'flex', flexDirection: 'column', height: '100%', backgroundColor: 'var(--bg-color)', color: 'var(--text-main)', justifyContent: 'center', textAlign: 'center' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', position: 'fixed', inset: 0, width: '100%', height: '100dvh', backgroundColor: 'var(--bg-color)', color: 'var(--text-main)', justifyContent: 'center', textAlign: 'center', zIndex: 100 }}>
                 <div style={{
                     flex: 1,
                     display: 'flex',
