@@ -5,10 +5,12 @@ let currentAudio = null;
 let lastSpeakTime = 0;
 const SPEAK_COOLDOWN = 50; // ms — ignore only true double-fires
 const MAX_QUEUED_CLIPS = 60;
+const MAX_PRELOADED_CLIPS = 80;
 let queuedClips = [];
 let currentQueuedAudio = null;
 let queueWakeAudio = null;
 const scheduledSpeakTimers = new Set();
+const preloadedClips = new Map();
 const MEDIA_ARTWORK = [
     { src: '/icon-192.png', sizes: '192x192', type: 'image/png' },
     { src: '/icon-512.png', sizes: '512x512', type: 'image/png' },
@@ -77,6 +79,64 @@ const clearMediaSessionPlayback = () => {
     navigator.mediaSession.playbackState = 'none';
 };
 
+const rememberPreloadedClip = (url, updates) => {
+    const existing = preloadedClips.get(url) || {};
+    preloadedClips.delete(url);
+    preloadedClips.set(url, { ...existing, ...updates, touchedAt: Date.now() });
+
+    while (preloadedClips.size > MAX_PRELOADED_CLIPS) {
+        const oldestUrl = preloadedClips.keys().next().value;
+        const oldest = preloadedClips.get(oldestUrl);
+        if (oldest?.objectUrl) URL.revokeObjectURL(oldest.objectUrl);
+        preloadedClips.delete(oldestUrl);
+    }
+};
+
+const warmAudioElement = (url) => {
+    const audio = new Audio(url);
+    audio.preload = 'auto';
+    audio.load();
+    return audio;
+};
+
+const warmClip = (url) => {
+    const existing = preloadedClips.get(url);
+    if (existing?.audio || existing?.warming) {
+        rememberPreloadedClip(url, {});
+        return;
+    }
+
+    const fallbackAudio = warmAudioElement(url);
+    const warming = fetch(url, { method: 'GET', cache: 'force-cache' })
+        .then(async response => {
+            if (!response.ok) throw new Error(`TTS preload ${response.status}`);
+            const blob = await response.blob();
+            const objectUrl = URL.createObjectURL(blob);
+            const previous = preloadedClips.get(url);
+            if (previous?.objectUrl) URL.revokeObjectURL(previous.objectUrl);
+            rememberPreloadedClip(url, {
+                audio: warmAudioElement(objectUrl),
+                objectUrl,
+                warming: null,
+            });
+        })
+        .catch(() => {
+            rememberPreloadedClip(url, {
+                audio: fallbackAudio,
+                warming: null,
+            });
+        });
+
+    rememberPreloadedClip(url, { audio: fallbackAudio, warming });
+};
+
+const getWarmedAudio = (url) => {
+    const warmed = preloadedClips.get(url);
+    if (!warmed?.audio) return null;
+    rememberPreloadedClip(url, {});
+    return warmed.audio;
+};
+
 export const clearSpeakQueue = ({ stopCurrent = false } = {}) => {
     queuedClips = [];
     queueWakeAudio = null;
@@ -118,12 +178,21 @@ export const preloadSpeak = (texts, lang = 'vi') => {
         const url = buildTtsUrl(text, lang);
         if (preloadedUrls.has(url)) continue;
         preloadedUrls.add(url);
-        // Fetch into the browser HTTP cache. Audio element would also work but
-        // some browsers refuse to load() without user gesture; fetch is reliable.
-        fetch(url, { method: 'GET', cache: 'force-cache' }).catch(() => {
+        // Warm both the HTTP cache and a playable Audio element. The element
+        // avoids the perceptible fetch/decode gap when a user taps a lesson word.
+        try {
+            warmClip(url);
+        } catch {
             preloadedUrls.delete(url);
-        });
+        }
     }
+};
+
+const prepareAudioForPlayback = (url) => {
+    const audio = getWarmedAudio(url) || new Audio(url);
+    audio.pause();
+    try { audio.currentTime = 0; } catch { /* not seekable yet */ }
+    return audio;
 };
 
 const speak = (text, rate = 1, lang = 'vi') => {
@@ -146,7 +215,7 @@ const speak = (text, rate = 1, lang = 'vi') => {
     const { ttsLang, playRate } = getPlaybackOptions(rate, lang);
 
     const url = buildTtsUrl(text, ttsLang);
-    const audio = new Audio(url);
+    const audio = prepareAudioForPlayback(url);
     audio.playbackRate = playRate;
     currentAudio = audio;
     setMediaSessionMetadata(text);
@@ -156,8 +225,8 @@ const speak = (text, rate = 1, lang = 'vi') => {
         clearMediaSessionPlayback();
     });
 
-    audio.addEventListener('ended', () => { currentAudio = null; clearMediaSessionPlayback(); });
-    audio.addEventListener('error', () => { currentAudio = null; clearMediaSessionPlayback(); });
+    audio.onended = () => { if (currentAudio === audio) currentAudio = null; clearMediaSessionPlayback(); };
+    audio.onerror = () => { if (currentAudio === audio) currentAudio = null; clearMediaSessionPlayback(); };
 };
 
 const playNextQueued = () => {
@@ -165,7 +234,7 @@ const playNextQueued = () => {
 
     const next = queuedClips.shift();
     const url = buildTtsUrl(next.text, next.lang);
-    const audio = new Audio(url);
+    const audio = prepareAudioForPlayback(url);
     audio.playbackRate = next.rate;
     currentAudio = audio;
     currentQueuedAudio = audio;

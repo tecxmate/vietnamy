@@ -213,7 +213,7 @@ const HomeTab = ({ onSearchWord }) => {
                     onClick={() => navigate('/practice/flashcards')}
                     style={{
                         display: 'flex', alignItems: 'center', gap: 12,
-                        width: 'calc(100% - 32px)', margin: '16px auto 0',
+                        width: '100%', margin: '0',
                         padding: '12px 16px', borderRadius: 12,
                         backgroundColor: 'rgba(28, 176, 246, 0.1)',
                         border: '1px solid rgba(28, 176, 246, 0.3)',

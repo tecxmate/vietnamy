@@ -39,6 +39,32 @@ function scoreFg(v, errorType) {
     return scoreColor(v);
 }
 
+function collectExerciseAudioTexts(exercise) {
+    const prompt = exercise?.prompt;
+    if (!prompt) return [];
+
+    const texts = [
+        prompt.audio_text,
+        prompt.source_text_vi,
+        prompt.target_vi,
+        prompt.answer_vi,
+        prompt.answer_tokens?.join(' '),
+        prompt.audio_vi,
+    ];
+
+    if (Array.isArray(prompt.tokens)) texts.push(...prompt.tokens);
+    if (Array.isArray(prompt.choices_vi)) texts.push(...prompt.choices_vi);
+    if (Array.isArray(prompt.pairs)) {
+        prompt.pairs.forEach(pair => texts.push(pair.vi));
+    }
+
+    if (exercise.exercise_type === 'fill_blank' && Array.isArray(prompt.choices_vi)) {
+        prompt.choices_vi.forEach(choice => texts.push(buildFillBlankSentence(prompt, choice)));
+    }
+
+    return [...new Set(texts.filter(text => typeof text === 'string' && text.trim().length > 0))];
+}
+
 const LessonGame = () => {
     const { lessonId } = useParams();
     const navigate = useNavigate();
@@ -172,6 +198,7 @@ const LessonGame = () => {
             console.warn(`No exercises found for ${lessonId}`);
         }
         setExercises(loaded);
+        preloadSpeak(loaded.flatMap(collectExerciseAudioTexts));
 
         // Find the roadmap node for this lesson
         if (node) {
@@ -200,6 +227,7 @@ const LessonGame = () => {
             setShowWordIntro(steps.length > 0);
             setCurrentIntroStep(0);
             const viTexts = blueprint.words.map(w => w.vietnamese);
+            preloadSpeak(viTexts);
             lookupWords(viTexts).then(info => setDictInfo(info));
         } else {
             setShowWordIntro(false);
@@ -236,8 +264,9 @@ const LessonGame = () => {
             setOrderedTokens([]);
             setDraggedItemIndex(null);
             setDropTargetIndex(null);
-            preloadSpeak(currentEx.prompt.tokens);
         }
+
+        preloadSpeak(collectExerciseAudioTexts(currentEx));
 
         if (currentEx && currentEx.exercise_type === 'listen_type') {
             setTypedAnswer('');
@@ -260,9 +289,9 @@ const LessonGame = () => {
         if (!currentEx) return;
         const { exercise_type, prompt } = currentEx;
         if (exercise_type === 'listen_type' || exercise_type === 'listen_choose') {
-            if (prompt.audio_text) scheduleSpeak(prompt.audio_text, 300);
+            if (prompt.audio_text) scheduleSpeak(prompt.audio_text, 100);
         } else if (exercise_type === 'mcq_translate_to_en') {
-            if (prompt.source_text_vi) scheduleSpeak(prompt.source_text_vi, 300);
+            if (prompt.source_text_vi) scheduleSpeak(prompt.source_text_vi, 100);
         }
     }, [currentIndex]);
 
@@ -271,7 +300,7 @@ const LessonGame = () => {
         if (showWordIntro && introSteps.length > 0) {
             const step = introSteps[currentIntroStep];
             if (step?.type === 'vocab' && step.word?.vietnamese) {
-                scheduleSpeak(step.word.vietnamese, 300);
+                scheduleSpeak(step.word.vietnamese, 100);
             }
         }
     }, [currentIntroStep, showWordIntro]);
@@ -547,7 +576,7 @@ const LessonGame = () => {
         if (correct) {
             playSuccess();
             const completedSentence = getCompletedSentenceAudio(currentEx);
-            if (completedSentence) scheduleSpeak(completedSentence, 300);
+            if (completedSentence) scheduleSpeak(completedSentence, 100);
             setScore(s => s + 1);
             const newStreak = currentStreak + 1;
             setCurrentStreak(newStreak);
@@ -616,13 +645,30 @@ const LessonGame = () => {
 
     if (showQuitConfirm) {
         return (
-            <div style={{ display: 'flex', flexDirection: 'column', height: '100%', backgroundColor: 'var(--bg-color)', color: 'var(--text-main)', justifyContent: 'center', padding: 24, textAlign: 'center' }}>
-                <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', height: '100%', backgroundColor: 'var(--bg-color)', color: 'var(--text-main)', justifyContent: 'center', textAlign: 'center' }}>
+                <div style={{
+                    flex: 1,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    padding: 'var(--app-edge-top) var(--app-edge-right) var(--app-edge-gap) var(--app-edge-left)',
+                }}>
                     <Frown size={100} color="var(--text-muted)" strokeWidth={1.5} style={{ marginBottom: 24 }} />
                     <h2 style={{ fontSize: 22, marginBottom: 8, lineHeight: 1.4 }}>Are you sure?</h2>
                     <p style={{ color: 'var(--text-muted)', fontSize: 15, margin: 0 }}>You're almost done with this lesson!</p>
                 </div>
-                <div style={{ padding: '24px 16px', borderTop: '2px solid var(--border-color)', backgroundColor: 'var(--surface-color)', display: 'flex', flexDirection: 'column', gap: 10, minHeight: 140, justifyContent: 'center' }}>
+                <div style={{
+                    padding: '24px var(--app-edge-right) calc(24px + var(--safe-area-bottom)) var(--app-edge-left)',
+                    borderTop: '2px solid var(--border-color)',
+                    backgroundColor: 'var(--surface-color)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: 10,
+                    minHeight: 'calc(140px + var(--safe-area-bottom))',
+                    justifyContent: 'center',
+                    flexShrink: 0,
+                }}>
                     <button className="ghost" style={{ color: 'var(--danger-color)', fontWeight: 700, width: '100%' }} onClick={() => navigate('/', { state: { tab: 'study' } })}>
                         QUIT
                     </button>
