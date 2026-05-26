@@ -7,7 +7,7 @@ attributed_to: [niko]
 belongs_to: [mobile-strategy]
 source: chat
 status: active
-tags: [mobile, capacitor, planning]
+tags: [mobile, capacitor, planning, android]
 related: [mobile-strategy, payment-strategy]
 ---
 
@@ -32,7 +32,7 @@ Niko asked how hard it would be to migrate Vietnamy to a native mobile app and w
   - Don't depend on URL bar or `history.state` hacks.
 - Push notifications will eventually move from service-worker-based (current `public/vnme-sw.js`) to `@capacitor/push-notifications`.
 - Payment integration aligned with this choice — IAP via RevenueCat (see [payment-strategy]).
-- No code change today. The decision shapes ongoing web-app development to keep the eventual port frictionless.
+- The initial Capacitor bootstrap has started on branch `mobile/capacitor-bootstrap`.
 
 ## Repository Strategy
 Keep iOS and Android in the main repository once Capacitor is introduced. Do not maintain long-lived `ios` and `android` branches.
@@ -58,6 +58,53 @@ The practical exception is credentials and generated build output: signing keys,
 5. Verify the critical mobile flows on real devices or simulators: auth/deep links, recording, playback, lesson navigation, offline behavior, and subscription/paywall behavior.
 6. Add native-only features incrementally: push notifications, RevenueCat/IAP, app icons/splash screens, and store metadata.
 
+## Bootstrap Status — 2026-05-26
+Capacitor bootstrap is in progress on branch `mobile/capacitor-bootstrap`.
+
+Completed:
+- Installed Capacitor 8 packages: `@capacitor/core`, `@capacitor/cli`, `@capacitor/ios`, `@capacitor/android`.
+- Added `capacitor.config.json` with app id `com.tecxmate.vietnamy`, app name `Vietnamy`, and `webDir: dist`.
+- Generated native `ios/` and `android/` projects in the main repo.
+- Added `src/utils/apiUrl.js`; frontend `/api/*` calls now use `VITE_API_BASE_URL` when set, while remaining relative for local web/Vite.
+- Added native microphone permission declarations for pronunciation recording:
+  - Android: `RECORD_AUDIO`.
+  - iOS: `NSMicrophoneUsageDescription`.
+- Added npm scripts: `cap:sync`, `cap:open:ios`, `cap:open:android`, `cap:run:ios`, `cap:run:android`.
+- `npm run build` passes.
+- `npx cap sync` passes for iOS and Android.
+- Android debug build passes with `cd android && ./gradlew assembleDebug`.
+- Debug APK produced at `android/app/build/outputs/apk/debug/app-debug.apk` (`7.0M`).
+
+Local Android tooling installed on Niko's Mac:
+- Temurin JDK 21: `336M`.
+- Android SDK packages under `~/Library/Android/sdk`: `546M`.
+- Gradle cache under `~/.gradle`: `1.0G`.
+
+Android device install command:
+```bash
+adb install -r android/app/build/outputs/apk/debug/app-debug.apk
+```
+
+Important mobile API caveat:
+For a real packaged app test that needs dictionary, TTS, pronunciation, push-event, or translate endpoints, rebuild with the deployed backend origin:
+```bash
+VITE_API_BASE_URL=https://your-api-host.example npm run cap:sync
+cd android
+./gradlew assembleDebug
+adb install -r app/build/outputs/apk/debug/app-debug.apk
+```
+Do not include `/api` in `VITE_API_BASE_URL`; the app appends the path.
+
+iOS status:
+- Capacitor iOS project has been generated.
+- Full Xcode is not installed or selected. `xcodebuild` currently sees only `/Library/Developer/CommandLineTools`.
+- iOS native build requires installing full Xcode, then running `sudo xcode-select -s /Applications/Xcode.app/Contents/Developer` and accepting the Xcode license.
+
+Known verification gaps:
+- Full repo `npm run lint` still fails on pre-existing lint debt. Generated native web asset copies are now ignored by ESLint.
+- Real-device Android smoke test still needs a connected device with USB debugging enabled.
+- iOS build/test is blocked on full Xcode.
+
 ## Provenance
 - Discussed 2026-05-24 between [niko] and [claude-opus].
-- No commits yet — the decision is "what to do next" rather than "what to build now."
+- Bootstrap implementation started 2026-05-26 with [codex] on branch `mobile/capacitor-bootstrap`.

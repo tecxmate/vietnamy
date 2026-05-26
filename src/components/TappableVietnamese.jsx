@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { apiUrl } from '../utils/apiUrl';
 
 const segmentCache = new Map();
 
@@ -20,7 +21,7 @@ const TappableVietnamese = ({ text, onWordTap, bold }) => {
         }
 
         let cancelled = false;
-        fetch(`/api/segment?text=${encodeURIComponent(text)}`)
+        fetch(apiUrl(`/api/segment?text=${encodeURIComponent(text)}`))
             .then(r => r.json())
             .then(data => {
                 if (!cancelled && data.segments) {

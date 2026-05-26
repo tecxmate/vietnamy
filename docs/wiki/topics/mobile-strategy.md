@@ -3,7 +3,7 @@ title: Mobile Strategy
 type: topic
 slug: mobile-strategy
 date: 2026-05-24
-updated: 2026-05-24
+updated: 2026-05-26
 belongs_to: [niko]
 source: synthesis
 status: active
@@ -12,7 +12,7 @@ related: [vietnamy-app, payment-strategy, 2026-05-24-capacitor-mobile-path]
 ---
 
 ## Summary
-Vietnamy will ship to the iOS App Store and Google Play via Capacitor — wrapping the existing React/Vite PWA in a native shell. Native development is deferred until the web app is feature-complete; the current PWA at `vietnamy.tecxmate.com` is the de facto product and design document. Capacitor preserves the codebase, ships in days not months, and trades a slight loss in "native feel" for a massive gain in maintenance simplicity for a solo founder.
+Vietnamy will ship to the iOS App Store and Google Play via Capacitor — wrapping the existing React/Vite PWA in a native shell. The first Capacitor bootstrap is now underway on branch `mobile/capacitor-bootstrap`; Android debug builds compile successfully, while iOS build verification is blocked until full Xcode is installed. Capacitor preserves the codebase, ships in days not months, and trades a slight loss in "native feel" for a massive gain in maintenance simplicity for a solo founder.
 
 ## Path comparison
 
@@ -38,22 +38,53 @@ Vietnamy will ship to the iOS App Store and Google Play via Capacitor — wrappi
 
 ## Constraints to keep in mind while finishing the web app
 - **Avoid browser-only APIs** that have no WebView equivalent.
-- **Keep API calls relative-pathed** (`/api/tts`). Capacitor rewrites these at build time without code changes.
+- **Route API calls through `src/utils/apiUrl.js`**. Web/local builds can keep relative `/api/...`; packaged native builds need `VITE_API_BASE_URL` set to the deployed backend origin before `npm run cap:sync`.
 - **Avoid bleeding-edge CSS** that iOS WebView lags on (currently fine — no container queries or new color functions in use).
 - **Don't depend on URL bar or history.state hacks** — Capacitor's address bar is hidden.
 
-## Shipping checklist (when ready)
-1. `npx cap init`, `npx cap add ios`, `npx cap add android`.
-2. Point Capacitor at the `dist/` build.
-3. Configure deep links for Supabase OAuth callback.
-4. Wire `@capacitor/push-notifications` to replace the service worker.
-5. Set up App Store Connect + Google Play Console listings.
-6. Wire IAP (see [payment-strategy]).
-7. TestFlight + Play internal track for beta.
-8. Public release.
+## Current bootstrap status
+- Capacitor 8 installed and configured with app id `com.tecxmate.vietnamy`.
+- Native projects exist in `ios/` and `android/`.
+- Android microphone permission and iOS microphone usage description are declared for pronunciation recording.
+- `npm run build` passes.
+- `npx cap sync` passes.
+- Android debug build passes: `cd android && ./gradlew assembleDebug`.
+- Debug APK path: `android/app/build/outputs/apk/debug/app-debug.apk` (`7.0M`).
+- Local Android tooling footprint installed during bootstrap:
+  - Temurin JDK 21: `336M`.
+  - Android SDK packages: `546M`.
+  - Gradle cache: `1.0G`.
+
+## Android device testing
+Install the current debug build on a USB-debugging-enabled device:
+
+```bash
+adb install -r android/app/build/outputs/apk/debug/app-debug.apk
+```
+
+For backend-dependent testing, rebuild with the deployed backend origin first:
+
+```bash
+VITE_API_BASE_URL=https://your-api-host.example npm run cap:sync
+cd android
+./gradlew assembleDebug
+adb install -r app/build/outputs/apk/debug/app-debug.apk
+```
+
+## Shipping checklist
+1. Smoke-test Android on a real device: startup, lesson navigation, dictionary, TTS, microphone recording, pronunciation scoring, audio playback.
+2. Install full Xcode and select it with `sudo xcode-select -s /Applications/Xcode.app/Contents/Developer`.
+3. Build and smoke-test iOS via Xcode.
+4. Configure deep links for Supabase OAuth callback.
+5. Wire `@capacitor/push-notifications` to replace the service worker.
+6. Replace default Capacitor icons/splash assets with Vietnamy assets.
+7. Set up App Store Connect + Google Play Console listings.
+8. Wire IAP (see [payment-strategy]).
+9. TestFlight + Play internal track for beta.
+10. Public release.
 
 The PWA at `vietnamy.tecxmate.com` continues to serve users who don't want a native install.
 
 ## Open questions
-- Timing — explicitly deferred. Niko will revisit after the web app is feature-complete and a small paying user base exists.
-- Whether to ship Android first (faster review, lower barrier) or iOS first (better learner-app market).
+- Whether to ship Android first now that debug builds compile locally.
+- Which deployed API origin should be used for native testing (`VITE_API_BASE_URL`).

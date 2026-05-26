@@ -1,3 +1,5 @@
+import { apiUrl } from './apiUrl';
+
 const PUSH_DEVICE_ID_KEY = 'vnme_push_device_id';
 
 function getPushDeviceId() {
@@ -49,7 +51,7 @@ export async function enablePushReminders({ userId = 'anonymous', userName = '' 
         return { ok: false, status: 'unsupported', message: 'Push reminders need an installed PWA or a supported browser.' };
     }
 
-    const keyResponse = await fetch('/api/push/vapid-public-key');
+    const keyResponse = await fetch(apiUrl('/api/push/vapid-public-key'));
     const keyData = await keyResponse.json();
     if (!keyData.enabled || !keyData.publicKey) {
         return { ok: false, status: 'server-missing-key', message: 'Push reminders need VAPID keys on the server.' };
@@ -66,7 +68,7 @@ export async function enablePushReminders({ userId = 'anonymous', userName = '' 
         applicationServerKey: urlBase64ToUint8Array(keyData.publicKey),
     });
 
-    const response = await fetch('/api/push/subscribe', {
+    const response = await fetch(apiUrl('/api/push/subscribe'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -90,7 +92,7 @@ export function trackPushReturnFromUrl(userId = 'anonymous') {
     const notificationId = params.get('notification');
     if (!notificationId) return;
 
-    fetch('/api/push/events', {
+    fetch(apiUrl('/api/push/events'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

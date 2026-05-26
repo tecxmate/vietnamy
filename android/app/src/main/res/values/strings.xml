@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Vietnamy</string>
+    <string name="title_activity_main">Vietnamy</string>
+    <string name="package_name">com.tecxmate.vietnamy</string>
+    <string name="custom_url_scheme">com.tecxmate.vietnamy</string>
+</resources>

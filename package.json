@@ -15,9 +15,20 @@
     "curriculum:build": "node scripts/build-unified-db.js && npm run validate:curriculum",
     "curriculum:export": "npm run validate:curriculum && node scripts/export-sqlite.js",
     "validate:curriculum": "node scripts/validate-curriculum.js",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "cap:sync": "npm run build && npx cap sync",
+    "cap:sync:mobile": "VITE_API_BASE_URL=https://vietnamy.tecxmate.com npm run cap:sync",
+    "cap:open:ios": "npx cap open ios",
+    "cap:open:android": "npx cap open android",
+    "cap:run:ios": "npm run build && npx cap run ios",
+    "cap:run:android": "npm run build && npx cap run android",
+    "cap:android:debug": "VITE_API_BASE_URL=https://vietnamy.tecxmate.com npm run cap:sync && cd android && ./gradlew assembleDebug"
   },
   "dependencies": {
+    "@capacitor/android": "^8.3.4",
+    "@capacitor/cli": "^8.3.4",
+    "@capacitor/core": "^8.3.4",
+    "@capacitor/ios": "^8.3.4",
     "@supabase/supabase-js": "^2.99.3",
     "better-sqlite3": "^12.6.2",
     "cors": "^2.8.5",

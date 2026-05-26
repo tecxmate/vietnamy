@@ -108,3 +108,12 @@ attributed_to: [claude-opus]   belongs_to: [vietnamy-app]
 - Populated the wiki with Vietnamy-specific stakeholders ([niko], [claude-opus]) and a baseline topic graph: [vietnamy-app], [tts-pipeline], [pronunciation-assessment], [curriculum-paths], [skill-tree], [tone-trainer], [bucket-storage], [backups-recovery], [mobile-strategy], [payment-strategy].
 - Migrated content from `docs/tts-cache.md` and the in-conversation context. The deep TTS doc stays canonical; topic pages summarize and link to it.
 - Recorded 8 decisions covering all major architectural choices made in the 2026-05-23/24 working session.
+
+## [2026-05-26] external | Capacitor Android bootstrap verified
+attributed_to: [codex, niko]   belongs_to: [mobile-strategy]
+- Started Capacitor bootstrap on branch `mobile/capacitor-bootstrap`.
+- Added Capacitor 8, generated `ios/` and `android/`, and added `VITE_API_BASE_URL` support through `src/utils/apiUrl.js`.
+- Android debug build passes with `cd android && ./gradlew assembleDebug`; APK is `android/app/build/outputs/apk/debug/app-debug.apk` (`7.0M`).
+- Local Android tooling installed: Temurin JDK 21 (`336M`), Android SDK packages (`546M`), Gradle cache (`1.0G`).
+- iOS project exists, but native build is blocked until full Xcode is installed and selected.
+- Pages: [decision](decisions/2026-05-24-capacitor-mobile-path.md), [topic](topics/mobile-strategy.md).

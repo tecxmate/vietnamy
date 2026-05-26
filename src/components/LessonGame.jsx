@@ -6,6 +6,7 @@ import { useProgress } from '../context/ProgressContext';
 import { useUser } from '../context/UserContext';
 import { getNodeByLessonId, getLessonBlueprint, getExercisesGenerated, getNextNode, getNodeRoute } from '../lib/db';
 import speak, { preloadSpeak, scheduleSpeak, clearSpeakQueue } from '../utils/speak';
+import { apiUrl } from '../utils/apiUrl';
 import { startPCMRecording } from '../utils/recordPCM';
 import { addItemsFromLesson, recordReview } from '../lib/srs';
 import { recordExerciseResult, extractItemIds } from '../lib/wordGrades';
@@ -389,7 +390,7 @@ const LessonGame = () => {
                     return;
                 }
                 const refText = currentEx?.prompt?.target_vi || '';
-                const r = await fetch(`/api/pronunciation?text=${encodeURIComponent(refText)}`, {
+                const r = await fetch(apiUrl(`/api/pronunciation?text=${encodeURIComponent(refText)}`), {
                     method: 'POST',
                     headers: { 'Content-Type': 'audio/wav' },
                     body: blob,

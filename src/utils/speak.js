@@ -1,4 +1,6 @@
 // Speak text through the server TTS proxy with the configured voice provider.
+import { apiUrl } from './apiUrl';
+
 let currentAudio = null;
 let lastSpeakTime = 0;
 const SPEAK_COOLDOWN = 50; // ms — ignore only true double-fires
@@ -48,7 +50,7 @@ const isSystemAudioEnabled = () => {
 export const buildTtsUrl = (text, lang = 'vi', voiceOverride = null) => {
     const voice = voiceOverride || loadTtsVoice();
     const cacheKey = `tts-v10-voice-preview-${voice}`;
-    return `/api/tts?text=${encodeURIComponent(text)}&lang=${encodeURIComponent(lang)}&voice=${encodeURIComponent(voice)}&ck=${encodeURIComponent(cacheKey)}`;
+    return apiUrl(`/api/tts?text=${encodeURIComponent(text)}&lang=${encodeURIComponent(lang)}&voice=${encodeURIComponent(voice)}&ck=${encodeURIComponent(cacheKey)}`);
 };
 
 const getPlaybackOptions = (rate, lang) => ({

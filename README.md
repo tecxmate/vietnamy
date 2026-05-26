@@ -38,6 +38,30 @@ npm run dev:server   # Backend  — localhost:3001
 | `npm start` | Start production server |
 | `npm run lint` | Run ESLint |
 | `npm run preview` | Preview production build locally |
+| `npm run cap:sync` | Build web assets and sync them into iOS/Android |
+| `npm run cap:open:ios` | Open the iOS Capacitor project in Xcode |
+| `npm run cap:open:android` | Open the Android Capacitor project in Android Studio |
+| `npm run cap:run:ios` | Build and run the iOS app through Capacitor |
+| `npm run cap:run:android` | Build and run the Android app through Capacitor |
+
+## Mobile Apps
+
+Vietnamy uses Capacitor for native iOS and Android distribution. The shared React/Vite app remains in `src/`; native platform code lives in `ios/` and `android/`.
+
+For web and local Vite development, API calls stay relative (`/api/...`) and Vite proxies them to `localhost:3001`. For packaged iOS/Android builds, set `VITE_API_BASE_URL` to the deployed backend origin before building, for example:
+
+```bash
+VITE_API_BASE_URL=https://your-api-host.example npm run cap:sync
+```
+
+Do not include `/api` in `VITE_API_BASE_URL`; the frontend appends the API path.
+
+For the current Vietnamy backend, use:
+
+```bash
+npm run cap:android:debug
+adb install -r android/app/build/outputs/apk/debug/app-debug.apk
+```
 
 ## Project Structure
 

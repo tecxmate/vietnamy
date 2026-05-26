@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { Search, BookA, Loader2, Volume2, Sparkles, Mic, X, ArrowLeft, Check, Bookmark, Clock, Trash2, Type, ChevronLeft, ChevronDown, BookmarkPlus } from 'lucide-react';
 import { Converter } from 'opencc-js';
 import speak from '../../utils/speak';
+import { apiUrl } from '../../utils/apiUrl';
 
 import { useUser } from '../../context/UserContext';
 import { isDictWordSaved, toggleDictSavedWord } from '../../lib/dictSavedWords';
@@ -407,7 +408,7 @@ const DictionaryTab = ({ pendingInput, clearPendingInput, onNavigateToLibrary })
     };
 
     const translateViaServer = async (text, sl = 'vi', tl = 'en') => {
-        const res = await fetch(`/api/translate?text=${encodeURIComponent(text)}&sl=${sl}&tl=${tl}`);
+        const res = await fetch(apiUrl(`/api/translate?text=${encodeURIComponent(text)}&sl=${sl}&tl=${tl}`));
         if (!res.ok) throw new Error('Server translate failed');
         const data = await res.json();
         if (data.translated) {
@@ -421,7 +422,7 @@ const DictionaryTab = ({ pendingInput, clearPendingInput, onNavigateToLibrary })
     const fetchSuggestionsImmediate = useCallback(async (val) => {
         if (val.trim().length < 2) { setSuggestions([]); return; }
         try {
-            const res = await fetch(`/api/suggest?q=${encodeURIComponent(val.trim())}`);
+            const res = await fetch(apiUrl(`/api/suggest?q=${encodeURIComponent(val.trim())}`));
             if (res.ok) setSuggestions(await res.json());
         } catch { /* silently ignore */ }
     }, []);
@@ -513,8 +514,8 @@ const DictionaryTab = ({ pendingInput, clearPendingInput, onNavigateToLibrary })
             const enc = encodeURIComponent(word.trim());
 
             const fetches = [
-                fetch(`/api/search?q=${enc}&lang=en`),
-                fetch(`/api/search?q=${enc}&lang=zh-s`),
+                fetch(apiUrl(`/api/search?q=${enc}&lang=en`)),
+                fetch(apiUrl(`/api/search?q=${enc}&lang=zh-s`)),
             ];
             const responses = await Promise.all(fetches);
             if (responses.some(r => !r.ok)) throw new Error('Search failed');

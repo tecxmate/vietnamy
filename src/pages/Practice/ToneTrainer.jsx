@@ -1,7 +1,8 @@
-import { useState, useEffect, useMemo, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Mic, MicOff, Volume2, ArrowLeft, RotateCw, Trophy, ChevronRight } from 'lucide-react';
 import speak from '../../utils/speak';
+import { apiUrl } from '../../utils/apiUrl';
 import { startPCMRecording } from '../../utils/recordPCM';
 import { playSuccess, playError } from '../../utils/sound';
 import { TONE_TRAINER_PAIRS as MINIMAL_PAIRS } from '../../data/toneTrainerData';
@@ -87,7 +88,7 @@ export default function ToneTrainer() {
                     setScoring(false);
                     return;
                 }
-                const res = await fetch(`/api/pronunciation?text=${encodeURIComponent(current.target.word)}`, {
+                const res = await fetch(apiUrl(`/api/pronunciation?text=${encodeURIComponent(current.target.word)}`), {
                     method: 'POST',
                     headers: { 'Content-Type': 'audio/wav' },
                     body: blob,

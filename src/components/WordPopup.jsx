@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Volume2, ArrowRight, Bookmark } from 'lucide-react';
 import speak from '../utils/speak';
+import { apiUrl } from '../utils/apiUrl';
 import { useT } from '../lib/i18n';
 
 const popupCache = new Map();
@@ -28,7 +29,7 @@ const WordPopup = ({ word, anchorRect, dictMode, onClose, onNavigate, isPhrase, 
 
         const fetchTranslate = () => {
             const tl = lang === 'zh-s' ? 'zh-CN' : lang === 'zh-t' ? 'zh-TW' : 'en';
-            fetch(`/api/translate?text=${encodeURIComponent(word)}&sl=vi&tl=${encodeURIComponent(tl)}`)
+            fetch(apiUrl(`/api/translate?text=${encodeURIComponent(word)}&sl=vi&tl=${encodeURIComponent(tl)}`))
                 .then(r => r.ok ? r.json() : Promise.reject())
                 .then(tr => {
                     if (cancelled) return;
@@ -56,7 +57,7 @@ const WordPopup = ({ word, anchorRect, dictMode, onClose, onNavigate, isPhrase, 
             fetchTranslate();
         } else {
             // Single word → try dictionary first, fallback to GT
-            fetch(`/api/word-popup?q=${encodeURIComponent(word)}&lang=${encodeURIComponent(lang)}`)
+            fetch(apiUrl(`/api/word-popup?q=${encodeURIComponent(word)}&lang=${encodeURIComponent(lang)}`))
                 .then(r => r.json())
                 .then(result => {
                     if (cancelled) return;
