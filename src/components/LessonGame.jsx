@@ -39,6 +39,32 @@ function scoreFg(v, errorType) {
     return scoreColor(v);
 }
 
+function collectExerciseAudioTexts(exercise) {
+    const prompt = exercise?.prompt;
+    if (!prompt) return [];
+
+    const texts = [
+        prompt.audio_text,
+        prompt.source_text_vi,
+        prompt.target_vi,
+        prompt.answer_vi,
+        prompt.answer_tokens?.join(' '),
+        prompt.audio_vi,
+    ];
+
+    if (Array.isArray(prompt.tokens)) texts.push(...prompt.tokens);
+    if (Array.isArray(prompt.choices_vi)) texts.push(...prompt.choices_vi);
+    if (Array.isArray(prompt.pairs)) {
+        prompt.pairs.forEach(pair => texts.push(pair.vi));
+    }
+
+    if (exercise.exercise_type === 'fill_blank' && Array.isArray(prompt.choices_vi)) {
+        prompt.choices_vi.forEach(choice => texts.push(buildFillBlankSentence(prompt, choice)));
+    }
+
+    return [...new Set(texts.filter(text => typeof text === 'string' && text.trim().length > 0))];
+}
+
 const LessonGame = () => {
     const { lessonId } = useParams();
     const navigate = useNavigate();
@@ -167,8 +193,9 @@ const LessonGame = () => {
             if (exercise && ['reorder_words', 'translation_word_bank'].includes(exercise.exercise_type)) {
                 setDraggedItemIndex(null);
                 setDropTargetIndex(null);
-                preloadSpeak(exercise.prompt.tokens);
             }
+
+            preloadSpeak(collectExerciseAudioTexts(exercise));
 
             if (exercise?.exercise_type === 'speak_sentence') {
                 setIsRecording(false);
@@ -201,6 +228,7 @@ const LessonGame = () => {
             console.warn(`No exercises found for ${lessonId}`);
         }
         setExercises(loaded);
+        preloadSpeak(loaded.flatMap(collectExerciseAudioTexts));
 
         // Find the roadmap node for this lesson
         if (node) {
@@ -229,6 +257,7 @@ const LessonGame = () => {
             setShowWordIntro(steps.length > 0);
             setCurrentIntroStep(0);
             const viTexts = blueprint.words.map(w => w.vietnamese);
+            preloadSpeak(viTexts);
             lookupWords(viTexts).then(info => setDictInfo(info));
         } else {
             setShowWordIntro(false);
@@ -248,9 +277,9 @@ const LessonGame = () => {
         if (!currentEx) return;
         const { exercise_type, prompt } = currentEx;
         if (exercise_type === 'listen_type' || exercise_type === 'listen_choose') {
-            if (prompt.audio_text) scheduleSpeak(prompt.audio_text, 300);
+            if (prompt.audio_text) scheduleSpeak(prompt.audio_text, 100);
         } else if (exercise_type === 'mcq_translate_to_en') {
-            if (prompt.source_text_vi) scheduleSpeak(prompt.source_text_vi, 300);
+            if (prompt.source_text_vi) scheduleSpeak(prompt.source_text_vi, 100);
         }
     }, [currentIndex]);
 
@@ -259,7 +288,7 @@ const LessonGame = () => {
         if (showWordIntro && introSteps.length > 0) {
             const step = introSteps[currentIntroStep];
             if (step?.type === 'vocab' && step.word?.vietnamese) {
-                scheduleSpeak(step.word.vietnamese, 300);
+                scheduleSpeak(step.word.vietnamese, 100);
             }
         }
     }, [currentIntroStep, showWordIntro]);
@@ -479,7 +508,7 @@ const LessonGame = () => {
         if (correct) {
             playSuccess();
             const completedSentence = getCompletedSentenceAudio(currentEx);
-            if (completedSentence) scheduleSpeak(completedSentence, 300);
+            if (completedSentence) scheduleSpeak(completedSentence, 100);
             setScore(s => s + 1);
             const newStreak = currentStreak + 1;
             setCurrentStreak(newStreak);
