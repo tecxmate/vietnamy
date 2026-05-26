@@ -659,7 +659,7 @@ const LessonGame = () => {
         return (
             <div style={{ display: 'flex', flexDirection: 'column', height: '100%', backgroundColor: 'var(--bg-color)', color: 'var(--text-main)' }}>
                 {/* Top Bar */}
-                <div style={{ padding: '16px 24px', display: 'flex', alignItems: 'center', gap: 16 }}>
+                <div style={{ padding: 'calc(16px + var(--safe-area-top)) calc(24px + var(--safe-area-right)) 16px calc(24px + var(--safe-area-left))', display: 'flex', alignItems: 'center', gap: 16 }}>
                     <button className="ghost" onClick={() => setShowWordIntro(false)} style={{ padding: 8 }}>
                         <X size={24} color="var(--text-muted)" />
                     </button>
@@ -702,7 +702,7 @@ const LessonGame = () => {
                 </div>
 
                 {/* Bottom navigation */}
-                <div style={{ padding: '24px 16px', borderTop: '2px solid var(--border-color)', backgroundColor: 'var(--surface-color)', minHeight: 120, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                <div style={{ padding: '24px calc(16px + var(--safe-area-right)) calc(24px + var(--safe-area-bottom)) calc(16px + var(--safe-area-left))', borderTop: '2px solid var(--border-color)', backgroundColor: 'var(--surface-color)', minHeight: 'calc(120px + var(--safe-area-bottom))', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                     <SoundButton
                         className="primary shadow-lg"
                         style={{ width: '100%', fontSize: 18, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, height: 56 }}
@@ -722,7 +722,7 @@ const LessonGame = () => {
                 minHeight: '100vh', display: 'flex', flexDirection: 'column',
                 alignItems: 'center', justifyContent: 'center',
                 backgroundColor: 'var(--bg-color)', color: 'var(--text-main)',
-                padding: '40px 24px', gap: 24,
+                padding: 'calc(40px + var(--safe-area-top)) calc(24px + var(--safe-area-right)) calc(40px + var(--safe-area-bottom)) calc(24px + var(--safe-area-left))', gap: 24,
             }}>
                 {/* Trophy */}
                 <div style={{
@@ -1275,7 +1275,7 @@ const LessonGame = () => {
         <div style={{ display: 'flex', flexDirection: 'column', height: '100%', backgroundColor: 'var(--bg-color)', color: 'var(--text-main)', '--accent-color': 'var(--primary-color)' }}>
 
             {/* Top Bar Navigation */}
-            <div style={{ padding: '16px 24px', display: 'flex', alignItems: 'center', gap: 16 }}>
+            <div style={{ padding: 'calc(16px + var(--safe-area-top)) calc(24px + var(--safe-area-right)) 16px calc(24px + var(--safe-area-left))', display: 'flex', alignItems: 'center', gap: 16 }}>
                 <button className="ghost" onClick={() => setShowQuitConfirm(true)} style={{ padding: 8 }}>
                     <X size={24} color="var(--text-muted)" />
                 </button>
@@ -1288,7 +1288,7 @@ const LessonGame = () => {
             </div>
 
             {/* Main Content Area */}
-            <div style={{ flex: 1, overflowY: 'auto', padding: '0 24px 24px 24px', display: 'flex', flexDirection: 'column' }}>
+            <div style={{ flex: 1, overflowY: 'auto', padding: '0 calc(24px + var(--safe-area-right)) 24px calc(24px + var(--safe-area-left))', display: 'flex', flexDirection: 'column' }}>
                 <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                     {hearts === 0 ? (
                         <div style={{ textAlign: 'center' }}>
@@ -1303,11 +1303,11 @@ const LessonGame = () => {
 
             {/* Bottom Checking Bar */}
             <div style={{
-                padding: '24px 16px',
+                padding: '24px calc(16px + var(--safe-area-right)) calc(24px + var(--safe-area-bottom)) calc(16px + var(--safe-area-left))',
                 borderTop: '2px solid var(--border-color)',
                 backgroundColor: isChecking ? (isCorrect ? 'var(--lesson-correct-fill)' : 'var(--lesson-error-fill)') : 'var(--surface-color)',
                 transition: 'background-color 0.2s',
-                minHeight: 140,
+                minHeight: 'calc(140px + var(--safe-area-bottom))',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'center'

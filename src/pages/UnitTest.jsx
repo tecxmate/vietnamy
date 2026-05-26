@@ -625,9 +625,9 @@ const UnitTest = () => {
     };
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', height: '100dvh', backgroundColor: 'var(--bg-color)', color: 'var(--text-main)' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', height: '100%', minHeight: '100dvh', backgroundColor: 'var(--bg-color)', color: 'var(--text-main)' }}>
             {/* Top bar */}
-            <div style={{ padding: '16px 24px', display: 'flex', alignItems: 'center', gap: 16 }}>
+            <div style={{ padding: 'calc(16px + var(--safe-area-top)) calc(24px + var(--safe-area-right)) 16px calc(24px + var(--safe-area-left))', display: 'flex', alignItems: 'center', gap: 16 }}>
                 <button className="ghost" onClick={() => navigate('/', { state: { tab: 'study' } })} style={{ padding: 8 }}>
                     <X size={24} color="var(--text-muted)" />
                 </button>
@@ -640,7 +640,7 @@ const UnitTest = () => {
             </div>
 
             {/* Main content */}
-            <div style={{ flex: 1, overflowY: 'auto', padding: '0 24px 24px', display: 'flex', flexDirection: 'column' }}>
+            <div style={{ flex: 1, overflowY: 'auto', padding: '0 calc(24px + var(--safe-area-right)) 24px calc(24px + var(--safe-area-left))', display: 'flex', flexDirection: 'column' }}>
                 <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                     {hearts === 0 ? (
                         <div style={{ textAlign: 'center' }}>
@@ -653,11 +653,11 @@ const UnitTest = () => {
 
             {/* Bottom check bar */}
             <div style={{
-                padding: '24px 16px',
+                padding: '24px calc(16px + var(--safe-area-right)) calc(24px + var(--safe-area-bottom)) calc(16px + var(--safe-area-left))',
                 borderTop: '2px solid var(--border-color)',
                 backgroundColor: isChecking ? (isCorrect ? 'rgba(6, 214, 160, 0.1)' : 'rgba(239, 71, 111, 0.1)') : 'var(--surface-color)',
                 transition: 'background-color 0.2s',
-                minHeight: 140,
+                minHeight: 'calc(140px + var(--safe-area-bottom))',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'center'

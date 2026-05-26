@@ -3,7 +3,7 @@
    ═══════════════════════════════════════════════════════════ */
 
 .lib-landing {
-    padding: 0 0 148px;
+    padding: 0 0 calc(148px + var(--safe-area-bottom));
     /* extra space for type bar + bottom nav */
     min-height: 100%;
     position: relative;
@@ -30,11 +30,12 @@
 /* ─── Primary Type Bar (floating pill) ──────────────────── */
 .lib-type-bar {
     position: fixed;
-    left: 50%;
-    bottom: calc(56px + env(safe-area-inset-bottom, 0px) + 12px);
-    transform: translateX(-50%);
-    width: calc(100vw - 32px);
+    left: calc(16px + var(--safe-area-left));
+    right: calc(16px + var(--safe-area-right));
+    bottom: calc(var(--bottom-nav-height) + 12px);
+    width: auto;
     max-width: 448px;
+    margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: space-around;

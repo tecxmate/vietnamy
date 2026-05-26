@@ -304,7 +304,7 @@ const TopBar = ({ activeTab, subtitleOverride }) => {
 
                     {/* Left panel */}
                     <div style={{
-                        position: 'fixed', top: 0, left: 0, bottom: 0,
+                        position: 'fixed', top: 'var(--safe-area-top)', left: 'var(--safe-area-left)', bottom: 'var(--safe-area-bottom)',
                         width: 'min(92vw, 360px)',
                         background: 'var(--bg-color)',
                         borderRight: '1px solid var(--border-color)',
