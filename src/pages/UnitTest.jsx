@@ -6,7 +6,6 @@ import { useProgress } from '../context/ProgressContext';
 import { useUser } from '../context/UserContext';
 import speak, { scheduleSpeak, clearSpeakQueue } from '../utils/speak';
 import { loadSettings } from '../lib/settings';
-import { checkVietnameseInput } from '../utils/fuzzyVietnamese';
 import { playSuccess, playError } from '../utils/sound';
 import SoundButton from '../components/SoundButton';
 import {
@@ -19,6 +18,7 @@ import {
     ProgressBar,
     ReorderWords,
 } from '../components/Exercise';
+import useQuizSession, { getCompletedSentenceAudio } from '../hooks/useQuizSession';
 import { DEFAULT_LEARNER_MODE, getProgressMode } from '../data/learnerModes';
 import { useT } from '../lib/i18n';
 import '../components/LessonGame.css';
@@ -49,24 +49,11 @@ const UnitTest = () => {
     const [exercises, setExercises] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
     const testMode = loadSettings().testMode === true;
-    const [selectedAnswer, setSelectedAnswer] = useState(null);
-    const [isChecking, setIsChecking] = useState(false);
-    const [isCorrect, setIsCorrect] = useState(null);
     const [isFinished, setIsFinished] = useState(false);
     const [score, setScore] = useState(0);
 
     // Hearts disabled (was from DongContext, now simplified)
     const hearts = Infinity;
-
-    // Reorder state
-    const [orderedTokens, setOrderedTokens] = useState([]);
-    const [availableTokens, setAvailableTokens] = useState([]);
-
-    // New exercise type state
-    const [typedAnswer, setTypedAnswer] = useState('');
-    const [imageError, setImageError] = useState(false);
-    const [speechResult, setSpeechResult] = useState('');
-    const [fuzzyHint, setFuzzyHint] = useState(null);
 
     const rewardGivenRef = React.useRef(false);
 
@@ -77,19 +64,50 @@ const UnitTest = () => {
         clearSpeakQueue({ stopCurrent: true });
     }, []);
 
+    const currentEx = exercises[currentIndex];
+    const progress = exercises.length > 0 ? (currentIndex / exercises.length) * 100 : 0;
+
+    const {
+        selectedAnswer,
+        setSelectedAnswer,
+        isChecking,
+        isCorrect,
+        orderedTokens,
+        availableTokens,
+        typedAnswer,
+        setTypedAnswer,
+        speechResult,
+        setSpeechResult,
+        fuzzyHint,
+        imageError,
+        setImageError,
+        resetSessionState,
+        checkCurrentExercise,
+        canCheck,
+        completeMatch,
+        handleReorderToggle: handleSharedReorderToggle,
+    } = useQuizSession({
+        currentExercise: currentEx,
+        resetKey: currentIndex,
+        onExerciseReset: React.useCallback((exercise) => {
+            stopTestAudio();
+            if (!exercise) return;
+            const { exercise_type: type, prompt } = exercise;
+            if (type === 'listen_type' || type === 'listen_choose') {
+                if (prompt.audio_text) scheduleSpeak(prompt.audio_text, 300);
+            } else if (type === 'mcq_translate_to_en') {
+                if (prompt.source_text_vi) scheduleSpeak(prompt.source_text_vi, 300);
+            }
+        }, [stopTestAudio]),
+    });
+
     useEffect(() => {
         stopTestAudio();
         // Reset all state on every navigation (including retry)
         setCurrentIndex(0);
-        setSelectedAnswer(null);
-        setIsChecking(false);
-        setIsCorrect(null);
         setIsFinished(false);
         setScore(0);
-        setTypedAnswer('');
-        setFuzzyHint(null);
-        setSpeechResult('');
-        setImageError(false);
+        resetSessionState();
         rewardGivenRef.current = false;
 
         const node = getNodeById(nodeId);
@@ -110,7 +128,7 @@ const UnitTest = () => {
             setNextNodeRoute(getNodeRoute(next));
         }
         return stopTestAudio;
-    }, [nodeId, location.key, stopTestAudio]);
+    }, [nodeId, location.key, resetSessionState, stopTestAudio]);
 
     const passed = exercises.length > 0 && (score / exercises.length) >= PASS_THRESHOLD;
 
@@ -121,61 +139,12 @@ const UnitTest = () => {
         }
     }, [isFinished, passed]);
 
-    const currentEx = exercises[currentIndex];
-    const progress = exercises.length > 0 ? (currentIndex / exercises.length) * 100 : 0;
-
-    useEffect(() => {
-        stopTestAudio();
-        setSelectedAnswer(null);
-        setIsChecking(false);
-        setIsCorrect(null);
-        setTypedAnswer('');
-        setFuzzyHint(null);
-        setSpeechResult('');
-        setImageError(false);
-        if (currentEx && ['reorder_words', 'translation_word_bank'].includes(currentEx.exercise_type)) {
-            setAvailableTokens([...currentEx.prompt.tokens].sort(() => Math.random() - 0.5));
-            setOrderedTokens([]);
-        }
-        // Auto-play audio for exercises that present Vietnamese text
-        if (currentEx) {
-            const { exercise_type: et, prompt: p } = currentEx;
-            if (et === 'listen_type' || et === 'listen_choose') {
-                if (p.audio_text) scheduleSpeak(p.audio_text, 300);
-            } else if (et === 'mcq_translate_to_en') {
-                if (p.source_text_vi) scheduleSpeak(p.source_text_vi, 300);
-            }
-        }
-    }, [currentIndex, currentEx, stopTestAudio]);
-
     const handleCheck = () => {
         if (!currentEx) return;
-        let correct = false;
+        const result = checkCurrentExercise();
+        if (!result.handled) return;
 
-        if (currentEx.exercise_type === 'mcq_translate_to_vi') correct = selectedAnswer === currentEx.prompt.answer_vi;
-        else if (currentEx.exercise_type === 'mcq_translate_to_en') correct = selectedAnswer === currentEx.prompt.answer_en;
-        else if (currentEx.exercise_type === 'listen_choose') correct = selectedAnswer === currentEx.prompt.answer_vi;
-        else if (currentEx.exercise_type === 'picture_choice') correct = selectedAnswer === currentEx.prompt.answer_vi;
-        else if (currentEx.exercise_type === 'reorder_words' || currentEx.exercise_type === 'translation_word_bank') {
-            const userStr = orderedTokens.join(' ');
-            const ansStr = currentEx.prompt.answer_tokens.join(' ');
-            correct = userStr === ansStr || userStr.replace(/\s*[.!?]+$/g, '') === ansStr.replace(/\s*[.!?]+$/g, '');
-        }
-        else if (currentEx.exercise_type === 'fill_blank') correct = selectedAnswer === currentEx.prompt.answer_vi;
-        else if (currentEx.exercise_type === 'match_pairs') return;
-        else if (currentEx.exercise_type === 'listen_type') {
-            const result = checkVietnameseInput(typedAnswer, currentEx.prompt.answer_vi, currentEx.prompt.answer_vi_no_diacritics);
-            correct = result.fuzzy;
-            if (correct && !result.exact) setFuzzyHint(currentEx.prompt.answer_vi);
-        } else if (currentEx.exercise_type === 'speak_sentence') {
-            const result = checkVietnameseInput(speechResult || typedAnswer, currentEx.prompt.answer_vi, currentEx.prompt.answer_vi_no_diacritics);
-            correct = result.fuzzy;
-            if (correct && !result.exact) setFuzzyHint(currentEx.prompt.answer_vi);
-        }
-        else correct = true;
-
-        setIsCorrect(correct);
-        setIsChecking(true);
+        const { correct } = result;
         if (correct) {
             playSuccess();
             const completedSentence = getCompletedSentenceAudio(currentEx);
@@ -204,33 +173,13 @@ const UnitTest = () => {
         }
     };
 
-    const canCheck = () => {
-        if (!currentEx) return false;
-        if (currentEx.exercise_type === 'match_pairs') return false;
-        if (['reorder_words', 'translation_word_bank'].includes(currentEx.exercise_type)) return orderedTokens.length > 0;
-        if (currentEx.exercise_type === 'listen_type') return typedAnswer.trim().length > 0;
-        if (currentEx.exercise_type === 'speak_sentence') return (speechResult || typedAnswer).trim().length > 0;
-        return selectedAnswer !== null && selectedAnswer !== '';
-    };
-
     const handleReorderToggle = (word, index, source) => {
         if (isChecking) return;
         speak(word);
-        if (source === 'selected') {
-            const next = [...orderedTokens];
-            next.splice(index, 1);
-            setOrderedTokens(next);
-            return;
-        }
-        setOrderedTokens([...orderedTokens, word]);
+        handleSharedReorderToggle(word, index, source);
     };
 
     const handlePlayAudio = (text) => { if (text) speak(text); };
-
-    const getCompletedSentenceAudio = (exercise) => {
-        if (!exercise || !['reorder_words', 'translation_word_bank'].includes(exercise.exercise_type)) return '';
-        return exercise.prompt?.answer_vi || exercise.prompt?.answer_tokens?.join(' ') || '';
-    };
 
     useEffect(() => {
         const onKey = (e) => {
@@ -467,8 +416,7 @@ const UnitTest = () => {
                             key={currentEx.id || `${currentIndex}-${exercise_type}`}
                             pairs={prompt.pairs || []}
                             onComplete={() => {
-                                setIsCorrect(true);
-                                setIsChecking(true);
+                                completeMatch();
                                 setScore(s => s + 1);
                             }}
                         />

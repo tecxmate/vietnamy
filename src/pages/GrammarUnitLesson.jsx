@@ -258,18 +258,14 @@ function renderExercise(exercise, selectedAnswer, onSelect, isChecking, isCorrec
                 shuffledWords={prompt.words_shuffled}
                 hintText={prompt.hint_en}
                 selectedWords={reorderWords}
-                onToggleWord={(word, idx) => {
+                onToggleWord={(word, idx, source) => {
                     if (isChecking) return;
-                    // Check if removing from selected or adding from bank
-                    const selectedIdx = reorderWords.indexOf(word);
-                    if (selectedIdx !== -1 && idx === selectedIdx) {
-                        // Remove from selected
+                    if (source === 'selected') {
                         const newSelected = [...reorderWords];
                         newSelected.splice(idx, 1);
                         setReorderWords(newSelected);
                         onSelect(newSelected.join(' '));
                     } else {
-                        // Add to selected
                         const newSelected = [...reorderWords, word];
                         setReorderWords(newSelected);
                         onSelect(newSelected.join(' '));

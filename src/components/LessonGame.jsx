@@ -10,12 +10,12 @@ import { startPCMRecording } from '../utils/recordPCM';
 import { addItemsFromLesson, recordReview } from '../lib/srs';
 import { recordExerciseResult, extractItemIds } from '../lib/wordGrades';
 import { getDB } from '../lib/db';
-import { checkVietnameseInput } from '../utils/fuzzyVietnamese';
 import { loadSettings } from '../lib/settings';
 import { fireNotification } from '../context/NotificationContext';
 import { playSuccess, playError } from '../utils/sound';
 import SoundButton from './SoundButton';
 import { MCQOptions, MatchPairs, FeedbackBanner, ProgressBar, buildFillBlankSentence, getFillBlankCorrectSentence } from './Exercise';
+import useQuizSession, { getCompletedSentenceAudio } from '../hooks/useQuizSession';
 import { DEFAULT_LEARNER_MODE, getProgressMode } from '../data/learnerModes';
 import { useT } from '../lib/i18n';
 import './LessonGame.css';
@@ -52,9 +52,6 @@ const LessonGame = () => {
     const [exercises, setExercises] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
     const testMode = loadSettings().testMode === true;
-    const [selectedAnswer, setSelectedAnswer] = useState(null);
-    const [isChecking, setIsChecking] = useState(false);
-    const [isCorrect, setIsCorrect] = useState(null);
     const [isFinished, setIsFinished] = useState(false);
 
     // Score tracking
@@ -72,8 +69,6 @@ const LessonGame = () => {
     const hearts = Infinity;
 
     // Reorder exercises
-    const [orderedTokens, setOrderedTokens] = useState([]);
-    const [availableTokens, setAvailableTokens] = useState([]);
     const [draggedItemIndex, setDraggedItemIndex] = useState(null);
     const [dropTargetIndex, setDropTargetIndex] = useState(null);
 
@@ -90,13 +85,8 @@ const LessonGame = () => {
     const [nextNodeRoute, setNextNodeRoute] = useState(null);
     const [nextNodeLabel, setNextNodeLabel] = useState('');
 
-    // Listen & Type
-    const [typedAnswer, setTypedAnswer] = useState('');
-    const [fuzzyHint, setFuzzyHint] = useState(null);
-
     // Speak Sentence
     const [isRecording, setIsRecording] = useState(false);
-    const [speechResult, setSpeechResult] = useState('');
     const [speechSupported, setSpeechSupported] = useState(true);
     const [speechError, setSpeechError] = useState('');
     const recognitionRef = useRef(null);
@@ -106,9 +96,6 @@ const LessonGame = () => {
     const [pronAssessing, setPronAssessing] = useState(false);
     const [pronResult, setPronResult] = useState(null); // { scores, words[], recognized }
     const pcmRecorderRef = useRef(null);
-
-    // Image error fallback
-    const [imageError, setImageError] = useState(false);
 
     // TappableText hint tooltip
     const [activeHintIdx, setActiveHintIdx] = useState(null);
@@ -144,23 +131,65 @@ const LessonGame = () => {
         clearSpeakQueue({ stopCurrent: true });
     }, []);
 
+    const currentEx = exercises[currentIndex];
+    const progress = exercises.length > 0 ? (currentIndex / exercises.length) * 100 : 0;
+
+    const {
+        selectedAnswer,
+        setSelectedAnswer,
+        isChecking,
+        isCorrect,
+        orderedTokens,
+        setOrderedTokens,
+        availableTokens,
+        typedAnswer,
+        setTypedAnswer,
+        speechResult,
+        setSpeechResult,
+        fuzzyHint,
+        imageError,
+        setImageError,
+        resetSessionState,
+        checkCurrentExercise,
+        canCheck: canCheckExercise,
+        completeMatch,
+    } = useQuizSession({
+        currentExercise: currentEx,
+        resetKey: currentIndex,
+        onExerciseReset: React.useCallback((exercise) => {
+            if (exercise?.exercise_type !== 'speak_sentence') {
+                stopSpeechRecognition();
+            }
+
+            stopLessonAudio();
+            setActiveHintIdx(null);
+
+            if (exercise && ['reorder_words', 'translation_word_bank'].includes(exercise.exercise_type)) {
+                setDraggedItemIndex(null);
+                setDropTargetIndex(null);
+                preloadSpeak(exercise.prompt.tokens);
+            }
+
+            if (exercise?.exercise_type === 'speak_sentence') {
+                setIsRecording(false);
+                setSpeechError('');
+                setPronResult(null);
+                setPronAssessing(false);
+            }
+        }, [stopLessonAudio, stopSpeechRecognition]),
+    });
+
     useEffect(() => {
         stopLessonAudio();
         stopSpeechRecognition();
         // Reset all state on every navigation (even same lessonId)
         setCurrentIndex(0);
-        setSelectedAnswer(null);
-        setIsChecking(false);
-        setIsCorrect(null);
         setIsFinished(false);
         setScore(0);
         setCurrentStreak(0);
         setBestStreak(0);
-        setTypedAnswer('');
-        setFuzzyHint(null);
-        setSpeechResult('');
         setIsRecording(false);
-        setImageError(false);
+        resetSessionState();
         rewardGivenRef.current = false;
 
         // Determine current session number for this lesson's node
@@ -212,48 +241,7 @@ const LessonGame = () => {
             stopSpeechRecognition();
             stopLessonAudio();
         };
-    }, [lessonId, location.key, stopSpeechRecognition, stopLessonAudio]);
-
-    const currentEx = exercises[currentIndex];
-    const progress = exercises.length > 0 ? (currentIndex / exercises.length) * 100 : 0;
-
-    useEffect(() => {
-        if (currentEx?.exercise_type !== 'speak_sentence') {
-            stopSpeechRecognition();
-        }
-
-        stopLessonAudio();
-
-        setSelectedAnswer(null);
-        setIsChecking(false);
-        setIsCorrect(null);
-        setFuzzyHint(null);
-        setImageError(false);
-        setActiveHintIdx(null);
-
-        if (currentEx && ['reorder_words', 'translation_word_bank'].includes(currentEx.exercise_type)) {
-            setAvailableTokens([...currentEx.prompt.tokens].sort(() => Math.random() - 0.5));
-            setOrderedTokens([]);
-            setDraggedItemIndex(null);
-            setDropTargetIndex(null);
-            preloadSpeak(currentEx.prompt.tokens);
-        }
-
-        if (currentEx && currentEx.exercise_type === 'listen_type') {
-            setTypedAnswer('');
-        }
-
-        if (currentEx && currentEx.exercise_type === 'speak_sentence') {
-            setSpeechResult('');
-            setTypedAnswer('');
-            setIsRecording(false);
-            setSpeechError('');
-            setPronResult(null);
-            setPronAssessing(false);
-        }
-
-        // match_pairs: MatchPairs component handles its own state initialization
-    }, [currentIndex, currentEx, stopSpeechRecognition]);
+    }, [lessonId, location.key, resetSessionState, stopSpeechRecognition, stopLessonAudio]);
 
     // Auto-play audio for exercises that present Vietnamese text
     useEffect(() => {
@@ -297,11 +285,6 @@ const LessonGame = () => {
 
     const handlePlayAudio = (text) => {
         if (text) speak(text);
-    };
-
-    const getCompletedSentenceAudio = (exercise) => {
-        if (!exercise || !['reorder_words', 'translation_word_bank'].includes(exercise.exercise_type)) return '';
-        return exercise.prompt?.answer_vi || exercise.prompt?.answer_tokens?.join(' ') || '';
     };
 
     // 🔔 Notify on answer streak milestones
@@ -474,60 +457,9 @@ const LessonGame = () => {
             stopSpeechRecognition();
         }
 
-        let correct = false;
-
-        if (currentEx.exercise_type === 'mcq_translate_to_vi') {
-            correct = selectedAnswer === currentEx.prompt.answer_vi;
-        } else if (currentEx.exercise_type === 'mcq_translate_to_en') {
-            correct = selectedAnswer === currentEx.prompt.answer_en;
-        } else if (currentEx.exercise_type === 'listen_choose') {
-            correct = selectedAnswer === currentEx.prompt.answer_vi;
-        } else if (currentEx.exercise_type === 'reorder_words' || currentEx.exercise_type === 'translation_word_bank') {
-            const userStr = orderedTokens.join(' ');
-            const ansStr = currentEx.prompt.answer_tokens.join(' ');
-            // Accept with or without trailing punctuation (., !, ?)
-            correct = userStr === ansStr ||
-                userStr.replace(/\s*[.!?]+$/g, '') === ansStr.replace(/\s*[.!?]+$/g, '');
-        } else if (currentEx.exercise_type === 'fill_blank') {
-            correct = selectedAnswer === currentEx.prompt.answer_vi;
-        } else if (currentEx.exercise_type === 'match_pairs') {
-            // MatchPairs component auto-completes via onComplete callback
-            correct = true;
-        } else if (currentEx.exercise_type === 'picture_choice') {
-            correct = selectedAnswer === currentEx.prompt.answer_vi;
-        } else if (currentEx.exercise_type === 'listen_type') {
-            const result = checkVietnameseInput(
-                typedAnswer,
-                currentEx.prompt.answer_vi,
-                currentEx.prompt.answer_vi_no_diacritics
-            );
-            correct = result.exact || result.fuzzy;
-            if (result.fuzzy && !result.exact) {
-                setFuzzyHint(currentEx.prompt.answer_vi);
-            }
-        } else if (currentEx.exercise_type === 'speak_sentence') {
-            // Prefer Azure pronunciation score when available; otherwise
-            // fall back to fuzzy text match (typed answer path).
-            if (pronResult?.scores?.pronunciation != null) {
-                correct = pronResult.scores.pronunciation >= 70;
-            } else {
-                const input = speechResult || typedAnswer;
-                const result = checkVietnameseInput(
-                    input,
-                    currentEx.prompt.answer_vi,
-                    currentEx.prompt.answer_vi_no_diacritics
-                );
-                correct = result.exact || result.fuzzy;
-                if (result.fuzzy && !result.exact) {
-                    setFuzzyHint(currentEx.prompt.answer_vi);
-                }
-            }
-        } else {
-            correct = true;
-        }
-
-        setIsCorrect(correct);
-        setIsChecking(true);
+        const result = checkCurrentExercise({ pronunciationResult: pronResult });
+        if (!result.handled) return;
+        const { correct } = result;
 
         // Record per-word grading + SRS review
         try {
@@ -590,16 +522,10 @@ const LessonGame = () => {
     };
 
     const canCheck = () => {
-        if (!currentEx) return false;
-        if (currentEx.exercise_type === 'match_pairs') return false; // auto-checks
-        if (currentEx.exercise_type === 'reorder_words' || currentEx.exercise_type === 'translation_word_bank') return orderedTokens.length > 0;
-        if (currentEx.exercise_type === 'listen_type') return typedAnswer.trim().length > 0;
-        if (currentEx.exercise_type === 'speak_sentence') {
-            if (isRecording || pronAssessing) return false;
-            return Boolean(pronResult?.scores) || (speechResult || typedAnswer).trim().length > 0;
-        }
-        if (currentEx.exercise_type === 'picture_choice') return selectedAnswer !== null;
-        return selectedAnswer !== null && selectedAnswer !== '';
+        return canCheckExercise({
+            speechBlocked: isRecording || pronAssessing,
+            pronunciationResult: pronResult,
+        });
     };
 
     // Enter key to trigger Check / Continue / retention screens
@@ -1268,8 +1194,7 @@ const LessonGame = () => {
                         <MatchPairs
                             pairs={prompt.pairs}
                             onComplete={() => {
-                                setIsCorrect(true);
-                                setIsChecking(true);
+                                completeMatch();
                                 setScore(s => s + 1);
                                 const newStreak = currentStreak + 1;
                                 setCurrentStreak(newStreak);
