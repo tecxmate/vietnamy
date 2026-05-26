@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { X, Heart, Trophy, Volume2, ChevronRight } from 'lucide-react';
 import { getNodeById, getExercisesForUnit, getExercisesForNode, getNextNode, getNodeRoute } from '../lib/db';
@@ -9,7 +9,16 @@ import { loadSettings } from '../lib/settings';
 import { checkVietnameseInput } from '../utils/fuzzyVietnamese';
 import { playSuccess, playError } from '../utils/sound';
 import SoundButton from '../components/SoundButton';
-import { buildFillBlankSentence, getFillBlankCorrectSentence, FeedbackBanner, ProgressBar } from '../components/Exercise';
+import {
+    buildFillBlankSentence,
+    getFillBlankCorrectSentence,
+    FeedbackBanner,
+    FillBlankInput,
+    MatchPairs,
+    MCQOptions,
+    ProgressBar,
+    ReorderWords,
+} from '../components/Exercise';
 import { DEFAULT_LEARNER_MODE, getProgressMode } from '../data/learnerModes';
 import { useT } from '../lib/i18n';
 import '../components/LessonGame.css';
@@ -45,7 +54,6 @@ const UnitTest = () => {
     const [isCorrect, setIsCorrect] = useState(null);
     const [isFinished, setIsFinished] = useState(false);
     const [score, setScore] = useState(0);
-    const [unitTitle, setUnitTitle] = useState('');
 
     // Hearts disabled (was from DongContext, now simplified)
     const hearts = Infinity;
@@ -54,29 +62,16 @@ const UnitTest = () => {
     const [orderedTokens, setOrderedTokens] = useState([]);
     const [availableTokens, setAvailableTokens] = useState([]);
 
-    // Match pairs state
-    const [matchPairs, setMatchPairs] = useState([]);
-    const [shuffledLeft, setShuffledLeft] = useState([]);
-    const [shuffledRight, setShuffledRight] = useState([]);
-    const [matchSelectedLeft, setMatchSelectedLeft] = useState(null);
-    const [matchSelectedRight, setMatchSelectedRight] = useState(null);
-    const [matchedSet, setMatchedSet] = useState(new Set());
-    const [matchFlashWrong, setMatchFlashWrong] = useState(false);
-
     // New exercise type state
     const [typedAnswer, setTypedAnswer] = useState('');
     const [imageError, setImageError] = useState(false);
-    const [isRecording, setIsRecording] = useState(false);
     const [speechResult, setSpeechResult] = useState('');
-    const [speechSupported, setSpeechSupported] = useState(true);
-    const recognitionRef = useRef(null);
     const [fuzzyHint, setFuzzyHint] = useState(null);
 
-    const rewardGivenRef = useRef(false);
+    const rewardGivenRef = React.useRef(false);
 
     const [isModuleTest, setIsModuleTest] = useState(false);
     const [nextNodeRoute, setNextNodeRoute] = useState(null);
-    const [nextNodeLabel, setNextNodeLabel] = useState('');
 
     const stopTestAudio = React.useCallback(() => {
         clearSpeakQueue({ stopCurrent: true });
@@ -94,14 +89,12 @@ const UnitTest = () => {
         setTypedAnswer('');
         setFuzzyHint(null);
         setSpeechResult('');
-        setIsRecording(false);
         setImageError(false);
         rewardGivenRef.current = false;
 
         const node = getNodeById(nodeId);
         if (!node) { navigate('/', { state: { tab: 'study' } }); return; }
 
-        setUnitTitle(node.label || 'Unit Test');
         const moduleScoped = node.test_scope === 'module';
         setIsModuleTest(moduleScoped);
 
@@ -115,7 +108,6 @@ const UnitTest = () => {
         const next = getNextNode(nodeId);
         if (next) {
             setNextNodeRoute(getNodeRoute(next));
-            setNextNodeLabel(next.label || 'Next');
         }
         return stopTestAudio;
     }, [nodeId, location.key, stopTestAudio]);
@@ -140,7 +132,6 @@ const UnitTest = () => {
         setTypedAnswer('');
         setFuzzyHint(null);
         setSpeechResult('');
-        setIsRecording(false);
         setImageError(false);
         if (currentEx && ['reorder_words', 'translation_word_bank'].includes(currentEx.exercise_type)) {
             setAvailableTokens([...currentEx.prompt.tokens].sort(() => Math.random() - 0.5));
@@ -155,70 +146,7 @@ const UnitTest = () => {
                 if (p.source_text_vi) scheduleSpeak(p.source_text_vi, 300);
             }
         }
-        if (currentEx && currentEx.exercise_type === 'match_pairs') {
-            const pairs = currentEx.prompt.pairs || [];
-            setMatchPairs(pairs);
-            setShuffledLeft([...pairs].sort(() => Math.random() - 0.5));
-            setShuffledRight([...pairs].sort(() => Math.random() - 0.5));
-            setMatchSelectedLeft(null);
-            setMatchSelectedRight(null);
-            setMatchedSet(new Set());
-            setMatchFlashWrong(false);
-        }
     }, [currentIndex, currentEx, stopTestAudio]);
-
-    // Match pairs tap handler
-    const handleMatchTap = (side, index) => {
-        if (isChecking) return;
-        const pair = side === 'left' ? shuffledLeft[index] : shuffledRight[index];
-        const pairKey = `${pair.vi_text}::${pair.en_text}`;
-        if (matchedSet.has(pairKey)) return;
-
-        if (side === 'left') {
-            setMatchSelectedLeft(index);
-            if (matchSelectedRight !== null) {
-                const leftPair = shuffledLeft[index];
-                const rightPair = shuffledRight[matchSelectedRight];
-                if (leftPair.vi_text === rightPair.vi_text && leftPair.en_text === rightPair.en_text) {
-                    playSuccess();
-                    const newMatched = new Set(matchedSet);
-                    newMatched.add(pairKey);
-                    setMatchedSet(newMatched);
-                    setMatchSelectedLeft(null);
-                    setMatchSelectedRight(null);
-                    if (newMatched.size === matchPairs.length) {
-                        setTimeout(() => { setIsCorrect(true); setIsChecking(true); setScore(s => s + 1); }, 400);
-                    }
-                } else {
-                    playError();
-                    setMatchFlashWrong(true);
-                    setTimeout(() => { setMatchFlashWrong(false); setMatchSelectedLeft(null); setMatchSelectedRight(null); }, 500);
-                }
-            }
-        } else {
-            setMatchSelectedRight(index);
-            if (matchSelectedLeft !== null) {
-                const leftPair = shuffledLeft[matchSelectedLeft];
-                const rightPair = shuffledRight[index];
-                const rightKey = `${rightPair.vi_text}::${rightPair.en_text}`;
-                if (leftPair.vi_text === rightPair.vi_text && leftPair.en_text === rightPair.en_text) {
-                    playSuccess();
-                    const newMatched = new Set(matchedSet);
-                    newMatched.add(rightKey);
-                    setMatchedSet(newMatched);
-                    setMatchSelectedLeft(null);
-                    setMatchSelectedRight(null);
-                    if (newMatched.size === matchPairs.length) {
-                        setTimeout(() => { setIsCorrect(true); setIsChecking(true); setScore(s => s + 1); }, 400);
-                    }
-                } else {
-                    playError();
-                    setMatchFlashWrong(true);
-                    setTimeout(() => { setMatchFlashWrong(false); setMatchSelectedLeft(null); setMatchSelectedRight(null); }, 500);
-                }
-            }
-        }
-    };
 
     const handleCheck = () => {
         if (!currentEx) return;
@@ -234,7 +162,7 @@ const UnitTest = () => {
             correct = userStr === ansStr || userStr.replace(/\s*[.!?]+$/g, '') === ansStr.replace(/\s*[.!?]+$/g, '');
         }
         else if (currentEx.exercise_type === 'fill_blank') correct = selectedAnswer === currentEx.prompt.answer_vi;
-        else if (currentEx.exercise_type === 'match_pairs') correct = matchedSet.size === matchPairs.length;
+        else if (currentEx.exercise_type === 'match_pairs') return;
         else if (currentEx.exercise_type === 'listen_type') {
             const result = checkVietnameseInput(typedAnswer, currentEx.prompt.answer_vi, currentEx.prompt.answer_vi_no_diacritics);
             correct = result.fuzzy;
@@ -285,8 +213,17 @@ const UnitTest = () => {
         return selectedAnswer !== null && selectedAnswer !== '';
     };
 
-    const handleWordBankClick = (word) => { if (!isChecking) setOrderedTokens([...orderedTokens, word]); };
-    const handleRemoveOrderedWord = (index) => { if (!isChecking) { const t = [...orderedTokens]; t.splice(index, 1); setOrderedTokens(t); } };
+    const handleReorderToggle = (word, index, source) => {
+        if (isChecking) return;
+        speak(word);
+        if (source === 'selected') {
+            const next = [...orderedTokens];
+            next.splice(index, 1);
+            setOrderedTokens(next);
+            return;
+        }
+        setOrderedTokens([...orderedTokens, word]);
+    };
 
     const handlePlayAudio = (text) => { if (text) speak(text); };
 
@@ -396,7 +333,7 @@ const UnitTest = () => {
             <div className="lesson-game__exercise" data-exercise-type={exercise_type}>
                 <h2 className="lesson-game__instruction">{prompt.instruction}</h2>
 
-                {exercise_type !== 'picture_choice' && exercise_type !== 'speak_sentence' && (
+                {exercise_type !== 'picture_choice' && exercise_type !== 'speak_sentence' && exercise_type !== 'match_pairs' && (
                     <div className="lesson-game__prompt-area">
                         {['listen_choose', 'listen_type'].includes(exercise_type) ? (
                             <div style={{ display: 'flex', alignItems: 'center', gap: 12, width: '100%', justifyContent: 'center' }}>
@@ -430,23 +367,19 @@ const UnitTest = () => {
                     data-compact={exercise_type === 'picture_choice' || exercise_type === 'speak_sentence'}
                 >
                     {/* Multiple Choice */}
-                    {['mcq_translate_to_vi', 'mcq_translate_to_en', 'listen_choose'].includes(exercise_type) &&
-                        (prompt.choices_vi || prompt.choices_en).map((choice, idx) => (
-                            <button
-                                key={idx}
-                                className={selectedAnswer === choice ? 'primary' : 'secondary'}
-                                style={{
-                                    width: '100%', justifyContent: 'flex-start', padding: 20, fontSize: 18,
-                                    borderColor: selectedAnswer === choice ? '#F97316' : 'var(--border-color)',
-                                    backgroundColor: selectedAnswer === choice ? 'rgba(249,115,22,0.1)' : 'transparent',
-                                    color: selectedAnswer === choice ? '#F97316' : 'var(--text-main)'
-                                }}
-                                onClick={() => { if (!isChecking) { setSelectedAnswer(choice); if (prompt.choices_vi) speak(choice); } }}
-                                disabled={isChecking}
-                            >
-                                {choice}
-                            </button>
-                        ))}
+                    {['mcq_translate_to_vi', 'mcq_translate_to_en', 'listen_choose'].includes(exercise_type) && (
+                        <MCQOptions
+                            options={prompt.choices_vi || prompt.choices_en}
+                            selectedAnswer={selectedAnswer}
+                            correctAnswer={prompt.answer_vi || prompt.answer_en}
+                            onSelect={(choice) => {
+                                setSelectedAnswer(choice);
+                                if (prompt.choices_vi) speak(choice);
+                            }}
+                            isChecking={isChecking}
+                            isCorrect={isCorrect}
+                        />
+                    )}
 
                     {/* Picture Choice */}
                     {exercise_type === 'picture_choice' && (
@@ -458,12 +391,17 @@ const UnitTest = () => {
                                     <div style={{ width: '100%', height: 200, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 80 }}>{prompt.emoji_fallback || '?'}</div>
                                 )}
                             </div>
-                            {(prompt.choices_vi || []).map((choice, idx) => (
-                                <button key={idx} className={selectedAnswer === choice ? 'primary' : 'secondary'}
-                                    style={{ width: '100%', justifyContent: 'flex-start', padding: 20, fontSize: 18, borderColor: selectedAnswer === choice ? '#F97316' : 'var(--border-color)', backgroundColor: selectedAnswer === choice ? 'rgba(249,115,22,0.1)' : 'transparent', color: selectedAnswer === choice ? '#F97316' : 'var(--text-main)' }}
-                                    onClick={() => { if (!isChecking) { setSelectedAnswer(choice); speak(choice); } }} disabled={isChecking}
-                                >{choice}</button>
-                            ))}
+                            <MCQOptions
+                                options={prompt.choices_vi || []}
+                                selectedAnswer={selectedAnswer}
+                                correctAnswer={prompt.answer_vi}
+                                onSelect={(choice) => {
+                                    setSelectedAnswer(choice);
+                                    speak(choice);
+                                }}
+                                isChecking={isChecking}
+                                isCorrect={isCorrect}
+                            />
                         </>
                     )}
 
@@ -493,137 +431,47 @@ const UnitTest = () => {
 
                     {/* Word Reordering / Translation Word Bank */}
                     {['reorder_words', 'translation_word_bank'].includes(exercise_type) && (
-                        <>
-                            <div className="lesson-game__word-answer-line">
-                                {orderedTokens.length === 0 && <span style={{ color: 'var(--text-muted)', padding: '10px 0', width: '100%' }}>{t('test_tap_words')}</span>}
-                                {orderedTokens.map((token, idx) => (
-                                    <button key={idx} style={{ padding: '10px 16px', backgroundColor: 'var(--surface-color)', border: '2px solid var(--border-color)', borderRadius: 12, cursor: isChecking ? 'default' : 'pointer', boxShadow: '0 2px 0 var(--border-color)', fontSize: 17, fontWeight: 500, color: 'var(--text-main)' }} onClick={() => { handleRemoveOrderedWord(idx); speak(token); }}>
-                                        {token}
-                                    </button>
-                                ))}
-                            </div>
-                            <div className="lesson-game__word-bank">
-                                {availableTokens.map((word, idx) => {
-                                    const usedCount = orderedTokens.filter(w => w === word).length;
-                                    const bankBefore = availableTokens.slice(0, idx).filter(w => w === word).length;
-                                    const isUsed = bankBefore < usedCount;
-                                    return (
-                                        <button key={`bank-${idx}`} style={{
-                                            padding: '10px 16px', borderRadius: 12, fontSize: 17, fontWeight: 500,
-                                            boxShadow: isUsed ? 'none' : '0 2px 0 var(--border-color)',
-                                            backgroundColor: isUsed ? 'var(--bg-color)' : 'var(--surface-color)',
-                                            border: isUsed ? '2px solid transparent' : '2px solid var(--border-color)',
-                                            color: isUsed ? 'transparent' : 'var(--text-main)',
-                                            cursor: isUsed || isChecking ? 'default' : 'pointer',
-                                            pointerEvents: isUsed ? 'none' : 'auto',
-                                        }} onClick={() => { if (!isUsed) { handleWordBankClick(word); speak(word); } }} disabled={isUsed || isChecking}>
-                                            {word}
-                                        </button>
-                                    );
-                                })}
-                            </div>
-                        </>
+                        <ReorderWords
+                            shuffledWords={availableTokens}
+                            hintText={prompt.source_text_en || prompt.hint_en || ''}
+                            selectedWords={orderedTokens}
+                            onToggleWord={handleReorderToggle}
+                            isChecking={isChecking}
+                            isCorrect={isCorrect}
+                            correctAnswer={prompt.answer_vi || prompt.answer_tokens?.join(' ')}
+                        />
                     )}
 
                     {/* Fill in the Blank — MCQ choices */}
                     {exercise_type === 'fill_blank' && (
-                        <>
-                            <div style={{ padding: 16, backgroundColor: 'var(--surface-color)', borderRadius: 16, border: '2px solid var(--border-color)', fontSize: 20, lineHeight: 1.6, marginBottom: 12 }}>
-                                {(prompt.template_vi || '').split('____').map((part, i, arr) => (
-                                    <React.Fragment key={i}>
-                                        <span>{part}</span>
-                                        {i < arr.length - 1 && (
-                                            <span
-                                                style={{
-                                                    display: 'inline-block', minWidth: 80, borderBottom: '3px solid #F97316',
-                                                    textAlign: 'center', fontWeight: 700, color: '#F97316', padding: '2px 8px',
-                                                    cursor: selectedAnswer && !isChecking ? 'pointer' : 'default',
-                                                    backgroundColor: selectedAnswer ? 'rgba(249,115,22,0.15)' : 'transparent',
-                                                    borderRadius: selectedAnswer ? 8 : 0,
-                                                }}
-                                                onClick={() => selectedAnswer && !isChecking && setSelectedAnswer(null)}
-                                            >
-                                                {selectedAnswer || '\u00A0\u00A0\u00A0\u00A0'}
-                                            </span>
-                                        )}
-                                    </React.Fragment>
-                                ))}
-                            </div>
-                            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, justifyContent: 'center' }}>
-                                {(prompt.choices_vi || []).map((choice, idx) => {
-                                    const isUsed = selectedAnswer === choice;
-                                    return (
-                                        <button
-                                            key={idx}
-                                            style={{
-                                                padding: '12px 20px', borderRadius: 12, fontSize: 17, fontWeight: 500,
-                                                backgroundColor: isUsed ? 'var(--bg-color)' : 'var(--surface-color)',
-                                                border: isUsed ? '2px solid transparent' : '2px solid var(--border-color)',
-                                                color: isUsed ? 'transparent' : 'var(--text-main)',
-                                                boxShadow: isUsed ? 'none' : '0 2px 0 var(--border-color)',
-                                                cursor: isUsed || isChecking ? 'default' : 'pointer',
-                                                pointerEvents: isUsed ? 'none' : 'auto',
-                                            }}
-                                            onClick={() => {
-                                                if (!isChecking) {
-                                                    setSelectedAnswer(choice);
-                                                    speak(buildFillBlankSentence(prompt, choice));
-                                                }
-                                            }}
-                                            disabled={isUsed || isChecking}
-                                        >
-                                            {choice}
-                                        </button>
-                                    );
-                                })}
-                            </div>
-                        </>
+                        <FillBlankInput
+                            sentenceWithBlank={prompt.template_vi || prompt.sentence_with_blank || ''}
+                            hintText={prompt.source_text_en || prompt.hint_en || ''}
+                            value={selectedAnswer || ''}
+                            onChange={setSelectedAnswer}
+                            isChecking={isChecking}
+                            isCorrect={isCorrect}
+                            correctAnswer={prompt.answer_vi}
+                            mode="bank"
+                            wordBankChoices={prompt.choices_vi || []}
+                            onBankSelect={(choice) => {
+                                setSelectedAnswer(choice);
+                                speak(buildFillBlankSentence(prompt, choice));
+                            }}
+                        />
                     )}
 
                     {/* Match Pairs */}
                     {exercise_type === 'match_pairs' && (
-                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-                                {shuffledLeft.map((pair, idx) => {
-                                    const pairKey = `${pair.vi_text}::${pair.en_text}`;
-                                    const isMatched = matchedSet.has(pairKey);
-                                    const isSelected = matchSelectedLeft === idx;
-                                    const isWrong = matchFlashWrong && isSelected;
-                                    return (
-                                        <button key={`l-${idx}`} onClick={() => { handleMatchTap('left', idx); if (!isMatched) speak(pair.vi_text); }} disabled={isMatched || isChecking}
-                                            style={{
-                                                padding: '14px 12px', borderRadius: 12, fontSize: 17, fontWeight: 600, textAlign: 'center', transition: 'all 0.2s',
-                                                cursor: isMatched ? 'default' : 'pointer',
-                                                backgroundColor: isMatched ? 'rgba(6,214,160,0.15)' : isWrong ? 'rgba(239,71,111,0.15)' : isSelected ? 'rgba(249,115,22,0.15)' : 'var(--surface-color)',
-                                                border: isMatched ? '2px solid var(--success-color)' : isWrong ? '2px solid var(--danger-color)' : isSelected ? '2px solid #F97316' : '2px solid var(--border-color)',
-                                                color: isMatched ? 'var(--success-color)' : isWrong ? 'var(--danger-color)' : isSelected ? '#F97316' : 'var(--text-main)',
-                                                opacity: isMatched ? 0.6 : 1, boxShadow: isMatched ? 'none' : '0 2px 0 var(--border-color)'
-                                            }}
-                                        >{pair.vi_text}</button>
-                                    );
-                                })}
-                            </div>
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-                                {shuffledRight.map((pair, idx) => {
-                                    const pairKey = `${pair.vi_text}::${pair.en_text}`;
-                                    const isMatched = matchedSet.has(pairKey);
-                                    const isSelected = matchSelectedRight === idx;
-                                    const isWrong = matchFlashWrong && isSelected;
-                                    return (
-                                        <button key={`r-${idx}`} onClick={() => handleMatchTap('right', idx)} disabled={isMatched || isChecking}
-                                            style={{
-                                                padding: '14px 12px', borderRadius: 12, fontSize: 17, fontWeight: 600, textAlign: 'center', transition: 'all 0.2s',
-                                                cursor: isMatched ? 'default' : 'pointer',
-                                                backgroundColor: isMatched ? 'rgba(6,214,160,0.15)' : isWrong ? 'rgba(239,71,111,0.15)' : isSelected ? 'rgba(249,115,22,0.15)' : 'var(--surface-color)',
-                                                border: isMatched ? '2px solid var(--success-color)' : isWrong ? '2px solid var(--danger-color)' : isSelected ? '2px solid #F97316' : '2px solid var(--border-color)',
-                                                color: isMatched ? 'var(--success-color)' : isWrong ? 'var(--danger-color)' : isSelected ? '#F97316' : 'var(--text-main)',
-                                                opacity: isMatched ? 0.6 : 1, boxShadow: isMatched ? 'none' : '0 2px 0 var(--border-color)'
-                                            }}
-                                        >{pair.en_text}</button>
-                                    );
-                                })}
-                            </div>
-                        </div>
+                        <MatchPairs
+                            key={currentEx.id || `${currentIndex}-${exercise_type}`}
+                            pairs={prompt.pairs || []}
+                            onComplete={() => {
+                                setIsCorrect(true);
+                                setIsChecking(true);
+                                setScore(s => s + 1);
+                            }}
+                        />
                     )}
                 </div>
             </div>

@@ -41,13 +41,13 @@ export default function ReorderWords({
     const handleBankTap = (w, i) => {
         if (isChecking || usedIndices.has(i)) return;
         playTap();
-        onToggleWord(w, i);
+        onToggleWord(w, i, 'bank');
     };
 
     const handleSelectedTap = (w, i) => {
         if (isChecking) return;
         playTap();
-        onToggleWord(w, i);
+        onToggleWord(w, i, 'selected');
     };
 
     return (
