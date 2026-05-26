@@ -206,7 +206,7 @@ const HomeTab = ({ onSearchWord }) => {
     const feedbackActionLabel = t('home_feedback_label');
 
     return (
-        <div className="home-tab">
+        <div className="home-tab-content">
             {/* Words to Review Banner */}
             {dueCount > 0 && (
                 <button
