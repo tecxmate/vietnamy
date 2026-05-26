@@ -18,6 +18,7 @@ import SoundButton from './SoundButton';
 import { MCQOptions, MatchPairs, FeedbackBanner, ProgressBar, buildFillBlankSentence, getFillBlankCorrectSentence } from './Exercise';
 import { DEFAULT_LEARNER_MODE, getProgressMode } from '../data/learnerModes';
 import { useT } from '../lib/i18n';
+import './LessonGame.css';
 
 function scoreColor(v) {
     if (v == null) return 'var(--text-muted)';
@@ -909,12 +910,12 @@ const LessonGame = () => {
         const hints = currentEx.wordHints || null;
 
         return (
-            <div style={{ width: '100%', maxWidth: 600, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 24 }}>
-                <h2 style={{ fontSize: 24, margin: 0 }}>{prompt.instruction}</h2>
+            <div className="lesson-game__exercise" data-exercise-type={exercise_type}>
+                <h2 className="lesson-game__instruction">{prompt.instruction}</h2>
 
                 {/* Question Prompt Area */}
                 {exercise_type !== 'picture_choice' && exercise_type !== 'speak_sentence' && exercise_type !== 'match_pairs' && (
-                    <div style={{ display: 'flex', gap: 16, alignItems: 'flex-start' }}>
+                    <div className="lesson-game__prompt-area">
                         {['listen_choose', 'listen_type'].includes(exercise_type) ? (
                             <div style={{ display: 'flex', alignItems: 'center', gap: 12, width: '100%', justifyContent: 'center' }}>
                                 <button
@@ -946,7 +947,10 @@ const LessonGame = () => {
                 )}
 
                 {/* Response Area */}
-                <div style={{ marginTop: exercise_type === 'picture_choice' || exercise_type === 'speak_sentence' ? 0 : 24, display: 'flex', flexDirection: 'column', gap: 12 }}>
+                <div
+                    className="lesson-game__response-area"
+                    data-compact={exercise_type === 'picture_choice' || exercise_type === 'speak_sentence'}
+                >
 
                     {/* Picture Choice — image + MCQ */}
                     {exercise_type === 'picture_choice' && (
@@ -1139,7 +1143,7 @@ const LessonGame = () => {
                         <>
                             {/* Answer line */}
                             <div
-                                style={{ minHeight: 70, padding: '10px 0', borderBottom: '2px solid var(--border-color)', display: 'flex', flexWrap: 'wrap', gap: 10, marginBottom: 24, alignItems: 'center' }}
+                                className="lesson-game__word-answer-line"
                                 onDragOver={(e) => e.preventDefault()}
                                 onDrop={onDrop}
                             >
@@ -1176,7 +1180,7 @@ const LessonGame = () => {
                             </div>
 
                             {/* Word bank */}
-                            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, justifyContent: 'center' }}>
+                            <div className="lesson-game__word-bank">
                                 {availableTokens.map((word, idx) => {
                                     const usedCount = orderedTokens.filter(w => w === word).length;
                                     const bankBefore = availableTokens.slice(0, idx).filter(w => w === word).length;
@@ -1288,10 +1292,10 @@ const LessonGame = () => {
     };
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', height: '100%', backgroundColor: 'var(--bg-color)', color: 'var(--text-main)', '--accent-color': 'var(--primary-color)' }}>
+        <div className="lesson-game" style={{ '--accent-color': 'var(--primary-color)' }}>
 
             {/* Top Bar Navigation */}
-            <div style={{ padding: '16px 24px', display: 'flex', alignItems: 'center', gap: 16 }}>
+            <div className="lesson-game__topbar">
                 <button className="ghost" onClick={() => setShowQuitConfirm(true)} style={{ padding: 8 }}>
                     <X size={24} color="var(--text-muted)" />
                 </button>
@@ -1304,8 +1308,8 @@ const LessonGame = () => {
             </div>
 
             {/* Main Content Area */}
-            <div style={{ flex: 1, overflowY: 'auto', padding: '0 24px 24px 24px', display: 'flex', flexDirection: 'column' }}>
-                <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            <div className="lesson-game__scroll">
+                <div className="lesson-game__stage">
                     {hearts === 0 ? (
                         <div style={{ textAlign: 'center' }}>
                             <h2 style={{ fontSize: 32, color: 'var(--danger-color)' }}>{t('test_not_quite')}</h2>
@@ -1318,16 +1322,15 @@ const LessonGame = () => {
             </div>
 
             {/* Bottom Checking Bar */}
-            <div style={{
-                padding: '24px 16px',
-                borderTop: '2px solid var(--border-color)',
-                backgroundColor: isChecking ? (isCorrect ? 'var(--lesson-correct-fill)' : 'var(--lesson-error-fill)') : 'var(--surface-color)',
-                transition: 'background-color 0.2s',
-                minHeight: 140,
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center'
-            }}>
+            <div
+                className="lesson-game__actionbar"
+                style={{
+                    '--lesson-action-bar-bg': isChecking
+                        ? (isCorrect ? 'var(--lesson-correct-fill)' : 'var(--lesson-error-fill)')
+                        : 'var(--surface-color)',
+                }}
+            >
+                <div className="lesson-game__actionbar-content">
                 {isChecking ? (
                     <FeedbackBanner
                         isCorrect={isCorrect}
@@ -1343,9 +1346,9 @@ const LessonGame = () => {
                         onContinue={handleNext}
                     />
                 ) : (
-                    <div style={{ display: 'flex', gap: 10 }}>
+                    <div className="lesson-game__button-row">
                         <SoundButton
-                            className="shadow-lg"
+                            className={`${canCheck() ? '' : 'disabled'} shadow-lg`}
                             style={{
                                 flex: 1, fontSize: 18, fontWeight: 800, borderRadius: 25, border: 'none',
                                 textTransform: 'uppercase', letterSpacing: 1,
@@ -1379,6 +1382,7 @@ const LessonGame = () => {
                         )}
                     </div>
                 )}
+                </div>
             </div>
 
             <style>{`

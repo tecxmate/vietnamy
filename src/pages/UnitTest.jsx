@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
-import { X, Heart, Check, Trophy, Volume2, ChevronRight } from 'lucide-react';
+import { X, Heart, Trophy, Volume2, ChevronRight } from 'lucide-react';
 import { getNodeById, getExercisesForUnit, getExercisesForNode, getNextNode, getNodeRoute } from '../lib/db';
 import { useProgress } from '../context/ProgressContext';
 import { useUser } from '../context/UserContext';
@@ -9,9 +9,10 @@ import { loadSettings } from '../lib/settings';
 import { checkVietnameseInput } from '../utils/fuzzyVietnamese';
 import { playSuccess, playError } from '../utils/sound';
 import SoundButton from '../components/SoundButton';
-import { buildFillBlankSentence, getFillBlankCorrectSentence } from '../components/Exercise';
+import { buildFillBlankSentence, getFillBlankCorrectSentence, FeedbackBanner, ProgressBar } from '../components/Exercise';
 import { DEFAULT_LEARNER_MODE, getProgressMode } from '../data/learnerModes';
 import { useT } from '../lib/i18n';
+import '../components/LessonGame.css';
 
 const UNIT_QUIZ_SIZE = 20;
 const MODULE_QUIZ_SIZE = 6;
@@ -318,7 +319,7 @@ const UnitTest = () => {
         const thresholdPct = Math.round(PASS_THRESHOLD * 100);
 
         return (
-            <div style={{ display: 'flex', flexDirection: 'column', height: '100dvh', backgroundColor: 'var(--bg-color)', color: 'var(--text-main)' }}>
+            <div className="lesson-game">
                 <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: 32, textAlign: 'center', gap: 20 }}>
                     <div style={{
                         width: 80, height: 80,
@@ -344,7 +345,8 @@ const UnitTest = () => {
                             : t('test_need_to_pass').replace('{percent}', thresholdPct)}
                     </p>
                 </div>
-                <div style={{ padding: '24px 16px', borderTop: '2px solid var(--border-color)', backgroundColor: 'var(--surface-color)', display: 'flex', flexDirection: 'column', gap: 10, minHeight: 140, justifyContent: 'center' }}>
+                <div className="lesson-game__actionbar" style={{ '--lesson-action-bar-bg': 'var(--surface-color)' }}>
+                    <div className="lesson-game__actionbar-content" style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
                     {passed ? (
                         <>
                             {nextNodeRoute && (
@@ -370,6 +372,7 @@ const UnitTest = () => {
                             </SoundButton>
                         </>
                     )}
+                    </div>
                 </div>
             </div>
         );
@@ -390,11 +393,11 @@ const UnitTest = () => {
         const audioText = getAudioText();
 
         return (
-            <div style={{ width: '100%', maxWidth: 600, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 24 }}>
-                <h2 style={{ fontSize: 24, margin: 0 }}>{prompt.instruction}</h2>
+            <div className="lesson-game__exercise" data-exercise-type={exercise_type}>
+                <h2 className="lesson-game__instruction">{prompt.instruction}</h2>
 
                 {exercise_type !== 'picture_choice' && exercise_type !== 'speak_sentence' && (
-                    <div style={{ display: 'flex', gap: 16, alignItems: 'flex-start' }}>
+                    <div className="lesson-game__prompt-area">
                         {['listen_choose', 'listen_type'].includes(exercise_type) ? (
                             <div style={{ display: 'flex', alignItems: 'center', gap: 12, width: '100%', justifyContent: 'center' }}>
                                 <button
@@ -422,7 +425,10 @@ const UnitTest = () => {
                     </div>
                 )}
 
-                <div style={{ marginTop: 24, display: 'flex', flexDirection: 'column', gap: 12 }}>
+                <div
+                    className="lesson-game__response-area"
+                    data-compact={exercise_type === 'picture_choice' || exercise_type === 'speak_sentence'}
+                >
                     {/* Multiple Choice */}
                     {['mcq_translate_to_vi', 'mcq_translate_to_en', 'listen_choose'].includes(exercise_type) &&
                         (prompt.choices_vi || prompt.choices_en).map((choice, idx) => (
@@ -488,7 +494,7 @@ const UnitTest = () => {
                     {/* Word Reordering / Translation Word Bank */}
                     {['reorder_words', 'translation_word_bank'].includes(exercise_type) && (
                         <>
-                            <div style={{ minHeight: 70, padding: '10px 0', borderBottom: '2px solid var(--border-color)', display: 'flex', flexWrap: 'wrap', gap: 10, marginBottom: 24, alignItems: 'center' }}>
+                            <div className="lesson-game__word-answer-line">
                                 {orderedTokens.length === 0 && <span style={{ color: 'var(--text-muted)', padding: '10px 0', width: '100%' }}>{t('test_tap_words')}</span>}
                                 {orderedTokens.map((token, idx) => (
                                     <button key={idx} style={{ padding: '10px 16px', backgroundColor: 'var(--surface-color)', border: '2px solid var(--border-color)', borderRadius: 12, cursor: isChecking ? 'default' : 'pointer', boxShadow: '0 2px 0 var(--border-color)', fontSize: 17, fontWeight: 500, color: 'var(--text-main)' }} onClick={() => { handleRemoveOrderedWord(idx); speak(token); }}>
@@ -496,7 +502,7 @@ const UnitTest = () => {
                                     </button>
                                 ))}
                             </div>
-                            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, justifyContent: 'center' }}>
+                            <div className="lesson-game__word-bank">
                                 {availableTokens.map((word, idx) => {
                                     const usedCount = orderedTokens.filter(w => w === word).length;
                                     const bankBefore = availableTokens.slice(0, idx).filter(w => w === word).length;
@@ -625,23 +631,23 @@ const UnitTest = () => {
     };
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', height: '100dvh', backgroundColor: 'var(--bg-color)', color: 'var(--text-main)' }}>
+        <div className="lesson-game">
             {/* Top bar */}
-            <div style={{ padding: '16px 24px', display: 'flex', alignItems: 'center', gap: 16 }}>
+            <div className="lesson-game__topbar">
                 <button className="ghost" onClick={() => navigate('/', { state: { tab: 'study' } })} style={{ padding: 8 }}>
                     <X size={24} color="var(--text-muted)" />
                 </button>
-                <div style={{ flex: 1, height: 16, backgroundColor: 'var(--surface-color)', borderRadius: 8, overflow: 'hidden' }}>
-                    <div style={{ width: `${progress}%`, height: '100%', backgroundColor: '#F97316', transition: 'width 0.3s ease-out', borderRadius: 8 }} />
+                <div style={{ flex: 1 }}>
+                    <ProgressBar progress={progress / 100} height={16} />
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 6, color: 'var(--danger-color)', fontWeight: 700 }}>
-                    <Heart size={24} fill="var(--danger-color)" /> {testMode ? '∞' : hearts}
+                <div style={{ display: 'flex', alignItems: 'center', gap: 6, color: 'var(--lesson-hearts)', fontWeight: 700 }}>
+                    <Heart size={24} fill="var(--lesson-hearts)" /> {testMode ? '∞' : hearts}
                 </div>
             </div>
 
             {/* Main content */}
-            <div style={{ flex: 1, overflowY: 'auto', padding: '0 24px 24px', display: 'flex', flexDirection: 'column' }}>
-                <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            <div className="lesson-game__scroll">
+                <div className="lesson-game__stage">
                     {hearts === 0 ? (
                         <div style={{ textAlign: 'center' }}>
                             <h2 style={{ fontSize: 32, color: 'var(--danger-color)' }}>Out of Hearts!</h2>
@@ -652,54 +658,41 @@ const UnitTest = () => {
             </div>
 
             {/* Bottom check bar */}
-            <div style={{
-                padding: '24px 16px',
-                borderTop: '2px solid var(--border-color)',
-                backgroundColor: isChecking ? (isCorrect ? 'rgba(6, 214, 160, 0.1)' : 'rgba(239, 71, 111, 0.1)') : 'var(--surface-color)',
-                transition: 'background-color 0.2s',
-                minHeight: 140,
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center'
-            }}>
+            <div
+                className="lesson-game__actionbar"
+                style={{
+                    '--lesson-action-bar-bg': isChecking
+                        ? (isCorrect ? 'var(--lesson-correct-fill)' : 'var(--lesson-error-fill)')
+                        : 'var(--surface-color)',
+                }}
+            >
+                <div className="lesson-game__actionbar-content">
                 {isChecking ? (
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                            <div style={{ width: 32, height: 32, borderRadius: '50%', backgroundColor: isCorrect ? 'var(--success-color)' : 'var(--danger-color)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                {isCorrect ? <Check size={20} color="#1A1A1A" strokeWidth={3} /> : <X size={20} color="white" strokeWidth={3} />}
-                            </div>
-                            <h3 style={{ margin: 0, fontSize: 24, color: isCorrect ? 'var(--success-color)' : 'var(--danger-color)' }}>
-                                {isCorrect ? (fuzzyHint ? t('test_good_diacritics') : t('test_nicely_done')) : t('test_correct_solution')}
-                            </h3>
-                        </div>
-                        {!isCorrect && (
-                            <div style={{ fontSize: 18, color: 'var(--danger-color)' }}>
-                                {currentEx?.exercise_type === 'fill_blank'
+                    <FeedbackBanner
+                        isCorrect={isCorrect}
+                        correctAnswer={
+                            !isCorrect
+                                ? (currentEx?.exercise_type === 'fill_blank'
                                     ? getFillBlankCorrectSentence(currentEx.prompt)
-                                    : (currentEx?.prompt?.answer_vi || currentEx?.prompt?.answer_en || (currentEx?.prompt?.answer_tokens && currentEx.prompt.answer_tokens.join(' ')))}
-                            </div>
-                        )}
-                        {isCorrect && fuzzyHint && (
-                            <div style={{ fontSize: 18, color: 'var(--success-color)', fontWeight: 600 }}>{fuzzyHint}</div>
-                        )}
-                        <SoundButton
-                            className="primary shadow-lg"
-                            style={{
-                                width: '100%', fontSize: 18,
-                                backgroundColor: isCorrect ? 'var(--success-color)' : 'var(--danger-color)',
-                                color: isCorrect ? '#1A1A1A' : 'white',
-                                boxShadow: isCorrect ? '0 4px 0 #05A67D' : '0 4px 0 #B52F4E'
-                            }}
-                            onClick={handleNext}
-                        >
-                            {t('continue_upper')}
-                        </SoundButton>
-                    </div>
+                                    : (currentEx?.prompt?.answer_vi || currentEx?.prompt?.answer_en || (currentEx?.prompt?.answer_tokens && currentEx.prompt.answer_tokens.join(' '))))
+                                : ''
+                        }
+                        fuzzyHint={fuzzyHint}
+                        alternatives={currentEx?.prompt?.accepted_en}
+                        onContinue={handleNext}
+                    />
                 ) : (
-                    <div style={{ display: 'flex', gap: 10 }}>
+                    <div className="lesson-game__button-row">
                         <SoundButton
-                            className={`${canCheck() ? 'primary' : 'disabled'} shadow-lg`}
-                            style={{ flex: 1, fontSize: 18, opacity: canCheck() ? 1 : 0.5, backgroundColor: '#F97316', boxShadow: '0 4px 0 #C2410C' }}
+                            className={`${canCheck() ? '' : 'disabled'} shadow-lg`}
+                            style={{
+                                flex: 1, fontSize: 18, fontWeight: 800, borderRadius: 25, border: 'none',
+                                textTransform: 'uppercase', letterSpacing: 1,
+                                backgroundColor: canCheck() ? 'var(--primary-color)' : 'var(--lesson-check-disabled-bg)',
+                                color: canCheck() ? '#1A1A1A' : 'var(--lesson-check-disabled-text)',
+                                boxShadow: canCheck() ? '0 4px 0 var(--primary-color-hover)' : 'none',
+                                opacity: 1,
+                            }}
                             onClick={handleCheck}
                         >
                             {t('test_check')}
@@ -715,6 +708,7 @@ const UnitTest = () => {
                         )}
                     </div>
                 )}
+                </div>
             </div>
         </div>
     );

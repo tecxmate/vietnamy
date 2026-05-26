@@ -1,0 +1,191 @@
+.lesson-game {
+    --lesson-action-bar-base-height: 156px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 0;
+    background: var(--bg-color);
+    color: var(--text-main);
+}
+
+.lesson-game__topbar {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 24px;
+}
+
+.lesson-game__scroll {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 0 24px 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.lesson-game__stage {
+    flex: 1;
+    width: 100%;
+    max-width: 600px;
+    min-height: 100%;
+    margin: 0 auto;
+    display: grid;
+    align-items: center;
+}
+
+.lesson-game__exercise {
+    width: 100%;
+    display: grid;
+    grid-template-rows: auto minmax(96px, auto) minmax(240px, auto);
+    align-content: center;
+    gap: 18px;
+}
+
+.lesson-game__instruction {
+    min-height: 64px;
+    margin: 0;
+    display: flex;
+    align-items: flex-end;
+    font-size: 24px;
+    line-height: 1.2;
+}
+
+.lesson-game__exercise[data-exercise-type="picture_choice"],
+.lesson-game__exercise[data-exercise-type="speak_sentence"],
+.lesson-game__exercise[data-exercise-type="match_pairs"] {
+    grid-template-rows: auto minmax(260px, auto);
+}
+
+.lesson-game__prompt-area {
+    min-height: 96px;
+    display: flex;
+    align-items: center;
+}
+
+.lesson-game__prompt-area:empty {
+    display: none;
+}
+
+.lesson-game__response-area {
+    min-height: 240px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 12px;
+}
+
+.lesson-game__response-area[data-compact="true"] {
+    min-height: 200px;
+}
+
+.lesson-game__word-answer-line {
+    min-height: 92px;
+    padding: 10px 0;
+    border-bottom: 2px solid var(--border-color);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 8px;
+    align-items: center;
+}
+
+.lesson-game__word-bank {
+    min-height: 112px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    align-content: flex-start;
+}
+
+.lesson-game__actionbar {
+    flex: 0 0 calc(var(--lesson-action-bar-base-height) + var(--safe-area-bottom));
+    height: calc(var(--lesson-action-bar-base-height) + var(--safe-area-bottom));
+    padding: 20px 16px calc(20px + var(--safe-area-bottom));
+    border-top: 2px solid var(--border-color);
+    background: var(--lesson-action-bar-bg, var(--surface-color));
+    transition: background-color 0.2s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.lesson-game__actionbar-content {
+    width: 100%;
+    max-width: 600px;
+    max-height: 100%;
+    margin: 0 auto;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.lesson-game__button-row {
+    display: flex;
+    gap: 10px;
+    min-height: 56px;
+}
+
+@media (max-width: 480px) {
+    .lesson-game__topbar {
+        padding: var(--app-edge-top) var(--app-edge-right) 12px var(--app-edge-left);
+    }
+
+    .lesson-game__scroll {
+        padding: 0 var(--app-edge-right) 16px var(--app-edge-left);
+    }
+
+    .lesson-game__exercise {
+        grid-template-rows: auto minmax(88px, auto) minmax(220px, auto);
+        gap: 14px;
+    }
+
+    .lesson-game__instruction {
+        min-height: 56px;
+        font-size: 22px;
+    }
+
+    .lesson-game__prompt-area {
+        min-height: 88px;
+    }
+
+    .lesson-game__response-area {
+        min-height: 220px;
+    }
+
+    .lesson-game__actionbar {
+        padding: 18px var(--app-edge-right) calc(18px + var(--safe-area-bottom)) var(--app-edge-left);
+    }
+}
+
+@media (max-height: 700px) {
+    .lesson-game {
+        --lesson-action-bar-base-height: 136px;
+    }
+
+    .lesson-game__stage {
+        align-items: start;
+    }
+
+    .lesson-game__exercise {
+        grid-template-rows: auto minmax(72px, auto) minmax(190px, auto);
+        gap: 12px;
+        padding-top: 4px;
+    }
+
+    .lesson-game__instruction {
+        min-height: 44px;
+        font-size: 20px;
+    }
+
+    .lesson-game__prompt-area {
+        min-height: 72px;
+    }
+
+    .lesson-game__response-area {
+        min-height: 190px;
+    }
+}

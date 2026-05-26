@@ -57,6 +57,8 @@ export default function FeedbackBanner({
                 opacity: isVisible ? 1 : 0,
                 transition: 'transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.2s ease',
                 animation: shouldShake ? 'shake 0.5s ease-in-out' : 'none',
+                maxHeight: '100%',
+                overflowY: 'auto',
             }}
         >
             {/* Shake animation keyframes */}
