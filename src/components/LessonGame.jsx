@@ -556,13 +556,13 @@ const LessonGame = () => {
                     <p style={{ color: 'var(--text-muted)', fontSize: 15, margin: 0 }}>You're almost done with this lesson!</p>
                 </div>
                 <div style={{
-                    padding: '24px var(--app-edge-right) calc(24px + var(--safe-area-bottom)) var(--app-edge-left)',
+                    padding: '24px var(--app-edge-right) calc(24px + var(--safe-area-bottom-effective)) var(--app-edge-left)',
                     borderTop: '2px solid var(--border-color)',
                     backgroundColor: 'var(--surface-color)',
                     display: 'flex',
                     flexDirection: 'column',
                     gap: 10,
-                    minHeight: 'calc(140px + var(--safe-area-bottom))',
+                    minHeight: 'calc(140px + var(--safe-area-bottom-effective))',
                     justifyContent: 'center',
                     flexShrink: 0,
                 }}>

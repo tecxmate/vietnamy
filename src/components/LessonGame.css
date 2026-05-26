@@ -102,9 +102,9 @@
 }
 
 .lesson-game__actionbar {
-    flex: 0 0 calc(var(--lesson-action-bar-base-height) + var(--safe-area-bottom));
-    height: calc(var(--lesson-action-bar-base-height) + var(--safe-area-bottom));
-    padding: 20px 16px calc(20px + var(--safe-area-bottom));
+    flex: 0 0 calc(var(--lesson-action-bar-base-height) + var(--safe-area-bottom-effective));
+    height: calc(var(--lesson-action-bar-base-height) + var(--safe-area-bottom-effective));
+    padding: 20px 16px calc(20px + var(--safe-area-bottom-effective));
     border-top: 2px solid var(--border-color);
     background: var(--lesson-action-bar-bg, var(--surface-color));
     transition: background-color 0.2s;
@@ -157,7 +157,7 @@
     }
 
     .lesson-game__actionbar {
-        padding: 18px var(--app-edge-right) calc(18px + var(--safe-area-bottom)) var(--app-edge-left);
+        padding: 18px var(--app-edge-right) calc(18px + var(--safe-area-bottom-effective)) var(--app-edge-left);
     }
 }
 
