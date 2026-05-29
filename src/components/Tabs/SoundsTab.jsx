@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { Volume2, Music } from 'lucide-react';
+import { useLocation } from 'react-router-dom';
+import { Volume2, Music, Sparkles, ChevronRight } from 'lucide-react';
 import { TONE_LIST } from '../../data/toneContours';
 import speak from '../../utils/speak';
 import { useT } from '../../lib/i18n';
+import ToneLesson from '../Sounds/ToneLesson';
 
 // Vietnamese alphabet data
 const VOWELS = {
@@ -130,9 +132,18 @@ const CONSONANTS = {
 
 const SoundsTab = () => {
     const t = useT();
-    const [activeSection, setActiveSection] = useState('alphabet');
+    const location = useLocation();
+    // Deep-link (e.g. from the Grammar tab): open straight into the tone lesson.
+    // The tab remounts when activated, so reading location.state on mount is enough.
+    const deepLinkLesson = Boolean(location.state?.openToneLesson);
+    const [activeSection, setActiveSection] = useState(deepLinkLesson ? 'tones' : 'alphabet');
+    const [toneLessonOpen, setToneLessonOpen] = useState(deepLinkLesson);
 
     const playTTS = (text) => speak(text, 0.8, 'vi');
+
+    if (toneLessonOpen) {
+        return <ToneLesson onExit={() => setToneLessonOpen(false)} />;
+    }
 
     const sections = [
         { id: 'alphabet', label: t('sounds_section_alphabet') },
@@ -235,6 +246,46 @@ const SoundsTab = () => {
             {/* Tones Section */}
             {activeSection === 'tones' && (
                 <div style={{ padding: 16 }}>
+                    {/* Interactive lesson CTA */}
+                    <button
+                        onClick={() => setToneLessonOpen(true)}
+                        style={{
+                            width: '100%',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: 14,
+                            padding: '16px 18px',
+                            marginBottom: 18,
+                            borderRadius: 16,
+                            border: 'none',
+                            cursor: 'pointer',
+                            fontFamily: 'inherit',
+                            textAlign: 'left',
+                            background: 'linear-gradient(135deg, #1CB0F6 0%, #1289d8 100%)',
+                            boxShadow: '0 6px 16px rgba(28,176,246,0.35)',
+                        }}
+                    >
+                        <div style={{
+                            width: 48, height: 48, borderRadius: 14, flexShrink: 0,
+                            backgroundColor: 'rgba(255,255,255,0.2)',
+                            display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        }}>
+                            <Sparkles size={26} color="#fff" />
+                        </div>
+                        <div style={{ flex: 1 }}>
+                            <div style={{ fontSize: 16, fontWeight: 800, color: '#fff' }}>
+                                {t('sounds_tone_lesson_cta', 'Interactive tone lesson')}
+                            </div>
+                            <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.85)', marginTop: 2 }}>
+                                {t('sounds_tone_lesson_sub', 'Learn · Identify · Speak with AI feedback')}
+                            </div>
+                        </div>
+                        <ChevronRight size={22} color="#fff" style={{ flexShrink: 0 }} />
+                    </button>
+
+                    <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--text-muted)', marginBottom: 10, textTransform: 'uppercase', letterSpacing: 0.5 }}>
+                        {t('sounds_tone_reference', 'Tone reference')}
+                    </div>
                     <p style={{ margin: '0 0 16px', fontSize: 13, color: 'var(--text-muted)', lineHeight: 1.5 }}>
                         {t('sounds_tones_intro')}
                     </p>

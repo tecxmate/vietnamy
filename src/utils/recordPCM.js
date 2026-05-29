@@ -79,7 +79,10 @@ export async function startPCMRecording() {
     processor.connect(ctx.destination);
 
     let stopped = false;
-    const stop = async () => {
+    // `samples` (16 kHz mono Float32) is exposed after stop() so callers can run
+    // lightweight client-side analysis (e.g. pitch tracking) on the same audio.
+    const api = { sampleRate: TARGET_RATE, samples: null };
+    api.stop = async () => {
         if (stopped) return null;
         stopped = true;
         processor.disconnect();
@@ -93,8 +96,9 @@ export async function startPCMRecording() {
         let offset = 0;
         for (const c of chunks) { merged.set(c, offset); offset += c.length; }
         const downsampled = downsampleTo16k(merged, ctx.sampleRate);
+        api.samples = downsampled;
         const pcm16 = floatToInt16(downsampled);
         return pcm16ToWavBlob(pcm16, TARGET_RATE);
     };
-    return { stop };
+    return api;
 }

@@ -119,10 +119,6 @@ const TelexTyping3 = lazy(() => import('./pages/Practice/TelexTyping3'));
 const TeenCode1 = lazy(() => import('./pages/Practice/TeenCode1'));
 const TeenCode2 = lazy(() => import('./pages/Practice/TeenCode2'));
 const TeenCode3 = lazy(() => import('./pages/Practice/TeenCode3'));
-const TonePractice1 = lazy(() => import('./pages/Practice/TonePractice1'));
-const TonePractice2 = lazy(() => import('./pages/Practice/TonePractice2'));
-const TonePractice3 = lazy(() => import('./pages/Practice/TonePractice3'));
-const TonePractice4 = lazy(() => import('./pages/Practice/TonePractice4'));
 const ToneMarksBasic = lazy(() => import('./pages/Practice/ToneMarksBasic'));
 const ToneMarksSpecial = lazy(() => import('./pages/Practice/ToneMarksSpecial'));
 const ToneMarksMaster = lazy(() => import('./pages/Practice/ToneMarksMaster'));
@@ -134,9 +130,6 @@ const VowelsDiph3 = lazy(() => import('./pages/Practice/VowelsDiph3'));
 const NumbersPractice1 = lazy(() => import('./pages/Practice/NumbersPractice1'));
 const NumbersPractice2 = lazy(() => import('./pages/Practice/NumbersPractice2'));
 const NumbersPractice3 = lazy(() => import('./pages/Practice/NumbersPractice3'));
-const TonePitchTraining1 = lazy(() => import('./pages/Practice/TonePitchTraining1'));
-const TonePitchTraining2 = lazy(() => import('./pages/Practice/TonePitchTraining2'));
-const ToneTrainer = lazy(() => import('./pages/Practice/ToneTrainer'));
 const ConsonantsPractice = lazy(() => import('./pages/Practice/ConsonantsPractice'));
 const ConsonantsFinalPractice = lazy(() => import('./pages/Practice/ConsonantsFinalPractice'));
 const ClassifiersBasics = lazy(() => import('./pages/Practice/ClassifiersBasics'));
@@ -368,17 +361,9 @@ function AppRoutes() {
         <Route path="/grammar-unit/:unitId" element={<div className="mobile-app-wrapper"><GrammarUnitLesson /></div>} />
         <Route path="/test/:nodeId" element={<div className="mobile-app-wrapper"><UnitTest /></div>} />
         {/* Full-screen Practice Routes */}
-        {/* Tone Listen sub-modules */}
-        <Route path="/practice/tones" element={<Navigate to="/practice/tones-1" replace />} />
-        <Route path="/practice/tones-1" element={<div className="mobile-app-wrapper"><TonePractice1 /></div>} />
-        <Route path="/practice/tones-2" element={<div className="mobile-app-wrapper"><TonePractice2 /></div>} />
-        <Route path="/practice/tones-3" element={<div className="mobile-app-wrapper"><TonePractice3 /></div>} />
-        <Route path="/practice/tones-4" element={<div className="mobile-app-wrapper"><TonePractice4 /></div>} />
-        {/* Pitch Training sub-modules */}
-        <Route path="/practice/pitch" element={<Navigate to="/practice/pitch-1" replace />} />
-        <Route path="/practice/pitch-1" element={<div className="mobile-app-wrapper"><TonePitchTraining1 /></div>} />
-        <Route path="/practice/pitch-2" element={<div className="mobile-app-wrapper"><TonePitchTraining2 /></div>} />
-        <Route path="/practice/tone-trainer" element={<div className="mobile-app-wrapper"><ToneTrainer /></div>} />
+        {/* Tone listening, pitch & speaking now live in the Sounds tab tone lesson */}
+        <Route path="/practice/tones" element={<Navigate to="/" replace state={{ tab: 'sounds', openToneLesson: true }} />} />
+        <Route path="/practice/tone-trainer" element={<Navigate to="/" replace state={{ tab: 'sounds', openToneLesson: true }} />} />
         {/* Tone Marks sub-modules */}
         <Route path="/practice/tonemarks" element={<Navigate to="/practice/tonemarks-basic" replace />} />
         <Route path="/practice/tonemarks-basic" element={<div className="mobile-app-wrapper"><ToneMarksBasic /></div>} />

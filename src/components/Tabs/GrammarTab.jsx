@@ -18,7 +18,7 @@ const PRACTICE_MODULES = [
         icon: Mic,
         color: '#EF476F',
         items: [
-            { label: 'Tone Trainer', desc: 'Say words, get Azure-scored tone accuracy', route: '/practice/tone-trainer' },
+            { label: 'Tone Lesson', desc: 'Learn the 6 tones, then say them with Azure-scored feedback', navState: { tab: 'sounds', openToneLesson: true } },
         ],
     },
     {
@@ -402,7 +402,7 @@ const GrammarTab = () => {
                                     {mod.items.map((item, i) => (
                                         <div
                                             key={i}
-                                            onClick={() => navigate(item.route)}
+                                            onClick={() => item.navState ? navigate('/', { state: item.navState }) : navigate(item.route)}
                                             style={{
                                                 display: 'flex', alignItems: 'center', justifyContent: 'space-between',
                                                 padding: '12px 16px',

@@ -1606,6 +1606,120 @@ app.post('/api/push/send', async (req, res) => {
     res.json({ ok: true, notificationId, ...results });
 });
 
+// ---------------------------------------------------------------------------
+// Tone pronunciation samples — pooled, self-labeled training data.
+// Stores pitch-contour FEATURES only (no raw audio). Used to train a small
+// tone-scoring model that will replace the F0-template heuristic. The DB path
+// is configurable (TONE_DB_PATH) so it can live on a persistent volume in prod.
+// ---------------------------------------------------------------------------
+const TONE_DB_PATH = process.env.TONE_DB_PATH || join(__dirname, 'databases', 'tone_samples.db');
+const TONE_EXPORT_TOKEN = process.env.TONE_EXPORT_TOKEN || '';
+const VALID_TONES = new Set(['ngang', 'sac', 'huyen', 'hoi', 'nga', 'nang']);
+const VALID_LABELS = new Set(['correct', 'wrong']);
+
+let toneDb = null;
+let toneInsert = null;
+try {
+    mkdirSync(dirname(TONE_DB_PATH), { recursive: true });
+    toneDb = new Database(TONE_DB_PATH);
+    toneDb.pragma('journal_mode = WAL');
+    toneDb.exec(`CREATE TABLE IF NOT EXISTS tone_samples (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        ts INTEGER NOT NULL,
+        created_at TEXT NOT NULL,
+        client_id TEXT,
+        tone TEXT NOT NULL,
+        word TEXT,
+        dialect TEXT,
+        label TEXT NOT NULL,
+        recognized TEXT,
+        predicted TEXT,
+        match_score REAL,
+        contour TEXT,
+        user_agent TEXT
+    )`);
+    toneInsert = toneDb.prepare(`INSERT INTO tone_samples
+        (ts, created_at, client_id, tone, word, dialect, label, recognized, predicted, match_score, contour, user_agent)
+        VALUES (@ts, @created_at, @client_id, @tone, @word, @dialect, @label, @recognized, @predicted, @match_score, @contour, @user_agent)`);
+    console.log('Tone samples DB ready at', TONE_DB_PATH);
+} catch (err) {
+    console.warn('Tone samples DB unavailable:', err.message);
+    toneDb = null;
+}
+
+function normalizeToneSample(raw, req) {
+    if (!raw || typeof raw !== 'object') return null;
+    if (!VALID_TONES.has(raw.tone) || !VALID_LABELS.has(raw.label)) return null;
+    let contour = null;
+    if (Array.isArray(raw.contour)) {
+        const nums = raw.contour.slice(0, 64).map(Number).filter(Number.isFinite);
+        if (nums.length) contour = JSON.stringify(nums.map(n => Math.round(n * 1000) / 1000));
+    }
+    const now = new Date();
+    const str = (v, max) => (typeof v === 'string' ? v.slice(0, max) : null);
+    return {
+        ts: Number.isFinite(raw.ts) ? raw.ts : now.getTime(),
+        created_at: now.toISOString(),
+        client_id: str(raw.clientId, 64),
+        tone: raw.tone,
+        word: str(raw.word, 32),
+        dialect: str(raw.dialect, 32) || '',
+        label: raw.label,
+        recognized: str(raw.recognized, 64) || '',
+        predicted: str(raw.predicted, 16),
+        match_score: Number.isFinite(raw.matchScore) ? raw.matchScore : null,
+        contour,
+        user_agent: (req.headers['user-agent'] || '').slice(0, 200),
+    };
+}
+
+// POST /api/tone-samples — body: one sample, or { samples: [...] } (max 100).
+app.post('/api/tone-samples', (req, res) => {
+    if (!toneDb) return res.status(503).json({ error: 'tone sample store unavailable' });
+    const body = req.body || {};
+    const list = Array.isArray(body.samples) ? body.samples : [body];
+    if (list.length === 0 || list.length > 100) {
+        return res.status(400).json({ error: '1-100 samples per request' });
+    }
+    let stored = 0;
+    try {
+        const insertMany = toneDb.transaction((items) => {
+            for (const raw of items) {
+                const norm = normalizeToneSample(raw, req);
+                if (norm) { toneInsert.run(norm); stored++; }
+            }
+        });
+        insertMany(list);
+    } catch (err) {
+        console.warn('Tone sample insert failed:', err.message);
+        return res.status(500).json({ error: 'insert failed' });
+    }
+    const total = toneDb.prepare('SELECT COUNT(*) AS n FROM tone_samples').get().n;
+    res.json({ ok: true, stored, total });
+});
+
+// GET /api/tone-samples/stats — aggregate counts only (no PII).
+app.get('/api/tone-samples/stats', (_req, res) => {
+    if (!toneDb) return res.status(503).json({ error: 'tone sample store unavailable' });
+    const total = toneDb.prepare('SELECT COUNT(*) AS n FROM tone_samples').get().n;
+    const byTone = toneDb.prepare('SELECT tone, label, COUNT(*) AS n FROM tone_samples GROUP BY tone, label').all();
+    res.json({ total, byTone });
+});
+
+// GET /api/tone-samples?token=...&limit=...&offset=... — owner export.
+// Requires TONE_EXPORT_TOKEN env to be set and matched.
+app.get('/api/tone-samples', (req, res) => {
+    if (!toneDb) return res.status(503).json({ error: 'tone sample store unavailable' });
+    if (!TONE_EXPORT_TOKEN || req.query.token !== TONE_EXPORT_TOKEN) {
+        return res.status(403).json({ error: 'forbidden' });
+    }
+    const limit = Math.min(Number(req.query.limit) || 5000, 20000);
+    const offset = Number(req.query.offset) || 0;
+    const rows = toneDb.prepare('SELECT * FROM tone_samples ORDER BY id DESC LIMIT ? OFFSET ?').all(limit, offset);
+    const samples = rows.map(r => ({ ...r, contour: r.contour ? JSON.parse(r.contour) : null }));
+    res.json({ count: samples.length, samples });
+});
+
 // Serve Vite build output in production (skip if dist doesn't exist, e.g. dev mode)
 const distPath = join(__dirname, '..', 'dist');
 if (existsSync(distPath)) {
