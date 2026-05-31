@@ -12,12 +12,12 @@ Quick recent log: `grep "^## \[" docs/wiki/log.md | tail -10`.
 attributed_to: [tecxmate]   belongs_to: [drive-media-sync]
 - Added a root `drive/` placeholder for project-specific Google Drive media synchronization.
 - Documented that `drive/` is ignored media/reference storage, not source code.
-- Pages: [decision](decisions/2026-05-13-root-drive-folder.md), [topic](topics/drive-media-sync.md), [stakeholder](stakeholders/tecxmate.md).
+- Pages: [decision](decisions/2026-05-13-root-drive-folder.md), [topic](topics/tech/drive-media-sync.md), [stakeholder](stakeholders/tecxmate.md).
 
 ## [2026-05-13] decision | Publish template repository
 attributed_to: [tecxmate]   belongs_to: [repository-publishing]
 - Tecxmate requested that this template folder become a Git repository, be committed, and be pushed to GitHub.
-- Pages: [decision](decisions/2026-05-13-publish-template-repo.md), [topic](topics/repository-publishing.md).
+- Pages: [decision](decisions/2026-05-13-publish-template-repo.md), [topic](topics/tech/repository-publishing.md).
 
 ## [2026-05-13] ingest | GitHub repository published
 attributed_to: [codex]   belongs_to: [repository-publishing]
@@ -28,7 +28,7 @@ attributed_to: [codex]   belongs_to: [repository-publishing]
 attributed_to: [tecxmate]   belongs_to: [adaptive-software-automation]
 - Tecxmate described the long-term goal of using in-app feedback, Google Forms, GA4, GitHub Actions, cron jobs, and AI agents to generate fix PRs for human review.
 - Documented feasibility as assisted repair with human merge/deploy review, not unsupervised production changes.
-- Pages: [decision](decisions/2026-05-13-adaptive-software-automation-vision.md), [topic](topics/adaptive-software-automation.md).
+- Pages: [decision](decisions/2026-05-13-adaptive-software-automation-vision.md), [topic](topics/tech/adaptive-software-automation.md).
 
 ## [2026-05-13] decision | Lowercase drive folder name
 attributed_to: [tecxmate]   belongs_to: [drive-media-sync]
@@ -39,14 +39,14 @@ attributed_to: [tecxmate]   belongs_to: [drive-media-sync]
 attributed_to: [tecxmate]   belongs_to: [drive-media-sync]
 - Tecxmate asked for a shortcut from the template `drive/` folder to a separately synchronized Google Drive location.
 - Added `scripts/link-drive.sh` to create ignored symlinks such as `drive/sync`.
-- Pages: [decision](decisions/2026-05-13-drive-symlink-shortcut.md), [topic](topics/drive-media-sync.md).
+- Pages: [decision](decisions/2026-05-13-drive-symlink-shortcut.md), [topic](topics/tech/drive-media-sync.md).
 
 ## [2026-05-23] decision | Two-tier TTS cache (source + derived)
 attributed_to: [claude-opus, niko]   belongs_to: [tts-pipeline]
 - Split `tts-cache` bucket into `source/<voice>/<sha1>.pcm` (raw Azure PCM, unversioned) and `<TTS_CACHE_VERSION>/<voice>/<sha1>.wav` (post-processed, served).
 - Bumping the version env var now re-derives WAVs from source locally — zero Azure calls.
 - Shipped in commit `91608cf`. One-time source backfill ran the same day (~$3 on Azure S0).
-- Pages: [decision](decisions/2026-05-23-two-tier-tts-cache.md), [topic](topics/tts-pipeline.md).
+- Pages: [decision](decisions/2026-05-23-two-tier-tts-cache.md), [topic](topics/tech/tts-pipeline.md).
 
 ## [2026-05-23] decision | Azure Speech F0 → S0 pricing tier
 attributed_to: [niko]   belongs_to: [tts-pipeline]
@@ -62,7 +62,7 @@ attributed_to: [niko]   belongs_to: [pronunciation-assessment]
 - New endpoint `POST /api/pronunciation`. New client recorder `src/utils/recordPCM.js`.
 - Spawned Tone Trainer practice module using the same endpoint for single-word tonal scoring.
 - Shipped in commits `8a20317` (initial), `998fa8a` (parallel STT fallback), `7ed8df2` (Tone Trainer).
-- Pages: [decision](decisions/2026-05-23-pronunciation-assessment-for-grading.md), [topic](topics/pronunciation-assessment.md), [topic](topics/tone-trainer.md).
+- Pages: [decision](decisions/2026-05-23-pronunciation-assessment-for-grading.md), [topic](topics/tech/pronunciation-assessment.md), [topic](topics/tech/tone-trainer.md).
 
 ## [2026-05-23] decision | Three learner paths (Professional + Heritage)
 attributed_to: [niko]   belongs_to: [curriculum-paths]
@@ -70,7 +70,7 @@ attributed_to: [niko]   belongs_to: [curriculum-paths]
 - 30 lessons per path; 240 words, 120 sentences, 30 conversations each.
 - Flipped `enabled: false` → `true` in `src/data/learnerModes.js`.
 - Shipped in commits `38a7b94` (A1), `60d60ce` (A2/B1), `84bf3c3` (B2/C1).
-- Pages: [decision](decisions/2026-05-23-three-learner-paths.md), [topic](topics/curriculum-paths.md).
+- Pages: [decision](decisions/2026-05-23-three-learner-paths.md), [topic](topics/tech/curriculum-paths.md).
 
 ## [2026-05-24] decision | Rename v9-nam-minh-lower → v9-processed
 attributed_to: [niko]   belongs_to: [tts-pipeline]
@@ -85,7 +85,7 @@ attributed_to: [niko]   belongs_to: [mobile-strategy]
 - Decided to defer native mobile until web is feature-complete, then wrap PWA via Capacitor.
 - ~95% code reuse. Verified `MediaRecorder`/`AudioContext` works in iOS WebView during prior pronunciation work.
 - Recorded architectural guardrails (relative API paths, no browser-only APIs, etc.).
-- Pages: [decision](decisions/2026-05-24-capacitor-mobile-path.md), [topic](topics/mobile-strategy.md).
+- Pages: [decision](decisions/2026-05-24-capacitor-mobile-path.md), [topic](topics/tech/mobile-strategy.md).
 
 ## [2026-05-24] chat | Payment strategy — IAP via RevenueCat
 attributed_to: [niko]   belongs_to: [payment-strategy]
@@ -93,7 +93,7 @@ attributed_to: [niko]   belongs_to: [payment-strategy]
 - Web subscriptions via Stripe (2.9% + 30¢).
 - Long-term hybrid: higher in-app sticker price + lower web price (Tinder/Audible pattern).
 - No code today; decision recorded for monetization launch.
-- Pages: [decision](decisions/2026-05-24-iap-via-revenuecat.md), [topic](topics/payment-strategy.md).
+- Pages: [decision](decisions/2026-05-24-iap-via-revenuecat.md), [topic](topics/business/payment-strategy.md).
 
 ## [2026-05-24] decision | Migrate TTS bucket to Cloudflare R2 within 1 month
 attributed_to: [niko]   belongs_to: [bucket-storage]
@@ -101,7 +101,7 @@ attributed_to: [niko]   belongs_to: [bucket-storage]
 - Target: R2 migration by 2026-06-24. Tracked as GitHub issue #17.
 - New scripts during cleanup-prep: `scripts/cleanup-legacy-tts.mjs`, `scripts/mirror-bucket.mjs` (full-bucket mirror for home-PC cron).
 - Deleted ~21K orphaned files from old voice iterations (`v3-trim/`, `v4-trim-loudness/`) and the `migrate-source/` throwaway.
-- Pages: [decision](decisions/2026-05-24-cloudflare-r2-migration-pending.md), [topic](topics/bucket-storage.md), [topic](topics/backups-recovery.md).
+- Pages: [decision](decisions/2026-05-24-cloudflare-r2-migration-pending.md), [topic](topics/tech/bucket-storage.md), [topic](topics/tech/backups-recovery.md).
 
 ## [2026-05-24] ingest | Wiki bootstrap for Vietnamy project
 attributed_to: [claude-opus]   belongs_to: [vietnamy-app]
@@ -124,4 +124,4 @@ attributed_to: [niko]   belongs_to: [tone-trainer, tone-training-data]
 - Added `/api/tone-samples` (SQLite at `TONE_DB_PATH`): POST ingest, public stats, token-gated export. Samples stored locally (JSON export) + pooled to backend; no raw audio, contour features only.
 - Deploy note: set `TONE_EXPORT_TOKEN` (export is 403 without it) and point `TONE_DB_PATH` at a persistent volume (Zeabur fs is ephemeral). Runtime DB files gitignored.
 - Shipped to `main` (commit ab68731) for phone-deployment testing.
-- Pages: [topic](topics/tone-trainer.md), [topic](topics/tone-training-data.md).
+- Pages: [topic](topics/tech/tone-trainer.md), [topic](topics/tech/tone-training-data.md).

@@ -46,5 +46,5 @@ The accepted path forward is a small **learned** tone-scoring model trained on r
 - Per-tone difficulty progression and adaptive selection of the tones a learner keeps failing.
 
 ## History
-- 2026-05-23 — Original standalone Tone Trainer (Azure-scored minimal-pair production drill) ([decision](../decisions/2026-05-23-pronunciation-assessment-for-grading.md)).
+- 2026-05-23 — Original standalone Tone Trainer (Azure-scored minimal-pair production drill) ([decision](../../decisions/2026-05-23-pronunciation-assessment-for-grading.md)).
 - 2026-05-30 — Replaced standalone module + orphaned tone routes with the Sounds-tab Learn→Identify→Speak lesson; added client-side pitch overlay and shape-classification verdict; demoted Azure recognition to a hint after confirming vi-VN tone leniency and lack of pronunciation-assessment support.

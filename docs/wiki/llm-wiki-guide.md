@@ -42,8 +42,13 @@ docs/wiki/
 ├── decisions/                # decision records (one per decision)
 │   └── YYYY-MM-DD-<slug>.md
 └── topics/                   # feature / area / concept / event / product pages
-    └── <slug>.md             # topics don't make decisions; they're owned or affected by stakeholders
+    ├── tech/                 # engineering, infra, app, content systems
+    │   └── <slug>.md
+    └── business/             # market, customers, money, positioning
+        └── <slug>.md         # topics don't make decisions; they're owned or affected by stakeholders
 ```
+
+Topic pages live under `topics/tech/` or `topics/business/`. Reference them as `topics/tech/<slug>.md` / `topics/business/<slug>.md` from `index.md`, `log.md`, and `decisions/` (use `../topics/<area>/<slug>.md` from a decision); from inside a topic page, link siblings as `<slug>.md`, cross-area as `../<area>/<slug>.md`, and decisions/stakeholders as `../../decisions/...` / `../../stakeholders/...`.
 
 ### Page frontmatter
 

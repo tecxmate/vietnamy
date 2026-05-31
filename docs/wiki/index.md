@@ -32,26 +32,32 @@ Catalog of every page in `docs/wiki/`. One line per page. Update on every create
 ## Topics
 *Areas, products, events, and synthesised concepts. Topics don't make decisions; stakeholders do.*
 
-<!-- Agent: append `- [Title](topics/slug.md) — one-line summary` for each topic. -->
-- [Vietnamy — Project Overview](topics/vietnamy-app.md) — stack, surfaces, learner paths, links to deeper topics
-- [TTS Pipeline (Two-Tier Cache)](topics/tts-pipeline.md) — source + derived bucket layout, request flow, post-processing
-- [Pronunciation Assessment](topics/pronunciation-assessment.md) — Azure phoneme-level scoring for `speak_sentence` and Tone Trainer
-- [Curriculum & Learner Paths](topics/curriculum-paths.md) — Explore Vietnam / Professional / Heritage curricula
-- [Skill Tree (Roadmap)](topics/skill-tree.md) — Duolingo-style node tree, unlock_rules, why it exists
-- [Tone Trainer](topics/tone-trainer.md) — Sounds-tab Learn→Identify→Speak lesson with client-side pitch overlay + shape-classification verdict
-- [Tone Training Data](topics/tone-training-data.md) — self-labeled pitch-contour samples pooled to `/api/tone-samples` toward a learned tone-scoring model
-- [Bucket Storage (Supabase → R2)](topics/bucket-storage.md) — current state, sizes, R2 migration plan
-- [Backups & Disaster Recovery](topics/backups-recovery.md) — local backup, full bucket mirror, cron setup
-- [Mobile Strategy](topics/mobile-strategy.md) — Capacitor path, what ports, what to avoid
-- [Payment & Monetization Strategy](topics/payment-strategy.md) — IAP via RevenueCat + web Stripe
-- [Drive Media Sync](topics/drive-media-sync.md) — root `drive/` convention and symlink helper for heavy Google Drive media files
-- [Repository Publishing](topics/repository-publishing.md) — Git/GitHub publishing status for the reusable template
-- [Adaptive Software Automation](topics/adaptive-software-automation.md) — long-term feedback, telemetry, AI repair, and PR review loop
-- [Taiwan—Vietnam Business Corridor](topics/tw-vn-business-corridor.md) — TW FDI market backdrop and B2B target rationale ($42B, 3,457 companies)
-- [Hán-Việt as a Competitive Moat](topics/han-viet-moat.md) — 60% Sino-Vietnamese vocab as Mandarin-speaker differentiator
-- [Pricing & Unit Economics](topics/pricing-and-unit-economics.md) — proposed B2B seat plans + B2C subscription with LTV/CAC math
-- [Competitive Landscape](topics/competitive-landscape.md) — Duolingo, Ling, Pimsleur, Babbel, Rosetta, italki — and where we win
-- [Customer Pipeline](topics/customer-pipeline.md) — landed (CTBC + 5 NTU classes) + outbound target list
+Topics are split into `topics/tech/` (engineering, infra, app, content systems) and `topics/business/` (market, customers, money, positioning).
+
+### Tech
+<!-- Agent: append `- [Title](topics/tech/slug.md) — one-line summary` for each tech topic. -->
+- [Vietnamy — Project Overview](topics/tech/vietnamy-app.md) — stack, surfaces, learner paths, links to deeper topics
+- [TTS Pipeline (Two-Tier Cache)](topics/tech/tts-pipeline.md) — source + derived bucket layout, request flow, post-processing
+- [Pronunciation Assessment](topics/tech/pronunciation-assessment.md) — Azure phoneme-level scoring for `speak_sentence` and Tone Trainer
+- [Curriculum & Learner Paths](topics/tech/curriculum-paths.md) — Explore Vietnam / Professional / Heritage curricula
+- [Skill Tree (Roadmap)](topics/tech/skill-tree.md) — Duolingo-style node tree, unlock_rules, why it exists
+- [Tone Trainer](topics/tech/tone-trainer.md) — Sounds-tab Learn→Identify→Speak lesson with client-side pitch overlay + shape-classification verdict
+- [Tone Training Data](topics/tech/tone-training-data.md) — self-labeled pitch-contour samples pooled to `/api/tone-samples` toward a learned tone-scoring model
+- [Bucket Storage (Supabase → R2)](topics/tech/bucket-storage.md) — current state, sizes, R2 migration plan
+- [Backups & Disaster Recovery](topics/tech/backups-recovery.md) — local backup, full bucket mirror, cron setup
+- [Mobile Strategy](topics/tech/mobile-strategy.md) — Capacitor path, what ports, what to avoid
+- [Drive Media Sync](topics/tech/drive-media-sync.md) — root `drive/` convention and symlink helper for heavy Google Drive media files
+- [Repository Publishing](topics/tech/repository-publishing.md) — Git/GitHub publishing status for the reusable template
+- [Adaptive Software Automation](topics/tech/adaptive-software-automation.md) — long-term feedback, telemetry, AI repair, and PR review loop
+
+### Business
+<!-- Agent: append `- [Title](topics/business/slug.md) — one-line summary` for each business topic. -->
+- [Payment & Monetization Strategy](topics/business/payment-strategy.md) — IAP via RevenueCat + web Stripe
+- [Taiwan—Vietnam Business Corridor](topics/business/tw-vn-business-corridor.md) — TW FDI market backdrop and B2B target rationale ($42B, 3,457 companies)
+- [Hán-Việt as a Competitive Moat](topics/business/han-viet-moat.md) — 60% Sino-Vietnamese vocab as Mandarin-speaker differentiator
+- [Pricing & Unit Economics](topics/business/pricing-and-unit-economics.md) — proposed B2B seat plans + B2C subscription with LTV/CAC math
+- [Competitive Landscape](topics/business/competitive-landscape.md) — Duolingo, Ling, Pimsleur, Babbel, Rosetta, italki — and where we win
+- [Customer Pipeline](topics/business/customer-pipeline.md) — landed (CTBC + 5 NTU classes) + outbound target list
 
 ## Log
 - [log.md](log.md) — append-only chronological record

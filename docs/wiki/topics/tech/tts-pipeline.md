@@ -90,6 +90,6 @@ See `docs/tts-cache.md` for the exhaustive operational reference: setup, env var
 ## History
 - 2026-05-22: Single-tier cache shipped. All audio at `<voice>/<sha1>.wav`.
 - 2026-05-23: First voice-quality iteration created the `TTS_CACHE_VERSION` prefix concept (`v9-nam-minh-lower`). Old files orphaned.
-- 2026-05-23: F0 quota exhausted mid-warmup → moved to S0 ([see decision](../decisions/2026-05-23-azure-s0-pricing-tier.md)).
-- 2026-05-23: Two-tier cache shipped ([see decision](../decisions/2026-05-23-two-tier-tts-cache.md)). Source backfill ran the same day.
-- 2026-05-24: Folder renamed `v9-nam-minh-lower` → `v9-processed` for clarity ([see decision](../decisions/2026-05-24-v9-processed-rename.md)).
+- 2026-05-23: F0 quota exhausted mid-warmup → moved to S0 ([see decision](../../decisions/2026-05-23-azure-s0-pricing-tier.md)).
+- 2026-05-23: Two-tier cache shipped ([see decision](../../decisions/2026-05-23-two-tier-tts-cache.md)). Source backfill ran the same day.
+- 2026-05-24: Folder renamed `v9-nam-minh-lower` → `v9-processed` for clarity ([see decision](../../decisions/2026-05-24-v9-processed-rename.md)).
