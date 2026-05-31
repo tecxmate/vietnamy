@@ -38,7 +38,8 @@ Catalog of every page in `docs/wiki/`. One line per page. Update on every create
 - [Pronunciation Assessment](topics/pronunciation-assessment.md) — Azure phoneme-level scoring for `speak_sentence` and Tone Trainer
 - [Curriculum & Learner Paths](topics/curriculum-paths.md) — Explore Vietnam / Professional / Heritage curricula
 - [Skill Tree (Roadmap)](topics/skill-tree.md) — Duolingo-style node tree, unlock_rules, why it exists
-- [Tone Trainer](topics/tone-trainer.md) — minimal-pair production drill scored by Azure
+- [Tone Trainer](topics/tone-trainer.md) — Sounds-tab Learn→Identify→Speak lesson with client-side pitch overlay + shape-classification verdict
+- [Tone Training Data](topics/tone-training-data.md) — self-labeled pitch-contour samples pooled to `/api/tone-samples` toward a learned tone-scoring model
 - [Bucket Storage (Supabase → R2)](topics/bucket-storage.md) — current state, sizes, R2 migration plan
 - [Backups & Disaster Recovery](topics/backups-recovery.md) — local backup, full bucket mirror, cron setup
 - [Mobile Strategy](topics/mobile-strategy.md) — Capacitor path, what ports, what to avoid
@@ -46,6 +47,11 @@ Catalog of every page in `docs/wiki/`. One line per page. Update on every create
 - [Drive Media Sync](topics/drive-media-sync.md) — root `drive/` convention and symlink helper for heavy Google Drive media files
 - [Repository Publishing](topics/repository-publishing.md) — Git/GitHub publishing status for the reusable template
 - [Adaptive Software Automation](topics/adaptive-software-automation.md) — long-term feedback, telemetry, AI repair, and PR review loop
+- [Taiwan—Vietnam Business Corridor](topics/tw-vn-business-corridor.md) — TW FDI market backdrop and B2B target rationale ($42B, 3,457 companies)
+- [Hán-Việt as a Competitive Moat](topics/han-viet-moat.md) — 60% Sino-Vietnamese vocab as Mandarin-speaker differentiator
+- [Pricing & Unit Economics](topics/pricing-and-unit-economics.md) — proposed B2B seat plans + B2C subscription with LTV/CAC math
+- [Competitive Landscape](topics/competitive-landscape.md) — Duolingo, Ling, Pimsleur, Babbel, Rosetta, italki — and where we win
+- [Customer Pipeline](topics/customer-pipeline.md) — landed (CTBC + 5 NTU classes) + outbound target list
 
 ## Log
 - [log.md](log.md) — append-only chronological record

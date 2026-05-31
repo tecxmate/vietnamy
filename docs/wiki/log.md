@@ -108,3 +108,20 @@ attributed_to: [claude-opus]   belongs_to: [vietnamy-app]
 - Populated the wiki with Vietnamy-specific stakeholders ([niko], [claude-opus]) and a baseline topic graph: [vietnamy-app], [tts-pipeline], [pronunciation-assessment], [curriculum-paths], [skill-tree], [tone-trainer], [bucket-storage], [backups-recovery], [mobile-strategy], [payment-strategy].
 - Migrated content from `docs/tts-cache.md` and the in-conversation context. The deep TTS doc stays canonical; topic pages summarize and link to it.
 - Recorded 8 decisions covering all major architectural choices made in the 2026-05-23/24 working session.
+
+## [2026-05-29] ingest | Pitch deck research compiled to wiki
+attributed_to: [niko]   belongs_to: [vietnamy-app]
+- Compiled market and competitive research from Vietnamy pitch deck build (NTU AI Builders Challenge + Shark Tank TW prep).
+- 5 new topic pages: tw-vn-business-corridor, han-viet-moat, pricing-and-unit-economics, competitive-landscape, customer-pipeline.
+- Key facts captured: $42.37B TW FDI in VN across 3,457 projects, 50-70% Vietnamese vocab is Sino-derived, CTBC Bank + 5 NTU classes confirmed inbound as flagship B2B pilots.
+- Deck delivered: `Vietnamy_Pitch_Deck_2026.pptx` (17 slides, bilingual EN+繁中, NT$5M/8% ask).
+
+## [2026-05-30] ingest | Tone lesson rebuilt + pooled training-data pipeline
+attributed_to: [niko]   belongs_to: [tone-trainer, tone-training-data]
+- Replaced the standalone Tone Trainer and orphaned `/practice/tones*`, `/practice/pitch*`, `/practice/tone-trainer` routes with a Sounds-tab Learn→Identify→Speak lesson (`src/components/Sounds/ToneLesson.jsx`, `PitchGraph.jsx`).
+- Speak step extracts the learner's pitch contour client-side (autocorrelation F0 in `src/utils/pitch.js`), overlays it on the target, and judges by contour-shape classification — after confirming Azure vi-VN recognition is too lenient about tone and Azure Pronunciation Assessment doesn't support Vietnamese.
+- Decided F0-template scoring can't be robust (glottalization, dialect, timing); collecting self-labeled samples toward a small learned model instead.
+- Added `/api/tone-samples` (SQLite at `TONE_DB_PATH`): POST ingest, public stats, token-gated export. Samples stored locally (JSON export) + pooled to backend; no raw audio, contour features only.
+- Deploy note: set `TONE_EXPORT_TOKEN` (export is 403 without it) and point `TONE_DB_PATH` at a persistent volume (Zeabur fs is ephemeral). Runtime DB files gitignored.
+- Shipped to `main` (commit ab68731) for phone-deployment testing.
+- Pages: [topic](topics/tone-trainer.md), [topic](topics/tone-training-data.md).
