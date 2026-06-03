@@ -15957,6 +15957,11 @@
       "lessonId": "lesson_002b",
       "vi": "Rất vui được gặp bạn.",
       "en": "Nice to meet you.",
+      "accepted": [
+        "Pleased to meet you.",
+        "It's nice to meet you."
+      ],
+      "note": "",
       "tokenCount": 5,
       "difficulty": 1,
       "grammarTagIds": [
@@ -16184,6 +16189,11 @@
       "lessonId": "lesson_015",
       "vi": "Phòng có wifi không?",
       "en": "Does the room have wifi?",
+      "accepted": [
+        "Is there wifi in the room?",
+        "Does the room have wi-fi?"
+      ],
+      "note": "có...không = yes/no",
       "tokenCount": 4,
       "difficulty": 3,
       "grammarTagIds": [
@@ -16227,6 +16237,11 @@
       "lessonId": "lesson_028",
       "vi": "Bây giờ là mấy giờ?",
       "en": "What time is it now?",
+      "accepted": [
+        "What time is it?",
+        "What's the time?"
+      ],
+      "note": "",
       "tokenCount": 5,
       "difficulty": 2,
       "grammarTagIds": [
@@ -16359,6 +16374,10 @@
       "lessonId": "lesson_033",
       "vi": "Hôm qua tôi đã đi Hà Nội.",
       "en": "Yesterday I went to Hanoi.",
+      "accepted": [
+        "I went to Hanoi yesterday."
+      ],
+      "note": "đã = past marker",
       "tokenCount": 5,
       "difficulty": 3,
       "grammarTagIds": [
@@ -16370,6 +16389,9 @@
       "lessonId": "lesson_033",
       "vi": "Tuần trước chúng tôi đã ăn phở.",
       "en": "Last week we ate pho.",
+      "accepted": [
+        "We ate pho last week."
+      ],
       "tokenCount": 6,
       "difficulty": 3,
       "grammarTagIds": [
@@ -16381,6 +16403,10 @@
       "lessonId": "lesson_033",
       "vi": "Tôi vừa mới về.",
       "en": "I just got back.",
+      "accepted": [
+        "I just came home.",
+        "I've just returned."
+      ],
       "tokenCount": 4,
       "difficulty": 3
     },
@@ -16389,6 +16415,9 @@
       "lessonId": "lesson_033",
       "vi": "Năm ngoái trời rất lạnh.",
       "en": "Last year it was very cold.",
+      "accepted": [
+        "It was very cold last year."
+      ],
       "tokenCount": 4,
       "difficulty": 3
     },
@@ -16397,6 +16426,9 @@
       "lessonId": "lesson_034",
       "vi": "Chuyến đi rất tuyệt vời.",
       "en": "The trip was wonderful.",
+      "accepted": [
+        "The trip was great."
+      ],
       "tokenCount": 4,
       "difficulty": 3
     },
@@ -16405,6 +16437,9 @@
       "lessonId": "lesson_034",
       "vi": "Chúng tôi đã tham quan phố cổ.",
       "en": "We visited the old quarter.",
+      "accepted": [
+        "We toured the old quarter."
+      ],
       "tokenCount": 5,
       "difficulty": 3,
       "grammarTagIds": [
@@ -16416,6 +16451,9 @@
       "lessonId": "lesson_034",
       "vi": "Sau đó tôi đã chụp rất nhiều ảnh.",
       "en": "After that I took many photos.",
+      "accepted": [
+        "Then I took a lot of photos."
+      ],
       "tokenCount": 7,
       "difficulty": 3,
       "grammarTagIds": [
@@ -16427,6 +16465,9 @@
       "lessonId": "lesson_034",
       "vi": "Tôi rất mệt nhưng rất vui.",
       "en": "I was very tired but very happy.",
+      "accepted": [
+        "I was tired but happy."
+      ],
       "tokenCount": 6,
       "difficulty": 3
     },
@@ -16435,6 +16476,9 @@
       "lessonId": "lesson_035",
       "vi": "Bạn đã từng đi Sa Pa chưa?",
       "en": "Have you ever been to Sa Pa?",
+      "accepted": [
+        "Have you been to Sa Pa?"
+      ],
       "tokenCount": 6,
       "difficulty": 3,
       "grammarTagIds": [
@@ -16447,6 +16491,9 @@
       "lessonId": "lesson_035",
       "vi": "Tôi chưa từng ăn sầu riêng.",
       "en": "I have never eaten durian.",
+      "accepted": [
+        "I've never had durian."
+      ],
       "tokenCount": 5,
       "difficulty": 3,
       "grammarTagIds": [
@@ -16458,6 +16505,9 @@
       "lessonId": "lesson_035",
       "vi": "Đây là lần đầu tôi thử.",
       "en": "This is the first time I'm trying it.",
+      "accepted": [
+        "It's my first time trying."
+      ],
       "tokenCount": 6,
       "difficulty": 3
     },
@@ -16466,6 +16516,9 @@
       "lessonId": "lesson_035",
       "vi": "Hồi nhỏ tôi đã sống ở Huế.",
       "en": "When I was little I lived in Hue.",
+      "accepted": [
+        "I lived in Hue as a child."
+      ],
       "tokenCount": 7,
       "difficulty": 3,
       "grammarTagIds": [
@@ -16485,6 +16538,9 @@
       "lessonId": "lesson_036",
       "vi": "Không ngờ bạn cũng ở đây!",
       "en": "I didn't expect you to be here too!",
+      "accepted": [
+        "What a surprise to see you here!"
+      ],
       "tokenCount": 6,
       "difficulty": 3
     },
@@ -16512,6 +16568,9 @@
       "lessonId": "lesson_037",
       "vi": "Đầu tôi bị đau.",
       "en": "My head hurts.",
+      "accepted": [
+        "I have a headache."
+      ],
       "tokenCount": 4,
       "difficulty": 3,
       "grammarTagIds": [
@@ -16523,6 +16582,9 @@
       "lessonId": "lesson_037",
       "vi": "Tay phải của tôi bị thương.",
       "en": "My right hand is injured.",
+      "accepted": [
+        "I hurt my right hand."
+      ],
       "tokenCount": 6,
       "difficulty": 3,
       "grammarTagIds": [
@@ -16534,6 +16596,9 @@
       "lessonId": "lesson_037",
       "vi": "Bụng tôi đói lắm.",
       "en": "I am very hungry.",
+      "accepted": [
+        "My stomach is very hungry."
+      ],
       "tokenCount": 4,
       "difficulty": 3
     },
@@ -16591,6 +16656,9 @@
       "lessonId": "lesson_039",
       "vi": "Cho tôi mua thuốc cảm.",
       "en": "Let me buy some cold medicine.",
+      "accepted": [
+        "I'd like to buy cold medicine."
+      ],
       "tokenCount": 5,
       "difficulty": 3
     },
@@ -16607,6 +16675,9 @@
       "lessonId": "lesson_039",
       "vi": "Tôi bị dị ứng với kháng sinh.",
       "en": "I'm allergic to antibiotics.",
+      "accepted": [
+        "I have an antibiotic allergy."
+      ],
       "tokenCount": 6,
       "difficulty": 3,
       "grammarTagIds": [
@@ -16696,6 +16767,9 @@
       "lessonId": "lesson_042",
       "vi": "Cuộc họp bắt đầu lúc 9 giờ.",
       "en": "The meeting starts at 9.",
+      "accepted": [
+        "The meeting begins at 9 o'clock."
+      ],
       "tokenCount": 6,
       "difficulty": 3
     },
@@ -17437,6 +17511,9 @@
       "lessonId": "lesson_063",
       "vi": "Có công mài sắt, có ngày nên kim.",
       "en": "If you keep grinding, one day you'll succeed.",
+      "accepted": [
+        "Persistence pays off."
+      ],
       "tokenCount": 8,
       "difficulty": 4
     },
@@ -17488,6 +17565,9 @@
       "lessonId": "lesson_065",
       "vi": "Bộ phim này hết sảy luôn!",
       "en": "This movie is awesome!",
+      "accepted": [
+        "This movie is so good!"
+      ],
       "tokenCount": 5,
       "difficulty": 4
     },
@@ -17496,6 +17576,9 @@
       "lessonId": "lesson_065",
       "vi": "Trời ơi, đẹp ghê!",
       "en": "Oh my god, so beautiful!",
+      "accepted": [
+        "Wow, gorgeous!"
+      ],
       "tokenCount": 4,
       "difficulty": 4
     },

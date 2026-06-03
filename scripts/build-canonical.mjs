@@ -118,13 +118,21 @@ function buildCurriculum() {
     });
 
     const sentences = (db.sentences || []).map((s) => {
-        const tr = flattenTranslations(s.translations);
+        // A sentence can have several accepted English answers: en = primary,
+        // accepted[] = the alternates (preserves them — they were being dropped).
+        const enTr = (s.translations || []).filter((t) => t.lang === 'en' && t.text);
+        const enPrimary = enTr.find((t) => t.is_primary) || enTr[0];
+        const enAlts = enTr.filter((t) => t !== enPrimary).map((t) => t.text);
+        const zhTr = (s.translations || []).filter((t) => t.lang === 'zh' && t.text);
+        const zhPrimary = zhTr.find((t) => t.is_primary) || zhTr[0];
         return clean({
             id: s.id,
             lessonId: s.lesson_id,
             vi: s.vi_text,
-            en: tr.en,
-            zh: tr.zh,
+            en: enPrimary ? enPrimary.text : undefined,
+            zh: zhPrimary ? zhPrimary.text : undefined,
+            accepted: enAlts,
+            note: s.grammar_note,
             tokenCount: s.token_count,
             difficulty: s.difficulty,
             grammarTagIds: (s.grammar_tags || []).map((t) => tagIdMap.get(t) || t),
