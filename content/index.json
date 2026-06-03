@@ -31,8 +31,7 @@
     },
     "tones": {
       "path": "tones.json",
-      "tones": 6,
-      "practiceWords": 36
+      "authoritative": true
     },
     "kinship": {
       "path": "kinship.json",

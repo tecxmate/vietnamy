@@ -338,22 +338,8 @@ function buildGrammar() {
     return { levels: levels.length, modules };
 }
 
-// ── tones (from toneContours.js) ─────────────────────────────────────────────
-
-async function buildTones() {
-    const mod = await import(pathToFileURL(join(SRC, 'toneContours.js')).href);
-    const tones = Object.values(mod.TONE_CONTOURS).map((t) =>
-        clean({
-            id: t.id, name: t.name, label: t.label, mark: t.mark,
-            color: t.color, description: t.description, contour: t.contour,
-        }),
-    );
-    const practiceWords = (mod.PRACTICE_WORDS || []).map((w, i) =>
-        clean({ id: 'tw_' + String(i + 1).padStart(4, '0'), vi: w.word, toneId: w.tone, en: w.meaning }),
-    );
-    writeJson('tones.json', clean({ tones, practiceWords }));
-    return { tones: tones.length, practiceWords: practiceWords.length };
-}
+// tones (content/tones.json) is now AUTHORITATIVE — hand-maintained, no longer
+// generated. src/data/toneContours.js is a thin adapter over it.
 
 // ── kinship (from kinshipData.js) ────────────────────────────────────────────
 
@@ -387,8 +373,6 @@ const articles = await buildArticles();
 console.log(`  articles.json (${articles.count} articles)`);
 const grammar = buildGrammar();
 console.log(`  grammar.json (${grammar.levels} levels, ${grammar.modules} modules)`);
-const tones = await buildTones();
-console.log(`  tones.json (${tones.tones} tones, ${tones.practiceWords} practice words)`);
 const kinship = await buildKinship();
 console.log(`  kinship.json (${kinship.count} members)`);
 
@@ -401,7 +385,7 @@ const manifest = {
         dictionary: { path: 'dictionary.json', entries: dict.count },
         articles: { path: 'articles.json', articles: articles.count },
         grammar: { path: 'grammar.json', levels: grammar.levels, modules: grammar.modules },
-        tones: { path: 'tones.json', tones: tones.tones, practiceWords: tones.practiceWords },
+        tones: { path: 'tones.json', authoritative: true },
         kinship: { path: 'kinship.json', members: kinship.count },
     },
 };
