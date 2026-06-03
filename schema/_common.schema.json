@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vietnamy.app/schema/_common.schema.json",
+  "title": "Vietnamy common definitions",
+  "description": "Shared types and enums for the Vietnamy content contract. See docs/CONTENT_SCHEMA.md.",
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z]+(_[a-z0-9]+)*$",
+      "description": "Stable lowercase id, never the content text. e.g. word_explore_0001"
+    },
+    "localizedText": {
+      "type": "object",
+      "description": "A single localized string value.",
+      "properties": {
+        "vi": { "type": "string" },
+        "en": { "type": "string" },
+        "zh": { "type": "string" }
+      },
+      "required": ["vi"],
+      "additionalProperties": false
+    },
+    "cefrLevel": {
+      "type": "string",
+      "enum": ["A1", "A2", "B1", "B2", "C1", "C2"]
+    },
+    "dialect": {
+      "type": "string",
+      "enum": ["north", "south", "central", "neutral"],
+      "description": "Region only — usage notes belong in 'note'."
+    },
+    "difficulty": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "pos": {
+      "type": "string",
+      "enum": [
+        "noun", "verb", "adjective", "adverb", "pronoun", "interjection",
+        "phrase", "classifier", "particle", "preposition", "conjunction", "numeral"
+      ]
+    }
+  }
+}

@@ -1,0 +1,201 @@
+{
+  "id": "drill_particles_politeness",
+  "title": "Particles: Politeness",
+  "description": "Add sentence-final particles to sound polite and natural",
+  "color": "#9C27B0",
+  "intro": "Vietnamese uses small words at the end of sentences to show respect, politeness, and tone. Without them, you sound robotic or rude. These particles are one of the most important things to master early.",
+  "questions": [
+    {
+      "type": "mcq",
+      "prompt": "Which particle makes a sentence respectful to elders? 'Cảm ơn ___'",
+      "correct": "ạ",
+      "options": [
+        "ạ",
+        "nhé",
+        "nha",
+        "đi"
+      ],
+      "explanation": "'ạ' shows respect — use it when speaking to anyone older or in a formal situation: 'Cảm ơn ạ' (Thank you, respectfully)"
+    },
+    {
+      "type": "mcq",
+      "prompt": "Which particle is used for gentle suggestions? 'Đi ngủ ___' (Let's go to sleep)",
+      "correct": "nhé",
+      "options": [
+        "nhé",
+        "ạ",
+        "đi",
+        "nha"
+      ],
+      "explanation": "'nhé' softens a suggestion or request, like saying 'okay?' — 'Đi ngủ nhé' = Let's go to sleep, okay?"
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Xin chào ___ (Hello — to a teacher)",
+      "correct": "ạ",
+      "options": [
+        "ạ",
+        "nhé",
+        "nha",
+        "hả"
+      ],
+      "explanation": "Always add 'ạ' when greeting someone older or more senior: 'Xin chào ạ'"
+    },
+    {
+      "type": "mcq",
+      "prompt": "What is 'nha' compared to 'nhé'?",
+      "correct": "Southern informal version of 'nhé'",
+      "options": [
+        "Southern informal version of 'nhé'",
+        "More formal than 'nhé'",
+        "Used only in writing",
+        "A question particle"
+      ],
+      "explanation": "'nha' is the Southern/casual version of 'nhé': 'Đi ngủ nha' = Let's sleep, yeah?"
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Mời anh ngồi ___ (Please sit down — to an older man)",
+      "correct": "ạ",
+      "options": [
+        "ạ",
+        "nhé",
+        "đi",
+        "nha"
+      ],
+      "explanation": "When offering something to someone older, always end with 'ạ' for respect"
+    },
+    {
+      "type": "mcq",
+      "prompt": "Which particle is a direct command softener? 'Ăn ___ !' (Eat!)",
+      "correct": "đi",
+      "options": [
+        "đi",
+        "ạ",
+        "nhé",
+        "nha"
+      ],
+      "explanation": "'đi' at the end softens an imperative: 'Ăn đi' = Go ahead and eat. Without 'đi' it sounds harsh"
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Cho tôi một ly cà phê ___ (One coffee, please — to a waiter)",
+      "correct": "ạ",
+      "options": [
+        "ạ",
+        "nhé",
+        "đi",
+        "nha"
+      ],
+      "explanation": "In a café, you'd be polite to the staff: 'Cho tôi một ly cà phê ạ'"
+    },
+    {
+      "type": "mcq",
+      "prompt": "Which ending would you use with a close friend? 'Đi ăn ___' (Let's go eat)",
+      "correct": "nha",
+      "options": [
+        "nha",
+        "ạ",
+        "vâng",
+        "dạ"
+      ],
+      "explanation": "'nha' is casual and friendly — perfect for peers: 'Đi ăn nha' = Let's go eat, yeah?"
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Dạ, em hiểu rồi ___ (Yes, I understand — to a teacher)",
+      "correct": "ạ",
+      "options": [
+        "ạ",
+        "nhé",
+        "nha",
+        "đi"
+      ],
+      "explanation": "'Dạ...ạ' is the full respectful frame: 'Dạ' at the start + 'ạ' at the end"
+    },
+    {
+      "type": "mcq",
+      "prompt": "What is 'vâng' used for?",
+      "correct": "Northern polite 'yes' (like 'dạ' in the South)",
+      "options": [
+        "Northern polite 'yes' (like 'dạ' in the South)",
+        "A question particle",
+        "Saying goodbye",
+        "Expressing surprise"
+      ],
+      "explanation": "'vâng' (North) and 'dạ' (South) both mean 'yes' respectfully. 'dạ' is also used in the North before 'ạ'"
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Ngon lắm ___ ! (So delicious! — to the cook, who is older)",
+      "correct": "ạ",
+      "options": [
+        "ạ",
+        "nhé",
+        "nha",
+        "đi"
+      ],
+      "explanation": "Complimenting someone older → add 'ạ' for respect"
+    },
+    {
+      "type": "mcq",
+      "prompt": "You're at a market. The vendor is about your parents' age. How do you say 'How much?'",
+      "correct": "Bao nhiêu tiền ạ?",
+      "options": [
+        "Bao nhiêu tiền ạ?",
+        "Bao nhiêu tiền nhé?",
+        "Bao nhiêu tiền đi?",
+        "Bao nhiêu tiền nha?"
+      ],
+      "explanation": "To someone older → 'ạ'. 'nhé' would be to a peer, 'đi' is for commands, 'nha' is too casual here"
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Chờ tôi một chút ___ (Wait for me a moment — to a friend)",
+      "correct": "nhé",
+      "options": [
+        "nhé",
+        "ạ",
+        "đi",
+        "nha"
+      ],
+      "explanation": "'nhé' for gentle requests between peers: 'Wait for me a moment, okay?'"
+    },
+    {
+      "type": "mcq",
+      "prompt": "Which is the most natural way to tell a friend to try the food?",
+      "correct": "Ăn thử đi!",
+      "options": [
+        "Ăn thử đi!",
+        "Ăn thử ạ!",
+        "Ăn thử nhé!",
+        "Ăn thử nha!"
+      ],
+      "explanation": "'đi' is the best particle for encouraging someone to do something: 'Go ahead and try it!'"
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Tôi đi trước ___ (I'll go first — to a friend, casually)",
+      "correct": "nha",
+      "options": [
+        "nha",
+        "ạ",
+        "nhé",
+        "đi"
+      ],
+      "explanation": "Casual notification to a friend → 'nha': 'I'll head out first, yeah?'"
+    },
+    {
+      "type": "mcq",
+      "prompt": "When should you always use 'ạ'?",
+      "correct": "When speaking to anyone older than you",
+      "options": [
+        "When speaking to anyone older than you",
+        "Only with grandparents",
+        "Only in formal settings",
+        "Only when asking questions"
+      ],
+      "explanation": "'ạ' is expected whenever you talk to someone older — parents, teachers, shopkeepers, strangers who look older. It's never wrong to use it"
+    }
+  ]
+}

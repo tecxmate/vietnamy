@@ -1,0 +1,210 @@
+[
+  {
+    "id": "kin_gp1",
+    "label": {
+      "en": "Grandfather (Paternal)",
+      "vi": "Ông nội"
+    },
+    "relationType": "paternal_grandfather",
+    "gender": "male",
+    "generation": 2,
+    "ageOffset": 60
+  },
+  {
+    "id": "kin_gp2",
+    "label": {
+      "en": "Grandmother (Paternal)",
+      "vi": "Bà nội"
+    },
+    "relationType": "paternal_grandmother",
+    "gender": "female",
+    "generation": 2,
+    "ageOffset": 58
+  },
+  {
+    "id": "kin_gp3",
+    "label": {
+      "en": "Grandfather (Maternal)",
+      "vi": "Ông ngoại"
+    },
+    "relationType": "maternal_grandfather",
+    "gender": "male",
+    "generation": 2,
+    "ageOffset": 62
+  },
+  {
+    "id": "kin_gp4",
+    "label": {
+      "en": "Grandmother (Maternal)",
+      "vi": "Bà ngoại"
+    },
+    "relationType": "maternal_grandmother",
+    "gender": "female",
+    "generation": 2,
+    "ageOffset": 59
+  },
+  {
+    "id": "kin_p1",
+    "label": {
+      "en": "Father",
+      "vi": "Bố"
+    },
+    "relationType": "father",
+    "gender": "male",
+    "generation": 1,
+    "ageOffset": 30
+  },
+  {
+    "id": "kin_p2",
+    "label": {
+      "en": "Mother",
+      "vi": "Mẹ"
+    },
+    "relationType": "mother",
+    "gender": "female",
+    "generation": 1,
+    "ageOffset": 28
+  },
+  {
+    "id": "kin_u1",
+    "label": {
+      "en": "Uncle (Father's Older Brother)",
+      "vi": "Bác"
+    },
+    "relationType": "father_older_brother",
+    "gender": "male",
+    "generation": 1,
+    "ageOffset": 35
+  },
+  {
+    "id": "kin_u2",
+    "label": {
+      "en": "Aunt (Father's Older Sister)",
+      "vi": "Bác"
+    },
+    "relationType": "father_older_sister",
+    "gender": "female",
+    "generation": 1,
+    "ageOffset": 32
+  },
+  {
+    "id": "kin_u3",
+    "label": {
+      "en": "Uncle (Father's Younger Brother)",
+      "vi": "Chú"
+    },
+    "relationType": "father_younger_brother",
+    "gender": "male",
+    "generation": 1,
+    "ageOffset": 25
+  },
+  {
+    "id": "kin_u4",
+    "label": {
+      "en": "Aunt (Father's Younger Sister)",
+      "vi": "Cô"
+    },
+    "relationType": "father_younger_sister",
+    "gender": "female",
+    "generation": 1,
+    "ageOffset": 22
+  },
+  {
+    "id": "kin_u5",
+    "label": {
+      "en": "Uncle (Mother's Brother)",
+      "vi": "Cậu"
+    },
+    "relationType": "mother_brother",
+    "gender": "male",
+    "generation": 1,
+    "ageOffset": 26
+  },
+  {
+    "id": "kin_u6",
+    "label": {
+      "en": "Aunt (Mother's Sister)",
+      "vi": "Dì"
+    },
+    "relationType": "mother_sister",
+    "gender": "female",
+    "generation": 1,
+    "ageOffset": 24
+  },
+  {
+    "id": "kin_s1",
+    "label": {
+      "en": "Older Brother",
+      "vi": "Anh"
+    },
+    "relationType": "older_brother",
+    "gender": "male",
+    "generation": 0,
+    "ageOffset": 5
+  },
+  {
+    "id": "kin_s2",
+    "label": {
+      "en": "Older Sister",
+      "vi": "Chị"
+    },
+    "relationType": "older_sister",
+    "gender": "female",
+    "generation": 0,
+    "ageOffset": 3
+  },
+  {
+    "id": "kin_me",
+    "label": {
+      "en": "You (Self)"
+    },
+    "relationType": "self",
+    "gender": "neutral",
+    "generation": 0,
+    "ageOffset": 0
+  },
+  {
+    "id": "kin_s3",
+    "label": {
+      "en": "Younger Brother",
+      "vi": "Em"
+    },
+    "relationType": "younger_brother",
+    "gender": "male",
+    "generation": 0,
+    "ageOffset": -4
+  },
+  {
+    "id": "kin_s4",
+    "label": {
+      "en": "Younger Sister",
+      "vi": "Em"
+    },
+    "relationType": "younger_sister",
+    "gender": "female",
+    "generation": 0,
+    "ageOffset": -6
+  },
+  {
+    "id": "kin_c1",
+    "label": {
+      "en": "Son",
+      "vi": "Con"
+    },
+    "relationType": "son",
+    "gender": "male",
+    "generation": -1,
+    "ageOffset": -25
+  },
+  {
+    "id": "kin_c2",
+    "label": {
+      "en": "Daughter",
+      "vi": "Con"
+    },
+    "relationType": "daughter",
+    "gender": "female",
+    "generation": -1,
+    "ageOffset": -28
+  }
+]

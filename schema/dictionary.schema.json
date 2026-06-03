@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vietnamy.app/schema/dictionary.schema.json",
+  "title": "Vietnamy dictionary entry (client contract)",
+  "type": "object",
+  "required": ["id", "vi", "definitions"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "$ref": "_common.schema.json#/$defs/id" },
+    "vi": { "type": "string" },
+    "pos": {
+      "type": "array",
+      "items": { "$ref": "_common.schema.json#/$defs/pos" }
+    },
+    "definitions": { "$ref": "_common.schema.json#/$defs/localizedText" },
+    "examples": {
+      "type": "array",
+      "items": { "$ref": "_common.schema.json#/$defs/localizedText" }
+    },
+    "hanViet": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "char": { "type": "string" },
+        "definition": { "type": "string" }
+      }
+    },
+    "audioKey": { "type": "string" },
+    "source": { "type": "string" }
+  }
+}

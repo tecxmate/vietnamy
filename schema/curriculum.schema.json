@@ -1,0 +1,143 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vietnamy.app/schema/curriculum.schema.json",
+  "title": "Vietnamy curriculum (lesson content container)",
+  "type": "object",
+  "required": ["meta", "units", "lessons", "words", "sentences"],
+  "additionalProperties": false,
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["mode", "version"],
+      "properties": {
+        "mode": { "type": "string" },
+        "version": { "type": "string" },
+        "generated": { "type": "string" },
+        "source": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "units": { "type": "array", "items": { "$ref": "#/$defs/unit" } },
+    "lessons": { "type": "array", "items": { "$ref": "#/$defs/lesson" } },
+    "words": { "type": "array", "items": { "$ref": "#/$defs/word" } },
+    "sentences": { "type": "array", "items": { "$ref": "#/$defs/sentence" } },
+    "conversations": { "type": "array", "items": { "$ref": "#/$defs/conversation" } },
+    "grammarTags": { "type": "array", "items": { "$ref": "#/$defs/grammarTag" } }
+  },
+  "$defs": {
+    "unit": {
+      "type": "object",
+      "required": ["id", "orderIndex", "title"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "_common.schema.json#/$defs/id" },
+        "orderIndex": { "type": "integer" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "cefrLevel": { "$ref": "_common.schema.json#/$defs/cefrLevel" },
+        "icon": { "type": "string" }
+      }
+    },
+    "lesson": {
+      "type": "object",
+      "required": ["id", "unitId", "orderIndex", "title"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "_common.schema.json#/$defs/id" },
+        "unitId": { "$ref": "_common.schema.json#/$defs/id" },
+        "orderIndex": { "type": "integer" },
+        "nodeId": { "type": "string" },
+        "quizId": { "type": "string" },
+        "quizLabel": { "type": "string" },
+        "title": { "type": "string" },
+        "topic": { "type": "string" },
+        "focus": { "type": "array", "items": { "type": "string" } },
+        "targets": { "type": "array", "items": { "type": "string" } },
+        "cefrLevel": { "$ref": "_common.schema.json#/$defs/cefrLevel" },
+        "difficulty": { "$ref": "_common.schema.json#/$defs/difficulty" },
+        "xpReward": { "type": "integer" },
+        "wordIds": { "type": "array", "items": { "$ref": "_common.schema.json#/$defs/id" } },
+        "sentenceIds": { "type": "array", "items": { "$ref": "_common.schema.json#/$defs/id" } },
+        "conversationIds": { "type": "array", "items": { "$ref": "_common.schema.json#/$defs/id" } }
+      }
+    },
+    "word": {
+      "type": "object",
+      "required": ["id", "vi"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "_common.schema.json#/$defs/id" },
+        "lessonId": { "$ref": "_common.schema.json#/$defs/id" },
+        "vi": { "type": "string" },
+        "en": { "type": "string" },
+        "zh": { "type": "string" },
+        "pos": { "$ref": "_common.schema.json#/$defs/pos" },
+        "emoji": { "type": "string" },
+        "cefrLevel": { "$ref": "_common.schema.json#/$defs/cefrLevel" },
+        "difficulty": { "$ref": "_common.schema.json#/$defs/difficulty" },
+        "frequencyRank": { "type": "integer" },
+        "dialect": { "$ref": "_common.schema.json#/$defs/dialect" },
+        "hasImage": { "type": "boolean" },
+        "imageUrl": { "type": "string" },
+        "audioKey": { "type": "string" },
+        "note": { "type": "string" }
+      }
+    },
+    "sentence": {
+      "type": "object",
+      "required": ["id", "vi"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "_common.schema.json#/$defs/id" },
+        "lessonId": { "$ref": "_common.schema.json#/$defs/id" },
+        "vi": { "type": "string" },
+        "en": { "type": "string" },
+        "zh": { "type": "string" },
+        "accepted": { "type": "array", "items": { "type": "string" } },
+        "tokenCount": { "type": "integer" },
+        "difficulty": { "$ref": "_common.schema.json#/$defs/difficulty" },
+        "grammarTagIds": { "type": "array", "items": { "$ref": "_common.schema.json#/$defs/id" } },
+        "ipa": { "type": "string" },
+        "audioKey": { "type": "string" }
+      }
+    },
+    "conversation": {
+      "type": "object",
+      "required": ["id", "lines"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "_common.schema.json#/$defs/id" },
+        "lessonId": { "$ref": "_common.schema.json#/$defs/id" },
+        "title": { "type": "string", "description": "Scene label, e.g. 'Ordering at a restaurant'." },
+        "context": { "type": "string" },
+        "lines": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["speaker", "vi"],
+            "additionalProperties": false,
+            "properties": {
+              "speaker": { "type": "string" },
+              "vi": { "type": "string" },
+              "en": { "type": "string" },
+              "zh": { "type": "string" },
+              "audioKey": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "grammarTag": {
+      "type": "object",
+      "required": ["id", "description"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "_common.schema.json#/$defs/id" },
+        "name": { "type": "string" },
+        "category": { "type": "string" },
+        "description": { "type": "string" },
+        "example": { "$ref": "_common.schema.json#/$defs/localizedText" }
+      }
+    }
+  }
+}

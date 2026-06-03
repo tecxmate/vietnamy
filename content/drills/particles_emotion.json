@@ -1,0 +1,201 @@
+{
+  "id": "drill_particles_emotion",
+  "title": "Particles: Emotion",
+  "description": "Conversational particles that express feelings, surprise, and nuance",
+  "color": "#9C27B0",
+  "intro": "Beyond polite particles (ạ, nhé), Vietnamese has emotional particles that color your speech. These are what make you sound like a real person instead of a textbook.",
+  "questions": [
+    {
+      "type": "mcq",
+      "prompt": "Which particle seeks agreement? 'Trời nóng quá, ___?' (It's so hot, right?)",
+      "correct": "nhỉ",
+      "options": [
+        "nhỉ",
+        "à",
+        "hả",
+        "chứ"
+      ],
+      "explanation": "'nhỉ' seeks agreement from the listener, like English 'right?' or 'isn't it?'"
+    },
+    {
+      "type": "mcq",
+      "prompt": "Which particle expresses mild surprise or realization? 'Bạn là người Việt Nam ___?' (Oh, you're Vietnamese?)",
+      "correct": "à",
+      "options": [
+        "à",
+        "nhỉ",
+        "chứ",
+        "mà"
+      ],
+      "explanation": "'à' shows you just learned something: 'Oh!' or 'I see!' — soft surprise"
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Cái gì ___? (What?! — surprised/didn't hear)",
+      "correct": "hả",
+      "options": [
+        "hả",
+        "nhỉ",
+        "à",
+        "chứ"
+      ],
+      "explanation": "'hả' = huh?/what?! Shows surprise or that you didn't catch what was said"
+    },
+    {
+      "type": "mcq",
+      "prompt": "Which particle emphasizes certainty? 'Tất nhiên rồi ___!' (Of course!)",
+      "correct": "chứ",
+      "options": [
+        "chứ",
+        "nhỉ",
+        "à",
+        "hả"
+      ],
+      "explanation": "'chứ' adds emphasis/certainty: 'Of course!' / 'Obviously!'"
+    },
+    {
+      "type": "mcq",
+      "prompt": "What does 'mà' at the end of a sentence express?",
+      "correct": "Gentle insistence or explanation ('but...' / 'you see...')",
+      "options": [
+        "Gentle insistence or explanation ('but...' / 'you see...')",
+        "Surprise",
+        "Agreement",
+        "A question"
+      ],
+      "explanation": "'mà' = but/you see. 'Tôi biết mà' = I know (don't worry). Softens a statement"
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Phở ngon quá, ___? (The phở is so good, isn't it?)",
+      "correct": "nhỉ",
+      "options": [
+        "nhỉ",
+        "à",
+        "hả",
+        "mà"
+      ],
+      "explanation": "'nhỉ' invites the listener to agree: 'So good, RIGHT?'"
+    },
+    {
+      "type": "mcq",
+      "prompt": "Your friend says something you already know. You reply: 'Tôi biết rồi ___!'",
+      "correct": "mà",
+      "options": [
+        "mà",
+        "nhỉ",
+        "à",
+        "hả"
+      ],
+      "explanation": "'mà' = I know already! (gently insistent). 'Tôi biết rồi mà' = I already know that"
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Thật ___? (Really?! — shocked)",
+      "correct": "hả",
+      "options": [
+        "hả",
+        "nhỉ",
+        "à",
+        "chứ"
+      ],
+      "explanation": "'Thật hả?' = Really?! Expressing shock or disbelief"
+    },
+    {
+      "type": "mcq",
+      "prompt": "Which particle would you use when you suddenly realize the time? 'Muộn rồi ___!'",
+      "correct": "à",
+      "options": [
+        "à",
+        "nhỉ",
+        "hả",
+        "chứ"
+      ],
+      "explanation": "'à' for sudden realization: 'Oh, it's late!' — just noticed"
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Bạn đi được ___! (You can definitely go!)",
+      "correct": "chứ",
+      "options": [
+        "chứ",
+        "nhỉ",
+        "à",
+        "mà"
+      ],
+      "explanation": "'chứ' for emphasis/certainty: 'You can go, for sure!'"
+    },
+    {
+      "type": "mcq",
+      "prompt": "Someone asks if you speak Vietnamese. You speak a little. Which is most natural?",
+      "correct": "Tôi nói được một chút mà",
+      "options": [
+        "Tôi nói được một chút mà",
+        "Tôi nói được một chút nhỉ",
+        "Tôi nói được một chút hả",
+        "Tôi nói được một chút à"
+      ],
+      "explanation": "'mà' = I can speak a little (you see/don't worry). Self-reassuring and gentle"
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Đẹp quá, ___? (So beautiful, right?)",
+      "correct": "nhỉ",
+      "options": [
+        "nhỉ",
+        "hả",
+        "mà",
+        "chứ"
+      ],
+      "explanation": "'nhỉ' to share your feeling and seek agreement: 'So beautiful, isn't it?'"
+    },
+    {
+      "type": "mcq",
+      "prompt": "Which response shows you just understood something?",
+      "correct": "À, tôi hiểu rồi!",
+      "options": [
+        "À, tôi hiểu rồi!",
+        "Hả, tôi hiểu rồi!",
+        "Chứ, tôi hiểu rồi!",
+        "Nhỉ, tôi hiểu rồi!"
+      ],
+      "explanation": "'À' at the START of a sentence = 'Oh! / Ah!' — moment of understanding. Different from 'à' at the end"
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Tất nhiên ___! (Of course!)",
+      "correct": "chứ",
+      "options": [
+        "chứ",
+        "nhỉ",
+        "à",
+        "mà"
+      ],
+      "explanation": "'Tất nhiên chứ!' = Of course! 'chứ' adds certainty to the statement"
+    },
+    {
+      "type": "mcq",
+      "prompt": "You overhear something surprising. Which reaction is most natural?",
+      "correct": "Hả? Thật à?",
+      "options": [
+        "Hả? Thật à?",
+        "Nhỉ? Thật nhỉ?",
+        "Chứ? Thật chứ?",
+        "Mà? Thật mà?"
+      ],
+      "explanation": "'Hả?' (what?!/really?!) + 'Thật à?' (is that true?) — natural surprise sequence"
+    },
+    {
+      "type": "mcq",
+      "prompt": "Which particle makes a question softer/gentler? 'Bạn ổn không ___?' (Are you okay?)",
+      "correct": "nhỉ",
+      "options": [
+        "nhỉ",
+        "hả",
+        "chứ",
+        "mà"
+      ],
+      "explanation": "'nhỉ' softens the question and shows you care. Without it, the question is more direct"
+    }
+  ]
+}

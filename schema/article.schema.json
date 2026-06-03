@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vietnamy.app/schema/article.schema.json",
+  "title": "Vietnamy article (reading content)",
+  "type": "object",
+  "required": ["id", "title", "sentences"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "$ref": "_common.schema.json#/$defs/id" },
+    "title": { "$ref": "_common.schema.json#/$defs/localizedText" },
+    "category": { "type": "string" },
+    "cefrLevel": { "$ref": "_common.schema.json#/$defs/cefrLevel" },
+    "imageUrl": { "type": "string" },
+    "readingTimeMins": { "type": "number" },
+    "sentences": {
+      "type": "array",
+      "items": { "$ref": "_common.schema.json#/$defs/localizedText" }
+    }
+  }
+}

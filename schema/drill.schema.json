@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vietnamy.app/schema/drill.schema.json",
+  "title": "Vietnamy drill (practice quiz)",
+  "type": "object",
+  "required": ["id", "title", "questions"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "$ref": "_common.schema.json#/$defs/id" },
+    "title": { "type": "string" },
+    "description": { "type": "string" },
+    "color": { "type": "string" },
+    "intro": { "type": "string" },
+    "questions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["type", "prompt", "correct", "options", "explanation"],
+        "additionalProperties": false,
+        "properties": {
+          "type": { "type": "string", "enum": ["mcq", "fill_blank", "listen_pick"] },
+          "prompt": { "type": "string" },
+          "correct": { "type": "string" },
+          "options": { "type": "array", "items": { "type": "string" } },
+          "explanation": { "type": "string" },
+          "audioKey": { "type": "string" }
+        }
+      }
+    }
+  }
+}

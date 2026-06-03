@@ -1,0 +1,201 @@
+{
+  "id": "drill_classifiers_basics",
+  "title": "Classifiers: Basics",
+  "description": "Match the right classifier to common nouns — essential for building noun phrases",
+  "color": "#9C27B0",
+  "intro": "In Vietnamese, you can't just say 'a coffee' — you need a classifier word: 'một LY cà phê'. Each noun has a specific classifier based on its shape, size, or category.",
+  "questions": [
+    {
+      "type": "mcq",
+      "prompt": "What classifier do you use for a cup of coffee? 'một ___ cà phê'",
+      "correct": "ly",
+      "options": [
+        "ly",
+        "cái",
+        "con",
+        "chai"
+      ],
+      "explanation": "'ly' is used for glasses/cups of liquid: ly cà phê, ly nước, ly bia"
+    },
+    {
+      "type": "mcq",
+      "prompt": "What classifier do you use for a bottle of water? 'một ___ nước'",
+      "correct": "chai",
+      "options": [
+        "chai",
+        "ly",
+        "lon",
+        "cái"
+      ],
+      "explanation": "'chai' is for bottles: chai nước, chai bia, chai rượu"
+    },
+    {
+      "type": "mcq",
+      "prompt": "What classifier do you use for animals? 'một ___ chó (dog)'",
+      "correct": "con",
+      "options": [
+        "con",
+        "cái",
+        "chiếc",
+        "bát"
+      ],
+      "explanation": "'con' is the universal classifier for animals: con chó, con mèo, con cá"
+    },
+    {
+      "type": "mcq",
+      "prompt": "What is the most general classifier in Vietnamese?",
+      "correct": "cái",
+      "options": [
+        "cái",
+        "con",
+        "chiếc",
+        "ly"
+      ],
+      "explanation": "'cái' is the default classifier for inanimate objects. When in doubt, 'cái' often works"
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Một ___ phở (a bowl of phở)",
+      "correct": "bát",
+      "options": [
+        "bát",
+        "ly",
+        "tô",
+        "cái"
+      ],
+      "explanation": "'bát' (Northern) or 'tô' (Southern) is for bowls of food: bát phở, bát cơm"
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Một ___ bánh mì (a piece of bread/sandwich)",
+      "correct": "ổ",
+      "options": [
+        "ổ",
+        "cái",
+        "miếng",
+        "con"
+      ],
+      "explanation": "'ổ' is for loaves of bread: ổ bánh mì"
+    },
+    {
+      "type": "mcq",
+      "prompt": "Which classifier goes with 'bàn' (table)?",
+      "correct": "cái",
+      "options": [
+        "cái",
+        "con",
+        "chiếc",
+        "bức"
+      ],
+      "explanation": "'cái bàn' — 'cái' is used for common objects like tables, chairs, spoons"
+    },
+    {
+      "type": "mcq",
+      "prompt": "'Con' is used for animals AND for what else?",
+      "correct": "Rivers and roads",
+      "options": [
+        "Rivers and roads",
+        "Books and papers",
+        "Cups and bowls",
+        "Houses and rooms"
+      ],
+      "explanation": "'con sông' (river), 'con đường' (road) — things that are long and winding, like animals"
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Hai ___ bia (two cans of beer)",
+      "correct": "lon",
+      "options": [
+        "lon",
+        "chai",
+        "ly",
+        "cái"
+      ],
+      "explanation": "'lon' is for cans: lon bia, lon nước ngọt"
+    },
+    {
+      "type": "mcq",
+      "prompt": "Complete the order: 'Cho tôi một ___ cà phê sữa đá'",
+      "correct": "ly",
+      "options": [
+        "ly",
+        "cái",
+        "con",
+        "bát"
+      ],
+      "explanation": "You order drinks with 'ly': một ly cà phê = a cup of coffee"
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Ba ___ mèo (three cats)",
+      "correct": "con",
+      "options": [
+        "con",
+        "cái",
+        "chiếc",
+        "bức"
+      ],
+      "explanation": "'con' for all animals: con mèo (cat), con chó (dog), con gà (chicken)"
+    },
+    {
+      "type": "mcq",
+      "prompt": "Which sentence is correct?",
+      "correct": "Tôi muốn một ly trà",
+      "options": [
+        "Tôi muốn một ly trà",
+        "Tôi muốn một cái trà",
+        "Tôi muốn một con trà",
+        "Tôi muốn một bát trà"
+      ],
+      "explanation": "Tea is a drink, so use 'ly' (glass/cup): một ly trà = a cup of tea"
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Một ___ ghế (a chair)",
+      "correct": "cái",
+      "options": [
+        "cái",
+        "con",
+        "chiếc",
+        "bức"
+      ],
+      "explanation": "'cái' for common inanimate objects: cái ghế (chair), cái bàn (table)"
+    },
+    {
+      "type": "mcq",
+      "prompt": "Which classifier would you use for 'nước' (water) in a bottle?",
+      "correct": "chai",
+      "options": [
+        "chai",
+        "ly",
+        "lon",
+        "cái"
+      ],
+      "explanation": "chai nước = bottle of water. The classifier depends on the container, not just the liquid"
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Năm ___ cá (five fish)",
+      "correct": "con",
+      "options": [
+        "con",
+        "cái",
+        "chiếc",
+        "ly"
+      ],
+      "explanation": "Fish are animals → 'con': năm con cá"
+    },
+    {
+      "type": "mcq",
+      "prompt": "What's the difference between 'bát' and 'tô'?",
+      "correct": "Same meaning, different dialects (North/South)",
+      "options": [
+        "Same meaning, different dialects (North/South)",
+        "bát is bigger than tô",
+        "tô is for soup only",
+        "bát is formal, tô is casual"
+      ],
+      "explanation": "Both mean 'bowl'. Northern speakers say 'bát', Southern say 'tô'"
+    }
+  ]
+}

@@ -1,0 +1,201 @@
+{
+  "id": "drill_classifiers_extended",
+  "title": "Classifiers: Extended",
+  "description": "More classifiers for books, pictures, pairs, and everyday objects",
+  "color": "#9C27B0",
+  "intro": "Beyond the basics (cái, con, ly), Vietnamese has specific classifiers for books, pictures, vehicles, pairs, and more. These make your speech sound natural and precise.",
+  "questions": [
+    {
+      "type": "mcq",
+      "prompt": "What classifier is used for books? 'một ___ sách'",
+      "correct": "cuốn",
+      "options": [
+        "cuốn",
+        "cái",
+        "tờ",
+        "bức"
+      ],
+      "explanation": "'cuốn' is for bound items — books, notebooks: cuốn sách, cuốn vở"
+    },
+    {
+      "type": "mcq",
+      "prompt": "What classifier is used for pictures/paintings? 'một ___ tranh'",
+      "correct": "bức",
+      "options": [
+        "bức",
+        "cái",
+        "tờ",
+        "chiếc"
+      ],
+      "explanation": "'bức' is for flat art — paintings, photos, letters: bức tranh, bức ảnh, bức thư"
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Một ___ giày (a pair of shoes)",
+      "correct": "đôi",
+      "options": [
+        "đôi",
+        "cái",
+        "chiếc",
+        "con"
+      ],
+      "explanation": "'đôi' = pair. For things that come in twos: đôi giày, đôi đũa (chopsticks)"
+    },
+    {
+      "type": "mcq",
+      "prompt": "'Chiếc' is used for what kind of objects?",
+      "correct": "Single items from a pair, or vehicles",
+      "options": [
+        "Single items from a pair, or vehicles",
+        "Only cars",
+        "Books and papers",
+        "Food items"
+      ],
+      "explanation": "'chiếc' = one of a pair (chiếc giày = one shoe), or vehicles (chiếc xe)"
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Hai ___ xe máy (two motorbikes)",
+      "correct": "chiếc",
+      "options": [
+        "chiếc",
+        "cái",
+        "con",
+        "đôi"
+      ],
+      "explanation": "'chiếc' for vehicles: chiếc xe máy, chiếc ô tô, chiếc xe đạp"
+    },
+    {
+      "type": "mcq",
+      "prompt": "What classifier is used for flat sheets? 'một ___ giấy (paper)'",
+      "correct": "tờ",
+      "options": [
+        "tờ",
+        "bức",
+        "cuốn",
+        "cái"
+      ],
+      "explanation": "'tờ' is for flat sheets — paper, newspaper, banknotes: tờ giấy, tờ báo, tờ tiền"
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Ba ___ quả (three fruits)",
+      "correct": "quả",
+      "options": [
+        "quả",
+        "cái",
+        "con",
+        "trái"
+      ],
+      "explanation": "'quả' (North) or 'trái' (South) for round fruits: quả cam, quả táo. Note: 'quả' is both the classifier and the word!"
+    },
+    {
+      "type": "mcq",
+      "prompt": "What's the classifier for a letter/email? 'một ___ thư'",
+      "correct": "bức",
+      "options": [
+        "bức",
+        "tờ",
+        "cuốn",
+        "cái"
+      ],
+      "explanation": "'bức thư' = a letter. 'bức' for flat items with content (art, photos, letters)"
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Một ___ đũa (a pair of chopsticks)",
+      "correct": "đôi",
+      "options": [
+        "đôi",
+        "cái",
+        "chiếc",
+        "bộ"
+      ],
+      "explanation": "'đôi đũa' = pair of chopsticks. 'đôi' for natural pairs"
+    },
+    {
+      "type": "mcq",
+      "prompt": "How do you say 'one shoe' (just one, not a pair)?",
+      "correct": "một chiếc giày",
+      "options": [
+        "một chiếc giày",
+        "một đôi giày",
+        "một cái giày",
+        "một con giày"
+      ],
+      "explanation": "'chiếc' = single item from a pair. 'đôi' = the pair. 'một chiếc giày' = one shoe"
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Năm ___ báo (five newspapers)",
+      "correct": "tờ",
+      "options": [
+        "tờ",
+        "cuốn",
+        "bức",
+        "cái"
+      ],
+      "explanation": "'tờ' for newspapers (flat sheets): tờ báo"
+    },
+    {
+      "type": "mcq",
+      "prompt": "What classifier would you use for 'áo' (shirt)?",
+      "correct": "cái",
+      "options": [
+        "cái",
+        "chiếc",
+        "bộ",
+        "đôi"
+      ],
+      "explanation": "'cái áo' = a shirt. Clothing items use 'cái'. A full outfit is 'bộ quần áo'"
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Một ___ quần áo (a set of clothes)",
+      "correct": "bộ",
+      "options": [
+        "bộ",
+        "cái",
+        "chiếc",
+        "đôi"
+      ],
+      "explanation": "'bộ' = a set/collection: bộ quần áo (outfit), bộ bàn ghế (furniture set)"
+    },
+    {
+      "type": "mcq",
+      "prompt": "Which sentence correctly orders a book at a bookstore?",
+      "correct": "Cho tôi một cuốn sách này",
+      "options": [
+        "Cho tôi một cuốn sách này",
+        "Cho tôi một cái sách này",
+        "Cho tôi một tờ sách này",
+        "Cho tôi một bức sách này"
+      ],
+      "explanation": "'cuốn' is specifically for books and bound items"
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Bốn ___ ảnh (four photos)",
+      "correct": "bức",
+      "options": [
+        "bức",
+        "tờ",
+        "cái",
+        "cuốn"
+      ],
+      "explanation": "'bức ảnh' = photo. 'bức' for flat art/images"
+    },
+    {
+      "type": "mcq",
+      "prompt": "How do you say 'a bouquet of flowers'?",
+      "correct": "một bó hoa",
+      "options": [
+        "một bó hoa",
+        "một cái hoa",
+        "một con hoa",
+        "một bông hoa"
+      ],
+      "explanation": "'bó' = a bundle/bunch. 'bông hoa' = a single flower. 'bó hoa' = bouquet"
+    }
+  ]
+}

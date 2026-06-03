@@ -1,0 +1,201 @@
+{
+  "id": "drill_question_words_advanced",
+  "title": "Question Words: Advanced",
+  "description": "When, why, how, and by what — complex questions for real conversations",
+  "color": "#9C27B0",
+  "intro": "Now you know gì, ai, ở đâu, bao nhiêu. Time to add: khi nào (when), tại sao (why), thế nào (how), and bằng gì (by what means).",
+  "questions": [
+    {
+      "type": "mcq",
+      "prompt": "How do you say 'when' in Vietnamese?",
+      "correct": "khi nào",
+      "options": [
+        "khi nào",
+        "ở đâu",
+        "thế nào",
+        "tại sao"
+      ],
+      "explanation": "'khi nào' = when. 'Khi nào bạn đi?' = When do you go?"
+    },
+    {
+      "type": "mcq",
+      "prompt": "How do you say 'why' in Vietnamese?",
+      "correct": "tại sao",
+      "options": [
+        "tại sao",
+        "thế nào",
+        "khi nào",
+        "bao lâu"
+      ],
+      "explanation": "'tại sao' = why. Can also say 'vì sao'. 'Tại sao bạn học tiếng Việt?' = Why do you study Vietnamese?"
+    },
+    {
+      "type": "mcq",
+      "prompt": "How do you say 'how' (in what way)?",
+      "correct": "thế nào / như thế nào",
+      "options": [
+        "thế nào / như thế nào",
+        "bao nhiêu",
+        "ở đâu",
+        "khi nào"
+      ],
+      "explanation": "'thế nào' = how/what's it like. 'Phở thế nào?' = How's the phở?"
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "___ ___ bạn đến Việt Nam? (When do you come to Vietnam?)",
+      "correct": "Khi nào",
+      "options": [
+        "Khi nào",
+        "Tại sao",
+        "Thế nào",
+        "Ở đâu"
+      ],
+      "explanation": "'Khi nào' at the start or end of the sentence: 'Khi nào bạn đến VN?' or 'Bạn đến VN khi nào?'"
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Bạn đi ___ ___? (How do you get there? / By what?)",
+      "correct": "bằng gì",
+      "options": [
+        "bằng gì",
+        "thế nào",
+        "ở đâu",
+        "khi nào"
+      ],
+      "explanation": "'bằng gì' = by what (means of transport). 'Bạn đi bằng gì?' = How do you go? / By what?"
+    },
+    {
+      "type": "mcq",
+      "prompt": "How do you ask 'How long?' (duration)?",
+      "correct": "bao lâu",
+      "options": [
+        "bao lâu",
+        "bao nhiêu",
+        "khi nào",
+        "mấy giờ"
+      ],
+      "explanation": "'bao lâu' = how long (time). 'Đi bao lâu?' = How long does it take?"
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "___ ___ bạn không ăn? (Why don't you eat?)",
+      "correct": "Tại sao",
+      "options": [
+        "Tại sao",
+        "Khi nào",
+        "Thế nào",
+        "Bao lâu"
+      ],
+      "explanation": "'Tại sao' starts the question: 'Why you not eat?'"
+    },
+    {
+      "type": "mcq",
+      "prompt": "Which question asks about transport method?",
+      "correct": "Bạn đi bằng gì?",
+      "options": [
+        "Bạn đi bằng gì?",
+        "Bạn đi ở đâu?",
+        "Bạn đi khi nào?",
+        "Bạn đi thế nào?"
+      ],
+      "explanation": "'bằng gì' specifically asks about the means/method: by bus, by motorbike, etc."
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Thời tiết hôm nay ___ ___? (How's the weather today?)",
+      "correct": "thế nào",
+      "options": [
+        "thế nào",
+        "bao nhiêu",
+        "khi nào",
+        "ở đâu"
+      ],
+      "explanation": "'thế nào' asks for description/quality: 'Weather today HOW?'"
+    },
+    {
+      "type": "mcq",
+      "prompt": "'Bao xa?' means what?",
+      "correct": "How far?",
+      "options": [
+        "How far?",
+        "How long?",
+        "How much?",
+        "How many?"
+      ],
+      "explanation": "'bao xa' = how far (distance). 'Đi bao xa?' = How far is it?"
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Từ đây đến sân bay ___ ___? (How far from here to the airport?)",
+      "correct": "bao xa",
+      "options": [
+        "bao xa",
+        "bao lâu",
+        "bao nhiêu",
+        "thế nào"
+      ],
+      "explanation": "'bao xa' for distance: 'From here to airport HOW FAR?'"
+    },
+    {
+      "type": "mcq",
+      "prompt": "How do you ask 'How long have you been in Vietnam?'",
+      "correct": "Bạn ở Việt Nam bao lâu rồi?",
+      "options": [
+        "Bạn ở Việt Nam bao lâu rồi?",
+        "Bạn khi nào Việt Nam?",
+        "Bạn ở đâu Việt Nam?",
+        "Bạn thế nào Việt Nam?"
+      ],
+      "explanation": "'bao lâu rồi' = how long already. The 'rồi' indicates ongoing duration"
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Bạn đi Đà Nẵng ___ ___? (By what do you go to Da Nang?)",
+      "correct": "bằng gì",
+      "options": [
+        "bằng gì",
+        "thế nào",
+        "khi nào",
+        "ở đâu"
+      ],
+      "explanation": "Asking about transport: 'You go Da Nang BY WHAT?' → bằng máy bay (by plane), bằng xe (by car)"
+    },
+    {
+      "type": "mcq",
+      "prompt": "Which question word can go at either the START or END of a sentence?",
+      "correct": "khi nào",
+      "options": [
+        "khi nào",
+        "tại sao",
+        "bằng gì",
+        "bao xa"
+      ],
+      "explanation": "'Khi nào bạn đi?' = 'Bạn đi khi nào?' Both work. Most other question words have a fixed position"
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Món này nấu ___ ___? (How is this dish cooked?)",
+      "correct": "thế nào",
+      "options": [
+        "thế nào",
+        "bằng gì",
+        "khi nào",
+        "tại sao"
+      ],
+      "explanation": "'thế nào' for method/description: 'This dish cook HOW?'"
+    },
+    {
+      "type": "mcq",
+      "prompt": "What's the difference between 'thế nào' and 'bằng gì'?",
+      "correct": "'thế nào' = how (general), 'bằng gì' = by what (specific means)",
+      "options": [
+        "'thế nào' = how (general), 'bằng gì' = by what (specific means)",
+        "They mean the same thing",
+        "'thế nào' is formal, 'bằng gì' is casual",
+        "'thế nào' is Northern, 'bằng gì' is Southern"
+      ],
+      "explanation": "'Đi thế nào?' = How do you go? (general). 'Đi bằng gì?' = By what means? (expects: bus, car, plane...)"
+    }
+  ]
+}

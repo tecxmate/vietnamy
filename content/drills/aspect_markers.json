@@ -1,0 +1,201 @@
+{
+  "id": "drill_aspect_markers",
+  "title": "Aspect Markers",
+  "description": "Master đã/rồi, đang, sẽ/sắp, vừa/mới — Vietnamese time markers",
+  "color": "#9C27B0",
+  "intro": "Vietnamese doesn't conjugate verbs for tense. Instead, time words (aspect markers) go before or after the verb to show when something happens. Master these 7 markers and you can express any time frame.",
+  "questions": [
+    {
+      "type": "mcq",
+      "prompt": "Which marker means 'currently / right now'?",
+      "correct": "đang",
+      "options": [
+        "đang",
+        "đã",
+        "sẽ",
+        "vừa"
+      ],
+      "explanation": "'đang' = currently doing. 'Tôi đang ăn' = I am eating (right now)"
+    },
+    {
+      "type": "mcq",
+      "prompt": "Which marker means 'already (completed)'?",
+      "correct": "đã",
+      "options": [
+        "đã",
+        "đang",
+        "sẽ",
+        "sắp"
+      ],
+      "explanation": "'đã' = already (past action). 'Tôi đã ăn' = I already ate / I have eaten"
+    },
+    {
+      "type": "mcq",
+      "prompt": "Which marker means 'will' (future)?",
+      "correct": "sẽ",
+      "options": [
+        "sẽ",
+        "đã",
+        "đang",
+        "vừa"
+      ],
+      "explanation": "'sẽ' = will (future). 'Tôi sẽ đi' = I will go"
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Tôi ___ ăn cơm. (I am eating rice — right now)",
+      "correct": "đang",
+      "options": [
+        "đang",
+        "đã",
+        "sẽ",
+        "vừa"
+      ],
+      "explanation": "'đang' for actions happening right now: I AM eating"
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Tôi ___ ăn rồi. (I already ate.)",
+      "correct": "đã",
+      "options": [
+        "đã",
+        "đang",
+        "sẽ",
+        "mới"
+      ],
+      "explanation": "'đã...rồi' = already did. 'đã' before verb + 'rồi' at end is the full past pattern"
+    },
+    {
+      "type": "mcq",
+      "prompt": "What does 'rồi' add to a sentence?",
+      "correct": "Completion / 'already'",
+      "options": [
+        "Completion / 'already'",
+        "Future tense",
+        "Current action",
+        "Negation"
+      ],
+      "explanation": "'rồi' = already/done. Can work alone ('Ăn rồi' = Already ate) or with 'đã' ('đã ăn rồi')"
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Tôi ___ đi Đà Nẵng. (I will go to Da Nang.)",
+      "correct": "sẽ",
+      "options": [
+        "sẽ",
+        "đã",
+        "đang",
+        "vừa"
+      ],
+      "explanation": "'sẽ' before the verb for future: I WILL go"
+    },
+    {
+      "type": "mcq",
+      "prompt": "What's the difference between 'sẽ' and 'sắp'?",
+      "correct": "'sẽ' = will (general future), 'sắp' = about to (imminent)",
+      "options": [
+        "'sẽ' = will (general future), 'sắp' = about to (imminent)",
+        "No difference",
+        "'sẽ' is formal, 'sắp' is casual",
+        "'sẽ' is Northern, 'sắp' is Southern"
+      ],
+      "explanation": "'Tôi sẽ đi' = I will go (someday). 'Tôi sắp đi' = I'm about to go (very soon)"
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Trời ___ mưa! (It's about to rain!)",
+      "correct": "sắp",
+      "options": [
+        "sắp",
+        "sẽ",
+        "đang",
+        "đã"
+      ],
+      "explanation": "'sắp' for imminent events: 'It's ABOUT TO rain!' — happening very soon"
+    },
+    {
+      "type": "mcq",
+      "prompt": "Which TWO markers both mean 'just' (very recent past)?",
+      "correct": "vừa and mới",
+      "options": [
+        "vừa and mới",
+        "đã and rồi",
+        "sẽ and sắp",
+        "đang and còn"
+      ],
+      "explanation": "'vừa' and 'mới' both = just (did something). 'Tôi vừa ăn' = 'Tôi mới ăn' = I just ate"
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Tôi ___ đến. (I just arrived.)",
+      "correct": "vừa",
+      "options": [
+        "vừa",
+        "đã",
+        "đang",
+        "sẽ"
+      ],
+      "explanation": "'vừa' = just (moments ago). 'I JUST arrived'"
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Anh ấy ___ đi. (He just left.)",
+      "correct": "mới",
+      "options": [
+        "mới",
+        "đã",
+        "đang",
+        "sắp"
+      ],
+      "explanation": "'mới' = just/recently. 'He JUST left' — very recent"
+    },
+    {
+      "type": "mcq",
+      "prompt": "Which sentence means 'She is sleeping'?",
+      "correct": "Cô ấy đang ngủ",
+      "options": [
+        "Cô ấy đang ngủ",
+        "Cô ấy đã ngủ",
+        "Cô ấy sẽ ngủ",
+        "Cô ấy sắp ngủ"
+      ],
+      "explanation": "'đang' = currently: She IS sleeping (right now)"
+    },
+    {
+      "type": "mcq",
+      "prompt": "How do you say 'I haven't eaten yet'?",
+      "correct": "Tôi chưa ăn",
+      "options": [
+        "Tôi chưa ăn",
+        "Tôi không ăn",
+        "Tôi đã không ăn",
+        "Tôi mới ăn"
+      ],
+      "explanation": "'chưa' = not yet. Different from 'không' (don't/won't). 'chưa ăn' = haven't eaten yet"
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Bạn ăn ___ chưa? (Have you eaten yet?)",
+      "correct": "cơm",
+      "options": [
+        "cơm",
+        "đã",
+        "rồi",
+        "chưa"
+      ],
+      "explanation": "'Ăn cơm chưa?' is literally 'Eat rice yet?' — this is a common Vietnamese greeting, not just about food!"
+    },
+    {
+      "type": "mcq",
+      "prompt": "Put the markers in time order: earliest to latest",
+      "correct": "đã → vừa/mới → đang → sắp → sẽ",
+      "options": [
+        "đã → vừa/mới → đang → sắp → sẽ",
+        "sẽ → sắp → đang → vừa → đã",
+        "đang → đã → sẽ → vừa → sắp",
+        "vừa → đã → đang → sẽ → sắp"
+      ],
+      "explanation": "Past (đã) → Just now (vừa/mới) → Now (đang) → About to (sắp) → Future (sẽ)"
+    }
+  ]
+}

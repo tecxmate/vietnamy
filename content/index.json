@@ -1,0 +1,42 @@
+{
+  "version": "1.0.0",
+  "contract": "docs/CONTENT_SCHEMA.md",
+  "files": {
+    "curriculum": {
+      "path": "curriculum.json",
+      "units": 39,
+      "lessons": 140,
+      "words": 1001,
+      "sentences": 479,
+      "conversations": 132,
+      "grammarTags": 139
+    },
+    "drills": {
+      "path": "drills/",
+      "files": 15,
+      "questions": 247
+    },
+    "dictionary": {
+      "path": "dictionary.json",
+      "entries": 663
+    },
+    "articles": {
+      "path": "articles.json",
+      "articles": 47
+    },
+    "grammar": {
+      "path": "grammar.json",
+      "levels": 3,
+      "modules": 80
+    },
+    "tones": {
+      "path": "tones.json",
+      "tones": 6,
+      "practiceWords": 36
+    },
+    "kinship": {
+      "path": "kinship.json",
+      "members": 19
+    }
+  }
+}

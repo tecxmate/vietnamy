@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vietnamy.app/schema/grammar.schema.json",
+  "title": "Vietnamy grammar modules",
+  "type": "object",
+  "required": ["levels"],
+  "additionalProperties": false,
+  "properties": {
+    "version": { "type": "string" },
+    "levels": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "label", "modules"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "$ref": "_common.schema.json#/$defs/cefrLevel" },
+          "label": { "type": "string" },
+          "description": { "type": "string" },
+          "modules": { "type": "array", "items": { "$ref": "#/$defs/module" } }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "module": {
+      "type": "object",
+      "required": ["id", "title", "units"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "mainPattern": { "type": "string" },
+        "faqs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["question", "answer"],
+            "additionalProperties": false,
+            "properties": {
+              "question": { "type": "string" },
+              "answer": { "type": "string" }
+            }
+          }
+        },
+        "extractedPatterns": { "type": "array", "items": { "type": "string" } },
+        "units": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "title", "explanation"],
+            "additionalProperties": false,
+            "properties": {
+              "id": { "type": "string" },
+              "title": { "type": "string" },
+              "pattern": { "type": "string" },
+              "explanation": { "type": "string" },
+              "note": { "type": ["string", "null"] },
+              "difficulty": { "$ref": "_common.schema.json#/$defs/difficulty" },
+              "tags": { "type": "array", "items": { "type": "string" } },
+              "prerequisites": { "type": "array", "items": { "type": "string" } },
+              "examples": {
+                "type": "array",
+                "items": { "$ref": "_common.schema.json#/$defs/localizedText" }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

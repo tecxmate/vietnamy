@@ -1,0 +1,201 @@
+{
+  "id": "drill_question_words",
+  "title": "Question Words",
+  "description": "Master the essential Vietnamese question words for everyday conversations",
+  "color": "#9C27B0",
+  "intro": "Vietnamese question words often go where the answer would go in the sentence. 'Bạn tên là gì?' literally means 'You name is WHAT?' — the question word sits in the answer's position.",
+  "questions": [
+    {
+      "type": "mcq",
+      "prompt": "How do you say 'what' in Vietnamese?",
+      "correct": "gì",
+      "options": [
+        "gì",
+        "ai",
+        "đâu",
+        "nào"
+      ],
+      "explanation": "'gì' = what. Goes after the verb: 'Bạn muốn gì?' = What do you want?"
+    },
+    {
+      "type": "mcq",
+      "prompt": "How do you say 'who' in Vietnamese?",
+      "correct": "ai",
+      "options": [
+        "ai",
+        "gì",
+        "nào",
+        "sao"
+      ],
+      "explanation": "'ai' = who. Can be subject or object: 'Ai đó?' = Who's there? 'Bạn gặp ai?' = Who did you meet?"
+    },
+    {
+      "type": "mcq",
+      "prompt": "How do you say 'where' in Vietnamese?",
+      "correct": "ở đâu",
+      "options": [
+        "ở đâu",
+        "khi nào",
+        "bao nhiêu",
+        "thế nào"
+      ],
+      "explanation": "'ở đâu' = where. 'Bạn ở đâu?' = Where are you? / Where do you live?"
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Cái này ___ tiền? (How much is this?)",
+      "correct": "bao nhiêu",
+      "options": [
+        "bao nhiêu",
+        "mấy",
+        "gì",
+        "nào"
+      ],
+      "explanation": "'bao nhiêu' = how much/how many (large or unknown numbers)"
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Bạn tên là ___? (What is your name?)",
+      "correct": "gì",
+      "options": [
+        "gì",
+        "ai",
+        "nào",
+        "đâu"
+      ],
+      "explanation": "'gì' replaces the thing you're asking about: 'Your name is WHAT?'"
+    },
+    {
+      "type": "mcq",
+      "prompt": "What is the difference between 'bao nhiêu' and 'mấy'?",
+      "correct": "'mấy' is for small numbers (under 10), 'bao nhiêu' for any amount",
+      "options": [
+        "'mấy' is for small numbers (under 10), 'bao nhiêu' for any amount",
+        "'mấy' is formal, 'bao nhiêu' is casual",
+        "'mấy' is Southern, 'bao nhiêu' is Northern",
+        "No difference"
+      ],
+      "explanation": "'Mấy giờ rồi?' = What time is it? (expects 1-12). 'Bao nhiêu tiền?' = How much money? (could be any amount)"
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "___ đó? (Who's there?)",
+      "correct": "Ai",
+      "options": [
+        "Ai",
+        "Gì",
+        "Đâu",
+        "Sao"
+      ],
+      "explanation": "'Ai đó?' = Who's there? 'ai' as subject of the question"
+    },
+    {
+      "type": "mcq",
+      "prompt": "'Mấy giờ rồi?' means what?",
+      "correct": "What time is it?",
+      "options": [
+        "What time is it?",
+        "How old are you?",
+        "How many people?",
+        "What day is it?"
+      ],
+      "explanation": "'mấy giờ' = what time (literally 'how-many hours'). 'rồi' = already"
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Nhà hàng ___ ___? (Where is the restaurant?)",
+      "correct": "ở đâu",
+      "options": [
+        "ở đâu",
+        "là gì",
+        "bao nhiêu",
+        "thế nào"
+      ],
+      "explanation": "'ở đâu' goes at the end: 'Restaurant WHERE?' = Where is the restaurant?"
+    },
+    {
+      "type": "mcq",
+      "prompt": "How do you ask 'How old are you?' in Vietnamese?",
+      "correct": "Bạn bao nhiêu tuổi?",
+      "options": [
+        "Bạn bao nhiêu tuổi?",
+        "Bạn mấy tuổi?",
+        "Both are correct",
+        "Tuổi bạn gì?"
+      ],
+      "explanation": "Both work! 'mấy tuổi' is more common for children (expecting small number), 'bao nhiêu tuổi' for adults"
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Bạn muốn ăn ___? (What do you want to eat?)",
+      "correct": "gì",
+      "options": [
+        "gì",
+        "ai",
+        "đâu",
+        "nào"
+      ],
+      "explanation": "'gì' at the end = 'what': You want eat WHAT?"
+    },
+    {
+      "type": "mcq",
+      "prompt": "How do you ask 'How many people?' for a small group (e.g., at a restaurant)?",
+      "correct": "Mấy người?",
+      "options": [
+        "Mấy người?",
+        "Bao nhiêu người?",
+        "Ai người?",
+        "Gì người?"
+      ],
+      "explanation": "'Mấy người?' is natural at a restaurant (expecting 1-10). 'Bao nhiêu người?' works for any number"
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Toilet ___ ___? (Where is the toilet?)",
+      "correct": "ở đâu",
+      "options": [
+        "ở đâu",
+        "là gì",
+        "bao nhiêu",
+        "thế nào"
+      ],
+      "explanation": "Essential phrase: 'Toilet ở đâu?' = Where is the toilet?"
+    },
+    {
+      "type": "mcq",
+      "prompt": "Which question asks about price?",
+      "correct": "Cái này bao nhiêu tiền?",
+      "options": [
+        "Cái này bao nhiêu tiền?",
+        "Cái này gì tiền?",
+        "Cái này ai tiền?",
+        "Cái này ở đâu tiền?"
+      ],
+      "explanation": "'bao nhiêu tiền' = how much money. This is the #1 phrase for shopping"
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Bạn từ ___ đến? (Where are you from?)",
+      "correct": "đâu",
+      "options": [
+        "đâu",
+        "gì",
+        "ai",
+        "nào"
+      ],
+      "explanation": "'đâu' alone (without 'ở') in 'từ đâu' = from where"
+    },
+    {
+      "type": "mcq",
+      "prompt": "Put the question word in the right place: 'Your phone number is ___?'",
+      "correct": "Số điện thoại của bạn là gì?",
+      "options": [
+        "Số điện thoại của bạn là gì?",
+        "Gì số điện thoại của bạn?",
+        "Số gì điện thoại của bạn?",
+        "Là gì số điện thoại?"
+      ],
+      "explanation": "Question word goes where the answer would be: 'Number is WHAT?' → Số...là gì?"
+    }
+  ]
+}

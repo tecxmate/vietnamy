@@ -1,0 +1,402 @@
+{
+  "tones": [
+    {
+      "id": "ngang",
+      "name": "Ngang",
+      "label": "Level",
+      "mark": "a",
+      "color": "#4CAF50",
+      "description": "High and flat — no mark",
+      "contour": [
+        0.8,
+        0.9,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0.9,
+        0.9,
+        0.8,
+        0.8,
+        0.7,
+        0.7,
+        0.6,
+        0.6,
+        0.5,
+        0.5,
+        0.4,
+        0.4,
+        0.3
+      ]
+    },
+    {
+      "id": "sac",
+      "name": "Sắc",
+      "label": "Rising",
+      "mark": "á",
+      "color": "#2196F3",
+      "description": "Rises sharply from mid to high",
+      "contour": [
+        -1,
+        -0.8,
+        -0.5,
+        -0.3,
+        0,
+        0.3,
+        0.7,
+        1,
+        1.4,
+        1.7,
+        2,
+        2.3,
+        2.5,
+        2.7,
+        2.9,
+        3,
+        3.1,
+        3.2,
+        3.2,
+        3.2
+      ]
+    },
+    {
+      "id": "huyen",
+      "name": "Huyền",
+      "label": "Falling",
+      "mark": "à",
+      "color": "#9C27B0",
+      "description": "Falls gradually from mid to low, breathy/creaky end",
+      "contour": [
+        0.3,
+        0.1,
+        -0.1,
+        -0.3,
+        -0.5,
+        -0.8,
+        -1,
+        -1.3,
+        -1.5,
+        -1.8,
+        -2,
+        -2.2,
+        -2.4,
+        -2.6,
+        -2.8,
+        -3,
+        -3.1,
+        -3.2,
+        -3.3,
+        -3.4
+      ]
+    },
+    {
+      "id": "hoi",
+      "name": "Hỏi",
+      "label": "Dipping",
+      "mark": "ả",
+      "color": "#FF9800",
+      "description": "Dips low then rises back up",
+      "contour": [
+        0,
+        -0.3,
+        -0.7,
+        -1.2,
+        -1.7,
+        -2.2,
+        -2.6,
+        -3,
+        -3.3,
+        -3.4,
+        -3.4,
+        -3.2,
+        -2.9,
+        -2.5,
+        -2,
+        -1.5,
+        -1,
+        -0.5,
+        -0.1,
+        0.3
+      ]
+    },
+    {
+      "id": "nga",
+      "name": "Ngã",
+      "label": "Rising-Glottal",
+      "mark": "ã",
+      "color": "#E91E63",
+      "description": "Rises, glottal break drops sharply, then rises again",
+      "contour": [
+        0.5,
+        0.8,
+        1.1,
+        1.4,
+        1.6,
+        1.5,
+        0.5,
+        -1.5,
+        -3.5,
+        -4,
+        -3,
+        -1,
+        0.5,
+        1.5,
+        2.2,
+        2.6,
+        2.8,
+        2.9,
+        3,
+        3
+      ]
+    },
+    {
+      "id": "nang",
+      "name": "Nặng",
+      "label": "Heavy",
+      "mark": "ạ",
+      "color": "#795548",
+      "description": "Low, short, drops with glottal constriction",
+      "contour": [
+        -0.5,
+        -0.8,
+        -1.2,
+        -1.6,
+        -2,
+        -2.5,
+        -3,
+        -3.4,
+        -3.8,
+        -4,
+        -4.2,
+        -4.3,
+        -4.4,
+        -4.5,
+        -4.5,
+        -4.5,
+        -4.5,
+        -4.5,
+        -4.5,
+        -4.5
+      ]
+    }
+  ],
+  "practiceWords": [
+    {
+      "id": "tw_0001",
+      "vi": "ma",
+      "toneId": "ngang",
+      "en": "ghost"
+    },
+    {
+      "id": "tw_0002",
+      "vi": "ba",
+      "toneId": "ngang",
+      "en": "three / father"
+    },
+    {
+      "id": "tw_0003",
+      "vi": "ca",
+      "toneId": "ngang",
+      "en": "to sing"
+    },
+    {
+      "id": "tw_0004",
+      "vi": "ta",
+      "toneId": "ngang",
+      "en": "we / us"
+    },
+    {
+      "id": "tw_0005",
+      "vi": "la",
+      "toneId": "ngang",
+      "en": "to shout"
+    },
+    {
+      "id": "tw_0006",
+      "vi": "đi",
+      "toneId": "ngang",
+      "en": "to go"
+    },
+    {
+      "id": "tw_0007",
+      "vi": "má",
+      "toneId": "sac",
+      "en": "mother / cheek"
+    },
+    {
+      "id": "tw_0008",
+      "vi": "bá",
+      "toneId": "sac",
+      "en": "governor"
+    },
+    {
+      "id": "tw_0009",
+      "vi": "cá",
+      "toneId": "sac",
+      "en": "fish"
+    },
+    {
+      "id": "tw_0010",
+      "vi": "lá",
+      "toneId": "sac",
+      "en": "leaf"
+    },
+    {
+      "id": "tw_0011",
+      "vi": "tá",
+      "toneId": "sac",
+      "en": "dozen"
+    },
+    {
+      "id": "tw_0012",
+      "vi": "bó",
+      "toneId": "sac",
+      "en": "bundle"
+    },
+    {
+      "id": "tw_0013",
+      "vi": "mà",
+      "toneId": "huyen",
+      "en": "but / which"
+    },
+    {
+      "id": "tw_0014",
+      "vi": "bà",
+      "toneId": "huyen",
+      "en": "grandmother"
+    },
+    {
+      "id": "tw_0015",
+      "vi": "là",
+      "toneId": "huyen",
+      "en": "to be"
+    },
+    {
+      "id": "tw_0016",
+      "vi": "và",
+      "toneId": "huyen",
+      "en": "and"
+    },
+    {
+      "id": "tw_0017",
+      "vi": "dù",
+      "toneId": "huyen",
+      "en": "although"
+    },
+    {
+      "id": "tw_0018",
+      "vi": "rồi",
+      "toneId": "huyen",
+      "en": "already"
+    },
+    {
+      "id": "tw_0019",
+      "vi": "mả",
+      "toneId": "hoi",
+      "en": "grave / tomb"
+    },
+    {
+      "id": "tw_0020",
+      "vi": "bả",
+      "toneId": "hoi",
+      "en": "poison bait"
+    },
+    {
+      "id": "tw_0021",
+      "vi": "cả",
+      "toneId": "hoi",
+      "en": "all / eldest"
+    },
+    {
+      "id": "tw_0022",
+      "vi": "hỏi",
+      "toneId": "hoi",
+      "en": "to ask"
+    },
+    {
+      "id": "tw_0023",
+      "vi": "bảo",
+      "toneId": "hoi",
+      "en": "to tell"
+    },
+    {
+      "id": "tw_0024",
+      "vi": "chỉ",
+      "toneId": "hoi",
+      "en": "only / to point"
+    },
+    {
+      "id": "tw_0025",
+      "vi": "mã",
+      "toneId": "nga",
+      "en": "code / horse (Sino)"
+    },
+    {
+      "id": "tw_0026",
+      "vi": "bã",
+      "toneId": "nga",
+      "en": "residue / dregs"
+    },
+    {
+      "id": "tw_0027",
+      "vi": "ngã",
+      "toneId": "nga",
+      "en": "to fall / tumble"
+    },
+    {
+      "id": "tw_0028",
+      "vi": "lũ",
+      "toneId": "nga",
+      "en": "flood"
+    },
+    {
+      "id": "tw_0029",
+      "vi": "cũ",
+      "toneId": "nga",
+      "en": "old (thing)"
+    },
+    {
+      "id": "tw_0030",
+      "vi": "đã",
+      "toneId": "nga",
+      "en": "already (past)"
+    },
+    {
+      "id": "tw_0031",
+      "vi": "mạ",
+      "toneId": "nang",
+      "en": "rice seedling"
+    },
+    {
+      "id": "tw_0032",
+      "vi": "bạ",
+      "toneId": "nang",
+      "en": "reckless / record"
+    },
+    {
+      "id": "tw_0033",
+      "vi": "nạn",
+      "toneId": "nang",
+      "en": "disaster"
+    },
+    {
+      "id": "tw_0034",
+      "vi": "họp",
+      "toneId": "nang",
+      "en": "to meet"
+    },
+    {
+      "id": "tw_0035",
+      "vi": "học",
+      "toneId": "nang",
+      "en": "to study"
+    },
+    {
+      "id": "tw_0036",
+      "vi": "mặt",
+      "toneId": "nang",
+      "en": "face"
+    }
+  ]
+}

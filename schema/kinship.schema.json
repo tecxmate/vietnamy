@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vietnamy.app/schema/kinship.schema.json",
+  "title": "Vietnamy kinship member",
+  "type": "object",
+  "required": ["id", "label", "relationType"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "$ref": "_common.schema.json#/$defs/id" },
+    "label": {
+      "type": "object",
+      "description": "Indexed by the English UI label; vi is the Vietnamese kinship term.",
+      "properties": {
+        "en": { "type": "string" },
+        "vi": { "type": "string" }
+      },
+      "required": ["en"],
+      "additionalProperties": false
+    },
+    "relationType": { "type": "string" },
+    "gender": { "type": "string", "enum": ["male", "female"] },
+    "generation": { "type": "integer" },
+    "ageOffset": { "type": "integer" }
+  }
+}

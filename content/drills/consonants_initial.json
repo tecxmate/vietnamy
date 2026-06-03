@@ -1,0 +1,258 @@
+{
+  "id": "drill_consonants_initial",
+  "title": "Consonants: Initial",
+  "description": "Distinguish Vietnamese initial consonants and their sounds",
+  "color": "#9C27B0",
+  "questions": [
+    {
+      "type": "listen_pick",
+      "prompt": "Which consonant starts this word?",
+      "correct": "b",
+      "options": [
+        "b",
+        "p",
+        "m",
+        "đ"
+      ],
+      "explanation": "'b' in Vietnamese is softer than English 'b', closer to an unaspirated 'p'",
+      "audioKey": "ba"
+    },
+    {
+      "type": "listen_pick",
+      "prompt": "Which consonant starts this word?",
+      "correct": "đ",
+      "options": [
+        "d",
+        "đ",
+        "t",
+        "th"
+      ],
+      "explanation": "'đ' sounds like English 'd'. Vietnamese 'd' sounds like 'z' (North) or 'y' (South)",
+      "audioKey": "đi"
+    },
+    {
+      "type": "listen_pick",
+      "prompt": "Which consonant starts this word?",
+      "correct": "g",
+      "options": [
+        "g",
+        "k",
+        "c",
+        "gh"
+      ],
+      "explanation": "'g' and 'gh' make the same sound. 'gh' is used before 'e', 'ê', 'i'",
+      "audioKey": "gà"
+    },
+    {
+      "type": "listen_pick",
+      "prompt": "Which consonant starts this word?",
+      "correct": "nh",
+      "options": [
+        "nh",
+        "ng",
+        "n",
+        "m"
+      ],
+      "explanation": "'nh' sounds like Spanish 'ñ' — tongue touches the roof of the mouth",
+      "audioKey": "nhà"
+    },
+    {
+      "type": "listen_pick",
+      "prompt": "Which consonant starts this word?",
+      "correct": "ph",
+      "options": [
+        "ph",
+        "p",
+        "f",
+        "th"
+      ],
+      "explanation": "'ph' sounds like English 'f'. There is no 'f' letter in Vietnamese",
+      "audioKey": "phở"
+    },
+    {
+      "type": "mcq",
+      "prompt": "Which pair sounds the SAME in Northern Vietnamese?",
+      "correct": "tr / ch",
+      "options": [
+        "tr / ch",
+        "b / p",
+        "m / n",
+        "t / th"
+      ],
+      "explanation": "In Northern dialect, both 'tr' and 'ch' are pronounced as 'ch'. Southern keeps them distinct"
+    },
+    {
+      "type": "mcq",
+      "prompt": "Which pair sounds the SAME in Northern Vietnamese?",
+      "correct": "s / x",
+      "options": [
+        "s / x",
+        "l / n",
+        "b / v",
+        "đ / t"
+      ],
+      "explanation": "In Northern dialect, both 's' and 'x' are pronounced as 's'. Southern pronounces 's' as 'sh'"
+    },
+    {
+      "type": "mcq",
+      "prompt": "Which THREE letters all sound like 'z' in Northern Vietnamese?",
+      "correct": "d, gi, r",
+      "options": [
+        "d, gi, r",
+        "đ, d, t",
+        "g, gh, ng",
+        "s, x, ch"
+      ],
+      "explanation": "In Northern Vietnamese, 'd', 'gi', and 'r' all merge to a 'z' sound"
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Complete: ___à (house/home)",
+      "correct": "nh",
+      "options": [
+        "nh",
+        "ng",
+        "n",
+        "m"
+      ],
+      "explanation": "nhà = house. 'nh' is a common initial consonant cluster"
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Complete: ___ở (rice noodle soup)",
+      "correct": "ph",
+      "options": [
+        "ph",
+        "p",
+        "f",
+        "th"
+      ],
+      "explanation": "phở — Vietnam's most famous dish. 'ph' = 'f' sound"
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Complete: ___ọc (to study)",
+      "correct": "h",
+      "options": [
+        "h",
+        "kh",
+        "ch",
+        "th"
+      ],
+      "explanation": "học = to study. Vietnamese 'h' is the same as English 'h'"
+    },
+    {
+      "type": "listen_pick",
+      "prompt": "Which consonant starts this word?",
+      "correct": "tr",
+      "options": [
+        "tr",
+        "ch",
+        "t",
+        "th"
+      ],
+      "explanation": "'tr' in Southern Vietnamese is a retroflex sound (tongue curled back). In Northern, it merges with 'ch'",
+      "audioKey": "trà"
+    },
+    {
+      "type": "listen_pick",
+      "prompt": "Which consonant starts this word?",
+      "correct": "kh",
+      "options": [
+        "kh",
+        "k",
+        "h",
+        "g"
+      ],
+      "explanation": "'kh' is an aspirated 'k' — like the 'k' in English 'key' with extra breath",
+      "audioKey": "không"
+    },
+    {
+      "type": "listen_pick",
+      "prompt": "Which consonant starts this word?",
+      "correct": "ng",
+      "options": [
+        "ng",
+        "nh",
+        "n",
+        "ngh"
+      ],
+      "explanation": "'ng' and 'ngh' make the same velar nasal sound (like 'ng' in 'sing'). 'ngh' is used before 'e', 'ê', 'i'",
+      "audioKey": "người"
+    },
+    {
+      "type": "mcq",
+      "prompt": "How is 'qu' pronounced in Vietnamese?",
+      "correct": "Like 'kw'",
+      "options": [
+        "Like 'kw'",
+        "Like 'k'",
+        "Like 'ch'",
+        "Like 'gw'"
+      ],
+      "explanation": "'qu' = 'kw' sound, as in 'quả' (fruit) = 'kwah'"
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Complete: ___in chào (hello)",
+      "correct": "x",
+      "options": [
+        "x",
+        "s",
+        "ch",
+        "t"
+      ],
+      "explanation": "xin chào = hello. 'x' makes an 's' sound in Vietnamese"
+    },
+    {
+      "type": "listen_pick",
+      "prompt": "Which consonant starts this word?",
+      "correct": "th",
+      "options": [
+        "th",
+        "t",
+        "tr",
+        "ch"
+      ],
+      "explanation": "'th' is aspirated 't' — like English 'th' in 'Thailand' (NOT like 'the')",
+      "audioKey": "thầy"
+    },
+    {
+      "type": "mcq",
+      "prompt": "'c', 'k', and 'q' all represent what basic sound?",
+      "correct": "/k/",
+      "options": [
+        "/k/",
+        "/s/",
+        "/g/",
+        "/t/"
+      ],
+      "explanation": "All three are variants of /k/: 'c' before a,o,u,ô,ơ,ư; 'k' before e,ê,i; 'qu' = kw"
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Complete: ___ảm ơn (thank you)",
+      "correct": "c",
+      "options": [
+        "c",
+        "k",
+        "g",
+        "ch"
+      ],
+      "explanation": "cảm ơn = thank you. 'c' is used before 'a' (not 'k')"
+    },
+    {
+      "type": "listen_pick",
+      "prompt": "Which consonant starts this word?",
+      "correct": "v",
+      "options": [
+        "v",
+        "b",
+        "d",
+        "gi"
+      ],
+      "explanation": "'v' in Vietnamese sounds like English 'v' in Northern dialect, or 'y' in Southern dialect",
+      "audioKey": "vâng"
+    }
+  ]
+}

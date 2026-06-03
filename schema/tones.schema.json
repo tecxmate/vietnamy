@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vietnamy.app/schema/tones.schema.json",
+  "title": "Vietnamy tones + practice words",
+  "type": "object",
+  "required": ["tones"],
+  "additionalProperties": false,
+  "properties": {
+    "tones": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "mark", "contour"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "enum": ["ngang", "huyen", "sac", "hoi", "nga", "nang"] },
+          "name": { "type": "string" },
+          "label": { "type": "string" },
+          "mark": { "type": "string" },
+          "color": { "type": "string" },
+          "description": { "type": "string" },
+          "contour": { "type": "array", "items": { "type": "number" } }
+        }
+      }
+    },
+    "practiceWords": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "vi", "toneId"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "$ref": "_common.schema.json#/$defs/id" },
+          "vi": { "type": "string" },
+          "toneId": { "type": "string" },
+          "en": { "type": "string" }
+        }
+      }
+    }
+  }
+}
