@@ -1,16 +1,17 @@
-// Lightweight dictionary lookup from local dictionary.json
-// Used to enrich lesson word introductions with definitions
+// Lightweight dictionary lookup from the canonical content bundle.
+// Used to enrich lesson word introductions with definitions.
+// Contract: content/dictionary.json (see docs/CONTENT_SCHEMA.md).
 
 let dictCache = null;
 
 async function loadDict() {
     if (dictCache) return dictCache;
     try {
-        const data = await import('../data/dictionary.json');
-        // Build a Map keyed by word for fast lookup
+        const data = await import('../../content/dictionary.json');
+        // Build a Map keyed by the Vietnamese headword for fast lookup
         const map = new Map();
         (data.default || data).forEach(entry => {
-            map.set(entry.word, entry);
+            map.set(entry.vi, entry);
         });
         dictCache = map;
         return map;
@@ -38,7 +39,7 @@ export async function lookupWord(viText) {
 
     return {
         definition: shortDef,
-        tags: entry.tags || [],
+        tags: entry.pos || [],
         examples: (entry.examples || []).slice(0, 2)
     };
 }
@@ -56,7 +57,7 @@ export async function lookupWords(viTexts) {
             const shortDef = enDef.length > 80 ? enDef.slice(0, 80).replace(/,\s*$/, '') + '...' : enDef;
             results.set(text, {
                 definition: shortDef,
-                tags: entry.tags || [],
+                tags: entry.pos || [],
             });
         }
     }
