@@ -207,7 +207,9 @@ function buildDrills() {
     for (const f of files) {
         const d = readJson(join(dir, f));
         const out = clean({
-            id: d.id.startsWith('drill_') ? d.id : 'drill_' + d.id,
+            // Keep the slug id (e.g. "connectors"): DrillPractice matches admin
+            // CMS overrides in localStorage by this id, so it must stay stable.
+            id: d.id,
             title: d.title,
             description: d.description,
             color: d.color,

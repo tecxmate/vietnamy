@@ -202,10 +202,10 @@ export default function DrillPractice({ data, questionCount = 10 }) {
             <div className="practice-scroll-area">
                 <div className="drill-question-area">
                     {/* Audio button for listen_pick */}
-                    {currentQ?.type === 'listen_pick' && currentQ.audio && (
+                    {currentQ?.type === 'listen_pick' && (currentQ.audioKey ?? currentQ.audio) && (
                         <button
                             className="practice-audio-btn large"
-                            onClick={() => handlePlayAudio(currentQ.audio)}
+                            onClick={() => handlePlayAudio(currentQ.audioKey ?? currentQ.audio)}
                         >
                             <Volume2 size={36} />
                         </button>
