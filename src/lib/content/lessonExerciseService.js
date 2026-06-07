@@ -171,11 +171,13 @@ export const createLessonExerciseService = ({ getDB }) => {
         });
 
         // Resolve which exercise profile drives this lesson's question types.
-        // A lesson can pin a profile via exercise_profile_id; otherwise it's
-        // derived from the lesson's CEFR level (A1 → beginner, no typing).
+        // A lesson can pin a profile via exercise_profile_id (set in the Lesson
+        // Builder); otherwise it's derived from the lesson's CEFR level on its
+        // roadmap node (A1 → beginner, no typing).
+        const lessonRecord = (db.lessons || []).find(l => l.id === lessonId);
         const lessonNode = (db.path_nodes || []).find(n => n.lesson_id === lessonId);
         const profile = resolveExerciseProfile({
-            profileId: lessonNode?.exercise_profile_id,
+            profileId: lessonRecord?.exercise_profile_id,
             cefrLevel: lessonNode?.cefr_level,
         });
 

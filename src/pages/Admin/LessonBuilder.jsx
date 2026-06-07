@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { getLessonContent, saveLessonContent, getItems, getExercisesGenerated, clearExerciseCache } from '../../lib/db';
+import { EXERCISE_PROFILES } from '../../lib/exerciseProfiles';
 import { Search, Plus, Trash2, Save, ArrowLeft, Check, Eye } from 'lucide-react';
 
 const LessonBuilder = () => {
@@ -10,6 +11,7 @@ const LessonBuilder = () => {
     const targetLessonId = query.get('id') || 'lesson_001';
 
     const [goal, setGoal] = useState('');
+    const [exerciseProfileId, setExerciseProfileId] = useState('');
     const [sentences, setSentences] = useState([]);
     const [vocabSearch, setVocabSearch] = useState('');
     const [allItems, setAllItems] = useState([]);
@@ -21,10 +23,12 @@ const LessonBuilder = () => {
         const data = getLessonContent(targetLessonId);
         if (data) {
             setGoal(data.goal || '');
+            setExerciseProfileId(data.exerciseProfileId || '');
             setSentences(data.sentences || []);
             setAttachedItems(data.attachedItems || []);
         } else {
             setGoal('New Lesson Goal');
+            setExerciseProfileId('');
             setSentences([]);
             setAttachedItems([]);
         }
@@ -35,6 +39,7 @@ const LessonBuilder = () => {
         saveLessonContent({
             id: targetLessonId,
             goal,
+            exerciseProfileId,
             sentences,
             attachedItems
         });
@@ -106,6 +111,21 @@ const LessonBuilder = () => {
                             onChange={(e) => setGoal(e.target.value)}
                             style={{ width: '100%', padding: 12, borderRadius: 8, backgroundColor: 'var(--surface-color-light)', border: '1px solid var(--border-color)', color: 'var(--text-main)', fontSize: 16, boxSizing: 'border-box' }}
                         />
+
+                        <label style={{ display: 'block', fontSize: 14, color: 'var(--text-muted)', marginTop: 20, marginBottom: 8 }}>Exercise Profile</label>
+                        <select
+                            value={exerciseProfileId}
+                            onChange={(e) => setExerciseProfileId(e.target.value)}
+                            style={{ width: '100%', padding: 12, borderRadius: 8, backgroundColor: 'var(--surface-color-light)', border: '1px solid var(--border-color)', color: 'var(--text-main)', fontSize: 16, boxSizing: 'border-box' }}
+                        >
+                            <option value="">Auto (by level — A1 = Beginner)</option>
+                            {Object.values(EXERCISE_PROFILES).map(p => (
+                                <option key={p.id} value={p.id}>{p.label}</option>
+                            ))}
+                        </select>
+                        <p style={{ fontSize: 12, color: 'var(--text-muted)', margin: '8px 0 0' }}>
+                            Controls which question types this lesson generates. "Beginner" replaces typing with multiple-choice. Use Preview to see the effect.
+                        </p>
                     </div>
 
                     <div className="glass-panel">

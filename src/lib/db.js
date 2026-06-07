@@ -439,7 +439,8 @@ export const getLessonContent = (contentRefId) => {
     return {
         id: lesson.id,
         goal: lesson.title,
-        sentences: sentences
+        sentences: sentences,
+        exerciseProfileId: lesson.exercise_profile_id || ''
     };
 };
 
@@ -450,6 +451,10 @@ export const saveLessonContent = (contentData) => {
     const lessonIndex = db.lessons.findIndex(l => l.id === contentData.id);
     if (lessonIndex >= 0) {
         db.lessons[lessonIndex].title = contentData.goal || db.lessons[lessonIndex].title;
+        // Exercise profile: '' / undefined means "inherit from CEFR level".
+        if (contentData.exerciseProfileId !== undefined) {
+            db.lessons[lessonIndex].exercise_profile_id = contentData.exerciseProfileId || null;
+        }
     }
 
     // 2. Update items and translations from sentences
