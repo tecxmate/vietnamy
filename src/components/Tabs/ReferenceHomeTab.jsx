@@ -22,7 +22,7 @@ const ReferenceHomeTab = ({ onSearchWord, onNavigateTab }) => {
 
     const tools = [
         { key: 'dictionary', icon: Search, label: t('nav_dictionary'), color: '#F26B5A', onClick: () => onNavigateTab?.('dictionary') },
-        { key: 'flashcards', icon: Layers, label: t('ref_home_flashcards', 'Flashcards'), color: '#118AB2', onClick: () => navigate('/practice') },
+        { key: 'flashcards', icon: Layers, label: t('ref_home_flashcards', 'Flashcards'), color: '#118AB2', onClick: () => onNavigateTab?.('library') },
         { key: 'grammar', icon: Pen, label: t('nav_grammar'), color: '#06D6A0', onClick: () => onNavigateTab?.('grammar') },
         { key: 'sounds', icon: Music, label: t('nav_sounds'), color: '#FFB703', onClick: () => onNavigateTab?.('sounds') },
         { key: 'library', icon: Library, label: t('nav_library'), color: '#9B5DE5', onClick: () => onNavigateTab?.('library') },

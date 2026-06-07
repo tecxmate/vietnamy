@@ -402,6 +402,26 @@ function StudentApp({ initialTab = 'home', shell = null }) {
   );
 }
 
+// Default landing. New users keep the full onboarding + tutorial in the legacy
+// all-tabs shell; returning users land in the experience they last used (or the
+// shell that owns the tab a deep link is asking for, e.g. "back to roadmap").
+function RootRedirect() {
+  const location = useLocation();
+  const onboarded = localStorage.getItem('vnme_onboarding_completed') === 'true';
+  if (!onboarded) {
+    return <StudentApp />;
+  }
+  const requestedTab = location.state?.tab ? normalizeTab(location.state.tab) : null;
+  let shell = requestedTab
+    ? Object.keys(SHELLS).find(key => SHELLS[key].tabs.includes(requestedTab))
+    : null;
+  if (!shell) {
+    const last = localStorage.getItem(SHELL_KEY);
+    shell = SHELLS[last] ? last : 'learn';
+  }
+  return <Navigate to={`/${shell}`} replace state={location.state} />;
+}
+
 function AppRoutes() {
   const location = useLocation();
 
@@ -409,7 +429,7 @@ function AppRoutes() {
     <RouteErrorBoundary key={location.key}>
       <Suspense fallback={<LoadingScreen />}>
       <Routes>
-        <Route path="/" element={<StudentApp />} />
+        <Route path="/" element={<RootRedirect />} />
         <Route path="/learn" element={<StudentApp shell="learn" />} />
         <Route path="/dictionary" element={<StudentApp shell="dictionary" />} />
         <Route path="/practice" element={<StudentApp initialTab="library" />} />
