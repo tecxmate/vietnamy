@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MessageCircle, Zap, Trophy, Pen, Check, Lock, BookOpen, Music, Clapperboard, ChevronDown, Plane, Briefcase, Heart } from 'lucide-react';
 import { getUnits, getNodesForUnitWithProgress } from '../../lib/db';
+import { getGrammarForUnit } from '../../lib/grammarGuide';
+import GrammarGuidebook from '../GrammarGuidebook';
 import { useProgress } from '../../context/ProgressContext';
 import { useUser } from '../../context/UserContext';
 import { loadSettings } from '../../lib/settings';
@@ -75,6 +77,14 @@ const RoadmapTab = () => {
     }, [units, modeCompletedNodes]);
     const [redoNode, setRedoNode] = useState(null);
     const [showModePicker, setShowModePicker] = useState(false);
+    const [guidebookUnit, setGuidebookUnit] = useState(null);
+
+    // Grammar points per unit (derived from sentence tags) — drives the guidebook button.
+    const grammarByUnit = React.useMemo(() => {
+        const map = {};
+        units.forEach(unit => { map[unit.id] = getGrammarForUnit(unit.id); });
+        return map;
+    }, [units]);
 
     // Topic-based filtering from learner mode
     const modeTopics = getTopicsForMode(currentMode);
@@ -347,8 +357,17 @@ const RoadmapTab = () => {
 
                 return (
                     <div key={unit.id} style={{ marginBottom: 16 }}>
-                        <div style={{ backgroundColor: 'var(--surface-color)', padding: 'var(--spacing-4)', position: 'sticky', top: 54, zIndex: 5, borderBottom: '1px solid var(--border-color)' }}>
-                            <h2 style={{ margin: 0, fontSize: 18 }}>{translateUnitTitle(unit)}</h2>
+                        <div style={{ backgroundColor: 'var(--surface-color)', padding: 'var(--spacing-4)', position: 'sticky', top: 54, zIndex: 5, borderBottom: '1px solid var(--border-color)', display: 'flex', alignItems: 'center', gap: 12 }}>
+                            <h2 style={{ margin: 0, fontSize: 18, flex: 1 }}>{translateUnitTitle(unit)}</h2>
+                            {(grammarByUnit[unit.id]?.length > 0) && (
+                                <button
+                                    onClick={() => setGuidebookUnit(unit)}
+                                    style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '6px 12px', borderRadius: 20, border: '1.5px solid var(--secondary-color)', backgroundColor: 'transparent', color: 'var(--secondary-color)', fontSize: 13, fontWeight: 700, cursor: 'pointer', flexShrink: 0 }}
+                                    title="See the grammar taught in this unit"
+                                >
+                                    <BookOpen size={16} /> {t('roadmap_guidebook', 'Guidebook')}
+                                </button>
+                            )}
                         </div>
 
                         <div style={{ padding: 16, display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -535,6 +554,14 @@ const RoadmapTab = () => {
                     </SoundButton>
                 )}
             </div>
+
+            {guidebookUnit && (
+                <GrammarGuidebook
+                    unitTitle={translateUnitTitle(guidebookUnit)}
+                    points={grammarByUnit[guidebookUnit.id] || []}
+                    onClose={() => setGuidebookUnit(null)}
+                />
+            )}
 
             {redoNode && (
                 <div
