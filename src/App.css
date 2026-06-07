@@ -755,19 +755,33 @@
   }
 }
 
-/* Shell switcher (Learn / Dictionary): a bar just above the bottom nav on
-   mobile, a sidebar item on desktop. */
+/* Shell switcher (Learn / Dictionary): fixed in the top-right corner on mobile,
+   a sidebar item on desktop. */
 .shell-switcher {
   justify-content: center;
   padding: 8px 12px;
 }
 .shell-switcher--mobile {
   display: flex;
-  flex-shrink: 0;
-  background-color: var(--surface-color);
-  border-top: 1px solid var(--border-color);
+  position: fixed;
+  top: calc(var(--safe-area-top) + 6px);
+  right: 8px;
+  z-index: 60;
+  padding: 0;
+}
+/* float clearly above content */
+.shell-switcher--mobile > div {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 .shell-switcher--sidebar { display: none; }
+
+/* On the home tab the top bar is visible — reserve room on its right so its
+   icons sit clear of the fixed switcher. */
+@media (max-width: 767px) {
+  .home-tab-container .top-bar {
+    padding-right: calc(var(--app-edge-right) + 150px);
+  }
+}
 
 @media (min-width: 768px) {
   .shell-switcher--mobile { display: none; }
