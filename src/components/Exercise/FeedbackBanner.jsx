@@ -22,17 +22,25 @@ export default function FeedbackBanner({
     const t = useT();
     const [isVisible, setIsVisible] = useState(false);
     const [isPressed, setIsPressed] = useState(false);
-    const [shouldShake, setShouldShake] = useState(false);
+    // Shake on a wrong answer; starts on (banner mounts fresh per question) and clears after the animation
+    const [shouldShake, setShouldShake] = useState(() => !isCorrect);
+    // Pick one varied praise phrase per question (Duolingo-style), locked on mount
+    const [praise] = useState(() => {
+        const pool = t('feedback_praise');
+        return Array.isArray(pool) && pool.length > 0
+            ? pool[Math.floor(Math.random() * pool.length)]
+            : t('feedback_correct');
+    });
 
     useEffect(() => {
         // Trigger slide-in animation
         requestAnimationFrame(() => {
             requestAnimationFrame(() => setIsVisible(true));
         });
-        // Shake on wrong answer
+        // Clear the shake once its animation has played
         if (!isCorrect) {
-            setShouldShake(true);
-            setTimeout(() => setShouldShake(false), 500);
+            const id = setTimeout(() => setShouldShake(false), 500);
+            return () => clearTimeout(id);
         }
     }, [isCorrect]);
 
@@ -103,7 +111,7 @@ export default function FeedbackBanner({
                         {isCorrect
                             ? fuzzyHint
                                 ? t('feedback_good')
-                                : t('feedback_correct')
+                                : praise
                             : t('feedback_incorrect')}
                     </span>
                     {/* Show fuzzy hint or correct answer */}
