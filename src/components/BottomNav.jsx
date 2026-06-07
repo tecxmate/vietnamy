@@ -4,7 +4,7 @@ import { useT } from '../lib/i18n';
 import { useUser } from '../context/UserContext';
 import { useNotifications } from '../context/NotificationContext';
 
-const BottomNav = ({ activeTab, setActiveTab, onPreloadTab, tabs: allowedTabs }) => {
+const BottomNav = ({ activeTab, setActiveTab, onPreloadTab, tabs: allowedTabs, switcher = null }) => {
     const t = useT();
     const { userProfile } = useUser();
     const { unreadCount, openPanel } = useNotifications();
@@ -31,6 +31,7 @@ const BottomNav = ({ activeTab, setActiveTab, onPreloadTab, tabs: allowedTabs })
                     <img src="/icon.png" alt="Vietnamy" className="sidebar-brand-icon" />
                     <span className="sidebar-brand-name">Vietnamy</span>
                 </div>
+                {switcher}
                 {tabs.map(tab => (
                     <button
                         key={tab.id}

@@ -170,15 +170,15 @@ function normalizeTab(tab, fallback = 'home') {
 }
 
 // Segmented control to hop between the Learn and Dictionary experiences.
-function ShellSwitcher({ current }) {
+function ShellSwitcher({ current, variant = 'mobile' }) {
   const navigate = useNavigate();
   const go = (shell) => {
     try { localStorage.setItem(SHELL_KEY, shell); } catch { /* ignore */ }
     navigate(`/${shell}`);
   };
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', padding: '8px 12px' }}>
-      <div style={{ display: 'inline-flex', backgroundColor: 'var(--surface-color)', border: '1px solid var(--border-color)', borderRadius: 999, padding: 3, gap: 2 }}>
+    <div className={`shell-switcher shell-switcher--${variant}`}>
+      <div style={{ display: 'inline-flex', backgroundColor: 'var(--bg-color)', border: '1px solid var(--border-color)', borderRadius: 999, padding: 3, gap: 2 }}>
         {Object.entries(SHELLS).map(([key, cfg]) => {
           const active = current === key;
           return (
@@ -414,13 +414,13 @@ function StudentApp({ initialTab = 'home', shell = null }) {
     <div className="mobile-app-wrapper">
       <div className="app-container">
         <div className={`content-column ${activeTab}-tab-container`}>
-          {shellConfig && <ShellSwitcher current={shell} />}
+          {shellConfig && <ShellSwitcher current={shell} variant="mobile" />}
           <div className={activeTab !== 'home' ? 'topbar-desktop-only' : ''}>
             <TopBar activeTab={activeTab} subtitleOverride={tabSubtitle} />
           </div>
           <main key={activeTab} className={`main-content ${activeTab}-tab ${activeTab !== 'home' ? ' no-topbar' : ''}`}>{renderTab()}</main>
         </div>
-        <BottomNav activeTab={activeTab} setActiveTab={setActiveTab} onPreloadTab={preloadTab} tabs={allowedTabs} />
+        <BottomNav activeTab={activeTab} setActiveTab={setActiveTab} onPreloadTab={preloadTab} tabs={allowedTabs} switcher={shellConfig ? <ShellSwitcher current={shell} variant="sidebar" /> : null} />
         {!hasCompletedTutorial && (
           <AppTutorial
             activeTab={activeTab}
