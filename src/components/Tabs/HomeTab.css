@@ -1,5 +1,5 @@
 .home-tab-content {
-    padding: var(--app-edge-gap) var(--safe-area-right) 100px var(--safe-area-left);
+    padding: var(--app-edge-gap) var(--app-edge-right) 100px var(--app-edge-left);
     display: flex;
     flex-direction: column;
     gap: 12px;
