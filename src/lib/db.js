@@ -281,6 +281,7 @@ export const getNodesForUnitWithProgress = (unitId, completedNodeIds) => {
             topic: n.topic || lesson?.topic || sourceNode?.topic || sourceLesson?.topic || null,
             vocab_introduces: n.vocab_introduces || null,
             vocab_requires: n.vocab_requires || null,
+            sessions_required: n.sessions_required || null,
             status
         };
     });

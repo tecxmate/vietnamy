@@ -167,10 +167,14 @@ const RoadmapTab = () => {
 
     const ModeIcon = MODE_ICONS[modeConfig.icon] || Plane;
     const translateUnitTitle = (unit) => {
-        const rawTitle = unit.title.replace(/^Unit\s+\d+\s+[—-]\s+/i, '');
+        // Take the unit number + name from the title itself (e.g. "Unit 0 — Foundations"),
+        // so inserting units doesn't renumber the rest.
+        const m = unit.title.match(/^Unit\s+(-?\d+)\s+[—-]\s+(.*)$/i);
+        const num = m ? m[1] : unit.order_index;
+        const rawTitle = m ? m[2] : unit.title;
         const title = t(`roadmap_unit_${unit.id}`, rawTitle);
         return t('roadmap_unit_title')
-            .replace('{unit}', unit.order_index)
+            .replace('{unit}', num)
             .replace('{title}', title);
     };
     const translateNodeLabel = (node) => t(`roadmap_node_${node.id}`, node.label);
@@ -380,7 +384,7 @@ const RoadmapTab = () => {
                                 const isLocked = !testMode || node.status === 'locked';
                                 const sublabel = getNodeLabel(node, style, t);
                                 const sessionCount = getNodeSessionCount(node.id, progressMode);
-                                const sessionsTarget = node.skill_content?.type === 'grammar_unit' ? 2 : SESSIONS_TO_COMPLETE;
+                                const sessionsTarget = node.sessions_required || (node.skill_content?.type === 'grammar_unit' ? 2 : SESSIONS_TO_COMPLETE);
                                 const hasProgress = testMode && sessionCount > 0 && !isCompleted;
                                 const quiz = quizByParent[node.id];
                                 const quizDone = quiz?.status === 'completed';

@@ -2,7 +2,7 @@ import { useMemo, useCallback, useRef } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useProgress } from '../context/ProgressContext';
 import { useUser } from '../context/UserContext';
-import { getNextNode, getNodeRoute } from '../lib/db';
+import { getNextNode, getNodeRoute, getNodeById } from '../lib/db';
 import { DEFAULT_LEARNER_MODE, getProgressMode } from '../data/learnerModes';
 
 /**
@@ -37,7 +37,9 @@ export function usePracticeCompletion() {
     const markComplete = useCallback(() => {
         if (!nodeId || completedRef.current) return;
         completedRef.current = true;
-        progressCtx.completeNode(nodeId, { mode: progressMode });
+        // Foundations nodes set sessions_required: 1 so one pass completes them.
+        const sessionsRequired = getNodeById(nodeId)?.sessions_required;
+        progressCtx.completeNode(nodeId, { mode: progressMode, sessionsRequired });
     }, [nodeId, progressCtx, progressMode]);
 
     const goNext = useCallback(() => {

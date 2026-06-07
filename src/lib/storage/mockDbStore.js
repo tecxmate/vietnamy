@@ -1,7 +1,7 @@
 import { INIT_DATA } from '../content/initialData';
 
 const DB_KEY = 'vnme_mock_db_v24'; // v24: unified_db.json as primary source
-const CURRICULUM_VERSION = 23; // v23: normalize CEFR sub-levels (A1.x → A1, A2.x → A2)
+const CURRICULUM_VERSION = 24; // v24: add Unit 0 — Foundations (tone/script on-ramp)
 
 let dbCache = null;
 
