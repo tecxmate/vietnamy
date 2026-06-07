@@ -25,6 +25,7 @@ const TTS_VOICE_IDS = new Set(TTS_VOICE_OPTIONS.map(voice => voice.v));
 
 const TAB_META = {
     home: null,
+    dicthome: null,
     study: null,
     dictionary: { title: 'tab_dictionary_title', subtitle: 'tab_dictionary_subtitle' },
     grammar: { title: 'tab_grammar_title', subtitle: 'tab_grammar_subtitle' },

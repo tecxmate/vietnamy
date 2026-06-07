@@ -11,6 +11,7 @@ const BottomNav = ({ activeTab, setActiveTab, onPreloadTab, tabs: allowedTabs })
 
     const allTabs = [
         { id: 'home', icon: <Home size={24} />, label: t('nav_home') },
+        { id: 'dicthome', icon: <Home size={24} />, label: t('nav_home') },
         { id: 'study', icon: <BookOpen size={24} />, label: t('nav_study') },
         { id: 'grammar', icon: <Pen size={24} />, label: t('nav_grammar') },
         { id: 'sounds', icon: <Music size={24} />, label: t('nav_sounds') },

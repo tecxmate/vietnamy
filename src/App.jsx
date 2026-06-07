@@ -79,6 +79,7 @@ function preloadStudentTabs(activeTab) {
 }
 
 const HomeTab = lazy(loadHomeTab);
+const ReferenceHomeTab = lazy(() => import('./components/Tabs/ReferenceHomeTab'));
 const OnboardingFlow = lazy(() => import('./components/Onboarding/OnboardingFlow'));
 const AppTutorial = lazy(() => import('./components/Onboarding/AppTutorial'));
 const RoadmapTab = lazy(loadRoadmapTab);
@@ -147,14 +148,14 @@ const Quantifiers = lazy(() => import('./pages/Practice/Quantifiers'));
 const VisionVerbs = lazy(() => import('./pages/Practice/VisionVerbs'));
 const Prepositions = lazy(() => import('./pages/Practice/Prepositions'));
 
-const VALID_TABS = ['home', 'study', 'grammar', 'sounds', 'dictionary', 'library'];
+const VALID_TABS = ['home', 'dicthome', 'study', 'grammar', 'sounds', 'dictionary', 'library'];
 
 // Two product experiences sharing one codebase + account. A shell filters the
 // bottom nav to its own tabs and sets the landing tab. `/` stays legacy
 // (all tabs) until we flip the default; /learn and /dictionary are the shells.
 const SHELLS = {
   learn: { tabs: ['home', 'study'], default: 'home', label: 'Learn' },
-  dictionary: { tabs: ['dictionary', 'library', 'sounds', 'grammar'], default: 'dictionary', label: 'Dictionary' },
+  dictionary: { tabs: ['dicthome', 'dictionary', 'library', 'sounds', 'grammar'], default: 'dicthome', label: 'Dictionary' },
 };
 const SHELL_KEY = 'vnme_active_shell';
 
@@ -365,6 +366,7 @@ function StudentApp({ initialTab = 'home', shell = null }) {
   const renderTab = () => {
     switch (activeTab) {
       case 'home': return <HomeTab onSearchWord={handleDictInput} />;
+      case 'dicthome': return <ReferenceHomeTab onSearchWord={handleDictInput} onNavigateTab={setActiveTab} />;
       case 'study': return <RoadmapTab onNavigateToVocabDeck={handleNavigateToVocabDeck} />;
       case 'grammar': return <GrammarTab />;
       case 'sounds': return <SoundsTab />;
