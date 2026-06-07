@@ -1,6 +1,7 @@
 import modules from '../../data/lessons.json';
 import { getImageForWord } from '../../utils/vocabImageLookup';
 import { generateExercises } from '../exerciseGenerator';
+import { resolveExerciseProfile } from '../exerciseProfiles';
 import { getDueItemIds } from '../srs';
 import { getWeakItems as _getWeakItems, extractItemIds as _extractItemIds } from '../wordGrades';
 
@@ -169,13 +170,16 @@ export const createLessonExerciseService = ({ getDB }) => {
             wordHints[item.vi_text.toLowerCase()] = item.en_text;
         });
 
-        // Beginner lessons (CEFR A1) drop "type what you hear" — new learners
-        // can't type Vietnamese diacritics yet. Derived from the lesson's level
-        // for now; later this becomes an editable per-lesson exercise profile.
+        // Resolve which exercise profile drives this lesson's question types.
+        // A lesson can pin a profile via exercise_profile_id; otherwise it's
+        // derived from the lesson's CEFR level (A1 → beginner, no typing).
         const lessonNode = (db.path_nodes || []).find(n => n.lesson_id === lessonId);
-        const disableTyping = (lessonNode?.cefr_level || 'A1.1').startsWith('A1');
+        const profile = resolveExerciseProfile({
+            profileId: lessonNode?.exercise_profile_id,
+            cefrLevel: lessonNode?.cefr_level,
+        });
 
-        const exercises = generateExercises(lessonId, allItems, distractorPool, imageMap, session, { disableTyping });
+        const exercises = generateExercises(lessonId, allItems, distractorPool, imageMap, session, profile.options);
         exercises.forEach(ex => { ex.wordHints = wordHints; });
 
         exerciseCache.set(cacheKey, exercises);
