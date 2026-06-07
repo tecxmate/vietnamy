@@ -36,6 +36,10 @@
     "kinship": {
       "path": "kinship.json",
       "members": 19
+    },
+    "exerciseProfiles": {
+      "path": "exercise-profiles.json",
+      "authoritative": true
     }
   }
 }

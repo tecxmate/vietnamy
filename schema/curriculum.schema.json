@@ -55,6 +55,10 @@
         "targets": { "type": "array", "items": { "type": "string" } },
         "cefrLevel": { "$ref": "_common.schema.json#/$defs/cefrLevel" },
         "difficulty": { "$ref": "_common.schema.json#/$defs/difficulty" },
+        "exerciseProfileId": {
+          "description": "Optional. Pins this lesson's question-type recipe (see exercise-profiles.json). Omit to inherit from the lesson's CEFR level.",
+          "type": "string"
+        },
         "xpReward": { "type": "integer" },
         "wordIds": { "type": "array", "items": { "$ref": "_common.schema.json#/$defs/id" } },
         "sentenceIds": { "type": "array", "items": { "$ref": "_common.schema.json#/$defs/id" } },

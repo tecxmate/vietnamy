@@ -181,6 +181,7 @@ function buildCurriculum() {
             targets: l.targets,
             cefrLevel: l.cefr_level,
             difficulty: l.difficulty,
+            exerciseProfileId: l.exercise_profile_id,
             xpReward: l.xp_reward,
             wordIds: wordIdsByLesson.get(l.id),
             sentenceIds: sentenceIdsByLesson.get(l.id),
@@ -395,6 +396,7 @@ const manifest = {
         grammar: { path: 'grammar.json', levels: grammar.levels, modules: grammar.modules },
         tones: { path: 'tones.json', authoritative: true },
         kinship: { path: 'kinship.json', members: kinship.count },
+        exerciseProfiles: { path: 'exercise-profiles.json', authoritative: true },
     },
 };
 writeJson('index.json', manifest);

@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "defaultProfileId": "standard",
+  "levelDefaults": {
+    "A1": "beginner"
+  },
+  "profiles": [
+    {
+      "id": "beginner",
+      "label": "Beginner (no typing)",
+      "description": "Replaces 'type what you hear' with listen-and-choose. For learners who cannot yet type Vietnamese with diacritics.",
+      "options": {
+        "disableTyping": true
+      }
+    },
+    {
+      "id": "standard",
+      "label": "Standard",
+      "description": "Full mix of question types, including typing.",
+      "options": {}
+    }
+  ]
+}

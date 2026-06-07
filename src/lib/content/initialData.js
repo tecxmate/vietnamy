@@ -77,6 +77,7 @@ function buildFromCanonical(db) {
             lesson_index: lesson.orderIndex,
             title: lesson.title,
             target_xp: lesson.xpReward || 10,
+            exercise_profile_id: lesson.exerciseProfileId || null,
         });
 
         blueprints.push({

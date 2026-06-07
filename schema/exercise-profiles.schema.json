@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vietnamy.app/schema/exercise-profiles.schema.json",
+  "title": "Vietnamy exercise profiles",
+  "description": "Named recipes that control which question types a lesson generates. A lesson references one by id (curriculum lesson.exerciseProfileId); if it doesn't, levelDefaults maps its CEFR band to a profile, falling back to defaultProfileId.",
+  "type": "object",
+  "required": ["profiles", "defaultProfileId"],
+  "additionalProperties": false,
+  "properties": {
+    "version": { "type": "string" },
+    "defaultProfileId": { "type": "string" },
+    "levelDefaults": {
+      "description": "CEFR band (A1, A2, B1, ...) → profile id, used when a lesson has no explicit profile.",
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    },
+    "profiles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "label", "options"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "$ref": "_common.schema.json#/$defs/id" },
+          "label": { "type": "string" },
+          "description": { "type": "string" },
+          "options": {
+            "description": "Knobs passed to the exercise generator. Absent/false means the default behavior.",
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "disableTyping": { "type": "boolean" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

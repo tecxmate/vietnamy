@@ -104,6 +104,7 @@ runtime/storage model.
   "targets": ["chào", "tên"],        // optional learning targets
   "cefrLevel": "A1",                  // was: cefr / cefr_level
   "difficulty": 1,
+  "exerciseProfileId": "beginner",   // optional; pins question-type recipe (see §7 Exercise profiles)
   "xpReward": 10,                     // was: xp / xp_reward
   "wordIds": ["word_explore_0001"],   // refs into words[]
   "sentenceIds": ["sent_explore_0001"],
@@ -321,6 +322,25 @@ bank (or keep it only as an authoring input, never shipped).
   "gender": "male",
   "generation": 2,
   "ageOffset": 60
+}
+```
+
+### Exercise profiles
+Named recipes controlling which question types a lesson generates (`content/exercise-profiles.json`, authoritative — hand-maintained, not generated). A lesson resolves its profile by: explicit `lesson.exerciseProfileId` → `levelDefaults[CEFR band]` → `defaultProfileId`.
+```jsonc
+{
+  "version": "1.0.0",
+  "defaultProfileId": "standard",
+  "levelDefaults": { "A1": "beginner" },   // CEFR band → profile when lesson has none
+  "profiles": [
+    {
+      "id": "beginner",
+      "label": "Beginner (no typing)",
+      "description": "Replaces 'type what you hear' with listen-and-choose.",
+      "options": { "disableTyping": true }  // knobs passed to the exercise generator
+    },
+    { "id": "standard", "label": "Standard", "options": {} }
+  ]
 }
 ```
 
