@@ -4,12 +4,12 @@ import { useT } from '../lib/i18n';
 import { useUser } from '../context/UserContext';
 import { useNotifications } from '../context/NotificationContext';
 
-const BottomNav = ({ activeTab, setActiveTab, onPreloadTab }) => {
+const BottomNav = ({ activeTab, setActiveTab, onPreloadTab, tabs: allowedTabs }) => {
     const t = useT();
     const { userProfile } = useUser();
     const { unreadCount, openPanel } = useNotifications();
 
-    const tabs = [
+    const allTabs = [
         { id: 'home', icon: <Home size={24} />, label: t('nav_home') },
         { id: 'study', icon: <BookOpen size={24} />, label: t('nav_study') },
         { id: 'grammar', icon: <Pen size={24} />, label: t('nav_grammar') },
@@ -17,6 +17,7 @@ const BottomNav = ({ activeTab, setActiveTab, onPreloadTab }) => {
         { id: 'dictionary', icon: <Search size={24} />, label: t('nav_dictionary') },
         { id: 'library', icon: <Library size={24} />, label: t('nav_library') },
     ];
+    const tabs = allowedTabs ? allTabs.filter(tab => allowedTabs.includes(tab.id)) : allTabs;
 
     const openSettings = () => {
         window.dispatchEvent(new Event('open-settings'));

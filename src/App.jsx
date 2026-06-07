@@ -1,5 +1,5 @@
 import React, { Suspense, lazy, useState } from 'react';
-import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import './App.css';
 
 // Contexts
@@ -149,8 +149,50 @@ const Prepositions = lazy(() => import('./pages/Practice/Prepositions'));
 
 const VALID_TABS = ['home', 'study', 'grammar', 'sounds', 'dictionary', 'library'];
 
+// Two product experiences sharing one codebase + account. A shell filters the
+// bottom nav to its own tabs and sets the landing tab. `/` stays legacy
+// (all tabs) until we flip the default; /learn and /dictionary are the shells.
+const SHELLS = {
+  learn: { tabs: ['home', 'study'], default: 'home', label: 'Learn' },
+  dictionary: { tabs: ['dictionary', 'library', 'sounds', 'grammar'], default: 'dictionary', label: 'Dictionary' },
+};
+const SHELL_KEY = 'vnme_active_shell';
+
 function normalizeTab(tab, fallback = 'home') {
   return VALID_TABS.includes(tab) ? tab : fallback;
+}
+
+// Segmented control to hop between the Learn and Dictionary experiences.
+function ShellSwitcher({ current }) {
+  const navigate = useNavigate();
+  const go = (shell) => {
+    try { localStorage.setItem(SHELL_KEY, shell); } catch { /* ignore */ }
+    navigate(`/${shell}`);
+  };
+  return (
+    <div style={{ display: 'flex', justifyContent: 'center', padding: '8px 12px' }}>
+      <div style={{ display: 'inline-flex', backgroundColor: 'var(--surface-color)', border: '1px solid var(--border-color)', borderRadius: 999, padding: 3, gap: 2 }}>
+        {Object.entries(SHELLS).map(([key, cfg]) => {
+          const active = current === key;
+          return (
+            <button
+              key={key}
+              onClick={() => !active && go(key)}
+              aria-pressed={active}
+              style={{
+                border: 'none', cursor: active ? 'default' : 'pointer',
+                padding: '6px 16px', borderRadius: 999, fontSize: 13, fontWeight: 700,
+                backgroundColor: active ? 'var(--primary-color)' : 'transparent',
+                color: active ? '#1A1A1A' : 'var(--text-muted)',
+              }}
+            >
+              {cfg.label}
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
 }
 
 function LoadingScreen() {
@@ -214,9 +256,12 @@ function AdminRoute() {
   return <AdminLayout />;
 }
 
-function StudentApp({ initialTab = 'home' }) {
+function StudentApp({ initialTab = 'home', shell = null }) {
   const location = useLocation();
-  const initialTabSafe = normalizeTab(initialTab);
+  const shellConfig = shell ? SHELLS[shell] : null;
+  const allowedTabs = shellConfig ? shellConfig.tabs : VALID_TABS;
+  const initialTabSafe = shellConfig ? shellConfig.default : normalizeTab(initialTab);
+  const tabStorageKey = shellConfig ? `vnme_active_tab_${shell}` : 'vnme_active_tab';
   const [hasCompletedOnboarding, setHasCompletedOnboarding] = useState(() => {
     return localStorage.getItem('vnme_onboarding_completed') === 'true';
   });
@@ -225,13 +270,13 @@ function StudentApp({ initialTab = 'home' }) {
   });
   const [activeTab, setActiveTab] = useState(() => {
     // Priority: location.state > explicit route tab > localStorage
-    // This handles PWA state loss on refresh/reopen
-    if (location.state?.tab) return normalizeTab(location.state.tab, initialTabSafe);
-    if (initialTabSafe !== 'home') return initialTabSafe;
-    const saved = localStorage.getItem('vnme_active_tab');
-    if (VALID_TABS.includes(saved)) {
-      return saved;
-    }
+    // This handles PWA state loss on refresh/reopen. In a shell, the candidate
+    // tab is clamped to that shell's tabs.
+    const fromState = location.state?.tab ? normalizeTab(location.state.tab, initialTabSafe) : null;
+    if (fromState && allowedTabs.includes(fromState)) return fromState;
+    if (!shellConfig && initialTabSafe !== 'home') return initialTabSafe;
+    const saved = localStorage.getItem(tabStorageKey);
+    if (allowedTabs.includes(saved)) return saved;
     return initialTabSafe;
   });
 
@@ -242,10 +287,17 @@ function StudentApp({ initialTab = 'home' }) {
     }
   }, [location.state?.tab, initialTabSafe]);
 
-  // Persist active tab to localStorage for PWA recovery
+  // Persist active tab to localStorage for PWA recovery (shell-scoped)
   React.useEffect(() => {
-    localStorage.setItem('vnme_active_tab', activeTab);
-  }, [activeTab]);
+    localStorage.setItem(tabStorageKey, activeTab);
+  }, [activeTab, tabStorageKey]);
+
+  // Remember which experience the user is in, so `/` can land there later.
+  React.useEffect(() => {
+    if (shell) {
+      try { localStorage.setItem(SHELL_KEY, shell); } catch { /* ignore */ }
+    }
+  }, [shell]);
   const [tabSubtitle, setTabSubtitle] = useState(null);
   const [pendingDictInput, setPendingDictInput] = useState(null);
   const { updateUserProfile } = useUser();
@@ -326,13 +378,14 @@ function StudentApp({ initialTab = 'home' }) {
     <div className="mobile-app-wrapper">
       <div className="app-container">
         <div className={`content-column ${activeTab}-tab-container`}>
+          {shellConfig && <ShellSwitcher current={shell} />}
           <div className={activeTab !== 'home' ? 'topbar-desktop-only' : ''}>
             <TopBar activeTab={activeTab} subtitleOverride={tabSubtitle} />
           </div>
           <main key={activeTab} className={`main-content ${activeTab}-tab ${activeTab !== 'home' ? ' no-topbar' : ''}`}>{renderTab()}</main>
         </div>
-        <BottomNav activeTab={activeTab} setActiveTab={setActiveTab} onPreloadTab={preloadTab} />
-        {!hasCompletedTutorial && (
+        <BottomNav activeTab={activeTab} setActiveTab={setActiveTab} onPreloadTab={preloadTab} tabs={allowedTabs} />
+        {!shellConfig && !hasCompletedTutorial && (
           <AppTutorial
             activeTab={activeTab}
             setActiveTab={setActiveTab}
@@ -355,6 +408,8 @@ function AppRoutes() {
       <Suspense fallback={<LoadingScreen />}>
       <Routes>
         <Route path="/" element={<StudentApp />} />
+        <Route path="/learn" element={<StudentApp shell="learn" />} />
+        <Route path="/dictionary" element={<StudentApp shell="dictionary" />} />
         <Route path="/practice" element={<StudentApp initialTab="library" />} />
         <Route path="/lesson/:lessonId" element={<div className="mobile-app-wrapper"><LessonGame /></div>} />
         <Route path="/scene/:sceneId" element={<div className="mobile-app-wrapper"><SceneEngine /></div>} />
