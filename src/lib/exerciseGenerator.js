@@ -470,9 +470,12 @@ function interleaveExercises(exercises) {
  * @param {Array} distractorPool - items from sibling lessons for wrong answers
  * @param {Object} imageMap - { viText: { image, emoji } } for picture_choice exercises
  * @param {number} session - session number (0-3), varies the exercise mix
+ * @param {Object} options - per-lesson knobs. { disableTyping } swaps "type what
+ *   you hear" for the gentler "listen & choose" twin (for beginners who can't yet
+ *   type Vietnamese diacritics). First step toward editable per-lesson exercise profiles.
  * @returns {Array} exercises
  */
-export function generateExercises(lessonId, items, distractorPool, imageMap = {}, session = 0) {
+export function generateExercises(lessonId, items, distractorPool, imageMap = {}, session = 0, options = {}) {
     if (!items || items.length === 0) return [];
 
     const profile = SESSION_PROFILES[Math.min(session, SESSION_PROFILES.length - 1)];
@@ -528,9 +531,13 @@ export function generateExercises(lessonId, items, distractorPool, imageMap = {}
     }
 
     // --- Phase 6: Listen & Type (words, non-templated) ---
+    // Beginners can't type Vietnamese diacritics yet, so swap typing for the
+    // gentler "listen & choose" twin: same audio, pick from choices.
     const listenTypeItems = pickItemsLeastSeen(nonTemplatedWords, profile.listenType, itemCount);
     for (const item of listenTypeItems) {
-        exercises.push(generateListenType(lessonId, item, exIndex++));
+        exercises.push(options.disableTyping
+            ? generateListenChoose(lessonId, item, allPool, exIndex++)
+            : generateListenType(lessonId, item, exIndex++));
     }
 
     // --- Phase 7: Translation Word Bank (sentences, non-templated) ---

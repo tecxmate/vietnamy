@@ -169,7 +169,13 @@ export const createLessonExerciseService = ({ getDB }) => {
             wordHints[item.vi_text.toLowerCase()] = item.en_text;
         });
 
-        const exercises = generateExercises(lessonId, allItems, distractorPool, imageMap, session);
+        // Beginner lessons (CEFR A1) drop "type what you hear" — new learners
+        // can't type Vietnamese diacritics yet. Derived from the lesson's level
+        // for now; later this becomes an editable per-lesson exercise profile.
+        const lessonNode = (db.path_nodes || []).find(n => n.lesson_id === lessonId);
+        const disableTyping = (lessonNode?.cefr_level || 'A1.1').startsWith('A1');
+
+        const exercises = generateExercises(lessonId, allItems, distractorPool, imageMap, session, { disableTyping });
         exercises.forEach(ex => { ex.wordHints = wordHints; });
 
         exerciseCache.set(cacheKey, exercises);
