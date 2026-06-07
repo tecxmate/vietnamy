@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vietnamy.app/schema/concepts.schema.json",
+  "title": "Vietnamy concept blocks",
+  "description": "Short teaching screens (Duolingo-style 'tips') shown in a lesson's intro phase. A concept declares the lesson it belongs to via lessonId.",
+  "type": "object",
+  "required": ["concepts"],
+  "additionalProperties": false,
+  "properties": {
+    "version": { "type": "string" },
+    "concepts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "lessonId", "title", "body"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "$ref": "_common.schema.json#/$defs/id" },
+          "lessonId": { "$ref": "_common.schema.json#/$defs/id" },
+          "title": { "type": "string" },
+          "body": { "type": "string" },
+          "examples": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["vi"],
+              "additionalProperties": false,
+              "properties": {
+                "vi": { "type": "string" },
+                "en": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

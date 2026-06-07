@@ -397,6 +397,7 @@ const manifest = {
         tones: { path: 'tones.json', authoritative: true },
         kinship: { path: 'kinship.json', members: kinship.count },
         exerciseProfiles: { path: 'exercise-profiles.json', authoritative: true },
+        concepts: { path: 'concepts.json', authoritative: true },
     },
 };
 writeJson('index.json', manifest);

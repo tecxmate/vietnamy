@@ -40,6 +40,10 @@
     "exerciseProfiles": {
       "path": "exercise-profiles.json",
       "authoritative": true
+    },
+    "concepts": {
+      "path": "concepts.json",
+      "authoritative": true
     }
   }
 }

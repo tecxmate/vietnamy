@@ -344,6 +344,26 @@ Named recipes controlling which question types a lesson generates (`content/exer
 }
 ```
 
+### Concept blocks
+Short teaching screens ("tips") shown in a lesson's intro phase, before the vocab cards (`content/concepts.json`, authoritative). A concept declares the lesson it belongs to via `lessonId`, so attaching one never touches the generated curriculum bundle.
+```jsonc
+{
+  "version": "1.0.0",
+  "concepts": [
+    {
+      "id": "concept_tones_intro",
+      "lessonId": "lesson_001a",          // which lesson shows this
+      "title": "Vietnamese is tonal",
+      "body": "Vietnamese has six tones. The same syllable means different things…",
+      "examples": [                        // optional, tappable to hear
+        { "vi": "ma", "en": "ghost" },
+        { "vi": "má", "en": "mother" }
+      ]
+    }
+  ]
+}
+```
+
 ---
 
 ## 8. Projection to the storage layer (`database_schema.md`)

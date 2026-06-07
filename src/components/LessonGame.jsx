@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { X, Heart, Check, Volume2, Frown, Trophy, ChevronRight, Mic, MicOff } from 'lucide-react';
 import { lookupWords } from '../lib/dictionaryLookup';
+import { getConceptsForLesson } from '../lib/concepts';
 import { useProgress } from '../context/ProgressContext';
 import { useUser } from '../context/UserContext';
 import { getNodeByLessonId, getLessonBlueprint, getExercisesGenerated, getNextNode, getNodeRoute } from '../lib/db';
@@ -248,8 +249,11 @@ const LessonGame = () => {
             setLessonBlueprint(blueprint);
             setLessonWords(blueprint.words);
 
-            // Build intro steps — vocab cards only
+            // Build intro steps — teaching concepts first, then vocab cards
             const steps = [];
+            getConceptsForLesson(lessonId).forEach(concept => {
+                steps.push({ type: 'concept', concept });
+            });
             blueprint.words.forEach(word => {
                 steps.push({ type: 'vocab', word });
             });
@@ -643,6 +647,31 @@ const LessonGame = () => {
 
                 {/* Content Area */}
                 <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: '0 24px', overflowY: 'auto' }}>
+                    {step.type === 'concept' && (
+                        <div style={{ width: '100%', maxWidth: 400, backgroundColor: 'var(--surface-color)', borderRadius: 'var(--radius-lg)', padding: 32, border: '2px solid var(--border-color)' }}>
+                            <div style={{ fontSize: 12, textTransform: 'uppercase', letterSpacing: 2, color: 'var(--primary-color)', fontWeight: 700, marginBottom: 16 }}>Key Idea</div>
+                            <div style={{ fontSize: 24, fontWeight: 800, marginBottom: 12, lineHeight: 1.3 }}>{step.concept.title}</div>
+                            <div style={{ fontSize: 16, color: 'var(--text-muted)', lineHeight: 1.6 }}>{step.concept.body}</div>
+                            {step.concept.examples?.length > 0 && (
+                                <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginTop: 20 }}>
+                                    {step.concept.examples.map((ex, i) => (
+                                        <button
+                                            key={i}
+                                            className="ghost"
+                                            onClick={() => speak(ex.vi)}
+                                            style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8, padding: '10px 14px', backgroundColor: 'var(--bg-color)', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-color)', width: '100%', textAlign: 'left' }}
+                                        >
+                                            <span style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                                                <Volume2 size={18} color="var(--secondary-color)" />
+                                                <span style={{ fontSize: 18, fontWeight: 700 }}>{ex.vi}</span>
+                                            </span>
+                                            {ex.en && <span style={{ fontSize: 14, color: 'var(--text-muted)' }}>{ex.en}</span>}
+                                        </button>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                    )}
                     {step.type === 'vocab' && (
                         <div style={{ width: '100%', maxWidth: 400, backgroundColor: 'var(--surface-color)', borderRadius: 'var(--radius-lg)', padding: 32, textAlign: 'center', border: '2px solid var(--border-color)' }}>
                             <div style={{ fontSize: 12, textTransform: 'uppercase', letterSpacing: 2, color: 'var(--secondary-color)', fontWeight: 700, marginBottom: 16 }}>New Word</div>
