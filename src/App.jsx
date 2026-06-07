@@ -414,12 +414,12 @@ function StudentApp({ initialTab = 'home', shell = null }) {
     <div className="mobile-app-wrapper">
       <div className="app-container">
         <div className={`content-column ${activeTab}-tab-container`}>
-          {shellConfig && <ShellSwitcher current={shell} variant="mobile" />}
           <div className={activeTab !== 'home' ? 'topbar-desktop-only' : ''}>
             <TopBar activeTab={activeTab} subtitleOverride={tabSubtitle} />
           </div>
           <main key={activeTab} className={`main-content ${activeTab}-tab ${activeTab !== 'home' ? ' no-topbar' : ''}`}>{renderTab()}</main>
         </div>
+        {shellConfig && <ShellSwitcher current={shell} variant="mobile" />}
         <BottomNav activeTab={activeTab} setActiveTab={setActiveTab} onPreloadTab={preloadTab} tabs={allowedTabs} switcher={shellConfig ? <ShellSwitcher current={shell} variant="sidebar" /> : null} />
         {!hasCompletedTutorial && (
           <AppTutorial
