@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Globe, Clock, Target, Star, Play, Square } from 'lucide-react';
+import { Globe, Clock, Target, Star, Play, Square, Volume2 } from 'lucide-react';
 import { useUser } from '../../context/UserContext';
 import { useAuth } from '../../context/AuthContext';
 import { buildTtsUrl } from '../../utils/speak';
@@ -61,6 +61,20 @@ const OnboardingFlow = ({ onComplete, requireAuth = false }) => {
             if (audioRef.current === audio) audioRef.current = null;
             setPlayingVoice(prev => (prev === voiceId ? null : prev));
         };
+        audio.addEventListener('ended', clear);
+        audio.addEventListener('error', clear);
+    };
+
+    // Tone teaser — play an arbitrary syllable with the chosen voice.
+    const [teaserPlaying, setTeaserPlaying] = useState(null);
+    const [teaserRevealed, setTeaserRevealed] = useState(false);
+    const playClip = (text, key) => {
+        if (audioRef.current) { audioRef.current.pause(); audioRef.current = null; }
+        const audio = new Audio(buildTtsUrl(text, 'vi', onboardingData.voiceId || undefined));
+        audioRef.current = audio;
+        setTeaserPlaying(key);
+        audio.play().catch(() => setTeaserPlaying(null));
+        const clear = () => { if (audioRef.current === audio) audioRef.current = null; setTeaserPlaying(prev => (prev === key ? null : prev)); };
         audio.addEventListener('ended', clear);
         audio.addEventListener('error', clear);
     };
@@ -363,6 +377,60 @@ const OnboardingFlow = ({ onComplete, requireAuth = false }) => {
             </div>
         </div>,
 
+        // Screen: Tone teaser — "can you hear it?" (the hook for Foundations)
+        <div key="s_teaser" className="onboarding-screen">
+            <div className="onboarding-content items-center text-center">
+                <h2 style={{ fontSize: 24, marginBottom: 8 }}>{t('onboarding_teaser_title', 'Can you hear it?')}</h2>
+                <p style={{ fontSize: 16, color: 'var(--text-muted)', marginBottom: 28, maxWidth: 320 }}>
+                    {t('onboarding_teaser_sub', 'Tap to listen. Same letters — but is it the same word?')}
+                </p>
+                <div style={{ display: 'flex', gap: 16, marginBottom: 28 }}>
+                    {[['ma', 'a'], ['mà', 'b']].map(([syl, key]) => (
+                        <button
+                            key={key}
+                            className="secondary"
+                            onClick={() => playClip(syl, key)}
+                            style={{
+                                display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6,
+                                padding: '20px 28px', borderRadius: 16, fontSize: 28, fontWeight: 800,
+                                borderColor: teaserPlaying === key ? 'var(--primary-color)' : 'var(--border-color)',
+                            }}
+                        >
+                            <Volume2 size={22} color="var(--secondary-color)" />
+                            {syl}
+                        </button>
+                    ))}
+                </div>
+                {!teaserRevealed ? (
+                    <>
+                        <p style={{ fontSize: 15, marginBottom: 12 }}>{t('onboarding_teaser_q', 'Do they mean the same word?')}</p>
+                        <div style={{ display: 'flex', gap: 12 }}>
+                            <button className="secondary" onClick={() => setTeaserRevealed(true)} style={{ padding: '12px 28px', borderRadius: 12, fontWeight: 700 }}>
+                                {t('onboarding_teaser_same', 'Same')}
+                            </button>
+                            <button className="secondary" onClick={() => setTeaserRevealed(true)} style={{ padding: '12px 28px', borderRadius: 12, fontWeight: 700 }}>
+                                {t('onboarding_teaser_diff', 'Different')}
+                            </button>
+                        </div>
+                    </>
+                ) : (
+                    <div className="glass-panel text-center" style={{ maxWidth: 340 }}>
+                        <p style={{ fontWeight: 800, fontSize: 17, marginBottom: 6, color: 'var(--primary-color)' }}>
+                            {t('onboarding_teaser_reveal_title', 'Different words!')}
+                        </p>
+                        <p style={{ fontSize: 16, marginBottom: 8 }}><strong>ma</strong> = {t('onboarding_teaser_ma', 'ghost')} · <strong>mà</strong> = {t('onboarding_teaser_mafall', 'but')}</p>
+                        <p style={{ fontSize: 14, color: 'var(--text-muted)', lineHeight: 1.5 }}>
+                            {t('onboarding_teaser_reveal_body', 'Vietnamese has 6 tones — the same letters change meaning with pitch. That’s what we’ll train first.')}
+                        </p>
+                    </div>
+                )}
+            </div>
+            <div className="bottom-cta">
+                <button className="primary w-full" onClick={nextStep} disabled={!teaserRevealed}>
+                    {t('continue_upper', 'CONTINUE')}
+                </button>
+            </div>
+        </div>,
         // Screen 7: First Win Mini-Lesson
         <div key="s6" className="onboarding-screen" style={{ backgroundColor: 'var(--surface-color)' }}>
             <div className="flex items-center justify-center p-4">
