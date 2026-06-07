@@ -1,13 +1,12 @@
 import React, { useState, useRef, useMemo, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Volume2, BookOpen, Layers, ChevronRight, GraduationCap, BookOpenText, Search, Mic, X, Check, Sparkles, Lightbulb, BellRing } from 'lucide-react';
+import { Volume2, BookOpen, GraduationCap, BookOpenText, Search, Mic, X, Check, Sparkles, Lightbulb, BellRing } from 'lucide-react';
 import { useProgress } from '../../context/ProgressContext';
 import { useT } from '../../lib/i18n';
-import { getItems, getUnits, getNodesForUnitWithProgress } from '../../lib/db';
+import { getItems } from '../../lib/db';
 import { getDueItems, getTotalItems } from '../../lib/srs';
 import ARTICLES from '../../data/articleData';
 import speak from '../../utils/speak';
-import SoundButton from '../SoundButton';
 import { useUser } from '../../context/UserContext';
 import { useAuth } from '../../context/AuthContext';
 import { DEFAULT_LEARNER_MODE, getProgressMode } from '../../data/learnerModes';
@@ -159,21 +158,6 @@ const HomeTab = ({ onSearchWord }) => {
     const tips = useMemo(() => getTodayTips(t), [t]);
     const dueCount = useMemo(() => getDueItems().length, []);
     const totalWords = useMemo(() => getTotalItems(), []);
-    const handleContinue = () => {
-        const units = getUnits();
-        for (const unit of units) {
-            const nodes = getNodesForUnitWithProgress(unit.id, modeCompletedNodes);
-            const activeNode = nodes.find(n => n.status === 'active');
-            if (activeNode) {
-                if (activeNode.type === 'lesson') navigate(`/lesson/${activeNode.content_ref_id}`);
-                else if (activeNode.type === 'skill' && activeNode.skill_content?.type === 'grammar_lesson') navigate(`/grammar-lesson/${activeNode.id}`);
-                else if (activeNode.type === 'skill' && activeNode.skill_content?.route) navigate(activeNode.skill_content.route);
-                else if (activeNode.type === 'test') navigate(`/test/${activeNode.id}`);
-                else navigate(`/lesson/${activeNode.content_ref_id}`);
-                return;
-            }
-        }
-    };
 
     const handleCopyCode = (code) => {
         navigator.clipboard.writeText(code);
@@ -382,22 +366,6 @@ const HomeTab = ({ onSearchWord }) => {
                         <span className="home-progress-label">{t('home_stats_lessons')}</span>
                     </div>
                 </div>
-            </div>
-
-            {/* Quick Actions */}
-            <div className="home-actions">
-                <SoundButton className="home-action-card home-action-study" sound="button" onClick={handleContinue}>
-                    <BookOpen size={22} />
-                    <span>{t('home_continue_lesson')}</span>
-                    <ChevronRight size={18} />
-                </SoundButton>
-                {dueCount > 0 && (
-                    <SoundButton className="home-action-card home-action-review" sound="button" onClick={() => navigate('/practice/flashcards')}>
-                        <Layers size={22} />
-                        <span>{dueCount} {t('home_cards_to_review_unit')}</span>
-                        <ChevronRight size={18} />
-                    </SoundButton>
-                )}
             </div>
 
             {/* Words of the Day */}

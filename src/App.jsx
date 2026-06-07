@@ -154,8 +154,10 @@ const VALID_TABS = ['home', 'dicthome', 'study', 'grammar', 'sounds', 'dictionar
 // bottom nav to its own tabs and sets the landing tab. `/` stays legacy
 // (all tabs) until we flip the default; /learn and /dictionary are the shells.
 const SHELLS = {
-  learn: { tabs: ['home', 'study'], default: 'home', label: 'Learn' },
-  dictionary: { tabs: ['dicthome', 'dictionary', 'library', 'sounds', 'grammar'], default: 'dicthome', label: 'Dictionary' },
+  // Learn is Duolingo-style: no home screen, the roadmap is everything.
+  learn: { tabs: ['study'], default: 'study', label: 'Learn' },
+  // The Home dashboard lives on the Dictionary (reference) side.
+  dictionary: { tabs: ['home', 'dictionary', 'library', 'sounds', 'grammar'], default: 'home', label: 'Dictionary' },
 };
 const SHELL_KEY = 'vnme_active_shell';
 
