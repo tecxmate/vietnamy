@@ -6,9 +6,9 @@ import { buildTtsUrl } from '../../utils/speak';
 import { useT } from '../../lib/i18n';
 
 const VOICE_OPTIONS = [
-    { id: 'google', displayOrder: 1, displayName: 'Ms. Google', description: 'Female Northern Accent', dialect: 'north' },
+    { id: 'google', displayOrder: 1, displayName: 'Ms. Google', description: 'Female Northern Accent', dialect: 'north', isOfficialAccent: true },
     { id: 'azure-south', displayOrder: 2, displayName: 'Hoài My', description: 'Female Southern Accent', dialect: 'south' },
-    { id: 'azure-north', displayOrder: 3, displayName: 'Nam Minh', description: 'Male Southern Accent', dialect: 'north' },
+    { id: 'azure-north', displayOrder: 3, displayName: 'Nam Minh', description: 'Male Northern Accent', dialect: 'north', isOfficialAccent: true },
 ];
 
 const VOICE_OPTIONS_DISPLAY = [...VOICE_OPTIONS].sort((a, b) => a.displayOrder - b.displayOrder);
@@ -242,7 +242,24 @@ const OnboardingFlow = ({ onComplete, requireAuth = false }) => {
                             </span>
                             <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, textAlign: 'left', flex: 1, minWidth: 0 }}>
                                 <span style={{ fontSize: 17, fontWeight: 700 }}>{v.displayName}</span>
-                                <span style={{ fontSize: 13, fontWeight: 600, color: selected ? 'inherit' : 'var(--text-muted)', textAlign: 'right', marginLeft: 'auto' }}>{v.description}</span>
+                                <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 6, marginLeft: 'auto', minWidth: 0, flexWrap: 'wrap' }}>
+                                    {v.isOfficialAccent && (
+                                        <span
+                                            aria-label="Main official accent"
+                                            title="Main official accent"
+                                            style={{
+                                                display: 'inline-flex',
+                                                alignItems: 'center',
+                                                justifyContent: 'center',
+                                                color: '#FF9F1C',
+                                                flexShrink: 0,
+                                            }}
+                                        >
+                                            <Star size={16} fill="currentColor" />
+                                        </span>
+                                    )}
+                                    <span style={{ fontSize: 13, fontWeight: 600, color: selected ? 'inherit' : 'var(--text-muted)', textAlign: 'right' }}>{v.description}</span>
+                                </span>
                             </span>
                         </button>
                     );
