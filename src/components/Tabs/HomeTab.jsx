@@ -210,7 +210,7 @@ const HomeTab = ({ onSearchWord }) => {
             {/* Words to Review Banner */}
             {dueCount > 0 && (
                 <button
-                    onClick={() => navigate('/practice/flashcards')}
+                    onClick={() => navigate('/dictionary', { state: { tab: 'library' } })}
                     style={{
                         display: 'flex', alignItems: 'center', gap: 12,
                         width: '100%', margin: '0',
