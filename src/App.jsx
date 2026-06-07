@@ -387,11 +387,12 @@ function StudentApp({ initialTab = 'home', shell = null }) {
           <main key={activeTab} className={`main-content ${activeTab}-tab ${activeTab !== 'home' ? ' no-topbar' : ''}`}>{renderTab()}</main>
         </div>
         <BottomNav activeTab={activeTab} setActiveTab={setActiveTab} onPreloadTab={preloadTab} tabs={allowedTabs} />
-        {!shellConfig && !hasCompletedTutorial && (
+        {!hasCompletedTutorial && (
           <AppTutorial
             activeTab={activeTab}
             setActiveTab={setActiveTab}
             onComplete={completeTutorial}
+            allowedTabs={shellConfig ? allowedTabs : undefined}
           />
         )}
         <NotificationToastStack />
@@ -409,7 +410,9 @@ function RootRedirect() {
   const location = useLocation();
   const onboarded = localStorage.getItem('vnme_onboarding_completed') === 'true';
   if (!onboarded) {
-    return <StudentApp />;
+    // New users onboard inside the Learn shell (teacher-first), then get a
+    // tutorial scoped to that shell — no more legacy all-tabs tour.
+    return <Navigate to="/learn" replace state={location.state} />;
   }
   const requestedTab = location.state?.tab ? normalizeTab(location.state.tab) : null;
   let shell = requestedTab

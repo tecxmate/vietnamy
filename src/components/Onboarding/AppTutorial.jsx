@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { ArrowRight, CheckCircle, Navigation } from 'lucide-react';
 import { useT } from '../../lib/i18n';
 import './AppTutorial.css';
@@ -111,7 +111,7 @@ function getRect(step) {
 const PAD = 8; // spotlight padding around element
 
 // ─── AppTutorial component ────────────────────────────────────────────────────
-const AppTutorial = ({ activeTab, setActiveTab, onComplete }) => {
+const AppTutorial = ({ activeTab, setActiveTab, onComplete, allowedTabs }) => {
     const t = useT();
     const [stepIdx, setStepIdx] = useState(0);
     const [rect, setRect] = useState(null);
@@ -120,7 +120,13 @@ const AppTutorial = ({ activeTab, setActiveTab, onComplete }) => {
     const tooltipRef = useRef(null);
     const rafRef = useRef(null);
 
-    const steps = STEP_DEFS.map(step => ({
+    // In a shell, only tour the tabs that shell actually has.
+    const defs = useMemo(
+        () => (allowedTabs ? STEP_DEFS.filter(s => allowedTabs.includes(s.tab)) : STEP_DEFS),
+        [allowedTabs]
+    );
+
+    const steps = defs.map(step => ({
         ...step,
         badge: t(step.badge),
         title: t(step.title),
@@ -130,15 +136,23 @@ const AppTutorial = ({ activeTab, setActiveTab, onComplete }) => {
     const step = steps[stepIdx];
     const isLast = stepIdx === steps.length - 1;
 
+    // Align the active tab to the first step on mount — a shell can default to a
+    // different tab than the tour's first step.
+    useEffect(() => {
+        const s = defs[0];
+        if (s && activeTab !== s.tab) { setSwitching(true); setActiveTab(s.tab); }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
     // ── Switch tab if needed, then update rect ──────────────────────────────
     const applyStep = useCallback((idx) => {
-        const s = STEP_DEFS[idx];
+        const s = defs[idx];
         if (!s) return;
         if (activeTab !== s.tab) {
             setSwitching(true);
             setActiveTab(s.tab);
         }
-    }, [activeTab, setActiveTab]);
+    }, [activeTab, setActiveTab, defs]);
 
     // Re-measure rect whenever tab settles or step changes.
     // Uses a retry loop (up to 1.5 s) so we wait for the element to appear
@@ -152,7 +166,7 @@ const AppTutorial = ({ activeTab, setActiveTab, onComplete }) => {
         const STABLE_NEEDED = 2; // rect must be the same for 2 consecutive checks
 
         const tryMeasure = () => {
-            const s = STEP_DEFS[stepIdx];
+            const s = defs[stepIdx];
             if (!s || activeTab !== s.tab) return;
 
             const r = getRect(s);
@@ -192,12 +206,12 @@ const AppTutorial = ({ activeTab, setActiveTab, onComplete }) => {
         };
 
         // Initial delay: longer for steps that require a tab switch
-        const step = STEP_DEFS[stepIdx];
+        const step = defs[stepIdx];
         const needsSwitch = step && activeTab !== step.tab;
         rafRef.current = setTimeout(tryMeasure, needsSwitch ? 200 : 80);
 
         return () => clearTimeout(rafRef.current);
-    }, [stepIdx, activeTab]);
+    }, [stepIdx, activeTab, defs]);
 
 
     // ── Navigation ──────────────────────────────────────────────────────────
@@ -300,7 +314,7 @@ const AppTutorial = ({ activeTab, setActiveTab, onComplete }) => {
                     style={tooltipStyle}
                 >
                     {/* Tab switch hint */}
-                    {step.tabLabel && stepIdx > 0 && STEP_DEFS[stepIdx - 1]?.tab !== step.tab && (
+                    {step.tabLabel && stepIdx > 0 && defs[stepIdx - 1]?.tab !== step.tab && (
                         <div className="tutorial-tab-hint">
                             <Navigation size={12} />
                             {t('app_tutorial_moved_to').replace('{tab}', step.tabLabel)}
