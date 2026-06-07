@@ -2,7 +2,7 @@
 
 **Status:** Draft 1 (specification only — no data files migrated yet)
 **Audience:** Mobile app team, content authors, web app maintainers
-**Companion docs:** [`database_schema.md`](./database_schema.md) (on-device SQLite storage layer)
+**Companion docs:** [`database_schema.md`](./database_schema.md) (on-device SQLite storage layer) · [`SYNC_SCHEMA.md`](./SYNC_SCHEMA.md) (account + cross-app state sync)
 
 ---
 
