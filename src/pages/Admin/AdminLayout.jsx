@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import {
     LayoutDashboard, BookText, Languages, LogOut, FileText, BookOpen, Music,
-    Users, PenTool, FlaskConical, Download, Upload, Menu, X
+    Users, PenTool, FlaskConical, Download, Upload, Menu, X, Lightbulb
 } from 'lucide-react';
 import { logoutAdmin } from '../../lib/adminAuth';
 import { exportDB, importDB } from '../../lib/storage/mockDbStore';
@@ -11,6 +11,7 @@ import './AdminLayout.css';
 const NAV_ITEMS = [
     { to: '/admin/mapper', label: 'Roadmap Mapper', icon: LayoutDashboard },
     { to: '/admin/lesson', label: 'Lesson Builder', icon: BookText },
+    { to: '/admin/concepts', label: 'Concepts', icon: Lightbulb },
     { to: '/admin/grammar', label: 'Grammar Editor', icon: Languages },
     { divider: true },
     { to: '/admin/articles', label: 'Articles', icon: FileText },
@@ -23,6 +24,7 @@ const NAV_ITEMS = [
 const PAGE_TITLES = {
     '/admin/mapper': 'Roadmap Mapper',
     '/admin/lesson': 'Lesson Builder',
+    '/admin/concepts': 'Concepts',
     '/admin/grammar': 'Grammar Editor',
     '/admin/articles': 'Articles',
     '/admin/vocab': 'Vocabulary',
