@@ -1,5 +1,5 @@
 import React, { Suspense, lazy, useState } from 'react';
-import { BrowserRouter, Routes, Route, Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useLocation, useNavigate, useParams } from 'react-router-dom';
 import './App.css';
 
 // Contexts
@@ -159,6 +159,12 @@ const SHELLS = {
 };
 const SHELL_KEY = 'vnme_active_shell';
 
+// URL for a tab within a shell. The shell's default tab lives at the bare
+// shell URL (/dictionary); other tabs get a segment (/dictionary/library).
+function shellTabPath(shell, tab) {
+  return tab === SHELLS[shell]?.default ? `/${shell}` : `/${shell}/${tab}`;
+}
+
 function normalizeTab(tab, fallback = 'home') {
   return VALID_TABS.includes(tab) ? tab : fallback;
 }
@@ -259,6 +265,9 @@ function AdminRoute() {
 
 function StudentApp({ initialTab = 'home', shell = null }) {
   const location = useLocation();
+  const navigate = useNavigate();
+  const params = useParams();
+  const urlTab = shell ? (params['*'] || undefined) : undefined; // splat from /shell/*
   const shellConfig = shell ? SHELLS[shell] : null;
   const allowedTabs = shellConfig ? shellConfig.tabs : VALID_TABS;
   const initialTabSafe = shellConfig ? shellConfig.default : normalizeTab(initialTab);
@@ -270,28 +279,53 @@ function StudentApp({ initialTab = 'home', shell = null }) {
     return localStorage.getItem('vnme_tutorial_completed') === 'true';
   });
   const [activeTab, setActiveTab] = useState(() => {
-    // Priority: location.state > explicit route tab > localStorage
-    // This handles PWA state loss on refresh/reopen. In a shell, the candidate
-    // tab is clamped to that shell's tabs.
+    // In a shell the URL (/shell/<tab>) is the source of truth for the tab.
+    if (shellConfig) {
+      return (urlTab && allowedTabs.includes(urlTab)) ? urlTab : shellConfig.default;
+    }
+    // Legacy (no shell): location.state > explicit route tab > localStorage.
     const fromState = location.state?.tab ? normalizeTab(location.state.tab, initialTabSafe) : null;
     if (fromState && allowedTabs.includes(fromState)) return fromState;
-    if (!shellConfig && initialTabSafe !== 'home') return initialTabSafe;
+    if (initialTabSafe !== 'home') return initialTabSafe;
     const saved = localStorage.getItem(tabStorageKey);
     if (allowedTabs.includes(saved)) return saved;
     return initialTabSafe;
   });
 
-  // Sync location.state.tab when navigating back from lessons
+  // ── Shell tab ↔ URL sync (URL is the source of truth in a shell) ──
+  // URL → tab: react to address bar / back-forward / links.
   React.useEffect(() => {
+    if (!shellConfig) return;
+    const target = (urlTab && allowedTabs.includes(urlTab)) ? urlTab : shellConfig.default;
+    setActiveTab(prev => (prev === target ? prev : target));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [urlTab, shell]);
+  // tab → URL: reflect in-app tab switches (nav clicks, deep links) as URLs.
+  const lastNavRef = React.useRef(null);
+  React.useEffect(() => {
+    if (!shellConfig) return;
+    if (!allowedTabs.includes(activeTab)) return; // out-of-shell render: keep current URL
+    const desired = shellTabPath(shell, activeTab);
+    // Guard against a duplicate push to the same URL (e.g. an effect re-run before
+    // location.pathname has settled), which would need two Back presses.
+    if (location.pathname !== desired && lastNavRef.current !== desired) {
+      lastNavRef.current = desired;
+      navigate(desired);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeTab, shell]);
+
+  // Legacy (no-shell) only: sync location.state.tab + persist tab to localStorage.
+  React.useEffect(() => {
+    if (shellConfig) return;
     if (location.state?.tab) {
       setActiveTab(normalizeTab(location.state.tab, initialTabSafe));
     }
-  }, [location.state?.tab, initialTabSafe]);
-
-  // Persist active tab to localStorage for PWA recovery (shell-scoped)
+  }, [location.state?.tab, initialTabSafe, shellConfig]);
   React.useEffect(() => {
+    if (shellConfig) return;
     localStorage.setItem(tabStorageKey, activeTab);
-  }, [activeTab, tabStorageKey]);
+  }, [activeTab, tabStorageKey, shellConfig]);
 
   // Remember which experience the user is in, so `/` can land there later.
   React.useEffect(() => {
@@ -422,7 +456,8 @@ function RootRedirect() {
     const last = localStorage.getItem(SHELL_KEY);
     shell = SHELLS[last] ? last : 'learn';
   }
-  return <Navigate to={`/${shell}`} replace state={location.state} />;
+  const to = requestedTab ? shellTabPath(shell, requestedTab) : `/${shell}`;
+  return <Navigate to={to} replace state={location.state} />;
 }
 
 function AppRoutes() {
@@ -433,8 +468,8 @@ function AppRoutes() {
       <Suspense fallback={<LoadingScreen />}>
       <Routes>
         <Route path="/" element={<RootRedirect />} />
-        <Route path="/learn" element={<StudentApp shell="learn" />} />
-        <Route path="/dictionary" element={<StudentApp shell="dictionary" />} />
+        <Route path="/learn/*" element={<StudentApp shell="learn" />} />
+        <Route path="/dictionary/*" element={<StudentApp shell="dictionary" />} />
         <Route path="/practice" element={<StudentApp initialTab="library" />} />
         <Route path="/lesson/:lessonId" element={<div className="mobile-app-wrapper"><LessonGame /></div>} />
         <Route path="/scene/:sceneId" element={<div className="mobile-app-wrapper"><SceneEngine /></div>} />
