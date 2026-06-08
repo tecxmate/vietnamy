@@ -207,14 +207,14 @@ export default function BeKhe({
         if (asset.type === 'lottie' && asset.url) {
             return (
                 <Suspense fallback={builtIn}>
-                    <div
+                    <span
                         className={className}
-                        style={{ width: size, height: size, display: 'inline-block' }}
+                        style={{ display: 'inline-block', width: size, height: size, overflow: 'hidden', lineHeight: 0 }}
                         role="img"
                         aria-label={label}
                     >
-                        <DotLottie src={asset.url} autoplay loop style={{ width: '100%', height: '100%' }} />
-                    </div>
+                        <DotLottie src={asset.url} autoplay loop style={{ width: size, height: size, display: 'block' }} />
+                    </span>
                 </Suspense>
             );
         }
