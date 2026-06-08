@@ -1,5 +1,5 @@
 import React, { Suspense, lazy, useState } from 'react';
-import { BrowserRouter, Routes, Route, Navigate, useLocation, useNavigate, useParams } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import './App.css';
 
 // Contexts
@@ -153,60 +153,12 @@ const Quantifiers = lazy(() => import('./pages/Practice/Quantifiers'));
 const VisionVerbs = lazy(() => import('./pages/Practice/VisionVerbs'));
 const Prepositions = lazy(() => import('./pages/Practice/Prepositions'));
 
-const VALID_TABS = ['home', 'dicthome', 'study', 'grammar', 'sounds', 'dictionary', 'library'];
+// One app, three tabs. Pronunciation and grammar are integrated into Study
+// (the roadmap modules), so they are no longer separate nav tabs.
+const VALID_TABS = ['study', 'dictionary', 'library'];
 
-// Two product experiences sharing one codebase + account. A shell filters the
-// bottom nav to its own tabs and sets the landing tab. `/` stays legacy
-// (all tabs) until we flip the default; /learn and /dictionary are the shells.
-const SHELLS = {
-  // Learn is Duolingo-style: no home screen, the roadmap is everything.
-  learn: { tabs: ['study'], default: 'study', label: 'Learn' },
-  // The Home dashboard lives on the Dictionary (reference) side.
-  dictionary: { tabs: ['home', 'dictionary', 'library', 'sounds', 'grammar'], default: 'home', label: 'Dictionary' },
-};
-const SHELL_KEY = 'vnme_active_shell';
-
-// URL for a tab within a shell. The shell's default tab lives at the bare
-// shell URL (/dictionary); other tabs get a segment (/dictionary/library).
-function shellTabPath(shell, tab) {
-  return tab === SHELLS[shell]?.default ? `/${shell}` : `/${shell}/${tab}`;
-}
-
-function normalizeTab(tab, fallback = 'home') {
+function normalizeTab(tab, fallback = 'study') {
   return VALID_TABS.includes(tab) ? tab : fallback;
-}
-
-// Segmented control to hop between the Learn and Dictionary experiences.
-function ShellSwitcher({ current, variant = 'mobile' }) {
-  const navigate = useNavigate();
-  const go = (shell) => {
-    try { localStorage.setItem(SHELL_KEY, shell); } catch { /* ignore */ }
-    navigate(`/${shell}`);
-  };
-  return (
-    <div className={`shell-switcher shell-switcher--${variant}`}>
-      <div style={{ display: 'inline-flex', backgroundColor: 'var(--bg-color)', border: '1px solid var(--border-color)', borderRadius: 999, padding: 3, gap: 2 }}>
-        {Object.entries(SHELLS).map(([key, cfg]) => {
-          const active = current === key;
-          return (
-            <button
-              key={key}
-              onClick={() => !active && go(key)}
-              aria-pressed={active}
-              style={{
-                border: 'none', cursor: active ? 'default' : 'pointer',
-                padding: '6px 16px', borderRadius: 999, fontSize: 13, fontWeight: 700,
-                backgroundColor: active ? 'var(--primary-color)' : 'transparent',
-                color: active ? '#1A1A1A' : 'var(--text-muted)',
-              }}
-            >
-              {cfg.label}
-            </button>
-          );
-        })}
-      </div>
-    </div>
-  );
 }
 
 function LoadingScreen() {
@@ -270,15 +222,10 @@ function AdminRoute() {
   return <AdminLayout />;
 }
 
-function StudentApp({ initialTab = 'home', shell = null }) {
+function StudentApp({ initialTab = 'study' }) {
   const location = useLocation();
-  const navigate = useNavigate();
-  const params = useParams();
-  const urlTab = shell ? (params['*'] || undefined) : undefined; // splat from /shell/*
-  const shellConfig = shell ? SHELLS[shell] : null;
-  const allowedTabs = shellConfig ? shellConfig.tabs : VALID_TABS;
-  const initialTabSafe = shellConfig ? shellConfig.default : normalizeTab(initialTab);
-  const tabStorageKey = shellConfig ? `vnme_active_tab_${shell}` : 'vnme_active_tab';
+  const initialTabSafe = normalizeTab(initialTab);
+  const tabStorageKey = 'vnme_active_tab';
   const [hasCompletedOnboarding, setHasCompletedOnboarding] = useState(() => {
     return localStorage.getItem('vnme_onboarding_completed') === 'true';
   });
@@ -286,60 +233,21 @@ function StudentApp({ initialTab = 'home', shell = null }) {
     return localStorage.getItem('vnme_tutorial_completed') === 'true';
   });
   const [activeTab, setActiveTab] = useState(() => {
-    // In a shell the URL (/shell/<tab>) is the source of truth for the tab.
-    if (shellConfig) {
-      return (urlTab && allowedTabs.includes(urlTab)) ? urlTab : shellConfig.default;
-    }
-    // Legacy (no shell): location.state > explicit route tab > localStorage.
+    // location.state.tab (deep link) > explicit route tab > saved > default (study).
     const fromState = location.state?.tab ? normalizeTab(location.state.tab, initialTabSafe) : null;
-    if (fromState && allowedTabs.includes(fromState)) return fromState;
-    if (initialTabSafe !== 'home') return initialTabSafe;
+    if (fromState) return fromState;
+    if (initialTabSafe !== 'study') return initialTabSafe;
     const saved = localStorage.getItem(tabStorageKey);
-    if (allowedTabs.includes(saved)) return saved;
-    return initialTabSafe;
+    return VALID_TABS.includes(saved) ? saved : initialTabSafe;
   });
 
-  // ── Shell tab ↔ URL sync (URL is the source of truth in a shell) ──
-  // URL → tab: react to address bar / back-forward / links.
+  // Deep-link via location.state.tab; persist the active tab.
   React.useEffect(() => {
-    if (!shellConfig) return;
-    const target = (urlTab && allowedTabs.includes(urlTab)) ? urlTab : shellConfig.default;
-    setActiveTab(prev => (prev === target ? prev : target));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [urlTab, shell]);
-  // tab → URL: reflect in-app tab switches (nav clicks, deep links) as URLs.
-  const lastNavRef = React.useRef(null);
+    if (location.state?.tab) setActiveTab(normalizeTab(location.state.tab, initialTabSafe));
+  }, [location.state?.tab, initialTabSafe]);
   React.useEffect(() => {
-    if (!shellConfig) return;
-    if (!allowedTabs.includes(activeTab)) return; // out-of-shell render: keep current URL
-    const desired = shellTabPath(shell, activeTab);
-    // Guard against a duplicate push to the same URL (e.g. an effect re-run before
-    // location.pathname has settled), which would need two Back presses.
-    if (location.pathname !== desired && lastNavRef.current !== desired) {
-      lastNavRef.current = desired;
-      navigate(desired);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeTab, shell]);
-
-  // Legacy (no-shell) only: sync location.state.tab + persist tab to localStorage.
-  React.useEffect(() => {
-    if (shellConfig) return;
-    if (location.state?.tab) {
-      setActiveTab(normalizeTab(location.state.tab, initialTabSafe));
-    }
-  }, [location.state?.tab, initialTabSafe, shellConfig]);
-  React.useEffect(() => {
-    if (shellConfig) return;
     localStorage.setItem(tabStorageKey, activeTab);
-  }, [activeTab, tabStorageKey, shellConfig]);
-
-  // Remember which experience the user is in, so `/` can land there later.
-  React.useEffect(() => {
-    if (shell) {
-      try { localStorage.setItem(SHELL_KEY, shell); } catch { /* ignore */ }
-    }
-  }, [shell]);
+  }, [activeTab]);
   const [tabSubtitle, setTabSubtitle] = useState(null);
   const [pendingDictInput, setPendingDictInput] = useState(null);
   const { updateUserProfile } = useUser();
@@ -413,7 +321,7 @@ function StudentApp({ initialTab = 'home', shell = null }) {
       case 'sounds': return <SoundsTab />;
       case 'dictionary': return <DictionaryTab pendingInput={pendingDictInput} clearPendingInput={() => setPendingDictInput(null)} onNavigateToLibrary={handleNavigateToLibrary} />;
       case 'library': return <ReadingLibraryTab onSubtitleChange={setTabSubtitle} onSearchWord={handleDictInput} pendingArticle={pendingLibraryArticle} clearPendingArticle={() => setPendingLibraryArticle(null)} pendingVocabDeck={pendingVocabDeck} clearPendingVocabDeck={() => setPendingVocabDeck(null)} />;
-      default: return <HomeTab />;
+      default: return <RoadmapTab onNavigateToVocabDeck={handleNavigateToVocabDeck} />;
     }
   };
 
@@ -426,14 +334,13 @@ function StudentApp({ initialTab = 'home', shell = null }) {
           </div>
           <main key={activeTab} className={`main-content ${activeTab}-tab ${activeTab !== 'home' ? ' no-topbar' : ''}`}>{renderTab()}</main>
         </div>
-        {shellConfig && <ShellSwitcher current={shell} variant="mobile" />}
-        <BottomNav activeTab={activeTab} setActiveTab={setActiveTab} onPreloadTab={preloadTab} tabs={allowedTabs} switcher={shellConfig ? <ShellSwitcher current={shell} variant="sidebar" /> : null} />
+        <BottomNav activeTab={activeTab} setActiveTab={setActiveTab} onPreloadTab={preloadTab} tabs={VALID_TABS} />
         {!hasCompletedTutorial && (
           <AppTutorial
             activeTab={activeTab}
             setActiveTab={setActiveTab}
             onComplete={completeTutorial}
-            allowedTabs={shellConfig ? allowedTabs : undefined}
+            allowedTabs={VALID_TABS}
           />
         )}
         <NotificationToastStack />
@@ -444,29 +351,6 @@ function StudentApp({ initialTab = 'home', shell = null }) {
   );
 }
 
-// Default landing. New users keep the full onboarding + tutorial in the legacy
-// all-tabs shell; returning users land in the experience they last used (or the
-// shell that owns the tab a deep link is asking for, e.g. "back to roadmap").
-function RootRedirect() {
-  const location = useLocation();
-  const onboarded = localStorage.getItem('vnme_onboarding_completed') === 'true';
-  if (!onboarded) {
-    // New users onboard inside the Learn shell (teacher-first), then get a
-    // tutorial scoped to that shell — no more legacy all-tabs tour.
-    return <Navigate to="/learn" replace state={location.state} />;
-  }
-  const requestedTab = location.state?.tab ? normalizeTab(location.state.tab) : null;
-  let shell = requestedTab
-    ? Object.keys(SHELLS).find(key => SHELLS[key].tabs.includes(requestedTab))
-    : null;
-  if (!shell) {
-    const last = localStorage.getItem(SHELL_KEY);
-    shell = SHELLS[last] ? last : 'learn';
-  }
-  const to = requestedTab ? shellTabPath(shell, requestedTab) : `/${shell}`;
-  return <Navigate to={to} replace state={location.state} />;
-}
-
 function AppRoutes() {
   const location = useLocation();
 
@@ -474,9 +358,10 @@ function AppRoutes() {
     <RouteErrorBoundary key={location.key}>
       <Suspense fallback={<LoadingScreen />}>
       <Routes>
-        <Route path="/" element={<RootRedirect />} />
-        <Route path="/learn/*" element={<StudentApp shell="learn" />} />
-        <Route path="/dictionary/*" element={<StudentApp shell="dictionary" />} />
+        <Route path="/" element={<StudentApp />} />
+        {/* Backward-compat: the old two-shell URLs now collapse into the single app. */}
+        <Route path="/learn/*" element={<Navigate to="/" replace />} />
+        <Route path="/dictionary/*" element={<Navigate to="/" replace state={{ tab: 'dictionary' }} />} />
         <Route path="/practice" element={<StudentApp initialTab="library" />} />
         <Route path="/lesson/:lessonId" element={<div className="mobile-app-wrapper"><LessonGame /></div>} />
         <Route path="/scene/:sceneId" element={<div className="mobile-app-wrapper"><SceneEngine /></div>} />

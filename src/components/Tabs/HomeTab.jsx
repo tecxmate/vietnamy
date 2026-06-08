@@ -194,7 +194,7 @@ const HomeTab = ({ onSearchWord }) => {
             {/* Words to Review Banner */}
             {dueCount > 0 && (
                 <button
-                    onClick={() => navigate('/dictionary/library')}
+                    onClick={() => navigate('/', { state: { tab: 'library' } })}
                     style={{
                         display: 'flex', alignItems: 'center', gap: 12,
                         width: '100%', margin: '0',
