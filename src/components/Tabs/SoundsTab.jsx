@@ -7,6 +7,8 @@ import { useT } from '../../lib/i18n';
 import ToneLesson from '../Sounds/ToneLesson';
 import { getAlphabet } from '../../data/alphabet';
 
+const alphabetTtsName = (item) => (item.ttsName || item.name).replace(/-/g, ' ');
+
 // Vietnamese alphabet data
 const VOWELS = {
     basic: [
@@ -189,7 +191,7 @@ const SoundsTab = () => {
                         {getAlphabet().map((item, i) => (
                             <div
                                 key={i}
-                                onClick={() => playTTS(item.letter.split(' ')[0])}
+                                onClick={() => playTTS(alphabetTtsName(item))}
                                 style={{
                                     padding: '12px 8px',
                                     borderRadius: 12,

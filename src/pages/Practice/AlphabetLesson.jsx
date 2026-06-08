@@ -11,6 +11,7 @@ const QUIZ_COUNT = 8;
 const STEPS = [{ id: 'learn', icon: GraduationCap, label: 'Learn' }, { id: 'quiz', icon: Ear, label: 'Quiz' }];
 const shuffle = (a) => [...a].sort(() => Math.random() - 0.5);
 const big = (l) => l.split(' ')[0]; // "A a" -> "A"
+const ttsName = (a) => (a.ttsName || a.name).replace(/-/g, ' ');
 const ALPHABET = getAlphabet(); // admin override or bundled default
 
 // Break the 29 letters into small groups so they aren't all shown at once.
@@ -55,7 +56,7 @@ function LearnGroups({ onDone }) {
     const last = gi + 1 >= GROUPS.length;
     const advance = () => (last ? onDone() : setGi(gi + 1));
     useEnterKey(advance);
-    const play = (a) => { setPlaying(a.letter); speak(a.name, 0.7); setTimeout(() => setPlaying(null), 900); };
+    const play = (a) => { setPlaying(a.letter); speak(ttsName(a), 0.7); setTimeout(() => setPlaying(null), 900); };
     return (
         <div style={{ padding: 16, paddingBottom: 120 }}>
             <div style={{ textAlign: 'center', margin: '4px 0 14px' }}>
@@ -96,7 +97,7 @@ function Quiz({ onDone }) {
     const [playToken, setPlayToken] = useState(0);
     const q = questions[qi];
 
-    const play = useCallback(() => { speak(q.ans.name, 0.7); setPlayToken((t) => t + 1); }, [q]);
+    const play = useCallback(() => { speak(ttsName(q.ans), 0.7); setPlayToken((t) => t + 1); }, [q]);
     useEffect(() => { const t = setTimeout(play, 350); return () => clearTimeout(t); }, [play]);
 
     const pick = (opt) => {
