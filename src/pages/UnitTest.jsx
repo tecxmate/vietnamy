@@ -6,8 +6,10 @@ import { useProgress } from '../context/ProgressContext';
 import { useUser } from '../context/UserContext';
 import speak, { scheduleSpeak, clearSpeakQueue } from '../utils/speak';
 import { loadSettings } from '../lib/settings';
-import { playSuccess, playError } from '../utils/sound';
+import { playSuccess, playError, playCelebration, playNotification, playSelect, playTap } from '../utils/sound';
 import SoundButton from '../components/SoundButton';
+import BeKhe from '../components/BeKhe/BeKhe';
+import { getLine } from '../lib/mascot';
 import {
     buildFillBlankSentence,
     getFillBlankCorrectSentence,
@@ -26,6 +28,9 @@ import '../components/LessonGame.css';
 const UNIT_QUIZ_SIZE = 20;
 const MODULE_QUIZ_SIZE = 6;
 const PASS_THRESHOLD = 0.8; // 80% required to pass
+
+// Bé Khế sound dispatch — the mascot fx names map to the sound utils.
+const SND = { playSuccess, playError, playCelebration, playNotification, playSelect, playTap };
 
 function shuffle(arr) {
     const a = [...arr];
@@ -59,6 +64,8 @@ const UnitTest = () => {
 
     const [isModuleTest, setIsModuleTest] = useState(false);
     const [nextNodeRoute, setNextNodeRoute] = useState(null);
+
+    const lang = userProfile?.nativeLang || 'en';
 
     const stopTestAudio = React.useCallback(() => {
         clearSpeakQueue({ stopCurrent: true });
@@ -139,6 +146,26 @@ const UnitTest = () => {
         }
     }, [isFinished, passed]);
 
+    // Bé Khế lines for the result screen. Memoized so the random pool pick stays
+    // stable across re-renders; recomputed only when the test finishes (or the
+    // pass/unlock state changes).
+    const mascotResult = React.useMemo(
+        () => (isFinished ? getLine(passed ? 'test_pass' : 'test_fail', { lang }) : null),
+        [isFinished, passed, lang],
+    );
+    const mascotUnlock = React.useMemo(
+        () => (isFinished && passed && nextNodeRoute ? getLine('unlock', { lang }) : null),
+        [isFinished, passed, nextNodeRoute, lang],
+    );
+
+    // Play the mascot's sound once when the result screen appears. The result
+    // screen plays no sound of its own, so there's no double-fire.
+    useEffect(() => {
+        if (!isFinished) return;
+        const sound = mascotResult?.sound || mascotUnlock?.sound;
+        if (sound) SND[sound]?.();
+    }, [isFinished, mascotResult, mascotUnlock]);
+
     const handleCheck = () => {
         if (!currentEx) return;
         const result = checkCurrentExercise();
@@ -207,16 +234,20 @@ const UnitTest = () => {
         return (
             <div className="lesson-game">
                 <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: 32, textAlign: 'center', gap: 20 }}>
-                    <div style={{
-                        width: 80, height: 80,
-                        backgroundColor: passed ? '#F9731615' : 'var(--danger-color)15',
-                        borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    }}>
-                        {passed
-                            ? <Trophy size={40} color="#F97316" fill="#F97316" />
-                            : <X size={40} color="var(--danger-color)" strokeWidth={2.5} />
-                        }
-                    </div>
+                    {mascotResult ? (
+                        <BeKhe expression={passed ? 'wow' : 'oops'} size={88} />
+                    ) : (
+                        <div style={{
+                            width: 80, height: 80,
+                            backgroundColor: passed ? '#F9731615' : 'var(--danger-color)15',
+                            borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        }}>
+                            {passed
+                                ? <Trophy size={40} color="#F97316" fill="#F97316" />
+                                : <X size={40} color="var(--danger-color)" strokeWidth={2.5} />
+                            }
+                        </div>
+                    )}
                     <h1 style={{ color: passed ? '#F97316' : 'var(--danger-color)', fontSize: 24, margin: 0, fontWeight: 800 }}>
                         {passed
                             ? (isModuleTest ? t('test_quiz_complete') : t('test_passed'))
@@ -225,11 +256,24 @@ const UnitTest = () => {
                     <div style={{ fontSize: 15, color: 'var(--text-muted)', lineHeight: 1.5 }}>
                         <strong style={{ color: passed ? '#F97316' : 'var(--danger-color)' }}>{score}/{exercises.length}</strong> {t('test_correct')} ({pct}%)
                     </div>
+                    {mascotResult && (
+                        <p style={{ color: 'var(--text-main)', fontSize: 15, lineHeight: 1.5, margin: 0, maxWidth: 320 }}>
+                            {mascotResult.text}
+                        </p>
+                    )}
                     <p style={{ color: 'var(--text-muted)', fontSize: 14, margin: 0 }}>
                         {passed
                             ? (isModuleTest ? t('test_next_module_unlocked') : t('test_next_unit_unlocked'))
                             : t('test_need_to_pass').replace('{percent}', thresholdPct)}
                     </p>
+                    {mascotUnlock && (
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 10, maxWidth: 320, textAlign: 'left' }}>
+                            <BeKhe expression="celebrate" size={48} />
+                            <p style={{ color: 'var(--text-main)', fontSize: 14, lineHeight: 1.4, margin: 0 }}>
+                                {mascotUnlock.text}
+                            </p>
+                        </div>
+                    )}
                 </div>
                 <div className="lesson-game__actionbar" style={{ '--lesson-action-bar-bg': 'var(--surface-color)' }}>
                     <div className="lesson-game__actionbar-content" style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
