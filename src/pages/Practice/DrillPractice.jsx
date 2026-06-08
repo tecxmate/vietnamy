@@ -2,6 +2,7 @@ import { useState, useMemo, useCallback, useEffect } from 'react';
 import { ArrowLeft, Volume2, Check, X, Trophy, Star, RotateCw } from 'lucide-react';
 import { useTTS } from '../../hooks/useTTS';
 import { usePracticeCompletion } from '../../hooks/usePracticeCompletion';
+import { useEnterKey } from '../../hooks/useEnterKey';
 import { playSuccess, playError } from '../../utils/sound';
 import SoundButton from '../../components/SoundButton';
 import './PracticeShared.css';
@@ -104,6 +105,13 @@ export default function DrillPractice({ data, questionCount = 10 }) {
             return () => clearTimeout(t);
         }
     }, [phase, qIndex, questions, speak]);
+
+    // Enter → Check (when an option is picked) / Continue (after feedback).
+    useEnterKey(() => {
+        if (phase !== 'drill') return;
+        if (!showFeedback && selected) handleCheck();
+        else if (showFeedback) handleNext();
+    });
 
     // ─── Intro Screen ──────────────────────────────────────────────
     if (phase === 'intro') {

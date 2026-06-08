@@ -4,6 +4,7 @@ import { ALPHABET } from '../../data/alphabet';
 import speak from '../../utils/speak';
 import { playSuccess, playError } from '../../utils/sound';
 import { usePracticeCompletion } from '../../hooks/usePracticeCompletion';
+import { useEnterKey } from '../../hooks/useEnterKey';
 
 const QUIZ_COUNT = 8;
 const STEPS = [{ id: 'learn', Icon: GraduationCap, label: 'Learn' }, { id: 'quiz', Icon: Ear, label: 'Quiz' }];
@@ -51,6 +52,7 @@ export default function AlphabetLesson() {
 
 function LearnGrid({ onDone }) {
     const [playing, setPlaying] = useState(null);
+    useEnterKey(onDone);
     const play = (a) => { setPlaying(a.letter); speak(a.name, 0.7); setTimeout(() => setPlaying(null), 900); };
     return (
         <div style={{ padding: 16, paddingBottom: 120 }}>
@@ -92,6 +94,7 @@ function Quiz({ onDone }) {
         if (opt.letter === q.ans.letter) { playSuccess(); setScore((s) => s + 1); } else { playError(); }
     };
     const next = () => { if (qi + 1 >= questions.length) { onDone(); return; } setQi(qi + 1); setPicked(null); };
+    useEnterKey(() => { if (picked) next(); });
 
     return (
         <div style={{ padding: 16, paddingBottom: 200 }}>

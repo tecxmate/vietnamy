@@ -7,6 +7,7 @@ import { pitchContourFromSamples, classifyContour } from '../../utils/pitch';
 import { playSuccess, playError } from '../../utils/sound';
 import { saveToneSample, exportToneSamples, getToneSampleCount } from '../../utils/toneData';
 import { useUser } from '../../context/UserContext';
+import { useEnterKey } from '../../hooks/useEnterKey';
 import PitchGraph from './PitchGraph';
 
 // Canonical "ma" minimal set — same base syllable, so only the tone varies.
@@ -122,6 +123,7 @@ function StepDots({ steps: stepIds, step }) {
 // ─── Step 0: Intro — why tones matter (minimal pairs) ──────────────
 function IntroStep({ tones, onDone }) {
     const examples = tones.map(t => ({ tone: t, ...SPEAK_WORD[t.id] }));
+    useEnterKey(onDone);
     return (
         <div style={{ padding: 16, paddingBottom: 120 }}>
             <div style={{ borderRadius: 18, border: '2px solid var(--border-color)', backgroundColor: 'var(--surface-color)', padding: 20 }}>
@@ -175,6 +177,7 @@ function LearnStep({ tones, onDone }) {
 
     const next = () => (idx + 1 >= tones.length ? onDone() : setIdx(idx + 1));
     const prev = () => idx > 0 && setIdx(idx - 1);
+    useEnterKey(next);
 
     return (
         <div style={{ padding: 16, paddingBottom: 120 }}>
@@ -292,6 +295,7 @@ function IdentifyStep({ tones, onDone }) {
         if (qi + 1 >= questions.length) { onDone(score); return; }
         setQi(qi + 1); setSelected(null); setFeedback('idle');
     };
+    useEnterKey(() => { if (feedback !== 'idle') cont(); });
 
     const correctTone = tones.find(t => t.id === q.tone) || TONE_LIST.find(t => t.id === q.tone);
     const cols = Math.min(3, tones.length);
@@ -530,6 +534,7 @@ function SpeakStep({ tones, onDone }) {
         if (idx + 1 >= tones.length) { onDone(nextScores); return; }
         setIdx(idx + 1);
     };
+    useEnterKey(() => { if (result) next(); });
 
     return (
         <div style={{ padding: 16, paddingBottom: 120 }}>
