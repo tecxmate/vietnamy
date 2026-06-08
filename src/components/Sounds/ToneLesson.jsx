@@ -273,7 +273,8 @@ function IdentifyStep({ tones, onDone }) {
     const [score, setScore] = useState(0);
     const q = questions[qi];
 
-    const play = useCallback(() => speak(q.word, 0.7), [q]);
+    const [playToken, setPlayToken] = useState(0);
+    const play = useCallback(() => { speak(q.word, 0.7); setPlayToken(t => t + 1); }, [q]);
     useEffect(() => {
         const t = setTimeout(play, 350);
         return () => clearTimeout(t);
@@ -283,7 +284,7 @@ function IdentifyStep({ tones, onDone }) {
         if (feedback !== 'idle') return;
         setSelected(toneId);
         const correct = toneId === q.tone;
-        if (correct) { playSuccess(); setScore(s => s + 1); setFeedback('correct'); speak(q.word, 0.7); }
+        if (correct) { playSuccess(); setScore(s => s + 1); setFeedback('correct'); play(); }
         else { playError(); setFeedback('incorrect'); }
     };
 
@@ -296,7 +297,7 @@ function IdentifyStep({ tones, onDone }) {
     const cols = Math.min(3, tones.length);
 
     return (
-        <div style={{ padding: 16, paddingBottom: 120 }}>
+        <div style={{ padding: 16, paddingBottom: feedback !== 'idle' ? 200 : 120 }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 14 }}>
                 <span style={{ fontSize: 13, color: 'var(--text-muted)' }}>Question {qi + 1}/{questions.length}</span>
                 <span style={{ fontSize: 13, fontWeight: 700, color: '#06D6A0' }}>Score {score}</span>
@@ -309,11 +310,21 @@ function IdentifyStep({ tones, onDone }) {
                 Listen, then tap the tone you hear.
             </p>
 
-            <button onClick={play} aria-label="Replay" style={{
-                width: 92, height: 92, borderRadius: '50%', margin: '0 auto 10px', display: 'flex',
-                alignItems: 'center', justifyContent: 'center', cursor: 'pointer',
-                border: '2px solid #1CB0F6', backgroundColor: 'rgba(28,176,246,0.12)', color: '#1CB0F6',
-            }}><Volume2 size={40} /></button>
+            <style>{`@keyframes tonePing { from { transform: scale(1); opacity: 0.55; } to { transform: scale(1.7); opacity: 0; } }`}</style>
+            <div style={{ position: 'relative', width: 92, height: 92, margin: '0 auto 10px' }}>
+                {/* sound-wave rings — remount on each play to retrigger the ping */}
+                {playToken > 0 && [0, 1].map(i => (
+                    <span key={`${playToken}-${i}`} style={{
+                        position: 'absolute', inset: 0, borderRadius: '50%', border: '2px solid #1CB0F6',
+                        animation: `tonePing 0.9s ease-out ${i * 0.25}s`, pointerEvents: 'none',
+                    }} />
+                ))}
+                <button onClick={play} aria-label="Replay" style={{
+                    position: 'relative', width: 92, height: 92, borderRadius: '50%', display: 'flex',
+                    alignItems: 'center', justifyContent: 'center', cursor: 'pointer',
+                    border: '2px solid #1CB0F6', backgroundColor: 'rgba(28,176,246,0.12)', color: '#1CB0F6',
+                }}><Volume2 size={40} /></button>
+            </div>
 
             <div style={{ textAlign: 'center', minHeight: 40, marginBottom: 12 }}>
                 {feedback !== 'idle' ? (
@@ -348,25 +359,31 @@ function IdentifyStep({ tones, onDone }) {
             </div>
 
             {feedback !== 'idle' && (
-                <div style={{ marginTop: 18 }}>
-                    <div style={{
-                        display: 'flex', alignItems: 'center', gap: 10, padding: '12px 14px', borderRadius: 12,
-                        backgroundColor: feedback === 'correct' ? '#06D6A01A' : '#EF476F1A', marginBottom: 12,
-                    }}>
+                <div style={{
+                    position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 30,
+                    padding: '12px 16px calc(14px + var(--safe-area-bottom-effective, 0px))',
+                    backgroundColor: 'var(--surface-color)', borderTop: '1px solid var(--border-color)',
+                }}>
+                    <div style={{ maxWidth: 480, margin: '0 auto' }}>
                         <div style={{
-                            width: 30, height: 30, borderRadius: '50%', flexShrink: 0,
-                            backgroundColor: feedback === 'correct' ? '#06D6A0' : '#EF476F', color: '#fff',
-                            display: 'flex', alignItems: 'center', justifyContent: 'center',
-                        }}>{feedback === 'correct' ? <Check size={18} /> : <X size={18} />}</div>
-                        <div style={{ fontSize: 14, color: 'var(--text-main)', fontWeight: 600 }}>
-                            {feedback === 'correct' ? 'Correct!' : 'Answer: '}
-                            <span style={{ color: correctTone.color, fontWeight: 800 }}>{correctTone.name} ({correctTone.label})</span>
+                            display: 'flex', alignItems: 'center', gap: 10, padding: '12px 14px', borderRadius: 12,
+                            backgroundColor: feedback === 'correct' ? '#06D6A01A' : '#EF476F1A', marginBottom: 12,
+                        }}>
+                            <div style={{
+                                width: 30, height: 30, borderRadius: '50%', flexShrink: 0,
+                                backgroundColor: feedback === 'correct' ? '#06D6A0' : '#EF476F', color: '#fff',
+                                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                            }}>{feedback === 'correct' ? <Check size={18} /> : <X size={18} />}</div>
+                            <div style={{ fontSize: 14, color: 'var(--text-main)', fontWeight: 600 }}>
+                                {feedback === 'correct' ? 'Correct! ' : 'Answer: '}
+                                <span style={{ color: correctTone.color, fontWeight: 800 }}>{correctTone.name} ({correctTone.label})</span>
+                            </div>
                         </div>
+                        <button onClick={cont} style={{
+                            width: '100%', padding: 14, borderRadius: 12, border: 'none', cursor: 'pointer',
+                            backgroundColor: '#1CB0F6', color: '#fff', fontWeight: 800, fontSize: 15, fontFamily: 'inherit',
+                        }}>{qi + 1 >= questions.length ? 'Continue' : 'Next'}</button>
                     </div>
-                    <button onClick={cont} style={{
-                        width: '100%', padding: 14, borderRadius: 12, border: 'none', cursor: 'pointer',
-                        backgroundColor: '#1CB0F6', color: '#fff', fontWeight: 800, fontSize: 15, fontFamily: 'inherit',
-                    }}>{qi + 1 >= questions.length ? 'Continue to Speak' : 'Next'}</button>
                 </div>
             )}
         </div>
