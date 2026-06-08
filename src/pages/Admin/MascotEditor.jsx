@@ -1,9 +1,40 @@
 import React, { useState, useRef } from 'react';
 import {
     Save, Check, Plus, Trash2, Sparkles, Download, Upload,
-    RotateCcw, Play, Zap, Lock,
+    RotateCcw, Play, Zap, Lock, Image as ImageIcon, Wand2,
 } from 'lucide-react';
-import { getMascotData, saveMascotData, resetMascotData, getLine } from '../../lib/mascot';
+import {
+    getMascotData, saveMascotData, resetMascotData, getLine,
+    EXPRESSIONS, getMascotAssets, setMascotAsset, removeMascotAsset,
+} from '../../lib/mascot';
+import BeKhe from '../../components/BeKhe/BeKhe';
+import bobLottie from '../../components/BeKhe/lottie/bob.json';
+import popLottie from '../../components/BeKhe/lottie/pop.json';
+import spinLottie from '../../components/BeKhe/lottie/spin.json';
+
+// Upload guards. Files go to Vercel Blob (only the URL is stored locally), so the
+// cap is just for sanity/perf, not a localStorage budget.
+const ASSET_WARN_BYTES = 2 * 1024 * 1024;  // warn past 2 MB
+const ASSET_MAX_BYTES = 5 * 1024 * 1024;   // hard cap 5 MB
+
+// Bundled starter Lottie loops + a sensible default per state.
+const STARTERS = { bob: bobLottie, pop: popLottie, spin: spinLottie };
+const STARTER_FOR = {
+    idle: 'bob', sleepy: 'bob', reading: 'bob', oops: 'bob', thinking: 'bob',
+    cheer: 'pop', celebrate: 'pop', wow: 'spin',
+};
+
+async function uploadToBlob(file, type, name) {
+    const res = await fetch(`/api/mascot-upload?filename=${encodeURIComponent(name)}&type=${type}`, {
+        method: 'POST', headers: { 'content-type': 'application/octet-stream' }, body: file,
+    });
+    if (!res.ok) {
+        const e = await res.json().catch(() => ({}));
+        throw new Error(e.error || `Upload failed (${res.status})`);
+    }
+    const { url } = await res.json();
+    return url;
+}
 
 // Which tiers actually speak at each chattiness level (mirrors mascot.js TIER_ALLOWED).
 const TIER_ALLOWED = {
@@ -41,7 +72,11 @@ const MascotEditor = () => {
     const [hasChanges, setHasChanges] = useState(false);
     const [saved, setSaved] = useState(false);
     const [preview, setPreview] = useState(null); // { text } | { silent:true } | null
+    const [assets, setAssets] = useState(() => getMascotAssets());
     const importInputRef = useRef(null);
+    const artInputRef = useRef(null);
+    const [uploadTarget, setUploadTarget] = useState(null); // expression awaiting a file
+    const [uploading, setUploading] = useState(null); // expression currently uploading
 
     const update = (next) => { setData(next); setHasChanges(true); };
 
@@ -94,6 +129,49 @@ const MascotEditor = () => {
         setSelectedId(Object.keys(fresh.categories || {})[0] || null);
         setHasChanges(false);
         setPreview(null);
+    };
+
+    // --- custom artwork (uploaded to Vercel Blob; only the URL is stored locally) ---
+    const handleArtFile = async (expression, file) => {
+        if (!file) return;
+        const isSvg = file.type === 'image/svg+xml' || /\.svg$/i.test(file.name);
+        const isGif = file.type === 'image/gif' || /\.gif$/i.test(file.name);
+        const isLottie = /\.(lottie|json)$/i.test(file.name) || file.type === 'application/json';
+        if (!isSvg && !isGif && !isLottie) { alert('Please choose an SVG, GIF, or Lottie (.json / .lottie) file.'); return; }
+        if (file.size > ASSET_MAX_BYTES) {
+            alert(`That file is ${(file.size / 1024 / 1024).toFixed(1)} MB — too large (max 5 MB). Please optimize it first.`);
+            return;
+        }
+        if (file.size > ASSET_WARN_BYTES && !confirm(`That file is ${Math.round(file.size / 1024)} KB. Upload anyway?`)) return;
+        const type = isSvg ? 'svg' : isGif ? 'gif' : 'lottie';
+        setUploading(expression);
+        try {
+            const url = await uploadToBlob(file, type, file.name);
+            setMascotAsset(expression, { type, url, name: file.name });
+            setAssets(getMascotAssets());
+        } catch (err) {
+            alert(`Upload failed: ${err.message || err}`);
+        } finally {
+            setUploading(null);
+        }
+    };
+    const handleStarter = async (expression) => {
+        const key = STARTER_FOR[expression] || 'bob';
+        setUploading(expression);
+        try {
+            const blob = new Blob([JSON.stringify(STARTERS[key])], { type: 'application/json' });
+            const url = await uploadToBlob(blob, 'lottie', `starter-${key}.json`);
+            setMascotAsset(expression, { type: 'lottie', url, name: `starter-${key}.json` });
+            setAssets(getMascotAssets());
+        } catch (err) {
+            alert(`Could not load starter: ${err.message || err}`);
+        } finally {
+            setUploading(null);
+        }
+    };
+    const handleRemoveArt = (expression) => {
+        removeMascotAsset(expression);
+        setAssets(getMascotAssets());
     };
 
     const handleExport = () => downloadJson(data, 'mascot.json');
@@ -268,10 +346,21 @@ const MascotEditor = () => {
                                 </label>
                             </div>
 
-                            <div style={{ display: 'flex', alignItems: 'center', gap: 14, margin: '8px 0 14px', fontSize: 12, color: 'var(--text-muted)' }}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: 14, margin: '8px 0 14px', fontSize: 12, color: 'var(--text-muted)', flexWrap: 'wrap' }}>
                                 <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}><Zap size={14} /> fires on {selected.trigger}</span>
-                                <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, borderLeft: '1px solid var(--border-color)', paddingLeft: 14 }}>
-                                    <Lock size={13} /> {selected.fx?.expression ?? '—'} · {selected.fx?.sound ?? '—'} · {selected.fx?.haptic ?? '—'} (locked)
+                                <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, borderLeft: '1px solid var(--border-color)', paddingLeft: 14 }}>
+                                    <BeKhe expression={selected.fx?.expression ?? 'idle'} asset={assets[selected.fx?.expression] ?? null} size={28} />
+                                    expression
+                                    <select
+                                        value={selected.fx?.expression ?? 'idle'}
+                                        onChange={(e) => setCategory(selectedId, { fx: { ...selected.fx, expression: e.target.value } })}
+                                        style={{ padding: '3px 6px', borderRadius: 6, background: 'var(--surface-color)', border: '1px solid var(--border-color)', color: 'var(--text-main)' }}
+                                    >
+                                        {EXPRESSIONS.map((ex) => <option key={ex} value={ex}>{ex}</option>)}
+                                    </select>
+                                </span>
+                                <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}>
+                                    <Lock size={13} /> {selected.fx?.sound ?? '—'} · {selected.fx?.haptic ?? '—'} (locked)
                                 </span>
                             </div>
 
@@ -331,6 +420,51 @@ const MascotEditor = () => {
                         </>
                     )}
                 </div>
+            </div>
+
+            {/* Expression artwork */}
+            <div className="glass-panel" style={{ marginTop: 16 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                    <ImageIcon size={18} color="var(--primary-color)" />
+                    <span style={{ fontSize: 16, fontWeight: 600 }}>Expression artwork</span>
+                </div>
+                <p style={{ fontSize: 12, color: 'var(--text-muted)', margin: '6px 0 14px' }}>
+                    Upload custom <strong>SVG, GIF, or Lottie</strong> (.json / .lottie) art per state — it overrides the built-in face everywhere that expression fires. Each category picks which state it uses via the <em>expression</em> dropdown above. Files upload to Vercel Blob and save instantly; leave empty to keep the built-in Bé Khế. "Starter" drops in a simple Lottie loop you can build on. (Max 5 MB.)
+                </p>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: 12 }}>
+                    {EXPRESSIONS.map((ex) => {
+                        const a = assets[ex];
+                        const busy = uploading === ex;
+                        return (
+                            <div key={ex} style={{ border: '1px solid var(--border-color)', borderRadius: 10, padding: 10, textAlign: 'center', opacity: busy ? 0.6 : 1 }}>
+                                <div style={{ height: 64, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                    <BeKhe expression={ex} asset={a ?? null} size={56} />
+                                </div>
+                                <div style={{ fontSize: 13, fontWeight: 500, margin: '6px 0 2px' }}>{ex}</div>
+                                <div style={{ fontSize: 11, color: a ? 'var(--success-color)' : 'var(--text-muted)', marginBottom: 8 }}>
+                                    {busy ? 'uploading…' : a ? `custom ${a.type.toUpperCase()}` : 'built-in'}
+                                </div>
+                                <div style={{ display: 'flex', gap: 6, justifyContent: 'center', flexWrap: 'wrap' }}>
+                                    <button className="ghost" disabled={busy} style={{ fontSize: 12 }} onClick={() => { setUploadTarget(ex); artInputRef.current?.click(); }}>
+                                        <Upload size={13} /> {a ? 'Replace' : 'Upload'}
+                                    </button>
+                                    <button className="ghost" disabled={busy} style={{ fontSize: 12 }} onClick={() => handleStarter(ex)} title="Load a simple starter Lottie">
+                                        <Wand2 size={13} /> Starter
+                                    </button>
+                                    {a && (
+                                        <button className="ghost" disabled={busy} style={{ fontSize: 12, color: 'var(--danger-color)' }} onClick={() => handleRemoveArt(ex)} title="Remove custom art">
+                                            <Trash2 size={13} />
+                                        </button>
+                                    )}
+                                </div>
+                            </div>
+                        );
+                    })}
+                </div>
+                <input
+                    ref={artInputRef} type="file" accept="image/svg+xml,image/gif,application/json,.svg,.gif,.json,.lottie" style={{ display: 'none' }}
+                    onChange={(e) => { const f = e.target.files?.[0]; e.target.value = ''; if (uploadTarget) handleArtFile(uploadTarget, f); setUploadTarget(null); }}
+                />
             </div>
         </div>
     );

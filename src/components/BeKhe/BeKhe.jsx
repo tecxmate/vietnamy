@@ -1,5 +1,12 @@
-import React from 'react';
+import React, { useMemo, Suspense, lazy } from 'react';
+import { getMascotAsset } from '../../lib/mascot';
 import './BeKhe.css';
+
+// Lottie player loaded only when a Lottie asset is actually rendered, so it
+// never weighs down the main bundle.
+const DotLottie = lazy(() =>
+    import('@lottiefiles/dotlottie-react').then((m) => ({ default: m.DotLottieReact })),
+);
 
 /**
  * Bé Khế — the starfruit-star mascot, drawn as inline SVG so a single component
@@ -41,11 +48,13 @@ function StarBody({ cheeks = true, cheekY = 6 }) {
     );
 }
 
-// A small 4-point sparkle used by cheer/wow.
+// A small 4-point sparkle used by cheer/wow. Coords are coerced to numbers so
+// arithmetic in the path never becomes string concatenation (e.g. "34"+"7").
 function Sparkle({ x, y, s = 6 }) {
+    const X = Number(x), Y = Number(y), S = Number(s);
     return (
         <path
-            d={`M${x},${y - s} Q${x + s * 0.25},${y - s * 0.25} ${x + s},${y} Q${x + s * 0.25},${y + s * 0.25} ${x},${y + s} Q${x - s * 0.25},${y + s * 0.25} ${x - s},${y} Q${x - s * 0.25},${y - s * 0.25} ${x},${y - s} Z`}
+            d={`M${X},${Y - S} Q${X + S * 0.25},${Y - S * 0.25} ${X + S},${Y} Q${X + S * 0.25},${Y + S * 0.25} ${X},${Y + S} Q${X - S * 0.25},${Y + S * 0.25} ${X - S},${Y} Q${X - S * 0.25},${Y - S * 0.25} ${X},${Y - S} Z`}
             fill={STAR_LINE}
         />
     );
@@ -71,7 +80,7 @@ function FACE(expression) {
                     <path d="M-17,-7 q4,-6 9,0" fill="none" stroke={INK} strokeWidth="3" strokeLinecap="round" />
                     <path d="M8,-7 q4,-6 9,0" fill="none" stroke={INK} strokeWidth="3" strokeLinecap="round" />
                     <path d="M-10,6 q10,12 20,0" fill="none" stroke={INK} strokeWidth="3.4" strokeLinecap="round" />
-                    <Sparkle x="34" y="-32" s="7" />
+                    <Sparkle x={34} y={-32} s={7} />
                 </>
             );
         case 'celebrate':
@@ -116,8 +125,8 @@ function FACE(expression) {
                     <circle cx="-13" cy="-5" r="3.4" fill={INK} />
                     <circle cx="13" cy="-5" r="3.4" fill={INK} />
                     <ellipse cx="0" cy="12" rx="5" ry="7" fill={INK} />
-                    <Sparkle x="-38" y="-30" s="6" />
-                    <Sparkle x="36" y="-30" s="6" />
+                    <Sparkle x={-38} y={-30} s={6} />
+                    <Sparkle x={36} y={-30} s={6} />
                 </>
             );
         case 'sleepy':
@@ -167,12 +176,20 @@ export default function BeKhe({
     animate = true,
     className = '',
     title,
+    asset: assetProp,            // optional override (used by the editor's live preview)
     ...rest
 }) {
     const label = title || `Bé Khế (${expression})`;
-    return (
+    // Admin-uploaded art for this state, if any. Read once per expression.
+    const asset = useMemo(
+        () => (assetProp !== undefined ? assetProp : getMascotAsset(expression)),
+        [expression, assetProp],
+    );
+    const motionClass = animate ? `bekhe--${expression}` : '';
+
+    const builtIn = (
         <svg
-            className={`bekhe ${animate ? `bekhe--${expression}` : ''} ${className}`.trim()}
+            className={`bekhe ${motionClass} ${className}`.trim()}
             width={size}
             height={size}
             viewBox="-58 -68 116 124"
@@ -183,4 +200,40 @@ export default function BeKhe({
             {FACE(expression)}
         </svg>
     );
+
+    // Custom uploaded artwork wins over the built-in face.
+    const src = asset?.url || asset?.dataUrl;
+    if (src) {
+        // Lottie: render via the lazy player (it animates itself). Show the
+        // built-in face as the fallback while the player chunk loads.
+        if (asset.type === 'lottie' && asset.url) {
+            return (
+                <Suspense fallback={builtIn}>
+                    <span
+                        className={className}
+                        style={{ display: 'inline-block', width: size, height: size, overflow: 'hidden', lineHeight: 0 }}
+                        role="img"
+                        aria-label={label}
+                    >
+                        <DotLottie src={asset.url} autoplay loop style={{ width: size, height: size, display: 'block' }} />
+                    </span>
+                </Suspense>
+            );
+        }
+        // SVG / GIF: a plain <img>. GIFs self-animate; static SVGs get the
+        // same CSS motion as the built-in states.
+        return (
+            <img
+                className={`bekhe ${motionClass} ${className}`.trim()}
+                src={src}
+                width={size}
+                height={size}
+                alt={label}
+                style={{ objectFit: 'contain' }}
+                {...rest}
+            />
+        );
+    }
+
+    return builtIn;
 }
