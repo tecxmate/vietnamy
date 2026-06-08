@@ -133,7 +133,9 @@ export function getContentEditor(node) {
         if (route.startsWith('/practice/tones') || route.startsWith('/practice/tonemarks')) {
             return { route: '/admin/tones', label: 'Edit tone words', editable: true };
         }
-        return { editable: false }; // alphabet / vowels — defined in code
+        if (route === '/practice/alphabet') return { route: '/admin/alphabet', label: 'Edit alphabet', editable: true };
+        if (route.startsWith('/practice/vowels')) return { route: '/admin/vowels', label: 'Edit vowels', editable: true };
+        return { editable: false };
     }
     return null; // test — auto
 }

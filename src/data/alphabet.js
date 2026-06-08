@@ -1,3 +1,5 @@
+import { loadOverride } from '../lib/contentOverrides';
+
 // The 29 letters of the Vietnamese alphabet: display form, Vietnamese letter
 // name (how you say it), and a rough English sound hint. Shared by the Sounds
 // tab reference and the Foundations Alphabet lesson.
@@ -32,3 +34,8 @@ export const ALPHABET = [
     { letter: 'X x', name: 'ích-xì', sound: 'eek-see' },
     { letter: 'Y y', name: 'y dài', sound: 'ee' },
 ];
+
+export const ALPHABET_CMS_KEY = 'vnme_cms_alphabet';
+
+// The alphabet to use — admin override (if edited) else the bundled default.
+export const getAlphabet = () => loadOverride(ALPHABET_CMS_KEY, ALPHABET);

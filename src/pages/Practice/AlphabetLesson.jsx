@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect, useCallback } from 'react';
 import { Check, ChevronRight, GraduationCap, Ear, Trophy, RotateCw } from 'lucide-react';
-import { ALPHABET } from '../../data/alphabet';
+import { getAlphabet } from '../../data/alphabet';
 import speak from '../../utils/speak';
 import { playSuccess, playError } from '../../utils/sound';
 import { usePracticeCompletion } from '../../hooks/usePracticeCompletion';
@@ -11,6 +11,7 @@ const QUIZ_COUNT = 8;
 const STEPS = [{ id: 'learn', icon: GraduationCap, label: 'Learn' }, { id: 'quiz', icon: Ear, label: 'Quiz' }];
 const shuffle = (a) => [...a].sort(() => Math.random() - 0.5);
 const big = (l) => l.split(' ')[0]; // "A a" -> "A"
+const ALPHABET = getAlphabet(); // admin override or bundled default
 
 // Break the 29 letters into small groups so they aren't all shown at once.
 const VOWEL_SET = new Set(['a', 'ă', 'â', 'e', 'ê', 'i', 'o', 'ô', 'ơ', 'u', 'ư', 'y']);

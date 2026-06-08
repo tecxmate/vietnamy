@@ -5,7 +5,7 @@ import { TONE_LIST } from '../../data/toneContours';
 import speak from '../../utils/speak';
 import { useT } from '../../lib/i18n';
 import ToneLesson from '../Sounds/ToneLesson';
-import { ALPHABET } from '../../data/alphabet';
+import { getAlphabet } from '../../data/alphabet';
 
 // Vietnamese alphabet data
 const VOWELS = {
@@ -186,7 +186,7 @@ const SoundsTab = () => {
                         {t('sounds_alphabet_intro')}
                     </p>
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 8 }}>
-                        {ALPHABET.map((item, i) => (
+                        {getAlphabet().map((item, i) => (
                             <div
                                 key={i}
                                 onClick={() => playTTS(item.letter.split(' ')[0])}
