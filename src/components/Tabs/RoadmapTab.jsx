@@ -9,7 +9,9 @@ import { useUser } from '../../context/UserContext';
 import { loadSettings } from '../../lib/settings';
 import SoundButton from '../SoundButton';
 import { DEFAULT_LEARNER_MODE, ENABLE_LEARNING_PATH_CHOOSER, getProgressMode, getTopicsForMode, getModeConfig, LEARNER_MODES } from '../../data/learnerModes';
-import { useT } from '../../lib/i18n';
+import { useT, normalizeLang } from '../../lib/i18n';
+import { getLine } from '../../lib/mascot';
+import BeKhe from '../BeKhe/BeKhe';
 
 const MODE_ICONS = { BookOpen, Plane, Briefcase, Heart };
 
@@ -155,6 +157,14 @@ const RoadmapTab = () => {
         node.test_scope !== 'module' &&
         (!activeTopic || node.topic === activeTopic)
     ), [activeTopic]);
+
+    const hasAnyVisibleNodes = React.useMemo(
+        () => units.some(unit => (nodesMap[unit.id] || []).some(isVisibleRoadmapNode)),
+        [units, nodesMap, isVisibleRoadmapNode]
+    );
+
+    const mascotLang = normalizeLang(userProfile?.nativeLang);
+    const emptyLine = hasAnyVisibleNodes ? null : getLine('empty', { slot: 'roadmap', lang: mascotLang });
 
     const handleContinueClick = () => {
         for (const unit of units) {
@@ -519,6 +529,18 @@ const RoadmapTab = () => {
                     </div>
                 );
             })}
+
+            {!hasAnyVisibleNodes && emptyLine && (
+                <div style={{
+                    display: 'flex', flexDirection: 'column', alignItems: 'center',
+                    gap: 12, padding: '48px 24px', textAlign: 'center',
+                }}>
+                    <BeKhe expression={emptyLine.expression} size={72} />
+                    <p style={{ margin: 0, fontSize: 15, color: 'var(--text-muted)', maxWidth: 320, lineHeight: 1.5 }}>
+                        {emptyLine.text}
+                    </p>
+                </div>
+            )}
 
             <div className="roadmap-bottom-spacer" aria-hidden="true" />
 

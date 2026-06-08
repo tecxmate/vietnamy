@@ -207,6 +207,116 @@
         { "id": "tut_hearts", "key": "hearts", "enabled": true, "text": { "en": "See these? They're your tries. Run out and we take a little break — no big deal, they come back.", "zh": "看到這些了嗎？它們是你的嘗試機會。用完了我們就休息一下——沒關係，它們會回來的。" } },
         { "id": "tut_done", "key": "done", "enabled": true, "text": { "en": "That's everything! Okay okay okay — I'm excited. Let's actually start.", "zh": "就這些啦！好好好——我太興奮了。我們正式開始吧。" } }
       ]
+    },
+    "test_pass": {
+      "id": "test_pass",
+      "label": "Checkpoint / unit test pass",
+      "kind": "pool",
+      "tier": "core",
+      "enabled": true,
+      "trigger": "test.pass",
+      "fx": { "expression": "wow", "sound": "playCelebration", "haptic": "success" },
+      "lines": [
+        { "id": "tp1", "enabled": true, "weight": 1, "text": { "en": "You PASSED! 🏆 Ears officially tuned. The next chapter is yours.", "zh": "你通過啦！🏆 耳朵正式調好了。下一章是你的了。" } },
+        { "id": "tp2", "enabled": true, "weight": 1, "text": { "en": "Checkpoint cleared! I never doubted us. (Okay, maybe a little. Not anymore.)", "zh": "關卡通過！我從沒懷疑過我們。(好吧，也許有一點點。現在不會了。)" } },
+        { "id": "tp3", "enabled": true, "weight": 1, "text": { "en": "Giỏi quá! That's a real milestone. Gold well earned.", "zh": "Giỏi quá！這是個真正的里程碑。金幣實至名歸。" } }
+      ]
+    },
+    "test_fail": {
+      "id": "test_fail",
+      "label": "Checkpoint fail",
+      "kind": "pool",
+      "tier": "core",
+      "enabled": true,
+      "trigger": "test.fail",
+      "fx": { "expression": "oops", "sound": "playNotification", "haptic": "notification" },
+      "lines": [
+        { "id": "tf1", "enabled": true, "weight": 1, "text": { "en": "Not through yet — and that's totally fine. Tests are just practice with a fancy hat. Let's run it back.", "zh": "還沒過關——不過完全沒關係。測驗只是戴了頂花哨帽子的練習而已。我們再來一次。" } },
+        { "id": "tf2", "enabled": true, "weight": 1, "text": { "en": "Almost there! A couple slipped. We'll warm those up and try again — no shame, only reps.", "zh": "就差一點！漏掉了幾個。我們把它們複習熱身一下再試——不丟人，只是多練幾遍。" } },
+        { "id": "tf3", "enabled": true, "weight": 1, "text": { "en": "Trees don't grow in one day. Quick review, then we go again. Cố lên!", "zh": "樹不是一天長成的。快速複習一下，然後再來。Cố lên！" } }
+      ]
+    },
+    "unlock": {
+      "id": "unlock",
+      "label": "Unlock / level up",
+      "kind": "pool",
+      "tier": "flavor",
+      "enabled": true,
+      "trigger": "node.unlock",
+      "fx": { "expression": "celebrate", "sound": "playCelebration", "haptic": "success" },
+      "lines": [
+        { "id": "un1", "enabled": true, "weight": 1, "text": { "en": "A new chapter just opened! *flips the book dramatically* Come see.", "zh": "新的一章剛剛開啟！*戲劇性地翻開書* 快來看。" } },
+        { "id": "un2", "enabled": true, "weight": 1, "text": { "en": "Level up! 🌟 New words, new places, same great team.", "zh": "升級啦！🌟 新單詞、新地方、還是這個超棒的團隊。" } },
+        { "id": "un3", "enabled": true, "weight": 1, "text": { "en": "Ding! You unlocked the next part of the map. The adventure continues.", "zh": "叮！你解鎖了地圖的下一部分。冒險繼續。" } }
+      ]
+    },
+    "daily_streak": {
+      "id": "daily_streak",
+      "label": "Daily streak milestone",
+      "kind": "slots",
+      "tier": "flavor",
+      "enabled": true,
+      "trigger": "streak.daily",
+      "fx": { "expression": "wow", "sound": "playCelebration", "haptic": "success" },
+      "lines": [
+        { "id": "ds1", "key": "1", "enabled": true, "text": { "en": "Day one! Every tree starts with one seed. See you tomorrow? 🌱", "zh": "第一天！每棵樹都從一顆種子開始。明天見？🌱" } },
+        { "id": "ds3", "key": "3", "enabled": true, "text": { "en": "Three days straight! A habit is sprouting. I can feel it.", "zh": "連續三天！一個習慣正在發芽。我能感覺到。" } },
+        { "id": "ds7", "key": "7", "enabled": true, "text": { "en": "A WHOLE WEEK! 🔥 Seven days. You're not messing around.", "zh": "整整一週！🔥 七天。你可不是鬧著玩的。" } },
+        { "id": "ds30", "key": "30", "enabled": true, "text": { "en": "Thirty days! 🌳 Look at this tree we grew. I'm a little emotional.", "zh": "三十天！🌳 看看我們種出的這棵樹。我有點感動了。" } },
+        { "id": "ds100", "key": "100", "enabled": true, "text": { "en": "ONE HUNDRED DAYS. {name}. You're basically my hero now. Giỏi quá nhất! (The MOST clever.)", "zh": "一百天。{name}。你現在基本上是我的英雄了。Giỏi quá nhất！(最最聰明！)" } }
+      ]
+    },
+    "return": {
+      "id": "return",
+      "label": "Return after absence",
+      "kind": "pool",
+      "tier": "flavor",
+      "enabled": true,
+      "trigger": "app.return",
+      "fx": { "expression": "sleepy", "sound": "playNotification", "haptic": "notification" },
+      "lines": [
+        { "id": "ret1", "enabled": true, "weight": 1, "text": { "en": "You're back! 🌟 I kept your spot warm. Ready when you are.", "zh": "你回來啦！🌟 我幫你把位子留著呢。你準備好我就開始。" } },
+        { "id": "ret2", "enabled": true, "weight": 1, "text": { "en": "There you are! No 'where were you' from me — just happy you're here. Let's go.", "zh": "你在這兒呀！我才不會問'你去哪了'——只是很高興你來了。走吧。" } },
+        { "id": "ret3", "enabled": true, "weight": 1, "text": { "en": "Welcome back, friend! The tree missed you. Let's water it.", "zh": "歡迎回來，朋友！這棵樹想你了。我們來給它澆澆水。" } }
+      ]
+    },
+    "streak_save": {
+      "id": "streak_save",
+      "label": "Streak about to break",
+      "kind": "pool",
+      "tier": "ambient",
+      "enabled": true,
+      "trigger": "streak.atRisk",
+      "fx": { "expression": "thinking", "sound": "playNotification", "haptic": "notification" },
+      "lines": [
+        { "id": "ssv1", "enabled": true, "weight": 1, "text": { "en": "Psst — your streak's about to wilt! One quick lesson keeps it alive. I'll wait right here.", "zh": "噓——你的連勝快蔫了！一節小課就能保住它。我就在這兒等你。" } }
+      ]
+    },
+    "streak_lost": {
+      "id": "streak_lost",
+      "label": "Streak lost",
+      "kind": "pool",
+      "tier": "flavor",
+      "enabled": true,
+      "trigger": "streak.lost",
+      "fx": { "expression": "oops", "sound": "playSelect", "haptic": "tap" },
+      "lines": [
+        { "id": "sl1", "enabled": true, "weight": 1, "text": { "en": "Streak reset — but hey, trees regrow. We plant a new one today. Không sao!", "zh": "連勝歸零了——不過嘿，樹會重新長的。我們今天種一棵新的。Không sao！" } },
+        { "id": "sl2", "enabled": true, "weight": 1, "text": { "en": "Lost the streak, kept the words. That part's still yours. Let's start a fresh one.", "zh": "連勝丟了，單詞還在。那部分依然是你的。我們重新開始一條吧。" } }
+      ]
+    },
+    "empty": {
+      "id": "empty",
+      "label": "Empty / idle states",
+      "kind": "slots",
+      "tier": "ambient",
+      "enabled": true,
+      "trigger": "ui.empty",
+      "fx": { "expression": "sleepy", "sound": null, "haptic": null },
+      "lines": [
+        { "id": "em_roadmap", "key": "roadmap", "enabled": true, "text": { "en": "Nothing here yet — but down there? That glowing lesson has your name on it.", "zh": "這裡還什麼都沒有——但下面那個？那節發光的課寫著你的名字呢。" } },
+        { "id": "em_notebook", "key": "notebook", "enabled": true, "text": { "en": "Your notebook's empty for now. Finish a lesson and I'll jot down everything we learn. ✏️", "zh": "你的筆記本現在還是空的。上完一節課，我就把我們學的所有東西都記下來。✏️" } }
+      ]
     }
   }
 }
