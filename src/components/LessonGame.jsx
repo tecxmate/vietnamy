@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { X, Heart, Check, Volume2, Frown, Trophy, ChevronRight, Mic, MicOff } from 'lucide-react';
 import { lookupWords } from '../lib/dictionaryLookup';
@@ -13,12 +13,14 @@ import { recordExerciseResult, extractItemIds } from '../lib/wordGrades';
 import { getDB } from '../lib/db';
 import { loadSettings } from '../lib/settings';
 import { fireNotification } from '../context/NotificationContext';
-import { playSuccess, playError } from '../utils/sound';
+import { playSuccess, playError, playCelebration, playNotification, playSelect, playTap } from '../utils/sound';
 import SoundButton from './SoundButton';
 import { MCQOptions, MatchPairs, FeedbackBanner, ProgressBar, buildFillBlankSentence, getFillBlankCorrectSentence } from './Exercise';
 import useQuizSession, { getCompletedSentenceAudio } from '../hooks/useQuizSession';
 import { DEFAULT_LEARNER_MODE, getProgressMode } from '../data/learnerModes';
-import { useT } from '../lib/i18n';
+import { useT, normalizeLang } from '../lib/i18n';
+import { getLine } from '../lib/mascot';
+import BeKhe from './BeKhe/BeKhe';
 import './LessonGame.css';
 
 function scoreColor(v) {
@@ -66,6 +68,9 @@ function collectExerciseAudioTexts(exercise) {
     return [...new Set(texts.filter(text => typeof text === 'string' && text.trim().length > 0))];
 }
 
+// Maps a mascot line's `sound` string (e.g. 'playCelebration') to the real fn.
+const SND = { playSuccess, playError, playCelebration, playNotification, playSelect, playTap };
+
 const LessonGame = () => {
     const { lessonId } = useParams();
     const navigate = useNavigate();
@@ -75,6 +80,8 @@ const LessonGame = () => {
     const { userProfile } = useUser();
     const currentMode = userProfile?.learnerMode || DEFAULT_LEARNER_MODE;
     const progressMode = getProgressMode(currentMode);
+    const mascotLang = normalizeLang(userProfile?.nativeLang);
+    const learnerName = userProfile?.name;
 
     const [exercises, setExercises] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -129,6 +136,22 @@ const LessonGame = () => {
 
 
     const rewardGivenRef = useRef(false);
+
+    // Mascot: track whether the run had any wrong answer (for complete_perfect),
+    // and hold a transient halfway line (usually null at 'normal' chattiness).
+    const hadMistakeRef = useRef(false);
+    const [halfwayLine, setHalfwayLine] = useState(null);
+    const halfwayShownRef = useRef(false);
+    const [streakLine, setStreakLine] = useState(null);
+
+    // Mascot completion line. `complete` is a random pool, so compute it once
+    // when the lesson finishes (not per-render) to avoid the line flickering.
+    // complete_perfect when the run had zero wrong answers.
+    const mascotComplete = useMemo(() => {
+        if (!isFinished) return null;
+        const cat = hadMistakeRef.current ? 'complete' : 'complete_perfect';
+        return getLine(cat, { lang: mascotLang, vars: { name: learnerName } });
+    }, [isFinished, mascotLang, learnerName]);
 
     const stopSpeechRecognition = React.useCallback(() => {
         speechStopIntentionalRef.current = true;
@@ -219,6 +242,10 @@ const LessonGame = () => {
         setIsRecording(false);
         resetSessionState();
         rewardGivenRef.current = false;
+        hadMistakeRef.current = false;
+        halfwayShownRef.current = false;
+        setHalfwayLine(null);
+        setStreakLine(null);
 
         // Determine current session number for this lesson's node
         const node = getNodeByLessonId(lessonId);
@@ -330,7 +357,16 @@ const LessonGame = () => {
             notifiedStreakRef.current = 5;
             fireNotification('streak_5');
         }
-    }, [currentStreak]);
+        // Mascot streak combos at 3/5/10. fireNotification already plays the
+        // celebration sound for 3/5, so only fire the mascot sound at 10.
+        if ([3, 5, 10].includes(currentStreak)) {
+            const r = getLine('streak_combo', { lang: mascotLang, slot: String(currentStreak) });
+            if (r) {
+                setStreakLine(r);
+                if (currentStreak === 10) SND[r.sound]?.();
+            }
+        }
+    }, [currentStreak, mascotLang]);
 
     // 🔔 Notify on best streak achievement
     const notifiedBestRef = useRef(false);
@@ -519,6 +555,7 @@ const LessonGame = () => {
             if (newStreak > bestStreak) setBestStreak(newStreak);
         } else {
             playError();
+            hadMistakeRef.current = true; // run is no longer perfect
             setCurrentStreak(0);
             notifiedStreakRef.current = 0; // reset streak notif gate
             if (!testMode) {
@@ -542,13 +579,25 @@ const LessonGame = () => {
 
     const handleNext = () => {
         stopSpeechRecognition();
+        setHalfwayLine(null); // dismiss any halfway mascot when advancing
+        setStreakLine(null);
         if (hearts === 0) {
             navigate('/', { state: { tab: 'study' } });
             return;
         }
 
         if (currentIndex < exercises.length - 1) {
-            setCurrentIndex(prev => prev + 1);
+            const nextIndex = currentIndex + 1;
+            // Mascot: fire once when the learner passes the midpoint.
+            if (!halfwayShownRef.current && exercises.length >= 2 && nextIndex >= Math.ceil(exercises.length / 2)) {
+                halfwayShownRef.current = true;
+                const r = getLine('halfway', { lang: mascotLang });
+                if (r) {
+                    setHalfwayLine(r);
+                    SND[r.sound]?.();
+                }
+            }
+            setCurrentIndex(nextIndex);
         } else {
             setIsFinished(true);
         }
@@ -624,6 +673,13 @@ const LessonGame = () => {
         const step = introSteps[currentIntroStep];
         const introProgress = ((currentIntroStep + 1) / introSteps.length) * 100;
 
+        // Mascot intro: node ids are `pN_*` where N is the unit number. The
+        // bundle only has unit_intro slots for units 1–9; others return null.
+        const unitNum = /^p(\d+)_/.exec(nodeId || '')?.[1];
+        const mascotIntro = unitNum
+            ? getLine('unit_intro', { lang: mascotLang, slot: `unit_${unitNum}` })
+            : null;
+
         const handleNext = () => {
             if (currentIntroStep < introSteps.length - 1) {
                 setCurrentIntroStep(prev => prev + 1);
@@ -647,6 +703,16 @@ const LessonGame = () => {
 
                 {/* Content Area */}
                 <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: '0 24px', overflowY: 'auto' }}>
+                    {mascotIntro && currentIntroStep === 0 && (
+                        <div style={{
+                            display: 'flex', alignItems: 'center', gap: 12, width: '100%', maxWidth: 400,
+                            marginBottom: 16, padding: '10px 14px', borderRadius: 'var(--radius-md)',
+                            backgroundColor: 'var(--surface-color)', border: '2px solid var(--border-color)',
+                        }}>
+                            <BeKhe expression={mascotIntro.expression} size={48} />
+                            <span style={{ fontSize: 15, fontWeight: 600, color: 'var(--text-main)' }}>{mascotIntro.text}</span>
+                        </div>
+                    )}
                     {step.type === 'concept' && (
                         <div style={{ width: '100%', maxWidth: 400, backgroundColor: 'var(--surface-color)', borderRadius: 'var(--radius-lg)', padding: 32, border: '2px solid var(--border-color)' }}>
                             <div style={{ fontSize: 12, textTransform: 'uppercase', letterSpacing: 2, color: 'var(--primary-color)', fontWeight: 700, marginBottom: 16 }}>Key Idea</div>
@@ -733,6 +799,15 @@ const LessonGame = () => {
                 }}>
                     <Trophy size={40} color={ACCENT} fill={ACCENT} />
                 </div>
+
+                {mascotComplete && (
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10, maxWidth: 360 }}>
+                        <BeKhe expression={mascotComplete.expression} size={80} />
+                        <p style={{ fontSize: 16, fontWeight: 600, color: 'var(--text-main)', textAlign: 'center', margin: 0, lineHeight: 1.4 }}>
+                            {mascotComplete.text}
+                        </p>
+                    </div>
+                )}
 
                 <h2 style={{ fontSize: 24, fontWeight: 800, margin: 0, textAlign: 'center' }}>
                     {t('lesson_complete')}
@@ -1299,7 +1374,19 @@ const LessonGame = () => {
                             <p style={{ color: 'var(--text-muted)' }}>{t('test_keep_practicing')}</p>
                         </div>
                     ) : (
-                        renderExercise()
+                        <>
+                            {(streakLine || halfwayLine) && (
+                                <div style={{
+                                    display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16,
+                                    padding: '10px 14px', borderRadius: 'var(--radius-md)',
+                                    backgroundColor: 'var(--surface-color)', border: '2px solid var(--border-color)',
+                                }}>
+                                    <BeKhe expression={(streakLine || halfwayLine).expression} size={48} />
+                                    <span style={{ fontSize: 15, fontWeight: 600, color: 'var(--text-main)' }}>{(streakLine || halfwayLine).text}</span>
+                                </div>
+                            )}
+                            {renderExercise()}
+                        </>
                     )}
                 </div>
             </div>
