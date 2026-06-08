@@ -11,12 +11,15 @@ module colours or shapes anywhere else.
 
 ## The four module kinds
 
-| Kind | Colour | `node_type` | `module_type` | Content target | Edited via |
-|------|--------|-------------|---------------|----------------|------------|
-| **Pronunciation** | 🔵 blue `#1CB0F6` | `skill` | `blue` | `practice_route` | admin: pick a `/practice` drill |
-| **Vocabulary** | 🟠 orange `#FFB703` | `lesson` | `orange` | `lesson_id` | admin: opens the Lesson editor |
-| **Grammar** | 🟣 purple `#A78BFA` | `skill` | `purple` | `skill_content.grammar_unit_id` | admin: pick a grammar unit |
-| **Test** | 🔴 red `#EF4444` | `test` | `test` | `test_scope: 'unit'` | auto (derived) |
+| Kind | Colour | `node_type` | `module_type` | Content target | Pick target | Edit content |
+|------|--------|-------------|---------------|----------------|-------------|--------------|
+| **Pronunciation** | 🔵 blue `#1CB0F6` | `skill` | `blue` | `practice_route` | pick a `/practice` drill | drills → Drill editor; tones → Tone-word editor; alphabet/vowels → in code |
+| **Vocabulary** | 🟠 orange `#FFB703` | `lesson` | `orange` | `lesson_id` | — | Lesson editor (`/admin/lesson`) |
+| **Grammar** | 🟣 purple `#A78BFA` | `skill` | `purple` | `skill_content.grammar_unit_id` | pick a grammar unit | **Grammar Unit editor** (`/admin/grammar-unit`) |
+| **Test** | 🔴 red `#EF4444` | `test` | `test` | `test_scope: 'unit'` | — | auto (derived) |
+
+"Pick target" = which content the module opens (inline dropdown in the mapper).
+"Edit content" = the **Edit** button opens the right editor for that content — resolved by `getContentEditor(node)` in `moduleKinds.js` (one systematic entry point). Grammar unit edits persist to `vnme_cms_grammar_unit_<id>` and merge into `getUnit()` so the lesson reflects them.
 
 Scenes (`green`) and per-lesson mini-quizzes (`test_scope: 'module'`) are **not**
 module kinds — they're auxiliary nodes and render separately.

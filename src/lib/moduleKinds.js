@@ -103,3 +103,37 @@ export function listGrammarUnits() {
     }
     return out;
 }
+
+// Pronunciation practice routes whose content is an editable drill JSON
+// (DrillEditor). Other routes (alphabet/vowels/tone-marks) are defined in code.
+const PRACTICE_DRILL_IDS = {
+    '/practice/consonants': 'consonants_initial',
+    '/practice/consonants-final': 'consonants_final',
+};
+
+// Resolve WHERE to edit a module's CONTENT (not just which content it points to).
+// Returns { route, label, editable:true } to open the right admin editor, or
+// { editable:false } for content defined in code. This is the one systematic
+// entry point the admin uses for "Edit content" across all module kinds.
+export function getContentEditor(node) {
+    const kind = moduleKindOf(node);
+    if (!kind) return null;
+    if (kind.id === 'vocabulary') {
+        const id = node.lesson_id || node.content_ref_id || '';
+        return { route: `/admin/lesson?id=${id}`, label: 'Edit lesson', editable: true };
+    }
+    if (kind.id === 'grammar') {
+        const id = node.skill_content?.grammar_unit_id;
+        return id ? { route: `/admin/grammar-unit?id=${id}`, label: 'Edit grammar', editable: true } : { editable: false };
+    }
+    if (kind.id === 'pronunciation') {
+        const route = node.practice_route || '';
+        const drillId = PRACTICE_DRILL_IDS[route];
+        if (drillId) return { route: `/admin/drills?id=${drillId}`, label: 'Edit drill', editable: true };
+        if (route.startsWith('/practice/tones') || route.startsWith('/practice/tonemarks')) {
+            return { route: '/admin/tones', label: 'Edit tone words', editable: true };
+        }
+        return { editable: false }; // alphabet / vowels — defined in code
+    }
+    return null; // test — auto
+}

@@ -62,12 +62,35 @@ export function getModule(moduleId) {
     return null;
 }
 
-/** Get a single unit by ID (e.g. "A1_M01_U01") */
+// ─── Admin content overrides (edited grammar units) ──────────────────
+// A unit's editable content (title/pattern/explanation/note/examples) can be
+// overridden by the admin Grammar Unit editor; stored per-unit in localStorage.
+const UNIT_OVERRIDE_PREFIX = 'vnme_cms_grammar_unit_';
+
+export function getGrammarUnitOverride(unitId) {
+    try {
+        const raw = localStorage.getItem(UNIT_OVERRIDE_PREFIX + unitId);
+        return raw ? JSON.parse(raw) : null;
+    } catch { return null; }
+}
+
+export function saveGrammarUnitOverride(unitId, patch) {
+    localStorage.setItem(UNIT_OVERRIDE_PREFIX + unitId, JSON.stringify(patch));
+}
+
+export function resetGrammarUnitOverride(unitId) {
+    localStorage.removeItem(UNIT_OVERRIDE_PREFIX + unitId);
+}
+
+/** Get a single unit by ID (e.g. "A1_M01_U01"), with any admin edit merged in. */
 export function getUnit(unitId) {
     for (const level of (_data?.levels || [])) {
         for (const mod of level.modules) {
             const unit = mod.units.find(u => u.id === unitId);
-            if (unit) return { unit, module: mod, level };
+            if (unit) {
+                const override = getGrammarUnitOverride(unitId);
+                return { unit: override ? { ...unit, ...override } : unit, module: mod, level };
+            }
         }
     }
     return null;
@@ -159,7 +182,7 @@ const GRAMMAR_SESSION_PROFILES = [
  * Generate exercises for a grammar unit from its examples + exercise_types.
  * Session parameter controls exercise type profile (0 = recognition, 1 = production).
  */
-export function generateExercisesForUnit(unitId, count = 6, session = 0) {
+export function generateExercisesForUnit(unitId, _count = 6, session = 0) {
     const result = getUnit(unitId);
     if (!result) return [];
 

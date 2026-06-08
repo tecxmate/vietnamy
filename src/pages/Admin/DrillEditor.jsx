@@ -1,4 +1,5 @@
 import React, { useState, useRef, useMemo } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { Save, Plus, Trash2, Download, Upload, Check, ChevronDown, ChevronRight, GripVertical } from 'lucide-react';
 
 // Import all drill data files as defaults
@@ -64,7 +65,11 @@ const inputStyle = {
 const labelStyle = { fontSize: '0.8rem', color: 'var(--text-muted)', marginBottom: 4, display: 'block', fontWeight: 600 };
 
 const DrillEditor = () => {
-    const [activeDrillId, setActiveDrillId] = useState(ALL_DRILLS[0].id);
+    const [params] = useSearchParams();
+    const [activeDrillId, setActiveDrillId] = useState(() => {
+        const id = params.get('id');
+        return ALL_DRILLS.some(d => d.id === id) ? id : ALL_DRILLS[0].id;
+    });
     const [hasChanges, setHasChanges] = useState(false);
     const [saved, setSaved] = useState(false);
     const [expandedQ, setExpandedQ] = useState(null);

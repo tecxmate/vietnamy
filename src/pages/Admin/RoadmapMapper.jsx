@@ -5,7 +5,7 @@ import {
     updateNode, addNodeWithQuiz, deleteNodeWithQuiz, moveNodeWithQuiz,
 } from '../../lib/db';
 import { loadGrammarModules } from '../../lib/grammarModulesDB';
-import { MODULE_KINDS, MODULE_KIND_LIST, moduleKindOf, getModuleTarget, PRACTICE_ROUTES, listGrammarUnits } from '../../lib/moduleKinds';
+import { MODULE_KINDS, MODULE_KIND_LIST, moduleKindOf, getModuleTarget, getContentEditor, PRACTICE_ROUTES, listGrammarUnits } from '../../lib/moduleKinds';
 import { Plus, Trash2, ArrowUp, ArrowDown, Pencil, Check, X, GripVertical, ExternalLink } from 'lucide-react';
 
 // Module kinds, colours and edit rules all come from the shared registry
@@ -165,13 +165,12 @@ const RoadmapMapper = () => {
     };
 
     // --- Content navigation ---
-    // Vocabulary content lives in the Lesson editor; pronunciation + grammar
-    // targets are edited inline (route / grammar-unit pickers); tests are auto.
+    // One systematic "Edit" per module (registry resolver): vocabulary → Lesson
+    // editor, grammar → Grammar Unit editor, pronunciation → Drill/Tone editor.
+    // Content defined in code (alphabet/vowels) returns not-editable.
     const getContentAction = (node) => {
-        const kind = moduleKindOf(node);
-        if (kind?.editor === 'lessonPage') {
-            return { label: 'Edit', onClick: () => navigate(`/admin/lesson?id=${node.content_ref_id || node.lesson_id || ''}`) };
-        }
+        const ed = getContentEditor(node);
+        if (ed?.editable && ed.route) return { label: 'Edit', onClick: () => navigate(ed.route) };
         return null;
     };
 
