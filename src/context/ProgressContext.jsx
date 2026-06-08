@@ -18,6 +18,22 @@ export function useProgress() {
 const SESSIONS_TO_COMPLETE = 4;
 const STORAGE_KEY = 'vietnamy_progress';
 
+// Hearts (lives/tries). Kept minimal for now — count down on wrong answers,
+// refill on demand. The full heart-count UI + regeneration lands later.
+const MAX_HEARTS = 5;
+const HEARTS_STORAGE_KEY = 'vnme_hearts';
+
+function loadHearts() {
+    try {
+        const raw = localStorage.getItem(HEARTS_STORAGE_KEY);
+        if (raw != null) {
+            const n = parseInt(raw, 10);
+            if (Number.isFinite(n)) return Math.max(0, Math.min(MAX_HEARTS, n));
+        }
+    } catch { /* ignore */ }
+    return MAX_HEARTS;
+}
+
 function createEmptyModeProgress() {
     const completedNodes = {};
     const nodeSessionCounts = {};
@@ -80,6 +96,7 @@ export function ProgressProvider({ children }) {
     const init = useMemo(() => loadState(), []);
     const [completedNodes, setCompletedNodes] = useState(init.completedNodes);
     const [nodeSessionCounts, setNodeSessionCounts] = useState(init.nodeSessionCounts);
+    const [hearts, setHearts] = useState(loadHearts);
 
     // Persist to localStorage
     useEffect(() => {
@@ -125,6 +142,19 @@ export function ProgressProvider({ children }) {
         return nodeSessionCounts[mode]?.[nodeId] ?? 0;
     }, [nodeSessionCounts]);
 
+    // Persist hearts.
+    useEffect(() => {
+        localStorage.setItem(HEARTS_STORAGE_KEY, String(hearts));
+    }, [hearts]);
+
+    const loseHeart = useCallback(() => {
+        setHearts(h => Math.max(0, h - 1));
+    }, []);
+
+    const refillHearts = useCallback(() => {
+        setHearts(MAX_HEARTS);
+    }, []);
+
     const resetProgress = useCallback(() => {
         const empty = createEmptyModeProgress();
         setCompletedNodes(empty.completedNodes);
@@ -138,6 +168,10 @@ export function ProgressProvider({ children }) {
         getNodeSessionCount,
         SESSIONS_TO_COMPLETE,
         resetProgress,
+        hearts,
+        loseHeart,
+        refillHearts,
+        MAX_HEARTS,
     };
 
     return (
