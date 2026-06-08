@@ -5,6 +5,7 @@ import { TONE_LIST } from '../../data/toneContours';
 import speak from '../../utils/speak';
 import { useT } from '../../lib/i18n';
 import ToneLesson from '../Sounds/ToneLesson';
+import { ALPHABET } from '../../data/alphabet';
 
 // Vietnamese alphabet data
 const VOWELS = {
@@ -59,39 +60,6 @@ const VOWELS = {
         { letter: 'ươu', ipa: '/ɯəw/', example: 'hươu (deer)' },
     ],
 };
-
-// Vietnamese alphabet (29 letters)
-const ALPHABET = [
-    { letter: 'A a', name: 'a', sound: 'ah' },
-    { letter: 'Ă ă', name: 'á', sound: 'a (short)' },
-    { letter: 'Â â', name: 'ớ', sound: 'uh' },
-    { letter: 'B b', name: 'bê', sound: 'beh' },
-    { letter: 'C c', name: 'xê', sound: 'seh' },
-    { letter: 'D d', name: 'dê', sound: 'zeh/yeh' },
-    { letter: 'Đ đ', name: 'đê', sound: 'deh' },
-    { letter: 'E e', name: 'e', sound: 'eh' },
-    { letter: 'Ê ê', name: 'ê', sound: 'ay' },
-    { letter: 'G g', name: 'giê', sound: 'zheh' },
-    { letter: 'H h', name: 'hát', sound: 'haht' },
-    { letter: 'I i', name: 'i', sound: 'ee' },
-    { letter: 'K k', name: 'ca', sound: 'kah' },
-    { letter: 'L l', name: 'e-lờ', sound: 'el-uh' },
-    { letter: 'M m', name: 'em-mờ', sound: 'em-uh' },
-    { letter: 'N n', name: 'en-nờ', sound: 'en-uh' },
-    { letter: 'O o', name: 'o', sound: 'aw' },
-    { letter: 'Ô ô', name: 'ô', sound: 'oh' },
-    { letter: 'Ơ ơ', name: 'ơ', sound: 'uh (long)' },
-    { letter: 'P p', name: 'pê', sound: 'peh' },
-    { letter: 'Q q', name: 'quy', sound: 'kwee' },
-    { letter: 'R r', name: 'e-rờ', sound: 'er-uh' },
-    { letter: 'S s', name: 'ét-sì', sound: 'et-see' },
-    { letter: 'T t', name: 'tê', sound: 'teh' },
-    { letter: 'U u', name: 'u', sound: 'oo' },
-    { letter: 'Ư ư', name: 'ư', sound: 'uh (unrounded)' },
-    { letter: 'V v', name: 'vê', sound: 'veh' },
-    { letter: 'X x', name: 'ích-xì', sound: 'eek-see' },
-    { letter: 'Y y', name: 'y dài', sound: 'ee' },
-];
 
 const CONSONANTS = {
     initial: [

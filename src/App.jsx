@@ -125,6 +125,7 @@ const ToneMarksBasic = lazy(() => import('./pages/Practice/ToneMarksBasic'));
 const ToneMarksSpecial = lazy(() => import('./pages/Practice/ToneMarksSpecial'));
 const ToneMarksMaster = lazy(() => import('./pages/Practice/ToneMarksMaster'));
 const ToneNodeLesson = lazy(() => import('./pages/Practice/ToneNodeLesson'));
+const AlphabetLesson = lazy(() => import('./pages/Practice/AlphabetLesson'));
 const VowelsSingle1 = lazy(() => import('./pages/Practice/VowelsSingle1'));
 const VowelsSingle2 = lazy(() => import('./pages/Practice/VowelsSingle2'));
 const VowelsDiph1 = lazy(() => import('./pages/Practice/VowelsDiph1'));
@@ -489,6 +490,7 @@ function AppRoutes() {
         <Route path="/practice/tonemarks-special" element={<div className="mobile-app-wrapper"><ToneMarksSpecial /></div>} />
         <Route path="/practice/tonemarks-master" element={<div className="mobile-app-wrapper"><ToneMarksMaster /></div>} />
         <Route path="/practice/tones/:level" element={<div className="mobile-app-wrapper"><ToneNodeLesson /></div>} />
+        <Route path="/practice/alphabet" element={<div className="mobile-app-wrapper"><AlphabetLesson /></div>} />
         {/* Vowels sub-modules */}
         <Route path="/practice/vowels" element={<Navigate to="/practice/vowels-single-1" replace />} />
         <Route path="/practice/vowels-single-1" element={<div className="mobile-app-wrapper"><VowelsSingle1 /></div>} />
