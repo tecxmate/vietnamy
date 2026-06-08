@@ -17,6 +17,17 @@ import defaults from '../../content/mascotScripts.json';
 
 export const MASCOT_STORAGE_KEY = 'vnme_cms_mascot';
 
+// Custom artwork uploaded in the admin panel, keyed by expression. When a state
+// has a custom asset, <BeKhe> renders it instead of the built-in inline SVG.
+// Stored separately from the scripts blob so big data-URLs never bloat it.
+export const MASCOT_ASSETS_KEY = 'vnme_cms_mascot_assets';
+
+// The eight built-in expression states <BeKhe> can draw — also the set an admin
+// can override with custom art and pick from per category.
+export const EXPRESSIONS = [
+    'idle', 'cheer', 'celebrate', 'oops', 'thinking', 'wow', 'sleepy', 'reading',
+];
+
 // Traditional → Simplified. Chinese lines are authored once in Traditional
 // (text.zh) — the canonical form edited in the admin panel; zh-s is derived at
 // render via opencc.
@@ -39,6 +50,32 @@ export function saveMascotData(data) {
 /** Drop the admin override and fall back to the bundled default. */
 export function resetMascotData() {
     resetOverride(MASCOT_STORAGE_KEY);
+}
+
+// ── Custom artwork (per-expression SVG/GIF uploads) ──────────────────────────
+
+/** Map of expression -> { type, dataUrl, name } for admin-uploaded art. */
+export function getMascotAssets() {
+    return loadOverride(MASCOT_ASSETS_KEY, {}) || {};
+}
+
+/** The custom asset for one expression, or null if none uploaded. */
+export function getMascotAsset(expression) {
+    return getMascotAssets()[expression] || null;
+}
+
+/** Upload/replace the art for one expression. asset = { type, dataUrl, name }. */
+export function setMascotAsset(expression, asset) {
+    const all = getMascotAssets();
+    all[expression] = asset;
+    saveOverride(MASCOT_ASSETS_KEY, all);
+}
+
+/** Remove the custom art for one expression (reverts to the built-in SVG). */
+export function removeMascotAsset(expression) {
+    const all = getMascotAssets();
+    delete all[expression];
+    saveOverride(MASCOT_ASSETS_KEY, all);
 }
 
 const TIER_ALLOWED = {

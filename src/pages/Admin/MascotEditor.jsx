@@ -1,9 +1,17 @@
 import React, { useState, useRef } from 'react';
 import {
     Save, Check, Plus, Trash2, Sparkles, Download, Upload,
-    RotateCcw, Play, Zap, Lock,
+    RotateCcw, Play, Zap, Lock, Image as ImageIcon,
 } from 'lucide-react';
-import { getMascotData, saveMascotData, resetMascotData, getLine } from '../../lib/mascot';
+import {
+    getMascotData, saveMascotData, resetMascotData, getLine,
+    EXPRESSIONS, getMascotAssets, setMascotAsset, removeMascotAsset,
+} from '../../lib/mascot';
+import BeKhe from '../../components/BeKhe/BeKhe';
+
+// Uploaded art guards (data-URLs live in localStorage — keep them lean).
+const ASSET_WARN_BYTES = 512 * 1024;   // warn past 512 KB
+const ASSET_MAX_BYTES = 2 * 1024 * 1024; // hard cap 2 MB
 
 // Which tiers actually speak at each chattiness level (mirrors mascot.js TIER_ALLOWED).
 const TIER_ALLOWED = {
@@ -41,7 +49,10 @@ const MascotEditor = () => {
     const [hasChanges, setHasChanges] = useState(false);
     const [saved, setSaved] = useState(false);
     const [preview, setPreview] = useState(null); // { text } | { silent:true } | null
+    const [assets, setAssets] = useState(() => getMascotAssets());
     const importInputRef = useRef(null);
+    const artInputRef = useRef(null);
+    const [uploadTarget, setUploadTarget] = useState(null); // expression awaiting a file
 
     const update = (next) => { setData(next); setHasChanges(true); };
 
@@ -94,6 +105,34 @@ const MascotEditor = () => {
         setSelectedId(Object.keys(fresh.categories || {})[0] || null);
         setHasChanges(false);
         setPreview(null);
+    };
+
+    // --- custom artwork (saved immediately to its own key, not via Save button) ---
+    const handleArtFile = (expression, file) => {
+        if (!file) return;
+        const isSvg = file.type === 'image/svg+xml' || /\.svg$/i.test(file.name);
+        const isGif = file.type === 'image/gif' || /\.gif$/i.test(file.name);
+        if (!isSvg && !isGif) { alert('Please choose an SVG or GIF file.'); return; }
+        if (file.size > ASSET_MAX_BYTES) {
+            alert(`That file is ${(file.size / 1024 / 1024).toFixed(1)} MB — too large (max 2 MB). Uploads are stored in the browser; please optimize it first.`);
+            return;
+        }
+        if (file.size > ASSET_WARN_BYTES && !confirm(`That file is ${Math.round(file.size / 1024)} KB. Large art can fill the browser's storage. Upload anyway?`)) return;
+        const reader = new FileReader();
+        reader.onload = () => {
+            try {
+                setMascotAsset(expression, { type: isSvg ? 'svg' : 'gif', dataUrl: String(reader.result), name: file.name });
+                setAssets(getMascotAssets());
+            } catch {
+                alert("Couldn't save — the browser's storage is full. Remove some art or use a smaller file.");
+            }
+        };
+        reader.onerror = () => alert('Could not read that file.');
+        reader.readAsDataURL(file);
+    };
+    const handleRemoveArt = (expression) => {
+        removeMascotAsset(expression);
+        setAssets(getMascotAssets());
     };
 
     const handleExport = () => downloadJson(data, 'mascot.json');
@@ -268,10 +307,21 @@ const MascotEditor = () => {
                                 </label>
                             </div>
 
-                            <div style={{ display: 'flex', alignItems: 'center', gap: 14, margin: '8px 0 14px', fontSize: 12, color: 'var(--text-muted)' }}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: 14, margin: '8px 0 14px', fontSize: 12, color: 'var(--text-muted)', flexWrap: 'wrap' }}>
                                 <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}><Zap size={14} /> fires on {selected.trigger}</span>
-                                <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, borderLeft: '1px solid var(--border-color)', paddingLeft: 14 }}>
-                                    <Lock size={13} /> {selected.fx?.expression ?? '—'} · {selected.fx?.sound ?? '—'} · {selected.fx?.haptic ?? '—'} (locked)
+                                <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, borderLeft: '1px solid var(--border-color)', paddingLeft: 14 }}>
+                                    <BeKhe expression={selected.fx?.expression ?? 'idle'} asset={assets[selected.fx?.expression] ?? null} size={28} />
+                                    expression
+                                    <select
+                                        value={selected.fx?.expression ?? 'idle'}
+                                        onChange={(e) => setCategory(selectedId, { fx: { ...selected.fx, expression: e.target.value } })}
+                                        style={{ padding: '3px 6px', borderRadius: 6, background: 'var(--surface-color)', border: '1px solid var(--border-color)', color: 'var(--text-main)' }}
+                                    >
+                                        {EXPRESSIONS.map((ex) => <option key={ex} value={ex}>{ex}</option>)}
+                                    </select>
+                                </span>
+                                <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}>
+                                    <Lock size={13} /> {selected.fx?.sound ?? '—'} · {selected.fx?.haptic ?? '—'} (locked)
                                 </span>
                             </div>
 
@@ -331,6 +381,47 @@ const MascotEditor = () => {
                         </>
                     )}
                 </div>
+            </div>
+
+            {/* Expression artwork */}
+            <div className="glass-panel" style={{ marginTop: 16 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                    <ImageIcon size={18} color="var(--primary-color)" />
+                    <span style={{ fontSize: 16, fontWeight: 600 }}>Expression artwork</span>
+                </div>
+                <p style={{ fontSize: 12, color: 'var(--text-muted)', margin: '6px 0 14px' }}>
+                    Upload custom SVG or GIF art per state — it overrides the built-in face everywhere that expression fires. Each category picks which state it uses via the <em>expression</em> dropdown above. Saved instantly; leave empty to keep the built-in Bé Khế. (Max 2 MB; SVG preferred — uploads live in the browser.)
+                </p>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(130px, 1fr))', gap: 12 }}>
+                    {EXPRESSIONS.map((ex) => {
+                        const a = assets[ex];
+                        return (
+                            <div key={ex} style={{ border: '1px solid var(--border-color)', borderRadius: 10, padding: 10, textAlign: 'center' }}>
+                                <div style={{ height: 64, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                    <BeKhe expression={ex} asset={a ?? null} size={56} />
+                                </div>
+                                <div style={{ fontSize: 13, fontWeight: 500, margin: '6px 0 2px' }}>{ex}</div>
+                                <div style={{ fontSize: 11, color: a ? 'var(--success-color)' : 'var(--text-muted)', marginBottom: 8 }}>
+                                    {a ? `custom ${a.type.toUpperCase()}` : 'built-in'}
+                                </div>
+                                <div style={{ display: 'flex', gap: 6, justifyContent: 'center' }}>
+                                    <button className="ghost" style={{ fontSize: 12 }} onClick={() => { setUploadTarget(ex); artInputRef.current?.click(); }}>
+                                        <Upload size={13} /> {a ? 'Replace' : 'Upload'}
+                                    </button>
+                                    {a && (
+                                        <button className="ghost" style={{ fontSize: 12, color: 'var(--danger-color)' }} onClick={() => handleRemoveArt(ex)} title="Remove custom art">
+                                            <Trash2 size={13} />
+                                        </button>
+                                    )}
+                                </div>
+                            </div>
+                        );
+                    })}
+                </div>
+                <input
+                    ref={artInputRef} type="file" accept="image/svg+xml,image/gif,.svg,.gif" style={{ display: 'none' }}
+                    onChange={(e) => { const f = e.target.files?.[0]; e.target.value = ''; if (uploadTarget) handleArtFile(uploadTarget, f); setUploadTarget(null); }}
+                />
             </div>
         </div>
     );

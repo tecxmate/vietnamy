@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useMemo } from 'react';
+import { getMascotAsset } from '../../lib/mascot';
 import './BeKhe.css';
 
 /**
@@ -167,12 +168,36 @@ export default function BeKhe({
     animate = true,
     className = '',
     title,
+    asset: assetProp,            // optional override (used by the editor's live preview)
     ...rest
 }) {
     const label = title || `Bé Khế (${expression})`;
+    // Admin-uploaded art for this state, if any. Read once per expression.
+    const asset = useMemo(
+        () => (assetProp !== undefined ? assetProp : getMascotAsset(expression)),
+        [expression, assetProp],
+    );
+    const motionClass = animate ? `bekhe--${expression}` : '';
+
+    // Custom uploaded artwork (SVG/GIF) wins over the built-in face. GIFs animate
+    // themselves; static SVGs get the same CSS motion as the built-in states.
+    if (asset?.dataUrl) {
+        return (
+            <img
+                className={`bekhe ${motionClass} ${className}`.trim()}
+                src={asset.dataUrl}
+                width={size}
+                height={size}
+                alt={label}
+                style={{ objectFit: 'contain' }}
+                {...rest}
+            />
+        );
+    }
+
     return (
         <svg
-            className={`bekhe ${animate ? `bekhe--${expression}` : ''} ${className}`.trim()}
+            className={`bekhe ${motionClass} ${className}`.trim()}
             width={size}
             height={size}
             viewBox="-58 -68 116 124"
