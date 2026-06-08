@@ -3,35 +3,24 @@ import { useNavigate } from 'react-router-dom';
 import {
     getUnits, getNodesForUnit, addUnit, updateUnit, deleteUnit,
     updateNode, addNodeWithQuiz, deleteNodeWithQuiz, moveNodeWithQuiz,
-    reindexUnitNodes, getAvailableSkillRoutes
 } from '../../lib/db';
-import { getGrammarItems } from '../../lib/grammarDB';
+import { loadGrammarModules } from '../../lib/grammarModulesDB';
+import { MODULE_KINDS, MODULE_KIND_LIST, moduleKindOf, getModuleTarget, PRACTICE_ROUTES, listGrammarUnits } from '../../lib/moduleKinds';
 import { Plus, Trash2, ArrowUp, ArrowDown, Pencil, Check, X, GripVertical, ExternalLink } from 'lucide-react';
 
-const MODULE_TYPES = [
-    { value: 'lesson', label: 'Lesson', nodeType: 'lesson', moduleType: 'orange', color: '#FFB703' },
-    { value: 'skill', label: 'Skill', nodeType: 'skill', moduleType: 'purple', color: '#A78BFA' },
-    { value: 'grammar', label: 'Grammar', nodeType: 'skill', moduleType: 'green', color: '#06D6A0' },
-    { value: 'unit_test', label: 'Quizzes', nodeType: 'test', moduleType: 'test', color: '#EF4444' },
-];
-
+// Module kinds, colours and edit rules all come from the shared registry
+// (src/lib/moduleKinds.js) so the admin matches the seed + roadmap exactly.
 function getModuleColor(node) {
-    const mt = node.module_type;
-    if (mt === 'orange') return '#FFB703';
-    if (mt === 'purple') return '#A78BFA';
-    if (mt === 'green') return '#06D6A0';
-    if (mt === 'test') return '#EF4444';
-    return 'var(--text-muted)';
+    return moduleKindOf(node)?.color || (node.module_type === 'green' ? '#06D6A0' : 'var(--text-muted)');
 }
 
 function getModuleLabel(node) {
     if (node.test_scope === 'module') return 'Quiz';
-    if (node.test_scope === 'unit') return 'Quizzes';
-    if (node.module_type === 'orange') return 'Lesson';
-    if (node.module_type === 'purple') return 'Skill';
-    if (node.module_type === 'green') return 'Grammar';
-    return node.type || 'Node';
+    return moduleKindOf(node)?.label || (node.module_type === 'green' ? 'Scene' : node.node_type || 'Node');
 }
+
+// Unique-per-session draft lesson id (avoids Date.now()/Math.random() in render).
+let _draftSeq = 0;
 
 const RoadmapMapper = () => {
     const navigate = useNavigate();
@@ -44,11 +33,14 @@ const RoadmapMapper = () => {
     const [editingNode, setEditingNode] = useState(null);
     const [editNodeData, setEditNodeData] = useState({});
     const [addingToUnit, setAddingToUnit] = useState(null); // unitId when adding
-    const [addType, setAddType] = useState(null); // MODULE_TYPES value
+    const [addType, setAddType] = useState(null); // module kind id
     const [addForm, setAddForm] = useState({});
 
-    const skillRoutes = getAvailableSkillRoutes();
-    const grammarItems = getGrammarItems();
+    const skillRoutes = PRACTICE_ROUTES;
+    const [grammarUnits, setGrammarUnits] = useState(() => listGrammarUnits());
+    useEffect(() => {
+        if (!grammarUnits.length) loadGrammarModules().then(() => setGrammarUnits(listGrammarUnits()));
+    }, [grammarUnits.length]);
 
     const loadData = () => {
         const fetchedUnits = getUnits();
@@ -91,16 +83,13 @@ const RoadmapMapper = () => {
     };
 
     // --- Node Add ---
-    const startAdd = (unitId, typeValue) => {
+    const startAdd = (unitId, kindId) => {
         setAddingToUnit(unitId);
-        setAddType(typeValue);
+        setAddType(kindId);
         const defaults = { label: '' };
-        if (typeValue === 'lesson') defaults.lesson_id = `lesson_draft_${Date.now()}`;
-        if (typeValue === 'skill') defaults.practice_route = skillRoutes[0]?.route || '';
-        if (typeValue === 'grammar') {
-            defaults.grammar_level = 'A1';
-            defaults.grammar_index = 0;
-        }
+        if (kindId === 'vocabulary') defaults.lesson_id = `lesson_draft_${++_draftSeq}`;
+        if (kindId === 'pronunciation') defaults.practice_route = skillRoutes[0]?.route || '';
+        if (kindId === 'grammar') defaults.grammar_unit_id = grammarUnits[0]?.id || '';
         setAddForm(defaults);
     };
 
@@ -111,38 +100,31 @@ const RoadmapMapper = () => {
     };
 
     const confirmAdd = (unitId) => {
-        const mt = MODULE_TYPES.find(m => m.value === addType);
-        if (!mt) return;
+        const kind = MODULE_KINDS[addType];
+        if (!kind) return;
 
         const nodeData = {
             unit_id: unitId,
-            node_type: mt.nodeType,
-            module_type: mt.moduleType,
-            label: addForm.label || mt.label,
+            node_type: kind.nodeType,
+            module_type: kind.moduleType,
+            label: addForm.label || kind.label,
         };
 
-        if (addType === 'lesson') {
+        if (addType === 'vocabulary') {
             nodeData.lesson_id = addForm.lesson_id;
-        } else if (addType === 'skill') {
+        } else if (addType === 'pronunciation') {
             nodeData.practice_route = addForm.practice_route;
             const route = skillRoutes.find(r => r.route === addForm.practice_route);
-            if (!nodeData.label || nodeData.label === 'Skill') nodeData.label = route?.label || 'Skill Practice';
+            if (!nodeData.label || nodeData.label === kind.label) nodeData.label = `Pronunciation: ${route?.label || 'Practice'}`;
         } else if (addType === 'grammar') {
-            nodeData.skill_content = {
-                type: 'grammar_lesson',
-                grammar_level: addForm.grammar_level,
-                grammar_index: parseInt(addForm.grammar_index) || 0
-            };
-            const gi = grammarItems.filter(g => g.level === addForm.grammar_level);
-            const item = gi[addForm.grammar_index];
-            if (!nodeData.label || nodeData.label === 'Grammar') {
-                nodeData.label = item ? `Grammar: ${item.title}` : 'Grammar Lesson';
-            }
-        } else if (addType === 'unit_test') {
+            nodeData.skill_content = { type: 'grammar_unit', grammar_unit_id: addForm.grammar_unit_id };
+            const gu = grammarUnits.find(g => g.id === addForm.grammar_unit_id);
+            if (!nodeData.label || nodeData.label === kind.label) nodeData.label = gu ? `Grammar: ${gu.title}` : 'Grammar';
+        } else if (addType === 'test') {
             nodeData.test_scope = 'unit';
-            if (!nodeData.label || nodeData.label === 'Quizzes') {
+            if (!nodeData.label || nodeData.label === kind.label) {
                 const unit = units.find(u => u.id === unitId);
-                nodeData.label = unit ? `${unit.title} Quiz` : 'Quizzes';
+                nodeData.label = unit ? `${unit.title} Test` : 'Test';
             }
         }
 
@@ -155,11 +137,16 @@ const RoadmapMapper = () => {
     // --- Node Edit ---
     const startEditNode = (node) => {
         setEditingNode(node.id);
-        setEditNodeData({ label: node.label || '' });
+        setEditNodeData({ label: node.label || '', target: getModuleTarget(node) || '' });
     };
 
     const saveEditNode = (nodeId) => {
-        updateNode(nodeId, { label: editNodeData.label });
+        const node = Object.values(nodesMap).flat().find(n => n.id === nodeId);
+        const kind = moduleKindOf(node);
+        const patch = { label: editNodeData.label };
+        if (kind?.editor === 'practiceRoute') patch.practice_route = editNodeData.target;
+        else if (kind?.editor === 'grammarUnit') patch.skill_content = { type: 'grammar_unit', grammar_unit_id: editNodeData.target };
+        updateNode(nodeId, patch);
         setEditingNode(null);
         loadData();
     };
@@ -178,16 +165,13 @@ const RoadmapMapper = () => {
     };
 
     // --- Content navigation ---
+    // Vocabulary content lives in the Lesson editor; pronunciation + grammar
+    // targets are edited inline (route / grammar-unit pickers); tests are auto.
     const getContentAction = (node) => {
-        if (node.test_scope === 'module') return null; // auto-managed
-        if (node.module_type === 'orange' || node.type === 'lesson') {
-            return { label: 'Edit', onClick: () => navigate(`/admin/lesson?id=${node.content_ref_id}`) };
+        const kind = moduleKindOf(node);
+        if (kind?.editor === 'lessonPage') {
+            return { label: 'Edit', onClick: () => navigate(`/admin/lesson?id=${node.content_ref_id || node.lesson_id || ''}`) };
         }
-        if (node.module_type === 'green' || node.skill_content?.type === 'grammar_lesson') {
-            return { label: 'Edit', onClick: () => navigate('/admin/grammar') };
-        }
-        if (node.test_scope === 'unit') return null; // auto from unit lessons
-        if (node.module_type === 'purple') return null; // self-contained
         return null;
     };
 
@@ -297,15 +281,25 @@ const RoadmapMapper = () => {
                                                 {/* Label */}
                                                 <div className="admin-roadmap-node-label" style={{ flex: 1, minWidth: 0 }}>
                                                     {editingNode === node.id ? (
-                                                        <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
+                                                        <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' }}>
                                                             <input
                                                                 type="text"
                                                                 value={editNodeData.label}
                                                                 onChange={(e) => setEditNodeData(d => ({ ...d, label: e.target.value }))}
                                                                 onKeyDown={(e) => e.key === 'Enter' && saveEditNode(node.id)}
-                                                                style={{ ...s.input, flex: 1 }}
+                                                                style={{ ...s.input, flex: 1, minWidth: 160 }}
                                                                 autoFocus
                                                             />
+                                                            {moduleKindOf(node)?.editor === 'practiceRoute' && (
+                                                                <select value={editNodeData.target || ''} onChange={(e) => setEditNodeData(d => ({ ...d, target: e.target.value }))} style={{ ...s.select, flex: 1, minWidth: 160 }}>
+                                                                    {skillRoutes.map(r => <option key={r.route} value={r.route}>{r.label}</option>)}
+                                                                </select>
+                                                            )}
+                                                            {moduleKindOf(node)?.editor === 'grammarUnit' && (
+                                                                <select value={editNodeData.target || ''} onChange={(e) => setEditNodeData(d => ({ ...d, target: e.target.value }))} style={{ ...s.select, flex: 1, minWidth: 160 }}>
+                                                                    {grammarUnits.map(g => <option key={g.id} value={g.id}>{g.label}</option>)}
+                                                                </select>
+                                                            )}
                                                             <button style={{ ...s.iconBtn, color: '#4CAF50' }} onClick={() => saveEditNode(node.id)}><Check size={14} /></button>
                                                             <button style={s.iconBtn} onClick={() => setEditingNode(null)}><X size={14} /></button>
                                                         </div>
@@ -376,12 +370,12 @@ const RoadmapMapper = () => {
                                 {addingToUnit === unit.id && addType ? (
                                     <div style={{
                                         marginTop: 16, padding: 16, borderRadius: 8,
-                                        border: `2px dashed ${MODULE_TYPES.find(m => m.value === addType)?.color || 'var(--border-color)'}`,
+                                        border: `2px dashed ${MODULE_KINDS[addType]?.color || 'var(--border-color)'}`,
                                         backgroundColor: 'var(--surface-color-light)',
                                     }}>
                                         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-                                            <div style={{ fontSize: 13, fontWeight: 700, color: MODULE_TYPES.find(m => m.value === addType)?.color }}>
-                                                Add {MODULE_TYPES.find(m => m.value === addType)?.label}
+                                            <div style={{ fontSize: 13, fontWeight: 700, color: MODULE_KINDS[addType]?.color }}>
+                                                Add {MODULE_KINDS[addType]?.label} module
                                             </div>
 
                                             <div>
@@ -390,13 +384,13 @@ const RoadmapMapper = () => {
                                                     type="text"
                                                     value={addForm.label || ''}
                                                     onChange={(e) => setAddForm(f => ({ ...f, label: e.target.value }))}
-                                                    placeholder={MODULE_TYPES.find(m => m.value === addType)?.label}
+                                                    placeholder={`${MODULE_KINDS[addType]?.label} (auto if blank)`}
                                                     style={{ ...s.input, width: '100%' }}
                                                     autoFocus
                                                 />
                                             </div>
 
-                                            {addType === 'lesson' && (
+                                            {addType === 'vocabulary' && (
                                                 <div>
                                                     <label style={{ fontSize: 12, color: 'var(--text-muted)', display: 'block', marginBottom: 4 }}>Lesson ID</label>
                                                     <input
@@ -408,15 +402,12 @@ const RoadmapMapper = () => {
                                                 </div>
                                             )}
 
-                                            {addType === 'skill' && (
+                                            {addType === 'pronunciation' && (
                                                 <div>
-                                                    <label style={{ fontSize: 12, color: 'var(--text-muted)', display: 'block', marginBottom: 4 }}>Practice Module</label>
+                                                    <label style={{ fontSize: 12, color: 'var(--text-muted)', display: 'block', marginBottom: 4 }}>Practice drill</label>
                                                     <select
                                                         value={addForm.practice_route || ''}
-                                                        onChange={(e) => {
-                                                            const route = skillRoutes.find(r => r.route === e.target.value);
-                                                            setAddForm(f => ({ ...f, practice_route: e.target.value, label: f.label || route?.label || '' }));
-                                                        }}
+                                                        onChange={(e) => setAddForm(f => ({ ...f, practice_route: e.target.value }))}
                                                         style={{ ...s.select, width: '100%' }}
                                                     >
                                                         {skillRoutes.map(r => (
@@ -427,34 +418,17 @@ const RoadmapMapper = () => {
                                             )}
 
                                             {addType === 'grammar' && (
-                                                <div className="admin-roadmap-grammar-grid" style={{ display: 'flex', gap: 12 }}>
-                                                    <div style={{ flex: 1 }}>
-                                                        <label style={{ fontSize: 12, color: 'var(--text-muted)', display: 'block', marginBottom: 4 }}>Level</label>
-                                                        <select
-                                                            value={addForm.grammar_level || 'A1'}
-                                                            onChange={(e) => setAddForm(f => ({ ...f, grammar_level: e.target.value, grammar_index: 0 }))}
-                                                            style={{ ...s.select, width: '100%' }}
-                                                        >
-                                                            {['A1', 'A2', 'B1', 'B2', 'C1', 'C2'].map(l => (
-                                                                <option key={l} value={l}>{l}</option>
-                                                            ))}
-                                                        </select>
-                                                    </div>
-                                                    <div style={{ flex: 2 }}>
-                                                        <label style={{ fontSize: 12, color: 'var(--text-muted)', display: 'block', marginBottom: 4 }}>Grammar Topic</label>
-                                                        <select
-                                                            value={addForm.grammar_index ?? 0}
-                                                            onChange={(e) => setAddForm(f => ({ ...f, grammar_index: parseInt(e.target.value) }))}
-                                                            style={{ ...s.select, width: '100%' }}
-                                                        >
-                                                            {grammarItems
-                                                                .filter(g => g.level === (addForm.grammar_level || 'A1'))
-                                                                .map((g, i) => (
-                                                                    <option key={i} value={i}>{g.title}</option>
-                                                                ))
-                                                            }
-                                                        </select>
-                                                    </div>
+                                                <div>
+                                                    <label style={{ fontSize: 12, color: 'var(--text-muted)', display: 'block', marginBottom: 4 }}>Grammar unit</label>
+                                                    <select
+                                                        value={addForm.grammar_unit_id || ''}
+                                                        onChange={(e) => setAddForm(f => ({ ...f, grammar_unit_id: e.target.value }))}
+                                                        style={{ ...s.select, width: '100%' }}
+                                                    >
+                                                        {grammarUnits.map(g => (
+                                                            <option key={g.id} value={g.id}>{g.label}</option>
+                                                        ))}
+                                                    </select>
                                                 </div>
                                             )}
 
@@ -472,22 +446,22 @@ const RoadmapMapper = () => {
                                     </div>
                                 ) : (
                                     <div className="admin-roadmap-add-node-row" style={{ marginTop: 16, display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-                                        {MODULE_TYPES.map(mt => (
+                                        {MODULE_KIND_LIST.map(kind => (
                                             <button
-                                                key={mt.value}
+                                                key={kind.id}
                                                 className="secondary"
                                                 style={{
                                                     flex: '1 1 auto',
                                                     borderStyle: 'dashed',
                                                     backgroundColor: 'transparent',
-                                                    borderColor: mt.color,
-                                                    color: mt.color,
+                                                    borderColor: kind.color,
+                                                    color: kind.color,
                                                     fontSize: 13,
                                                     padding: '8px 12px',
                                                 }}
-                                                onClick={() => startAdd(unit.id, mt.value)}
+                                                onClick={() => startAdd(unit.id, kind.id)}
                                             >
-                                                <Plus size={14} /> {mt.label}
+                                                <Plus size={14} /> {kind.label}
                                             </button>
                                         ))}
                                     </div>
