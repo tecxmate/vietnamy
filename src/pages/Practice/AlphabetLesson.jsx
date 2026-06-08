@@ -1,13 +1,14 @@
 import { useState, useMemo, useEffect, useCallback } from 'react';
-import { Volume2, X, Check, ChevronRight, GraduationCap, Ear, Trophy, RotateCw } from 'lucide-react';
+import { Check, ChevronRight, GraduationCap, Ear, Trophy, RotateCw } from 'lucide-react';
 import { ALPHABET } from '../../data/alphabet';
 import speak from '../../utils/speak';
 import { playSuccess, playError } from '../../utils/sound';
 import { usePracticeCompletion } from '../../hooks/usePracticeCompletion';
 import { useEnterKey } from '../../hooks/useEnterKey';
+import { PracticeShell, StepDots, AudioButton, OptionGrid, FeedbackBar, FeedbackMessage, PrimaryButton } from '../../components/practice/PracticeKit';
 
 const QUIZ_COUNT = 8;
-const STEPS = [{ id: 'learn', Icon: GraduationCap, label: 'Learn' }, { id: 'quiz', Icon: Ear, label: 'Quiz' }];
+const STEPS = [{ id: 'learn', icon: GraduationCap, label: 'Learn' }, { id: 'quiz', icon: Ear, label: 'Quiz' }];
 const shuffle = (a) => [...a].sort(() => Math.random() - 0.5);
 const big = (l) => l.split(' ')[0]; // "A a" -> "A"
 
@@ -16,23 +17,7 @@ export default function AlphabetLesson() {
     const [step, setStep] = useState('learn'); // learn | quiz | done
 
     return (
-        <div style={{ minHeight: '60vh' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '14px 16px', borderBottom: '1px solid var(--border-color)', backgroundColor: 'var(--surface-color)', position: 'sticky', top: 0, zIndex: 20 }}>
-                <button onClick={goBack} aria-label="Close" style={{ background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', display: 'flex', padding: 4 }}><X size={22} /></button>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 14, flex: 1 }}>
-                    {STEPS.map((s, i) => {
-                        const order = ['learn', 'quiz', 'done'];
-                        const active = step === s.id, done = order.indexOf(step) > i;
-                        const color = active ? '#1CB0F6' : done ? '#06D6A0' : 'var(--text-muted)';
-                        const Icon = s.Icon;
-                        return (
-                            <span key={s.id} style={{ display: 'flex', alignItems: 'center', gap: 5, opacity: active || done ? 1 : 0.5 }}>
-                                <Icon size={16} color={color} /><span style={{ fontSize: 12, fontWeight: 700, color }}>{s.label}</span>
-                            </span>
-                        );
-                    })}
-                </div>
-            </div>
+        <PracticeShell onClose={goBack} header={<StepDots steps={STEPS} current={step} />}>
             {step === 'learn' && <LearnGrid onDone={() => setStep('quiz')} />}
             {step === 'quiz' && <Quiz onDone={() => setStep('done')} />}
             {step === 'done' && (
@@ -46,7 +31,7 @@ export default function AlphabetLesson() {
                     </div>
                 </div>
             )}
-        </div>
+        </PracticeShell>
     );
 }
 
@@ -83,9 +68,10 @@ function Quiz({ onDone }) {
     const [qi, setQi] = useState(0);
     const [picked, setPicked] = useState(null);
     const [score, setScore] = useState(0);
+    const [playToken, setPlayToken] = useState(0);
     const q = questions[qi];
 
-    const play = useCallback(() => speak(q.ans.name, 0.7), [q]);
+    const play = useCallback(() => { speak(q.ans.name, 0.7); setPlayToken((t) => t + 1); }, [q]);
     useEffect(() => { const t = setTimeout(play, 350); return () => clearTimeout(t); }, [play]);
 
     const pick = (opt) => {
@@ -93,8 +79,9 @@ function Quiz({ onDone }) {
         setPicked(opt);
         if (opt.letter === q.ans.letter) { playSuccess(); setScore((s) => s + 1); } else { playError(); }
     };
-    const next = () => { if (qi + 1 >= questions.length) { onDone(); return; } setQi(qi + 1); setPicked(null); };
+    const next = () => { if (qi + 1 >= questions.length) { onDone(); return; } setQi(qi + 1); setPicked(null); setPlayToken(0); };
     useEnterKey(() => { if (picked) next(); });
+    const correct = picked && picked.letter === q.ans.letter;
 
     return (
         <div style={{ padding: 16, paddingBottom: 200 }}>
@@ -103,32 +90,24 @@ function Quiz({ onDone }) {
                 <span style={{ fontSize: 13, fontWeight: 700, color: '#06D6A0' }}>Score {score}</span>
             </div>
             <p style={{ textAlign: 'center', fontSize: 14, color: 'var(--text-muted)', margin: '0 0 16px' }}>Listen, then tap the letter you hear.</p>
-            <button onClick={play} aria-label="Replay" style={{ width: 92, height: 92, borderRadius: '50%', margin: '0 auto 18px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', border: '2px solid #1CB0F6', backgroundColor: 'rgba(28,176,246,0.12)', color: '#1CB0F6' }}><Volume2 size={40} /></button>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 8 }}>
-                {q.options.map((opt) => {
-                    let bg = 'var(--surface-color)', border = 'var(--border-color)', op = 1;
-                    if (picked) {
-                        if (opt.letter === q.ans.letter) { bg = '#06D6A01A'; border = '#06D6A0'; }
-                        else if (opt === picked) { bg = '#EF476F1A'; border = '#EF476F'; }
-                        else op = 0.45;
-                    }
-                    return (
-                        <button key={opt.letter} onClick={() => pick(opt)} disabled={!!picked} style={{ padding: '16px 6px', borderRadius: 12, border: `2px solid ${border}`, backgroundColor: bg, opacity: op, cursor: picked ? 'default' : 'pointer', fontFamily: 'inherit' }}>
-                            <span style={{ fontSize: 28, fontWeight: 800, color: 'var(--text-main)' }}>{big(opt.letter)}</span>
-                        </button>
-                    );
-                })}
-            </div>
+            <div style={{ marginBottom: 18 }}><AudioButton onClick={play} playToken={playToken} /></div>
+            <OptionGrid
+                options={q.options} cols={2}
+                keyOf={(o) => o.letter}
+                isCorrect={(o) => o.letter === q.ans.letter}
+                isSelected={(o) => o === picked}
+                revealed={!!picked}
+                onPick={pick}
+            >
+                {(opt) => <span style={{ fontSize: 28, fontWeight: 800, color: 'var(--text-main)' }}>{big(opt.letter)}</span>}
+            </OptionGrid>
             {picked && (
-                <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 30, padding: '12px 16px calc(14px + var(--safe-area-bottom-effective, 0px))', backgroundColor: 'var(--surface-color)', borderTop: '1px solid var(--border-color)' }}>
-                    <div style={{ maxWidth: 480, margin: '0 auto' }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '12px 14px', borderRadius: 12, marginBottom: 12, backgroundColor: picked.letter === q.ans.letter ? '#06D6A01A' : '#EF476F1A' }}>
-                            <div style={{ width: 30, height: 30, borderRadius: '50%', flexShrink: 0, backgroundColor: picked.letter === q.ans.letter ? '#06D6A0' : '#EF476F', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{picked.letter === q.ans.letter ? <Check size={18} /> : <X size={18} />}</div>
-                            <div style={{ fontSize: 14, fontWeight: 600 }}>{picked.letter === q.ans.letter ? 'Correct!' : 'Answer: '}<strong>{big(q.ans.letter)}</strong> · {q.ans.name}</div>
-                        </div>
-                        <button onClick={next} style={{ width: '100%', padding: 14, borderRadius: 12, border: 'none', cursor: 'pointer', backgroundColor: '#1CB0F6', color: '#fff', fontWeight: 800, fontSize: 15, fontFamily: 'inherit' }}>{qi + 1 >= questions.length ? 'Finish' : 'Next'}</button>
-                    </div>
-                </div>
+                <FeedbackBar>
+                    <FeedbackMessage correct={correct}>
+                        {correct ? 'Correct! ' : 'Answer: '}<strong>{big(q.ans.letter)}</strong> · {q.ans.name}
+                    </FeedbackMessage>
+                    <PrimaryButton onClick={next}>{qi + 1 >= questions.length ? 'Finish' : 'Next'}</PrimaryButton>
+                </FeedbackBar>
             )}
         </div>
     );
