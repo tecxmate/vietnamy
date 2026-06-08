@@ -142,11 +142,18 @@ export default function MatchPairs({
         }
 
         return {
-            padding: '14px 12px',
+            width: '100%',
+            minWidth: 0,
+            minHeight: 58,
+            padding: '12px 10px',
             borderRadius: 12,
-            fontSize: 16,
+            fontSize: 'clamp(13px, 3.6vw, 16px)',
             fontWeight: 600,
+            lineHeight: 1.15,
             textAlign: 'center',
+            whiteSpace: 'normal',
+            overflowWrap: 'break-word',
+            wordBreak: 'normal',
             cursor: isMatched ? 'default' : 'pointer',
             backgroundColor: bg,
             border: `2px solid ${borderColor}`,
@@ -160,7 +167,7 @@ export default function MatchPairs({
     };
 
     const headerStyle = {
-        fontSize: 12,
+        fontSize: 11,
         fontWeight: 700,
         textTransform: 'uppercase',
         letterSpacing: 1,
@@ -172,8 +179,9 @@ export default function MatchPairs({
     return (
         <div style={{
             display: 'grid',
-            gridTemplateColumns: '1fr auto 1fr',
-            gap: 12,
+            gridTemplateColumns: 'minmax(0, 1fr) auto minmax(0, 1fr)',
+            gap: 'clamp(8px, 2.6vw, 12px)',
+            alignItems: 'start',
         }}>
             {/* Column headers */}
             <div style={headerStyle}>Tiếng Việt</div>

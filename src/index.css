@@ -162,6 +162,10 @@ body {
 }
 
 @media (max-width: 767px) {
+  :root {
+    --safe-area-bottom-effective: max(var(--safe-area-bottom), 16px);
+  }
+
   html,
   body {
     width: var(--app-viewport-width);
