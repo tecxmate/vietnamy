@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import {
     Target, Zap, User, X, ChevronDown, ChevronRight, RefreshCw,
     Globe, Type, Volume2, Wrench, Clock, Bell, Gift, Tag, Compass,
@@ -290,7 +291,9 @@ const TopBar = ({ activeTab, subtitleOverride }) => {
             </header>
 
             {/* ─── Settings Panel (left slide-in) ───────────────────── */}
-            {menuVisible && (
+            {/* Portaled to <body> so it shows even when the TopBar itself is
+                hidden (e.g. the study/Learn tab hides .topbar-desktop-only). */}
+            {menuVisible && createPortal(
                 <>
                     {/* Backdrop */}
                     <div
@@ -562,7 +565,8 @@ const TopBar = ({ activeTab, subtitleOverride }) => {
                             </div>
                         </div>
                     </div>
-                </>
+                </>,
+                document.body
             )}
 
             {isReferralOpen && (
