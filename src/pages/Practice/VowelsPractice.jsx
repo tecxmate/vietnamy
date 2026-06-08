@@ -1,10 +1,11 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
-import { Volume2, Check, X, RotateCw, ArrowLeft, Trophy, Flame, Star, ChevronRight } from 'lucide-react';
+import { Volume2, X, ArrowLeft, Trophy, ChevronRight } from 'lucide-react';
 import { useTTS } from '../../hooks/useTTS';
 import { usePracticeCompletion } from '../../hooks/usePracticeCompletion';
 import './VowelsPractice.css';
 import { playSuccess, playError } from '../../utils/sound';
 import SoundButton from '../../components/SoundButton';
+import { AudioButton, OptionGrid, FeedbackBar, FeedbackMessage, PrimaryButton } from '../../components/practice/PracticeKit';
 import './PracticeShared.css'; // Add shared layout
 
 // ─── Data ───────────────────────────────────────────────────────────
@@ -222,13 +223,15 @@ export default function VowelsPractice({
     const [selected, setSelected] = useState(null);
     const [feedback, setFeedback] = useState('idle');
     const [score, setScore] = useState(0);
-    const [streak, setStreak] = useState(0);
+    const [, setStreak] = useState(0);
     const [bestStreak, setBestStreak] = useState(0);
     const [showSummary, setShowSummary] = useState(false);
+    const [playToken, setPlayToken] = useState(0);
 
     const playWord = useCallback((word) => {
         setPlayingWord(word);
         speak(word, 0.6);
+        setPlayToken(t => t + 1);
         setTimeout(() => setPlayingWord(null), 800);
     }, [speak]);
 
@@ -273,6 +276,15 @@ export default function VowelsPractice({
         }
     }, [qIndex, questionCount]);
 
+    // Auto-play the word when a quiz question appears.
+    useEffect(() => {
+        if (section !== 5) return;
+        const q = questions[qIndex];
+        if (!q) return;
+        const t = setTimeout(() => playWord(q.audio), 350);
+        return () => clearTimeout(t);
+    }, [section, qIndex, questions, playWord]);
+
     const startSection = (s) => {
         setSection(s);
         setQIndex(0);
@@ -282,20 +294,6 @@ export default function VowelsPractice({
         setStreak(0);
         setBestStreak(0);
         setShowSummary(false);
-    };
-
-    const handleRestart = () => {
-        setQIndex(0);
-        setSelected(null);
-        setFeedback('idle');
-        setScore(0);
-        setStreak(0);
-        setBestStreak(0);
-        setShowSummary(false);
-        setSection(s => {
-            setTimeout(() => setSection(5), 0);
-            return 0;
-        });
     };
 
     // Enter key
@@ -362,16 +360,6 @@ export default function VowelsPractice({
                         <X size={24} />
                     </button>
                 </h1>
-                {section === 5 && (
-                    <div className="practice-stats">
-                        <span className="practice-stat-pill" style={{ color: 'var(--text-main)' }}>
-                            <Star size={18} style={{ color: 'var(--primary-color)' }} /> {score}
-                        </span>
-                        <span className="practice-stat-pill" style={{ color: 'var(--text-main)' }}>
-                            <Flame size={18} style={{ color: '#FF5722' }} /> {streak}
-                        </span>
-                    </div>
-                )}
             </div>
 
             {/* Section Tabs */}
@@ -552,79 +540,41 @@ export default function VowelsPractice({
 
             {/* ═══ SECTION 5: Quiz ═══ */}
             {section === 5 && currentQ && (
-                <div className="practice-content-centered" style={{ justifyContent: 'flex-start' }}>
-                    <div className="vp-progress">
-                        <div className="vp-progress-fill" style={{ width: `${progress}%` }} />
+                <div style={{ padding: 16, paddingBottom: 200 }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 14 }}>
+                        <span style={{ fontSize: 13, color: 'var(--text-muted)' }}>Question {qIndex + 1}/{questionCount}</span>
+                        <span style={{ fontSize: 13, fontWeight: 700, color: '#06D6A0' }}>Score {score}</span>
                     </div>
-
-                    <div className="vp-quiz-content">
-                        <div className="vp-quiz-question">{currentQ.question}</div>
-                        <button className="practice-audio-btn large" onClick={() => playWord(currentQ.audio)}>
-                            <Volume2 size={36} />
-                        </button>
-                        <div className={`vp-quiz-options ${currentQ.type === 'open-closed' ? 'two-col' : ''}`}>
-                            {currentQ.options.map((opt, i) => {
-                                let cls = '';
-                                if (feedback !== 'idle') {
-                                    if (opt === currentQ.correctAnswer) cls = 'correct-highlight';
-                                    else if (opt === selected) cls = 'wrong';
-                                    else cls = 'disabled';
-                                } else if (opt === selected) cls = 'selected';
-                                return (
-                                    <button
-                                        key={i}
-                                        className={`vp-quiz-option ${cls}`}
-                                        onClick={() => feedback === 'idle' && setSelected(opt)}
-                                    >
-                                        {opt}
-                                    </button>
-                                );
-                            })}
+                    <div style={{ height: 6, borderRadius: 4, backgroundColor: 'var(--border-color)', marginBottom: 22, overflow: 'hidden' }}>
+                        <div style={{ height: '100%', width: `${progress}%`, backgroundColor: '#1CB0F6', borderRadius: 4, transition: 'width 0.3s' }} />
+                    </div>
+                    <p style={{ textAlign: 'center', fontSize: 16, fontWeight: 600, color: 'var(--text-main)', margin: '0 0 16px' }}>{currentQ.question}</p>
+                    <div style={{ marginBottom: 18 }}><AudioButton onClick={() => playWord(currentQ.audio)} playToken={playToken} /></div>
+                    <OptionGrid
+                        options={currentQ.options} cols={2}
+                        keyOf={(_, i) => i}
+                        isCorrect={(o) => o === currentQ.correctAnswer}
+                        isSelected={(o) => o === selected}
+                        revealed={feedback !== 'idle'}
+                        onPick={(o) => feedback === 'idle' && setSelected(o)}
+                    >
+                        {(opt) => <span style={{ fontSize: 20, fontWeight: 800, color: 'var(--text-main)' }}>{opt}</span>}
+                    </OptionGrid>
+                    {feedback !== 'idle' && (
+                        <div style={{ marginTop: 16, padding: '12px 14px', borderRadius: 12, fontSize: 14, lineHeight: 1.5, color: 'var(--text-main)', backgroundColor: feedback === 'correct' ? '#06D6A01A' : '#EF476F1A' }}>
+                            {currentQ.hint.replace(/<[^>]+>/g, '')}
                         </div>
+                    )}
+                    <FeedbackBar>
                         {feedback !== 'idle' && (
-                            <div className="vp-hint">
-                                {currentQ.hint.replace(/<[^>]+>/g, '')}
-                            </div>
+                            <FeedbackMessage correct={feedback === 'correct'}>
+                                {feedback === 'correct' ? 'Correct! ' : 'Answer: '}<strong>{currentQ.correctAnswer}</strong>
+                            </FeedbackMessage>
                         )}
-                    </div>
-
-                    {/* Footer */}
-                    <div className={`practice-bottom-bar ${feedback !== 'idle' ? feedback : ''}`}>
-                        {feedback !== 'idle' && (
-                            <div className="practice-feedback-bar">
-                                <div className={`practice-feedback-msg ${feedback}`}>
-                                    <div className={`practice-icon-circle ${feedback}`}>
-                                        {feedback === 'correct' ? <Check size={20} /> : <X size={20} />}
-                                    </div>
-                                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-                                        <span>{feedback === 'correct' ? 'Correct!' : 'Incorrect'}</span>
-                                        <span style={{ fontSize: '0.9rem', color: 'var(--text-muted)', fontWeight: 500 }}>
-                                            {feedback === 'correct'
-                                                ? currentQ.correctAnswer
-                                                : `Answer: ${currentQ.correctAnswer}`}
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        )}
-
-                        {feedback === 'idle' ? (
-                            <SoundButton
-                                className={`practice-action-btn ${selected ? 'primary' : 'disabled'}`}
-                                onClick={handleCheck}
-                            >
-                                Check
-                            </SoundButton>
-                        ) : (
-                            <SoundButton
-                                className={`practice-action-btn primary`}
-                                style={feedback === 'incorrect' ? { background: 'var(--danger-color)', color: 'white', boxShadow: '0 4px 0 #b92b49' } : { background: 'var(--success-color)', color: '#1a1a1a', boxShadow: '0 4px 0 #049e75' }}
-                                onClick={handleContinue}
-                            >
-                                Continue
-                            </SoundButton>
-                        )}
-                    </div>
+                        {feedback === 'idle'
+                            ? <PrimaryButton onClick={handleCheck} disabled={!selected}>Check</PrimaryButton>
+                            : <PrimaryButton onClick={handleContinue}>Continue</PrimaryButton>}
+                    </FeedbackBar>
                 </div>
             )}
 
