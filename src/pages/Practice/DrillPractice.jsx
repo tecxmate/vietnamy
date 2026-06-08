@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback } from 'react';
+import { useState, useMemo, useCallback, useEffect } from 'react';
 import { ArrowLeft, Volume2, Check, X, Trophy, Star, RotateCw } from 'lucide-react';
 import { useTTS } from '../../hooks/useTTS';
 import { usePracticeCompletion } from '../../hooks/usePracticeCompletion';
@@ -57,7 +57,7 @@ export default function DrillPractice({ data, questionCount = 10 }) {
         setScore(0);
         setMistakes([]);
         setPhase('drill');
-    }, [drillData, questionCount]);
+    }, [drillData, questionCount, session]);
 
     const currentQ = questions[qIndex] || null;
 
@@ -93,6 +93,17 @@ export default function DrillPractice({ data, questionCount = 10 }) {
     const handlePlayAudio = useCallback((text) => {
         if (text) speak(text);
     }, [speak]);
+
+    // Auto-play the prompt audio when a listen_pick question appears.
+    useEffect(() => {
+        if (phase !== 'drill') return;
+        const q = questions[qIndex];
+        const audio = q && (q.audioKey ?? q.audio);
+        if (q?.type === 'listen_pick' && audio) {
+            const t = setTimeout(() => speak(audio), 350);
+            return () => clearTimeout(t);
+        }
+    }, [phase, qIndex, questions, speak]);
 
     // ─── Intro Screen ──────────────────────────────────────────────
     if (phase === 'intro') {
