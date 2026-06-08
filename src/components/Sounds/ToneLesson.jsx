@@ -285,7 +285,7 @@ function IdentifyStep({ tones, onDone }) {
         setSelected(toneId);
         const correct = toneId === q.tone;
         if (correct) { playSuccess(); setScore(s => s + 1); setFeedback('correct'); play(); }
-        else { playError(); setFeedback('incorrect'); }
+        else { playError(); setFeedback('incorrect'); setTimeout(() => play(), 500); }
     };
 
     const cont = () => {
@@ -311,20 +311,34 @@ function IdentifyStep({ tones, onDone }) {
             </p>
 
             <style>{`@keyframes tonePing { from { transform: scale(1); opacity: 0.55; } to { transform: scale(1.7); opacity: 0; } }`}</style>
-            <div style={{ position: 'relative', width: 92, height: 92, margin: '0 auto 10px' }}>
-                {/* sound-wave rings — remount on each play to retrigger the ping */}
-                {playToken > 0 && [0, 1].map(i => (
-                    <span key={`${playToken}-${i}`} style={{
-                        position: 'absolute', inset: 0, borderRadius: '50%', border: '2px solid #1CB0F6',
-                        animation: `tonePing 0.9s ease-out ${i * 0.25}s`, pointerEvents: 'none',
-                    }} />
-                ))}
-                <button onClick={play} aria-label="Replay" style={{
-                    position: 'relative', width: 92, height: 92, borderRadius: '50%', display: 'flex',
-                    alignItems: 'center', justifyContent: 'center', cursor: 'pointer',
-                    border: '2px solid #1CB0F6', backgroundColor: 'rgba(28,176,246,0.12)', color: '#1CB0F6',
-                }}><Volume2 size={40} /></button>
-            </div>
+            {feedback === 'idle' ? (
+                // While guessing: a neutral sound-wave ripple (no pitch shape — that's the answer).
+                <div style={{ position: 'relative', width: 92, height: 92, margin: '0 auto 10px' }}>
+                    {playToken > 0 && [0, 1].map(i => (
+                        <span key={`${playToken}-${i}`} style={{
+                            position: 'absolute', inset: 0, borderRadius: '50%', border: '2px solid #1CB0F6',
+                            animation: `tonePing 0.9s ease-out ${i * 0.25}s`, pointerEvents: 'none',
+                        }} />
+                    ))}
+                    <button onClick={play} aria-label="Replay" style={{
+                        position: 'relative', width: 92, height: 92, borderRadius: '50%', display: 'flex',
+                        alignItems: 'center', justifyContent: 'center', cursor: 'pointer',
+                        border: '2px solid #1CB0F6', backgroundColor: 'rgba(28,176,246,0.12)', color: '#1CB0F6',
+                    }}><Volume2 size={40} /></button>
+                </div>
+            ) : (
+                // Answer revealed: show the tone's pitch shape, re-tracing on every replay.
+                <div style={{ maxWidth: 340, margin: '0 auto 10px' }}>
+                    <div style={{ borderRadius: 16, border: `2px solid ${correctTone.color}`, backgroundColor: 'var(--surface-color)', padding: '10px 12px 4px' }}>
+                        <PitchGraph contour={correctTone.contour} color={correctTone.color} playToken={playToken} height={110} />
+                    </div>
+                    <button onClick={play} style={{
+                        margin: '8px auto 0', display: 'flex', alignItems: 'center', gap: 6, padding: '6px 16px',
+                        borderRadius: 20, border: 'none', backgroundColor: `${correctTone.color}1A`, color: correctTone.color,
+                        fontWeight: 700, fontSize: 14, cursor: 'pointer', fontFamily: 'inherit',
+                    }}><Volume2 size={18} /> Replay</button>
+                </div>
+            )}
 
             <div style={{ textAlign: 'center', minHeight: 40, marginBottom: 12 }}>
                 {feedback !== 'idle' ? (
@@ -647,21 +661,27 @@ function SpeakStep({ tones, onDone }) {
                 <p style={{ textAlign: 'center', color: '#EF476F', marginTop: 14 }}>{error}</p>
             )}
 
-            <div style={{ display: 'flex', gap: 10, marginTop: 18 }}>
-                <button onClick={() => { setResult(null); setError(''); setLabeled(null); }} disabled={!result} style={{
-                    flex: 1, padding: 13, borderRadius: 12, fontWeight: 700, fontSize: 15, fontFamily: 'inherit',
-                    border: '2px solid var(--border-color)', backgroundColor: 'transparent', color: 'var(--text-muted)',
-                    cursor: result ? 'pointer' : 'default', opacity: result ? 1 : 0.4,
-                    display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6,
-                }}><RotateCw size={16} /> Retry</button>
-                <button onClick={next} style={{
-                    flex: 2, padding: 13, borderRadius: 12, fontWeight: 800, fontSize: 15, fontFamily: 'inherit',
-                    border: 'none', backgroundColor: result ? '#1CB0F6' : 'var(--border-color)',
-                    color: result ? '#fff' : 'var(--text-muted)', cursor: 'pointer',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4,
-                }}>
-                    {result ? (idx + 1 >= tones.length ? 'Finish' : 'Next tone') : 'Skip'} <ChevronRight size={18} />
-                </button>
+            <div style={{
+                position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 30,
+                padding: '12px 16px calc(14px + var(--safe-area-bottom-effective, 0px))',
+                backgroundColor: 'var(--surface-color)', borderTop: '1px solid var(--border-color)',
+            }}>
+                <div style={{ maxWidth: 480, margin: '0 auto', display: 'flex', gap: 10 }}>
+                    <button onClick={() => { setResult(null); setError(''); setLabeled(null); }} disabled={!result} style={{
+                        flex: 1, padding: 13, borderRadius: 12, fontWeight: 700, fontSize: 15, fontFamily: 'inherit',
+                        border: '2px solid var(--border-color)', backgroundColor: 'transparent', color: 'var(--text-muted)',
+                        cursor: result ? 'pointer' : 'default', opacity: result ? 1 : 0.4,
+                        display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6,
+                    }}><RotateCw size={16} /> Retry</button>
+                    <button onClick={next} style={{
+                        flex: 2, padding: 13, borderRadius: 12, fontWeight: 800, fontSize: 15, fontFamily: 'inherit',
+                        border: 'none', backgroundColor: result ? '#1CB0F6' : 'var(--border-color)',
+                        color: result ? '#fff' : 'var(--text-muted)', cursor: 'pointer',
+                        display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4,
+                    }}>
+                        {result ? (idx + 1 >= tones.length ? 'Finish' : 'Next tone') : 'Skip'} <ChevronRight size={18} />
+                    </button>
+                </div>
             </div>
         </div>
     );
