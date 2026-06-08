@@ -1,0 +1,212 @@
+{
+  "version": 1,
+  "config": {
+    "enabled": true,
+    "chattiness": "normal",
+    "avoidRepeatWindow": 3,
+    "languageFallback": "en"
+  },
+  "categories": {
+    "correct": {
+      "id": "correct",
+      "label": "Correct answer",
+      "kind": "pool",
+      "tier": "core",
+      "enabled": true,
+      "trigger": "answer.correct",
+      "fx": { "expression": "cheer", "sound": "playSuccess", "haptic": "success" },
+      "lines": [
+        { "id": "c1", "enabled": true, "weight": 1, "text": { "en": "Đúng rồi! That means 'correct' — and you are!", "zh": "" } },
+        { "id": "c2", "enabled": true, "weight": 1, "text": { "en": "Tuyệt! (That's 'awesome,' by the way.) 😎", "zh": "" } },
+        { "id": "c3", "enabled": true, "weight": 1, "text": { "en": "YES. You heard it. I saw your ears work.", "zh": "" } },
+        { "id": "c4", "enabled": true, "weight": 1, "text": { "en": "Giỏi quá! So clever.", "zh": "" } },
+        { "id": "c5", "enabled": true, "weight": 1, "text": { "en": "Nailed it. Don't even act surprised.", "zh": "" } },
+        { "id": "c6", "enabled": true, "weight": 1, "text": { "en": "Ooh, smooth. Do it again, I liked that.", "zh": "" } },
+        { "id": "c7", "enabled": true, "weight": 1, "text": { "en": "Correct! Okay you're kind of good at this.", "zh": "" } },
+        { "id": "c8", "enabled": true, "weight": 1, "text": { "en": "That's the one! *leaf-sprouts wiggle*", "zh": "" } },
+        { "id": "c9", "enabled": true, "weight": 1, "text": { "en": "Perfect. We make a great team, huh?", "zh": "" } },
+        { "id": "c10", "enabled": true, "weight": 1, "text": { "en": "Yep yep yep! Keep that energy.", "zh": "" } },
+        { "id": "c11", "enabled": true, "weight": 1, "text": { "en": "Chuẩn! ('Spot on.') Look at you go.", "zh": "" } },
+        { "id": "c12", "enabled": true, "weight": 1, "text": { "en": "Easy for you now, apparently. Proud!", "zh": "" } }
+      ]
+    },
+    "wrong": {
+      "id": "wrong",
+      "label": "Wrong answer",
+      "kind": "pool",
+      "tier": "core",
+      "enabled": true,
+      "trigger": "answer.incorrect",
+      "fx": { "expression": "oops", "sound": "playError", "haptic": "error" },
+      "lines": [
+        { "id": "w1", "enabled": true, "weight": 1, "text": { "en": "Không sao! ('No worries.') Here's the one we wanted:", "zh": "" } },
+        { "id": "w2", "enabled": true, "weight": 1, "text": { "en": "Ooh, so close. That tone is genuinely sneaky. Look:", "zh": "" } },
+        { "id": "w3", "enabled": true, "weight": 1, "text": { "en": "Honestly? That one got me too. The answer's:", "zh": "" } },
+        { "id": "w4", "enabled": true, "weight": 1, "text": { "en": "Cố lên! ('Keep going!') Not quite — it's actually:", "zh": "" } },
+        { "id": "w5", "enabled": true, "weight": 1, "text": { "en": "Almost! Tiny miss. The word we needed:", "zh": "" } },
+        { "id": "w6", "enabled": true, "weight": 1, "text": { "en": "Nope — but a GOOD nope, you were close. It's:", "zh": "" } },
+        { "id": "w7", "enabled": true, "weight": 1, "text": { "en": "Hmm, not this time. Let's see the right one together:", "zh": "" } },
+        { "id": "w8", "enabled": true, "weight": 1, "text": { "en": "That meant something else (sneaky language). Here you go:", "zh": "" } },
+        { "id": "w9", "enabled": true, "weight": 1, "text": { "en": "No biggie — even my leaves get confused. Correct one:", "zh": "" } },
+        { "id": "w10", "enabled": true, "weight": 1, "text": { "en": "Eh, language is tricky. Here's the fix:", "zh": "" } }
+      ]
+    },
+    "retry": {
+      "id": "retry",
+      "label": "Wrong again (same item)",
+      "kind": "pool",
+      "tier": "core",
+      "enabled": true,
+      "trigger": "answer.incorrect.repeat",
+      "fx": { "expression": "thinking", "sound": "playError", "haptic": "error" },
+      "lines": [
+        { "id": "r1", "enabled": true, "weight": 1, "text": { "en": "Okay let's slow WAY down and do it together. Listen again:", "zh": "" } },
+        { "id": "r2", "enabled": true, "weight": 1, "text": { "en": "Same one again — no rush. Here's a trick to remember it:", "zh": "" } },
+        { "id": "r3", "enabled": true, "weight": 1, "text": { "en": "Take a breath. We'll get this one. Tiny hint:", "zh": "" } }
+      ]
+    },
+    "complete": {
+      "id": "complete",
+      "label": "Lesson complete",
+      "kind": "pool",
+      "tier": "core",
+      "enabled": true,
+      "trigger": "lesson.complete",
+      "fx": { "expression": "celebrate", "sound": "playCelebration", "haptic": "success" },
+      "lines": [
+        { "id": "lc1", "enabled": true, "weight": 1, "text": { "en": "Lesson DONE! 🌟 {name}, you earned every bit of that gold.", "zh": "" } },
+        { "id": "lc2", "enabled": true, "weight": 1, "text": { "en": "And... finished! Feel how that got easier near the end? That's you learning in real time.", "zh": "" } },
+        { "id": "lc3", "enabled": true, "weight": 1, "text": { "en": "We did it! High-five. (I have little starfruit hands but I mean it.)", "zh": "" } },
+        { "id": "lc4", "enabled": true, "weight": 1, "text": { "en": "Complete! The tree grew a little taller today. 🌱", "zh": "" } },
+        { "id": "lc5", "enabled": true, "weight": 1, "text": { "en": "That's a wrap! You knew zero of those words this morning. Wild.", "zh": "" } }
+      ]
+    },
+    "complete_perfect": {
+      "id": "complete_perfect",
+      "label": "Perfect lesson (no misses)",
+      "kind": "pool",
+      "tier": "core",
+      "enabled": true,
+      "trigger": "lesson.complete.perfect",
+      "fx": { "expression": "celebrate", "sound": "playCelebration", "haptic": "success" },
+      "lines": [
+        { "id": "lcp1", "enabled": true, "weight": 1, "text": { "en": "PERFECT lesson — no misses! Tuyệt vời! I'm framing this moment.", "zh": "" } }
+      ]
+    },
+    "halfway": {
+      "id": "halfway",
+      "label": "Halfway nudge",
+      "kind": "pool",
+      "tier": "ambient",
+      "enabled": true,
+      "trigger": "lesson.halfway",
+      "fx": { "expression": "cheer", "sound": "playNotification", "haptic": "notification" },
+      "lines": [
+        { "id": "h1", "enabled": true, "weight": 1, "text": { "en": "Halfway! The hard part's behind us.", "zh": "" } },
+        { "id": "h2", "enabled": true, "weight": 1, "text": { "en": "We're at the top of the hill — easy from here.", "zh": "" } },
+        { "id": "h3", "enabled": true, "weight": 1, "text": { "en": "Look, halfway already. Time flies when you're brilliant.", "zh": "" } }
+      ]
+    },
+    "streak_combo": {
+      "id": "streak_combo",
+      "label": "Streak combo",
+      "kind": "slots",
+      "tier": "flavor",
+      "enabled": true,
+      "trigger": "lesson.streak",
+      "fx": { "expression": "celebrate", "sound": "playCelebration", "haptic": "success" },
+      "lines": [
+        { "id": "s3", "key": "3", "enabled": true, "text": { "en": "Three in a row! We're cooking. 🔥", "zh": "" } },
+        { "id": "s5", "key": "5", "enabled": true, "text": { "en": "FIVE straight! Giỏi quá! Okay now I'm hyped.", "zh": "" } },
+        { "id": "s10", "key": "10", "enabled": true, "text": { "en": "TEN. In. A. ROW. Who ARE you?? Incredible.", "zh": "" } }
+      ]
+    },
+    "unit_intro": {
+      "id": "unit_intro",
+      "label": "Unit intro (storyteller)",
+      "kind": "slots",
+      "tier": "flavor",
+      "enabled": true,
+      "trigger": "lesson.unitStart",
+      "fx": { "expression": "reading", "sound": null, "haptic": null },
+      "lines": [
+        { "id": "u1", "key": "unit_1", "enabled": true, "text": { "en": "Our first real words! Greetings and names — exactly what you'd say walking into a room in Vietnam. Let's make a first impression.", "zh": "" } },
+        { "id": "u2", "key": "unit_2", "enabled": true, "text": { "en": "Time to be polite. Vietnamese has special words just for being nice, and people NOTICE when you use them. Free charm points.", "zh": "" } },
+        { "id": "u3", "key": "unit_3", "enabled": true, "text": { "en": "Café time! ☕ My favorite. We're going to order drinks like we belong here.", "zh": "" } },
+        { "id": "u4", "key": "unit_4", "enabled": true, "text": { "en": "Food and prices — the two things you'll use most, honestly. Let's not overpay, okay?", "zh": "" } },
+        { "id": "u5", "key": "unit_5", "enabled": true, "text": { "en": "The market! It's loud, it's fun, and we're going to bargain a little. Confidence is the trick.", "zh": "" } },
+        { "id": "u6", "key": "unit_6", "enabled": true, "text": { "en": "Numbers, leveled up. Big ones now. Don't panic — there's a pattern, and patterns are my thing.", "zh": "" } },
+        { "id": "u7", "key": "unit_7", "enabled": true, "text": { "en": "Getting around! Grab, taxis, motorbikes, directions. Let's make sure we never get lost.", "zh": "" } },
+        { "id": "u8", "key": "unit_8", "enabled": true, "text": { "en": "Everyday life stuff — the words you'd actually use every single day. The quiet useful ones.", "zh": "" } },
+        { "id": "u9", "key": "unit_9", "enabled": true, "text": { "en": "Talking with people! Making friends, small talk. This is where Vietnamese starts to feel real.", "zh": "" } }
+      ]
+    },
+    "foundations_intro": {
+      "id": "foundations_intro",
+      "label": "Foundations module intro",
+      "kind": "slots",
+      "tier": "flavor",
+      "enabled": true,
+      "trigger": "lesson.moduleStart",
+      "fx": { "expression": "reading", "sound": null, "haptic": null },
+      "lines": [
+        { "id": "f_alphabet", "key": "alphabet", "enabled": true, "text": { "en": "The Vietnamese alphabet looks almost like English... and then it has extra letters wearing little hats. Let's meet them.", "zh": "" } },
+        { "id": "f_vowels_basic", "key": "vowels_basic", "enabled": true, "text": { "en": "Vowels first. These are the sounds everything else sits on top of. Open your ears!", "zh": "" } },
+        { "id": "f_vowels_special", "key": "vowels_special", "enabled": true, "text": { "en": "Now the special vowels — ơ, ư, ê, ô. English doesn't have these, so they feel weird at first. That's normal!", "zh": "" } },
+        { "id": "f_consonants", "key": "consonants", "enabled": true, "text": { "en": "Consonants time. Most are easy. A couple are sneaky. I'll warn you about the sneaky ones.", "zh": "" } },
+        { "id": "f_consonants_final", "key": "consonants_final", "enabled": true, "text": { "en": "Ending sounds matter a LOT in Vietnamese. A different ending = a different word. Let's get them crisp.", "zh": "" } },
+        { "id": "f_vowels_diph", "key": "vowels_diph", "enabled": true, "text": { "en": "Two vowels holding hands! When they team up, they make a brand new sound. Cute, honestly.", "zh": "" } },
+        { "id": "f_tones_1", "key": "tones_1", "enabled": true, "text": { "en": "THE BIG ONE. Tones. Today just two: a flat one and a falling one. Hear the difference and you're already winning.", "zh": "" } },
+        { "id": "f_tones_2", "key": "tones_2", "enabled": true, "text": { "en": "Adding the rising tone — it goes UP, like a question your voice asks. Listen for the lift.", "zh": "" } },
+        { "id": "f_tones_3", "key": "tones_3", "enabled": true, "text": { "en": "Now the dipping tone — it dives down then climbs back. It's the dramatic one. I love it.", "zh": "" } },
+        { "id": "f_tones_4", "key": "tones_4", "enabled": true, "text": { "en": "Hỏi vs ngã — okay these two are TWINS and even I mix them up. We'll figure them out together.", "zh": "" } },
+        { "id": "f_tones_5", "key": "tones_5", "enabled": true, "text": { "en": "All six tones at once. This felt impossible to me a week ago and now look at me. You're gonna get it.", "zh": "" } },
+        { "id": "f_tones_speak", "key": "tones_speak", "enabled": true, "text": { "en": "Your turn to SAY them. Be brave, be loud, be a little silly. Nobody's judging — I'm a fruit.", "zh": "" } },
+        { "id": "f_tonemarks", "key": "tonemarks", "enabled": true, "text": { "en": "Let's match each little mark to its sound. Once you can read the marks, you can read the tones. Superpower unlocked.", "zh": "" } },
+        { "id": "f_checkpoint", "key": "checkpoint", "enabled": true, "text": { "en": "Checkpoint! Show me your ears are ready. Get through this and Unit 1 opens up. I believe in you.", "zh": "" } }
+      ]
+    },
+    "welcome": {
+      "id": "welcome",
+      "label": "Welcome",
+      "kind": "pool",
+      "tier": "flavor",
+      "enabled": true,
+      "trigger": "onboarding.welcome",
+      "fx": { "expression": "cheer", "sound": "playSelect", "haptic": "tap" },
+      "lines": [
+        { "id": "wel1", "enabled": true, "weight": 1, "text": { "en": "Hi! I'm Bé Khế — a little starfruit who's learning Vietnamese, same as you. Want to learn it together?", "zh": "" } },
+        { "id": "wel2", "enabled": true, "weight": 1, "text": { "en": "Oh, a new friend! I'm Bé Khế. I'm a star, technically. Cut a starfruit and — ta-da — star. Anyway, let's learn Vietnamese!", "zh": "" } }
+      ]
+    },
+    "teaser": {
+      "id": "teaser",
+      "label": "Tone teaser (the hook)",
+      "kind": "slots",
+      "tier": "flavor",
+      "enabled": true,
+      "trigger": "onboarding.teaser",
+      "fx": { "expression": "wow", "sound": "playNotification", "haptic": "notification" },
+      "lines": [
+        { "id": "t_intro", "key": "intro", "enabled": true, "text": { "en": "Before anything — listen to these two. Tell me: same word, or different?", "zh": "" } },
+        { "id": "t_reveal_diff", "key": "reveal_diff", "enabled": true, "text": { "en": "DIFFERENT! Same letters, but the TONE changed the whole meaning. Vietnamese has six of these. Wild, right?", "zh": "" } },
+        { "id": "t_hook", "key": "hook", "enabled": true, "text": { "en": "Here's the secret: once your ears can hear the six tones, the rest gets WAY easier. So that's where we start. Tới luôn — let's go!", "zh": "" } }
+      ]
+    },
+    "tutorial": {
+      "id": "tutorial",
+      "label": "App tutorial",
+      "kind": "slots",
+      "tier": "flavor",
+      "enabled": true,
+      "trigger": "onboarding.tutorial",
+      "fx": { "expression": "reading", "sound": "playSelect", "haptic": "select" },
+      "lines": [
+        { "id": "tut_roadmap", "key": "roadmap", "enabled": true, "text": { "en": "This is our map! We start at the very bottom and climb. Tap the glowing one — that's our first stop.", "zh": "" } },
+        { "id": "tut_foundations", "key": "foundations", "enabled": true, "text": { "en": "First up: Foundations. We learn to HEAR Vietnamese before we speak it. It's the most important part, so we do it first.", "zh": "" } },
+        { "id": "tut_hearts", "key": "hearts", "enabled": true, "text": { "en": "See these? They're your tries. Run out and we take a little break — no big deal, they come back.", "zh": "" } },
+        { "id": "tut_done", "key": "done", "enabled": true, "text": { "en": "That's everything! Okay okay okay — I'm excited. Let's actually start.", "zh": "" } }
+      ]
+    }
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vietnamy.app/schema/mascot.schema.json",
+  "title": "Vietnamy mascot scripts (Bé Khế)",
+  "type": "object",
+  "required": ["version", "config", "categories"],
+  "additionalProperties": false,
+  "properties": {
+    "version": { "type": "integer" },
+    "config": {
+      "type": "object",
+      "required": ["enabled", "chattiness"],
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean", "description": "Master switch — false = Bé Khế silent everywhere" },
+        "chattiness": { "type": "string", "enum": ["minimal", "normal", "chatty"] },
+        "avoidRepeatWindow": { "type": "integer", "minimum": 0 },
+        "languageFallback": { "type": "string" }
+      }
+    },
+    "categories": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#/$defs/category" }
+    }
+  },
+  "$defs": {
+    "localizedText": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "en": { "type": "string" },
+        "zh": { "type": "string", "description": "Simplified; zh-t is derived at render via opencc" }
+      }
+    },
+    "category": {
+      "type": "object",
+      "required": ["id", "label", "kind", "tier", "enabled", "lines"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "label": { "type": "string" },
+        "kind": { "type": "string", "enum": ["pool", "slots"] },
+        "tier": { "type": "string", "enum": ["core", "flavor", "ambient"] },
+        "enabled": { "type": "boolean" },
+        "trigger": { "type": "string", "description": "Doc-only: where it fires (read-only in editor)" },
+        "fx": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "expression": { "type": "string", "enum": ["idle", "cheer", "celebrate", "oops", "thinking", "wow", "sleepy", "reading"] },
+            "sound": { "type": ["string", "null"] },
+            "haptic": { "type": ["string", "null"] }
+          }
+        },
+        "lines": { "type": "array", "items": { "$ref": "#/$defs/line" } }
+      }
+    },
+    "line": {
+      "type": "object",
+      "required": ["id", "enabled", "text"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "key": { "type": "string", "description": "Lookup key for `slots` categories (unit id, streak count…)" },
+        "enabled": { "type": "boolean" },
+        "weight": { "type": "number", "minimum": 0, "description": "Relative pick weight for `pool` categories" },
+        "text": { "$ref": "#/$defs/localizedText" }
+      }
+    }
+  }
+}
