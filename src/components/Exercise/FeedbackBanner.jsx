@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Check, X } from 'lucide-react';
 import { playTap } from '../../utils/sound';
 import { useT } from '../../lib/i18n';
+import { useUser } from '../../context/UserContext';
+import { getLine } from '../../lib/mascot';
+import BeKhe from '../BeKhe/BeKhe';
 
 /**
  * FeedbackBanner — Colored banner showing correct/incorrect feedback
@@ -20,8 +23,12 @@ export default function FeedbackBanner({
     alternatives = null, // Array of alternative accepted translations
 }) {
     const t = useT();
+    const { userProfile } = useUser();
+    const lang = userProfile?.nativeLang;
     const [isVisible, setIsVisible] = useState(false);
     const [isPressed, setIsPressed] = useState(false);
+    // Bé Khế's line for this answer, rolled once on mount (null = stay silent)
+    const [mascot] = useState(() => getLine(isCorrect ? 'correct' : 'wrong', { lang }));
     // Shake on a wrong answer; starts on (banner mounts fresh per question) and clears after the animation
     const [shouldShake, setShouldShake] = useState(() => !isCorrect);
     // Pick one varied praise phrase per question (Duolingo-style), locked on mount
@@ -88,31 +95,39 @@ export default function FeedbackBanner({
                 alignItems: 'center',
                 gap: 12,
             }}>
-                <div style={{
-                    width: 32, height: 32,
-                    borderRadius: '50%',
-                    backgroundColor: color,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    flexShrink: 0,
-                }}>
-                    {isCorrect ? (
-                        <Check size={18} color="#fff" strokeWidth={3} />
-                    ) : (
-                        <X size={18} color="#fff" strokeWidth={3} />
-                    )}
-                </div>
+                {mascot ? (
+                    <div style={{ flexShrink: 0, display: 'flex' }}>
+                        <BeKhe expression={mascot.expression} size={48} />
+                    </div>
+                ) : (
+                    <div style={{
+                        width: 32, height: 32,
+                        borderRadius: '50%',
+                        backgroundColor: color,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        flexShrink: 0,
+                    }}>
+                        {isCorrect ? (
+                            <Check size={18} color="#fff" strokeWidth={3} />
+                        ) : (
+                            <X size={18} color="#fff" strokeWidth={3} />
+                        )}
+                    </div>
+                )}
                 <div style={{ flex: 1 }}>
                     <span style={{
                         fontWeight: 800, fontSize: 17, color,
                         display: 'block',
                     }}>
-                        {isCorrect
-                            ? fuzzyHint
-                                ? t('feedback_good')
-                                : praise
-                            : t('feedback_incorrect')}
+                        {mascot
+                            ? mascot.text
+                            : isCorrect
+                                ? fuzzyHint
+                                    ? t('feedback_good')
+                                    : praise
+                                : t('feedback_incorrect')}
                     </span>
                     {/* Show fuzzy hint or correct answer */}
                     {isCorrect && fuzzyHint && (
