@@ -1,0 +1,25 @@
+flowchart TB
+    subgraph Dev["Development"]
+        D1["vite dev :5173 (frontend)"]
+        D2["node server.js :3001 (API)"]
+        D1 -->|proxy /api| D2
+    end
+
+    subgraph Prod["Production (Docker / Zeabur / Vercel)"]
+        direction TB
+        BUILD["npm run build<br/>vite build → /dist"]
+        SRV["Express :8080<br/>serves /api + static /dist"]
+        BUILD --> SRV
+    end
+
+    subgraph Cloud["Managed services"]
+        SBP["Supabase<br/>(Auth, Postgres user_progress,<br/>tts-cache Storage bucket)"]
+        TTSP["Azure / Google TTS"]
+    end
+
+    SRV --> SBP
+    SRV --> TTSP
+
+    ENV["Env vars:<br/>VITE_SUPABASE_URL / ANON_KEY (client)<br/>SUPABASE_URL / SERVICE_ROLE_KEY (server)<br/>TTS_BUCKET"]
+    ENV -.config.-> SRV
+    ENV -.config.-> BUILD

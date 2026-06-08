@@ -1,0 +1,55 @@
+erDiagram
+    UNITS ||--o{ PATH_NODES : contains
+    PATH_NODES ||--o| LESSONS : "opens (vocab node)"
+    LESSONS ||--|| LESSON_BLUEPRINTS : "rendered by"
+    LESSON_BLUEPRINTS }o--o{ ITEMS : "introduces vocab"
+    ITEMS ||--o{ TRANSLATIONS : "localized by"
+    PATH_NODES }o--o{ ITEMS : "vocab_introduces / vocab_requires"
+    UNITS ||--o{ SCENES : "has roleplay"
+    SCENES ||--o{ SCENE_LOCATIONS : "set in"
+
+    UNITS {
+        string id
+        int unit_index
+        string title
+        string cefr_level
+    }
+    PATH_NODES {
+        string id
+        int node_index
+        string node_type "skill|lesson|test"
+        string module_type "blue|orange|purple|test"
+        string lesson_id
+        json unlock_rule
+        array vocab_introduces
+        array vocab_requires
+    }
+    LESSONS {
+        string id
+        string title
+        int target_xp
+        string exercise_profile_id
+    }
+    LESSON_BLUEPRINTS {
+        string lesson_id
+        string focus
+        array introduced_items
+    }
+    ITEMS {
+        string id
+        string item_type "word|sentence"
+        string vi_text
+        string audio_key
+        string dialect
+        array tags
+        string note
+    }
+    TRANSLATIONS {
+        string item_id
+        string lang "en|cn"
+        string text
+    }
+    SCENES {
+        string id
+        string title
+    }

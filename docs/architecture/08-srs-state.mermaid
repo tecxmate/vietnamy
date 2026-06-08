@@ -1,0 +1,30 @@
+stateDiagram-v2
+    [*] --> New: word introduced in lesson
+    New --> I1: added to SRS
+
+    I1: Interval 1 day
+    I3: Interval 3 days
+    I7: Interval 7 days
+    I14: Interval 14 days
+    I30: Interval 30 days
+    Mature: Review long-term
+
+    I1 --> I3: recalled ✓
+    I3 --> I7: recalled ✓
+    I7 --> I14: recalled ✓
+    I14 --> I30: recalled ✓
+    I30 --> Mature: recalled ✓
+    Mature --> Mature: recalled ✓
+
+    I3 --> I1: lapse ✗ (reset)
+    I7 --> I1: lapse ✗ (reset)
+    I14 --> I1: lapse ✗ (reset)
+    I30 --> I1: lapse ✗ (reset)
+    Mature --> I1: lapse ✗ (reset)
+
+    note right of I1
+        SM-2 inspired (srs.js).
+        Grade stored per word in
+        vnme_word_grades; schedule
+        in vnme_srs.
+    end note

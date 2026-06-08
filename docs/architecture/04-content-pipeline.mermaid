@@ -1,0 +1,24 @@
+flowchart LR
+    subgraph Authoring["Authoring (source of truth, in git)"]
+        SRC["content/*.json<br/>curriculum, grammar, tones,<br/>kinship, dictionary, concepts,<br/>articles, drills, mascot"]
+        SCH["schema/*.json<br/>JSON Schema validators"]
+    end
+
+    subgraph Build["Build-time scripts (npm)"]
+        V1["validate-content.mjs"]
+        V2["validate-curriculum.js"]
+        B1["build-unified-db.js"]
+        B2["build-canonical.mjs"]
+    end
+
+    SEED["src/lib/content/initialData.js<br/>INIT_DATA (baked seed)"]
+    DB[("localStorage<br/>vnme_mock_db_v24")]
+
+    SRC -->|validate against| SCH
+    SRC --> V1 --> V2 --> B1 --> B2 --> SEED
+    SEED -->|first load| DB
+    SEED -->|"CURRICULUM_VERSION bump<br/>(reseed curriculum, keep progress)"| DB
+
+    CMS["Admin CMS edits"] -->|override keys| DB
+    note["Overrides (vnme_cms_*) merge ON TOP of seed —<br/>seed is never mutated"]
+    CMS -.-> note

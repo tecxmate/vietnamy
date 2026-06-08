@@ -1,0 +1,44 @@
+flowchart LR
+    subgraph Contexts["React Context providers"]
+        AU["AuthContext"]
+        US["UserContext"]
+        PG["ProgressContext"]
+        LA["LanguageContext"]
+        NO["NotificationContext"]
+    end
+
+    subgraph Keys["localStorage keys"]
+        K1["vnme_user_profile"]
+        K2["vietnamy_progress"]
+        K3["vietnamy_dong (coins/hearts/streak)"]
+        K4["vnme_srs (review schedule)"]
+        K5["vnme_word_grades"]
+        K6["vnme_saved_words / vnme_dict_saved_words"]
+        K7["vnme_custom_decks / vnme_dict_decks"]
+        K8["vnme_app_language / vietnamy_language"]
+        K9["vnme_settings"]
+        K10["vnme_onboarding_completed / vnme_tutorial_completed"]
+        K11["vnme_notifications"]
+        K12["vnme_mock_db_v24 (curriculum DB)"]
+        K13["vnme_cms_* / vnme_curriculum_edits (CMS overrides)"]
+    end
+
+    US --> K1
+    PG --> K2
+    PG --> K3
+    US --> K4
+    US --> K5
+    US --> K6
+    US --> K7
+    LA --> K8
+    US --> K9
+    US --> K10
+    NO --> K11
+
+    DBJS["db.js / mockDbStore.js"] --> K12
+    DBJS --> K13
+
+    AU -->|"debounced upsert (SYNC_KEYS)"| CLOUD[("Supabase<br/>user_progress")]
+    K1 -.included in.-> CLOUD
+    K3 -.included in.-> CLOUD
+    K4 -.included in.-> CLOUD

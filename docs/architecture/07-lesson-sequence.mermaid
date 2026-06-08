@@ -1,0 +1,30 @@
+sequenceDiagram
+    participant U as User
+    participant RT as RoadmapTab
+    participant LG as LessonGame
+    participant GEN as exerciseGenerator
+    participant API as Express /api
+    participant SRS as srs.js
+    participant PROG as ProgressContext
+    participant SYNC as syncProgress
+
+    U->>RT: tap node
+    RT->>RT: check unlock_rule
+    RT->>LG: route /lesson/:id
+    LG->>GEN: build exercises from blueprint
+    GEN-->>LG: 10 types (mcq, listen_choose,<br/>match_pairs, reorder_words,<br/>speak_sentence, fill_blank, …)
+
+    loop each exercise
+        U->>LG: answer
+        LG->>API: GET /api/tts (audio)
+        opt speaking exercise
+            LG->>API: POST /api/pronunciation (score)
+        end
+        LG->>PROG: update hearts / streak
+    end
+
+    LG->>SRS: schedule learned words (1→3→7→14→30d)
+    LG->>PROG: award XP + coins ₫, mark complete
+    PROG->>PROG: unlock next node (localStorage)
+    PROG->>SYNC: debounced backup
+    SYNC-->>API: (via Supabase) upsert user_progress

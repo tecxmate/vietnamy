@@ -1,0 +1,28 @@
+flowchart TB
+    subgraph Client["📱 Client — React 19 + Vite (mobile-first web)"]
+        UI["UI surfaces: Tabs, Lessons, Practice, Dictionary, Admin"]
+        CTX["React Context state (5 providers)"]
+        ENG["Learning engines (pure JS)"]
+        LS[("localStorage<br/>vnme_* / vietnamy_*<br/>= the real DB")]
+    end
+
+    subgraph Server["🖥️ Express backend (Node)"]
+        API["REST API /api/*"]
+        DICT[("SQLite dictionaries<br/>~100MB, not in git")]
+    end
+
+    subgraph External["☁️ External services"]
+        SB["Supabase<br/>Auth + progress sync + TTS bucket"]
+        TTSV["Azure / Google TTS"]
+        XLATE["Google Translate"]
+        PUSH["Web Push (VAPID)"]
+    end
+
+    UI --> CTX --> ENG --> LS
+    UI -->|fetch /api| API
+    API --> DICT
+    API -->|generate audio| TTSV
+    API -->|cache + 302 serve| SB
+    API -->|translate| XLATE
+    API -->|notify| PUSH
+    CTX -->|auth + cloud backup| SB

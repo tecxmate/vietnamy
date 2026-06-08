@@ -1,0 +1,26 @@
+sequenceDiagram
+    participant U as User
+    participant AC as AuthContext
+    participant SB as Supabase Auth
+    participant SP as syncProgress.js
+    participant TBL as Supabase user_progress
+    participant LS as localStorage
+
+    Note over AC: App boot
+    AC->>SB: getSession() (5s timeout race)
+    alt no Supabase config
+        AC->>AC: user = local-dev (offline mode)
+    else session exists
+        SB-->>AC: user
+        AC->>SP: loadProgressFromCloud(userId)
+        SP->>TBL: select data
+        TBL-->>SP: SYNC_KEYS blob
+        SP->>LS: hydrate keys
+    end
+
+    Note over U,LS: During use
+    U->>LS: progress changes (XP, SRS, streak)
+    LS->>SP: debouncedSaveProgress(userId)
+    SP->>TBL: upsert { user_id, data, updated_at }
+
+    Note over SP: SYNC_KEYS = profile, dong, srs,<br/>word_grades, saved_words, decks,<br/>settings, language, onboarding flags

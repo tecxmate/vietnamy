@@ -1,0 +1,25 @@
+flowchart LR
+    subgraph Portable["✅ Ports cleanly (pure JS / data / backend)"]
+        direction TB
+        P1["Learning engines:<br/>srs.js, exerciseGenerator, moduleKinds"]
+        P2["Curriculum JSON + schema + build scripts"]
+        P3["Context state model (5 providers)"]
+        P4["Express server — call over REST unchanged"]
+        P5["Supabase auth + syncProgress logic"]
+        P6["Dictionary client (dictionaryLookup.js)"]
+    end
+
+    subgraph Rework["⚠️ Re-implement — browser-specific"]
+        direction TB
+        R1["localStorage → AsyncStorage / MMKV / SQLite"]
+        R2["react-router → native navigation"]
+        R3["Web Audio pitch detection → native audio"]
+        R4["speechSynthesis fallback → native TTS"]
+        R5["tesseract.js OCR → ML Kit / Vision"]
+        R6["Web Push (VAPID) → FCM / APNs"]
+        R7["TELEX keyboard handling → native input"]
+    end
+
+    R1 --- N1["Biggest item:<br/>swap the ONE storage module,<br/>most of the app follows"]:::hot
+
+    classDef hot fill:#EF4444,color:#fff

@@ -1,0 +1,27 @@
+flowchart TB
+    subgraph Unit["A roadmap UNIT (default repeating shape)"]
+        direction LR
+        P["🔵 Pronunciation<br/>node_type: skill<br/>→ practice_route"]:::blue
+        V["🟠 Vocabulary<br/>node_type: lesson<br/>→ lesson_id (+ mini-quiz)"]:::orange
+        G["🟣 Grammar<br/>node_type: skill<br/>→ grammar_unit_id"]:::purple
+        T["🔴 Test<br/>node_type: test<br/>test_scope: unit"]:::red
+        P --> V --> G --> T
+    end
+
+    MK["moduleKinds.js — MODULE_KINDS<br/>(single source of truth:<br/>shape + colour + edit rules)"]
+    MK --> Unit
+
+    SEED["initialData.js (seed)"] --> Unit
+    RENDER["RoadmapTab.jsx (render)"] --> Unit
+    ADMIN["RoadmapMapper.jsx (/admin/mapper)"] --> Unit
+
+    GATE["unlock_rule prerequisites<br/>+ 4 sessions = node complete"]
+    Unit --> GATE
+
+    AUX["Auxiliary nodes (not module kinds):<br/>🟢 Scenes, per-lesson mini-quizzes"]
+    Unit -.-> AUX
+
+    classDef blue fill:#1CB0F6,color:#fff
+    classDef orange fill:#FFB703,color:#000
+    classDef purple fill:#A78BFA,color:#fff
+    classDef red fill:#EF4444,color:#fff

@@ -1,0 +1,45 @@
+flowchart TD
+    ROOT["main.jsx → App.jsx<br/>BrowserRouter + Route table"]
+
+    subgraph Providers["Context providers (nesting order)"]
+        direction TB
+        PA["AuthProvider"] --> PL["LanguageProvider"] --> PP["ProgressProvider"] --> PU["UserProvider"] --> PN["NotificationProvider"]
+    end
+
+    ROOT --> Providers
+    Providers --> SHELL["StudentApp shell<br/>(bottom-nav tabs)"]
+
+    subgraph Surfaces["Feature surfaces"]
+        direction TB
+        T["Tabs/: Home, Roadmap, Sounds,<br/>Dictionary, Grammar, ReadingLibrary, Community"]
+        LG["LessonGame — exercise engine"]
+        SC["SceneEngine — roleplay scenes"]
+        PR["Practice/: 45+ drills"]
+        GR["Grammar/: guidebook + unit lessons"]
+        AD["Admin/: CMS editors"]
+    end
+
+    SHELL --> Surfaces
+
+    subgraph Lib["lib/ — engines & data access (framework-agnostic JS)"]
+        direction TB
+        DB["db.js + storage/mockDbStore.js"]
+        SRS["srs.js (SM-2)"]
+        EG["exerciseGenerator + practiceQuestionGenerator"]
+        MK["moduleKinds.js (roadmap model)"]
+        DL["dictionaryLookup.js"]
+        SP["syncProgress.js"]
+        OV["contentOverrides.js (CMS merges)"]
+    end
+
+    Surfaces --> Lib
+
+    subgraph Hooks["hooks/"]
+        H["useTTS, useQuizSession,<br/>usePracticeCompletion, useEnterKey"]
+    end
+
+    Surfaces --> Hooks
+
+    DB --> STORE[("localStorage")]
+    DL -.fetch.-> APIX["Express /api/*"]
+    SP -.sync.-> SBX["Supabase"]

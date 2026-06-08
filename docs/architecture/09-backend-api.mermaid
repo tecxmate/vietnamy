@@ -1,0 +1,39 @@
+flowchart TB
+    CLIENT["📱 Client (dictionaryLookup.js, useTTS, …)"]
+
+    subgraph Express["Express server.js"]
+        direction TB
+        MW["cors + express.json"]
+        subgraph Dict["Dictionary"]
+            S1["GET /api/search"]
+            S2["GET /api/suggest"]
+            S3["GET /api/segment"]
+            S4["GET /api/word-popup"]
+            S5["GET /api/languages"]
+        end
+        subgraph Media["Audio / language"]
+            M1["GET /api/tts"]
+            M2["POST /api/pronunciation"]
+            M3["GET /api/translate"]
+        end
+        subgraph Push["Notifications"]
+            P1["GET /api/push/vapid-public-key"]
+            P2["POST /api/push/subscribe"]
+            P3["POST /api/push/send"]
+        end
+        subgraph Tone["Crowd data"]
+            TS["POST /api/tone-samples"]
+        end
+        STATIC["GET * → serve /dist (prod)"]
+    end
+
+    DICTDB[("SQLite dictionaries<br/>better-sqlite3, indexed on startup")]
+    BUCKET[("Supabase Storage<br/>tts-cache bucket")]
+    AZURE["Azure / Google TTS"]
+    GT["Google Translate"]
+
+    CLIENT -->|fetch| MW
+    Dict --> DICTDB
+    M1 -->|miss → generate| AZURE
+    M1 -->|hit → 302| BUCKET
+    M3 --> GT

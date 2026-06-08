@@ -48,3 +48,4 @@ public/opening.mov
 .vercel
 .env*.local
 tts-backup/
+.env*
