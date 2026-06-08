@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
 
-import { Volume2, Check, X, RotateCw, ArrowLeft, Trophy, Flame, Star, ChevronRight } from 'lucide-react';
+import { Volume2, X, RotateCw, ArrowLeft, Trophy, ChevronRight } from 'lucide-react';
 import { useTTS } from '../../hooks/useTTS';
 import { usePracticeCompletion } from '../../hooks/usePracticeCompletion';
 import { TONE_CONTOURS } from '../../data/toneContours';
@@ -8,6 +8,7 @@ import PitchGraph from '../../components/Sounds/PitchGraph';
 import './ToneMarks.css';
 import { playSuccess, playError } from '../../utils/sound';
 import SoundButton from '../../components/SoundButton';
+import { OptionGrid, FeedbackBar, FeedbackMessage, PrimaryButton } from '../../components/practice/PracticeKit';
 import './PracticeShared.css'; // Add shared layout
 
 // ─── Vietnamese Vowel × Tone Data ──────────────────────────────────
@@ -109,7 +110,7 @@ export default function ToneMarks({ vowels = ALL_VOWELS, title = '🔤 Dấu —
     const [selected, setSelected] = useState(null);
     const [feedback, setFeedback] = useState('idle');
     const [score, setScore] = useState(0);
-    const [streak, setStreak] = useState(0);
+    const [, setStreak] = useState(0);
     const [bestStreak, setBestStreak] = useState(0);
     const [totalAnswered, setTotalAnswered] = useState(0);
     const [showSummary, setShowSummary] = useState(false);
@@ -353,16 +354,6 @@ export default function ToneMarks({ vowels = ALL_VOWELS, title = '🔤 Dấu —
                         <X size={24} />
                     </button>
                 </h1>
-                {stage >= 2 && (
-                    <div className="practice-stats">
-                        <span className="practice-stat-pill" style={{ color: 'var(--text-main)' }}>
-                            <Star size={18} style={{ color: 'var(--primary-color)' }} /> {score}
-                        </span>
-                        <span className="practice-stat-pill" style={{ color: 'var(--text-main)' }}>
-                            <Flame size={18} style={{ color: '#FF5722' }} /> {streak}
-                        </span>
-                    </div>
-                )}
             </div>
 
             {/* Tabs */}
@@ -443,123 +434,85 @@ export default function ToneMarks({ vowels = ALL_VOWELS, title = '🔤 Dấu —
 
             {/* ═══ STAGES 2–4: Quiz ═══ */}
             {stage >= 2 && currentQ && (
-                <div className="practice-content-centered" style={{ justifyContent: 'flex-start' }}>
-                    <div className="challenge-progress" style={{ width: '100%', marginBottom: '16px' }}>
-                        <div className="challenge-progress-fill" style={{ width: `${progress}%` }} />
+                <div style={{ padding: '0 16px 200px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 10 }}>
+                        <span style={{ fontSize: 13, fontWeight: 700, color: '#06D6A0' }}>Score {score}</span>
+                    </div>
+                    <div style={{ height: 6, borderRadius: 4, backgroundColor: 'var(--border-color)', marginBottom: 22, overflow: 'hidden' }}>
+                        <div style={{ height: '100%', width: `${progress}%`, backgroundColor: '#1CB0F6', borderRadius: 4, transition: 'width 0.3s' }} />
                     </div>
 
-                    <div className="challenge-content" style={{ width: '100%' }}>
-                        {/* Combine prompt */}
-                        {currentQ.type === 'combine' && (
-                            <>
-                                <div className="tm-equation">
-                                    <span className="tm-base-vowel">{currentQ.vowel}</span>
-                                    <span className="tm-plus">+</span>
-                                    <span className="tm-tone-name">{currentQ.tone.name}</span>
-                                    <span className="tm-equals">=</span>
-                                    <span className="tm-question-mark">
-                                        {feedback !== 'idle' ? currentQ.correctAnswer : '?'}
-                                    </span>
-                                </div>
-                                {feedback !== 'idle' && getMeaning(currentQ.correctAnswer) && (
-                                    <div className="tm-meaning">
-                                        <strong>{currentQ.correctAnswer}</strong> — {getMeaning(currentQ.correctAnswer)}
-                                    </div>
-                                )}
-                                <div className="tm-options">
-                                    {currentQ.options.map((opt, i) => {
-                                        let cls = '';
-                                        if (feedback !== 'idle') {
-                                            if (opt === currentQ.correctAnswer) cls = 'correct-highlight';
-                                            else if (opt === selected) cls = 'wrong';
-                                            else cls = 'disabled';
-                                        } else if (opt === selected) cls = 'selected';
-                                        return (
-                                            <button key={i}
-                                                className={`tm-option ${cls}`}
-                                                onClick={() => feedback === 'idle' && setSelected(opt)}
-                                            >{opt}</button>
-                                        );
-                                    })}
-                                </div>
-                            </>
-                        )}
-
-                        {/* Decompose prompt */}
-                        {currentQ.type === 'decompose' && (
-                            <>
-                                <div className="tm-target-char">{currentQ.char}</div>
-                                {feedback !== 'idle' && getMeaning(currentQ.char) && (
-                                    <div className="tm-meaning">
-                                        <strong>{currentQ.char}</strong> — {getMeaning(currentQ.char)}
-                                    </div>
-                                )}
-                                <div className="tm-decompose-prompt">
-                                    <button
-                                        style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--color-primary)' }}
-                                        onClick={() => playCell(currentQ.char)}
-                                    >
-                                        <Volume2 size={20} style={{ verticalAlign: 'middle' }} />
-                                    </button>
-                                    &nbsp;Base vowel: <strong>{feedback !== 'idle' ? currentQ.vowel : '?'}</strong> — What tone is this?
-                                </div>
-                                <div className="tm-options">
-                                    {currentQ.options.map((opt, i) => {
-                                        let cls = 'text-option';
-                                        if (feedback !== 'idle') {
-                                            if (opt === currentQ.correctAnswer) cls += ' correct-highlight';
-                                            else if (opt === selected) cls += ' wrong';
-                                            else cls += ' disabled';
-                                        } else if (opt === selected) cls += ' selected';
-                                        return (
-                                            <button key={i}
-                                                className={`tm-option ${cls}`}
-                                                onClick={() => feedback === 'idle' && setSelected(opt)}
-                                            >{opt}</button>
-                                        );
-                                    })}
-                                </div>
-                            </>
-                        )}
-                    </div>
-
-                    {/* Footer */}
-                    <div className={`practice-bottom-bar ${feedback !== 'idle' ? feedback : ''}`}>
-                        {feedback !== 'idle' && (
-                            <div className="practice-feedback-bar">
-                                <div className={`practice-feedback-msg ${feedback}`}>
-                                    <div className={`practice-icon-circle ${feedback}`}>
-                                        {feedback === 'correct' ? <Check size={20} /> : <X size={20} />}
-                                    </div>
-                                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-                                        <span>{feedback === 'correct' ? 'Correct!' : 'Incorrect'}</span>
-                                        <span style={{ fontSize: '0.9rem', color: 'var(--text-muted)', fontWeight: 500 }}>
-                                            {feedback === 'correct'
-                                                ? (currentQ.type === 'combine' ? `${currentQ.vowel} + ${currentQ.tone.name} = ${currentQ.correctAnswer}` : `${currentQ.char} = ${currentQ.vowel} + ${currentQ.correctAnswer}`)
-                                                : `Answer: ${currentQ.correctAnswer}`}
-                                        </span>
-                                    </div>
-                                </div>
+                    {/* Combine prompt */}
+                    {currentQ.type === 'combine' && (
+                        <>
+                            <div className="tm-equation">
+                                <span className="tm-base-vowel">{currentQ.vowel}</span>
+                                <span className="tm-plus">+</span>
+                                <span className="tm-tone-name">{currentQ.tone.name}</span>
+                                <span className="tm-equals">=</span>
+                                <span className="tm-question-mark">
+                                    {feedback !== 'idle' ? currentQ.correctAnswer : '?'}
+                                </span>
                             </div>
-                        )}
+                            {feedback !== 'idle' && getMeaning(currentQ.correctAnswer) && (
+                                <div className="tm-meaning">
+                                    <strong>{currentQ.correctAnswer}</strong> — {getMeaning(currentQ.correctAnswer)}
+                                </div>
+                            )}
+                            <OptionGrid
+                                options={currentQ.options} cols={3} keyOf={(_, i) => i}
+                                isCorrect={(o) => o === currentQ.correctAnswer}
+                                isSelected={(o) => o === selected}
+                                revealed={feedback !== 'idle'}
+                                onPick={(o) => feedback === 'idle' && setSelected(o)}
+                            >
+                                {(opt) => <span style={{ fontSize: 26, fontWeight: 800, color: 'var(--text-main)' }}>{opt}</span>}
+                            </OptionGrid>
+                        </>
+                    )}
 
-                        {feedback === 'idle' ? (
-                            <SoundButton
-                                className={`practice-action-btn ${selected ? 'primary' : 'disabled'}`}
-                                onClick={handleCheck}
+                    {/* Decompose prompt */}
+                    {currentQ.type === 'decompose' && (
+                        <>
+                            <div className="tm-target-char">{currentQ.char}</div>
+                            {feedback !== 'idle' && getMeaning(currentQ.char) && (
+                                <div className="tm-meaning">
+                                    <strong>{currentQ.char}</strong> — {getMeaning(currentQ.char)}
+                                </div>
+                            )}
+                            <div className="tm-decompose-prompt">
+                                <button
+                                    style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--color-primary)' }}
+                                    onClick={() => playCell(currentQ.char)}
+                                >
+                                    <Volume2 size={20} style={{ verticalAlign: 'middle' }} />
+                                </button>
+                                &nbsp;Base vowel: <strong>{feedback !== 'idle' ? currentQ.vowel : '?'}</strong> — What tone is this?
+                            </div>
+                            <OptionGrid
+                                options={currentQ.options} cols={2} keyOf={(_, i) => i}
+                                isCorrect={(o) => o === currentQ.correctAnswer}
+                                isSelected={(o) => o === selected}
+                                revealed={feedback !== 'idle'}
+                                onPick={(o) => feedback === 'idle' && setSelected(o)}
                             >
-                                Check
-                            </SoundButton>
-                        ) : (
-                            <SoundButton
-                                className={`practice-action-btn primary`}
-                                style={feedback === 'incorrect' ? { background: 'var(--danger-color)', color: 'white', boxShadow: '0 4px 0 #b92b49' } : { background: 'var(--success-color)', color: '#1a1a1a', boxShadow: '0 4px 0 #049e75' }}
-                                onClick={handleContinue}
-                            >
-                                Continue
-                            </SoundButton>
+                                {(opt) => <span style={{ fontSize: 16, fontWeight: 700, color: 'var(--text-main)' }}>{opt}</span>}
+                            </OptionGrid>
+                        </>
+                    )}
+
+                    <FeedbackBar>
+                        {feedback !== 'idle' && (
+                            <FeedbackMessage correct={feedback === 'correct'}>
+                                {feedback === 'correct'
+                                    ? (currentQ.type === 'combine' ? `${currentQ.vowel} + ${currentQ.tone.name} = ${currentQ.correctAnswer}` : `${currentQ.char} = ${currentQ.vowel} + ${currentQ.correctAnswer}`)
+                                    : <>Answer: <strong>{currentQ.correctAnswer}</strong></>}
+                            </FeedbackMessage>
                         )}
-                    </div>
+                        {feedback === 'idle'
+                            ? <PrimaryButton onClick={handleCheck} disabled={!selected}>Check</PrimaryButton>
+                            : <PrimaryButton onClick={handleContinue}>Continue</PrimaryButton>}
+                    </FeedbackBar>
                 </div>
             )}
 
