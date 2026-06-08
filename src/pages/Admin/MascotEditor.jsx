@@ -123,7 +123,7 @@ const MascotEditor = () => {
         const slot = cat?.kind === 'slots'
             ? (cat.lines || []).find((l) => l.enabled !== false)?.key ?? null
             : null;
-        const r = getLine(selectedId, { lang: activeLang === 'zh' ? 'zh-s' : 'en', slot });
+        const r = getLine(selectedId, { lang: activeLang === 'zh' ? 'zh-t' : 'en', slot });
         setPreview(r ? { text: r.text } : { silent: true });
     };
 
@@ -191,7 +191,7 @@ const MascotEditor = () => {
                         <span style={{ fontSize: 13, color: 'var(--text-muted)' }}>Lang</span>
                         <div style={segWrap}>
                             <button style={segBtn(activeLang === 'en')} onClick={() => setActiveLang('en')}>EN</button>
-                            <button style={segBtn(activeLang === 'zh')} onClick={() => setActiveLang('zh')}>ZH</button>
+                            <button style={segBtn(activeLang === 'zh')} onClick={() => setActiveLang('zh')} title="Chinese (Traditional) — Simplified is auto-derived">中 (繁)</button>
                         </div>
                     </div>
 

@@ -17,9 +17,10 @@ import defaults from '../../content/mascotScripts.json';
 
 export const MASCOT_STORAGE_KEY = 'vnme_cms_mascot';
 
-// Simplified → Traditional, same as the dictionary/library surfaces. Chinese
-// lines are authored once in Simplified (text.zh); zh-t is derived at render.
-const s2t = Converter({ from: 'cn', to: 'tw' });
+// Traditional → Simplified. Chinese lines are authored once in Traditional
+// (text.zh) — the canonical form edited in the admin panel; zh-s is derived at
+// render via opencc.
+const t2s = Converter({ from: 'tw', to: 'cn' });
 
 // In-memory "recently shown" ring per category, so a pool never repeats a line
 // back-to-back. Resets on reload — intentional; it's a UX nicety, not state.
@@ -100,10 +101,12 @@ function weightedPick(lines) {
 function resolveText(line, lang, fallback = 'en', vars = null) {
     let text;
     if (lang === 'zh-t') {
-        const zh = line.text?.zh;
-        text = zh ? s2t(zh) : line.text?.[fallback] || line.text?.en || '';
-    } else if (lang === 'zh-s' || lang === 'zh') {
+        // text.zh is authored in Traditional — use it as-is.
         text = line.text?.zh || line.text?.[fallback] || line.text?.en || '';
+    } else if (lang === 'zh-s' || lang === 'zh') {
+        // Derive Simplified from the Traditional source.
+        const zh = line.text?.zh;
+        text = zh ? t2s(zh) : line.text?.[fallback] || line.text?.en || '';
     } else {
         text = line.text?.[lang] || line.text?.[fallback] || line.text?.en || '';
     }

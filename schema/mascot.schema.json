@@ -29,7 +29,7 @@
       "additionalProperties": false,
       "properties": {
         "en": { "type": "string" },
-        "zh": { "type": "string", "description": "Simplified; zh-t is derived at render via opencc" }
+        "zh": { "type": "string", "description": "Traditional (canonical); zh-s is derived at render via opencc" }
       }
     },
     "category": {
