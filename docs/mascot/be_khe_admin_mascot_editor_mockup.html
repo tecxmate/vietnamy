@@ -1,0 +1,135 @@
+<h2 class="sr-only">Mockup of the /admin/mascot editor: a global config bar with master enable and chattiness, a category list with per-category toggles, and an editable line list with per-line enable and weight controls.</h2>
+
+<div style="font-family: var(--font-sans); color: var(--color-text-primary);">
+
+  <div style="display:flex; align-items:center; gap:10px; margin:0 0 4px;">
+    <i class="ti ti-star" style="font-size:20px; color: var(--color-text-warning);" aria-hidden="true"></i>
+    <span style="font-size:18px; font-weight:500;">/admin/mascot — Bé Khế scripts</span>
+  </div>
+  <p style="font-size:13px; color: var(--color-text-secondary); margin:0 0 16px;">Same load → edit → save → toast pattern as your vocab and concept editors.</p>
+
+  <div style="background: var(--color-background-secondary); border-radius: var(--border-radius-lg); padding: 14px 16px; margin-bottom:16px;">
+    <div style="display:flex; flex-wrap:wrap; align-items:center; gap:20px;">
+      <div style="display:flex; align-items:center; gap:10px;">
+        <span style="width:34px; height:20px; border-radius:10px; background: var(--color-success); position:relative; display:inline-block;"><span style="position:absolute; right:2px; top:2px; width:16px; height:16px; border-radius:50%; background:#fff;"></span></span>
+        <span style="font-size:14px; font-weight:500;">Bé Khế enabled</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:8px;">
+        <span style="font-size:13px; color: var(--color-text-secondary);">Chattiness</span>
+        <span style="display:inline-flex; border:0.5px solid var(--color-border-secondary); border-radius: var(--border-radius-md); overflow:hidden; font-size:13px;">
+          <span style="padding:5px 10px; color: var(--color-text-secondary);">Minimal</span>
+          <span style="padding:5px 10px; background: var(--color-background-info); color: var(--color-text-info); font-weight:500;">Normal</span>
+          <span style="padding:5px 10px; color: var(--color-text-secondary);">Chatty</span>
+        </span>
+      </div>
+      <div style="display:flex; align-items:center; gap:8px;">
+        <span style="font-size:13px; color: var(--color-text-secondary);">Repeat window</span>
+        <span style="border:0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); padding:4px 10px; font-size:13px;">3</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:6px; margin-left:auto;">
+        <span style="font-size:13px; color: var(--color-text-secondary);">Lang</span>
+        <span style="display:inline-flex; border:0.5px solid var(--color-border-secondary); border-radius: var(--border-radius-md); overflow:hidden; font-size:13px;">
+          <span style="padding:4px 9px; background: var(--color-background-info); color: var(--color-text-info); font-weight:500;">EN</span>
+          <span style="padding:4px 9px; color: var(--color-text-secondary);">简</span>
+          <span style="padding:4px 9px; color: var(--color-text-secondary);">繁</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:grid; grid-template-columns: 210px minmax(0,1fr); gap:14px;">
+
+    <div style="background: var(--color-background-primary); border:0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding:8px;">
+      <p style="font-size:12px; color: var(--color-text-tertiary); margin:6px 8px 8px;">Categories</p>
+
+      <div style="display:flex; align-items:center; justify-content:space-between; padding:8px 10px; border-radius: var(--border-radius-md); background: var(--color-background-info);">
+        <span style="font-size:13px; font-weight:500; color: var(--color-text-info);">Correct answer</span>
+        <span style="font-size:11px; color: var(--color-text-info); border:0.5px solid var(--color-border-info); border-radius:10px; padding:1px 7px;">core</span>
+      </div>
+
+      <div style="display:flex; align-items:center; justify-content:space-between; padding:8px 10px;">
+        <span style="font-size:13px;">Wrong answer</span>
+        <span style="font-size:11px; color: var(--color-text-secondary); border:0.5px solid var(--color-border-tertiary); border-radius:10px; padding:1px 7px;">core</span>
+      </div>
+      <div style="display:flex; align-items:center; justify-content:space-between; padding:8px 10px;">
+        <span style="font-size:13px;">Streak combo</span>
+        <span style="font-size:11px; color: var(--color-text-secondary); border:0.5px solid var(--color-border-tertiary); border-radius:10px; padding:1px 7px;">flavor</span>
+      </div>
+      <div style="display:flex; align-items:center; justify-content:space-between; padding:8px 10px; opacity:0.55;">
+        <span style="font-size:13px;">Halfway nudge</span>
+        <span style="font-size:11px; color: var(--color-text-secondary); border:0.5px solid var(--color-border-tertiary); border-radius:10px; padding:1px 7px;">ambient</span>
+      </div>
+      <div style="display:flex; align-items:center; justify-content:space-between; padding:8px 10px;">
+        <span style="font-size:13px;">Unit intro</span>
+        <span style="font-size:11px; color: var(--color-text-secondary); border:0.5px solid var(--color-border-tertiary); border-radius:10px; padding:1px 7px;">flavor</span>
+      </div>
+      <div style="display:flex; align-items:center; justify-content:space-between; padding:8px 10px;">
+        <span style="font-size:13px;">Lesson done</span>
+        <span style="font-size:11px; color: var(--color-text-secondary); border:0.5px solid var(--color-border-tertiary); border-radius:10px; padding:1px 7px;">core</span>
+      </div>
+      <p style="font-size:11px; color: var(--color-text-tertiary); margin:8px 10px 4px;">ambient is dimmed — suppressed at "Normal"</p>
+    </div>
+
+    <div style="background: var(--color-background-primary); border:0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding:14px 16px;">
+      <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;">
+        <div>
+          <span style="font-size:15px; font-weight:500;">Correct answer</span>
+          <span style="font-size:12px; color: var(--color-text-secondary);">&nbsp; pool · core</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span style="font-size:13px; color: var(--color-text-secondary);">category</span>
+          <span style="width:34px; height:20px; border-radius:10px; background: var(--color-success); position:relative; display:inline-block;"><span style="position:absolute; right:2px; top:2px; width:16px; height:16px; border-radius:50%; background:#fff;"></span></span>
+        </div>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:14px; margin:8px 0 14px; font-size:12px; color: var(--color-text-tertiary);">
+        <span><i class="ti ti-bolt" style="font-size:14px; vertical-align:-2px;" aria-hidden="true"></i> fires on answer.correct</span>
+        <span style="border-left:0.5px solid var(--color-border-tertiary); padding-left:14px;"><i class="ti ti-lock" style="font-size:13px; vertical-align:-2px;" aria-hidden="true"></i> cheer · playSuccess · success (locked)</span>
+      </div>
+
+      <div style="border-top:0.5px solid var(--color-border-tertiary);"></div>
+
+      <div style="display:flex; align-items:center; gap:10px; padding:10px 0; border-bottom:0.5px solid var(--color-border-tertiary);">
+        <input type="checkbox" checked style="width:16px; height:16px;" aria-label="line enabled" />
+        <span style="font-size:12px; color: var(--color-text-secondary);">wt</span>
+        <span style="border:0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); padding:3px 8px; font-size:13px;">1</span>
+        <span style="flex:1; font-size:14px;">Đúng rồi! Nailed it.</span>
+        <i class="ti ti-trash" style="font-size:16px; color: var(--color-text-tertiary);" aria-label="delete line"></i>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:10px; padding:10px 0; border-bottom:0.5px solid var(--color-border-tertiary);">
+        <input type="checkbox" checked style="width:16px; height:16px;" aria-label="line enabled" />
+        <span style="font-size:12px; color: var(--color-text-secondary);">wt</span>
+        <span style="border:0.5px solid var(--color-border-secondary); border-radius: var(--border-radius-md); padding:3px 8px; font-size:13px;">2</span>
+        <span style="flex:1; font-size:14px;">Tuyệt! (That's 'awesome.')</span>
+        <i class="ti ti-trash" style="font-size:16px; color: var(--color-text-tertiary);" aria-label="delete line"></i>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:10px; padding:10px 0; border-bottom:0.5px solid var(--color-border-tertiary); opacity:0.5;">
+        <input type="checkbox" style="width:16px; height:16px;" aria-label="line disabled" />
+        <span style="font-size:12px; color: var(--color-text-secondary);">wt</span>
+        <span style="border:0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); padding:3px 8px; font-size:13px;">1</span>
+        <span style="flex:1; font-size:14px;">Nailed it. Don't even act surprised.</span>
+        <i class="ti ti-trash" style="font-size:16px; color: var(--color-text-tertiary);" aria-label="delete line"></i>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:6px; padding:12px 0 4px; font-size:13px; color: var(--color-text-info);">
+        <i class="ti ti-plus" style="font-size:15px;" aria-hidden="true"></i> Add line
+      </div>
+
+      <div style="background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding:10px 12px; margin-top:10px; display:flex; align-items:center; gap:10px;">
+        <span style="border:0.5px solid var(--color-border-secondary); border-radius: var(--border-radius-md); padding:4px 10px; font-size:13px; display:inline-flex; align-items:center; gap:5px;"><i class="ti ti-player-play" style="font-size:14px;" aria-hidden="true"></i> Roll a line</span>
+        <span style="font-size:14px; color: var(--color-text-secondary);">→ &nbsp;“Tuyệt! (That's 'awesome.')”</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex; align-items:center; justify-content:space-between; margin-top:14px;">
+    <span style="font-size:13px; color: var(--color-text-secondary); display:inline-flex; align-items:center; gap:6px;"><i class="ti ti-refresh" style="font-size:15px;" aria-hidden="true"></i> Reset category to default</span>
+    <span style="display:inline-flex; gap:10px; align-items:center;">
+      <span style="font-size:13px; color: var(--color-text-success); display:inline-flex; align-items:center; gap:5px;"><i class="ti ti-check" style="font-size:15px;" aria-hidden="true"></i> Saved</span>
+      <span style="background: var(--color-background-info); color: var(--color-text-info); font-weight:500; font-size:14px; padding:7px 18px; border-radius: var(--border-radius-md);">Save</span>
+    </span>
+  </div>
+
+</div>

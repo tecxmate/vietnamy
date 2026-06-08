@@ -1,0 +1,80 @@
+/* Bé Khế motion — cheap CSS keyframes keyed off the expression. Every animation
+   transforms only the inline SVG, never its layout box, so dropping a <BeKhe/>
+   into any surface never shifts the surrounding UI. Respects reduced-motion. */
+
+.bekhe {
+    display: inline-block;
+    overflow: visible;
+    transform-origin: center bottom;
+    will-change: transform;
+}
+
+/* idle / reading / sleepy — a gentle breathing bob */
+.bekhe--idle,
+.bekhe--reading,
+.bekhe--sleepy {
+    animation: bekhe-bob 3s ease-in-out infinite;
+}
+
+/* cheer — quick pop on each correct answer (matches the 220ms spec) */
+.bekhe--cheer {
+    animation: bekhe-pop 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* celebrate — a livelier double bounce for lesson complete / streaks */
+.bekhe--celebrate {
+    animation: bekhe-bounce 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* oops — soft, kind head-tilt wobble; never a harsh shake */
+.bekhe--oops {
+    animation: bekhe-wobble 0.6s ease-in-out;
+}
+
+/* wow — scale-in with a little overshoot */
+.bekhe--wow {
+    animation: bekhe-popin 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* thinking — slow, low-amplitude bob */
+.bekhe--thinking {
+    animation: bekhe-bob 2.4s ease-in-out infinite;
+}
+
+@keyframes bekhe-bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+}
+
+@keyframes bekhe-pop {
+    0% { transform: scale(1); }
+    55% { transform: scale(1.15); }
+    100% { transform: scale(1); }
+}
+
+@keyframes bekhe-bounce {
+    0% { transform: scale(1) translateY(0); }
+    30% { transform: scale(1.12) translateY(-6px); }
+    55% { transform: scale(0.98) translateY(0); }
+    75% { transform: scale(1.06) translateY(-3px); }
+    100% { transform: scale(1) translateY(0); }
+}
+
+@keyframes bekhe-wobble {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-4deg); }
+    75% { transform: rotate(4deg); }
+}
+
+@keyframes bekhe-popin {
+    0% { transform: scale(0.4); opacity: 0; }
+    70% { transform: scale(1.12); opacity: 1; }
+    100% { transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .bekhe,
+    .bekhe[class*='bekhe--'] {
+        animation: none !important;
+    }
+}

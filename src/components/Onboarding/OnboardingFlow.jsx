@@ -4,6 +4,8 @@ import { useUser } from '../../context/UserContext';
 import { useAuth } from '../../context/AuthContext';
 import { buildTtsUrl } from '../../utils/speak';
 import { useT } from '../../lib/i18n';
+import { getLine } from '../../lib/mascot';
+import BeKhe from '../BeKhe/BeKhe';
 
 const VOICE_OPTIONS = [
     { id: 'google', displayOrder: 1, displayName: 'Ms. Google', description: 'Female Northern Accent', dialect: 'north', isOfficialAccent: true },
@@ -92,6 +94,13 @@ const OnboardingFlow = ({ onComplete, requireAuth = false }) => {
 
     const nextStep = () => setCurrentStep(prev => prev + 1);
 
+    // Bé Khế speaks in the language the user is picking right now.
+    const mascotLang = onboardingData.nativeLang || 'en';
+    const welcomeLine = getLine('welcome', { lang: mascotLang });
+    const teaserIntro = getLine('teaser', { lang: mascotLang, slot: 'intro' });
+    const teaserReveal = getLine('teaser', { lang: mascotLang, slot: 'reveal_diff' });
+    const teaserHook = getLine('teaser', { lang: mascotLang, slot: 'hook' });
+
     const screens = [
         // Screen 0: Welcome + Sign In
         <div key="s0" className="onboarding-screen">
@@ -106,6 +115,14 @@ const OnboardingFlow = ({ onComplete, requireAuth = false }) => {
                     />
                 </div>
                 <h1 className="onboarding-title" style={{ fontSize: 32 }}>{t('onboarding_welcome_title')}</h1>
+                {welcomeLine && (
+                    <div className="flex-col items-center" style={{ gap: 8, marginTop: 12 }}>
+                        <BeKhe expression={welcomeLine.expression} size={72} />
+                        <p style={{ fontSize: 15, color: 'var(--text-muted)', textAlign: 'center', maxWidth: 320, margin: 0, lineHeight: 1.5 }}>
+                            {welcomeLine.text}
+                        </p>
+                    </div>
+                )}
             </div>
             <div className="flex-col gap-4">
                 {requireAuth ? (
@@ -381,6 +398,14 @@ const OnboardingFlow = ({ onComplete, requireAuth = false }) => {
         <div key="s_teaser" className="onboarding-screen">
             <div className="onboarding-content items-center text-center">
                 <h2 style={{ fontSize: 24, marginBottom: 8 }}>{t('onboarding_teaser_title', 'Can you hear it?')}</h2>
+                {(teaserIntro || teaserReveal || teaserHook) && (
+                    <BeKhe expression="wow" size={72} className="mb-2" />
+                )}
+                {teaserIntro && (
+                    <p style={{ fontSize: 15, color: 'var(--text-main)', marginBottom: 8, maxWidth: 320, lineHeight: 1.5 }}>
+                        {teaserIntro.text}
+                    </p>
+                )}
                 <p style={{ fontSize: 16, color: 'var(--text-muted)', marginBottom: 28, maxWidth: 320 }}>
                     {t('onboarding_teaser_sub', 'Tap to listen. Same letters — but is it the same word?')}
                 </p>
@@ -419,9 +444,20 @@ const OnboardingFlow = ({ onComplete, requireAuth = false }) => {
                             {t('onboarding_teaser_reveal_title', 'Different words!')}
                         </p>
                         <p style={{ fontSize: 16, marginBottom: 8 }}><strong>ma</strong> = {t('onboarding_teaser_ma', 'ghost')} · <strong>mà</strong> = {t('onboarding_teaser_mafall', 'but')}</p>
-                        <p style={{ fontSize: 14, color: 'var(--text-muted)', lineHeight: 1.5 }}>
-                            {t('onboarding_teaser_reveal_body', 'Vietnamese has 6 tones — the same letters change meaning with pitch. That’s what we’ll train first.')}
-                        </p>
+                        {teaserReveal ? (
+                            <p style={{ fontSize: 14, color: 'var(--text-muted)', lineHeight: 1.5 }}>
+                                {teaserReveal.text}
+                            </p>
+                        ) : (
+                            <p style={{ fontSize: 14, color: 'var(--text-muted)', lineHeight: 1.5 }}>
+                                {t('onboarding_teaser_reveal_body', 'Vietnamese has 6 tones — the same letters change meaning with pitch. That’s what we’ll train first.')}
+                            </p>
+                        )}
+                        {teaserHook && (
+                            <p style={{ fontSize: 14, color: 'var(--text-main)', lineHeight: 1.5, marginTop: 10, fontWeight: 600 }}>
+                                {teaserHook.text}
+                            </p>
+                        )}
                     </div>
                 )}
             </div>

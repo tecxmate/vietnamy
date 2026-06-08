@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { ArrowRight, CheckCircle, Navigation } from 'lucide-react';
 import { useT } from '../../lib/i18n';
+import { useUser } from '../../context/UserContext';
+import { getLine } from '../../lib/mascot';
+import BeKhe from '../BeKhe/BeKhe';
 import './AppTutorial.css';
 
 // ─── Tutorial step definitions ────────────────────────────────────────────────
@@ -56,6 +59,7 @@ const STEP_DEFS = [
         title: 'app_tutorial_roadmap_title',
         desc: 'app_tutorial_roadmap_desc',
         tabLabel: 'nav_study',
+        mascotSlot: 'roadmap',
     },
     {
         tab: 'dictionary',
@@ -83,6 +87,7 @@ const STEP_DEFS = [
         title: 'app_tutorial_navigation_title',
         desc: 'app_tutorial_navigation_desc',
         tabLabel: 'nav_home',
+        mascotSlot: 'done',
     },
 ];
 
@@ -113,6 +118,8 @@ const PAD = 8; // spotlight padding around element
 // ─── AppTutorial component ────────────────────────────────────────────────────
 const AppTutorial = ({ activeTab, setActiveTab, onComplete, allowedTabs }) => {
     const t = useT();
+    const { userProfile } = useUser();
+    const mascotLang = userProfile?.nativeLang || 'en';
     const [stepIdx, setStepIdx] = useState(0);
     const [rect, setRect] = useState(null);
     const [exiting, setExiting] = useState(false);
@@ -135,6 +142,7 @@ const AppTutorial = ({ activeTab, setActiveTab, onComplete, allowedTabs }) => {
     }));
     const step = steps[stepIdx];
     const isLast = stepIdx === steps.length - 1;
+    const mascotLine = step.mascotSlot ? getLine('tutorial', { lang: mascotLang, slot: step.mascotSlot }) : null;
 
     // Align the active tab to the first step on mount — a shell can default to a
     // different tab than the tour's first step.
@@ -329,6 +337,16 @@ const AppTutorial = ({ activeTab, setActiveTab, onComplete, allowedTabs }) => {
                     {/* Content */}
                     <h3 className="tutorial-title">{step.title}</h3>
                     <p className="tutorial-desc">{step.desc}</p>
+
+                    {/* Bé Khế chimes in on matching steps */}
+                    {mascotLine && (
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginTop: 4, marginBottom: 4 }}>
+                            <BeKhe expression={mascotLine.expression} size={48} style={{ flexShrink: 0 }} />
+                            <p style={{ fontSize: 13.5, color: 'var(--text-muted)', lineHeight: 1.45, margin: 0 }}>
+                                {mascotLine.text}
+                            </p>
+                        </div>
+                    )}
 
                     {/* Progress dots */}
                     <div className="tutorial-progress">
