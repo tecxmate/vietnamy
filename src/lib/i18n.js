@@ -207,7 +207,7 @@ const en = {
     sounds_consonant_final_5_sound: 'Unreleased "t"',
     roadmap_unit_title: 'Unit {unit} — {title}',
     roadmap_type_vocabulary: 'Vocabulary',
-    roadmap_type_phonetics: 'Phonetics',
+    roadmap_type_phonetics: 'Pronunciation',
     roadmap_type_grammar: 'Grammar',
     roadmap_type_scene: 'Scene',
     roadmap_type_quiz: 'Quiz',

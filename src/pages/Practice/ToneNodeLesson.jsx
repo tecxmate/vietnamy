@@ -7,7 +7,7 @@ import { usePracticeCompletion } from '../../hooks/usePracticeCompletion';
 // (hear-only: learn the pitch shape, then identify by ear), with a final
 // production node. Each entry is one roadmap node (/practice/tones/<level>).
 const LEVELS = {
-    level1: { tones: ['ngang', 'huyen'], steps: ['learn', 'identify'], title: 'Level vs Falling' },
+    level1: { tones: ['ngang', 'huyen'], steps: ['intro', 'learn', 'identify'], title: 'Level vs Falling' },
     level2: { tones: ['ngang', 'huyen', 'sac'], steps: ['learn', 'identify'], title: 'Add the Rising tone' },
     level3: { tones: ['ngang', 'huyen', 'sac', 'hoi'], steps: ['learn', 'identify'], title: 'Add the Dipping tone' },
     level4: { tones: ['hoi', 'nga'], steps: ['learn', 'identify'], title: 'Hỏi vs Ngã — the tricky pair' },

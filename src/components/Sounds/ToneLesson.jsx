@@ -60,6 +60,7 @@ export default function ToneLesson({ tones = TONE_LIST, steps = ['learn', 'ident
             {title && step === steps[0] && (
                 <p style={{ textAlign: 'center', fontSize: 17, fontWeight: 800, margin: '14px 16px 0' }}>{title}</p>
             )}
+            {step === 'intro' && <IntroStep tones={tones} onDone={() => advance('intro')} />}
             {step === 'learn' && <LearnStep tones={tones} onDone={() => advance('learn')} />}
             {step === 'identify' && (
                 <IdentifyStep tones={tones} onDone={(score) => { setIdentifyScore(score); advance('identify'); }} />
@@ -114,6 +115,42 @@ function StepDots({ steps: stepIds, step }) {
                     </div>
                 );
             })}
+        </div>
+    );
+}
+
+// ─── Step 0: Intro — why tones matter (minimal pairs) ──────────────
+function IntroStep({ tones, onDone }) {
+    const examples = tones.map(t => ({ tone: t, ...SPEAK_WORD[t.id] }));
+    return (
+        <div style={{ padding: 16, paddingBottom: 120 }}>
+            <div style={{ borderRadius: 18, border: '2px solid var(--border-color)', backgroundColor: 'var(--surface-color)', padding: 20 }}>
+                <div style={{ fontSize: 12, textTransform: 'uppercase', letterSpacing: 2, color: '#1CB0F6', fontWeight: 800, marginBottom: 8 }}>Key idea</div>
+                <h2 style={{ margin: '0 0 10px', fontSize: 20, fontWeight: 800 }}>Same letters, different word</h2>
+                <p style={{ margin: '0 0 16px', fontSize: 15, color: 'var(--text-muted)', lineHeight: 1.5 }}>
+                    In Vietnamese the <strong>pitch</strong> of a syllable changes its meaning — same spelling, different tone, different word. Tap to hear:
+                </p>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                    {examples.map(ex => (
+                        <button key={ex.tone.id} onClick={() => speak(ex.word, 0.7)} style={{
+                            display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10,
+                            padding: '12px 16px', borderRadius: 12, border: `2px solid ${ex.tone.color}`,
+                            backgroundColor: `${ex.tone.color}10`, cursor: 'pointer', fontFamily: 'inherit',
+                        }}>
+                            <span style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                                <Volume2 size={18} color={ex.tone.color} />
+                                <span style={{ fontSize: 22, fontWeight: 800, color: ex.tone.color }}>{ex.word}</span>
+                            </span>
+                            <span style={{ fontSize: 13, color: 'var(--text-muted)' }}>"{ex.meaning}" · {ex.tone.label}</span>
+                        </button>
+                    ))}
+                </div>
+            </div>
+            <button onClick={onDone} style={{
+                width: '100%', marginTop: 16, padding: 14, borderRadius: 12, border: 'none',
+                backgroundColor: '#1CB0F6', color: '#fff', fontWeight: 800, fontSize: 16, cursor: 'pointer',
+                fontFamily: 'inherit', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6,
+            }}>I&apos;m ready <ChevronRight size={18} /></button>
         </div>
     );
 }

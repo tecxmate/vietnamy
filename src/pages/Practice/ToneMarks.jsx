@@ -3,6 +3,8 @@ import { useState, useEffect, useMemo, useCallback } from 'react';
 import { Volume2, Check, X, RotateCw, ArrowLeft, Trophy, Flame, Star, ChevronRight } from 'lucide-react';
 import { useTTS } from '../../hooks/useTTS';
 import { usePracticeCompletion } from '../../hooks/usePracticeCompletion';
+import { TONE_CONTOURS } from '../../data/toneContours';
+import PitchGraph from '../../components/Sounds/PitchGraph';
 import './ToneMarks.css';
 import { playSuccess, playError } from '../../utils/sound';
 import SoundButton from '../../components/SoundButton';
@@ -404,19 +406,28 @@ export default function ToneMarks({ vowels = ALL_VOWELS, title = '🔤 Dấu —
                         ))}
                     </div>
 
-                    {/* Tone cards for the selected vowel */}
+                    {/* Tone cards for the selected vowel — each shows its pitch shape,
+                        echoing the ear lesson so marks connect to the sound. */}
                     <div className="tm-tone-cards">
                         {TONE_MAP[selectedVowel].map((char, ti) => {
                             const noAudio = isNoAudio(char);
+                            const td = TONE_CONTOURS[TONES[ti].id];
+                            const tcolor = td?.color || 'var(--primary-color)';
                             return (
                                 <button
                                     key={ti}
                                     className={`tm-tone-card ${playingCell === char ? 'playing' : ''} ${noAudio ? 'no-audio' : ''}`}
+                                    style={{ borderColor: tcolor }}
                                     onClick={() => !noAudio && playCell(char)}
                                 >
-                                    <span className="tm-tone-card-char">{char}</span>
+                                    <span className="tm-tone-card-char" style={{ color: tcolor }}>{char}</span>
                                     <span className="tm-tone-card-name">{TONES[ti].name}</span>
-                                    <span className="tm-tone-card-label">{TONES[ti].label}</span>
+                                    <span className="tm-tone-card-label" style={{ color: tcolor }}>{TONES[ti].label}</span>
+                                    {td?.contour && (
+                                        <div style={{ width: '100%', margin: '4px 0' }}>
+                                            <PitchGraph contour={td.contour} color={tcolor} height={44} />
+                                        </div>
+                                    )}
                                     {getMeaning(char) !== 'no meaning' && (
                                         <span className="tm-tone-card-meaning">{getMeaning(char)}</span>
                                     )}

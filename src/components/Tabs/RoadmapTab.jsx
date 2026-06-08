@@ -43,6 +43,8 @@ function getNodeLabel(node, style, t) {
     // Mini-tests get "Quiz" label, module tests show their module type
     if (node.test_scope === 'module') return t('roadmap_type_quiz');
     if (node.test_scope === 'unit') return t('roadmap_type_quizzes');
+    // Foundations nodes are pronunciation drills, not vocab lessons.
+    if (node.unit_id === 'phase_0_foundations') return t('roadmap_type_phonetics');
     const labels = {
         Vocabulary: 'roadmap_type_vocabulary',
         Phonetics: 'roadmap_type_phonetics',
