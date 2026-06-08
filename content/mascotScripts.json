@@ -16,18 +16,18 @@
       "trigger": "answer.correct",
       "fx": { "expression": "cheer", "sound": "playSuccess", "haptic": "success" },
       "lines": [
-        { "id": "c1", "enabled": true, "weight": 1, "text": { "en": "Đúng rồi! That means 'correct' — and you are!", "zh": "" } },
-        { "id": "c2", "enabled": true, "weight": 1, "text": { "en": "Tuyệt! (That's 'awesome,' by the way.) 😎", "zh": "" } },
-        { "id": "c3", "enabled": true, "weight": 1, "text": { "en": "YES. You heard it. I saw your ears work.", "zh": "" } },
-        { "id": "c4", "enabled": true, "weight": 1, "text": { "en": "Giỏi quá! So clever.", "zh": "" } },
-        { "id": "c5", "enabled": true, "weight": 1, "text": { "en": "Nailed it. Don't even act surprised.", "zh": "" } },
-        { "id": "c6", "enabled": true, "weight": 1, "text": { "en": "Ooh, smooth. Do it again, I liked that.", "zh": "" } },
-        { "id": "c7", "enabled": true, "weight": 1, "text": { "en": "Correct! Okay you're kind of good at this.", "zh": "" } },
-        { "id": "c8", "enabled": true, "weight": 1, "text": { "en": "That's the one! *leaf-sprouts wiggle*", "zh": "" } },
-        { "id": "c9", "enabled": true, "weight": 1, "text": { "en": "Perfect. We make a great team, huh?", "zh": "" } },
-        { "id": "c10", "enabled": true, "weight": 1, "text": { "en": "Yep yep yep! Keep that energy.", "zh": "" } },
-        { "id": "c11", "enabled": true, "weight": 1, "text": { "en": "Chuẩn! ('Spot on.') Look at you go.", "zh": "" } },
-        { "id": "c12", "enabled": true, "weight": 1, "text": { "en": "Easy for you now, apparently. Proud!", "zh": "" } }
+        { "id": "c1", "enabled": true, "weight": 1, "text": { "en": "Đúng rồi! That means 'correct' — and you are!", "zh": "Đúng rồi！意思是'对了'——你就是对的！" } },
+        { "id": "c2", "enabled": true, "weight": 1, "text": { "en": "Tuyệt! (That's 'awesome,' by the way.) 😎", "zh": "Tuyệt！(顺便说，这是'太棒了'的意思。) 😎" } },
+        { "id": "c3", "enabled": true, "weight": 1, "text": { "en": "YES. You heard it. I saw your ears work.", "zh": "没错！你听出来了。我看到你的耳朵在认真工作。" } },
+        { "id": "c4", "enabled": true, "weight": 1, "text": { "en": "Giỏi quá! So clever.", "zh": "Giỏi quá！太聪明啦。" } },
+        { "id": "c5", "enabled": true, "weight": 1, "text": { "en": "Nailed it. Don't even act surprised.", "zh": "完美搞定。别装作很意外的样子。" } },
+        { "id": "c6", "enabled": true, "weight": 1, "text": { "en": "Ooh, smooth. Do it again, I liked that.", "zh": "哦，真顺！再来一次，我喜欢。" } },
+        { "id": "c7", "enabled": true, "weight": 1, "text": { "en": "Correct! Okay you're kind of good at this.", "zh": "对了！好吧，你还挺有一套的。" } },
+        { "id": "c8", "enabled": true, "weight": 1, "text": { "en": "That's the one! *leaf-sprouts wiggle*", "zh": "就是这个！*头顶的小叶子开心地抖了抖*" } },
+        { "id": "c9", "enabled": true, "weight": 1, "text": { "en": "Perfect. We make a great team, huh?", "zh": "完美。咱俩真是绝配，对吧？" } },
+        { "id": "c10", "enabled": true, "weight": 1, "text": { "en": "Yep yep yep! Keep that energy.", "zh": "对对对！保持这股劲儿！" } },
+        { "id": "c11", "enabled": true, "weight": 1, "text": { "en": "Chuẩn! ('Spot on.') Look at you go.", "zh": "Chuẩn！('完全正确。') 看你多棒。" } },
+        { "id": "c12", "enabled": true, "weight": 1, "text": { "en": "Easy for you now, apparently. Proud!", "zh": "现在对你来说太轻松了嘛。我真骄傲！" } }
       ]
     },
     "wrong": {
@@ -39,16 +39,16 @@
       "trigger": "answer.incorrect",
       "fx": { "expression": "oops", "sound": "playError", "haptic": "error" },
       "lines": [
-        { "id": "w1", "enabled": true, "weight": 1, "text": { "en": "Không sao! ('No worries.') Here's the one we wanted:", "zh": "" } },
-        { "id": "w2", "enabled": true, "weight": 1, "text": { "en": "Ooh, so close. That tone is genuinely sneaky. Look:", "zh": "" } },
-        { "id": "w3", "enabled": true, "weight": 1, "text": { "en": "Honestly? That one got me too. The answer's:", "zh": "" } },
-        { "id": "w4", "enabled": true, "weight": 1, "text": { "en": "Cố lên! ('Keep going!') Not quite — it's actually:", "zh": "" } },
-        { "id": "w5", "enabled": true, "weight": 1, "text": { "en": "Almost! Tiny miss. The word we needed:", "zh": "" } },
-        { "id": "w6", "enabled": true, "weight": 1, "text": { "en": "Nope — but a GOOD nope, you were close. It's:", "zh": "" } },
-        { "id": "w7", "enabled": true, "weight": 1, "text": { "en": "Hmm, not this time. Let's see the right one together:", "zh": "" } },
-        { "id": "w8", "enabled": true, "weight": 1, "text": { "en": "That meant something else (sneaky language). Here you go:", "zh": "" } },
-        { "id": "w9", "enabled": true, "weight": 1, "text": { "en": "No biggie — even my leaves get confused. Correct one:", "zh": "" } },
-        { "id": "w10", "enabled": true, "weight": 1, "text": { "en": "Eh, language is tricky. Here's the fix:", "zh": "" } }
+        { "id": "w1", "enabled": true, "weight": 1, "text": { "en": "Không sao! ('No worries.') Here's the one we wanted:", "zh": "Không sao！('没关系。') 我们要的其实是这个：" } },
+        { "id": "w2", "enabled": true, "weight": 1, "text": { "en": "Ooh, so close. That tone is genuinely sneaky. Look:", "zh": "哦，差一点点。那个声调真的很狡猾。看：" } },
+        { "id": "w3", "enabled": true, "weight": 1, "text": { "en": "Honestly? That one got me too. The answer's:", "zh": "说实话？这个我也答错过。答案是：" } },
+        { "id": "w4", "enabled": true, "weight": 1, "text": { "en": "Cố lên! ('Keep going!') Not quite — it's actually:", "zh": "Cố lên！('加油！') 还差一点——其实是：" } },
+        { "id": "w5", "enabled": true, "weight": 1, "text": { "en": "Almost! Tiny miss. The word we needed:", "zh": "就差一点！小小的失误。我们要的词是：" } },
+        { "id": "w6", "enabled": true, "weight": 1, "text": { "en": "Nope — but a GOOD nope, you were close. It's:", "zh": "不对——但是个'好的不对'，你很接近了。是：" } },
+        { "id": "w7", "enabled": true, "weight": 1, "text": { "en": "Hmm, not this time. Let's see the right one together:", "zh": "嗯，这次不对。我们一起看看正确的：" } },
+        { "id": "w8", "enabled": true, "weight": 1, "text": { "en": "That meant something else (sneaky language). Here you go:", "zh": "那个是别的意思（这语言真狡猾）。给你：" } },
+        { "id": "w9", "enabled": true, "weight": 1, "text": { "en": "No biggie — even my leaves get confused. Correct one:", "zh": "没什么大不了——连我的叶子都会搞混。正确的是：" } },
+        { "id": "w10", "enabled": true, "weight": 1, "text": { "en": "Eh, language is tricky. Here's the fix:", "zh": "唉，语言就是这么难搞。这是正确答案：" } }
       ]
     },
     "retry": {
@@ -60,9 +60,9 @@
       "trigger": "answer.incorrect.repeat",
       "fx": { "expression": "thinking", "sound": "playError", "haptic": "error" },
       "lines": [
-        { "id": "r1", "enabled": true, "weight": 1, "text": { "en": "Okay let's slow WAY down and do it together. Listen again:", "zh": "" } },
-        { "id": "r2", "enabled": true, "weight": 1, "text": { "en": "Same one again — no rush. Here's a trick to remember it:", "zh": "" } },
-        { "id": "r3", "enabled": true, "weight": 1, "text": { "en": "Take a breath. We'll get this one. Tiny hint:", "zh": "" } }
+        { "id": "r1", "enabled": true, "weight": 1, "text": { "en": "Okay let's slow WAY down and do it together. Listen again:", "zh": "好，我们放——慢——速度，一起来。再听一遍：" } },
+        { "id": "r2", "enabled": true, "weight": 1, "text": { "en": "Same one again — no rush. Here's a trick to remember it:", "zh": "又是这一个——别急。教你一个记住它的小窍门：" } },
+        { "id": "r3", "enabled": true, "weight": 1, "text": { "en": "Take a breath. We'll get this one. Tiny hint:", "zh": "深呼吸。这个我们一定能拿下。小提示：" } }
       ]
     },
     "complete": {
@@ -74,11 +74,11 @@
       "trigger": "lesson.complete",
       "fx": { "expression": "celebrate", "sound": "playCelebration", "haptic": "success" },
       "lines": [
-        { "id": "lc1", "enabled": true, "weight": 1, "text": { "en": "Lesson DONE! 🌟 {name}, you earned every bit of that gold.", "zh": "" } },
-        { "id": "lc2", "enabled": true, "weight": 1, "text": { "en": "And... finished! Feel how that got easier near the end? That's you learning in real time.", "zh": "" } },
-        { "id": "lc3", "enabled": true, "weight": 1, "text": { "en": "We did it! High-five. (I have little starfruit hands but I mean it.)", "zh": "" } },
-        { "id": "lc4", "enabled": true, "weight": 1, "text": { "en": "Complete! The tree grew a little taller today. 🌱", "zh": "" } },
-        { "id": "lc5", "enabled": true, "weight": 1, "text": { "en": "That's a wrap! You knew zero of those words this morning. Wild.", "zh": "" } }
+        { "id": "lc1", "enabled": true, "weight": 1, "text": { "en": "Lesson DONE! 🌟 {name}, you earned every bit of that gold.", "zh": "这课搞定啦！🌟 {name}，这些金币你每一枚都当之无愧。" } },
+        { "id": "lc2", "enabled": true, "weight": 1, "text": { "en": "And... finished! Feel how that got easier near the end? That's you learning in real time.", "zh": "然后……完成！感觉到快结束时越来越容易了吗？那就是你在实时进步。" } },
+        { "id": "lc3", "enabled": true, "weight": 1, "text": { "en": "We did it! High-five. (I have little starfruit hands but I mean it.)", "zh": "我们做到了！击个掌。(虽然我只有小小的杨桃手，但我是认真的。)" } },
+        { "id": "lc4", "enabled": true, "weight": 1, "text": { "en": "Complete! The tree grew a little taller today. 🌱", "zh": "完成！今天这棵树又长高了一点。🌱" } },
+        { "id": "lc5", "enabled": true, "weight": 1, "text": { "en": "That's a wrap! You knew zero of those words this morning. Wild.", "zh": "收工！今天早上你这些词一个都不会呢。太厉害了。" } }
       ]
     },
     "complete_perfect": {
@@ -90,7 +90,7 @@
       "trigger": "lesson.complete.perfect",
       "fx": { "expression": "celebrate", "sound": "playCelebration", "haptic": "success" },
       "lines": [
-        { "id": "lcp1", "enabled": true, "weight": 1, "text": { "en": "PERFECT lesson — no misses! Tuyệt vời! I'm framing this moment.", "zh": "" } }
+        { "id": "lcp1", "enabled": true, "weight": 1, "text": { "en": "PERFECT lesson — no misses! Tuyệt vời! I'm framing this moment.", "zh": "完美一课——一个都没错！Tuyệt vời！这一刻我要裱起来收藏。" } }
       ]
     },
     "halfway": {
@@ -102,9 +102,9 @@
       "trigger": "lesson.halfway",
       "fx": { "expression": "cheer", "sound": "playNotification", "haptic": "notification" },
       "lines": [
-        { "id": "h1", "enabled": true, "weight": 1, "text": { "en": "Halfway! The hard part's behind us.", "zh": "" } },
-        { "id": "h2", "enabled": true, "weight": 1, "text": { "en": "We're at the top of the hill — easy from here.", "zh": "" } },
-        { "id": "h3", "enabled": true, "weight": 1, "text": { "en": "Look, halfway already. Time flies when you're brilliant.", "zh": "" } }
+        { "id": "h1", "enabled": true, "weight": 1, "text": { "en": "Halfway! The hard part's behind us.", "zh": "过半啦！难的部分已经过去了。" } },
+        { "id": "h2", "enabled": true, "weight": 1, "text": { "en": "We're at the top of the hill — easy from here.", "zh": "我们到山顶了——接下来就轻松啦。" } },
+        { "id": "h3", "enabled": true, "weight": 1, "text": { "en": "Look, halfway already. Time flies when you're brilliant.", "zh": "看，已经一半了。你这么厉害，时间过得真快。" } }
       ]
     },
     "streak_combo": {
@@ -116,9 +116,9 @@
       "trigger": "lesson.streak",
       "fx": { "expression": "celebrate", "sound": "playCelebration", "haptic": "success" },
       "lines": [
-        { "id": "s3", "key": "3", "enabled": true, "text": { "en": "Three in a row! We're cooking. 🔥", "zh": "" } },
-        { "id": "s5", "key": "5", "enabled": true, "text": { "en": "FIVE straight! Giỏi quá! Okay now I'm hyped.", "zh": "" } },
-        { "id": "s10", "key": "10", "enabled": true, "text": { "en": "TEN. In. A. ROW. Who ARE you?? Incredible.", "zh": "" } }
+        { "id": "s3", "key": "3", "enabled": true, "text": { "en": "Three in a row! We're cooking. 🔥", "zh": "连对三个！状态来了。🔥" } },
+        { "id": "s5", "key": "5", "enabled": true, "text": { "en": "FIVE straight! Giỏi quá! Okay now I'm hyped.", "zh": "连续五个！Giỏi quá！好吧我现在超激动。" } },
+        { "id": "s10", "key": "10", "enabled": true, "text": { "en": "TEN. In. A. ROW. Who ARE you?? Incredible.", "zh": "连。对。十。个。你到底是谁啊？？太不可思议了。" } }
       ]
     },
     "unit_intro": {
@@ -130,15 +130,15 @@
       "trigger": "lesson.unitStart",
       "fx": { "expression": "reading", "sound": null, "haptic": null },
       "lines": [
-        { "id": "u1", "key": "unit_1", "enabled": true, "text": { "en": "Our first real words! Greetings and names — exactly what you'd say walking into a room in Vietnam. Let's make a first impression.", "zh": "" } },
-        { "id": "u2", "key": "unit_2", "enabled": true, "text": { "en": "Time to be polite. Vietnamese has special words just for being nice, and people NOTICE when you use them. Free charm points.", "zh": "" } },
-        { "id": "u3", "key": "unit_3", "enabled": true, "text": { "en": "Café time! ☕ My favorite. We're going to order drinks like we belong here.", "zh": "" } },
-        { "id": "u4", "key": "unit_4", "enabled": true, "text": { "en": "Food and prices — the two things you'll use most, honestly. Let's not overpay, okay?", "zh": "" } },
-        { "id": "u5", "key": "unit_5", "enabled": true, "text": { "en": "The market! It's loud, it's fun, and we're going to bargain a little. Confidence is the trick.", "zh": "" } },
-        { "id": "u6", "key": "unit_6", "enabled": true, "text": { "en": "Numbers, leveled up. Big ones now. Don't panic — there's a pattern, and patterns are my thing.", "zh": "" } },
-        { "id": "u7", "key": "unit_7", "enabled": true, "text": { "en": "Getting around! Grab, taxis, motorbikes, directions. Let's make sure we never get lost.", "zh": "" } },
-        { "id": "u8", "key": "unit_8", "enabled": true, "text": { "en": "Everyday life stuff — the words you'd actually use every single day. The quiet useful ones.", "zh": "" } },
-        { "id": "u9", "key": "unit_9", "enabled": true, "text": { "en": "Talking with people! Making friends, small talk. This is where Vietnamese starts to feel real.", "zh": "" } }
+        { "id": "u1", "key": "unit_1", "enabled": true, "text": { "en": "Our first real words! Greetings and names — exactly what you'd say walking into a room in Vietnam. Let's make a first impression.", "zh": "我们的第一批真正的词！打招呼和名字——正是你走进越南房间时会说的话。来留个好的第一印象吧。" } },
+        { "id": "u2", "key": "unit_2", "enabled": true, "text": { "en": "Time to be polite. Vietnamese has special words just for being nice, and people NOTICE when you use them. Free charm points.", "zh": "该讲礼貌啦。越南语有专门用来表示客气的词，你一用别人立刻就会注意到。白送的魅力值。" } },
+        { "id": "u3", "key": "unit_3", "enabled": true, "text": { "en": "Café time! ☕ My favorite. We're going to order drinks like we belong here.", "zh": "咖啡时间！☕ 我的最爱。我们要像本地人一样点饮料。" } },
+        { "id": "u4", "key": "unit_4", "enabled": true, "text": { "en": "Food and prices — the two things you'll use most, honestly. Let's not overpay, okay?", "zh": "食物和价格——说实话，这两样你用得最多。咱们别买贵了，好吗？" } },
+        { "id": "u5", "key": "unit_5", "enabled": true, "text": { "en": "The market! It's loud, it's fun, and we're going to bargain a little. Confidence is the trick.", "zh": "菜市场！热闹又好玩，我们还要稍微砍砍价。诀窍就是要有自信。" } },
+        { "id": "u6", "key": "unit_6", "enabled": true, "text": { "en": "Numbers, leveled up. Big ones now. Don't panic — there's a pattern, and patterns are my thing.", "zh": "数字升级版。这次是大数字了。别慌——它有规律，而规律正是我的强项。" } },
+        { "id": "u7", "key": "unit_7", "enabled": true, "text": { "en": "Getting around! Grab, taxis, motorbikes, directions. Let's make sure we never get lost.", "zh": "出行啦！打车软件、出租车、摩托车、问路。咱们保证绝不迷路。" } },
+        { "id": "u8", "key": "unit_8", "enabled": true, "text": { "en": "Everyday life stuff — the words you'd actually use every single day. The quiet useful ones.", "zh": "日常生活用语——那些你每天真的会用到的词。低调又实用的那种。" } },
+        { "id": "u9", "key": "unit_9", "enabled": true, "text": { "en": "Talking with people! Making friends, small talk. This is where Vietnamese starts to feel real.", "zh": "和人聊天啦！交朋友、闲聊。从这里开始，越南语会变得真实起来。" } }
       ]
     },
     "foundations_intro": {
@@ -150,20 +150,20 @@
       "trigger": "lesson.moduleStart",
       "fx": { "expression": "reading", "sound": null, "haptic": null },
       "lines": [
-        { "id": "f_alphabet", "key": "alphabet", "enabled": true, "text": { "en": "The Vietnamese alphabet looks almost like English... and then it has extra letters wearing little hats. Let's meet them.", "zh": "" } },
-        { "id": "f_vowels_basic", "key": "vowels_basic", "enabled": true, "text": { "en": "Vowels first. These are the sounds everything else sits on top of. Open your ears!", "zh": "" } },
-        { "id": "f_vowels_special", "key": "vowels_special", "enabled": true, "text": { "en": "Now the special vowels — ơ, ư, ê, ô. English doesn't have these, so they feel weird at first. That's normal!", "zh": "" } },
-        { "id": "f_consonants", "key": "consonants", "enabled": true, "text": { "en": "Consonants time. Most are easy. A couple are sneaky. I'll warn you about the sneaky ones.", "zh": "" } },
-        { "id": "f_consonants_final", "key": "consonants_final", "enabled": true, "text": { "en": "Ending sounds matter a LOT in Vietnamese. A different ending = a different word. Let's get them crisp.", "zh": "" } },
-        { "id": "f_vowels_diph", "key": "vowels_diph", "enabled": true, "text": { "en": "Two vowels holding hands! When they team up, they make a brand new sound. Cute, honestly.", "zh": "" } },
-        { "id": "f_tones_1", "key": "tones_1", "enabled": true, "text": { "en": "THE BIG ONE. Tones. Today just two: a flat one and a falling one. Hear the difference and you're already winning.", "zh": "" } },
-        { "id": "f_tones_2", "key": "tones_2", "enabled": true, "text": { "en": "Adding the rising tone — it goes UP, like a question your voice asks. Listen for the lift.", "zh": "" } },
-        { "id": "f_tones_3", "key": "tones_3", "enabled": true, "text": { "en": "Now the dipping tone — it dives down then climbs back. It's the dramatic one. I love it.", "zh": "" } },
-        { "id": "f_tones_4", "key": "tones_4", "enabled": true, "text": { "en": "Hỏi vs ngã — okay these two are TWINS and even I mix them up. We'll figure them out together.", "zh": "" } },
-        { "id": "f_tones_5", "key": "tones_5", "enabled": true, "text": { "en": "All six tones at once. This felt impossible to me a week ago and now look at me. You're gonna get it.", "zh": "" } },
-        { "id": "f_tones_speak", "key": "tones_speak", "enabled": true, "text": { "en": "Your turn to SAY them. Be brave, be loud, be a little silly. Nobody's judging — I'm a fruit.", "zh": "" } },
-        { "id": "f_tonemarks", "key": "tonemarks", "enabled": true, "text": { "en": "Let's match each little mark to its sound. Once you can read the marks, you can read the tones. Superpower unlocked.", "zh": "" } },
-        { "id": "f_checkpoint", "key": "checkpoint", "enabled": true, "text": { "en": "Checkpoint! Show me your ears are ready. Get through this and Unit 1 opens up. I believe in you.", "zh": "" } }
+        { "id": "f_alphabet", "key": "alphabet", "enabled": true, "text": { "en": "The Vietnamese alphabet looks almost like English... and then it has extra letters wearing little hats. Let's meet them.", "zh": "越南语字母看起来几乎和英语一样……然后还多了几个'戴着小帽子'的字母。我们来认识它们吧。" } },
+        { "id": "f_vowels_basic", "key": "vowels_basic", "enabled": true, "text": { "en": "Vowels first. These are the sounds everything else sits on top of. Open your ears!", "zh": "先学元音。所有其他声音都建立在它们之上。竖起耳朵！" } },
+        { "id": "f_vowels_special", "key": "vowels_special", "enabled": true, "text": { "en": "Now the special vowels — ơ, ư, ê, ô. English doesn't have these, so they feel weird at first. That's normal!", "zh": "现在是特殊元音——ơ、ư、ê、ô。英语里没有这些，所以一开始会觉得怪怪的。很正常！" } },
+        { "id": "f_consonants", "key": "consonants", "enabled": true, "text": { "en": "Consonants time. Most are easy. A couple are sneaky. I'll warn you about the sneaky ones.", "zh": "辅音时间。大部分都很简单。有几个很狡猾。狡猾的那几个我会提前提醒你。" } },
+        { "id": "f_consonants_final", "key": "consonants_final", "enabled": true, "text": { "en": "Ending sounds matter a LOT in Vietnamese. A different ending = a different word. Let's get them crisp.", "zh": "在越南语里，结尾的音超——级——重要。结尾不同 = 词就不同。我们把它们念清楚。" } },
+        { "id": "f_vowels_diph", "key": "vowels_diph", "enabled": true, "text": { "en": "Two vowels holding hands! When they team up, they make a brand new sound. Cute, honestly.", "zh": "两个元音手拉手！它们组队时会发出一个全新的音。说真的，挺可爱的。" } },
+        { "id": "f_tones_1", "key": "tones_1", "enabled": true, "text": { "en": "THE BIG ONE. Tones. Today just two: a flat one and a falling one. Hear the difference and you're already winning.", "zh": "重头戏来了。声调。今天只学两个：一个平的，一个降的。能听出区别，你就已经赢了。" } },
+        { "id": "f_tones_2", "key": "tones_2", "enabled": true, "text": { "en": "Adding the rising tone — it goes UP, like a question your voice asks. Listen for the lift.", "zh": "加上升调——它往上扬，就像你的声音在提问。注意听那个上扬。" } },
+        { "id": "f_tones_3", "key": "tones_3", "enabled": true, "text": { "en": "Now the dipping tone — it dives down then climbs back. It's the dramatic one. I love it.", "zh": "现在是曲折调——先往下俯冲再爬上来。它是最有戏剧性的那个。我超喜欢。" } },
+        { "id": "f_tones_4", "key": "tones_4", "enabled": true, "text": { "en": "Hỏi vs ngã — okay these two are TWINS and even I mix them up. We'll figure them out together.", "zh": "Hỏi 和 ngã——好吧这俩是双胞胎，连我都会搞混。我们一起把它们弄明白。" } },
+        { "id": "f_tones_5", "key": "tones_5", "enabled": true, "text": { "en": "All six tones at once. This felt impossible to me a week ago and now look at me. You're gonna get it.", "zh": "六个声调一起来。一周前我觉得这根本不可能，现在你看我。你也一定能行。" } },
+        { "id": "f_tones_speak", "key": "tones_speak", "enabled": true, "text": { "en": "Your turn to SAY them. Be brave, be loud, be a little silly. Nobody's judging — I'm a fruit.", "zh": "轮到你来'说'了。大胆点、大声点、傻一点也没关系。没人会笑话你——我可是个水果。" } },
+        { "id": "f_tonemarks", "key": "tonemarks", "enabled": true, "text": { "en": "Let's match each little mark to its sound. Once you can read the marks, you can read the tones. Superpower unlocked.", "zh": "我们把每个小符号和它的声音对上号。一旦你能读懂这些符号，就能读懂声调。超能力解锁。" } },
+        { "id": "f_checkpoint", "key": "checkpoint", "enabled": true, "text": { "en": "Checkpoint! Show me your ears are ready. Get through this and Unit 1 opens up. I believe in you.", "zh": "关卡测试！让我看看你的耳朵准备好了。通过它，第一单元就解锁了。我相信你。" } }
       ]
     },
     "welcome": {
@@ -175,8 +175,8 @@
       "trigger": "onboarding.welcome",
       "fx": { "expression": "cheer", "sound": "playSelect", "haptic": "tap" },
       "lines": [
-        { "id": "wel1", "enabled": true, "weight": 1, "text": { "en": "Hi! I'm Bé Khế — a little starfruit who's learning Vietnamese, same as you. Want to learn it together?", "zh": "" } },
-        { "id": "wel2", "enabled": true, "weight": 1, "text": { "en": "Oh, a new friend! I'm Bé Khế. I'm a star, technically. Cut a starfruit and — ta-da — star. Anyway, let's learn Vietnamese!", "zh": "" } }
+        { "id": "wel1", "enabled": true, "weight": 1, "text": { "en": "Hi! I'm Bé Khế — a little starfruit who's learning Vietnamese, same as you. Want to learn it together?", "zh": "嗨！我是 Bé Khế——一颗正在学越南语的小杨桃，跟你一样。想一起学吗？" } },
+        { "id": "wel2", "enabled": true, "weight": 1, "text": { "en": "Oh, a new friend! I'm Bé Khế. I'm a star, technically. Cut a starfruit and — ta-da — star. Anyway, let's learn Vietnamese!", "zh": "哦，新朋友！我是 Bé Khế。严格来说我是颗星星。把杨桃切开——噔噔——就是星星。总之，我们来学越南语吧！" } }
       ]
     },
     "teaser": {
@@ -188,9 +188,9 @@
       "trigger": "onboarding.teaser",
       "fx": { "expression": "wow", "sound": "playNotification", "haptic": "notification" },
       "lines": [
-        { "id": "t_intro", "key": "intro", "enabled": true, "text": { "en": "Before anything — listen to these two. Tell me: same word, or different?", "zh": "" } },
-        { "id": "t_reveal_diff", "key": "reveal_diff", "enabled": true, "text": { "en": "DIFFERENT! Same letters, but the TONE changed the whole meaning. Vietnamese has six of these. Wild, right?", "zh": "" } },
-        { "id": "t_hook", "key": "hook", "enabled": true, "text": { "en": "Here's the secret: once your ears can hear the six tones, the rest gets WAY easier. So that's where we start. Tới luôn — let's go!", "zh": "" } }
+        { "id": "t_intro", "key": "intro", "enabled": true, "text": { "en": "Before anything — listen to these two. Tell me: same word, or different?", "zh": "先别急——听听这两个。告诉我：是同一个词，还是不同的？" } },
+        { "id": "t_reveal_diff", "key": "reveal_diff", "enabled": true, "text": { "en": "DIFFERENT! Same letters, but the TONE changed the whole meaning. Vietnamese has six of these. Wild, right?", "zh": "不同！字母一样，但'声调'改变了整个意思。越南语有六个声调。很神奇吧？" } },
+        { "id": "t_hook", "key": "hook", "enabled": true, "text": { "en": "Here's the secret: once your ears can hear the six tones, the rest gets WAY easier. So that's where we start. Tới luôn — let's go!", "zh": "悄悄告诉你：一旦你的耳朵能听出这六个声调，后面就会简单得多。所以我们就从这里开始。Tới luôn——出发！" } }
       ]
     },
     "tutorial": {
@@ -202,10 +202,10 @@
       "trigger": "onboarding.tutorial",
       "fx": { "expression": "reading", "sound": "playSelect", "haptic": "select" },
       "lines": [
-        { "id": "tut_roadmap", "key": "roadmap", "enabled": true, "text": { "en": "This is our map! We start at the very bottom and climb. Tap the glowing one — that's our first stop.", "zh": "" } },
-        { "id": "tut_foundations", "key": "foundations", "enabled": true, "text": { "en": "First up: Foundations. We learn to HEAR Vietnamese before we speak it. It's the most important part, so we do it first.", "zh": "" } },
-        { "id": "tut_hearts", "key": "hearts", "enabled": true, "text": { "en": "See these? They're your tries. Run out and we take a little break — no big deal, they come back.", "zh": "" } },
-        { "id": "tut_done", "key": "done", "enabled": true, "text": { "en": "That's everything! Okay okay okay — I'm excited. Let's actually start.", "zh": "" } }
+        { "id": "tut_roadmap", "key": "roadmap", "enabled": true, "text": { "en": "This is our map! We start at the very bottom and climb. Tap the glowing one — that's our first stop.", "zh": "这是我们的地图！我们从最底下开始往上爬。点那个发光的——那是我们的第一站。" } },
+        { "id": "tut_foundations", "key": "foundations", "enabled": true, "text": { "en": "First up: Foundations. We learn to HEAR Vietnamese before we speak it. It's the most important part, so we do it first.", "zh": "第一步：基础。我们要先学会'听'越南语，再开口说。这是最重要的部分，所以先做它。" } },
+        { "id": "tut_hearts", "key": "hearts", "enabled": true, "text": { "en": "See these? They're your tries. Run out and we take a little break — no big deal, they come back.", "zh": "看到这些了吗？它们是你的尝试机会。用完了我们就休息一下——没关系，它们会回来的。" } },
+        { "id": "tut_done", "key": "done", "enabled": true, "text": { "en": "That's everything! Okay okay okay — I'm excited. Let's actually start.", "zh": "就这些啦！好好好——我太兴奋了。我们正式开始吧。" } }
       ]
     }
   }
