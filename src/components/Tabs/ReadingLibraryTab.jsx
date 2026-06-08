@@ -17,7 +17,9 @@ import {
     getDictSavedWords, toggleDictSavedWord, getDictDecks, createDictDeck,
     removeWordFromDictDeck,
 } from '../../lib/dictSavedWords';
-import { useT } from '../../lib/i18n';
+import { useT, normalizeLang } from '../../lib/i18n';
+import { getLine } from '../../lib/mascot';
+import BeKhe from '../BeKhe/BeKhe';
 import './ReadingLibraryTab.css';
 
 const LEVEL_COLORS = { beginner: '#06D6A0', intermediate: '#FFD166', advanced: '#EF476F' };
@@ -1207,6 +1209,7 @@ function VocabReviewView({ onBack }) {
 // ═══════════════════════════════════════════════════════════════
 function VocabularyBrowseView({ onBack, onSearchWord, initialDeckId }) {
     const t = useT();
+    const { userProfile } = useUser();
     const [savedWords, setSavedWords] = useState(() => getDictSavedWords());
     const [customDecks, setCustomDecks] = useState(() => getDictDecks());
     const [studyDeck, setStudyDeck] = useState(null);
@@ -1316,10 +1319,15 @@ function VocabularyBrowseView({ onBack, onSearchWord, initialDeckId }) {
                     )}
                 </div>
                 {savedWords.length === 0 ? (
-                    <div className="vocab-empty">
-                        <BookmarkCheck size={40} />
-                        <p>{t('library_no_saved_words')}</p>
-                    </div>
+                    (() => {
+                        const r = getLine('empty', { slot: 'notebook', lang: normalizeLang(userProfile?.nativeLang) });
+                        return (
+                            <div className="vocab-empty">
+                                {r ? <BeKhe expression={r.expression} size={72} /> : <BookmarkCheck size={40} />}
+                                <p>{r ? r.text : t('library_no_saved_words')}</p>
+                            </div>
+                        );
+                    })()
                 ) : (
                     <div className="vocab-card-list">
                         {savedWords.map((word, i) => (
