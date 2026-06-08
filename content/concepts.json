@@ -1,16 +1,4 @@
 {
-  "version": "1.0.0",
-  "concepts": [
-    {
-      "id": "concept_tones_intro",
-      "lessonId": "lesson_001a",
-      "title": "Vietnamese is tonal",
-      "body": "Vietnamese has six tones. The same syllable means different things depending on its tone, so pitch is part of the word itself — not just emotion. Listen closely as you learn each new word.",
-      "examples": [
-        { "vi": "ma", "en": "ghost" },
-        { "vi": "má", "en": "mother" },
-        { "vi": "mà", "en": "but" }
-      ]
-    }
-  ]
+  "version": "1.1.0",
+  "concepts": []
 }
