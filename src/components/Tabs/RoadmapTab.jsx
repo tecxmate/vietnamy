@@ -150,9 +150,9 @@ const RoadmapTab = () => {
     };
 
     const isVisibleRoadmapNode = React.useCallback((node) => (
+        // Pronunciation (blue) and Grammar (purple) are first-class unit modules again
+        // (4-module structure). Only module-scope mini-quizzes stay hidden.
         node.test_scope !== 'module' &&
-        node.module_type !== 'blue' &&
-        node.module_type !== 'purple' &&
         (!activeTopic || node.topic === activeTopic)
     ), [activeTopic]);
 

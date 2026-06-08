@@ -249,6 +249,18 @@ export const INIT_DATA = {
         { id: "f0_speak", course_id: "course_vi_en_v1", unit_id: "phase_0_foundations", node_index: 14, node_type: "skill", module_type: "orange", label: "Say a tone", practice_route: "/practice/tones/speak", sessions_required: 1, difficulty: 2, cefr_level: "A1.1", vocab_introduces: [], vocab_requires: [] },
         { id: "f0_check", course_id: "course_vi_en_v1", unit_id: "phase_0_foundations", node_index: 15, node_type: "skill", module_type: "test", label: "Foundations checkpoint", practice_route: "/practice/tonemarks-master", test_scope: "unit", sessions_required: 1, difficulty: 2, cefr_level: "A1.1", vocab_introduces: [], vocab_requires: [] },
 
+        // ═══ 4-module structure (Units 1–3 prototype) ═══
+        // Each unit interleaves Pronunciation (blue, an existing /practice drill) and
+        // Grammar (purple, an A1 grammar unit) around its vocab lessons. Default order:
+        // Pronunciation → Vocab lessons → Grammar → Test. node_index: pron = -1 (sorts
+        // first); grammar = (unit-test index − 0.5) (sorts just before the test).
+        { id: "p1_PRON", course_id: "course_vi_en_v1", unit_id: "phase_1_first_words", node_index: -1, node_type: "skill", module_type: "blue", label: "Pronunciation: Tones", practice_route: "/practice/tones/level1", difficulty: 1, cefr_level: "A1.1", vocab_introduces: [], vocab_requires: [] },
+        { id: "p1_GRAM", course_id: "course_vi_en_v1", unit_id: "phase_1_first_words", node_index: 15.5, node_type: "skill", module_type: "purple", label: "Grammar: I/You Pronouns", skill_content: { type: "grammar_unit", grammar_unit_id: "A1_M06_U01" }, difficulty: 2, cefr_level: "A1.1", vocab_introduces: [], vocab_requires: [] },
+        { id: "p2_PRON", course_id: "course_vi_en_v1", unit_id: "phase_2_polite", node_index: -1, node_type: "skill", module_type: "blue", label: "Pronunciation: Vowels", practice_route: "/practice/vowels-single-1", difficulty: 1, cefr_level: "A1.1", vocab_introduces: [], vocab_requires: [] },
+        { id: "p2_GRAM", course_id: "course_vi_en_v1", unit_id: "phase_2_polite", node_index: 9.5, node_type: "skill", module_type: "purple", label: "Grammar: Negation (không)", skill_content: { type: "grammar_unit", grammar_unit_id: "A1_M08_U01" }, difficulty: 2, cefr_level: "A1.1", vocab_introduces: [], vocab_requires: [] },
+        { id: "p3_PRON", course_id: "course_vi_en_v1", unit_id: "phase_3_cafe", node_index: -1, node_type: "skill", module_type: "blue", label: "Pronunciation: Consonants", practice_route: "/practice/consonants", difficulty: 1, cefr_level: "A1.2", vocab_introduces: [], vocab_requires: [] },
+        { id: "p3_GRAM", course_id: "course_vi_en_v1", unit_id: "phase_3_cafe", node_index: 8.5, node_type: "skill", module_type: "purple", label: "Grammar: Subject + Verb + Object", skill_content: { type: "grammar_unit", grammar_unit_id: "A1_M01_U04" }, difficulty: 2, cefr_level: "A1.2", vocab_introduces: [], vocab_requires: [] },
+
         // ═══ Manual nodes (tests, scenes only) ═══
         // Practice modules & grammar units removed - now accessible from Library tab
         { id: "p1_T", course_id: "course_vi_en_v1", unit_id: "phase_1_first_words", node_index: 16, node_type: "test", module_type: "test", label: "Unit 1 Test", test_scope: "unit", difficulty: 2, cefr_level: "A1.1", vocab_introduces: [], vocab_requires: [] },

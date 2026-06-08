@@ -1,7 +1,7 @@
 import { INIT_DATA } from '../content/initialData';
 
 const DB_KEY = 'vnme_mock_db_v24'; // v24: unified_db.json as primary source
-const CURRICULUM_VERSION = 27; // v27: fold gliding/advanced vowel combos into Foundations
+const CURRICULUM_VERSION = 28; // v28: revive 4-module units (pron+grammar) for Units 1-3
 
 let dbCache = null;
 

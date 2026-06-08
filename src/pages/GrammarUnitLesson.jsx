@@ -331,9 +331,10 @@ export default function GrammarUnitLesson() {
 
     // Load unit data (lazy-loaded from grammar_modules.json)
     const [unitData, setUnitData] = useState(() => getUnit(unitId));
+    const [triedLoad, setTriedLoad] = useState(false);
     useEffect(() => {
         if (!unitData) {
-            loadGrammarModules().then(() => setUnitData(getUnit(unitId)));
+            loadGrammarModules().then(() => { setUnitData(getUnit(unitId)); setTriedLoad(true); });
         }
     }, [unitId, unitData]);
 
@@ -348,10 +349,11 @@ export default function GrammarUnitLesson() {
         return generateExercisesForUnit(unitId, EXERCISES_PER_LESSON, session);
     }, [unitData, unitId, session]);
 
-    // Redirect if unit not found
+    // Redirect only after the grammar bank finished loading and the unit is still
+    // not found (avoids bouncing away during the async load on direct navigation).
     useEffect(() => {
-        if (!unitData) navigate('/', { state: { tab: 'study' } });
-    }, [unitData, navigate]);
+        if (!unitData && triedLoad) navigate('/', { state: { tab: 'study' } });
+    }, [unitData, triedLoad, navigate]);
 
     // Completion reward — mark both grammar unit ID and roadmap node ID
     const markComplete = () => {
