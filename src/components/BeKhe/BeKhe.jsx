@@ -48,11 +48,13 @@ function StarBody({ cheeks = true, cheekY = 6 }) {
     );
 }
 
-// A small 4-point sparkle used by cheer/wow.
+// A small 4-point sparkle used by cheer/wow. Coords are coerced to numbers so
+// arithmetic in the path never becomes string concatenation (e.g. "34"+"7").
 function Sparkle({ x, y, s = 6 }) {
+    const X = Number(x), Y = Number(y), S = Number(s);
     return (
         <path
-            d={`M${x},${y - s} Q${x + s * 0.25},${y - s * 0.25} ${x + s},${y} Q${x + s * 0.25},${y + s * 0.25} ${x},${y + s} Q${x - s * 0.25},${y + s * 0.25} ${x - s},${y} Q${x - s * 0.25},${y - s * 0.25} ${x},${y - s} Z`}
+            d={`M${X},${Y - S} Q${X + S * 0.25},${Y - S * 0.25} ${X + S},${Y} Q${X + S * 0.25},${Y + S * 0.25} ${X},${Y + S} Q${X - S * 0.25},${Y + S * 0.25} ${X - S},${Y} Q${X - S * 0.25},${Y - S * 0.25} ${X},${Y - S} Z`}
             fill={STAR_LINE}
         />
     );
@@ -78,7 +80,7 @@ function FACE(expression) {
                     <path d="M-17,-7 q4,-6 9,0" fill="none" stroke={INK} strokeWidth="3" strokeLinecap="round" />
                     <path d="M8,-7 q4,-6 9,0" fill="none" stroke={INK} strokeWidth="3" strokeLinecap="round" />
                     <path d="M-10,6 q10,12 20,0" fill="none" stroke={INK} strokeWidth="3.4" strokeLinecap="round" />
-                    <Sparkle x="34" y="-32" s="7" />
+                    <Sparkle x={34} y={-32} s={7} />
                 </>
             );
         case 'celebrate':
@@ -123,8 +125,8 @@ function FACE(expression) {
                     <circle cx="-13" cy="-5" r="3.4" fill={INK} />
                     <circle cx="13" cy="-5" r="3.4" fill={INK} />
                     <ellipse cx="0" cy="12" rx="5" ry="7" fill={INK} />
-                    <Sparkle x="-38" y="-30" s="6" />
-                    <Sparkle x="36" y="-30" s="6" />
+                    <Sparkle x={-38} y={-30} s={6} />
+                    <Sparkle x={36} y={-30} s={6} />
                 </>
             );
         case 'sleepy':
