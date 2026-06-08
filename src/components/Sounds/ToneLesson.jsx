@@ -30,10 +30,15 @@ function scoreColor(v) {
     return '#EF476F';
 }
 
-export default function ToneLesson({ onExit }) {
-    const [step, setStep] = useState('learn'); // learn | identify | speak | done
+export default function ToneLesson({ tones = TONE_LIST, steps = ['learn', 'identify', 'speak'], title, onExit, onComplete }) {
+    const [step, setStep] = useState(steps[0]); // a step id or 'done'
     const [identifyScore, setIdentifyScore] = useState(0);
     const [speakScores, setSpeakScores] = useState([]); // 0-100 per tone
+
+    const advance = (from) => {
+        const i = steps.indexOf(from);
+        setStep(i < 0 || i + 1 >= steps.length ? 'done' : steps[i + 1]);
+    };
 
     const Header = (
         <div style={{
@@ -45,26 +50,32 @@ export default function ToneLesson({ onExit }) {
                 background: 'none', border: 'none', color: 'var(--text-muted)',
                 cursor: 'pointer', display: 'flex', padding: 4,
             }}><X size={22} /></button>
-            <StepDots step={step} />
+            <StepDots steps={steps} step={step} />
         </div>
     );
 
     return (
         <div style={{ minHeight: '60vh' }}>
             {Header}
-            {step === 'learn' && <LearnStep onDone={() => setStep('identify')} />}
+            {title && step === steps[0] && (
+                <p style={{ textAlign: 'center', fontSize: 17, fontWeight: 800, margin: '14px 16px 0' }}>{title}</p>
+            )}
+            {step === 'learn' && <LearnStep tones={tones} onDone={() => advance('learn')} />}
             {step === 'identify' && (
-                <IdentifyStep onDone={(score) => { setIdentifyScore(score); setStep('speak'); }} />
+                <IdentifyStep tones={tones} onDone={(score) => { setIdentifyScore(score); advance('identify'); }} />
             )}
             {step === 'speak' && (
-                <SpeakStep onDone={(scores) => { setSpeakScores(scores); setStep('done'); }} />
+                <SpeakStep tones={tones} onDone={(scores) => { setSpeakScores(scores); advance('speak'); }} />
             )}
             {step === 'done' && (
                 <DoneStep
+                    tones={tones}
+                    steps={steps}
                     identifyScore={identifyScore}
                     speakScores={speakScores}
-                    onRestart={() => { setIdentifyScore(0); setSpeakScores([]); setStep('learn'); }}
+                    onRestart={() => { setIdentifyScore(0); setSpeakScores([]); setStep(steps[0]); }}
                     onExit={onExit}
+                    onComplete={onComplete}
                 />
             )}
         </div>
@@ -72,13 +83,14 @@ export default function ToneLesson({ onExit }) {
 }
 
 // ─── Step indicator ────────────────────────────────────────────────
-function StepDots({ step }) {
-    const steps = [
+function StepDots({ steps: stepIds, step }) {
+    const ALL = [
         { id: 'learn', icon: GraduationCap, label: 'Learn' },
         { id: 'identify', icon: Ear, label: 'Identify' },
         { id: 'speak', icon: AudioLines, label: 'Speak' },
     ];
-    const order = ['learn', 'identify', 'speak', 'done'];
+    const steps = ALL.filter(s => stepIds.includes(s.id));
+    const order = [...stepIds, 'done'];
     const activeIdx = order.indexOf(step);
     return (
         <div style={{ display: 'flex', alignItems: 'center', gap: 6, flex: 1 }}>
@@ -107,10 +119,10 @@ function StepDots({ step }) {
 }
 
 // ─── Step 1: Learn (pitch contours) ────────────────────────────────
-function LearnStep({ onDone }) {
+function LearnStep({ tones, onDone }) {
     const [idx, setIdx] = useState(0);
     const [playToken, setPlayToken] = useState(0);
-    const tone = TONE_LIST[idx];
+    const tone = tones[idx];
     const example = SPEAK_WORD[tone.id];
 
     const play = useCallback(() => {
@@ -124,7 +136,7 @@ function LearnStep({ onDone }) {
         return () => clearTimeout(t);
     }, [play]);
 
-    const next = () => (idx + 1 >= TONE_LIST.length ? onDone() : setIdx(idx + 1));
+    const next = () => (idx + 1 >= tones.length ? onDone() : setIdx(idx + 1));
     const prev = () => idx > 0 && setIdx(idx - 1);
 
     return (
@@ -152,7 +164,7 @@ function LearnStep({ onDone }) {
                             <div style={{ fontSize: 12, fontWeight: 700, color: tone.color, textTransform: 'uppercase', letterSpacing: 0.5 }}>{tone.label}</div>
                         </div>
                     </div>
-                    <div style={{ fontSize: 13, color: 'var(--text-muted)' }}>{idx + 1}/{TONE_LIST.length}</div>
+                    <div style={{ fontSize: 13, color: 'var(--text-muted)' }}>{idx + 1}/{tones.length}</div>
                 </div>
 
                 <div style={{ padding: '8px 12px 0' }}>
@@ -185,7 +197,7 @@ function LearnStep({ onDone }) {
                     border: 'none', backgroundColor: '#1CB0F6', color: '#fff', cursor: 'pointer',
                     display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4,
                 }}>
-                    {idx + 1 >= TONE_LIST.length ? 'Start quiz' : 'Next tone'} <ChevronRight size={18} />
+                    {idx + 1 >= tones.length ? 'Start quiz' : 'Next tone'} <ChevronRight size={18} />
                 </button>
             </div>
         </div>
@@ -193,20 +205,22 @@ function LearnStep({ onDone }) {
 }
 
 // ─── Step 2: Identify (listen & pick) ──────────────────────────────
-function buildQuestions() {
+function buildQuestions(tones) {
+    const ids = new Set(tones.map(t => t.id));
+    const words = PRACTICE_WORDS.filter(w => ids.has(w.tone));
     const byTone = {};
-    PRACTICE_WORDS.forEach(w => { (byTone[w.tone] ||= []).push(w); });
+    words.forEach(w => { (byTone[w.tone] ||= []).push(w); });
     // One guaranteed question per tone, then fill the rest at random.
     const picked = [];
     const seen = new Set();
-    TONE_LIST.forEach(t => {
+    tones.forEach(t => {
         const pool = byTone[t.id] || [];
         if (pool.length) {
             const w = pool[Math.floor(Math.random() * pool.length)];
             picked.push(w); seen.add(w.word);
         }
     });
-    const rest = shuffle(PRACTICE_WORDS.filter(w => !seen.has(w.word)));
+    const rest = shuffle(words.filter(w => !seen.has(w.word)));
     while (picked.length < IDENTIFY_COUNT && rest.length) {
         const w = rest.pop();
         if (!seen.has(w.word)) { picked.push(w); seen.add(w.word); }
@@ -214,8 +228,8 @@ function buildQuestions() {
     return shuffle(picked).slice(0, IDENTIFY_COUNT);
 }
 
-function IdentifyStep({ onDone }) {
-    const questions = useMemo(() => buildQuestions(), []);
+function IdentifyStep({ tones, onDone }) {
+    const questions = useMemo(() => buildQuestions(tones), [tones]);
     const [qi, setQi] = useState(0);
     const [selected, setSelected] = useState(null);
     const [feedback, setFeedback] = useState('idle'); // idle | correct | incorrect
@@ -241,7 +255,8 @@ function IdentifyStep({ onDone }) {
         setQi(qi + 1); setSelected(null); setFeedback('idle');
     };
 
-    const correctTone = TONE_LIST.find(t => t.id === q.tone);
+    const correctTone = tones.find(t => t.id === q.tone) || TONE_LIST.find(t => t.id === q.tone);
+    const cols = Math.min(3, tones.length);
 
     return (
         <div style={{ padding: 16, paddingBottom: 120 }}>
@@ -274,8 +289,8 @@ function IdentifyStep({ onDone }) {
                 )}
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 8 }}>
-                {TONE_LIST.map(t => {
+            <div style={{ display: 'grid', gridTemplateColumns: `repeat(${cols}, 1fr)`, gap: 8 }}>
+                {tones.map(t => {
                     let bg = 'var(--surface-color)', border = 'var(--border-color)', op = 1;
                     if (feedback !== 'idle') {
                         if (t.id === q.tone) { bg = '#06D6A01A'; border = '#06D6A0'; }
@@ -322,7 +337,7 @@ function IdentifyStep({ onDone }) {
 }
 
 // ─── Step 3: Speak (Azure assessment) ──────────────────────────────
-function SpeakStep({ onDone }) {
+function SpeakStep({ tones, onDone }) {
     const { userProfile } = useUser();
     const [idx, setIdx] = useState(0);
     const [isRecording, setIsRecording] = useState(false);
@@ -333,7 +348,7 @@ function SpeakStep({ onDone }) {
     const [labeled, setLabeled] = useState(null); // null | 'correct' | 'wrong'
     const recorderRef = useRef(null);
 
-    const tone = TONE_LIST[idx];
+    const tone = tones[idx];
     const example = SPEAK_WORD[tone.id];
 
     const play = useCallback(() => speak(example.word, 0.7), [example.word]);
@@ -440,14 +455,14 @@ function SpeakStep({ onDone }) {
         const acc = result?.matchScore != null ? result.matchScore : (result?.verdict === 'correct' ? 100 : 0);
         const nextScores = [...scores, acc];
         setScores(nextScores);
-        if (idx + 1 >= TONE_LIST.length) { onDone(nextScores); return; }
+        if (idx + 1 >= tones.length) { onDone(nextScores); return; }
         setIdx(idx + 1);
     };
 
     return (
         <div style={{ padding: 16, paddingBottom: 120 }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 14 }}>
-                <span style={{ fontSize: 13, color: 'var(--text-muted)' }}>Tone {idx + 1}/{TONE_LIST.length}</span>
+                <span style={{ fontSize: 13, color: 'var(--text-muted)' }}>Tone {idx + 1}/{tones.length}</span>
                 <span style={{ fontSize: 13, fontWeight: 700, color: tone.color }}>{tone.name} · {tone.label}</span>
             </div>
 
@@ -591,7 +606,7 @@ function SpeakStep({ onDone }) {
                     color: result ? '#fff' : 'var(--text-muted)', cursor: 'pointer',
                     display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4,
                 }}>
-                    {result ? (idx + 1 >= TONE_LIST.length ? 'Finish' : 'Next tone') : 'Skip'} <ChevronRight size={18} />
+                    {result ? (idx + 1 >= tones.length ? 'Finish' : 'Next tone') : 'Skip'} <ChevronRight size={18} />
                 </button>
             </div>
         </div>
@@ -599,37 +614,51 @@ function SpeakStep({ onDone }) {
 }
 
 // ─── Done ──────────────────────────────────────────────────────────
-function DoneStep({ identifyScore, speakScores, onRestart, onExit }) {
+function DoneStep({ tones, steps, identifyScore, speakScores, onRestart, onExit, onComplete }) {
     const speakAvg = speakScores.length
         ? Math.round(speakScores.reduce((a, b) => a + b, 0) / speakScores.length) : 0;
     const sampleCount = getToneSampleCount();
+    const hasSpeak = steps.includes('speak');
+    const n = tones.length;
+    const verb = hasSpeak ? 'learned, identified, and spoke' : 'learned and identified';
+    const which = n >= 6 ? 'all 6 Vietnamese tones' : `${n} Vietnamese tone${n === 1 ? '' : 's'}`;
     return (
         <div style={{ padding: '40px 24px 120px', textAlign: 'center' }}>
             <Trophy size={72} color="#FFD166" style={{ marginBottom: 16 }} />
             <h2 style={{ margin: '0 0 6px', fontSize: 24, fontWeight: 800 }}>Lesson complete!</h2>
             <p style={{ margin: '0 0 28px', fontSize: 14, color: 'var(--text-muted)' }}>
-                You learned, identified, and spoke all 6 Vietnamese tones.
+                You {verb} {which}.
             </p>
             <div style={{ display: 'flex', gap: 16, justifyContent: 'center', marginBottom: 32 }}>
                 <div style={{ flex: 1, maxWidth: 150, padding: 18, borderRadius: 16, backgroundColor: 'var(--surface-color)', border: '1px solid var(--border-color)' }}>
                     <div style={{ fontSize: 34, fontWeight: 800, color: '#1CB0F6' }}>{identifyScore}/{IDENTIFY_COUNT}</div>
                     <div style={{ fontSize: 12, color: 'var(--text-muted)' }}>Identified</div>
                 </div>
-                <div style={{ flex: 1, maxWidth: 150, padding: 18, borderRadius: 16, backgroundColor: 'var(--surface-color)', border: '1px solid var(--border-color)' }}>
-                    <div style={{ fontSize: 34, fontWeight: 800, color: scoreColor(speakAvg) }}>{speakAvg}%</div>
-                    <div style={{ fontSize: 12, color: 'var(--text-muted)' }}>Tones spoken right</div>
-                </div>
+                {hasSpeak && (
+                    <div style={{ flex: 1, maxWidth: 150, padding: 18, borderRadius: 16, backgroundColor: 'var(--surface-color)', border: '1px solid var(--border-color)' }}>
+                        <div style={{ fontSize: 34, fontWeight: 800, color: scoreColor(speakAvg) }}>{speakAvg}%</div>
+                        <div style={{ fontSize: 12, color: 'var(--text-muted)' }}>Tones spoken right</div>
+                    </div>
+                )}
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12, maxWidth: 360, margin: '0 auto' }}>
+                {onComplete ? (
+                    <button onClick={onComplete} style={{
+                        padding: 14, borderRadius: 12, border: 'none', backgroundColor: '#06D6A0', color: '#fff',
+                        fontWeight: 800, fontSize: 16, cursor: 'pointer', fontFamily: 'inherit',
+                        display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+                    }}><Check size={18} /> Continue</button>
+                ) : (
+                    <button onClick={onExit} style={{
+                        padding: 14, borderRadius: 12, border: '2px solid var(--border-color)', backgroundColor: 'transparent',
+                        color: 'var(--text-muted)', fontWeight: 700, fontSize: 15, cursor: 'pointer', fontFamily: 'inherit',
+                    }}>Back to Sounds</button>
+                )}
                 <button onClick={onRestart} style={{
-                    padding: 14, borderRadius: 12, border: 'none', backgroundColor: '#1CB0F6', color: '#fff',
-                    fontWeight: 800, fontSize: 15, cursor: 'pointer', fontFamily: 'inherit',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
-                }}><RotateCw size={18} /> Practice again</button>
-                <button onClick={onExit} style={{
                     padding: 14, borderRadius: 12, border: '2px solid var(--border-color)', backgroundColor: 'transparent',
                     color: 'var(--text-muted)', fontWeight: 700, fontSize: 15, cursor: 'pointer', fontFamily: 'inherit',
-                }}>Back to Sounds</button>
+                    display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+                }}><RotateCw size={18} /> Practice again</button>
             </div>
 
             {sampleCount > 0 && (

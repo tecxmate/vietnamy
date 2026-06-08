@@ -227,13 +227,19 @@ export const INIT_DATA = {
     path_nodes: [
         // ═══ Lesson + quiz nodes from unified_db + legacy ═══
         ..._mergedBuilt.pathNodes,
-        // ═══ Unit 0 — Foundations: tone/script on-ramp, wired to existing Practice modules ═══
-        // Each is a skill node pointing at a tone/vowel drill; one pass completes it
-        // (sessions_required: 1). The checkpoint carries test_scope:'unit', which gates Unit 1.
-        { id: "f0_tones", course_id: "course_vi_en_v1", unit_id: "phase_0_foundations", node_index: 0, node_type: "skill", module_type: "orange", label: "Hear the 6 tones", practice_route: "/practice/tonemarks-basic", sessions_required: 1, difficulty: 1, cefr_level: "A1.1", vocab_introduces: [], vocab_requires: [] },
-        { id: "f0_marks", course_id: "course_vi_en_v1", unit_id: "phase_0_foundations", node_index: 1, node_type: "skill", module_type: "orange", label: "Read the tone marks", practice_route: "/practice/tonemarks-special", sessions_required: 1, difficulty: 1, cefr_level: "A1.1", vocab_introduces: [], vocab_requires: [] },
-        { id: "f0_vowels", course_id: "course_vi_en_v1", unit_id: "phase_0_foundations", node_index: 2, node_type: "skill", module_type: "orange", label: "Vietnamese vowels", practice_route: "/practice/vowels-single-1", sessions_required: 1, difficulty: 1, cefr_level: "A1.1", vocab_introduces: [], vocab_requires: [] },
-        { id: "f0_check", course_id: "course_vi_en_v1", unit_id: "phase_0_foundations", node_index: 3, node_type: "skill", module_type: "test", label: "Foundations checkpoint", practice_route: "/practice/tonemarks-master", test_scope: "unit", sessions_required: 1, difficulty: 2, cefr_level: "A1.1", vocab_introduces: [], vocab_requires: [] },
+        // ═══ Unit 0 — Foundations: tone/script on-ramp ═══
+        // Hear the tones first (contrasting pairs, ear-training via ToneNodeLesson),
+        // then read the marks, vowels, produce a tone, and a checkpoint that gates Unit 1.
+        // Each is a skill node; one pass completes it (sessions_required: 1).
+        { id: "f0_t1", course_id: "course_vi_en_v1", unit_id: "phase_0_foundations", node_index: 0, node_type: "skill", module_type: "orange", label: "Tones: Level vs Falling", practice_route: "/practice/tones/level1", sessions_required: 1, difficulty: 1, cefr_level: "A1.1", vocab_introduces: [], vocab_requires: [] },
+        { id: "f0_t2", course_id: "course_vi_en_v1", unit_id: "phase_0_foundations", node_index: 1, node_type: "skill", module_type: "orange", label: "Tones: add Rising", practice_route: "/practice/tones/level2", sessions_required: 1, difficulty: 1, cefr_level: "A1.1", vocab_introduces: [], vocab_requires: [] },
+        { id: "f0_t3", course_id: "course_vi_en_v1", unit_id: "phase_0_foundations", node_index: 2, node_type: "skill", module_type: "orange", label: "Tones: add Dipping", practice_route: "/practice/tones/level3", sessions_required: 1, difficulty: 1, cefr_level: "A1.1", vocab_introduces: [], vocab_requires: [] },
+        { id: "f0_t4", course_id: "course_vi_en_v1", unit_id: "phase_0_foundations", node_index: 3, node_type: "skill", module_type: "orange", label: "Hỏi vs Ngã", practice_route: "/practice/tones/level4", sessions_required: 1, difficulty: 2, cefr_level: "A1.1", vocab_introduces: [], vocab_requires: [] },
+        { id: "f0_t5", course_id: "course_vi_en_v1", unit_id: "phase_0_foundations", node_index: 4, node_type: "skill", module_type: "orange", label: "All 6 tones", practice_route: "/practice/tones/level5", sessions_required: 1, difficulty: 2, cefr_level: "A1.1", vocab_introduces: [], vocab_requires: [] },
+        { id: "f0_marks", course_id: "course_vi_en_v1", unit_id: "phase_0_foundations", node_index: 5, node_type: "skill", module_type: "orange", label: "Read the tone marks", practice_route: "/practice/tonemarks-basic", sessions_required: 1, difficulty: 1, cefr_level: "A1.1", vocab_introduces: [], vocab_requires: [] },
+        { id: "f0_vowels", course_id: "course_vi_en_v1", unit_id: "phase_0_foundations", node_index: 6, node_type: "skill", module_type: "orange", label: "Vietnamese vowels", practice_route: "/practice/vowels-single-1", sessions_required: 1, difficulty: 1, cefr_level: "A1.1", vocab_introduces: [], vocab_requires: [] },
+        { id: "f0_speak", course_id: "course_vi_en_v1", unit_id: "phase_0_foundations", node_index: 7, node_type: "skill", module_type: "orange", label: "Say a tone", practice_route: "/practice/tones/speak", sessions_required: 1, difficulty: 2, cefr_level: "A1.1", vocab_introduces: [], vocab_requires: [] },
+        { id: "f0_check", course_id: "course_vi_en_v1", unit_id: "phase_0_foundations", node_index: 8, node_type: "skill", module_type: "test", label: "Foundations checkpoint", practice_route: "/practice/tonemarks-master", test_scope: "unit", sessions_required: 1, difficulty: 2, cefr_level: "A1.1", vocab_introduces: [], vocab_requires: [] },
 
         // ═══ Manual nodes (tests, scenes only) ═══
         // Practice modules & grammar units removed - now accessible from Library tab
