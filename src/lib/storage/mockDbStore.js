@@ -1,7 +1,7 @@
 import { INIT_DATA } from '../content/initialData';
 
 const DB_KEY = 'vnme_mock_db_v24'; // v24: unified_db.json as primary source
-const CURRICULUM_VERSION = 26; // v26: Foundations sounds-first (alphabet, vowels, consonants) before tones
+const CURRICULUM_VERSION = 27; // v27: fold gliding/advanced vowel combos into Foundations
 
 let dbCache = null;
 
