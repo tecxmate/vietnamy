@@ -12,13 +12,25 @@ const STEPS = [{ id: 'learn', icon: GraduationCap, label: 'Learn' }, { id: 'quiz
 const shuffle = (a) => [...a].sort(() => Math.random() - 0.5);
 const big = (l) => l.split(' ')[0]; // "A a" -> "A"
 
+// Break the 29 letters into small groups so they aren't all shown at once.
+const VOWEL_SET = new Set(['a', 'ă', 'â', 'e', 'ê', 'i', 'o', 'ô', 'ơ', 'u', 'ư', 'y']);
+const isVowel = (a) => VOWEL_SET.has(big(a.letter).toLowerCase());
+const VOWELS = ALPHABET.filter(isVowel);
+const CONSONANTS = ALPHABET.filter((a) => !isVowel(a));
+const GROUPS = [
+    { label: 'Vowels', items: VOWELS.slice(0, 6) },
+    { label: 'More vowels', items: VOWELS.slice(6) },
+    { label: 'Consonants', items: CONSONANTS.slice(0, 9) },
+    { label: 'More consonants', items: CONSONANTS.slice(9) },
+];
+
 export default function AlphabetLesson() {
     const { markComplete, goNext, goBack } = usePracticeCompletion();
     const [step, setStep] = useState('learn'); // learn | quiz | done
 
     return (
         <PracticeShell onClose={goBack} header={<StepDots steps={STEPS} current={step} />}>
-            {step === 'learn' && <LearnGrid onDone={() => setStep('quiz')} />}
+            {step === 'learn' && <LearnGroups onDone={() => setStep('quiz')} />}
             {step === 'quiz' && <Quiz onDone={() => setStep('done')} />}
             {step === 'done' && (
                 <div style={{ padding: '40px 24px 120px', textAlign: 'center' }}>
@@ -35,27 +47,39 @@ export default function AlphabetLesson() {
     );
 }
 
-function LearnGrid({ onDone }) {
+function LearnGroups({ onDone }) {
+    const [gi, setGi] = useState(0);
     const [playing, setPlaying] = useState(null);
-    useEnterKey(onDone);
+    const group = GROUPS[gi];
+    const last = gi + 1 >= GROUPS.length;
+    const advance = () => (last ? onDone() : setGi(gi + 1));
+    useEnterKey(advance);
     const play = (a) => { setPlaying(a.letter); speak(a.name, 0.7); setTimeout(() => setPlaying(null), 900); };
     return (
         <div style={{ padding: 16, paddingBottom: 120 }}>
-            <p style={{ textAlign: 'center', fontSize: 13, color: 'var(--text-muted)', margin: '4px 0 16px' }}>Tap a letter to hear its name.</p>
+            <div style={{ textAlign: 'center', margin: '4px 0 14px' }}>
+                <div style={{ fontSize: 17, fontWeight: 800 }}>{group.label}</div>
+                <div style={{ fontSize: 13, color: 'var(--text-muted)' }}>Group {gi + 1} of {GROUPS.length} · tap to hear</div>
+            </div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 8 }}>
-                {ALPHABET.map((a) => (
+                {group.items.map((a) => (
                     <button key={a.letter} onClick={() => play(a)} style={{
-                        padding: '12px 6px', borderRadius: 12, border: `2px solid ${playing === a.letter ? '#1CB0F6' : 'var(--border-color)'}`,
+                        padding: '14px 6px', borderRadius: 12, border: `2px solid ${playing === a.letter ? '#1CB0F6' : 'var(--border-color)'}`,
                         backgroundColor: 'var(--surface-color)', cursor: 'pointer', fontFamily: 'inherit',
                         display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2,
                     }}>
-                        <span style={{ fontSize: 24, fontWeight: 800, color: 'var(--text-main)' }}>{a.letter}</span>
+                        <span style={{ fontSize: 26, fontWeight: 800, color: 'var(--text-main)' }}>{a.letter}</span>
                         <span style={{ fontSize: 13, fontWeight: 700, color: '#1CB0F6' }}>{a.name}</span>
                         <span style={{ fontSize: 11, color: 'var(--text-muted)' }}>{a.sound}</span>
                     </button>
                 ))}
             </div>
-            <button onClick={onDone} style={{ width: '100%', marginTop: 18, padding: 14, borderRadius: 12, border: 'none', backgroundColor: '#1CB0F6', color: '#fff', fontWeight: 800, fontSize: 16, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>Start quiz <ChevronRight size={18} /></button>
+            <div style={{ display: 'flex', gap: 10, marginTop: 18 }}>
+                {gi > 0 && (
+                    <button onClick={() => setGi(gi - 1)} style={{ flex: 1, padding: 14, borderRadius: 12, fontWeight: 700, fontSize: 15, fontFamily: 'inherit', border: '2px solid var(--border-color)', backgroundColor: 'transparent', color: 'var(--text-muted)', cursor: 'pointer' }}>Back</button>
+                )}
+                <button onClick={advance} style={{ flex: 2, padding: 14, borderRadius: 12, border: 'none', backgroundColor: '#1CB0F6', color: '#fff', fontWeight: 800, fontSize: 16, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>{last ? 'Start quiz' : 'Continue'} <ChevronRight size={18} /></button>
+            </div>
         </div>
     );
 }
