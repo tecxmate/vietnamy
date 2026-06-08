@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { MessageCircle, Zap, Trophy, Pen, Check, Lock, BookOpen, Music, Clapperboard, ChevronDown, Plane, Briefcase, Heart } from 'lucide-react';
+import { MessageCircle, Zap, Trophy, Pen, Check, Lock, BookOpen, Music, Clapperboard, ChevronDown, Plane, Briefcase, Heart, Flame } from 'lucide-react';
 import { getUnits, getNodesForUnitWithProgress } from '../../lib/db';
 import { getGrammarForUnit } from '../../lib/grammarGuide';
 import GrammarGuidebook from '../GrammarGuidebook';
@@ -60,7 +60,8 @@ function getNodeLabel(node, style, t) {
 const RoadmapTab = () => {
     const navigate = useNavigate();
     const t = useT();
-    const { completedNodes, getNodeSessionCount, SESSIONS_TO_COMPLETE } = useProgress();
+    const { completedNodes, getNodeSessionCount, SESSIONS_TO_COMPLETE, dailyStreak, getStreakStatus, consumeStreakMoment } = useProgress();
+    const [streakMoment, setStreakMoment] = useState(null);
     const { userProfile, updateUserProfile } = useUser();
     const currentMode = userProfile?.learnerMode || DEFAULT_LEARNER_MODE;
     const progressMode = getProgressMode(currentMode);
@@ -166,6 +167,23 @@ const RoadmapTab = () => {
     const mascotLang = normalizeLang(userProfile?.nativeLang);
     const emptyLine = hasAnyVisibleNodes ? null : getLine('empty', { slot: 'roadmap', lang: mascotLang });
 
+    // Bé Khế streak moment on entering Study — at most one, once per day.
+    // Pick the single canonical kind for the current streak state, THEN gate it
+    // (don't let an already-shown kind fall through to a different one).
+    React.useEffect(() => {
+        const s = getStreakStatus();
+        let kind = null, cat = null;
+        if (s.brokenFrom > 0) { kind = 'lost'; cat = 'streak_lost'; }
+        else if (s.awayDays != null && s.awayDays >= 3) { kind = 'return'; cat = 'return'; }
+        else if (s.atRisk) { kind = 'save'; cat = 'streak_save'; }
+        if (kind && consumeStreakMoment(kind)) {
+            const r = getLine(cat, { lang: mascotLang });
+            // Intentional one-shot greeting on mount, gated to once/day.
+            // eslint-disable-next-line react-hooks/set-state-in-effect
+            if (r) setStreakMoment(r);
+        }
+    }, [getStreakStatus, consumeStreakMoment, mascotLang]);
+
     const handleContinueClick = () => {
         for (const unit of units) {
             const nodes = nodesMap[unit.id] || [];
@@ -193,6 +211,25 @@ const RoadmapTab = () => {
 
     return (
         <div>
+            {/* Daily streak readout + Bé Khế moment (return / lost / about to break) */}
+            <div style={{ padding: '10px 16px 0', display: 'flex', flexDirection: 'column', gap: 8 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                    <Flame size={18} color="#FF6B35" />
+                    <span style={{ fontWeight: 800, fontSize: 16 }}>{dailyStreak}</span>
+                    <span style={{ fontSize: 13, color: 'var(--text-muted)' }}>{t('home_stats_streak')}</span>
+                </div>
+                {streakMoment && (
+                    <div style={{
+                        display: 'flex', alignItems: 'center', gap: 10,
+                        padding: '10px 12px', borderRadius: 12,
+                        backgroundColor: 'rgba(255, 209, 102, 0.12)', border: '1px solid rgba(255, 209, 102, 0.35)',
+                    }}>
+                        <BeKhe expression={streakMoment.expression} size={44} />
+                        <span style={{ fontSize: 14, fontWeight: 600, color: 'var(--text-main)' }}>{streakMoment.text}</span>
+                    </div>
+                )}
+            </div>
+
             {/* Mode switcher + Topic chips - same row, scrollable */}
             <div className="hide-scrollbar" style={{
                 display: 'flex', alignItems: 'center', gap: 8,
