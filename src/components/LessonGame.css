@@ -102,8 +102,8 @@
 }
 
 .lesson-game__actionbar {
-    flex: 0 0 calc(var(--lesson-action-bar-base-height) + var(--safe-area-bottom-effective));
-    height: calc(var(--lesson-action-bar-base-height) + var(--safe-area-bottom-effective));
+    flex: 0 0 auto;
+    min-height: calc(var(--lesson-action-bar-base-height) + var(--safe-area-bottom-effective));
     padding: 20px 16px calc(20px + var(--safe-area-bottom-effective));
     border-top: 2px solid var(--border-color);
     background: var(--lesson-action-bar-bg, var(--surface-color));
@@ -115,9 +115,8 @@
 }
 
 .lesson-game__actionbar--feedback {
-    --lesson-action-bar-base-height: 188px;
+    --lesson-action-bar-base-height: 232px;
     padding-bottom: calc(28px + var(--safe-area-bottom-effective));
-    overflow: visible;
 }
 
 .lesson-game__actionbar-content {
@@ -167,7 +166,7 @@
     }
 
     .lesson-game__actionbar--feedback {
-        --lesson-action-bar-base-height: 188px;
+        --lesson-action-bar-base-height: 224px;
         padding-bottom: calc(28px + var(--safe-area-bottom-effective));
     }
 }
@@ -201,7 +200,7 @@
     }
 
     .lesson-game__actionbar--feedback {
-        --lesson-action-bar-base-height: 176px;
+        --lesson-action-bar-base-height: 216px;
         padding-top: 16px;
         padding-bottom: calc(24px + var(--safe-area-bottom-effective));
     }
