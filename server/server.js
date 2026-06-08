@@ -1045,6 +1045,64 @@ function escapeSsml(text) {
         .replace(/'/g, '&apos;');
 }
 
+const VIETNAMESE_ALPHABET_PHONEMES = {
+    'a': 'ā',
+    'á': 'ā̋͡',
+    'ớ': 'əː̄̋͡',
+    'bê': 'ɓē',
+    'xê': 'sē',
+    'dê': 'zē',
+    'đê': 'ɗē',
+    'e': 'ɛ̄',
+    'ê': 'ē',
+    'giê': 'zē',
+    'i': 'ī',
+    'ca': 'kā',
+    'e lờ': 'ɛ̄ lə̀̏͡',
+    'em mờ': 'ɛ̄m mə̀̏͡',
+    'en nờ': 'ɛ̄n nə̀̏͡',
+    'o': 'ɔ̄',
+    'ô': 'ō',
+    'ơ': 'əː̄',
+    'pê': 'pē',
+    'quy': 'kwī',
+    'e rờ': 'ɛ̄ zə̀̏͡',
+    'r rờ': 'ɛ̄ zə̀̏͡',
+    'ét sì': 'ɛ̄̋͡t sì̏͡',
+    'tê': 'tē',
+    'u': 'ū',
+    'ư': 'ɨ̄',
+    'vê': 'vē',
+    'ích xì': 'ī̋͡k sì̏͡',
+    'y dài': 'ī zà̏͡j',
+};
+
+function normalizeVietnameseAlphabetTtsText(text) {
+    return String(text || '')
+        .normalize('NFC')
+        .trim()
+        .toLowerCase()
+        .replace(/[-‐‑‒–—]+/g, ' ')
+        .replace(/\s+/g, ' ');
+}
+
+function getAzureSynthesisInput(text, lang) {
+    const normalized = normalizeVietnameseAlphabetTtsText(text);
+    const phoneme = lang === 'vi' ? VIETNAMESE_ALPHABET_PHONEMES[normalized] : null;
+
+    if (!phoneme) {
+        return {
+            cacheText: text,
+            ssmlContent: escapeSsml(text),
+        };
+    }
+
+    return {
+        cacheText: `alphabet-phoneme-v1:${normalized}:${phoneme}`,
+        ssmlContent: `<phoneme alphabet="ipa" ph="${escapeSsml(phoneme)}">${escapeSsml(text)}</phoneme>`,
+    };
+}
+
 function trimPcm16MonoSilence(buffer, {
     sampleRate = AZURE_PCM_SAMPLE_RATE,
     threshold = TTS_SILENCE_THRESHOLD,
@@ -1172,6 +1230,7 @@ function pcm16MonoToWav(buffer, sampleRate = AZURE_PCM_SAMPLE_RATE) {
 async function synthesizeWithAzureSourcePcm(text, lang, voice = 'azure-north') {
     if (!AZURE_TTS_ENABLED || lang !== 'vi') return null;
 
+    const synthesisInput = getAzureSynthesisInput(text, lang);
     const voiceName = AZURE_VI_VOICES[voice] || AZURE_VI_VOICES['azure-north'];
     const prosodyAttrs = voice === 'azure-south'
         ? 'volume="x-loud" pitch="+5%" rate="+4%"'
@@ -1180,7 +1239,7 @@ async function synthesizeWithAzureSourcePcm(text, lang, voice = 'azure-north') {
     const ssml = `
 <speak version="1.0" xml:lang="vi-VN">
   <voice xml:lang="vi-VN" name="${voiceName}">
-    <prosody ${prosodyAttrs}>${escapeSsml(text)}</prosody>
+    <prosody ${prosodyAttrs}>${synthesisInput.ssmlContent}</prosody>
   </voice>
 </speak>`.trim();
 
@@ -1224,10 +1283,11 @@ function deriveAzureWav(sourcePcm, voice) {
 // saveSource is true, the raw trimmed PCM is also uploaded to the bucket
 // under the unversioned source/ path so future iterations can skip Azure.
 async function synthesizeWithAzure(text, lang, voice = 'azure-north', { saveSource = false } = {}) {
+    const synthesisInput = getAzureSynthesisInput(text, lang);
     const sourcePcm = await synthesizeWithAzureSourcePcm(text, lang, voice);
     if (!sourcePcm) return null;
     if (saveSource) {
-        ttsCachePut(ttsSourceKey(voice, lang, text), sourcePcm, 'application/octet-stream');
+        ttsCachePut(ttsSourceKey(voice, lang, synthesisInput.cacheText), sourcePcm, 'application/octet-stream');
     }
     return deriveAzureWav(sourcePcm, voice);
 }
@@ -1263,8 +1323,11 @@ app.get('/api/tts', async (req, res) => {
         return res.status(400).json({ error: 'text required (max 200 chars)' });
     }
 
+    const azureSynthesisInput = getAzureSynthesisInput(text, lang);
+    const cacheText = voice === 'google' ? text : azureSynthesisInput.cacheText;
+
     // 1) Derived (versioned WAV) hit — redirect the client straight to the CDN.
-    const cacheKey = ttsCacheKey(voice, lang, text, req.query.ck);
+    const cacheKey = ttsCacheKey(voice, lang, cacheText, req.query.ck);
     if (await ttsCacheHas(cacheKey)) {
         res.set('X-TTS-Cache', 'hit');
         return res.redirect(302, ttsPublicUrl(cacheKey));
@@ -1274,7 +1337,7 @@ app.get('/api/tts', async (req, res) => {
     // derived, serve inline. No Azure call. This is the path that makes
     // voice-quality iteration free after the first generation.
     if (voice !== 'google' && TTS_CACHE_ENABLED) {
-        const sourcePcm = await ttsCacheGetBuffer(ttsSourceKey(voice, lang, text));
+        const sourcePcm = await ttsCacheGetBuffer(ttsSourceKey(voice, lang, azureSynthesisInput.cacheText));
         if (sourcePcm && sourcePcm.length > 0) {
             const wav = deriveAzureWav(sourcePcm, voice);
             ttsCachePut(cacheKey, wav.buffer, wav.contentType);
