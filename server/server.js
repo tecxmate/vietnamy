@@ -6,6 +6,7 @@ import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
 import { Converter } from 'opencc-js';
+import { put as blobPut } from '@vercel/blob';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT_DIR = join(__dirname, '..');
@@ -32,6 +33,27 @@ const PORT = process.env.PORT || 3001;
 
 app.use(cors());
 app.use(express.json({ limit: '1mb' }));
+
+// Mascot art upload → Vercel Blob (local-dev parity with api/mascot-upload.js).
+const MASCOT_BLOB_TYPES = { svg: 'image/svg+xml', gif: 'image/gif', lottie: 'application/json', json: 'application/json' };
+app.post('/api/mascot-upload', express.raw({ type: '*/*', limit: '6mb' }), async (req, res) => {
+    if (!process.env.BLOB_READ_WRITE_TOKEN) {
+        return res.status(500).json({ error: 'Blob storage is not configured (missing BLOB_READ_WRITE_TOKEN).' });
+    }
+    try {
+        const type = String(req.query.type || 'svg');
+        const filename = String(req.query.filename || 'asset').replace(/[^\w.-]/g, '_');
+        if (!req.body || !req.body.length) return res.status(400).json({ error: 'Empty upload.' });
+        const blob = await blobPut(`mascot/${Date.now()}-${filename}`, req.body, {
+            access: 'public',
+            contentType: MASCOT_BLOB_TYPES[type] || 'application/octet-stream',
+            token: process.env.BLOB_READ_WRITE_TOKEN,
+        });
+        res.json({ url: blob.url });
+    } catch (err) {
+        res.status(500).json({ error: err?.message || 'Upload failed.' });
+    }
+});
 
 // Simplified ↔ Traditional Chinese converters
 const s2t = Converter({ from: 'cn', to: 'tw' });

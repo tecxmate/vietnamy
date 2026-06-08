@@ -1,6 +1,12 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, Suspense, lazy } from 'react';
 import { getMascotAsset } from '../../lib/mascot';
 import './BeKhe.css';
+
+// Lottie player loaded only when a Lottie asset is actually rendered, so it
+// never weighs down the main bundle.
+const DotLottie = lazy(() =>
+    import('@lottiefiles/dotlottie-react').then((m) => ({ default: m.DotLottieReact })),
+);
 
 /**
  * Bé Khế — the starfruit-star mascot, drawn as inline SVG so a single component
@@ -179,23 +185,7 @@ export default function BeKhe({
     );
     const motionClass = animate ? `bekhe--${expression}` : '';
 
-    // Custom uploaded artwork (SVG/GIF) wins over the built-in face. GIFs animate
-    // themselves; static SVGs get the same CSS motion as the built-in states.
-    if (asset?.dataUrl) {
-        return (
-            <img
-                className={`bekhe ${motionClass} ${className}`.trim()}
-                src={asset.dataUrl}
-                width={size}
-                height={size}
-                alt={label}
-                style={{ objectFit: 'contain' }}
-                {...rest}
-            />
-        );
-    }
-
-    return (
+    const builtIn = (
         <svg
             className={`bekhe ${motionClass} ${className}`.trim()}
             width={size}
@@ -208,4 +198,40 @@ export default function BeKhe({
             {FACE(expression)}
         </svg>
     );
+
+    // Custom uploaded artwork wins over the built-in face.
+    const src = asset?.url || asset?.dataUrl;
+    if (src) {
+        // Lottie: render via the lazy player (it animates itself). Show the
+        // built-in face as the fallback while the player chunk loads.
+        if (asset.type === 'lottie' && asset.url) {
+            return (
+                <Suspense fallback={builtIn}>
+                    <div
+                        className={className}
+                        style={{ width: size, height: size, display: 'inline-block' }}
+                        role="img"
+                        aria-label={label}
+                    >
+                        <DotLottie src={asset.url} autoplay loop style={{ width: '100%', height: '100%' }} />
+                    </div>
+                </Suspense>
+            );
+        }
+        // SVG / GIF: a plain <img>. GIFs self-animate; static SVGs get the
+        // same CSS motion as the built-in states.
+        return (
+            <img
+                className={`bekhe ${motionClass} ${className}`.trim()}
+                src={src}
+                width={size}
+                height={size}
+                alt={label}
+                style={{ objectFit: 'contain' }}
+                {...rest}
+            />
+        );
+    }
+
+    return builtIn;
 }
