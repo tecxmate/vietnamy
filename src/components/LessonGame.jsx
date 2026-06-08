@@ -1306,7 +1306,7 @@ const LessonGame = () => {
 
             {/* Bottom Checking Bar */}
             <div
-                className="lesson-game__actionbar"
+                className={`lesson-game__actionbar ${isChecking ? 'lesson-game__actionbar--feedback' : ''}`}
                 style={{
                     '--lesson-action-bar-bg': isChecking
                         ? (isCorrect ? 'var(--lesson-correct-fill)' : 'var(--lesson-error-fill)')

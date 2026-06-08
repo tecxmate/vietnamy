@@ -114,6 +114,12 @@
     overflow: hidden;
 }
 
+.lesson-game__actionbar--feedback {
+    --lesson-action-bar-base-height: 188px;
+    padding-bottom: calc(28px + var(--safe-area-bottom-effective));
+    overflow: visible;
+}
+
 .lesson-game__actionbar-content {
     width: 100%;
     max-width: 600px;
@@ -159,6 +165,11 @@
     .lesson-game__actionbar {
         padding: 18px var(--app-edge-right) calc(18px + var(--safe-area-bottom-effective)) var(--app-edge-left);
     }
+
+    .lesson-game__actionbar--feedback {
+        --lesson-action-bar-base-height: 188px;
+        padding-bottom: calc(28px + var(--safe-area-bottom-effective));
+    }
 }
 
 @media (max-height: 700px) {
@@ -187,5 +198,11 @@
 
     .lesson-game__response-area {
         min-height: 190px;
+    }
+
+    .lesson-game__actionbar--feedback {
+        --lesson-action-bar-base-height: 176px;
+        padding-top: 16px;
+        padding-bottom: calc(24px + var(--safe-area-bottom-effective));
     }
 }
