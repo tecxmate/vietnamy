@@ -20,6 +20,7 @@ import useQuizSession, { getCompletedSentenceAudio } from '../hooks/useQuizSessi
 import { DEFAULT_LEARNER_MODE, getProgressMode } from '../data/learnerModes';
 import { useT, normalizeLang } from '../lib/i18n';
 import { getLine } from '../lib/mascot';
+import { STREAK_MILESTONES } from '../lib/streak';
 import BeKhe from './BeKhe/BeKhe';
 import './LessonGame.css';
 
@@ -87,6 +88,7 @@ const LessonGame = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const testMode = loadSettings().testMode === true;
     const [isFinished, setIsFinished] = useState(false);
+    const [streakMascot, setStreakMascot] = useState(null);
 
     // Score tracking
     const [score, setScore] = useState(0);
@@ -342,6 +344,18 @@ const LessonGame = () => {
             setTimeout(() => fireNotification('coins_earned'), 2000);
         }
     }, [isFinished]);
+
+    // Daily-streak milestone celebration on the complete screen (once per day).
+    // Runs after completeNode has recorded today's activity, so dailyStreak is current.
+    useEffect(() => {
+        if (!isFinished) return;
+        const n = progressCtx.dailyStreak;
+        if (STREAK_MILESTONES.includes(n) && progressCtx.consumeStreakMoment('milestone')) {
+            setStreakMascot(getLine('daily_streak', { lang: mascotLang, slot: String(n), vars: { name: learnerName } }));
+            fireNotification('daily_streak');
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isFinished, progressCtx.dailyStreak]);
 
     const handlePlayAudio = (text) => {
         if (text) speak(text);
@@ -806,6 +820,17 @@ const LessonGame = () => {
                         <p style={{ fontSize: 16, fontWeight: 600, color: 'var(--text-main)', textAlign: 'center', margin: 0, lineHeight: 1.4 }}>
                             {mascotComplete.text}
                         </p>
+                    </div>
+                )}
+
+                {streakMascot && (
+                    <div style={{
+                        display: 'flex', alignItems: 'center', gap: 10, maxWidth: 360,
+                        padding: '10px 16px', borderRadius: 12,
+                        backgroundColor: 'rgba(255, 107, 53, 0.12)', border: '1px solid rgba(255, 107, 53, 0.35)',
+                    }}>
+                        <BeKhe expression={streakMascot.expression} size={44} />
+                        <span style={{ fontSize: 14, fontWeight: 600, color: 'var(--text-main)', lineHeight: 1.4 }}>{streakMascot.text}</span>
                     </div>
                 )}
 

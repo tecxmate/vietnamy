@@ -5,9 +5,10 @@
  * - completedNodes: Set of node IDs that are fully completed
  * - nodeSessionCounts: How many sessions completed per node (4 = done)
  */
-import { createContext, useContext, useState, useEffect, useCallback, useMemo } from 'react';
+import { createContext, useContext, useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { NODE_ID_MIGRATION } from '../lib/nodeMigration';
 import { MODE_IDS, DEFAULT_LEARNER_MODE } from '../data/learnerModes';
+import { advanceStreak, streakStatus as computeStreakStatus, todayStr } from '../lib/streak';
 
 const ProgressContext = createContext();
 
@@ -32,6 +33,18 @@ function loadHearts() {
         }
     } catch { /* ignore */ }
     return MAX_HEARTS;
+}
+
+// Daily streak — consecutive calendar days with any study activity.
+const STREAK_STORAGE_KEY = 'vnme_streak';
+const EMPTY_STREAK = { count: 0, lastActiveDate: null, best: 0, moments: {} };
+
+function loadStreak() {
+    try {
+        const raw = localStorage.getItem(STREAK_STORAGE_KEY);
+        if (raw) return { ...EMPTY_STREAK, ...JSON.parse(raw) };
+    } catch { /* ignore */ }
+    return { ...EMPTY_STREAK };
 }
 
 function createEmptyModeProgress() {
@@ -97,6 +110,11 @@ export function ProgressProvider({ children }) {
     const [completedNodes, setCompletedNodes] = useState(init.completedNodes);
     const [nodeSessionCounts, setNodeSessionCounts] = useState(init.nodeSessionCounts);
     const [hearts, setHearts] = useState(loadHearts);
+    const [streak, setStreak] = useState(loadStreak);
+    // Mirror of streak for synchronous reads inside consumeStreakMoment / getStreakStatus
+    // (both run in effects, never during render). Synced after each commit.
+    const streakRef = useRef(streak);
+    useEffect(() => { streakRef.current = streak; }, [streak]);
 
     // Persist to localStorage
     useEffect(() => {
@@ -113,7 +131,16 @@ export function ProgressProvider({ children }) {
         }));
     }, [completedNodes, nodeSessionCounts]);
 
+    // Mark today active on any completed study activity (idempotent per day).
+    const recordActivity = useCallback(() => {
+        setStreak(prev => {
+            const next = advanceStreak(prev, todayStr());
+            return { ...prev, count: next.count, lastActiveDate: next.lastActiveDate, best: next.best };
+        });
+    }, []);
+
     const completeNode = useCallback((nodeId, { immediate = false, sessionsRequired, mode = DEFAULT_LEARNER_MODE } = {}) => {
+        recordActivity();
         if (immediate) {
             setCompletedNodes(prev => ({
                 ...prev,
@@ -136,7 +163,7 @@ export function ProgressProvider({ children }) {
                 [mode]: { ...modeSessionCounts, [nodeId]: newCount }
             };
         });
-    }, []);
+    }, [recordActivity]);
 
     const getNodeSessionCount = useCallback((nodeId, mode = DEFAULT_LEARNER_MODE) => {
         return nodeSessionCounts[mode]?.[nodeId] ?? 0;
@@ -155,10 +182,33 @@ export function ProgressProvider({ children }) {
         setHearts(MAX_HEARTS);
     }, []);
 
+    // Persist streak.
+    useEffect(() => {
+        localStorage.setItem(STREAK_STORAGE_KEY, JSON.stringify(streak));
+    }, [streak]);
+
+    // Read-only streak view for UI / on-open decisions.
+    const getStreakStatus = useCallback(() => computeStreakStatus(streakRef.current, todayStr()), []);
+
+    // Returns true at most once per local day per `kind` (milestone/return/lost/save),
+    // so a moment fires once and not on every render/mount that day.
+    const consumeStreakMoment = useCallback((kind) => {
+        const today = todayStr();
+        if (streakRef.current.moments?.[kind] === today) return false;
+        const next = { ...streakRef.current, moments: { ...streakRef.current.moments, [kind]: today } };
+        streakRef.current = next;
+        setStreak(next);
+        return true;
+    }, []);
+
+    const dailyStreak = useMemo(() => computeStreakStatus(streak, todayStr()).count, [streak]);
+
     const resetProgress = useCallback(() => {
         const empty = createEmptyModeProgress();
         setCompletedNodes(empty.completedNodes);
         setNodeSessionCounts(empty.nodeSessionCounts);
+        setStreak({ ...EMPTY_STREAK });
+        localStorage.removeItem(STREAK_STORAGE_KEY);
         localStorage.removeItem(STORAGE_KEY);
     }, []);
 
@@ -172,6 +222,11 @@ export function ProgressProvider({ children }) {
         loseHeart,
         refillHearts,
         MAX_HEARTS,
+        dailyStreak,
+        bestStreak: streak.best || 0,
+        getStreakStatus,
+        consumeStreakMoment,
+        recordActivity,
     };
 
     return (
