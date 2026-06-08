@@ -311,39 +311,43 @@ function IdentifyStep({ tones, onDone }) {
             </p>
 
             <style>{`@keyframes tonePing { from { transform: scale(1); opacity: 0.55; } to { transform: scale(1.7); opacity: 0; } }`}</style>
-            {feedback === 'idle' ? (
-                // While guessing: a neutral sound-wave ripple (no pitch shape — that's the answer).
-                <div style={{ position: 'relative', width: 92, height: 92, margin: '0 auto 10px' }}>
-                    {playToken > 0 && [0, 1].map(i => (
-                        <span key={`${playToken}-${i}`} style={{
-                            position: 'absolute', inset: 0, borderRadius: '50%', border: '2px solid #1CB0F6',
-                            animation: `tonePing 0.9s ease-out ${i * 0.25}s`, pointerEvents: 'none',
-                        }} />
-                    ))}
-                    <button onClick={play} aria-label="Replay" style={{
-                        position: 'relative', width: 92, height: 92, borderRadius: '50%', display: 'flex',
-                        alignItems: 'center', justifyContent: 'center', cursor: 'pointer',
-                        border: '2px solid #1CB0F6', backgroundColor: 'rgba(28,176,246,0.12)', color: '#1CB0F6',
-                    }}><Volume2 size={40} /></button>
-                </div>
-            ) : (
-                // Answer revealed: show the tone's pitch shape, re-tracing on every replay.
-                <div style={{ maxWidth: 340, margin: '0 auto 10px' }}>
-                    <div style={{ borderRadius: 16, border: `2px solid ${correctTone.color}`, backgroundColor: 'var(--surface-color)', padding: '10px 12px 4px' }}>
-                        <PitchGraph contour={correctTone.contour} color={correctTone.color} playToken={playToken} height={110} />
+            {/* Fixed-height play area: the speaker (guessing) and the pitch graph
+                (revealed) occupy the same space, so nothing below shifts. */}
+            <div style={{ height: 196, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', marginBottom: 8 }}>
+                {feedback === 'idle' ? (
+                    // While guessing: a neutral sound-wave ripple (no pitch shape — that's the answer).
+                    <div style={{ position: 'relative', width: 92, height: 92 }}>
+                        {playToken > 0 && [0, 1].map(i => (
+                            <span key={`${playToken}-${i}`} style={{
+                                position: 'absolute', inset: 0, borderRadius: '50%', border: '2px solid #1CB0F6',
+                                animation: `tonePing 0.9s ease-out ${i * 0.25}s`, pointerEvents: 'none',
+                            }} />
+                        ))}
+                        <button onClick={play} aria-label="Replay" style={{
+                            position: 'relative', width: 92, height: 92, borderRadius: '50%', display: 'flex',
+                            alignItems: 'center', justifyContent: 'center', cursor: 'pointer',
+                            border: '2px solid #1CB0F6', backgroundColor: 'rgba(28,176,246,0.12)', color: '#1CB0F6',
+                        }}><Volume2 size={40} /></button>
                     </div>
-                    <button onClick={play} style={{
-                        margin: '8px auto 0', display: 'flex', alignItems: 'center', gap: 6, padding: '6px 16px',
-                        borderRadius: 20, border: 'none', backgroundColor: `${correctTone.color}1A`, color: correctTone.color,
-                        fontWeight: 700, fontSize: 14, cursor: 'pointer', fontFamily: 'inherit',
-                    }}><Volume2 size={18} /> Replay</button>
-                </div>
-            )}
+                ) : (
+                    // Answer revealed: show the tone's pitch shape, re-tracing on every replay.
+                    <div style={{ width: '100%', maxWidth: 340 }}>
+                        <div style={{ borderRadius: 16, border: `2px solid ${correctTone.color}`, backgroundColor: 'var(--surface-color)', padding: '10px 12px 4px' }}>
+                            <PitchGraph contour={correctTone.contour} color={correctTone.color} playToken={playToken} height={110} />
+                        </div>
+                        <button onClick={play} style={{
+                            margin: '8px auto 0', display: 'flex', alignItems: 'center', gap: 6, padding: '6px 16px',
+                            borderRadius: 20, border: 'none', backgroundColor: `${correctTone.color}1A`, color: correctTone.color,
+                            fontWeight: 700, fontSize: 14, cursor: 'pointer', fontFamily: 'inherit',
+                        }}><Volume2 size={18} /> Replay</button>
+                    </div>
+                )}
+            </div>
 
-            <div style={{ textAlign: 'center', minHeight: 40, marginBottom: 12 }}>
+            <div style={{ textAlign: 'center', height: 54, marginBottom: 12, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                 {feedback !== 'idle' ? (
                     <>
-                        <div style={{ fontSize: 28, fontWeight: 800, color: 'var(--text-main)' }}>{q.word}</div>
+                        <div style={{ fontSize: 28, fontWeight: 800, color: 'var(--text-main)', lineHeight: 1.1 }}>{q.word}</div>
                         <div style={{ fontSize: 13, color: 'var(--text-muted)' }}>"{q.meaning}"</div>
                     </>
                 ) : (
