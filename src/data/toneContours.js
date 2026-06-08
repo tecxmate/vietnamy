@@ -9,6 +9,9 @@
  */
 
 import tonesData from '../../content/tones.json';
+import { loadOverride } from '../lib/contentOverrides';
+
+export const TONEWORDS_CMS_KEY = 'vnme_cms_tonewords';
 
 // Ordered array for iteration: [ngang, sac, huyen, hoi, nga, nang].
 // Each item: { id, name, label, mark, color, description, contour }.
@@ -18,8 +21,11 @@ export const TONE_LIST = tonesData.tones;
 export const TONE_CONTOURS = Object.fromEntries(TONE_LIST.map(t => [t.id, t]));
 
 // Practice words, mapped back to the legacy { word, tone, meaning } shape.
-export const PRACTICE_WORDS = tonesData.practiceWords.map(w => ({
+export const DEFAULT_PRACTICE_WORDS = tonesData.practiceWords.map(w => ({
     word: w.vi,
     tone: w.toneId,
     meaning: w.en,
 }));
+
+// Use the admin override (Tone Words editor) if present, else the bundled words.
+export const PRACTICE_WORDS = loadOverride(TONEWORDS_CMS_KEY, DEFAULT_PRACTICE_WORDS);

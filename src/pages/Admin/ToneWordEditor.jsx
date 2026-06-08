@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { Save, Plus, Trash2, Search, Download, Upload, Check } from 'lucide-react';
+import { DEFAULT_PRACTICE_WORDS } from '../../data/toneContours';
 
 const TONE_IDS = ['ngang', 'sac', 'huyen', 'hoi', 'nga', 'nang'];
 const TONE_LABELS = {
@@ -26,7 +27,7 @@ function saveWords(words) {
 }
 
 const ToneWordEditor = () => {
-    const [words, setWords] = useState(() => loadWords() || []);
+    const [words, setWords] = useState(() => loadWords() || DEFAULT_PRACTICE_WORDS);
     const [filterTone, setFilterTone] = useState('All');
     const [searchQuery, setSearchQuery] = useState('');
     const [hasChanges, setHasChanges] = useState(false);
