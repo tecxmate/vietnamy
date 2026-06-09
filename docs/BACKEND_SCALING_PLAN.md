@@ -13,6 +13,20 @@ Vietnamy should scale as a Postgres-backed app with heavy objects kept out of th
 
 `server/opsStore.js` writes operational data to `server/databases/app_ops.db` so the app has a coherent durable store before the full Supabase cutover.
 
+Set the provider with:
+
+```bash
+# Local/dev fallback
+OPS_STORE_PROVIDER=sqlite
+
+# Production Supabase-backed operations
+OPS_STORE_PROVIDER=supabase
+SUPABASE_URL=https://your-project.supabase.co
+SUPABASE_SERVICE_ROLE_KEY=...
+```
+
+If `OPS_STORE_PROVIDER=supabase` is set without `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY`, the server falls back to SQLite rather than failing startup. Treat that as a misconfiguration in production logs.
+
 The matching Supabase schema is:
 
 `supabase/migrations/202606100001_app_ops.sql`
@@ -75,10 +89,11 @@ Neon remains a viable future option because the schema is normal Postgres. Avoid
 
 ## Next Implementation Steps
 
-1. Add Supabase service-role connection to the Express server behind `OPS_STORE_PROVIDER=supabase`.
-2. Keep SQLite fallback for local dev and emergency rollback.
-3. Move auth/account creation to Supabase Auth.
-4. Replace anonymous `userId` strings with Supabase `auth.users.id`.
-5. Add RLS policies for direct client reads where appropriate, starting with notifications and profile/progress.
-6. Add daily rollup jobs for analytics tables.
-7. Add backup script for Supabase Postgres plus R2 object inventory.
+1. Run the app ops migration in Supabase.
+2. Export any local `app_ops.db` data that should be preserved and import it into Supabase.
+3. Deploy the server with `OPS_STORE_PROVIDER=supabase`, `SUPABASE_URL`, and `SUPABASE_SERVICE_ROLE_KEY`.
+4. Move auth/account creation to Supabase Auth.
+5. Replace anonymous `userId` strings with Supabase `auth.users.id`.
+6. Add RLS policies for direct client reads where appropriate, starting with notifications and profile/progress.
+7. Add daily rollup jobs for analytics tables.
+8. Add backup script for Supabase Postgres plus R2 object inventory.

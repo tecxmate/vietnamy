@@ -184,8 +184,8 @@ function compactClientLogs(value) {
     }).filter(Boolean);
 }
 
-app.get('/api/mail/config', (_req, res) => {
-    const stats = getEmailStats();
+app.get('/api/mail/config', async (_req, res) => {
+    const stats = await getEmailStats();
     res.json({
         enabled: stats.enabled,
         from: stats.from,
@@ -193,9 +193,9 @@ app.get('/api/mail/config', (_req, res) => {
     });
 });
 
-app.get('/api/mail/stats', (req, res) => {
+app.get('/api/mail/stats', async (req, res) => {
     if (!requireMailAdmin(req, res)) return;
-    res.json(getEmailStats());
+    res.json(await getEmailStats());
 });
 
 app.post('/api/mail/support', async (req, res) => {
@@ -229,7 +229,7 @@ app.post('/api/mail/support', async (req, res) => {
     res.json({ ok: true });
 });
 
-app.post('/api/feedback', (req, res) => {
+app.post('/api/feedback', async (req, res) => {
     const name = clampText(req.body?.name, 120);
     const email = normalizeEmail(req.body?.email);
     const userId = clampText(req.body?.userId, 160) || email || 'anonymous';
@@ -270,14 +270,14 @@ app.post('/api/feedback', (req, res) => {
         clientLogs: compactClientLogs(req.body?.clientLogs),
         metadata: compactMetadata(req.body?.metadata),
     };
-    createFeedbackReport(report);
+    await createFeedbackReport(report);
 
     res.json({ ok: true, id: report.id });
 });
 
-app.get('/api/admin/feedback', (req, res) => {
+app.get('/api/admin/feedback', async (req, res) => {
     if (!requireMailAdmin(req, res)) return;
-    res.json(getStoredFeedbackStats());
+    res.json(await getStoredFeedbackStats());
 });
 
 app.post('/api/mail/waitlist', async (req, res) => {
@@ -386,27 +386,27 @@ app.get('/api/messages/scenarios', (req, res) => {
     res.json({ scenarios: listMessageScenarios() });
 });
 
-app.get('/api/messages/stats', (req, res) => {
+app.get('/api/messages/stats', async (req, res) => {
     if (!requireMailAdmin(req, res)) return;
-    res.json(getMessageEngagementStats({
+    res.json(await getMessageEngagementStats({
         scenarioId: req.query.scenarioId || undefined,
         channel: req.query.channel || undefined,
     }));
 });
 
-app.post('/api/messages/render', (req, res) => {
+app.post('/api/messages/render', async (req, res) => {
     if (!requireMailAdmin(req, res)) return;
     const scenarioId = clampText(req.body?.scenarioId, 120);
     const channel = clampText(req.body?.channel || 'email', 40);
     const context = req.body?.context && typeof req.body.context === 'object' ? req.body.context : {};
-    const variant = selectMessageVariant(scenarioId, channel, {
+    const variant = await selectMessageVariant(scenarioId, channel, {
         userId: clampText(req.body?.userId, 160),
         forceVariantId: clampText(req.body?.variantId, 80),
     });
     if (!variant) return res.status(404).json({ error: 'scenario or channel not found' });
     const rendered = renderEngagementMessage(scenarioId, { channel, variantId: variant.id, context });
     if (!rendered) return res.status(404).json({ error: 'message could not be rendered' });
-    recordMessageEvent({
+    await recordMessageEvent({
         scenarioId,
         channel,
         variantId: rendered.variantId,
@@ -424,7 +424,7 @@ app.post('/api/messages/send-email', async (req, res) => {
     if (!to) return res.status(400).json({ error: 'valid recipient email is required' });
     if (!getMessageScenario(scenarioId)) return res.status(404).json({ error: 'scenario not found' });
 
-    const variant = selectMessageVariant(scenarioId, 'email', {
+    const variant = await selectMessageVariant(scenarioId, 'email', {
         userId: clampText(req.body?.userId || to, 160),
         forceVariantId: clampText(req.body?.variantId, 80),
     });
@@ -456,7 +456,7 @@ app.post('/api/messages/send-email', async (req, res) => {
         replyTo: normalizeEmail(req.body?.replyTo),
     });
 
-    recordMessageEvent({
+    await recordMessageEvent({
         messageInstanceId,
         scenarioId,
         channel: 'email',
@@ -472,7 +472,7 @@ app.post('/api/messages/send-email', async (req, res) => {
     res.json({ ok: true, id: result.id || null, messageInstanceId, scenarioId, variantId: variant.id });
 });
 
-app.post('/api/messages/send-in-app', (req, res) => {
+app.post('/api/messages/send-in-app', async (req, res) => {
     if (!requireMailAdmin(req, res)) return;
     const scenarioId = clampText(req.body?.scenarioId, 120);
     const recipientId = clampText(req.body?.userId || req.body?.recipientId, 160) || 'anonymous';
@@ -480,7 +480,7 @@ app.post('/api/messages/send-in-app', (req, res) => {
     const context = req.body?.context && typeof req.body.context === 'object' ? req.body.context : {};
     if (!getMessageScenario(scenarioId)) return res.status(404).json({ error: 'scenario not found' });
 
-    const variant = selectMessageVariant(scenarioId, 'inApp', {
+    const variant = await selectMessageVariant(scenarioId, 'inApp', {
         userId: recipientId,
         forceVariantId: clampText(req.body?.variantId, 80),
     });
@@ -491,7 +491,7 @@ app.post('/api/messages/send-in-app', (req, res) => {
         variantId: variant.id,
         context,
     });
-    const notificationId = createNotification({
+    const notificationId = await createNotification({
         recipientId,
         recipientEmail,
         type: scenarioId,
@@ -504,7 +504,7 @@ app.post('/api/messages/send-in-app', (req, res) => {
             context: compactMetadata(context),
         },
     });
-    recordMessageEvent({
+    await recordMessageEvent({
         messageInstanceId: notificationId,
         scenarioId,
         channel: 'inApp',
@@ -517,8 +517,8 @@ app.post('/api/messages/send-in-app', (req, res) => {
     res.json({ ok: true, notificationId, scenarioId, variantId: rendered.variantId });
 });
 
-app.post('/api/messages/events', (req, res) => {
-    const entry = recordMessageEvent({
+app.post('/api/messages/events', async (req, res) => {
+    const entry = await recordMessageEvent({
         messageInstanceId: clampText(req.body?.messageInstanceId, 120),
         scenarioId: clampText(req.body?.scenarioId, 120),
         variantId: clampText(req.body?.variantId, 80),
@@ -530,19 +530,19 @@ app.post('/api/messages/events', (req, res) => {
     res.json({ ok: true, event: entry.event });
 });
 
-app.get('/api/notifications', (req, res) => {
+app.get('/api/notifications', async (req, res) => {
     const recipientId = clampText(req.query.userId || req.query.recipientId, 160) || 'anonymous';
-    res.json(listNotifications({
+    res.json(await listNotifications({
         recipientId,
         unreadOnly: req.query.unread === 'true',
         limit: Number(req.query.limit || 20),
     }));
 });
 
-app.put('/api/notifications', (req, res) => {
+app.put('/api/notifications', async (req, res) => {
     const recipientId = clampText(req.body?.userId || req.body?.recipientId, 160) || 'anonymous';
     const ids = Array.isArray(req.body?.notificationIds) ? req.body.notificationIds : [];
-    markNotificationsRead({
+    await markNotificationsRead({
         recipientId,
         ids,
         markAllRead: Boolean(req.body?.markAllRead),
@@ -550,10 +550,10 @@ app.put('/api/notifications', (req, res) => {
     res.json({ ok: true });
 });
 
-app.post('/api/admin/notifications', (req, res) => {
+app.post('/api/admin/notifications', async (req, res) => {
     if (!requireMailAdmin(req, res)) return;
     const recipientId = clampText(req.body?.userId || req.body?.recipientId, 160) || 'anonymous';
-    const notificationId = createNotification({
+    const notificationId = await createNotification({
         recipientId,
         recipientEmail: normalizeEmail(req.body?.recipientEmail),
         type: clampText(req.body?.type || 'system', 80),
@@ -565,8 +565,8 @@ app.post('/api/admin/notifications', (req, res) => {
     res.json({ ok: true, notificationId });
 });
 
-app.get('/api/messages/open', (req, res) => {
-    recordMessageEvent({
+app.get('/api/messages/open', async (req, res) => {
+    await recordMessageEvent({
         messageInstanceId: clampText(req.query.m, 120),
         scenarioId: clampText(req.query.s, 120),
         variantId: clampText(req.query.v, 80),
@@ -578,9 +578,9 @@ app.get('/api/messages/open', (req, res) => {
     res.send(pixel);
 });
 
-app.get('/api/messages/click', (req, res) => {
+app.get('/api/messages/click', async (req, res) => {
     const url = safeRedirectUrl(req.query.url);
-    recordMessageEvent({
+    await recordMessageEvent({
         messageInstanceId: clampText(req.query.m, 120),
         scenarioId: clampText(req.query.s, 120),
         variantId: clampText(req.query.v, 80),
@@ -2225,7 +2225,7 @@ app.get('/api/push/vapid-public-key', (_req, res) => {
     });
 });
 
-app.post('/api/push/subscribe', (req, res) => {
+app.post('/api/push/subscribe', async (req, res) => {
     const { subscription, userId = 'anonymous', userName = '', platform = 'web' } = req.body || {};
     if (!subscription?.endpoint || !subscription?.keys?.p256dh || !subscription?.keys?.auth) {
         return res.status(400).json({ error: 'valid push subscription required' });
@@ -2233,19 +2233,19 @@ app.post('/api/push/subscribe', (req, res) => {
 
     const id = pushSubscriptionKey(subscription);
     const now = new Date().toISOString();
-    upsertPushSubscription({
+    await upsertPushSubscription({
         id,
         userId,
         userName,
         platform,
         subscription,
     });
-    recordPushEvent({ type: 'subscribed', subscriptionId: id, userId, metadata: { platform }, at: now });
+    await recordPushEvent({ type: 'subscribed', subscriptionId: id, userId, metadata: { platform }, at: now });
 
     res.json({ ok: true, subscriptionId: id, enabled: PUSH_ENABLED });
 });
 
-app.post('/api/push/events', (req, res) => {
+app.post('/api/push/events', async (req, res) => {
     const {
         type,
         notificationId = '',
@@ -2260,7 +2260,7 @@ app.post('/api/push/events', (req, res) => {
 
     const now = new Date().toISOString();
     const normalizedScenarioId = scenarioId || LEGACY_PUSH_SCENARIOS[templateId] || templateId;
-    recordPushEvent({
+    await recordPushEvent({
         type,
         notificationId,
         templateId,
@@ -2273,7 +2273,7 @@ app.post('/api/push/events', (req, res) => {
     });
 
     if (type === 'clicked' && subscriptionId) {
-        updatePushSubscriptionStats(subscriptionId, { clickedDelta: 1 });
+        await updatePushSubscriptionStats(subscriptionId, { clickedDelta: 1 });
     }
 
     if (normalizedScenarioId) {
@@ -2285,7 +2285,7 @@ app.post('/api/push/events', (req, res) => {
                     ? 'dismissed'
                     : null;
         if (event) {
-            recordMessageEvent({
+            await recordMessageEvent({
                 messageInstanceId: notificationId,
                 scenarioId: normalizedScenarioId,
                 variantId,
@@ -2300,9 +2300,9 @@ app.post('/api/push/events', (req, res) => {
     res.json({ ok: true });
 });
 
-app.get('/api/push/stats', (req, res) => {
+app.get('/api/push/stats', async (req, res) => {
     if (!requireMailAdmin(req, res)) return;
-    res.json(getStoredPushStats());
+    res.json(await getStoredPushStats());
 });
 
 app.post('/api/push/send', async (req, res) => {
@@ -2321,7 +2321,7 @@ app.post('/api/push/send', async (req, res) => {
     const context = rawContext && typeof rawContext === 'object' ? rawContext : {};
     const selectedScenarioId = requestedScenarioId || LEGACY_PUSH_SCENARIOS[templateId] || templateId;
     const selectedVariant = getMessageScenario(selectedScenarioId)
-        ? selectMessageVariant(selectedScenarioId, 'push', {
+        ? await selectMessageVariant(selectedScenarioId, 'push', {
             userId: clampText(userId || '', 160),
             forceVariantId: clampText(requestedVariantId, 80),
         })
@@ -2343,7 +2343,7 @@ app.post('/api/push/send', async (req, res) => {
             variantId: rendered.variantId,
         }
         : legacyTemplate;
-    const subscriptions = listPushSubscriptions({ userId: userId || undefined, activeOnly: true });
+    const subscriptions = await listPushSubscriptions({ userId: userId || undefined, activeOnly: true });
     const webPush = await loadWebPush();
     const now = new Date().toISOString();
     const notificationId = createMessageInstanceId();
@@ -2363,8 +2363,8 @@ app.post('/api/push/send', async (req, res) => {
 
         try {
             await webPush.sendNotification(record.subscription, payload);
-            updatePushSubscriptionStats(record.id, { sentDelta: 1 });
-            recordPushEvent({
+            await updatePushSubscriptionStats(record.id, { sentDelta: 1 });
+            await recordPushEvent({
                 type: 'sent',
                 notificationId,
                 templateId,
@@ -2375,7 +2375,7 @@ app.post('/api/push/send', async (req, res) => {
                 at: now,
             });
             if (template.scenarioId) {
-                recordMessageEvent({
+                await recordMessageEvent({
                     messageInstanceId: notificationId,
                     scenarioId: template.scenarioId,
                     channel: 'push',
@@ -2388,13 +2388,13 @@ app.post('/api/push/send', async (req, res) => {
             results.sent += 1;
         } catch (err) {
             if (err.statusCode === 404 || err.statusCode === 410) {
-                updatePushSubscriptionStats(record.id, { active: false });
+                await updatePushSubscriptionStats(record.id, { active: false });
                 results.disabled += 1;
             } else {
                 results.failed += 1;
                 console.warn('Push send failed:', err.message);
             }
-            recordPushEvent({
+            await recordPushEvent({
                 type: 'send_failed',
                 notificationId,
                 templateId,
@@ -2406,7 +2406,7 @@ app.post('/api/push/send', async (req, res) => {
                 at: now,
             });
             if (template.scenarioId) {
-                recordMessageEvent({
+                await recordMessageEvent({
                     messageInstanceId: notificationId,
                     scenarioId: template.scenarioId,
                     channel: 'push',

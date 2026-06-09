@@ -13,7 +13,7 @@ export function createMessageInstanceId() {
     return crypto.randomUUID();
 }
 
-export function recordMessageEvent({
+export async function recordMessageEvent({
     messageInstanceId,
     scenarioId,
     variantId,
@@ -36,8 +36,8 @@ export function recordMessageEvent({
     });
 }
 
-export function getMessageEngagementStats({ scenarioId, channel } = {}) {
-    const events = listMessageEvents({ scenarioId, channel });
+export async function getMessageEngagementStats({ scenarioId, channel } = {}) {
+    const events = await listMessageEvents({ scenarioId, channel });
     const byVariant = {};
     const totals = {
         selected: 0,
@@ -89,7 +89,7 @@ export function getMessageEngagementStats({ scenarioId, channel } = {}) {
     };
 }
 
-export function selectMessageVariant(scenarioId, channel, { userId, forceVariantId } = {}) {
+export async function selectMessageVariant(scenarioId, channel, { userId, forceVariantId } = {}) {
     const variants = getScenarioVariants(scenarioId, channel);
     if (!variants.length) return null;
 
@@ -103,7 +103,7 @@ export function selectMessageVariant(scenarioId, channel, { userId, forceVariant
     if (shouldExplore) {
         selected = variants[Math.floor(Math.random() * variants.length)];
     } else if (variants.length > 1) {
-        const stats = getMessageEngagementStats({ scenarioId, channel }).byVariant;
+        const stats = (await getMessageEngagementStats({ scenarioId, channel })).byVariant;
         const ranked = stats
             .filter(item => variants.some(v => v.id === item.variantId))
             .sort((a, b) => b.score - a.score);
@@ -112,7 +112,7 @@ export function selectMessageVariant(scenarioId, channel, { userId, forceVariant
         }
     }
 
-    recordMessageEvent({
+    await recordMessageEvent({
         scenarioId,
         channel,
         variantId: selected.id,

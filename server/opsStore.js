@@ -1,13 +1,18 @@
 import crypto from 'crypto';
 import Database from 'better-sqlite3';
+import { createClient } from '@supabase/supabase-js';
 import { existsSync, mkdirSync } from 'fs';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const OPS_DB_PATH = process.env.APP_OPS_DB_PATH || join(__dirname, 'databases', 'app_ops.db');
+const OPS_STORE_PROVIDER = (process.env.OPS_STORE_PROVIDER || 'sqlite').toLowerCase();
+const SUPABASE_URL = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL || '';
+const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_SERVICE_KEY || '';
 
 let opsDb = null;
+let supabaseOps = null;
 
 function nowIso() {
     return new Date().toISOString();
@@ -32,6 +37,28 @@ function parseJson(value, fallback = {}) {
 
 function boolInt(value) {
     return value ? 1 : 0;
+}
+
+function useSupabaseOps() {
+    return OPS_STORE_PROVIDER === 'supabase' && Boolean(SUPABASE_URL && SUPABASE_SERVICE_ROLE_KEY);
+}
+
+function getSupabaseOps() {
+    if (!useSupabaseOps()) return null;
+    if (!supabaseOps) {
+        supabaseOps = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, {
+            auth: {
+                persistSession: false,
+                autoRefreshToken: false,
+            },
+        });
+        console.log('App ops store using Supabase');
+    }
+    return supabaseOps;
+}
+
+function logSupabaseError(action, error) {
+    if (error) console.warn(`Supabase ops ${action} failed:`, error.message || error);
 }
 
 export function getOpsDb() {
@@ -157,7 +184,25 @@ function initOpsSchema(db) {
     `);
 }
 
-export function recordEmailLog(entry = {}) {
+export async function recordEmailLog(entry = {}) {
+    const supabase = getSupabaseOps();
+    if (supabase) {
+        const id = entry.id || crypto.randomUUID();
+        const { error } = await supabase.from('email_logs').upsert({
+            id,
+            at: entry.at || nowIso(),
+            type: entry.type || 'generic',
+            recipient_email: entry.to || entry.recipientEmail || '',
+            subject: entry.subject || '',
+            success: Boolean(entry.success),
+            skipped: Boolean(entry.skipped),
+            provider_id: entry.providerId || null,
+            error_message: entry.errorMessage || null,
+        }, { onConflict: 'id' });
+        logSupabaseError('recordEmailLog', error);
+        return id;
+    }
+
     const db = getOpsDb();
     const id = entry.id || crypto.randomUUID();
     db.prepare(`
@@ -179,7 +224,28 @@ export function recordEmailLog(entry = {}) {
     return id;
 }
 
-export function getEmailLogStats() {
+export async function getEmailLogStats() {
+    const supabase = getSupabaseOps();
+    if (supabase) {
+        const { data: rows = [], error } = await supabase
+            .from('email_logs')
+            .select('id, at, type, recipient_email, subject, success, skipped, provider_id, error_message')
+            .order('at', { ascending: false })
+            .limit(5000);
+        logSupabaseError('getEmailLogStats', error);
+        return buildEmailStatsFromRows(rows.map(row => ({
+            id: row.id,
+            at: row.at,
+            type: row.type,
+            to: row.recipient_email,
+            subject: row.subject,
+            success: Boolean(row.success),
+            skipped: Boolean(row.skipped),
+            providerId: row.provider_id,
+            errorMessage: row.error_message,
+        })));
+    }
+
     const db = getOpsDb();
     const now = new Date();
     const todayStart = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate())).toISOString();
@@ -199,14 +265,20 @@ export function getEmailLogStats() {
 
     const countWhere = (where) => db.prepare(`SELECT COUNT(*) AS count FROM email_logs WHERE ${where}`).get().count;
     const recent = db.prepare(`
-        SELECT id, at, type, recipient_email AS to, subject, success, skipped, provider_id AS providerId, error_message AS errorMessage
+        SELECT id, at, type, recipient_email AS recipientEmail, subject, success, skipped, provider_id AS providerId, error_message AS errorMessage
         FROM email_logs
         ORDER BY at DESC
         LIMIT 25
     `).all().map(row => ({
-        ...row,
+        id: row.id,
+        at: row.at,
+        type: row.type,
+        to: row.recipientEmail,
+        subject: row.subject,
         success: Boolean(row.success),
         skipped: Boolean(row.skipped),
+        providerId: row.providerId,
+        errorMessage: row.errorMessage,
     }));
 
     return {
@@ -224,7 +296,72 @@ export function getEmailLogStats() {
     };
 }
 
-export function recordMessageEvent(entry = {}) {
+function buildEmailStatsFromRows(rows) {
+    const now = new Date();
+    const todayStart = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
+    const monthStart = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), 1);
+    const byType = {};
+    let sentToday = 0;
+    let failedToday = 0;
+    let sentMonth = 0;
+    let failedMonth = 0;
+    for (const row of rows) {
+        const type = row.type || 'generic';
+        byType[type] ||= { sent: 0, failed: 0, skipped: 0 };
+        if (row.skipped) byType[type].skipped += 1;
+        else if (row.success) byType[type].sent += 1;
+        else byType[type].failed += 1;
+
+        const t = Date.parse(row.at);
+        if (!Number.isFinite(t)) continue;
+        if (t >= todayStart) {
+            if (row.success && !row.skipped) sentToday += 1;
+            if (!row.success && !row.skipped) failedToday += 1;
+        }
+        if (t >= monthStart) {
+            if (row.success && !row.skipped) sentMonth += 1;
+            if (!row.success && !row.skipped) failedMonth += 1;
+        }
+    }
+    return {
+        today: { sent: sentToday, failed: failedToday },
+        month: { sent: sentMonth, failed: failedMonth },
+        totalLogged: rows.length,
+        byType,
+        recent: rows.slice(0, 25),
+    };
+}
+
+export async function recordMessageEvent(entry = {}) {
+    const supabase = getSupabaseOps();
+    if (supabase) {
+        const id = entry.id || crypto.randomUUID();
+        const payload = {
+            id,
+            at: entry.at || nowIso(),
+            message_instance_id: entry.messageInstanceId || null,
+            scenario_id: entry.scenarioId || '',
+            variant_id: entry.variantId || '',
+            channel: entry.channel || '',
+            event: entry.event || 'rendered',
+            user_id: entry.userId || null,
+            metadata: entry.metadata || {},
+        };
+        const { error } = await supabase.from('message_events').upsert(payload, { onConflict: 'id' });
+        logSupabaseError('recordMessageEvent', error);
+        return {
+            id,
+            at: payload.at,
+            messageInstanceId: payload.message_instance_id,
+            scenarioId: payload.scenario_id,
+            variantId: payload.variant_id,
+            channel: payload.channel,
+            event: payload.event,
+            userId: payload.user_id,
+            metadata: payload.metadata,
+        };
+    }
+
     const db = getOpsDb();
     const id = entry.id || crypto.randomUUID();
     db.prepare(`
@@ -256,7 +393,31 @@ export function recordMessageEvent(entry = {}) {
     };
 }
 
-export function listMessageEvents({ scenarioId, channel } = {}) {
+export async function listMessageEvents({ scenarioId, channel } = {}) {
+    const supabase = getSupabaseOps();
+    if (supabase) {
+        let query = supabase
+            .from('message_events')
+            .select('id, at, message_instance_id, scenario_id, variant_id, channel, event, user_id, metadata')
+            .order('at', { ascending: true })
+            .limit(20000);
+        if (scenarioId) query = query.eq('scenario_id', scenarioId);
+        if (channel) query = query.eq('channel', channel);
+        const { data = [], error } = await query;
+        logSupabaseError('listMessageEvents', error);
+        return data.map(row => ({
+            id: row.id,
+            at: row.at,
+            messageInstanceId: row.message_instance_id,
+            scenarioId: row.scenario_id,
+            variantId: row.variant_id,
+            channel: row.channel,
+            event: row.event,
+            userId: row.user_id,
+            metadata: row.metadata || {},
+        }));
+    }
+
     const db = getOpsDb();
     const clauses = [];
     const params = {};
@@ -282,7 +443,35 @@ export function listMessageEvents({ scenarioId, channel } = {}) {
     }));
 }
 
-export function upsertPushSubscription({ id, userId, userName, platform, subscription } = {}) {
+export async function upsertPushSubscription({ id, userId, userName, platform, subscription } = {}) {
+    const supabase = getSupabaseOps();
+    if (supabase) {
+        const now = nowIso();
+        const keys = subscription?.keys || {};
+        const { data: existing } = await supabase
+            .from('push_subscriptions')
+            .select('created_at, sent, clicked')
+            .eq('id', id)
+            .maybeSingle();
+        const { error } = await supabase.from('push_subscriptions').upsert({
+            id,
+            user_id: userId || 'anonymous',
+            user_name: userName || '',
+            platform: platform || 'web',
+            endpoint: subscription?.endpoint || '',
+            p256dh: keys.p256dh || '',
+            auth: keys.auth || '',
+            subscription: subscription || {},
+            active: true,
+            created_at: existing?.created_at || now,
+            updated_at: now,
+            sent: existing?.sent || 0,
+            clicked: existing?.clicked || 0,
+        }, { onConflict: 'id' });
+        logSupabaseError('upsertPushSubscription', error);
+        return;
+    }
+
     const db = getOpsDb();
     const now = nowIso();
     const endpoint = subscription?.endpoint || '';
@@ -319,7 +508,31 @@ export function upsertPushSubscription({ id, userId, userName, platform, subscri
     });
 }
 
-export function listPushSubscriptions({ userId, activeOnly = true } = {}) {
+export async function listPushSubscriptions({ userId, activeOnly = true } = {}) {
+    const supabase = getSupabaseOps();
+    if (supabase) {
+        let query = supabase
+            .from('push_subscriptions')
+            .select('id, user_id, user_name, platform, subscription, active, created_at, updated_at, sent, clicked')
+            .order('updated_at', { ascending: false });
+        if (activeOnly) query = query.eq('active', true);
+        if (userId) query = query.eq('user_id', userId);
+        const { data = [], error } = await query;
+        logSupabaseError('listPushSubscriptions', error);
+        return data.map(row => ({
+            id: row.id,
+            userId: row.user_id,
+            userName: row.user_name,
+            platform: row.platform,
+            active: Boolean(row.active),
+            createdAt: row.created_at,
+            updatedAt: row.updated_at,
+            sent: row.sent || 0,
+            clicked: row.clicked || 0,
+            subscription: row.subscription || {},
+        }));
+    }
+
     const db = getOpsDb();
     const clauses = [];
     const params = {};
@@ -343,7 +556,30 @@ export function listPushSubscriptions({ userId, activeOnly = true } = {}) {
     }));
 }
 
-export function updatePushSubscriptionStats(id, { sentDelta = 0, clickedDelta = 0, active } = {}) {
+export async function updatePushSubscriptionStats(id, { sentDelta = 0, clickedDelta = 0, active } = {}) {
+    const supabase = getSupabaseOps();
+    if (supabase) {
+        const { data: existing, error: readError } = await supabase
+            .from('push_subscriptions')
+            .select('sent, clicked, active')
+            .eq('id', id)
+            .maybeSingle();
+        logSupabaseError('updatePushSubscriptionStats/read', readError);
+        if (!existing) return;
+        const payload = {
+            updated_at: nowIso(),
+            sent: (existing.sent || 0) + sentDelta,
+            clicked: (existing.clicked || 0) + clickedDelta,
+        };
+        if (typeof active === 'boolean') payload.active = active;
+        const { error } = await supabase
+            .from('push_subscriptions')
+            .update(payload)
+            .eq('id', id);
+        logSupabaseError('updatePushSubscriptionStats', error);
+        return;
+    }
+
     const db = getOpsDb();
     const sets = ['updated_at = @updatedAt', 'sent = sent + @sentDelta', 'clicked = clicked + @clickedDelta'];
     const params = { id, updatedAt: nowIso(), sentDelta, clickedDelta };
@@ -354,7 +590,26 @@ export function updatePushSubscriptionStats(id, { sentDelta = 0, clickedDelta = 
     db.prepare(`UPDATE push_subscriptions SET ${sets.join(', ')} WHERE id = @id`).run(params);
 }
 
-export function recordPushEvent(entry = {}) {
+export async function recordPushEvent(entry = {}) {
+    const supabase = getSupabaseOps();
+    if (supabase) {
+        const id = entry.id || crypto.randomUUID();
+        const { error } = await supabase.from('push_events').upsert({
+            id,
+            at: entry.at || nowIso(),
+            type: entry.type || '',
+            notification_id: entry.notificationId || '',
+            template_id: entry.templateId || '',
+            scenario_id: entry.scenarioId || '',
+            variant_id: entry.variantId || '',
+            subscription_id: entry.subscriptionId || '',
+            user_id: entry.userId || 'anonymous',
+            metadata: entry.metadata || {},
+        }, { onConflict: 'id' });
+        logSupabaseError('recordPushEvent', error);
+        return id;
+    }
+
     const db = getOpsDb();
     const id = entry.id || crypto.randomUUID();
     db.prepare(`
@@ -377,7 +632,22 @@ export function recordPushEvent(entry = {}) {
     return id;
 }
 
-export function getPushStats() {
+export async function getPushStats() {
+    const supabase = getSupabaseOps();
+    if (supabase) {
+        const { count: activeSubscriptions, error: countError } = await supabase
+            .from('push_subscriptions')
+            .select('id', { count: 'exact', head: true })
+            .eq('active', true);
+        logSupabaseError('getPushStats/count', countError);
+        const { data: rows = [], error } = await supabase
+            .from('push_events')
+            .select('template_id, scenario_id, type')
+            .limit(20000);
+        logSupabaseError('getPushStats/events', error);
+        return buildPushStatsFromRows(rows, activeSubscriptions || 0);
+    }
+
     const db = getOpsDb();
     const activeSubscriptions = db.prepare('SELECT COUNT(*) AS count FROM push_subscriptions WHERE active = 1').get().count;
     const rows = db.prepare(`
@@ -402,7 +672,50 @@ export function getPushStats() {
     return { subscriptions: activeSubscriptions, templates };
 }
 
-export function createFeedbackReport(report = {}) {
+function buildPushStatsFromRows(rows, activeSubscriptions) {
+    const byTemplate = {};
+    for (const row of rows) {
+        const key = row.scenario_id || row.template_id || 'unknown';
+        byTemplate[key] ||= { templateId: key, sent: 0, clicked: 0, openedApp: 0 };
+        if (row.type === 'sent') byTemplate[key].sent += 1;
+        if (row.type === 'clicked') byTemplate[key].clicked += 1;
+        if (row.type === 'opened_app') byTemplate[key].openedApp += 1;
+    }
+    const templates = Object.values(byTemplate).map(item => ({
+        ...item,
+        clickRate: item.sent ? item.clicked / item.sent : 0,
+        openRate: item.sent ? item.openedApp / item.sent : 0,
+    })).sort((a, b) => b.openRate - a.openRate || b.clickRate - a.clickRate);
+    return { subscriptions: activeSubscriptions, templates };
+}
+
+export async function createFeedbackReport(report = {}) {
+    const supabase = getSupabaseOps();
+    if (supabase) {
+        const id = report.id || crypto.randomUUID();
+        const { error } = await supabase.from('feedback_reports').upsert({
+            id,
+            at: report.at || nowIso(),
+            status: report.status || 'open',
+            kind: report.kind || 'bug',
+            severity: report.severity || 'med',
+            subject: report.subject || '',
+            body: report.body || '',
+            name: report.name || '',
+            email: report.email || '',
+            user_id: report.userId || 'anonymous',
+            pathname: report.pathname || '/',
+            viewport: report.viewport || '',
+            screenshot_url: report.screenshotUrl || '',
+            user_agent: report.userAgent || '',
+            app_version: report.appVersion || 'dev',
+            client_logs: report.clientLogs || [],
+            metadata: report.metadata || {},
+        }, { onConflict: 'id' });
+        logSupabaseError('createFeedbackReport', error);
+        return id;
+    }
+
     const db = getOpsDb();
     const id = report.id || crypto.randomUUID();
     db.prepare(`
@@ -434,7 +747,50 @@ export function createFeedbackReport(report = {}) {
     return id;
 }
 
-export function getFeedbackStats() {
+export async function getFeedbackStats() {
+    const supabase = getSupabaseOps();
+    if (supabase) {
+        const { data: rows = [], error } = await supabase
+            .from('feedback_reports')
+            .select('id, at, status, kind, severity, subject, body, name, email, user_id, pathname, viewport, screenshot_url, user_agent, app_version, client_logs, metadata')
+            .order('at', { ascending: false })
+            .limit(5000);
+        logSupabaseError('getFeedbackStats', error);
+        const byKind = {};
+        const bySeverity = {};
+        const byStatus = {};
+        for (const row of rows) {
+            byKind[row.kind] = (byKind[row.kind] || 0) + 1;
+            bySeverity[row.severity] = (bySeverity[row.severity] || 0) + 1;
+            byStatus[row.status] = (byStatus[row.status] || 0) + 1;
+        }
+        return {
+            total: rows.length,
+            byKind,
+            bySeverity,
+            byStatus,
+            recent: rows.slice(0, 50).map(row => ({
+                id: row.id,
+                at: row.at,
+                status: row.status,
+                kind: row.kind,
+                severity: row.severity,
+                subject: row.subject,
+                body: row.body,
+                name: row.name,
+                email: row.email,
+                userId: row.user_id,
+                pathname: row.pathname,
+                viewport: row.viewport,
+                screenshotUrl: row.screenshot_url,
+                userAgent: row.user_agent,
+                appVersion: row.app_version,
+                clientLogs: row.client_logs || [],
+                metadata: row.metadata || {},
+            })),
+        };
+    }
+
     const db = getOpsDb();
     const reports = db.prepare(`
         SELECT id, at, status, kind, severity, subject, body, name, email, user_id AS userId,
@@ -464,7 +820,26 @@ export function getFeedbackStats() {
     };
 }
 
-export function createNotification(notification = {}) {
+export async function createNotification(notification = {}) {
+    const supabase = getSupabaseOps();
+    if (supabase) {
+        const id = notification.id || crypto.randomUUID();
+        const { error } = await supabase.from('notifications').upsert({
+            id,
+            at: notification.at || nowIso(),
+            recipient_id: notification.recipientId || notification.userId || 'anonymous',
+            recipient_email: notification.recipientEmail || '',
+            type: notification.type || 'system',
+            title: notification.title || '',
+            message: notification.message || '',
+            url: notification.url || '/',
+            read: Boolean(notification.read),
+            metadata: notification.metadata || {},
+        }, { onConflict: 'id' });
+        logSupabaseError('createNotification', error);
+        return id;
+    }
+
     const db = getOpsDb();
     const id = notification.id || crypto.randomUUID();
     db.prepare(`
@@ -487,7 +862,42 @@ export function createNotification(notification = {}) {
     return id;
 }
 
-export function listNotifications({ recipientId = 'anonymous', unreadOnly = false, limit = 20 } = {}) {
+export async function listNotifications({ recipientId = 'anonymous', unreadOnly = false, limit = 20 } = {}) {
+    const supabase = getSupabaseOps();
+    if (supabase) {
+        const cappedLimit = Math.min(Math.max(Number(limit) || 20, 1), 50);
+        let query = supabase
+            .from('notifications')
+            .select('id, at, recipient_id, recipient_email, type, title, message, url, read, metadata')
+            .eq('recipient_id', recipientId)
+            .order('at', { ascending: false })
+            .limit(cappedLimit);
+        if (unreadOnly) query = query.eq('read', false);
+        const { data = [], error } = await query;
+        logSupabaseError('listNotifications', error);
+        const { count, error: countError } = await supabase
+            .from('notifications')
+            .select('id', { count: 'exact', head: true })
+            .eq('recipient_id', recipientId)
+            .eq('read', false);
+        logSupabaseError('listNotifications/count', countError);
+        return {
+            notifications: data.map(row => ({
+                id: row.id,
+                at: row.at,
+                recipientId: row.recipient_id,
+                recipientEmail: row.recipient_email,
+                type: row.type,
+                title: row.title,
+                message: row.message,
+                url: row.url,
+                read: Boolean(row.read),
+                metadata: row.metadata || {},
+            })),
+            unreadCount: count || 0,
+        };
+    }
+
     const db = getOpsDb();
     const cappedLimit = Math.min(Math.max(Number(limit) || 20, 1), 50);
     const conditions = ['recipient_id = @recipientId'];
@@ -513,7 +923,28 @@ export function listNotifications({ recipientId = 'anonymous', unreadOnly = fals
     return { notifications, unreadCount };
 }
 
-export function markNotificationsRead({ recipientId = 'anonymous', ids = [], markAllRead = false } = {}) {
+export async function markNotificationsRead({ recipientId = 'anonymous', ids = [], markAllRead = false } = {}) {
+    const supabase = getSupabaseOps();
+    if (supabase) {
+        if (markAllRead) {
+            const { error } = await supabase
+                .from('notifications')
+                .update({ read: true })
+                .eq('recipient_id', recipientId);
+            logSupabaseError('markNotificationsRead/all', error);
+            return;
+        }
+        const filtered = ids.filter(id => typeof id === 'string' && id);
+        if (!filtered.length) return;
+        const { error } = await supabase
+            .from('notifications')
+            .update({ read: true })
+            .eq('recipient_id', recipientId)
+            .in('id', filtered);
+        logSupabaseError('markNotificationsRead', error);
+        return;
+    }
+
     const db = getOpsDb();
     if (markAllRead) {
         db.prepare('UPDATE notifications SET read = 1 WHERE recipient_id = ?').run(recipientId);

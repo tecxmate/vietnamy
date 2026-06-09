@@ -91,14 +91,14 @@ export function checkMailRateLimit(key, { max = 5, windowMs = 60 * 60 * 1000 } =
 
 async function logEmail(entry) {
     try {
-        recordEmailLog(entry);
+        await recordEmailLog(entry);
     } catch (err) {
         console.warn('Email log write failed:', err.message);
     }
 }
 
-export function getEmailStats() {
-    const stats = getEmailLogStats();
+export async function getEmailStats() {
+    const stats = await getEmailLogStats();
 
     return {
         enabled: EMAIL_ENABLED,
