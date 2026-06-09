@@ -1,5 +1,6 @@
 .lesson-game {
     --lesson-action-bar-base-height: 156px;
+    position: relative;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -106,11 +107,13 @@
 }
 
 .lesson-game__actionbar {
-    /* Fixed/overlay (like the practice FeedbackBar) so it's pinned to the real
-       viewport bottom — the CTA always clears the home-indicator safe area and
-       the feedback banner overlays the reserved scroll padding instead of
-       growing the layout and pushing the answers up. */
-    position: fixed;
+    /* Anchored with position:absolute relative to .lesson-game (which fills the
+       JS-sized .mobile-app-wrapper) rather than position:fixed — fixed uses the
+       browser's layout viewport, which desyncs with the mobile address bar and
+       left a gap / made the bar jump + overlap. Absolute pins it to the actual
+       visible bottom. It still overlays the reserved scroll padding so the
+       feedback banner doesn't push the answers. */
+    position: absolute;
     left: 0;
     right: 0;
     bottom: 0;
