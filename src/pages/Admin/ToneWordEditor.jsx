@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { Save, Plus, Trash2, Search, Download, Upload, Check } from 'lucide-react';
-import { DEFAULT_PRACTICE_WORDS } from '../../data/toneContours';
+import { DEFAULT_PRACTICE_WORDS, TONEWORDS_CMS_KEY } from '../../data/toneContours';
 
 const TONE_IDS = ['ngang', 'sac', 'huyen', 'hoi', 'nga', 'nang'];
 const TONE_LABELS = {
@@ -12,7 +12,7 @@ const TONE_COLORS = {
     hoi: '#FF9800', nga: '#E91E63', nang: '#795548',
 };
 
-const STORAGE_KEY = 'vnme_cms_tonewords';
+const STORAGE_KEY = TONEWORDS_CMS_KEY; // single source of truth lives in toneContours.js
 
 function loadWords() {
     try {

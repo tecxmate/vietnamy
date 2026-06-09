@@ -52,6 +52,7 @@ lessons / 1,001 words / 479 sentences. Canonical content bundle at repo-root `co
 | 2.4 | Retire `src/data/lessons.json` (only `lessonExerciseService.js`) — verify what it still supplies. | TODO |
 | 2.5 | `unified_db.json` is both build-intermediate and runtime source — move web fully onto `content/curriculum.json`, keep `unified_db` build-only. | TODO |
 | 2.6 | Canonicalize the **authoring sources'** schemas (`cn`→`zh`, snake_case) per `docs/CONTENT_SCHEMA.md §9`, then regen bundle. Deep. | TODO |
+| 2.7 | `ToneWordEditor` hardcoded the `'vnme_cms_tonewords'` key literal that `toneContours.js` already exports as `TONEWORDS_CMS_KEY` — imported the constant so the key has one source of truth. | DONE |
 
 **Recommended real path (needs your go):** for each domain — (1) make `build-canonical.mjs` generation **lossless** (stop dropping `exercise_types`/`prerequisites`/`partnerCta`/…), (2) regen + validate the bundle, (3) convert the runtime reader into a thin adapter over the canonical (proven pattern: `toneContours.js`), (4) leave admin editors on the source (overrides are id-keyed, so they still merge). This achieves "one canonical consumed everywhere" without deleting authoring sources or breaking the CMS.
 
