@@ -74,6 +74,9 @@ export default function FeedbackBanner({
                 animation: shouldShake ? 'shake 0.5s ease-in-out' : 'none',
                 maxHeight: '100%',
                 overflowY: 'auto',
+                /* Room for the CTA's 3D bottom shadow (0 4px 0) so overflow:auto
+                   doesn't clip it. */
+                paddingBottom: 6,
             }}
         >
             {/* Shake animation keyframes */}
