@@ -224,11 +224,6 @@ const RoadmapTab = () => {
                 borderBottom: '1px solid var(--border-color)',
             }}>
                 <MobileAccountBar inline />
-                <div style={{ display: 'flex', alignItems: 'center', gap: 5, flexShrink: 0 }}>
-                    <Flame size={18} color="#FF6B35" />
-                    <span style={{ fontWeight: 800, fontSize: 16 }}>{dailyStreak}</span>
-                    <span style={{ fontSize: 13, color: 'var(--text-muted)' }}>{t('home_stats_streak')}</span>
-                </div>
                 <div className="hide-scrollbar" style={{
                     display: 'flex', alignItems: 'center', gap: 8,
                     overflowX: 'auto', flex: 1, minWidth: 0,
@@ -314,6 +309,14 @@ const RoadmapTab = () => {
                         </button>
                     );
                 })}
+                </div>
+                {/* Streak — icon-only, pinned top-right */}
+                <div
+                    style={{ display: 'flex', alignItems: 'center', gap: 4, flexShrink: 0 }}
+                    title={t('home_stats_streak')}
+                >
+                    <Flame size={18} color="#FF6B35" />
+                    <span style={{ fontWeight: 800, fontSize: 16 }}>{dailyStreak}</span>
                 </div>
             </div>
 
