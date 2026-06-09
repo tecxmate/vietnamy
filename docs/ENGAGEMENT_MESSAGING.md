@@ -16,10 +16,10 @@ Duolingo-style notification optimization should be treated as an inspiration, no
 
 - `server/engagementMessages.js` contains the canonical scenario catalog and renderers.
 - `server/engagementOptimizer.js` records message events and selects variants with a lightweight explore/exploit strategy.
+- `server/opsStore.js` owns the runtime operational SQLite database at `server/databases/app_ops.db`.
 - `server/server.js` exposes admin render/send/stats endpoints.
-- Runtime message events are stored in `server/databases/message_events.json` and ignored by git.
-- Push subscriptions/events are stored in `server/databases/push_notifications.json` and ignored by git.
-- Prototype feedback reports are stored in `server/databases/feedback_reports.json` and ignored by git.
+- Runtime message events, email logs, push subscriptions/events, in-app notifications, and prototype feedback reports are stored in `server/databases/app_ops.db` and ignored by git.
+- Older JSON runtime files are still ignored by git, but new operational writes should use `opsStore.js`.
 
 ## Scenario Groups
 
@@ -41,10 +41,14 @@ All admin endpoints require `Authorization: Bearer <MAIL_ADMIN_TOKEN>`.
 - `GET /api/messages/stats` returns selected/sent/opened/clicked/dismissed stats by variant.
 - `POST /api/messages/render` renders one scenario/channel without sending.
 - `POST /api/messages/send-email` renders, tracks, and sends one scenario email.
+- `POST /api/messages/send-in-app` renders an `inApp` scenario and stores it as a durable notification.
 - `POST /api/push/send` sends a push notification. It still accepts legacy `templateId` values, but also accepts `scenarioId`, `variantId`, `context`, and `userId`. When `scenarioId` is present, the push body is rendered from the shared catalog and tracked in the engagement optimizer.
 - `GET /api/push/stats` returns push send/click/open stats by template/scenario.
 - `POST /api/feedback` stores structured beta feedback with page, viewport, app version, optional screenshot URL, and compact client logs.
 - `GET /api/admin/feedback` lists feedback reports and summary counts.
+- `GET /api/notifications?userId=...` lists durable in-app notifications for a user/device id.
+- `PUT /api/notifications` marks notifications read for a user/device id.
+- `POST /api/admin/notifications` creates a direct admin notification.
 
 Public tracking endpoints:
 
@@ -131,4 +135,4 @@ The current optimizer is intentionally simple:
 - Variant score favors clicks, then opens, and penalizes dismissals/failures.
 - `MESSAGE_EXPLORATION_RATE` defaults to `0.2`, so 20% of selections explore other variants.
 
-Next production step: move `message_events.json`, `push_notifications.json`, `feedback_reports.json`, and `email_logs.json` into Supabase/Postgres or another durable store before sending campaigns at scale across multiple server instances.
+Next production step: move `app_ops.db` into Supabase/Postgres before sending campaigns at scale across multiple server instances. SQLite is a coherent single-instance runtime store, but it is not the final multi-instance source of truth.

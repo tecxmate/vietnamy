@@ -116,7 +116,19 @@ See `docs/ENGAGEMENT_MESSAGING.md` for the standardized email, push, in-app mess
 
 ## Feedback Reports
 
-`POST /api/feedback` stores structured prototype feedback in `server/databases/feedback_reports.json`, including page, viewport, app version, optional screenshot URL, and compact client logs. `GET /api/admin/feedback` requires `MAIL_ADMIN_TOKEN` and returns recent reports plus summary counts. This mirrors the Tecxwork feedback pattern while Vietnamy is still using lightweight local runtime stores.
+`POST /api/feedback` stores structured prototype feedback, including page, viewport, app version, optional screenshot URL, and compact client logs. `GET /api/admin/feedback` requires `MAIL_ADMIN_TOKEN` and returns recent reports plus summary counts.
+
+## App Operations Store
+
+Runtime product operations live in `server/databases/app_ops.db`, a local SQLite store ignored by git. It currently holds email logs, message optimization events, push subscriptions/events, durable in-app notifications, and feedback reports. This mirrors Tecxwork's coherent operational data model while keeping Vietnamy's current Express/Vite architecture.
+
+Important endpoints:
+
+- `GET /api/mail/stats` — email usage and failures.
+- `GET /api/messages/stats` — message variant selection/open/click stats.
+- `GET /api/push/stats` — push subscriptions and engagement.
+- `GET /api/admin/feedback` — recent feedback and summary counts.
+- `GET /api/notifications?userId=...` — durable in-app notification history.
 
 ## TTS Bucket Cache
 

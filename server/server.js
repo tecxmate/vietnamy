@@ -32,6 +32,18 @@ import {
     waitlistConfirmationEmail,
     waitlistNotificationEmail,
 } from './mail.js';
+import {
+    createFeedbackReport,
+    createNotification,
+    getFeedbackStats as getStoredFeedbackStats,
+    getPushStats as getStoredPushStats,
+    listNotifications,
+    listPushSubscriptions,
+    markNotificationsRead,
+    recordPushEvent,
+    updatePushSubscriptionStats,
+    upsertPushSubscription,
+} from './opsStore.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT_DIR = join(__dirname, '..');
@@ -86,7 +98,6 @@ const s2t = Converter({ from: 'cn', to: 'tw' });
 // ---------------------------------------------------------------------------
 // Push notification MVP
 // ---------------------------------------------------------------------------
-const PUSH_STORE_PATH = join(__dirname, 'databases', 'push_notifications.json');
 const PUSH_VAPID_PUBLIC_KEY = process.env.VAPID_PUBLIC_KEY || '';
 const PUSH_VAPID_PRIVATE_KEY = process.env.VAPID_PRIVATE_KEY || '';
 const PUSH_VAPID_SUBJECT = process.env.VAPID_SUBJECT || 'mailto:hello@vietnamy.app';
@@ -116,27 +127,6 @@ const LEGACY_PUSH_SCENARIOS = {
     unfinished_lesson: 'first_lesson_nudge',
 };
 
-function readPushStore() {
-    try {
-        if (!existsSync(PUSH_STORE_PATH)) {
-            return { subscriptions: [], events: [] };
-        }
-        const parsed = JSON.parse(readFileSync(PUSH_STORE_PATH, 'utf8'));
-        return {
-            subscriptions: Array.isArray(parsed.subscriptions) ? parsed.subscriptions : [],
-            events: Array.isArray(parsed.events) ? parsed.events : [],
-        };
-    } catch (err) {
-        console.warn('Push store read failed:', err.message);
-        return { subscriptions: [], events: [] };
-    }
-}
-
-function writePushStore(store) {
-    mkdirSync(dirname(PUSH_STORE_PATH), { recursive: true });
-    writeFileSync(PUSH_STORE_PATH, JSON.stringify(store, null, 2));
-}
-
 function pushSubscriptionKey(subscription) {
     return crypto.createHash('sha1').update(subscription?.endpoint || '').digest('hex');
 }
@@ -153,8 +143,6 @@ async function loadWebPush() {
 // ---------------------------------------------------------------------------
 const MAIL_ADMIN_TOKEN = process.env.MAIL_ADMIN_TOKEN || '';
 const MAIL_ADMIN_ALLOW_LOCAL = process.env.MAIL_ADMIN_ALLOW_LOCAL === 'true';
-const FEEDBACK_STORE_PATH = join(__dirname, 'databases', 'feedback_reports.json');
-const FEEDBACK_LIMIT = 5000;
 const FEEDBACK_KINDS = new Set(['bug', 'feedback', 'feature']);
 const FEEDBACK_SEVERITIES = new Set(['low', 'med', 'high']);
 
@@ -182,23 +170,6 @@ function mailRateLimitKey(req, email, action) {
     return `mail:${action}:${email || requestIp(req)}`;
 }
 
-function readFeedbackStore() {
-    try {
-        if (!existsSync(FEEDBACK_STORE_PATH)) return { reports: [] };
-        const parsed = JSON.parse(readFileSync(FEEDBACK_STORE_PATH, 'utf8'));
-        return { reports: Array.isArray(parsed.reports) ? parsed.reports : [] };
-    } catch (err) {
-        console.warn('Feedback store read failed:', err.message);
-        return { reports: [] };
-    }
-}
-
-function writeFeedbackStore(store) {
-    mkdirSync(dirname(FEEDBACK_STORE_PATH), { recursive: true });
-    const reports = Array.isArray(store.reports) ? store.reports.slice(-FEEDBACK_LIMIT) : [];
-    writeFileSync(FEEDBACK_STORE_PATH, JSON.stringify({ reports }, null, 2));
-}
-
 function compactClientLogs(value) {
     if (!Array.isArray(value)) return [];
     return value.slice(-30).map(entry => {
@@ -211,25 +182,6 @@ function compactClientLogs(value) {
             stack: clampText(entry.stack, 2000) || undefined,
         };
     }).filter(Boolean);
-}
-
-function getFeedbackStats() {
-    const reports = readFeedbackStore().reports;
-    const byKind = {};
-    const bySeverity = {};
-    const byStatus = {};
-    for (const report of reports) {
-        byKind[report.kind] = (byKind[report.kind] || 0) + 1;
-        bySeverity[report.severity] = (bySeverity[report.severity] || 0) + 1;
-        byStatus[report.status] = (byStatus[report.status] || 0) + 1;
-    }
-    return {
-        total: reports.length,
-        byKind,
-        bySeverity,
-        byStatus,
-        recent: reports.slice(-50).reverse(),
-    };
 }
 
 app.get('/api/mail/config', (_req, res) => {
@@ -299,7 +251,6 @@ app.post('/api/feedback', (req, res) => {
         return res.status(429).json({ error: 'too many feedback reports', resetAt: limit.resetAt });
     }
 
-    const store = readFeedbackStore();
     const report = {
         id: crypto.randomUUID(),
         at: new Date().toISOString(),
@@ -319,15 +270,14 @@ app.post('/api/feedback', (req, res) => {
         clientLogs: compactClientLogs(req.body?.clientLogs),
         metadata: compactMetadata(req.body?.metadata),
     };
-    store.reports.push(report);
-    writeFeedbackStore(store);
+    createFeedbackReport(report);
 
     res.json({ ok: true, id: report.id });
 });
 
 app.get('/api/admin/feedback', (req, res) => {
     if (!requireMailAdmin(req, res)) return;
-    res.json(getFeedbackStats());
+    res.json(getStoredFeedbackStats());
 });
 
 app.post('/api/mail/waitlist', async (req, res) => {
@@ -522,6 +472,51 @@ app.post('/api/messages/send-email', async (req, res) => {
     res.json({ ok: true, id: result.id || null, messageInstanceId, scenarioId, variantId: variant.id });
 });
 
+app.post('/api/messages/send-in-app', (req, res) => {
+    if (!requireMailAdmin(req, res)) return;
+    const scenarioId = clampText(req.body?.scenarioId, 120);
+    const recipientId = clampText(req.body?.userId || req.body?.recipientId, 160) || 'anonymous';
+    const recipientEmail = normalizeEmail(req.body?.recipientEmail);
+    const context = req.body?.context && typeof req.body.context === 'object' ? req.body.context : {};
+    if (!getMessageScenario(scenarioId)) return res.status(404).json({ error: 'scenario not found' });
+
+    const variant = selectMessageVariant(scenarioId, 'inApp', {
+        userId: recipientId,
+        forceVariantId: clampText(req.body?.variantId, 80),
+    });
+    if (!variant) return res.status(404).json({ error: 'in-app variant not found' });
+
+    const rendered = renderEngagementMessage(scenarioId, {
+        channel: 'inApp',
+        variantId: variant.id,
+        context,
+    });
+    const notificationId = createNotification({
+        recipientId,
+        recipientEmail,
+        type: scenarioId,
+        title: rendered.title,
+        message: rendered.message,
+        url: rendered.url,
+        metadata: {
+            scenarioId,
+            variantId: rendered.variantId,
+            context: compactMetadata(context),
+        },
+    });
+    recordMessageEvent({
+        messageInstanceId: notificationId,
+        scenarioId,
+        channel: 'inApp',
+        variantId: rendered.variantId,
+        event: 'sent',
+        userId: recipientId,
+        metadata: { notificationId },
+    });
+
+    res.json({ ok: true, notificationId, scenarioId, variantId: rendered.variantId });
+});
+
 app.post('/api/messages/events', (req, res) => {
     const entry = recordMessageEvent({
         messageInstanceId: clampText(req.body?.messageInstanceId, 120),
@@ -533,6 +528,41 @@ app.post('/api/messages/events', (req, res) => {
         metadata: compactMetadata(req.body?.metadata),
     });
     res.json({ ok: true, event: entry.event });
+});
+
+app.get('/api/notifications', (req, res) => {
+    const recipientId = clampText(req.query.userId || req.query.recipientId, 160) || 'anonymous';
+    res.json(listNotifications({
+        recipientId,
+        unreadOnly: req.query.unread === 'true',
+        limit: Number(req.query.limit || 20),
+    }));
+});
+
+app.put('/api/notifications', (req, res) => {
+    const recipientId = clampText(req.body?.userId || req.body?.recipientId, 160) || 'anonymous';
+    const ids = Array.isArray(req.body?.notificationIds) ? req.body.notificationIds : [];
+    markNotificationsRead({
+        recipientId,
+        ids,
+        markAllRead: Boolean(req.body?.markAllRead),
+    });
+    res.json({ ok: true });
+});
+
+app.post('/api/admin/notifications', (req, res) => {
+    if (!requireMailAdmin(req, res)) return;
+    const recipientId = clampText(req.body?.userId || req.body?.recipientId, 160) || 'anonymous';
+    const notificationId = createNotification({
+        recipientId,
+        recipientEmail: normalizeEmail(req.body?.recipientEmail),
+        type: clampText(req.body?.type || 'system', 80),
+        title: clampText(req.body?.title, 160),
+        message: clampText(req.body?.message, 1000),
+        url: clampText(req.body?.url || '/', 500),
+        metadata: compactMetadata(req.body?.metadata),
+    });
+    res.json({ ok: true, notificationId });
 });
 
 app.get('/api/messages/open', (req, res) => {
@@ -2201,27 +2231,16 @@ app.post('/api/push/subscribe', (req, res) => {
         return res.status(400).json({ error: 'valid push subscription required' });
     }
 
-    const store = readPushStore();
     const id = pushSubscriptionKey(subscription);
     const now = new Date().toISOString();
-    const existingIndex = store.subscriptions.findIndex(item => item.id === id);
-    const record = {
+    upsertPushSubscription({
         id,
         userId,
         userName,
         platform,
         subscription,
-        active: true,
-        createdAt: existingIndex >= 0 ? store.subscriptions[existingIndex].createdAt : now,
-        updatedAt: now,
-        sent: existingIndex >= 0 ? store.subscriptions[existingIndex].sent || 0 : 0,
-        clicked: existingIndex >= 0 ? store.subscriptions[existingIndex].clicked || 0 : 0,
-    };
-
-    if (existingIndex >= 0) store.subscriptions[existingIndex] = record;
-    else store.subscriptions.push(record);
-    store.events.push({ type: 'subscribed', subscriptionId: id, userId, platform, at: now });
-    writePushStore(store);
+    });
+    recordPushEvent({ type: 'subscribed', subscriptionId: id, userId, metadata: { platform }, at: now });
 
     res.json({ ok: true, subscriptionId: id, enabled: PUSH_ENABLED });
 });
@@ -2239,10 +2258,9 @@ app.post('/api/push/events', (req, res) => {
     } = req.body || {};
     if (!type) return res.status(400).json({ error: 'event type required' });
 
-    const store = readPushStore();
     const now = new Date().toISOString();
     const normalizedScenarioId = scenarioId || LEGACY_PUSH_SCENARIOS[templateId] || templateId;
-    store.events.push({
+    recordPushEvent({
         type,
         notificationId,
         templateId,
@@ -2255,8 +2273,7 @@ app.post('/api/push/events', (req, res) => {
     });
 
     if (type === 'clicked' && subscriptionId) {
-        const sub = store.subscriptions.find(item => item.id === subscriptionId);
-        if (sub) sub.clicked = (sub.clicked || 0) + 1;
+        updatePushSubscriptionStats(subscriptionId, { clickedDelta: 1 });
     }
 
     if (normalizedScenarioId) {
@@ -2280,34 +2297,12 @@ app.post('/api/push/events', (req, res) => {
         }
     }
 
-    writePushStore(store);
     res.json({ ok: true });
 });
 
-app.get('/api/push/stats', (_req, res) => {
-    if (!requireMailAdmin(_req, res)) return;
-    const store = readPushStore();
-    const byTemplate = {};
-
-    for (const event of store.events) {
-        const templateId = event.templateId || 'unknown';
-        byTemplate[templateId] ||= { sent: 0, clicked: 0, openedApp: 0 };
-        if (event.type === 'sent') byTemplate[templateId].sent += 1;
-        if (event.type === 'clicked') byTemplate[templateId].clicked += 1;
-        if (event.type === 'opened_app') byTemplate[templateId].openedApp += 1;
-    }
-
-    const templates = Object.entries(byTemplate).map(([templateId, stats]) => ({
-        templateId,
-        ...stats,
-        clickRate: stats.sent ? stats.clicked / stats.sent : 0,
-        openRate: stats.sent ? stats.openedApp / stats.sent : 0,
-    })).sort((a, b) => b.openRate - a.openRate || b.clickRate - a.clickRate);
-
-    res.json({
-        subscriptions: store.subscriptions.filter(item => item.active).length,
-        templates,
-    });
+app.get('/api/push/stats', (req, res) => {
+    if (!requireMailAdmin(req, res)) return;
+    res.json(getStoredPushStats());
 });
 
 app.post('/api/push/send', async (req, res) => {
@@ -2348,8 +2343,7 @@ app.post('/api/push/send', async (req, res) => {
             variantId: rendered.variantId,
         }
         : legacyTemplate;
-    const store = readPushStore();
-    const subscriptions = store.subscriptions.filter(item => item.active && (!userId || item.userId === userId));
+    const subscriptions = listPushSubscriptions({ userId: userId || undefined, activeOnly: true });
     const webPush = await loadWebPush();
     const now = new Date().toISOString();
     const notificationId = createMessageInstanceId();
@@ -2369,9 +2363,8 @@ app.post('/api/push/send', async (req, res) => {
 
         try {
             await webPush.sendNotification(record.subscription, payload);
-            record.sent = (record.sent || 0) + 1;
-            record.updatedAt = now;
-            store.events.push({
+            updatePushSubscriptionStats(record.id, { sentDelta: 1 });
+            recordPushEvent({
                 type: 'sent',
                 notificationId,
                 templateId,
@@ -2395,14 +2388,13 @@ app.post('/api/push/send', async (req, res) => {
             results.sent += 1;
         } catch (err) {
             if (err.statusCode === 404 || err.statusCode === 410) {
-                record.active = false;
-                record.updatedAt = now;
+                updatePushSubscriptionStats(record.id, { active: false });
                 results.disabled += 1;
             } else {
                 results.failed += 1;
                 console.warn('Push send failed:', err.message);
             }
-            store.events.push({
+            recordPushEvent({
                 type: 'send_failed',
                 notificationId,
                 templateId,
@@ -2427,7 +2419,6 @@ app.post('/api/push/send', async (req, res) => {
         }
     }
 
-    writePushStore(store);
     res.json({
         ok: true,
         notificationId,

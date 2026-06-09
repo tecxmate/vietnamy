@@ -1,7 +1,10 @@
-import crypto from 'crypto';
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
+import { existsSync, readFileSync } from 'fs';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
+import {
+    getEmailLogStats,
+    recordEmailLog,
+} from './opsStore.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT_DIR = join(__dirname, '..');
@@ -23,8 +26,6 @@ function loadEnvFile(path) {
 loadEnvFile(join(ROOT_DIR, '.env.local'));
 loadEnvFile(join(ROOT_DIR, '.env'));
 
-const EMAIL_LOG_PATH = join(__dirname, 'databases', 'email_logs.json');
-const EMAIL_LOG_LIMIT = 5000;
 const RESEND_API_URL = 'https://api.resend.com/emails';
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY || '';
@@ -88,83 +89,22 @@ export function checkMailRateLimit(key, { max = 5, windowMs = 60 * 60 * 1000 } =
     };
 }
 
-function readEmailLogStore() {
-    try {
-        if (!existsSync(EMAIL_LOG_PATH)) return { logs: [] };
-        const parsed = JSON.parse(readFileSync(EMAIL_LOG_PATH, 'utf8'));
-        return { logs: Array.isArray(parsed.logs) ? parsed.logs : [] };
-    } catch (err) {
-        console.warn('Email log read failed:', err.message);
-        return { logs: [] };
-    }
-}
-
-function writeEmailLogStore(store) {
-    mkdirSync(dirname(EMAIL_LOG_PATH), { recursive: true });
-    const logs = Array.isArray(store.logs) ? store.logs.slice(-EMAIL_LOG_LIMIT) : [];
-    writeFileSync(EMAIL_LOG_PATH, JSON.stringify({ logs }, null, 2));
-}
-
 async function logEmail(entry) {
     try {
-        const store = readEmailLogStore();
-        store.logs.push({
-            id: crypto.randomUUID(),
-            at: new Date().toISOString(),
-            type: entry.type || 'generic',
-            to: entry.to || '',
-            subject: entry.subject || '',
-            success: Boolean(entry.success),
-            skipped: Boolean(entry.skipped),
-            providerId: entry.providerId || null,
-            errorMessage: entry.errorMessage || null,
-        });
-        writeEmailLogStore(store);
+        recordEmailLog(entry);
     } catch (err) {
         console.warn('Email log write failed:', err.message);
     }
 }
 
 export function getEmailStats() {
-    const logs = readEmailLogStore().logs;
-    const now = new Date();
-    const todayStart = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
-    const monthStart = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), 1);
-    const byType = {};
-
-    let sentToday = 0;
-    let failedToday = 0;
-    let sentMonth = 0;
-    let failedMonth = 0;
-
-    for (const log of logs) {
-        const t = Date.parse(log.at);
-        if (!Number.isFinite(t)) continue;
-        const type = log.type || 'generic';
-        if (!byType[type]) byType[type] = { sent: 0, failed: 0, skipped: 0 };
-        if (log.skipped) byType[type].skipped += 1;
-        else if (log.success) byType[type].sent += 1;
-        else byType[type].failed += 1;
-
-        if (t >= todayStart) {
-            if (log.success && !log.skipped) sentToday += 1;
-            if (!log.success && !log.skipped) failedToday += 1;
-        }
-        if (t >= monthStart) {
-            if (log.success && !log.skipped) sentMonth += 1;
-            if (!log.success && !log.skipped) failedMonth += 1;
-        }
-    }
+    const stats = getEmailLogStats();
 
     return {
         enabled: EMAIL_ENABLED,
         from: EMAIL_FROM,
         supportEmail: SUPPORT_EMAIL,
-        today: { sent: sentToday, failed: failedToday },
-        month: { sent: sentMonth, failed: failedMonth },
-        totalLogged: logs.length,
-        byType,
-        recent: logs.slice(-25).reverse(),
+        ...stats,
     };
 }
 

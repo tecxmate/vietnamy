@@ -1,32 +1,13 @@
 import crypto from 'crypto';
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
-import { dirname, join } from 'path';
-import { fileURLToPath } from 'url';
 import { getScenarioVariants } from './engagementMessages.js';
+import {
+    listMessageEvents,
+    recordMessageEvent as recordStoredMessageEvent,
+} from './opsStore.js';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const ENGAGEMENT_EVENT_PATH = join(__dirname, 'databases', 'message_events.json');
-const EVENT_LIMIT = 20000;
 const EXPLORATION_RATE = Number(process.env.MESSAGE_EXPLORATION_RATE || 0.2);
 
 const VALID_EVENTS = new Set(['selected', 'sent', 'rendered', 'delivered', 'opened', 'clicked', 'dismissed', 'failed']);
-
-function readEventStore() {
-    try {
-        if (!existsSync(ENGAGEMENT_EVENT_PATH)) return { events: [] };
-        const parsed = JSON.parse(readFileSync(ENGAGEMENT_EVENT_PATH, 'utf8'));
-        return { events: Array.isArray(parsed.events) ? parsed.events : [] };
-    } catch (err) {
-        console.warn('Message event read failed:', err.message);
-        return { events: [] };
-    }
-}
-
-function writeEventStore(store) {
-    mkdirSync(dirname(ENGAGEMENT_EVENT_PATH), { recursive: true });
-    const events = Array.isArray(store.events) ? store.events.slice(-EVENT_LIMIT) : [];
-    writeFileSync(ENGAGEMENT_EVENT_PATH, JSON.stringify({ events }, null, 2));
-}
 
 export function createMessageInstanceId() {
     return crypto.randomUUID();
@@ -42,8 +23,7 @@ export function recordMessageEvent({
     metadata,
 } = {}) {
     const normalizedEvent = VALID_EVENTS.has(event) ? event : 'rendered';
-    const store = readEventStore();
-    const entry = {
+    return recordStoredMessageEvent({
         id: crypto.randomUUID(),
         at: new Date().toISOString(),
         messageInstanceId: messageInstanceId || null,
@@ -53,14 +33,11 @@ export function recordMessageEvent({
         event: normalizedEvent,
         userId: userId || null,
         metadata: metadata && typeof metadata === 'object' ? metadata : {},
-    };
-    store.events.push(entry);
-    writeEventStore(store);
-    return entry;
+    });
 }
 
 export function getMessageEngagementStats({ scenarioId, channel } = {}) {
-    const events = readEventStore().events;
+    const events = listMessageEvents({ scenarioId, channel });
     const byVariant = {};
     const totals = {
         selected: 0,
