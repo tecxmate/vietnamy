@@ -13,7 +13,7 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          'grammar-modules': ['./src/data/grammar_modules.json'],
+          'grammar-modules': ['./content/grammar.json'],
           'grammar-bank': ['./src/data/vn_grammar_bank_v2.json'],
         },
       },

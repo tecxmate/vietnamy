@@ -1,13 +1,15 @@
 /**
- * grammarModulesDB.js — Data layer for the grammar_modules.json curriculum.
+ * grammarModulesDB.js — Data layer for the grammar modules curriculum.
  *
- * Loads the nested Level → Module → Unit structure and exposes helpers
- * for the GrammarTrack component and GrammarUnitLesson page.
+ * Thin adapter over the canonical content/grammar.json bundle (generated from
+ * src/data/grammar_modules.json via `npm run content:build`). Same nested
+ * Level → Module → Unit structure; exposes helpers for the GrammarTrack
+ * component and GrammarUnitLesson page.
  *
- * Progress is tracked via DongContext's completedNodes set — each grammar
+ * Progress is tracked via ProgressContext's completedNodes set — each grammar
  * unit ID (e.g. "A1_M01_U01") is treated as a completable node ID.
  */
-// Lazy-load grammar_modules.json — keeps it out of the main bundle (~695KB saved)
+// Lazy-load content/grammar.json — keeps it out of the main bundle.
 // Data loads on first access and is cached. The import starts eagerly so it's
 // typically ready before any grammar UI renders.
 let _data = null;
@@ -16,7 +18,7 @@ let _loadPromise = null;
 function _ensureLoaded() {
     if (_data) return Promise.resolve(_data);
     if (!_loadPromise) {
-        _loadPromise = import('../data/grammar_modules.json').then(mod => {
+        _loadPromise = import('../../content/grammar.json').then(mod => {
             _data = mod.default;
             return _data;
         });
