@@ -112,6 +112,8 @@ The Express server can send transactional email through Resend without a separat
 
 Public send endpoints are rate-limited in memory by email/IP. If `RESEND_API_KEY` is missing, send endpoints return `503` and log the skipped attempt locally.
 
+See `docs/ENGAGEMENT_MESSAGING.md` for the standardized email, push, in-app message catalog and optimization workflow.
+
 ## TTS Bucket Cache
 
 The `/api/tts` endpoint caches generated audio in object storage so most requests are served as 302 redirects from the CDN instead of regenerating from Azure / Google.

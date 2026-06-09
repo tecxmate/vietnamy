@@ -36,6 +36,7 @@ server/databases/archive/
 server/databases/tone_samples.db
 server/databases/push_notifications.json
 server/databases/email_logs.json
+server/databases/message_events.json
 
 # Large media files
 public/opening.mov

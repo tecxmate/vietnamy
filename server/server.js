@@ -8,6 +8,18 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
 import { Converter } from 'opencc-js';
 import { put as blobPut } from '@vercel/blob';
 import {
+    getMessageScenario,
+    listMessageScenarios,
+    renderEngagementMessage,
+} from './engagementMessages.js';
+import {
+    buildTrackingUrls,
+    createMessageInstanceId,
+    getMessageEngagementStats,
+    recordMessageEvent,
+    selectMessageVariant,
+} from './engagementOptimizer.js';
+import {
     checkMailRateLimit,
     clampText,
     getEmailStats,
@@ -285,6 +297,155 @@ app.post('/api/mail/test', async (req, res) => {
         return res.status(result.skipped ? 503 : 502).json({ error: result.error || 'email failed' });
     }
     res.json({ ok: true, id: result.id || null });
+});
+
+// ---------------------------------------------------------------------------
+// Shared email / push / in-app message catalog and engagement tracking
+// ---------------------------------------------------------------------------
+function safeRedirectUrl(value) {
+    const raw = String(value || PUBLIC_BASE_URL).trim();
+    const target = /^https?:\/\//i.test(raw) ? raw : PUBLIC_BASE_URL + (raw.startsWith('/') ? raw : '/' + raw);
+    try {
+        const parsed = new URL(target);
+        if (parsed.protocol === 'http:' || parsed.protocol === 'https:') return parsed.toString();
+    } catch {}
+    return PUBLIC_BASE_URL;
+}
+
+function compactMetadata(value) {
+    if (!value || typeof value !== 'object') return {};
+    const json = JSON.stringify(value).slice(0, 4000);
+    try { return JSON.parse(json); } catch { return {}; }
+}
+
+app.get('/api/messages/scenarios', (req, res) => {
+    if (!requireMailAdmin(req, res)) return;
+    res.json({ scenarios: listMessageScenarios() });
+});
+
+app.get('/api/messages/stats', (req, res) => {
+    if (!requireMailAdmin(req, res)) return;
+    res.json(getMessageEngagementStats({
+        scenarioId: req.query.scenarioId || undefined,
+        channel: req.query.channel || undefined,
+    }));
+});
+
+app.post('/api/messages/render', (req, res) => {
+    if (!requireMailAdmin(req, res)) return;
+    const scenarioId = clampText(req.body?.scenarioId, 120);
+    const channel = clampText(req.body?.channel || 'email', 40);
+    const context = req.body?.context && typeof req.body.context === 'object' ? req.body.context : {};
+    const variant = selectMessageVariant(scenarioId, channel, {
+        userId: clampText(req.body?.userId, 160),
+        forceVariantId: clampText(req.body?.variantId, 80),
+    });
+    if (!variant) return res.status(404).json({ error: 'scenario or channel not found' });
+    const rendered = renderEngagementMessage(scenarioId, { channel, variantId: variant.id, context });
+    if (!rendered) return res.status(404).json({ error: 'message could not be rendered' });
+    recordMessageEvent({
+        scenarioId,
+        channel,
+        variantId: rendered.variantId,
+        event: 'rendered',
+        userId: clampText(req.body?.userId, 160),
+    });
+    res.json({ message: rendered });
+});
+
+app.post('/api/messages/send-email', async (req, res) => {
+    if (!requireMailAdmin(req, res)) return;
+    const scenarioId = clampText(req.body?.scenarioId, 120);
+    const to = normalizeEmail(req.body?.to);
+    const context = req.body?.context && typeof req.body.context === 'object' ? req.body.context : {};
+    if (!to) return res.status(400).json({ error: 'valid recipient email is required' });
+    if (!getMessageScenario(scenarioId)) return res.status(404).json({ error: 'scenario not found' });
+
+    const variant = selectMessageVariant(scenarioId, 'email', {
+        userId: clampText(req.body?.userId || to, 160),
+        forceVariantId: clampText(req.body?.variantId, 80),
+    });
+    if (!variant) return res.status(404).json({ error: 'email variant not found' });
+
+    const messageInstanceId = createMessageInstanceId();
+    const preview = renderEngagementMessage(scenarioId, { channel: 'email', variantId: variant.id, context });
+    const tracking = buildTrackingUrls({
+        req,
+        messageInstanceId,
+        scenarioId,
+        variantId: variant.id,
+        channel: 'email',
+        targetUrl: preview?.ctaUrl || PUBLIC_BASE_URL,
+    });
+    const rendered = renderEngagementMessage(scenarioId, {
+        channel: 'email',
+        variantId: variant.id,
+        context,
+        tracking,
+    });
+
+    const result = await sendMail({
+        type: scenarioId,
+        to,
+        subject: rendered.subject,
+        html: rendered.html,
+        text: rendered.text,
+        replyTo: normalizeEmail(req.body?.replyTo),
+    });
+
+    recordMessageEvent({
+        messageInstanceId,
+        scenarioId,
+        channel: 'email',
+        variantId: variant.id,
+        event: result.ok ? 'sent' : 'failed',
+        userId: clampText(req.body?.userId || to, 160),
+        metadata: { providerId: result.id || null, error: result.error || null },
+    });
+
+    if (!result.ok) {
+        return res.status(result.skipped ? 503 : 502).json({ error: result.error || 'email failed', messageInstanceId });
+    }
+    res.json({ ok: true, id: result.id || null, messageInstanceId, scenarioId, variantId: variant.id });
+});
+
+app.post('/api/messages/events', (req, res) => {
+    const entry = recordMessageEvent({
+        messageInstanceId: clampText(req.body?.messageInstanceId, 120),
+        scenarioId: clampText(req.body?.scenarioId, 120),
+        variantId: clampText(req.body?.variantId, 80),
+        channel: clampText(req.body?.channel, 40),
+        event: clampText(req.body?.event, 40),
+        userId: clampText(req.body?.userId, 160),
+        metadata: compactMetadata(req.body?.metadata),
+    });
+    res.json({ ok: true, event: entry.event });
+});
+
+app.get('/api/messages/open', (req, res) => {
+    recordMessageEvent({
+        messageInstanceId: clampText(req.query.m, 120),
+        scenarioId: clampText(req.query.s, 120),
+        variantId: clampText(req.query.v, 80),
+        channel: clampText(req.query.c || 'email', 40),
+        event: 'opened',
+    });
+    const pixel = Buffer.from('R0lGODlhAQABAPAAAP///wAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==', 'base64');
+    res.set({ 'Content-Type': 'image/gif', 'Cache-Control': 'no-store, max-age=0' });
+    res.send(pixel);
+});
+
+app.get('/api/messages/click', (req, res) => {
+    const url = safeRedirectUrl(req.query.url);
+    recordMessageEvent({
+        messageInstanceId: clampText(req.query.m, 120),
+        scenarioId: clampText(req.query.s, 120),
+        variantId: clampText(req.query.v, 80),
+        channel: clampText(req.query.c || 'email', 40),
+        event: 'clicked',
+        metadata: { url },
+    });
+    res.redirect(302, url);
 });
 
 // ---------------------------------------------------------------------------
