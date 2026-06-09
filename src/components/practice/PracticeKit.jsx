@@ -48,14 +48,16 @@ export function StepDots({ steps, current }) {
 
 // Big circular audio button that emits a sound-wave ripple on each play
 // (bump `playToken` to retrigger the ripple). Ripple keyframe: tonePing (index.css).
-export function AudioButton({ onClick, playToken = 0, size = 92, color = BLUE }) {
+export function AudioButton({ onClick, playToken = 0, size = 96, color = 'var(--secondary-color)' }) {
+    // Matches the lesson's listen speaker: rounded square, secondary colour,
+    // chunky 3D bottom edge that presses on tap (via the `secondary` class).
     return (
         <div style={{ position: 'relative', width: size, height: size, margin: '0 auto' }}>
             {playToken > 0 && [0, 1].map(i => (
-                <span key={`${playToken}-${i}`} style={{ position: 'absolute', inset: 0, borderRadius: '50%', border: `2px solid ${color}`, animation: `tonePing 0.9s ease-out ${i * 0.25}s`, pointerEvents: 'none' }} />
+                <span key={`${playToken}-${i}`} style={{ position: 'absolute', inset: 0, borderRadius: 20, border: `2px solid ${color}`, animation: `tonePing 0.9s ease-out ${i * 0.25}s`, pointerEvents: 'none' }} />
             ))}
-            <button onClick={onClick} aria-label="Play audio" style={{ position: 'relative', width: size, height: size, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', border: `2px solid ${color}`, backgroundColor: 'rgba(28,176,246,0.12)', color }}>
-                <Volume2 size={Math.round(size * 0.43)} />
+            <button onClick={onClick} className="secondary" aria-label="Play audio" style={{ position: 'relative', width: size, height: size, borderRadius: 20, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', color, borderColor: color, boxShadow: `0 5px 0 ${color}` }}>
+                <Volume2 size={Math.round(size * 0.45)} />
             </button>
         </div>
     );

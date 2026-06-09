@@ -195,12 +195,12 @@ export default function DrillPractice({ data, questionCount = 10 }) {
                     <div style={{ height: 6, borderRadius: 4, backgroundColor: 'var(--border-color)', marginBottom: 22, overflow: 'hidden' }}>
                         <div style={{ height: '100%', width: `${(qIndex / questions.length) * 100}%`, backgroundColor: '#1CB0F6', borderRadius: 4, transition: 'width 0.3s' }} />
                     </div>
-                    {currentQ?.type === 'listen_pick' && audioKey && (
-                        <div><AudioButton onClick={() => playAudio(audioKey)} playToken={playToken} /></div>
-                    )}
-                    <p style={{ textAlign: 'center', fontSize: 16, fontWeight: 600, color: 'var(--text-main)', margin: '12px 0 0' }}>{currentQ?.prompt}</p>
+                    <p style={{ textAlign: 'center', fontSize: 16, fontWeight: 600, color: 'var(--text-main)', margin: 0 }}>{currentQ?.prompt}</p>
                 </>
             }>
+                {currentQ?.type === 'listen_pick' && audioKey && (
+                    <div style={{ marginBottom: 20 }}><AudioButton onClick={() => playAudio(audioKey)} playToken={playToken} /></div>
+                )}
                 <OptionGrid
                     options={currentQ?.options || []} cols={2}
                     keyOf={(_, i) => i}

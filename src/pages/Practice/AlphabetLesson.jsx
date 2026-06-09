@@ -117,10 +117,10 @@ function Quiz({ onDone }) {
                         <span style={{ fontSize: 13, color: 'var(--text-muted)' }}>Question {qi + 1}/{questions.length}</span>
                         <span style={{ fontSize: 13, fontWeight: 700, color: '#06D6A0' }}>Score {score}</span>
                     </div>
-                    <p style={{ textAlign: 'center', fontSize: 14, color: 'var(--text-muted)', margin: '0 0 16px' }}>Listen, then tap the letter you hear.</p>
-                    <div><AudioButton onClick={play} playToken={playToken} /></div>
+                    <p style={{ textAlign: 'center', fontSize: 14, color: 'var(--text-muted)', margin: 0 }}>Listen, then tap the letter you hear.</p>
                 </>
             }>
+                <div style={{ marginBottom: 20 }}><AudioButton onClick={play} playToken={playToken} /></div>
                 <OptionGrid
                     options={q.options} cols={2}
                     keyOf={(o) => o.letter}
