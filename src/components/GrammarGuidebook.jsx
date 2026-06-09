@@ -1,6 +1,7 @@
 import React from 'react';
 import { X, BookOpen } from 'lucide-react';
 import { useT } from '../lib/i18n';
+import Modal from './Modal';
 
 // Known grammar-tag `category` values → i18n key. Unknown keys fall back to a
 // title-cased version of the raw key.
@@ -38,24 +39,7 @@ export default function GrammarGuidebook({ unitTitle, points, onClose }) {
     }
 
     return (
-        <div
-            style={{
-                position: 'fixed', inset: 0, zIndex: 200,
-                backgroundColor: 'rgba(0,0,0,0.5)',
-                display: 'flex', alignItems: 'flex-end', justifyContent: 'center',
-            }}
-            onClick={onClose}
-        >
-            <div
-                style={{
-                    backgroundColor: 'var(--surface-color)',
-                    borderRadius: '20px 20px 0 0',
-                    width: '100%', maxWidth: 480, maxHeight: '80vh',
-                    display: 'flex', flexDirection: 'column',
-                    boxShadow: '0 -4px 24px rgba(0,0,0,0.2)',
-                }}
-                onClick={(e) => e.stopPropagation()}
-            >
+        <Modal onClose={onClose} maxHeight="80vh">
                 {/* Header */}
                 <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '20px 20px 12px' }}>
                     <div style={{ width: 40, height: 40, borderRadius: 12, backgroundColor: 'rgba(17,138,178,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
@@ -87,7 +71,6 @@ export default function GrammarGuidebook({ unitTitle, points, onClose }) {
                         </div>
                     ))}
                 </div>
-            </div>
-        </div>
+        </Modal>
     );
 }

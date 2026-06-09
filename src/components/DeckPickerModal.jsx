@@ -6,6 +6,7 @@ import {
     addWordToDictDeck, removeWordFromDictDeck,
     getWordDeckMemberships,
 } from '../lib/dictSavedWords';
+import Modal from './Modal';
 import './DeckPickerModal.css';
 
 export default function DeckPickerModal({ word, onClose, onChanged }) {
@@ -44,8 +45,7 @@ export default function DeckPickerModal({ word, onClose, onChanged }) {
     };
 
     return (
-        <div className="deck-picker-overlay" onClick={onClose}>
-            <div className="deck-picker-modal" onClick={e => e.stopPropagation()}>
+        <Modal onClose={onClose} maxWidth={400} maxHeight="70vh">
                 <div className="deck-picker-header">
                     <h3 className="deck-picker-title">Save "{word}"</h3>
                     <button className="deck-picker-close" onClick={onClose}>
@@ -111,7 +111,6 @@ export default function DeckPickerModal({ word, onClose, onChanged }) {
                         <Plus size={16} /> New Deck
                     </button>
                 )}
-            </div>
-        </div>
+        </Modal>
     );
 }
