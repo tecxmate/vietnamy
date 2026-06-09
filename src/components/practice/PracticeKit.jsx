@@ -73,9 +73,9 @@ export function OptionGrid({ options, cols = 2, keyOf = (_, i) => i, isCorrect, 
                     if (correct) { bg = GREEN + '1A'; border = GREEN; }
                     else if (selected) { bg = RED + '1A'; border = RED; }
                     else op = 0.45;
-                } else if (selected) { border = BLUE; }
+                } else if (selected) { border = 'var(--lesson-selected-border)'; bg = 'var(--lesson-selected-fill)'; }
                 return (
-                    <button key={keyOf(opt, idx)} onClick={() => !revealed && onPick(opt)} disabled={revealed} style={{ padding: '14px 6px', borderRadius: 12, border: `2px solid ${border}`, backgroundColor: bg, opacity: op, cursor: revealed ? 'default' : 'pointer', fontFamily: 'inherit', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
+                    <button key={keyOf(opt, idx)} onClick={() => !revealed && onPick(opt)} disabled={revealed} style={{ minHeight: 64, padding: '12px 10px', borderRadius: 14, border: `2px solid ${border}`, boxShadow: `0 2px 0 ${border}`, backgroundColor: bg, opacity: op, cursor: revealed ? 'default' : 'pointer', fontFamily: 'inherit', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 4 }}>
                         {children(opt)}
                     </button>
                 );
@@ -90,6 +90,20 @@ export function FeedbackBar({ children }) {
     return (
         <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 30, padding: '12px 16px calc(14px + var(--safe-area-bottom-effective, 0px))', backgroundColor: 'var(--surface-color)', borderTop: '1px solid var(--border-color)' }}>
             <div style={{ maxWidth: 480, margin: '0 auto' }}>{children}</div>
+        </div>
+    );
+}
+
+// Mid-low exercise layout (Duolingo reachability): the prompt/question pins to
+// the top, the answer tiles sit in the lower, thumb-reachable zone just above
+// the fixed action bar. `top` renders up top; children (the answer tiles) are
+// bottom-anchored via a flex spacer. Keeps tiles in the same place everywhere.
+export function ExerciseColumn({ top, children }) {
+    return (
+        <div style={{ display: 'flex', flexDirection: 'column', minHeight: 'calc(100dvh - 56px)', padding: '12px 16px 112px', maxWidth: 480, margin: '0 auto', boxSizing: 'border-box' }}>
+            <div>{top}</div>
+            <div style={{ flex: 1, minHeight: 16 }} />
+            <div>{children}</div>
         </div>
     );
 }

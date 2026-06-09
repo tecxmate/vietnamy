@@ -5,7 +5,7 @@ import speak from '../../utils/speak';
 import { playSuccess, playError } from '../../utils/sound';
 import { usePracticeCompletion } from '../../hooks/usePracticeCompletion';
 import { useEnterKey } from '../../hooks/useEnterKey';
-import { PracticeShell, StepDots, AudioButton, OptionGrid, FeedbackBar, FeedbackMessage, PrimaryButton } from '../../components/practice/PracticeKit';
+import { PracticeShell, StepDots, AudioButton, OptionGrid, FeedbackBar, FeedbackMessage, PrimaryButton, ExerciseColumn } from '../../components/practice/PracticeKit';
 
 const QUIZ_COUNT = 8;
 const STEPS = [{ id: 'learn', icon: GraduationCap, label: 'Learn' }, { id: 'quiz', icon: Ear, label: 'Quiz' }];
@@ -110,23 +110,28 @@ function Quiz({ onDone }) {
     const correct = picked && picked.letter === q.ans.letter;
 
     return (
-        <div style={{ padding: 16, paddingBottom: 200 }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 14 }}>
-                <span style={{ fontSize: 13, color: 'var(--text-muted)' }}>Question {qi + 1}/{questions.length}</span>
-                <span style={{ fontSize: 13, fontWeight: 700, color: '#06D6A0' }}>Score {score}</span>
-            </div>
-            <p style={{ textAlign: 'center', fontSize: 14, color: 'var(--text-muted)', margin: '0 0 16px' }}>Listen, then tap the letter you hear.</p>
-            <div style={{ marginBottom: 18 }}><AudioButton onClick={play} playToken={playToken} /></div>
-            <OptionGrid
-                options={q.options} cols={2}
-                keyOf={(o) => o.letter}
-                isCorrect={(o) => o.letter === q.ans.letter}
-                isSelected={(o) => o === picked}
-                revealed={!!picked}
-                onPick={pick}
-            >
-                {(opt) => <span style={{ fontSize: 28, fontWeight: 800, color: 'var(--text-main)' }}>{big(opt.letter)}</span>}
-            </OptionGrid>
+        <>
+            <ExerciseColumn top={
+                <>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 14 }}>
+                        <span style={{ fontSize: 13, color: 'var(--text-muted)' }}>Question {qi + 1}/{questions.length}</span>
+                        <span style={{ fontSize: 13, fontWeight: 700, color: '#06D6A0' }}>Score {score}</span>
+                    </div>
+                    <p style={{ textAlign: 'center', fontSize: 14, color: 'var(--text-muted)', margin: '0 0 16px' }}>Listen, then tap the letter you hear.</p>
+                    <div><AudioButton onClick={play} playToken={playToken} /></div>
+                </>
+            }>
+                <OptionGrid
+                    options={q.options} cols={2}
+                    keyOf={(o) => o.letter}
+                    isCorrect={(o) => o.letter === q.ans.letter}
+                    isSelected={(o) => o === picked}
+                    revealed={!!picked}
+                    onPick={pick}
+                >
+                    {(opt) => <span style={{ fontSize: 28, fontWeight: 800, color: 'var(--text-main)' }}>{big(opt.letter)}</span>}
+                </OptionGrid>
+            </ExerciseColumn>
             {picked && (
                 <FeedbackBar>
                     <FeedbackMessage correct={correct}>
@@ -135,6 +140,6 @@ function Quiz({ onDone }) {
                     <PrimaryButton onClick={next}>{qi + 1 >= questions.length ? 'Finish' : 'Next'}</PrimaryButton>
                 </FeedbackBar>
             )}
-        </div>
+        </>
     );
 }
