@@ -86,18 +86,37 @@ In production, Express serves both the API and the built frontend from `/dist`.
 
 ## TTS Bucket Cache
 
-The `/api/tts` endpoint caches generated audio in a public Supabase Storage bucket so most requests are served as 302 redirects from the CDN instead of regenerating from Azure / Google.
+The `/api/tts` endpoint caches generated audio in object storage so most requests are served as 302 redirects from the CDN instead of regenerating from Azure / Google.
 
 ### One-time setup
 
-1. In the Supabase Dashboard → **Storage**, create a bucket named `tts-cache` and mark it **Public**.
-2. Add these env vars on the server (Zeabur, local `.env`, etc.):
+Cloudflare R2 is the preferred storage backend:
+
+1. In Cloudflare R2, create a bucket named `tts-cache`.
+2. Create an R2 S3 API token with Object Read & Write access to that bucket.
+3. Add these env vars on the server (Zeabur, local `.env`, etc.):
+   ```
+   TTS_STORAGE_PROVIDER=r2
+   TTS_BUCKET=tts-cache
+   R2_ACCOUNT_ID=<cloudflare-account-id>
+   R2_ENDPOINT=https://<cloudflare-account-id>.r2.cloudflarestorage.com
+   R2_ACCESS_KEY_ID=<r2-access-key-id>
+   R2_SECRET_ACCESS_KEY=<r2-secret-access-key>
+   R2_PUBLIC_BASE_URL=<public-r2-dev-url-or-custom-domain>
+   ```
+4. Keep these Supabase env vars during migration so R2 can fall back to the old bucket:
    ```
    SUPABASE_URL=https://<project-ref>.supabase.co
    SUPABASE_SERVICE_ROLE_KEY=<service-role-key>
    ```
-   (Optional: `TTS_BUCKET=tts-cache` to override the default bucket name.)
-3. Redeploy the server. On a cache miss it now uploads to the bucket; on a hit it 302-redirects.
+5. Redeploy the server. On a cache miss it now uploads to R2; on an R2 miss it can still read from Supabase while you migrate.
+
+To copy the existing Supabase bucket to R2:
+
+```bash
+node scripts/migrate-tts-supabase-to-r2.mjs --dry-run
+node scripts/migrate-tts-supabase-to-r2.mjs --concurrency=8
+```
 
 ### Warm the cache for baked-in curriculum
 

@@ -952,13 +952,21 @@ const TTS_VOICES = new Set(['google', 'azure-north', 'azure-south']);
 const DEFAULT_TTS_VOICE = process.env.DEFAULT_TTS_VOICE || 'azure-north';
 const TTS_CACHE_VERSION = process.env.TTS_CACHE_VERSION || 'v9-processed';
 
-// --- TTS bucket cache (Supabase Storage) -----------------------------------
-// Set SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY in env to enable. Bucket name
-// defaults to "tts-cache" and must be created as PUBLIC in the Supabase UI.
+// --- TTS bucket cache (Cloudflare R2 primary, Supabase fallback) ------------
 const TTS_BUCKET = process.env.TTS_BUCKET || 'tts-cache';
-const SUPABASE_URL = (process.env.SUPABASE_URL || '').replace(/\/+$/, '');
+const TTS_STORAGE_PROVIDER = (process.env.TTS_STORAGE_PROVIDER || 'supabase').toLowerCase();
+const SUPABASE_URL = (process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL || '').replace(/\/+$/, '');
 const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || '';
-const TTS_CACHE_ENABLED = Boolean(SUPABASE_URL && SUPABASE_SERVICE_ROLE_KEY);
+const SUPABASE_TTS_ENABLED = Boolean(SUPABASE_URL && SUPABASE_SERVICE_ROLE_KEY);
+const R2_ACCOUNT_ID = process.env.R2_ACCOUNT_ID || '';
+const R2_ENDPOINT = (process.env.R2_ENDPOINT || (R2_ACCOUNT_ID ? `https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com` : '')).replace(/\/+$/, '');
+const R2_ACCESS_KEY_ID = process.env.R2_ACCESS_KEY_ID || '';
+const R2_SECRET_ACCESS_KEY = process.env.R2_SECRET_ACCESS_KEY || '';
+const R2_PUBLIC_BASE_URL = (process.env.R2_PUBLIC_BASE_URL || '').replace(/\/+$/, '');
+const R2_TTS_ENABLED = Boolean(R2_ENDPOINT && R2_ACCESS_KEY_ID && R2_SECRET_ACCESS_KEY);
+const R2_PRIMARY = TTS_STORAGE_PROVIDER === 'r2' && R2_TTS_ENABLED;
+const TTS_CACHE_ENABLED = R2_TTS_ENABLED || SUPABASE_TTS_ENABLED;
+const TTS_DUAL_WRITE_SUPABASE = process.env.TTS_DUAL_WRITE_SUPABASE === 'true';
 
 function normalizeTtsCacheVersion(value) {
     const raw = typeof value === 'string' && value.trim() ? value.trim() : TTS_CACHE_VERSION;
@@ -979,14 +987,99 @@ function ttsSourceKey(voice, lang, text) {
     return `source/${voice}/${hash}.pcm`;
 }
 
-function ttsPublicUrl(key) {
+function encodeObjectKey(key) {
+    return key.split('/').map(part => encodeURIComponent(part)).join('/');
+}
+
+function supabaseTtsPublicUrl(key) {
     return `${SUPABASE_URL}/storage/v1/object/public/${TTS_BUCKET}/${key}`;
 }
 
-async function ttsCacheGetBuffer(key) {
-    if (!TTS_CACHE_ENABLED) return null;
+function r2TtsPublicUrl(key) {
+    if (!R2_PUBLIC_BASE_URL) return '';
+    return `${R2_PUBLIC_BASE_URL}/${encodeObjectKey(key)}`;
+}
+
+function ttsPublicUrl(key) {
+    return R2_PRIMARY && R2_PUBLIC_BASE_URL ? r2TtsPublicUrl(key) : supabaseTtsPublicUrl(key);
+}
+
+function ttsContentTypeForKey(key) {
+    return key.endsWith('.mp3') ? 'audio/mpeg' : 'audio/wav';
+}
+
+function hmacSha256(key, value, encoding) {
+    return crypto.createHmac('sha256', key).update(value).digest(encoding);
+}
+
+function sha256(value) {
+    return crypto.createHash('sha256').update(value || '').digest('hex');
+}
+
+function r2SignedHeaders(method, url, headers = {}, body = null) {
+    const now = new Date();
+    const amzDate = now.toISOString().replace(/[:-]|\.\d{3}/g, '');
+    const dateStamp = amzDate.slice(0, 8);
+    const payloadHash = sha256(body);
+    const allHeaders = {
+        ...headers,
+        host: url.host,
+        'x-amz-content-sha256': payloadHash,
+        'x-amz-date': amzDate,
+    };
+
+    const canonicalHeaderEntries = Object.entries(allHeaders)
+        .map(([key, value]) => [key.toLowerCase(), String(value).trim().replace(/\s+/g, ' ')])
+        .sort(([a], [b]) => a.localeCompare(b));
+    const canonicalHeaders = canonicalHeaderEntries.map(([key, value]) => `${key}:${value}\n`).join('');
+    const signedHeaders = canonicalHeaderEntries.map(([key]) => key).join(';');
+    const canonicalQuery = [...url.searchParams.entries()]
+        .sort(([a], [b]) => a.localeCompare(b))
+        .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
+        .join('&');
+    const canonicalRequest = [
+        method,
+        url.pathname,
+        canonicalQuery,
+        canonicalHeaders,
+        signedHeaders,
+        payloadHash,
+    ].join('\n');
+
+    const credentialScope = `${dateStamp}/auto/s3/aws4_request`;
+    const stringToSign = [
+        'AWS4-HMAC-SHA256',
+        amzDate,
+        credentialScope,
+        sha256(canonicalRequest),
+    ].join('\n');
+    const dateKey = hmacSha256(`AWS4${R2_SECRET_ACCESS_KEY}`, dateStamp);
+    const regionKey = hmacSha256(dateKey, 'auto');
+    const serviceKey = hmacSha256(regionKey, 's3');
+    const signingKey = hmacSha256(serviceKey, 'aws4_request');
+    const signature = hmacSha256(signingKey, stringToSign, 'hex');
+
+    return {
+        ...headers,
+        'x-amz-content-sha256': payloadHash,
+        'x-amz-date': amzDate,
+        Authorization: `AWS4-HMAC-SHA256 Credential=${R2_ACCESS_KEY_ID}/${credentialScope}, SignedHeaders=${signedHeaders}, Signature=${signature}`,
+    };
+}
+
+async function r2FetchObject(key, { method = 'GET', headers = {}, body = null } = {}) {
+    const url = new URL(`${R2_ENDPOINT}/${TTS_BUCKET}/${encodeObjectKey(key)}`);
+    return fetch(url, {
+        method,
+        headers: r2SignedHeaders(method, url, headers, body),
+        body,
+    });
+}
+
+async function supabaseTtsGetBuffer(key) {
+    if (!SUPABASE_TTS_ENABLED) return null;
     try {
-        const r = await fetch(ttsPublicUrl(key));
+        const r = await fetch(supabaseTtsPublicUrl(key));
         if (!r.ok) return null;
         return Buffer.from(await r.arrayBuffer());
     } catch {
@@ -994,18 +1087,59 @@ async function ttsCacheGetBuffer(key) {
     }
 }
 
-async function ttsCacheHas(key) {
-    if (!TTS_CACHE_ENABLED) return false;
+async function r2TtsGetBuffer(key) {
+    if (!R2_TTS_ENABLED) return null;
     try {
-        const r = await fetch(ttsPublicUrl(key), { method: 'HEAD' });
+        const r = await r2FetchObject(key);
+        if (!r.ok) return null;
+        return Buffer.from(await r.arrayBuffer());
+    } catch {
+        return null;
+    }
+}
+
+async function ttsCacheGetBuffer(key) {
+    if (!TTS_CACHE_ENABLED) return null;
+    if (R2_PRIMARY) {
+        return (await r2TtsGetBuffer(key)) || (await supabaseTtsGetBuffer(key));
+    }
+    return (await supabaseTtsGetBuffer(key)) || (await r2TtsGetBuffer(key));
+}
+
+async function supabaseTtsHas(key) {
+    if (!SUPABASE_TTS_ENABLED) return false;
+    try {
+        const r = await fetch(supabaseTtsPublicUrl(key), { method: 'HEAD' });
         return r.ok;
     } catch {
         return false;
     }
 }
 
-async function ttsCachePut(key, buffer, contentType) {
-    if (!TTS_CACHE_ENABLED) return false;
+async function r2TtsHas(key) {
+    if (!R2_TTS_ENABLED) return false;
+    try {
+        const r = await r2FetchObject(key, { method: 'HEAD' });
+        return r.ok;
+    } catch {
+        return false;
+    }
+}
+
+async function ttsCacheHit(key) {
+    if (!TTS_CACHE_ENABLED) return null;
+    if (R2_PRIMARY) {
+        if (await r2TtsHas(key)) return { provider: 'r2', publicUrl: r2TtsPublicUrl(key) };
+        if (await supabaseTtsHas(key)) return { provider: 'supabase', publicUrl: supabaseTtsPublicUrl(key) };
+        return null;
+    }
+    if (await supabaseTtsHas(key)) return { provider: 'supabase', publicUrl: supabaseTtsPublicUrl(key) };
+    if (await r2TtsHas(key)) return { provider: 'r2', publicUrl: r2TtsPublicUrl(key) };
+    return null;
+}
+
+async function supabaseTtsPut(key, buffer, contentType) {
+    if (!SUPABASE_TTS_ENABLED) return false;
     try {
         const r = await fetch(`${SUPABASE_URL}/storage/v1/object/${TTS_BUCKET}/${key}`, {
             method: 'POST',
@@ -1027,6 +1161,41 @@ async function ttsCachePut(key, buffer, contentType) {
         console.warn('TTS cache upload error:', err.message);
         return false;
     }
+}
+
+async function r2TtsPut(key, buffer, contentType) {
+    if (!R2_TTS_ENABLED) return false;
+    try {
+        const r = await r2FetchObject(key, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': contentType,
+                'Cache-Control': 'public, max-age=31536000, immutable',
+            },
+            body: buffer,
+        });
+        if (!r.ok) {
+            const detail = await r.text().catch(() => '');
+            console.warn(`R2 TTS cache upload failed (${r.status}): ${detail.slice(0, 200)}`);
+            return false;
+        }
+        return true;
+    } catch (err) {
+        console.warn('R2 TTS cache upload error:', err.message);
+        return false;
+    }
+}
+
+async function ttsCachePut(key, buffer, contentType) {
+    if (!TTS_CACHE_ENABLED) return false;
+    if (R2_PRIMARY) {
+        const r2Ok = await r2TtsPut(key, buffer, contentType);
+        if (TTS_DUAL_WRITE_SUPABASE) supabaseTtsPut(key, buffer, contentType);
+        return r2Ok;
+    }
+    const supabaseOk = await supabaseTtsPut(key, buffer, contentType);
+    if (!supabaseOk && R2_TTS_ENABLED) return r2TtsPut(key, buffer, contentType);
+    return supabaseOk;
 }
 const AZURE_PCM_SAMPLE_RATE = 24000;
 const AZURE_PCM_CHANNELS = 1;
@@ -1328,9 +1497,20 @@ app.get('/api/tts', async (req, res) => {
 
     // 1) Derived (versioned WAV) hit — redirect the client straight to the CDN.
     const cacheKey = ttsCacheKey(voice, lang, cacheText, req.query.ck);
-    if (await ttsCacheHas(cacheKey)) {
+    const cacheHit = await ttsCacheHit(cacheKey);
+    if (cacheHit) {
         res.set('X-TTS-Cache', 'hit');
-        return res.redirect(302, ttsPublicUrl(cacheKey));
+        res.set('X-TTS-Cache-Provider', cacheHit.provider);
+        if (cacheHit.publicUrl) return res.redirect(302, cacheHit.publicUrl);
+
+        const cachedBuffer = await ttsCacheGetBuffer(cacheKey);
+        if (cachedBuffer) {
+            res.set({
+                'Content-Type': ttsContentTypeForKey(cacheKey),
+                'Cache-Control': 'public, max-age=86400',
+            });
+            return res.send(cachedBuffer);
+        }
     }
 
     // 2) Source (unversioned raw PCM) hit — derive WAV locally, persist as
