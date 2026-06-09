@@ -2551,6 +2551,10 @@ if (existsSync(distPath)) {
     });
 }
 
-app.listen(PORT, () => {
-    console.log(`Dictionary API running on http://localhost:${PORT}`);
-});
+export default app;
+
+if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
+    app.listen(PORT, () => {
+        console.log(`Dictionary API running on http://localhost:${PORT}`);
+    });
+}
