@@ -7,6 +7,19 @@ import { dirname, join } from 'path';
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
 import { Converter } from 'opencc-js';
 import { put as blobPut } from '@vercel/blob';
+import {
+    checkMailRateLimit,
+    clampText,
+    getEmailStats,
+    lessonReminderEmail,
+    normalizeEmail,
+    PUBLIC_BASE_URL,
+    sendMail,
+    supportNotificationEmail,
+    SUPPORT_EMAIL,
+    waitlistConfirmationEmail,
+    waitlistNotificationEmail,
+} from './mail.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT_DIR = join(__dirname, '..');
@@ -116,6 +129,163 @@ async function loadWebPush() {
     mod.setVapidDetails(PUSH_VAPID_SUBJECT, PUSH_VAPID_PUBLIC_KEY, PUSH_VAPID_PRIVATE_KEY);
     return mod;
 }
+
+// ---------------------------------------------------------------------------
+// Transactional email MVP (Resend-compatible HTTP API)
+// ---------------------------------------------------------------------------
+const MAIL_ADMIN_TOKEN = process.env.MAIL_ADMIN_TOKEN || '';
+const MAIL_ADMIN_ALLOW_LOCAL = process.env.MAIL_ADMIN_ALLOW_LOCAL === 'true';
+
+function requestIp(req) {
+    return String(req.headers['x-forwarded-for'] || req.ip || req.socket?.remoteAddress || 'unknown')
+        .split(',')[0]
+        .trim();
+}
+
+function isLocalRequest(req) {
+    const ip = requestIp(req);
+    return ip === '::1' || ip === '127.0.0.1' || ip === '::ffff:127.0.0.1';
+}
+
+function requireMailAdmin(req, res) {
+    if (!MAIL_ADMIN_TOKEN && MAIL_ADMIN_ALLOW_LOCAL && isLocalRequest(req)) return true;
+    const header = String(req.headers.authorization || '').replace(/^Bearer\s+/i, '');
+    const token = header || String(req.headers['x-mail-admin-token'] || req.query.token || '');
+    if (MAIL_ADMIN_TOKEN && token === MAIL_ADMIN_TOKEN) return true;
+    res.status(401).json({ error: 'mail admin token required' });
+    return false;
+}
+
+function mailRateLimitKey(req, email, action) {
+    return `mail:${action}:${email || requestIp(req)}`;
+}
+
+app.get('/api/mail/config', (_req, res) => {
+    const stats = getEmailStats();
+    res.json({
+        enabled: stats.enabled,
+        from: stats.from,
+        supportEmail: stats.supportEmail,
+    });
+});
+
+app.get('/api/mail/stats', (req, res) => {
+    if (!requireMailAdmin(req, res)) return;
+    res.json(getEmailStats());
+});
+
+app.post('/api/mail/support', async (req, res) => {
+    const name = clampText(req.body?.name, 120);
+    const email = normalizeEmail(req.body?.email);
+    const message = clampText(req.body?.message, 4000);
+    const path = clampText(req.body?.path, 500) || '/';
+    const userAgent = clampText(req.body?.userAgent || req.headers['user-agent'], 500);
+
+    if (!message || message.length < 4) {
+        return res.status(400).json({ error: 'message is required' });
+    }
+
+    const limit = checkMailRateLimit(mailRateLimitKey(req, email, 'support'), { max: 5 });
+    if (!limit.ok) {
+        return res.status(429).json({ error: 'too many support messages', resetAt: limit.resetAt });
+    }
+
+    const result = await sendMail({
+        type: 'support',
+        to: SUPPORT_EMAIL,
+        replyTo: email,
+        subject: `Vietnamy support${name ? ` - ${name}` : ''}`,
+        html: supportNotificationEmail({ name, email, message, path, userAgent }),
+        text: `Name: ${name || 'Anonymous learner'}\nEmail: ${email || 'Not provided'}\nPage: ${path}\n\n${message}`,
+    });
+
+    if (!result.ok) {
+        return res.status(result.skipped ? 503 : 502).json({ error: result.error || 'email failed' });
+    }
+    res.json({ ok: true });
+});
+
+app.post('/api/mail/waitlist', async (req, res) => {
+    const name = clampText(req.body?.name, 120);
+    const email = normalizeEmail(req.body?.email);
+    const nativeLang = clampText(req.body?.nativeLang, 40);
+    const goal = clampText(req.body?.goal, 1000);
+    const sendConfirmation = req.body?.sendConfirmation !== false;
+
+    if (!email) {
+        return res.status(400).json({ error: 'valid email is required' });
+    }
+
+    const limit = checkMailRateLimit(mailRateLimitKey(req, email, 'waitlist'), { max: 3 });
+    if (!limit.ok) {
+        return res.status(429).json({ error: 'too many waitlist requests', resetAt: limit.resetAt });
+    }
+
+    const notification = await sendMail({
+        type: 'waitlist_notification',
+        to: SUPPORT_EMAIL,
+        replyTo: email,
+        subject: `Vietnamy waitlist - ${email}`,
+        html: waitlistNotificationEmail({ name, email, nativeLang, goal }),
+        text: `Name: ${name || 'Learner'}\nEmail: ${email}\nNative language: ${nativeLang || 'Not provided'}\nGoal: ${goal || 'Not provided'}`,
+    });
+
+    let confirmation = { ok: true, skipped: true };
+    if (sendConfirmation && notification.ok) {
+        confirmation = await sendMail({
+            type: 'waitlist_confirmation',
+            to: email,
+            subject: 'You are on the Vietnamy list',
+            html: waitlistConfirmationEmail({ name }),
+            text: `Hi ${name || 'there'},\n\nThanks for joining Vietnamy. We will send useful updates only when there is something worth your attention.\n\nOpen Vietnamy: ${PUBLIC_BASE_URL}`,
+        });
+    }
+
+    if (!notification.ok) {
+        return res.status(notification.skipped ? 503 : 502).json({ error: notification.error || 'email failed' });
+    }
+    res.json({ ok: true, confirmationSent: Boolean(confirmation.ok && !confirmation.skipped) });
+});
+
+app.post('/api/mail/reminder', async (req, res) => {
+    if (!requireMailAdmin(req, res)) return;
+    const email = normalizeEmail(req.body?.email);
+    const name = clampText(req.body?.name, 120);
+    const lessonTitle = clampText(req.body?.lessonTitle, 160);
+    const url = clampText(req.body?.url, 600);
+
+    if (!email) return res.status(400).json({ error: 'valid email is required' });
+
+    const result = await sendMail({
+        type: 'lesson_reminder',
+        to: email,
+        subject: `Vietnamy lesson reminder${lessonTitle ? ` - ${lessonTitle}` : ''}`,
+        html: lessonReminderEmail({ name, lessonTitle, url }),
+        text: `Hi ${name || 'there'},\n\nA short Vietnamy review is ready${lessonTitle ? `: ${lessonTitle}` : ''}.\n\n${url || `${PUBLIC_BASE_URL}/study`}`,
+    });
+
+    if (!result.ok) {
+        return res.status(result.skipped ? 503 : 502).json({ error: result.error || 'email failed' });
+    }
+    res.json({ ok: true, id: result.id || null });
+});
+
+app.post('/api/mail/test', async (req, res) => {
+    if (!requireMailAdmin(req, res)) return;
+    const to = normalizeEmail(req.body?.to) || SUPPORT_EMAIL;
+    const result = await sendMail({
+        type: 'test',
+        to,
+        subject: 'Vietnamy mail test',
+        html: lessonReminderEmail({ name: 'Niko', lessonTitle: 'Mail system smoke test', url: PUBLIC_BASE_URL }),
+        text: 'Vietnamy mail system smoke test.',
+    });
+
+    if (!result.ok) {
+        return res.status(result.skipped ? 503 : 502).json({ error: result.error || 'email failed' });
+    }
+    res.json({ ok: true, id: result.id || null });
+});
 
 // ---------------------------------------------------------------------------
 // Language DB map. Only English, Simplified Chinese, and Traditional Chinese are active.

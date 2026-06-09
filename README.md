@@ -84,6 +84,34 @@ docker run -p 8080:8080 vietnamy
 
 In production, Express serves both the API and the built frontend from `/dist`.
 
+## Mail System
+
+The Express server can send transactional email through Resend without a separate worker. It keeps a local runtime log at `server/databases/email_logs.json` for smoke checks and lightweight usage stats.
+
+### Setup
+
+1. Create a Resend API key.
+2. Add these env vars on the server:
+   ```
+   RESEND_API_KEY=<resend-api-key>
+   EMAIL_FROM="Vietnamy <hello@your-domain.com>"
+   SUPPORT_EMAIL=ceo@tecxmate.com
+   PUBLIC_BASE_URL=https://vietnamy.app
+   MAIL_ADMIN_TOKEN=<random-admin-token>
+   ```
+3. In production, verify the sender domain in Resend before changing `EMAIL_FROM` away from Resend's test sender.
+
+### Endpoints
+
+- `GET /api/mail/config` — public provider status, no secrets.
+- `POST /api/mail/support` — public support/feedback email to `SUPPORT_EMAIL`.
+- `POST /api/mail/waitlist` — public waitlist notification to `SUPPORT_EMAIL`, with optional confirmation email to the learner.
+- `GET /api/mail/stats` — requires `Authorization: Bearer <MAIL_ADMIN_TOKEN>`.
+- `POST /api/mail/reminder` — requires `MAIL_ADMIN_TOKEN`; sends one lesson reminder.
+- `POST /api/mail/test` — requires `MAIL_ADMIN_TOKEN`; sends a smoke-test email.
+
+Public send endpoints are rate-limited in memory by email/IP. If `RESEND_API_KEY` is missing, send endpoints return `503` and log the skipped attempt locally.
+
 ## TTS Bucket Cache
 
 The `/api/tts` endpoint caches generated audio in object storage so most requests are served as 302 redirects from the CDN instead of regenerating from Azure / Google.
