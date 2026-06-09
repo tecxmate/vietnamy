@@ -17,7 +17,9 @@ Duolingo-style notification optimization should be treated as an inspiration, no
 - `server/engagementMessages.js` contains the canonical scenario catalog and renderers.
 - `server/engagementOptimizer.js` records message events and selects variants with a lightweight explore/exploit strategy.
 - `server/server.js` exposes admin render/send/stats endpoints.
-- Runtime events are stored in `server/databases/message_events.json` and ignored by git.
+- Runtime message events are stored in `server/databases/message_events.json` and ignored by git.
+- Push subscriptions/events are stored in `server/databases/push_notifications.json` and ignored by git.
+- Prototype feedback reports are stored in `server/databases/feedback_reports.json` and ignored by git.
 
 ## Scenario Groups
 
@@ -39,12 +41,17 @@ All admin endpoints require `Authorization: Bearer <MAIL_ADMIN_TOKEN>`.
 - `GET /api/messages/stats` returns selected/sent/opened/clicked/dismissed stats by variant.
 - `POST /api/messages/render` renders one scenario/channel without sending.
 - `POST /api/messages/send-email` renders, tracks, and sends one scenario email.
+- `POST /api/push/send` sends a push notification. It still accepts legacy `templateId` values, but also accepts `scenarioId`, `variantId`, `context`, and `userId`. When `scenarioId` is present, the push body is rendered from the shared catalog and tracked in the engagement optimizer.
+- `GET /api/push/stats` returns push send/click/open stats by template/scenario.
+- `POST /api/feedback` stores structured beta feedback with page, viewport, app version, optional screenshot URL, and compact client logs.
+- `GET /api/admin/feedback` lists feedback reports and summary counts.
 
 Public tracking endpoints:
 
 - `GET /api/messages/open` records a best-effort email open pixel.
 - `GET /api/messages/click` records a click and redirects to the target URL.
 - `POST /api/messages/events` records frontend events such as push clicked, in-app dismissed, or notification opened.
+- `POST /api/push/events` records push clicks/app-opens and forwards matching scenario events to the same optimizer.
 
 ## Unlimited Email Quota Test Window
 
@@ -77,6 +84,45 @@ curl -X POST https://vietnamy.tecxmate.com/api/messages/send-email \
   }'
 ```
 
+## Example Push Send
+
+```bash
+curl -X POST https://vietnamy.tecxmate.com/api/push/send \
+  -H "Content-Type: application/json" \
+  -d '{
+    "scenarioId": "daily_review_due",
+    "userId": "learner@example.com",
+    "context": {
+      "name": "Learner",
+      "reviewCount": "12"
+    }
+  }'
+```
+
+Legacy callers can still send:
+
+```bash
+curl -X POST https://vietnamy.tecxmate.com/api/push/send \
+  -H "Content-Type: application/json" \
+  -d '{ "templateId": "daily_review" }'
+```
+
+## Example Feedback Report
+
+```bash
+curl -X POST https://vietnamy.tecxmate.com/api/feedback \
+  -H "Content-Type: application/json" \
+  -d '{
+    "kind": "bug",
+    "severity": "high",
+    "subject": "Bottom button is cut off",
+    "body": "The Continue button is clipped in installed PWA mode.",
+    "pathname": "/practice/alphabet",
+    "viewport": "393x852",
+    "screenshotUrl": "https://example.com/screenshot.png"
+  }'
+```
+
 ## Optimization Notes
 
 The current optimizer is intentionally simple:
@@ -85,4 +131,4 @@ The current optimizer is intentionally simple:
 - Variant score favors clicks, then opens, and penalizes dismissals/failures.
 - `MESSAGE_EXPLORATION_RATE` defaults to `0.2`, so 20% of selections explore other variants.
 
-Next production step: move `message_events.json` into Supabase or another durable store before sending campaigns at scale across multiple server instances.
+Next production step: move `message_events.json`, `push_notifications.json`, `feedback_reports.json`, and `email_logs.json` into Supabase/Postgres or another durable store before sending campaigns at scale across multiple server instances.

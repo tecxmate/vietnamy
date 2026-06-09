@@ -110,6 +110,12 @@ const PUSH_TEMPLATES = {
     },
 };
 
+const LEGACY_PUSH_SCENARIOS = {
+    daily_review: 'daily_review_due',
+    streak_save: 'streak_save',
+    unfinished_lesson: 'first_lesson_nudge',
+};
+
 function readPushStore() {
     try {
         if (!existsSync(PUSH_STORE_PATH)) {
@@ -147,6 +153,10 @@ async function loadWebPush() {
 // ---------------------------------------------------------------------------
 const MAIL_ADMIN_TOKEN = process.env.MAIL_ADMIN_TOKEN || '';
 const MAIL_ADMIN_ALLOW_LOCAL = process.env.MAIL_ADMIN_ALLOW_LOCAL === 'true';
+const FEEDBACK_STORE_PATH = join(__dirname, 'databases', 'feedback_reports.json');
+const FEEDBACK_LIMIT = 5000;
+const FEEDBACK_KINDS = new Set(['bug', 'feedback', 'feature']);
+const FEEDBACK_SEVERITIES = new Set(['low', 'med', 'high']);
 
 function requestIp(req) {
     return String(req.headers['x-forwarded-for'] || req.ip || req.socket?.remoteAddress || 'unknown')
@@ -170,6 +180,56 @@ function requireMailAdmin(req, res) {
 
 function mailRateLimitKey(req, email, action) {
     return `mail:${action}:${email || requestIp(req)}`;
+}
+
+function readFeedbackStore() {
+    try {
+        if (!existsSync(FEEDBACK_STORE_PATH)) return { reports: [] };
+        const parsed = JSON.parse(readFileSync(FEEDBACK_STORE_PATH, 'utf8'));
+        return { reports: Array.isArray(parsed.reports) ? parsed.reports : [] };
+    } catch (err) {
+        console.warn('Feedback store read failed:', err.message);
+        return { reports: [] };
+    }
+}
+
+function writeFeedbackStore(store) {
+    mkdirSync(dirname(FEEDBACK_STORE_PATH), { recursive: true });
+    const reports = Array.isArray(store.reports) ? store.reports.slice(-FEEDBACK_LIMIT) : [];
+    writeFileSync(FEEDBACK_STORE_PATH, JSON.stringify({ reports }, null, 2));
+}
+
+function compactClientLogs(value) {
+    if (!Array.isArray(value)) return [];
+    return value.slice(-30).map(entry => {
+        if (!entry || typeof entry !== 'object') return null;
+        return {
+            ts: typeof entry.ts === 'number' ? entry.ts : Date.now(),
+            type: entry.type === 'unhandledrejection' ? 'unhandledrejection' : 'error',
+            message: clampText(entry.message, 1000),
+            source: clampText(entry.source, 500) || undefined,
+            stack: clampText(entry.stack, 2000) || undefined,
+        };
+    }).filter(Boolean);
+}
+
+function getFeedbackStats() {
+    const reports = readFeedbackStore().reports;
+    const byKind = {};
+    const bySeverity = {};
+    const byStatus = {};
+    for (const report of reports) {
+        byKind[report.kind] = (byKind[report.kind] || 0) + 1;
+        bySeverity[report.severity] = (bySeverity[report.severity] || 0) + 1;
+        byStatus[report.status] = (byStatus[report.status] || 0) + 1;
+    }
+    return {
+        total: reports.length,
+        byKind,
+        bySeverity,
+        byStatus,
+        recent: reports.slice(-50).reverse(),
+    };
 }
 
 app.get('/api/mail/config', (_req, res) => {
@@ -215,6 +275,59 @@ app.post('/api/mail/support', async (req, res) => {
         return res.status(result.skipped ? 503 : 502).json({ error: result.error || 'email failed' });
     }
     res.json({ ok: true });
+});
+
+app.post('/api/feedback', (req, res) => {
+    const name = clampText(req.body?.name, 120);
+    const email = normalizeEmail(req.body?.email);
+    const userId = clampText(req.body?.userId, 160) || email || 'anonymous';
+    const kind = FEEDBACK_KINDS.has(req.body?.kind) ? req.body.kind : 'bug';
+    const severity = FEEDBACK_SEVERITIES.has(req.body?.severity) ? req.body.severity : 'med';
+    const subject = clampText(req.body?.subject, 200);
+    const body = clampText(req.body?.body || req.body?.message, 5000);
+    const pathname = clampText(req.body?.pathname || req.body?.path, 500) || '/';
+    const viewport = clampText(req.body?.viewport, 80);
+    const screenshotUrl = clampText(req.body?.screenshotUrl, 500);
+    const userAgent = clampText(req.body?.userAgent || req.headers['user-agent'], 500);
+
+    if (!subject || !body) {
+        return res.status(400).json({ error: 'subject and body are required' });
+    }
+
+    const limit = checkMailRateLimit(mailRateLimitKey(req, email || userId, 'feedback'), { max: 10 });
+    if (!limit.ok) {
+        return res.status(429).json({ error: 'too many feedback reports', resetAt: limit.resetAt });
+    }
+
+    const store = readFeedbackStore();
+    const report = {
+        id: crypto.randomUUID(),
+        at: new Date().toISOString(),
+        status: 'open',
+        kind,
+        severity,
+        subject,
+        body,
+        name,
+        email,
+        userId,
+        pathname,
+        viewport,
+        screenshotUrl,
+        userAgent,
+        appVersion: clampText(process.env.VERCEL_GIT_COMMIT_SHA || process.env.npm_package_version || 'dev', 80),
+        clientLogs: compactClientLogs(req.body?.clientLogs),
+        metadata: compactMetadata(req.body?.metadata),
+    };
+    store.reports.push(report);
+    writeFeedbackStore(store);
+
+    res.json({ ok: true, id: report.id });
+});
+
+app.get('/api/admin/feedback', (req, res) => {
+    if (!requireMailAdmin(req, res)) return;
+    res.json(getFeedbackStats());
 });
 
 app.post('/api/mail/waitlist', async (req, res) => {
@@ -2114,16 +2227,57 @@ app.post('/api/push/subscribe', (req, res) => {
 });
 
 app.post('/api/push/events', (req, res) => {
-    const { type, notificationId = '', templateId = '', subscriptionId = '', userId = 'anonymous', metadata = {} } = req.body || {};
+    const {
+        type,
+        notificationId = '',
+        templateId = '',
+        scenarioId = '',
+        variantId = '',
+        subscriptionId = '',
+        userId = 'anonymous',
+        metadata = {},
+    } = req.body || {};
     if (!type) return res.status(400).json({ error: 'event type required' });
 
     const store = readPushStore();
     const now = new Date().toISOString();
-    store.events.push({ type, notificationId, templateId, subscriptionId, userId, metadata, at: now });
+    const normalizedScenarioId = scenarioId || LEGACY_PUSH_SCENARIOS[templateId] || templateId;
+    store.events.push({
+        type,
+        notificationId,
+        templateId,
+        scenarioId: normalizedScenarioId,
+        variantId,
+        subscriptionId,
+        userId,
+        metadata,
+        at: now,
+    });
 
     if (type === 'clicked' && subscriptionId) {
         const sub = store.subscriptions.find(item => item.id === subscriptionId);
         if (sub) sub.clicked = (sub.clicked || 0) + 1;
+    }
+
+    if (normalizedScenarioId) {
+        const event = type === 'clicked'
+            ? 'clicked'
+            : type === 'opened_app'
+                ? 'opened'
+                : type === 'dismissed'
+                    ? 'dismissed'
+                    : null;
+        if (event) {
+            recordMessageEvent({
+                messageInstanceId: notificationId,
+                scenarioId: normalizedScenarioId,
+                variantId,
+                channel: 'push',
+                event,
+                userId,
+                metadata: compactMetadata({ subscriptionId, ...metadata }),
+            });
+        }
     }
 
     writePushStore(store);
@@ -2131,6 +2285,7 @@ app.post('/api/push/events', (req, res) => {
 });
 
 app.get('/api/push/stats', (_req, res) => {
+    if (!requireMailAdmin(_req, res)) return;
     const store = readPushStore();
     const byTemplate = {};
 
@@ -2156,23 +2311,56 @@ app.get('/api/push/stats', (_req, res) => {
 });
 
 app.post('/api/push/send', async (req, res) => {
+    if (!requireMailAdmin(req, res)) return;
     if (!PUSH_ENABLED) {
         return res.status(503).json({ error: 'push is not configured; set VAPID_PUBLIC_KEY and VAPID_PRIVATE_KEY' });
     }
 
-    const { templateId = 'daily_review', userId = null } = req.body || {};
-    const template = PUSH_TEMPLATES[templateId] || PUSH_TEMPLATES.daily_review;
+    const {
+        templateId = 'daily_review',
+        scenarioId: requestedScenarioId = '',
+        context: rawContext = {},
+        userId = null,
+        variantId: requestedVariantId = '',
+    } = req.body || {};
+    const context = rawContext && typeof rawContext === 'object' ? rawContext : {};
+    const selectedScenarioId = requestedScenarioId || LEGACY_PUSH_SCENARIOS[templateId] || templateId;
+    const selectedVariant = getMessageScenario(selectedScenarioId)
+        ? selectMessageVariant(selectedScenarioId, 'push', {
+            userId: clampText(userId || '', 160),
+            forceVariantId: clampText(requestedVariantId, 80),
+        })
+        : null;
+    const rendered = selectedVariant
+        ? renderEngagementMessage(selectedScenarioId, {
+            channel: 'push',
+            variantId: selectedVariant.id,
+            context,
+        })
+        : null;
+    const legacyTemplate = PUSH_TEMPLATES[templateId] || PUSH_TEMPLATES.daily_review;
+    const template = rendered
+        ? {
+            title: rendered.title,
+            body: rendered.message,
+            url: rendered.url,
+            scenarioId: selectedScenarioId,
+            variantId: rendered.variantId,
+        }
+        : legacyTemplate;
     const store = readPushStore();
     const subscriptions = store.subscriptions.filter(item => item.active && (!userId || item.userId === userId));
     const webPush = await loadWebPush();
     const now = new Date().toISOString();
-    const notificationId = crypto.randomUUID();
+    const notificationId = createMessageInstanceId();
     const results = { sent: 0, failed: 0, disabled: 0 };
 
     for (const record of subscriptions) {
         const payload = JSON.stringify({
             notificationId,
             templateId,
+            scenarioId: template.scenarioId || '',
+            variantId: template.variantId || '',
             subscriptionId: record.id,
             title: template.title,
             body: template.body,
@@ -2183,7 +2371,27 @@ app.post('/api/push/send', async (req, res) => {
             await webPush.sendNotification(record.subscription, payload);
             record.sent = (record.sent || 0) + 1;
             record.updatedAt = now;
-            store.events.push({ type: 'sent', notificationId, templateId, subscriptionId: record.id, userId: record.userId, at: now });
+            store.events.push({
+                type: 'sent',
+                notificationId,
+                templateId,
+                scenarioId: template.scenarioId || '',
+                variantId: template.variantId || '',
+                subscriptionId: record.id,
+                userId: record.userId,
+                at: now,
+            });
+            if (template.scenarioId) {
+                recordMessageEvent({
+                    messageInstanceId: notificationId,
+                    scenarioId: template.scenarioId,
+                    channel: 'push',
+                    variantId: template.variantId,
+                    event: 'sent',
+                    userId: record.userId,
+                    metadata: { subscriptionId: record.id },
+                });
+            }
             results.sent += 1;
         } catch (err) {
             if (err.statusCode === 404 || err.statusCode === 410) {
@@ -2194,12 +2402,39 @@ app.post('/api/push/send', async (req, res) => {
                 results.failed += 1;
                 console.warn('Push send failed:', err.message);
             }
-            store.events.push({ type: 'send_failed', notificationId, templateId, subscriptionId: record.id, userId: record.userId, metadata: { statusCode: err.statusCode || null }, at: now });
+            store.events.push({
+                type: 'send_failed',
+                notificationId,
+                templateId,
+                scenarioId: template.scenarioId || '',
+                variantId: template.variantId || '',
+                subscriptionId: record.id,
+                userId: record.userId,
+                metadata: { statusCode: err.statusCode || null },
+                at: now,
+            });
+            if (template.scenarioId) {
+                recordMessageEvent({
+                    messageInstanceId: notificationId,
+                    scenarioId: template.scenarioId,
+                    channel: 'push',
+                    variantId: template.variantId,
+                    event: 'failed',
+                    userId: record.userId,
+                    metadata: { subscriptionId: record.id, statusCode: err.statusCode || null },
+                });
+            }
         }
     }
 
     writePushStore(store);
-    res.json({ ok: true, notificationId, ...results });
+    res.json({
+        ok: true,
+        notificationId,
+        scenarioId: template.scenarioId || null,
+        variantId: template.variantId || null,
+        ...results,
+    });
 });
 
 // ---------------------------------------------------------------------------

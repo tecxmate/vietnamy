@@ -89,6 +89,8 @@ export function trackPushReturnFromUrl(userId = 'anonymous') {
     const params = new URLSearchParams(window.location.search);
     const notificationId = params.get('notification');
     if (!notificationId) return;
+    const scenarioId = params.get('scenario') || '';
+    const variantId = params.get('variant') || '';
 
     fetch('/api/push/events', {
         method: 'POST',
@@ -96,12 +98,16 @@ export function trackPushReturnFromUrl(userId = 'anonymous') {
         body: JSON.stringify({
             type: 'opened_app',
             notificationId,
+            scenarioId,
+            variantId,
             userId,
             metadata: { path: window.location.pathname },
         }),
     }).catch(() => {});
 
     params.delete('notification');
+    params.delete('scenario');
+    params.delete('variant');
     const nextSearch = params.toString();
     window.history.replaceState(null, '', `${window.location.pathname}${nextSearch ? `?${nextSearch}` : ''}${window.location.hash}`);
 }

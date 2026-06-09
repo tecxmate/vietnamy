@@ -114,6 +114,10 @@ Public send endpoints are rate-limited in memory by email/IP. If `RESEND_API_KEY
 
 See `docs/ENGAGEMENT_MESSAGING.md` for the standardized email, push, in-app message catalog and optimization workflow.
 
+## Feedback Reports
+
+`POST /api/feedback` stores structured prototype feedback in `server/databases/feedback_reports.json`, including page, viewport, app version, optional screenshot URL, and compact client logs. `GET /api/admin/feedback` requires `MAIL_ADMIN_TOKEN` and returns recent reports plus summary counts. This mirrors the Tecxwork feedback pattern while Vietnamy is still using lightweight local runtime stores.
+
 ## TTS Bucket Cache
 
 The `/api/tts` endpoint caches generated audio in object storage so most requests are served as 302 redirects from the CDN instead of regenerating from Azure / Google.

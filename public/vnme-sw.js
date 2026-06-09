@@ -16,6 +16,8 @@ self.addEventListener('push', (event) => {
             url: payload.url || '/',
             notificationId: payload.notificationId || '',
             templateId: payload.templateId || '',
+            scenarioId: payload.scenarioId || '',
+            variantId: payload.variantId || '',
             subscriptionId: payload.subscriptionId || '',
         },
     };
@@ -29,6 +31,8 @@ self.addEventListener('notificationclick', (event) => {
     const data = event.notification.data || {};
     const url = new URL(data.url || '/', self.location.origin);
     if (data.notificationId) url.searchParams.set('notification', data.notificationId);
+    if (data.scenarioId) url.searchParams.set('scenario', data.scenarioId);
+    if (data.variantId) url.searchParams.set('variant', data.variantId);
 
     const trackClick = fetch('/api/push/events', {
         method: 'POST',
@@ -37,6 +41,8 @@ self.addEventListener('notificationclick', (event) => {
             type: 'clicked',
             notificationId: data.notificationId || '',
             templateId: data.templateId || '',
+            scenarioId: data.scenarioId || '',
+            variantId: data.variantId || '',
             subscriptionId: data.subscriptionId || '',
         }),
     }).catch(() => {});
