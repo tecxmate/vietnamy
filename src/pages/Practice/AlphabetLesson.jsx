@@ -6,6 +6,7 @@ import { playSuccess, playError } from '../../utils/sound';
 import { usePracticeCompletion } from '../../hooks/usePracticeCompletion';
 import { useEnterKey } from '../../hooks/useEnterKey';
 import { PracticeShell, StepDots, AudioButton, OptionGrid, FeedbackBar, FeedbackMessage, PrimaryButton, ExerciseColumn } from '../../components/practice/PracticeKit';
+import { ProgressBar } from '../../components/Exercise';
 
 const QUIZ_COUNT = 8;
 const STEPS = [{ id: 'learn', icon: GraduationCap, label: 'Learn' }, { id: 'quiz', icon: Ear, label: 'Quiz' }];
@@ -113,13 +114,14 @@ function Quiz({ onDone }) {
         <>
             <ExerciseColumn top={
                 <>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 14 }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 10 }}>
                         <span style={{ fontSize: 13, color: 'var(--text-muted)' }}>Question {qi + 1}/{questions.length}</span>
                         <span style={{ fontSize: 13, fontWeight: 700, color: '#06D6A0' }}>Score {score}</span>
                     </div>
-                    <p style={{ textAlign: 'center', fontSize: 14, color: 'var(--text-muted)', margin: 0 }}>Listen, then tap the letter you hear.</p>
+                    <ProgressBar progress={qi / questions.length} />
                 </>
             }>
+                <p style={{ textAlign: 'center', fontSize: 14, color: 'var(--text-muted)', margin: '0 0 14px' }}>Listen, then tap the letter you hear.</p>
                 <div style={{ marginBottom: 20 }}><AudioButton onClick={play} playToken={playToken} /></div>
                 <OptionGrid
                     options={q.options} cols={2}

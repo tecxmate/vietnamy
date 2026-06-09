@@ -6,6 +6,7 @@ import './VowelsPractice.css';
 import { playSuccess, playError } from '../../utils/sound';
 import SoundButton from '../../components/SoundButton';
 import { AudioButton, OptionGrid, FeedbackBar, FeedbackMessage, PrimaryButton, ExerciseColumn } from '../../components/practice/PracticeKit';
+import { ProgressBar } from '../../components/Exercise';
 import './PracticeShared.css'; // Add shared layout
 import { getVowels } from '../../data/vowels';
 
@@ -473,16 +474,14 @@ export default function VowelsPractice({
                 <>
                     <ExerciseColumn topOffset={120} top={
                         <>
-                            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 14 }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 10 }}>
                                 <span style={{ fontSize: 13, color: 'var(--text-muted)' }}>Question {qIndex + 1}/{questionCount}</span>
                                 <span style={{ fontSize: 13, fontWeight: 700, color: '#06D6A0' }}>Score {score}</span>
                             </div>
-                            <div style={{ height: 6, borderRadius: 4, backgroundColor: 'var(--border-color)', marginBottom: 22, overflow: 'hidden' }}>
-                                <div style={{ height: '100%', width: `${progress}%`, backgroundColor: '#1CB0F6', borderRadius: 4, transition: 'width 0.3s' }} />
-                            </div>
-                            <p style={{ textAlign: 'center', fontSize: 16, fontWeight: 600, color: 'var(--text-main)', margin: 0 }}>{currentQ.question}</p>
+                            <ProgressBar progress={progress / 100} />
                         </>
                     }>
+                        <p style={{ textAlign: 'center', fontSize: 16, fontWeight: 600, color: 'var(--text-main)', margin: '0 0 14px' }}>{currentQ.question}</p>
                         <div style={{ marginBottom: 20 }}><AudioButton onClick={() => playWord(currentQ.audio)} playToken={playToken} /></div>
                         <OptionGrid
                             options={currentQ.options} cols={2}

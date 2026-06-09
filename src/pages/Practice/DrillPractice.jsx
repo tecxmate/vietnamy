@@ -5,6 +5,7 @@ import { usePracticeCompletion } from '../../hooks/usePracticeCompletion';
 import { useEnterKey } from '../../hooks/useEnterKey';
 import { playSuccess, playError } from '../../utils/sound';
 import { PracticeShell, AudioButton, OptionGrid, FeedbackBar, FeedbackMessage, PrimaryButton, ExerciseColumn } from '../../components/practice/PracticeKit';
+import { ProgressBar } from '../../components/Exercise';
 import './DrillPractice.css';
 
 const CMS_KEY_PREFIX = 'vnme_cms_drill_';
@@ -188,16 +189,14 @@ export default function DrillPractice({ data, questionCount = 10 }) {
         <PracticeShell onClose={goBack}>
             <ExerciseColumn top={
                 <>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 14 }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 10 }}>
                         <span style={{ fontSize: 13, color: 'var(--text-muted)' }}>Question {qIndex + 1}/{questions.length}</span>
                         <span style={{ fontSize: 13, fontWeight: 700, color: '#06D6A0' }}>Score {score}</span>
                     </div>
-                    <div style={{ height: 6, borderRadius: 4, backgroundColor: 'var(--border-color)', marginBottom: 22, overflow: 'hidden' }}>
-                        <div style={{ height: '100%', width: `${(qIndex / questions.length) * 100}%`, backgroundColor: '#1CB0F6', borderRadius: 4, transition: 'width 0.3s' }} />
-                    </div>
-                    <p style={{ textAlign: 'center', fontSize: 16, fontWeight: 600, color: 'var(--text-main)', margin: 0 }}>{currentQ?.prompt}</p>
+                    <ProgressBar progress={questions.length ? qIndex / questions.length : 0} />
                 </>
             }>
+                <p style={{ textAlign: 'center', fontSize: 16, fontWeight: 600, color: 'var(--text-main)', margin: '0 0 14px' }}>{currentQ?.prompt}</p>
                 {currentQ?.type === 'listen_pick' && audioKey && (
                     <div style={{ marginBottom: 20 }}><AudioButton onClick={() => playAudio(audioKey)} playToken={playToken} /></div>
                 )}
