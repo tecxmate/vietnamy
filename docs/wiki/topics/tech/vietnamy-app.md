@@ -53,7 +53,7 @@ See [curriculum-paths] for the full breakdown.
 ## Deeper reference docs
 - `docs/tts-cache.md` — exhaustive TTS architecture, operations, failure modes.
 - `docs/prd/PRD.md` — product requirements.
-- `docs/prd/PROJECT_HANDOFF.md` — original architecture handoff doc.
+- `docs/CONTENT_SCHEMA.md` — canonical content contract.
 - `docs/curr/CANONICAL_CURRICULUM_SCHEMA.md` — curriculum JSON schema.
 - `CLAUDE.md` — agent operating instructions for this repo.
 

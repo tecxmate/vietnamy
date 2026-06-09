@@ -20,38 +20,6 @@ import './AppTutorial.css';
 
 const STEP_DEFS = [
     {
-        tab: 'home',
-        targetClass: '.demo-banner',
-        position: 'bottom',
-        badge: 'app_tutorial_welcome_badge',
-        title: 'app_tutorial_home_title',
-        desc: 'app_tutorial_home_desc',
-    },
-    {
-        tab: 'home',
-        targetClass: '.home-dict-search',
-        position: 'bottom',
-        badge: 'app_tutorial_quick_search_badge',
-        title: 'app_tutorial_quick_search_title',
-        desc: 'app_tutorial_quick_search_desc',
-    },
-    {
-        tab: 'home',
-        targetClass: '.home-streak-card',
-        position: 'bottom',
-        badge: 'app_tutorial_progress_badge',
-        title: 'app_tutorial_progress_title',
-        desc: 'app_tutorial_progress_desc',
-    },
-    {
-        tab: 'home',
-        targetClass: '.home-actions',
-        position: 'top',
-        badge: 'app_tutorial_actions_badge',
-        title: 'app_tutorial_actions_title',
-        desc: 'app_tutorial_actions_desc',
-    },
-    {
         tab: 'study',
         targetId: 'roadmap-continue-btn',
         position: 'center',
@@ -80,13 +48,12 @@ const STEP_DEFS = [
         tabLabel: 'nav_library',
     },
     {
-        tab: 'home',
+        tab: 'library',
         targetClass: '.bottom-nav',
         position: 'top',
         badge: 'app_tutorial_navigation_badge',
         title: 'app_tutorial_navigation_title',
         desc: 'app_tutorial_navigation_desc',
-        tabLabel: 'nav_home',
         mascotSlot: 'done',
     },
 ];

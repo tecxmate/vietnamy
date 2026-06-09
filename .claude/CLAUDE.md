@@ -41,15 +41,17 @@ npx playwright test test_*.spec.js
 - **Backend**: Express.js on port 3001 (dev) / 8080 (Docker). Serves dictionary API + TTS/translation proxy. In production, also serves the built frontend from `/dist`.
 
 ### State Management
-All app state uses React Context + localStorage (no backend auth, no user accounts):
-- **UserContext** — profile (name, age, level, dialect, goal)
-- **DongContext** — gamification (coins, hearts, streaks, completed nodes, unlocked stages)
+Most app state uses React Context + localStorage:
+- **UserContext** — profile (name, age, dialect, native language, learner mode, goal)
+- **ProgressContext** — completed nodes, per-mode session counts, lesson progress
 - **LanguageContext** — UI language toggle (en/cn)
+- **NotificationContext** — in-app toasts + notification panel (streaks, coins)
+- **AuthContext** — OAuth sign-in / cross-device sync state
 
 localStorage keys are prefixed `vnme_*` or `vietnamy_*`. The "mock database" in `db.js` IS the production data store — it seeds localStorage on first load.
 
 ### Routing (React Router v6)
-- `/` — Main app with 5 tab layout (Home, Roadmap, Practice, Dictionary, Community)
+- `/` — Main app with 3 tab layout (Study [roadmap], Dictionary, Library)
 - `/lesson/:lessonId` — Interactive lesson engine
 - `/grammar-lesson/:nodeId`, `/test/:nodeId` — Grammar lessons and unit tests
 - `/practice/*` — Full-screen practice modules (tones, pronouns, numbers, vowels, pitch, telex, teencode)
@@ -57,9 +59,9 @@ localStorage keys are prefixed `vnme_*` or `vietnamy_*`. The "mock database" in 
 - `/admin/*` — Content management (mapper, lesson builder, grammar/article/vocab/tone/kinship editors)
 
 ### Core Systems
-- **Lesson Engine** (`LessonGame.jsx`) — Exercises with 5-heart system, streak tracking, SRS integration. Types: multiple_choice, listen_tap, speaking_repeat, reorder_words.
-- **Roadmap** (`RoadmapTab.jsx`) — Duolingo-style skill tree. Nodes have `unlock_rule` prerequisites. 4 sessions = 1 completion.
-- **Gamification** (`DongContext.jsx`) — Virtual currency "₫", daily streaks, stage unlocking. Hearts regenerate 1 per 30 min.
+- **Lesson Engine** (`LessonGame.jsx`) — Exercises with streak tracking and SRS integration. Types: multiple_choice, listen_tap, speaking_repeat, reorder_words. (The legacy heart system is disabled.)
+- **Roadmap** (`RoadmapTab.jsx`, the "Study" tab) — Duolingo-style skill tree. Nodes have `unlock_rule` prerequisites. 4 sessions = 1 completion.
+- **Gamification** (`ProgressContext.jsx`) — completed nodes, per-mode session counts, daily streaks, and roadmap unlocking. (The old `DongContext` virtual-currency/hearts economy was removed.)
 - **SRS** (`srs.js`) — SM-2 inspired spaced repetition. Intervals: 1→3→7→14→30 days.
 - **Dictionary** — Server indexes SQLite databases on startup. Fuzzy suggest + full search with diacritics handling, compound word decomposition, IPA, examples. Supports EN/ZH + 6 more language pairs.
 - **Admin CMS** (`/admin/*`) — Writes content edits to localStorage.
@@ -82,6 +84,6 @@ localStorage keys are prefixed `vnme_*` or `vietnamy_*`. The "mock database" in 
 
 **New lesson**: Add exercises to `db.js` → `exercises`, lesson blueprint to `lesson_blueprints`, path node to `path_nodes` with `unlock_rule`.
 
-**New practice module**: Create component in `src/pages/Practice/`, add route in `App.jsx`, add to grid in `PracticeTab.jsx`.
+**New practice module**: Create component in `src/pages/Practice/`, add a route under `/practice/*` in `App.jsx`, and link it from a roadmap path node (`practice_route`) so it surfaces in the Study tab.
 
 **New tab**: Create in `src/components/Tabs/`, add to `renderTab()` in `App.jsx`, add to `BottomNav.jsx`, add to `TAB_META` in `TopBar.jsx`.

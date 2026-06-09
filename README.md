@@ -43,9 +43,9 @@ npm run dev:server   # Backend  — localhost:3001
 
 ```
 src/
-  context/          # React Context (UserContext, DongContext, LanguageContext)
+  context/          # React Context (UserContext, ProgressContext, LanguageContext, AuthContext, NotificationContext)
   components/
-    Tabs/           # Main tab views (Home, Roadmap, Practice, Dictionary, Community)
+    Tabs/           # Main tab views (Study, Dictionary, Library)
     Onboarding/     # First-launch setup wizard
   pages/
     Practice/       # Practice modules (tones, pronouns, numbers, flashcards, etc.)
@@ -59,16 +59,16 @@ server/
   server.js         # Express API (dictionary search, suggest, TTS proxy)
   databases/        # SQLite dictionary databases (not in git)
   scripts/          # Data import and generation pipelines
-docs/               # Project documentation (PRD, handoff guide, user flows)
+docs/               # Project documentation (wiki, PRD, curriculum source, content schema)
 ```
 
 ## Core Features
 
-- **Lesson Engine** — Interactive exercises (multiple choice, listen & tap, reorder words, speaking) with a 5-heart system
+- **Lesson Engine** — Interactive exercises (multiple choice, listen & tap, reorder words, speaking)
 - **Roadmap** — Duolingo-style skill tree with unlock prerequisites
 - **Dictionary** — Multi-source fuzzy search with diacritics handling, IPA, examples, and compound word decomposition
 - **Spaced Repetition** — SM-2 inspired flashcard system (1/3/7/14/30 day intervals)
-- **Gamification** — Virtual currency, daily streaks, stage unlocking
+- **Gamification** — Daily streaks, progress tracking, and roadmap unlock prerequisites
 - **Practice Modules** — Tones, pitch training, pronouns, numbers, vowels, TELEX typing, teen code
 - **Admin CMS** — Visual editors for lessons, roadmap, grammar, articles, vocabulary
 - **Bilingual UI** — English and Chinese interface toggle
@@ -140,7 +140,7 @@ The script collects every Vietnamese string under known keys (`vi`, `vi_text`, `
 
 ## Documentation
 
-See `docs/PROJECT_HANDOFF.md` for detailed architecture, data structures, and instructions on adapting this app for other language pairs.
+See `docs/wiki/` (start at `docs/wiki/index.md`) for architecture, decisions, and topic deep-dives; `docs/prd/PRD.md` for product requirements; and `docs/CONTENT_SCHEMA.md` for the canonical content contract.
 
 ## Credits
 
