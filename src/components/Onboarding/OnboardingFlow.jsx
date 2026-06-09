@@ -276,8 +276,8 @@ const OnboardingFlow = ({ onComplete, requireAuth = false }) => {
                                 <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 6, marginLeft: 'auto', minWidth: 0, flexWrap: 'wrap' }}>
                                     {v.isOfficialAccent && (
                                         <span
-                                            aria-label="Main official accent"
-                                            title="Main official accent"
+                                            aria-label="Northern official accent"
+                                            title="Northern official accent"
                                             style={{
                                                 display: 'inline-flex',
                                                 alignItems: 'center',

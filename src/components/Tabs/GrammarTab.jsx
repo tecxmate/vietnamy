@@ -18,7 +18,7 @@ const PRACTICE_MODULES = [
         icon: Mic,
         color: '#EF476F',
         items: [
-            { label: 'Tone Lesson', desc: 'Learn the 6 tones, then say them with Azure-scored feedback', navState: { tab: 'sounds', openToneLesson: true } },
+            { label: 'Tone Lesson', desc: 'Learn the 6 tones, then say them with Azure-scored feedback', route: '/practice/tones/level1' },
         ],
     },
     {

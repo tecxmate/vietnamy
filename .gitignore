@@ -49,3 +49,6 @@ public/opening.mov
 .env*.local
 tts-backup/
 .env*
+
+# Generated app screenshots
+docs/app-screens/

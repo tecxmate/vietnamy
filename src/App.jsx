@@ -19,18 +19,12 @@ import InstallPrompt from './components/InstallPrompt';
 import { installGlobalHaptics } from './utils/haptics';
 import { preloadUISounds } from './utils/sound';
 
-const loadHomeTab = () => import('./components/Tabs/HomeTab');
 const loadRoadmapTab = () => import('./components/Tabs/RoadmapTab');
-const loadGrammarTab = () => import('./components/Tabs/GrammarTab');
-const loadSoundsTab = () => import('./components/Tabs/SoundsTab');
 const loadDictionaryTab = () => import('./components/Tabs/DictionaryTab');
 const loadReadingLibraryTab = () => import('./components/Tabs/ReadingLibraryTab');
 
 const TAB_LOADERS = {
-  home: loadHomeTab,
   study: loadRoadmapTab,
-  grammar: loadGrammarTab,
-  sounds: loadSoundsTab,
   dictionary: loadDictionaryTab,
   library: loadReadingLibraryTab,
 };
@@ -55,7 +49,7 @@ function preloadTab(tab) {
 function preloadStudentTabs(activeTab) {
   if (!canBackgroundPreload()) return () => {};
 
-  const tabs = ['study', 'dictionary', 'library', 'grammar', 'sounds', 'home'].filter(tab => tab !== activeTab);
+  const tabs = VALID_TABS.filter(tab => tab !== activeTab);
   const timers = [];
   let idleId = null;
 
@@ -79,13 +73,9 @@ function preloadStudentTabs(activeTab) {
   };
 }
 
-const HomeTab = lazy(loadHomeTab);
-const ReferenceHomeTab = lazy(() => import('./components/Tabs/ReferenceHomeTab'));
 const OnboardingFlow = lazy(() => import('./components/Onboarding/OnboardingFlow'));
 const AppTutorial = lazy(() => import('./components/Onboarding/AppTutorial'));
 const RoadmapTab = lazy(loadRoadmapTab);
-const GrammarTab = lazy(loadGrammarTab);
-const SoundsTab = lazy(loadSoundsTab);
 const DictionaryTab = lazy(loadDictionaryTab);
 const ReadingLibraryTab = lazy(loadReadingLibraryTab);
 
@@ -316,11 +306,7 @@ function StudentApp({ initialTab = 'study' }) {
 
   const renderTab = () => {
     switch (activeTab) {
-      case 'home': return <HomeTab onSearchWord={handleDictInput} />;
-      case 'dicthome': return <ReferenceHomeTab onSearchWord={handleDictInput} onNavigateTab={setActiveTab} />;
       case 'study': return <RoadmapTab onNavigateToVocabDeck={handleNavigateToVocabDeck} />;
-      case 'grammar': return <GrammarTab />;
-      case 'sounds': return <SoundsTab />;
       case 'dictionary': return <DictionaryTab pendingInput={pendingDictInput} clearPendingInput={() => setPendingDictInput(null)} onNavigateToLibrary={handleNavigateToLibrary} />;
       case 'library': return <ReadingLibraryTab onSubtitleChange={setTabSubtitle} onSearchWord={handleDictInput} pendingArticle={pendingLibraryArticle} clearPendingArticle={() => setPendingLibraryArticle(null)} pendingVocabDeck={pendingVocabDeck} clearPendingVocabDeck={() => setPendingVocabDeck(null)} />;
       default: return <RoadmapTab onNavigateToVocabDeck={handleNavigateToVocabDeck} />;
@@ -332,10 +318,10 @@ function StudentApp({ initialTab = 'study' }) {
       <div className="app-container">
         <div className={`content-column ${activeTab}-tab-container`}>
           {activeTab !== 'study' && <MobileAccountBar />}
-          <div className={activeTab !== 'home' ? 'topbar-desktop-only' : ''}>
+          <div className="topbar-desktop-only">
             <TopBar activeTab={activeTab} subtitleOverride={tabSubtitle} />
           </div>
-          <main key={activeTab} className={`main-content ${activeTab}-tab ${activeTab !== 'home' ? ' no-topbar' : ''}`}>{renderTab()}</main>
+          <main key={activeTab} className={`main-content ${activeTab}-tab no-topbar`}>{renderTab()}</main>
         </div>
         <BottomNav activeTab={activeTab} setActiveTab={setActiveTab} onPreloadTab={preloadTab} tabs={VALID_TABS} />
         {!hasCompletedTutorial && (
@@ -372,9 +358,9 @@ function AppRoutes() {
         <Route path="/grammar-unit/:unitId" element={<div className="mobile-app-wrapper"><GrammarUnitLesson /></div>} />
         <Route path="/test/:nodeId" element={<div className="mobile-app-wrapper"><UnitTest /></div>} />
         {/* Full-screen Practice Routes */}
-        {/* Tone listening, pitch & speaking now live in the Sounds tab tone lesson */}
-        <Route path="/practice/tones" element={<Navigate to="/" replace state={{ tab: 'sounds', openToneLesson: true }} />} />
-        <Route path="/practice/tone-trainer" element={<Navigate to="/" replace state={{ tab: 'sounds', openToneLesson: true }} />} />
+        {/* Backward-compat: old tone URLs now enter the roadmap-backed tone lessons. */}
+        <Route path="/practice/tones" element={<Navigate to="/practice/tones/level1" replace />} />
+        <Route path="/practice/tone-trainer" element={<Navigate to="/practice/tones/speak" replace />} />
         {/* Tone Marks sub-modules */}
         <Route path="/practice/tonemarks" element={<Navigate to="/practice/tonemarks-basic" replace />} />
         <Route path="/practice/tonemarks-basic" element={<div className="mobile-app-wrapper"><ToneMarksBasic /></div>} />
