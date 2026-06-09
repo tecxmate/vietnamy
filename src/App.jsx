@@ -331,7 +331,7 @@ function StudentApp({ initialTab = 'study' }) {
     <div className="mobile-app-wrapper">
       <div className="app-container">
         <div className={`content-column ${activeTab}-tab-container`}>
-          <MobileAccountBar />
+          {activeTab !== 'study' && <MobileAccountBar />}
           <div className={activeTab !== 'home' ? 'topbar-desktop-only' : ''}>
             <TopBar activeTab={activeTab} subtitleOverride={tabSubtitle} />
           </div>

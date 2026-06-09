@@ -26,10 +26,36 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--surface-color);
-    border: 1px solid var(--border-color);
-    color: var(--primary-color);
+    background: var(--primary-color);
+    border: none;
+    color: #fff;
     cursor: pointer;
+    padding: 0;
+    flex-shrink: 0;
+}
+
+.mobile-account-initial {
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 1;
+    color: #fff;
+}
+
+/* Inline variant: avatar sits inside the roadmap header row, not a standalone bar. */
+.mobile-account-bar--inline {
+    padding: 0;
+    background: transparent;
+    z-index: auto;
+    flex-shrink: 0;
+}
+
+.mobile-account-bar--inline .mobile-account-avatar {
+    width: 34px;
+    height: 34px;
+}
+
+.mobile-account-bar--inline .mobile-account-initial {
+    font-size: 15px;
 }
 
 .mobile-account-dot {

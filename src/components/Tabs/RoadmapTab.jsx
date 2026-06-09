@@ -12,6 +12,7 @@ import { DEFAULT_LEARNER_MODE, ENABLE_LEARNING_PATH_CHOOSER, getProgressMode, ge
 import { useT, normalizeLang } from '../../lib/i18n';
 import { getLine } from '../../lib/mascot';
 import BeKhe from '../BeKhe/BeKhe';
+import MobileAccountBar from '../MobileAccountBar';
 
 const MODE_ICONS = { BookOpen, Plane, Briefcase, Heart };
 
@@ -211,36 +212,27 @@ const RoadmapTab = () => {
 
     return (
         <div>
-            {/* Daily streak readout + Bé Khế moment (return / lost / about to break) */}
-            <div style={{ padding: '10px 16px 0', display: 'flex', flexDirection: 'column', gap: 8 }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                    <Flame size={18} color="#FF6B35" />
-                    <span style={{ fontWeight: 800, fontSize: 16 }}>{dailyStreak}</span>
-                    <span style={{ fontSize: 13, color: 'var(--text-muted)' }}>{t('home_stats_streak')}</span>
-                </div>
-                {streakMoment && (
-                    <div style={{
-                        display: 'flex', alignItems: 'center', gap: 10,
-                        padding: '10px 12px', borderRadius: 12,
-                        backgroundColor: 'rgba(255, 209, 102, 0.12)', border: '1px solid rgba(255, 209, 102, 0.35)',
-                    }}>
-                        <BeKhe expression={streakMoment.expression} size={44} />
-                        <span style={{ fontSize: 14, fontWeight: 600, color: 'var(--text-main)' }}>{streakMoment.text}</span>
-                    </div>
-                )}
-            </div>
-
-            {/* Mode switcher + Topic chips - same row, scrollable */}
-            <div className="hide-scrollbar" style={{
-                display: 'flex', alignItems: 'center', gap: 8,
-                padding: '12px 16px',
-                overflowX: 'auto',
+            {/* Unified header: avatar + streak (pinned) + mode switcher + topic chips (scroll) — one line */}
+            <div style={{
+                display: 'flex', alignItems: 'center', gap: 10,
+                padding: '8px 16px',
+                paddingTop: 'calc(8px + var(--safe-area-top, 0px))',
                 position: 'sticky',
                 top: 0,
                 zIndex: 10,
                 backgroundColor: 'var(--bg-color)',
                 borderBottom: '1px solid var(--border-color)',
             }}>
+                <MobileAccountBar inline />
+                <div style={{ display: 'flex', alignItems: 'center', gap: 5, flexShrink: 0 }}>
+                    <Flame size={18} color="#FF6B35" />
+                    <span style={{ fontWeight: 800, fontSize: 16 }}>{dailyStreak}</span>
+                    <span style={{ fontSize: 13, color: 'var(--text-muted)' }}>{t('home_stats_streak')}</span>
+                </div>
+                <div className="hide-scrollbar" style={{
+                    display: 'flex', alignItems: 'center', gap: 8,
+                    overflowX: 'auto', flex: 1, minWidth: 0,
+                }}>
                 {ENABLE_LEARNING_PATH_CHOOSER && (
                     <>
                         {/* Mode switcher button */}
@@ -322,7 +314,21 @@ const RoadmapTab = () => {
                         </button>
                     );
                 })}
+                </div>
             </div>
+
+            {streakMoment && (
+                <div style={{ padding: '8px 16px 0' }}>
+                    <div style={{
+                        display: 'flex', alignItems: 'center', gap: 10,
+                        padding: '10px 12px', borderRadius: 12,
+                        backgroundColor: 'rgba(255, 209, 102, 0.12)', border: '1px solid rgba(255, 209, 102, 0.35)',
+                    }}>
+                        <BeKhe expression={streakMoment.expression} size={44} />
+                        <span style={{ fontSize: 14, fontWeight: 600, color: 'var(--text-main)' }}>{streakMoment.text}</span>
+                    </div>
+                </div>
+            )}
 
             {/* Mode picker modal */}
             {ENABLE_LEARNING_PATH_CHOOSER && showModePicker && (

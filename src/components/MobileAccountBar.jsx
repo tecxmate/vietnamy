@@ -14,11 +14,12 @@ import './MobileAccountBar.css';
  * for) and Notifications via the NotificationContext panel — so nothing is
  * duplicated. Hidden ≥768px where the sidebar takes over.
  */
-export default function MobileAccountBar() {
+export default function MobileAccountBar({ inline = false }) {
     const [open, setOpen] = useState(false);
     const { unreadCount, openPanel } = useNotifications();
     const { userProfile } = useUser();
     const t = useT();
+    const initial = userProfile?.name?.trim?.()?.[0]?.toUpperCase();
 
     const openSettings = () => {
         setOpen(false);
@@ -30,7 +31,7 @@ export default function MobileAccountBar() {
     };
 
     return (
-        <div className="mobile-account-bar">
+        <div className={`mobile-account-bar${inline ? ' mobile-account-bar--inline' : ''}`}>
             <button
                 className="mobile-account-avatar"
                 onClick={() => setOpen(v => !v)}
@@ -38,7 +39,7 @@ export default function MobileAccountBar() {
                 aria-haspopup="menu"
                 aria-expanded={open}
             >
-                <User size={20} />
+                {initial ? <span className="mobile-account-initial">{initial}</span> : <User size={20} />}
                 {unreadCount > 0 && <span className="mobile-account-dot" />}
             </button>
 
