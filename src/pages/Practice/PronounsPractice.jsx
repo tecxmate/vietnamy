@@ -1,9 +1,11 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useUser } from '../../context/UserContext';
 import { FAMILY_MEMBERS } from '../../data/kinshipData';
 import { calculatePronoun } from '../../utils/pronounLogic';
-import { ArrowLeft, CheckCircle, XCircle, Trophy } from 'lucide-react';
+import { ArrowLeft, Trophy } from 'lucide-react';
 import SoundButton from '../../components/SoundButton';
+import { OptionGrid, FeedbackBar, FeedbackMessage, ExerciseColumn } from '../../components/practice/PracticeKit';
+import { ProgressBar } from '../../components/Exercise';
 import './PracticeShared.css';
 import { playSuccess, playError } from '../../utils/sound';
 import { usePracticeCompletion } from '../../hooks/usePracticeCompletion';
@@ -44,7 +46,7 @@ export default function PronounsPractice({ members: memberIds = null, title = 'P
     };
 
     // Auto-start quiz on first render
-    useMemo(() => {
+    useEffect(() => {
         if (!quizState && filteredMembers.length > 1) {
             const quizMembers = filteredMembers.filter(m => m.relationType !== 'self');
             const questions = shuffleArray(quizMembers).slice(0, Math.min(6 + session, quizMembers.length)).map(member => {
@@ -58,6 +60,7 @@ export default function PronounsPractice({ members: memberIds = null, title = 'P
             });
             setQuizState({ questions, currentIdx: 0, score: 0, feedback: null });
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [filteredMembers]);
 
     const handleQuizAnswer = (answer) => {
@@ -67,7 +70,7 @@ export default function PronounsPractice({ members: memberIds = null, title = 'P
         setQuizState(prev => ({
             ...prev,
             score: isCorrect ? prev.score + 1 : prev.score,
-            feedback: { isCorrect, correct: q.correct },
+            feedback: { isCorrect, correct: q.correct, selected: answer },
         }));
         setTimeout(() => {
             if (quizState.currentIdx < quizState.questions.length - 1) {
@@ -110,43 +113,41 @@ export default function PronounsPractice({ members: memberIds = null, title = 'P
             )}
 
             {/* Quiz Playing */}
-            {mode === 'quiz' && quizState && quizState.questions[quizState.currentIdx] && (
-                <div style={{ padding: '24px', maxWidth: 500, margin: '0 auto' }}>
-                    <div style={{ height: 16, backgroundColor: 'var(--surface-color)', borderRadius: 15, overflow: 'hidden', marginBottom: 24 }}>
-                        <div style={{ width: `${(quizState.currentIdx / quizState.questions.length) * 100}%`, height: '100%', backgroundColor: 'var(--primary-color)', transition: 'width 0.3s ease-out', borderRadius: 15 }} />
-                    </div>
-                    <div style={{ textAlign: 'center', marginBottom: 24 }}>
-                        <p style={{ fontSize: '1.1rem', color: 'var(--text-muted)', marginBottom: 8 }}>How do you address your...</p>
-                        <div style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--text-main)' }}>
-                            {quizState.questions[quizState.currentIdx].member.label}?
-                        </div>
-                    </div>
-
-                    {quizState.feedback && (
-                        <div className="practice-feedback-bar" style={{ position: 'relative', marginBottom: 16, animation: 'slideUpResult 0.3s ease-out' }}>
-                            <div className={`practice-feedback-msg ${quizState.feedback.isCorrect ? 'correct' : 'incorrect'}`}>
-                                <div className={`practice-icon-circle ${quizState.feedback.isCorrect ? 'correct' : 'incorrect'}`}>
-                                    {quizState.feedback.isCorrect ? <CheckCircle size={24} /> : <XCircle size={24} />}
+            {mode === 'quiz' && quizState && quizState.questions[quizState.currentIdx] && (() => {
+                const q = quizState.questions[quizState.currentIdx];
+                const fb = quizState.feedback;
+                return (
+                    <>
+                        <ExerciseColumn topOffset={64} top={
+                            <>
+                                <ProgressBar progress={quizState.currentIdx / quizState.questions.length} />
+                                <div style={{ textAlign: 'center', marginTop: 18 }}>
+                                    <p style={{ fontSize: 15, color: 'var(--text-muted)', marginBottom: 6 }}>How do you address your...</p>
+                                    <div style={{ fontSize: 24, fontWeight: 800, color: 'var(--text-main)' }}>{q.member.label}?</div>
                                 </div>
-                                <div style={{ display: 'flex', flexDirection: 'column' }}>
-                                    <span style={{ fontSize: '1.1rem' }}>{quizState.feedback.isCorrect ? 'Correct!' : `It's "${quizState.feedback.correct.targetPronoun}"`}</span>
-                                    <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>{quizState.feedback.correct.explanation}</span>
-                                </div>
-                            </div>
-                        </div>
-                    )}
-
-                    {!quizState.feedback && (
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-                            {quizState.questions[quizState.currentIdx].options.map((opt, i) => (
-                                <button key={i} className="secondary" style={{ width: '100%', justifyContent: 'flex-start', padding: 20, fontSize: 18, borderRadius: 15, borderColor: 'var(--border-color)', backgroundColor: 'transparent', color: 'var(--text-main)' }} onClick={() => handleQuizAnswer(opt)}>
-                                    {opt}
-                                </button>
-                            ))}
-                        </div>
-                    )}
-                </div>
-            )}
+                            </>
+                        }>
+                            <OptionGrid
+                                options={q.options} cols={2}
+                                keyOf={(_, i) => i}
+                                isCorrect={(o) => o === q.correct.targetPronoun}
+                                isSelected={(o) => fb && o === fb.selected}
+                                revealed={!!fb}
+                                onPick={(o) => !fb && handleQuizAnswer(o)}
+                            >
+                                {(opt) => <span style={{ fontSize: 18, fontWeight: 700, color: 'var(--text-main)' }}>{opt}</span>}
+                            </OptionGrid>
+                        </ExerciseColumn>
+                        {fb && (
+                            <FeedbackBar>
+                                <FeedbackMessage correct={fb.isCorrect}>
+                                    <strong>{fb.isCorrect ? 'Correct!' : `It's "${fb.correct.targetPronoun}"`}</strong>{fb.correct.explanation ? ` — ${fb.correct.explanation}` : ''}
+                                </FeedbackMessage>
+                            </FeedbackBar>
+                        )}
+                    </>
+                );
+            })()}
         </div>
     );
 }
