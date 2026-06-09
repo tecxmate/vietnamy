@@ -15,6 +15,8 @@ import {
 import {
     checkMailRateLimit,
     clampText,
+    EMAIL_ENABLED,
+    EMAIL_FROM,
     getEmailStats,
     lessonReminderEmail,
     normalizeEmail,
@@ -96,11 +98,10 @@ function safeRedirectUrl(rawUrl) {
 }
 
 app.get('/api/mail/config', async (_req, res) => {
-    const stats = await getEmailStats();
     res.json({
-        enabled: stats.enabled,
-        from: stats.from,
-        supportEmail: stats.supportEmail,
+        enabled: EMAIL_ENABLED,
+        from: EMAIL_FROM,
+        supportEmail: SUPPORT_EMAIL,
     });
 });
 
