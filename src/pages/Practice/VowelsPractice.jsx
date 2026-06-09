@@ -494,16 +494,11 @@ export default function VowelsPractice({
                         >
                             {(opt) => <span style={{ fontSize: 20, fontWeight: 800, color: 'var(--text-main)' }}>{opt}</span>}
                         </OptionGrid>
-                        {feedback !== 'idle' && (
-                            <div style={{ marginTop: 12, padding: '12px 14px', borderRadius: 12, fontSize: 14, lineHeight: 1.5, color: 'var(--text-main)', backgroundColor: feedback === 'correct' ? '#06D6A01A' : '#EF476F1A' }}>
-                                {currentQ.hint.replace(/<[^>]+>/g, '')}
-                            </div>
-                        )}
                     </ExerciseColumn>
                     <FeedbackBar>
                         {feedback !== 'idle' && (
                             <FeedbackMessage correct={feedback === 'correct'}>
-                                {feedback === 'correct' ? 'Correct! ' : 'Answer: '}<strong>{currentQ.correctAnswer}</strong>
+                                {feedback === 'correct' ? 'Correct! ' : 'Answer: '}<strong>{currentQ.correctAnswer}</strong>{currentQ.hint ? ` — ${currentQ.hint.replace(/<[^>]+>/g, '')}` : ''}
                             </FeedbackMessage>
                         )}
                         {feedback === 'idle'

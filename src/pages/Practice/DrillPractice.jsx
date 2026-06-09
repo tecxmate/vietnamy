@@ -212,15 +212,14 @@ export default function DrillPractice({ data, questionCount = 10 }) {
                     {(opt) => <span style={{ fontSize: 18, fontWeight: 700, color: 'var(--text-main)' }}>{opt}</span>}
                 </OptionGrid>
 
-                {showFeedback && currentQ?.explanation && (
-                    <div style={{ marginTop: 12, padding: '12px 14px', borderRadius: 12, fontSize: 14, lineHeight: 1.5, color: 'var(--text-main)', backgroundColor: isCorrect ? '#06D6A01A' : '#EF476F1A' }}>
-                        {currentQ.explanation}
-                    </div>
-                )}
             </ExerciseColumn>
 
             <FeedbackBar>
-                {showFeedback && <FeedbackMessage correct={isCorrect}>{isCorrect ? 'Correct!' : 'Not quite'}</FeedbackMessage>}
+                {showFeedback && (
+                    <FeedbackMessage correct={isCorrect}>
+                        <strong>{isCorrect ? 'Correct!' : 'Not quite'}</strong>{currentQ?.explanation ? ` — ${currentQ.explanation}` : ''}
+                    </FeedbackMessage>
+                )}
                 {!showFeedback ? (
                     <PrimaryButton onClick={handleCheck} disabled={!selected}>Check</PrimaryButton>
                 ) : (

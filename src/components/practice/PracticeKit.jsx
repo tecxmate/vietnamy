@@ -124,9 +124,9 @@ export function ExerciseColumn({ top, children, topOffset = 56 }) {
 export function FeedbackMessage({ correct, children }) {
     const color = correct ? GREEN : RED;
     return (
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '12px 14px', borderRadius: 12, marginBottom: 12, backgroundColor: color + '1A' }}>
+        <div style={{ display: 'flex', alignItems: 'flex-start', gap: 10, padding: '12px 14px', borderRadius: 12, marginBottom: 12, backgroundColor: color + '1A' }}>
             <div style={{ width: 30, height: 30, borderRadius: '50%', flexShrink: 0, backgroundColor: color, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{correct ? <Check size={18} /> : <X size={18} />}</div>
-            <div style={{ fontSize: 14, color: 'var(--text-main)', fontWeight: 600 }}>{children}</div>
+            <div style={{ fontSize: 14, color: 'var(--text-main)', fontWeight: 600, lineHeight: 1.45, alignSelf: 'center' }}>{children}</div>
         </div>
     );
 }
