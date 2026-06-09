@@ -14,6 +14,7 @@ import { isAdminAuthenticated } from './lib/adminAuth';
 import BottomNav from './components/BottomNav';
 import { NotificationToastStack, NotificationPanel } from './components/NotificationToast';
 import TopBar from './components/TopBar';
+import MobileAccountBar from './components/MobileAccountBar';
 import InstallPrompt from './components/InstallPrompt';
 import { installGlobalHaptics } from './utils/haptics';
 import { preloadUISounds } from './utils/sound';
@@ -330,6 +331,7 @@ function StudentApp({ initialTab = 'study' }) {
     <div className="mobile-app-wrapper">
       <div className="app-container">
         <div className={`content-column ${activeTab}-tab-container`}>
+          <MobileAccountBar />
           <div className={activeTab !== 'home' ? 'topbar-desktop-only' : ''}>
             <TopBar activeTab={activeTab} subtitleOverride={tabSubtitle} />
           </div>

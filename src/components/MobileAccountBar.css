@@ -1,0 +1,109 @@
+/* Mobile-only account bar (avatar → Notifications / Settings). Lives above the
+   scrollable .main-content as a flex sibling, so it stays put and never overlaps
+   tab content. Hidden on desktop (≥768px) where the sidebar provides these. */
+.mobile-account-bar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    padding-top: calc(8px + var(--safe-area-top, 0px));
+    background: var(--bg-color);
+    flex-shrink: 0;
+    z-index: 60;
+}
+
+@media (min-width: 768px) {
+    .mobile-account-bar {
+        display: none;
+    }
+}
+
+.mobile-account-avatar {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    color: var(--primary-color);
+    cursor: pointer;
+}
+
+.mobile-account-dot {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--danger-color);
+    border: 2px solid var(--bg-color);
+}
+
+.mobile-account-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 8400;
+}
+
+.mobile-account-menu {
+    position: absolute;
+    top: calc(100% - 2px);
+    left: 12px;
+    z-index: 8401;
+    min-width: 210px;
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md, 12px);
+    box-shadow: var(--shadow-lg, 0 10px 15px rgba(0, 0, 0, 0.4));
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.mobile-account-name {
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--text-main);
+    padding: 8px 10px 6px;
+}
+
+.mobile-account-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background: transparent;
+    color: var(--text-main);
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: left;
+}
+
+.mobile-account-item:hover,
+.mobile-account-item:active {
+    background: var(--surface-color-light);
+}
+
+.mobile-account-badge {
+    margin-left: auto;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+    border-radius: 9px;
+    background: var(--danger-color);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
