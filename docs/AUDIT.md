@@ -62,11 +62,17 @@ lessons / 1,001 words / 479 sentences. Canonical content bundle at repo-root `co
 
 | # | Item | Impact | Status |
 |---|------|--------|--------|
-| 3.1 | **31 CSS files / ~12,800 lines.** Extract a single `Modal` primitive (variants: bottom-sheet / centered / floating / slide-in) — replaces 5 ad-hoc modals (DeckPicker, Referral, GrammarGuidebook, WordPopup, NotificationPanel) and fixes z-index conflicts (200/1000/2000/9999). | HIGH | TODO |
-| 3.2 | Extract `Button` primitive (variants primary/secondary/ghost) — replaces ~8 implementations + 80+ inline `<button style>`. | HIGH | TODO |
-| 3.3 | Extract `Feedback` + `Card` primitives (4 feedback / 6 card patterns today). | MED | TODO |
-| 3.4 | Adopt PracticeKit across all practice screens (~4 of ~47 today). May need `Tabs`/`StageNav` additions. | MED | TODO |
-| 3.5 | Centralize a z-index token scale. | LOW | TODO |
+> **Pass 3 changes how things LOOK** (unifying visual styles) — unlike 1/2/4 it needs your eyes.
+> Work goes on a branch and is **NOT merged** until you review. `git checkout audit/pass-3-modal && npm run dev`.
+
+| # | Item | Impact | Status |
+|---|------|--------|--------|
+| 3.1 | **Modal primitive** — `src/components/Modal.jsx` (bottom-sheet shell on the existing `.modal-overlay`/`.slide-up` convention). Migrated `GrammarGuidebook` (no visual change; z 200→1000 so it clears the nav) + `DeckPickerModal` (**visual change**: floating blurred card → standard flush sheet). On branch `audit/pass-3-modal`, build ✓. **Awaiting your visual review before merge.** | IN PROGRESS |
+| 3.1b | Migrate the remaining overlays to `<Modal>` once the look is approved: `ReferralModal` (centered variant — needs a `center` variant added), `WordPopup` (floating/positioned — may stay bespoke), `NotificationPanel` (slide-in — likely stays bespoke). Decide which truly share the primitive vs. stay distinct. | CONFIRM |
+| 3.2 | Extract `Button` primitive (variants primary/secondary/ghost) — replaces ~8 implementations + 80+ inline `<button style>`. Large surface; visual. | TODO |
+| 3.3 | Extract `Feedback` + `Card` primitives (4 feedback / 6 card patterns today). | TODO |
+| 3.4 | Adopt PracticeKit across all practice screens (~4 of ~47 today). May need `Tabs`/`StageNav` additions. | TODO |
+| 3.5 | **z-index scale.** Verified chaos (values 10→10001; modal layers at 200/1000/2000/9999; toasts 8000s; tutorial 10000s). Define semantic tokens (`--z-nav/-modal/-toast/-menu/-tutorial`) preserving current order. Deferred: a global remap risks stacking regressions hard to verify headless → do with you watching. | TODO |
 
 ---
 
