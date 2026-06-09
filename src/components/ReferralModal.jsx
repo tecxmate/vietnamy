@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { X, Copy, Check, Gift, Users, Trophy, Award, Crown, Share2, Megaphone } from 'lucide-react';
 import { PARTNER_CTAS } from '../data/articleData';
+import { useT } from '../lib/i18n';
 import './ReferralModal.css';
 
 const ShareMethod = ({ icon, label, onClick, color }) => (
@@ -13,6 +14,7 @@ const ShareMethod = ({ icon, label, onClick, color }) => (
 );
 
 const PartnerVoucher = ({ cta }) => {
+    const t = useT();
     const [copiedCode, setCopiedCode] = useState(false);
 
     const handleCopyCode = async () => {
@@ -25,7 +27,7 @@ const PartnerVoucher = ({ cta }) => {
 
     return (
         <div className="partner-voucher-section">
-            <p className="section-label" style={{ padding: '0 24px', marginBottom: 12 }}>Partner Reward</p>
+            <p className="section-label" style={{ padding: '0 24px', marginBottom: 12 }}>{t('referral_partner_reward')}</p>
             <div style={{ padding: '0 24px 24px', position: 'relative', overflow: 'hidden' }}>
                 {/* Confetti bursts */}
                 {[...Array(8)].map((_, i) => (
@@ -84,17 +86,17 @@ const PartnerVoucher = ({ cta }) => {
                                 color: 'white', fontSize: 16, fontWeight: 800, letterSpacing: 2,
                             }}
                         >
-                            {copiedCode ? 'COPIED!' : cta.code}
+                            {copiedCode ? t('referral_copied') : cta.code}
                             <Copy size={14} color="rgba(255,255,255,0.6)" />
                         </button>
-                        <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', marginTop: 4 }}>Tap to copy code</div>
+                        <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', marginTop: 4 }}>{t('referral_tap_to_copy')}</div>
                     </div>
                 </div>
 
                 {/* Invite progress */}
                 <div style={{ marginTop: 16, animation: 'fadeSlideUp 0.8s 0.4s ease-out both' }}>
                     <p style={{ fontSize: 14, fontWeight: 600, marginBottom: 8, color: 'var(--text-main)' }}>
-                        Invite friends to unlock full reward!
+                        {t('referral_unlock_full')}
                     </p>
                     <div style={{ width: '100%', height: 10, backgroundColor: 'var(--surface-color-light)', borderRadius: 5, overflow: 'hidden', border: '1px solid var(--border-color)' }}>
                         <div style={{
@@ -103,8 +105,8 @@ const PartnerVoucher = ({ cta }) => {
                         }} />
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 4, fontSize: 12, color: 'var(--text-muted)' }}>
-                        <span>2 of 3 friends</span>
-                        <span style={{ color: '#B03E2D', fontWeight: 700 }}>1 more!</span>
+                        <span>{t('referral_friends_progress').replace('{done}', '2').replace('{total}', '3')}</span>
+                        <span style={{ color: '#B03E2D', fontWeight: 700 }}>{t('referral_friends_remaining').replace('{n}', '1')}</span>
                     </div>
                 </div>
             </div>
@@ -139,11 +141,12 @@ const PartnerVoucher = ({ cta }) => {
 };
 
 const MilestoneProgress = ({ invites }) => {
+    const t = useT();
     const milestones = [
-        { count: 1, label: 'Friendly', icon: <Users size={20} />, activeColor: '#06D6A0' },
-        { count: 3, label: 'Bronze Frame', icon: <Trophy size={20} />, activeColor: '#CD7F32' },
-        { count: 5, label: 'Ambassador', icon: <Award size={20} />, activeColor: '#118AB2' },
-        { count: 10, label: 'Golden VIP', icon: <Crown size={20} />, activeColor: '#FFD166' },
+        { count: 1, label: t('referral_milestone_friendly'), icon: <Users size={20} />, activeColor: '#06D6A0' },
+        { count: 3, label: t('referral_milestone_bronze'), icon: <Trophy size={20} />, activeColor: '#CD7F32' },
+        { count: 5, label: t('referral_milestone_ambassador'), icon: <Award size={20} />, activeColor: '#118AB2' },
+        { count: 10, label: t('referral_milestone_vip'), icon: <Crown size={20} />, activeColor: '#FFD166' },
     ];
 
     const maxInvites = milestones[milestones.length - 1].count;
@@ -151,7 +154,7 @@ const MilestoneProgress = ({ invites }) => {
 
     return (
         <div className="milestone-tracker">
-            <h3 className="milestone-title">Your Rewards</h3>
+            <h3 className="milestone-title">{t('referral_your_rewards')}</h3>
             <div className="milestone-progress-bar">
                 <div className="milestone-progress-fill" style={{ width: `${progressPercent}%` }} />
             </div>
@@ -164,7 +167,7 @@ const MilestoneProgress = ({ invites }) => {
                                 {ms.icon}
                             </div>
                             <div className="milestone-info">
-                                <span className="milestone-count">{ms.count} {ms.count === 1 ? 'Friend' : 'Friends'}</span>
+                                <span className="milestone-count">{ms.count} {t(ms.count === 1 ? 'referral_friend_one' : 'referral_friend_other')}</span>
                                 <span className="milestone-reward">{ms.label}</span>
                             </div>
                         </div>
@@ -176,6 +179,7 @@ const MilestoneProgress = ({ invites }) => {
 };
 
 const ReferralModal = ({ onClose, username = 'learner123' }) => {
+    const t = useT();
     const [copied, setCopied] = useState(false);
     const [partnerCta] = useState(() => PARTNER_CTAS[Math.floor(Math.random() * PARTNER_CTAS.length)]);
 
@@ -193,8 +197,8 @@ const ReferralModal = ({ onClose, username = 'learner123' }) => {
         if (navigator.share) {
             try {
                 await navigator.share({
-                    title: 'Learn Vietnamese with me on Vietnamy!',
-                    text: 'Finish your first lesson and we both get 500₫ and a free Streak Freeze! 🏆',
+                    title: t('referral_share_title'),
+                    text: t('referral_share_text'),
                     url: `https://${inviteLink}`,
                 });
             } catch (err) {
@@ -217,19 +221,17 @@ const ReferralModal = ({ onClose, username = 'learner123' }) => {
                     <div className="referral-hero-icon">
                         <Gift size={48} color="#1A1A1A" />
                     </div>
-                    <h2 className="referral-headline">Invite Friends, Get Rewards!</h2>
-                    <p className="referral-subhead">
-                        When a friend finishes their first lesson using your link, you <strong>both</strong> earn <strong>500₫</strong>!
-                    </p>
+                    <h2 className="referral-headline">{t('referral_headline')}</h2>
+                    <p className="referral-subhead">{t('referral_subhead')}</p>
                 </div>
 
                 <div className="referral-link-section">
-                    <p className="section-label">Your Unique Link</p>
+                    <p className="section-label">{t('referral_your_link')}</p>
                     <div className="link-box">
                         <span className="link-text">{inviteLink}</span>
                         <button className={`copy-btn ${copied ? 'copied' : ''}`} onClick={handleCopy}>
                             {copied ? <Check size={18} /> : <Copy size={18} />}
-                            {copied ? 'COPIED!' : 'COPY'}
+                            {copied ? t('referral_copied') : t('referral_copy')}
                         </button>
                     </div>
                 </div>
@@ -237,7 +239,7 @@ const ReferralModal = ({ onClose, username = 'learner123' }) => {
                 <div className="share-methods">
                     <ShareMethod
                         icon={<Share2 size={24} color="white" />}
-                        label="Share"
+                        label={t('referral_share')}
                         color="var(--primary-color)"
                         onClick={handleNativeShare}
                     />
@@ -245,7 +247,7 @@ const ReferralModal = ({ onClose, username = 'learner123' }) => {
                         icon={<span style={{ color: 'white', fontWeight: 'bold', fontSize: 20 }}>W</span>}
                         label="WhatsApp"
                         color="#25D366"
-                        onClick={() => window.open(`https://wa.me/?text=Learn Vietnamese with me! Join using my link: https://${inviteLink}`, '_blank')}
+                        onClick={() => window.open(`https://wa.me/?text=${encodeURIComponent(`${t('referral_share_whatsapp')} https://${inviteLink}`)}`, '_blank')}
                     />
                     <ShareMethod
                         icon={<span style={{ color: 'white', fontWeight: 'bold', fontSize: 20 }}>M</span>}
@@ -264,8 +266,8 @@ const ReferralModal = ({ onClose, username = 'learner123' }) => {
                         <Megaphone size={24} color="#1A1A1A" />
                     </div>
                     <div className="partner-banner-text">
-                        <span className="partner-banner-title">Are you a Creator or Teacher?</span>
-                        <span className="partner-banner-subtitle">Learn about Partnerships <span className="arrow">&rarr;</span></span>
+                        <span className="partner-banner-title">{t('referral_creator_q')}</span>
+                        <span className="partner-banner-subtitle">{t('referral_partnerships')} <span className="arrow">&rarr;</span></span>
                     </div>
                 </div>
             </div>
