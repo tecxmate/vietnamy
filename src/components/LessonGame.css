@@ -1,9 +1,12 @@
 .lesson-game {
-    --lesson-action-bar-base-height: 156px;
-    position: relative;
+    /* Reserve the feedback-state bar height at all times so the bar never grows
+       (no CTA jump). */
+    --lesson-action-bar-base-height: 224px;
     display: flex;
     flex-direction: column;
-    height: 100%;
+    /* Exact visible viewport (JS-measured on mobile) so nothing overflows and
+       the in-flow action bar always sits at the visible bottom. */
+    height: var(--app-viewport-height, 100dvh);
     min-height: 0;
     background: var(--bg-color);
     color: var(--text-main);
@@ -22,9 +25,7 @@
     min-height: 0;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-    /* Reserve room for the fixed action bar so content/answers are never hidden
-       behind it (the bar overlays this padding when the feedback banner grows). */
-    padding: 0 24px calc(var(--lesson-action-bar-base-height) + var(--safe-area-bottom-effective) + 12px);
+    padding: 0 24px 16px;
     display: flex;
     flex-direction: column;
 }
@@ -78,7 +79,7 @@
     min-height: 240px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: safe center;
     gap: 12px;
 }
 
@@ -107,23 +108,19 @@
 }
 
 .lesson-game__actionbar {
-    /* Anchored with position:absolute relative to .lesson-game (which fills the
-       JS-sized .mobile-app-wrapper) rather than position:fixed — fixed uses the
-       browser's layout viewport, which desyncs with the mobile address bar and
-       left a gap / made the bar jump + overlap. Absolute pins it to the actual
-       visible bottom. It still overlays the reserved scroll padding so the
-       feedback banner doesn't push the answers. */
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 50;
+    /* In-flow sibling at the bottom of the (viewport-height) lesson — it can
+       never overlap the exercise content above, and its reserved min-height
+       (the feedback size) means revealing the banner doesn't grow it or move
+       the CTA. The CTA sits at the bottom; the banner fills the space above it. */
+    flex: 0 0 auto;
+    min-height: calc(var(--lesson-action-bar-base-height) + var(--safe-area-bottom-effective));
     padding: 16px 16px calc(16px + var(--safe-area-bottom-effective));
     border-top: 2px solid var(--border-color);
     background: var(--lesson-action-bar-bg, var(--surface-color));
     transition: background-color 0.2s;
     display: flex;
     flex-direction: column;
+    justify-content: flex-end;
     align-items: center;
 }
 
