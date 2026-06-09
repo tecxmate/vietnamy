@@ -1,25 +1,29 @@
 import React from 'react';
 import { X, BookOpen } from 'lucide-react';
+import { useT } from '../lib/i18n';
 
-// Pretty labels for the grammar tag `category` field; falls back to the raw key.
-const CATEGORY_LABELS = {
-    structure: 'Sentence structure',
-    tense: 'Tense & aspect',
-    question: 'Questions',
-    pronoun: 'Pronouns',
-    classifier: 'Classifiers',
-    particle: 'Particles',
-    modifier: 'Modifiers',
+// Known grammar-tag `category` values → i18n key. Unknown keys fall back to a
+// title-cased version of the raw key.
+const CATEGORY_KEYS = {
+    structure: 'grammar_cat_structure',
+    tense: 'grammar_cat_tense',
+    question: 'grammar_cat_question',
+    pronoun: 'grammar_cat_pronoun',
+    classifier: 'grammar_cat_classifier',
+    particle: 'grammar_cat_particle',
+    modifier: 'grammar_cat_modifier',
 };
-
-const categoryLabel = (key) =>
-    CATEGORY_LABELS[key] || (key ? key.charAt(0).toUpperCase() + key.slice(1) : 'Grammar');
 
 /**
  * GrammarGuidebook — a Duolingo-style pop-up listing the grammar points a unit
  * teaches, grouped by category. Derived from the unit's sentence tags.
  */
 export default function GrammarGuidebook({ unitTitle, points, onClose }) {
+    const t = useT();
+    const categoryLabel = (key) =>
+        CATEGORY_KEYS[key]
+            ? t(CATEGORY_KEYS[key])
+            : (key ? key.charAt(0).toUpperCase() + key.slice(1) : t('grammar_cat_other'));
     // Group points by category, preserving first-seen order.
     const groups = [];
     const byKey = new Map();
@@ -58,10 +62,10 @@ export default function GrammarGuidebook({ unitTitle, points, onClose }) {
                         <BookOpen size={22} color="var(--secondary-color)" />
                     </div>
                     <div style={{ flex: 1, minWidth: 0 }}>
-                        <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: 1.5, color: 'var(--text-muted)', fontWeight: 700 }}>Grammar in this unit</div>
+                        <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: 1.5, color: 'var(--text-muted)', fontWeight: 700 }}>{t('grammar_guide_header')}</div>
                         <h3 style={{ margin: 0, fontSize: 18, fontWeight: 800, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{unitTitle}</h3>
                     </div>
-                    <button className="ghost" onClick={onClose} style={{ padding: 8, flexShrink: 0 }} aria-label="Close">
+                    <button className="ghost" onClick={onClose} style={{ padding: 8, flexShrink: 0 }} aria-label={t('close')}>
                         <X size={22} color="var(--text-muted)" />
                     </button>
                 </div>
