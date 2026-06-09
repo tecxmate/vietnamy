@@ -62,7 +62,7 @@ lessons / 1,001 words / 479 sentences. Canonical content bundle at repo-root `co
 
 | # | Item | Impact | Status |
 |---|------|--------|--------|
-| 4.1 | Move ~10 hardcoded user-facing strings into i18n (`ReferralModal`, `GrammarGuidebook`, "Translate this" ×3). | MED | TODO |
+| 4.1 | i18n-ify hardcoded strings. **Found:** `ReferralModal` + `GrammarGuidebook` have **no `t()` wiring at all** (fully hardcoded EN) — full conversion needed, and ReferralModal is brand-voice referral copy → **needs user review of Chinese tone**. Plus "Translate this" ×3 fallbacks (low-visibility). | MED | CONFIRM |
 | 4.2 | Tighten verbose strings (`home_welcome_subtitle` 267 chars; several `app_tutorial_*_desc`, `tip_body_*`). | MED | TODO |
 | 4.3 | Unify terminology: **Lesson / Module / Unit** used interchangeably → pick one user-facing term. | MED | TODO |
 | 4.4 | Prune i18n keys orphaned by Pass 1 (`app_tutorial_home_*`, `quick_search_*`, `progress_*`, `actions_*`). | LOW | TODO |
@@ -83,5 +83,7 @@ lessons / 1,001 words / 479 sentences. Canonical content bundle at repo-root `co
 ---
 
 ## Notes / watch-list
-- Deleting `HomeTab` may orphan `ReferralModal` / push-reminder helpers — verify and prune in a later pass.
+- `ReferralModal` is still reached via `TopBar`; `GrammarGuidebook` via `RoadmapTab` — neither was orphaned by the HomeTab deletion. The push-reminder helpers `HomeTab` used (`utils/pushNotifications`) may now be orphaned — verify before pruning.
 - `HomeTab`/`GrammarTab`/`SoundsTab` were unwired only 1 day ago (`33775de`); if that cut was temporary, restore from git rather than rebuild.
+- **Codex is mid-migration: TTS Supabase → Cloudflare R2** (script landed in `5591fad`, not yet executed). Do NOT touch TTS files/docs (`server` TTS code, `scripts/*tts*`, `docs/tts-cache.md`, README "TTS Bucket Cache", wiki `tts-pipeline`/`bucket-storage`/R2 docs) until that's done.
+- Pass 1 lives on branch `audit/consistency-pass` (pushed, rebased on `origin/main`@`5591fad`). **Not merged to `main`** — awaiting review.
