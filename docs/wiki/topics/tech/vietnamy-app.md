@@ -3,12 +3,12 @@ title: Vietnamy — Project Overview
 type: topic
 slug: vietnamy-app
 date: 2026-05-23
-updated: 2026-05-24
+updated: 2026-06-10
 belongs_to: [niko]
 source: synthesis
 status: active
 tags: [overview, architecture]
-related: [tts-pipeline, pronunciation-assessment, curriculum-paths, skill-tree, bucket-storage, mobile-strategy, payment-strategy]
+related: [tts-pipeline, pronunciation-assessment, curriculum-paths, skill-tree, bucket-storage, backend-ops-store, mobile-strategy, payment-strategy]
 ---
 
 ## Summary
@@ -47,6 +47,7 @@ See [curriculum-paths] for the full breakdown.
 ## Cross-cutting infrastructure
 - [tts-pipeline] — two-tier audio cache (source PCM + processed WAV), Azure free tier strategy, post-processing.
 - [bucket-storage] — Supabase Storage layout, sizes, the upcoming Cloudflare R2 migration ([issue #17](https://github.com/tecxmate/vietnamy/issues/17)).
+- [backend-ops-store] — Supabase Postgres operations store, lightweight Vercel API routes, production env, and next identity/RLS migration.
 - [backups-recovery] — local backup script, the home-PC daily mirror plan.
 - [pronunciation-assessment] — Azure Pronunciation Assessment for tonal scoring.
 

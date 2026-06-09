@@ -125,3 +125,12 @@ attributed_to: [niko]   belongs_to: [tone-trainer, tone-training-data]
 - Deploy note: set `TONE_EXPORT_TOKEN` (export is 403 without it) and point `TONE_DB_PATH` at a persistent volume (Zeabur fs is ephemeral). Runtime DB files gitignored.
 - Shipped to `main` (commit ab68731) for phone-deployment testing.
 - Pages: [topic](topics/tech/tone-trainer.md), [topic](topics/tech/tone-training-data.md).
+
+## [2026-06-10] decision | Supabase ops store and Vercel API cutover
+attributed_to: [niko, codex]   belongs_to: [backend-ops-store]
+- Supabase SQL migration `202606100001_app_ops.sql` was run successfully for operational tables: email logs, message events, push subscriptions/events, feedback reports, and notifications.
+- Vercel Production env was corrected and redeployed with Supabase, Resend, public base URL, VAPID, and Azure Speech vars.
+- Lightweight Vercel API routes now serve ops/email/message/notification endpoints without bundling the large dictionary SQLite databases.
+- Production smoke passed: `/api/mail/config`, `/api/notifications`, `/api/feedback`, and Supabase `feedback_reports` verification.
+- Next backend milestone is Supabase Auth, canonical profile rows, replacing anonymous `userId`, RLS, and progress/saved-word sync.
+- Pages: [decision](decisions/2026-06-10-supabase-ops-store-vercel-api.md), [topic](topics/tech/backend-ops-store.md).

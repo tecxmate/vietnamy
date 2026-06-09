@@ -28,6 +28,7 @@ Catalog of every page in `docs/wiki/`. One line per page. Update on every create
 - [2026-05-24 — Capacitor as the Mobile Distribution Path](decisions/2026-05-24-capacitor-mobile-path.md) — defer mobile, wrap PWA via Capacitor when web is feature-complete
 - [2026-05-24 — IAP via RevenueCat for In-App Subscriptions](decisions/2026-05-24-iap-via-revenuecat.md) — proposed: native subs via RevenueCat, web subs via Stripe
 - [2026-05-24 — Migrate TTS Bucket to Cloudflare R2 Within One Month](decisions/2026-05-24-cloudflare-r2-migration-pending.md) — proposed: tracked as GitHub issue #17, deadline 2026-06-24
+- [2026-06-10 — Supabase Ops Store and Vercel API Cutover](decisions/2026-06-10-supabase-ops-store-vercel-api.md) — use Supabase Postgres for ops data, keep heavy objects in R2, expose lightweight Vercel API routes
 
 ## Topics
 *Areas, products, events, and synthesised concepts. Topics don't make decisions; stakeholders do.*
@@ -49,6 +50,7 @@ Topics are split into `topics/tech/` (engineering, infra, app, content systems) 
 - [Drive Media Sync](topics/tech/drive-media-sync.md) — root `drive/` convention and symlink helper for heavy Google Drive media files
 - [Repository Publishing](topics/tech/repository-publishing.md) — Git/GitHub publishing status for the reusable template
 - [Adaptive Software Automation](topics/tech/adaptive-software-automation.md) — long-term feedback, telemetry, AI repair, and PR review loop
+- [Backend Ops Store and Identity Migration](topics/tech/backend-ops-store.md) — Supabase ops tables, Vercel API routing, production env, and next auth/RLS plan
 
 ### Business
 <!-- Agent: append `- [Title](topics/business/slug.md) — one-line summary` for each business topic. -->
