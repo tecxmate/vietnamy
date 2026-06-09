@@ -18,6 +18,7 @@ import MobileAccountBar from './components/MobileAccountBar';
 import InstallPrompt from './components/InstallPrompt';
 import { installGlobalHaptics } from './utils/haptics';
 import { preloadUISounds } from './utils/sound';
+import { trackPushReturnFromUrl } from './utils/pushNotifications';
 
 const loadRoadmapTab = () => import('./components/Tabs/RoadmapTab');
 const loadDictionaryTab = () => import('./components/Tabs/DictionaryTab');
@@ -270,6 +271,11 @@ function StudentApp({ initialTab = 'study' }) {
     if (authLoading || !hasCompletedOnboarding || (!user && !isLocalhost)) return undefined;
     return preloadStudentTabs(activeTab);
   }, [activeTab, authLoading, hasCompletedOnboarding, isLocalhost, user]);
+
+  React.useEffect(() => {
+    if (authLoading) return;
+    trackPushReturnFromUrl(user?.id);
+  }, [authLoading, user?.id]);
 
   const completeOnboarding = () => {
     localStorage.setItem('vnme_onboarding_completed', 'true');

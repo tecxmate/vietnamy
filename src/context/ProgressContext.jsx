@@ -9,6 +9,7 @@ import { createContext, useContext, useState, useEffect, useCallback, useMemo, u
 import { NODE_ID_MIGRATION } from '../lib/nodeMigration';
 import { MODE_IDS, DEFAULT_LEARNER_MODE } from '../data/learnerModes';
 import { advanceStreak, streakStatus as computeStreakStatus, todayStr } from '../lib/streak';
+import { useAuth } from './AuthContext';
 
 const ProgressContext = createContext();
 
@@ -106,6 +107,7 @@ function loadState() {
 }
 
 export function ProgressProvider({ children }) {
+    const { syncProgress } = useAuth();
     const init = useMemo(() => loadState(), []);
     const [completedNodes, setCompletedNodes] = useState(init.completedNodes);
     const [nodeSessionCounts, setNodeSessionCounts] = useState(init.nodeSessionCounts);
@@ -129,7 +131,8 @@ export function ProgressProvider({ children }) {
             completedNodes: serializedCompletedNodes,
             nodeSessionCounts: serializedSessionCounts,
         }));
-    }, [completedNodes, nodeSessionCounts]);
+        syncProgress?.();
+    }, [completedNodes, nodeSessionCounts, syncProgress]);
 
     // Mark today active on any completed study activity (idempotent per day).
     const recordActivity = useCallback(() => {
@@ -172,7 +175,8 @@ export function ProgressProvider({ children }) {
     // Persist hearts.
     useEffect(() => {
         localStorage.setItem(HEARTS_STORAGE_KEY, String(hearts));
-    }, [hearts]);
+        syncProgress?.();
+    }, [hearts, syncProgress]);
 
     const loseHeart = useCallback(() => {
         setHearts(h => Math.max(0, h - 1));
@@ -185,7 +189,8 @@ export function ProgressProvider({ children }) {
     // Persist streak.
     useEffect(() => {
         localStorage.setItem(STREAK_STORAGE_KEY, JSON.stringify(streak));
-    }, [streak]);
+        syncProgress?.();
+    }, [streak, syncProgress]);
 
     // Read-only streak view for UI / on-open decisions.
     const getStreakStatus = useCallback(() => computeStreakStatus(streakRef.current, todayStr()), []);

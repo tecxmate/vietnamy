@@ -12,7 +12,7 @@ related: [vietnamy-app, bucket-storage, 2026-06-10-supabase-ops-store-vercel-api
 ---
 
 ## Summary
-Vietnamy now uses Supabase Postgres as the production operations store while keeping local SQLite as the development fallback. Heavy objects belong in Cloudflare R2, not Supabase. The next backend milestone is identity: move from anonymous/string `userId` values to Supabase Auth user IDs, then add RLS and sync user progress into Postgres.
+Vietnamy now uses Supabase Postgres as the production operations store while keeping local SQLite as the development fallback. Heavy objects belong in Cloudflare R2, not Supabase. Identity now uses Supabase Auth user IDs for owned progress/profile records, with RLS policies guarding authenticated client access.
 
 ## Current State
 
@@ -31,6 +31,13 @@ The migration `supabase/migrations/202606100001_app_ops.sql` creates:
 - `notifications`
 
 RLS is enabled on all six tables. Direct client policies are intentionally not opened yet; the server uses the Supabase service-role key.
+
+The migration `supabase/migrations/202606100002_identity_progress.sql` adds:
+- `profiles` — one row per `auth.users.id`.
+- `user_progress` — JSON local-cache snapshot keyed by `auth.users.id`.
+- `saved_words` — normalized saved lesson/dictionary word IDs keyed by `auth.users.id`.
+
+RLS policies allow authenticated users to select/update only their own profile, progress, saved words, and notification rows. The public notification API also verifies the caller's Supabase JWT and derives `recipientId` from that token instead of trusting a query/body `userId`.
 
 ### Runtime code
 - `server/opsStore.js` chooses storage with `OPS_STORE_PROVIDER`.
@@ -76,22 +83,18 @@ On 2026-06-10, after redeploying `https://vnme-web.vercel.app`:
 - The new feedback row was verified in Supabase `feedback_reports`.
 
 ## Open Questions
-- Should smoke feedback rows be hard-deleted or marked with a test status/metadata?
-- Which user table should become canonical: direct `auth.users` references only, or an app-owned `profiles` table with one row per `auth.users.id`?
-- Should notification reads be served directly from Supabase with client RLS after auth, or continue through the server API?
-- Which progress state should migrate first: saved words, SRS review records, lesson completion, or streaks?
+- Should notification reads eventually move from the server API to direct Supabase client reads now that RLS exists?
+- Which progress state should get first-class relational tables next: SRS review records, lesson completion, streaks, or decks?
 - Where should daily analytics rollups run: Vercel cron, Supabase scheduled jobs, or GitHub Actions?
 
 ## Next Implementation Sequence
-1. Clean up smoke feedback rows.
-2. Add Supabase Auth UI and session provider.
-3. Add `profiles` table and profile creation on signup/login.
-4. Replace anonymous/string IDs with `auth.users.id`.
-5. Create progress tables for saved words, lesson completion, SRS reviews, streaks, and notification preferences.
-6. Add RLS policies for user-owned rows.
-7. Migrate local progress to Supabase on first login.
-8. Add admin-only rollups for message engagement, push stats, feedback stats, and email stats.
-9. Add Supabase Postgres backup/export and R2 inventory backup.
+1. Apply `supabase/migrations/202606100002_identity_progress.sql` in Supabase before deploying the auth-sync client.
+2. Test Google login on production and verify a `profiles` row, `user_progress` row, and `saved_words` rows are created under the same `auth.users.id`.
+3. Add authenticated client helpers for notification list/read actions.
+4. Decide whether SRS, lesson completion, streaks, and decks remain in `user_progress.data` for MVP or get separate tables before launch.
+5. Add admin-only rollups for message engagement, push stats, feedback stats, and email stats.
+6. Add Supabase Postgres backup/export and R2 inventory backup.
 
 ## History
 - 2026-06-10 — Supabase ops store and Vercel API cutover ([decision](../../decisions/2026-06-10-supabase-ops-store-vercel-api.md)).
+- 2026-06-10 — Added Supabase Auth profile/progress/saved-word migration and client sync path.

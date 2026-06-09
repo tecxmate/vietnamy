@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useAuth } from './AuthContext';
+import { saveUserProfileToCloud } from '../lib/syncProgress';
 import { DEFAULT_LEARNER_MODE } from '../data/learnerModes';
 
 const UserContext = createContext();
@@ -46,7 +47,7 @@ const normalizeProfile = (profile = {}) => {
 };
 
 export const UserProvider = ({ children }) => {
-    const { syncProgress } = useAuth();
+    const { user, syncProgress } = useAuth();
     // Default Persona: 25 year old male
     const [userProfile, setUserProfile] = useState(() => {
         const saved = localStorage.getItem('vnme_user_profile');
@@ -60,8 +61,9 @@ export const UserProvider = ({ children }) => {
 
     useEffect(() => {
         localStorage.setItem('vnme_user_profile', JSON.stringify(userProfile));
+        if (user?.id) saveUserProfileToCloud(user.id, userProfile);
         syncProgress?.();
-    }, [userProfile]);
+    }, [userProfile, user?.id, syncProgress]);
 
     const updateUserProfile = (newProfile) => {
         setUserProfile(prev => normalizeProfile({ ...prev, ...newProfile }));

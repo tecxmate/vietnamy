@@ -1,5 +1,7 @@
 // Vocab Library — localStorage persistence for saved words & custom decks
 
+import { notifyProgressChanged } from './syncProgress';
+
 const SAVED_KEY = 'vnme_saved_words';
 const DECKS_KEY = 'vnme_custom_decks';
 
@@ -14,6 +16,7 @@ function loadSaved() {
 
 function saveSaved(ids) {
     localStorage.setItem(SAVED_KEY, JSON.stringify(ids));
+    notifyProgressChanged();
 }
 
 export function getSavedWordIds() {
@@ -47,6 +50,7 @@ function loadDecks() {
 
 function saveDecks(decks) {
     localStorage.setItem(DECKS_KEY, JSON.stringify(decks));
+    notifyProgressChanged();
 }
 
 export function getCustomDecks() {

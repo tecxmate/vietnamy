@@ -1,5 +1,7 @@
 // Dictionary Saved Words — localStorage persistence for dictionary lookups & custom decks
 
+import { notifyProgressChanged } from './syncProgress';
+
 const SAVED_KEY = 'vnme_dict_saved_words';
 const DECKS_KEY = 'vnme_dict_decks';
 
@@ -14,6 +16,7 @@ function loadSaved() {
 
 function saveSaved(words) {
     localStorage.setItem(SAVED_KEY, JSON.stringify(words));
+    notifyProgressChanged();
 }
 
 export function getDictSavedWords() {
@@ -47,6 +50,7 @@ function loadDecks() {
 
 function saveDecks(decks) {
     localStorage.setItem(DECKS_KEY, JSON.stringify(decks));
+    notifyProgressChanged();
 }
 
 export function getDictDecks() {

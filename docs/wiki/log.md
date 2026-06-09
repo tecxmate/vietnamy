@@ -134,3 +134,11 @@ attributed_to: [niko, codex]   belongs_to: [backend-ops-store]
 - Production smoke passed: `/api/mail/config`, `/api/notifications`, `/api/feedback`, and Supabase `feedback_reports` verification.
 - Next backend milestone is Supabase Auth, canonical profile rows, replacing anonymous `userId`, RLS, and progress/saved-word sync.
 - Pages: [decision](decisions/2026-06-10-supabase-ops-store-vercel-api.md), [topic](topics/tech/backend-ops-store.md).
+
+## [2026-06-10] ingest | Supabase identity and progress sync
+attributed_to: [niko, codex]   belongs_to: [backend-ops-store]
+- Removed the production smoke feedback row from `feedback_reports` so admin feedback stays clean.
+- Added migration `202606100002_identity_progress.sql` for `profiles`, `user_progress`, `saved_words`, and authenticated own-row RLS policies.
+- Client auth now creates/links a `profiles` row on session/login and syncs local progress/saved-word state under `auth.users.id`.
+- Notification read/update APIs now require a Supabase JWT and derive `recipientId` from the authenticated user instead of trusting arbitrary `userId`.
+- Pages: [topic](topics/tech/backend-ops-store.md).

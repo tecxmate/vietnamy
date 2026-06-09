@@ -44,9 +44,12 @@ export async function getPushReminderStatus() {
     return Notification.permission === 'granted' ? 'ready' : 'default';
 }
 
-export async function enablePushReminders({ userId = 'anonymous', userName = '' } = {}) {
+export async function enablePushReminders({ userId, userName = '' } = {}) {
     if (!isPushSupported()) {
         return { ok: false, status: 'unsupported', message: 'Push reminders need an installed PWA or a supported browser.' };
+    }
+    if (!userId) {
+        return { ok: false, status: 'auth-required', message: 'Sign in to enable push reminders.' };
     }
 
     const keyResponse = await fetch('/api/push/vapid-public-key');
@@ -85,10 +88,11 @@ export async function enablePushReminders({ userId = 'anonymous', userName = '' 
     return { ok: true, status: 'enabled' };
 }
 
-export function trackPushReturnFromUrl(userId = 'anonymous') {
+export function trackPushReturnFromUrl(userId) {
     const params = new URLSearchParams(window.location.search);
     const notificationId = params.get('notification');
     if (!notificationId) return;
+    if (!userId) return;
     const scenarioId = params.get('scenario') || '';
     const variantId = params.get('variant') || '';
 

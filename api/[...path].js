@@ -43,6 +43,8 @@ app.use(express.json({ limit: '1mb' }));
 
 const MAIL_ADMIN_TOKEN = process.env.MAIL_ADMIN_TOKEN || '';
 const MAIL_ADMIN_ALLOW_LOCAL = process.env.MAIL_ADMIN_ALLOW_LOCAL === 'true';
+const SUPABASE_AUTH_URL = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL || '';
+const SUPABASE_ANON_KEY = process.env.VITE_SUPABASE_ANON_KEY || '';
 const LEGACY_PUSH_SCENARIOS = {
     daily_review: 'daily_review_due',
     streak_reminder: 'streak_rescue',
@@ -61,6 +63,31 @@ function requireMailAdmin(req, res) {
     if (MAIL_ADMIN_TOKEN && token === MAIL_ADMIN_TOKEN) return true;
     res.status(401).json({ error: 'admin token required' });
     return false;
+}
+
+async function getAuthenticatedUserId(req) {
+    const header = req.get('authorization') || '';
+    if (!header.startsWith('Bearer ') || !SUPABASE_AUTH_URL || !SUPABASE_ANON_KEY) return null;
+    try {
+        const response = await fetch(`${SUPABASE_AUTH_URL.replace(/\/$/, '')}/auth/v1/user`, {
+            headers: {
+                apikey: SUPABASE_ANON_KEY,
+                authorization: header,
+            },
+        });
+        if (!response.ok) return null;
+        const user = await response.json();
+        return typeof user?.id === 'string' ? user.id : null;
+    } catch {
+        return null;
+    }
+}
+
+async function requireAuthenticatedUserId(req, res) {
+    const userId = await getAuthenticatedUserId(req);
+    if (userId) return userId;
+    res.status(401).json({ error: 'authenticated Supabase user required' });
+    return null;
 }
 
 function compactMetadata(value) {
@@ -281,7 +308,8 @@ app.post('/api/messages/events', async (req, res) => {
 });
 
 app.get('/api/notifications', async (req, res) => {
-    const recipientId = clampText(req.query.userId || req.query.recipientId, 160) || 'anonymous';
+    const recipientId = await requireAuthenticatedUserId(req, res);
+    if (!recipientId) return;
     res.json(await listNotifications({
         recipientId,
         unreadOnly: req.query.unread === 'true',
@@ -290,7 +318,8 @@ app.get('/api/notifications', async (req, res) => {
 });
 
 app.put('/api/notifications', async (req, res) => {
-    const recipientId = clampText(req.body?.userId || req.body?.recipientId, 160) || 'anonymous';
+    const recipientId = await requireAuthenticatedUserId(req, res);
+    if (!recipientId) return;
     const ids = Array.isArray(req.body?.notificationIds) ? req.body.notificationIds : [];
     await markNotificationsRead({
         recipientId,
