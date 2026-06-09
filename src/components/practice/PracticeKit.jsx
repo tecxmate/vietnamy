@@ -64,8 +64,14 @@ export function AudioButton({ onClick, playToken = 0, size = 92, color = BLUE })
 // A grid of answer options with the shared selected / correct / incorrect
 // styling. `children(opt)` renders each option's inner content.
 export function OptionGrid({ options, cols = 2, keyOf = (_, i) => i, isCorrect, isSelected, revealed, onPick, children }) {
+    // Adaptive layout: short options (letters/words) → compact grid; long text
+    // options (phrases/sentences) → single column of full-width horizontal rows
+    // so the text never gets cramped or clipped.
+    const longest = options.reduce((m, o) => (typeof o === 'string' ? Math.max(m, o.length) : m), 0);
+    const single = longest > 14;
+    const effectiveCols = single ? 1 : cols;
     return (
-        <div style={{ display: 'grid', gridTemplateColumns: `repeat(${cols}, 1fr)`, gap: 8 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: `repeat(${effectiveCols}, 1fr)`, gap: 8 }}>
             {options.map((opt, idx) => {
                 const correct = isCorrect(opt), selected = isSelected(opt);
                 let bg = 'var(--surface-color)', border = 'var(--border-color)', op = 1;
@@ -75,7 +81,7 @@ export function OptionGrid({ options, cols = 2, keyOf = (_, i) => i, isCorrect, 
                     else op = 0.45;
                 } else if (selected) { border = 'var(--lesson-selected-border)'; bg = 'var(--lesson-selected-fill)'; }
                 return (
-                    <button key={keyOf(opt, idx)} onClick={() => !revealed && onPick(opt)} disabled={revealed} style={{ minHeight: 64, padding: '12px 10px', borderRadius: 14, border: `2px solid ${border}`, boxShadow: `0 2px 0 ${border}`, backgroundColor: bg, opacity: op, cursor: revealed ? 'default' : 'pointer', fontFamily: 'inherit', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 4 }}>
+                    <button key={keyOf(opt, idx)} onClick={() => !revealed && onPick(opt)} disabled={revealed} style={{ minHeight: single ? 52 : 64, padding: single ? '14px 18px' : '12px 10px', borderRadius: 14, border: `2px solid ${border}`, boxShadow: `0 2px 0 ${border}`, backgroundColor: bg, opacity: op, cursor: revealed ? 'default' : 'pointer', fontFamily: 'inherit', display: 'flex', flexDirection: single ? 'row' : 'column', alignItems: 'center', justifyContent: single ? 'flex-start' : 'center', textAlign: single ? 'left' : 'center', gap: single ? 10 : 4 }}>
                         {children(opt)}
                     </button>
                 );
@@ -98,12 +104,18 @@ export function FeedbackBar({ children }) {
 // the top, the answer tiles sit in the lower, thumb-reachable zone just above
 // the fixed action bar. `top` renders up top; children (the answer tiles) are
 // bottom-anchored via a flex spacer. Keeps tiles in the same place everywhere.
-export function ExerciseColumn({ top, children }) {
+export function ExerciseColumn({ top, children, topOffset = 56 }) {
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', minHeight: 'calc(100dvh - 56px)', padding: '12px 16px 112px', maxWidth: 480, margin: '0 auto', boxSizing: 'border-box' }}>
+        // paddingBottom reserves room for the fixed action bar (which is taller
+        // in its feedback state) so the bottom tile row never clips. The 2:1
+        // spacers seat the tiles in the lower-middle (thumb zone) rather than
+        // flush against the bar. topOffset = chrome above this column (header +
+        // any tabs) so the column fills the visible area without overflowing.
+        <div style={{ display: 'flex', flexDirection: 'column', minHeight: `calc(100dvh - ${topOffset}px)`, padding: '12px 16px 168px', maxWidth: 480, margin: '0 auto', boxSizing: 'border-box' }}>
             <div>{top}</div>
-            <div style={{ flex: 1, minHeight: 16 }} />
+            <div style={{ flex: 2, minHeight: 24 }} />
             <div>{children}</div>
+            <div style={{ flex: 1, minHeight: 24 }} />
         </div>
     );
 }

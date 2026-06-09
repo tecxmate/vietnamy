@@ -4,7 +4,7 @@ import { useTTS } from '../../hooks/useTTS';
 import { usePracticeCompletion } from '../../hooks/usePracticeCompletion';
 import { useEnterKey } from '../../hooks/useEnterKey';
 import { playSuccess, playError } from '../../utils/sound';
-import { PracticeShell, AudioButton, OptionGrid, FeedbackBar, FeedbackMessage, PrimaryButton } from '../../components/practice/PracticeKit';
+import { PracticeShell, AudioButton, OptionGrid, FeedbackBar, FeedbackMessage, PrimaryButton, ExerciseColumn } from '../../components/practice/PracticeKit';
 import './DrillPractice.css';
 
 const CMS_KEY_PREFIX = 'vnme_cms_drill_';
@@ -186,20 +186,21 @@ export default function DrillPractice({ data, questionCount = 10 }) {
 
     return (
         <PracticeShell onClose={goBack}>
-            <div style={{ padding: 16, paddingBottom: 200 }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 14 }}>
-                    <span style={{ fontSize: 13, color: 'var(--text-muted)' }}>Question {qIndex + 1}/{questions.length}</span>
-                    <span style={{ fontSize: 13, fontWeight: 700, color: '#06D6A0' }}>Score {score}</span>
-                </div>
-                <div style={{ height: 6, borderRadius: 4, backgroundColor: 'var(--border-color)', marginBottom: 22, overflow: 'hidden' }}>
-                    <div style={{ height: '100%', width: `${(qIndex / questions.length) * 100}%`, backgroundColor: '#1CB0F6', borderRadius: 4, transition: 'width 0.3s' }} />
-                </div>
-
-                {currentQ?.type === 'listen_pick' && audioKey && (
-                    <div style={{ marginBottom: 16 }}><AudioButton onClick={() => playAudio(audioKey)} playToken={playToken} /></div>
-                )}
-                <p style={{ textAlign: 'center', fontSize: 16, fontWeight: 600, color: 'var(--text-main)', margin: '0 0 18px' }}>{currentQ?.prompt}</p>
-
+            <ExerciseColumn top={
+                <>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 14 }}>
+                        <span style={{ fontSize: 13, color: 'var(--text-muted)' }}>Question {qIndex + 1}/{questions.length}</span>
+                        <span style={{ fontSize: 13, fontWeight: 700, color: '#06D6A0' }}>Score {score}</span>
+                    </div>
+                    <div style={{ height: 6, borderRadius: 4, backgroundColor: 'var(--border-color)', marginBottom: 22, overflow: 'hidden' }}>
+                        <div style={{ height: '100%', width: `${(qIndex / questions.length) * 100}%`, backgroundColor: '#1CB0F6', borderRadius: 4, transition: 'width 0.3s' }} />
+                    </div>
+                    {currentQ?.type === 'listen_pick' && audioKey && (
+                        <div><AudioButton onClick={() => playAudio(audioKey)} playToken={playToken} /></div>
+                    )}
+                    <p style={{ textAlign: 'center', fontSize: 16, fontWeight: 600, color: 'var(--text-main)', margin: '12px 0 0' }}>{currentQ?.prompt}</p>
+                </>
+            }>
                 <OptionGrid
                     options={currentQ?.options || []} cols={2}
                     keyOf={(_, i) => i}
@@ -212,11 +213,11 @@ export default function DrillPractice({ data, questionCount = 10 }) {
                 </OptionGrid>
 
                 {showFeedback && currentQ?.explanation && (
-                    <div style={{ marginTop: 16, padding: '12px 14px', borderRadius: 12, fontSize: 14, lineHeight: 1.5, color: 'var(--text-main)', backgroundColor: isCorrect ? '#06D6A01A' : '#EF476F1A' }}>
+                    <div style={{ marginTop: 12, padding: '12px 14px', borderRadius: 12, fontSize: 14, lineHeight: 1.5, color: 'var(--text-main)', backgroundColor: isCorrect ? '#06D6A01A' : '#EF476F1A' }}>
                         {currentQ.explanation}
                     </div>
                 )}
-            </div>
+            </ExerciseColumn>
 
             <FeedbackBar>
                 {showFeedback && <FeedbackMessage correct={isCorrect}>{isCorrect ? 'Correct!' : 'Not quite'}</FeedbackMessage>}

@@ -5,7 +5,7 @@ import { usePracticeCompletion } from '../../hooks/usePracticeCompletion';
 import './VowelsPractice.css';
 import { playSuccess, playError } from '../../utils/sound';
 import SoundButton from '../../components/SoundButton';
-import { AudioButton, OptionGrid, FeedbackBar, FeedbackMessage, PrimaryButton } from '../../components/practice/PracticeKit';
+import { AudioButton, OptionGrid, FeedbackBar, FeedbackMessage, PrimaryButton, ExerciseColumn } from '../../components/practice/PracticeKit';
 import './PracticeShared.css'; // Add shared layout
 import { getVowels } from '../../data/vowels';
 
@@ -470,31 +470,36 @@ export default function VowelsPractice({
 
             {/* ═══ SECTION 5: Quiz ═══ */}
             {section === 5 && currentQ && (
-                <div style={{ padding: 16, paddingBottom: 200 }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 14 }}>
-                        <span style={{ fontSize: 13, color: 'var(--text-muted)' }}>Question {qIndex + 1}/{questionCount}</span>
-                        <span style={{ fontSize: 13, fontWeight: 700, color: '#06D6A0' }}>Score {score}</span>
-                    </div>
-                    <div style={{ height: 6, borderRadius: 4, backgroundColor: 'var(--border-color)', marginBottom: 22, overflow: 'hidden' }}>
-                        <div style={{ height: '100%', width: `${progress}%`, backgroundColor: '#1CB0F6', borderRadius: 4, transition: 'width 0.3s' }} />
-                    </div>
-                    <p style={{ textAlign: 'center', fontSize: 16, fontWeight: 600, color: 'var(--text-main)', margin: '0 0 16px' }}>{currentQ.question}</p>
-                    <div style={{ marginBottom: 18 }}><AudioButton onClick={() => playWord(currentQ.audio)} playToken={playToken} /></div>
-                    <OptionGrid
-                        options={currentQ.options} cols={2}
-                        keyOf={(_, i) => i}
-                        isCorrect={(o) => o === currentQ.correctAnswer}
-                        isSelected={(o) => o === selected}
-                        revealed={feedback !== 'idle'}
-                        onPick={(o) => feedback === 'idle' && setSelected(o)}
-                    >
-                        {(opt) => <span style={{ fontSize: 20, fontWeight: 800, color: 'var(--text-main)' }}>{opt}</span>}
-                    </OptionGrid>
-                    {feedback !== 'idle' && (
-                        <div style={{ marginTop: 16, padding: '12px 14px', borderRadius: 12, fontSize: 14, lineHeight: 1.5, color: 'var(--text-main)', backgroundColor: feedback === 'correct' ? '#06D6A01A' : '#EF476F1A' }}>
-                            {currentQ.hint.replace(/<[^>]+>/g, '')}
-                        </div>
-                    )}
+                <>
+                    <ExerciseColumn topOffset={120} top={
+                        <>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 14 }}>
+                                <span style={{ fontSize: 13, color: 'var(--text-muted)' }}>Question {qIndex + 1}/{questionCount}</span>
+                                <span style={{ fontSize: 13, fontWeight: 700, color: '#06D6A0' }}>Score {score}</span>
+                            </div>
+                            <div style={{ height: 6, borderRadius: 4, backgroundColor: 'var(--border-color)', marginBottom: 22, overflow: 'hidden' }}>
+                                <div style={{ height: '100%', width: `${progress}%`, backgroundColor: '#1CB0F6', borderRadius: 4, transition: 'width 0.3s' }} />
+                            </div>
+                            <p style={{ textAlign: 'center', fontSize: 16, fontWeight: 600, color: 'var(--text-main)', margin: '0 0 16px' }}>{currentQ.question}</p>
+                            <div><AudioButton onClick={() => playWord(currentQ.audio)} playToken={playToken} /></div>
+                        </>
+                    }>
+                        <OptionGrid
+                            options={currentQ.options} cols={2}
+                            keyOf={(_, i) => i}
+                            isCorrect={(o) => o === currentQ.correctAnswer}
+                            isSelected={(o) => o === selected}
+                            revealed={feedback !== 'idle'}
+                            onPick={(o) => feedback === 'idle' && setSelected(o)}
+                        >
+                            {(opt) => <span style={{ fontSize: 20, fontWeight: 800, color: 'var(--text-main)' }}>{opt}</span>}
+                        </OptionGrid>
+                        {feedback !== 'idle' && (
+                            <div style={{ marginTop: 12, padding: '12px 14px', borderRadius: 12, fontSize: 14, lineHeight: 1.5, color: 'var(--text-main)', backgroundColor: feedback === 'correct' ? '#06D6A01A' : '#EF476F1A' }}>
+                                {currentQ.hint.replace(/<[^>]+>/g, '')}
+                            </div>
+                        )}
+                    </ExerciseColumn>
                     <FeedbackBar>
                         {feedback !== 'idle' && (
                             <FeedbackMessage correct={feedback === 'correct'}>
@@ -505,7 +510,7 @@ export default function VowelsPractice({
                             ? <PrimaryButton onClick={handleCheck} disabled={!selected}>Check</PrimaryButton>
                             : <PrimaryButton onClick={handleContinue}>Continue</PrimaryButton>}
                     </FeedbackBar>
-                </div>
+                </>
             )}
 
             </div>{/* end practice-scroll-area */}
