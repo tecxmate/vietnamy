@@ -130,6 +130,12 @@ Important endpoints:
 - `GET /api/admin/feedback` — recent feedback and summary counts.
 - `GET /api/notifications?userId=...` — durable in-app notification history.
 
+See `docs/BACKEND_SCALING_PLAN.md` for the Supabase/R2 scaling split and `supabase/migrations/202606100001_app_ops.sql` for the Postgres schema. Export local ops data with:
+
+```bash
+npm run ops:export:postgres -- --out /tmp/vietnamy-app-ops-export.sql
+```
+
 ## TTS Bucket Cache
 
 The `/api/tts` endpoint caches generated audio in object storage so most requests are served as 302 redirects from the CDN instead of regenerating from Azure / Google.
