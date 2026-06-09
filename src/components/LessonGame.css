@@ -112,8 +112,10 @@
     transition: background-color 0.2s;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    overflow: hidden;
+    /* Bottom-anchor so the CTA (and its 3D shadow) always clears the bottom
+       edge; if the feedback banner is unusually tall it spills upward, never
+       clipping the button. */
+    justify-content: flex-end;
 }
 
 .lesson-game__actionbar--feedback {
@@ -138,6 +140,12 @@
 }
 
 @media (max-width: 480px) {
+    /* Reserve the feedback-state action-bar height at all times so showing the
+       feedback banner doesn't grow the bar and shove the answers upward. */
+    .lesson-game {
+        --lesson-action-bar-base-height: 224px;
+    }
+
     .lesson-game__topbar {
         padding: var(--app-edge-top) var(--app-edge-right) 12px var(--app-edge-left);
     }
