@@ -1,5 +1,7 @@
 {
   "rewrites": [
+    { "source": "/api/mascot-upload", "destination": "/api/mascot-upload" },
+    { "source": "/api/(.*)", "destination": "/api/ops?path=$1" },
     { "source": "/((?!api/).*)", "destination": "/index.html" }
   ],
   "headers": [
