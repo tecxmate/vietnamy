@@ -1,4 +1,5 @@
 import { Volume2, X, Check } from 'lucide-react';
+import SoundButton from '../SoundButton';
 
 // Shared UI primitives for pronunciation lessons — the "modern" look (step-dots
 // header, circular audio button, option grid, fixed bottom feedback bar). All
@@ -104,9 +105,18 @@ export function FeedbackMessage({ correct, children }) {
     );
 }
 
-// Primary action button (blue Check / Continue / Next). Pass color to override.
-export function PrimaryButton({ onClick, children, color = BLUE, disabled = false }) {
+// Primary action button (Check / Continue / Next) — the canonical lesson feel:
+// coral fill, white text, chunky 3D bottom edge that presses down on tap, plus
+// the click sound (via SoundButton + the `primary` class from index.css).
+export function PrimaryButton({ onClick, children, disabled = false }) {
     return (
-        <button onClick={onClick} disabled={disabled} style={{ width: '100%', padding: 14, borderRadius: 12, border: 'none', cursor: disabled ? 'default' : 'pointer', backgroundColor: disabled ? 'var(--border-color)' : color, color: disabled ? 'var(--text-muted)' : '#fff', fontWeight: 800, fontSize: 15, fontFamily: 'inherit' }}>{children}</button>
+        <SoundButton
+            className="primary"
+            onClick={onClick}
+            disabled={disabled}
+            style={{ width: '100%', padding: 14, borderRadius: 12, fontWeight: 800, fontSize: 15, fontFamily: 'inherit' }}
+        >
+            {children}
+        </SoundButton>
     );
 }
