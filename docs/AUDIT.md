@@ -46,7 +46,7 @@ lessons / 1,001 words / 479 sentences. Canonical content bundle at repo-root `co
 
 | # | Item | Reality found | Status |
 |---|------|---------------|--------|
-| 2.1 | **Grammar reader → canonical.** `grammarModulesDB.js` reads source `grammar_modules.json`; could read `content/grammar.json` via a thin adapter (like `toneContours.js`). **BLOCKER:** the canonical bundle **drops** unit-level `exercise_types` (exercise generation) + `prerequisites` (gating) + `estimated_minutes` — used at `grammarModulesDB.js:115,182`. Must make `build-canonical.mjs` grammar gen lossless first, then adapt the reader. Does **not** delete any file (`grammar_modules.json` stays as build source; `vn_grammar_bank_v2.json` stays for the separate `grammarDB`/`GrammarEditor` bank system). | CONFIRM |
+| 2.1 | **Grammar reader → canonical — DONE** (commit `dc1c9ec`). `grammarModulesDB.js` is now a thin adapter over `content/grammar.json`. The "lossy" fear was wrong on verification: `prerequisites` IS preserved (285 units), `mainPattern`/`extractedPatterns` present; the dropped fields are unused (`exercise_types` is comment-only — real types come from `GRAMMAR_SESSION_PROFILES`; `estimated_minutes`/`source_*` unused). No consumer reads snake module fields. Admin overrides are id-keyed → still merge. E2E-verified (Playwright `/grammar-unit/A1_M01_U01`: teaching + note + generated exercise render, 0 errors). `grammar_modules.json` stays as build source. | DONE |
 | 2.2 | ~~Delete `src/data/dictionary.json`~~ — **NOT orphaned.** It's the authoring source `build-canonical.mjs:261` reads to generate `content/dictionary.json`. Don't delete. Real cleanup = canonicalize the source's own schema (legacy `word`-id/`cn`) — bigger, deferred. | WONTFIX (as stated) |
 | 2.3 | Articles reader → `content/articles.json`: bundle is **lossy** (drops `partnerCta`/`createdAt` the web reader/ReferralModal use). Make generator lossless first. | CONFIRM |
 | 2.4 | Retire `src/data/lessons.json` (only `lessonExerciseService.js`) — verify what it still supplies. | TODO |
@@ -74,10 +74,10 @@ lessons / 1,001 words / 479 sentences. Canonical content bundle at repo-root `co
 | # | Item | Impact | Status |
 |---|------|--------|--------|
 | 4.1a | **GrammarGuidebook i18n** — was fully hardcoded EN (shown from Study tab); now wired to `t()` (header + 8 category labels, en/zh-s/zh-t). | DONE |
-| 4.1b | **ReferralModal i18n** — fully hardcoded EN (≈276 lines, reached via TopBar). Brand-voice referral copy → **needs your review of Chinese tone** before I convert it. | CONFIRM |
+| 4.1b | **ReferralModal i18n — DONE** (commit `46ee633`). All 3 sub-components wired; 23 keys × en/zh-s/zh-t. ⚠️ Chinese is a faithful first pass — **review tone when convenient** (brand/referral copy). | DONE |
 | 4.1c | "Translate this" ×3 fallbacks (LessonGame/GrammarLesson/UnitTest) — low-visibility, defer. | TODO |
 | 4.2 | Tighten verbose copy. Done: 2 live strings (`app_tutorial_roadmap_desc`, `library_review_deck_count`). Note: many flagged ones (`home_welcome_subtitle`, `sounds_*`, `quick_search_desc`) are **dead keys** (see 4.4). | PARTIAL |
-| 4.3 | Unify terminology: **Lesson / Module / Unit** used interchangeably → pick one user-facing term. (Needs your preferred word.) | CONFIRM |
+| 4.3 | Unify terminology — **DONE** (commit `46ee633`). Only one user-facing "module" string existed (it reflects a real Unit→Module→Lesson hierarchy, not a clash); changed it to "lesson" so learner vocab is Unit/Lesson. | DONE |
 | 4.4 | **Dead i18n-key sweep.** Pass 1's deletions (HomeTab/SoundsTab/GrammarTab/FlashcardsPage) orphaned a whole set of keys (verified: the 12 tutorial keys + `home_welcome_subtitle`, `sounds_alphabet_intro`, `sounds_tones_intro`, `quick_search_desc`, … all 0 live refs). Worth a sweep, but must guard against dynamic keys (`t(\`tip_body_${n}\`)`) — do carefully, not half-way. | TODO |
 
 ---
