@@ -35,14 +35,25 @@ lessons / 1,001 words / 479 sentences. Canonical content bundle at repo-root `co
 
 ## Pass 2 — Data-structure divergence (principle #1: fewer divergent structures)
 
-| # | Item | Impact | Status |
-|---|------|--------|--------|
-| 2.1 | **Grammar: 3 sources of truth.** Web reads legacy snake_case `src/data/grammar_modules.json` + `vn_grammar_bank_v2.json`; canonical camelCase `content/grammar.json` is unused. Migrate readers (`grammarModulesDB.js`, `GrammarUnitLesson.jsx`, admin editors) → `content/grammar.json`; retire the two legacy files. | HIGH | TODO |
-| 2.2 | Delete orphaned `src/data/dictionary.json` (legacy `word`-id / `cn` schema, 0 importers; app uses `content/dictionary.json`). Update `build-canonical.mjs` source if needed. | HIGH | TODO |
-| 2.3 | Articles: switch `ReadingLibraryTab` off `src/data/articleData.js` onto canonical `content/articles.json`; delete the JS. (Check `partnerCta`/`createdAt` fields survive.) | MED | TODO |
-| 2.4 | Retire `src/data/lessons.json` (vestigial; only `lessonExerciseService.js`). | MED | TODO |
-| 2.5 | `unified_db.json` is both build-intermediate and runtime source — move web fully onto `content/curriculum.json`, keep `unified_db` build-only. | MED | TODO |
-| 2.6 | Naming: kill remaining `cn`→`zh` and snake_case in legacy stores per `docs/CONTENT_SCHEMA.md §9`. | LOW | TODO |
+> **Investigated 2026-06-10 — the initial audit mischaracterized the "easy" wins.**
+> Ground truth: `src/data/*.json` files are the **authoring sources**; `build-canonical.mjs`
+> generates the `content/` bundle **from** them (`content:build`). So `src/data/dictionary.json`,
+> `grammar_modules.json`, `articleData` are **not orphans** — they're build inputs. The real
+> divergence is "runtime reads the source, not the generated canonical." But several canonical
+> bundles are **lossy**, so readers can't migrate until the generators are made lossless. This
+> needs a deliberate, reviewed pipeline change (and `build-canonical.mjs` is near Codex's active
+> TTS-migration area) — **NOT a safe autonomous change.** Decisions below need your call.
+
+| # | Item | Reality found | Status |
+|---|------|---------------|--------|
+| 2.1 | **Grammar reader → canonical.** `grammarModulesDB.js` reads source `grammar_modules.json`; could read `content/grammar.json` via a thin adapter (like `toneContours.js`). **BLOCKER:** the canonical bundle **drops** unit-level `exercise_types` (exercise generation) + `prerequisites` (gating) + `estimated_minutes` — used at `grammarModulesDB.js:115,182`. Must make `build-canonical.mjs` grammar gen lossless first, then adapt the reader. Does **not** delete any file (`grammar_modules.json` stays as build source; `vn_grammar_bank_v2.json` stays for the separate `grammarDB`/`GrammarEditor` bank system). | CONFIRM |
+| 2.2 | ~~Delete `src/data/dictionary.json`~~ — **NOT orphaned.** It's the authoring source `build-canonical.mjs:261` reads to generate `content/dictionary.json`. Don't delete. Real cleanup = canonicalize the source's own schema (legacy `word`-id/`cn`) — bigger, deferred. | WONTFIX (as stated) |
+| 2.3 | Articles reader → `content/articles.json`: bundle is **lossy** (drops `partnerCta`/`createdAt` the web reader/ReferralModal use). Make generator lossless first. | CONFIRM |
+| 2.4 | Retire `src/data/lessons.json` (only `lessonExerciseService.js`) — verify what it still supplies. | TODO |
+| 2.5 | `unified_db.json` is both build-intermediate and runtime source — move web fully onto `content/curriculum.json`, keep `unified_db` build-only. | TODO |
+| 2.6 | Canonicalize the **authoring sources'** schemas (`cn`→`zh`, snake_case) per `docs/CONTENT_SCHEMA.md §9`, then regen bundle. Deep. | TODO |
+
+**Recommended real path (needs your go):** for each domain — (1) make `build-canonical.mjs` generation **lossless** (stop dropping `exercise_types`/`prerequisites`/`partnerCta`/…), (2) regen + validate the bundle, (3) convert the runtime reader into a thin adapter over the canonical (proven pattern: `toneContours.js`), (4) leave admin editors on the source (overrides are id-keyed, so they still merge). This achieves "one canonical consumed everywhere" without deleting authoring sources or breaking the CMS.
 
 ---
 
@@ -62,10 +73,12 @@ lessons / 1,001 words / 479 sentences. Canonical content bundle at repo-root `co
 
 | # | Item | Impact | Status |
 |---|------|--------|--------|
-| 4.1 | i18n-ify hardcoded strings. **Found:** `ReferralModal` + `GrammarGuidebook` have **no `t()` wiring at all** (fully hardcoded EN) — full conversion needed, and ReferralModal is brand-voice referral copy → **needs user review of Chinese tone**. Plus "Translate this" ×3 fallbacks (low-visibility). | MED | CONFIRM |
-| 4.2 | Tighten verbose strings (`home_welcome_subtitle` 267 chars; several `app_tutorial_*_desc`, `tip_body_*`). | MED | TODO |
-| 4.3 | Unify terminology: **Lesson / Module / Unit** used interchangeably → pick one user-facing term. | MED | TODO |
-| 4.4 | Prune i18n keys orphaned by Pass 1 (`app_tutorial_home_*`, `quick_search_*`, `progress_*`, `actions_*`). | LOW | TODO |
+| 4.1a | **GrammarGuidebook i18n** — was fully hardcoded EN (shown from Study tab); now wired to `t()` (header + 8 category labels, en/zh-s/zh-t). | DONE |
+| 4.1b | **ReferralModal i18n** — fully hardcoded EN (≈276 lines, reached via TopBar). Brand-voice referral copy → **needs your review of Chinese tone** before I convert it. | CONFIRM |
+| 4.1c | "Translate this" ×3 fallbacks (LessonGame/GrammarLesson/UnitTest) — low-visibility, defer. | TODO |
+| 4.2 | Tighten verbose copy. Done: 2 live strings (`app_tutorial_roadmap_desc`, `library_review_deck_count`). Note: many flagged ones (`home_welcome_subtitle`, `sounds_*`, `quick_search_desc`) are **dead keys** (see 4.4). | PARTIAL |
+| 4.3 | Unify terminology: **Lesson / Module / Unit** used interchangeably → pick one user-facing term. (Needs your preferred word.) | CONFIRM |
+| 4.4 | **Dead i18n-key sweep.** Pass 1's deletions (HomeTab/SoundsTab/GrammarTab/FlashcardsPage) orphaned a whole set of keys (verified: the 12 tutorial keys + `home_welcome_subtitle`, `sounds_alphabet_intro`, `sounds_tones_intro`, `quick_search_desc`, … all 0 live refs). Worth a sweep, but must guard against dynamic keys (`t(\`tip_body_${n}\`)`) — do carefully, not half-way. | TODO |
 
 ---
 
