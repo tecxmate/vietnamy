@@ -31,7 +31,7 @@
 .lib-type-bar {
     position: fixed;
     left: 50%;
-    bottom: calc(56px + env(safe-area-inset-bottom, 0px) + 12px);
+    bottom: calc(var(--bottom-nav-height) + var(--bottom-nav-gap) + 8px);
     transform: translateX(-50%);
     width: calc(100vw - 32px);
     max-width: 448px;

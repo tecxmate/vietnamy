@@ -64,6 +64,8 @@
   --app-edge-bottom: calc(var(--safe-area-bottom-effective) + var(--app-edge-gap));
   --bottom-nav-base-height: 56px;
   --bottom-nav-height: calc(var(--bottom-nav-base-height) + var(--bottom-nav-safe-area-bottom));
+  /* Lifts the bottom nav off the screen edge; pills reference it to stay aligned. */
+  --bottom-nav-gap: 8px;
 
   /* Lesson tokens */
   --lesson-selected-border: #1899d6;
