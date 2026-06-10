@@ -155,8 +155,32 @@ function normalizeTab(tab, fallback = 'study') {
 function LoadingScreen() {
   return (
     <div className="mobile-app-wrapper">
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
-        <span style={{ color: 'var(--text-muted)', fontSize: 16 }}>Loading...</span>
+      <div className="app-loading-screen" role="status" aria-live="polite" aria-label="Loading">
+        <div className="app-loading-mascot" aria-hidden="true">
+          <svg className="app-loading-star" width="96" height="96" viewBox="-58 -68 116 124">
+            <path
+              d="M0,-46 L13,-15 L46,-14 L20,7 L29,40 L0,21 L-29,40 L-20,7 L-46,-14 L-13,-15 Z"
+              fill="#FBD24A"
+              stroke="#E3A92E"
+              strokeWidth="3"
+              strokeLinejoin="round"
+            />
+            <path d="M-7,-44 q7,-8 14,0" fill="none" stroke="#5BBF72" strokeWidth="5" strokeLinecap="round" />
+            <ellipse cx="6" cy="-50" rx="8" ry="5" fill="#5BBF72" transform="rotate(25 6 -50)" />
+            <ellipse cx="-4" cy="-52" rx="7" ry="4" fill="#5BBF72" transform="rotate(-20 -4 -52)" />
+            <circle cx="-13" cy="-6" r="5.5" fill="#3A2A12" />
+            <circle cx="13" cy="-6" r="5.5" fill="#3A2A12" />
+            <circle cx="-11.5" cy="-8" r="1.7" fill="#fff" />
+            <circle cx="14.5" cy="-8" r="1.7" fill="#fff" />
+            <circle cx="-20" cy="6" r="5" fill="#FF9E9E" opacity="0.8" />
+            <circle cx="20" cy="6" r="5" fill="#FF9E9E" opacity="0.8" />
+            <path d="M-9,7 q9,9 18,0" fill="none" stroke="#3A2A12" strokeWidth="3" strokeLinecap="round" />
+          </svg>
+          <span className="app-loading-spark app-loading-spark-one" />
+          <span className="app-loading-spark app-loading-spark-two" />
+          <span className="app-loading-spark app-loading-spark-three" />
+        </div>
+        <span className="app-loading-text">Loading...</span>
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 // Static curriculum seed data and builders for the local mock DB.
 
-import { SCENE_LOCATIONS, SCENES } from './sceneSeedData';
+import { SCENE_LOCATIONS, SCENES } from './sceneSeedData.js';
 
 // ── Diacritics stripping ──
 const stripDiacritics = (s) => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
@@ -21,54 +21,54 @@ const gtagToGT = (id) => id.replace(/^gtag_/, 'GT');
  * Verified equivalent to the former unified_db.json path
  * (scripts/verify-seed-equivalence.mjs).
  */
-function buildFromCanonical(db) {
+function buildFromCanonical(db, { includeContent = true } = {}) {
     const items = [];
     const translations = [];
     const blueprints = [];
     const lessons = [];
     const pathNodes = [];
 
-    (db.words || []).forEach(v => {
-        const audioKey = "a_" + v.vi.replace(/[^a-zA-ZàáạảãăắằặẳẵâấầậẩẫèéẹẻẽêếềệểễìíịỉĩòóọỏõôốồộổỗơớờợởỡùúụủũưứừựửữỳýỵỷỹđĐ ]/g, '').replace(/ +/g, '_').toLowerCase();
-        items.push({
-            id: v.id,
-            item_type: v.pos === 'phrase' ? 'phrase' : 'word',
-            vi_text: v.vi,
-            vi_text_no_diacritics: stripDiacritics(v.vi),
-            audio_key: audioKey,
-            dialect: v.dialect || 'both',
-            emoji: v.emoji,
-            pos: v.pos,
-            frequency: v.frequencyRank,
-            hasImage: v.hasImage,
+    if (includeContent) {
+        (db.words || []).forEach(v => {
+            const audioKey = "a_" + v.vi.replace(/[^a-zA-ZàáạảãăắằặẳẵâấầậẩẫèéẹẻẽêếềệểễìíịỉĩòóọỏõôốồộổỗơớờợởỡùúụủũưứừựửữỳýỵỷỹđĐ ]/g, '').replace(/ +/g, '_').toLowerCase();
+            items.push({
+                id: v.id,
+                item_type: v.pos === 'phrase' ? 'phrase' : 'word',
+                vi_text: v.vi,
+                vi_text_no_diacritics: stripDiacritics(v.vi),
+                audio_key: audioKey,
+                dialect: v.dialect || 'both',
+                emoji: v.emoji,
+                pos: v.pos,
+                frequency: v.frequencyRank,
+                hasImage: v.hasImage,
+            });
+            if (v.en) translations.push({ item_id: v.id, lang: 'en', text: v.en, is_alternate: false });
+            if (v.zh) translations.push({ item_id: v.id, lang: 'zh', text: v.zh, is_alternate: false });
         });
-        if (v.en) translations.push({ item_id: v.id, lang: 'en', text: v.en, is_alternate: false });
-        if (v.zh) translations.push({ item_id: v.id, lang: 'zh', text: v.zh, is_alternate: false });
-    });
 
-    (db.sentences || []).forEach(s => {
-        const audioKey = "a_" + s.vi.replace(/[^a-zA-ZàáạảãăắằặẳẵâấầậẩẫèéẹẻẽêếềệểễìíịỉĩòóọỏõôốồộổỗơớờợởỡùúụủũưứừựửữỳýỵỷỹđĐ ]/g, '').replace(/ +/g, '_').toLowerCase();
-        items.push({
-            id: s.id,
-            item_type: 'sentence',
-            vi_text: s.vi,
-            vi_text_no_diacritics: stripDiacritics(s.vi),
-            audio_key: audioKey,
-            dialect: 'both',
-            token_count: s.tokenCount,
-            tags: (s.grammarTagIds || []).map(gtagToGT),
-            note: s.note,
-            accepted: [s.en, ...(s.accepted || [])].filter(Boolean),
+        (db.sentences || []).forEach(s => {
+            const audioKey = "a_" + s.vi.replace(/[^a-zA-ZàáạảãăắằặẳẵâấầậẩẫèéẹẻẽêếềệểễìíịỉĩòóọỏõôốồộổỗơớờợởỡùúụủũưứừựửữỳýỵỷỹđĐ ]/g, '').replace(/ +/g, '_').toLowerCase();
+            items.push({
+                id: s.id,
+                item_type: 'sentence',
+                vi_text: s.vi,
+                vi_text_no_diacritics: stripDiacritics(s.vi),
+                audio_key: audioKey,
+                dialect: 'both',
+                token_count: s.tokenCount,
+                tags: (s.grammarTagIds || []).map(gtagToGT),
+                note: s.note,
+                accepted: [s.en, ...(s.accepted || [])].filter(Boolean),
+            });
+            if (s.en) translations.push({ item_id: s.id, lang: 'en', text: s.en, is_alternate: false });
+            (s.accepted || []).forEach(alt => translations.push({ item_id: s.id, lang: 'en', text: alt, is_alternate: true }));
+            if (s.zh) translations.push({ item_id: s.id, lang: 'zh', text: s.zh, is_alternate: false });
         });
-        if (s.en) translations.push({ item_id: s.id, lang: 'en', text: s.en, is_alternate: false });
-        (s.accepted || []).forEach(alt => translations.push({ item_id: s.id, lang: 'en', text: alt, is_alternate: true }));
-        if (s.zh) translations.push({ item_id: s.id, lang: 'zh', text: s.zh, is_alternate: false });
-    });
+    }
 
     (db.lessons || []).forEach(lesson => {
-        const lessonVocab = (db.words || []).filter(v => v.lessonId === lesson.id);
-        const lessonSentences = (db.sentences || []).filter(s => s.lessonId === lesson.id);
-        const itemIds = [...lessonVocab.map(v => v.id), ...lessonSentences.map(s => s.id)];
+        const itemIds = [...(lesson.wordIds || []), ...(lesson.sentenceIds || [])];
 
         lessons.push({
             id: lesson.id,
@@ -78,13 +78,16 @@ function buildFromCanonical(db) {
             title: lesson.title,
             target_xp: lesson.xpReward || 10,
             exercise_profile_id: lesson.exerciseProfileId || null,
+            topic: lesson.topic,
         });
 
-        blueprints.push({
-            lesson_id: lesson.id,
-            focus: lesson.focus || [],
-            introduced_items: itemIds,
-        });
+        if (includeContent) {
+            blueprints.push({
+                lesson_id: lesson.id,
+                focus: lesson.focus || [],
+                introduced_items: itemIds,
+            });
+        }
 
         if (lesson.nodeId) {
             pathNodes.push({
@@ -95,6 +98,7 @@ function buildFromCanonical(db) {
                 node_type: "lesson",
                 module_type: "orange",
                 lesson_id: lesson.id,
+                topic: lesson.topic,
                 difficulty: lesson.difficulty || 1,
                 cefr_level: lesson.cefrLevel || "A1.1",
                 vocab_introduces: itemIds,
@@ -125,12 +129,6 @@ function buildFromCanonical(db) {
 }
 
 
-
-// Build the runtime store from the canonical content bundle
-const _built = buildFromCanonical(canonicalDB);
-
-
-const _mergedBuilt = _built;
 
 // Units definition
 const LEGACY_UNITS = [
@@ -176,7 +174,10 @@ const LEGACY_UNITS = [
     { id: "phase_39_hospitality", course_id: "course_vi_en_v1", unit_index: 39, title: "Unit 39 — Hospitality & Service Excellence" }
 ];
 
-export const INIT_DATA = {
+function createInitialData({ full = false } = {}) {
+    const built = buildFromCanonical(canonicalDB, { includeContent: full });
+
+    return {
     course: {
         id: "course_vi_en_v1",
         code: "vi_en",
@@ -223,10 +224,10 @@ export const INIT_DATA = {
         { id: "skill_invite_1", course_id: "course_vi_en_v1", key: "invite_1", title: "Invitations", skill_type: "grammar" },
         { id: "skill_party_1", course_id: "course_vi_en_v1", key: "party_1", title: "At the Party", skill_type: "vocab" }
     ],
-    lessons: [..._mergedBuilt.lessons],
+    lessons: [...built.lessons],
     path_nodes: [
         // ═══ Lesson + quiz nodes from unified_db + legacy ═══
-        ..._mergedBuilt.pathNodes,
+        ...built.pathNodes,
         // ═══ Unit 0 — Foundations: letters & sounds FIRST, then tones ═══
         // You can't add a tone to a syllable you can't pronounce yet, so teach the
         // alphabet, vowels, consonants and letter combinations before the tone
@@ -318,14 +319,29 @@ export const INIT_DATA = {
         { id: "p38_T", course_id: "course_vi_en_v1", unit_id: "phase_38_cuisine", node_index: 7, node_type: "test", module_type: "test", label: "Unit 38 Test", test_scope: "unit", difficulty: 10, cefr_level: "C2", vocab_introduces: [], vocab_requires: [] },
         { id: "p39_T", course_id: "course_vi_en_v1", unit_id: "phase_39_hospitality", node_index: 7, node_type: "test", module_type: "test", label: "Final Test", test_scope: "unit", difficulty: 10, cefr_level: "C2", vocab_introduces: [], vocab_requires: [] }
     ],
-    items: [..._mergedBuilt.items],
-    translations: [..._mergedBuilt.translations],
+    items: full ? [...built.items] : [],
+    translations: full ? [...built.translations] : [],
     exercises: [
         // Exercises are now auto-generated at runtime by exerciseGenerator.js
     ],
-    lesson_blueprints: [..._mergedBuilt.blueprints],
+    lesson_blueprints: full ? [...built.blueprints] : [],
 
-    scene_locations: SCENE_LOCATIONS,
-    scenes: SCENES
+    scene_locations: full ? SCENE_LOCATIONS : [],
+    scenes: full ? SCENES : []
 
+    };
+}
+
+export const getInitialData = (options) => createInitialData(options);
+
+export const hydrateInitialData = (db) => {
+    const full = createInitialData({ full: true });
+    return {
+        ...db,
+        items: full.items,
+        translations: full.translations,
+        lesson_blueprints: full.lesson_blueprints,
+        scene_locations: full.scene_locations,
+        scenes: full.scenes,
+    };
 };

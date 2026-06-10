@@ -1,23 +1,20 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MessageCircle, Zap, Trophy, Pen, Check, Lock, BookOpen, Music, Clapperboard, ChevronDown, Plane, Briefcase, Heart, Flame, Sparkles, Bell } from 'lucide-react';
-import { getUnits, getNodesForUnitWithProgress } from '../../lib/db';
-import { getGrammarForUnit } from '../../lib/grammarGuide';
+import { getUnits, getNodesForUnitWithProgress } from '../../lib/roadmapDb';
 import GrammarGuidebook from '../GrammarGuidebook';
 import RecommendedNext from '../RecommendedNext';
-import { getRecommendations } from '../../lib/recommendations';
 import { useProgress } from '../../context/ProgressContext';
 import { useUser } from '../../context/UserContext';
 import { useNotifications } from '../../context/NotificationContext';
 import { loadSettings } from '../../lib/settings';
 import SoundButton from '../SoundButton';
-import { DEFAULT_LEARNER_MODE, ENABLE_LEARNING_PATH_CHOOSER, getProgressMode, getTopicsForMode, getModeConfig, LEARNER_MODES } from '../../data/learnerModes';
+import { DEFAULT_LEARNER_MODE, ALL_LEARNER_MODE, ENABLE_LEARNING_PATH_CHOOSER, getProgressMode, getTopicsForMode, getModeConfig, LEARNER_MODES } from '../../data/learnerModes';
 import { useT, normalizeLang } from '../../lib/i18n';
-import { getLine } from '../../lib/mascot';
-import BeKhe from '../BeKhe/BeKhe';
 import MobileAccountBar from '../MobileAccountBar';
 
 const MODE_ICONS = { BookOpen, Plane, Briefcase, Heart };
+const BeKhe = React.lazy(() => import('../BeKhe/BeKhe'));
 
 
 const NODE_STYLES = {
@@ -87,23 +84,33 @@ const RoadmapTab = () => {
     const [redoNode, setRedoNode] = useState(null);
     const [showModePicker, setShowModePicker] = useState(false);
     const [guidebookUnit, setGuidebookUnit] = useState(null);
+    const [grammarByUnit, setGrammarByUnit] = useState({});
+    const [recommendedNodeIds, setRecommendedNodeIds] = useState(() => new Set());
+    const [emptyLine, setEmptyLine] = useState(null);
 
-    // Grammar points per unit (derived from sentence tags) — drives the guidebook button.
-    const grammarByUnit = React.useMemo(() => {
-        const map = {};
-        units.forEach(unit => { map[unit.id] = getGrammarForUnit(unit.id); });
-        return map;
+    React.useEffect(() => {
+        let cancelled = false;
+        import('../../lib/grammarGuide').then(({ getGrammarForUnit }) => {
+            if (cancelled) return;
+            const map = {};
+            units.forEach(unit => { map[unit.id] = getGrammarForUnit(unit.id); });
+            setGrammarByUnit(map);
+        }).catch(() => {
+            if (!cancelled) setGrammarByUnit({});
+        });
+        return () => { cancelled = true; };
     }, [units]);
 
-    // Sequencer's current top picks (by roadmap node id) — badged on the path so
-    // the per-purpose recommendation is visible INSIDE the linear map.
-    const recommendedNodeIds = React.useMemo(() => {
-        try {
+    React.useEffect(() => {
+        let cancelled = false;
+        import('../../lib/recommendations').then(({ getRecommendations }) => {
+            if (cancelled) return;
             const { recs } = getRecommendations(modeCompletedNodes, currentMode, { limit: 3 });
-            return new Set(recs.map(r => r.lesson?.nodeId).filter(Boolean));
-        } catch {
-            return new Set();
-        }
+            setRecommendedNodeIds(new Set(recs.map(r => r.lesson?.nodeId).filter(Boolean)));
+        }).catch(() => {
+            if (!cancelled) setRecommendedNodeIds(new Set());
+        });
+        return () => { cancelled = true; };
     }, [modeCompletedNodes, currentMode]);
 
     // Topic-based filtering from learner mode
@@ -178,7 +185,22 @@ const RoadmapTab = () => {
     );
 
     const mascotLang = normalizeLang(userProfile?.nativeLang);
-    const emptyLine = hasAnyVisibleNodes ? null : getLine('empty', { slot: 'roadmap', lang: mascotLang });
+
+    React.useEffect(() => {
+        if (hasAnyVisibleNodes) {
+            setEmptyLine(null);
+            return undefined;
+        }
+
+        let cancelled = false;
+        import('../../lib/mascot').then(({ getLine }) => {
+            if (!cancelled) setEmptyLine(getLine('empty', { slot: 'roadmap', lang: mascotLang }));
+        }).catch(() => {
+            if (!cancelled) setEmptyLine(null);
+        });
+
+        return () => { cancelled = true; };
+    }, [hasAnyVisibleNodes, mascotLang]);
 
     // Bé Khế streak moment on entering Study — at most one, once per day.
     // Pick the single canonical kind for the current streak state, THEN gate it
@@ -190,13 +212,15 @@ const RoadmapTab = () => {
         else if (s.awayDays != null && s.awayDays >= 3) { kind = 'return'; cat = 'return'; }
         else if (s.atRisk) { kind = 'save'; cat = 'streak_save'; }
         if (kind && consumeStreakMoment(kind)) {
-            const r = getLine(cat, { lang: mascotLang });
-            // Intentional one-shot greeting on mount, gated to once/day.
-            if (r) setStreakMoment(r);
+            import('../../lib/mascot').then(({ getLine }) => {
+                const r = getLine(cat, { lang: mascotLang });
+                // Intentional one-shot greeting on mount, gated to once/day.
+                if (r) setStreakMoment(r);
+            }).catch(() => {});
         }
     }, [getStreakStatus, consumeStreakMoment, mascotLang]);
 
-    const handleContinueClick = () => {
+    const handleContinueClick = async () => {
         for (const unit of units) {
             const nodes = nodesMap[unit.id] || [];
             const activeNode = nodes.find(n => isVisibleRoadmapNode(n) && n.status === 'active');
@@ -208,11 +232,14 @@ const RoadmapTab = () => {
                 // When the user has FILTERED the roadmap to a topic, respect the
                 // filter: stay linear within it (no surprise off-topic jumps).
                 if (activeNode.type === 'lesson' && !activeTopic) {
-                    const top = getRecommendations(modeCompletedNodes, currentMode, { limit: 1 }).recs[0];
-                    if (top?.lesson?.id) {
-                        navigate(`/lesson/${top.lesson.id}`);
-                        return;
-                    }
+                    try {
+                        const { getRecommendations } = await import('../../lib/recommendations');
+                        const top = getRecommendations(modeCompletedNodes, currentMode, { limit: 1 }).recs[0];
+                        if (top?.lesson?.id) {
+                            navigate(`/lesson/${top.lesson.id}`);
+                            return;
+                        }
+                    } catch { /* fall back to the visible linear node */ }
                 }
                 navigateNode(activeNode);
                 return;
@@ -365,7 +392,9 @@ const RoadmapTab = () => {
                         padding: '10px 12px', borderRadius: 12,
                         backgroundColor: 'rgba(255, 209, 102, 0.12)', border: '1px solid rgba(255, 209, 102, 0.35)',
                     }}>
-                        <BeKhe expression={streakMoment.expression} size={44} />
+                        <React.Suspense fallback={null}>
+                            <BeKhe expression={streakMoment.expression} size={44} />
+                        </React.Suspense>
                         <span style={{ fontSize: 14, fontWeight: 600, color: 'var(--text-main)' }}>{streakMoment.text}</span>
                     </div>
                 </div>
@@ -624,7 +653,9 @@ const RoadmapTab = () => {
                     display: 'flex', flexDirection: 'column', alignItems: 'center',
                     gap: 12, padding: '48px 24px', textAlign: 'center',
                 }}>
-                    <BeKhe expression={emptyLine.expression} size={72} />
+                    <React.Suspense fallback={null}>
+                        <BeKhe expression={emptyLine.expression} size={72} />
+                    </React.Suspense>
                     <p style={{ margin: 0, fontSize: 15, color: 'var(--text-muted)', maxWidth: 320, lineHeight: 1.5 }}>
                         {emptyLine.text}
                     </p>

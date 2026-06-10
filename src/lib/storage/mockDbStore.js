@@ -1,36 +1,51 @@
-import { INIT_DATA } from '../content/initialData';
+import { getInitialData, hydrateInitialData } from '../content/initialData';
 
 const DB_KEY = 'vnme_mock_db_v24'; // v24: unified_db.json as primary source
-const CURRICULUM_VERSION = 29; // v29: 4-module rollout Units 4-6 + Foundations pron color = blue
+const CURRICULUM_VERSION = 30; // v30: slim roadmap seed, full content hydrates on demand
 
 let dbCache = null;
+let dbIsFull = false;
+
+const hasFullContent = (db) => (
+    (db.items || []).length > 0 &&
+    (db.translations || []).length > 0 &&
+    (db.lesson_blueprints || []).length > 0
+);
 
 const initDB = () => {
     const raw = localStorage.getItem(DB_KEY);
+    const lightSeed = getInitialData({ full: false });
+
     if (!raw) {
-        localStorage.setItem(DB_KEY, JSON.stringify(INIT_DATA));
+        localStorage.setItem(DB_KEY, JSON.stringify(lightSeed));
         localStorage.setItem(DB_KEY + '_cv', String(CURRICULUM_VERSION));
-        return JSON.parse(localStorage.getItem(DB_KEY));
+        dbIsFull = false;
+        return lightSeed;
     }
 
     const storedVersion = parseInt(localStorage.getItem(DB_KEY + '_cv') || '1', 10);
     if (storedVersion < CURRICULUM_VERSION) {
         // Overwrite curriculum-derived collections, keep user-edited exercises.
+        // v30 intentionally stores a slim roadmap seed; full exercise/content
+        // collections are hydrated only when a route actually needs them.
         const existing = JSON.parse(raw);
-        existing.units = INIT_DATA.units;
-        existing.path_nodes = INIT_DATA.path_nodes;
-        existing.lessons = INIT_DATA.lessons;
-        existing.items = INIT_DATA.items;
-        existing.translations = INIT_DATA.translations;
-        existing.lesson_blueprints = INIT_DATA.lesson_blueprints;
-        existing.scenes = INIT_DATA.scenes;
-        existing.scene_locations = INIT_DATA.scene_locations;
+        existing.units = lightSeed.units;
+        existing.path_nodes = lightSeed.path_nodes;
+        existing.lessons = lightSeed.lessons;
+        existing.items = [];
+        existing.translations = [];
+        existing.lesson_blueprints = [];
+        existing.scenes = [];
+        existing.scene_locations = [];
         localStorage.setItem(DB_KEY, JSON.stringify(existing));
         localStorage.setItem(DB_KEY + '_cv', String(CURRICULUM_VERSION));
+        dbIsFull = false;
         return existing;
     }
 
-    return JSON.parse(raw);
+    const parsed = JSON.parse(raw);
+    dbIsFull = hasFullContent(parsed);
+    return parsed;
 };
 
 export const getDB = () => {
@@ -40,8 +55,18 @@ export const getDB = () => {
     return dbCache;
 };
 
+export const getFullDB = () => {
+    const db = getDB();
+    if (!dbIsFull || !hasFullContent(db)) {
+        dbCache = hydrateInitialData(db);
+        dbIsFull = true;
+    }
+    return dbCache;
+};
+
 export const saveDB = (data) => {
     dbCache = data;
+    dbIsFull = hasFullContent(data);
     localStorage.setItem(DB_KEY, JSON.stringify(data));
 };
 
@@ -57,7 +82,7 @@ export const exportDB = () => ({
     version: EXPORT_VERSION,
     exportedAt: new Date().toISOString(),
     curriculumVersion: CURRICULUM_VERSION,
-    db: getDB(),
+    db: getFullDB(),
 });
 
 // Replace the current mock DB with an imported payload. Throws on malformed
@@ -76,4 +101,5 @@ export const importDB = (payload) => {
     const cv = Number.isFinite(payload.curriculumVersion) ? payload.curriculumVersion : CURRICULUM_VERSION;
     localStorage.setItem(DB_KEY + '_cv', String(cv));
     dbCache = payload.db;
+    dbIsFull = hasFullContent(payload.db);
 };

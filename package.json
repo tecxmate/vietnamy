@@ -16,7 +16,7 @@
     "curriculum:export": "npm run validate:curriculum && node scripts/export-sqlite.js",
     "validate:curriculum": "node scripts/validate-curriculum.js",
     "validate:content": "node scripts/validate-content.mjs",
-    "content:build": "node scripts/build-canonical.mjs",
+    "content:build": "node scripts/build-canonical.mjs && node scripts/build-roadmap-seed.mjs",
     "ops:export:postgres": "node scripts/export-app-ops-postgres.mjs",
     "tts:migrate:r2": "node scripts/migrate-tts-supabase-to-r2.mjs",
     "preview": "vite preview"

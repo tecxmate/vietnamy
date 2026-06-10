@@ -1,8 +1,7 @@
-import { useMemo } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Sparkles, ChevronRight, RotateCcw, FastForward } from 'lucide-react';
-import { getRecommendations } from '../lib/recommendations';
-import { getUnits, getNodesForUnitWithProgress } from '../lib/db';
+import { getUnits, getNodesForUnitWithProgress } from '../lib/roadmapDb';
 
 // Sequencer-powered "Recommended for you" row (Layer 3 activation).
 // Additive: sits above the visible roadmap; the linear path is unchanged. Picks
@@ -14,25 +13,41 @@ const TOPIC_COLOR = { explore_vietnam: '#1CB0F6', professional: '#A78BFA', herit
 
 export default function RecommendedNext({ completedNodeIds, purpose }) {
     const navigate = useNavigate();
+    const [recommendations, setRecommendations] = useState({ recs: [], dueCount: 0 });
 
-    const { recs, dueCount } = useMemo(() => {
-        const result = getRecommendations(completedNodeIds, purpose, { limit: 3 });
-        // Roadmap-reachable node ids (active or completed) under linear unlock —
-        // anything else the sequencer picked is a skip-ahead.
-        const reachable = new Set();
-        try {
-            for (const unit of getUnits()) {
-                for (const n of getNodesForUnitWithProgress(unit.id, completedNodeIds)) {
-                    if (n.status === 'active' || n.status === 'completed') reachable.add(n.id);
+    useEffect(() => {
+        let cancelled = false;
+
+        import('../lib/recommendations').then(({ getRecommendations }) => {
+            if (cancelled) return;
+            const result = getRecommendations(completedNodeIds, purpose, { limit: 3 });
+            // Roadmap-reachable node ids (active or completed) under linear unlock —
+            // anything else the sequencer picked is a skip-ahead.
+            const reachable = new Set();
+            try {
+                for (const unit of getUnits()) {
+                    for (const n of getNodesForUnitWithProgress(unit.id, completedNodeIds)) {
+                        if (n.status === 'active' || n.status === 'completed') reachable.add(n.id);
+                    }
                 }
-            }
-        } catch { /* roadmap data unavailable — skip labelling */ }
-        result.recs = result.recs.map(r => ({
-            ...r,
-            ahead: reachable.size > 0 && r.lesson?.nodeId ? !reachable.has(r.lesson.nodeId) : false,
-        }));
-        return result;
+            } catch { /* roadmap data unavailable — skip labelling */ }
+            setRecommendations({
+                ...result,
+                recs: result.recs.map(r => ({
+                    ...r,
+                    ahead: reachable.size > 0 && r.lesson?.nodeId ? !reachable.has(r.lesson.nodeId) : false,
+                })),
+            });
+        }).catch(() => {
+            if (!cancelled) setRecommendations({ recs: [], dueCount: 0 });
+        });
+
+        return () => {
+            cancelled = true;
+        };
     }, [completedNodeIds, purpose]);
+
+    const { recs, dueCount } = recommendations;
 
     if (!recs.length && !dueCount) return null;
     const accent = TOPIC_COLOR[purpose] || 'var(--primary-color)';

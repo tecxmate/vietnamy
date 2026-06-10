@@ -1,16 +1,18 @@
 // A mock database using localStorage to simulate a backend for the 100-levels proposal.
 
 import { createLessonExerciseService } from './content/lessonExerciseService';
-import { getDB, saveDB } from './storage/mockDbStore';
+import { getDB as getRoadmapDB, getFullDB, saveDB } from './storage/mockDbStore';
 
-export { getDB };
+export { getFullDB as getDB };
+
+const getDB = getRoadmapDB;
 
 // ── Vocab prerequisite validator ──
 // Walks all path_nodes in unit → node_index order and checks that every node's
 // vocab_requires items have been covered by preceding nodes' vocab_introduces.
 // Returns an array of error objects. Empty array = all good.
 export const validateVocabPrerequisites = () => {
-    const db = getDB();
+    const db = getFullDB();
     const units = [...db.units].sort((a, b) => a.unit_index - b.unit_index);
     const cumulativeVocab = new Set();
     const errors = [];
@@ -204,7 +206,7 @@ export const getNodeRoute = (node) => {
     return '/';
 };
 
-const lessonExerciseService = createLessonExerciseService({ getDB });
+const lessonExerciseService = createLessonExerciseService({ getDB: getFullDB });
 
 export const getExercisesGenerated = (...args) => lessonExerciseService.getExercisesGenerated(...args);
 export const clearExerciseCache = () => lessonExerciseService.clearExerciseCache();
@@ -398,7 +400,7 @@ export const moveNodeWithQuiz = (unitId, nodeId, direction) => {
 
 // --- Vocab Items API ---
 export const getItems = () => {
-    const db = getDB();
+    const db = getFullDB();
     return (db.items || []).map(item => {
         const translation = (db.translations || []).find(t => t.item_id === item.id && t.lang === 'en');
         return { ...item, en: translation ? translation.text : '' };
@@ -407,7 +409,7 @@ export const getItems = () => {
 
 // --- Lesson Content API ---
 export const getLessonContent = (contentRefId) => {
-    const db = getDB();
+    const db = getFullDB();
 
     // First try the old generic format in case it was created via CMS
     if (db.lessonContent) {
@@ -445,7 +447,7 @@ export const getLessonContent = (contentRefId) => {
 };
 
 export const saveLessonContent = (contentData) => {
-    const db = getDB();
+    const db = getFullDB();
 
     // 1. Update Lesson Metadata
     const lessonIndex = db.lessons.findIndex(l => l.id === contentData.id);
