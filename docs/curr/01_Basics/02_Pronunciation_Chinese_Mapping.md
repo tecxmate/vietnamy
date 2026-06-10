@@ -1,0 +1,61 @@
+# Pronunciation — Chinese (Bopomofo / Pinyin) Mapping · DRAFT
+
+> **STATUS: DRAFT — NOT shipped, NOT wired into the app.** First-pass Vietnamese→Mandarin
+> sound mapping by an AI agent. It is **not authoritative**. Every row must be red-penned by
+> a native **Taiwan (Bopomofo)** + **Mainland (Pinyin)** speaker before it ships — wrong anchors
+> teach wrong pronunciation. Companion to `01_Alphabet.md` (the English-anchored source).
+> Implements wiki decision `2026-06-11-chinese-pronunciation-curriculum`.
+>
+> Legend: ✅ clean · ⚠️ approximation · ❌ no Mandarin equivalent (teach "closest + how to adjust").
+
+## Why
+The app anchors each Vietnamese sound to an **English** word ("ah as in *father*") — meaningless to a
+Chinese speaker. For Chinese learners each sound is re-anchored to a system they already own:
+**Bopomofo 注音** for Traditional/Taiwan (zh-t), **Pinyin** for Simplified/Mainland (zh-s).
+
+## Single vowels
+| VN | IPA | en (current) | zh-s · Pinyin | zh-t · Bopomofo | |
+|----|-----|--------------|---------------|------------------|---|
+| a | aː | ah / father | a（啊），拉长 | ㄚ（啊），拉長 | ✅ |
+| ă | a | short ah / cut | a，但短促 | ㄚ，但短促 | ✅ |
+| â | ə | u / but | 像轻声 e（"的"里那个），短而含糊 | 輕短的 ㄜ，含糊帶過 | ❌ schwa |
+| e | ɛ | e / get | ê（"欸/耶"的 e） | ㄝ（欸） | ✅ |
+| ê | e | ay / say | 介于 ê 和 ei 之间，不滑动 | ㄝ 但更緊更高（≈ㄟ 去尾音） | ⚠️ |
+| i / y | i | ee / see | yi（衣、一） | ㄧ（衣） | ✅ |
+| o | ɔ | o / hot | o（哦），嘴张大 | ㄛ（哦），嘴張大 | ✅ |
+| ô | o | o / go | o 收圆（"播"的 o），别滑成 ou | ㄛ 收圓（≈ㄡ 去尾音） | ⚠️ |
+| ơ | əː | u / fur (long) | â 的长音——拉长的含糊 e | 拉長的 ㄜ | ❌ long schwa |
+| u | u | oo / boot | wu（乌、五） | ㄨ（烏） | ✅ |
+| ư | ɯ | flat-lip ee | 像 si/zi/ri（思、资、日）里的"嗡"母音，嘴唇放平不噘 | ㄙ/ㄗ/ㄖ 後面那個母音，嘴唇放平 | ❌ (思/資 = best anchor) |
+
+## Tones (6 VN vs 4 Mandarin)
+| VN | mark | IPA (北) | Mandarin anchor | |
+|----|------|----------|------------------|---|
+| ngang | a | ˧ mid level | ≈ 一声 ˉ，但音高居中（别太高） | ✅ |
+| sắc | á | ˧˥ high rise | ≈ 二声 ˊ（上扬） | ✅ |
+| hỏi | ả | ˧˩˧ dip | ≈ 三声 ˇ（先降后升） | ✅ |
+| huyền | à | ˨˩ low fall | ≈ 四声 ˋ 但整体压低、缓降、不重 | ⚠️ |
+| ngã | ã | ˧ˀ˥ rise+break | 上扬，但中间喉咙"卡"一下（喉塞） | ❌ glottal |
+| nặng | ạ | ˨ˀ low+stop | 压低、短促，结尾喉咙紧收／卡住 | ❌ glottal |
+
+## Diphthongs / triphthongs (mostly compositional)
+**Clean — anchor directly:** ai≈ㄞ/ài(愛) · ay=short ㄞ · ao≈ㄠ/ào(奧) · au=short ㄠ · âu≈ㄡ/ōu(歐) ·
+ây≈ㄟ/ei · oi=ㄛ→ㄧ · ôi=ㄛ(收圓)→ㄧ · ui=ㄨ→ㄧ(≈威) · uy≈ㄨㄟ(威) · iu=ㄧ→ㄨ · eo=ㄝ→ㄠ ·
+êu=ㄝ→ㄨ · iêu/yêu=ㄧㄝㄨ · oai=ㄛㄞ · oay=short oai · uôi=ㄨㄛㄧ(≈buoy) · uây≈ㄨㄟ(sway).
+**❌ inherit ư/ơ's gap (build from the singles):** ơi(ㄜ→ㄧ) · ưu(思的母音→ㄨ) · ươi · ươu · centering ưa/ươ.
+**Centering → schwa:** ia/iê = ㄧ→含糊ㄜ · ua/uô = ㄨ→含糊ㄜ · ưa/ươ = ư→含糊ㄜ ❌.
+
+## The five real gaps (no Mandarin equivalent)
+**ư, â, ơ** (and anything built on them) and the two glottal tones **ngã / nặng** — these need explicit
+"closest sound + how to adjust" teaching, not a 1:1 mapping. Everything else anchors cleanly.
+
+## How this feeds the app (once validated)
+Per-language `sound` field, read by current UI language (`pickSound(field, lang)`, string-or-object tolerant → incremental migration):
+- `src/data/alphabet.js` `sound` → `{en,'zh-s','zh-t'}` → render `AlphabetLesson.jsx:76`
+- `src/data/vowels.js` `sound`/`approx` → render `VowelsPractice.jsx:328/357/406`
+- `content/tones.json` `description` → render `ToneLesson.jsx:216`
+- editors gain en / Bopomofo / Pinyin columns (`AlphabetEditor`, `VowelsEditor`, `ToneWordEditor`)
+- consolidate the tone-description double-source (`tones.json` `.description` vs i18n `sounds_tone_*_desc`).
+
+## Next
+1. Red-pen this table (native TW + CN).  2. Add the per-language `sound` field + readers/editors.  3. Author per unit, validate, ship.
