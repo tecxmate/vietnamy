@@ -1,21 +1,38 @@
 import { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Sparkles, ChevronRight, RotateCcw } from 'lucide-react';
+import { Sparkles, ChevronRight, RotateCcw, FastForward } from 'lucide-react';
 import { getRecommendations } from '../lib/recommendations';
+import { getUnits, getNodesForUnitWithProgress } from '../lib/db';
 
 // Sequencer-powered "Recommended for you" row (Layer 3 activation).
 // Additive: sits above the visible roadmap; the linear path is unchanged. Picks
 // the next lessons by purpose-fit + difficulty-fit + variety, constrained by the
-// grammar prerequisite graph. Tapping a card jumps to that lesson.
+// grammar prerequisite graph. Tapping a card jumps to that lesson. Picks beyond
+// the roadmap's linear unlock are honest about it: labelled "Skip ahead"
+// (grammar-prereq-safe by construction, but ahead of the visible path order).
 const TOPIC_COLOR = { explore_vietnam: '#1CB0F6', professional: '#A78BFA', heritage: '#EF476F' };
 
 export default function RecommendedNext({ completedNodeIds, purpose }) {
     const navigate = useNavigate();
 
-    const { recs, dueCount } = useMemo(
-        () => getRecommendations(completedNodeIds, purpose, { limit: 3 }),
-        [completedNodeIds, purpose],
-    );
+    const { recs, dueCount } = useMemo(() => {
+        const result = getRecommendations(completedNodeIds, purpose, { limit: 3 });
+        // Roadmap-reachable node ids (active or completed) under linear unlock —
+        // anything else the sequencer picked is a skip-ahead.
+        const reachable = new Set();
+        try {
+            for (const unit of getUnits()) {
+                for (const n of getNodesForUnitWithProgress(unit.id, completedNodeIds)) {
+                    if (n.status === 'active' || n.status === 'completed') reachable.add(n.id);
+                }
+            }
+        } catch { /* roadmap data unavailable — skip labelling */ }
+        result.recs = result.recs.map(r => ({
+            ...r,
+            ahead: reachable.size > 0 && r.lesson?.nodeId ? !reachable.has(r.lesson.nodeId) : false,
+        }));
+        return result;
+    }, [completedNodeIds, purpose]);
 
     if (!recs.length && !dueCount) return null;
     const accent = TOPIC_COLOR[purpose] || 'var(--primary-color)';
@@ -51,7 +68,7 @@ export default function RecommendedNext({ completedNodeIds, purpose }) {
                         </span>
                     </button>
                 )}
-                {recs.map(({ lesson, spine }) => (
+                {recs.map(({ lesson, spine, ahead }) => (
                     <button
                         key={lesson.id}
                         onClick={() => navigate(`/lesson/${lesson.id}`)}
@@ -68,8 +85,8 @@ export default function RecommendedNext({ completedNodeIds, purpose }) {
                         <span style={{ fontSize: 15, fontWeight: 700, color: 'var(--text-main)', lineHeight: 1.25 }}>
                             {lesson.title}
                         </span>
-                        <span style={{ display: 'flex', alignItems: 'center', gap: 2, fontSize: 12, fontWeight: 700, color: accent, marginTop: 2 }}>
-                            Start <ChevronRight size={14} />
+                        <span style={{ display: 'flex', alignItems: 'center', gap: 3, fontSize: 12, fontWeight: 700, color: accent, marginTop: 2 }}>
+                            {ahead ? <>Skip ahead <FastForward size={13} /></> : <>Start <ChevronRight size={14} /></>}
                         </span>
                     </button>
                 ))}

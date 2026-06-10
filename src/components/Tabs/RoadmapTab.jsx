@@ -190,7 +190,6 @@ const RoadmapTab = () => {
         if (kind && consumeStreakMoment(kind)) {
             const r = getLine(cat, { lang: mascotLang });
             // Intentional one-shot greeting on mount, gated to once/day.
-            // eslint-disable-next-line react-hooks/set-state-in-effect
             if (r) setStreakMoment(r);
         }
     }, [getStreakStatus, consumeStreakMoment, mascotLang]);
@@ -204,7 +203,9 @@ const RoadmapTab = () => {
                 // follow the sequencer's top pick instead (purpose/performance-aware,
                 // prereq-safe). Non-lesson nodes (foundations practice, grammar units,
                 // tests) keep their hard order — they're the structural spine.
-                if (activeNode.type === 'lesson') {
+                // When the user has FILTERED the roadmap to a topic, respect the
+                // filter: stay linear within it (no surprise off-topic jumps).
+                if (activeNode.type === 'lesson' && !activeTopic) {
                     const top = getRecommendations(modeCompletedNodes, currentMode, { limit: 1 }).recs[0];
                     if (top?.lesson?.id) {
                         navigate(`/lesson/${top.lesson.id}`);

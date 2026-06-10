@@ -1,20 +1,22 @@
-// Adaptive curriculum sequencer — Layer 3 (purpose-weighted selection).
+// Adaptive curriculum sequencer — Layers 3-4 (purpose + performance selection).
 //
-// PURE + NOT WIRED IN YET. Nothing calls this in the running app; navigation still
-// uses the linear getNextNode. This is the reviewable engine: it reads the generated
-// `adaptive` block on each lesson (Layers 1-2) + a learnerState and returns a ranked,
-// prerequisite-satisfied "what's next" list with an explainable score breakdown.
+// PURE engine. Consumed via src/lib/recommendations.js (which derives learnerState
+// from live progress/SRS/mastery and applies admin weight overrides) by the Study
+// tab's "Recommended for you" row, the roadmap's Recommended badges, and the
+// Continue button (for lesson nodes, when no topic filter is active). It reads the
+// generated `adaptive` block on each lesson (Layers 1-2) + a learnerState and
+// returns a ranked, prerequisite-satisfied "what's next" with an explainable score.
 //
 // Design (see docs/ADAPTIVE_CURRICULUM_SEQUENCER.md §6):
 //   - candidate set = pool lessons not yet done whose grammar prerequisites are met
-//   - score = weighted sum of purpose-fit + difficulty-fit + variety (+ review/
-//     remediation once skills/SRS data is wired)
+//   - score = purpose-fit + difficulty-fit + variety + review (SRS-due) +
+//     remediation (weak items), all item-based where it matters
 //   - spine discipline = the shared on-ramp stays ordered and comes before the pool,
 //     so the path keeps a visible structure (not a slot machine)
-//   - deterministic + explainable; weights are tunable (future: admin config)
+//   - deterministic + explainable; weights tunable (admin: /admin/adaptive)
 
-/** Tunable scoring weights. review/remediation stay 0 until requires_vocab + skills
- *  + SRS state are wired (Layer 4). Keep this admin-editable later. */
+/** Tunable scoring weights. review/remediation are item-based (Layer 4): SRS-due
+ *  and weak items matched against each lesson's wordIds ∪ adaptive.usesVocab. */
 export const SEQUENCER_WEIGHTS = {
     purpose: 1.0,
     difficulty: 0.6,
