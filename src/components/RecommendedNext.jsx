@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Sparkles, ChevronRight } from 'lucide-react';
+import { Sparkles, ChevronRight, RotateCcw } from 'lucide-react';
 import curriculum from '../../content/curriculum.json';
 import { getNextBestLessons } from '../lib/sequencer';
 import { getDueItemIds } from '../lib/srs';
@@ -16,7 +16,7 @@ const TOPIC_COLOR = { explore_vietnam: '#1CB0F6', professional: '#A78BFA', herit
 export default function RecommendedNext({ completedNodeIds, purpose }) {
     const navigate = useNavigate();
 
-    const recs = useMemo(() => {
+    const { recs, dueCount } = useMemo(() => {
         const lessons = curriculum.lessons || [];
         const nodeToLesson = new Map(lessons.filter(l => l.nodeId).map(l => [l.nodeId, l]));
         const completed = [...(completedNodeIds || [])].map(id => nodeToLesson.get(id)).filter(Boolean);
@@ -47,13 +47,16 @@ export default function RecommendedNext({ completedNodeIds, purpose }) {
         }
         const weakSkills = Object.keys(dimTally);
 
-        return getNextBestLessons(
-            { completedLessonIds: completed.map(l => l.id), purpose: realPurpose, estimatedLevel, recentTopics, dueItemIds, weakSkills },
-            lessons, { limit: 3 },
-        );
+        return {
+            recs: getNextBestLessons(
+                { completedLessonIds: completed.map(l => l.id), purpose: realPurpose, estimatedLevel, recentTopics, dueItemIds, weakSkills },
+                lessons, { limit: 3 },
+            ),
+            dueCount: dueItemIds.size,
+        };
     }, [completedNodeIds, purpose]);
 
-    if (!recs.length) return null;
+    if (!recs.length && !dueCount) return null;
     const accent = TOPIC_COLOR[purpose] || 'var(--primary-color)';
 
     return (
@@ -65,6 +68,28 @@ export default function RecommendedNext({ completedNodeIds, purpose }) {
                 </span>
             </div>
             <div className="hide-scrollbar" style={{ display: 'flex', gap: 10, overflowX: 'auto' }}>
+                {dueCount > 0 && (
+                    <button
+                        key="__review__"
+                        onClick={() => navigate('/', { state: { vocabDeck: '__srs__' } })}
+                        style={{
+                            flex: '0 0 auto', width: 160, textAlign: 'left', cursor: 'pointer',
+                            background: 'var(--surface-color)', border: '2px solid #06D6A030',
+                            borderLeft: '4px solid #06D6A0', borderRadius: 14, padding: '12px 14px',
+                            fontFamily: 'inherit', display: 'flex', flexDirection: 'column', gap: 6,
+                        }}
+                    >
+                        <span style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: 0.4, color: '#06D6A0', display: 'flex', alignItems: 'center', gap: 4 }}>
+                            <RotateCcw size={11} /> Review
+                        </span>
+                        <span style={{ fontSize: 15, fontWeight: 700, color: 'var(--text-main)', lineHeight: 1.25 }}>
+                            {dueCount} word{dueCount === 1 ? '' : 's'} due
+                        </span>
+                        <span style={{ display: 'flex', alignItems: 'center', gap: 2, fontSize: 12, fontWeight: 700, color: '#06D6A0', marginTop: 2 }}>
+                            Practice <ChevronRight size={14} />
+                        </span>
+                    </button>
+                )}
                 {recs.map(({ lesson, spine }) => (
                     <button
                         key={lesson.id}

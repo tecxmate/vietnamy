@@ -252,6 +252,14 @@ function StudentApp({ initialTab = 'study' }) {
   const [pendingLibraryArticle, setPendingLibraryArticle] = useState(null);
   const [pendingVocabDeck, setPendingVocabDeck] = useState(null);
 
+  // Deep-link a vocab deck (e.g. the SRS review '__srs__') from nav state.
+  React.useEffect(() => {
+    if (location.state?.vocabDeck) {
+      setPendingVocabDeck(location.state.vocabDeck);
+      setActiveTab('library');
+    }
+  }, [location.state?.vocabDeck]);
+
   const handleNavigateToLibrary = (articleId) => {
     setPendingLibraryArticle(articleId);
     setActiveTab('library');
