@@ -177,3 +177,11 @@ attributed_to: [niko]   belongs_to: [bucket-storage]
 - Found `R2_PUBLIC_BASE_URL` set to the private S3 endpoint → R2 cache-hits 302 to a 400; masked because hot strings still resolve to Supabase. Blocks the pre-warm.
 - Decided: bind `tts.tecxmate.com` R2 custom domain (zone already in the same Cloudflare account as the bucket) + bucket CORS; set env in Zeabur. Rejected r2.dev (rate-limited) and reverting to Supabase. Implementation pending on Niko.
 - Pages: [decision](decisions/2026-06-11-r2-public-url-custom-domain.md), [bucket-storage](topics/tech/bucket-storage.md).
+
+## [2026-06-11] ingest | Goal-shaped roadmap + topic re-tagging
+attributed_to: [niko, claude-opus]   belongs_to: [curriculum-paths, adaptive-sequencer]
+- The learning-goal selector now **gates the visible path** (was shallow: chips/progress/sequencer only). `isVisibleRoadmapNode` filters topic-bearing nodes by the goal's topics; per-goal unlock re-derivation keeps the path continuous; chips remain the finer in-goal filter. (`bca924f`)
+- **57 catch-all "basics" lessons re-tagged** to goal topics by unit content → Explore 85 / Professional 73 / Heritage 78 lessons (shared core 48). Verified per goal: Job Interview P-only, Tết + Cuisine H-only, Doctor Visits E-only. (`cf6b90a`)
+- Pipeline note: the roadmap is now a **baked seed** (`roadmapSeedData.js` via `scripts/build-roadmap-seed.mjs`, Codex) — content changes need bundle regen + seed regen + `CURRICULUM_VERSION` bump (30→31 here).
+- Follow-ups parked in `docs/curr/goal-shaped-path-design.md`: in-lesson `getNextNode` still goal-blind; scenes could inherit topics.
+- Pages: [curriculum-paths](topics/tech/curriculum-paths.md), [adaptive-sequencer](topics/tech/adaptive-sequencer.md).
