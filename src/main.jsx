@@ -9,8 +9,15 @@ function syncAppViewport() {
   const width = viewport?.width || window.innerWidth
   const height = viewport?.height || window.innerHeight
 
-  document.documentElement.style.setProperty('--app-viewport-width', `${width}px`)
-  document.documentElement.style.setProperty('--app-viewport-height', `${height}px`)
+  // The root is rendered at --ui-scale via CSS `zoom`, so these px dimensions
+  // (consumed by full-bleed containers) must be expressed in the zoomed
+  // coordinate space to still fill the real screen.
+  const scale = parseFloat(
+    getComputedStyle(document.documentElement).getPropertyValue('--ui-scale'),
+  ) || 1
+
+  document.documentElement.style.setProperty('--app-viewport-width', `${width / scale}px`)
+  document.documentElement.style.setProperty('--app-viewport-height', `${height / scale}px`)
 }
 
 syncAppViewport()
