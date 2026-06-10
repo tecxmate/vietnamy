@@ -3,6 +3,7 @@ import { Globe, Clock, Target, Star, Play, Square, Volume2 } from 'lucide-react'
 import { useUser } from '../../context/UserContext';
 import { useAuth } from '../../context/AuthContext';
 import { buildTtsUrl } from '../../utils/speak';
+import { isVoiceEnabled } from '../../data/ttsVoices';
 import { useT } from '../../lib/i18n';
 import { getLine } from '../../lib/mascot';
 import BeKhe from '../BeKhe/BeKhe';
@@ -13,7 +14,9 @@ const VOICE_OPTIONS = [
     { id: 'azure-north', displayOrder: 3, displayName: 'Nam Minh', description: 'Male Northern Accent', dialect: 'north', isOfficialAccent: true },
 ];
 
-const VOICE_OPTIONS_DISPLAY = [...VOICE_OPTIONS].sort((a, b) => a.displayOrder - b.displayOrder);
+const VOICE_OPTIONS_DISPLAY = [...VOICE_OPTIONS]
+    .filter(voice => isVoiceEnabled(voice.id))
+    .sort((a, b) => a.displayOrder - b.displayOrder);
 
 const VOICE_SAMPLE = 'Xin chào! Tôi rất vui được làm quen với bạn.';
 

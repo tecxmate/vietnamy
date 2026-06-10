@@ -6,6 +6,7 @@ import {
     VolumeX,
 } from 'lucide-react';
 import { ENABLE_LEARNING_PATH_CHOOSER, LEARNER_MODES, DEFAULT_LEARNER_MODE } from '../data/learnerModes';
+import { getEnabledVoices, isVoiceEnabled, FALLBACK_VOICE, ALWAYS_ON_VOICE } from '../data/ttsVoices';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../context/UserContext';
 import { useAuth } from '../context/AuthContext';
@@ -17,12 +18,6 @@ import { getSoundEnabled, setSoundEnabled, playTap, playSelect, playTransitionUp
 import { clearSpeakQueue } from '../utils/speak';
 import { isAdminAuthenticated, loginAdmin } from '../lib/adminAuth';
 
-const TTS_VOICE_OPTIONS = [
-    { v: 'google', key: 'tts_voice_google_north' },
-    { v: 'azure-north', key: 'tts_voice_azure_north' },
-    { v: 'azure-south', key: 'tts_voice_azure_south' },
-];
-const TTS_VOICE_IDS = new Set(TTS_VOICE_OPTIONS.map(voice => voice.v));
 
 const TAB_META = {
     home: null,
@@ -75,13 +70,12 @@ const TopBar = ({ activeTab, subtitleOverride }) => {
 
     const dialectLabel = userProfile.dialect === 'north' ? t('dialect_northern') : userProfile.dialect === 'south' ? t('dialect_southern') : userProfile.dialect === 'both' ? t('dialect_both') : '';
     const goalLabel = userProfile.dailyMins ? `${userProfile.dailyMins}m/day` : '';
-    const resolvedTtsVoice = TTS_VOICE_IDS.has(settings.ttsVoice)
+    const enabledVoices = getEnabledVoices(settings);
+    const resolvedTtsVoice = isVoiceEnabled(settings.ttsVoice, settings)
         ? settings.ttsVoice
-        : userProfile.dialect === 'south'
-            ? 'azure-south'
-            : userProfile.dialect === 'north'
-                ? 'azure-north'
-                : 'azure-north';
+        : isVoiceEnabled(FALLBACK_VOICE, settings)
+            ? FALLBACK_VOICE
+            : ALWAYS_ON_VOICE;
 
     const openMenu = () => {
         playTransitionUp();
@@ -229,14 +223,14 @@ const TopBar = ({ activeTab, subtitleOverride }) => {
                                     </div>
 
                                     <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 8, marginBottom: 12 }}>
-                                        {TTS_VOICE_OPTIONS.map(voice => {
-                                            const selected = resolvedTtsVoice === voice.v;
+                                        {enabledVoices.map(voice => {
+                                            const selected = resolvedTtsVoice === voice.id;
                                             return (
                                                 <button
-                                                    key={voice.v}
+                                                    key={voice.id}
                                                     onClick={() => {
                                                         playSelect();
-                                                        updateTtsVoice(voice.v);
+                                                        updateTtsVoice(voice.id);
                                                     }}
                                                     style={{
                                                         display: 'flex',
@@ -253,7 +247,7 @@ const TopBar = ({ activeTab, subtitleOverride }) => {
                                                         textAlign: 'left',
                                                     }}
                                                 >
-                                                    <span style={{ fontSize: 13, fontWeight: 750 }}>{t(voice.key)}</span>
+                                                    <span style={{ fontSize: 13, fontWeight: 750 }}>{t(voice.labelKey)}</span>
                                                     {selected && <span style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--primary-color)', flexShrink: 0 }} />}
                                                 </button>
                                             );
@@ -430,7 +424,7 @@ const TopBar = ({ activeTab, subtitleOverride }) => {
                                     label={t('tts_voice')}
                                     icon={<Volume2 size={16} />}
                                     value={resolvedTtsVoice}
-                                    options={TTS_VOICE_OPTIONS.map(voice => ({ ...voice, l: t(voice.key) }))}
+                                    options={enabledVoices.map(voice => ({ v: voice.id, l: t(voice.labelKey) }))}
                                     onChange={updateTtsVoice}
                                 />
                                 <SettingSelect

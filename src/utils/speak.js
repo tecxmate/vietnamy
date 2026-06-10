@@ -14,6 +14,8 @@ const MEDIA_ARTWORK = [
     { src: '/icon-512.png', sizes: '512x512', type: 'image/png' },
 ];
 
+import { isVoiceEnabled, FALLBACK_VOICE, ALWAYS_ON_VOICE } from '../data/ttsVoices';
+
 const TTS_VOICES = new Set([
     'google',
     'azure-north',
@@ -26,12 +28,17 @@ const loadTtsVoice = () => {
         const settings = raw ? JSON.parse(raw) : {};
         const profileRaw = localStorage.getItem('vnme_user_profile');
         const profile = profileRaw ? JSON.parse(profileRaw) : {};
-        if (TTS_VOICES.has(settings.ttsVoice)) return settings.ttsVoice;
-        if (profile.dialect === 'south') return 'azure-south';
-        if (profile.dialect === 'north') return 'azure-north';
-        if (settings.ttsAccent === 'south') return 'azure-south';
-        if (settings.ttsAccent === 'north') return 'azure-north';
-        return 'azure-north';
+        const candidate = (() => {
+            if (TTS_VOICES.has(settings.ttsVoice)) return settings.ttsVoice;
+            if (profile.dialect === 'south') return 'azure-south';
+            if (profile.dialect === 'north') return 'azure-north';
+            if (settings.ttsAccent === 'south') return 'azure-south';
+            if (settings.ttsAccent === 'north') return 'azure-north';
+            return 'azure-north';
+        })();
+        // Never request a disabled voice — fall back to north, then Google.
+        if (isVoiceEnabled(candidate, settings)) return candidate;
+        return isVoiceEnabled(FALLBACK_VOICE, settings) ? FALLBACK_VOICE : ALWAYS_ON_VOICE;
     } catch {
         return 'azure-north';
     }

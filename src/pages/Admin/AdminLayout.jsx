@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import {
     LayoutDashboard, BookText, LogOut, FileText, BookOpen, Music,
-    Users, PenTool, FlaskConical, Download, Upload, Menu, X, Lightbulb, Sparkles
+    Users, PenTool, FlaskConical, Download, Upload, Menu, X, Lightbulb, Sparkles, Volume2
 } from 'lucide-react';
 import { logoutAdmin } from '../../lib/adminAuth';
 import { exportDB, importDB } from '../../lib/storage/mockDbStore';
@@ -20,6 +20,8 @@ const NAV_ITEMS = [
     { to: '/admin/drills', label: 'Drill Modules', icon: PenTool },
     { to: '/admin/kinship', label: 'Kinship & Pronouns', icon: Users },
     { to: '/admin/mascot', label: 'Mascot Scripts', icon: Sparkles },
+    { divider: true },
+    { to: '/admin/voices', label: 'Voice Settings', icon: Volume2 },
 ];
 
 const PAGE_TITLES = {
@@ -33,6 +35,7 @@ const PAGE_TITLES = {
     '/admin/drills': 'Drill Modules',
     '/admin/kinship': 'Kinship & Pronouns',
     '/admin/mascot': 'Mascot Scripts',
+    '/admin/voices': 'Voice Settings',
 };
 
 const downloadJson = (data, filename) => {

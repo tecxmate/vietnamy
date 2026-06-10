@@ -95,6 +95,7 @@ const DrillEditor = lazy(() => import('./pages/Admin/DrillEditor'));
 const ConceptEditor = lazy(() => import('./pages/Admin/ConceptEditor'));
 const AdaptiveEditor = lazy(() => import('./pages/Admin/AdaptiveEditor'));
 const MascotEditor = lazy(() => import('./pages/Admin/MascotEditor'));
+const VoiceSettings = lazy(() => import('./pages/Admin/VoiceSettings'));
 
 const LessonGame = lazy(() => import('./components/LessonGame'));
 const SceneEngine = lazy(() => import('./components/Scene/SceneEngine'));
@@ -449,6 +450,7 @@ function AppRoutes() {
           <Route path="kinship" element={<KinshipEditor />} />
           <Route path="drills" element={<DrillEditor />} />
           <Route path="mascot" element={<MascotEditor />} />
+          <Route path="voices" element={<VoiceSettings />} />
         </Route>
 
         {/* Catch-all: redirect unknown routes to home */}
