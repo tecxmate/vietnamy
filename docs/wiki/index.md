@@ -42,7 +42,7 @@ Topics are split into `topics/tech/` (engineering, infra, app, content systems) 
 - [TTS Pipeline (Two-Tier Cache)](topics/tech/tts-pipeline.md) — source + derived bucket layout, request flow, post-processing
 - [Pronunciation Assessment](topics/tech/pronunciation-assessment.md) — Azure phoneme-level scoring for `speak_sentence` and Tone Trainer
 - [Curriculum & Learner Paths](topics/tech/curriculum-paths.md) — Explore Vietnam / Professional / Heritage curricula
-- [Adaptive Curriculum Sequencer](topics/tech/adaptive-sequencer.md) — purpose/performance-driven lesson sequencing; Layers 1–3 built (additive)
+- [Adaptive Curriculum Sequencer](topics/tech/adaptive-sequencer.md) — purpose/performance-driven lesson sequencing; Layers 1–4 built (additive)
 - [Grammar System (single-source)](topics/tech/grammar-system.md) — A1–C2 via grammarModulesDB; Grammar Guide at /grammar; legacy bank retired
 - [Skill Tree (Roadmap)](topics/tech/skill-tree.md) — Duolingo-style node tree, unlock_rules, why it exists
 - [Tone Trainer](topics/tech/tone-trainer.md) — Sounds-tab Learn→Identify→Speak lesson with client-side pitch overlay + shape-classification verdict

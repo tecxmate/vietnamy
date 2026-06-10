@@ -64,11 +64,15 @@ review/remediation *scorer terms are near-inert today* — they're correct hooks
 activate when per-lesson skill granularity + vocab-reuse data improve. The mastery
 difficulty-nudge is the part that actually moves recommendations now.
 
+**Layer 4 — SRS review surface (done).** `RecommendedNext` leads with a green
+"Review · N words due" card when vocab is due (`getDueItemIds`), deep-linking to the
+Library SRS review (`__srs__` deck → `VocabReviewView`) via a new
+`location.state.vocabDeck` handler in `StudentApp` (reuses the `pendingVocabDeck`
+path). Verified e2e.
+
 ## Open questions / next steps (for whoever continues)
 - **Better Layer 4 data** — per-lesson skill granularity (which exercise types a
-  lesson really runs, gated by profile/CEFR) so `remediationValue` discriminates;
-  and a real **SRS review-session surface** on the Study tab (the review deck exists
-  in the Library as the `__srs__` vocab deck — cross-tab nav was the blocker).
+  lesson really runs, gated by profile/CEFR) so `remediationValue` discriminates.
 - **Make the sequencer primary** — currently a recommendation row; could drive the
   Continue button / path with a force-insert spine+review cadence. (Note: the roadmap
   is strictly *linear-unlock* today; graph-based unlock is the bigger change.)
@@ -83,3 +87,5 @@ difficulty-nudge is the part that actually moves recommendations now.
   engine `src/lib/sequencer.js`, UI `src/components/RecommendedNext.jsx`.
 - 2026-06-11 — Layer 4 (partial): `adaptive.skills`, review/remediation scorer hooks,
   and mastery-driven performance-adaptive difficulty in `RecommendedNext`.
+- 2026-06-11 — Layer 4 SRS review surface: "Review · N due" card on Study →
+  Library SRS review via `location.state.vocabDeck`.
