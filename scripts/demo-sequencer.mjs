@@ -48,3 +48,12 @@ show('After A1 basics · heritage', {
 show('Strong learner · explore (mastery high → level 7)', {
     completedLessonIds: done, purpose: 'explore_vietnam', estimatedLevel: 7, recentTopics: ['greetings', 'basics'],
 });
+
+// Layer 4 — item-based review/remediation: with tôi/muốn/mua weak+due, lessons
+// whose sentences REUSE those words (via adaptive.usesVocab) should outrank the
+// same-purpose alternatives from the run above.
+show('Weak on tôi/muốn/mua · explore (review+remediation)', {
+    completedLessonIds: done, purpose: 'explore_vietnam', estimatedLevel: 4, recentTopics: ['greetings', 'basics'],
+    dueItemIds: new Set(['it_w_0008', 'it_w_0035', 'it_w_0070']),
+    weakItemIds: new Set(['it_w_0008', 'it_w_0035', 'it_w_0070']),
+});

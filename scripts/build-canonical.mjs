@@ -214,6 +214,13 @@ function buildCurriculum() {
     const orderedForGraph = [...lessons].sort(
         (a, b) => (unitOrder.get(a.unitId) - unitOrder.get(b.unitId)) || ((a.orderIndex ?? 0) - (b.orderIndex ?? 0)),
     );
+    // Vocab text → id map for sentence tokenization (longest text first so
+    // multi-word terms like "cà phê sữa đá" match before "cà phê").
+    const normViet = (t) => String(t).normalize('NFC').toLowerCase().replace(/[.,!?;:()"'…]/g, ' ').replace(/\s+/g, ' ').trim();
+    const vocabByText = words
+        .map((w) => [normViet(w.vi), w.id])
+        .filter(([t]) => t.length > 1)
+        .sort((a, b) => b[0].length - a[0].length);
     const seenGrammar = new Set();
     const adaptiveByLesson = new Map();
     for (const l of orderedForGraph) {
@@ -227,18 +234,32 @@ function buildCurriculum() {
         // (e.g. a B2 "basics" lesson) are pool, not spine.
         const isUniversalTopic = spineTopics.has(l.topic);
         const isA1 = String(l.cefrLevel || '').startsWith('A1');
-        // skills (Layer 4 remediation matching) — heuristic from lesson content, since
-        // exercise types are generated, not stored per lesson. Vocab → recognition/
-        // production/listening; sentences → context/listening.
+        // skills — coarse and near-uniform across this curriculum (134/140 lessons
+        // are word-heavy); kept for completeness. Remediation matching uses the
+        // item-based usesVocab below, which actually discriminates.
         const skills = new Set();
         if (l.wordIds && l.wordIds.length) { skills.add('meaning_recognition'); skills.add('meaning_production'); skills.add('listening'); }
         if (l.sentenceIds && l.sentenceIds.length) { skills.add('context'); skills.add('listening'); }
+        // usesVocab — vocab REUSED by this lesson's sentences but owned by other
+        // lessons (longest-match scan of sentence text against the global vocab).
+        // Soft scoring data: a lesson whose sentences re-exercise your weak/due
+        // words is the remediating/reviewing one. Never used as a hard filter.
+        const ownWords = new Set(l.wordIds || []);
+        const usesVocab = new Set();
+        for (const s of sentsByLessonGraph.get(l.id) || []) {
+            const text = ' ' + normViet(s.vi || '') + ' ';
+            for (const [viText, wid] of vocabByText) {
+                if (ownWords.has(wid) || usesVocab.has(wid)) continue;
+                if (text.includes(' ' + viText + ' ')) usesVocab.add(wid);
+            }
+        }
         adaptiveByLesson.set(l.id, {
             spine: (isUniversalTopic && isA1) || String(l.unitId).startsWith('phase_0'),
             purposes: (topicPurposes.get(l.topic) || REAL_MODES).map((id) => ({ id, weight: 1 })),
             introducesGrammar: introducesGrammar.sort(),
             requiresGrammar: requiresGrammar.sort(),
             skills: [...skills],
+            usesVocab: [...usesVocab].sort(),
         });
     }
     const lessonsWithAdaptive = lessons.map((l) => ({ ...l, adaptive: adaptiveByLesson.get(l.id) }));

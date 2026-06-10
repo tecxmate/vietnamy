@@ -5,6 +5,7 @@ import { getUnits, getNodesForUnitWithProgress } from '../../lib/db';
 import { getGrammarForUnit } from '../../lib/grammarGuide';
 import GrammarGuidebook from '../GrammarGuidebook';
 import RecommendedNext from '../RecommendedNext';
+import { getRecommendations } from '../../lib/recommendations';
 import { useProgress } from '../../context/ProgressContext';
 import { useUser } from '../../context/UserContext';
 import { loadSettings } from '../../lib/settings';
@@ -188,6 +189,17 @@ const RoadmapTab = () => {
             const nodes = nodesMap[unit.id] || [];
             const activeNode = nodes.find(n => isVisibleRoadmapNode(n) && n.status === 'active');
             if (activeNode) {
+                // Sequencer-primary (Layer 3+): when the next linear step is a LESSON,
+                // follow the sequencer's top pick instead (purpose/performance-aware,
+                // prereq-safe). Non-lesson nodes (foundations practice, grammar units,
+                // tests) keep their hard order — they're the structural spine.
+                if (activeNode.type === 'lesson') {
+                    const top = getRecommendations(modeCompletedNodes, currentMode, { limit: 1 }).recs[0];
+                    if (top?.lesson?.id) {
+                        navigate(`/lesson/${top.lesson.id}`);
+                        return;
+                    }
+                }
                 navigateNode(activeNode);
                 return;
             }

@@ -99,6 +99,11 @@
               "description": "Skill dimensions this lesson trains (for Layer-4 remediation matching) — derived from content. Subset of wordGrades DIMENSIONS.",
               "type": "array",
               "items": { "type": "string" }
+            },
+            "usesVocab": {
+              "description": "Word IDs reused by this lesson's sentences but introduced elsewhere (tokenized match). Soft review/remediation scoring signal, never a hard filter.",
+              "type": "array",
+              "items": { "$ref": "_common.schema.json#/$defs/id" }
             }
           }
         }

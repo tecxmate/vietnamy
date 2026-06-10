@@ -53,20 +53,26 @@ export function varietyBonus(topic, recentTopics = []) {
     return recentTopics.includes(topic) ? 0 : 1;
 }
 
+/** All vocab a lesson exercises: its own words + vocab its sentences reuse. */
+function lessonVocab(lesson) {
+    return [...(lesson.wordIds || []), ...(lesson.adaptive?.usesVocab || [])];
+}
+
 /** Reward a lesson that re-surfaces vocab currently due for SRS review (0-1). */
 export function reviewValue(lesson, dueItemIds) {
     if (!dueItemIds || !dueItemIds.size) return 0;
-    const words = lesson.wordIds || [];
     let hits = 0;
-    for (const w of words) if (dueItemIds.has(w)) hits++;
+    for (const w of lessonVocab(lesson)) if (dueItemIds.has(w)) hits++;
     return hits ? Math.min(1, hits / 3) : 0;
 }
 
-/** Reward a lesson that trains one of the learner's weak skill dimensions (0-1). */
-export function remediationValue(lesson, weakSkills) {
-    if (!weakSkills || !weakSkills.length) return 0;
-    const skills = lesson.adaptive?.skills || [];
-    return skills.some((s) => weakSkills.includes(s)) ? 1 : 0;
+/** Reward a lesson that re-exercises the learner's weak items (0-1, item-based —
+ *  skills are near-uniform across this curriculum so items are the real signal). */
+export function remediationValue(lesson, weakItemIds) {
+    if (!weakItemIds || !weakItemIds.size) return 0;
+    let hits = 0;
+    for (const w of lessonVocab(lesson)) if (weakItemIds.has(w)) hits++;
+    return hits ? Math.min(1, hits / 3) : 0;
 }
 
 /** Transparent, explainable per-lesson score. */
@@ -76,7 +82,7 @@ export function scoreLesson(lesson, state, weights = SEQUENCER_WEIGHTS) {
         difficulty: weights.difficulty * difficultyFit(lesson.difficulty, state.estimatedLevel),
         variety: weights.variety * varietyBonus(lesson.topic, state.recentTopics),
         review: weights.review * reviewValue(lesson, state.dueItemIds),
-        remediation: weights.remediation * remediationValue(lesson, state.weakSkills),
+        remediation: weights.remediation * remediationValue(lesson, state.weakItemIds),
     };
     const total = Object.values(breakdown).reduce((a, b) => a + b, 0);
     return { total, breakdown };

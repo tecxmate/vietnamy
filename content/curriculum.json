@@ -260,6 +260,14 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0007",
+          "it_w_0009",
+          "it_w_0204",
+          "it_w_0389",
+          "it_w_1056",
+          "it_w_1118"
         ]
       }
     },
@@ -322,6 +330,9 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_1056"
         ]
       }
     },
@@ -378,6 +389,10 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0008",
+          "it_w_0009"
         ]
       }
     },
@@ -429,6 +444,15 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0001",
+          "it_w_0002",
+          "it_w_0008",
+          "it_w_0009",
+          "it_w_0190",
+          "it_w_1114",
+          "it_w_1116"
         ]
       }
     },
@@ -486,6 +510,12 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0007",
+          "it_w_0008",
+          "it_w_0499",
+          "it_w_1056"
         ]
       }
     },
@@ -541,6 +571,11 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0008",
+          "it_w_0009",
+          "it_w_0161"
         ]
       }
     },
@@ -597,6 +632,9 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0114"
         ]
       }
     },
@@ -649,6 +687,10 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0008",
+          "it_w_0020"
         ]
       }
     },
@@ -697,6 +739,12 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0008",
+          "it_w_0030",
+          "it_w_0035",
+          "it_w_1062"
         ]
       }
     },
@@ -747,6 +795,11 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0008",
+          "it_w_0020",
+          "it_w_0035"
         ]
       }
     },
@@ -798,7 +851,8 @@
           "meaning_production",
           "listening",
           "context"
-        ]
+        ],
+        "usesVocab": []
       }
     },
     {
@@ -851,6 +905,10 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0008",
+          "it_w_0180"
         ]
       }
     },
@@ -906,6 +964,9 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0170"
         ]
       }
     },
@@ -958,6 +1019,13 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0008",
+          "it_w_0035",
+          "it_w_0055",
+          "it_w_0100",
+          "it_w_1093"
         ]
       }
     },
@@ -1007,6 +1075,13 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0008",
+          "it_w_0035",
+          "it_w_0051",
+          "it_w_0070",
+          "it_w_1114"
         ]
       }
     },
@@ -1055,6 +1130,11 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0008",
+          "it_w_0060",
+          "it_w_0061"
         ]
       }
     },
@@ -1103,6 +1183,11 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0015",
+          "it_w_0053",
+          "it_w_1071"
         ]
       }
     },
@@ -1149,6 +1234,9 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0259"
         ]
       }
     },
@@ -1197,6 +1285,12 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0007",
+          "it_w_0008",
+          "it_w_0170",
+          "it_w_1056"
         ]
       }
     },
@@ -1248,6 +1342,13 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0008",
+          "it_w_0015",
+          "it_w_0036",
+          "it_w_0120",
+          "it_w_0344"
         ]
       }
     },
@@ -1293,6 +1394,11 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0007",
+          "it_w_0379",
+          "it_w_1056"
         ]
       }
     },
@@ -1340,6 +1446,9 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0008"
         ]
       }
     },
@@ -1398,6 +1507,9 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0259"
         ]
       }
     },
@@ -1450,6 +1562,10 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0140",
+          "it_w_1116"
         ]
       }
     },
@@ -1498,6 +1614,10 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0068",
+          "it_w_0145"
         ]
       }
     },
@@ -1549,6 +1669,12 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0007",
+          "it_w_0008",
+          "it_w_1056",
+          "it_w_1111"
         ]
       }
     },
@@ -1600,6 +1726,12 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0008",
+          "it_w_0067",
+          "it_w_0190",
+          "it_w_1114"
         ]
       }
     },
@@ -1645,6 +1777,11 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0066",
+          "it_w_0121",
+          "it_w_1114"
         ]
       }
     },
@@ -1688,6 +1825,9 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0100"
         ]
       }
     },
@@ -1737,6 +1877,10 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0009",
+          "it_w_1117"
         ]
       }
     },
@@ -1791,6 +1935,10 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0008",
+          "it_w_0266"
         ]
       }
     },
@@ -1838,6 +1986,16 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0007",
+          "it_w_0008",
+          "it_w_0009",
+          "it_w_0100",
+          "it_w_0181",
+          "it_w_0394",
+          "it_w_0396",
+          "it_w_1056"
         ]
       }
     },
@@ -1888,6 +2046,9 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0190"
         ]
       }
     },
@@ -1952,6 +2113,17 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0008",
+          "it_w_0024",
+          "it_w_0045",
+          "it_w_0100",
+          "it_w_0147",
+          "it_w_0150",
+          "it_w_0154",
+          "it_w_0349",
+          "it_w_1114"
         ]
       }
     },
@@ -2009,6 +2181,15 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0008",
+          "it_w_0100",
+          "it_w_0190",
+          "it_w_0192",
+          "it_w_0258",
+          "it_w_0353",
+          "it_w_1114"
         ]
       }
     },
@@ -2076,6 +2257,17 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0008",
+          "it_w_0009",
+          "it_w_0067",
+          "it_w_0100",
+          "it_w_0258",
+          "it_w_0285",
+          "it_w_0350",
+          "it_w_0357",
+          "it_w_1116"
         ]
       }
     },
@@ -2142,6 +2334,16 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0007",
+          "it_w_0008",
+          "it_w_0009",
+          "it_w_0113",
+          "it_w_0258",
+          "it_w_0341",
+          "it_w_1056",
+          "it_w_1114"
         ]
       }
     },
@@ -2208,6 +2410,13 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0008",
+          "it_w_0147",
+          "it_w_0164",
+          "it_w_0193",
+          "it_w_0253"
         ]
       }
     },
@@ -2266,6 +2475,15 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0008",
+          "it_w_0009",
+          "it_w_0032",
+          "it_w_0133",
+          "it_w_0192",
+          "it_w_0266",
+          "it_w_0837"
         ]
       }
     },
@@ -2324,6 +2542,18 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0007",
+          "it_w_0008",
+          "it_w_0009",
+          "it_w_0021",
+          "it_w_0036",
+          "it_w_0070",
+          "it_w_0854",
+          "it_w_0857",
+          "it_w_1056",
+          "it_w_1085"
         ]
       }
     },
@@ -2390,6 +2620,20 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0008",
+          "it_w_0009",
+          "it_w_0024",
+          "it_w_0062",
+          "it_w_0085",
+          "it_w_0101",
+          "it_w_0142",
+          "it_w_0164",
+          "it_w_0257",
+          "it_w_0258",
+          "it_w_0300",
+          "it_w_0302"
         ]
       }
     },
@@ -2457,6 +2701,16 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0008",
+          "it_w_0145",
+          "it_w_0202",
+          "it_w_0446",
+          "it_w_0930",
+          "it_w_0963",
+          "it_w_1101",
+          "it_w_1114"
         ]
       }
     },
@@ -2523,6 +2777,18 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0008",
+          "it_w_0014",
+          "it_w_0024",
+          "it_w_0114",
+          "it_w_0140",
+          "it_w_0141",
+          "it_w_0285",
+          "it_w_0333",
+          "it_w_0337",
+          "it_w_0550"
         ]
       }
     },
@@ -2588,6 +2854,18 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0007",
+          "it_w_0008",
+          "it_w_0009",
+          "it_w_0036",
+          "it_w_0134",
+          "it_w_0164",
+          "it_w_0258",
+          "it_w_0480",
+          "it_w_1056",
+          "it_w_1059"
         ]
       }
     },
@@ -2646,6 +2924,17 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0007",
+          "it_w_0008",
+          "it_w_0020",
+          "it_w_0035",
+          "it_w_0120",
+          "it_w_0140",
+          "it_w_0258",
+          "it_w_0305",
+          "it_w_1056"
         ]
       }
     },
@@ -2705,6 +2994,15 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0008",
+          "it_w_0035",
+          "it_w_0068",
+          "it_w_0100",
+          "it_w_0370",
+          "it_w_1114",
+          "it_w_1116"
         ]
       }
     },
@@ -2763,6 +3061,13 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0047",
+          "it_w_0068",
+          "it_w_0882",
+          "it_w_1114",
+          "it_w_1116"
         ]
       }
     },
@@ -2819,6 +3124,14 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0008",
+          "it_w_0080",
+          "it_w_0100",
+          "it_w_1026",
+          "it_w_1101",
+          "it_w_1114"
         ]
       }
     },
@@ -2886,6 +3199,14 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0008",
+          "it_w_0009",
+          "it_w_0036",
+          "it_w_0113",
+          "it_w_1116",
+          "it_w_1117"
         ]
       }
     },
@@ -2953,6 +3274,18 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0007",
+          "it_w_0008",
+          "it_w_0009",
+          "it_w_0113",
+          "it_w_0133",
+          "it_w_0468",
+          "it_w_0613",
+          "it_w_0616",
+          "it_w_0746",
+          "it_w_1056"
         ]
       }
     },
@@ -3021,6 +3354,19 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0007",
+          "it_w_0009",
+          "it_w_0014",
+          "it_w_0140",
+          "it_w_0144",
+          "it_w_0146",
+          "it_w_0200",
+          "it_w_0201",
+          "it_w_0204",
+          "it_w_0338",
+          "it_w_1056"
         ]
       }
     },
@@ -3088,6 +3434,17 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0024",
+          "it_w_0167",
+          "it_w_0180",
+          "it_w_0210",
+          "it_w_0338",
+          "it_w_0869",
+          "it_w_0870",
+          "it_w_1114",
+          "it_w_1116"
         ]
       }
     },
@@ -3153,6 +3510,13 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0062",
+          "it_w_0166",
+          "it_w_0170",
+          "it_w_0203",
+          "it_w_1116"
         ]
       }
     },
@@ -3220,6 +3584,14 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0008",
+          "it_w_0024",
+          "it_w_0412",
+          "it_w_0534",
+          "it_w_0936",
+          "it_w_1114"
         ]
       }
     },
@@ -3288,6 +3660,24 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0007",
+          "it_w_0008",
+          "it_w_0045",
+          "it_w_0051",
+          "it_w_0146",
+          "it_w_0150",
+          "it_w_0151",
+          "it_w_0429",
+          "it_w_0430",
+          "it_w_0578",
+          "it_w_0582",
+          "it_w_0869",
+          "it_w_1056",
+          "it_w_1099",
+          "it_w_1101",
+          "it_w_1114"
         ]
       }
     },
@@ -3356,6 +3746,19 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0008",
+          "it_w_0009",
+          "it_w_0020",
+          "it_w_0036",
+          "it_w_0484",
+          "it_w_0583",
+          "it_w_0584",
+          "it_w_0590",
+          "it_w_1099",
+          "it_w_1101",
+          "it_w_1116"
         ]
       }
     },
@@ -3422,6 +3825,12 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0021",
+          "it_w_0484",
+          "it_w_0873",
+          "it_w_1101"
         ]
       }
     },
@@ -3488,6 +3897,16 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0008",
+          "it_w_0114",
+          "it_w_0142",
+          "it_w_0606",
+          "it_w_0608",
+          "it_w_0813",
+          "it_w_0817",
+          "it_w_1114"
         ]
       }
     },
@@ -3554,6 +3973,19 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0007",
+          "it_w_0074",
+          "it_w_0130",
+          "it_w_0133",
+          "it_w_0300",
+          "it_w_0645",
+          "it_w_0646",
+          "it_w_0653",
+          "it_w_0654",
+          "it_w_0658",
+          "it_w_1056"
         ]
       }
     },
@@ -3619,6 +4051,14 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0122",
+          "it_w_0476",
+          "it_w_0483",
+          "it_w_0684",
+          "it_w_0724",
+          "it_w_1116"
         ]
       }
     },
@@ -3687,6 +4127,13 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0008",
+          "it_w_0030",
+          "it_w_0035",
+          "it_w_0162",
+          "it_w_1116"
         ]
       }
     },
@@ -3753,6 +4200,15 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0007",
+          "it_w_0008",
+          "it_w_0150",
+          "it_w_0151",
+          "it_w_0170",
+          "it_w_0625",
+          "it_w_1056"
         ]
       }
     },
@@ -3821,6 +4277,13 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0008",
+          "it_w_0020",
+          "it_w_0507",
+          "it_w_0626",
+          "it_w_1116"
         ]
       }
     },
@@ -3888,6 +4351,18 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0007",
+          "it_w_0008",
+          "it_w_0009",
+          "it_w_0032",
+          "it_w_0114",
+          "it_w_0290",
+          "it_w_0300",
+          "it_w_1056",
+          "it_w_1116",
+          "it_w_1117"
         ]
       }
     },
@@ -3954,6 +4429,13 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0484",
+          "it_w_0488",
+          "it_w_0490",
+          "it_w_0626",
+          "it_w_1116"
         ]
       }
     },
@@ -4019,6 +4501,13 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0009",
+          "it_w_0068",
+          "it_w_0150",
+          "it_w_0289",
+          "it_w_0600"
         ]
       }
     },
@@ -4086,6 +4575,14 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0008",
+          "it_w_0024",
+          "it_w_0035",
+          "it_w_0052",
+          "it_w_0164",
+          "it_w_1116"
         ]
       }
     },
@@ -4154,6 +4651,22 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0007",
+          "it_w_0008",
+          "it_w_0020",
+          "it_w_0036",
+          "it_w_0133",
+          "it_w_0203",
+          "it_w_0480",
+          "it_w_0824",
+          "it_w_0904",
+          "it_w_0952",
+          "it_w_0954",
+          "it_w_1056",
+          "it_w_1059",
+          "it_w_1101"
         ]
       }
     },
@@ -4219,6 +4732,19 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0008",
+          "it_w_0104",
+          "it_w_0133",
+          "it_w_0300",
+          "it_w_0329",
+          "it_w_0424",
+          "it_w_0484",
+          "it_w_0499",
+          "it_w_0573",
+          "it_w_0581",
+          "it_w_0960"
         ]
       }
     },
@@ -4285,6 +4811,14 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0004",
+          "it_w_0008",
+          "it_w_0020",
+          "it_w_0035",
+          "it_w_0319",
+          "it_w_0924"
         ]
       }
     },
@@ -4351,6 +4885,16 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0008",
+          "it_w_0020",
+          "it_w_0068",
+          "it_w_0100",
+          "it_w_0142",
+          "it_w_0151",
+          "it_w_0203",
+          "it_w_0285"
         ]
       }
     },
@@ -4416,6 +4960,16 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0021",
+          "it_w_0144",
+          "it_w_0162",
+          "it_w_0164",
+          "it_w_0353",
+          "it_w_0358",
+          "it_w_0365",
+          "it_w_1114"
         ]
       }
     },
@@ -4484,6 +5038,20 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0008",
+          "it_w_0009",
+          "it_w_0020",
+          "it_w_0035",
+          "it_w_0262",
+          "it_w_0488",
+          "it_w_0507",
+          "it_w_0549",
+          "it_w_0902",
+          "it_w_1114",
+          "it_w_1116",
+          "it_w_1118"
         ]
       }
     },
@@ -4552,6 +5120,18 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0008",
+          "it_w_0009",
+          "it_w_0020",
+          "it_w_0035",
+          "it_w_0133",
+          "it_w_0421",
+          "it_w_0424",
+          "it_w_0538",
+          "it_w_1114",
+          "it_w_1116"
         ]
       }
     },
@@ -4619,6 +5199,22 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0007",
+          "it_w_0008",
+          "it_w_0009",
+          "it_w_0020",
+          "it_w_0036",
+          "it_w_0133",
+          "it_w_0429",
+          "it_w_0430",
+          "it_w_0433",
+          "it_w_0484",
+          "it_w_1056",
+          "it_w_1099",
+          "it_w_1101",
+          "it_w_1117"
         ]
       }
     },
@@ -4687,6 +5283,14 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0007",
+          "it_w_0008",
+          "it_w_0020",
+          "it_w_0477",
+          "it_w_1056",
+          "it_w_1114"
         ]
       }
     },
@@ -4753,6 +5357,14 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0007",
+          "it_w_0008",
+          "it_w_0009",
+          "it_w_0180",
+          "it_w_1056",
+          "it_w_1114"
         ]
       }
     },
@@ -4820,6 +5432,17 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0009",
+          "it_w_0020",
+          "it_w_0300",
+          "it_w_0305",
+          "it_w_0446",
+          "it_w_0447",
+          "it_w_0449",
+          "it_w_0517",
+          "it_w_1001"
         ]
       }
     },
@@ -4885,6 +5508,18 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0007",
+          "it_w_0008",
+          "it_w_0009",
+          "it_w_0114",
+          "it_w_0164",
+          "it_w_0180",
+          "it_w_0386",
+          "it_w_0452",
+          "it_w_0468",
+          "it_w_1056"
         ]
       }
     },
@@ -4950,6 +5585,11 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0008",
+          "it_w_0490",
+          "it_w_1114"
         ]
       }
     },
@@ -5016,6 +5656,15 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0008",
+          "it_w_0009",
+          "it_w_0100",
+          "it_w_0443",
+          "it_w_0498",
+          "it_w_1116",
+          "it_w_1117"
         ]
       }
     },
@@ -5081,6 +5730,14 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0008",
+          "it_w_0020",
+          "it_w_0142",
+          "it_w_0164",
+          "it_w_1114",
+          "it_w_1116"
         ]
       }
     },
@@ -5149,6 +5806,12 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0024",
+          "it_w_0032",
+          "it_w_0455",
+          "it_w_1116"
         ]
       }
     },
@@ -5218,6 +5881,20 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0007",
+          "it_w_0074",
+          "it_w_0110",
+          "it_w_0130",
+          "it_w_0300",
+          "it_w_0349",
+          "it_w_0453",
+          "it_w_0454",
+          "it_w_0457",
+          "it_w_0458",
+          "it_w_1056",
+          "it_w_1114"
         ]
       }
     },
@@ -5288,6 +5965,10 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0024",
+          "it_w_1114"
         ]
       }
     },
@@ -5355,6 +6036,18 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0008",
+          "it_w_0036",
+          "it_w_0062",
+          "it_w_0074",
+          "it_w_0150",
+          "it_w_0170",
+          "it_w_0309",
+          "it_w_0456",
+          "it_w_0656",
+          "it_w_1111"
         ]
       }
     },
@@ -5421,6 +6114,15 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0007",
+          "it_w_0008",
+          "it_w_0025",
+          "it_w_0338",
+          "it_w_0519",
+          "it_w_0930",
+          "it_w_1056"
         ]
       }
     },
@@ -5488,6 +6190,17 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0008",
+          "it_w_0020",
+          "it_w_0035",
+          "it_w_0133",
+          "it_w_0477",
+          "it_w_0586",
+          "it_w_0919",
+          "it_w_0978",
+          "it_w_1114"
         ]
       }
     },
@@ -5556,6 +6269,13 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0008",
+          "it_w_0190",
+          "it_w_0338",
+          "it_w_0393",
+          "it_w_0984"
         ]
       }
     },
@@ -5622,6 +6342,14 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0020",
+          "it_w_0024",
+          "it_w_0030",
+          "it_w_0090",
+          "it_w_1114",
+          "it_w_1116"
         ]
       }
     },
@@ -5687,6 +6415,13 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0008",
+          "it_w_0074",
+          "it_w_0114",
+          "it_w_0285",
+          "it_w_0452"
         ]
       }
     },
@@ -5752,6 +6487,18 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0008",
+          "it_w_0122",
+          "it_w_0134",
+          "it_w_0285",
+          "it_w_0320",
+          "it_w_0474",
+          "it_w_0669",
+          "it_w_0781",
+          "it_w_0930",
+          "it_w_1116"
         ]
       }
     },
@@ -5817,6 +6564,13 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0021",
+          "it_w_0032",
+          "it_w_0074",
+          "it_w_0391",
+          "it_w_0701"
         ]
       }
     },
@@ -5884,6 +6638,20 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0020",
+          "it_w_0022",
+          "it_w_0024",
+          "it_w_0152",
+          "it_w_0161",
+          "it_w_0164",
+          "it_w_0204",
+          "it_w_0257",
+          "it_w_0258",
+          "it_w_0290",
+          "it_w_0389",
+          "it_w_0563"
         ]
       }
     },
@@ -5952,6 +6720,16 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0004",
+          "it_w_0008",
+          "it_w_0009",
+          "it_w_0022",
+          "it_w_0161",
+          "it_w_0258",
+          "it_w_0535",
+          "it_w_0753"
         ]
       }
     },
@@ -6021,6 +6799,17 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0009",
+          "it_w_0014",
+          "it_w_0021",
+          "it_w_0258",
+          "it_w_0316",
+          "it_w_0425",
+          "it_w_0480",
+          "it_w_0499",
+          "it_w_1059"
         ]
       }
     },
@@ -6086,6 +6875,14 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0021",
+          "it_w_0024",
+          "it_w_0090",
+          "it_w_0170",
+          "it_w_0258",
+          "it_w_0549"
         ]
       }
     },
@@ -6152,6 +6949,13 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0024",
+          "it_w_0032",
+          "it_w_0105",
+          "it_w_0258",
+          "it_w_1116"
         ]
       }
     },
@@ -6218,6 +7022,14 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0022",
+          "it_w_0024",
+          "it_w_0032",
+          "it_w_0160",
+          "it_w_0161",
+          "it_w_0258"
         ]
       }
     },
@@ -6283,6 +7095,18 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0021",
+          "it_w_0024",
+          "it_w_0032",
+          "it_w_0174",
+          "it_w_0258",
+          "it_w_0285",
+          "it_w_0550",
+          "it_w_0709",
+          "it_w_0719",
+          "it_w_0817"
         ]
       }
     },
@@ -6349,6 +7173,12 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0338",
+          "it_w_0569",
+          "it_w_1114",
+          "it_w_1116"
         ]
       }
     },
@@ -6418,6 +7248,14 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0008",
+          "it_w_0131",
+          "it_w_0170",
+          "it_w_0555",
+          "it_w_1114",
+          "it_w_1116"
         ]
       }
     },
@@ -6484,6 +7322,15 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0050",
+          "it_w_0174",
+          "it_w_0200",
+          "it_w_0396",
+          "it_w_0412",
+          "it_w_0785",
+          "it_w_1114"
         ]
       }
     },
@@ -6550,6 +7397,11 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0020",
+          "it_w_0024",
+          "it_w_0258"
         ]
       }
     },
@@ -6615,6 +7467,14 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0008",
+          "it_w_0203",
+          "it_w_0258",
+          "it_w_0528",
+          "it_w_0553",
+          "it_w_1101"
         ]
       }
     },
@@ -6680,6 +7540,13 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0008",
+          "it_w_0100",
+          "it_w_0133",
+          "it_w_0633",
+          "it_w_1116"
         ]
       }
     },
@@ -6746,6 +7613,20 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0008",
+          "it_w_0035",
+          "it_w_0093",
+          "it_w_0133",
+          "it_w_0293",
+          "it_w_0295",
+          "it_w_0296",
+          "it_w_0297",
+          "it_w_0299",
+          "it_w_0328",
+          "it_w_1105",
+          "it_w_1116"
         ]
       }
     },
@@ -6815,6 +7696,17 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0008",
+          "it_w_0009",
+          "it_w_0104",
+          "it_w_0300",
+          "it_w_0309",
+          "it_w_0510",
+          "it_w_0563",
+          "it_w_1111",
+          "it_w_1118"
         ]
       }
     },
@@ -6883,6 +7775,23 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0007",
+          "it_w_0008",
+          "it_w_0020",
+          "it_w_0021",
+          "it_w_0022",
+          "it_w_0070",
+          "it_w_0133",
+          "it_w_0161",
+          "it_w_0164",
+          "it_w_0302",
+          "it_w_0304",
+          "it_w_0305",
+          "it_w_1056",
+          "it_w_1116",
+          "it_w_1117"
         ]
       }
     },
@@ -6951,6 +7860,13 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0100",
+          "it_w_0110",
+          "it_w_0114",
+          "it_w_0121",
+          "it_w_0134"
         ]
       }
     },
@@ -7019,6 +7935,14 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0022",
+          "it_w_0134",
+          "it_w_0160",
+          "it_w_0161",
+          "it_w_0484",
+          "it_w_0877"
         ]
       }
     },
@@ -7088,6 +8012,14 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0047",
+          "it_w_0357",
+          "it_w_0360",
+          "it_w_0648",
+          "it_w_0758",
+          "it_w_1116"
         ]
       }
     },
@@ -7156,6 +8088,15 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0032",
+          "it_w_0164",
+          "it_w_0166",
+          "it_w_0404",
+          "it_w_0437",
+          "it_w_1114",
+          "it_w_1116"
         ]
       }
     },
@@ -7222,6 +8163,13 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0020",
+          "it_w_0133",
+          "it_w_0329",
+          "it_w_0576",
+          "it_w_0998"
         ]
       }
     },
@@ -7289,6 +8237,16 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0008",
+          "it_w_0320",
+          "it_w_0337",
+          "it_w_0338",
+          "it_w_0526",
+          "it_w_0563",
+          "it_w_0683",
+          "it_w_1114"
         ]
       }
     },
@@ -7356,6 +8314,18 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0020",
+          "it_w_0036",
+          "it_w_0133",
+          "it_w_0134",
+          "it_w_0285",
+          "it_w_0300",
+          "it_w_0549",
+          "it_w_0550",
+          "it_w_0576",
+          "it_w_0804"
         ]
       }
     },
@@ -7422,6 +8392,17 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0133",
+          "it_w_0338",
+          "it_w_0547",
+          "it_w_0576",
+          "it_w_0586",
+          "it_w_0615",
+          "it_w_0953",
+          "it_w_0978",
+          "it_w_1116"
         ]
       }
     },
@@ -7491,6 +8472,16 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0020",
+          "it_w_0114",
+          "it_w_0130",
+          "it_w_0437",
+          "it_w_0452",
+          "it_w_0488",
+          "it_w_0507",
+          "it_w_1116"
         ]
       }
     },
@@ -7558,6 +8549,14 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0050",
+          "it_w_0167",
+          "it_w_0176",
+          "it_w_0417",
+          "it_w_0419",
+          "it_w_1114"
         ]
       }
     },
@@ -7625,6 +8624,17 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0024",
+          "it_w_0100",
+          "it_w_0106",
+          "it_w_0114",
+          "it_w_0170",
+          "it_w_0285",
+          "it_w_0480",
+          "it_w_0588",
+          "it_w_1059"
         ]
       }
     },
@@ -7693,6 +8703,19 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0007",
+          "it_w_0008",
+          "it_w_0131",
+          "it_w_0203",
+          "it_w_0300",
+          "it_w_0327",
+          "it_w_0526",
+          "it_w_0529",
+          "it_w_0530",
+          "it_w_0904",
+          "it_w_1056"
         ]
       }
     },
@@ -7760,6 +8783,18 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0007",
+          "it_w_0020",
+          "it_w_0021",
+          "it_w_0032",
+          "it_w_0258",
+          "it_w_0467",
+          "it_w_0540",
+          "it_w_0654",
+          "it_w_0724",
+          "it_w_1056"
         ]
       }
     },
@@ -7825,6 +8860,18 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0130",
+          "it_w_0131",
+          "it_w_0133",
+          "it_w_0305",
+          "it_w_0480",
+          "it_w_0499",
+          "it_w_0535",
+          "it_w_0641",
+          "it_w_0752",
+          "it_w_1059"
         ]
       }
     },
@@ -7893,6 +8940,13 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0021",
+          "it_w_0036",
+          "it_w_0338",
+          "it_w_0693",
+          "it_w_0700"
         ]
       }
     },
@@ -7962,6 +9016,14 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0130",
+          "it_w_0133",
+          "it_w_0391",
+          "it_w_0480",
+          "it_w_0506",
+          "it_w_1059"
         ]
       }
     },
@@ -8032,6 +9094,15 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0036",
+          "it_w_0133",
+          "it_w_0420",
+          "it_w_0534",
+          "it_w_0634",
+          "it_w_0985",
+          "it_w_1116"
         ]
       }
     },
@@ -8102,6 +9173,13 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0133",
+          "it_w_0693",
+          "it_w_0697",
+          "it_w_0700",
+          "it_w_0975"
         ]
       }
     },
@@ -8170,6 +9248,16 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0007",
+          "it_w_0032",
+          "it_w_0045",
+          "it_w_0047",
+          "it_w_0273",
+          "it_w_0349",
+          "it_w_0869",
+          "it_w_1056"
         ]
       }
     },
@@ -8238,6 +9326,13 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0051",
+          "it_w_0357",
+          "it_w_0358",
+          "it_w_0877",
+          "it_w_1116"
         ]
       }
     },
@@ -8306,6 +9401,22 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0032",
+          "it_w_0048",
+          "it_w_0080",
+          "it_w_0083",
+          "it_w_0114",
+          "it_w_0180",
+          "it_w_0365",
+          "it_w_0369",
+          "it_w_0371",
+          "it_w_0437",
+          "it_w_0452",
+          "it_w_0870",
+          "it_w_1083",
+          "it_w_1116"
         ]
       }
     },
@@ -8374,6 +9485,15 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0007",
+          "it_w_0008",
+          "it_w_0036",
+          "it_w_0110",
+          "it_w_0121",
+          "it_w_0140",
+          "it_w_1056"
         ]
       }
     },
@@ -8439,6 +9559,20 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0007",
+          "it_w_0035",
+          "it_w_0061",
+          "it_w_0063",
+          "it_w_0082",
+          "it_w_0145",
+          "it_w_0273",
+          "it_w_0285",
+          "it_w_0288",
+          "it_w_1035",
+          "it_w_1056",
+          "it_w_1116"
         ]
       }
     },
@@ -8505,6 +9639,14 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0008",
+          "it_w_0014",
+          "it_w_0020",
+          "it_w_0144",
+          "it_w_1035",
+          "it_w_1118"
         ]
       }
     },
@@ -8573,6 +9715,21 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0004",
+          "it_w_0005",
+          "it_w_0006",
+          "it_w_0007",
+          "it_w_0008",
+          "it_w_0014",
+          "it_w_0164",
+          "it_w_0166",
+          "it_w_0258",
+          "it_w_0259",
+          "it_w_0336",
+          "it_w_0480",
+          "it_w_0499"
         ]
       }
     },
@@ -8632,6 +9789,23 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0007",
+          "it_w_0008",
+          "it_w_0020",
+          "it_w_0030",
+          "it_w_0031",
+          "it_w_0032",
+          "it_w_0036",
+          "it_w_0040",
+          "it_w_0041",
+          "it_w_0042",
+          "it_w_0082",
+          "it_w_0101",
+          "it_w_0154",
+          "it_w_0315",
+          "it_w_1056"
         ]
       }
     },
@@ -8691,6 +9865,15 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0007",
+          "it_w_0036",
+          "it_w_0052",
+          "it_w_0053",
+          "it_w_0100",
+          "it_w_0130",
+          "it_w_1056"
         ]
       }
     },
@@ -8749,6 +9932,15 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0007",
+          "it_w_0008",
+          "it_w_0020",
+          "it_w_0035",
+          "it_w_0036",
+          "it_w_0048",
+          "it_w_1056"
         ]
       }
     },
@@ -8807,6 +9999,13 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0007",
+          "it_w_0008",
+          "it_w_0036",
+          "it_w_0308",
+          "it_w_1056"
         ]
       }
     },
@@ -8866,6 +10065,19 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0004",
+          "it_w_0007",
+          "it_w_0021",
+          "it_w_0052",
+          "it_w_0057",
+          "it_w_0070",
+          "it_w_0072",
+          "it_w_0073",
+          "it_w_0100",
+          "it_w_1056",
+          "it_w_1116"
         ]
       }
     },
@@ -8924,6 +10136,20 @@
           "meaning_production",
           "listening",
           "context"
+        ],
+        "usesVocab": [
+          "it_w_0007",
+          "it_w_0008",
+          "it_w_0020",
+          "it_w_0021",
+          "it_w_0024",
+          "it_w_0055",
+          "it_w_0090",
+          "it_w_0091",
+          "it_w_0093",
+          "it_w_0133",
+          "it_w_1056",
+          "it_w_1076"
         ]
       }
     }

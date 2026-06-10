@@ -1,60 +1,21 @@
 import { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Sparkles, ChevronRight, RotateCcw } from 'lucide-react';
-import curriculum from '../../content/curriculum.json';
-import { getNextBestLessons } from '../lib/sequencer';
-import { getDueItemIds } from '../lib/srs';
-import { getWeakItems, getWeakestDimension, isItemMastered } from '../lib/wordGrades';
+import { getRecommendations } from '../lib/recommendations';
 
 // Sequencer-powered "Recommended for you" row (Layer 3 activation).
 // Additive: sits above the visible roadmap; the linear path is unchanged. Picks
 // the next lessons by purpose-fit + difficulty-fit + variety, constrained by the
 // grammar prerequisite graph. Tapping a card jumps to that lesson.
-const REAL_PURPOSES = ['explore_vietnam', 'professional', 'heritage'];
 const TOPIC_COLOR = { explore_vietnam: '#1CB0F6', professional: '#A78BFA', heritage: '#EF476F' };
 
 export default function RecommendedNext({ completedNodeIds, purpose }) {
     const navigate = useNavigate();
 
-    const { recs, dueCount } = useMemo(() => {
-        const lessons = curriculum.lessons || [];
-        const nodeToLesson = new Map(lessons.filter(l => l.nodeId).map(l => [l.nodeId, l]));
-        const completed = [...(completedNodeIds || [])].map(id => nodeToLesson.get(id)).filter(Boolean);
-        const seenItemIds = completed.flatMap(l => l.wordIds || []);
-        // Base target difficulty from what they've completed, then nudge by mastery
-        // (Layer 4 performance-adaptivity): strong → harder (skip-ahead), weak → easier.
-        const baseLevel = completed.length
-            ? Math.min(10, Math.max(1, Math.round(completed.reduce((s, l) => s + (l.difficulty || 3), 0) / completed.length) + 1))
-            : 2;
-        let estimatedLevel = baseLevel;
-        if (seenItemIds.length >= 8) {
-            const masteredRatio = seenItemIds.filter(isItemMastered).length / seenItemIds.length;
-            if (masteredRatio >= 0.7) estimatedLevel = Math.min(10, baseLevel + 1);
-            else if (masteredRatio < 0.3) estimatedLevel = Math.max(1, baseLevel - 1);
-        }
-        const recentTopics = [...completed]
-            .sort((a, b) => (b.orderIndex ?? 0) - (a.orderIndex ?? 0))
-            .slice(0, 3).map(l => l.topic);
-        const realPurpose = REAL_PURPOSES.includes(purpose) ? purpose : 'explore_vietnam';
-
-        // Layer 4 signals (already-live data): SRS due items + weakest skill dimensions
-        // aggregated over the learner's weak, seen vocab.
-        const dueItemIds = new Set(getDueItemIds());
-        const dimTally = {};
-        for (const itemId of getWeakItems(seenItemIds)) {
-            const d = getWeakestDimension(itemId);
-            if (d) dimTally[d] = (dimTally[d] || 0) + 1;
-        }
-        const weakSkills = Object.keys(dimTally);
-
-        return {
-            recs: getNextBestLessons(
-                { completedLessonIds: completed.map(l => l.id), purpose: realPurpose, estimatedLevel, recentTopics, dueItemIds, weakSkills },
-                lessons, { limit: 3 },
-            ),
-            dueCount: dueItemIds.size,
-        };
-    }, [completedNodeIds, purpose]);
+    const { recs, dueCount } = useMemo(
+        () => getRecommendations(completedNodeIds, purpose, { limit: 3 }),
+        [completedNodeIds, purpose],
+    );
 
     if (!recs.length && !dueCount) return null;
     const accent = TOPIC_COLOR[purpose] || 'var(--primary-color)';

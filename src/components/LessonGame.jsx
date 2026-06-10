@@ -10,6 +10,7 @@ import speak, { preloadSpeak, scheduleSpeak, clearSpeakQueue } from '../utils/sp
 import { startPCMRecording } from '../utils/recordPCM';
 import { addItemsFromLesson, recordReview } from '../lib/srs';
 import { recordExerciseResult, extractItemIds } from '../lib/wordGrades';
+import { logEngagement } from '../lib/engagement';
 import { getDB } from '../lib/db';
 import { loadSettings } from '../lib/settings';
 import { fireNotification } from '../context/NotificationContext';
@@ -144,6 +145,10 @@ const LessonGame = () => {
     const hadMistakeRef = useRef(false);
     const [halfwayLine, setHalfwayLine] = useState(null);
     const halfwayShownRef = useRef(false);
+    // Layer 5 engagement instrumentation (capture-only): timestamps for response
+    // time + lesson elapsed. Never read for sequencing yet.
+    const lessonStartRef = useRef(Date.now());
+    const exerciseStartRef = useRef(Date.now());
     const [streakLine, setStreakLine] = useState(null);
 
     // Mascot completion line. `complete` is a random pool, so compute it once
@@ -246,6 +251,8 @@ const LessonGame = () => {
         rewardGivenRef.current = false;
         hadMistakeRef.current = false;
         halfwayShownRef.current = false;
+        lessonStartRef.current = Date.now();
+        exerciseStartRef.current = Date.now();
         setHalfwayLine(null);
         setStreakLine(null);
 
@@ -314,6 +321,7 @@ const LessonGame = () => {
         } else if (exercise_type === 'mcq_translate_to_en') {
             if (prompt.source_text_vi) scheduleSpeak(prompt.source_text_vi, 100);
         }
+        exerciseStartRef.current = Date.now(); // engagement: response-time anchor
     }, [currentIndex]);
 
     // Auto-play audio when a new word is introduced
@@ -544,6 +552,12 @@ const LessonGame = () => {
         if (!result.handled) return;
         const { correct } = result;
 
+        // Engagement capture (Layer 5, analytics only)
+        logEngagement({
+            kind: 'exercise', lessonId, exerciseType: currentEx.exercise_type,
+            correct, responseMs: Date.now() - exerciseStartRef.current,
+        });
+
         // Record per-word grading + SRS review
         try {
             const db = getDB();
@@ -613,6 +627,10 @@ const LessonGame = () => {
             }
             setCurrentIndex(nextIndex);
         } else {
+            logEngagement({
+                kind: 'lesson_complete', lessonId, total: exercises.length,
+                elapsedMs: Date.now() - lessonStartRef.current,
+            });
             setIsFinished(true);
         }
     };
@@ -662,7 +680,13 @@ const LessonGame = () => {
                     justifyContent: 'center',
                     flexShrink: 0,
                 }}>
-                    <button className="ghost" style={{ color: 'var(--danger-color)', fontWeight: 700, width: '100%' }} onClick={() => navigate('/', { state: { tab: 'study' } })}>
+                    <button className="ghost" style={{ color: 'var(--danger-color)', fontWeight: 700, width: '100%' }} onClick={() => {
+                        logEngagement({
+                            kind: 'lesson_quit', lessonId, atIndex: currentIndex,
+                            total: exercises.length, elapsedMs: Date.now() - lessonStartRef.current,
+                        });
+                        navigate('/', { state: { tab: 'study' } });
+                    }}>
                         QUIT
                     </button>
                     <SoundButton className="primary shadow-lg" style={{ width: '100%', fontSize: 18 }} onClick={() => setShowQuitConfirm(false)}>
