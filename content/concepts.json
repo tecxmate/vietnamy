@@ -1,4 +1,481 @@
 {
   "version": "1.1.0",
-  "concepts": []
+  "concepts": [
+    {
+      "id": "concept_lesson_001a",
+      "lessonId": "lesson_001a",
+      "title": "Two ways to say hi",
+      "body": "Use \"xin chào\" as a polite, all-purpose hello for anyone, especially elders or strangers. With friends, you can drop \"xin\" and just say \"chào.\" To say goodbye, use \"tạm biệt.\"",
+      "examples": [
+        {
+          "vi": "Xin chào!",
+          "en": "Hello! (polite)"
+        },
+        {
+          "vi": "Chào!",
+          "en": "Hi!"
+        },
+        {
+          "vi": "Tạm biệt!",
+          "en": "Goodbye!"
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_001b",
+      "lessonId": "lesson_001b",
+      "title": "Saying \"thank you\" in Vietnamese",
+      "body": "\"Cảm ơn\" means \"thank you\" and works in almost any situation. To be warmer or more polite, add the person you're talking to: \"Cảm ơn bạn\" (thank you, friend). \"Tôi\" means \"I/me\" and \"bạn\" means \"you\" for someone your own age.",
+      "examples": [
+        {
+          "vi": "Cảm ơn!",
+          "en": "Thank you!"
+        },
+        {
+          "vi": "Cảm ơn bạn.",
+          "en": "Thank you (to a friend)."
+        },
+        {
+          "vi": "Không, cảm ơn.",
+          "en": "No, thank you."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_002a",
+      "lessonId": "lesson_002a",
+      "title": "Asking \"what?\" with gì",
+      "body": "To ask someone's name, Vietnamese keeps the words in statement order and puts the question word \"gì\" (what) at the end. Literally it's \"You name is what?\" There's no rising word order like in English. The polite, friendly word for \"you\" here is \"bạn\".",
+      "examples": [
+        {
+          "vi": "Bạn tên là gì?",
+          "en": "What is your name?"
+        },
+        {
+          "vi": "Tên là gì?",
+          "en": "What's the name?"
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_002b",
+      "lessonId": "lesson_002b",
+      "title": "\"Nice to meet you\" in Vietnamese",
+      "body": "Vietnamese has no single word for \"nice\"; the phrase literally means \"very happy to meet you.\" Start with \"Rất vui\" (very happy), then \"được gặp\" (to get to meet). Swap \"bạn\" (you, for a peer) with another pronoun when speaking to elders.",
+      "examples": [
+        {
+          "vi": "Rất vui được gặp bạn.",
+          "en": "Nice to meet you."
+        },
+        {
+          "vi": "Rất vui.",
+          "en": "(I'm) very happy. / Pleased."
+        },
+        {
+          "vi": "Rất vui được gặp anh.",
+          "en": "Nice to meet you. (to an older man)"
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_003",
+      "lessonId": "lesson_003",
+      "title": "\"Vâng\" vs \"dạ\" for polite yes",
+      "body": "In Vietnamese, politeness often means adding a soft word, not changing the verb. Use \"dạ\" to answer politely (and as a respectful \"yes,\" especially in the South); \"vâng\" is the Northern \"yes.\" When you're lost, simple repair phrases keep the conversation kind: say \"xin lỗi\" to apologize or get attention, and \"làm ơn\" to soften a request into \"please.\"",
+      "examples": [
+        {
+          "vi": "Dạ, em hiểu.",
+          "en": "Yes, I understand. (polite)"
+        },
+        {
+          "vi": "Xin lỗi, tôi không hiểu.",
+          "en": "Sorry, I don't understand."
+        },
+        {
+          "vi": "Làm ơn nói chậm lại.",
+          "en": "Please speak more slowly."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_004",
+      "lessonId": "lesson_004",
+      "title": "Counting 1 to 5",
+      "body": "Vietnamese has its own word for each number: một, hai, ba, bốn, năm. To count things, just put the number right before the noun, the same order as English (\"five friends\" = \"năm bạn\").",
+      "examples": [
+        {
+          "vi": "một, hai, ba, bốn, năm",
+          "en": "one, two, three, four, five"
+        },
+        {
+          "vi": "Tôi có năm bạn.",
+          "en": "I have five friends."
+        },
+        {
+          "vi": "Một, hai, ba!",
+          "en": "One, two, three!"
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_025",
+      "lessonId": "lesson_025",
+      "title": "Counting onward: 6 to 10",
+      "body": "Vietnamese numbers 6 through 10 are single, distinct words you memorize in order: sáu, bảy, tám, chín, mười. To say \"or\" between choices, use \"hay\"; to give a range, frame it with \"từ... đến...\" (from... to...).",
+      "examples": [
+        {
+          "vi": "Tám hay chín?",
+          "en": "Eight or nine?"
+        },
+        {
+          "vi": "Từ sáu đến mười.",
+          "en": "From six to ten."
+        },
+        {
+          "vi": "bảy, tám, chín",
+          "en": "seven, eight, nine"
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_005",
+      "lessonId": "lesson_005",
+      "title": "Order with \"Cho tôi...\"",
+      "body": "To order, start with \"Cho tôi...\" which means \"Give me...\" then name what you want. You can also say \"Tôi muốn...\" (I want...). Watch the marks: \"nước\" with its tone and circumflex means water, and \"cà phê\" needs both accents to sound right.",
+      "examples": [
+        {
+          "vi": "Cho tôi cà phê.",
+          "en": "Give me coffee."
+        },
+        {
+          "vi": "Tôi muốn một trà.",
+          "en": "I want a tea."
+        },
+        {
+          "vi": "Cho tôi nước.",
+          "en": "Give me water."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_006",
+      "lessonId": "lesson_006",
+      "title": "Build your drink word by word",
+      "body": "Vietnamese stacks describing words after the main noun, so a drink name reads like a recipe: coffee, then milk, then ice. Swap the last word to change the order: \"đá\" for iced, \"nóng\" for hot.",
+      "examples": [
+        {
+          "vi": "cà phê sữa đá",
+          "en": "iced milk coffee (coffee + milk + ice)"
+        },
+        {
+          "vi": "cà phê sữa nóng",
+          "en": "hot milk coffee"
+        },
+        {
+          "vi": "Tôi muốn cà phê sữa đá.",
+          "en": "I want iced milk coffee."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_007",
+      "lessonId": "lesson_007",
+      "title": "Order food with \"một bát ...\"",
+      "body": "To order in Vietnamese, you usually count the dish, not just name it. Use \"một\" (one) plus a measure word like \"bát\" (bowl) before the food: \"một bát phở\" = \"a bowl of pho.\" Add \"Tôi muốn...\" (I want...) in front to make a polite order.",
+      "examples": [
+        {
+          "vi": "Tôi muốn một bát phở.",
+          "en": "I want a bowl of pho."
+        },
+        {
+          "vi": "một bát bún",
+          "en": "a bowl of rice noodles"
+        },
+        {
+          "vi": "Phở rất ngon.",
+          "en": "Pho is very delicious."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_008",
+      "lessonId": "lesson_008",
+      "title": "Asking \"how much?\"",
+      "body": "To ask a price, use the frame \"[thing] bao nhiêu tiền?\" — literally \"[thing] how-much money?\" Notice the order is flipped from English: the item comes first, and \"how much\" sits in the middle. For \"this item,\" point and say cái này.",
+      "examples": [
+        {
+          "vi": "Cái này bao nhiêu tiền?",
+          "en": "How much does this cost?"
+        },
+        {
+          "vi": "Đắt quá!",
+          "en": "Too expensive!"
+        },
+        {
+          "vi": "Rẻ thôi.",
+          "en": "It's cheap."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_009",
+      "lessonId": "lesson_009",
+      "title": "One word for blue and green",
+      "body": "In Vietnamese, \"xanh\" means both blue and green. To name a color on its own, add \"màu\" (color) in front, like \"màu đỏ\" (red). When describing a thing, the color comes after the noun: \"áo đỏ\" means \"red shirt,\" literally \"shirt red.\"",
+      "examples": [
+        {
+          "vi": "Tôi thích màu đỏ.",
+          "en": "I like the color red."
+        },
+        {
+          "vi": "Cái áo màu xanh.",
+          "en": "The blue (or green) shirt."
+        },
+        {
+          "vi": "màu vàng",
+          "en": "the color yellow"
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_026",
+      "lessonId": "lesson_026",
+      "title": "Adjectives come after the noun",
+      "body": "In Vietnamese, the describing word goes AFTER the thing it describes, the opposite of English. So \"big house\" becomes \"house big.\" To say something is very big or very pretty, add \"quá\" right after the adjective for emphasis.",
+      "examples": [
+        {
+          "vi": "nhà to",
+          "en": "big house (literally: house big)"
+        },
+        {
+          "vi": "Cái nhà to quá!",
+          "en": "The house is so big!"
+        },
+        {
+          "vi": "Hoa đẹp quá!",
+          "en": "The flowers are so beautiful!"
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_010",
+      "lessonId": "lesson_010",
+      "title": "Ask for a discount politely",
+      "body": "To haggle, tell the seller the price is too high (mắc quá), then ask them to lower it with bớt or giảm. Add được không? (\"can you?/is that ok?\") to turn a request into a polite question. In the South, \"expensive\" is mắc; Northerners say đắt.",
+      "examples": [
+        {
+          "vi": "Mắc quá! Bớt đi.",
+          "en": "Too expensive! Lower the price."
+        },
+        {
+          "vi": "Bớt một chút được không?",
+          "en": "Can you take a little off?"
+        },
+        {
+          "vi": "Giảm giá được không?",
+          "en": "Can you lower the price?"
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_011",
+      "lessonId": "lesson_011",
+      "title": "Fruit names = exact words",
+      "body": "Vietnamese has no plural form, so the fruit word stays the same for one or many. To shop, just pair a fruit with \"muốn mua\" (want to buy). The umbrella word for fruit is \"trái cây.\"",
+      "examples": [
+        {
+          "vi": "Tôi muốn mua cam.",
+          "en": "I want to buy oranges."
+        },
+        {
+          "vi": "Xoài rất ngon.",
+          "en": "Mango is very delicious."
+        },
+        {
+          "vi": "trái cây",
+          "en": "fruit"
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_027",
+      "lessonId": "lesson_027",
+      "title": "Color comes after the noun",
+      "body": "In Vietnamese, the color word comes right after the noun, not before it like in English. You also don't need a \"to be\" verb to describe something's color. So \"red tomato\" is literally \"tomato red,\" and \"the tomato is red\" is just \"tomato (color) red.\"",
+      "examples": [
+        {
+          "vi": "Cà chua màu đỏ.",
+          "en": "Tomatoes are red. (lit. tomato color red)"
+        },
+        {
+          "vi": "Tôi ăn rau mỗi ngày.",
+          "en": "I eat vegetables every day."
+        },
+        {
+          "vi": "Tôi mua khoai.",
+          "en": "I buy potatoes."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_012",
+      "lessonId": "lesson_012",
+      "title": "\"Thousand\" has two words",
+      "body": "Vietnamese prices are huge, so you'll hear \"thousand\" and \"million\" constantly. The North says nghìn for thousand; the South says ngàn. Both are correct and mean the same thing.",
+      "examples": [
+        {
+          "vi": "hai mươi nghìn",
+          "en": "twenty thousand (Northern)"
+        },
+        {
+          "vi": "hai mươi ngàn",
+          "en": "twenty thousand (Southern)"
+        },
+        {
+          "vi": "Tính tiền, làm ơn.",
+          "en": "The bill, please."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_133",
+      "lessonId": "lesson_133",
+      "title": "Say \"yes\" by who you're talking to",
+      "body": "Vietnamese has no single \"yes\" — you pick one by respect level: \"Dạ/Vâng\" for elders or politeness, \"Ừ\" for friends. To refuse kindly, soften it: add \"cảm ơn\" (thank you) or \"xin lỗi\" (sorry), or buy time with \"Để tôi nghĩ.\"",
+      "examples": [
+        {
+          "vi": "Dạ vâng, em hiểu rồi.",
+          "en": "Yes, I understand."
+        },
+        {
+          "vi": "Không, cảm ơn anh.",
+          "en": "No, thank you."
+        },
+        {
+          "vi": "Xin lỗi, để tôi nghĩ đã.",
+          "en": "Sorry, let me think first."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_134",
+      "lessonId": "lesson_134",
+      "title": "Customize your drink order",
+      "body": "To order a drink politely, start with \"Cho tôi\" (Give me) or end with the soft particle \"nhé\". Vietnamese drinks are often very sweet, so add \"ít đường\" (less sugar) after the drink name to adjust it.",
+      "examples": [
+        {
+          "vi": "Cho tôi một cà phê sữa đá.",
+          "en": "One iced milk coffee, please."
+        },
+        {
+          "vi": "Trà sữa ít đường nhé.",
+          "en": "Milk tea, less sugar please."
+        },
+        {
+          "vi": "Một chai nước suối lạnh.",
+          "en": "One cold bottled water."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_135",
+      "lessonId": "lesson_135",
+      "title": "Settling up at the table",
+      "body": "In Vietnam you usually pay at your table, not at a counter, so you ask the staff to come over with \"Tính tiền\" (the bill). Soften any request by adding \"giúp mình\" (help me) or \"nhé\" to sound polite and friendly. For takeaway, just say \"mang đi\" (to go) instead of \"ngồi đây\" (eat in).",
+      "examples": [
+        {
+          "vi": "Cho mình mang đi nhé.",
+          "en": "Make it to go, please."
+        },
+        {
+          "vi": "Tính tiền giúp mình.",
+          "en": "Check, please."
+        },
+        {
+          "vi": "Bên này có quẹt thẻ không?",
+          "en": "Do you accept cards?"
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_136",
+      "lessonId": "lesson_136",
+      "title": "Stack words to name dishes",
+      "body": "Vietnamese builds food names by stacking: a base like \"cơm\" (rice) or \"mì\" (noodles) plus a meat such as \"gà\" (chicken) or \"bò\" (beef). Order is base first, then the meat: \"cơm gà\" = chicken rice. Menus also split food into \"món chay\" (vegetarian) and \"món mặn\" (literally \"salty,\" meaning meat/savory dishes).",
+      "examples": [
+        {
+          "vi": "Cho tôi cơm gà.",
+          "en": "Chicken rice, please."
+        },
+        {
+          "vi": "Một tô mì bò.",
+          "en": "One bowl of beef noodles."
+        },
+        {
+          "vi": "Tôi muốn ăn món chay.",
+          "en": "I want a vegetarian dish."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_137",
+      "lessonId": "lesson_137",
+      "title": "Say \"I'm allergic to...\" the safe way",
+      "body": "To name an allergy, use \"bị dị ứng\" + the food: \"Tôi bị dị ứng [food].\" Here \"bị\" marks something happening to you (you didn't choose it). For polite food requests, just say \"không\" (no) or \"ít\" (less) before the thing: \"không cay\" (not spicy), \"ít muối\" (less salt).",
+      "examples": [
+        {
+          "vi": "Tôi bị dị ứng đậu phộng.",
+          "en": "I'm allergic to peanuts."
+        },
+        {
+          "vi": "Cho tôi món không cay.",
+          "en": "A not-spicy dish, please."
+        },
+        {
+          "vi": "Tôi đang ăn kiêng, ít muối thôi.",
+          "en": "I'm on a diet, low salt please."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_138",
+      "lessonId": "lesson_138",
+      "title": "Haggling at the market",
+      "body": "At Vietnamese markets, bargaining is normal and friendly. Start by calling the price too high (\"Mắc quá\"), then ask for a little off (\"bớt chút\"). Buying more or asking \"Có rẻ hơn không?\" often gets you a better deal.",
+      "examples": [
+        {
+          "vi": "Mắc quá, bớt chút đi.",
+          "en": "Too expensive, give me a discount."
+        },
+        {
+          "vi": "Mua hai cái có rẻ hơn không?",
+          "en": "Cheaper if I buy two?"
+        },
+        {
+          "vi": "Giá cuối là bao nhiêu?",
+          "en": "What's the final price?"
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_139",
+      "lessonId": "lesson_139",
+      "title": "Vietnamese money has lots of zeros",
+      "body": "Prices in Vietnam are in đồng, and even small things cost thousands. You'll hear \"nghìn\" (thousand) and \"triệu\" (million) constantly. To count banknotes, use the classifier \"tờ\" before the amount, like \"tờ năm trăm nghìn\" (a 500,000 note).",
+      "examples": [
+        {
+          "vi": "Cái này một trăm nghìn đồng.",
+          "en": "This is one hundred thousand dong."
+        },
+        {
+          "vi": "Có tờ năm trăm nghìn không?",
+          "en": "Do you have a five-hundred-thousand note?"
+        },
+        {
+          "vi": "Tổng cộng hai triệu đồng.",
+          "en": "Total: two million dong."
+        }
+      ]
+    }
+  ]
 }
