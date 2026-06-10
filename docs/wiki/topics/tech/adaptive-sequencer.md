@@ -16,9 +16,9 @@ A layered system that turns the single shared lesson pool into a path that
 **adapts to the learner's purpose, performance, and (later) engagement** — "a
 playlist with rules" (a recommender constrained by a prerequisite graph, not free
 mixing). Design doc: `docs/ADAPTIVE_CURRICULUM_SEQUENCER.md` (6-layer model).
-**Layers 1–3 are built and on `main`; nothing is destructive — the new data is
-additive and the sequencer only powers a "Recommended for you" row, the linear
-roadmap is unchanged.** See also [curriculum-paths](curriculum-paths.md) (the 3
+**Layers 1–4 are built and on `main`; nothing is destructive — the new data is
+additive and the sequencer only powers a "Recommended for you" row (with a Review
+card), the linear roadmap is unchanged.** See also [curriculum-paths](curriculum-paths.md) (the 3
 modes) and [skill-tree](skill-tree.md) (the linear roadmap).
 
 ## Current state (what's built)
