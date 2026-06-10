@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { MessageCircle, Zap, Trophy, Pen, Check, Lock, BookOpen, Music, Clapperboard, ChevronDown, Plane, Briefcase, Heart, Flame, Sparkles } from 'lucide-react';
+import { MessageCircle, Zap, Trophy, Pen, Check, Lock, BookOpen, Music, Clapperboard, ChevronDown, Plane, Briefcase, Heart, Flame, Sparkles, Bell } from 'lucide-react';
 import { getUnits, getNodesForUnitWithProgress } from '../../lib/db';
 import { getGrammarForUnit } from '../../lib/grammarGuide';
 import GrammarGuidebook from '../GrammarGuidebook';
@@ -8,6 +8,7 @@ import RecommendedNext from '../RecommendedNext';
 import { getRecommendations } from '../../lib/recommendations';
 import { useProgress } from '../../context/ProgressContext';
 import { useUser } from '../../context/UserContext';
+import { useNotifications } from '../../context/NotificationContext';
 import { loadSettings } from '../../lib/settings';
 import SoundButton from '../SoundButton';
 import { DEFAULT_LEARNER_MODE, ENABLE_LEARNING_PATH_CHOOSER, getProgressMode, getTopicsForMode, getModeConfig, LEARNER_MODES } from '../../data/learnerModes';
@@ -65,6 +66,7 @@ const RoadmapTab = () => {
     const { completedNodes, getNodeSessionCount, SESSIONS_TO_COMPLETE, dailyStreak, getStreakStatus, consumeStreakMoment } = useProgress();
     const [streakMoment, setStreakMoment] = useState(null);
     const { userProfile, updateUserProfile } = useUser();
+    const { unreadCount, openPanel } = useNotifications();
     const currentMode = userProfile?.learnerMode || DEFAULT_LEARNER_MODE;
     const progressMode = getProgressMode(currentMode);
     const modeCompletedNodes = React.useMemo(
@@ -332,13 +334,27 @@ const RoadmapTab = () => {
                     );
                 })}
                 </div>
-                {/* Streak — icon-only, pinned top-right */}
-                <div
-                    style={{ display: 'flex', alignItems: 'center', gap: 4, flexShrink: 0 }}
-                    title={t('home_stats_streak')}
-                >
-                    <Flame size={18} color="#FF6B35" />
-                    <span style={{ fontWeight: 800, fontSize: 16 }}>{dailyStreak}</span>
+                {/* Streak + notifications — pinned top-right */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0 }}>
+                    <div
+                        style={{ display: 'flex', alignItems: 'center', gap: 4 }}
+                        title={t('home_stats_streak')}
+                    >
+                        <Flame size={18} color="#FF6B35" />
+                        <span style={{ fontWeight: 800, fontSize: 16 }}>{dailyStreak}</span>
+                    </div>
+                    <button
+                        className="notif-bell-btn"
+                        onClick={openPanel}
+                        aria-label={t('notifications')}
+                    >
+                        <Bell size={20} />
+                        {unreadCount > 0 && (
+                            <span className="notif-bell-badge">
+                                {unreadCount > 9 ? '9+' : unreadCount}
+                            </span>
+                        )}
+                    </button>
                 </div>
             </div>
 
