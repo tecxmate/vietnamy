@@ -172,16 +172,43 @@ const RoadmapTab = () => {
         else if (node.status === 'completed') setRedoNode(node);
     };
 
+    const modeTopicIds = React.useMemo(() => new Set(modeTopics.map(tp => tp.id)), [modeTopics]);
     const isVisibleRoadmapNode = React.useCallback((node) => (
         // Pronunciation (blue) and Grammar (purple) are first-class unit modules again
         // (4-module structure). Only module-scope mini-quizzes stay hidden.
         node.test_scope !== 'module' &&
+        // The learning goal SHAPES the path: topic-bearing nodes outside the
+        // current goal's topics are hidden ("All" shows the union; foundations,
+        // grammar and tests carry no topic and appear in every goal).
+        (currentMode === ALL_LEARNER_MODE || !node.topic || modeTopicIds.has(node.topic)) &&
         (!activeTopic || node.topic === activeTopic)
-    ), [activeTopic]);
+    ), [activeTopic, currentMode, modeTopicIds]);
+
+    // Per-goal unlock: re-derive status over the goal-visible subsequence so the
+    // path stays continuous when off-goal nodes are hidden (otherwise the linear
+    // "active" node could be an invisible one and the path would appear stuck).
+    // Unit gate stays the previous unit's test (tests are visible in every goal).
+    const visibleNodesMap = React.useMemo(() => {
+        const out = {};
+        let prevTestId = null;
+        for (const unit of units) {
+            const vis = (nodesMap[unit.id] || []).filter(isVisibleRoadmapNode);
+            out[unit.id] = vis.map((n, i) => {
+                let status;
+                if (modeCompletedNodes.has(n.id)) status = 'completed';
+                else if (i === 0) status = (!prevTestId || modeCompletedNodes.has(prevTestId)) ? 'active' : 'locked';
+                else status = modeCompletedNodes.has(vis[i - 1].id) ? 'active' : 'locked';
+                return n.status === status ? n : { ...n, status };
+            });
+            const unitTest = vis.find(n => n.type === 'test' && n.test_scope !== 'module');
+            if (unitTest) prevTestId = unitTest.id;
+        }
+        return out;
+    }, [units, nodesMap, isVisibleRoadmapNode, modeCompletedNodes]);
 
     const hasAnyVisibleNodes = React.useMemo(
-        () => units.some(unit => (nodesMap[unit.id] || []).some(isVisibleRoadmapNode)),
-        [units, nodesMap, isVisibleRoadmapNode]
+        () => units.some(unit => (visibleNodesMap[unit.id] || []).length > 0),
+        [units, visibleNodesMap]
     );
 
     const mascotLang = normalizeLang(userProfile?.nativeLang);
@@ -222,8 +249,8 @@ const RoadmapTab = () => {
 
     const handleContinueClick = async () => {
         for (const unit of units) {
-            const nodes = nodesMap[unit.id] || [];
-            const activeNode = nodes.find(n => isVisibleRoadmapNode(n) && n.status === 'active');
+            const nodes = visibleNodesMap[unit.id] || [];
+            const activeNode = nodes.find(n => n.status === 'active');
             if (activeNode) {
                 // Sequencer-primary (Layer 3+): when the next linear step is a LESSON,
                 // follow the sequencer's top pick instead (purpose/performance-aware,
@@ -476,7 +503,7 @@ const RoadmapTab = () => {
 
             {units.map((unit) => {
                 const nodes = nodesMap[unit.id] || [];
-                const visibleNodes = nodes.filter(isVisibleRoadmapNode);
+                const visibleNodes = visibleNodesMap[unit.id] || [];
                 if (visibleNodes.length === 0) return null;
 
                 const quizByParent = {};
