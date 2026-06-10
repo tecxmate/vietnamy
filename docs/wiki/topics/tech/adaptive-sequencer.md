@@ -53,12 +53,22 @@ below it ("dynamic selection within a visible path"). It maps completed nodes→
 via `lesson.nodeId`, derives `estimatedLevel` from completed difficulty and
 `recentTopics` by order.
 
+**Layer 4 — performance-adaptive (partial).** Generated `adaptive.skills` per lesson
+(content heuristic). Scorer now has `reviewValue` (lesson vocab ∩ SRS-due) +
+`remediationValue` (skills ∩ weak skills) wired with modest weights. The OBSERVABLE
+win: `RecommendedNext` derives `estimatedLevel` from **live mastery**
+(`isItemMastered` over seen vocab) → ±1 nudge, so strong learners get harder recs
+(skip-ahead), strugglers easier. **Honest caveat:** `skills` is uniform across the
+pool (every lesson has words+sentences) and new-lesson vocab isn't SRS-due, so the
+review/remediation *scorer terms are near-inert today* — they're correct hooks that
+activate when per-lesson skill granularity + vocab-reuse data improve. The mastery
+difficulty-nudge is the part that actually moves recommendations now.
+
 ## Open questions / next steps (for whoever continues)
-- **Layer 4 (performance-adaptive)** — derive `requires_vocab` (needs sentence→word
-  tokenization) + `skills` (from exercise types / `wordGrades.js` dimension map),
-  then wire `reviewValue`/`remediationValue` into the scorer. The data feeding this
-  is **already live, not dormant**: `getWeakItems` (`wordGrades.js`) already orders
-  lesson exercises and `getDueItems` (`srs.js`) already powers the Library review.
+- **Better Layer 4 data** — per-lesson skill granularity (which exercise types a
+  lesson really runs, gated by profile/CEFR) so `remediationValue` discriminates;
+  and a real **SRS review-session surface** on the Study tab (the review deck exists
+  in the Library as the `__srs__` vocab deck — cross-tab nav was the blocker).
 - **Make the sequencer primary** — currently a recommendation row; could drive the
   Continue button / path with a force-insert spine+review cadence. (Note: the roadmap
   is strictly *linear-unlock* today; graph-based unlock is the bigger change.)
@@ -71,3 +81,5 @@ via `lesson.nodeId`, derives `estimatedLevel` from completed difficulty and
 ## History
 - 2026-06-11 — Layers 1–3 built + wired (additive). Data in `content/curriculum.json`,
   engine `src/lib/sequencer.js`, UI `src/components/RecommendedNext.jsx`.
+- 2026-06-11 — Layer 4 (partial): `adaptive.skills`, review/remediation scorer hooks,
+  and mastery-driven performance-adaptive difficulty in `RecommendedNext`.
