@@ -1596,6 +1596,1202 @@
           "en": "The story was very moving and left a deep impression."
         }
       ]
+    },
+    {
+      "id": "concept_lesson_073",
+      "lessonId": "lesson_073",
+      "title": "Assert Your Opinion with Confidence",
+      "body": "To state opinions firmly in Vietnamese, frame them with \"Theo tôi\" (in my opinion) or the more formal \"Tôi xin khẳng định\" (I would like to assert). Stack intensifiers like \"rõ ràng\" (clearly), \"chắc chắn\" (certainly), and \"tuyệt đối\" (absolutely) before or after the verb to add force. The verb \"nhấn mạnh\" (emphasize) lets you flag your strongest point in a debate.",
+      "examples": [
+        {
+          "vi": "Theo tôi, đây là vấn đề cần giải quyết ngay.",
+          "en": "In my opinion, this issue must be addressed immediately."
+        },
+        {
+          "vi": "Tôi xin khẳng định quan điểm của mình một cách rõ ràng.",
+          "en": "I would like to clearly assert my position."
+        },
+        {
+          "vi": "Tôi muốn nhấn mạnh rằng lập luận này hoàn toàn chắc chắn.",
+          "en": "I want to emphasize that this argument is completely sound."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_074",
+      "lessonId": "lesson_074",
+      "title": "Pushing back, politely",
+      "body": "In a debate, lead with a contrast connector, then state your point. \"Tuy nhiên\" (however) softens disagreement, while \"Ngược lại\" (on the contrary) flatly rejects the previous claim. To sound credible and not just stubborn, back your objection with \"bằng chứng\" (evidence) rather than only saying \"không đồng ý.\"",
+      "examples": [
+        {
+          "vi": "Tôi không đồng ý, vì những số liệu này chưa đầy đủ.",
+          "en": "I disagree, because these figures are incomplete."
+        },
+        {
+          "vi": "Tuy nhiên, lập luận của bạn vẫn còn một điểm cần xem lại.",
+          "en": "However, your argument still has a point that needs reviewing."
+        },
+        {
+          "vi": "Ngược lại, bằng chứng cho thấy kết luận đó là sai lầm.",
+          "en": "On the contrary, the evidence shows that conclusion is a mistake."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_075",
+      "lessonId": "lesson_075",
+      "title": "Soften commands with \"Hãy\"",
+      "body": "In persuasive Vietnamese, \"Hãy\" + verb makes a request sound like earnest encouragement rather than a blunt order, which is key for semi-formal arguments. Lead with shared benefits (\"lợi ích\") and frame downsides as conditional consequences (\"Hậu quả sẽ... nếu...\") to stay persuasive without sounding pushy. To propose, use \"Tôi đề xuất\" for a measured, reasonable (\"hợp lý\") suggestion.",
+      "examples": [
+        {
+          "vi": "Hãy suy nghĩ kỹ về lợi ích lâu dài.",
+          "en": "Please think carefully about the long-term benefits."
+        },
+        {
+          "vi": "Tôi đề xuất một giải pháp hợp lý hơn.",
+          "en": "I suggest a more reasonable solution."
+        },
+        {
+          "vi": "Hậu quả sẽ rất nghiêm trọng nếu chúng ta không hành động.",
+          "en": "The consequences will be severe if we don't act."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_076",
+      "lessonId": "lesson_076",
+      "title": "Hedge, then balance your review",
+      "body": "To give a nuanced review, soften criticism with \"hơi\" (a bit/slightly) and pivot with \"nhưng\" (but) to add the positive: \"hơi... nhưng hay\" sounds fair, not harsh. Note the classifiers too: a film is \"bộ phim\" but a single installment is \"tập phim\" — don't mix them.",
+      "examples": [
+        {
+          "vi": "Cốt truyện hơi phức tạp nhưng rất hay.",
+          "en": "The plot is a bit complex but really good."
+        },
+        {
+          "vi": "Diễn viên chính diễn hơi cứng, nhưng đạo diễn xử lý cảnh quay rất tốt.",
+          "en": "The lead actor's acting is a bit stiff, but the director handles the shots very well."
+        },
+        {
+          "vi": "Tôi thích bộ phim này, dù tập cuối hơi hụt hẫng.",
+          "en": "I like this film, though the final episode is a bit of a letdown."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_077",
+      "lessonId": "lesson_077",
+      "title": "Talk Like the Newsroom",
+      "body": "In media Vietnamese, certain verb–noun pairings are fixed collocations: you \"đưa tin\" (literally \"carry news\") to report on a story, and you \"phỏng vấn\" someone for an interview. Use đưa tin for press coverage, but switch to báo cáo for a formal report at work. Note that khách quan (objective) and its opposite chủ quan (subjective) are the standard adjectives for judging journalistic quality.",
+      "examples": [
+        {
+          "vi": "Báo chí đã đưa tin về vụ việc suốt cả tuần.",
+          "en": "The press reported on the incident all week."
+        },
+        {
+          "vi": "Phóng viên phỏng vấn nhân chứng để kiểm chứng nguồn tin.",
+          "en": "The reporter interviewed the witness to verify the source."
+        },
+        {
+          "vi": "Một bài báo khách quan thì không thiên vị bên nào.",
+          "en": "An objective article does not take sides."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_078",
+      "lessonId": "lesson_078",
+      "title": "Native terms vs. English in real talk",
+      "body": "Vietnamese has proper native words for social media (bài đăng, lượt thích, theo dõi, chia sẻ), but in casual everyday speech young people often just borrow the English: \"like,\" \"follow,\" \"share,\" \"post.\" Use the native compounds in writing or semi-formal contexts; the English loanwords sound natural in relaxed conversation. Note that \"lan truyền\" (go viral) and \"người ảnh hưởng\" (influencer) are the standard written forms you'll meet in news and headlines.",
+      "examples": [
+        {
+          "vi": "Bài đăng của cô ấy lan truyền nhanh.",
+          "en": "Her post went viral quickly. (written/standard)"
+        },
+        {
+          "vi": "Bạn follow anh ấy chưa? Nhớ like với share nữa nhé.",
+          "en": "Have you followed him yet? Remember to like and share too. (casual speech)"
+        },
+        {
+          "vi": "Người ảnh hưởng đó có hàng triệu lượt theo dõi.",
+          "en": "That influencer has millions of followers."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_079",
+      "lessonId": "lesson_079",
+      "title": "Say how you feel with \"cảm thấy\"",
+      "body": "To name an inner state, use cảm thấy (\"feel\") plus the emotion directly — never with là. To give the reason, link it with khi (\"when\") for a triggering situation or vì (\"because/for\") for a cause. These connectors let you express nuance instead of bare adjectives: not just \"lonely,\" but when and why.",
+      "examples": [
+        {
+          "vi": "Tôi cảm thấy bình yên khi ở quê.",
+          "en": "I feel peaceful when I'm in the countryside."
+        },
+        {
+          "vi": "Đôi khi tôi cảm thấy cô đơn.",
+          "en": "Sometimes I feel lonely."
+        },
+        {
+          "vi": "Tôi biết ơn vì có gia đình.",
+          "en": "I'm grateful because I have a family."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_080",
+      "lessonId": "lesson_080",
+      "title": "Abstract nouns need no article",
+      "body": "Vietnamese abstract nouns like tự do (freedom) and trách nhiệm (responsibility) stand bare, with no article or plural marker, even as the subject of a sentence. To pair two such concepts, link them with và (and) plus the adverb luôn (always) or đi đôi (go hand in hand) for a polished, semi-formal claim. To soften an opinion into discussion, frame it as a question with Bạn nghĩ gì về...? (What do you think about...?).",
+      "examples": [
+        {
+          "vi": "Tự do và trách nhiệm luôn đi đôi với nhau.",
+          "en": "Freedom and responsibility always go hand in hand."
+        },
+        {
+          "vi": "Bạn nghĩ gì về ý nghĩa cuộc sống?",
+          "en": "What do you think about the meaning of life?"
+        },
+        {
+          "vi": "Triết lý sống của tôi là sự đơn giản.",
+          "en": "My life philosophy is simplicity."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_081",
+      "lessonId": "lesson_081",
+      "title": "Stack traits with \"nhưng\" and \"và\"",
+      "body": "To describe personality naturally, link traits with connectors: \"và\" (and) for matching traits, \"nhưng\" (but) to flag a contrast. Front the person with \"là người\" (is a person who is...) for a fuller, semi-formal description, or just use the adjective directly after the subject. Note that many trait words double as nouns of virtue (e.g. \"khiêm tốn\" = humble / humility), so they slot into both \"Cô ấy rất...\" and \"...là một đức tính.\"",
+      "examples": [
+        {
+          "vi": "Tôi là người hướng nội nhưng cởi mở.",
+          "en": "I'm introverted but open-minded."
+        },
+        {
+          "vi": "Cô ấy vừa sáng tạo vừa đáng tin cậy.",
+          "en": "She is both creative and reliable."
+        },
+        {
+          "vi": "Khiêm tốn là một đức tính quý.",
+          "en": "Humility is a precious virtue."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_082",
+      "lessonId": "lesson_082",
+      "title": "\"Đang\" = a change in progress",
+      "body": "For trends that are unfolding right now, put \"đang\" before the verb: \"đang dâng\" (is rising), \"đang nóng lên\" (is warming). It signals an ongoing process, which fits climate topics perfectly. Note too that most of this vocabulary is Sino-Vietnamese (khí hậu, nhiệt độ), giving it a semi-formal, news-report register.",
+      "examples": [
+        {
+          "vi": "Mực nước biển đang dâng cao.",
+          "en": "Sea levels are rising."
+        },
+        {
+          "vi": "Trái Đất đang nóng lên từng năm.",
+          "en": "The Earth is warming year by year."
+        },
+        {
+          "vi": "Biến đổi khí hậu đang ảnh hưởng đến cả thế giới.",
+          "en": "Climate change is affecting the whole world."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_083",
+      "lessonId": "lesson_083",
+      "title": "Saying what's polluted and what we should do",
+      "body": "At B2, talk about environmental problems by pairing a place or source with \"bị\" (the passive/affected marker) plus the problem: \"X bị ô nhiễm\" = \"X is polluted.\" To say what should be done, use \"nên\" (should) for soft recommendations and \"giảm\" (reduce) + verb to describe cutting back. Note that \"khí thải\" (emissions) and \"khói bụi\" (smog/dust) are semi-formal nouns common in news and discussion, more precise than just saying \"bẩn\" (dirty).",
+      "examples": [
+        {
+          "vi": "Hà Nội bị ô nhiễm không khí nặng.",
+          "en": "Hanoi has serious air pollution."
+        },
+        {
+          "vi": "Chúng ta nên giảm dùng nhựa để bảo vệ môi trường.",
+          "en": "We should reduce plastic use to protect the environment."
+        },
+        {
+          "vi": "Khí thải từ phương tiện giao thông là nguyên nhân chính.",
+          "en": "Emissions from vehicles are the main cause."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_084",
+      "lessonId": "lesson_084",
+      "title": "Passive voice for formal topics",
+      "body": "Vietnamese has no verb conjugation, so the passive is built with \"được\" (favorable/neutral outcome) or \"bị\" (unfavorable outcome). For formal or written topics like conservation, this choice carries real meaning: a species \"bị tuyệt chủng\" (suffers extinction) but a reserve \"được thành lập\" (is established, a good thing). Native speakers also often drop the passive marker entirely and let context do the work, especially in headlines and reports.",
+      "examples": [
+        {
+          "vi": "Nhiều loài động vật hoang dã đang bị tuyệt chủng.",
+          "en": "Many wildlife species are going extinct."
+        },
+        {
+          "vi": "Khu bảo tồn này được thành lập năm 1990.",
+          "en": "This sanctuary was established in 1990."
+        },
+        {
+          "vi": "Rừng tự nhiên cần được bảo tồn.",
+          "en": "Natural forests need to be preserved."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_085",
+      "lessonId": "lesson_085",
+      "title": "\"Năng lượng\" + type = compound nouns",
+      "body": "Vietnamese builds specific terms by stacking a head noun with a modifier that follows it: \"năng lượng\" (energy) becomes \"năng lượng sạch\" (clean energy) or \"năng lượng mặt trời\" (solar energy). The modifier always comes after the noun, the reverse of English. For this semi-formal, eco-conscious register, pair \"lối sống\" (lifestyle) with a quality word the same way: \"lối sống xanh\" (green lifestyle).",
+      "examples": [
+        {
+          "vi": "Nhà tôi dùng năng lượng mặt trời.",
+          "en": "My house uses solar energy."
+        },
+        {
+          "vi": "Tôi đang theo lối sống xanh.",
+          "en": "I'm following a green lifestyle."
+        },
+        {
+          "vi": "Năng lượng sạch giúp giảm thiểu ô nhiễm.",
+          "en": "Clean energy helps minimize pollution."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_086",
+      "lessonId": "lesson_086",
+      "title": "Comparing with \"bằng\": A isn't as ___ as B",
+      "body": "To say one thing is \"not as [adjective] as\" another, use \"không + adjective + bằng + B\". Note the order: the thing that ranks lower comes first, then \"bằng\" links to the standard of comparison. This is the standard B2 way to soften or rank claims about education, work, and life.",
+      "examples": [
+        {
+          "vi": "Bằng cấp không quan trọng bằng kinh nghiệm.",
+          "en": "Degrees aren't as important as experience."
+        },
+        {
+          "vi": "Học bổng một phần không hấp dẫn bằng học bổng toàn phần.",
+          "en": "A partial scholarship isn't as attractive as a full one."
+        },
+        {
+          "vi": "Thi cử không khó bằng mọi người nghĩ.",
+          "en": "Exams aren't as hard as everyone thinks."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_087",
+      "lessonId": "lesson_087",
+      "title": "Pairing skill verbs with their objects",
+      "body": "At B2, talking about learning means choosing the right verb for each kind of effort. Vietnamese splits this: \"rèn luyện\" means to train or cultivate something through repeated practice (skills, character), while \"áp dụng\" means to put knowledge into action. Pair \"rèn luyện\" with skills you build up and \"áp dụng ... vào\" (apply ... into) with knowledge you use in real situations.",
+      "examples": [
+        {
+          "vi": "Tôi rèn luyện kỹ năng tư duy phản biện mỗi ngày.",
+          "en": "I train my critical-thinking skills every day."
+        },
+        {
+          "vi": "Học trực tuyến giúp tôi áp dụng kiến thức vào công việc.",
+          "en": "Studying online helps me apply knowledge to my work."
+        },
+        {
+          "vi": "Tự học hiệu quả hơn nếu bạn kiên trì rèn luyện.",
+          "en": "Self-study is more effective if you keep practising persistently."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_088",
+      "lessonId": "lesson_088",
+      "title": "Stay formal: drop the personal pronoun",
+      "body": "In academic Vietnamese, the agent is usually left out and the study itself is the subject: \"Nghiên cứu này phân tích...\" (This research analyzes...). Pair it with the passive marker được for results and confirmations: \"Giả thuyết được xác nhận\" (The hypothesis was confirmed). This depersonalized, được-heavy register signals objectivity, just like academic English.",
+      "examples": [
+        {
+          "vi": "Nghiên cứu này phân tích dữ liệu lớn bằng phương pháp định lượng.",
+          "en": "This research analyzes big data using a quantitative method."
+        },
+        {
+          "vi": "Giả thuyết của chúng tôi đã được kết quả thực nghiệm xác nhận.",
+          "en": "Our hypothesis was confirmed by the experimental results."
+        },
+        {
+          "vi": "Mọi nguồn cần được trích dẫn đầy đủ trong luận văn.",
+          "en": "All sources must be cited in full in the thesis."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_089",
+      "lessonId": "lesson_089",
+      "title": "Trade verbs: nhập / xuất + khẩu",
+      "body": "In business Vietnamese, many economic terms are Sino-Vietnamese compounds where each syllable carries meaning: \"khẩu\" (mouth/port) pairs with \"nhập\" (enter) and \"xuất\" (exit) to give \"nhập khẩu\" (import) and \"xuất khẩu\" (export). Recognizing these shared roots lets you decode new terms: \"cung\" (supply) + \"cầu\" (demand) = \"cung cầu\". This register is semi-formal and appears in news, reports, and meetings rather than casual speech.",
+      "examples": [
+        {
+          "vi": "Việt Nam xuất khẩu nhiều cà phê nhưng vẫn phải nhập khẩu lúa mì.",
+          "en": "Vietnam exports a lot of coffee but still has to import wheat."
+        },
+        {
+          "vi": "Khi cung vượt cầu, giá trên thị trường sẽ giảm.",
+          "en": "When supply exceeds demand, prices in the market will fall."
+        },
+        {
+          "vi": "Doanh thu tăng nhưng lợi nhuận lại giảm do cạnh tranh gay gắt.",
+          "en": "Revenue rose, but profit fell because of fierce competition."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_090",
+      "lessonId": "lesson_090",
+      "title": "Finance Vietnamese leans Sino-formal",
+      "body": "Most finance terms here are Sino-Vietnamese (Hán-Việt) and sound formal yet are standard in news, banking, and everyday money talk. Learn them as fixed collocations: \"đầu tư vào\" (invest in) takes \"vào,\" and \"lãi suất\" pairs with verbs like tăng/giảm (rise/fall). Pair \"rủi ro\" with \"có\" to say something \"involves risk,\" a natural B2 way to hedge.",
+      "examples": [
+        {
+          "vi": "Tôi đang đầu tư vào cổ phiếu, nhưng đầu tư luôn có rủi ro.",
+          "en": "I'm investing in stocks, but investing always involves risk."
+        },
+        {
+          "vi": "Khi lãi suất ngân hàng giảm, nhiều người vay tiền để mua nhà.",
+          "en": "When bank interest rates fall, many people borrow money to buy a house."
+        },
+        {
+          "vi": "Lạm phát và tỷ giá biến động ảnh hưởng đến đời sống.",
+          "en": "Inflation and exchange-rate swings affect daily life."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_091",
+      "lessonId": "lesson_091",
+      "title": "Talking startups: borrowed words, native verbs",
+      "body": "Vietnamese business talk mixes Sino-Vietnamese nouns (khởi nghiệp, nhà đầu tư, mô hình kinh doanh) with everyday verbs. Note the verb-object compounds: \"gọi vốn\" literally \"call capital\" = raise funds, and \"đổi mới\" \"change-new\" = to innovate. At B2 register, connect ideas with chìa khóa (\"the key to\") and bền vững (\"sustainable\") to sound semi-formal without slipping into slang.",
+      "examples": [
+        {
+          "vi": "Chúng tôi đang gọi vốn vòng đầu tiên từ các nhà đầu tư.",
+          "en": "We're raising our first round of funding from investors."
+        },
+        {
+          "vi": "Đổi mới là chìa khóa để mô hình kinh doanh phát triển bền vững.",
+          "en": "Innovation is the key to the business model growing sustainably."
+        },
+        {
+          "vi": "Công ty của tôi mới khởi nghiệp nhưng sản phẩm đã có sáng kiến riêng.",
+          "en": "My company is a new startup, but its product already has its own original initiative."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_092",
+      "lessonId": "lesson_092",
+      "title": "\"Hóa\": turn nouns into \"-ization\"",
+      "body": "Adding \"hóa\" to a noun or adjective creates an abstract process noun, like English \"-ize/-ization\": toàn cầu (global) → toàn cầu hóa (globalization). This Sino-Vietnamese pattern is everywhere in semi-formal news and economics writing, so recognizing it lets you decode many B2 terms at once. Note that Vietnamese keeps a neutral word order and uses \"đang\" before a verb to mark an ongoing trend (is changing, is growing).",
+      "examples": [
+        {
+          "vi": "Toàn cầu hóa đang thay đổi thị trường lao động.",
+          "en": "Globalization is changing the labor market."
+        },
+        {
+          "vi": "Hiện đại hóa giúp nền kinh tế tăng trưởng nhanh hơn.",
+          "en": "Modernization helps the economy grow faster."
+        },
+        {
+          "vi": "Chuỗi cung ứng toàn cầu đang bị gián đoạn.",
+          "en": "Global supply chains are being disrupted."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_093",
+      "lessonId": "lesson_093",
+      "title": "Register: slang vs. formal romance talk",
+      "body": "Vietnamese romance vocabulary splits sharply by register, and at C1 you choose deliberately. Slang like \"cảm nắng\" (have a crush) belongs to casual speech among friends, while \"dành tình cảm\" and \"đính hôn\" are neutral-to-formal and fit writing or serious conversation. Note that \"tỏ tình\" (to confess feelings) marks a specific cultural milestone, so it pairs naturally with an adverbial of manner such as \"một cách chân thành\" to convey sincerity.",
+      "examples": [
+        {
+          "vi": "Có vẻ như cô ấy đang cảm nắng ai đó.",
+          "en": "It seems like she has a crush on someone."
+        },
+        {
+          "vi": "Anh ấy đã tỏ tình một cách chân thành.",
+          "en": "He confessed his feelings sincerely."
+        },
+        {
+          "vi": "Sau nhiều năm hẹn hò, họ đã quyết định đính hôn.",
+          "en": "After many years of dating, they decided to get engaged."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_094",
+      "lessonId": "lesson_094",
+      "title": "Loyalty in the written register",
+      "body": "At C1, abstract relationship nouns like lòng trung thành (loyalty) and sự phản bội (betrayal) are built by nominalizing a quality or verb: lòng/tình + trait, or sự + verb. This lets you treat feelings as discourse topics (\"that betrayal,\" \"this loyalty\") rather than just actions, which suits reflective, semi-formal writing. Pair these nouns with evaluative adjectives (khó tha thứ, đáng quý) to express judgment cohesively.",
+      "examples": [
+        {
+          "vi": "Sự phản bội ấy thật khó tha thứ.",
+          "en": "That betrayal is truly hard to forgive."
+        },
+        {
+          "vi": "Lòng trung thành của cô ấy là điều đáng quý nhất.",
+          "en": "Her loyalty is the most precious thing."
+        },
+        {
+          "vi": "Chúng tôi gắn bó với nhau bằng sự tin tưởng tuyệt đối.",
+          "en": "We are bonded by absolute trust."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_095",
+      "lessonId": "lesson_095",
+      "title": "Apologizing with grace and nuance",
+      "body": "At C1, a sincere apology pairs the regret verb with the harm you caused: \"xin lỗi vì đã + [action]\" frames it as a completed act you own. Soften blame by reframing conflict as mutual misunderstanding (\"hiểu lầm nhau\") rather than fault, and use \"có lẽ\" or \"mong\" to keep the register reflective and face-saving. In Vietnamese reconciliation, asking the other person \"tha thứ và bỏ qua\" signals you want to close the matter, not relitigate it.",
+      "examples": [
+        {
+          "vi": "Mình xin lỗi vì đã làm bạn tổn thương.",
+          "en": "I'm sorry for hurting you."
+        },
+        {
+          "vi": "Có lẽ chúng ta đã hiểu lầm nhau, mong bạn bỏ qua.",
+          "en": "Perhaps we misunderstood each other; I hope you can let it go."
+        },
+        {
+          "vi": "Sau khi giải thích rõ ràng, hai bên đã hòa giải.",
+          "en": "After explaining things clearly, the two sides reconciled."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_096",
+      "lessonId": "lesson_096",
+      "title": "Telling history: formal register & names",
+      "body": "Vietnamese historical narrative uses a formal, written register: the perfective marker đã marks completed past events, and chronology is anchored with năm + year (\"in the year...\"). Crucially, Vietnamese keeps the family name first in dynastic and personal names (nhà Lý = \"the Ly house\"; Trần Hưng Đạo), and honors national figures with full names rather than first names alone.",
+      "examples": [
+        {
+          "vi": "Hai Bà Trưng đã lãnh đạo cuộc khởi nghĩa năm 40.",
+          "en": "The Trung Sisters led an uprising in the year 40."
+        },
+        {
+          "vi": "Trần Hưng Đạo đã đánh bại quân Nguyên Mông.",
+          "en": "Tran Hung Dao defeated the Mongol armies."
+        },
+        {
+          "vi": "Triều đại nhà Lý kéo dài hơn hai trăm năm.",
+          "en": "The Ly dynasty lasted over two hundred years."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_097",
+      "lessonId": "lesson_097",
+      "title": "Formal register for history & politics",
+      "body": "Historical and political Vietnamese leans on Sino-Vietnamese (Hán-Việt) compounds like thuộc địa, thực dân, and kháng chiến, which sound formal and written. The passive marker bị signals harm done to the subject (bị bóc lột = \"were exploited\"), so it suits accounts of oppression, while được would wrongly imply benefit. For dates and events, prefer agentless or formal passives (được ký kết \"was signed\") that foreground the event over the actor, as in textbooks and news.",
+      "examples": [
+        {
+          "vi": "Người dân bị bóc lột nặng nề dưới ách đô hộ của thực dân Pháp.",
+          "en": "The people were heavily exploited under the rule of the French colonialists."
+        },
+        {
+          "vi": "Hiệp ước được ký kết vào năm 1884, mở đầu thời kỳ thuộc địa.",
+          "en": "The treaty was signed in 1884, beginning the colonial period."
+        },
+        {
+          "vi": "Nhiều phong trào yêu nước và kháng chiến đã nổi lên khắp cả nước.",
+          "en": "Many patriotic and resistance movements arose across the country."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_098",
+      "lessonId": "lesson_098",
+      "title": "Formal History Register: passive & \"vì\"",
+      "body": "In Vietnamese historical and political writing, agency is often left implicit: events are stated with được (passive/\"to receive\") or with no subject at all, foregrounding the nation rather than individuals. Use vì + a noun to express the cause one fights or sacrifices for (vì hòa bình = \"for peace\"), and pair dates with vào năm to anchor formal narration.",
+      "examples": [
+        {
+          "vi": "Bản Tuyên ngôn Độc lập được Chủ tịch Hồ Chí Minh đọc tại Quảng trường Ba Đình.",
+          "en": "The Declaration of Independence was read by President Ho Chi Minh at Ba Dinh Square."
+        },
+        {
+          "vi": "Đất nước được thống nhất vào năm 1975, mở ra một thời kỳ hòa bình.",
+          "en": "The country was reunified in 1975, ushering in an era of peace."
+        },
+        {
+          "vi": "Biết bao thế hệ đã hy sinh vì nền độc lập của dân tộc.",
+          "en": "Countless generations sacrificed for the nation's independence."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_099",
+      "lessonId": "lesson_099",
+      "title": "Naming Eras: the Đổi mới register",
+      "body": "At C1, discussing Vietnam's modernization means using nominalized, written-register vocabulary: abstract noun compounds built on Sino-Vietnamese roots (hội nhập, đô thị hóa, phát triển). Note the suffix -hóa, which works like English \"-ization\" to turn a concept into a process. Proper-noun policy terms like Đổi mới stay capitalized and untranslated, much as English keeps \"Doi Moi\" or \"perestroika.\"",
+      "examples": [
+        {
+          "vi": "Chính sách Đổi mới đã thúc đẩy quá trình hội nhập quốc tế.",
+          "en": "The Doi Moi policy accelerated the process of international integration."
+        },
+        {
+          "vi": "Đô thị hóa nhanh chóng đặt ra nhiều thách thức cho thế hệ trẻ.",
+          "en": "Rapid urbanization poses many challenges for the young generation."
+        },
+        {
+          "vi": "Việc mở cửa đã thu hút mạnh mẽ đầu tư nước ngoài.",
+          "en": "Opening up strongly attracted foreign investment."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_100",
+      "lessonId": "lesson_100",
+      "title": "Naming heritage in formal Vietnamese",
+      "body": "In formal and written Vietnamese, the genres themselves act as proper nouns and stay uncapitalized and unmodified: you say nhạc quan họ or hát ca trù, never an English-style plural or article. To frame cultural value, the passive được + recognition verb (được UNESCO công nhận / được xem là) is the standard register for stating official or evaluative status, keeping the genre as topic rather than agent.",
+      "examples": [
+        {
+          "vi": "Quan họ được UNESCO công nhận là di sản văn hóa phi vật thể của nhân loại.",
+          "en": "Quan ho is recognized by UNESCO as an intangible cultural heritage of humanity."
+        },
+        {
+          "vi": "Ca trù từ lâu đã được xem là một loại hình nghệ thuật bác học.",
+          "en": "Ca tru has long been regarded as a form of scholarly art."
+        },
+        {
+          "vi": "Đàn bầu được coi là nhạc cụ độc đáo bậc nhất của Việt Nam.",
+          "en": "The đàn bầu is considered one of Vietnam's most distinctive instruments."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_101",
+      "lessonId": "lesson_101",
+      "title": "Talking About Literature Formally",
+      "body": "In literary Vietnamese, words pair into fixed compounds: thơ ca (poetry as an art) and tác phẩm (a literary work) carry a more formal, written register than everyday speech. Note that ẩn dụ (metaphor) and biểu tượng (symbol) function as both nouns and verbs, letting you say a poet \"uses metaphor\" or that an image \"symbolizes\" something. For cohesion in essays, frame claims with nổi tiếng nhất (the most famous) and abstract nouns like cảm hứng (inspiration).",
+      "examples": [
+        {
+          "vi": "Truyện Kiều là tác phẩm vĩ đại nhất của thơ ca Việt Nam.",
+          "en": "The Tale of Kieu is the greatest work of Vietnamese poetry."
+        },
+        {
+          "vi": "Hình ảnh trăng trong bài thơ là một ẩn dụ cho nỗi cô đơn.",
+          "en": "The image of the moon in the poem is a metaphor for loneliness."
+        },
+        {
+          "vi": "Nhà thơ tìm cảm hứng từ những nhân vật phức tạp.",
+          "en": "The poet draws inspiration from complex characters."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_102",
+      "lessonId": "lesson_102",
+      "title": "Naming Vietnamese art genres",
+      "body": "At C1, talk about visual arts the way Vietnamese critics do: the medium comes first and the genre word follows, as in \"tranh sơn mài\" (lacquer painting) and \"tranh lụa\" (silk painting) — both signature national forms. Note the register split: \"sáng tác\" is the elevated verb for creating art, distinct from everyday \"làm\" or \"vẽ,\" and \"tác phẩm\" (work) is preferred over a plain noun in exhibition contexts. Use this formal vocabulary to discuss style and tradition with cohesion.",
+      "examples": [
+        {
+          "vi": "Họa sĩ này chuyên sáng tác tranh sơn mài theo phong cách hiện đại.",
+          "en": "This painter specializes in creating lacquer paintings in a modern style."
+        },
+        {
+          "vi": "Các tác phẩm gốm sứ Bát Tràng sẽ được trưng bày tại triển lãm.",
+          "en": "The Bat Trang ceramic works will be displayed at the exhibition."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_103",
+      "lessonId": "lesson_103",
+      "title": "The Passive of Officialdom",
+      "body": "Formal Vietnamese marks the passive with \"được\" (favorable/neutral outcome) or \"bị\" (unfavorable), and in institutional writing often drops the agent entirely: \"Hiến pháp được sửa đổi\" (The Constitution was amended). Pair this with abstract civic verbs like \"ban hành\" (promulgate) and \"có hiệu lực\" (take effect) to sound like official, written discourse rather than everyday speech.",
+      "examples": [
+        {
+          "vi": "Luật mới đã được Quốc hội ban hành.",
+          "en": "The new law was promulgated by the National Assembly."
+        },
+        {
+          "vi": "Hiến pháp được sửa đổi vào năm 2013.",
+          "en": "The Constitution was amended in 2013."
+        },
+        {
+          "vi": "Chính sách này sẽ có hiệu lực từ tháng sau.",
+          "en": "This policy will take effect next month."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_104",
+      "lessonId": "lesson_104",
+      "title": "Legal Vietnamese Leans on Sino-Vietnamese",
+      "body": "Formal legal language favors Sino-Vietnamese (Hán-Việt) compounds over everyday words: use \"khởi kiện\" rather than \"đi kiện,\" \"bồi thường\" rather than \"đền,\" \"vi phạm\" rather than \"làm sai.\" In written verdicts and contracts, the actor is often abstract or named by role (\"bên vi phạm,\" \"thẩm phán\"), and \"phải\" marks legal obligation rather than personal advice.",
+      "examples": [
+        {
+          "vi": "Bên vi phạm hợp đồng phải bồi thường thiệt hại.",
+          "en": "The party violating the contract must compensate for damages."
+        },
+        {
+          "vi": "Thẩm phán đã đưa ra phán quyết cuối cùng.",
+          "en": "The judge issued the final verdict."
+        },
+        {
+          "vi": "Chúng tôi quyết định khởi kiện ra tòa.",
+          "en": "We decided to file a lawsuit in court."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_105",
+      "lessonId": "lesson_105",
+      "title": "Pairing rights & duties, formally",
+      "body": "In civic and legal Vietnamese, abstract pairs are linked with formal connectors: \"đi đôi với\" (go hand in hand with) ties concepts like quyền lợi and nghĩa vụ. Use \"mọi... đều...\" (every... all...) for universal statements and the set phrase \"trước pháp luật\" (before the law). This register favors Sino-Vietnamese terms (công dân, quốc tịch, cư trú) over everyday words, signalling official, written discourse.",
+      "examples": [
+        {
+          "vi": "Quyền lợi luôn đi đôi với nghĩa vụ.",
+          "en": "Rights always go hand in hand with duties."
+        },
+        {
+          "vi": "Mọi công dân đều bình đẳng trước pháp luật.",
+          "en": "All citizens are equal before the law."
+        },
+        {
+          "vi": "Tự do ngôn luận là một quyền cơ bản của công dân.",
+          "en": "Free speech is a fundamental right of citizens."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_106",
+      "lessonId": "lesson_106",
+      "title": "Formal register at the clinic",
+      "body": "In medical settings, Vietnamese favors precise, formal Sino-Vietnamese terms over everyday words: say \"chẩn đoán\" (diagnose), \"triệu chứng\" (symptom), and \"xét nghiệm\" (lab test) rather than casual paraphrases. Stack these nouns into verb phrases like \"đặt lịch khám\" (book a consultation) to sound natural and professional. Use \"ạ\" with staff to mark polite, deferential register.",
+      "examples": [
+        {
+          "vi": "Dạ, tôi muốn đặt lịch khám tổng quát ạ.",
+          "en": "Yes, I'd like to book a general check-up, please."
+        },
+        {
+          "vi": "Bác sĩ chẩn đoán dựa trên các triệu chứng và kết quả xét nghiệm.",
+          "en": "The doctor diagnoses based on the symptoms and the lab results."
+        },
+        {
+          "vi": "Sau khi có kết quả, anh vui lòng tái khám vào tuần sau ạ.",
+          "en": "Once the results are in, please come back for a follow-up next week."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_107",
+      "lessonId": "lesson_107",
+      "title": "Talk about stress without \"có\"",
+      "body": "Vietnamese names emotional states with verbs of \"encountering\" or \"carrying,\" not \"having.\" Use bị/gặp for unwanted states (bị trầm cảm, gặp căng thẳng) and dành thời gian for the deliberate act of self-care. At C1, prefer chuyên gia tâm lý for the professional and giữ cân bằng to express maintaining balance, which sounds more natural than literal translations.",
+      "examples": [
+        {
+          "vi": "Tôi đang gặp nhiều căng thẳng trong công việc.",
+          "en": "I'm under a lot of stress at work."
+        },
+        {
+          "vi": "Anh ấy bị trầm cảm nhẹ và đang được tư vấn tâm lý.",
+          "en": "He has mild depression and is receiving psychological counseling."
+        },
+        {
+          "vi": "Hãy dành thời gian chăm sóc bản thân để giữ cân bằng.",
+          "en": "Make time for self-care to keep your balance."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_108",
+      "lessonId": "lesson_108",
+      "title": "You \"drink\" medicine, by the dose",
+      "body": "Vietnamese uses uống (\"drink\") for taking medicine, not ăn (\"eat\") — uống thuốc, uống kháng sinh. To say \"as prescribed,\" attach theo đơn (\"according to the prescription\"); theo also marks any instruction you follow, e.g. theo liều dùng (per the dosage). At the pharmacy counter this register stays neutral-polite and verb-driven, so build requests around uống / mua / điều trị rather than abstract nouns.",
+      "examples": [
+        {
+          "vi": "Anh nhớ uống thuốc theo đơn, mỗi ngày hai lần.",
+          "en": "Remember to take the medicine as prescribed, twice a day."
+        },
+        {
+          "vi": "Kháng sinh phải uống đúng liều dùng thì mới phục hồi nhanh.",
+          "en": "Antibiotics must be taken at the correct dosage to recover quickly."
+        },
+        {
+          "vi": "Thuốc điều trị này hầu như không có tác dụng phụ.",
+          "en": "This treatment medicine has almost no side effects."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_109",
+      "lessonId": "lesson_109",
+      "title": "Giving Urgent Commands That Land",
+      "body": "In a crisis, Vietnamese drops politeness markers and front-loads the action verb to sound decisive. Pair the verb with \"ngay\" (immediately) or \"đi\" for a sharp imperative, or soften slightly with \"hãy\" + verb for an authoritative-but-controlled instruction. In real emergencies you may also hear the bare verb with no subject at all.",
+      "examples": [
+        {
+          "vi": "Gọi xe cứu thương ngay đi!",
+          "en": "Call an ambulance immediately!"
+        },
+        {
+          "vi": "Hãy kiểm tra hô hấp trước.",
+          "en": "Check the breathing first."
+        },
+        {
+          "vi": "Đưa bệnh nhân đến phòng cấp cứu, nhanh lên!",
+          "en": "Take the patient to the ER, hurry!"
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_110",
+      "lessonId": "lesson_110",
+      "title": "Regional Variation Is the Rule",
+      "body": "Vietnamese has no single \"neutral\" spoken standard: the same concept often surfaces as distinct lexical and phonetic variants across the Northern, Central, and Southern regions. At an advanced level, you should recognize these as regionally marked register choices rather than errors, and choose your variant to match your interlocutor or audience. Note especially that Southern speech tends to merge certain final consonants and tones, so comprehension, not just vocabulary, shifts from region to region.",
+      "examples": [
+        {
+          "vi": "Mỗi vùng có phương ngữ riêng, nên cùng một vật có thể mang nhiều tên gọi khác nhau.",
+          "en": "Each region has its own dialect, so the same object may carry several different names."
+        },
+        {
+          "vi": "Ở miền Bắc người ta nói 'bố', còn ở miền Nam lại dùng 'ba'.",
+          "en": "In the North people say 'bố', whereas in the South they use 'ba'."
+        },
+        {
+          "vi": "Sự khác biệt nằm không chỉ ở từ vựng mà còn ở cách phát âm và thanh điệu.",
+          "en": "The difference lies not only in vocabulary but also in pronunciation and tones."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_111",
+      "lessonId": "lesson_111",
+      "title": "Hue's reserved register & elegy",
+      "body": "Writing about Hue draws on a formal, literary register: từng marks a bygone past (\"once was\"), and abstract collective nouns like lăng tẩm and di tích appear without classifiers. Hue is culturally framed as trầm lắng (quiet, melancholic) — its imperial grandeur described in the past tense, while its hardships (bão lụt) are stated in the present, a contrast that gives such passages their elegiac cohesion.",
+      "examples": [
+        {
+          "vi": "Vốn là cố đô của triều Nguyễn, Huế vẫn lưu giữ nhiều di tích cung đình.",
+          "en": "Originally the Nguyen dynasty's capital, Hue still preserves many imperial-court relics."
+        },
+        {
+          "vi": "Lăng tẩm các vua nằm rải rác quanh thành phố trầm lắng này.",
+          "en": "The royal tombs lie scattered around this quiet, reserved city."
+        },
+        {
+          "vi": "Dù thường xuyên hứng chịu bão lụt, miền Trung vẫn gìn giữ được bản sắc riêng.",
+          "en": "Though it frequently endures storms and floods, Central Vietnam has nonetheless preserved its distinct identity."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_112",
+      "lessonId": "lesson_112",
+      "title": "\"54 dân tộc anh em\": Cultural Framing",
+      "body": "When Vietnamese describes its ethnic groups, the fixed phrase \"54 dân tộc anh em\" (54 sibling ethnic groups) signals official, respectful register; use \"dân tộc thiểu số\" (ethnic minority) rather than blunter labels. In formal or written discourse, ethnic diversity is praised through abstract nouns like \"đa dạng văn hóa\" framed as a national asset (\"tài sản quý\"). Note that \"người\" + group name (Người H'Mông, Người Thái) is the neutral, polite way to name a people.",
+      "examples": [
+        {
+          "vi": "Việt Nam có 54 dân tộc anh em.",
+          "en": "Vietnam has 54 ethnic groups."
+        },
+        {
+          "vi": "Đa dạng văn hóa là tài sản quý của đất nước.",
+          "en": "Cultural diversity is a precious national asset."
+        },
+        {
+          "vi": "Mỗi dân tộc thiểu số đều giữ gìn phong tục và tiếng dân tộc riêng.",
+          "en": "Each ethnic minority preserves its own customs and ethnic language."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_113",
+      "lessonId": "lesson_113",
+      "title": "Frame Your Argument, Vietnamese Style",
+      "body": "Formal Vietnamese essays prize explicit structure and coherence (mạch lạc): a sharp luận điểm, evidence in every body paragraph, and a conclusion that echoes the thesis without repeating it verbatim. Lean on academic connectors like \"trước hết\", \"không những... mà còn\", and \"tóm lại\" to signal moves, and prefer nominalized, depersonalized phrasing over the \"tôi nghĩ\" of casual speech.",
+      "examples": [
+        {
+          "vi": "Trước hết, bài luận phải nêu rõ luận điểm; tiếp đó, mỗi đoạn thân bài cần được củng cố bằng dẫn chứng thuyết phục.",
+          "en": "First, the essay must state its thesis clearly; then each body paragraph must be reinforced with convincing evidence."
+        },
+        {
+          "vi": "Một bài luận mạch lạc không những trình bày ý tưởng theo trình tự hợp lý mà còn liên kết các đoạn bằng những từ nối chặt chẽ.",
+          "en": "A coherent essay not only presents ideas in a logical order but also links the paragraphs with tight connectors."
+        },
+        {
+          "vi": "Tóm lại, kết bài nên khẳng định lại luận điểm dưới một góc nhìn sâu sắc hơn, thay vì lặp lại nguyên văn phần mở bài.",
+          "en": "In sum, the conclusion should reaffirm the thesis from a more insightful angle, rather than repeating the introduction word for word."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_114",
+      "lessonId": "lesson_114",
+      "title": "Open and Close Like a Native Writer",
+      "body": "Vietnamese formal letters run on fixed bookends: open with \"Kính gửi\" + the recipient's title, and close with \"Trân trọng\" above your \"Chữ ký\". Throughout the body, the deferential verb \"xin\" softens every request (\"tôi xin đề nghị\", \"tôi xin trình bày\") — dropping it sounds blunt to the point of rudeness. Keep this register sustained; mixing in casual phrasing reads as a serious stylistic lapse, not a small error.",
+      "examples": [
+        {
+          "vi": "Kính gửi Quý công ty, tôi xin trình bày như sau.",
+          "en": "Dear company, I respectfully wish to state the following."
+        },
+        {
+          "vi": "Rất mong nhận được phúc đáp sớm. Trân trọng,",
+          "en": "I look forward to your prompt reply. Respectfully,"
+        },
+        {
+          "vi": "Hồ sơ đính kèm gồm sơ yếu lý lịch và bằng cấp.",
+          "en": "Attached are my CV and qualifications."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_115",
+      "lessonId": "lesson_115",
+      "title": "Frame the speech, don't just deliver it",
+      "body": "In Vietnamese oratory, the speaker rarely commands the audience outright; eloquence (hùng biện) comes from framing requests as shared invitations. The verb \"hãy\" softens a call to action into a warm summons rather than an order, and \"truyền cảm hứng cho\" (literally \"transmit inspiration to\") treats the audience as recipients you serve, not subordinates. Open with a câu chuyện mở đầu to build rapport before you ask anything.",
+      "examples": [
+        {
+          "vi": "Hãy cùng tôi hành động ngay hôm nay vì một tương lai tốt đẹp hơn.",
+          "en": "Let us act together today for a better future."
+        },
+        {
+          "vi": "Một diễn giả hùng biện không áp đặt mà khơi gợi và truyền cảm hứng cho khán giả.",
+          "en": "An eloquent speaker does not impose but evokes and inspires the audience."
+        },
+        {
+          "vi": "Trước khi kêu gọi hành động, cô ấy mở đầu bằng một câu chuyện chạm đến trái tim người nghe.",
+          "en": "Before her call to action, she opened with a story that touched the listeners' hearts."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_116",
+      "lessonId": "lesson_116",
+      "title": "Stake your stance, then steelman theirs",
+      "body": "In Vietnamese op-ed prose, your lập trường (stance) should be stated cleanly, then defended by pre-empting objections with phản biện — and crucially, framing them as mang tính xây dựng (constructive) rather than combative. The hallmark of a polished commentary register is hedged authority: pair an assertive nhận định with qualifiers like có lẽ, phần nào, or xét cho cùng so you sound incisive (sắc bén) without sliding into định kiến (bias). Note that sắc bén praises an argument's edge, while định kiến condemns a closed mind — the two are the prized and the disqualifying poles of this genre.",
+      "examples": [
+        {
+          "vi": "Xét cho cùng, một bài bình luận sắc bén không né tránh phản biện mà chủ động mời gọi nó.",
+          "en": "Ultimately, an incisive op-ed doesn't dodge counter-arguments but actively invites them."
+        },
+        {
+          "vi": "Tác giả giữ vững lập trường, song vẫn thừa nhận rằng nhận định của mình phần nào mang tính chủ quan.",
+          "en": "The author holds firm to a stance, yet still concedes that the judgment is somewhat subjective."
+        },
+        {
+          "vi": "Phê phán mà thiếu thiện chí xây dựng thì rất dễ trượt thành định kiến.",
+          "en": "Critique lacking constructive goodwill slides all too easily into prejudice."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_117",
+      "lessonId": "lesson_117",
+      "title": "Temple register: reverent, not casual",
+      "body": "At C2, the real skill here is register, not vocabulary. Buddhist terms like \"đạo Phật\" (the Buddhist faith) and \"thiền\" carry quiet reverence, so pair them with measured, literary verbs such as \"ảnh hưởng sâu sắc\" (profoundly influence) rather than colloquial intensifiers. Inside a chùa, Vietnamese leans on softened imperatives with \"hãy\" plus deferential framing (\"xin\", \"kính\") to signal respect, and abstract nouns like \"từ bi\" or \"niết bàn\" stay unmarked, never pluralized or casualized.",
+      "examples": [
+        {
+          "vi": "Phật giáo có ảnh hưởng sâu sắc đến văn hóa Việt.",
+          "en": "Buddhism has profoundly influenced Vietnamese culture."
+        },
+        {
+          "vi": "Khi vào chùa, xin hãy ăn mặc kín đáo và giữ im lặng.",
+          "en": "When entering a pagoda, please dress modestly and keep silent."
+        },
+        {
+          "vi": "Sống từ bi và hành thiền là cốt lõi của con đường dẫn đến niết bàn.",
+          "en": "Living with compassion and practicing meditation lie at the heart of the path to nirvana."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_118",
+      "lessonId": "lesson_118",
+      "title": "Speak of ancestors with reverence",
+      "body": "In ritual register, Vietnamese never reduces ancestors to mere objects of action. The compound \"thờ cúng\" pairs two near-synonyms (to enshrine + to make offerings) for solemn weight, and you \"khấn vái\" before, not merely at, the altar, treating it as a living presence. Note too that \"linh thiêng\" describes a felt, sacred aura, not literal holiness, so it reaches beyond religion to anything ancestral memory has consecrated.",
+      "examples": [
+        {
+          "vi": "Với người Việt, bàn thờ tổ tiên là nơi linh thiêng nhất trong nhà.",
+          "en": "For Vietnamese, the ancestral altar is the most sacred place in the home."
+        },
+        {
+          "vi": "Con cháu thành kính khấn vái trước bàn thờ ông bà tổ tiên.",
+          "en": "The descendants reverently bow and pray before the altar of their grandparents and ancestors."
+        },
+        {
+          "vi": "Hương khói nghi ngút trong ngày giỗ như nối liền người sống với người đã khuất.",
+          "en": "The curling incense smoke on the death anniversary seems to bind the living to those who have passed."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_119",
+      "lessonId": "lesson_119",
+      "title": "Tín ngưỡng vs. mê tín: a loaded line",
+      "body": "In Vietnamese, tín ngưỡng (belief/faith) carries cultural respect, while mê tín (superstition) is openly pejorative — the speaker has already judged. Native usage exploits this contrast for nuance: pairing them, or qualifying with chỉ là (merely) or thuần túy (purely), signals exactly where you stand on the sacred-versus-irrational spectrum.",
+      "examples": [
+        {
+          "vi": "Đây là tín ngưỡng dân gian, không phải mê tín dị đoan.",
+          "en": "This is folk belief, not blind superstition."
+        },
+        {
+          "vi": "Cầu may đầu năm vốn là nét văn hóa, nhưng quá đà thì hóa mê tín.",
+          "en": "Praying for luck at New Year is a cultural touch, but taken too far it tips into superstition."
+        },
+        {
+          "vi": "Nhiều người vẫn coi phong thủy như một tín ngưỡng hơn là khoa học.",
+          "en": "Many still treat feng shui as a belief rather than a science."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_120",
+      "lessonId": "lesson_120",
+      "title": "Soften the \"no\" to keep face",
+      "body": "At this level, a flat refusal reads as aggressive in Vietnamese. Frame hard limits with hedges like \"rất tiếc nhưng\" (regretfully but) or \"e rằng\" (I'm afraid), and propose an alternative rather than just blocking. Note that \"đề nghị\" front-loaded with no subject (\"Đề nghị hoãn...\") is the crisp, formal register of meeting minutes and official requests.",
+      "examples": [
+        {
+          "vi": "Rất tiếc nhưng tôi không thể nhượng bộ điều khoản này.",
+          "en": "Regretfully, I cannot concede on this term."
+        },
+        {
+          "vi": "E rằng cuộc đàm phán đang rơi vào bế tắc, ta nên tạm hoãn.",
+          "en": "I'm afraid the negotiation is at a deadlock; we should postpone for now."
+        },
+        {
+          "vi": "Thay vì giữ nguyên lập trường, hãy hướng tới thỏa thuận đôi bên cùng có lợi.",
+          "en": "Rather than holding our position, let's aim for a win-win agreement."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_121",
+      "lessonId": "lesson_121",
+      "title": "Diplomatic register: measured, not warm",
+      "body": "At C2, diplomatic Vietnamese favors agentless, balanced phrasing that credits both parties equally — \"hai bên\" (both sides) and the verb \"nhất trí\" (to be of one accord) signal consensus without naming who conceded. Reach for the formal collocations: \"tăng cường hợp tác\" (strengthen cooperation), \"quan hệ song phương\" (bilateral relations), and the set evaluative noun phrase \"trong bầu không khí thân thiện\" (in a friendly atmosphere), which conventionally frames the tone of talks. Note \"tiếp đón\" carries deference toward the guest in a way the neutral \"đón\" does not.",
+      "examples": [
+        {
+          "vi": "Hai bên nhất trí tăng cường hợp tác song phương.",
+          "en": "Both sides agreed to strengthen bilateral cooperation."
+        },
+        {
+          "vi": "Cuộc hội đàm diễn ra trong bầu không khí thân thiện và cởi mở.",
+          "en": "The talks took place in a friendly and open atmosphere."
+        },
+        {
+          "vi": "Đại sứ trang trọng tiếp đón đoàn đại biểu.",
+          "en": "The ambassador formally received the delegation."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_122",
+      "lessonId": "lesson_122",
+      "title": "Naming the stance, not the act",
+      "body": "At C2, Vietnamese mediation register favors abstract noun phrases over plain verbs to sound measured and impartial: \"giữ vị trí trung lập\" (hold a neutral position), \"lắng nghe chủ động\" (active listening), \"nhượng bộ tạm thời\" (a temporary concession). Notice that qualifiers follow the noun (trung lập, tạm thời, chủ động), and that softening words like \"tạm thời\" frame a concession as provisional rather than a defeat. The metaphor of repair, \"hàn gắn rạn nứt\" (mend a rift), is the idiomatic, native-like way to talk about restoring strained relationships.",
+      "examples": [
+        {
+          "vi": "Hòa giải viên cần giữ vị trí trung lập và lắng nghe chủ động.",
+          "en": "A mediator must hold a neutral position and listen actively."
+        },
+        {
+          "vi": "Một nhượng bộ tạm thời có thể mở đường cho tiếng nói chung.",
+          "en": "A temporary concession can pave the way to common ground."
+        },
+        {
+          "vi": "Chỉ có đối thoại trên tinh thần thấu hiểu mới hàn gắn được rạn nứt.",
+          "en": "Only dialogue in a spirit of empathy can mend the rift."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_123",
+      "lessonId": "lesson_123",
+      "title": "Academic Register: Stay Impersonal",
+      "body": "Formal Vietnamese research writing favours Sino-Vietnamese terms (nghiên cứu, phương pháp luận, phản biện) over plain native words, and stays agentless: it foregrounds the data, not the author. Use passive-leaning frames like \"được mô tả\" or topic-first \"Số liệu cho thấy...\" rather than naming \"tôi/chúng tôi\". Hedge claims with measured phrases (nằm trong giới hạn chấp nhận được) instead of absolutes.",
+      "examples": [
+        {
+          "vi": "Phương pháp luận được trình bày chi tiết trong chương hai.",
+          "en": "The methodology is presented in detail in chapter two."
+        },
+        {
+          "vi": "Số liệu thực nghiệm cho thấy một xu hướng tăng đều.",
+          "en": "The empirical data indicates a steady upward trend."
+        },
+        {
+          "vi": "Kết quả nằm trong sai số cho phép, do đó có thể kết luận giả thuyết được củng cố.",
+          "en": "The results fall within the permissible margin of error; one may therefore conclude that the hypothesis is supported."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_124",
+      "lessonId": "lesson_124",
+      "title": "Loanwords vs. Vietnamese Coinages",
+      "body": "In Vietnamese tech discourse, formal writing prefers Sino-Vietnamese calques (trí tuệ nhân tạo, học máy) but native speakers freely code-switch to English (\"AI\", \"machine learning\") in speech and casual posts. At C2, register-match: use the full Vietnamese term in articles and presentations, and reach for the English shorthand only in conversation. Idioms like \"thay đổi cuộc chơi\" (game-changer) carry the same punchy, journalistic tone they do in English.",
+      "examples": [
+        {
+          "vi": "Về mặt học thuật, ta gọi là \"trí tuệ nhân tạo\", nhưng trong giới công nghệ ai cũng nói \"AI\" cho gọn.",
+          "en": "Academically we say \"trí tuệ nhân tạo,\" but in tech circles everyone just says \"AI\" for short."
+        },
+        {
+          "vi": "Đột phá này thực sự có thể thay đổi cuộc chơi trong cả ngành.",
+          "en": "This breakthrough could genuinely be a game-changer for the whole industry."
+        },
+        {
+          "vi": "Mô hình ngôn ngữ lớn ngốn một lượng dữ liệu khổng lồ để huấn luyện.",
+          "en": "Large language models devour an enormous amount of data to train."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_125",
+      "lessonId": "lesson_125",
+      "title": "Hán-Việt: the language of ethics",
+      "body": "At C2 register, abstract ethics and policy concepts are built almost entirely from Sino-Vietnamese (Hán-Việt) compounds, which carry a formal, written tone native speakers expect in this domain. Notice how these terms stack two abstract roots (đạo + đức, minh + bạch, trách nhiệm + giải trình) rather than using everyday native words; choosing the pure-Vietnamese paraphrase would sound naive and lower the register. In discourse, treat such compounds as fixed nouns and pair them with equally formal verbs like tôn trọng, bảo đảm, or giải trình rather than casual everyday verbs.",
+      "examples": [
+        {
+          "vi": "Doanh nghiệp phải bảo đảm tính minh bạch và trách nhiệm giải trình.",
+          "en": "Businesses must ensure transparency and accountability."
+        },
+        {
+          "vi": "Mọi hành vi lạm dụng dữ liệu đều vi phạm đạo đức công nghệ.",
+          "en": "Any abuse of data violates tech ethics."
+        },
+        {
+          "vi": "Thành kiến thuật toán cần được kiểm soát bằng quy chuẩn rõ ràng.",
+          "en": "Algorithmic bias must be controlled through clear standards."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_126",
+      "lessonId": "lesson_126",
+      "title": "Hedge claims; let the data speak",
+      "body": "Vietnamese academic prose stays impersonal and cautious: drop the writer (\"tôi\") and use agentless or nominalized constructions, with phải/cần marking methodological obligation. Hedge inferences rather than asserting them — pair suy diễn with a grounding phrase like dựa trên số liệu, and reach for Sino-Vietnamese terms (định lượng, khách quan, suy diễn) over everyday synonyms to hit the formal register.",
+      "examples": [
+        {
+          "vi": "Tóm tắt phải nêu rõ kết quả chính, không bình luận chủ quan.",
+          "en": "The abstract must clearly state the main findings, without subjective commentary."
+        },
+        {
+          "vi": "Mọi suy diễn cần được kiểm chứng dựa trên số liệu định lượng.",
+          "en": "All inferences must be verified on the basis of quantitative data."
+        },
+        {
+          "vi": "Kết quả cho thấy xu hướng này, song vẫn cần nghiên cứu thêm.",
+          "en": "The results suggest this trend; however, further research is still needed."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_127",
+      "lessonId": "lesson_127",
+      "title": "\"Thanh đạm\": the art of restraint",
+      "body": "In Northern food writing, praise is paid through restraint, not richness. \"Thanh đạm\" (light, unfussy) and \"tinh tế\" (refined) are high compliments precisely because Hanoi cuisine prizes a clean, balanced broth over the sweetness and bold spice of the South. Reach for these adjectives, plus \"hương vị\" for an evoked flavor-and-aroma, to write about food the way a native critic would.",
+      "examples": [
+        {
+          "vi": "Cái ngon của phở Hà Nội nằm ở nước dùng thanh đạm mà vẫn đậm đà.",
+          "en": "The beauty of Hanoi pho lies in a broth that is light yet deeply flavorful."
+        },
+        {
+          "vi": "Hương vị miền Bắc tinh tế ở chỗ không lạm dụng đường hay gia vị.",
+          "en": "Northern flavors are refined in that they never overuse sugar or seasoning."
+        },
+        {
+          "vi": "Mỗi độ thu về, Hà Nội lại thoang thoảng mùi cốm thanh tao.",
+          "en": "Each time autumn returns, Hanoi carries the delicate scent of young green rice."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_128",
+      "lessonId": "lesson_128",
+      "title": "Taste words carry regional pride",
+      "body": "At C2, food talk in Vietnamese is loaded with place-bound prestige. Pairing a dish with its home region (Cao lầu / Hội An, mắm ruốc / Huế) and praising it as đậm đà or tinh hoa ẩm thực signals connoisseurship, not just description. Native speakers also use chỉ... khi/ở to claim a dish is authentic only in its origin, a subtly proud, almost gatekeeping move.",
+      "examples": [
+        {
+          "vi": "Cao lầu chỉ ngon đúng điệu khi ăn ở Hội An.",
+          "en": "Cao lau is only truly authentic when eaten in Hoi An."
+        },
+        {
+          "vi": "Mắm ruốc chính là linh hồn, là tinh hoa ẩm thực của xứ Huế.",
+          "en": "Shrimp paste is the very soul, the culinary essence, of Hue."
+        },
+        {
+          "vi": "Đậm đà, cay nồng - đó mới là chất miền Trung.",
+          "en": "Rich and pungently spicy - that's the true character of the Central region."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_129",
+      "lessonId": "lesson_129",
+      "title": "Why the South Tastes Sweet",
+      "body": "At C2, food talk is really cultural commentary: Southern cuisine is defined by \"ngọt thanh\" (a clean, gentle sweetness from \"nước cốt dừa\"), not the cloying \"ngọt gắt.\" Note the modifier nuance — \"thanh\" softens and refines, while pairing terms like \"đa dạng\" with \"nguyên liệu\" reads as fluent, near-idiomatic praise. Tie dishes to place with \"nổi tiếng với\" and frame influence abstractly via \"ảnh hưởng sâu đậm đến,\" the register a native food writer would use.",
+      "examples": [
+        {
+          "vi": "Vị ngọt thanh của miền Nam đến từ nước cốt dừa, chứ không hề ngọt gắt.",
+          "en": "The South's clean sweetness comes from coconut milk, never a cloying sweetness."
+        },
+        {
+          "vi": "Văn hóa sông nước ảnh hưởng sâu đậm đến sự đa dạng nguyên liệu của ẩm thực miền Tây.",
+          "en": "Riverine culture deeply shapes the ingredient variety of Mekong Delta cuisine."
+        },
+        {
+          "vi": "Miền Tây nổi tiếng với lẩu mắm và trái cây nhiệt đới quanh năm.",
+          "en": "The Mekong Delta is famous for fermented fish hotpot and year-round tropical fruit."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_130",
+      "lessonId": "lesson_130",
+      "title": "Honorific Service Register",
+      "body": "In upscale Vietnamese hospitality, the staff \"we\" is usually omitted and the guest is addressed only as quý khách, never the casual bạn or anh/chị. Verbs of service like nâng hạng, phục vụ, and đón take quý khách as their object, and a softening final ạ marks deference. This guest-centered, self-effacing framing is what makes the speech sound polished rather than merely polite.",
+      "examples": [
+        {
+          "vi": "Chúng tôi xin nâng hạng phòng cho quý khách ạ.",
+          "en": "We would like to upgrade your room for you."
+        },
+        {
+          "vi": "Quý khách có yêu cầu đặc biệt nào không ạ?",
+          "en": "Do you have any special requests?"
+        },
+        {
+          "vi": "Đội ngũ lễ tân luôn sẵn sàng phục vụ tận tình.",
+          "en": "Our concierge team is always ready to serve attentively."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_131",
+      "lessonId": "lesson_131",
+      "title": "Quý khách: the language of luxury service",
+      "body": "In upscale Vietnamese hospitality, staff address guests as \"quý khách\" (honoured guest) rather than the everyday \"anh/chị,\" and close requests with the deferential particle \"ạ.\" This honorific register signals refinement, so a single mismatched word can break the polished tone fine dining depends on.",
+      "examples": [
+        {
+          "vi": "Quý khách có muốn xem thực đơn nếm thử không ạ?",
+          "en": "Would you like to see the tasting menu?"
+        },
+        {
+          "vi": "Dạ, đầu bếp trưởng xin gợi ý món chính là cá hồi ạ.",
+          "en": "The head chef would like to recommend salmon as the main course."
+        },
+        {
+          "vi": "Quý khách dùng rượu vang đỏ hay trắng ạ?",
+          "en": "Would you prefer red or white wine?"
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_132",
+      "lessonId": "lesson_132",
+      "title": "Service register: \"quý khách\" defuses",
+      "body": "In professional complaint-handling, Vietnamese leans on elevated address: \"quý khách\" (esteemed guest) replaces ordinary \"anh/chị,\" and staff speak as \"chúng tôi\" to signal the institution, not the individual. Pair a sincere \"xin lỗi quý khách\" with an immediate action verb (khắc phục, đền bù) plus \"ngay/ngay lập tức\" — naming the fix, not just the apology, is what reads as genuine accountability. Note the idiom \"vì sự bất tiện\" (for the inconvenience): it concedes the problem without admitting fault, the same hedging move polished service English makes.",
+      "examples": [
+        {
+          "vi": "Chúng tôi thành thật xin lỗi quý khách và sẽ khắc phục ngay lập tức.",
+          "en": "We sincerely apologize and will resolve this immediately."
+        },
+        {
+          "vi": "Để bù đắp cho sự bất tiện, quản lý xin gửi quý khách một bữa tối miễn phí.",
+          "en": "To make up for the inconvenience, the manager would like to offer you a complimentary dinner."
+        },
+        {
+          "vi": "Mong quý khách thông cảm; chúng tôi sẽ đền bù thỏa đáng.",
+          "en": "We hope you'll understand; we will compensate you appropriately."
+        }
+      ]
     }
   ]
 }
