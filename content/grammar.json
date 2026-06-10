@@ -13888,12 +13888,12 @@
           "mainPattern": "mặc dù / dù / cho dù + clause, (nhưng) + clause; tuy nhiên / trái lại + sentence",
           "faqs": [
             {
-              "q": "What is the difference between 'nhưng' and 'tuy nhiên'? They both seem to mean 'but'.",
-              "a": "'Nhưng' is a coordinating conjunction that joins two clauses inside one sentence: 'Trời mưa nhưng chúng tôi vẫn đi.' (It rained but we still went.) 'Tuy nhiên' is a sentence-level adverbial that starts a new sentence and is followed by a comma; it is more formal and signals a contrast with the whole preceding idea: 'Kế hoạch rất tốt. Tuy nhiên, chi phí quá cao.' (The plan is very good. However, the cost is too high.) Use 'nhưng' for tight clause-to-clause contrast and 'tuy nhiên' to open a contrasting sentence in writing."
+              "question": "What is the difference between 'nhưng' and 'tuy nhiên'? They both seem to mean 'but'.",
+              "answer": "'Nhưng' is a coordinating conjunction that joins two clauses inside one sentence: 'Trời mưa nhưng chúng tôi vẫn đi.' (It rained but we still went.) 'Tuy nhiên' is a sentence-level adverbial that starts a new sentence and is followed by a comma; it is more formal and signals a contrast with the whole preceding idea: 'Kế hoạch rất tốt. Tuy nhiên, chi phí quá cao.' (The plan is very good. However, the cost is too high.) Use 'nhưng' for tight clause-to-clause contrast and 'tuy nhiên' to open a contrasting sentence in writing."
             },
             {
-              "q": "Do I need 'nhưng' in the second clause after 'mặc dù'?",
-              "a": "It is optional but very common. 'Mặc dù' sets up the concession, and Vietnamese often adds 'nhưng' (or the adverb 'vẫn') to mark the main clause: 'Mặc dù mệt, (nhưng) cô ấy vẫn làm việc.' (Although tired, she still worked.) Including 'nhưng' or 'vẫn' makes the contrast clearer and sounds natural; dropping both is acceptable but feels more clipped."
+              "question": "Do I need 'nhưng' in the second clause after 'mặc dù'?",
+              "answer": "It is optional but very common. 'Mặc dù' sets up the concession, and Vietnamese often adds 'nhưng' (or the adverb 'vẫn') to mark the main clause: 'Mặc dù mệt, (nhưng) cô ấy vẫn làm việc.' (Although tired, she still worked.) Including 'nhưng' or 'vẫn' makes the contrast clearer and sounds natural; dropping both is acceptable but feels more clipped."
             }
           ],
           "units": [
@@ -14060,12 +14060,12 @@
           "mainPattern": "Vì / Do + [cause], (cho) nên + [result]  •  [cause] + đến nỗi + [extreme result]  •  [cause] + khiến (cho) + [affected party] + [result]  •  [cause] + dẫn đến + [consequence]",
           "faqs": [
             {
-              "q": "What is the difference between 'nên', 'khiến', and 'dẫn đến' — they all seem to mean 'so / causing'?",
-              "a": "They differ in structure and tone. 'Nên' (often 'cho nên') simply links two clauses: cause → result, e.g. 'Trời mưa nên tôi ở nhà' (It rained, so I stayed home). 'Khiến (cho)' takes an object — it says a cause MAKES someone/something do or feel something: 'Tin đó khiến cô ấy bật khóc' (That news made her burst into tears). 'Dẫn đến' is more formal and abstract, used for chains of consequence, usually negative: 'Sự chủ quan dẫn đến thất bại' (Complacency leads to failure). Roughly: nên = neutral logical link, khiến = causes an affected party to react, dẫn đến = results in a (often serious) outcome."
+              "question": "What is the difference between 'nên', 'khiến', and 'dẫn đến' — they all seem to mean 'so / causing'?",
+              "answer": "They differ in structure and tone. 'Nên' (often 'cho nên') simply links two clauses: cause → result, e.g. 'Trời mưa nên tôi ở nhà' (It rained, so I stayed home). 'Khiến (cho)' takes an object — it says a cause MAKES someone/something do or feel something: 'Tin đó khiến cô ấy bật khóc' (That news made her burst into tears). 'Dẫn đến' is more formal and abstract, used for chains of consequence, usually negative: 'Sự chủ quan dẫn đến thất bại' (Complacency leads to failure). Roughly: nên = neutral logical link, khiến = causes an affected party to react, dẫn đến = results in a (often serious) outcome."
             },
             {
-              "q": "When do I use 'đến nỗi' versus just 'nên'?",
-              "a": "Use 'đến nỗi' only when the result is extreme or surprising — it means 'to the point that'. Compare 'Tôi mệt nên tôi đi ngủ' (I was tired so I went to sleep, neutral) with 'Tôi mệt đến nỗi không đứng nổi' (I was so tired that I couldn't even stand). 'Đến nỗi' always implies the cause reached an intensity that produced a striking consequence, so it sounds odd with mundane results."
+              "question": "When do I use 'đến nỗi' versus just 'nên'?",
+              "answer": "Use 'đến nỗi' only when the result is extreme or surprising — it means 'to the point that'. Compare 'Tôi mệt nên tôi đi ngủ' (I was tired so I went to sleep, neutral) with 'Tôi mệt đến nỗi không đứng nổi' (I was so tired that I couldn't even stand). 'Đến nỗi' always implies the cause reached an intensity that produced a striking consequence, so it sounds odd with mundane results."
             }
           ],
           "units": [
@@ -14200,12 +14200,12 @@
           "mainPattern": "clause₁ + để / nhằm / cốt để + purpose-clause  |  clause₁ + kẻo + (unwanted) outcome",
           "faqs": [
             {
-              "q": "What is the difference between để and kẻo? They both seem to link to a result.",
-              "a": "để introduces the positive purpose you are aiming AT — the thing you want to happen: 'Tôi học chăm để đậu kỳ thi.' (I study hard in order to pass the exam.) kẻo introduces a negative outcome you want to AVOID, and the main clause is usually advice or a warning: 'Mặc áo ấm vào kẻo bị cảm.' (Put on a warm jacket, or else you'll catch a cold.) A quick test: if you can rephrase it as 'so as not to / otherwise...', use kẻo, not để."
+              "question": "What is the difference between để and kẻo? They both seem to link to a result.",
+              "answer": "để introduces the positive purpose you are aiming AT — the thing you want to happen: 'Tôi học chăm để đậu kỳ thi.' (I study hard in order to pass the exam.) kẻo introduces a negative outcome you want to AVOID, and the main clause is usually advice or a warning: 'Mặc áo ấm vào kẻo bị cảm.' (Put on a warm jacket, or else you'll catch a cold.) A quick test: if you can rephrase it as 'so as not to / otherwise...', use kẻo, not để."
             },
             {
-              "q": "When should I use nhằm instead of để?",
-              "a": "nhằm is the formal, written-register equivalent of để and is common in news, official documents, and business Vietnamese. Compare conversational 'Họ giảm giá để bán hết hàng.' with the more formal 'Công ty giảm giá nhằm thúc đẩy doanh số.' (The company cut prices in order to boost sales.) In speech, để is almost always the natural choice; reserve nhằm for serious or institutional contexts."
+              "question": "When should I use nhằm instead of để?",
+              "answer": "nhằm is the formal, written-register equivalent of để and is common in news, official documents, and business Vietnamese. Compare conversational 'Họ giảm giá để bán hết hàng.' with the more formal 'Công ty giảm giá nhằm thúc đẩy doanh số.' (The company cut prices in order to boost sales.) In speech, để is almost always the natural choice; reserve nhằm for serious or institutional contexts."
             }
           ],
           "units": [
@@ -14372,12 +14372,12 @@
           "mainPattern": "Noun (+ mà) + clause  →  \"the Noun that/who/which [clause]\"",
           "faqs": [
             {
-              "q": "When do I use mà, and when do I drop it?",
-              "a": "When the head noun is the SUBJECT of the relative clause, Vietnamese normally DROPS mà and attaches the verb directly: 'người giúp tôi' (the person who helped me), not 'người mà giúp tôi' (which sounds wrong). mà is used — and is the natural choice — when the clause has its OWN subject and the head noun is the OBJECT or another role, e.g. 'cuốn sách (mà) tôi mua' (the book that I bought). Here tôi is the subject and the head noun is the object, so mà marks the boundary and prevents misreading. Even in object relatives mà can sometimes be dropped in casual speech ('cuốn sách tôi mua'), but keeping it is always safe and clear."
+              "question": "When do I use mà, and when do I drop it?",
+              "answer": "When the head noun is the SUBJECT of the relative clause, Vietnamese normally DROPS mà and attaches the verb directly: 'người giúp tôi' (the person who helped me), not 'người mà giúp tôi' (which sounds wrong). mà is used — and is the natural choice — when the clause has its OWN subject and the head noun is the OBJECT or another role, e.g. 'cuốn sách (mà) tôi mua' (the book that I bought). Here tôi is the subject and the head noun is the object, so mà marks the boundary and prevents misreading. Even in object relatives mà can sometimes be dropped in casual speech ('cuốn sách tôi mua'), but keeping it is always safe and clear."
             },
             {
-              "q": "Is 'cái mà' the same as English 'the thing that' / 'what'?",
-              "a": "Often yes. 'cái mà' nominalizes a clause into 'the thing that...': 'Cái mà tôi cần là thời gian' = 'What I need is time.' Note 'cái' here is the generic noun 'thing/one'; you can also use a more specific noun — 'điều mà', 'thứ mà', 'người mà'. 'điều mà' tends to be used for abstract matters/ideas, while 'cái mà' and 'thứ mà' lean toward concrete things."
+              "question": "Is 'cái mà' the same as English 'the thing that' / 'what'?",
+              "answer": "Often yes. 'cái mà' nominalizes a clause into 'the thing that...': 'Cái mà tôi cần là thời gian' = 'What I need is time.' Note 'cái' here is the generic noun 'thing/one'; you can also use a more specific noun — 'điều mà', 'thứ mà', 'người mà'. 'điều mà' tends to be used for abstract matters/ideas, while 'cái mà' and 'thứ mà' lean toward concrete things."
             }
           ],
           "units": [
@@ -14513,12 +14513,12 @@
           "mainPattern": "Subject + nói/bảo/hỏi + (rằng/là/xem/liệu) + embedded clause",
           "faqs": [
             {
-              "q": "Does Vietnamese change the tense or pronouns when reporting speech, like English does (\"I am\" → \"he was\")?",
-              "a": "No tense backshift — Vietnamese verbs do not conjugate, so the embedded verb stays the same: time is shown by markers like đã, đang, sẽ if needed, not by changing the verb. What you DO change is the pronouns/perspective. Direct: Anh ấy nói: \"Tôi sẽ đến.\" (He said: \"I will come.\") Reported: Anh ấy nói rằng anh ấy sẽ đến. (He said that he would come.) Notice \"tôi\" becomes \"anh ấy\" to match the reporter's viewpoint, but \"sẽ\" stays exactly the same."
+              "question": "Does Vietnamese change the tense or pronouns when reporting speech, like English does (\"I am\" → \"he was\")?",
+              "answer": "No tense backshift — Vietnamese verbs do not conjugate, so the embedded verb stays the same: time is shown by markers like đã, đang, sẽ if needed, not by changing the verb. What you DO change is the pronouns/perspective. Direct: Anh ấy nói: \"Tôi sẽ đến.\" (He said: \"I will come.\") Reported: Anh ấy nói rằng anh ấy sẽ đến. (He said that he would come.) Notice \"tôi\" becomes \"anh ấy\" to match the reporter's viewpoint, but \"sẽ\" stays exactly the same."
             },
             {
-              "q": "What is the difference between rằng and là after nói/bảo?",
-              "a": "Both introduce a reported clause and both translate as \"that.\" Rằng is slightly more formal/literary; là is more colloquial and far more common in speech. You can also drop both entirely: Cô ấy nói (rằng/là) cô ấy bận. = Cô ấy nói cô ấy bận. (She said she was busy.) For reported questions, however, you cannot use rằng/là — you must switch to xem or liệu: Tôi hỏi xem cô ấy có bận không. (I asked whether she was busy.)"
+              "question": "What is the difference between rằng and là after nói/bảo?",
+              "answer": "Both introduce a reported clause and both translate as \"that.\" Rằng is slightly more formal/literary; là is more colloquial and far more common in speech. You can also drop both entirely: Cô ấy nói (rằng/là) cô ấy bận. = Cô ấy nói cô ấy bận. (She said she was busy.) For reported questions, however, you cannot use rằng/là — you must switch to xem or liệu: Tôi hỏi xem cô ấy có bận không. (I asked whether she was busy.)"
             }
           ],
           "units": [
@@ -14683,12 +14683,12 @@
           "mainPattern": "chính + (noun/pronoun) + (là) + …  /  chỉ có + X + mới + verb phrase",
           "faqs": [
             {
-              "q": "What is the difference between using chính and just stressing the word with my voice?",
-              "a": "In speech you can stress almost any word, but chính grammatically marks that element as the unique, exact focus and rules out alternatives. 'Anh ấy làm việc này' just states who did it; 'Chính anh ấy đã làm việc này' (It was he who did this / He himself did it) insists it was that person and nobody else. chính is also stable in writing, where vocal stress is invisible, so it is the reliable way to encode emphasis."
+              "question": "What is the difference between using chính and just stressing the word with my voice?",
+              "answer": "In speech you can stress almost any word, but chính grammatically marks that element as the unique, exact focus and rules out alternatives. 'Anh ấy làm việc này' just states who did it; 'Chính anh ấy đã làm việc này' (It was he who did this / He himself did it) insists it was that person and nobody else. chính is also stable in writing, where vocal stress is invisible, so it is the reliable way to encode emphasis."
             },
             {
-              "q": "When do I use chỉ có…mới versus just chỉ?",
-              "a": "Plain chỉ means 'only' and simply limits quantity or scope: 'Tôi chỉ có hai cuốn sách' (I only have two books). The frame chỉ có…mới is a cleft of exclusivity meaning 'only X (and no one/nothing else) is able to / does…', and the mới is obligatory before the verb: 'Chỉ có anh ấy mới hiểu được vấn đề này' (Only he can understand this problem). Dropping mới makes it sound incomplete or merely quantitative."
+              "question": "When do I use chỉ có…mới versus just chỉ?",
+              "answer": "Plain chỉ means 'only' and simply limits quantity or scope: 'Tôi chỉ có hai cuốn sách' (I only have two books). The frame chỉ có…mới is a cleft of exclusivity meaning 'only X (and no one/nothing else) is able to / does…', and the mới is obligatory before the verb: 'Chỉ có anh ấy mới hiểu được vấn đề này' (Only he can understand this problem). Dropping mới makes it sound incomplete or merely quantitative."
             }
           ],
           "units": [
@@ -14836,12 +14836,12 @@
           "mainPattern": "hễ + clause + (là/thì) + clause; giá (như) + clause + (thì) + clause",
           "faqs": [
             {
-              "q": "What's the difference between nếu and hễ? They both seem to mean 'if'.",
-              "a": "nếu marks a single, possible (often one-off) condition: 'if it happens'. hễ marks a habitual, automatic, repeated condition closer to English 'whenever / every time': the result follows reliably each time. Compare 'Nếu trời mưa thì tôi ở nhà' (If it rains [this once], I'll stay home) with 'Hễ trời mưa là tôi ở nhà' (Whenever it rains, I stay home). hễ very commonly pairs with là rather than thì, and implies a near-certain, almost reflexive consequence."
+              "question": "What's the difference between nếu and hễ? They both seem to mean 'if'.",
+              "answer": "nếu marks a single, possible (often one-off) condition: 'if it happens'. hễ marks a habitual, automatic, repeated condition closer to English 'whenever / every time': the result follows reliably each time. Compare 'Nếu trời mưa thì tôi ở nhà' (If it rains [this once], I'll stay home) with 'Hễ trời mưa là tôi ở nhà' (Whenever it rains, I stay home). hễ very commonly pairs with là rather than thì, and implies a near-certain, almost reflexive consequence."
             },
             {
-              "q": "How do I say 'if only…' to express regret about something that didn't happen?",
-              "a": "Use giá (như) or giá mà for counterfactual / unreal conditions, especially regrets about the past: 'Giá như tôi nghe lời anh thì đã không sao' (If only I'd listened to you, nothing would have gone wrong). The clue that it's counterfactual is often a following đã and a wistful tone. This is different from nếu, which leaves the condition open and realistic rather than contrary to fact."
+              "question": "How do I say 'if only…' to express regret about something that didn't happen?",
+              "answer": "Use giá (như) or giá mà for counterfactual / unreal conditions, especially regrets about the past: 'Giá như tôi nghe lời anh thì đã không sao' (If only I'd listened to you, nothing would have gone wrong). The clue that it's counterfactual is often a following đã and a wistful tone. This is different from nếu, which leaves the condition open and realistic rather than contrary to fact."
             }
           ],
           "units": [
@@ -15005,12 +15005,12 @@
           "mainPattern": "đã từng / vẫn còn / sắp (sửa) / vừa mới / mới + V (...) + xong",
           "faqs": [
             {
-              "q": "What is the difference between đã and đã từng? Aren't they both just 'past tense'?",
-              "a": "đã simply marks that an action happened (completed past): 'Tôi đã ăn rồi' = 'I already ate.' đã từng adds an experiential nuance — 'to have ever / once done' something, often something now finished or no longer true: 'Tôi đã từng sống ở Hà Nội' = 'I once lived in Hanoi (but not anymore).' Use từng for life experiences and past states that contrast with the present, not for a single recent event. Note the negative: 'chưa từng' = 'have never (yet)', e.g. 'Tôi chưa từng ăn sầu riêng' = 'I've never eaten durian.'"
+              "question": "What is the difference between đã and đã từng? Aren't they both just 'past tense'?",
+              "answer": "đã simply marks that an action happened (completed past): 'Tôi đã ăn rồi' = 'I already ate.' đã từng adds an experiential nuance — 'to have ever / once done' something, often something now finished or no longer true: 'Tôi đã từng sống ở Hà Nội' = 'I once lived in Hanoi (but not anymore).' Use từng for life experiences and past states that contrast with the present, not for a single recent event. Note the negative: 'chưa từng' = 'have never (yet)', e.g. 'Tôi chưa từng ăn sầu riêng' = 'I've never eaten durian.'"
             },
             {
-              "q": "vừa, mới, and vừa mới all seem to mean 'just'. How do I choose?",
-              "a": "All three mark very recent past, and in everyday speech they overlap heavily. vừa and mới are near-interchangeable for 'just (a moment ago)': 'Anh ấy vừa đi' / 'Anh ấy mới đi' = 'He just left.' vừa mới combines them for emphasis on immediacy: 'Tôi vừa mới gọi cho anh' = 'I just this second called you.' A separate use of mới is 'only then / not until', signalling something happened later than expected: 'Mãi đến 10 giờ anh ấy mới về' = 'He didn't get home until 10.' Watch for that second meaning — it is not about recency at all."
+              "question": "vừa, mới, and vừa mới all seem to mean 'just'. How do I choose?",
+              "answer": "All three mark very recent past, and in everyday speech they overlap heavily. vừa and mới are near-interchangeable for 'just (a moment ago)': 'Anh ấy vừa đi' / 'Anh ấy mới đi' = 'He just left.' vừa mới combines them for emphasis on immediacy: 'Tôi vừa mới gọi cho anh' = 'I just this second called you.' A separate use of mới is 'only then / not until', signalling something happened later than expected: 'Mãi đến 10 giờ anh ấy mới về' = 'He didn't get home until 10.' Watch for that second meaning — it is not about recency at all."
             }
           ],
           "units": [
@@ -15180,12 +15180,12 @@
           "mainPattern": "sự / việc / cuộc / tính / niềm / nỗi + verb/adjective → abstract noun",
           "faqs": [
             {
-              "q": "Vietnamese verbs and adjectives can already act like nouns without any marker. So why bother with sự, việc, niềm, etc.?",
-              "a": "Bare verbs/adjectives work fine in casual speech (Tôi thích đọc sách = I like reading). But formal Vietnamese, especially written prose, treats nominalizers as a register signal and a clarity device. Sự phát triển (development) reads as a defined abstract concept, whereas phát triển alone reads as the action 'to develop'. Compare casual Anh ấy thành công (He succeeds/is successful) with formal sự thành công của anh ấy (his success), which can take adjectives and stand as a subject: Sự thành công của anh ấy là điều không thể phủ nhận (His success is undeniable). Nominalizers also let you attach modifiers and possessors cleanly, which bare verbs resist."
+              "question": "Vietnamese verbs and adjectives can already act like nouns without any marker. So why bother with sự, việc, niềm, etc.?",
+              "answer": "Bare verbs/adjectives work fine in casual speech (Tôi thích đọc sách = I like reading). But formal Vietnamese, especially written prose, treats nominalizers as a register signal and a clarity device. Sự phát triển (development) reads as a defined abstract concept, whereas phát triển alone reads as the action 'to develop'. Compare casual Anh ấy thành công (He succeeds/is successful) with formal sự thành công của anh ấy (his success), which can take adjectives and stand as a subject: Sự thành công của anh ấy là điều không thể phủ nhận (His success is undeniable). Nominalizers also let you attach modifiers and possessors cleanly, which bare verbs resist."
             },
             {
-              "q": "How do I know whether to use sự or việc?",
-              "a": "Use sự + adjective/stative or abstract verb for qualities and states that have no concrete 'event' (sự im lặng = silence, sự khác biệt = the difference, sự tồn tại = existence). Use việc + dynamic verb for an action/affair treated as a concrete matter or task, often as a subject or object (Việc học tiếng Việt rất quan trọng = Learning Vietnamese is very important; Tôi phản đối việc tăng giá = I oppose raising prices). Rule of thumb: if you could say 'the matter/act of ___', use việc; if you mean 'the quality/fact of ___', use sự."
+              "question": "How do I know whether to use sự or việc?",
+              "answer": "Use sự + adjective/stative or abstract verb for qualities and states that have no concrete 'event' (sự im lặng = silence, sự khác biệt = the difference, sự tồn tại = existence). Use việc + dynamic verb for an action/affair treated as a concrete matter or task, often as a subject or object (Việc học tiếng Việt rất quan trọng = Learning Vietnamese is very important; Tôi phản đối việc tăng giá = I oppose raising prices). Rule of thumb: if you could say 'the matter/act of ___', use việc; if you mean 'the quality/fact of ___', use sự."
             }
           ],
           "units": [
@@ -15353,12 +15353,12 @@
           "mainPattern": "[Hán-Việt lexis] + được/bị + [động từ] (passive); văn nói → văn viết register shift",
           "faqs": [
             {
-              "q": "When should I choose a Sino-Vietnamese (Hán-Việt) word over its native Vietnamese equivalent?",
-              "a": "Use the Hán-Việt word in formal, written, technical or ceremonial contexts; use the native word in everyday speech. They often share a core meaning but differ sharply in register. For example, 'phụ nữ' (women) is neutral-to-formal and standard in writing, while 'đàn bà' is colloquial and can sound blunt or even disrespectful: 'Hội nghị bàn về quyền của phụ nữ' (The conference discusses women's rights) vs. spoken 'Mấy bà đàn bà ngồi nói chuyện' (The women sit chatting). Similarly, written 'tử vong' replaces spoken 'chết', and 'phu nhân' replaces 'vợ' in diplomatic contexts: 'Tổng thống và phu nhân' (The President and his wife). The pitfall is overcorrection — piling on Hán-Việt where it isn't idiomatic (e.g. 'mua' is always fine in ordinary prose; you don't need 'thu mua' or 'mua sắm' unless the context is specifically commercial or about shopping)."
+              "question": "When should I choose a Sino-Vietnamese (Hán-Việt) word over its native Vietnamese equivalent?",
+              "answer": "Use the Hán-Việt word in formal, written, technical or ceremonial contexts; use the native word in everyday speech. They often share a core meaning but differ sharply in register. For example, 'phụ nữ' (women) is neutral-to-formal and standard in writing, while 'đàn bà' is colloquial and can sound blunt or even disrespectful: 'Hội nghị bàn về quyền của phụ nữ' (The conference discusses women's rights) vs. spoken 'Mấy bà đàn bà ngồi nói chuyện' (The women sit chatting). Similarly, written 'tử vong' replaces spoken 'chết', and 'phu nhân' replaces 'vợ' in diplomatic contexts: 'Tổng thống và phu nhân' (The President and his wife). The pitfall is overcorrection — piling on Hán-Việt where it isn't idiomatic (e.g. 'mua' is always fine in ordinary prose; you don't need 'thu mua' or 'mua sắm' unless the context is specifically commercial or about shopping)."
             },
             {
-              "q": "Is the được/bị passive really necessary, or can I just keep the active voice like in speech?",
-              "a": "In văn nói, Vietnamese strongly prefers the active voice or topic-comment word order, so the passive can feel heavy. But in văn viết — especially reports, science and law — the passive with được (favourable/neutral outcome) or bị (adverse outcome) is the register-correct choice when the agent is unknown, unimportant, or deliberately backgrounded: 'Dự luật đã được Quốc hội thông qua' (The bill was passed by the National Assembly) sounds far more official than the spoken 'Quốc hội thông qua dự luật rồi'. Choosing được vs bị also encodes evaluation: 'được khen' (praised — positive) vs 'bị phê bình' (criticised — negative)."
+              "question": "Is the được/bị passive really necessary, or can I just keep the active voice like in speech?",
+              "answer": "In văn nói, Vietnamese strongly prefers the active voice or topic-comment word order, so the passive can feel heavy. But in văn viết — especially reports, science and law — the passive with được (favourable/neutral outcome) or bị (adverse outcome) is the register-correct choice when the agent is unknown, unimportant, or deliberately backgrounded: 'Dự luật đã được Quốc hội thông qua' (The bill was passed by the National Assembly) sounds far more official than the spoken 'Quốc hội thông qua dự luật rồi'. Choosing được vs bị also encodes evaluation: 'được khen' (praised — positive) vs 'bị phê bình' (criticised — negative)."
             }
           ],
           "units": [
@@ -15526,12 +15526,12 @@
           "mainPattern": "[Discourse marker] + (là/thì) + clause — e.g. \"Thật ra (thì) ...\", \"Nói chung (là) ...\", \"Tóm lại (thì) ...\"",
           "faqs": [
             {
-              "q": "What's the difference between 'nói chung' and 'nhìn chung'? They both seem to mean 'in general.'",
-              "a": "They overlap but carry different registers and angles. 'Nói chung' (literally 'speaking generally') is the everyday workhorse — it generalizes or wraps up loosely, and works in speech and writing: 'Nói chung là ổn' (Generally it's fine). 'Nhìn chung' (literally 'viewing generally / on the whole') is more formal and analytical; it takes a bird's-eye view of data or a situation, and is common in reports and essays: 'Nhìn chung, nền kinh tế đang phục hồi' (On the whole, the economy is recovering). Use 'nói chung' for casual summing-up and 'nhìn chung' when you survey a whole picture objectively."
+              "question": "What's the difference between 'nói chung' and 'nhìn chung'? They both seem to mean 'in general.'",
+              "answer": "They overlap but carry different registers and angles. 'Nói chung' (literally 'speaking generally') is the everyday workhorse — it generalizes or wraps up loosely, and works in speech and writing: 'Nói chung là ổn' (Generally it's fine). 'Nhìn chung' (literally 'viewing generally / on the whole') is more formal and analytical; it takes a bird's-eye view of data or a situation, and is common in reports and essays: 'Nhìn chung, nền kinh tế đang phục hồi' (On the whole, the economy is recovering). Use 'nói chung' for casual summing-up and 'nhìn chung' when you survey a whole picture objectively."
             },
             {
-              "q": "Can I just stack English-style connectors like 'in other words' literally, or are there fixed Vietnamese forms?",
-              "a": "Vietnamese has fixed lexical chunks you should learn whole rather than translate word-by-word. 'In other words' is 'nói cách khác', 'to sum up' is 'tóm lại', 'actually/in fact' is 'thật ra' (or 'thực ra'). They sit at the front of the sentence and are often followed by an optional 'là' or 'thì': 'Nói cách khác, đây là một sai lầm' (In other words, this is a mistake). Inserting 'là'/'thì' makes it sound more natural and spoken; dropping it is crisper and more written."
+              "question": "Can I just stack English-style connectors like 'in other words' literally, or are there fixed Vietnamese forms?",
+              "answer": "Vietnamese has fixed lexical chunks you should learn whole rather than translate word-by-word. 'In other words' is 'nói cách khác', 'to sum up' is 'tóm lại', 'actually/in fact' is 'thật ra' (or 'thực ra'). They sit at the front of the sentence and are often followed by an optional 'là' or 'thì': 'Nói cách khác, đây là một sai lầm' (In other words, this is a mistake). Inserting 'là'/'thì' makes it sound more natural and spoken; dropping it is crisper and more written."
             }
           ],
           "units": [
@@ -15695,12 +15695,12 @@
           "mainPattern": "càng + X, (lại) càng + Y  •  bao nhiêu… bấy nhiêu  •  vừa + V1, vừa + V2",
           "faqs": [
             {
-              "q": "What is the difference between 'càng…càng' and 'càng ngày càng'?",
-              "a": "'càng A càng B' links two correlated variables: as one rises, so does the other (e.g. 'Càng học, tôi càng thấy mình thiếu sót' — The more I study, the more I see my own shortcomings). 'Càng ngày càng' is a fixed idiom meaning 'more and more (over time)' with no second variable; it tracks change against the passage of time itself: 'Tiếng Việt của anh ấy càng ngày càng giỏi' (His Vietnamese gets better and better). Use 'càng ngày càng' (or its colloquial reduction 'ngày càng') only for gradual change over time, not for a true cause-effect proportion."
+              "question": "What is the difference between 'càng…càng' and 'càng ngày càng'?",
+              "answer": "'càng A càng B' links two correlated variables: as one rises, so does the other (e.g. 'Càng học, tôi càng thấy mình thiếu sót' — The more I study, the more I see my own shortcomings). 'Càng ngày càng' is a fixed idiom meaning 'more and more (over time)' with no second variable; it tracks change against the passage of time itself: 'Tiếng Việt của anh ấy càng ngày càng giỏi' (His Vietnamese gets better and better). Use 'càng ngày càng' (or its colloquial reduction 'ngày càng') only for gradual change over time, not for a true cause-effect proportion."
             },
             {
-              "q": "Can 'vừa…vừa' join two nouns or only verbs?",
-              "a": "In its core simultaneity sense it joins verbs/verb phrases performed by one subject at the same time: 'Cô ấy vừa lái xe vừa nghe nhạc' (She drives and listens to music at the same time). It also joins two adjectives to mean 'both… and…': 'Món này vừa rẻ vừa ngon' (This dish is both cheap and tasty). It does not directly conjoin two plain nouns — for that, use 'cả… lẫn…' instead: 'cả cà phê lẫn trà' (both coffee and tea)."
+              "question": "Can 'vừa…vừa' join two nouns or only verbs?",
+              "answer": "In its core simultaneity sense it joins verbs/verb phrases performed by one subject at the same time: 'Cô ấy vừa lái xe vừa nghe nhạc' (She drives and listens to music at the same time). It also joins two adjectives to mean 'both… and…': 'Món này vừa rẻ vừa ngon' (This dish is both cheap and tasty). It does not directly conjoin two plain nouns — for that, use 'cả… lẫn…' instead: 'cả cà phê lẫn trà' (both coffee and tea)."
             }
           ],
           "units": [
@@ -15866,12 +15866,12 @@
           "mainPattern": "ngay cả / đến (cả) / thậm chí + [extreme element] (... cũng/còn ...) ; ... huống chi/hồ + [easier case]",
           "faqs": [
             {
-              "q": "What's the difference between ngay cả, đến, and thậm chí — they all seem to mean 'even'?",
-              "a": "They overlap but differ in register and structure. 'Ngay cả' and 'đến (cả)' mark a noun phrase as the surprising case and almost always pair with 'cũng' or 'còn' in the predicate: 'Ngay cả giám đốc cũng không biết' / 'Đến giám đốc cũng không biết' (Even the director didn't know). 'Thậm chí' is more like English sentence-adverb 'even/in fact' — it can introduce a whole clause or an escalated second statement and does not require 'cũng': 'Nó lười, thậm chí không thèm trả lời tin nhắn' (He's lazy; he won't even bother to reply to messages). In short: ngay cả/đến scope over a phrase + cũng; thậm chí escalates a clause."
+              "question": "What's the difference between ngay cả, đến, and thậm chí — they all seem to mean 'even'?",
+              "answer": "They overlap but differ in register and structure. 'Ngay cả' and 'đến (cả)' mark a noun phrase as the surprising case and almost always pair with 'cũng' or 'còn' in the predicate: 'Ngay cả giám đốc cũng không biết' / 'Đến giám đốc cũng không biết' (Even the director didn't know). 'Thậm chí' is more like English sentence-adverb 'even/in fact' — it can introduce a whole clause or an escalated second statement and does not require 'cũng': 'Nó lười, thậm chí không thèm trả lời tin nhắn' (He's lazy; he won't even bother to reply to messages). In short: ngay cả/đến scope over a phrase + cũng; thậm chí escalates a clause."
             },
             {
-              "q": "How do I say 'let alone' as in 'I can't afford a bike, let alone a car'?",
-              "a": "Use 'huống chi' (or the more literary 'huống hồ'), placed before the easier/more extreme case, after you've stated the harder one — usually with 'đến...còn/cũng' in the first clause: 'Xe đạp tôi còn chẳng mua nổi, huống chi (là) ô tô' (I can't even afford a bike, let alone a car). The logic is reversed from English word order: Vietnamese states the difficult case first, then 'huống chi' introduces what is even more out of reach. You can add 'là' after it for emphasis: 'huống chi là ô tô'."
+              "question": "How do I say 'let alone' as in 'I can't afford a bike, let alone a car'?",
+              "answer": "Use 'huống chi' (or the more literary 'huống hồ'), placed before the easier/more extreme case, after you've stated the harder one — usually with 'đến...còn/cũng' in the first clause: 'Xe đạp tôi còn chẳng mua nổi, huống chi (là) ô tô' (I can't even afford a bike, let alone a car). The logic is reversed from English word order: Vietnamese states the difficult case first, then 'huống chi' introduces what is even more out of reach. You can add 'là' after it for emphasis: 'huống chi là ô tô'."
             }
           ],
           "units": [
@@ -16008,12 +16008,12 @@
           "mainPattern": "giá (mà) / phải chi + clause [thì (đã) + clause] ; đáng lẽ / lẽ ra + clause [(đã) ... rồi / nhưng ...]",
           "faqs": [
             {
-              "q": "What's the difference between giá mà and phải chi? They both seem to mean 'if only.'",
-              "a": "Both introduce an unreal wish about the past, but the register differs. Giá mà (and the shorter giá) is neutral and works everywhere — speech, writing, formal contexts: Giá mà tôi nghe lời anh thì đã không ra nông nỗi này (If only I had listened to you, it wouldn't have come to this). Phải chi is warmer, more emotional and colloquial, with a strong Southern flavour, often sighed out loud: Phải chi hồi đó tao đừng bỏ học (If only I hadn't dropped out back then). For an essay or a measured tone, prefer giá mà; for raw, spoken regret, phải chi sounds more native."
+              "question": "What's the difference between giá mà and phải chi? They both seem to mean 'if only.'",
+              "answer": "Both introduce an unreal wish about the past, but the register differs. Giá mà (and the shorter giá) is neutral and works everywhere — speech, writing, formal contexts: Giá mà tôi nghe lời anh thì đã không ra nông nỗi này (If only I had listened to you, it wouldn't have come to this). Phải chi is warmer, more emotional and colloquial, with a strong Southern flavour, often sighed out loud: Phải chi hồi đó tao đừng bỏ học (If only I hadn't dropped out back then). For an essay or a measured tone, prefer giá mà; for raw, spoken regret, phải chi sounds more native."
             },
             {
-              "q": "How do I say 'should have' as in blaming someone, versus just expressing regret?",
-              "a": "Use đáng lẽ / lẽ ra for 'should have' — what the correct or expected action was. It is naturally evaluative, so it carries blame or reproach when aimed at another person: Đáng lẽ anh phải gọi cho tôi trước (You should have called me first). For pure inward regret with no judgement, giá mà / phải chi is softer because it only voices a wish: Giá mà mình gọi sớm hơn (If only I'd called sooner). A common combo states the wrong outcome with đáng lẽ … nhưng …: Lẽ ra tôi đã đỗ, nhưng tôi làm sai câu cuối (I should have passed, but I got the last question wrong)."
+              "question": "How do I say 'should have' as in blaming someone, versus just expressing regret?",
+              "answer": "Use đáng lẽ / lẽ ra for 'should have' — what the correct or expected action was. It is naturally evaluative, so it carries blame or reproach when aimed at another person: Đáng lẽ anh phải gọi cho tôi trước (You should have called me first). For pure inward regret with no judgement, giá mà / phải chi is softer because it only voices a wish: Giá mà mình gọi sớm hơn (If only I'd called sooner). A common combo states the wrong outcome with đáng lẽ … nhưng …: Lẽ ra tôi đã đỗ, nhưng tôi làm sai câu cuối (I should have passed, but I got the last question wrong)."
             }
           ],
           "units": [
@@ -16181,12 +16181,12 @@
           "mainPattern": "làm gì có + N/clause · sao mà + clause + được · chẳng lẽ + clause (?) · clause + có…đâu",
           "faqs": [
             {
-              "q": "What is the difference between a plain negation with 'không' and a rhetorical negation like 'làm gì có'?",
-              "a": "'Không' simply states that something is not the case ('Tôi không có tiền' = I don't have money). The rhetorical forms add force and stance: they treat the proposition as absurd or as something the speaker already knows to be false. 'Làm gì có tiền' means roughly 'As if I had any money!' / 'Where would I get money?' — it denies AND signals that the idea was unreasonable to begin with. Compare neutral 'Anh ấy không đến' (He isn't coming) with indignant 'Anh ấy đến làm gì!' (Why on earth would he come? — he won't / it's pointless)."
+              "question": "What is the difference between a plain negation with 'không' and a rhetorical negation like 'làm gì có'?",
+              "answer": "'Không' simply states that something is not the case ('Tôi không có tiền' = I don't have money). The rhetorical forms add force and stance: they treat the proposition as absurd or as something the speaker already knows to be false. 'Làm gì có tiền' means roughly 'As if I had any money!' / 'Where would I get money?' — it denies AND signals that the idea was unreasonable to begin with. Compare neutral 'Anh ấy không đến' (He isn't coming) with indignant 'Anh ấy đến làm gì!' (Why on earth would he come? — he won't / it's pointless)."
             },
             {
-              "q": "How do I know whether 'chẳng lẽ' expects me to agree or disagree?",
-              "a": "'Chẳng lẽ' raises a possibility the speaker finds hard to accept, so the expected answer is almost always 'no, surely not'. 'Chẳng lẽ anh ấy lại nói dối?' = 'Surely he wouldn't lie?' — the speaker leans toward 'he wouldn't'. It often pairs with 'lại' for extra incredulity and can trail off with 'sao' ('Chẳng lẽ lại thế sao?'). Use it to express reluctant suspicion, not a genuine information question."
+              "question": "How do I know whether 'chẳng lẽ' expects me to agree or disagree?",
+              "answer": "'Chẳng lẽ' raises a possibility the speaker finds hard to accept, so the expected answer is almost always 'no, surely not'. 'Chẳng lẽ anh ấy lại nói dối?' = 'Surely he wouldn't lie?' — the speaker leans toward 'he wouldn't'. It often pairs with 'lại' for extra incredulity and can trail off with 'sao' ('Chẳng lẽ lại thế sao?'). Use it to express reluctant suspicion, not a genuine information question."
             }
           ],
           "units": [
@@ -16354,12 +16354,12 @@
           "mainPattern": "chắc hẳn / hẳn là + clause (high-certainty inference); e rằng + clause (hedged concern); hóa ra / té ra + clause (discovery contrary to expectation)",
           "faqs": [
             {
-              "q": "What's the difference between 'chắc' and 'chắc hẳn'? They both seem to mean 'probably'.",
-              "a": "'Chắc' is a soft, everyday guess — roughly 'probably / I think so' (Chắc anh ấy quên rồi — 'He probably forgot'). 'Chắc hẳn' (and 'hẳn là') is markedly stronger: it signals a confident inference the speaker has reasoned out from evidence, closer to English 'must / surely' (Đèn còn sáng, chắc hẳn anh ấy vẫn ở nhà — 'The light's still on, so he must still be home'). Use 'chắc' for casual hedging; reserve 'chắc hẳn' for conclusions you feel sure about."
+              "question": "What's the difference between 'chắc' and 'chắc hẳn'? They both seem to mean 'probably'.",
+              "answer": "'Chắc' is a soft, everyday guess — roughly 'probably / I think so' (Chắc anh ấy quên rồi — 'He probably forgot'). 'Chắc hẳn' (and 'hẳn là') is markedly stronger: it signals a confident inference the speaker has reasoned out from evidence, closer to English 'must / surely' (Đèn còn sáng, chắc hẳn anh ấy vẫn ở nhà — 'The light's still on, so he must still be home'). Use 'chắc' for casual hedging; reserve 'chắc hẳn' for conclusions you feel sure about."
             },
             {
-              "q": "Are 'hóa ra' and 'té ra' interchangeable?",
-              "a": "Semantically yes — both mean 'it turns out (that)', introducing a fact that overturns what you'd assumed. The difference is register: 'hóa ra' is neutral and works everywhere, including writing. 'Té ra' (and the variant 'thì ra') is more colloquial and Southern-flavored, common in speech and storytelling. In an essay or formal report, prefer 'hóa ra'."
+              "question": "Are 'hóa ra' and 'té ra' interchangeable?",
+              "answer": "Semantically yes — both mean 'it turns out (that)', introducing a fact that overturns what you'd assumed. The difference is register: 'hóa ra' is neutral and works everywhere, including writing. 'Té ra' (and the variant 'thì ra') is more colloquial and Southern-flavored, common in speech and storytelling. In an essay or formal report, prefer 'hóa ra'."
             }
           ],
           "units": [
@@ -16530,12 +16530,12 @@
           "mainPattern": "[A B] // [C D] — paired four-syllable halves with syntactic parallelism and tonal balance (e.g., \"ăn cây nào, rào cây nấy\")",
           "faqs": [
             {
-              "q": "What's the actual difference between thành ngữ and tục ngữ, and does it matter when I use them?",
-              "a": "It matters for how you frame them. A thành ngữ is an idiom — a fixed phrase, not a full sentence, that functions like a vocabulary item inside your own clause. You weave it in grammatically: 'Anh ấy làm việc đầu voi đuôi chuột' (He works in a grand-start-small-finish way). A tục ngữ is a proverb — a complete, self-standing sentence expressing folk wisdom, which you usually quote whole and set off, often with 'các cụ có câu' (the elders have a saying) or 'ông bà ta thường nói': 'Ông bà ta thường nói: Có công mài sắt, có ngày nên kim' (Our forebears used to say: grind iron with effort and one day it becomes a needle). Rule of thumb: an idiom slots into your sentence; a proverb is its own sentence you cite."
+              "question": "What's the actual difference between thành ngữ and tục ngữ, and does it matter when I use them?",
+              "answer": "It matters for how you frame them. A thành ngữ is an idiom — a fixed phrase, not a full sentence, that functions like a vocabulary item inside your own clause. You weave it in grammatically: 'Anh ấy làm việc đầu voi đuôi chuột' (He works in a grand-start-small-finish way). A tục ngữ is a proverb — a complete, self-standing sentence expressing folk wisdom, which you usually quote whole and set off, often with 'các cụ có câu' (the elders have a saying) or 'ông bà ta thường nói': 'Ông bà ta thường nói: Có công mài sắt, có ngày nên kim' (Our forebears used to say: grind iron with effort and one day it becomes a needle). Rule of thumb: an idiom slots into your sentence; a proverb is its own sentence you cite."
             },
             {
-              "q": "How do I use a proverb without sounding like a textbook or an old person?",
-              "a": "Three habits make it natural. First, quote only the first half and let the listener complete it — Vietnamese speakers do this constantly: someone says 'Đi một ngày đàng...' and trails off, and everyone hears '...học một sàng khôn'. Second, frame it, don't dump it: 'Đúng là cha nào con nấy' (Truly, like father like son) lands better than firing the bare proverb. Third, match register — proverbs suit warm, reflective, or persuasive moments (advice, toasts, essays), not crisp transactional talk. Misquoting (wrong word, broken parallelism) is the fastest way to sound non-native, so learn each saying as an unbreakable unit."
+              "question": "How do I use a proverb without sounding like a textbook or an old person?",
+              "answer": "Three habits make it natural. First, quote only the first half and let the listener complete it — Vietnamese speakers do this constantly: someone says 'Đi một ngày đàng...' and trails off, and everyone hears '...học một sàng khôn'. Second, frame it, don't dump it: 'Đúng là cha nào con nấy' (Truly, like father like son) lands better than firing the bare proverb. Third, match register — proverbs suit warm, reflective, or persuasive moments (advice, toasts, essays), not crisp transactional talk. Misquoting (wrong word, broken parallelism) is the fastest way to sound non-native, so learn each saying as an unbreakable unit."
             }
           ],
           "units": [
@@ -16703,12 +16703,12 @@
           "mainPattern": "[Hán-Việt 2 + Hán-Việt 2] = a balanced 2+2 four-syllable idiom (e.g. an cư + lạc nghiệp), used as a standalone clause or noun-like chunk in formal register",
           "faqs": [
             {
-              "q": "How do I tell a fixed Sino-Vietnamese four-character idiom (thành ngữ Hán-Việt) from just four Hán-Việt words strung together?",
-              "a": "A true thành ngữ Hán-Việt is lexicalised: it has a fixed order, a non-compositional or culturally conventional meaning, and a 2+2 prosodic balance you cannot rearrange. 'An cư lạc nghiệp' cannot become 'lạc nghiệp an cư' and means more than the sum of its parts (a whole settled life). By contrast, a free combination like 'phát triển kinh tế' (develop the economy) is just two ordinary disyllables and can be paraphrased or reordered freely. Test it: if swapping the halves or substituting a synonym breaks it, it is a fixed idiom."
+              "question": "How do I tell a fixed Sino-Vietnamese four-character idiom (thành ngữ Hán-Việt) from just four Hán-Việt words strung together?",
+              "answer": "A true thành ngữ Hán-Việt is lexicalised: it has a fixed order, a non-compositional or culturally conventional meaning, and a 2+2 prosodic balance you cannot rearrange. 'An cư lạc nghiệp' cannot become 'lạc nghiệp an cư' and means more than the sum of its parts (a whole settled life). By contrast, a free combination like 'phát triển kinh tế' (develop the economy) is just two ordinary disyllables and can be paraphrased or reordered freely. Test it: if swapping the halves or substituting a synonym breaks it, it is a fixed idiom."
             },
             {
-              "q": "Are these idioms understood in everyday speech, or only by educated people?",
-              "a": "The common ones — 'an cư lạc nghiệp', 'đồng cam cộng khổ', 'quốc thái dân an' — are widely understood across the population because they recur in news, songs, and Tết greetings. Rarer literary ones (e.g. 'thượng vàng hạ cám') may puzzle some listeners. The safe rule for a learner: deploy the high-frequency ones in formal writing or speeches, and in casual conversation prefer a plain paraphrase, e.g. 'gắn bó lúc khó khăn' instead of 'đồng cam cộng khổ', unless you specifically want a literary tone."
+              "question": "Are these idioms understood in everyday speech, or only by educated people?",
+              "answer": "The common ones — 'an cư lạc nghiệp', 'đồng cam cộng khổ', 'quốc thái dân an' — are widely understood across the population because they recur in news, songs, and Tết greetings. Rarer literary ones (e.g. 'thượng vàng hạ cám') may puzzle some listeners. The safe rule for a learner: deploy the high-frequency ones in formal writing or speeches, and in casual conversation prefer a plain paraphrase, e.g. 'gắn bó lúc khó khăn' instead of 'đồng cam cộng khổ', unless you specifically want a literary tone."
             }
           ],
           "units": [
@@ -16842,12 +16842,12 @@
           "mainPattern": "root + reduplicant (full / partial: alliterative láy âm or rhyming láy vần) → attenuation, intensification, or sound-symbolic colour",
           "faqs": [
             {
-              "q": "How do I know whether a reduplicative softens or intensifies the base word? They look identical in form.",
-              "a": "You can't tell from the reduplication mechanism alone — you have to learn the lexeme, because the same root behaves differently in different pairs. As a strong heuristic, attenuating pairs usually keep the root's tone register level and add a 'spread out, a little bit' feeling (đỏ → đo đỏ = reddish, a touch red), while intensifying pairs add an emphatic, often vivid second syllable (đỏ → đỏ rực = blazing red; đỏ chót = glaringly red). When the reduplicant is a meaningless echo syllable that lowers the pitch, expect attenuation (khác → khang khác = slightly different). When the second syllable is itself a vivid descriptive morpheme, expect intensification. The safest path at C2 is to treat high-frequency pairs as fixed vocabulary and check a dictionary's register notes."
+              "question": "How do I know whether a reduplicative softens or intensifies the base word? They look identical in form.",
+              "answer": "You can't tell from the reduplication mechanism alone — you have to learn the lexeme, because the same root behaves differently in different pairs. As a strong heuristic, attenuating pairs usually keep the root's tone register level and add a 'spread out, a little bit' feeling (đỏ → đo đỏ = reddish, a touch red), while intensifying pairs add an emphatic, often vivid second syllable (đỏ → đỏ rực = blazing red; đỏ chót = glaringly red). When the reduplicant is a meaningless echo syllable that lowers the pitch, expect attenuation (khác → khang khác = slightly different). When the second syllable is itself a vivid descriptive morpheme, expect intensification. The safest path at C2 is to treat high-frequency pairs as fixed vocabulary and check a dictionary's register notes."
             },
             {
-              "q": "Are từ láy acceptable in formal writing, or are they colloquial?",
-              "a": "They are fully acceptable and in fact prized in formal descriptive and literary registers — Vietnamese newspaper feature writing, essays, and especially poetry lean heavily on them for rhythm and imagery (lác đác, mênh mông, thăm thẳm). What you should avoid in formal prose is the chatty, expressive intensifiers and onomatopoeia of casual speech (ví dụ: đẹp ơi là đẹp, sạch bong, im thin thít in a legal memo). So the dividing line is not 'reduplication vs no reduplication' but which register a given pair belongs to."
+              "question": "Are từ láy acceptable in formal writing, or are they colloquial?",
+              "answer": "They are fully acceptable and in fact prized in formal descriptive and literary registers — Vietnamese newspaper feature writing, essays, and especially poetry lean heavily on them for rhythm and imagery (lác đác, mênh mông, thăm thẳm). What you should avoid in formal prose is the chatty, expressive intensifiers and onomatopoeia of casual speech (ví dụ: đẹp ơi là đẹp, sạch bong, im thin thít in a legal memo). So the dividing line is not 'reduplication vs no reduplication' but which register a given pair belongs to."
             }
           ],
           "units": [
@@ -16984,12 +16984,12 @@
           "mainPattern": "[Câu / clause] + tiểu từ tình thái (chứ / mà / đấy / cơ / ấy / nhé / nha / đi)",
           "faqs": [
             {
-              "q": "How do I tell sentence-final stance particles apart from the homophonous conjunctions chứ and mà?",
-              "a": "Use position and prosody. The stance particle is the very last element of the utterance and is not followed by another clause: 'Anh biết chứ.' (You know it, of course) / 'Em bảo rồi mà.' (I told you, after all). The conjunctions, by contrast, link two clauses and sit medially: 'Tôi đùa chứ không nói thật.' (I'm joking, not being serious) / 'Nhà đẹp mà đắt.' (The house is nice but expensive). If you can delete the particle and the sentence still ends grammatically — only the attitude is lost — it is the pragmatic particle."
+              "question": "How do I tell sentence-final stance particles apart from the homophonous conjunctions chứ and mà?",
+              "answer": "Use position and prosody. The stance particle is the very last element of the utterance and is not followed by another clause: 'Anh biết chứ.' (You know it, of course) / 'Em bảo rồi mà.' (I told you, after all). The conjunctions, by contrast, link two clauses and sit medially: 'Tôi đùa chứ không nói thật.' (I'm joking, not being serious) / 'Nhà đẹp mà đắt.' (The house is nice but expensive). If you can delete the particle and the sentence still ends grammatically — only the attitude is lost — it is the pragmatic particle."
             },
             {
-              "q": "Can I stack several particles, and does order matter?",
-              "a": "Yes, stacking is common and the order is fixed, moving from propositional emphasis to interpersonal appeal: e.g. 'rồi đấy nhé' (đấy flags the news, nhé seeks your agreement) or 'thế cơ à' (cơ marks the surprising alternative, à the question). You cannot reorder them ('nhé đấy' is wrong). A safe C2 rule: attention/insistence particles (đấy, cơ, mà) come first, then alignment/question particles (nhé, nha, à) close the chain."
+              "question": "Can I stack several particles, and does order matter?",
+              "answer": "Yes, stacking is common and the order is fixed, moving from propositional emphasis to interpersonal appeal: e.g. 'rồi đấy nhé' (đấy flags the news, nhé seeks your agreement) or 'thế cơ à' (cơ marks the surprising alternative, à the question). You cannot reorder them ('nhé đấy' is wrong). A safe C2 rule: attention/insistence particles (đấy, cơ, mà) come first, then alignment/question particles (nhé, nha, à) close the chain."
             }
           ],
           "units": [
@@ -17157,12 +17157,12 @@
           "mainPattern": "[Predicate/Complement]-fronting + (topic) + comment, with ellipsis of recoverable elements (subject, copula, connectors)",
           "faqs": [
             {
-              "q": "When is it stylistically acceptable to drop the subject in Vietnamese, and how is that different from a beginner just leaving it out?",
-              "a": "Beginners drop the subject when context makes it obvious (e.g. answering 'Đi đâu đấy?' with 'Đi chợ'). Literary ellipsis is a deliberate device: the subject is withheld across a whole passage to create immediacy, suspense, or a roaming 'camera' viewpoint. In narrative prose you'll see chains like 'Mở cửa. Bước ra. Đứng lặng một hồi lâu.' (Opened the door. Stepped out. Stood still for a long while.) — no subject is restated because the writer wants the actions, not the actor, in focus. Note the nuance: this works only when the referent is unambiguous from earlier context; reintroduce the subject the moment reference could shift, or the reader gets lost."
+              "question": "When is it stylistically acceptable to drop the subject in Vietnamese, and how is that different from a beginner just leaving it out?",
+              "answer": "Beginners drop the subject when context makes it obvious (e.g. answering 'Đi đâu đấy?' with 'Đi chợ'). Literary ellipsis is a deliberate device: the subject is withheld across a whole passage to create immediacy, suspense, or a roaming 'camera' viewpoint. In narrative prose you'll see chains like 'Mở cửa. Bước ra. Đứng lặng một hồi lâu.' (Opened the door. Stepped out. Stood still for a long while.) — no subject is restated because the writer wants the actions, not the actor, in focus. Note the nuance: this works only when the referent is unambiguous from earlier context; reintroduce the subject the moment reference could shift, or the reader gets lost."
             },
             {
-              "q": "Is fronting in Vietnamese the same as English 'inversion' where the verb and subject swap?",
-              "a": "No — Vietnamese has no subject-verb inversion like English 'Never have I seen...'. Vietnamese 'inversion' is really fronting (topicalization): you move a constituent to the front for emphasis but the core word order does not flip. For example you front a predicate adjective for vividness: 'Đẹp! Đẹp đến nao lòng.' (Beautiful! Beautiful enough to break the heart.), or front an object: 'Cái giá ấy, tôi không trả nổi.' (That price, I can't afford.) The subject 'tôi' stays before its verb; only the object has been displaced to the front and is often echoed or resumed."
+              "question": "Is fronting in Vietnamese the same as English 'inversion' where the verb and subject swap?",
+              "answer": "No — Vietnamese has no subject-verb inversion like English 'Never have I seen...'. Vietnamese 'inversion' is really fronting (topicalization): you move a constituent to the front for emphasis but the core word order does not flip. For example you front a predicate adjective for vividness: 'Đẹp! Đẹp đến nao lòng.' (Beautiful! Beautiful enough to break the heart.), or front an object: 'Cái giá ấy, tôi không trả nổi.' (That price, I can't afford.) The subject 'tôi' stays before its verb; only the object has been displaced to the front and is often echoed or resumed."
             }
           ],
           "units": [
@@ -17330,12 +17330,12 @@
           "mainPattern": "[same idea] → colloquial (Sino-Vietnamese minimized, particles ↑) ⇄ formal/journalistic (Hán-Việt ↑, nominalization: việc/sự/cuộc + verb) ⇄ literary (figurative, marked word order)",
           "faqs": [
             {
-              "q": "How do I know whether to use a native Vietnamese word or its Sino-Vietnamese (Hán-Việt) equivalent?",
-              "a": "Match the word to the social situation, not to a 'hard vs. easy' scale. Use native (thuần Việt) words in everyday speech, warmth and intimacy; reach for Hán-Việt in official, ceremonial, technical or written-formal contexts. For death you say mất or chết with family/friends, but qua đời or từ trần in an obituary or to show respect. For a wife you say vợ casually but phu nhân about a dignitary's spouse. The danger runs both ways: piling Hán-Việt into casual talk (e.g. Tôi xin phép thực hiện việc ăn cơm) sounds absurdly pompous, while using blunt native words at a funeral or in a press release sounds disrespectful or unprofessional. When unsure, ask: would this appear in a newspaper headline (Hán-Việt) or in a text to a friend (native)?"
+              "question": "How do I know whether to use a native Vietnamese word or its Sino-Vietnamese (Hán-Việt) equivalent?",
+              "answer": "Match the word to the social situation, not to a 'hard vs. easy' scale. Use native (thuần Việt) words in everyday speech, warmth and intimacy; reach for Hán-Việt in official, ceremonial, technical or written-formal contexts. For death you say mất or chết with family/friends, but qua đời or từ trần in an obituary or to show respect. For a wife you say vợ casually but phu nhân about a dignitary's spouse. The danger runs both ways: piling Hán-Việt into casual talk (e.g. Tôi xin phép thực hiện việc ăn cơm) sounds absurdly pompous, while using blunt native words at a funeral or in a press release sounds disrespectful or unprofessional. When unsure, ask: would this appear in a newspaper headline (Hán-Việt) or in a text to a friend (native)?"
             },
             {
-              "q": "Is Vietnamese passive (bị/được) the main way to sound formal or journalistic, like the English passive?",
-              "a": "Partly, but agent-demotion in Vietnamese is broader than a single passive construction. News and official prose do use bị (for unfavourable events) and được (for favourable ones)—Đối tượng đã bị bắt giữ ('the suspect has been apprehended')—to remove the actor and sound objective. But formal Vietnamese just as often achieves impersonality through abstract collective subjects (dư luận 'public opinion', các cơ quan chức năng 'the relevant authorities') or the impersonal người ta. So to shift a sentence like Cảnh sát bắt nó ('the police caught him') into news register, you can demote the agent with bị (Nó đã bị bắt) or recast the subject entirely (Vụ bắt giữ đã được tiến hành). Note bị/được carry an evaluative tone—bị implies something bad happened to the subject—so they are not the neutral, purely grammatical passive English speakers expect."
+              "question": "Is Vietnamese passive (bị/được) the main way to sound formal or journalistic, like the English passive?",
+              "answer": "Partly, but agent-demotion in Vietnamese is broader than a single passive construction. News and official prose do use bị (for unfavourable events) and được (for favourable ones)—Đối tượng đã bị bắt giữ ('the suspect has been apprehended')—to remove the actor and sound objective. But formal Vietnamese just as often achieves impersonality through abstract collective subjects (dư luận 'public opinion', các cơ quan chức năng 'the relevant authorities') or the impersonal người ta. So to shift a sentence like Cảnh sát bắt nó ('the police caught him') into news register, you can demote the agent with bị (Nó đã bị bắt) or recast the subject entirely (Vụ bắt giữ đã được tiến hành). Note bị/được carry an evaluative tone—bị implies something bad happened to the subject—so they are not the neutral, purely grammatical passive English speakers expect."
             }
           ],
           "units": [

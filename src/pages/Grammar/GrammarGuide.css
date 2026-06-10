@@ -1,0 +1,24 @@
+.grammar-guide-tab {
+    --grammar-level-tabs-height: 74px;
+}
+
+.grammar-level-tabs {
+    min-height: var(--grammar-level-tabs-height);
+    box-sizing: border-box;
+}
+
+.grammar-topic-header {
+    position: relative;
+    z-index: 1;
+}
+
+@media (max-width: 768px) {
+    .grammar-topic.is-expanded > .grammar-topic-header {
+        position: sticky;
+        top: calc(var(--grammar-level-tabs-height) - 1px);
+        z-index: 9;
+        background-color: var(--surface-color) !important;
+        background-clip: padding-box;
+        box-shadow: 0 1px 0 var(--border-color);
+    }
+}
