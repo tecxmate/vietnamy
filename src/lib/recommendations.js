@@ -7,6 +7,39 @@ import { getDueItemIds } from './srs';
 import { getWeakItems, isItemMastered } from './wordGrades';
 
 const REAL_PURPOSES = ['explore_vietnam', 'professional', 'heritage'];
+export const PURPOSE_IDS = REAL_PURPOSES;
+
+// Admin-tunable per-lesson purpose weights (vnme_cms_purpose_weights), id-keyed
+// like the other CMS overrides. Overlays the generated adaptive.purposes.
+const PURPOSE_OVERRIDES_KEY = 'vnme_cms_purpose_weights';
+
+export function getPurposeOverrides() {
+    try {
+        const raw = localStorage.getItem(PURPOSE_OVERRIDES_KEY);
+        return raw ? JSON.parse(raw) : {};
+    } catch {
+        return {};
+    }
+}
+
+export function savePurposeOverrides(overrides) {
+    try {
+        localStorage.setItem(PURPOSE_OVERRIDES_KEY, JSON.stringify(overrides));
+    } catch { /* ignore */ }
+}
+
+/** Overlay admin weight overrides onto a lesson's generated purposes. */
+function withPurposeOverrides(lessons) {
+    const overrides = getPurposeOverrides();
+    if (!Object.keys(overrides).length) return lessons;
+    return lessons.map((l) => {
+        const o = overrides[l.id];
+        if (!o) return l;
+        const merged = new Map((l.adaptive?.purposes || []).map(p => [p.id, p.weight]));
+        for (const [pid, w] of Object.entries(o)) merged.set(pid, w);
+        return { ...l, adaptive: { ...l.adaptive, purposes: [...merged].map(([id, weight]) => ({ id, weight })) } };
+    });
+}
 
 /**
  * Sequencer recommendations for the learner's current progress + purpose.
@@ -15,7 +48,7 @@ const REAL_PURPOSES = ['explore_vietnam', 'professional', 'heritage'];
  * @returns {{ recs: Array, dueCount: number }}
  */
 export function getRecommendations(completedNodeIds, purpose, { limit = 3 } = {}) {
-    const lessons = curriculum.lessons || [];
+    const lessons = withPurposeOverrides(curriculum.lessons || []);
     const nodeToLesson = new Map(lessons.filter(l => l.nodeId).map(l => [l.nodeId, l]));
     const completed = [...(completedNodeIds || [])].map(id => nodeToLesson.get(id)).filter(Boolean);
     const seenItemIds = completed.flatMap(l => l.wordIds || []);

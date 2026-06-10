@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { MessageCircle, Zap, Trophy, Pen, Check, Lock, BookOpen, Music, Clapperboard, ChevronDown, Plane, Briefcase, Heart, Flame } from 'lucide-react';
+import { MessageCircle, Zap, Trophy, Pen, Check, Lock, BookOpen, Music, Clapperboard, ChevronDown, Plane, Briefcase, Heart, Flame, Sparkles } from 'lucide-react';
 import { getUnits, getNodesForUnitWithProgress } from '../../lib/db';
 import { getGrammarForUnit } from '../../lib/grammarGuide';
 import GrammarGuidebook from '../GrammarGuidebook';
@@ -92,6 +92,17 @@ const RoadmapTab = () => {
         units.forEach(unit => { map[unit.id] = getGrammarForUnit(unit.id); });
         return map;
     }, [units]);
+
+    // Sequencer's current top picks (by roadmap node id) — badged on the path so
+    // the per-purpose recommendation is visible INSIDE the linear map.
+    const recommendedNodeIds = React.useMemo(() => {
+        try {
+            const { recs } = getRecommendations(modeCompletedNodes, currentMode, { limit: 3 });
+            return new Set(recs.map(r => r.lesson?.nodeId).filter(Boolean));
+        } catch {
+            return new Set();
+        }
+    }, [modeCompletedNodes, currentMode]);
 
     // Topic-based filtering from learner mode
     const modeTopics = getTopicsForMode(currentMode);
@@ -495,8 +506,11 @@ const RoadmapTab = () => {
                                                             <Icon size={22} fill="#fff" />}
                                                 </div>
                                                 <div style={{ flex: 1, minWidth: 0 }}>
-                                                    <div style={{ fontWeight: 700, fontSize: 15, color: isLocked ? style.mutedIcon : 'var(--text-main)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                                                    <div style={{ fontWeight: 700, fontSize: 15, color: isLocked ? style.mutedIcon : 'var(--text-main)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', display: 'flex', alignItems: 'center', gap: 5 }}>
                                                         {translateNodeLabel(node)}
+                                                        {recommendedNodeIds.has(node.id) && !isCompleted && (
+                                                            <Sparkles size={13} color={style.color} style={{ flexShrink: 0 }} aria-label="Recommended" />
+                                                        )}
                                                     </div>
                                                     <div style={{ fontSize: 12, color: isLocked ? style.muted : style.color, fontWeight: 600, marginTop: 2 }}>
                                                         {sublabel}{hasProgress && ` · ${sessionCount}/${sessionsTarget}`}
