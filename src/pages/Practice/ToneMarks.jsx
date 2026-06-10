@@ -8,7 +8,8 @@ import PitchGraph from '../../components/Sounds/PitchGraph';
 import './ToneMarks.css';
 import { playSuccess, playError } from '../../utils/sound';
 import SoundButton from '../../components/SoundButton';
-import { OptionGrid, FeedbackBar, FeedbackMessage, PrimaryButton } from '../../components/practice/PracticeKit';
+import { OptionGrid, FeedbackBar, FeedbackMessage, PrimaryButton, ExerciseColumn } from '../../components/practice/PracticeKit';
+import { ProgressBar } from '../../components/Exercise';
 import './PracticeShared.css'; // Add shared layout
 
 // ─── Vietnamese Vowel × Tone Data ──────────────────────────────────
@@ -434,13 +435,15 @@ export default function ToneMarks({ vowels = ALL_VOWELS, title = '🔤 Dấu —
 
             {/* ═══ STAGES 2–4: Quiz ═══ */}
             {stage >= 2 && currentQ && (
-                <div style={{ padding: '0 16px 200px' }}>
-                    <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 10 }}>
-                        <span style={{ fontSize: 13, fontWeight: 700, color: '#06D6A0' }}>Score {score}</span>
-                    </div>
-                    <div style={{ height: 6, borderRadius: 4, backgroundColor: 'var(--border-color)', marginBottom: 22, overflow: 'hidden' }}>
-                        <div style={{ height: '100%', width: `${progress}%`, backgroundColor: '#1CB0F6', borderRadius: 4, transition: 'width 0.3s' }} />
-                    </div>
+                <>
+                    <ExerciseColumn topOffset={120} top={
+                        <>
+                            <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 10 }}>
+                                <span style={{ fontSize: 13, fontWeight: 700, color: '#06D6A0' }}>Score {score}</span>
+                            </div>
+                            <ProgressBar progress={progress / 100} />
+                        </>
+                    }>
 
                     {/* Combine prompt */}
                     {currentQ.type === 'combine' && (
@@ -501,6 +504,7 @@ export default function ToneMarks({ vowels = ALL_VOWELS, title = '🔤 Dấu —
                         </>
                     )}
 
+                    </ExerciseColumn>
                     <FeedbackBar>
                         {feedback !== 'idle' && (
                             <FeedbackMessage correct={feedback === 'correct'}>
@@ -513,7 +517,7 @@ export default function ToneMarks({ vowels = ALL_VOWELS, title = '🔤 Dấu —
                             ? <PrimaryButton onClick={handleCheck} disabled={!selected}>Check</PrimaryButton>
                             : <PrimaryButton onClick={handleContinue}>Continue</PrimaryButton>}
                     </FeedbackBar>
-                </div>
+                </>
             )}
 
             </div>{/* end practice-scroll-area */}

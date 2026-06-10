@@ -1,6 +1,8 @@
 import { useState } from 'react';
-import { ArrowLeft, Volume2, CheckCircle, XCircle, Trophy, ChevronDown, ChevronUp } from 'lucide-react';
+import { ArrowLeft, Volume2, Trophy, ChevronDown, ChevronUp } from 'lucide-react';
 import SoundButton from '../../components/SoundButton';
+import { OptionGrid, FeedbackBar, FeedbackMessage, ExerciseColumn } from '../../components/practice/PracticeKit';
+import { ProgressBar } from '../../components/Exercise';
 import { playSuccess, playError } from '../../utils/sound';
 import speak from '../../utils/speak';
 import { usePracticeCompletion } from '../../hooks/usePracticeCompletion';
@@ -164,7 +166,7 @@ export default function KinshipFoundation() {
         setQuizState(prev => ({
             ...prev,
             score: isCorrect ? prev.score + 1 : prev.score,
-            feedback: { isCorrect, correct: q.term },
+            feedback: { isCorrect, correct: q.term, selected: answer },
         }));
         setTimeout(() => {
             if (quizState.currentIdx < quizState.questions.length - 1) {
@@ -207,43 +209,41 @@ export default function KinshipFoundation() {
             )}
 
             {/* Quiz Playing */}
-            {mode === 'quiz' && quizState && quizState.questions[quizState.currentIdx] && (
-                <div style={{ padding: '24px 0' }}>
-                    <div style={{ height: 16, backgroundColor: 'var(--surface-color)', borderRadius: 15, overflow: 'hidden', marginBottom: 24 }}>
-                        <div style={{ width: `${(quizState.currentIdx / quizState.questions.length) * 100}%`, height: '100%', backgroundColor: 'var(--primary-color)', transition: 'width 0.3s ease-out', borderRadius: 15 }} />
-                    </div>
-                    <div style={{ textAlign: 'center', marginBottom: 24 }}>
-                        <p style={{ fontSize: '1.1rem', color: 'var(--text-muted)', marginBottom: 8 }}>What is the Vietnamese word for...</p>
-                        <div style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--text-main)' }}>
-                            {quizState.questions[quizState.currentIdx].term.en}?
-                        </div>
-                    </div>
-
-                    {quizState.feedback && (
-                        <div className="practice-feedback-bar" style={{ position: 'relative', marginBottom: 16, animation: 'slideUpResult 0.3s ease-out' }}>
-                            <div className={`practice-feedback-msg ${quizState.feedback.isCorrect ? 'correct' : 'incorrect'}`}>
-                                <div className={`practice-icon-circle ${quizState.feedback.isCorrect ? 'correct' : 'incorrect'}`}>
-                                    {quizState.feedback.isCorrect ? <CheckCircle size={24} /> : <XCircle size={24} />}
+            {mode === 'quiz' && quizState && quizState.questions[quizState.currentIdx] && (() => {
+                const q = quizState.questions[quizState.currentIdx];
+                const fb = quizState.feedback;
+                return (
+                    <>
+                        <ExerciseColumn topOffset={64} top={
+                            <>
+                                <ProgressBar progress={quizState.currentIdx / quizState.questions.length} />
+                                <div style={{ textAlign: 'center', marginTop: 18 }}>
+                                    <p style={{ fontSize: 15, color: 'var(--text-muted)', marginBottom: 6 }}>What is the Vietnamese word for...</p>
+                                    <div style={{ fontSize: 24, fontWeight: 800, color: 'var(--text-main)' }}>{q.term.en}?</div>
                                 </div>
-                                <div style={{ display: 'flex', flexDirection: 'column' }}>
-                                    <span style={{ fontSize: '1.1rem' }}>{quizState.feedback.isCorrect ? 'Correct!' : `It's "${quizState.feedback.correct.vn}"`}</span>
-                                    <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>{quizState.feedback.correct.en}</span>
-                                </div>
-                            </div>
-                        </div>
-                    )}
-
-                    {!quizState.feedback && (
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-                            {quizState.questions[quizState.currentIdx].options.map((opt, i) => (
-                                <button key={i} className="secondary" style={{ width: '100%', justifyContent: 'flex-start', padding: 20, fontSize: 18, borderRadius: 15, borderColor: 'var(--border-color)', backgroundColor: 'transparent', color: 'var(--text-main)' }} onClick={() => handleQuizAnswer(opt)}>
-                                    {opt}
-                                </button>
-                            ))}
-                        </div>
-                    )}
-                </div>
-            )}
+                            </>
+                        }>
+                            <OptionGrid
+                                options={q.options} cols={2}
+                                keyOf={(_, i) => i}
+                                isCorrect={(o) => o === q.term.vn}
+                                isSelected={(o) => fb && o === fb.selected}
+                                revealed={!!fb}
+                                onPick={(o) => !fb && handleQuizAnswer(o)}
+                            >
+                                {(opt) => <span style={{ fontSize: 18, fontWeight: 700, color: 'var(--text-main)' }}>{opt}</span>}
+                            </OptionGrid>
+                        </ExerciseColumn>
+                        {fb && (
+                            <FeedbackBar>
+                                <FeedbackMessage correct={fb.isCorrect}>
+                                    <strong>{fb.isCorrect ? 'Correct!' : `It's "${fb.correct.vn}"`}</strong>{fb.correct.en ? ` — ${fb.correct.en}` : ''}
+                                </FeedbackMessage>
+                            </FeedbackBar>
+                        )}
+                    </>
+                );
+            })()}
 
             {/* Learn Mode */}
             {mode === 'learn' && (
