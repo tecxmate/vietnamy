@@ -48,11 +48,13 @@ public/opening.mov
 
 # Local editor state
 .claude/settings.json
+.claude/*.lock
 .obsidian/
 .vercel
 .env*.local
 tts-backup/
 .env*
+supabase/.temp/
 
 # Generated app screenshots
 docs/app-screens/
