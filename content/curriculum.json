@@ -2644,7 +2644,7 @@
       "nodeId": "p12_L041",
       "quizId": "p12_Q041",
       "title": "At the Office",
-      "topic": "basics",
+      "topic": "office",
       "focus": [
         "work",
         "vocabulary"
@@ -2675,15 +2675,7 @@
         "spine": false,
         "purposes": [
           {
-            "id": "explore_vietnam",
-            "weight": 1
-          },
-          {
             "id": "professional",
-            "weight": 1
-          },
-          {
-            "id": "heritage",
             "weight": 1
           }
         ],
@@ -2721,7 +2713,7 @@
       "nodeId": "p12_L042",
       "quizId": "p12_Q042",
       "title": "Meetings & Schedules",
-      "topic": "basics",
+      "topic": "office",
       "focus": [
         "work",
         "time_clauses"
@@ -2752,15 +2744,7 @@
         "spine": false,
         "purposes": [
           {
-            "id": "explore_vietnam",
-            "weight": 1
-          },
-          {
             "id": "professional",
-            "weight": 1
-          },
-          {
-            "id": "heritage",
             "weight": 1
           }
         ],
@@ -2799,7 +2783,7 @@
       "nodeId": "p12_L043",
       "quizId": "p12_Q043",
       "title": "Email & Phone Calls",
-      "topic": "basics",
+      "topic": "office",
       "focus": [
         "communication",
         "polite"
@@ -2830,15 +2814,7 @@
         "spine": false,
         "purposes": [
           {
-            "id": "explore_vietnam",
-            "weight": 1
-          },
-          {
             "id": "professional",
-            "weight": 1
-          },
-          {
-            "id": "heritage",
             "weight": 1
           }
         ],
@@ -3377,7 +3353,7 @@
       "nodeId": "p15_L051",
       "quizId": "p15_Q051",
       "title": "Tết - Lunar New Year",
-      "topic": "basics",
+      "topic": "holidays",
       "focus": [
         "culture",
         "festivals"
@@ -3407,14 +3383,6 @@
       "adaptive": {
         "spine": false,
         "purposes": [
-          {
-            "id": "explore_vietnam",
-            "weight": 1
-          },
-          {
-            "id": "professional",
-            "weight": 1
-          },
           {
             "id": "heritage",
             "weight": 1
@@ -3455,7 +3423,7 @@
       "nodeId": "p15_L052",
       "quizId": "p15_Q052",
       "title": "Mid-Autumn Festival",
-      "topic": "basics",
+      "topic": "holidays",
       "focus": [
         "culture",
         "festivals"
@@ -3485,14 +3453,6 @@
       "adaptive": {
         "spine": false,
         "purposes": [
-          {
-            "id": "explore_vietnam",
-            "weight": 1
-          },
-          {
-            "id": "professional",
-            "weight": 1
-          },
           {
             "id": "heritage",
             "weight": 1
@@ -3527,7 +3487,7 @@
       "nodeId": "p15_L053",
       "quizId": "p15_Q053",
       "title": "Holidays & Customs",
-      "topic": "basics",
+      "topic": "holidays",
       "focus": [
         "culture",
         "etiquette"
@@ -3557,14 +3517,6 @@
       "adaptive": {
         "spine": false,
         "purposes": [
-          {
-            "id": "explore_vietnam",
-            "weight": 1
-          },
-          {
-            "id": "professional",
-            "weight": 1
-          },
           {
             "id": "heritage",
             "weight": 1
@@ -4294,7 +4246,7 @@
       "nodeId": "p19_L063",
       "quizId": "p19_Q063",
       "title": "Common Idioms",
-      "topic": "basics",
+      "topic": "stories",
       "focus": [
         "idioms",
         "register"
@@ -4324,14 +4276,6 @@
       "adaptive": {
         "spine": false,
         "purposes": [
-          {
-            "id": "explore_vietnam",
-            "weight": 1
-          },
-          {
-            "id": "professional",
-            "weight": 1
-          },
           {
             "id": "heritage",
             "weight": 1
@@ -4373,7 +4317,7 @@
       "nodeId": "p19_L064",
       "quizId": "p19_Q064",
       "title": "Proverbs & Wisdom",
-      "topic": "basics",
+      "topic": "stories",
       "focus": [
         "proverbs",
         "culture"
@@ -4403,14 +4347,6 @@
       "adaptive": {
         "spine": false,
         "purposes": [
-          {
-            "id": "explore_vietnam",
-            "weight": 1
-          },
-          {
-            "id": "professional",
-            "weight": 1
-          },
           {
             "id": "heritage",
             "weight": 1
@@ -4446,7 +4382,7 @@
       "nodeId": "p19_L065",
       "quizId": "p19_Q065",
       "title": "Slang & Casual Speech",
-      "topic": "basics",
+      "topic": "stories",
       "focus": [
         "slang",
         "register"
@@ -4476,14 +4412,6 @@
       "adaptive": {
         "spine": false,
         "purposes": [
-          {
-            "id": "explore_vietnam",
-            "weight": 1
-          },
-          {
-            "id": "professional",
-            "weight": 1
-          },
           {
             "id": "heritage",
             "weight": 1
@@ -4518,7 +4446,7 @@
       "nodeId": "p20_L066",
       "quizId": "p20_Q066",
       "title": "Job Interview",
-      "topic": "basics",
+      "topic": "negotiation",
       "focus": [
         "work",
         "formal"
@@ -4549,15 +4477,7 @@
         "spine": false,
         "purposes": [
           {
-            "id": "explore_vietnam",
-            "weight": 1
-          },
-          {
             "id": "professional",
-            "weight": 1
-          },
-          {
-            "id": "heritage",
             "weight": 1
           }
         ],
@@ -4593,7 +4513,7 @@
       "nodeId": "p20_L067",
       "quizId": "p20_Q067",
       "title": "Negotiating",
-      "topic": "basics",
+      "topic": "negotiation",
       "focus": [
         "work",
         "negotiation"
@@ -4624,15 +4544,7 @@
         "spine": false,
         "purposes": [
           {
-            "id": "explore_vietnam",
-            "weight": 1
-          },
-          {
             "id": "professional",
-            "weight": 1
-          },
-          {
-            "id": "heritage",
             "weight": 1
           }
         ],
@@ -4677,7 +4589,7 @@
       "nodeId": "p20_L068",
       "quizId": "p20_Q068",
       "title": "Disagreement at Work",
-      "topic": "basics",
+      "topic": "negotiation",
       "focus": [
         "work",
         "diplomacy"
@@ -4708,15 +4620,7 @@
         "spine": false,
         "purposes": [
           {
-            "id": "explore_vietnam",
-            "weight": 1
-          },
-          {
             "id": "professional",
-            "weight": 1
-          },
-          {
-            "id": "heritage",
             "weight": 1
           }
         ],
@@ -4755,7 +4659,7 @@
       "nodeId": "p20_L069",
       "quizId": "p20_Q069",
       "title": "Giving Feedback",
-      "topic": "basics",
+      "topic": "negotiation",
       "focus": [
         "work",
         "communication"
@@ -4786,15 +4690,7 @@
         "spine": false,
         "purposes": [
           {
-            "id": "explore_vietnam",
-            "weight": 1
-          },
-          {
             "id": "professional",
-            "weight": 1
-          },
-          {
-            "id": "heritage",
             "weight": 1
           }
         ],
@@ -5062,7 +4958,7 @@
       "nodeId": "p22_L073",
       "quizId": "p22_Q073",
       "title": "Stating Opinions Firmly",
-      "topic": "basics",
+      "topic": "meetings",
       "focus": [
         "opinion",
         "debate"
@@ -5093,15 +4989,7 @@
         "spine": false,
         "purposes": [
           {
-            "id": "explore_vietnam",
-            "weight": 1
-          },
-          {
             "id": "professional",
-            "weight": 1
-          },
-          {
-            "id": "heritage",
             "weight": 1
           }
         ],
@@ -5142,7 +5030,7 @@
       "nodeId": "p22_L074",
       "quizId": "p22_Q074",
       "title": "Counter-arguments",
-      "topic": "basics",
+      "topic": "meetings",
       "focus": [
         "opposition",
         "debate"
@@ -5173,15 +5061,7 @@
         "spine": false,
         "purposes": [
           {
-            "id": "explore_vietnam",
-            "weight": 1
-          },
-          {
             "id": "professional",
-            "weight": 1
-          },
-          {
-            "id": "heritage",
             "weight": 1
           }
         ],
@@ -5225,7 +5105,7 @@
       "nodeId": "p22_L075",
       "quizId": "p22_Q075",
       "title": "Persuasion",
-      "topic": "basics",
+      "topic": "meetings",
       "focus": [
         "persuasion",
         "rhetoric"
@@ -5256,15 +5136,7 @@
         "spine": false,
         "purposes": [
           {
-            "id": "explore_vietnam",
-            "weight": 1
-          },
-          {
             "id": "professional",
-            "weight": 1
-          },
-          {
-            "id": "heritage",
             "weight": 1
           }
         ],
@@ -6286,7 +6158,7 @@
       "nodeId": "p27_L089",
       "quizId": "p27_Q089",
       "title": "Market & Trade",
-      "topic": "basics",
+      "topic": "negotiation",
       "focus": [
         "economy",
         "trade"
@@ -6317,15 +6189,7 @@
         "spine": false,
         "purposes": [
           {
-            "id": "explore_vietnam",
-            "weight": 1
-          },
-          {
             "id": "professional",
-            "weight": 1
-          },
-          {
-            "id": "heritage",
             "weight": 1
           }
         ],
@@ -6360,7 +6224,7 @@
       "nodeId": "p27_L090",
       "quizId": "p27_Q090",
       "title": "Money & Finance",
-      "topic": "basics",
+      "topic": "negotiation",
       "focus": [
         "finance",
         "money"
@@ -6391,15 +6255,7 @@
         "spine": false,
         "purposes": [
           {
-            "id": "explore_vietnam",
-            "weight": 1
-          },
-          {
             "id": "professional",
-            "weight": 1
-          },
-          {
-            "id": "heritage",
             "weight": 1
           }
         ],
@@ -6432,7 +6288,7 @@
       "nodeId": "p27_L091",
       "quizId": "p27_Q091",
       "title": "Startups & Innovation",
-      "topic": "basics",
+      "topic": "negotiation",
       "focus": [
         "startup",
         "innovation"
@@ -6463,15 +6319,7 @@
         "spine": false,
         "purposes": [
           {
-            "id": "explore_vietnam",
-            "weight": 1
-          },
-          {
             "id": "professional",
-            "weight": 1
-          },
-          {
-            "id": "heritage",
             "weight": 1
           }
         ],
@@ -6509,7 +6357,7 @@
       "nodeId": "p27_L092",
       "quizId": "p27_Q092",
       "title": "Global Economy",
-      "topic": "basics",
+      "topic": "negotiation",
       "focus": [
         "global",
         "economy"
@@ -6540,15 +6388,7 @@
         "spine": false,
         "purposes": [
           {
-            "id": "explore_vietnam",
-            "weight": 1
-          },
-          {
             "id": "professional",
-            "weight": 1
-          },
-          {
-            "id": "heritage",
             "weight": 1
           }
         ],
@@ -6581,7 +6421,7 @@
       "nodeId": "p28_L093",
       "quizId": "p28_Q093",
       "title": "Dating & Romance",
-      "topic": "basics",
+      "topic": "family",
       "focus": [
         "romance",
         "emotion"
@@ -6611,14 +6451,6 @@
       "adaptive": {
         "spine": false,
         "purposes": [
-          {
-            "id": "explore_vietnam",
-            "weight": 1
-          },
-          {
-            "id": "professional",
-            "weight": 1
-          },
           {
             "id": "heritage",
             "weight": 1
@@ -6662,7 +6494,7 @@
       "nodeId": "p28_L094",
       "quizId": "p28_Q094",
       "title": "Friendship & Loyalty",
-      "topic": "basics",
+      "topic": "family",
       "focus": [
         "friendship",
         "trust"
@@ -6692,14 +6524,6 @@
       "adaptive": {
         "spine": false,
         "purposes": [
-          {
-            "id": "explore_vietnam",
-            "weight": 1
-          },
-          {
-            "id": "professional",
-            "weight": 1
-          },
           {
             "id": "heritage",
             "weight": 1
@@ -6740,7 +6564,7 @@
       "nodeId": "p28_L095",
       "quizId": "p28_Q095",
       "title": "Conflict & Apology",
-      "topic": "basics",
+      "topic": "family",
       "focus": [
         "conflict",
         "apology"
@@ -6770,14 +6594,6 @@
       "adaptive": {
         "spine": false,
         "purposes": [
-          {
-            "id": "explore_vietnam",
-            "weight": 1
-          },
-          {
-            "id": "professional",
-            "weight": 1
-          },
           {
             "id": "heritage",
             "weight": 1
@@ -6820,7 +6636,7 @@
       "nodeId": "p29_L096",
       "quizId": "p29_Q096",
       "title": "Dynasties & Heroes",
-      "topic": "basics",
+      "topic": "ancestors",
       "focus": [
         "history",
         "narrative"
@@ -6850,14 +6666,6 @@
       "adaptive": {
         "spine": false,
         "purposes": [
-          {
-            "id": "explore_vietnam",
-            "weight": 1
-          },
-          {
-            "id": "professional",
-            "weight": 1
-          },
           {
             "id": "heritage",
             "weight": 1
@@ -6893,7 +6701,7 @@
       "nodeId": "p29_L097",
       "quizId": "p29_Q097",
       "title": "French Colonial Era",
-      "topic": "basics",
+      "topic": "ancestors",
       "focus": [
         "history",
         "colonial"
@@ -6923,14 +6731,6 @@
       "adaptive": {
         "spine": false,
         "purposes": [
-          {
-            "id": "explore_vietnam",
-            "weight": 1
-          },
-          {
-            "id": "professional",
-            "weight": 1
-          },
           {
             "id": "heritage",
             "weight": 1
@@ -6966,7 +6766,7 @@
       "nodeId": "p29_L098",
       "quizId": "p29_Q098",
       "title": "Wars & Independence",
-      "topic": "basics",
+      "topic": "ancestors",
       "focus": [
         "war",
         "independence"
@@ -6996,14 +6796,6 @@
       "adaptive": {
         "spine": false,
         "purposes": [
-          {
-            "id": "explore_vietnam",
-            "weight": 1
-          },
-          {
-            "id": "professional",
-            "weight": 1
-          },
           {
             "id": "heritage",
             "weight": 1
@@ -7040,7 +6832,7 @@
       "nodeId": "p29_L099",
       "quizId": "p29_Q099",
       "title": "Modern Vietnam",
-      "topic": "basics",
+      "topic": "ancestors",
       "focus": [
         "modern",
         "reform"
@@ -7070,14 +6862,6 @@
       "adaptive": {
         "spine": false,
         "purposes": [
-          {
-            "id": "explore_vietnam",
-            "weight": 1
-          },
-          {
-            "id": "professional",
-            "weight": 1
-          },
           {
             "id": "heritage",
             "weight": 1
@@ -7117,7 +6901,7 @@
       "nodeId": "p30_L100",
       "quizId": "p30_Q100",
       "title": "Traditional Music",
-      "topic": "basics",
+      "topic": "traditions",
       "focus": [
         "music",
         "tradition"
@@ -7147,14 +6931,6 @@
       "adaptive": {
         "spine": false,
         "purposes": [
-          {
-            "id": "explore_vietnam",
-            "weight": 1
-          },
-          {
-            "id": "professional",
-            "weight": 1
-          },
           {
             "id": "heritage",
             "weight": 1
@@ -7189,7 +6965,7 @@
       "nodeId": "p30_L101",
       "quizId": "p30_Q101",
       "title": "Poetry & Literature",
-      "topic": "basics",
+      "topic": "traditions",
       "focus": [
         "literature",
         "figurative"
@@ -7219,14 +6995,6 @@
       "adaptive": {
         "spine": false,
         "purposes": [
-          {
-            "id": "explore_vietnam",
-            "weight": 1
-          },
-          {
-            "id": "professional",
-            "weight": 1
-          },
           {
             "id": "heritage",
             "weight": 1
@@ -7266,7 +7034,7 @@
       "nodeId": "p30_L102",
       "quizId": "p30_Q102",
       "title": "Visual Arts & Crafts",
-      "topic": "basics",
+      "topic": "traditions",
       "focus": [
         "arts",
         "craft"
@@ -7296,14 +7064,6 @@
       "adaptive": {
         "spine": false,
         "purposes": [
-          {
-            "id": "explore_vietnam",
-            "weight": 1
-          },
-          {
-            "id": "professional",
-            "weight": 1
-          },
           {
             "id": "heritage",
             "weight": 1
@@ -7557,7 +7317,7 @@
       "nodeId": "p32_L106",
       "quizId": "p32_Q106",
       "title": "Doctor Visits",
-      "topic": "basics",
+      "topic": "emergency",
       "focus": [
         "healthcare",
         "consultation"
@@ -7589,14 +7349,6 @@
         "purposes": [
           {
             "id": "explore_vietnam",
-            "weight": 1
-          },
-          {
-            "id": "professional",
-            "weight": 1
-          },
-          {
-            "id": "heritage",
             "weight": 1
           }
         ],
@@ -7637,7 +7389,7 @@
       "nodeId": "p32_L107",
       "quizId": "p32_Q107",
       "title": "Mental Health",
-      "topic": "basics",
+      "topic": "emergency",
       "focus": [
         "mental_health",
         "wellbeing"
@@ -7669,14 +7421,6 @@
         "purposes": [
           {
             "id": "explore_vietnam",
-            "weight": 1
-          },
-          {
-            "id": "professional",
-            "weight": 1
-          },
-          {
-            "id": "heritage",
             "weight": 1
           }
         ],
@@ -7717,7 +7461,7 @@
       "nodeId": "p32_L108",
       "quizId": "p32_Q108",
       "title": "Pharmacy & Treatment",
-      "topic": "basics",
+      "topic": "emergency",
       "focus": [
         "pharmacy",
         "treatment"
@@ -7749,14 +7493,6 @@
         "purposes": [
           {
             "id": "explore_vietnam",
-            "weight": 1
-          },
-          {
-            "id": "professional",
-            "weight": 1
-          },
-          {
-            "id": "heritage",
             "weight": 1
           }
         ],
@@ -7802,7 +7538,7 @@
       "nodeId": "p32_L109",
       "quizId": "p32_Q109",
       "title": "Emergency Care",
-      "topic": "basics",
+      "topic": "emergency",
       "focus": [
         "emergency",
         "first_aid"
@@ -7834,14 +7570,6 @@
         "purposes": [
           {
             "id": "explore_vietnam",
-            "weight": 1
-          },
-          {
-            "id": "professional",
-            "weight": 1
-          },
-          {
-            "id": "heritage",
             "weight": 1
           }
         ],
@@ -7877,7 +7605,7 @@
       "nodeId": "p33_L110",
       "quizId": "p33_Q110",
       "title": "North vs South",
-      "topic": "basics",
+      "topic": "traditions",
       "focus": [
         "dialect",
         "region"
@@ -7907,14 +7635,6 @@
       "adaptive": {
         "spine": false,
         "purposes": [
-          {
-            "id": "explore_vietnam",
-            "weight": 1
-          },
-          {
-            "id": "professional",
-            "weight": 1
-          },
           {
             "id": "heritage",
             "weight": 1
@@ -7953,7 +7673,7 @@
       "nodeId": "p33_L111",
       "quizId": "p33_Q111",
       "title": "Central Vietnam & Hue",
-      "topic": "basics",
+      "topic": "traditions",
       "focus": [
         "region",
         "culture"
@@ -7983,14 +7703,6 @@
       "adaptive": {
         "spine": false,
         "purposes": [
-          {
-            "id": "explore_vietnam",
-            "weight": 1
-          },
-          {
-            "id": "professional",
-            "weight": 1
-          },
           {
             "id": "heritage",
             "weight": 1
@@ -8030,7 +7742,7 @@
       "nodeId": "p33_L112",
       "quizId": "p33_Q112",
       "title": "Ethnic Minorities",
-      "topic": "basics",
+      "topic": "traditions",
       "focus": [
         "ethnic",
         "culture"
@@ -8060,14 +7772,6 @@
       "adaptive": {
         "spine": false,
         "purposes": [
-          {
-            "id": "explore_vietnam",
-            "weight": 1
-          },
-          {
-            "id": "professional",
-            "weight": 1
-          },
           {
             "id": "heritage",
             "weight": 1
@@ -8107,7 +7811,7 @@
       "nodeId": "p34_L113",
       "quizId": "p34_Q113",
       "title": "Essay Writing",
-      "topic": "basics",
+      "topic": "presentations",
       "focus": [
         "writing",
         "essay"
@@ -8138,15 +7842,7 @@
         "spine": false,
         "purposes": [
           {
-            "id": "explore_vietnam",
-            "weight": 1
-          },
-          {
             "id": "professional",
-            "weight": 1
-          },
-          {
-            "id": "heritage",
             "weight": 1
           }
         ],
@@ -8180,7 +7876,7 @@
       "nodeId": "p34_L114",
       "quizId": "p34_Q114",
       "title": "Formal Correspondence",
-      "topic": "basics",
+      "topic": "presentations",
       "focus": [
         "writing",
         "formal"
@@ -8211,15 +7907,7 @@
         "spine": false,
         "purposes": [
           {
-            "id": "explore_vietnam",
-            "weight": 1
-          },
-          {
             "id": "professional",
-            "weight": 1
-          },
-          {
-            "id": "heritage",
             "weight": 1
           }
         ],
@@ -8257,7 +7945,7 @@
       "nodeId": "p34_L115",
       "quizId": "p34_Q115",
       "title": "Public Speaking",
-      "topic": "basics",
+      "topic": "presentations",
       "focus": [
         "speech",
         "rhetoric"
@@ -8288,15 +7976,7 @@
         "spine": false,
         "purposes": [
           {
-            "id": "explore_vietnam",
-            "weight": 1
-          },
-          {
             "id": "professional",
-            "weight": 1
-          },
-          {
-            "id": "heritage",
             "weight": 1
           }
         ],
@@ -8336,7 +8016,7 @@
       "nodeId": "p34_L116",
       "quizId": "p34_Q116",
       "title": "Op-Ed & Commentary",
-      "topic": "basics",
+      "topic": "presentations",
       "focus": [
         "opinion",
         "media"
@@ -8367,15 +8047,7 @@
         "spine": false,
         "purposes": [
           {
-            "id": "explore_vietnam",
-            "weight": 1
-          },
-          {
             "id": "professional",
-            "weight": 1
-          },
-          {
-            "id": "heritage",
             "weight": 1
           }
         ],
@@ -8413,7 +8085,7 @@
       "nodeId": "p35_L117",
       "quizId": "p35_Q117",
       "title": "Buddhism & Temples",
-      "topic": "basics",
+      "topic": "traditions",
       "focus": [
         "religion",
         "buddhism"
@@ -8443,14 +8115,6 @@
       "adaptive": {
         "spine": false,
         "purposes": [
-          {
-            "id": "explore_vietnam",
-            "weight": 1
-          },
-          {
-            "id": "professional",
-            "weight": 1
-          },
           {
             "id": "heritage",
             "weight": 1
@@ -8492,7 +8156,7 @@
       "nodeId": "p35_L118",
       "quizId": "p35_Q118",
       "title": "Ancestor Worship",
-      "topic": "basics",
+      "topic": "traditions",
       "focus": [
         "ancestors",
         "ritual"
@@ -8522,14 +8186,6 @@
       "adaptive": {
         "spine": false,
         "purposes": [
-          {
-            "id": "explore_vietnam",
-            "weight": 1
-          },
-          {
-            "id": "professional",
-            "weight": 1
-          },
           {
             "id": "heritage",
             "weight": 1
@@ -8567,7 +8223,7 @@
       "nodeId": "p35_L119",
       "quizId": "p35_Q119",
       "title": "Folk Beliefs",
-      "topic": "basics",
+      "topic": "traditions",
       "focus": [
         "folk",
         "belief"
@@ -8597,14 +8253,6 @@
       "adaptive": {
         "spine": false,
         "purposes": [
-          {
-            "id": "explore_vietnam",
-            "weight": 1
-          },
-          {
-            "id": "professional",
-            "weight": 1
-          },
           {
             "id": "heritage",
             "weight": 1
@@ -8645,7 +8293,7 @@
       "nodeId": "p36_L120",
       "quizId": "p36_Q120",
       "title": "High-Stakes Negotiation",
-      "topic": "basics",
+      "topic": "negotiation",
       "focus": [
         "negotiation",
         "diplomacy"
@@ -8676,15 +8324,7 @@
         "spine": false,
         "purposes": [
           {
-            "id": "explore_vietnam",
-            "weight": 1
-          },
-          {
             "id": "professional",
-            "weight": 1
-          },
-          {
-            "id": "heritage",
             "weight": 1
           }
         ],
@@ -8726,7 +8366,7 @@
       "nodeId": "p36_L121",
       "quizId": "p36_Q121",
       "title": "Diplomatic Register",
-      "topic": "basics",
+      "topic": "negotiation",
       "focus": [
         "diplomacy",
         "register"
@@ -8757,15 +8397,7 @@
         "spine": false,
         "purposes": [
           {
-            "id": "explore_vietnam",
-            "weight": 1
-          },
-          {
             "id": "professional",
-            "weight": 1
-          },
-          {
-            "id": "heritage",
             "weight": 1
           }
         ],
@@ -8805,7 +8437,7 @@
       "nodeId": "p36_L122",
       "quizId": "p36_Q122",
       "title": "Mediation & Compromise",
-      "topic": "basics",
+      "topic": "negotiation",
       "focus": [
         "mediation",
         "compromise"
@@ -8836,15 +8468,7 @@
         "spine": false,
         "purposes": [
           {
-            "id": "explore_vietnam",
-            "weight": 1
-          },
-          {
             "id": "professional",
-            "weight": 1
-          },
-          {
-            "id": "heritage",
             "weight": 1
           }
         ],
@@ -8882,7 +8506,7 @@
       "nodeId": "p37_L123",
       "quizId": "p37_Q123",
       "title": "Research Presentation",
-      "topic": "basics",
+      "topic": "presentations",
       "focus": [
         "research",
         "presentation"
@@ -8913,15 +8537,7 @@
         "spine": false,
         "purposes": [
           {
-            "id": "explore_vietnam",
-            "weight": 1
-          },
-          {
             "id": "professional",
-            "weight": 1
-          },
-          {
-            "id": "heritage",
             "weight": 1
           }
         ],
@@ -8957,7 +8573,7 @@
       "nodeId": "p37_L124",
       "quizId": "p37_Q124",
       "title": "AI & Technology Discourse",
-      "topic": "basics",
+      "topic": "presentations",
       "focus": [
         "ai",
         "tech"
@@ -8988,15 +8604,7 @@
         "spine": false,
         "purposes": [
           {
-            "id": "explore_vietnam",
-            "weight": 1
-          },
-          {
             "id": "professional",
-            "weight": 1
-          },
-          {
-            "id": "heritage",
             "weight": 1
           }
         ],
@@ -9034,7 +8642,7 @@
       "nodeId": "p37_L125",
       "quizId": "p37_Q125",
       "title": "Tech Ethics",
-      "topic": "basics",
+      "topic": "presentations",
       "focus": [
         "ethics",
         "tech"
@@ -9065,15 +8673,7 @@
         "spine": false,
         "purposes": [
           {
-            "id": "explore_vietnam",
-            "weight": 1
-          },
-          {
             "id": "professional",
-            "weight": 1
-          },
-          {
-            "id": "heritage",
             "weight": 1
           }
         ],
@@ -9113,7 +8713,7 @@
       "nodeId": "p37_L126",
       "quizId": "p37_Q126",
       "title": "Scientific Writing",
-      "topic": "basics",
+      "topic": "presentations",
       "focus": [
         "academic",
         "writing"
@@ -9144,15 +8744,7 @@
         "spine": false,
         "purposes": [
           {
-            "id": "explore_vietnam",
-            "weight": 1
-          },
-          {
             "id": "professional",
-            "weight": 1
-          },
-          {
-            "id": "heritage",
             "weight": 1
           }
         ],
@@ -9190,7 +8782,7 @@
       "nodeId": "p38_L127",
       "quizId": "p38_Q127",
       "title": "Northern Cuisine",
-      "topic": "basics",
+      "topic": "cooking",
       "focus": [
         "food",
         "north"
@@ -9220,14 +8812,6 @@
       "adaptive": {
         "spine": false,
         "purposes": [
-          {
-            "id": "explore_vietnam",
-            "weight": 1
-          },
-          {
-            "id": "professional",
-            "weight": 1
-          },
           {
             "id": "heritage",
             "weight": 1
@@ -9268,7 +8852,7 @@
       "nodeId": "p38_L128",
       "quizId": "p38_Q128",
       "title": "Central Cuisine",
-      "topic": "basics",
+      "topic": "cooking",
       "focus": [
         "food",
         "central"
@@ -9298,14 +8882,6 @@
       "adaptive": {
         "spine": false,
         "purposes": [
-          {
-            "id": "explore_vietnam",
-            "weight": 1
-          },
-          {
-            "id": "professional",
-            "weight": 1
-          },
           {
             "id": "heritage",
             "weight": 1
@@ -9343,7 +8919,7 @@
       "nodeId": "p38_L129",
       "quizId": "p38_Q129",
       "title": "Southern Cuisine",
-      "topic": "basics",
+      "topic": "cooking",
       "focus": [
         "food",
         "south"
@@ -9373,14 +8949,6 @@
       "adaptive": {
         "spine": false,
         "purposes": [
-          {
-            "id": "explore_vietnam",
-            "weight": 1
-          },
-          {
-            "id": "professional",
-            "weight": 1
-          },
           {
             "id": "heritage",
             "weight": 1
@@ -9427,7 +8995,7 @@
       "nodeId": "p39_L130",
       "quizId": "p39_Q130",
       "title": "Concierge Service",
-      "topic": "basics",
+      "topic": "hotel",
       "focus": [
         "hospitality",
         "service"
@@ -9459,14 +9027,6 @@
         "purposes": [
           {
             "id": "explore_vietnam",
-            "weight": 1
-          },
-          {
-            "id": "professional",
-            "weight": 1
-          },
-          {
-            "id": "heritage",
             "weight": 1
           }
         ],
@@ -9504,7 +9064,7 @@
       "nodeId": "p39_L131",
       "quizId": "p39_Q131",
       "title": "Fine Dining",
-      "topic": "basics",
+      "topic": "hotel",
       "focus": [
         "dining",
         "service"
@@ -9536,14 +9096,6 @@
         "purposes": [
           {
             "id": "explore_vietnam",
-            "weight": 1
-          },
-          {
-            "id": "professional",
-            "weight": 1
-          },
-          {
-            "id": "heritage",
             "weight": 1
           }
         ],
@@ -9583,7 +9135,7 @@
       "nodeId": "p39_L132",
       "quizId": "p39_Q132",
       "title": "Handling Complaints",
-      "topic": "basics",
+      "topic": "hotel",
       "focus": [
         "service",
         "complaint"
@@ -9615,14 +9167,6 @@
         "purposes": [
           {
             "id": "explore_vietnam",
-            "weight": 1
-          },
-          {
-            "id": "professional",
-            "weight": 1
-          },
-          {
-            "id": "heritage",
             "weight": 1
           }
         ],

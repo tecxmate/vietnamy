@@ -856,7 +856,7 @@
       "unit_id": "phase_12_work",
       "order_index": 1,
       "title": "At the Office",
-      "topic": "basics",
+      "topic": "office",
       "focus": [
         "work",
         "vocabulary"
@@ -872,7 +872,7 @@
       "unit_id": "phase_12_work",
       "order_index": 2,
       "title": "Meetings & Schedules",
-      "topic": "basics",
+      "topic": "office",
       "focus": [
         "work",
         "time_clauses"
@@ -888,7 +888,7 @@
       "unit_id": "phase_12_work",
       "order_index": 3,
       "title": "Email & Phone Calls",
-      "topic": "basics",
+      "topic": "office",
       "focus": [
         "communication",
         "polite"
@@ -1016,7 +1016,7 @@
       "unit_id": "phase_15_festivals",
       "order_index": 1,
       "title": "Tết - Lunar New Year",
-      "topic": "basics",
+      "topic": "holidays",
       "focus": [
         "culture",
         "festivals"
@@ -1032,7 +1032,7 @@
       "unit_id": "phase_15_festivals",
       "order_index": 2,
       "title": "Mid-Autumn Festival",
-      "topic": "basics",
+      "topic": "holidays",
       "focus": [
         "culture",
         "festivals"
@@ -1048,7 +1048,7 @@
       "unit_id": "phase_15_festivals",
       "order_index": 3,
       "title": "Holidays & Customs",
-      "topic": "basics",
+      "topic": "holidays",
       "focus": [
         "culture",
         "etiquette"
@@ -1208,7 +1208,7 @@
       "unit_id": "phase_19_idioms",
       "order_index": 1,
       "title": "Common Idioms",
-      "topic": "basics",
+      "topic": "stories",
       "focus": [
         "idioms",
         "register"
@@ -1224,7 +1224,7 @@
       "unit_id": "phase_19_idioms",
       "order_index": 2,
       "title": "Proverbs & Wisdom",
-      "topic": "basics",
+      "topic": "stories",
       "focus": [
         "proverbs",
         "culture"
@@ -1240,7 +1240,7 @@
       "unit_id": "phase_19_idioms",
       "order_index": 3,
       "title": "Slang & Casual Speech",
-      "topic": "basics",
+      "topic": "stories",
       "focus": [
         "slang",
         "register"
@@ -1256,7 +1256,7 @@
       "unit_id": "phase_20_workplace",
       "order_index": 1,
       "title": "Job Interview",
-      "topic": "basics",
+      "topic": "negotiation",
       "focus": [
         "work",
         "formal"
@@ -1272,7 +1272,7 @@
       "unit_id": "phase_20_workplace",
       "order_index": 2,
       "title": "Negotiating",
-      "topic": "basics",
+      "topic": "negotiation",
       "focus": [
         "work",
         "negotiation"
@@ -1288,7 +1288,7 @@
       "unit_id": "phase_20_workplace",
       "order_index": 3,
       "title": "Disagreement at Work",
-      "topic": "basics",
+      "topic": "negotiation",
       "focus": [
         "work",
         "diplomacy"
@@ -1304,7 +1304,7 @@
       "unit_id": "phase_20_workplace",
       "order_index": 4,
       "title": "Giving Feedback",
-      "topic": "basics",
+      "topic": "negotiation",
       "focus": [
         "work",
         "communication"
@@ -1368,7 +1368,7 @@
       "unit_id": "phase_22_debate",
       "order_index": 1,
       "title": "Stating Opinions Firmly",
-      "topic": "basics",
+      "topic": "meetings",
       "focus": [
         "opinion",
         "debate"
@@ -1384,7 +1384,7 @@
       "unit_id": "phase_22_debate",
       "order_index": 2,
       "title": "Counter-arguments",
-      "topic": "basics",
+      "topic": "meetings",
       "focus": [
         "opposition",
         "debate"
@@ -1400,7 +1400,7 @@
       "unit_id": "phase_22_debate",
       "order_index": 3,
       "title": "Persuasion",
-      "topic": "basics",
+      "topic": "meetings",
       "focus": [
         "persuasion",
         "rhetoric"
@@ -1624,7 +1624,7 @@
       "unit_id": "phase_27_economy",
       "order_index": 1,
       "title": "Market & Trade",
-      "topic": "basics",
+      "topic": "negotiation",
       "focus": [
         "economy",
         "trade"
@@ -1640,7 +1640,7 @@
       "unit_id": "phase_27_economy",
       "order_index": 2,
       "title": "Money & Finance",
-      "topic": "basics",
+      "topic": "negotiation",
       "focus": [
         "finance",
         "money"
@@ -1656,7 +1656,7 @@
       "unit_id": "phase_27_economy",
       "order_index": 3,
       "title": "Startups & Innovation",
-      "topic": "basics",
+      "topic": "negotiation",
       "focus": [
         "startup",
         "innovation"
@@ -1672,7 +1672,7 @@
       "unit_id": "phase_27_economy",
       "order_index": 4,
       "title": "Global Economy",
-      "topic": "basics",
+      "topic": "negotiation",
       "focus": [
         "global",
         "economy"
@@ -1688,7 +1688,7 @@
       "unit_id": "phase_28_relationships",
       "order_index": 1,
       "title": "Dating & Romance",
-      "topic": "basics",
+      "topic": "family",
       "focus": [
         "romance",
         "emotion"
@@ -1704,7 +1704,7 @@
       "unit_id": "phase_28_relationships",
       "order_index": 2,
       "title": "Friendship & Loyalty",
-      "topic": "basics",
+      "topic": "family",
       "focus": [
         "friendship",
         "trust"
@@ -1720,7 +1720,7 @@
       "unit_id": "phase_28_relationships",
       "order_index": 3,
       "title": "Conflict & Apology",
-      "topic": "basics",
+      "topic": "family",
       "focus": [
         "conflict",
         "apology"
@@ -1736,7 +1736,7 @@
       "unit_id": "phase_29_history",
       "order_index": 1,
       "title": "Dynasties & Heroes",
-      "topic": "basics",
+      "topic": "ancestors",
       "focus": [
         "history",
         "narrative"
@@ -1752,7 +1752,7 @@
       "unit_id": "phase_29_history",
       "order_index": 2,
       "title": "French Colonial Era",
-      "topic": "basics",
+      "topic": "ancestors",
       "focus": [
         "history",
         "colonial"
@@ -1768,7 +1768,7 @@
       "unit_id": "phase_29_history",
       "order_index": 3,
       "title": "Wars & Independence",
-      "topic": "basics",
+      "topic": "ancestors",
       "focus": [
         "war",
         "independence"
@@ -1784,7 +1784,7 @@
       "unit_id": "phase_29_history",
       "order_index": 4,
       "title": "Modern Vietnam",
-      "topic": "basics",
+      "topic": "ancestors",
       "focus": [
         "modern",
         "reform"
@@ -1800,7 +1800,7 @@
       "unit_id": "phase_30_arts",
       "order_index": 1,
       "title": "Traditional Music",
-      "topic": "basics",
+      "topic": "traditions",
       "focus": [
         "music",
         "tradition"
@@ -1816,7 +1816,7 @@
       "unit_id": "phase_30_arts",
       "order_index": 2,
       "title": "Poetry & Literature",
-      "topic": "basics",
+      "topic": "traditions",
       "focus": [
         "literature",
         "figurative"
@@ -1832,7 +1832,7 @@
       "unit_id": "phase_30_arts",
       "order_index": 3,
       "title": "Visual Arts & Crafts",
-      "topic": "basics",
+      "topic": "traditions",
       "focus": [
         "arts",
         "craft"
@@ -1896,7 +1896,7 @@
       "unit_id": "phase_32_healthcare",
       "order_index": 1,
       "title": "Doctor Visits",
-      "topic": "basics",
+      "topic": "emergency",
       "focus": [
         "healthcare",
         "consultation"
@@ -1912,7 +1912,7 @@
       "unit_id": "phase_32_healthcare",
       "order_index": 2,
       "title": "Mental Health",
-      "topic": "basics",
+      "topic": "emergency",
       "focus": [
         "mental_health",
         "wellbeing"
@@ -1928,7 +1928,7 @@
       "unit_id": "phase_32_healthcare",
       "order_index": 3,
       "title": "Pharmacy & Treatment",
-      "topic": "basics",
+      "topic": "emergency",
       "focus": [
         "pharmacy",
         "treatment"
@@ -1944,7 +1944,7 @@
       "unit_id": "phase_32_healthcare",
       "order_index": 4,
       "title": "Emergency Care",
-      "topic": "basics",
+      "topic": "emergency",
       "focus": [
         "emergency",
         "first_aid"
@@ -1960,7 +1960,7 @@
       "unit_id": "phase_33_regional",
       "order_index": 1,
       "title": "North vs South",
-      "topic": "basics",
+      "topic": "traditions",
       "focus": [
         "dialect",
         "region"
@@ -1976,7 +1976,7 @@
       "unit_id": "phase_33_regional",
       "order_index": 2,
       "title": "Central Vietnam & Hue",
-      "topic": "basics",
+      "topic": "traditions",
       "focus": [
         "region",
         "culture"
@@ -1992,7 +1992,7 @@
       "unit_id": "phase_33_regional",
       "order_index": 3,
       "title": "Ethnic Minorities",
-      "topic": "basics",
+      "topic": "traditions",
       "focus": [
         "ethnic",
         "culture"
@@ -2008,7 +2008,7 @@
       "unit_id": "phase_34_rhetoric",
       "order_index": 1,
       "title": "Essay Writing",
-      "topic": "basics",
+      "topic": "presentations",
       "focus": [
         "writing",
         "essay"
@@ -2024,7 +2024,7 @@
       "unit_id": "phase_34_rhetoric",
       "order_index": 2,
       "title": "Formal Correspondence",
-      "topic": "basics",
+      "topic": "presentations",
       "focus": [
         "writing",
         "formal"
@@ -2040,7 +2040,7 @@
       "unit_id": "phase_34_rhetoric",
       "order_index": 3,
       "title": "Public Speaking",
-      "topic": "basics",
+      "topic": "presentations",
       "focus": [
         "speech",
         "rhetoric"
@@ -2056,7 +2056,7 @@
       "unit_id": "phase_34_rhetoric",
       "order_index": 4,
       "title": "Op-Ed & Commentary",
-      "topic": "basics",
+      "topic": "presentations",
       "focus": [
         "opinion",
         "media"
@@ -2072,7 +2072,7 @@
       "unit_id": "phase_35_religion",
       "order_index": 1,
       "title": "Buddhism & Temples",
-      "topic": "basics",
+      "topic": "traditions",
       "focus": [
         "religion",
         "buddhism"
@@ -2088,7 +2088,7 @@
       "unit_id": "phase_35_religion",
       "order_index": 2,
       "title": "Ancestor Worship",
-      "topic": "basics",
+      "topic": "traditions",
       "focus": [
         "ancestors",
         "ritual"
@@ -2104,7 +2104,7 @@
       "unit_id": "phase_35_religion",
       "order_index": 3,
       "title": "Folk Beliefs",
-      "topic": "basics",
+      "topic": "traditions",
       "focus": [
         "folk",
         "belief"
@@ -2120,7 +2120,7 @@
       "unit_id": "phase_36_diplomacy",
       "order_index": 1,
       "title": "High-Stakes Negotiation",
-      "topic": "basics",
+      "topic": "negotiation",
       "focus": [
         "negotiation",
         "diplomacy"
@@ -2136,7 +2136,7 @@
       "unit_id": "phase_36_diplomacy",
       "order_index": 2,
       "title": "Diplomatic Register",
-      "topic": "basics",
+      "topic": "negotiation",
       "focus": [
         "diplomacy",
         "register"
@@ -2152,7 +2152,7 @@
       "unit_id": "phase_36_diplomacy",
       "order_index": 3,
       "title": "Mediation & Compromise",
-      "topic": "basics",
+      "topic": "negotiation",
       "focus": [
         "mediation",
         "compromise"
@@ -2168,7 +2168,7 @@
       "unit_id": "phase_37_science",
       "order_index": 1,
       "title": "Research Presentation",
-      "topic": "basics",
+      "topic": "presentations",
       "focus": [
         "research",
         "presentation"
@@ -2184,7 +2184,7 @@
       "unit_id": "phase_37_science",
       "order_index": 2,
       "title": "AI & Technology Discourse",
-      "topic": "basics",
+      "topic": "presentations",
       "focus": [
         "ai",
         "tech"
@@ -2200,7 +2200,7 @@
       "unit_id": "phase_37_science",
       "order_index": 3,
       "title": "Tech Ethics",
-      "topic": "basics",
+      "topic": "presentations",
       "focus": [
         "ethics",
         "tech"
@@ -2216,7 +2216,7 @@
       "unit_id": "phase_37_science",
       "order_index": 4,
       "title": "Scientific Writing",
-      "topic": "basics",
+      "topic": "presentations",
       "focus": [
         "academic",
         "writing"
@@ -2232,7 +2232,7 @@
       "unit_id": "phase_38_cuisine",
       "order_index": 1,
       "title": "Northern Cuisine",
-      "topic": "basics",
+      "topic": "cooking",
       "focus": [
         "food",
         "north"
@@ -2248,7 +2248,7 @@
       "unit_id": "phase_38_cuisine",
       "order_index": 2,
       "title": "Central Cuisine",
-      "topic": "basics",
+      "topic": "cooking",
       "focus": [
         "food",
         "central"
@@ -2264,7 +2264,7 @@
       "unit_id": "phase_38_cuisine",
       "order_index": 3,
       "title": "Southern Cuisine",
-      "topic": "basics",
+      "topic": "cooking",
       "focus": [
         "food",
         "south"
@@ -2280,7 +2280,7 @@
       "unit_id": "phase_39_hospitality",
       "order_index": 1,
       "title": "Concierge Service",
-      "topic": "basics",
+      "topic": "hotel",
       "focus": [
         "hospitality",
         "service"
@@ -2296,7 +2296,7 @@
       "unit_id": "phase_39_hospitality",
       "order_index": 2,
       "title": "Fine Dining",
-      "topic": "basics",
+      "topic": "hotel",
       "focus": [
         "dining",
         "service"
@@ -2312,7 +2312,7 @@
       "unit_id": "phase_39_hospitality",
       "order_index": 3,
       "title": "Handling Complaints",
-      "topic": "basics",
+      "topic": "hotel",
       "focus": [
         "service",
         "complaint"
