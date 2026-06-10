@@ -94,6 +94,11 @@
               "description": "Grammar tag IDs this lesson uses that were introduced in an earlier lesson — the prerequisite edges.",
               "type": "array",
               "items": { "$ref": "_common.schema.json#/$defs/id" }
+            },
+            "skills": {
+              "description": "Skill dimensions this lesson trains (for Layer-4 remediation matching) — derived from content. Subset of wordGrades DIMENSIONS.",
+              "type": "array",
+              "items": { "type": "string" }
             }
           }
         }

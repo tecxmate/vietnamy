@@ -9,9 +9,9 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const cur = JSON.parse(readFileSync(join(ROOT, 'content/curriculum.json'), 'utf8'));
 const lessons = cur.lessons;
 const byId = new Map(lessons.map((l) => [l.id, l]));
-const fmt = (c) => `${c.lesson.id} "${c.lesson.title}" [${c.lesson.topic}/${c.lesson.cefrLevel}]`
+const fmt = (c) => `${c.lesson.id} "${c.lesson.title}" [${c.lesson.topic}/${c.lesson.cefrLevel} d${c.lesson.difficulty}]`
     + `${c.spine ? ' ⛓spine' : ''}  score=${c.total.toFixed(2)} `
-    + `(purpose ${c.breakdown.purpose.toFixed(2)}, diff ${c.breakdown.difficulty.toFixed(2)}, variety ${c.breakdown.variety.toFixed(2)})`;
+    + `(purpose ${c.breakdown.purpose.toFixed(2)}, diff ${c.breakdown.difficulty.toFixed(2)}, variety ${c.breakdown.variety.toFixed(2)}, review ${c.breakdown.review.toFixed(2)}, remed ${c.breakdown.remediation.toFixed(2)})`;
 
 function show(title, state) {
     console.log(`\n=== ${title} ===`);
@@ -40,4 +40,11 @@ show('After A1 basics · professional (work)', {
 });
 show('After A1 basics · heritage', {
     completedLessonIds: done, purpose: 'heritage', estimatedLevel: 4, recentTopics: ['greetings', 'basics'],
+});
+
+// Layer 4 — performance-adaptive: a strong learner (mastery high) gets a higher
+// estimatedLevel → harder candidates float up. Compare the difficulty term vs the
+// estimatedLevel:4 run above.
+show('Strong learner · explore (mastery high → level 7)', {
+    completedLessonIds: done, purpose: 'explore_vietnam', estimatedLevel: 7, recentTopics: ['greetings', 'basics'],
 });

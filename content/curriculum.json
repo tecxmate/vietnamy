@@ -254,7 +254,13 @@
           "gtag_001",
           "gtag_005"
         ],
-        "requiresGrammar": []
+        "requiresGrammar": [],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
+        ]
       }
     },
     {
@@ -310,6 +316,12 @@
         ],
         "requiresGrammar": [
           "gtag_001"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -360,6 +372,12 @@
         ],
         "requiresGrammar": [
           "gtag_001"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -405,6 +423,12 @@
         ],
         "requiresGrammar": [
           "gtag_002"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -456,6 +480,12 @@
         "requiresGrammar": [
           "gtag_001",
           "gtag_004"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -505,6 +535,12 @@
         ],
         "requiresGrammar": [
           "gtag_001"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -555,6 +591,12 @@
         "introducesGrammar": [],
         "requiresGrammar": [
           "gtag_024"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -601,6 +643,12 @@
         ],
         "requiresGrammar": [
           "gtag_024"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -643,6 +691,12 @@
         "introducesGrammar": [],
         "requiresGrammar": [
           "gtag_022"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -687,6 +741,12 @@
         "requiresGrammar": [
           "gtag_022",
           "gtag_024"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -732,6 +792,12 @@
         ],
         "requiresGrammar": [
           "gtag_010"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -779,6 +845,12 @@
         "requiresGrammar": [
           "gtag_001",
           "gtag_023"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -828,6 +900,12 @@
         ],
         "requiresGrammar": [
           "gtag_042"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -874,6 +952,12 @@
           "gtag_022",
           "gtag_032",
           "gtag_042"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -917,6 +1001,12 @@
         "requiresGrammar": [
           "gtag_022",
           "gtag_031"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -959,6 +1049,12 @@
         ],
         "requiresGrammar": [
           "gtag_001"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -1001,7 +1097,13 @@
         "introducesGrammar": [
           "gtag_020"
         ],
-        "requiresGrammar": []
+        "requiresGrammar": [],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
+        ]
       }
     },
     {
@@ -1041,6 +1143,12 @@
         ],
         "requiresGrammar": [
           "gtag_001"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -1083,6 +1191,12 @@
         "requiresGrammar": [
           "gtag_005",
           "gtag_038"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -1128,6 +1242,12 @@
           "gtag_020",
           "gtag_021",
           "gtag_038"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -1167,6 +1287,12 @@
         "introducesGrammar": [],
         "requiresGrammar": [
           "gtag_005"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -1208,6 +1334,12 @@
         "requiresGrammar": [
           "gtag_001",
           "gtag_037"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -1260,7 +1392,13 @@
           "gtag_011",
           "gtag_035"
         ],
-        "requiresGrammar": []
+        "requiresGrammar": [],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
+        ]
       }
     },
     {
@@ -1306,6 +1444,12 @@
         "requiresGrammar": [
           "gtag_002",
           "gtag_011"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -1348,6 +1492,12 @@
         "introducesGrammar": [],
         "requiresGrammar": [
           "gtag_032"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -1393,6 +1543,12 @@
         "requiresGrammar": [
           "gtag_003",
           "gtag_005"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -1438,6 +1594,12 @@
         "requiresGrammar": [
           "gtag_003",
           "gtag_031"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -1477,6 +1639,12 @@
         "introducesGrammar": [],
         "requiresGrammar": [
           "gtag_031"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -1514,6 +1682,12 @@
         "introducesGrammar": [],
         "requiresGrammar": [
           "gtag_038"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -1557,6 +1731,12 @@
         "introducesGrammar": [],
         "requiresGrammar": [
           "gtag_006"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -1605,6 +1785,12 @@
         "introducesGrammar": [],
         "requiresGrammar": [
           "gtag_032"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -1646,6 +1832,12 @@
         "requiresGrammar": [
           "gtag_001",
           "gtag_005"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -1690,6 +1882,12 @@
         "requiresGrammar": [
           "gtag_001",
           "gtag_032"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -1748,6 +1946,12 @@
           "gtag_001",
           "gtag_031",
           "gtag_045"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -1799,6 +2003,12 @@
         "requiresGrammar": [
           "gtag_031",
           "gtag_045"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -1860,6 +2070,12 @@
         "requiresGrammar": [
           "gtag_002",
           "gtag_045"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -1920,6 +2136,12 @@
           "gtag_038",
           "gtag_044",
           "gtag_045"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -1980,6 +2202,12 @@
           "gtag_003",
           "gtag_033",
           "gtag_055"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -2032,6 +2260,12 @@
         "requiresGrammar": [
           "gtag_001",
           "gtag_050"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -2084,6 +2318,12 @@
           "gtag_024",
           "gtag_050",
           "gtag_055"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -2144,6 +2384,12 @@
           "gtag_035",
           "gtag_045",
           "gtag_064"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -2205,6 +2451,12 @@
           "gtag_031",
           "gtag_035",
           "gtag_038"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -2265,6 +2517,12 @@
         "requiresGrammar": [
           "gtag_001",
           "gtag_055"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -2324,6 +2582,12 @@
           "gtag_005",
           "gtag_045",
           "gtag_103"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -2376,6 +2640,12 @@
           "gtag_022",
           "gtag_024",
           "gtag_045"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -2429,6 +2699,12 @@
           "gtag_022",
           "gtag_031",
           "gtag_038"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -2481,6 +2757,12 @@
           "gtag_031",
           "gtag_035",
           "gtag_048"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -2531,6 +2813,12 @@
           "gtag_001",
           "gtag_031",
           "gtag_038"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -2592,6 +2880,12 @@
           "gtag_002",
           "gtag_006",
           "gtag_021"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -2653,6 +2947,12 @@
           "gtag_038",
           "gtag_042",
           "gtag_063"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -2715,6 +3015,12 @@
           "gtag_005",
           "gtag_034",
           "gtag_035"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -2776,6 +3082,12 @@
           "gtag_001",
           "gtag_002",
           "gtag_031"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -2835,6 +3147,12 @@
           "gtag_002",
           "gtag_038",
           "gtag_044"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -2896,6 +3214,12 @@
           "gtag_001",
           "gtag_003",
           "gtag_031"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -2958,6 +3282,12 @@
           "gtag_004",
           "gtag_033",
           "gtag_061"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -3020,6 +3350,12 @@
           "gtag_021",
           "gtag_024",
           "gtag_032"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -3080,6 +3416,12 @@
         "requiresGrammar": [
           "gtag_001",
           "gtag_025"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -3140,6 +3482,12 @@
           "gtag_031",
           "gtag_041",
           "gtag_042"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -3200,6 +3548,12 @@
         "requiresGrammar": [
           "gtag_001",
           "gtag_063"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -3259,6 +3613,12 @@
           "gtag_002",
           "gtag_003",
           "gtag_075"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -3321,6 +3681,12 @@
           "gtag_016",
           "gtag_022",
           "gtag_041"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -3381,6 +3747,12 @@
         "requiresGrammar": [
           "gtag_003",
           "gtag_004"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -3443,6 +3815,12 @@
           "gtag_017",
           "gtag_042",
           "gtag_044"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -3504,6 +3882,12 @@
           "gtag_041",
           "gtag_077",
           "gtag_078"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -3564,6 +3948,12 @@
           "gtag_050",
           "gtag_077",
           "gtag_078"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -3623,6 +4013,12 @@
           "gtag_033",
           "gtag_077",
           "gtag_094"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -3684,6 +4080,12 @@
           "gtag_010",
           "gtag_059",
           "gtag_094"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -3746,6 +4148,12 @@
           "gtag_021",
           "gtag_025",
           "gtag_103"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -3805,6 +4213,12 @@
           "gtag_055",
           "gtag_064",
           "gtag_067"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -3865,6 +4279,12 @@
           "gtag_001",
           "gtag_017",
           "gtag_022"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -3925,6 +4345,12 @@
           "gtag_016",
           "gtag_024",
           "gtag_107"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -3984,6 +4410,12 @@
           "gtag_031",
           "gtag_044",
           "gtag_083"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -4046,6 +4478,12 @@
           "gtag_044",
           "gtag_082",
           "gtag_097"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -4108,6 +4546,12 @@
           "gtag_022",
           "gtag_031",
           "gtag_094"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -4169,6 +4613,12 @@
           "gtag_005",
           "gtag_006",
           "gtag_072"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -4231,6 +4681,12 @@
           "gtag_025",
           "gtag_067",
           "gtag_089"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -4291,6 +4747,12 @@
           "gtag_005",
           "gtag_031",
           "gtag_052"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -4352,6 +4814,12 @@
           "gtag_029",
           "gtag_064",
           "gtag_097"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -4411,6 +4879,12 @@
           "gtag_003",
           "gtag_004",
           "gtag_005"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -4470,6 +4944,12 @@
           "gtag_031",
           "gtag_038",
           "gtag_041"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -4530,6 +5010,12 @@
           "gtag_003",
           "gtag_006",
           "gtag_044"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -4589,6 +5075,12 @@
           "gtag_031",
           "gtag_044",
           "gtag_052"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -4651,6 +5143,12 @@
           "gtag_016",
           "gtag_041",
           "gtag_107"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -4714,6 +5212,12 @@
           "gtag_050",
           "gtag_064",
           "gtag_097"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -4778,6 +5282,12 @@
           "gtag_031",
           "gtag_092",
           "gtag_107"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -4839,6 +5349,12 @@
           "gtag_016",
           "gtag_067",
           "gtag_089"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -4899,6 +5415,12 @@
           "gtag_001",
           "gtag_004",
           "gtag_017"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -4960,6 +5482,12 @@
           "gtag_031",
           "gtag_053",
           "gtag_063"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -5022,6 +5550,12 @@
           "gtag_042",
           "gtag_094",
           "gtag_108"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -5082,6 +5616,12 @@
           "gtag_001",
           "gtag_002",
           "gtag_031"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -5141,6 +5681,12 @@
           "gtag_016",
           "gtag_041",
           "gtag_096"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -5200,6 +5746,12 @@
           "gtag_016",
           "gtag_029",
           "gtag_094"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -5259,6 +5811,12 @@
           "gtag_016",
           "gtag_042",
           "gtag_050"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -5320,6 +5878,12 @@
         "requiresGrammar": [
           "gtag_107",
           "gtag_108"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -5382,6 +5946,12 @@
           "gtag_044",
           "gtag_055",
           "gtag_095"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -5445,6 +6015,12 @@
           "gtag_055",
           "gtag_061",
           "gtag_103"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -5504,6 +6080,12 @@
           "gtag_025",
           "gtag_106",
           "gtag_107"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -5564,6 +6146,12 @@
           "gtag_106",
           "gtag_107",
           "gtag_108"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -5624,6 +6212,12 @@
           "gtag_106",
           "gtag_107",
           "gtag_108"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -5683,6 +6277,12 @@
           "gtag_099",
           "gtag_106",
           "gtag_107"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -5743,6 +6343,12 @@
           "gtag_031",
           "gtag_044",
           "gtag_108"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -5806,6 +6412,12 @@
           "gtag_031",
           "gtag_038",
           "gtag_041"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -5866,6 +6478,12 @@
           "gtag_017",
           "gtag_031",
           "gtag_042"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -5926,6 +6544,12 @@
           "gtag_017",
           "gtag_107",
           "gtag_117"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -5985,6 +6609,12 @@
           "gtag_015",
           "gtag_016",
           "gtag_029"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -6044,6 +6674,12 @@
           "gtag_002",
           "gtag_029",
           "gtag_038"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -6104,6 +6740,12 @@
           "gtag_022",
           "gtag_063",
           "gtag_094"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -6167,6 +6809,12 @@
           "gtag_089",
           "gtag_093",
           "gtag_098"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -6229,6 +6877,12 @@
           "gtag_042",
           "gtag_063",
           "gtag_098"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -6291,6 +6945,12 @@
           "gtag_067",
           "gtag_089",
           "gtag_118"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -6353,6 +7013,12 @@
           "gtag_038",
           "gtag_044",
           "gtag_120"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -6416,6 +7082,12 @@
           "gtag_101",
           "gtag_107",
           "gtag_137"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -6478,6 +7150,12 @@
           "gtag_024",
           "gtag_031",
           "gtag_095"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -6538,6 +7216,12 @@
           "gtag_055",
           "gtag_063",
           "gtag_067"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -6599,6 +7283,12 @@
         "requiresGrammar": [
           "gtag_044",
           "gtag_112"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -6660,6 +7350,12 @@
           "gtag_064",
           "gtag_067",
           "gtag_089"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -6720,6 +7416,12 @@
           "gtag_001",
           "gtag_002",
           "gtag_063"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -6783,6 +7485,12 @@
           "gtag_067",
           "gtag_089",
           "gtag_108"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -6844,6 +7552,12 @@
           "gtag_001",
           "gtag_038",
           "gtag_128"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -6905,6 +7619,12 @@
           "gtag_098",
           "gtag_103",
           "gtag_106"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -6967,6 +7687,12 @@
           "gtag_064",
           "gtag_096",
           "gtag_103"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -7028,6 +7754,12 @@
           "gtag_075",
           "gtag_094",
           "gtag_106"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -7087,6 +7819,12 @@
           "gtag_063",
           "gtag_097",
           "gtag_103"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -7149,6 +7887,12 @@
           "gtag_099",
           "gtag_103",
           "gtag_108"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -7212,6 +7956,12 @@
           "gtag_097",
           "gtag_099",
           "gtag_103"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -7276,6 +8026,12 @@
           "gtag_095",
           "gtag_098",
           "gtag_135"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -7340,6 +8096,12 @@
           "gtag_097",
           "gtag_122",
           "gtag_135"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -7402,6 +8164,12 @@
           "gtag_106",
           "gtag_108",
           "gtag_137"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -7464,6 +8232,12 @@
           "gtag_044",
           "gtag_094",
           "gtag_137"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -7526,6 +8300,12 @@
           "gtag_094",
           "gtag_095",
           "gtag_137"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -7588,6 +8368,12 @@
           "gtag_034",
           "gtag_041",
           "gtag_112"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -7647,6 +8433,12 @@
           "gtag_005",
           "gtag_022",
           "gtag_138"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -7707,6 +8499,12 @@
           "gtag_118",
           "gtag_138",
           "gtag_139"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -7769,6 +8567,12 @@
         ],
         "requiresGrammar": [
           "gtag_004"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -7822,6 +8626,12 @@
           "gtag_021",
           "gtag_024",
           "gtag_081"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -7875,6 +8685,12 @@
         "requiresGrammar": [
           "gtag_005",
           "gtag_021"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -7927,6 +8743,12 @@
           "gtag_022",
           "gtag_023",
           "gtag_024"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -7979,6 +8801,12 @@
         "requiresGrammar": [
           "gtag_004",
           "gtag_021"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -8032,6 +8860,12 @@
           "gtag_005",
           "gtag_010",
           "gtag_032"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     },
@@ -8084,6 +8918,12 @@
           "gtag_023",
           "gtag_024",
           "gtag_042"
+        ],
+        "skills": [
+          "meaning_recognition",
+          "meaning_production",
+          "listening",
+          "context"
         ]
       }
     }

@@ -227,11 +227,18 @@ function buildCurriculum() {
         // (e.g. a B2 "basics" lesson) are pool, not spine.
         const isUniversalTopic = spineTopics.has(l.topic);
         const isA1 = String(l.cefrLevel || '').startsWith('A1');
+        // skills (Layer 4 remediation matching) — heuristic from lesson content, since
+        // exercise types are generated, not stored per lesson. Vocab → recognition/
+        // production/listening; sentences → context/listening.
+        const skills = new Set();
+        if (l.wordIds && l.wordIds.length) { skills.add('meaning_recognition'); skills.add('meaning_production'); skills.add('listening'); }
+        if (l.sentenceIds && l.sentenceIds.length) { skills.add('context'); skills.add('listening'); }
         adaptiveByLesson.set(l.id, {
             spine: (isUniversalTopic && isA1) || String(l.unitId).startsWith('phase_0'),
             purposes: (topicPurposes.get(l.topic) || REAL_MODES).map((id) => ({ id, weight: 1 })),
             introducesGrammar: introducesGrammar.sort(),
             requiresGrammar: requiresGrammar.sort(),
+            skills: [...skills],
         });
     }
     const lessonsWithAdaptive = lessons.map((l) => ({ ...l, adaptive: adaptiveByLesson.get(l.id) }));

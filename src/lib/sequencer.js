@@ -19,8 +19,8 @@ export const SEQUENCER_WEIGHTS = {
     purpose: 1.0,
     difficulty: 0.6,
     variety: 0.4,
-    review: 0.0,
-    remediation: 0.0,
+    review: 0.3,
+    remediation: 0.4,
 };
 
 /** Union of grammar tags introduced by the lessons already completed. */
@@ -53,14 +53,30 @@ export function varietyBonus(topic, recentTopics = []) {
     return recentTopics.includes(topic) ? 0 : 1;
 }
 
+/** Reward a lesson that re-surfaces vocab currently due for SRS review (0-1). */
+export function reviewValue(lesson, dueItemIds) {
+    if (!dueItemIds || !dueItemIds.size) return 0;
+    const words = lesson.wordIds || [];
+    let hits = 0;
+    for (const w of words) if (dueItemIds.has(w)) hits++;
+    return hits ? Math.min(1, hits / 3) : 0;
+}
+
+/** Reward a lesson that trains one of the learner's weak skill dimensions (0-1). */
+export function remediationValue(lesson, weakSkills) {
+    if (!weakSkills || !weakSkills.length) return 0;
+    const skills = lesson.adaptive?.skills || [];
+    return skills.some((s) => weakSkills.includes(s)) ? 1 : 0;
+}
+
 /** Transparent, explainable per-lesson score. */
 export function scoreLesson(lesson, state, weights = SEQUENCER_WEIGHTS) {
     const breakdown = {
         purpose: weights.purpose * purposeMatch(lesson, state.purpose),
         difficulty: weights.difficulty * difficultyFit(lesson.difficulty, state.estimatedLevel),
         variety: weights.variety * varietyBonus(lesson.topic, state.recentTopics),
-        review: 0,       // Layer 4: reviewValue(lesson.introducesVocab, dueSrsItems)
-        remediation: 0,  // Layer 4: remediationValue(lesson.skills, state.weakSkills)
+        review: weights.review * reviewValue(lesson, state.dueItemIds),
+        remediation: weights.remediation * remediationValue(lesson, state.weakSkills),
     };
     const total = Object.values(breakdown).reduce((a, b) => a + b, 0);
     return { total, breakdown };
