@@ -97,7 +97,7 @@ const TelexTyping = ({ rules: ruleKeys = null, title = '⌨️ TELEX Master', qu
     };
 
     return (
-        <div className="practice-layout" style={{ maxWidth: '800px', margin: '0 auto' }}>
+        <div className="practice-layout practice-fixed-layout" style={{ maxWidth: '800px', margin: '0 auto' }}>
             <div className="practice-header">
                 <h1 className="practice-header-title">
                     <button onClick={goBack} style={{ color: 'var(--text-main)', display: 'flex', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>
@@ -117,7 +117,8 @@ const TelexTyping = ({ rules: ruleKeys = null, title = '⌨️ TELEX Master', qu
                 )}
             </div>
 
-            <div className="telex-grid" style={{ display: 'flex', flexDirection: 'column', gap: '24px', flex: 1 }}>
+            <div className="practice-scroll-area">
+              <div className="telex-grid" style={{ display: 'flex', flexDirection: 'column', gap: '24px', flex: 1 }}>
 
                 {/* Game Area */}
                 <div className="telex-content" style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
@@ -219,9 +220,11 @@ const TelexTyping = ({ rules: ruleKeys = null, title = '⌨️ TELEX Master', qu
                         </div>
                     )}
                 </div>
+              </div>
             </div>
 
             {/* Bottom Bar for navigation actions */}
+            {gameState !== 'playing' && (
             <div className="practice-bottom-bar" style={{ justifyContent: 'center' }}>
                 {gameState === 'intro' && (
                     <SoundButton className="practice-action-btn primary" onClick={handleStart}>
@@ -239,6 +242,7 @@ const TelexTyping = ({ rules: ruleKeys = null, title = '⌨️ TELEX Master', qu
                     </div>
                 )}
             </div>
+            )}
         </div>
     );
 };

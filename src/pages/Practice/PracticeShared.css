@@ -13,9 +13,12 @@
     /* Space for the bottom CTAs */
 }
 
-/* Fixed-viewport layout: header + tabs pinned, content scrolls, CTA anchored */
+/* Fixed-viewport layout: header + tabs pinned, content scrolls, CTA anchored.
+   Bind to the JS-measured visible viewport so the layout shrinks when the mobile
+   keyboard opens (a focused text input stays visible instead of being pushed
+   off-screen). Falls back to 100dvh where visualViewport isn't tracked. */
 .practice-layout.practice-fixed-layout {
-    height: 100dvh;
+    height: var(--app-viewport-height, 100dvh);
     min-height: 0;
     overflow: hidden;
     padding-bottom: 0;
