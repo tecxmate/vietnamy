@@ -855,6 +855,10 @@
     background: var(--surface-color);
 }
 
+.speak-btn-spin {
+    animation: spin 0.8s linear infinite;
+}
+
 .speak-btn--sm {
     padding: 3px;
     opacity: 0.6;

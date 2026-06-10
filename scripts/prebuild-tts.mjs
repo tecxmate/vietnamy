@@ -5,13 +5,21 @@
 // 302 redirects to the CDN.
 //
 // Usage:
-//   node scripts/prebuild-tts.mjs                          # north + south
-//   node scripts/prebuild-tts.mjs --voices=azure-north     # one voice
+//   node scripts/prebuild-tts.mjs                          # azure-north (the reading voice)
+//   node scripts/prebuild-tts.mjs --voices=azure-north,google
 //   node scripts/prebuild-tts.mjs --server=https://...     # remote server
 //   node scripts/prebuild-tts.mjs --concurrency=3
 //   node scripts/prebuild-tts.mjs --dry-run                # print counts only
+//   node scripts/prebuild-tts.mjs --ck=custom-version      # override cache version
 //
-// Requires the server to be running with SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY.
+// IMPORTANT: the warm request must carry the SAME `ck` (cache version) the app
+// sends, or the derived WAV lands under a different cache path than the client
+// looks up — warming the wrong slot. The app uses `tts-v10-voice-preview-<voice>`
+// (see buildTtsUrl in src/utils/speak.js); keep CK_TEMPLATE in sync with it.
+//
+// Requires the server running with the TTS cache configured (R2/Supabase). Note:
+// a full CDN cache-hit only pays off if the bucket's PUBLIC url works — if
+// R2_PUBLIC_BASE_URL points at the private S3 endpoint, hits 302 to a 400.
 
 import { readFileSync, readdirSync, statSync } from 'fs';
 import { join, dirname, extname } from 'path';
@@ -32,7 +40,10 @@ const args = Object.fromEntries(
     })
 );
 const SERVER = (args.server || process.env.TTS_SERVER_URL || 'http://localhost:3001').replace(/\/+$/, '');
-const VOICES = (args.voices || 'azure-north,azure-south').split(',').map(s => s.trim()).filter(Boolean);
+const VOICES = (args.voices || 'azure-north').split(',').map(s => s.trim()).filter(Boolean);
+// Cache version sent as `ck` — must match the app's buildTtsUrl. `{voice}` is
+// substituted per voice. Override with --ck for a one-off version.
+const CK_TEMPLATE = args.ck || 'tts-v10-voice-preview-{voice}';
 const CONCURRENCY = Math.max(1, parseInt(args.concurrency, 10) || 5);
 const DRY_RUN = args['dry-run'] === 'true';
 const DICT_TOP = parseInt(args.dict, 10) || 0;
@@ -133,7 +144,8 @@ let failed = 0;
 const startedAt = Date.now();
 
 async function run(task) {
-    const url = `${SERVER}/api/tts?text=${encodeURIComponent(task.text)}&lang=vi&voice=${encodeURIComponent(task.voice)}`;
+    const ck = CK_TEMPLATE.replace('{voice}', task.voice);
+    const url = `${SERVER}/api/tts?text=${encodeURIComponent(task.text)}&lang=vi&voice=${encodeURIComponent(task.voice)}&ck=${encodeURIComponent(ck)}`;
     try {
         const r = await fetch(url, { redirect: 'manual' });
         if (r.status === 302) hits++;

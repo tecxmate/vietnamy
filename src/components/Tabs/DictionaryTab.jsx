@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { Search, BookA, Loader2, Volume2, Sparkles, Mic, X, ArrowLeft, Check, Bookmark, Clock, Trash2, Type, ChevronLeft, ChevronDown, BookmarkPlus } from 'lucide-react';
 import { Converter } from 'opencc-js';
-import speak from '../../utils/speak';
+import speak, { preloadSpeak } from '../../utils/speak';
+import { useSpeakingState } from '../../hooks/useSpeakingState';
 
 import { useUser } from '../../context/UserContext';
 import { isDictWordSaved, toggleDictSavedWord } from '../../lib/dictSavedWords';
@@ -480,6 +481,13 @@ const DictionaryTab = ({ pendingInput, clearPendingInput, onNavigateToLibrary })
         }
     }, [allData, searchedWord, dictMode]);
 
+    const wordSpeakState = useSpeakingState(allData?.word || '');
+
+    // Warm the headword clip when a dictionary entry loads, so the listen tap is instant.
+    useEffect(() => {
+        if (allData?.word && !allData.error) preloadSpeak([allData.word]);
+    }, [allData]);
+
     // Clear local translation when dictMode changes, to force a re-fetch
     useEffect(() => {
         setLocalTranslation('');
@@ -763,8 +771,11 @@ const DictionaryTab = ({ pendingInput, clearPendingInput, onNavigateToLibrary })
                                         className="speak-btn"
                                         onClick={() => speak(allData.word)}
                                         title={t('dict_listen')}
+                                        aria-busy={wordSpeakState === 'loading'}
                                     >
-                                        <Volume2 size={24} />
+                                        {wordSpeakState === 'loading'
+                                            ? <Loader2 size={24} className="speak-btn-spin" />
+                                            : <Volume2 size={24} />}
                                     </button>
                                     <button
                                         className={`dict-save-btn ${wordSaved ? 'saved' : ''}`}

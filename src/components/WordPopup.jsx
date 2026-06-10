@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Volume2, ArrowRight, Bookmark } from 'lucide-react';
-import speak from '../utils/speak';
+import { Volume2, ArrowRight, Bookmark, Loader2 } from 'lucide-react';
+import speak, { preloadSpeak } from '../utils/speak';
+import { useSpeakingState } from '../hooks/useSpeakingState';
 import { useT } from '../lib/i18n';
 
 const popupCache = new Map();
@@ -13,6 +14,10 @@ const WordPopup = ({ word, anchorRect, dictMode, onClose, onNavigate, isPhrase, 
     const t = useT();
 
     const lang = dictMode === 'zh-s' || dictMode === 'zh-t' ? dictMode : 'en';
+    const speakState = useSpeakingState(word);
+
+    // Warm the clip as soon as the popup opens so the listen tap is instant.
+    useEffect(() => { preloadSpeak([word]); }, [word]);
 
     useEffect(() => {
         const cacheKey = `${word.toLowerCase()}|${lang}|${isPhrase ? 'p' : 'w'}`;
@@ -147,8 +152,11 @@ const WordPopup = ({ word, anchorRect, dictMode, onClose, onNavigate, isPhrase, 
                             className="speak-btn speak-btn--sm"
                             onClick={() => speak(word)}
                             title={t('popup_listen')}
+                            aria-busy={speakState === 'loading'}
                         >
-                            <Volume2 size={16} />
+                            {speakState === 'loading'
+                                ? <Loader2 size={16} className="speak-btn-spin" />
+                                : <Volume2 size={16} />}
                         </button>
                     </div>
                     {data.ipa && <span className="word-popup-ipa">/{data.ipa}/</span>}

@@ -54,6 +54,30 @@ const isSystemAudioEnabled = () => {
     }
 };
 
+// --- speaking-state pub/sub --------------------------------------------------
+// Lets a speaker button show a spinner during the cold-synthesis gap (a brand-new
+// sentence the server must fetch from Azure). Preloaded/cached clips jump straight
+// to 'playing', so the spinner never flashes for warm audio.
+const speakingListeners = new Set();
+let speakingText = null;
+let speakingState = 'idle'; // 'loading' | 'playing' | 'idle'
+
+const emitSpeakingState = (text, state) => {
+    speakingText = state === 'idle' ? null : text;
+    speakingState = state;
+    speakingListeners.forEach(fn => { try { fn(); } catch { /* ignore */ } });
+};
+
+export const subscribeSpeakingState = (listener) => {
+    speakingListeners.add(listener);
+    return () => { speakingListeners.delete(listener); };
+};
+
+export const getSpeakingState = (text) => {
+    if (speakingText == null || speakingText !== text) return 'idle';
+    return speakingState;
+};
+
 export const buildTtsUrl = (text, lang = 'vi', voiceOverride = null) => {
     const voice = voiceOverride || loadTtsVoice();
     const cacheKey = `tts-v10-voice-preview-${voice}`;
@@ -224,14 +248,17 @@ const speak = (text, rate = 1, lang = 'vi') => {
     audio.playbackRate = playRate;
     currentAudio = audio;
     setMediaSessionMetadata(text);
+    emitSpeakingState(text, 'loading');
 
+    audio.onplaying = () => { if (currentAudio === audio) emitSpeakingState(text, 'playing'); };
     audio.play().catch(() => {
         currentAudio = null;
+        emitSpeakingState(text, 'idle');
         clearMediaSessionPlayback();
     });
 
-    audio.onended = () => { if (currentAudio === audio) currentAudio = null; clearMediaSessionPlayback(); };
-    audio.onerror = () => { if (currentAudio === audio) currentAudio = null; clearMediaSessionPlayback(); };
+    audio.onended = () => { if (currentAudio === audio) { currentAudio = null; emitSpeakingState(text, 'idle'); } clearMediaSessionPlayback(); };
+    audio.onerror = () => { if (currentAudio === audio) { currentAudio = null; emitSpeakingState(text, 'idle'); } clearMediaSessionPlayback(); };
 };
 
 const playNextQueued = () => {

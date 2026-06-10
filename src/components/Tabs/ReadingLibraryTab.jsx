@@ -1,9 +1,10 @@
 import React, { useState, useRef, useMemo, useEffect, useCallback } from 'react';
-import { ChevronLeft, Volume2, BookOpen, ChevronRight, Layers, Plus, Trash2, BookmarkCheck, Play, X, Check, RotateCw, ArrowUpDown, ListFilter, Clock, SortAsc, SortDesc, LayoutList, LayoutGrid, Trophy, Flame, Star, Pen } from 'lucide-react';
+import { ChevronLeft, Volume2, BookOpen, ChevronRight, Layers, Plus, Trash2, BookmarkCheck, Play, X, Check, RotateCw, ArrowUpDown, ListFilter, Clock, SortAsc, SortDesc, LayoutList, LayoutGrid, Trophy, Flame, Star, Pen, Loader2 } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import ARTICLES, { ARTICLE_CATEGORIES, ARTICLE_LEVELS } from '../../data/articleData';
 import VOCAB_WORDS, { CATEGORIES as VOCAB_CATEGORIES } from '../../data/vocabWords';
-import speak from '../../utils/speak';
+import speak, { preloadSpeak } from '../../utils/speak';
+import { useSpeakingState } from '../../hooks/useSpeakingState';
 import VocabImage from '../VocabImage';
 import { getDueItems, recordReview, getTotalItems } from '../../lib/srs';
 import { playSuccess, playError } from '../../utils/sound';
@@ -482,6 +483,24 @@ function ArticleCard({ article, onSelect }) {
 }
 
 
+// Speaker button that shows a spinner during the cold-synthesis gap for a
+// brand-new sentence. Warm/preloaded clips skip straight to playing, so the
+// spinner only appears when the server is actually fetching from Azure.
+function SentenceSpeakButton({ text, onSpeak }) {
+    const state = useSpeakingState(text);
+    return (
+        <button
+            className="speak-btn"
+            onClick={(e) => onSpeak(text, e)}
+            aria-busy={state === 'loading'}
+        >
+            {state === 'loading'
+                ? <Loader2 size={18} className="speak-btn-spin" />
+                : <Volume2 size={18} />}
+        </button>
+    );
+}
+
 // ═══════════════════════════════════════════════════════════════
 // Article Reader View (tap-to-reveal)
 // ═══════════════════════════════════════════════════════════════
@@ -498,6 +517,12 @@ function ArticleReaderView({ article, onBack }) {
         return 'en';
     });
     const [copiedCode, setCopiedCode] = useState(false);
+
+    // Warm the cache for every sentence when the article opens, so tapping a
+    // speaker later hits a ready clip instead of a cold Azure round-trip.
+    useEffect(() => {
+        preloadSpeak((article.sentences || []).map(s => s.vi).filter(Boolean));
+    }, [article]);
 
     const toggleReveal = (idx) => {
         setRevealedSet(prev => {
@@ -590,12 +615,7 @@ function ArticleReaderView({ article, onBack }) {
                                 <span className="rlib-sentence-vi">
                                     <TappableVietnamese text={s.vi} onWordTap={handleWordTap} />
                                 </span>
-                                <button
-                                    className="speak-btn"
-                                    onClick={(e) => handleSpeak(s.vi, e)}
-                                >
-                                    <Volume2 size={18} />
-                                </button>
+                                <SentenceSpeakButton text={s.vi} onSpeak={handleSpeak} />
                             </div>
                             {isRevealed && (
                                 <div className="rlib-translation">
