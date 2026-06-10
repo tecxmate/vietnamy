@@ -4,6 +4,7 @@ import { MessageCircle, Zap, Trophy, Pen, Check, Lock, BookOpen, Music, Clapperb
 import { getUnits, getNodesForUnitWithProgress } from '../../lib/db';
 import { getGrammarForUnit } from '../../lib/grammarGuide';
 import GrammarGuidebook from '../GrammarGuidebook';
+import RecommendedNext from '../RecommendedNext';
 import { useProgress } from '../../context/ProgressContext';
 import { useUser } from '../../context/UserContext';
 import { loadSettings } from '../../lib/settings';
@@ -401,6 +402,8 @@ const RoadmapTab = () => {
                     </div>
                 </div>
             )}
+
+            <RecommendedNext completedNodeIds={modeCompletedNodes} purpose={currentMode} />
 
             {units.map((unit) => {
                 const nodes = nodesMap[unit.id] || [];
