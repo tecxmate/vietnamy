@@ -233,7 +233,29 @@
       ],
       "conversationIds": [
         "conv_001"
-      ]
+      ],
+      "adaptive": {
+        "spine": true,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_001",
+          "gtag_005"
+        ],
+        "requiresGrammar": []
+      }
     },
     {
       "id": "lesson_001b",
@@ -264,7 +286,32 @@
         "it_s_0731",
         "it_s_0732",
         "it_s_0733"
-      ]
+      ],
+      "adaptive": {
+        "spine": true,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_004",
+          "gtag_033",
+          "gtag_081"
+        ],
+        "requiresGrammar": [
+          "gtag_001"
+        ]
+      }
     },
     {
       "id": "lesson_002a",
@@ -290,7 +337,31 @@
         "it_s_0012",
         "it_s_0734",
         "it_s_0735"
-      ]
+      ],
+      "adaptive": {
+        "spine": true,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_002",
+          "gtag_006"
+        ],
+        "requiresGrammar": [
+          "gtag_001"
+        ]
+      }
     },
     {
       "id": "lesson_002b",
@@ -312,7 +383,30 @@
       "sentenceIds": [
         "it_s_0013",
         "it_s_0736"
-      ]
+      ],
+      "adaptive": {
+        "spine": true,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_031"
+        ],
+        "requiresGrammar": [
+          "gtag_002"
+        ]
+      }
     },
     {
       "id": "lesson_003",
@@ -341,7 +435,29 @@
       ],
       "conversationIds": [
         "conv_002"
-      ]
+      ],
+      "adaptive": {
+        "spine": true,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_004"
+        ]
+      }
     },
     {
       "id": "lesson_004",
@@ -367,7 +483,30 @@
       "sentenceIds": [
         "it_s_0220",
         "it_s_0221"
-      ]
+      ],
+      "adaptive": {
+        "spine": true,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_024"
+        ],
+        "requiresGrammar": [
+          "gtag_001"
+        ]
+      }
     },
     {
       "id": "lesson_025",
@@ -396,7 +535,28 @@
       ],
       "conversationIds": [
         "conv_021"
-      ]
+      ],
+      "adaptive": {
+        "spine": true,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_024"
+        ]
+      }
     },
     {
       "id": "lesson_005",
@@ -426,7 +586,23 @@
       ],
       "conversationIds": [
         "conv_003"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_021",
+          "gtag_022"
+        ],
+        "requiresGrammar": [
+          "gtag_024"
+        ]
+      }
     },
     {
       "id": "lesson_006",
@@ -455,7 +631,20 @@
       "conversationIds": [
         "conv_004",
         "conv_005"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_022"
+        ]
+      }
     },
     {
       "id": "lesson_007",
@@ -485,7 +674,21 @@
       "conversationIds": [
         "conv_006",
         "conv_007"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_022",
+          "gtag_024"
+        ]
+      }
     },
     {
       "id": "lesson_008",
@@ -515,7 +718,22 @@
       "conversationIds": [
         "conv_008",
         "conv_009"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_042"
+        ],
+        "requiresGrammar": [
+          "gtag_010"
+        ]
+      }
     },
     {
       "id": "lesson_009",
@@ -546,7 +764,23 @@
       "conversationIds": [
         "conv_010",
         "conv_011"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_014"
+        ],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_023"
+        ]
+      }
     },
     {
       "id": "lesson_026",
@@ -572,7 +806,30 @@
       "sentenceIds": [
         "it_s_0226",
         "it_s_0227"
-      ]
+      ],
+      "adaptive": {
+        "spine": true,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_032"
+        ],
+        "requiresGrammar": [
+          "gtag_042"
+        ]
+      }
     },
     {
       "id": "lesson_010",
@@ -603,7 +860,22 @@
       ],
       "conversationIds": [
         "conv_012"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_022",
+          "gtag_032",
+          "gtag_042"
+        ]
+      }
     },
     {
       "id": "lesson_011",
@@ -632,7 +904,21 @@
       ],
       "conversationIds": [
         "conv_013"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_022",
+          "gtag_031"
+        ]
+      }
     },
     {
       "id": "lesson_027",
@@ -659,7 +945,22 @@
       ],
       "conversationIds": [
         "conv_022"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_041"
+        ],
+        "requiresGrammar": [
+          "gtag_001"
+        ]
+      }
     },
     {
       "id": "lesson_012",
@@ -688,7 +989,20 @@
       ],
       "conversationIds": [
         "conv_014"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_020"
+        ],
+        "requiresGrammar": []
+      }
     },
     {
       "id": "lesson_013",
@@ -713,7 +1027,22 @@
       ],
       "sentenceIds": [
         "it_s_0107"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_044"
+        ],
+        "requiresGrammar": [
+          "gtag_001"
+        ]
+      }
     },
     {
       "id": "lesson_030",
@@ -739,7 +1068,23 @@
       ],
       "conversationIds": [
         "conv_024"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_003"
+        ],
+        "requiresGrammar": [
+          "gtag_005",
+          "gtag_038"
+        ]
+      }
     },
     {
       "id": "lesson_014",
@@ -769,7 +1114,22 @@
       ],
       "conversationIds": [
         "conv_015"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_020",
+          "gtag_021",
+          "gtag_038"
+        ]
+      }
     },
     {
       "id": "lesson_015",
@@ -795,7 +1155,20 @@
       ],
       "sentenceIds": [
         "it_s_0125"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_005"
+        ]
+      }
     },
     {
       "id": "lesson_016",
@@ -822,7 +1195,21 @@
       "sentenceIds": [
         "it_s_0135",
         "it_s_0136"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_037"
+        ]
+      }
     },
     {
       "id": "lesson_017",
@@ -852,7 +1239,29 @@
       ],
       "conversationIds": [
         "conv_016"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_011",
+          "gtag_035"
+        ],
+        "requiresGrammar": []
+      }
     },
     {
       "id": "lesson_028",
@@ -876,7 +1285,29 @@
       ],
       "sentenceIds": [
         "it_s_0148"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_002",
+          "gtag_011"
+        ]
+      }
     },
     {
       "id": "lesson_018",
@@ -905,7 +1336,20 @@
       ],
       "conversationIds": [
         "conv_017"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_032"
+        ]
+      }
     },
     {
       "id": "lesson_019",
@@ -936,7 +1380,21 @@
       ],
       "conversationIds": [
         "conv_018"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_003",
+          "gtag_005"
+        ]
+      }
     },
     {
       "id": "lesson_029",
@@ -965,7 +1423,23 @@
       ],
       "conversationIds": [
         "conv_023"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_049"
+        ],
+        "requiresGrammar": [
+          "gtag_003",
+          "gtag_031"
+        ]
+      }
     },
     {
       "id": "lesson_020",
@@ -991,7 +1465,20 @@
       "sentenceIds": [
         "it_s_0238",
         "it_s_0239"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_031"
+        ]
+      }
     },
     {
       "id": "lesson_031",
@@ -1015,7 +1502,20 @@
       "sentenceIds": [
         "it_s_0240",
         "it_s_0241"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_038"
+        ]
+      }
     },
     {
       "id": "lesson_021",
@@ -1045,7 +1545,20 @@
       "conversationIds": [
         "conv_019",
         "conv_025"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_006"
+        ]
+      }
     },
     {
       "id": "lesson_022",
@@ -1072,7 +1585,28 @@
       ],
       "sentenceIds": [
         "it_s_0196"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_032"
+        ]
+      }
     },
     {
       "id": "lesson_023",
@@ -1099,7 +1633,21 @@
       "sentenceIds": [
         "it_s_0205",
         "it_s_0206"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_005"
+        ]
+      }
     },
     {
       "id": "lesson_024",
@@ -1129,7 +1677,21 @@
       ],
       "conversationIds": [
         "conv_020"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_032"
+        ]
+      }
     },
     {
       "id": "lesson_033",
@@ -1164,7 +1726,30 @@
       ],
       "conversationIds": [
         "conv_026"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_031",
+          "gtag_045"
+        ]
+      }
     },
     {
       "id": "lesson_034",
@@ -1199,7 +1784,23 @@
       ],
       "conversationIds": [
         "conv_027"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_052"
+        ],
+        "requiresGrammar": [
+          "gtag_031",
+          "gtag_045"
+        ]
+      }
     },
     {
       "id": "lesson_035",
@@ -1234,7 +1835,33 @@
       ],
       "conversationIds": [
         "conv_028"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_043",
+          "gtag_047",
+          "gtag_048"
+        ],
+        "requiresGrammar": [
+          "gtag_002",
+          "gtag_045"
+        ]
+      }
     },
     {
       "id": "lesson_036",
@@ -1269,7 +1896,32 @@
       ],
       "conversationIds": [
         "conv_029"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_004",
+          "gtag_031",
+          "gtag_038",
+          "gtag_044",
+          "gtag_045"
+        ]
+      }
     },
     {
       "id": "lesson_037",
@@ -1304,7 +1956,32 @@
       ],
       "conversationIds": [
         "conv_030"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_050"
+        ],
+        "requiresGrammar": [
+          "gtag_003",
+          "gtag_033",
+          "gtag_055"
+        ]
+      }
     },
     {
       "id": "lesson_038",
@@ -1339,7 +2016,24 @@
       ],
       "conversationIds": [
         "conv_031"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_063",
+          "gtag_064"
+        ],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_050"
+        ]
+      }
     },
     {
       "id": "lesson_039",
@@ -1374,7 +2068,24 @@
       ],
       "conversationIds": [
         "conv_032"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_005",
+          "gtag_021",
+          "gtag_024",
+          "gtag_050",
+          "gtag_055"
+        ]
+      }
     },
     {
       "id": "lesson_040",
@@ -1409,7 +2120,32 @@
       ],
       "conversationIds": [
         "conv_033"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_016",
+          "gtag_035",
+          "gtag_045",
+          "gtag_064"
+        ]
+      }
     },
     {
       "id": "lesson_041",
@@ -1444,7 +2180,33 @@
       ],
       "conversationIds": [
         "conv_034"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_003",
+          "gtag_016",
+          "gtag_031",
+          "gtag_035",
+          "gtag_038"
+        ]
+      }
     },
     {
       "id": "lesson_042",
@@ -1479,7 +2241,32 @@
       ],
       "conversationIds": [
         "conv_035"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_034",
+          "gtag_067"
+        ],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_055"
+        ]
+      }
     },
     {
       "id": "lesson_043",
@@ -1514,7 +2301,31 @@
       ],
       "conversationIds": [
         "conv_036"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_005",
+          "gtag_045",
+          "gtag_103"
+        ]
+      }
     },
     {
       "id": "lesson_044",
@@ -1549,7 +2360,24 @@
       ],
       "conversationIds": [
         "conv_037"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_005",
+          "gtag_011",
+          "gtag_022",
+          "gtag_024",
+          "gtag_045"
+        ]
+      }
     },
     {
       "id": "lesson_045",
@@ -1584,7 +2412,25 @@
       ],
       "conversationIds": [
         "conv_038"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_002",
+          "gtag_003",
+          "gtag_022",
+          "gtag_031",
+          "gtag_038"
+        ]
+      }
     },
     {
       "id": "lesson_046",
@@ -1619,7 +2465,24 @@
       ],
       "conversationIds": [
         "conv_039"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_002",
+          "gtag_031",
+          "gtag_035",
+          "gtag_048"
+        ]
+      }
     },
     {
       "id": "lesson_047",
@@ -1654,7 +2517,22 @@
       ],
       "conversationIds": [
         "conv_040"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_031",
+          "gtag_038"
+        ]
+      }
     },
     {
       "id": "lesson_048",
@@ -1689,7 +2567,33 @@
       ],
       "conversationIds": [
         "conv_041"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_017"
+        ],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_002",
+          "gtag_006",
+          "gtag_021"
+        ]
+      }
     },
     {
       "id": "lesson_049",
@@ -1724,7 +2628,33 @@
       ],
       "conversationIds": [
         "conv_042"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_005",
+          "gtag_017",
+          "gtag_038",
+          "gtag_042",
+          "gtag_063"
+        ]
+      }
     },
     {
       "id": "lesson_050",
@@ -1759,7 +2689,34 @@
       ],
       "conversationIds": [
         "conv_043"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_029",
+          "gtag_139"
+        ],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_005",
+          "gtag_034",
+          "gtag_035"
+        ]
+      }
     },
     {
       "id": "lesson_051",
@@ -1794,7 +2751,33 @@
       ],
       "conversationIds": [
         "conv_044"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_077",
+          "gtag_120"
+        ],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_002",
+          "gtag_031"
+        ]
+      }
     },
     {
       "id": "lesson_052",
@@ -1829,7 +2812,31 @@
       ],
       "conversationIds": [
         "conv_045"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_002",
+          "gtag_038",
+          "gtag_044"
+        ]
+      }
     },
     {
       "id": "lesson_053",
@@ -1864,7 +2871,33 @@
       ],
       "conversationIds": [
         "conv_046"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_107",
+          "gtag_117"
+        ],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_003",
+          "gtag_031"
+        ]
+      }
     },
     {
       "id": "lesson_054",
@@ -1899,7 +2932,34 @@
       ],
       "conversationIds": [
         "conv_047"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_057",
+          "gtag_058",
+          "gtag_059"
+        ],
+        "requiresGrammar": [
+          "gtag_004",
+          "gtag_033",
+          "gtag_061"
+        ]
+      }
     },
     {
       "id": "lesson_055",
@@ -1934,7 +2994,34 @@
       ],
       "conversationIds": [
         "conv_048"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_072"
+        ],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_002",
+          "gtag_021",
+          "gtag_024",
+          "gtag_032"
+        ]
+      }
     },
     {
       "id": "lesson_056",
@@ -1969,7 +3056,32 @@
       ],
       "conversationIds": [
         "conv_049"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_083",
+          "gtag_137"
+        ],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_025"
+        ]
+      }
     },
     {
       "id": "lesson_057",
@@ -2004,7 +3116,32 @@
       ],
       "conversationIds": [
         "conv_050"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_003",
+          "gtag_031",
+          "gtag_041",
+          "gtag_042"
+        ]
+      }
     },
     {
       "id": "lesson_058",
@@ -2039,7 +3176,32 @@
       ],
       "conversationIds": [
         "conv_051"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_051",
+          "gtag_075"
+        ],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_063"
+        ]
+      }
     },
     {
       "id": "lesson_059",
@@ -2074,7 +3236,31 @@
       ],
       "conversationIds": [
         "conv_052"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_002",
+          "gtag_003",
+          "gtag_075"
+        ]
+      }
     },
     {
       "id": "lesson_060",
@@ -2109,7 +3295,34 @@
       ],
       "conversationIds": [
         "conv_053"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_078"
+        ],
+        "requiresGrammar": [
+          "gtag_002",
+          "gtag_003",
+          "gtag_016",
+          "gtag_022",
+          "gtag_041"
+        ]
+      }
     },
     {
       "id": "lesson_061",
@@ -2144,7 +3357,32 @@
       ],
       "conversationIds": [
         "conv_054"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_053",
+          "gtag_054"
+        ],
+        "requiresGrammar": [
+          "gtag_003",
+          "gtag_004"
+        ]
+      }
     },
     {
       "id": "lesson_062",
@@ -2179,7 +3417,34 @@
       ],
       "conversationIds": [
         "conv_055"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_076",
+          "gtag_094"
+        ],
+        "requiresGrammar": [
+          "gtag_002",
+          "gtag_017",
+          "gtag_042",
+          "gtag_044"
+        ]
+      }
     },
     {
       "id": "lesson_063",
@@ -2214,7 +3479,33 @@
       ],
       "conversationIds": [
         "conv_056"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_002",
+          "gtag_004",
+          "gtag_006",
+          "gtag_041",
+          "gtag_077",
+          "gtag_078"
+        ]
+      }
     },
     {
       "id": "lesson_064",
@@ -2249,7 +3540,32 @@
       ],
       "conversationIds": [
         "conv_057"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_002",
+          "gtag_003",
+          "gtag_050",
+          "gtag_077",
+          "gtag_078"
+        ]
+      }
     },
     {
       "id": "lesson_065",
@@ -2284,7 +3600,31 @@
       ],
       "conversationIds": [
         "conv_058"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_032",
+          "gtag_033",
+          "gtag_077",
+          "gtag_094"
+        ]
+      }
     },
     {
       "id": "lesson_066",
@@ -2319,7 +3659,33 @@
       ],
       "conversationIds": [
         "conv_059"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_026"
+        ],
+        "requiresGrammar": [
+          "gtag_002",
+          "gtag_010",
+          "gtag_059",
+          "gtag_094"
+        ]
+      }
     },
     {
       "id": "lesson_067",
@@ -2354,7 +3720,34 @@
       ],
       "conversationIds": [
         "conv_060"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_097"
+        ],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_005",
+          "gtag_021",
+          "gtag_025",
+          "gtag_103"
+        ]
+      }
     },
     {
       "id": "lesson_068",
@@ -2389,7 +3782,31 @@
       ],
       "conversationIds": [
         "conv_061"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_052",
+          "gtag_055",
+          "gtag_064",
+          "gtag_067"
+        ]
+      }
     },
     {
       "id": "lesson_069",
@@ -2424,7 +3841,32 @@
       ],
       "conversationIds": [
         "conv_062"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_101"
+        ],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_017",
+          "gtag_022"
+        ]
+      }
     },
     {
       "id": "lesson_070",
@@ -2459,7 +3901,32 @@
       ],
       "conversationIds": [
         "conv_063"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_082"
+        ],
+        "requiresGrammar": [
+          "gtag_016",
+          "gtag_024",
+          "gtag_107"
+        ]
+      }
     },
     {
       "id": "lesson_071",
@@ -2494,7 +3961,31 @@
       ],
       "conversationIds": [
         "conv_064"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_031",
+          "gtag_044",
+          "gtag_083"
+        ]
+      }
     },
     {
       "id": "lesson_072",
@@ -2529,7 +4020,34 @@
       ],
       "conversationIds": [
         "conv_065"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_002",
+          "gtag_022",
+          "gtag_031",
+          "gtag_044",
+          "gtag_082",
+          "gtag_097"
+        ]
+      }
     },
     {
       "id": "lesson_073",
@@ -2564,7 +4082,34 @@
       ],
       "conversationIds": [
         "conv_066"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_086",
+          "gtag_087",
+          "gtag_118"
+        ],
+        "requiresGrammar": [
+          "gtag_022",
+          "gtag_031",
+          "gtag_094"
+        ]
+      }
     },
     {
       "id": "lesson_074",
@@ -2599,7 +4144,33 @@
       ],
       "conversationIds": [
         "conv_067"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_088"
+        ],
+        "requiresGrammar": [
+          "gtag_004",
+          "gtag_005",
+          "gtag_006",
+          "gtag_072"
+        ]
+      }
     },
     {
       "id": "lesson_075",
@@ -2634,7 +4205,34 @@
       ],
       "conversationIds": [
         "conv_068"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_090"
+        ],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_017",
+          "gtag_025",
+          "gtag_067",
+          "gtag_089"
+        ]
+      }
     },
     {
       "id": "lesson_076",
@@ -2669,7 +4267,32 @@
       ],
       "conversationIds": [
         "conv_069"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_003",
+          "gtag_005",
+          "gtag_031",
+          "gtag_052"
+        ]
+      }
     },
     {
       "id": "lesson_077",
@@ -2704,7 +4327,33 @@
       ],
       "conversationIds": [
         "conv_070"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_003",
+          "gtag_016",
+          "gtag_029",
+          "gtag_064",
+          "gtag_097"
+        ]
+      }
     },
     {
       "id": "lesson_078",
@@ -2739,7 +4388,31 @@
       ],
       "conversationIds": [
         "conv_071"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_003",
+          "gtag_004",
+          "gtag_005"
+        ]
+      }
     },
     {
       "id": "lesson_079",
@@ -2774,7 +4447,31 @@
       ],
       "conversationIds": [
         "conv_072"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_031",
+          "gtag_038",
+          "gtag_041"
+        ]
+      }
     },
     {
       "id": "lesson_080",
@@ -2809,7 +4506,32 @@
       ],
       "conversationIds": [
         "conv_073"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_002",
+          "gtag_003",
+          "gtag_006",
+          "gtag_044"
+        ]
+      }
     },
     {
       "id": "lesson_081",
@@ -2844,7 +4566,31 @@
       ],
       "conversationIds": [
         "conv_074"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_002",
+          "gtag_031",
+          "gtag_044",
+          "gtag_052"
+        ]
+      }
     },
     {
       "id": "lesson_082",
@@ -2879,7 +4625,34 @@
       ],
       "conversationIds": [
         "conv_075"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_096"
+        ],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_002",
+          "gtag_016",
+          "gtag_041",
+          "gtag_107"
+        ]
+      }
     },
     {
       "id": "lesson_083",
@@ -2914,7 +4687,35 @@
       ],
       "conversationIds": [
         "conv_076"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_092",
+          "gtag_098"
+        ],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_031",
+          "gtag_050",
+          "gtag_064",
+          "gtag_097"
+        ]
+      }
     },
     {
       "id": "lesson_084",
@@ -2949,7 +4750,36 @@
       ],
       "conversationIds": [
         "conv_077"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_095",
+          "gtag_108",
+          "gtag_121"
+        ],
+        "requiresGrammar": [
+          "gtag_016",
+          "gtag_029",
+          "gtag_031",
+          "gtag_092",
+          "gtag_107"
+        ]
+      }
     },
     {
       "id": "lesson_085",
@@ -2984,7 +4814,33 @@
       ],
       "conversationIds": [
         "conv_078"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_002",
+          "gtag_003",
+          "gtag_016",
+          "gtag_067",
+          "gtag_089"
+        ]
+      }
     },
     {
       "id": "lesson_086",
@@ -3019,7 +4875,32 @@
       ],
       "conversationIds": [
         "conv_079"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_093"
+        ],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_004",
+          "gtag_017"
+        ]
+      }
     },
     {
       "id": "lesson_087",
@@ -3054,7 +4935,33 @@
       ],
       "conversationIds": [
         "conv_080"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_016",
+          "gtag_022",
+          "gtag_024",
+          "gtag_031",
+          "gtag_053",
+          "gtag_063"
+        ]
+      }
     },
     {
       "id": "lesson_088",
@@ -3089,7 +4996,34 @@
       ],
       "conversationIds": [
         "conv_081"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_102"
+        ],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_038",
+          "gtag_042",
+          "gtag_094",
+          "gtag_108"
+        ]
+      }
     },
     {
       "id": "lesson_089",
@@ -3124,7 +5058,32 @@
       ],
       "conversationIds": [
         "conv_082"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_099"
+        ],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_002",
+          "gtag_031"
+        ]
+      }
     },
     {
       "id": "lesson_090",
@@ -3159,7 +5118,31 @@
       ],
       "conversationIds": [
         "conv_083"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_016",
+          "gtag_041",
+          "gtag_096"
+        ]
+      }
     },
     {
       "id": "lesson_091",
@@ -3194,7 +5177,31 @@
       ],
       "conversationIds": [
         "conv_084"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_002",
+          "gtag_016",
+          "gtag_029",
+          "gtag_094"
+        ]
+      }
     },
     {
       "id": "lesson_092",
@@ -3229,7 +5236,31 @@
       ],
       "conversationIds": [
         "conv_085"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_016",
+          "gtag_042",
+          "gtag_050"
+        ]
+      }
     },
     {
       "id": "lesson_093",
@@ -3264,7 +5295,33 @@
       ],
       "conversationIds": [
         "conv_086"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_015",
+          "gtag_104",
+          "gtag_105"
+        ],
+        "requiresGrammar": [
+          "gtag_107",
+          "gtag_108"
+        ]
+      }
     },
     {
       "id": "lesson_094",
@@ -3299,7 +5356,34 @@
       ],
       "conversationIds": [
         "conv_087"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_015",
+          "gtag_034",
+          "gtag_041",
+          "gtag_042",
+          "gtag_044",
+          "gtag_055",
+          "gtag_095"
+        ]
+      }
     },
     {
       "id": "lesson_095",
@@ -3334,7 +5418,35 @@
       ],
       "conversationIds": [
         "conv_088"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_106",
+          "gtag_112"
+        ],
+        "requiresGrammar": [
+          "gtag_015",
+          "gtag_044",
+          "gtag_055",
+          "gtag_061",
+          "gtag_103"
+        ]
+      }
     },
     {
       "id": "lesson_096",
@@ -3369,7 +5481,31 @@
       ],
       "conversationIds": [
         "conv_089"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_025",
+          "gtag_106",
+          "gtag_107"
+        ]
+      }
     },
     {
       "id": "lesson_097",
@@ -3404,7 +5540,32 @@
       ],
       "conversationIds": [
         "conv_090"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_002",
+          "gtag_092",
+          "gtag_106",
+          "gtag_107",
+          "gtag_108"
+        ]
+      }
     },
     {
       "id": "lesson_098",
@@ -3439,7 +5600,32 @@
       ],
       "conversationIds": [
         "conv_091"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_038",
+          "gtag_098",
+          "gtag_106",
+          "gtag_107",
+          "gtag_108"
+        ]
+      }
     },
     {
       "id": "lesson_099",
@@ -3474,7 +5660,31 @@
       ],
       "conversationIds": [
         "conv_092"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_099",
+          "gtag_106",
+          "gtag_107"
+        ]
+      }
     },
     {
       "id": "lesson_100",
@@ -3509,7 +5719,32 @@
       ],
       "conversationIds": [
         "conv_093"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_002",
+          "gtag_003",
+          "gtag_031",
+          "gtag_044",
+          "gtag_108"
+        ]
+      }
     },
     {
       "id": "lesson_101",
@@ -3544,7 +5779,35 @@
       ],
       "conversationIds": [
         "conv_094"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_110"
+        ],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_002",
+          "gtag_026",
+          "gtag_031",
+          "gtag_038",
+          "gtag_041"
+        ]
+      }
     },
     {
       "id": "lesson_102",
@@ -3579,7 +5842,32 @@
       ],
       "conversationIds": [
         "conv_095"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_003",
+          "gtag_017",
+          "gtag_031",
+          "gtag_042"
+        ]
+      }
     },
     {
       "id": "lesson_103",
@@ -3614,7 +5902,32 @@
       ],
       "conversationIds": [
         "conv_096"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_015",
+          "gtag_017",
+          "gtag_107",
+          "gtag_117"
+        ]
+      }
     },
     {
       "id": "lesson_104",
@@ -3649,7 +5962,31 @@
       ],
       "conversationIds": [
         "conv_097"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_015",
+          "gtag_016",
+          "gtag_029"
+        ]
+      }
     },
     {
       "id": "lesson_105",
@@ -3684,7 +6021,31 @@
       ],
       "conversationIds": [
         "conv_098"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_002",
+          "gtag_029",
+          "gtag_038"
+        ]
+      }
     },
     {
       "id": "lesson_106",
@@ -3719,7 +6080,32 @@
       ],
       "conversationIds": [
         "conv_099"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_002",
+          "gtag_022",
+          "gtag_063",
+          "gtag_094"
+        ]
+      }
     },
     {
       "id": "lesson_107",
@@ -3754,7 +6140,35 @@
       ],
       "conversationIds": [
         "conv_100"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_027"
+        ],
+        "requiresGrammar": [
+          "gtag_016",
+          "gtag_038",
+          "gtag_064",
+          "gtag_089",
+          "gtag_093",
+          "gtag_098"
+        ]
+      }
     },
     {
       "id": "lesson_108",
@@ -3789,7 +6203,34 @@
       ],
       "conversationIds": [
         "conv_101"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_002",
+          "gtag_005",
+          "gtag_006",
+          "gtag_024",
+          "gtag_042",
+          "gtag_063",
+          "gtag_098"
+        ]
+      }
     },
     {
       "id": "lesson_109",
@@ -3824,7 +6265,34 @@
       ],
       "conversationIds": [
         "conv_102"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_042",
+          "gtag_050",
+          "gtag_055",
+          "gtag_067",
+          "gtag_089",
+          "gtag_118"
+        ]
+      }
     },
     {
       "id": "lesson_110",
@@ -3859,7 +6327,34 @@
       ],
       "conversationIds": [
         "conv_103"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_119"
+        ],
+        "requiresGrammar": [
+          "gtag_003",
+          "gtag_026",
+          "gtag_038",
+          "gtag_044",
+          "gtag_120"
+        ]
+      }
     },
     {
       "id": "lesson_111",
@@ -3894,7 +6389,35 @@
       ],
       "conversationIds": [
         "conv_104"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_041",
+          "gtag_048",
+          "gtag_092",
+          "gtag_094",
+          "gtag_101",
+          "gtag_107",
+          "gtag_137"
+        ]
+      }
     },
     {
       "id": "lesson_112",
@@ -3929,7 +6452,34 @@
       ],
       "conversationIds": [
         "conv_105"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_111"
+        ],
+        "requiresGrammar": [
+          "gtag_002",
+          "gtag_003",
+          "gtag_024",
+          "gtag_031",
+          "gtag_095"
+        ]
+      }
     },
     {
       "id": "lesson_113",
@@ -3964,7 +6514,32 @@
       ],
       "conversationIds": [
         "conv_106"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_122"
+        ],
+        "requiresGrammar": [
+          "gtag_055",
+          "gtag_063",
+          "gtag_067"
+        ]
+      }
     },
     {
       "id": "lesson_114",
@@ -3999,7 +6574,33 @@
       ],
       "conversationIds": [
         "conv_107"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_124",
+          "gtag_125",
+          "gtag_127"
+        ],
+        "requiresGrammar": [
+          "gtag_044",
+          "gtag_112"
+        ]
+      }
     },
     {
       "id": "lesson_115",
@@ -4034,7 +6635,33 @@
       ],
       "conversationIds": [
         "conv_108"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_044",
+          "gtag_063",
+          "gtag_064",
+          "gtag_067",
+          "gtag_089"
+        ]
+      }
     },
     {
       "id": "lesson_116",
@@ -4069,7 +6696,32 @@
       ],
       "conversationIds": [
         "conv_109"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_056"
+        ],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_002",
+          "gtag_063"
+        ]
+      }
     },
     {
       "id": "lesson_117",
@@ -4104,7 +6756,35 @@
       ],
       "conversationIds": [
         "conv_110"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_128"
+        ],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_002",
+          "gtag_044",
+          "gtag_067",
+          "gtag_089",
+          "gtag_108"
+        ]
+      }
     },
     {
       "id": "lesson_118",
@@ -4139,7 +6819,33 @@
       ],
       "conversationIds": [
         "conv_111"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_036",
+          "gtag_129"
+        ],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_038",
+          "gtag_128"
+        ]
+      }
     },
     {
       "id": "lesson_119",
@@ -4174,7 +6880,33 @@
       ],
       "conversationIds": [
         "conv_112"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_038",
+          "gtag_056",
+          "gtag_098",
+          "gtag_103",
+          "gtag_106"
+        ]
+      }
     },
     {
       "id": "lesson_120",
@@ -4209,7 +6941,34 @@
       ],
       "conversationIds": [
         "conv_113"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_004",
+          "gtag_016",
+          "gtag_042",
+          "gtag_064",
+          "gtag_096",
+          "gtag_103"
+        ]
+      }
     },
     {
       "id": "lesson_121",
@@ -4244,7 +7003,33 @@
       ],
       "conversationIds": [
         "conv_114"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_015",
+          "gtag_038",
+          "gtag_075",
+          "gtag_094",
+          "gtag_106"
+        ]
+      }
     },
     {
       "id": "lesson_122",
@@ -4279,7 +7064,31 @@
       ],
       "conversationIds": [
         "conv_115"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_063",
+          "gtag_097",
+          "gtag_103"
+        ]
+      }
     },
     {
       "id": "lesson_123",
@@ -4314,7 +7123,34 @@
       ],
       "conversationIds": [
         "conv_116"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_135"
+        ],
+        "requiresGrammar": [
+          "gtag_038",
+          "gtag_096",
+          "gtag_099",
+          "gtag_103",
+          "gtag_108"
+        ]
+      }
     },
     {
       "id": "lesson_124",
@@ -4349,7 +7185,35 @@
       ],
       "conversationIds": [
         "conv_117"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_002",
+          "gtag_016",
+          "gtag_063",
+          "gtag_096",
+          "gtag_097",
+          "gtag_099",
+          "gtag_103"
+        ]
+      }
     },
     {
       "id": "lesson_125",
@@ -4384,7 +7248,36 @@
       ],
       "conversationIds": [
         "conv_118"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_136"
+        ],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_002",
+          "gtag_063",
+          "gtag_094",
+          "gtag_095",
+          "gtag_098",
+          "gtag_135"
+        ]
+      }
     },
     {
       "id": "lesson_126",
@@ -4419,7 +7312,36 @@
       ],
       "conversationIds": [
         "conv_119"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_113",
+          "gtag_134"
+        ],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_044",
+          "gtag_063",
+          "gtag_097",
+          "gtag_122",
+          "gtag_135"
+        ]
+      }
     },
     {
       "id": "lesson_127",
@@ -4454,7 +7376,34 @@
       ],
       "conversationIds": [
         "conv_120"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_003",
+          "gtag_038",
+          "gtag_041",
+          "gtag_106",
+          "gtag_108",
+          "gtag_137"
+        ]
+      }
     },
     {
       "id": "lesson_128",
@@ -4489,7 +7438,34 @@
       ],
       "conversationIds": [
         "conv_121"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_002",
+          "gtag_026",
+          "gtag_038",
+          "gtag_044",
+          "gtag_094",
+          "gtag_137"
+        ]
+      }
     },
     {
       "id": "lesson_129",
@@ -4524,7 +7500,34 @@
       ],
       "conversationIds": [
         "conv_122"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_001",
+          "gtag_002",
+          "gtag_038",
+          "gtag_044",
+          "gtag_094",
+          "gtag_095",
+          "gtag_137"
+        ]
+      }
     },
     {
       "id": "lesson_130",
@@ -4559,7 +7562,34 @@
       ],
       "conversationIds": [
         "conv_123"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_138"
+        ],
+        "requiresGrammar": [
+          "gtag_005",
+          "gtag_017",
+          "gtag_034",
+          "gtag_041",
+          "gtag_112"
+        ]
+      }
     },
     {
       "id": "lesson_131",
@@ -4594,7 +7624,31 @@
       ],
       "conversationIds": [
         "conv_124"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_002",
+          "gtag_005",
+          "gtag_022",
+          "gtag_138"
+        ]
+      }
     },
     {
       "id": "lesson_132",
@@ -4629,7 +7683,32 @@
       ],
       "conversationIds": [
         "conv_125"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_017",
+          "gtag_027",
+          "gtag_118",
+          "gtag_138",
+          "gtag_139"
+        ]
+      }
     },
     {
       "id": "lesson_133",
@@ -4664,7 +7743,34 @@
       ],
       "conversationIds": [
         "conv_126"
-      ]
+      ],
+      "adaptive": {
+        "spine": true,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          },
+          {
+            "id": "professional",
+            "weight": 1
+          },
+          {
+            "id": "heritage",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_018",
+          "gtag_045",
+          "gtag_055",
+          "gtag_061",
+          "gtag_103"
+        ],
+        "requiresGrammar": [
+          "gtag_004"
+        ]
+      }
     },
     {
       "id": "lesson_134",
@@ -4699,7 +7805,25 @@
       ],
       "conversationIds": [
         "conv_127"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_023"
+        ],
+        "requiresGrammar": [
+          "gtag_005",
+          "gtag_021",
+          "gtag_024",
+          "gtag_081"
+        ]
+      }
     },
     {
       "id": "lesson_135",
@@ -4734,7 +7858,25 @@
       ],
       "conversationIds": [
         "conv_128"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_010",
+          "gtag_038",
+          "gtag_089"
+        ],
+        "requiresGrammar": [
+          "gtag_005",
+          "gtag_021"
+        ]
+      }
     },
     {
       "id": "lesson_136",
@@ -4769,7 +7911,24 @@
       ],
       "conversationIds": [
         "conv_129"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_005",
+          "gtag_021",
+          "gtag_022",
+          "gtag_023",
+          "gtag_024"
+        ]
+      }
     },
     {
       "id": "lesson_137",
@@ -4804,7 +7963,24 @@
       ],
       "conversationIds": [
         "conv_130"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_016",
+          "gtag_037"
+        ],
+        "requiresGrammar": [
+          "gtag_004",
+          "gtag_021"
+        ]
+      }
     },
     {
       "id": "lesson_138",
@@ -4839,7 +8015,25 @@
       ],
       "conversationIds": [
         "conv_131"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [
+          "gtag_025"
+        ],
+        "requiresGrammar": [
+          "gtag_002",
+          "gtag_005",
+          "gtag_010",
+          "gtag_032"
+        ]
+      }
     },
     {
       "id": "lesson_139",
@@ -4874,7 +8068,24 @@
       ],
       "conversationIds": [
         "conv_132"
-      ]
+      ],
+      "adaptive": {
+        "spine": false,
+        "purposes": [
+          {
+            "id": "explore_vietnam",
+            "weight": 1
+          }
+        ],
+        "introducesGrammar": [],
+        "requiresGrammar": [
+          "gtag_005",
+          "gtag_022",
+          "gtag_023",
+          "gtag_024",
+          "gtag_042"
+        ]
+      }
     }
   ],
   "words": [

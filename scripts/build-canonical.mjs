@@ -18,6 +18,7 @@
 import { readFileSync, writeFileSync, mkdirSync, readdirSync } from 'fs';
 import { fileURLToPath, pathToFileURL } from 'url';
 import { dirname, join } from 'path';
+import { LEARNER_MODES } from '../src/data/learnerModes.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
@@ -189,6 +190,52 @@ function buildCurriculum() {
         }),
     );
 
+    // ── Adaptive tag layer (Layers 1-2): purposes + grammar prerequisite graph ──
+    // Additive metadata derived from existing structures for the future adaptive
+    // sequencer. NOT yet read by the running app. See docs/ADAPTIVE_CURRICULUM_SEQUENCER.md.
+    const REAL_MODES = ['explore_vietnam', 'professional', 'heritage'];
+    const topicPurposes = new Map(); // topic -> [modeId]
+    for (const mode of REAL_MODES) {
+        for (const t of (LEARNER_MODES[mode]?.topics || [])) {
+            if (!topicPurposes.has(t.id)) topicPurposes.set(t.id, []);
+            topicPurposes.get(t.id).push(mode);
+        }
+    }
+    // spine = topics shared by ALL real modes (universal survival content) or Foundations.
+    const spineTopics = new Set(
+        [...topicPurposes.entries()].filter(([, ms]) => ms.length === REAL_MODES.length).map(([t]) => t),
+    );
+    const sentsByLessonGraph = new Map();
+    for (const s of sentences) {
+        if (!sentsByLessonGraph.has(s.lessonId)) sentsByLessonGraph.set(s.lessonId, []);
+        sentsByLessonGraph.get(s.lessonId).push(s);
+    }
+    const unitOrder = new Map(units.map((u) => [u.id, u.orderIndex ?? 9999]));
+    const orderedForGraph = [...lessons].sort(
+        (a, b) => (unitOrder.get(a.unitId) - unitOrder.get(b.unitId)) || ((a.orderIndex ?? 0) - (b.orderIndex ?? 0)),
+    );
+    const seenGrammar = new Set();
+    const adaptiveByLesson = new Map();
+    for (const l of orderedForGraph) {
+        const used = new Set();
+        for (const s of sentsByLessonGraph.get(l.id) || []) for (const t of (s.grammarTagIds || [])) used.add(t);
+        const introducesGrammar = [], requiresGrammar = [];
+        for (const t of used) (seenGrammar.has(t) ? requiresGrammar : introducesGrammar).push(t);
+        introducesGrammar.forEach((t) => seenGrammar.add(t));
+        // spine = the shared on-ramp: a universal topic (in every purpose) AND still
+        // at A1, or any Foundations lesson. Higher-level lessons on catch-all topics
+        // (e.g. a B2 "basics" lesson) are pool, not spine.
+        const isUniversalTopic = spineTopics.has(l.topic);
+        const isA1 = String(l.cefrLevel || '').startsWith('A1');
+        adaptiveByLesson.set(l.id, {
+            spine: (isUniversalTopic && isA1) || String(l.unitId).startsWith('phase_0'),
+            purposes: (topicPurposes.get(l.topic) || REAL_MODES).map((id) => ({ id, weight: 1 })),
+            introducesGrammar: introducesGrammar.sort(),
+            requiresGrammar: requiresGrammar.sort(),
+        });
+    }
+    const lessonsWithAdaptive = lessons.map((l) => ({ ...l, adaptive: adaptiveByLesson.get(l.id) }));
+
     const bundle = {
         meta: {
             mode: 'all',
@@ -197,7 +244,7 @@ function buildCurriculum() {
             source: 'unified_db.json',
         },
         units,
-        lessons,
+        lessons: lessonsWithAdaptive,
         words,
         sentences,
         conversations,

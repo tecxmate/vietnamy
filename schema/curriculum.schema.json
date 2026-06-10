@@ -62,7 +62,41 @@
         "xpReward": { "type": "integer" },
         "wordIds": { "type": "array", "items": { "$ref": "_common.schema.json#/$defs/id" } },
         "sentenceIds": { "type": "array", "items": { "$ref": "_common.schema.json#/$defs/id" } },
-        "conversationIds": { "type": "array", "items": { "$ref": "_common.schema.json#/$defs/id" } }
+        "conversationIds": { "type": "array", "items": { "$ref": "_common.schema.json#/$defs/id" } },
+        "adaptive": {
+          "description": "Generated adaptive-sequencer metadata (Layers 1-2): purpose weighting + grammar prerequisite graph. Derived by build-canonical; not hand-authored. Not yet read by the running app.",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "spine": {
+              "description": "true = fixed lesson everyone does (Foundations or universal survival topics); false = pool/optional.",
+              "type": "boolean"
+            },
+            "purposes": {
+              "description": "Which learner purposes this lesson serves, with weight (0-1). Derived from the mode→topic map.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["id", "weight"],
+                "additionalProperties": false,
+                "properties": {
+                  "id": { "type": "string" },
+                  "weight": { "type": "number" }
+                }
+              }
+            },
+            "introducesGrammar": {
+              "description": "Grammar tag IDs first appearing in this lesson (in curriculum order).",
+              "type": "array",
+              "items": { "$ref": "_common.schema.json#/$defs/id" }
+            },
+            "requiresGrammar": {
+              "description": "Grammar tag IDs this lesson uses that were introduced in an earlier lesson — the prerequisite edges.",
+              "type": "array",
+              "items": { "$ref": "_common.schema.json#/$defs/id" }
+            }
+          }
+        }
       }
     },
     "word": {
