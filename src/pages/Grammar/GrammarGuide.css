@@ -1,5 +1,12 @@
 .grammar-guide-tab {
     --grammar-level-tabs-height: 74px;
+    /* Own scroll container: the page sits inside the fixed, overflow-hidden
+       .mobile-app-wrapper (flex column), so it must scroll itself. */
+    flex: 1 1 auto;
+    min-height: 0;
+    height: 100%;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .grammar-level-tabs {

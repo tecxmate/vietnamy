@@ -16,8 +16,8 @@ const LEVEL_COLORS = {
     A2: '#118AB2',
     B1: '#EF476F',
     B2: '#FB8500',
-    C1: '#8338EC',
-    C2: '#3A0CA3',
+    C1: '#A78BFA',
+    C2: '#818CF8',
 };
 
 const PRACTICE_MODULES = [
