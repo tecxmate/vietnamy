@@ -164,3 +164,16 @@ attributed_to: [niko, claude-opus]   belongs_to: [adaptive-sequencer]
 - The **Continue button is now sequencer-primary for lesson nodes** (shared `src/lib/recommendations.js`); foundations/grammar/test nodes keep their hard order.
 - **Layer 5 engagement capture** landed (capture-only): `src/lib/engagement.js` ring buffer; LessonGame logs exercise response times, quits, completes. Nothing acts on it yet by design.
 - Pages: [adaptive-sequencer](topics/tech/adaptive-sequencer.md).
+
+## [2026-06-11] ingest | TTS cold-synth latency mitigations + southern voice off by default
+attributed_to: [niko, claude-opus]   belongs_to: [tts-pipeline]
+- Diagnosed: slowness is the cache-miss path — Azure neural synth ~1.66s vs Google ~0.73s for a brand-new sentence; **not** network distance (Tokyo server ↔ eastasia Azure ~50ms). Warm/preloaded clips are instant.
+- Shipped (commit `b04452e`): per-text loading spinner via `useSpeakingState`; `preloadSpeak` on Reading Library / Word Popup / Dictionary; fixed `prebuild-tts.mjs` to send the app's `ck` cache version (was warming the wrong slot) and default to `azure-north`.
+- Earlier in session: `azure-south` disabled by default (unstable) + Admin → Voice Settings toggle (`src/data/ttsVoices.js`); Google always on.
+- Pages: [tts-pipeline](topics/tech/tts-pipeline.md).
+
+## [2026-06-11] decision | R2 public URL via tts.tecxmate.com custom domain
+attributed_to: [niko]   belongs_to: [bucket-storage]
+- Found `R2_PUBLIC_BASE_URL` set to the private S3 endpoint → R2 cache-hits 302 to a 400; masked because hot strings still resolve to Supabase. Blocks the pre-warm.
+- Decided: bind `tts.tecxmate.com` R2 custom domain (zone already in the same Cloudflare account as the bucket) + bucket CORS; set env in Zeabur. Rejected r2.dev (rate-limited) and reverting to Supabase. Implementation pending on Niko.
+- Pages: [decision](decisions/2026-06-11-r2-public-url-custom-domain.md), [bucket-storage](topics/tech/bucket-storage.md).

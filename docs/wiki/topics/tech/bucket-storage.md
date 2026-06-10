@@ -3,12 +3,12 @@ title: Bucket Storage (Supabase → R2)
 type: topic
 slug: bucket-storage
 date: 2026-05-23
-updated: 2026-05-24
+updated: 2026-06-11
 belongs_to: [niko]
 source: synthesis
 status: active
 tags: [storage, supabase, cloudflare-r2, infrastructure]
-related: [tts-pipeline, backups-recovery, 2026-05-24-cloudflare-r2-migration-pending]
+related: [tts-pipeline, backups-recovery, 2026-05-24-cloudflare-r2-migration-pending, 2026-06-11-r2-public-url-custom-domain]
 ---
 
 ## Summary
@@ -55,6 +55,9 @@ See [issue #17](https://github.com/tecxmate/vietnamy/issues/17) for the migratio
 
 All scripts read `SUPABASE_SERVICE_ROLE_KEY` from env. Niko pastes the key from Zeabur into a local `.env` (gitignored) before running.
 
+## R2 is now primary (2026-06-11)
+Prod runs `TTS_STORAGE_PROVIDER=r2` with R2 creds in Zeabur; new cache writes go to R2, and `ttsCacheHit` checks R2 first then falls through to the still-populated Supabase bucket. **Known misconfiguration:** `R2_PUBLIC_BASE_URL` points at the private S3 endpoint (`<account>.r2.cloudflarestorage.com/tts-cache`), so any cache-hit that resolves to R2 redirects to a URL that needs signed auth → **HTTP 400**. Masked today because most-played strings still resolve to Supabase. Fix decided: bind the **`tts.tecxmate.com`** custom domain and set `R2_PUBLIC_BASE_URL` to it — see [2026-06-11-r2-public-url-custom-domain](../../decisions/2026-06-11-r2-public-url-custom-domain.md). This resolves the "r2.dev vs custom domain" open question below in favour of a custom domain (the `tecxmate.com` zone is already in the same Cloudflare account as the bucket).
+
 ## Open questions
 - Should the migration be a one-shot cutover or a dual-write period with R2 as primary and Supabase as backup? Issue #17 suggests dual-write for 2 weeks, then delete Supabase.
-- Does the post-migration server still hit Cloudflare CDN via R2's `r2.dev` URLs or do we wire a custom domain? Custom domain is better for caching; r2.dev is fine for MVP.
+- ~~r2.dev URLs or a custom domain?~~ **Resolved** → custom domain `tts.tecxmate.com` ([decision](../../decisions/2026-06-11-r2-public-url-custom-domain.md)).

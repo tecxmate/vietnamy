@@ -3,12 +3,12 @@ title: TTS Pipeline (Two-Tier Cache)
 type: topic
 slug: tts-pipeline
 date: 2026-05-23
-updated: 2026-05-24
+updated: 2026-06-11
 belongs_to: [niko]
 source: synthesis
 status: active
-tags: [tts, azure, supabase, cache, infrastructure]
-related: [bucket-storage, pronunciation-assessment, backups-recovery, 2026-05-23-two-tier-tts-cache, 2026-05-23-azure-s0-pricing-tier, 2026-05-24-v9-processed-rename]
+tags: [tts, azure, supabase, r2, cache, infrastructure, latency]
+related: [bucket-storage, pronunciation-assessment, backups-recovery, 2026-05-23-two-tier-tts-cache, 2026-05-23-azure-s0-pricing-tier, 2026-05-24-v9-processed-rename, 2026-06-11-r2-public-url-custom-domain]
 ---
 
 ## Summary
@@ -84,6 +84,24 @@ All TTS logic lives in `server/server.js`:
 - `synthesizeWithGoogleTranslate` — last-resort fallback (no post-processing).
 - `app.get('/api/tts', ...)` — the endpoint itself.
 
+## Cold-start latency (brand-new sentences)
+The cache makes warm playback instant, but a string that has **never** been synthesized pays full freight. Measured on prod (2026-06-11), same sentence, cache miss:
+
+| | Google | Azure (Nam Minh) |
+| --- | --- | --- |
+| Time to first byte | ~0.73 s | **~1.66 s** |
+| Payload | 29 KB mp3 | 114 KB WAV |
+
+The ~0.9 s gap is **Azure neural synthesis being inherently heavier** than Google's `translate_tts`, plus server-side PCM post-processing — almost all of it before the first byte (transfer is the last ~0.14 s). It is **not** network distance: the Zeabur server is in Tokyo (`ap-northeast-1`) and Azure Speech is `eastasia` (Hong Kong), ~50 ms apart. So for genuinely novel text, ~1.5 s is irreducible; the fix is to make it *not* novel (warm ahead of the tap) or make the wait feel intentional.
+
+Mitigations shipped (commit `b04452e`):
+- **`src/utils/speak.js`** broadcasts per-text state (`loading`/`playing`/`idle`); the **`useSpeakingState(text)`** hook drives a spinner on speaker buttons during the cold-synth gap. Warm/preloaded clips jump straight to `playing`, so the spinner never flashes for cached audio.
+- **`preloadSpeak()`** now fires on the read-aloud surfaces that used to play cold — article sentences (Reading Library), Word Popup, Dictionary headword — so a tap hits a warm cache. (LessonGame already did this for multiple-choice, which is why those always felt instant.)
+- **`scripts/prebuild-tts.mjs` bug fix**: it warmed `/api/tts` **without** the app's `ck` cache version, populating a different cache slot than the client reads (client uses `tts-v10-voice-preview-<voice>`). Now sends the matching `ck` and defaults to `azure-north`. Note: a *full* `302 → CDN` warm only pays off once the R2 public URL works — see [2026-06-11-r2-public-url-custom-domain](../../decisions/2026-06-11-r2-public-url-custom-domain.md).
+
+## Voice availability
+`src/data/ttsVoices.js` is the single source of truth for which voices are offered. **Google is always on**; the Azure "reading voices" are toggleable. **`azure-south` ships disabled by default** (the southern Hoài Mỹ voice is unstable) — off for every user via the code default, with a per-device admin override at **Admin → Voice Settings** (`src/pages/Admin/VoiceSettings.jsx`). The TopBar picker, onboarding, and `speak.js` all filter to enabled voices and fall back (north → Google) if a saved selection is disabled.
+
 ## Deeper doc
 See `docs/tts-cache.md` for the exhaustive operational reference: setup, env vars, failure modes, capacity envelope, reference-run logs, and future-improvement backlog.
 
@@ -93,3 +111,5 @@ See `docs/tts-cache.md` for the exhaustive operational reference: setup, env var
 - 2026-05-23: F0 quota exhausted mid-warmup → moved to S0 ([see decision](../../decisions/2026-05-23-azure-s0-pricing-tier.md)).
 - 2026-05-23: Two-tier cache shipped ([see decision](../../decisions/2026-05-23-two-tier-tts-cache.md)). Source backfill ran the same day.
 - 2026-05-24: Folder renamed `v9-nam-minh-lower` → `v9-processed` for clarity ([see decision](../../decisions/2026-05-24-v9-processed-rename.md)).
+- 2026-06-11: Disabled `azure-south` by default (unstable) + added Admin → Voice Settings toggle; Google always on (`src/data/ttsVoices.js`).
+- 2026-06-11: Cold-synth latency diagnosed + mitigated — per-text loading spinner, `preloadSpeak` on read-aloud surfaces, and a `prebuild-tts.mjs` cache-key fix (commit `b04452e`). Found R2 public-URL misconfig → [custom-domain decision](../../decisions/2026-06-11-r2-public-url-custom-domain.md).

@@ -30,6 +30,7 @@ Catalog of every page in `docs/wiki/`. One line per page. Update on every create
 - [2026-05-24 — Migrate TTS Bucket to Cloudflare R2 Within One Month](decisions/2026-05-24-cloudflare-r2-migration-pending.md) — proposed: tracked as GitHub issue #17, deadline 2026-06-24
 - [2026-06-10 — Supabase Ops Store and Vercel API Cutover](decisions/2026-06-10-supabase-ops-store-vercel-api.md) — use Supabase Postgres for ops data, keep heavy objects in R2, expose lightweight Vercel API routes
 - [2026-06-11 — Chinese Pronunciation Explanations are Curriculum (Bopomofo / Pinyin)](decisions/2026-06-11-chinese-pronunciation-curriculum.md) — re-author VN sound explanations against Bopomofo (zh-t) / Pinyin (zh-s), not literal translation; some sounds have no Mandarin equivalent
+- [2026-06-11 — R2 Public URL via tts.tecxmate.com Custom Domain](decisions/2026-06-11-r2-public-url-custom-domain.md) — R2_PUBLIC_BASE_URL pointed at the private S3 endpoint (cache-hits 302→400); bind tts.tecxmate.com custom domain + CORS to fix
 
 ## Topics
 *Areas, products, events, and synthesised concepts. Topics don't make decisions; stakeholders do.*
