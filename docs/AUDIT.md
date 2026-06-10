@@ -92,11 +92,12 @@ lessons / 1,001 words / 479 sentences. Canonical content bundle at repo-root `co
 
 | # | Item | Impact | Status |
 |---|------|--------|--------|
-| 5.1 | **Grammar stops at B1** — no B2/C1/C2 modules though lessons run to C2. Author upper-level grammar. | HIGH | TODO |
-| 5.2 | Only **9% of sentences** carry `grammarTagIds` — tag the rest to light up grammar drills/links. | HIGH | TODO |
-| 5.3 | **`concepts.json` is empty** — author teaching cards (the "why") for A1–B1 lessons. | HIGH | TODO |
-| 5.4 | Thin early units (Unit 1 = 7 words) — rebalance the on-ramp. | MED | TODO |
-| 5.5 | 0 `audioKey` coverage (TTS-only) + ~5% images — add curated audio/images for core vocab. | MED | TODO |
+| 5.1 | **Grammar B2/C1/C2 authored** (was B1-only) — +22 modules / +105 units in canonical `grammar_modules.json` via author→native-review pipeline. Renders at `/grammar-unit/:unitId`. | HIGH | DONE (branch `audit/pass5-content`) |
+| 5.1b | **Surface B2–C2 in the grammar browser** — the Library browser (`ReadingLibraryTab` → `/grammar/:level` → `GrammarList`) reads the LEGACY `grammarDB` (`getGrammarItems`), a separate source lacking the new levels. Migrate it (and/or wire the orphaned canonical `GrammarTrack`) to `grammarModulesDB`. Data-divergence cleanup — needs go-ahead. | HIGH | TODO |
+| 5.2 | **Every sentence grammar-tagged** (9% → 100%, 479/479; +9 from Unit 1 → 488/488) via 20-agent pass. Source: `unified_db.json`. | HIGH | DONE |
+| 5.3 | **24 A1 concept cards authored** (`concepts.json` was empty) — KEY IDEA cards rendering in lesson intros. A2/B1 cards a future extension. | HIGH | DONE |
+| 5.4 | **Unit 1 expanded 7 → 17 words** + sentences (all 4 lessons now have vocab+sentences), global-deduped. | MED | DONE |
+| 5.5 | 0 `audioKey` coverage (TTS-only) + ~5% images — add curated audio/images for core vocab. **Not AI-doable (asset creation); also near the Codex TTS-R2 work — leave.** | MED | TODO |
 | 5.6 | `curriculum.json` is `mode:"all"` — the explore/professional/heritage split isn't implemented. | LOW/CONFIRM | TODO |
 
 ---
