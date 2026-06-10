@@ -1,6 +1,7 @@
 import { useState, useMemo, useEffect, useCallback } from 'react';
 import { Check, ChevronRight, GraduationCap, Ear, Trophy, RotateCw } from 'lucide-react';
 import { getAlphabet } from '../../data/alphabet';
+import { useLang, pickLocalized } from '../../lib/pickLocalized';
 import speak from '../../utils/speak';
 import { playSuccess, playError } from '../../utils/sound';
 import { usePracticeCompletion } from '../../hooks/usePracticeCompletion';
@@ -53,6 +54,7 @@ export default function AlphabetLesson() {
 function LearnGroups({ onDone }) {
     const [gi, setGi] = useState(0);
     const [playing, setPlaying] = useState(null);
+    const lang = useLang();
     const group = GROUPS[gi];
     const last = gi + 1 >= GROUPS.length;
     const advance = () => (last ? onDone() : setGi(gi + 1));
@@ -73,7 +75,7 @@ function LearnGroups({ onDone }) {
                     }}>
                         <span style={{ fontSize: 26, fontWeight: 800, color: 'var(--text-main)' }}>{a.letter}</span>
                         <span style={{ fontSize: 13, fontWeight: 700, color: '#1CB0F6' }}>{a.name}</span>
-                        <span style={{ fontSize: 11, color: 'var(--text-muted)' }}>{a.sound}</span>
+                        <span style={{ fontSize: 11, color: 'var(--text-muted)' }}>{pickLocalized(a, 'sound', lang)}</span>
                     </button>
                 ))}
             </div>

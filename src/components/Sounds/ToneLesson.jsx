@@ -9,6 +9,7 @@ import { saveToneSample, exportToneSamples, getToneSampleCount } from '../../uti
 import { useUser } from '../../context/UserContext';
 import { useEnterKey } from '../../hooks/useEnterKey';
 import PitchGraph from './PitchGraph';
+import { useLang, pickLocalized } from '../../lib/pickLocalized';
 
 // Canonical "ma" minimal set — same base syllable, so only the tone varies.
 // Ideal for teaching and for letting Azure isolate a tone error.
@@ -159,6 +160,7 @@ function IntroStep({ tones, onDone }) {
 
 // ─── Step 1: Learn (pitch contours) ────────────────────────────────
 function LearnStep({ tones, onDone }) {
+    const lang = useLang();
     const [idx, setIdx] = useState(0);
     const [playToken, setPlayToken] = useState(0);
     const tone = tones[idx];
@@ -213,7 +215,7 @@ function LearnStep({ tones, onDone }) {
 
                 <div style={{ padding: '8px 18px 18px' }}>
                     <p style={{ margin: '0 0 14px', fontSize: 14, color: 'var(--text-main)', lineHeight: 1.5 }}>
-                        {tone.description}
+                        {pickLocalized(tone, 'description', lang)}
                     </p>
                     <button onClick={play} style={{
                         width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,

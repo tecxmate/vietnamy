@@ -9,6 +9,7 @@ import { AudioButton, OptionGrid, FeedbackBar, FeedbackMessage, PrimaryButton, E
 import { ProgressBar } from '../../components/Exercise';
 import './PracticeShared.css'; // Add shared layout
 import { getVowels } from '../../data/vowels';
+import { useLang, pickLocalized } from '../../lib/pickLocalized';
 
 // ─── Data ───────────────────────────────────────────────────────────
 
@@ -145,6 +146,7 @@ export default function VowelsPractice({
     }, [singleVowels, centeringDiphthongs, glidingDiphthongs, triphthongs]);
     const { speak } = useTTS();
     const { session, markComplete, goNext, goBack } = usePracticeCompletion();
+    const lang = useLang();
     const firstSection = singleVowels?.length ? 1 : centeringDiphthongs?.length ? 2 : glidingDiphthongs?.length ? 3 : triphthongs?.length ? 4 : 5;
     const [section, setSection] = useState(firstSection);
     const [playingWord, setPlayingWord] = useState(null);
@@ -325,7 +327,7 @@ export default function VowelsPractice({
                                 <span className="vp-vowel-card-letter">{v.letter}</span>
                                 <span className="vp-vowel-card-info">
                                     <span className="vp-vowel-card-name">{v.name}</span>
-                                    <span className="vp-vowel-card-sound" dangerouslySetInnerHTML={{ __html: v.sound }} />
+                                    <span className="vp-vowel-card-sound" dangerouslySetInnerHTML={{ __html: pickLocalized(v, 'sound', lang) }} />
                                     <span className="vp-vowel-card-example">
                                         <em>{v.example}</em> — {v.exMeaning}
                                     </span>
@@ -354,7 +356,7 @@ export default function VowelsPractice({
                                     <span className="vp-centering-card-vs">vs</span>
                                     <span className="vp-spelling-badge closed">{d.closed}</span>
                                 </div>
-                                <p className="vp-centering-card-approx" dangerouslySetInnerHTML={{ __html: d.approx }} />
+                                <p className="vp-centering-card-approx" dangerouslySetInnerHTML={{ __html: pickLocalized(d, 'approx', lang) }} />
                                 <div className="vp-centering-card-examples">
                                     {d.examples.map(ex => (
                                         <button
@@ -403,7 +405,7 @@ export default function VowelsPractice({
                             >
                                 <span className="vp-gliding-card-diph">{g.diph}</span>
                                 <span className="vp-gliding-card-info">
-                                    <span className="vp-gliding-card-approx">{g.approx}</span>
+                                    <span className="vp-gliding-card-approx">{pickLocalized(g, 'approx', lang)}</span>
                                     <span className="vp-gliding-card-example">
                                         <em>{g.example}</em> — {g.meaning}
                                     </span>

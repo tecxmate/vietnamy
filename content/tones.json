@@ -7,6 +7,8 @@
       "mark": "a",
       "color": "#4CAF50",
       "description": "High and flat — no mark",
+      "descriptionZhS": "像一声 ˉ，但音高放在中间（别太高）",
+      "descriptionZhT": "像一聲 ˉ，但音高放在中間（別太高）",
       "contour": [
         0.8,
         0.9,
@@ -37,6 +39,8 @@
       "mark": "á",
       "color": "#2196F3",
       "description": "Rises sharply from mid to high",
+      "descriptionZhS": "像二声 ˊ，由中往上扬",
+      "descriptionZhT": "像二聲 ˊ，由中往上揚",
       "contour": [
         -1,
         -0.8,
@@ -67,6 +71,8 @@
       "mark": "à",
       "color": "#9C27B0",
       "description": "Falls gradually from mid to low, breathy/creaky end",
+      "descriptionZhS": "像四声 ˋ，但整体压低、缓缓下降、不要重",
+      "descriptionZhT": "像四聲 ˋ，但整體壓低、緩緩下降、不要重",
       "contour": [
         0.3,
         0.1,
@@ -97,6 +103,8 @@
       "mark": "ả",
       "color": "#FF9800",
       "description": "Dips low then rises back up",
+      "descriptionZhS": "像三声 ˇ，先降后升",
+      "descriptionZhT": "像三聲 ˇ，先降後升",
       "contour": [
         0,
         -0.3,
@@ -127,6 +135,8 @@
       "mark": "ã",
       "color": "#E91E63",
       "description": "Rises, glottal break drops sharply, then rises again",
+      "descriptionZhS": "国语没有：像上扬，但中间喉咙卡一下（喉塞）再升",
+      "descriptionZhT": "國語沒有：像上揚，但中間喉嚨卡一下（喉塞）再升",
       "contour": [
         0.5,
         0.8,
@@ -157,6 +167,8 @@
       "mark": "ạ",
       "color": "#795548",
       "description": "Low, short, drops with glottal constriction",
+      "descriptionZhS": "国语没有：压低、短促，结尾喉咙紧收卡住",
+      "descriptionZhT": "國語沒有：壓低、短促，結尾喉嚨緊收卡住",
       "contour": [
         -0.5,
         -0.8,

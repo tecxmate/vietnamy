@@ -6,10 +6,10 @@ import { saveOverride, resetOverride } from '../../lib/contentOverrides';
 import EntryTable from './EntryTable';
 
 const SECTIONS = [
-    { key: 'single', label: 'Single vowels', fields: [{ key: 'letter', label: 'Letter' }, { key: 'name', label: 'Name' }, { key: 'sound', label: 'Sound (HTML ok)', wide: true }, { key: 'example', label: 'Example' }, { key: 'exMeaning', label: 'Meaning' }] },
-    { key: 'centering', label: 'Centering', fields: [{ key: 'group', label: 'Group' }, { key: 'open', label: 'Open' }, { key: 'closed', label: 'Closed' }, { key: 'approx', label: 'Approx (HTML ok)', wide: true }] },
-    { key: 'gliding', label: 'Gliding', fields: [{ key: 'diph', label: 'Diph' }, { key: 'approx', label: 'Approx', wide: true }, { key: 'example', label: 'Example' }, { key: 'meaning', label: 'Meaning' }] },
-    { key: 'triphthongs', label: 'Triphthongs', fields: [{ key: 'triph', label: 'Triph' }, { key: 'components', label: 'Parts' }, { key: 'approx', label: 'Approx', wide: true }, { key: 'example', label: 'Example' }, { key: 'meaning', label: 'Meaning' }] },
+    { key: 'single', label: 'Single vowels', fields: [{ key: 'letter', label: 'Letter' }, { key: 'name', label: 'Name' }, { key: 'sound', label: 'Sound · EN', wide: true }, { key: 'soundZhS', label: 'Sound · 拼音 Pinyin (zh-s)', wide: true }, { key: 'soundZhT', label: 'Sound · 注音 Bopomofo (zh-t)', wide: true }, { key: 'example', label: 'Example' }, { key: 'exMeaning', label: 'Meaning' }] },
+    { key: 'centering', label: 'Centering', fields: [{ key: 'group', label: 'Group' }, { key: 'open', label: 'Open' }, { key: 'closed', label: 'Closed' }, { key: 'approx', label: 'Approx · EN', wide: true }, { key: 'approxZhS', label: 'Approx · 拼音 Pinyin (zh-s)', wide: true }, { key: 'approxZhT', label: 'Approx · 注音 Bopomofo (zh-t)', wide: true }] },
+    { key: 'gliding', label: 'Gliding', fields: [{ key: 'diph', label: 'Diph' }, { key: 'approx', label: 'Approx · EN', wide: true }, { key: 'approxZhS', label: 'Approx · 拼音 Pinyin (zh-s)', wide: true }, { key: 'approxZhT', label: 'Approx · 注音 Bopomofo (zh-t)', wide: true }, { key: 'example', label: 'Example' }, { key: 'meaning', label: 'Meaning' }] },
+    { key: 'triphthongs', label: 'Triphthongs', fields: [{ key: 'triph', label: 'Triph' }, { key: 'components', label: 'Parts' }, { key: 'approx', label: 'Approx · EN', wide: true }, { key: 'approxZhS', label: 'Approx · 拼音 Pinyin (zh-s)', wide: true }, { key: 'approxZhT', label: 'Approx · 注音 Bopomofo (zh-t)', wide: true }, { key: 'example', label: 'Example' }, { key: 'meaning', label: 'Meaning' }] },
 ];
 
 export default function VowelsEditor() {

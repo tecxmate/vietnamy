@@ -8,7 +8,9 @@ import EntryTable from './EntryTable';
 const FIELDS = [
     { key: 'letter', label: 'Letter' },
     { key: 'name', label: 'Name (Vietnamese)' },
-    { key: 'sound', label: 'Sound hint', wide: true },
+    { key: 'sound', label: 'Sound · EN', wide: true },
+    { key: 'soundZhS', label: 'Sound · 拼音 Pinyin (zh-s)', wide: true },
+    { key: 'soundZhT', label: 'Sound · 注音 Bopomofo (zh-t)', wide: true },
 ];
 
 export default function AlphabetEditor() {

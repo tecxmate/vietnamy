@@ -7,17 +7,17 @@ import { loadOverride } from '../lib/contentOverrides';
 export const VOWELS_CMS_KEY = 'vnme_cms_vowels';
 
 const DEFAULT_SINGLE = [
-    { letter: 'a', name: 'Plain a', sound: '"ah" as in <b>father</b>', example: 'ba', exMeaning: 'father' },
-    { letter: 'ă', name: 'Smile a', sound: 'Shorter "ah" as in <b>cut</b> or <b>shut</b>', example: 'ăn', exMeaning: 'eat' },
-    { letter: 'â', name: 'Hat a', sound: '"u" as in <b>but</b> (very short)', example: 'cần', exMeaning: 'need' },
-    { letter: 'e', name: 'Plain e', sound: '"e" as in <b>get</b> or <b>set</b>', example: 'xe', exMeaning: 'vehicle' },
-    { letter: 'ê', name: 'Hat e', sound: '"ay" as in <b>say</b> or <b>day</b>', example: 'bê', exMeaning: 'calf' },
-    { letter: 'i / y', name: 'i / y', sound: '"ee" as in <b>see</b>', example: 'bi', exMeaning: 'marble' },
-    { letter: 'o', name: 'Plain o', sound: '"o" as in <b>hot</b>', example: 'bò', exMeaning: 'cow' },
-    { letter: 'ô', name: 'Hat o', sound: '"o" as in <b>go</b>', example: 'cô', exMeaning: 'miss' },
-    { letter: 'ơ', name: 'Hook o', sound: '"u" as in <b>huh</b> or <b>fur</b> (but longer)', example: 'thơ', exMeaning: 'poem' },
-    { letter: 'u', name: 'Plain u', sound: '"oo" as in <b>boot</b> or <b>true</b>', example: 'thu', exMeaning: 'autumn' },
-    { letter: 'ư', name: 'Hook u', sound: 'Like "ee" but with flat, unrounded lips', example: 'thư', exMeaning: 'letter' },
+    { letter: 'a', name: 'Plain a', sound: '"ah" as in <b>father</b>', soundZhS: '像 <b>a</b>（啊），拉长', soundZhT: '像 <b>ㄚ</b>（啊），拉長', example: 'ba', exMeaning: 'father' },
+    { letter: 'ă', name: 'Smile a', sound: 'Shorter "ah" as in <b>cut</b> or <b>shut</b>', soundZhS: '像 a，但更短促', soundZhT: '像 ㄚ，但更短促', example: 'ăn', exMeaning: 'eat' },
+    { letter: 'â', name: 'Hat a', sound: '"u" as in <b>but</b> (very short)', soundZhS: '国语没有；像轻短含糊的 e（呃）', soundZhT: '國語沒有；輕短含糊的 <b>ㄜ</b>（呃）', example: 'cần', exMeaning: 'need' },
+    { letter: 'e', name: 'Plain e', sound: '"e" as in <b>get</b> or <b>set</b>', soundZhS: '像 <b>ê</b>（耶 ye 里的 e）', soundZhT: '像 <b>ㄝ</b>（欸）', example: 'xe', exMeaning: 'vehicle' },
+    { letter: 'ê', name: 'Hat e', sound: '"ay" as in <b>say</b> or <b>day</b>', soundZhS: '介于 ê 和 ei 之间，嘴角往两侧、不滑动', soundZhT: '像 ㄝ 但更緊更高（接近 ㄟ 去掉尾音）', example: 'bê', exMeaning: 'calf' },
+    { letter: 'i / y', name: 'i / y', sound: '"ee" as in <b>see</b>', soundZhS: '像 <b>yi</b>（衣、一）', soundZhT: '像 <b>ㄧ</b>（衣）', example: 'bi', exMeaning: 'marble' },
+    { letter: 'o', name: 'Plain o', sound: '"o" as in <b>hot</b>', soundZhS: '像 <b>o</b>（哦），嘴张大', soundZhT: '像 <b>ㄛ</b>（哦），嘴張大', example: 'bò', exMeaning: 'cow' },
+    { letter: 'ô', name: 'Hat o', sound: '"o" as in <b>go</b>', soundZhS: '像 o 收圆（播 bo 的 o），别滑成 ou', soundZhT: '像 ㄛ 收圓（接近 ㄡ 去掉尾音）', example: 'cô', exMeaning: 'miss' },
+    { letter: 'ơ', name: 'Hook o', sound: '"u" as in <b>huh</b> or <b>fur</b> (but longer)', soundZhS: '国语没有；â 的长音，拉长又含糊的 e', soundZhT: '國語沒有；拉長的 <b>ㄜ</b>', example: 'thơ', exMeaning: 'poem' },
+    { letter: 'u', name: 'Plain u', sound: '"oo" as in <b>boot</b> or <b>true</b>', soundZhS: '像 <b>wu</b>（乌、五）', soundZhT: '像 <b>ㄨ</b>（烏）', example: 'thu', exMeaning: 'autumn' },
+    { letter: 'ư', name: 'Hook u', sound: 'Like "ee" but with flat, unrounded lips', soundZhS: '国语没有；像 si/zi/ri（思、资、日）里那个嗡嗡母音，嘴唇放平不噘', soundZhT: '國語沒有；<b>ㄙ/ㄗ/ㄖ</b> 後面那個母音，嘴唇放平不噘', example: 'thư', exMeaning: 'letter' },
 ];
 
 const DEFAULT_CENTERING = [
