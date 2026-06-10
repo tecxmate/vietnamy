@@ -212,11 +212,10 @@ adds the optional `listen_pick` type used by the consonant drills.
 
 ## 5. Grammar modules
 
-**Consolidate to one file.** Today the same source content lives in
-`grammar_modules.json` (processed `levels → modules → units`) **and**
-`vn_grammar_bank_v2.json` (raw `items → sections`); the former references the latter via
-`source_item_index`. Keep the structured `levels` shape as canonical, deprecate the raw
-bank (or keep it only as an authoring input, never shipped).
+**Consolidated (2026-06-10).** Grammar is now single-source: `grammar_modules.json`
+(`levels → modules → units`) → `content/grammar.json` → `grammarModulesDB`. The raw
+`vn_grammar_bank_v2.json` bank and all its readers were removed once the browser and
+lessons read the canonical structure.
 
 ```jsonc
 {
@@ -418,8 +417,8 @@ Other issues this contract fixes:
   `professional`/`heritage` omit them — same type, different shape.
 - **Unstable IDs:** `dictionary.json` uses the Vietnamese word as its `id` (collides on
   homographs); zero-padding differs (`it_w_0001` vs `pr_w_001`).
-- **Duplicate stores:** two grammar files (`grammar_modules.json` + `vn_grammar_bank_v2.json`)
-  for one source; two dictionaries (client `dictionary.json` + server SQLite) with
+- **Duplicate stores:** ~~two grammar files~~ (resolved 2026-06-10 — bank removed, grammar
+  single-source); two dictionaries (client `dictionary.json` + server SQLite) with
   different schemas.
 - **Three lesson generations:** legacy `lessons.json` (`vietnamese`/`meaning`),
   authoring `curricula/*.json` (`vi`/`en`), runtime `unified_db.json` (`vi_text`/`translations[]`).

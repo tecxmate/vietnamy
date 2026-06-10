@@ -138,7 +138,7 @@ When an exercise involves a sentence that carries a `note` or grammar `tag`, sho
 Rules for the tip chip:
 - Appears only when the current item has a `note` or `tag`. No chip = no clutter.
 - Default collapsed. One tap to expand, never blocks the answer.
-- Pulls from `note` first, falls back to the grammar tag's `description`/`example` (already in `grammar_tags.json` / `vn_grammar_bank_v2.json`).
+- Pulls from `note` first, falls back to the grammar tag's `description`/`example` (the canonical `grammarTags` in `curriculum.json`).
 - First time a given grammar tag appears, auto-expand once so it's not missed; thereafter collapsed by default.
 
 ### 6b. The Notebook (persistent, per-lesson)

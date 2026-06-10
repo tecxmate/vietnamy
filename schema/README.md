@@ -8,7 +8,7 @@ The human-readable spec is [`docs/CONTENT_SCHEMA.md`](../docs/CONTENT_SCHEMA.md)
 | `_common.schema.json` | Shared `$defs` (id, localizedText, enums) | — |
 | `curriculum.schema.json` | A learner-mode container (units, lessons, words, sentences, conversations, grammarTags) | `curricula/*.json`, `lessons.json`, `unified_db.json` |
 | `drill.schema.json` | One practice drill | `drills/*.json` |
-| `grammar.schema.json` | Grammar modules (levels → modules → units) | `grammar_modules.json` (+ deprecates `vn_grammar_bank_v2.json`) |
+| `grammar.schema.json` | Grammar modules (levels → modules → units) | `grammar_modules.json` (single-source; legacy `vn_grammar_bank_v2.json` removed) |
 | `article.schema.json` | One reading article | `articleData.js` (ARTICLES) |
 | `dictionary.schema.json` | One dictionary entry | `dictionary.json`, server SQLite (client projection) |
 | `tones.schema.json` | Tone contours + practice words | `toneContours.js` |
