@@ -150,3 +150,10 @@ attributed_to: [niko, claude-opus]   belongs_to: [grammar-system, adaptive-seque
 - **Grammar Guide restored** at `/grammar` (the old 5-tab blue `GrammarTab`), canonical-fed A1–C2, scroll fixed, level colors harmonized for dark mode. Reached via Library → Grammar.
 - **Adaptive sequencer Layers 1–3 built** (additive, non-destructive): generated `adaptive` tag/prerequisite block per lesson in `content/curriculum.json`; pure engine `src/lib/sequencer.js`; wired as a "Recommended for you" row atop the Study roadmap. Linear roadmap unchanged. Next: Layer 4 (requires_vocab/skills + review/remediation), make-primary, Layer 5 engagement.
 - Pages: [grammar-system](topics/tech/grammar-system.md), [adaptive-sequencer](topics/tech/adaptive-sequencer.md). Backlog: `docs/AUDIT.md` (Pass 5 rows done). Design: `docs/ADAPTIVE_CURRICULUM_SEQUENCER.md`.
+
+## [2026-06-11] decision | Chinese pronunciation explanations are curriculum (Bopomofo / Pinyin)
+attributed_to: [niko]   belongs_to: [curriculum-paths]
+- VN pronunciation explanations anchor to English words ("as in father") — useless to Chinese speakers; re-author against Bopomofo (zh-t) / Pinyin (zh-s).
+- Curriculum, not translation: ư, â/ơ (schwa), and tones ngã/nặng have no Mandarin equivalent — give "closest + adjust"; validate before shipping.
+- Needs a per-language `sound` field on alphabet/vowels + tone descriptions. Status: proposed.
+- Pages: [decision](decisions/2026-06-11-chinese-pronunciation-curriculum.md).
