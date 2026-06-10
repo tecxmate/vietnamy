@@ -142,3 +142,11 @@ attributed_to: [niko, codex]   belongs_to: [backend-ops-store]
 - Client auth now creates/links a `profiles` row on session/login and syncs local progress/saved-word state under `auth.users.id`.
 - Notification read/update APIs now require a Supabase JWT and derive `recipientId` from the authenticated user instead of trusting arbitrary `userId`.
 - Pages: [topic](topics/tech/backend-ops-store.md).
+
+## [2026-06-11] ingest | Pass 5 content depth, grammar consolidation, adaptive sequencer
+attributed_to: [niko, claude-opus]   belongs_to: [grammar-system, adaptive-sequencer, curriculum-paths]
+- **Pass 5 content** (merged): concept "Key Idea" cards now cover **every A1–C2 lesson (140)**, `concepts.json` was empty before; **sentence grammar-tagging 9%→100%** (488/488, source `unified_db.json`); **Unit 1 expanded 7→17 words**. All via multi-agent passes (Workflow tool).
+- **Grammar B2/C1/C2 authored** (+22 modules / +105 units) via author→native-review pipeline; all grammar readers migrated to canonical `grammarModulesDB`; the legacy `vn_grammar_bank_v2.json` dataset (12.7K lines) + its consumers (`grammarDB`, `GrammarLesson`/`GrammarDetail`/admin `GrammarEditor`, dead `grammar_lesson` branches) **fully retired** — grammar is now single-source.
+- **Grammar Guide restored** at `/grammar` (the old 5-tab blue `GrammarTab`), canonical-fed A1–C2, scroll fixed, level colors harmonized for dark mode. Reached via Library → Grammar.
+- **Adaptive sequencer Layers 1–3 built** (additive, non-destructive): generated `adaptive` tag/prerequisite block per lesson in `content/curriculum.json`; pure engine `src/lib/sequencer.js`; wired as a "Recommended for you" row atop the Study roadmap. Linear roadmap unchanged. Next: Layer 4 (requires_vocab/skills + review/remediation), make-primary, Layer 5 engagement.
+- Pages: [grammar-system](topics/tech/grammar-system.md), [adaptive-sequencer](topics/tech/adaptive-sequencer.md). Backlog: `docs/AUDIT.md` (Pass 5 rows done). Design: `docs/ADAPTIVE_CURRICULUM_SEQUENCER.md`.
