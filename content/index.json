@@ -26,8 +26,8 @@
     },
     "grammar": {
       "path": "grammar.json",
-      "levels": 3,
-      "modules": 80
+      "levels": 6,
+      "modules": 102
     },
     "tones": {
       "path": "tones.json",
