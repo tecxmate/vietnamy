@@ -12,7 +12,7 @@ export const RED = '#EF476F';
 // Sticky header (close button + header content) wrapping a full-screen lesson.
 export function PracticeShell({ onClose, header, children }) {
     return (
-        <div style={{ minHeight: '60vh' }}>
+        <div style={{ height: 'var(--app-viewport-height, 100dvh)', overflowY: 'auto', WebkitOverflowScrolling: 'touch' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '14px 16px', borderBottom: '1px solid var(--border-color)', backgroundColor: 'var(--surface-color)', position: 'sticky', top: 0, zIndex: 20 }}>
                 <button onClick={onClose} aria-label="Close" style={{ background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', display: 'flex', padding: 4 }}><X size={22} /></button>
                 {header}
