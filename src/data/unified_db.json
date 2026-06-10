@@ -19523,6 +19523,166 @@
           "is_primary": true
         }
       ]
+    },
+    {
+      "id": "it_w_1109",
+      "lesson_id": "lesson_001a",
+      "vi_text": "chào buổi sáng",
+      "pos": "phrase",
+      "emoji": "🌅",
+      "difficulty": 1,
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "good morning",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_1110",
+      "lesson_id": "lesson_001a",
+      "vi_text": "hẹn gặp lại",
+      "pos": "phrase",
+      "emoji": "👋",
+      "difficulty": 1,
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "see you again",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_1111",
+      "lesson_id": "lesson_001a",
+      "vi_text": "khỏe",
+      "pos": "adjective",
+      "emoji": "💪",
+      "difficulty": 1,
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "well / healthy",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_1112",
+      "lesson_id": "lesson_001b",
+      "vi_text": "cảm ơn nhiều",
+      "pos": "phrase",
+      "emoji": "🙏",
+      "difficulty": 1,
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "thank you very much",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_1113",
+      "lesson_id": "lesson_001b",
+      "vi_text": "không sao",
+      "pos": "phrase",
+      "emoji": "👌",
+      "difficulty": 1,
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "no problem / it's okay",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_1114",
+      "lesson_id": "lesson_001b",
+      "vi_text": "rất",
+      "pos": "adverb",
+      "emoji": "💯",
+      "difficulty": 1,
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "very",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_1115",
+      "lesson_id": "lesson_002a",
+      "vi_text": "tên",
+      "pos": "noun",
+      "emoji": "🏷️",
+      "difficulty": 1,
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "name",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_1116",
+      "lesson_id": "lesson_002a",
+      "vi_text": "là",
+      "pos": "verb",
+      "emoji": "🟰",
+      "difficulty": 1,
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "to be",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_1117",
+      "lesson_id": "lesson_002a",
+      "vi_text": "gì",
+      "pos": "pronoun",
+      "emoji": "❓",
+      "difficulty": 1,
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "what",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_w_1118",
+      "lesson_id": "lesson_002b",
+      "vi_text": "gặp",
+      "pos": "verb",
+      "emoji": "🤝",
+      "difficulty": 1,
+      "has_image": false,
+      "translations": [
+        {
+          "lang": "en",
+          "text": "to meet",
+          "is_primary": true
+        }
+      ]
     }
   ],
   "sentences": [
@@ -28059,6 +28219,161 @@
         {
           "lang": "en",
           "text": "Total: two million dong.",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_s_0728",
+      "lesson_id": "lesson_001a",
+      "vi_text": "Chào bạn!",
+      "token_count": 2,
+      "difficulty": 1,
+      "grammar_tags": [
+        "GT001"
+      ],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "Hello, friend!",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_s_0729",
+      "lesson_id": "lesson_001a",
+      "vi_text": "Bạn khỏe không?",
+      "token_count": 3,
+      "difficulty": 1,
+      "grammar_tags": [
+        "GT005"
+      ],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "Are you well?",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_s_0730",
+      "lesson_id": "lesson_001a",
+      "vi_text": "Hẹn gặp lại nhé!",
+      "token_count": 4,
+      "difficulty": 1,
+      "grammar_tags": [
+        "GT001"
+      ],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "See you again!",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_s_0731",
+      "lesson_id": "lesson_001b",
+      "vi_text": "Cảm ơn bạn!",
+      "token_count": 3,
+      "difficulty": 1,
+      "grammar_tags": [
+        "GT001"
+      ],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "Thank you!",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_s_0732",
+      "lesson_id": "lesson_001b",
+      "vi_text": "Cảm ơn nhiều!",
+      "token_count": 3,
+      "difficulty": 1,
+      "grammar_tags": [
+        "GT033"
+      ],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "Thank you very much!",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_s_0733",
+      "lesson_id": "lesson_001b",
+      "vi_text": "Không sao.",
+      "token_count": 2,
+      "difficulty": 1,
+      "grammar_tags": [
+        "GT004"
+      ],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "No problem.",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_s_0734",
+      "lesson_id": "lesson_002a",
+      "vi_text": "Tôi tên là Nam.",
+      "token_count": 4,
+      "difficulty": 1,
+      "grammar_tags": [
+        "GT002",
+        "GT001"
+      ],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "My name is Nam.",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_s_0735",
+      "lesson_id": "lesson_002a",
+      "vi_text": "Tên bạn là gì?",
+      "token_count": 4,
+      "difficulty": 1,
+      "grammar_tags": [
+        "GT006",
+        "GT002"
+      ],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "What is your name?",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "id": "it_s_0736",
+      "lesson_id": "lesson_002b",
+      "vi_text": "Xin chào, tôi là Mai.",
+      "token_count": 5,
+      "difficulty": 1,
+      "grammar_tags": [
+        "GT002"
+      ],
+      "translations": [
+        {
+          "lang": "en",
+          "text": "Hello, I am Mai.",
           "is_primary": true
         }
       ]

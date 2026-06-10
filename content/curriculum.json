@@ -221,7 +221,15 @@
       "wordIds": [
         "it_w_0001",
         "it_w_0002",
-        "it_w_0003"
+        "it_w_0003",
+        "it_w_1109",
+        "it_w_1110",
+        "it_w_1111"
+      ],
+      "sentenceIds": [
+        "it_s_0728",
+        "it_s_0729",
+        "it_s_0730"
       ],
       "conversationIds": [
         "conv_001"
@@ -246,10 +254,16 @@
         "it_w_0004",
         "it_w_0007",
         "it_w_0008",
-        "it_w_0009"
+        "it_w_0009",
+        "it_w_1112",
+        "it_w_1113",
+        "it_w_1114"
       ],
       "sentenceIds": [
-        "it_s_0037"
+        "it_s_0037",
+        "it_s_0731",
+        "it_s_0732",
+        "it_s_0733"
       ]
     },
     {
@@ -267,8 +281,15 @@
       "cefrLevel": "A1",
       "difficulty": 2,
       "xpReward": 8,
+      "wordIds": [
+        "it_w_1115",
+        "it_w_1116",
+        "it_w_1117"
+      ],
       "sentenceIds": [
-        "it_s_0012"
+        "it_s_0012",
+        "it_s_0734",
+        "it_s_0735"
       ]
     },
     {
@@ -285,8 +306,12 @@
       "cefrLevel": "A1",
       "difficulty": 2,
       "xpReward": 8,
+      "wordIds": [
+        "it_w_1118"
+      ],
       "sentenceIds": [
-        "it_s_0013"
+        "it_s_0013",
+        "it_s_0736"
       ]
     },
     {
@@ -15933,6 +15958,106 @@
       "frequencyRank": 1108,
       "dialect": "neutral",
       "hasImage": false
+    },
+    {
+      "id": "it_w_1109",
+      "lessonId": "lesson_001a",
+      "vi": "chào buổi sáng",
+      "en": "good morning",
+      "pos": "phrase",
+      "emoji": "🌅",
+      "difficulty": 1,
+      "hasImage": false
+    },
+    {
+      "id": "it_w_1110",
+      "lessonId": "lesson_001a",
+      "vi": "hẹn gặp lại",
+      "en": "see you again",
+      "pos": "phrase",
+      "emoji": "👋",
+      "difficulty": 1,
+      "hasImage": false
+    },
+    {
+      "id": "it_w_1111",
+      "lessonId": "lesson_001a",
+      "vi": "khỏe",
+      "en": "well / healthy",
+      "pos": "adjective",
+      "emoji": "💪",
+      "difficulty": 1,
+      "hasImage": false
+    },
+    {
+      "id": "it_w_1112",
+      "lessonId": "lesson_001b",
+      "vi": "cảm ơn nhiều",
+      "en": "thank you very much",
+      "pos": "phrase",
+      "emoji": "🙏",
+      "difficulty": 1,
+      "hasImage": false
+    },
+    {
+      "id": "it_w_1113",
+      "lessonId": "lesson_001b",
+      "vi": "không sao",
+      "en": "no problem / it's okay",
+      "pos": "phrase",
+      "emoji": "👌",
+      "difficulty": 1,
+      "hasImage": false
+    },
+    {
+      "id": "it_w_1114",
+      "lessonId": "lesson_001b",
+      "vi": "rất",
+      "en": "very",
+      "pos": "adverb",
+      "emoji": "💯",
+      "difficulty": 1,
+      "hasImage": false
+    },
+    {
+      "id": "it_w_1115",
+      "lessonId": "lesson_002a",
+      "vi": "tên",
+      "en": "name",
+      "pos": "noun",
+      "emoji": "🏷️",
+      "difficulty": 1,
+      "hasImage": false
+    },
+    {
+      "id": "it_w_1116",
+      "lessonId": "lesson_002a",
+      "vi": "là",
+      "en": "to be",
+      "pos": "verb",
+      "emoji": "🟰",
+      "difficulty": 1,
+      "hasImage": false
+    },
+    {
+      "id": "it_w_1117",
+      "lessonId": "lesson_002a",
+      "vi": "gì",
+      "en": "what",
+      "pos": "pronoun",
+      "emoji": "❓",
+      "difficulty": 1,
+      "hasImage": false
+    },
+    {
+      "id": "it_w_1118",
+      "lessonId": "lesson_002b",
+      "vi": "gặp",
+      "en": "to meet",
+      "pos": "verb",
+      "emoji": "🤝",
+      "difficulty": 1,
+      "hasImage": false
     }
   ],
   "sentences": [
@@ -21531,6 +21656,107 @@
       "grammarTagIds": [
         "gtag_024",
         "gtag_023"
+      ]
+    },
+    {
+      "id": "it_s_0728",
+      "lessonId": "lesson_001a",
+      "vi": "Chào bạn!",
+      "en": "Hello, friend!",
+      "tokenCount": 2,
+      "difficulty": 1,
+      "grammarTagIds": [
+        "gtag_001"
+      ]
+    },
+    {
+      "id": "it_s_0729",
+      "lessonId": "lesson_001a",
+      "vi": "Bạn khỏe không?",
+      "en": "Are you well?",
+      "tokenCount": 3,
+      "difficulty": 1,
+      "grammarTagIds": [
+        "gtag_005"
+      ]
+    },
+    {
+      "id": "it_s_0730",
+      "lessonId": "lesson_001a",
+      "vi": "Hẹn gặp lại nhé!",
+      "en": "See you again!",
+      "tokenCount": 4,
+      "difficulty": 1,
+      "grammarTagIds": [
+        "gtag_001"
+      ]
+    },
+    {
+      "id": "it_s_0731",
+      "lessonId": "lesson_001b",
+      "vi": "Cảm ơn bạn!",
+      "en": "Thank you!",
+      "tokenCount": 3,
+      "difficulty": 1,
+      "grammarTagIds": [
+        "gtag_001"
+      ]
+    },
+    {
+      "id": "it_s_0732",
+      "lessonId": "lesson_001b",
+      "vi": "Cảm ơn nhiều!",
+      "en": "Thank you very much!",
+      "tokenCount": 3,
+      "difficulty": 1,
+      "grammarTagIds": [
+        "gtag_033"
+      ]
+    },
+    {
+      "id": "it_s_0733",
+      "lessonId": "lesson_001b",
+      "vi": "Không sao.",
+      "en": "No problem.",
+      "tokenCount": 2,
+      "difficulty": 1,
+      "grammarTagIds": [
+        "gtag_004"
+      ]
+    },
+    {
+      "id": "it_s_0734",
+      "lessonId": "lesson_002a",
+      "vi": "Tôi tên là Nam.",
+      "en": "My name is Nam.",
+      "tokenCount": 4,
+      "difficulty": 1,
+      "grammarTagIds": [
+        "gtag_002",
+        "gtag_001"
+      ]
+    },
+    {
+      "id": "it_s_0735",
+      "lessonId": "lesson_002a",
+      "vi": "Tên bạn là gì?",
+      "en": "What is your name?",
+      "tokenCount": 4,
+      "difficulty": 1,
+      "grammarTagIds": [
+        "gtag_006",
+        "gtag_002"
+      ]
+    },
+    {
+      "id": "it_s_0736",
+      "lessonId": "lesson_002b",
+      "vi": "Xin chào, tôi là Mai.",
+      "en": "Hello, I am Mai.",
+      "tokenCount": 5,
+      "difficulty": 1,
+      "grammarTagIds": [
+        "gtag_002"
       ]
     }
   ],
