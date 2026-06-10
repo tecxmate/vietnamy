@@ -3,7 +3,7 @@
  *
  * Thin adapter over the canonical content/grammar.json bundle (generated from
  * src/data/grammar_modules.json via `npm run content:build`). Same nested
- * Level → Module → Unit structure; exposes helpers for the GrammarTrack
+ * Level → Module → Unit structure; exposes helpers for the Grammar Guide / unit lessons
  * component and GrammarUnitLesson page.
  *
  * Progress is tracked via ProgressContext's completedNodes set — each grammar

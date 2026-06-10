@@ -88,6 +88,23 @@ lessons / 1,001 words / 479 sentences. Canonical content bundle at repo-root `co
 
 ---
 
+## Consistency check — 2026-06-11 (post-adaptive/grammar/content arc)
+
+4 parallel review agents (adaptive system, grammar system, content data, e2e flows) + inline verification.
+**Data layer: fully consistent** (index counts, adaptive blocks 140/140, tag/vocab refs 0 dangling, concepts 1:1 with lessons, faqs uniform). **Flows: 0 page errors** across Study/lesson/Library/Grammar/Dictionary/nav-cycling.
+
+| Finding | Verdict | Action |
+|---|---|---|
+| B2/C1/C2 grammar level descriptions missing from i18n | real | FIXED — added en/zh-s/zh-t keys |
+| Lesson quit-modal copy hardcoded EN + "almost done" even at exercise 1 | real | FIXED — localized (5 keys × 3 langs) + progress-aware (≥50% → "almost done") |
+| `GrammarTrack.jsx` dead (0 importers) | real | FIXED — deleted |
+| "modeCompletedNodes creates unstable Set" | **false** (it's memoized) | none — agent over-claim |
+| Mascot politeness intro on "Count to 5" deep-link | by design (lesson is in unit *Polite Survival*; intro = unit theme) | noted, no change |
+| Library "Grammar" tab navigates away (vs siblings filtering in place); selection not remembered on back | known tradeoff (guide is a full-page reference) | accepted for now |
+| Intro footer reads START on 1-step intros vs CONTINUE on multi-step | cosmetic | accepted |
+
+---
+
 ## Pass 5 — Content comprehensiveness (the north star)
 
 | # | Item | Impact | Status |

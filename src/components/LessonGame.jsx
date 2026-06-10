@@ -666,8 +666,12 @@ const LessonGame = () => {
                     padding: 'var(--app-edge-top) var(--app-edge-right) var(--app-edge-gap) var(--app-edge-left)',
                 }}>
                     <Frown size={100} color="var(--text-muted)" strokeWidth={1.5} style={{ marginBottom: 24 }} />
-                    <h2 style={{ fontSize: 22, marginBottom: 8, lineHeight: 1.4 }}>Are you sure?</h2>
-                    <p style={{ color: 'var(--text-muted)', fontSize: 15, margin: 0 }}>You're almost done with this lesson!</p>
+                    <h2 style={{ fontSize: 22, marginBottom: 8, lineHeight: 1.4 }}>{t('lesson_quit_title')}</h2>
+                    <p style={{ color: 'var(--text-muted)', fontSize: 15, margin: 0 }}>
+                        {exercises.length > 0 && currentIndex / exercises.length >= 0.5
+                            ? t('lesson_quit_almost_done')
+                            : t('lesson_quit_progress_lost')}
+                    </p>
                 </div>
                 <div style={{
                     padding: '24px var(--app-edge-right) calc(24px + var(--safe-area-bottom-effective)) var(--app-edge-left)',
@@ -687,10 +691,10 @@ const LessonGame = () => {
                         });
                         navigate('/', { state: { tab: 'study' } });
                     }}>
-                        QUIT
+                        {t('lesson_quit_confirm')}
                     </button>
                     <SoundButton className="primary shadow-lg" style={{ width: '100%', fontSize: 18 }} onClick={() => setShowQuitConfirm(false)}>
-                        KEEP LEARNING
+                        {t('lesson_quit_stay')}
                     </SoundButton>
                 </div>
             </div>
