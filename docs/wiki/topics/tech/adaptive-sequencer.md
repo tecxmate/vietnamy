@@ -70,15 +70,33 @@ Library SRS review (`__srs__` deck → `VocabReviewView`) via a new
 `location.state.vocabDeck` handler in `StudentApp` (reuses the `pendingVocabDeck`
 path). Verified e2e.
 
+**Item-based remediation (done — replaced skill matching).** Content-derived skills
+can never discriminate here (134/140 lessons are word-heavy), so remediation is
+ITEM-based: build-canonical derives `adaptive.usesVocab` (vocab a lesson's sentences
+REUSE but other lessons own; longest-match tokenization, 139/140 lessons, avg 6.8).
+`reviewValue`/`remediationValue` match due/weak item ids against
+`wordIds ∪ usesVocab`. Demo-proven: weak on tôi/muốn/mua → "Order Something" tops.
+
+**Sequencer-primary Continue (done, measured).** Learner-state derivation lives in
+`src/lib/recommendations.js` (`getRecommendations`) — shared by `RecommendedNext`
+and `RoadmapTab`. The Continue button follows the sequencer's top pick **when the
+next linear node is a lesson**; non-lesson nodes (foundations practice, grammar
+units, tests) keep their hard order. Verified: a new learner's Continue still opens
+Foundations.
+
+**Layer 5 capture (done — capture-only).** `src/lib/engagement.js` (localStorage
+`vnme_engagement` ring buffer, 1000 events, never throws). `LessonGame` logs
+`exercise` (type/correct/responseMs), `lesson_quit` (atIndex/total/elapsedMs),
+`lesson_complete`. NOTHING reads these for sequencing — per the design: instrument
+now, act only once the data shows what the signals mean.
+
 ## Open questions / next steps (for whoever continues)
-- **Better Layer 4 data** — per-lesson skill granularity (which exercise types a
-  lesson really runs, gated by profile/CEFR) so `remediationValue` discriminates.
-- **Make the sequencer primary** — currently a recommendation row; could drive the
-  Continue button / path with a force-insert spine+review cadence. (Note: the roadmap
-  is strictly *linear-unlock* today; graph-based unlock is the bigger change.)
 - **Refine purpose weights** — coarse binary v1; a per-lesson admin editor.
-- **Layer 5 (engagement)** — instrument response time / hesitation / quits now, act
-  later. Touches the sensitive `LessonGame` engine — get sign-off.
+- **Act on engagement** — only after `vnme_engagement` data accumulates and is
+  analyzed (does fast+accurate mean bored or confident?). Add an export/analysis
+  path first.
+- **Graph-based unlock** — the roadmap's *visible path* is still linear-unlock;
+  rendering a per-purpose path from the sequencer is the remaining big UX change.
 - **Foundations** (alphabet/vowels) are practice *nodes*, not lessons, so they're
   absent from the sequencer (lessons-only) — they stay in the roadmap.
 
@@ -89,3 +107,5 @@ path). Verified e2e.
   and mastery-driven performance-adaptive difficulty in `RecommendedNext`.
 - 2026-06-11 — Layer 4 SRS review surface: "Review · N due" card on Study →
   Library SRS review via `location.state.vocabDeck`.
+- 2026-06-11 — Item-based remediation (`usesVocab`), sequencer-primary Continue
+  (lesson nodes only), Layer 5 engagement capture (`vnme_engagement`).

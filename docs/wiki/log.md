@@ -157,3 +157,10 @@ attributed_to: [niko]   belongs_to: [curriculum-paths]
 - Curriculum, not translation: ư, â/ơ (schwa), and tones ngã/nặng have no Mandarin equivalent — give "closest + adjust"; validate before shipping.
 - Needs a per-language `sound` field on alphabet/vowels + tone descriptions. Status: proposed.
 - Pages: [decision](decisions/2026-06-11-chinese-pronunciation-curriculum.md).
+
+## [2026-06-11] ingest | Adaptive sequencer completion: remediation, Continue, Layer 5
+attributed_to: [niko, claude-opus]   belongs_to: [adaptive-sequencer]
+- Review/remediation went **item-based** via generated `adaptive.usesVocab` (vocab reused by a lesson's sentences) — the skill-based matching could never discriminate (134/140 lessons word-heavy).
+- The **Continue button is now sequencer-primary for lesson nodes** (shared `src/lib/recommendations.js`); foundations/grammar/test nodes keep their hard order.
+- **Layer 5 engagement capture** landed (capture-only): `src/lib/engagement.js` ring buffer; LessonGame logs exercise response times, quits, completes. Nothing acts on it yet by design.
+- Pages: [adaptive-sequencer](topics/tech/adaptive-sequencer.md).
