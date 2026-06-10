@@ -7,6 +7,111 @@
   overflow: hidden;
 }
 
+.app-loading-screen {
+  width: 100%;
+  height: 100%;
+  min-height: var(--app-viewport-height);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: var(--app-edge-top) var(--app-edge-right) var(--app-edge-bottom) var(--app-edge-left);
+  background:
+    radial-gradient(circle at 50% 45%, rgba(242, 107, 90, 0.14) 0 18%, transparent 42%),
+    var(--bg-color);
+  color: var(--text-main);
+  text-align: center;
+}
+
+.app-loading-mascot {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  display: grid;
+  place-items: center;
+}
+
+.app-loading-star {
+  display: block;
+  overflow: visible;
+  transform-origin: center bottom;
+  animation: app-loading-bob 1.45s ease-in-out infinite;
+  filter: drop-shadow(0 10px 16px rgba(0, 0, 0, 0.28));
+}
+
+.app-loading-spark {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  background: var(--accent-gold);
+  transform: rotate(45deg) scale(0.65);
+  opacity: 0;
+  animation: app-loading-spark 1.45s ease-in-out infinite;
+}
+
+.app-loading-spark-one {
+  top: 14px;
+  right: 18px;
+}
+
+.app-loading-spark-two {
+  left: 12px;
+  top: 42px;
+  width: 7px;
+  height: 7px;
+  animation-delay: 0.18s;
+}
+
+.app-loading-spark-three {
+  right: 20px;
+  bottom: 28px;
+  width: 6px;
+  height: 6px;
+  animation-delay: 0.34s;
+}
+
+.app-loading-text {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--text-muted);
+  letter-spacing: 0;
+}
+
+@keyframes app-loading-bob {
+  0%, 100% {
+    transform: translateY(0) rotate(-2deg) scale(1);
+  }
+
+  45% {
+    transform: translateY(-10px) rotate(2deg) scale(1.04);
+  }
+}
+
+@keyframes app-loading-spark {
+  0%, 100% {
+    opacity: 0;
+    transform: rotate(45deg) scale(0.45);
+  }
+
+  42% {
+    opacity: 1;
+    transform: rotate(45deg) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-loading-star,
+  .app-loading-spark {
+    animation: none;
+  }
+
+  .app-loading-spark {
+    opacity: 0.8;
+  }
+}
+
 .content-column {
   display: flex;
   flex-direction: column;
