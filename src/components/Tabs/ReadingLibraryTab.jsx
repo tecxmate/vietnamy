@@ -1,5 +1,5 @@
 import React, { useState, useRef, useMemo, useEffect, useCallback } from 'react';
-import { ChevronLeft, Volume2, BookOpen, ChevronRight, Layers, Plus, Trash2, BookmarkCheck, Play, X, Check, RotateCw, ArrowUpDown, ListFilter, Clock, SortAsc, SortDesc, LayoutList, LayoutGrid, Trophy, Flame, Star } from 'lucide-react';
+import { ChevronLeft, Volume2, BookOpen, ChevronRight, Layers, Plus, Trash2, BookmarkCheck, Play, X, Check, RotateCw, ArrowUpDown, ListFilter, Clock, SortAsc, SortDesc, LayoutList, LayoutGrid, Trophy, Flame, Star, Pen } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import ARTICLES, { ARTICLE_CATEGORIES, ARTICLE_LEVELS } from '../../data/articleData';
 import VOCAB_WORDS, { CATEGORIES as VOCAB_CATEGORIES } from '../../data/vocabWords';
@@ -30,6 +30,7 @@ const LEVEL_COLORS = { beginner: '#06D6A0', intermediate: '#FFD166', advanced: '
 const CONTENT_TYPES = {
     readings: { labelKey: 'library_readings', icon: BookOpen, color: '#1CB0F6', bg: 'rgba(28,176,246,0.15)', border: 'rgba(28,176,246,0.3)' },
     vocabulary: { labelKey: 'library_vocabulary', icon: Layers, color: '#FF9F43', bg: 'rgba(255,159,67,0.15)', border: 'rgba(255,159,67,0.3)' },
+    grammar: { labelKey: 'library_grammar', label: 'Grammar', icon: Pen, color: '#A78BFA', bg: 'rgba(167,139,250,0.15)', border: 'rgba(167,139,250,0.3)', route: '/grammar' },
 };
 
 const SUB_TAGS = {
@@ -379,64 +380,11 @@ function LibraryLanding({ onSelectModule, onOpenArticle }) {
                             key={key}
                             className={`lib-type-btn ${isActive ? 'active' : ''}`}
                             style={isActive ? { color: cfg.color } : {}}
-                            onClick={() => toggleType(key)}
+                            onClick={() => cfg.route ? navigate(cfg.route) : toggleType(key)}
                         >
                             <Icon size={20} />
-                            <span>{t(cfg.labelKey)}</span>
+                            <span>{cfg.label || t(cfg.labelKey)}</span>
                         </button>
-                    );
-                })}
-            </div>
-        </div>
-    );
-}
-
-
-// ═══════════════════════════════════════════════════════════════
-// Grammar Browse View (moved from GrammarTab)
-// ═══════════════════════════════════════════════════════════════
-function GrammarBrowseView({ onBack }) {
-    const navigate = useNavigate();
-    const allItems = getGrammarItems();
-    const grouped = allItems.reduce((acc, item) => {
-        acc[item.level] = acc[item.level] || [];
-        acc[item.level].push(item);
-        return acc;
-    }, {});
-
-    return (
-        <div>
-            <div style={{ padding: '12px 16px', display: 'flex', alignItems: 'center', gap: 8 }}>
-                <button onClick={onBack} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 4, color: 'var(--text-main)' }}>
-                    <ChevronLeft size={24} />
-                </button>
-                <h2 style={{ margin: 0, fontSize: 18 }}>Grammar</h2>
-            </div>
-            <div className="grammar-level-cards">
-                {GRAMMAR_LEVELS.map(level => {
-                    const items = grouped[level] || [];
-                    const samples = items.slice(0, 3).map(i => i.title);
-                    return (
-                        <div
-                            key={level}
-                            className="grammar-level-card"
-                            style={{ '--accent': GRAMMAR_LEVEL_COLORS[level] }}
-                            onClick={() => navigate(`/grammar/${level}`)}
-                        >
-                            <div className="grammar-level-card-header">
-                                <span className="grammar-level-badge" style={{ color: GRAMMAR_LEVEL_COLORS[level] }}>
-                                    {level}
-                                </span>
-                                <span className="grammar-level-count">
-                                    {items.length} patterns <ChevronRight size={14} />
-                                </span>
-                            </div>
-                            <div className="grammar-level-samples">
-                                {samples.map((s, i) => (
-                                    <span key={i} className="grammar-level-sample">{s}</span>
-                                ))}
-                            </div>
-                        </div>
                     );
                 })}
             </div>

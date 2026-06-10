@@ -80,6 +80,7 @@ const RoadmapTab = lazy(loadRoadmapTab);
 const DictionaryTab = lazy(loadDictionaryTab);
 const ReadingLibraryTab = lazy(loadReadingLibraryTab);
 
+const GrammarIndex = lazy(() => import('./pages/Grammar/GrammarIndex'));
 const GrammarList = lazy(() => import('./pages/Grammar/GrammarList'));
 const GrammarDetail = lazy(() => import('./pages/Grammar/GrammarDetail'));
 
@@ -428,6 +429,7 @@ function AppRoutes() {
         <Route path="/terms" element={<div className="mobile-app-wrapper"><TermsOfService /></div>} />
 
         {/* Grammar Routes */}
+        <Route path="/grammar" element={<div className="mobile-app-wrapper"><GrammarIndex /></div>} />
         <Route path="/grammar/:level" element={<div className="mobile-app-wrapper"><GrammarList /></div>} />
         <Route path="/grammar/:level/:index" element={<div className="mobile-app-wrapper"><GrammarDetail /></div>} />
 
