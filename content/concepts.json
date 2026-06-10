@@ -476,6 +476,1126 @@
           "en": "Total: two million dong."
         }
       ]
+    },
+    {
+      "id": "concept_lesson_013",
+      "lessonId": "lesson_013",
+      "title": "\"Turn\" + direction word",
+      "body": "Give directions by chaining steps with \"rồi\" (then). Use \"quẹo\" (south) or \"rẽ\" (north) to mean \"turn,\" followed by \"trái\" (left) or \"phải\" (right). For \"on the left/right side,\" add \"bên\": bên trái, bên phải.",
+      "examples": [
+        {
+          "vi": "Đi thẳng rồi quẹo trái.",
+          "en": "Go straight then turn left."
+        },
+        {
+          "vi": "Quẹo phải ở đường này.",
+          "en": "Turn right onto this street."
+        },
+        {
+          "vi": "Nó ở bên phải.",
+          "en": "It's on the right side."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_030",
+      "lessonId": "lesson_030",
+      "title": "\"Far?\" vs \"Is it far?\"",
+      "body": "To ask yes/no questions about distance, wrap the word with \"có ... không?\" — so \"xa\" (far) becomes \"Có xa không?\" (Is it far?). To describe location, just put gần (near) or xa (far) after the subject; no verb \"to be\" is needed. Add đây (\"here\") to say something is near you.",
+      "examples": [
+        {
+          "vi": "Nhà tôi gần đây.",
+          "en": "My house is nearby."
+        },
+        {
+          "vi": "Có xa không?",
+          "en": "Is it far?"
+        },
+        {
+          "vi": "Chợ gần, không xa.",
+          "en": "The market is near, not far."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_014",
+      "lessonId": "lesson_014",
+      "title": "Tell the driver where: \"đến + place\"",
+      "body": "To tell a taxi or xe ôm driver your destination, use \"Cho tôi đến + place\" — literally \"let me arrive at...\". To ask them to pull over, say \"Dừng ở đây\" (stop here). Adding \"làm ơn\" (please) keeps it polite.",
+      "examples": [
+        {
+          "vi": "Cho tôi đến khách sạn.",
+          "en": "Take me to the hotel."
+        },
+        {
+          "vi": "Dừng ở đây, làm ơn.",
+          "en": "Stop here, please."
+        },
+        {
+          "vi": "Đi xe ôm đến chợ.",
+          "en": "Take a motorbike taxi to the market."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_015",
+      "lessonId": "lesson_015",
+      "title": "Ask \"Does it have...?\" with có...không",
+      "body": "To ask if a room has something, wrap the thing between \"có\" and \"không\": [Subject] + có + [thing] + không? Just drop \"có...không\" to make a plain statement. This is the everyday way to ask yes/no questions at a hotel.",
+      "examples": [
+        {
+          "vi": "Phòng có wifi không?",
+          "en": "Does the room have wifi?"
+        },
+        {
+          "vi": "Khách sạn có phòng không?",
+          "en": "Does the hotel have a room?"
+        },
+        {
+          "vi": "Phòng có nhà vệ sinh không?",
+          "en": "Does the room have a bathroom?"
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_016",
+      "lessonId": "lesson_016",
+      "title": "\"Giúp tôi với!\" = Help me!",
+      "body": "In an emergency, add \"với\" to the end of a request to make it an urgent call for help, like \"Help me!\" To explain your problem, use \"bị\" before a bad state: \"Tôi bị lạc\" means \"I'm lost.\" For things you need, just say \"Tôi cần\" + the thing.",
+      "examples": [
+        {
+          "vi": "Giúp tôi với!",
+          "en": "Help me!"
+        },
+        {
+          "vi": "Tôi bị lạc.",
+          "en": "I am lost."
+        },
+        {
+          "vi": "Tôi cần gọi cảnh sát.",
+          "en": "I need to call the police."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_017",
+      "lessonId": "lesson_017",
+      "title": "Telling time: number + giờ",
+      "body": "To say a time, put the number before giờ (o'clock), then add the part of the day after it: sáng (morning), chiều (afternoon), or tối (evening). For minutes, add the number plus phút. To ask the time, say \"Mấy giờ rồi?\"",
+      "examples": [
+        {
+          "vi": "Mấy giờ rồi?",
+          "en": "What time is it?"
+        },
+        {
+          "vi": "Bảy giờ sáng.",
+          "en": "Seven in the morning."
+        },
+        {
+          "vi": "Hai giờ ba mươi phút chiều.",
+          "en": "Two thirty in the afternoon."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_028",
+      "lessonId": "lesson_028",
+      "title": "Today, Tomorrow, Yesterday",
+      "body": "In Vietnamese, time words usually go at the very start of a sentence to set when something happens. \"Hôm nay\" (today), \"ngày mai\" (tomorrow), and \"hôm qua\" (yesterday) don't change form and need no extra preposition like \"on.\" Just lead with the day, then say the rest.",
+      "examples": [
+        {
+          "vi": "Hôm nay là thứ hai.",
+          "en": "Today is Monday."
+        },
+        {
+          "vi": "Ngày mai tôi đi học.",
+          "en": "Tomorrow I go to school."
+        },
+        {
+          "vi": "Bây giờ là mấy giờ?",
+          "en": "What time is it now?"
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_018",
+      "lessonId": "lesson_018",
+      "title": "Start weather talk with \"trời\"",
+      "body": "To talk about the weather, Vietnamese uses \"trời\" (sky) as the subject plus a weather word: \"trời mưa\" = it's raining, \"trời nắng\" = it's sunny. Add \"quá\" after an adjective to say \"so...\" or \"very...\" — like \"đẹp quá!\" (so nice!).",
+      "examples": [
+        {
+          "vi": "Hôm nay trời mưa.",
+          "en": "It's raining today."
+        },
+        {
+          "vi": "Trời nắng và nóng quá!",
+          "en": "It's so sunny and hot!"
+        },
+        {
+          "vi": "Hôm nay trời đẹp quá!",
+          "en": "The weather is so nice today!"
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_019",
+      "lessonId": "lesson_019",
+      "title": "North vs. South: two words for parents",
+      "body": "Vietnamese has regional words for \"mom\" and \"dad.\" In the North people say bố and mẹ; in the South they say ba and má. Both are correct everywhere, so pick the pair that matches where you're learning. Note that anh (older brother) and chị (older sister) are also used to address any older man or woman politely, not just family.",
+      "examples": [
+        {
+          "vi": "Bố mẹ tôi khỏe.",
+          "en": "My parents are well. (Northern)"
+        },
+        {
+          "vi": "Ba má tôi khỏe.",
+          "en": "My parents are well. (Southern)"
+        },
+        {
+          "vi": "Anh chị khỏe không?",
+          "en": "Are you well? (to an older brother and sister)"
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_029",
+      "lessonId": "lesson_029",
+      "title": "Family words double as pronouns",
+      "body": "In Vietnamese, family words like \"em\" (younger sibling) and \"con\" (child) are also used as everyday pronouns for \"I\" or \"you,\" depending on who's speaking. To say \"my,\" just add \"tôi\" or use the family word directly: \"em tôi\" = my younger sibling. Note \"vợ chồng\" together means \"husband and wife\" as a pair.",
+      "examples": [
+        {
+          "vi": "Em tôi còn nhỏ.",
+          "en": "My younger sibling is still small."
+        },
+        {
+          "vi": "Con tôi tên là Nam.",
+          "en": "My child's name is Nam."
+        },
+        {
+          "vi": "Vợ chồng tôi rất vui.",
+          "en": "My wife/husband and I are very happy."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_020",
+      "lessonId": "lesson_020",
+      "title": "Rooms = \"phòng\" + a word",
+      "body": "Most room names start with \"phòng\" (room) plus a describing word: phòng ngủ (sleep-room) and phòng khách (guest-room). To describe a room, put the adjective after it: room + \"rất\" (very) + adjective.",
+      "examples": [
+        {
+          "vi": "Nhà bếp rất sạch.",
+          "en": "The kitchen is very clean."
+        },
+        {
+          "vi": "Phòng khách rất to.",
+          "en": "The living room is very big."
+        },
+        {
+          "vi": "Phòng ngủ nhỏ.",
+          "en": "The bedroom is small."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_031",
+      "lessonId": "lesson_031",
+      "title": "\"On\" furniture: use \"trên\"",
+      "body": "To say something is on a surface like a chair or table, use \"trên\" (on) before the furniture word. Adding \"đi\" at the end of a command makes it a friendly suggestion, like \"go ahead and...\".",
+      "examples": [
+        {
+          "vi": "Ngồi trên ghế đi.",
+          "en": "Sit on the chair."
+        },
+        {
+          "vi": "Đặt trên bàn.",
+          "en": "Put it on the table."
+        },
+        {
+          "vi": "Sách ở trên bàn.",
+          "en": "The book is on the table."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_021",
+      "lessonId": "lesson_021",
+      "title": "\"Like to do\" = thích + verb",
+      "body": "To say what you enjoy, use thích (\"to like\") followed directly by an activity verb. No \"to\" word is needed in between. To ask what someone likes doing, use Bạn thích làm gì? (\"What do you like to do?\").",
+      "examples": [
+        {
+          "vi": "Bạn thích làm gì?",
+          "en": "What do you like to do?"
+        },
+        {
+          "vi": "Tôi thích xem phim và nghe nhạc.",
+          "en": "I like to watch movies and listen to music."
+        },
+        {
+          "vi": "Cô ấy thích nấu ăn.",
+          "en": "She likes to cook."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_022",
+      "lessonId": "lesson_022",
+      "title": "Say how you feel — skip \"am/is\"",
+      "body": "In Vietnamese, feeling words act as the verb, so you don't add \"to be.\" Just say \"I\" + the feeling: Tôi vui = I (am) happy. To say \"so\" or \"very,\" add quá after the word.",
+      "examples": [
+        {
+          "vi": "Tôi vui.",
+          "en": "I'm happy."
+        },
+        {
+          "vi": "Tôi mệt quá.",
+          "en": "I'm so tired."
+        },
+        {
+          "vi": "Tôi đói và khát.",
+          "en": "I'm hungry and thirsty."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_023",
+      "lessonId": "lesson_023",
+      "title": "Invite Someone with \"...không?\"",
+      "body": "To ask a yes/no question in Vietnamese, just add \"không?\" to the end of a statement. Use it to check if someone is free (\"rảnh không?\") or to invite them (\"đi chơi không?\"). Put \"cùng\" (together) before or after the person to say you want to do it with them.",
+      "examples": [
+        {
+          "vi": "Cuối tuần bạn rảnh không?",
+          "en": "Are you free this weekend?"
+        },
+        {
+          "vi": "Đi chơi cùng tôi không?",
+          "en": "Do you want to hang out with me?"
+        },
+        {
+          "vi": "Bạn bận không?",
+          "en": "Are you busy?"
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_024",
+      "lessonId": "lesson_024",
+      "title": "Two phrases for every celebration",
+      "body": "To congratulate someone, start with \"Chúc mừng\" and add the occasion, like \"Chúc mừng sinh nhật!\" To react with excitement at a party, put \"quá\" after a feeling word: \"Vui quá!\" means \"So fun!\" This \"[adjective] + quá\" pattern works for almost any reaction.",
+      "examples": [
+        {
+          "vi": "Chúc mừng sinh nhật!",
+          "en": "Happy birthday!"
+        },
+        {
+          "vi": "Vui quá!",
+          "en": "So fun!"
+        },
+        {
+          "vi": "Quà đẹp quá!",
+          "en": "What a beautiful gift!"
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_033",
+      "lessonId": "lesson_033",
+      "title": "Mark the past with \"đã\"",
+      "body": "To talk about the past, add the marker \"đã\" before the verb: subject + đã + verb. A time word like \"hôm qua\" (yesterday) or \"tuần trước\" (last week) usually comes at the very front of the sentence. For something that just happened, use \"vừa mới\" before the verb.",
+      "examples": [
+        {
+          "vi": "Hôm qua tôi đã đi Hà Nội.",
+          "en": "Yesterday I went to Hanoi."
+        },
+        {
+          "vi": "Tuần trước chúng tôi đã ăn phở.",
+          "en": "Last week we ate pho."
+        },
+        {
+          "vi": "Tôi vừa mới về.",
+          "en": "I just got back."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_034",
+      "lessonId": "lesson_034",
+      "title": "Use \"đã\" to talk about the past",
+      "body": "To tell a past story, put \"đã\" right before the verb: subject + đã + verb. It marks that the action already happened. In casual speech you can drop \"đã\" if the time is clear, and use \"sau đó\" (after that) to link your events in order.",
+      "examples": [
+        {
+          "vi": "Chúng tôi đã tham quan phố cổ.",
+          "en": "We visited the old quarter."
+        },
+        {
+          "vi": "Sau đó tôi đã chụp rất nhiều ảnh.",
+          "en": "After that I took many photos."
+        },
+        {
+          "vi": "Chuyến đi rất tuyệt vời.",
+          "en": "The trip was wonderful."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_035",
+      "lessonId": "lesson_035",
+      "title": "\"Đã từng\" / \"Chưa từng\" = ever / never",
+      "body": "To ask about life experience (\"Have you ever…?\"), use đã từng + verb and end with chưa: Bạn đã từng… chưa? To answer, use đã từng (yes, I have) or chưa từng (no, never). For things in your past, đã + verb also works, like hồi nhỏ (\"when I was little\").",
+      "examples": [
+        {
+          "vi": "Bạn đã từng đi Sa Pa chưa?",
+          "en": "Have you ever been to Sa Pa?"
+        },
+        {
+          "vi": "Tôi chưa từng ăn sầu riêng.",
+          "en": "I have never eaten durian."
+        },
+        {
+          "vi": "Hồi nhỏ tôi đã sống ở Huế.",
+          "en": "When I was little I lived in Hue."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_036",
+      "lessonId": "lesson_036",
+      "title": "React fast: start the sentence with the feeling",
+      "body": "To react to news, Vietnamese often puts the reaction word right at the front of the sentence. Start with \"Không ngờ...\" (I didn't expect...) or \"May mà...\" (Luckily...) and then say what happened. To show surprise on its own, just say \"Thật à?\" (Really?).",
+      "examples": [
+        {
+          "vi": "Thật à? Tôi không tin nổi.",
+          "en": "Really? I can't believe it."
+        },
+        {
+          "vi": "Không ngờ bạn cũng ở đây!",
+          "en": "I didn't expect you to be here too!"
+        },
+        {
+          "vi": "May mà tôi đã đặt vé trước.",
+          "en": "Luckily I booked the ticket in advance."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_037",
+      "lessonId": "lesson_037",
+      "title": "Body part + tôi = \"my body part\"",
+      "body": "To say a part of your body hurts, name the body part first, then the owner: \"Đầu tôi\" = \"my head.\" Add \"bị đau\" (\"is in pain\") to say it hurts. \"Bị\" marks something unpleasant happening to you, so it fits aches and injuries.",
+      "examples": [
+        {
+          "vi": "Đầu tôi bị đau.",
+          "en": "My head hurts."
+        },
+        {
+          "vi": "Tay phải của tôi bị thương.",
+          "en": "My right hand is injured."
+        },
+        {
+          "vi": "Lưng anh ấy đau từ hôm qua.",
+          "en": "His back has hurt since yesterday."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_038",
+      "lessonId": "lesson_038",
+      "title": "Giving advice: \"nên\" vs \"cần phải\"",
+      "body": "To give advice, put \"nên\" (should) right before the verb: subject + nên + verb. For something stronger and more necessary, use \"cần phải\" (need to / must) the same way. To describe being sick, use \"bị\" + the symptom, as in \"bị sốt\" (have a fever).",
+      "examples": [
+        {
+          "vi": "Bạn nên uống nhiều nước.",
+          "en": "You should drink lots of water."
+        },
+        {
+          "vi": "Bạn cần phải nghỉ ngơi.",
+          "en": "You need to rest."
+        },
+        {
+          "vi": "Tôi bị sốt và ho.",
+          "en": "I have a fever and a cough."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_039",
+      "lessonId": "lesson_039",
+      "title": "Telling someone how to take medicine",
+      "body": "To give dosage instructions, use \"uống\" (literally \"drink,\" but used for taking medicine) + a number + the classifier \"viên\" for tablets, then add when to take them. Put the timing phrase \"trước bữa ăn\" (before meals) or \"sau bữa ăn\" (after meals) at the end. To say you're allergic, use \"bị dị ứng với\" + the thing.",
+      "examples": [
+        {
+          "vi": "Uống hai viên sau bữa ăn.",
+          "en": "Take two tablets after meals."
+        },
+        {
+          "vi": "Uống một viên trước bữa ăn.",
+          "en": "Take one tablet before meals."
+        },
+        {
+          "vi": "Tôi bị dị ứng với kháng sinh.",
+          "en": "I'm allergic to antibiotics."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_040",
+      "lessonId": "lesson_040",
+      "title": "\"Nên\" = giving friendly advice",
+      "body": "To give gentle advice, put \"nên\" (should) right before the verb: subject + nên + verb. To talk about something you're doing right now, use \"đang\" before the verb. These two little words let you suggest healthy habits and describe what you're working on.",
+      "examples": [
+        {
+          "vi": "Bạn nên ăn nhiều rau xanh.",
+          "en": "You should eat lots of green vegetables."
+        },
+        {
+          "vi": "Tôi đang cố hạn chế đường.",
+          "en": "I'm trying to cut down on sugar."
+        },
+        {
+          "vi": "Bạn nên ngủ đủ giấc.",
+          "en": "You should sleep enough."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_041",
+      "lessonId": "lesson_041",
+      "title": "\"đang\" vs \"vừa\": now vs. just now",
+      "body": "Put a small time word before the verb to show when it happens. Use \"đang\" for an action in progress right now, and \"vừa\" for something you just finished. Word order stays simple: subject + time word + verb.",
+      "examples": [
+        {
+          "vi": "Tôi đang làm việc ở công ty mới.",
+          "en": "I'm working at a new company (right now)."
+        },
+        {
+          "vi": "Tôi vừa hoàn thành báo cáo.",
+          "en": "I just finished the report."
+        },
+        {
+          "vi": "Hôm nay sếp rất bận.",
+          "en": "The boss is very busy today."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_042",
+      "lessonId": "lesson_042",
+      "title": "Trước khi / Sau khi: before & after",
+      "body": "To say \"before\" or \"after\" doing something, put trước khi (before) or sau khi (after) in front of the verb, not after it. The time clause usually comes first, then a comma, then the main action. Word order stays simple: trước/sau khi + verb.",
+      "examples": [
+        {
+          "vi": "Trước khi họp, hãy đọc tài liệu.",
+          "en": "Before the meeting, please read the documents."
+        },
+        {
+          "vi": "Sau khi họp xong, tôi sẽ gửi email.",
+          "en": "After the meeting, I'll send an email."
+        },
+        {
+          "vi": "Trước khi đặt lịch, hãy xem lịch trình.",
+          "en": "Before booking, check the schedule."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_043",
+      "lessonId": "lesson_043",
+      "title": "Talking about messages: just + already",
+      "body": "Use \"vừa\" before a verb to say you JUST did something a moment ago, and \"đã\" to say you ALREADY did it. Both go right before the verb: \"Tôi vừa gửi...\" (I just sent...), \"Tôi đã trả lời...\" (I already replied...). For polite requests, add \"có thể... không?\" around the verb to ask \"could you...?\"",
+      "examples": [
+        {
+          "vi": "Tôi vừa gửi email cho bạn.",
+          "en": "I just sent you an email."
+        },
+        {
+          "vi": "Tôi đã trả lời email của anh.",
+          "en": "I replied to your email."
+        },
+        {
+          "vi": "Anh có thể gọi lại sau không?",
+          "en": "Could you call back later?"
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_044",
+      "lessonId": "lesson_044",
+      "title": "\"Đặt\" = to book or reserve",
+      "body": "Use \"đặt\" before what you're reserving: đặt vé (book a ticket), đặt khách sạn (book a hotel). For tickets, add khứ hồi (round-trip) or một chiều (one-way) right after vé. To ask about a feature, end with \"có... không?\" — for example \"có hướng dẫn viên không?\" (is there a guide?).",
+      "examples": [
+        {
+          "vi": "Tôi muốn đặt một vé khứ hồi.",
+          "en": "I want to book a round-trip ticket."
+        },
+        {
+          "vi": "Tôi đã đặt khách sạn online.",
+          "en": "I booked the hotel online."
+        },
+        {
+          "vi": "Tour này có hướng dẫn viên không?",
+          "en": "Does this tour have a guide?"
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_045",
+      "lessonId": "lesson_045",
+      "title": "Saying What a Place Is & Is Like",
+      "body": "To say \"X is Y,\" use the pattern X + là + Y (no separate verb \"to be\" before adjectives). To describe how a place looks, drop \"là\" and put the adjective straight after the noun, adding rất (\"very\") before it: \"Vịnh Hạ Long rất đẹp.\" Note that famous Northern places keep their Vietnamese names and tone marks.",
+      "examples": [
+        {
+          "vi": "Hà Nội là thủ đô của Việt Nam.",
+          "en": "Hanoi is the capital of Vietnam."
+        },
+        {
+          "vi": "Vịnh Hạ Long rất đẹp.",
+          "en": "Ha Long Bay is very beautiful."
+        },
+        {
+          "vi": "Sa Pa nổi tiếng với ruộng bậc thang.",
+          "en": "Sa Pa is famous for its terraced rice fields."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_046",
+      "lessonId": "lesson_046",
+      "title": "Central Vietnam: \"có\" and \"từng là\"",
+      "body": "Vietnam's three central gems sit close together. Notice the spacing: place names are two syllables written as separate words, each with its own tone marks (Đà Nẵng, Hội An), and each one capitalizes both syllables. To say a place \"used to be\" something, use \"từng là\" (Huế từng là cố đô). To say a place \"has\" a feature, use \"có\" (Đà Nẵng có bãi biển).",
+      "examples": [
+        {
+          "vi": "Huế từng là cố đô.",
+          "en": "Hue used to be the ancient capital."
+        },
+        {
+          "vi": "Đà Nẵng có nhiều bãi biển đẹp.",
+          "en": "Da Nang has many beautiful beaches."
+        },
+        {
+          "vi": "Hội An có đèn lồng rất đẹp.",
+          "en": "Hoi An has very beautiful lanterns."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_047",
+      "lessonId": "lesson_047",
+      "title": "Two names for one city",
+      "body": "Locals still call the city \"Sài Gòn\" in everyday speech, while \"Thành phố Hồ Chí Minh\" (often shortened to TP.HCM) is the official name. To describe a place, just put the adjective after it with \"rất\" (very): place + rất + adjective, like \"Sài Gòn rất nhộn nhịp.\"",
+      "examples": [
+        {
+          "vi": "Sài Gòn rất nhộn nhịp.",
+          "en": "Saigon is very bustling."
+        },
+        {
+          "vi": "Đồng bằng sông Cửu Long rất rộng.",
+          "en": "The Mekong Delta is very vast."
+        },
+        {
+          "vi": "Chợ nổi có nhiều trái cây nhiệt đới.",
+          "en": "The floating market has lots of tropical fruit."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_048",
+      "lessonId": "lesson_048",
+      "title": "Sạc, nhắn tin: tech verbs",
+      "body": "Many Vietnamese tech words double as both noun and verb with no change. \"Sạc\" means both \"charger/charge\" and \"to charge\"; \"tin nhắn\" is \"a message\" while \"nhắn tin\" is \"to text.\" To text someone, say \"nhắn tin cho + person.\" For \"out of battery,\" use \"hết\" (used up) + \"pin\": \"hết pin.\"",
+      "examples": [
+        {
+          "vi": "Tôi sẽ nhắn tin cho bạn sau.",
+          "en": "I'll text you later."
+        },
+        {
+          "vi": "Điện thoại tôi sắp hết pin.",
+          "en": "My phone is almost out of battery."
+        },
+        {
+          "vi": "Cho tôi xin số điện thoại.",
+          "en": "Can I have your phone number?"
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_049",
+      "lessonId": "lesson_049",
+      "title": "\"Mạng\" = internet, network, and online life",
+      "body": "Vietnamese keeps many tech words borrowed from English (Internet, app, online), so they're easy to recognize. The everyday word \"mạng\" by itself means \"the internet/network,\" and \"mạng xã hội\" means \"social media.\" For actions, use plain verbs: tải (download), đăng nhập (log in), đăng ký (sign up), chia sẻ (share).",
+      "examples": [
+        {
+          "vi": "Tôi cần tải ứng dụng này.",
+          "en": "I need to download this app."
+        },
+        {
+          "vi": "Mạng ở đây hơi chậm.",
+          "en": "The internet here is a bit slow."
+        },
+        {
+          "vi": "Tôi sẽ chia sẻ ảnh trên mạng xã hội.",
+          "en": "I'll share photos on social media."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_050",
+      "lessonId": "lesson_050",
+      "title": "Ask if they're free, then say \"nhé\"",
+      "body": "To make plans, ask availability with \"có rảnh không?\" (are you free?). When you propose a time or suggest something, end the sentence with \"nhé\" to sound friendly and inviting rather than bossy. Put the time before the verb: \"lúc 7 giờ\" means \"at 7 o'clock.\"",
+      "examples": [
+        {
+          "vi": "Cuối tuần bạn có rảnh không?",
+          "en": "Are you free this weekend?"
+        },
+        {
+          "vi": "Mình hẹn nhau lúc 7 giờ tối nhé.",
+          "en": "Let's meet at 7 in the evening."
+        },
+        {
+          "vi": "Xin lỗi, mình phải hủy hẹn.",
+          "en": "Sorry, I have to cancel."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_051",
+      "lessonId": "lesson_051",
+      "title": "North vs. South: hoa đào or hoa mai",
+      "body": "At Tết, region shapes the customs. Northern homes display hoa đào (peach blossom), while the South favors hoa mai (apricot blossom). Use \"miền Bắc\" and \"miền Nam\" to contrast regions, and remember Tết is above all about \"sum họp\" — family reunion — marked by greetings like \"Chúc mừng năm mới.\"",
+      "examples": [
+        {
+          "vi": "Miền Bắc chưng hoa đào, miền Nam chưng hoa mai.",
+          "en": "The North displays peach blossoms; the South, apricot blossoms."
+        },
+        {
+          "vi": "Tết là dịp gia đình sum họp.",
+          "en": "Tet is the occasion for families to reunite."
+        },
+        {
+          "vi": "Chúc mừng năm mới! An khang thịnh vượng!",
+          "en": "Happy New Year! Peace and prosperity!"
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_052",
+      "lessonId": "lesson_052",
+      "title": "Trung Thu: the children's festival",
+      "body": "Trung Thu (Mid-Autumn) is called \"tết của trẻ em\" — the children's festival — held on the full moon (trăng rằm) of the 8th lunar month. Use \"rước đèn\" for carrying lanterns and \"phá cỗ\" for the moment the family breaks into the feast together; these set verb phrases sound more natural than literal translations. Note \"bánh trung thu\" (mooncake) keeps \"trung thu\" lowercase as a common noun, while the festival name \"Trung Thu\" is capitalized.",
+      "examples": [
+        {
+          "vi": "Trung Thu là tết của trẻ em.",
+          "en": "Mid-Autumn is the children's festival."
+        },
+        {
+          "vi": "Trẻ em rước đèn ông sao và xem múa lân.",
+          "en": "Kids carry star lanterns and watch the lion dance."
+        },
+        {
+          "vi": "Cả nhà cùng nhau phá cỗ dưới trăng rằm.",
+          "en": "The whole family enjoys the feast under the full moon."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_053",
+      "lessonId": "lesson_053",
+      "title": "Talk about customs with \"respect\" verbs",
+      "body": "Vietnamese culture centers on honoring ancestors, so you'll often use cúng (to make ritual offerings) and tôn trọng (to respect). Note that cúng pairs with the occasion or person honored: cúng giỗ (hold a death-anniversary rite), cúng ông nội (make offerings to grandfather). To soften and add nuance at B1, lead with time/place markers like vào (on/during) before festival names: vào lễ Vu Lan.",
+      "examples": [
+        {
+          "vi": "Người Việt rất tôn trọng tổ tiên.",
+          "en": "Vietnamese people deeply respect their ancestors."
+        },
+        {
+          "vi": "Mỗi năm gia đình tôi cúng giỗ ông nội.",
+          "en": "Every year my family holds a memorial for my grandfather."
+        },
+        {
+          "vi": "Vào lễ Vu Lan, người ta cài hoa hồng.",
+          "en": "On Vu Lan, people pin a rose on their chest."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_054",
+      "lessonId": "lesson_054",
+      "title": "Soften or Strengthen Your Opinion",
+      "body": "Open an opinion with a fixed phrase: \"Theo tôi\" (in my opinion) needs no verb, while \"Tôi nghĩ rằng\" and \"Tôi cho rằng\" take \"rằng\" before a full clause. Adjust your certainty with adverbs at the start: \"Có lẽ\" hedges (maybe), \"Chắc chắn\" commits (certainly), and \"Hình như\" signals you're guessing from evidence (it seems). Use \"Thật ra\" to gently correct or push back before disagreeing.",
+      "examples": [
+        {
+          "vi": "Theo tôi, học tiếng Việt rất thú vị.",
+          "en": "In my opinion, learning Vietnamese is very interesting."
+        },
+        {
+          "vi": "Tôi nghĩ rằng phở miền Bắc ngon hơn.",
+          "en": "I think (that) northern pho is tastier."
+        },
+        {
+          "vi": "Thật ra tôi không đồng ý lắm.",
+          "en": "Actually, I don't quite agree."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_055",
+      "lessonId": "lesson_055",
+      "title": "Soften, then state your case",
+      "body": "At B1, agreement gets nuanced: pair \"đồng ý\" with \"hoàn toàn\" (completely) or \"một phần\" (partly) to show how much you agree. Use connectors like \"tuy nhiên\" (however) and \"mặt khác\" (on the other hand) to pivot, then back up your view with \"lý do là...\" (the reason is...) or a \"ví dụ\" (example).",
+      "examples": [
+        {
+          "vi": "Tôi đồng ý một phần, tuy nhiên giá hơi cao.",
+          "en": "I partly agree; however, the price is a bit high."
+        },
+        {
+          "vi": "Mặt khác, lý do là vì chất lượng rất tốt.",
+          "en": "On the other hand, the reason is that the quality is very good."
+        },
+        {
+          "vi": "Tôi không đồng ý. Cho tôi một ví dụ cụ thể.",
+          "en": "I disagree. Give me a concrete example."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_056",
+      "lessonId": "lesson_056",
+      "title": "\"So với\": setting up comparisons",
+      "body": "To compare two things, use \"So với X\" (Compared to X) at the start, then add \"hơn\" after the adjective for \"more.\" So \"sống cộng đồng hơn\" means \"live more communally.\" To say things are alike, use \"giống nhau\" (similar/the same); to point out a contrast, use \"khác biệt\" (difference).",
+      "examples": [
+        {
+          "vi": "So với phương Tây, người Việt sống cộng đồng hơn.",
+          "en": "Compared to the West, Vietnamese people live more communally."
+        },
+        {
+          "vi": "Hai nền văn hóa có nhiều điểm giống nhau.",
+          "en": "The two cultures have many similarities."
+        },
+        {
+          "vi": "Sự khác biệt làm cuộc sống thú vị hơn.",
+          "en": "Differences make life more interesting."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_057",
+      "lessonId": "lesson_057",
+      "title": "Reporting What Was Just Announced",
+      "body": "In news Vietnamese, \"vừa\" before a verb means \"(has) just\" — perfect for fresh events (Chính phủ vừa thông báo = \"The government just announced\"). To say something affects people, use \"ảnh hưởng đến\" + the people or thing impacted. These two patterns let you summarize a headline naturally.",
+      "examples": [
+        {
+          "vi": "Chính phủ vừa thông báo chính sách mới.",
+          "en": "The government just announced a new policy."
+        },
+        {
+          "vi": "Sự kiện này ảnh hưởng đến nhiều người.",
+          "en": "This event affects many people."
+        },
+        {
+          "vi": "Phóng viên vừa đưa tin về sự kiện này.",
+          "en": "The reporter just reported on this event."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_058",
+      "lessonId": "lesson_058",
+      "title": "\"Vì… nên…\": because → so",
+      "body": "To link a cause to its result, wrap the cause in \"vì\" (because) and start the result with \"nên\" (so/therefore). Vietnamese keeps both halves, where English usually drops one. You can shorten it to just \"vì\" for the cause or just \"nên\" for the result, but at B1 the full \"vì… nên…\" frame sounds clear and natural for discussing issues like the environment.",
+      "examples": [
+        {
+          "vi": "Vì biến đổi khí hậu nên thời tiết thất thường.",
+          "en": "Because of climate change, the weather is erratic."
+        },
+        {
+          "vi": "Vì ô nhiễm không khí nên chúng ta cần bảo vệ môi trường.",
+          "en": "Because of air pollution, we need to protect the environment."
+        },
+        {
+          "vi": "Vì mọi người tái chế rác nên ô nhiễm giảm.",
+          "en": "Because everyone recycles waste, pollution is decreasing."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_059",
+      "lessonId": "lesson_059",
+      "title": "Two words for \"student\"",
+      "body": "Vietnamese splits \"student\" by school level: học sinh is a pupil in primary or secondary school, while sinh viên is specifically a university/college student. Mixing them up sounds odd, so match the word to the school. For abstract topics like education and society, Vietnamese often drops articles and uses nouns directly: Giáo dục là... (\"Education is...\").",
+      "examples": [
+        {
+          "vi": "Học sinh Việt Nam chịu nhiều áp lực thi cử.",
+          "en": "Vietnamese students (school-age) face a lot of exam pressure."
+        },
+        {
+          "vi": "Sinh viên có nhiều cơ hội phát triển ở đại học.",
+          "en": "University students have many opportunities to develop at university."
+        },
+        {
+          "vi": "Giáo dục là chìa khóa của tương lai.",
+          "en": "Education is the key to the future."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_060",
+      "lessonId": "lesson_060",
+      "title": "Talking about the future & goals",
+      "body": "Vietnamese has no verb tenses, so you signal the future with markers like \"sẽ\" (will) and \"đang\" (currently). Use \"muốn\" (want to) or \"dự định\" (plan/intend to) before a verb to express ambitions: \"tôi muốn mở quán cà phê.\" Set goals with \"Mục tiêu của tôi là...\" (My goal is to...), where \"của tôi\" shows possession and \"là\" links to what follows.",
+      "examples": [
+        {
+          "vi": "Mục tiêu của tôi là nói tiếng Việt trôi chảy.",
+          "en": "My goal is to speak Vietnamese fluently."
+        },
+        {
+          "vi": "Trong tương lai tôi muốn mở quán cà phê.",
+          "en": "In the future I want to open a cafe."
+        },
+        {
+          "vi": "Tôi đang cố gắng học mỗi ngày để đạt được ước mơ.",
+          "en": "I'm trying to study every day to achieve my dream."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_061",
+      "lessonId": "lesson_061",
+      "title": "Nếu... thì... and wishing with Giá mà",
+      "body": "Vietnamese conditionals use \"Nếu\" (if) to open the condition and \"Thì\" (then) to start the result, like \"Nếu... thì...\"; the \"thì\" is often optional but adds clarity. For wishes or regrets about things that aren't true, use \"Giá mà\" (if only / I wish) at the start. Verbs don't change tense, so the connectors carry all the meaning.",
+      "examples": [
+        {
+          "vi": "Nếu trời mưa thì tôi ở nhà.",
+          "en": "If it rains, I'll stay home."
+        },
+        {
+          "vi": "Giá mà tôi có thêm thời gian.",
+          "en": "If only I had more time."
+        },
+        {
+          "vi": "Nếu được chọn lại, tôi sẽ làm khác.",
+          "en": "If I could choose again, I'd do it differently."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_062",
+      "lessonId": "lesson_062",
+      "title": "\"Càng... càng...\": the more, the more",
+      "body": "To say \"the more X, the more Y,\" use the pattern càng + verb/adjective, càng + verb/adjective. The two clauses move together: as one rises, so does the other. This is a polished, reflective structure perfect for talking about how experiences change you over time.",
+      "examples": [
+        {
+          "vi": "Càng học, tôi càng yêu tiếng Việt.",
+          "en": "The more I study, the more I love Vietnamese."
+        },
+        {
+          "vi": "Càng trải nghiệm, tôi càng trưởng thành.",
+          "en": "The more I experience, the more I grow."
+        },
+        {
+          "vi": "Càng nhìn lại, tôi càng biết ơn hành trình của mình.",
+          "en": "The more I look back, the more grateful I am for my journey."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_063",
+      "lessonId": "lesson_063",
+      "title": "Idioms: meaning over words",
+      "body": "Vietnamese idioms (thành ngữ) are fixed phrases whose meaning isn't literal, so learn them as whole units rather than word by word. Many are proverbs you can drop into casual or thoughtful conversation to sound natural and fluent. To check or confirm one, ask \"có nghĩa là gì?\" (what does it mean?) or react with \"Chính xác!\" (Exactly!).",
+      "examples": [
+        {
+          "vi": "Thành ngữ này có nghĩa là gì?",
+          "en": "What does this idiom mean?"
+        },
+        {
+          "vi": "Bạn ấy lúc nào cũng nước đến chân mới nhảy.",
+          "en": "He always waits until the last minute."
+        },
+        {
+          "vi": "Có công mài sắt, có ngày nên kim.",
+          "en": "Persistence pays off — keep grinding and you'll succeed."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_064",
+      "lessonId": "lesson_064",
+      "title": "Proverbs: wisdom in a few words",
+      "body": "Vietnamese proverbs (tục ngữ) are fixed sayings you quote whole, never word-by-word literally. To talk about one, name it first, then explain its lesson with a frame like \"...là bài học về...\" (is a lesson about...) or \"...nói về...\" (speaks of...). Knowing a few signals real cultural fluency and lets you sound warm and wise.",
+      "examples": [
+        {
+          "vi": "Ăn quả nhớ kẻ trồng cây là bài học về lòng biết ơn.",
+          "en": "'Eat the fruit, remember who planted the tree' is a lesson about gratitude."
+        },
+        {
+          "vi": "Câu 'lá lành đùm lá rách' nói về tình đoàn kết.",
+          "en": "The saying 'whole leaves wrap torn leaves' speaks of solidarity."
+        },
+        {
+          "vi": "Tục ngữ chứa đựng trí tuệ của ông cha.",
+          "en": "Proverbs contain the wisdom of our ancestors."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_065",
+      "lessonId": "lesson_065",
+      "title": "Sound Like a Local: Slang & Intensifiers",
+      "body": "Vietnamese slang is casual register, for friends, not bosses, elders, or formal writing. The words \"ghê,\" \"quá,\" and \"luôn\" are intensifiers you tag onto an adjective to add emphasis, like \"đẹp ghê\" (so beautiful). Many expressions are idioms you can't translate word-for-word: \"bó tay\" literally means \"tied hands\" but means \"I give up.\"",
+      "examples": [
+        {
+          "vi": "Trời ơi, đẹp ghê!",
+          "en": "Oh my god, so beautiful!"
+        },
+        {
+          "vi": "Bài này khó quá, bó tay.",
+          "en": "This problem is so hard, I give up."
+        },
+        {
+          "vi": "Bộ phim này hết sảy luôn!",
+          "en": "This movie is totally awesome!"
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_066",
+      "lessonId": "lesson_066",
+      "title": "Sound formal: use \"anh/chị\" + \"ạ\"",
+      "body": "In a Vietnamese interview, address the interviewer with the right pronoun (often \"anh\" or \"chị\") instead of \"bạn,\" and replace casual \"tôi\" with a polite tone. Use \"xin\"/\"ạ\" and softeners like \"tôi tin rằng\" (I believe that) to sound humble and professional. This register matters more than vocabulary here: the same words feel rude without it.",
+      "examples": [
+        {
+          "vi": "Anh có bao nhiêu năm kinh nghiệm ạ?",
+          "en": "How many years of experience do you have? (polite)"
+        },
+        {
+          "vi": "Tôi tin rằng tôi phù hợp với vị trí này.",
+          "en": "I believe I am a good fit for this position."
+        },
+        {
+          "vi": "Điểm mạnh nhất của tôi là làm việc nhóm.",
+          "en": "My greatest strength is teamwork."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_067",
+      "lessonId": "lesson_067",
+      "title": "Soften requests to negotiate politely",
+      "body": "In Vietnamese business talk, frame proposals as soft suggestions, not demands. Add \"có thể... không?\" (can we...?) to make a request negotiable, and use \"cho tôi...\" (let me...) to ask for time or space politely. This keeps the tone collaborative, which matters more than the literal words in Vietnamese deal-making.",
+      "examples": [
+        {
+          "vi": "Chúng ta có thể thương lượng về giá không?",
+          "en": "Can we negotiate the price?"
+        },
+        {
+          "vi": "Cho tôi cân nhắc thêm một chút.",
+          "en": "Let me consider it a bit more."
+        },
+        {
+          "vi": "Tôi đề nghị một thỏa thuận đôi bên cùng có lợi.",
+          "en": "I propose a win-win agreement."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_068",
+      "lessonId": "lesson_068",
+      "title": "Frank but tactful: soften with connectors",
+      "body": "To disagree politely in Vietnamese, acknowledge first, then pivot with \"nhưng\" (but). The pair \"thẳng thắn nhưng khéo léo\" (frank yet tactful) captures the goal: be honest without losing face for either side. Use \"nên\" (should) and \"cần\" (need to) to frame suggestions gently rather than as commands.",
+      "examples": [
+        {
+          "vi": "Tôi hiểu, nhưng tôi có quan điểm khác.",
+          "en": "I understand, but I have a different perspective."
+        },
+        {
+          "vi": "Chúng ta nên thẳng thắn nhưng khéo léo.",
+          "en": "We should be frank yet tactful."
+        },
+        {
+          "vi": "Cần lắng nghe trước khi phản đối.",
+          "en": "We need to listen before objecting."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_069",
+      "lessonId": "lesson_069",
+      "title": "Soften feedback to keep it constructive",
+      "body": "In Vietnamese work settings, feedback is wrapped in polite, face-saving language. Use \"góp ý\" (offer suggestions) instead of blunt criticism, and add softeners like \"một chút\" (a little) to lower the pressure. Frame your reply with \"tiếp thu\" (take it in) to show you accept feedback gracefully.",
+      "examples": [
+        {
+          "vi": "Mình muốn góp ý một chút về thiết kế.",
+          "en": "I want to offer a small suggestion about the design."
+        },
+        {
+          "vi": "Cảm ơn về phản hồi mang tính xây dựng.",
+          "en": "Thanks for the constructive feedback."
+        },
+        {
+          "vi": "Tôi sẽ tiếp thu và cải thiện.",
+          "en": "I will take it in and improve."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_070",
+      "lessonId": "lesson_070",
+      "title": "Words that move a story along",
+      "body": "In Vietnamese, narration is built from time markers placed at the start of a clause. Use \"Lúc đó\" (at that time) to set a scene, \"Bỗng nhiên\" (suddenly) for a twist, and \"Cuối cùng\" (finally/in the end) to close. Note that past tense isn't marked on the verb; \"lúc đó\" plus \"đang\" signals an ongoing past action, so the connectors carry the timeline, not verb endings.",
+      "examples": [
+        {
+          "vi": "Lúc đó tôi đang đi làm.",
+          "en": "At that time I was going to work."
+        },
+        {
+          "vi": "Bỗng nhiên có một tiếng động lớn.",
+          "en": "Suddenly there was a loud noise."
+        },
+        {
+          "vi": "Cuối cùng mọi chuyện cũng kết thúc tốt đẹp.",
+          "en": "In the end everything ended well."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_071",
+      "lessonId": "lesson_071",
+      "title": "Compare with \"như\" and \"giống như\"",
+      "body": "To compare two things, put the adjective first, then \"như\" (like/as) before the thing you compare to: [A] + adjective + như + [B]. Use \"giống như\" (just like) for a closer, more emphatic resemblance. Many describing words come in two-syllable pairs (cao ráo, hiền lành, sầm uất) that sound smoother and warmer than single adjectives.",
+      "examples": [
+        {
+          "vi": "Sài Gòn sầm uất như Bangkok.",
+          "en": "Saigon is as bustling as Bangkok."
+        },
+        {
+          "vi": "Cô giáo nhiệt tình giống như người mẹ thứ hai.",
+          "en": "The teacher is as enthusiastic as a second mother."
+        },
+        {
+          "vi": "Anh ấy cao ráo và rất hiền lành.",
+          "en": "He is tall and slim, and very gentle."
+        }
+      ]
+    },
+    {
+      "id": "concept_lesson_072",
+      "lessonId": "lesson_072",
+      "title": "Telling a Story: Set the Scene First",
+      "body": "When narrating a memory in Vietnamese, open with a time marker like \"Lần đó\" (that time) to anchor your listener before the action. Add \"tình cờ\" (by chance) before a verb to show something happened unexpectedly. Vietnamese has no past tense, so these scene-setting words do the work of signaling \"back then.\"",
+      "examples": [
+        {
+          "vi": "Lần đó tôi tình cờ gặp một người bạn cũ.",
+          "en": "That time I happened to run into an old friend."
+        },
+        {
+          "vi": "Tôi muốn kể một kỷ niệm đáng nhớ.",
+          "en": "I want to share a memorable memory."
+        },
+        {
+          "vi": "Câu chuyện rất cảm động và để lại ấn tượng sâu.",
+          "en": "The story was very moving and left a deep impression."
+        }
+      ]
     }
   ]
 }
