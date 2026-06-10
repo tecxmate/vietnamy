@@ -15942,7 +15942,10 @@
       "vi": "Cảm ơn!",
       "en": "Thank you!",
       "tokenCount": 2,
-      "difficulty": 1
+      "difficulty": 1,
+      "grammarTagIds": [
+        "gtag_081"
+      ]
     },
     {
       "id": "it_s_0012",
@@ -15950,7 +15953,11 @@
       "vi": "Bạn tên là gì?",
       "en": "What is your name?",
       "tokenCount": 4,
-      "difficulty": 2
+      "difficulty": 2,
+      "grammarTagIds": [
+        "gtag_006",
+        "gtag_002"
+      ]
     },
     {
       "id": "it_s_0013",
@@ -15974,7 +15981,11 @@
       "vi": "Tôi không hiểu.",
       "en": "I don't understand.",
       "tokenCount": 3,
-      "difficulty": 3
+      "difficulty": 3,
+      "grammarTagIds": [
+        "gtag_004",
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0017",
@@ -15982,7 +15993,10 @@
       "vi": "Nói chậm lại.",
       "en": "Speak more slowly.",
       "tokenCount": 3,
-      "difficulty": 3
+      "difficulty": 3,
+      "grammarTagIds": [
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0220",
@@ -15990,7 +16004,10 @@
       "vi": "Một, hai, ba!",
       "en": "One, two, three!",
       "tokenCount": 3,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_024"
+      ]
     },
     {
       "id": "it_s_0221",
@@ -15998,7 +16015,11 @@
       "vi": "Tôi có năm bạn.",
       "en": "I have five friends.",
       "tokenCount": 4,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_024",
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0222",
@@ -16006,7 +16027,10 @@
       "vi": "Tám hay chín?",
       "en": "Eight or nine?",
       "tokenCount": 3,
-      "difficulty": 5
+      "difficulty": 5,
+      "grammarTagIds": [
+        "gtag_024"
+      ]
     },
     {
       "id": "it_s_0223",
@@ -16014,7 +16038,10 @@
       "vi": "Từ sáu đến mười.",
       "en": "From six to ten.",
       "tokenCount": 4,
-      "difficulty": 5
+      "difficulty": 5,
+      "grammarTagIds": [
+        "gtag_024"
+      ]
     },
     {
       "id": "it_s_0033",
@@ -16022,7 +16049,10 @@
       "vi": "Cho tôi cà phê.",
       "en": "Give me coffee.",
       "tokenCount": 4,
-      "difficulty": 5
+      "difficulty": 5,
+      "grammarTagIds": [
+        "gtag_021"
+      ]
     },
     {
       "id": "it_s_0034",
@@ -16030,7 +16060,11 @@
       "vi": "Tôi muốn một trà.",
       "en": "I want a tea.",
       "tokenCount": 4,
-      "difficulty": 5
+      "difficulty": 5,
+      "grammarTagIds": [
+        "gtag_022",
+        "gtag_024"
+      ]
     },
     {
       "id": "it_s_0044",
@@ -16038,7 +16072,10 @@
       "vi": "Tôi muốn cà phê sữa đá.",
       "en": "I want iced milk coffee.",
       "tokenCount": 6,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_022"
+      ]
     },
     {
       "id": "it_s_0049",
@@ -16046,7 +16083,11 @@
       "vi": "Tôi muốn một bát phở.",
       "en": "I want a bowl of pho.",
       "tokenCount": 5,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_022",
+        "gtag_024"
+      ]
     },
     {
       "id": "it_s_0054",
@@ -16054,7 +16095,11 @@
       "vi": "Cái này bao nhiêu tiền?",
       "en": "How much does this cost?",
       "tokenCount": 5,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_010",
+        "gtag_042"
+      ]
     },
     {
       "id": "it_s_0224",
@@ -16062,7 +16107,11 @@
       "vi": "Tôi thích màu đỏ.",
       "en": "I like the color red.",
       "tokenCount": 4,
-      "difficulty": 5
+      "difficulty": 5,
+      "grammarTagIds": [
+        "gtag_001",
+        "gtag_014"
+      ]
     },
     {
       "id": "it_s_0225",
@@ -16070,7 +16119,10 @@
       "vi": "Cái áo màu xanh.",
       "en": "The blue shirt.",
       "tokenCount": 4,
-      "difficulty": 5
+      "difficulty": 5,
+      "grammarTagIds": [
+        "gtag_023"
+      ]
     },
     {
       "id": "it_s_0226",
@@ -16078,7 +16130,11 @@
       "vi": "Cái nhà to quá!",
       "en": "The house is so big!",
       "tokenCount": 4,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_032",
+        "gtag_042"
+      ]
     },
     {
       "id": "it_s_0227",
@@ -16086,7 +16142,10 @@
       "vi": "Hoa đẹp quá!",
       "en": "The flowers are so beautiful!",
       "tokenCount": 3,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_032"
+      ]
     },
     {
       "id": "it_s_0075",
@@ -16094,7 +16153,10 @@
       "vi": "Mắc quá! Bớt đi.",
       "en": "Too expensive! Lower the price.",
       "tokenCount": 4,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_032"
+      ]
     },
     {
       "id": "it_s_0076",
@@ -16102,7 +16164,11 @@
       "vi": "Tôi muốn mua cái này.",
       "en": "I want to buy this.",
       "tokenCount": 5,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_022",
+        "gtag_042"
+      ]
     },
     {
       "id": "it_s_0228",
@@ -16110,7 +16176,10 @@
       "vi": "Tôi muốn mua cam.",
       "en": "I want to buy oranges.",
       "tokenCount": 4,
-      "difficulty": 5
+      "difficulty": 5,
+      "grammarTagIds": [
+        "gtag_022"
+      ]
     },
     {
       "id": "it_s_0229",
@@ -16118,7 +16187,10 @@
       "vi": "Xoài rất ngon.",
       "en": "Mango is very delicious.",
       "tokenCount": 3,
-      "difficulty": 5
+      "difficulty": 5,
+      "grammarTagIds": [
+        "gtag_031"
+      ]
     },
     {
       "id": "it_s_0230",
@@ -16126,7 +16198,11 @@
       "vi": "Tôi ăn rau mỗi ngày.",
       "en": "I eat vegetables every day.",
       "tokenCount": 5,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_001",
+        "gtag_041"
+      ]
     },
     {
       "id": "it_s_0231",
@@ -16134,7 +16210,10 @@
       "vi": "Cà chua màu đỏ.",
       "en": "Tomatoes are red.",
       "tokenCount": 4,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0095",
@@ -16142,7 +16221,10 @@
       "vi": "Tính tiền, làm ơn.",
       "en": "The bill, please.",
       "tokenCount": 4,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_020"
+      ]
     },
     {
       "id": "it_s_0107",
@@ -16150,7 +16232,11 @@
       "vi": "Đi thẳng rồi quẹo trái.",
       "en": "Go straight then turn left.",
       "tokenCount": 5,
-      "difficulty": 5
+      "difficulty": 5,
+      "grammarTagIds": [
+        "gtag_001",
+        "gtag_044"
+      ]
     },
     {
       "id": "it_s_0242",
@@ -16158,7 +16244,11 @@
       "vi": "Nhà tôi gần đây.",
       "en": "My house is nearby.",
       "tokenCount": 4,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_003",
+        "gtag_038"
+      ]
     },
     {
       "id": "it_s_0243",
@@ -16166,7 +16256,10 @@
       "vi": "Có xa không?",
       "en": "Is it far?",
       "tokenCount": 3,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_005"
+      ]
     },
     {
       "id": "it_s_0115",
@@ -16174,7 +16267,10 @@
       "vi": "Cho tôi đến khách sạn.",
       "en": "Take me to the hotel.",
       "tokenCount": 5,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_021"
+      ]
     },
     {
       "id": "it_s_0116",
@@ -16182,7 +16278,11 @@
       "vi": "Dừng ở đây, làm ơn.",
       "en": "Stop here, please.",
       "tokenCount": 5,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_038",
+        "gtag_020"
+      ]
     },
     {
       "id": "it_s_0125",
@@ -16206,7 +16306,10 @@
       "vi": "Giúp tôi với!",
       "en": "Help me!",
       "tokenCount": 3,
-      "difficulty": 9
+      "difficulty": 9,
+      "grammarTagIds": [
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0136",
@@ -16214,7 +16317,10 @@
       "vi": "Tôi bị lạc.",
       "en": "I am lost.",
       "tokenCount": 3,
-      "difficulty": 9
+      "difficulty": 9,
+      "grammarTagIds": [
+        "gtag_037"
+      ]
     },
     {
       "id": "it_s_0232",
@@ -16222,7 +16328,10 @@
       "vi": "Sáng hay chiều?",
       "en": "Morning or afternoon?",
       "tokenCount": 3,
-      "difficulty": 5
+      "difficulty": 5,
+      "grammarTagIds": [
+        "gtag_035"
+      ]
     },
     {
       "id": "it_s_0233",
@@ -16230,7 +16339,10 @@
       "vi": "Mấy giờ rồi?",
       "en": "What time is it?",
       "tokenCount": 3,
-      "difficulty": 5
+      "difficulty": 5,
+      "grammarTagIds": [
+        "gtag_011"
+      ]
     },
     {
       "id": "it_s_0148",
@@ -16255,7 +16367,10 @@
       "vi": "Hôm nay trời đẹp quá!",
       "en": "The weather is so nice today!",
       "tokenCount": 5,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_032"
+      ]
     },
     {
       "id": "it_s_0234",
@@ -16263,7 +16378,10 @@
       "vi": "Bố mẹ tôi khỏe.",
       "en": "My parents are well.",
       "tokenCount": 4,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_003"
+      ]
     },
     {
       "id": "it_s_0235",
@@ -16271,7 +16389,10 @@
       "vi": "Anh chị khỏe không?",
       "en": "Are you well? (to older sibling)",
       "tokenCount": 4,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_005"
+      ]
     },
     {
       "id": "it_s_0236",
@@ -16279,7 +16400,11 @@
       "vi": "Em tôi còn nhỏ.",
       "en": "My younger sibling is still small.",
       "tokenCount": 4,
-      "difficulty": 9
+      "difficulty": 9,
+      "grammarTagIds": [
+        "gtag_003",
+        "gtag_049"
+      ]
     },
     {
       "id": "it_s_0237",
@@ -16287,7 +16412,11 @@
       "vi": "Vợ chồng tôi rất vui.",
       "en": "My wife/husband and I are very happy.",
       "tokenCount": 5,
-      "difficulty": 9
+      "difficulty": 9,
+      "grammarTagIds": [
+        "gtag_003",
+        "gtag_031"
+      ]
     },
     {
       "id": "it_s_0238",
@@ -16295,7 +16424,10 @@
       "vi": "Nhà bếp rất sạch.",
       "en": "The kitchen is very clean.",
       "tokenCount": 4,
-      "difficulty": 9
+      "difficulty": 9,
+      "grammarTagIds": [
+        "gtag_031"
+      ]
     },
     {
       "id": "it_s_0239",
@@ -16303,7 +16435,10 @@
       "vi": "Phòng khách rất to.",
       "en": "The living room is very big.",
       "tokenCount": 4,
-      "difficulty": 9
+      "difficulty": 9,
+      "grammarTagIds": [
+        "gtag_031"
+      ]
     },
     {
       "id": "it_s_0240",
@@ -16311,7 +16446,10 @@
       "vi": "Ngồi trên ghế đi.",
       "en": "Sit on the chair.",
       "tokenCount": 4,
-      "difficulty": 10
+      "difficulty": 10,
+      "grammarTagIds": [
+        "gtag_038"
+      ]
     },
     {
       "id": "it_s_0241",
@@ -16319,7 +16457,10 @@
       "vi": "Đặt trên bàn.",
       "en": "Put it on the table.",
       "tokenCount": 3,
-      "difficulty": 10
+      "difficulty": 10,
+      "grammarTagIds": [
+        "gtag_038"
+      ]
     },
     {
       "id": "it_s_0186",
@@ -16327,7 +16468,10 @@
       "vi": "Bạn thích làm gì?",
       "en": "What do you like to do?",
       "tokenCount": 4,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_006"
+      ]
     },
     {
       "id": "it_s_0196",
@@ -16335,7 +16479,10 @@
       "vi": "Tôi mệt quá.",
       "en": "I am so tired.",
       "tokenCount": 3,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_032"
+      ]
     },
     {
       "id": "it_s_0205",
@@ -16343,7 +16490,10 @@
       "vi": "Cuối tuần bạn rảnh không?",
       "en": "Are you free this weekend?",
       "tokenCount": 5,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_005"
+      ]
     },
     {
       "id": "it_s_0206",
@@ -16351,7 +16501,11 @@
       "vi": "Đi chơi cùng tôi không?",
       "en": "Do you want to hang out with me?",
       "tokenCount": 5,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_005",
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0214",
@@ -16359,7 +16513,10 @@
       "vi": "Chúc mừng sinh nhật!",
       "en": "Happy birthday!",
       "tokenCount": 4,
-      "difficulty": 9
+      "difficulty": 9,
+      "grammarTagIds": [
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0215",
@@ -16367,7 +16524,10 @@
       "vi": "Vui quá!",
       "en": "So fun!",
       "tokenCount": 2,
-      "difficulty": 9
+      "difficulty": 9,
+      "grammarTagIds": [
+        "gtag_032"
+      ]
     },
     {
       "id": "it_s_0300",
@@ -16408,7 +16568,10 @@
         "I've just returned."
       ],
       "tokenCount": 4,
-      "difficulty": 3
+      "difficulty": 3,
+      "grammarTagIds": [
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0303",
@@ -16419,7 +16582,10 @@
         "It was very cold last year."
       ],
       "tokenCount": 4,
-      "difficulty": 3
+      "difficulty": 3,
+      "grammarTagIds": [
+        "gtag_031"
+      ]
     },
     {
       "id": "it_s_0304",
@@ -16430,7 +16596,10 @@
         "The trip was great."
       ],
       "tokenCount": 4,
-      "difficulty": 3
+      "difficulty": 3,
+      "grammarTagIds": [
+        "gtag_031"
+      ]
     },
     {
       "id": "it_s_0305",
@@ -16469,7 +16638,11 @@
         "I was tired but happy."
       ],
       "tokenCount": 6,
-      "difficulty": 3
+      "difficulty": 3,
+      "grammarTagIds": [
+        "gtag_031",
+        "gtag_052"
+      ]
     },
     {
       "id": "it_s_0308",
@@ -16509,7 +16682,11 @@
         "It's my first time trying."
       ],
       "tokenCount": 6,
-      "difficulty": 3
+      "difficulty": 3,
+      "grammarTagIds": [
+        "gtag_043",
+        "gtag_002"
+      ]
     },
     {
       "id": "it_s_0311",
@@ -16531,7 +16708,10 @@
       "vi": "Tôi rất ngạc nhiên khi nghe tin.",
       "en": "I was very surprised when I heard the news.",
       "tokenCount": 7,
-      "difficulty": 3
+      "difficulty": 3,
+      "grammarTagIds": [
+        "gtag_031"
+      ]
     },
     {
       "id": "it_s_0313",
@@ -16542,7 +16722,11 @@
         "What a surprise to see you here!"
       ],
       "tokenCount": 6,
-      "difficulty": 3
+      "difficulty": 3,
+      "grammarTagIds": [
+        "gtag_038",
+        "gtag_044"
+      ]
     },
     {
       "id": "it_s_0314",
@@ -16561,7 +16745,10 @@
       "vi": "Thật à? Tôi không tin nổi.",
       "en": "Really? I can't believe it.",
       "tokenCount": 6,
-      "difficulty": 3
+      "difficulty": 3,
+      "grammarTagIds": [
+        "gtag_004"
+      ]
     },
     {
       "id": "it_s_0316",
@@ -16600,7 +16787,10 @@
         "My stomach is very hungry."
       ],
       "tokenCount": 4,
-      "difficulty": 3
+      "difficulty": 3,
+      "grammarTagIds": [
+        "gtag_033"
+      ]
     },
     {
       "id": "it_s_0319",
@@ -16608,7 +16798,11 @@
       "vi": "Lưng anh ấy đau từ hôm qua.",
       "en": "His back has hurt since yesterday.",
       "tokenCount": 6,
-      "difficulty": 3
+      "difficulty": 3,
+      "grammarTagIds": [
+        "gtag_003",
+        "gtag_055"
+      ]
     },
     {
       "id": "it_s_0320",
@@ -16627,7 +16821,10 @@
       "vi": "Bác sĩ ơi, tôi cảm thấy mệt.",
       "en": "Doctor, I feel tired.",
       "tokenCount": 6,
-      "difficulty": 3
+      "difficulty": 3,
+      "grammarTagIds": [
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0322",
@@ -16660,7 +16857,10 @@
         "I'd like to buy cold medicine."
       ],
       "tokenCount": 5,
-      "difficulty": 3
+      "difficulty": 3,
+      "grammarTagIds": [
+        "gtag_021"
+      ]
     },
     {
       "id": "it_s_0325",
@@ -16668,7 +16868,11 @@
       "vi": "Uống hai viên sau bữa ăn.",
       "en": "Take two tablets after meals.",
       "tokenCount": 5,
-      "difficulty": 3
+      "difficulty": 3,
+      "grammarTagIds": [
+        "gtag_024",
+        "gtag_055"
+      ]
     },
     {
       "id": "it_s_0326",
@@ -16690,7 +16894,10 @@
       "vi": "Bạn có đơn thuốc không?",
       "en": "Do you have a prescription?",
       "tokenCount": 5,
-      "difficulty": 3
+      "difficulty": 3,
+      "grammarTagIds": [
+        "gtag_005"
+      ]
     },
     {
       "id": "it_s_0328",
@@ -16698,7 +16905,11 @@
       "vi": "Tôi tập thể dục mỗi sáng.",
       "en": "I exercise every morning.",
       "tokenCount": 5,
-      "difficulty": 3
+      "difficulty": 3,
+      "grammarTagIds": [
+        "gtag_001",
+        "gtag_035"
+      ]
     },
     {
       "id": "it_s_0329",
@@ -16717,7 +16928,10 @@
       "vi": "Tôi đang cố hạn chế đường.",
       "en": "I'm trying to cut down on sugar.",
       "tokenCount": 6,
-      "difficulty": 3
+      "difficulty": 3,
+      "grammarTagIds": [
+        "gtag_016"
+      ]
     },
     {
       "id": "it_s_0331",
@@ -16736,7 +16950,11 @@
       "vi": "Tôi đang làm việc ở công ty mới.",
       "en": "I'm working at a new company.",
       "tokenCount": 7,
-      "difficulty": 3
+      "difficulty": 3,
+      "grammarTagIds": [
+        "gtag_016",
+        "gtag_038"
+      ]
     },
     {
       "id": "it_s_0333",
@@ -16744,7 +16962,11 @@
       "vi": "Đồng nghiệp của tôi rất thân thiện.",
       "en": "My colleagues are very friendly.",
       "tokenCount": 6,
-      "difficulty": 3
+      "difficulty": 3,
+      "grammarTagIds": [
+        "gtag_003",
+        "gtag_031"
+      ]
     },
     {
       "id": "it_s_0334",
@@ -16752,7 +16974,10 @@
       "vi": "Tôi vừa hoàn thành báo cáo.",
       "en": "I just finished the report.",
       "tokenCount": 5,
-      "difficulty": 3
+      "difficulty": 3,
+      "grammarTagIds": [
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0335",
@@ -16760,7 +16985,11 @@
       "vi": "Hôm nay sếp rất bận.",
       "en": "The boss is very busy today.",
       "tokenCount": 5,
-      "difficulty": 3
+      "difficulty": 3,
+      "grammarTagIds": [
+        "gtag_031",
+        "gtag_035"
+      ]
     },
     {
       "id": "it_s_0336",
@@ -16771,7 +17000,10 @@
         "The meeting begins at 9 o'clock."
       ],
       "tokenCount": 6,
-      "difficulty": 3
+      "difficulty": 3,
+      "grammarTagIds": [
+        "gtag_034"
+      ]
     },
     {
       "id": "it_s_0337",
@@ -16802,7 +17034,10 @@
       "vi": "Xin lỗi, tôi đến trễ năm phút.",
       "en": "Sorry, I'm five minutes late.",
       "tokenCount": 6,
-      "difficulty": 3
+      "difficulty": 3,
+      "grammarTagIds": [
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0340",
@@ -16810,7 +17045,10 @@
       "vi": "Tôi vừa gửi email cho bạn.",
       "en": "I just sent you an email.",
       "tokenCount": 6,
-      "difficulty": 3
+      "difficulty": 3,
+      "grammarTagIds": [
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0341",
@@ -16818,7 +17056,11 @@
       "vi": "Anh có thể gọi lại sau không?",
       "en": "Could you call back later?",
       "tokenCount": 6,
-      "difficulty": 3
+      "difficulty": 3,
+      "grammarTagIds": [
+        "gtag_103",
+        "gtag_005"
+      ]
     },
     {
       "id": "it_s_0342",
@@ -16826,7 +17068,10 @@
       "vi": "Việc này khá khẩn cấp.",
       "en": "This matter is quite urgent.",
       "tokenCount": 5,
-      "difficulty": 3
+      "difficulty": 3,
+      "grammarTagIds": [
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0343",
@@ -16845,7 +17090,11 @@
       "vi": "Tôi muốn đặt một vé khứ hồi.",
       "en": "I want to book a round-trip ticket.",
       "tokenCount": 7,
-      "difficulty": 3
+      "difficulty": 3,
+      "grammarTagIds": [
+        "gtag_022",
+        "gtag_024"
+      ]
     },
     {
       "id": "it_s_0345",
@@ -16853,7 +17102,10 @@
       "vi": "Chuyến bay khởi hành lúc mấy giờ?",
       "en": "What time does the flight depart?",
       "tokenCount": 6,
-      "difficulty": 3
+      "difficulty": 3,
+      "grammarTagIds": [
+        "gtag_011"
+      ]
     },
     {
       "id": "it_s_0346",
@@ -16861,7 +17113,10 @@
       "vi": "Tour này có hướng dẫn viên không?",
       "en": "Does this tour have a guide?",
       "tokenCount": 6,
-      "difficulty": 3
+      "difficulty": 3,
+      "grammarTagIds": [
+        "gtag_005"
+      ]
     },
     {
       "id": "it_s_0347",
@@ -16880,7 +17135,11 @@
       "vi": "Hà Nội là thủ đô của Việt Nam.",
       "en": "Hanoi is the capital of Vietnam.",
       "tokenCount": 7,
-      "difficulty": 3
+      "difficulty": 3,
+      "grammarTagIds": [
+        "gtag_002",
+        "gtag_003"
+      ]
     },
     {
       "id": "it_s_0349",
@@ -16888,7 +17147,10 @@
       "vi": "Vịnh Hạ Long rất đẹp.",
       "en": "Ha Long Bay is very beautiful.",
       "tokenCount": 5,
-      "difficulty": 3
+      "difficulty": 3,
+      "grammarTagIds": [
+        "gtag_031"
+      ]
     },
     {
       "id": "it_s_0350",
@@ -16896,7 +17158,10 @@
       "vi": "Sa Pa nổi tiếng với ruộng bậc thang.",
       "en": "Sa Pa is famous for its terraced rice fields.",
       "tokenCount": 7,
-      "difficulty": 3
+      "difficulty": 3,
+      "grammarTagIds": [
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0351",
@@ -16904,7 +17169,11 @@
       "vi": "Tôi muốn đi du thuyền ở Hạ Long.",
       "en": "I want to take a cruise in Ha Long.",
       "tokenCount": 8,
-      "difficulty": 3
+      "difficulty": 3,
+      "grammarTagIds": [
+        "gtag_022",
+        "gtag_038"
+      ]
     },
     {
       "id": "it_s_0352",
@@ -16923,7 +17192,11 @@
       "vi": "Hội An rất đẹp vào ban đêm với đèn lồng.",
       "en": "Hoi An is very beautiful at night with lanterns.",
       "tokenCount": 9,
-      "difficulty": 3
+      "difficulty": 3,
+      "grammarTagIds": [
+        "gtag_031",
+        "gtag_035"
+      ]
     },
     {
       "id": "it_s_0354",
@@ -16931,7 +17204,10 @@
       "vi": "Đà Nẵng có nhiều bãi biển đẹp.",
       "en": "Da Nang has many beautiful beaches.",
       "tokenCount": 6,
-      "difficulty": 3
+      "difficulty": 3,
+      "grammarTagIds": [
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0355",
@@ -16939,7 +17215,10 @@
       "vi": "Bún bò Huế là đặc sản nổi tiếng.",
       "en": "Bun bo Hue is a famous specialty.",
       "tokenCount": 7,
-      "difficulty": 3
+      "difficulty": 3,
+      "grammarTagIds": [
+        "gtag_002"
+      ]
     },
     {
       "id": "it_s_0356",
@@ -16947,7 +17226,10 @@
       "vi": "Sài Gòn rất nhộn nhịp.",
       "en": "Saigon is very bustling.",
       "tokenCount": 4,
-      "difficulty": 3
+      "difficulty": 3,
+      "grammarTagIds": [
+        "gtag_031"
+      ]
     },
     {
       "id": "it_s_0357",
@@ -16955,7 +17237,10 @@
       "vi": "Chợ nổi có nhiều trái cây nhiệt đới.",
       "en": "The floating market has lots of tropical fruit.",
       "tokenCount": 7,
-      "difficulty": 3
+      "difficulty": 3,
+      "grammarTagIds": [
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0358",
@@ -16963,7 +17248,11 @@
       "vi": "Chúng tôi đi thuyền trên sông.",
       "en": "We rode a boat on the river.",
       "tokenCount": 6,
-      "difficulty": 3
+      "difficulty": 3,
+      "grammarTagIds": [
+        "gtag_001",
+        "gtag_038"
+      ]
     },
     {
       "id": "it_s_0359",
@@ -16971,7 +17260,10 @@
       "vi": "Đồng bằng sông Cửu Long rất rộng.",
       "en": "The Mekong Delta is very vast.",
       "tokenCount": 6,
-      "difficulty": 3
+      "difficulty": 3,
+      "grammarTagIds": [
+        "gtag_031"
+      ]
     },
     {
       "id": "it_s_0360",
@@ -16979,7 +17271,10 @@
       "vi": "Cho tôi xin số điện thoại.",
       "en": "Can I have your phone number?",
       "tokenCount": 5,
-      "difficulty": 3
+      "difficulty": 3,
+      "grammarTagIds": [
+        "gtag_021"
+      ]
     },
     {
       "id": "it_s_0361",
@@ -16987,7 +17282,10 @@
       "vi": "Điện thoại tôi sắp hết pin.",
       "en": "My phone is almost out of battery.",
       "tokenCount": 5,
-      "difficulty": 3
+      "difficulty": 3,
+      "grammarTagIds": [
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0362",
@@ -16995,7 +17293,11 @@
       "vi": "Wifi ở đây mật khẩu là gì?",
       "en": "What's the wifi password here?",
       "tokenCount": 6,
-      "difficulty": 3
+      "difficulty": 3,
+      "grammarTagIds": [
+        "gtag_006",
+        "gtag_002"
+      ]
     },
     {
       "id": "it_s_0363",
@@ -17003,7 +17305,10 @@
       "vi": "Tôi sẽ nhắn tin cho bạn sau.",
       "en": "I'll text you later.",
       "tokenCount": 6,
-      "difficulty": 3
+      "difficulty": 3,
+      "grammarTagIds": [
+        "gtag_017"
+      ]
     },
     {
       "id": "it_s_0364",
@@ -17011,7 +17316,11 @@
       "vi": "Tôi cần tải ứng dụng này.",
       "en": "I need to download this app.",
       "tokenCount": 5,
-      "difficulty": 3
+      "difficulty": 3,
+      "grammarTagIds": [
+        "gtag_063",
+        "gtag_042"
+      ]
     },
     {
       "id": "it_s_0365",
@@ -17019,7 +17328,11 @@
       "vi": "Mạng ở đây hơi chậm.",
       "en": "The internet here is a bit slow.",
       "tokenCount": 5,
-      "difficulty": 3
+      "difficulty": 3,
+      "grammarTagIds": [
+        "gtag_038",
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0366",
@@ -17027,7 +17340,10 @@
       "vi": "Bạn có tài khoản Zalo không?",
       "en": "Do you have a Zalo account?",
       "tokenCount": 6,
-      "difficulty": 3
+      "difficulty": 3,
+      "grammarTagIds": [
+        "gtag_005"
+      ]
     },
     {
       "id": "it_s_0367",
@@ -17035,7 +17351,10 @@
       "vi": "Tôi sẽ chia sẻ ảnh trên mạng xã hội.",
       "en": "I'll share photos on social media.",
       "tokenCount": 8,
-      "difficulty": 3
+      "difficulty": 3,
+      "grammarTagIds": [
+        "gtag_017"
+      ]
     },
     {
       "id": "it_s_0368",
@@ -17043,7 +17362,10 @@
       "vi": "Cuối tuần bạn có rảnh không?",
       "en": "Are you free this weekend?",
       "tokenCount": 6,
-      "difficulty": 3
+      "difficulty": 3,
+      "grammarTagIds": [
+        "gtag_005"
+      ]
     },
     {
       "id": "it_s_0369",
@@ -17051,7 +17373,11 @@
       "vi": "Mình hẹn nhau lúc 7 giờ tối nhé.",
       "en": "Let's meet at 7 in the evening.",
       "tokenCount": 7,
-      "difficulty": 3
+      "difficulty": 3,
+      "grammarTagIds": [
+        "gtag_034",
+        "gtag_035"
+      ]
     },
     {
       "id": "it_s_0370",
@@ -17059,7 +17385,11 @@
       "vi": "Xin lỗi, mình phải hủy hẹn.",
       "en": "Sorry, I have to cancel.",
       "tokenCount": 6,
-      "difficulty": 3
+      "difficulty": 3,
+      "grammarTagIds": [
+        "gtag_029",
+        "gtag_139"
+      ]
     },
     {
       "id": "it_s_0371",
@@ -17067,7 +17397,10 @@
       "vi": "Mình xác nhận lịch ngày mai.",
       "en": "I confirm the schedule for tomorrow.",
       "tokenCount": 5,
-      "difficulty": 3
+      "difficulty": 3,
+      "grammarTagIds": [
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0372",
@@ -17075,7 +17408,10 @@
       "vi": "Tết là dịp gia đình sum họp.",
       "en": "Tet is the occasion for families to reunite.",
       "tokenCount": 7,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_002"
+      ]
     },
     {
       "id": "it_s_0373",
@@ -17083,7 +17419,10 @@
       "vi": "Trẻ con rất thích nhận lì xì.",
       "en": "Children love receiving lucky money.",
       "tokenCount": 6,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_031"
+      ]
     },
     {
       "id": "it_s_0374",
@@ -17091,7 +17430,11 @@
       "vi": "Miền Bắc chưng hoa đào, miền Nam chưng hoa mai.",
       "en": "The North displays peach blossoms; the South, apricot blossoms.",
       "tokenCount": 9,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_120",
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0375",
@@ -17099,7 +17442,10 @@
       "vi": "Chúc mừng năm mới! An khang thịnh vượng!",
       "en": "Happy New Year! Peace and prosperity!",
       "tokenCount": 6,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_077"
+      ]
     },
     {
       "id": "it_s_0376",
@@ -17107,7 +17453,10 @@
       "vi": "Trung Thu là tết của trẻ em.",
       "en": "Mid-Autumn is the children's festival.",
       "tokenCount": 7,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_002"
+      ]
     },
     {
       "id": "it_s_0377",
@@ -17115,7 +17464,11 @@
       "vi": "Trẻ em rước đèn ông sao và xem múa lân.",
       "en": "Kids carry star lanterns and watch the lion dance.",
       "tokenCount": 9,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_044",
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0378",
@@ -17123,7 +17476,11 @@
       "vi": "Cả nhà cùng nhau phá cỗ dưới trăng rằm.",
       "en": "The whole family enjoys the feast under the full moon.",
       "tokenCount": 9,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_038",
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0379",
@@ -17131,7 +17488,10 @@
       "vi": "Bánh trung thu có nhân đậu xanh hoặc thập cẩm.",
       "en": "Mooncakes have mung bean or mixed filling.",
       "tokenCount": 8,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0380",
@@ -17139,7 +17499,10 @@
       "vi": "Người Việt rất tôn trọng tổ tiên.",
       "en": "Vietnamese people deeply respect their ancestors.",
       "tokenCount": 6,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_031"
+      ]
     },
     {
       "id": "it_s_0381",
@@ -17147,7 +17510,11 @@
       "vi": "Mỗi năm gia đình tôi cúng giỗ ông nội.",
       "en": "Every year my family holds a memorial for my grandfather.",
       "tokenCount": 9,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_117",
+        "gtag_003"
+      ]
     },
     {
       "id": "it_s_0382",
@@ -17155,7 +17522,11 @@
       "vi": "Vào lễ Vu Lan, người ta cài hoa hồng.",
       "en": "On Vu Lan, people pin a rose on their chest.",
       "tokenCount": 8,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_107",
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0383",
@@ -17163,7 +17534,10 @@
       "vi": "Đám cưới Việt Nam có nhiều nghi lễ truyền thống.",
       "en": "Vietnamese weddings have many traditional rituals.",
       "tokenCount": 9,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0384",
@@ -17205,7 +17579,11 @@
       "vi": "Thật ra tôi không đồng ý lắm.",
       "en": "Actually, I don't quite agree.",
       "tokenCount": 6,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_004",
+        "gtag_033"
+      ]
     },
     {
       "id": "it_s_0388",
@@ -17213,7 +17591,10 @@
       "vi": "Tôi hoàn toàn đồng ý với bạn.",
       "en": "I completely agree with you.",
       "tokenCount": 6,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0389",
@@ -17232,7 +17613,11 @@
       "vi": "Lý do là vì giá quá cao.",
       "en": "The reason is because the price is too high.",
       "tokenCount": 7,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_002",
+        "gtag_032"
+      ]
     },
     {
       "id": "it_s_0391",
@@ -17240,7 +17625,11 @@
       "vi": "Cho tôi một ví dụ cụ thể.",
       "en": "Give me a concrete example.",
       "tokenCount": 6,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_021",
+        "gtag_024"
+      ]
     },
     {
       "id": "it_s_0392",
@@ -17248,7 +17637,10 @@
       "vi": "Văn hóa Việt Nam coi trọng gia đình.",
       "en": "Vietnamese culture values family.",
       "tokenCount": 6,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0393",
@@ -17256,7 +17648,10 @@
       "vi": "So với phương Tây, người Việt sống cộng đồng hơn.",
       "en": "Compared to the West, Vietnamese people live more communally.",
       "tokenCount": 9,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_025"
+      ]
     },
     {
       "id": "it_s_0394",
@@ -17264,7 +17659,11 @@
       "vi": "Hai nền văn hóa có nhiều điểm giống nhau.",
       "en": "The two cultures have many similarities.",
       "tokenCount": 8,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_001",
+        "gtag_083"
+      ]
     },
     {
       "id": "it_s_0395",
@@ -17272,7 +17671,11 @@
       "vi": "Sự khác biệt làm cuộc sống thú vị hơn.",
       "en": "Differences make life more interesting.",
       "tokenCount": 7,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_025",
+        "gtag_137"
+      ]
     },
     {
       "id": "it_s_0396",
@@ -17280,7 +17683,11 @@
       "vi": "Tôi đọc tin tức mỗi sáng.",
       "en": "I read the news every morning.",
       "tokenCount": 5,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_001",
+        "gtag_041"
+      ]
     },
     {
       "id": "it_s_0397",
@@ -17288,7 +17695,11 @@
       "vi": "Tiêu đề bài báo rất gây sốc.",
       "en": "The headline of the article is very shocking.",
       "tokenCount": 6,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_003",
+        "gtag_031"
+      ]
     },
     {
       "id": "it_s_0398",
@@ -17296,7 +17707,10 @@
       "vi": "Chính phủ vừa thông báo chính sách mới.",
       "en": "The government just announced a new policy.",
       "tokenCount": 7,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0399",
@@ -17304,7 +17718,11 @@
       "vi": "Sự kiện này ảnh hưởng đến nhiều người.",
       "en": "This event affects many people.",
       "tokenCount": 7,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_042",
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0400",
@@ -17334,7 +17752,10 @@
       "vi": "Tái chế rác giúp giảm ô nhiễm.",
       "en": "Recycling waste helps reduce pollution.",
       "tokenCount": 6,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0403",
@@ -17353,7 +17774,11 @@
       "vi": "Giáo dục là chìa khóa của tương lai.",
       "en": "Education is the key to the future.",
       "tokenCount": 7,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_002",
+        "gtag_003"
+      ]
     },
     {
       "id": "it_s_0405",
@@ -17361,7 +17786,10 @@
       "vi": "Học sinh Việt Nam chịu nhiều áp lực thi cử.",
       "en": "Vietnamese students face a lot of exam pressure.",
       "tokenCount": 8,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0406",
@@ -17369,7 +17797,10 @@
       "vi": "Du học mở ra nhiều cơ hội mới.",
       "en": "Studying abroad opens up many new opportunities.",
       "tokenCount": 7,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0407",
@@ -17388,7 +17819,11 @@
       "vi": "Mục tiêu của tôi là nói tiếng Việt trôi chảy.",
       "en": "My goal is to speak Vietnamese fluently.",
       "tokenCount": 8,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_002",
+        "gtag_003"
+      ]
     },
     {
       "id": "it_s_0409",
@@ -17396,7 +17831,11 @@
       "vi": "Tôi đang cố gắng học mỗi ngày.",
       "en": "I'm trying to study every day.",
       "tokenCount": 6,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_016",
+        "gtag_041"
+      ]
     },
     {
       "id": "it_s_0410",
@@ -17404,7 +17843,11 @@
       "vi": "Thất bại là mẹ thành công.",
       "en": "Failure is the mother of success.",
       "tokenCount": 5,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_002",
+        "gtag_078"
+      ]
     },
     {
       "id": "it_s_0411",
@@ -17412,7 +17855,10 @@
       "vi": "Trong tương lai tôi muốn mở quán cà phê.",
       "en": "In the future I want to open a cafe.",
       "tokenCount": 8,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_022"
+      ]
     },
     {
       "id": "it_s_0412",
@@ -17453,7 +17899,11 @@
       "vi": "Tôi không hối hận vì lựa chọn của mình.",
       "en": "I don't regret my choice.",
       "tokenCount": 7,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_004",
+        "gtag_003"
+      ]
     },
     {
       "id": "it_s_0416",
@@ -17472,7 +17922,11 @@
       "vi": "Mỗi trải nghiệm là một bài học.",
       "en": "Every experience is a lesson.",
       "tokenCount": 6,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_002",
+        "gtag_042"
+      ]
     },
     {
       "id": "it_s_0418",
@@ -17480,7 +17934,10 @@
       "vi": "Tôi biết ơn hành trình của mình.",
       "en": "I'm grateful for my journey.",
       "tokenCount": 6,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_094"
+      ]
     },
     {
       "id": "it_s_0419",
@@ -17488,7 +17945,11 @@
       "vi": "Tôi sẽ tiếp tục học và trưởng thành.",
       "en": "I will keep learning and growing.",
       "tokenCount": 7,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_017",
+        "gtag_044"
+      ]
     },
     {
       "id": "it_s_0420",
@@ -17496,7 +17957,11 @@
       "vi": "Thành ngữ này có nghĩa là gì?",
       "en": "What does this idiom mean?",
       "tokenCount": 6,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_006",
+        "gtag_002"
+      ]
     },
     {
       "id": "it_s_0421",
@@ -17504,7 +17969,11 @@
       "vi": "Bạn ấy lúc nào cũng nước đến chân mới nhảy.",
       "en": "He always waits until the last minute.",
       "tokenCount": 8,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_077",
+        "gtag_041"
+      ]
     },
     {
       "id": "it_s_0422",
@@ -17515,7 +17984,10 @@
         "Persistence pays off."
       ],
       "tokenCount": 8,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_078"
+      ]
     },
     {
       "id": "it_s_0423",
@@ -17523,7 +17995,10 @@
       "vi": "Tôi không hiểu chính xác ý nghĩa.",
       "en": "I don't fully understand the meaning.",
       "tokenCount": 6,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_004"
+      ]
     },
     {
       "id": "it_s_0424",
@@ -17531,7 +18006,11 @@
       "vi": "Tục ngữ chứa đựng trí tuệ của ông cha.",
       "en": "Proverbs contain the wisdom of our ancestors.",
       "tokenCount": 8,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_078",
+        "gtag_003"
+      ]
     },
     {
       "id": "it_s_0425",
@@ -17539,7 +18018,11 @@
       "vi": "Ăn quả nhớ kẻ trồng cây là bài học về lòng biết ơn.",
       "en": "'Eat the fruit, remember who planted the tree' is a lesson about gratitude.",
       "tokenCount": 11,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_078",
+        "gtag_002"
+      ]
     },
     {
       "id": "it_s_0426",
@@ -17547,7 +18030,11 @@
       "vi": "Câu 'lá lành đùm lá rách' nói về tình đoàn kết.",
       "en": "The saying 'whole leaves wrap torn leaves' speaks of solidarity.",
       "tokenCount": 9,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_077",
+        "gtag_002"
+      ]
     },
     {
       "id": "it_s_0427",
@@ -17569,7 +18056,10 @@
         "This movie is so good!"
       ],
       "tokenCount": 5,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_033"
+      ]
     },
     {
       "id": "it_s_0429",
@@ -17580,7 +18070,10 @@
         "Wow, gorgeous!"
       ],
       "tokenCount": 4,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_032"
+      ]
     },
     {
       "id": "it_s_0430",
@@ -17588,7 +18081,11 @@
       "vi": "Bài này khó quá, bó tay.",
       "en": "This problem is so hard, I give up.",
       "tokenCount": 6,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_032",
+        "gtag_077"
+      ]
     },
     {
       "id": "it_s_0431",
@@ -17596,7 +18093,11 @@
       "vi": "Cái áo của bạn xịn ghê.",
       "en": "Your shirt is really cool.",
       "tokenCount": 6,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_094",
+        "gtag_033"
+      ]
     },
     {
       "id": "it_s_0432",
@@ -17604,7 +18105,10 @@
       "vi": "Anh có bao nhiêu năm kinh nghiệm?",
       "en": "How many years of experience do you have?",
       "tokenCount": 6,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_010"
+      ]
     },
     {
       "id": "it_s_0433",
@@ -17612,7 +18116,11 @@
       "vi": "Điểm mạnh nhất của tôi là làm việc nhóm.",
       "en": "My greatest strength is teamwork.",
       "tokenCount": 8,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_026",
+        "gtag_002"
+      ]
     },
     {
       "id": "it_s_0434",
@@ -17620,7 +18128,11 @@
       "vi": "Mức lương mong muốn của anh là bao nhiêu?",
       "en": "What is your expected salary?",
       "tokenCount": 8,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_010",
+        "gtag_094"
+      ]
     },
     {
       "id": "it_s_0435",
@@ -17639,7 +18151,11 @@
       "vi": "Chúng ta có thể thương lượng về giá không?",
       "en": "Can we negotiate the price?",
       "tokenCount": 7,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_103",
+        "gtag_005"
+      ]
     },
     {
       "id": "it_s_0437",
@@ -17647,7 +18163,10 @@
       "vi": "Tôi đề nghị một thỏa thuận đôi bên cùng có lợi.",
       "en": "I propose a win-win agreement.",
       "tokenCount": 9,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0438",
@@ -17655,7 +18174,10 @@
       "vi": "Cho tôi cân nhắc thêm một chút.",
       "en": "Let me consider it a bit more.",
       "tokenCount": 6,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_021"
+      ]
     },
     {
       "id": "it_s_0439",
@@ -17663,7 +18185,11 @@
       "vi": "Điều kiện hợp đồng cần linh hoạt hơn.",
       "en": "The contract terms need to be more flexible.",
       "tokenCount": 7,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_097",
+        "gtag_025"
+      ]
     },
     {
       "id": "it_s_0440",
@@ -17671,7 +18197,10 @@
       "vi": "Tôi hiểu nhưng có quan điểm khác.",
       "en": "I understand, but I have a different perspective.",
       "tokenCount": 6,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_052"
+      ]
     },
     {
       "id": "it_s_0441",
@@ -17712,7 +18241,10 @@
       "vi": "Cảm ơn về phản hồi mang tính xây dựng.",
       "en": "Thanks for the constructive feedback.",
       "tokenCount": 6,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_101"
+      ]
     },
     {
       "id": "it_s_0445",
@@ -17720,7 +18252,11 @@
       "vi": "Tôi sẽ tiếp thu và cải thiện.",
       "en": "I will take it in and improve.",
       "tokenCount": 6,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_017",
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0446",
@@ -17728,7 +18264,10 @@
       "vi": "Sếp khen cả nhóm làm việc tốt.",
       "en": "The boss praised the whole team.",
       "tokenCount": 7,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0447",
@@ -17736,7 +18275,10 @@
       "vi": "Mình muốn góp ý một chút về thiết kế.",
       "en": "I want to offer a small suggestion about the design.",
       "tokenCount": 8,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_022"
+      ]
     },
     {
       "id": "it_s_0448",
@@ -17744,7 +18286,11 @@
       "vi": "Câu chuyện bắt đầu vào một buổi sáng mưa.",
       "en": "The story begins on a rainy morning.",
       "tokenCount": 8,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_082",
+        "gtag_107"
+      ]
     },
     {
       "id": "it_s_0449",
@@ -17752,7 +18298,11 @@
       "vi": "Lúc đó tôi đang đi làm.",
       "en": "At that time I was going to work.",
       "tokenCount": 6,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_082",
+        "gtag_016"
+      ]
     },
     {
       "id": "it_s_0450",
@@ -17760,7 +18310,11 @@
       "vi": "Bỗng nhiên có một tiếng động lớn.",
       "en": "Suddenly there was a loud noise.",
       "tokenCount": 6,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_082",
+        "gtag_024"
+      ]
     },
     {
       "id": "it_s_0451",
@@ -17768,7 +18322,10 @@
       "vi": "Cuối cùng mọi chuyện cũng kết thúc tốt đẹp.",
       "en": "In the end everything ended well.",
       "tokenCount": 8,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_082"
+      ]
     },
     {
       "id": "it_s_0452",
@@ -17776,7 +18333,11 @@
       "vi": "Anh ấy cao ráo và rất hiền lành.",
       "en": "He is tall and slim, and very gentle.",
       "tokenCount": 7,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_031",
+        "gtag_044"
+      ]
     },
     {
       "id": "it_s_0453",
@@ -17784,7 +18345,11 @@
       "vi": "Phố cổ Hội An yên tĩnh và cổ kính.",
       "en": "Hoi An's old quarter is quiet and picturesque.",
       "tokenCount": 8,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_044",
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0454",
@@ -17814,7 +18379,10 @@
       "vi": "Tôi muốn kể một kỷ niệm đáng nhớ.",
       "en": "I want to share a memorable memory.",
       "tokenCount": 7,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_022"
+      ]
     },
     {
       "id": "it_s_0457",
@@ -17822,7 +18390,11 @@
       "vi": "Lần đó tôi tình cờ gặp một người bạn cũ.",
       "en": "That time I happened to run into an old friend.",
       "tokenCount": 9,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_082",
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0458",
@@ -17830,7 +18402,11 @@
       "vi": "Câu chuyện rất cảm động và để lại ấn tượng sâu.",
       "en": "The story was very moving and left a deep impression.",
       "tokenCount": 9,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_031",
+        "gtag_044"
+      ]
     },
     {
       "id": "it_s_0459",
@@ -17838,7 +18414,11 @@
       "vi": "Bài học rút ra là phải biết trân trọng hiện tại.",
       "en": "The lesson learned is to cherish the present.",
       "tokenCount": 9,
-      "difficulty": 4
+      "difficulty": 4,
+      "grammarTagIds": [
+        "gtag_002",
+        "gtag_097"
+      ]
     },
     {
       "id": "it_s_0460",
@@ -17846,7 +18426,11 @@
       "vi": "Theo tôi, đây là vấn đề cần giải quyết ngay.",
       "en": "In my opinion, this issue must be addressed immediately.",
       "tokenCount": 9,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_086",
+        "gtag_118"
+      ]
     },
     {
       "id": "it_s_0461",
@@ -17854,7 +18438,11 @@
       "vi": "Tôi xin khẳng định quan điểm của mình.",
       "en": "I would like to assert my position.",
       "tokenCount": 7,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_087",
+        "gtag_094"
+      ]
     },
     {
       "id": "it_s_0462",
@@ -17862,7 +18450,11 @@
       "vi": "Lập luận của bạn rất rõ ràng.",
       "en": "Your argument is very clear.",
       "tokenCount": 6,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_031",
+        "gtag_094"
+      ]
     },
     {
       "id": "it_s_0463",
@@ -17870,7 +18462,10 @@
       "vi": "Tôi muốn nhấn mạnh một điểm quan trọng.",
       "en": "I want to emphasize an important point.",
       "tokenCount": 7,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_022"
+      ]
     },
     {
       "id": "it_s_0464",
@@ -17878,7 +18473,10 @@
       "vi": "Tôi không đồng ý với ý kiến đó.",
       "en": "I don't agree with that opinion.",
       "tokenCount": 7,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_004"
+      ]
     },
     {
       "id": "it_s_0465",
@@ -17886,7 +18484,10 @@
       "vi": "Tuy nhiên, có một điểm cần xem lại.",
       "en": "However, there's a point that needs reviewing.",
       "tokenCount": 8,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_072"
+      ]
     },
     {
       "id": "it_s_0466",
@@ -17894,7 +18495,10 @@
       "vi": "Ngược lại, dữ liệu cho thấy điều khác.",
       "en": "On the contrary, the data shows otherwise.",
       "tokenCount": 7,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_088"
+      ]
     },
     {
       "id": "it_s_0467",
@@ -17902,7 +18506,11 @@
       "vi": "Bạn có bằng chứng gì không?",
       "en": "Do you have any evidence?",
       "tokenCount": 5,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_005",
+        "gtag_006"
+      ]
     },
     {
       "id": "it_s_0468",
@@ -17910,7 +18518,11 @@
       "vi": "Hãy suy nghĩ kỹ về lợi ích lâu dài.",
       "en": "Please think carefully about the long-term benefits.",
       "tokenCount": 8,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_089",
+        "gtag_067"
+      ]
     },
     {
       "id": "it_s_0469",
@@ -17918,7 +18530,11 @@
       "vi": "Tôi đề xuất một giải pháp hợp lý hơn.",
       "en": "I suggest a more reasonable solution.",
       "tokenCount": 7,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_001",
+        "gtag_025"
+      ]
     },
     {
       "id": "it_s_0470",
@@ -17926,7 +18542,11 @@
       "vi": "Hậu quả sẽ rất nghiêm trọng nếu không hành động.",
       "en": "The consequences will be severe if we don't act.",
       "tokenCount": 9,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_017",
+        "gtag_090"
+      ]
     },
     {
       "id": "it_s_0471",
@@ -17934,7 +18554,11 @@
       "vi": "Hãy tin tưởng vào quyết định này.",
       "en": "Please trust this decision.",
       "tokenCount": 6,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_089",
+        "gtag_067"
+      ]
     },
     {
       "id": "it_s_0472",
@@ -17942,7 +18566,11 @@
       "vi": "Đạo diễn của bộ phim này rất nổi tiếng.",
       "en": "The director of this film is very famous.",
       "tokenCount": 8,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_003",
+        "gtag_031"
+      ]
     },
     {
       "id": "it_s_0473",
@@ -17950,7 +18578,10 @@
       "vi": "Cốt truyện hơi phức tạp nhưng hay.",
       "en": "The plot is a bit complex but good.",
       "tokenCount": 7,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_052"
+      ]
     },
     {
       "id": "it_s_0474",
@@ -17958,7 +18589,10 @@
       "vi": "Tôi thích thể loại phim tài liệu.",
       "en": "I like documentary films.",
       "tokenCount": 6,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0475",
@@ -17966,7 +18600,10 @@
       "vi": "Bạn xem có phụ đề không?",
       "en": "Do you watch with subtitles?",
       "tokenCount": 5,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_005"
+      ]
     },
     {
       "id": "it_s_0476",
@@ -17974,7 +18611,11 @@
       "vi": "Phóng viên đang phỏng vấn người dân.",
       "en": "The reporter is interviewing residents.",
       "tokenCount": 6,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_016",
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0477",
@@ -17982,7 +18623,10 @@
       "vi": "Tiêu đề của bài báo gây tranh cãi.",
       "en": "The article's headline is controversial.",
       "tokenCount": 7,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_003"
+      ]
     },
     {
       "id": "it_s_0478",
@@ -17990,7 +18634,10 @@
       "vi": "Bạn nên kiểm tra nguồn tin.",
       "en": "You should check the source.",
       "tokenCount": 5,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_064"
+      ]
     },
     {
       "id": "it_s_0479",
@@ -17998,7 +18645,11 @@
       "vi": "Một bài báo tốt phải khách quan.",
       "en": "A good article must be objective.",
       "tokenCount": 6,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_097",
+        "gtag_029"
+      ]
     },
     {
       "id": "it_s_0480",
@@ -18006,7 +18657,10 @@
       "vi": "Bài đăng của cô ấy lan truyền nhanh.",
       "en": "Her post went viral quickly.",
       "tokenCount": 7,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_003"
+      ]
     },
     {
       "id": "it_s_0481",
@@ -18014,7 +18668,10 @@
       "vi": "Tôi không thích đọc bình luận tiêu cực.",
       "en": "I don't like reading negative comments.",
       "tokenCount": 7,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_004"
+      ]
     },
     {
       "id": "it_s_0482",
@@ -18022,7 +18679,10 @@
       "vi": "Bạn có theo dõi anh ấy không?",
       "en": "Do you follow him?",
       "tokenCount": 5,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_005"
+      ]
     },
     {
       "id": "it_s_0483",
@@ -18030,7 +18690,10 @@
       "vi": "Mạng xã hội ảnh hưởng đến giới trẻ.",
       "en": "Social media affects young people.",
       "tokenCount": 7,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0484",
@@ -18038,7 +18701,10 @@
       "vi": "Tôi cảm thấy bình yên khi ở quê.",
       "en": "I feel peaceful when in the countryside.",
       "tokenCount": 8,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_038"
+      ]
     },
     {
       "id": "it_s_0485",
@@ -18046,7 +18712,10 @@
       "vi": "Cô ấy rất xúc động khi nghe tin.",
       "en": "She was very moved when she heard the news.",
       "tokenCount": 8,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_031"
+      ]
     },
     {
       "id": "it_s_0486",
@@ -18054,7 +18723,10 @@
       "vi": "Tôi biết ơn vì có gia đình.",
       "en": "I'm grateful to have a family.",
       "tokenCount": 6,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0487",
@@ -18062,7 +18734,10 @@
       "vi": "Đôi khi tôi cảm thấy cô đơn.",
       "en": "Sometimes I feel lonely.",
       "tokenCount": 6,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_041"
+      ]
     },
     {
       "id": "it_s_0488",
@@ -18070,7 +18745,10 @@
       "vi": "Mỗi người có giá trị riêng.",
       "en": "Everyone has their own values.",
       "tokenCount": 5,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0489",
@@ -18078,7 +18756,10 @@
       "vi": "Tự do và trách nhiệm luôn đi đôi.",
       "en": "Freedom and responsibility go together.",
       "tokenCount": 7,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_044"
+      ]
     },
     {
       "id": "it_s_0490",
@@ -18086,7 +18767,11 @@
       "vi": "Bạn nghĩ gì về ý nghĩa cuộc sống?",
       "en": "What do you think the meaning of life is?",
       "tokenCount": 7,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_006",
+        "gtag_003"
+      ]
     },
     {
       "id": "it_s_0491",
@@ -18094,7 +18779,11 @@
       "vi": "Triết lý sống của tôi là đơn giản.",
       "en": "My life philosophy is simplicity.",
       "tokenCount": 7,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_002",
+        "gtag_003"
+      ]
     },
     {
       "id": "it_s_0492",
@@ -18102,7 +18791,11 @@
       "vi": "Tôi là người hướng nội nhưng cởi mở.",
       "en": "I'm introverted but open-minded.",
       "tokenCount": 7,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_002",
+        "gtag_052"
+      ]
     },
     {
       "id": "it_s_0493",
@@ -18110,7 +18803,10 @@
       "vi": "Anh ấy rất quyết đoán trong công việc.",
       "en": "He's very decisive at work.",
       "tokenCount": 7,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_031"
+      ]
     },
     {
       "id": "it_s_0494",
@@ -18118,7 +18814,10 @@
       "vi": "Cô ấy sáng tạo và đáng tin cậy.",
       "en": "She is creative and reliable.",
       "tokenCount": 7,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_044"
+      ]
     },
     {
       "id": "it_s_0495",
@@ -18126,7 +18825,10 @@
       "vi": "Khiêm tốn là một đức tính quý.",
       "en": "Humility is a precious virtue.",
       "tokenCount": 6,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_002"
+      ]
     },
     {
       "id": "it_s_0496",
@@ -18134,7 +18836,10 @@
       "vi": "Biến đổi khí hậu là vấn đề toàn cầu.",
       "en": "Climate change is a global problem.",
       "tokenCount": 8,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_002"
+      ]
     },
     {
       "id": "it_s_0497",
@@ -18142,7 +18847,11 @@
       "vi": "Việt Nam thường có bão vào mùa hè.",
       "en": "Vietnam often has storms in summer.",
       "tokenCount": 8,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_041",
+        "gtag_107"
+      ]
     },
     {
       "id": "it_s_0498",
@@ -18150,7 +18859,10 @@
       "vi": "Nhiệt độ năm nay cao kỷ lục.",
       "en": "Temperatures this year are record-high.",
       "tokenCount": 6,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0499",
@@ -18158,7 +18870,11 @@
       "vi": "Mực nước biển đang dâng cao.",
       "en": "Sea levels are rising.",
       "tokenCount": 5,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_016",
+        "gtag_096"
+      ]
     },
     {
       "id": "it_s_0500",
@@ -18166,7 +18882,11 @@
       "vi": "Hà Nội bị ô nhiễm không khí nặng.",
       "en": "Hanoi has serious air pollution.",
       "tokenCount": 7,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_050",
+        "gtag_092"
+      ]
     },
     {
       "id": "it_s_0501",
@@ -18174,7 +18894,11 @@
       "vi": "Chúng ta nên giảm dùng nhựa.",
       "en": "We should reduce plastic use.",
       "tokenCount": 6,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_064",
+        "gtag_097"
+      ]
     },
     {
       "id": "it_s_0502",
@@ -18182,7 +18906,11 @@
       "vi": "Tái chế giúp bảo vệ môi trường.",
       "en": "Recycling helps protect the environment.",
       "tokenCount": 6,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_098",
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0503",
@@ -18190,7 +18918,10 @@
       "vi": "Khí thải từ xe máy rất nhiều.",
       "en": "Emissions from motorbikes are very high.",
       "tokenCount": 7,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_031"
+      ]
     },
     {
       "id": "it_s_0504",
@@ -18198,7 +18929,11 @@
       "vi": "Chúng ta phải bảo tồn rừng tự nhiên.",
       "en": "We must preserve natural forests.",
       "tokenCount": 7,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_029",
+        "gtag_121"
+      ]
     },
     {
       "id": "it_s_0505",
@@ -18206,7 +18941,11 @@
       "vi": "Nhiều loài động vật đang bị tuyệt chủng.",
       "en": "Many animal species are going extinct.",
       "tokenCount": 7,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_016",
+        "gtag_092"
+      ]
     },
     {
       "id": "it_s_0506",
@@ -18214,7 +18953,11 @@
       "vi": "Đa dạng sinh học rất quan trọng.",
       "en": "Biodiversity is very important.",
       "tokenCount": 6,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_031",
+        "gtag_095"
+      ]
     },
     {
       "id": "it_s_0507",
@@ -18222,7 +18965,11 @@
       "vi": "Khu bảo tồn này thành lập năm 1990.",
       "en": "This sanctuary was established in 1990.",
       "tokenCount": 7,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_107",
+        "gtag_108"
+      ]
     },
     {
       "id": "it_s_0508",
@@ -18230,7 +18977,10 @@
       "vi": "Tôi đang theo lối sống xanh.",
       "en": "I'm following a green lifestyle.",
       "tokenCount": 6,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_016"
+      ]
     },
     {
       "id": "it_s_0509",
@@ -18238,7 +18988,11 @@
       "vi": "Nhà tôi dùng năng lượng mặt trời.",
       "en": "My house uses solar energy.",
       "tokenCount": 6,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_001",
+        "gtag_003"
+      ]
     },
     {
       "id": "it_s_0510",
@@ -18246,7 +19000,11 @@
       "vi": "Tiêu dùng hữu cơ tốt cho sức khỏe.",
       "en": "Organic consumption is good for health.",
       "tokenCount": 7,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_002",
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0511",
@@ -18254,7 +19012,11 @@
       "vi": "Hãy giảm thiểu rác thải hàng ngày.",
       "en": "Please minimize daily waste.",
       "tokenCount": 6,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_067",
+        "gtag_089"
+      ]
     },
     {
       "id": "it_s_0512",
@@ -18262,7 +19024,10 @@
       "vi": "Tôi học chuyên ngành kinh tế.",
       "en": "I major in economics.",
       "tokenCount": 5,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0513",
@@ -18270,7 +19035,10 @@
       "vi": "Cô ấy nhận học bổng toàn phần.",
       "en": "She received a full scholarship.",
       "tokenCount": 6,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0514",
@@ -18278,7 +19046,10 @@
       "vi": "Tôi sẽ tốt nghiệp vào tháng sáu.",
       "en": "I'll graduate in June.",
       "tokenCount": 6,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_017"
+      ]
     },
     {
       "id": "it_s_0515",
@@ -18286,7 +19057,11 @@
       "vi": "Bằng cấp không quan trọng bằng kinh nghiệm.",
       "en": "Degrees aren't as important as experience.",
       "tokenCount": 7,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_093",
+        "gtag_004"
+      ]
     },
     {
       "id": "it_s_0516",
@@ -18294,7 +19069,11 @@
       "vi": "Tôi đang học một khóa trực tuyến.",
       "en": "I'm taking an online course.",
       "tokenCount": 6,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_016",
+        "gtag_024"
+      ]
     },
     {
       "id": "it_s_0517",
@@ -18302,7 +19081,11 @@
       "vi": "Tự học rất hiệu quả nếu kiên trì.",
       "en": "Self-study is effective if you persist.",
       "tokenCount": 7,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_031",
+        "gtag_053"
+      ]
     },
     {
       "id": "it_s_0518",
@@ -18310,7 +19093,11 @@
       "vi": "Tư duy phản biện rất cần thiết.",
       "en": "Critical thinking is essential.",
       "tokenCount": 6,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_031",
+        "gtag_063"
+      ]
     },
     {
       "id": "it_s_0519",
@@ -18318,7 +19105,10 @@
       "vi": "Tôi muốn áp dụng kiến thức vào thực tế.",
       "en": "I want to apply knowledge in practice.",
       "tokenCount": 8,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_022"
+      ]
     },
     {
       "id": "it_s_0520",
@@ -18326,7 +19116,11 @@
       "vi": "Nghiên cứu này phân tích dữ liệu lớn.",
       "en": "This research analyzes big data.",
       "tokenCount": 7,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_042",
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0521",
@@ -18334,7 +19128,11 @@
       "vi": "Giả thuyết của tôi được xác nhận.",
       "en": "My hypothesis was confirmed.",
       "tokenCount": 6,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_094",
+        "gtag_108"
+      ]
     },
     {
       "id": "it_s_0522",
@@ -18342,7 +19140,11 @@
       "vi": "Cô ấy thuyết trình tại hội thảo quốc tế.",
       "en": "She presented at an international conference.",
       "tokenCount": 8,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_038",
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0523",
@@ -18350,7 +19152,10 @@
       "vi": "Vui lòng trích dẫn nguồn đầy đủ.",
       "en": "Please cite the source in full.",
       "tokenCount": 6,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_102"
+      ]
     },
     {
       "id": "it_s_0524",
@@ -18358,7 +19163,10 @@
       "vi": "Thị trường năm nay rất cạnh tranh.",
       "en": "The market is very competitive this year.",
       "tokenCount": 7,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_031"
+      ]
     },
     {
       "id": "it_s_0525",
@@ -18366,7 +19174,10 @@
       "vi": "Việt Nam xuất khẩu nhiều cà phê.",
       "en": "Vietnam exports a lot of coffee.",
       "tokenCount": 6,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0526",
@@ -18374,7 +19185,10 @@
       "vi": "Doanh thu quý này tăng 20 phần trăm.",
       "en": "Revenue this quarter rose 20 percent.",
       "tokenCount": 8,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_099"
+      ]
     },
     {
       "id": "it_s_0527",
@@ -18382,7 +19196,10 @@
       "vi": "Khách hàng là ưu tiên số một.",
       "en": "Customers are the top priority.",
       "tokenCount": 6,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_002"
+      ]
     },
     {
       "id": "it_s_0528",
@@ -18390,7 +19207,10 @@
       "vi": "Tôi đang đầu tư vào cổ phiếu.",
       "en": "I'm investing in stocks.",
       "tokenCount": 6,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_016"
+      ]
     },
     {
       "id": "it_s_0529",
@@ -18398,7 +19218,10 @@
       "vi": "Lãi suất ngân hàng đang giảm.",
       "en": "Bank interest rates are falling.",
       "tokenCount": 6,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_096"
+      ]
     },
     {
       "id": "it_s_0530",
@@ -18406,7 +19229,10 @@
       "vi": "Lạm phát ảnh hưởng đến đời sống.",
       "en": "Inflation affects daily life.",
       "tokenCount": 6,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0531",
@@ -18414,7 +19240,10 @@
       "vi": "Đầu tư luôn có rủi ro.",
       "en": "Investing always involves risk.",
       "tokenCount": 5,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_041"
+      ]
     },
     {
       "id": "it_s_0532",
@@ -18422,7 +19251,11 @@
       "vi": "Công ty của tôi mới khởi nghiệp.",
       "en": "My company is a new startup.",
       "tokenCount": 6,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_094",
+        "gtag_002"
+      ]
     },
     {
       "id": "it_s_0533",
@@ -18430,7 +19263,10 @@
       "vi": "Chúng tôi đang gọi vốn vòng đầu tiên.",
       "en": "We're raising our first round of funding.",
       "tokenCount": 8,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_016"
+      ]
     },
     {
       "id": "it_s_0534",
@@ -18438,7 +19274,11 @@
       "vi": "Mô hình kinh doanh phải bền vững.",
       "en": "The business model must be sustainable.",
       "tokenCount": 6,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_029",
+        "gtag_002"
+      ]
     },
     {
       "id": "it_s_0535",
@@ -18446,7 +19286,10 @@
       "vi": "Đổi mới là chìa khóa thành công.",
       "en": "Innovation is the key to success.",
       "tokenCount": 6,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_002"
+      ]
     },
     {
       "id": "it_s_0536",
@@ -18454,7 +19297,11 @@
       "vi": "Toàn cầu hóa thay đổi thị trường lao động.",
       "en": "Globalization is changing the labor market.",
       "tokenCount": 7,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_016",
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0537",
@@ -18462,7 +19309,11 @@
       "vi": "Hiệp định này giảm thuế quan giữa hai nước.",
       "en": "This agreement reduces tariffs between the two countries.",
       "tokenCount": 9,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_001",
+        "gtag_042"
+      ]
     },
     {
       "id": "it_s_0538",
@@ -18470,7 +19321,11 @@
       "vi": "Chuỗi cung ứng toàn cầu đang bị gián đoạn.",
       "en": "Global supply chains are disrupted.",
       "tokenCount": 8,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_016",
+        "gtag_050"
+      ]
     },
     {
       "id": "it_s_0539",
@@ -18478,7 +19333,10 @@
       "vi": "Kinh tế đang tăng trưởng trở lại.",
       "en": "The economy is growing again.",
       "tokenCount": 6,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_016"
+      ]
     },
     {
       "id": "it_s_0540",
@@ -18486,7 +19344,10 @@
       "vi": "Bọn mình mới hẹn hò được ba tháng.",
       "en": "We just started dating three months ago.",
       "tokenCount": 8,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_108"
+      ]
     },
     {
       "id": "it_s_0541",
@@ -18494,7 +19355,10 @@
       "vi": "Anh ấy đã tỏ tình một cách chân thành.",
       "en": "He confessed his feelings sincerely.",
       "tokenCount": 8,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_015"
+      ]
     },
     {
       "id": "it_s_0542",
@@ -18502,7 +19366,11 @@
       "vi": "Có vẻ như cô ấy đang cảm nắng ai đó.",
       "en": "It seems like she has a crush on someone.",
       "tokenCount": 9,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_104",
+        "gtag_105"
+      ]
     },
     {
       "id": "it_s_0543",
@@ -18510,7 +19378,11 @@
       "vi": "Họ đã đính hôn vào mùa xuân năm ngoái.",
       "en": "They got engaged last spring.",
       "tokenCount": 8,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_015",
+        "gtag_107"
+      ]
     },
     {
       "id": "it_s_0544",
@@ -18518,7 +19390,11 @@
       "vi": "Mình và bạn ấy gắn bó từ thời cấp ba.",
       "en": "She and I have been close since high school.",
       "tokenCount": 9,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_044",
+        "gtag_055"
+      ]
     },
     {
       "id": "it_s_0545",
@@ -18526,7 +19402,11 @@
       "vi": "Tôi luôn bên cạnh bạn lúc khó khăn.",
       "en": "I'll always be there for you in tough times.",
       "tokenCount": 7,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_041",
+        "gtag_034"
+      ]
     },
     {
       "id": "it_s_0546",
@@ -18534,7 +19414,11 @@
       "vi": "Sự phản bội ấy thật khó tha thứ.",
       "en": "That betrayal is hard to forgive.",
       "tokenCount": 7,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_095",
+        "gtag_042"
+      ]
     },
     {
       "id": "it_s_0547",
@@ -18542,7 +19426,10 @@
       "vi": "Cảm ơn vì đã lắng nghe mình tâm sự.",
       "en": "Thanks for listening to me open up.",
       "tokenCount": 8,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_015"
+      ]
     },
     {
       "id": "it_s_0548",
@@ -18550,7 +19437,11 @@
       "vi": "Có lẽ chúng ta đã hiểu lầm nhau.",
       "en": "Perhaps we've misunderstood each other.",
       "tokenCount": 7,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_061",
+        "gtag_106"
+      ]
     },
     {
       "id": "it_s_0549",
@@ -18558,7 +19449,11 @@
       "vi": "Mình xin lỗi vì đã làm bạn tổn thương.",
       "en": "I'm sorry for hurting you.",
       "tokenCount": 8,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_112",
+        "gtag_015"
+      ]
     },
     {
       "id": "it_s_0550",
@@ -18566,7 +19461,11 @@
       "vi": "Mong bạn có thể tha thứ và bỏ qua.",
       "en": "I hope you can forgive and let it go.",
       "tokenCount": 8,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_103",
+        "gtag_044"
+      ]
     },
     {
       "id": "it_s_0551",
@@ -18574,7 +19473,11 @@
       "vi": "Hai bên đã hòa giải sau buổi nói chuyện.",
       "en": "The two sides reconciled after the talk.",
       "tokenCount": 8,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_015",
+        "gtag_055"
+      ]
     },
     {
       "id": "it_s_0552",
@@ -18582,7 +19485,10 @@
       "vi": "Triều đại nhà Lý kéo dài hơn hai trăm năm.",
       "en": "The Ly dynasty lasted over two hundred years.",
       "tokenCount": 9,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_025"
+      ]
     },
     {
       "id": "it_s_0553",
@@ -18590,7 +19496,11 @@
       "vi": "Hai Bà Trưng đã lãnh đạo cuộc khởi nghĩa năm 40.",
       "en": "The Trung Sisters led an uprising in year 40.",
       "tokenCount": 9,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_106",
+        "gtag_107"
+      ]
     },
     {
       "id": "it_s_0554",
@@ -18598,7 +19508,11 @@
       "vi": "Trần Hưng Đạo đã đánh bại quân Nguyên Mông.",
       "en": "Tran Hung Dao defeated the Mongol armies.",
       "tokenCount": 8,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_106",
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0555",
@@ -18606,7 +19520,10 @@
       "vi": "Sử sách ghi lại nhiều câu chuyện cổ đại.",
       "en": "Historical records preserve many ancient stories.",
       "tokenCount": 8,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0556",
@@ -18614,7 +19531,11 @@
       "vi": "Việt Nam là thuộc địa của Pháp gần 80 năm.",
       "en": "Vietnam was a French colony for nearly 80 years.",
       "tokenCount": 9,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_002",
+        "gtag_106"
+      ]
     },
     {
       "id": "it_s_0557",
@@ -18622,7 +19543,10 @@
       "vi": "Nhiều phong trào yêu nước đã nổi lên.",
       "en": "Many patriotic movements arose.",
       "tokenCount": 7,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_106"
+      ]
     },
     {
       "id": "it_s_0558",
@@ -18630,7 +19554,10 @@
       "vi": "Người dân bị bóc lột nặng nề.",
       "en": "The people were heavily exploited.",
       "tokenCount": 6,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_092"
+      ]
     },
     {
       "id": "it_s_0559",
@@ -18638,7 +19565,11 @@
       "vi": "Hiệp ước được ký kết vào năm 1884.",
       "en": "The treaty was signed in 1884.",
       "tokenCount": 7,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_108",
+        "gtag_107"
+      ]
     },
     {
       "id": "it_s_0560",
@@ -18646,7 +19577,10 @@
       "vi": "Năm 1945, Việt Nam tuyên bố độc lập.",
       "en": "In 1945, Vietnam declared independence.",
       "tokenCount": 7,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_107"
+      ]
     },
     {
       "id": "it_s_0561",
@@ -18654,7 +19588,10 @@
       "vi": "Đất nước thống nhất vào năm 1975.",
       "en": "The country was reunified in 1975.",
       "tokenCount": 7,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_107"
+      ]
     },
     {
       "id": "it_s_0562",
@@ -18662,7 +19599,11 @@
       "vi": "Nhiều thế hệ đã hy sinh vì hòa bình.",
       "en": "Many generations sacrificed for peace.",
       "tokenCount": 8,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_106",
+        "gtag_098"
+      ]
     },
     {
       "id": "it_s_0563",
@@ -18670,7 +19611,11 @@
       "vi": "Tuyên ngôn độc lập được đọc tại Ba Đình.",
       "en": "The Declaration of Independence was read at Ba Dinh.",
       "tokenCount": 8,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_108",
+        "gtag_038"
+      ]
     },
     {
       "id": "it_s_0564",
@@ -18678,7 +19623,10 @@
       "vi": "Chính sách Đổi mới bắt đầu từ năm 1986.",
       "en": "The Doi Moi policy began in 1986.",
       "tokenCount": 8,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_107"
+      ]
     },
     {
       "id": "it_s_0565",
@@ -18686,7 +19634,10 @@
       "vi": "Việt Nam đã mở cửa và hội nhập quốc tế.",
       "en": "Vietnam has opened up and integrated internationally.",
       "tokenCount": 8,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_106"
+      ]
     },
     {
       "id": "it_s_0566",
@@ -18694,7 +19645,10 @@
       "vi": "Đầu tư nước ngoài tăng mạnh trong hai thập kỷ.",
       "en": "Foreign investment has risen sharply over two decades.",
       "tokenCount": 9,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_099"
+      ]
     },
     {
       "id": "it_s_0567",
@@ -18702,7 +19656,10 @@
       "vi": "Thế hệ trẻ đóng vai trò quan trọng.",
       "en": "The young generation plays an important role.",
       "tokenCount": 7,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0568",
@@ -18710,7 +19667,11 @@
       "vi": "Đàn bầu là nhạc cụ độc đáo của Việt Nam.",
       "en": "The đàn bầu is a unique Vietnamese instrument.",
       "tokenCount": 9,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_002",
+        "gtag_003"
+      ]
     },
     {
       "id": "it_s_0569",
@@ -18718,7 +19679,11 @@
       "vi": "Quan họ được UNESCO công nhận là di sản.",
       "en": "Quan ho is recognized by UNESCO as heritage.",
       "tokenCount": 8,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_108",
+        "gtag_002"
+      ]
     },
     {
       "id": "it_s_0570",
@@ -18726,7 +19691,10 @@
       "vi": "Giai điệu nhẹ nhàng và lời sâu lắng.",
       "en": "The melody is gentle and the lyrics are deep.",
       "tokenCount": 7,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_044"
+      ]
     },
     {
       "id": "it_s_0571",
@@ -18734,7 +19702,10 @@
       "vi": "Buổi biểu diễn ca trù rất ấn tượng.",
       "en": "The ca tru performance was very impressive.",
       "tokenCount": 7,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_031"
+      ]
     },
     {
       "id": "it_s_0572",
@@ -18742,7 +19713,11 @@
       "vi": "Truyện Kiều là tác phẩm nổi tiếng nhất.",
       "en": "The Tale of Kieu is the most famous work.",
       "tokenCount": 7,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_002",
+        "gtag_026"
+      ]
     },
     {
       "id": "it_s_0573",
@@ -18750,7 +19725,11 @@
       "vi": "Nhà thơ thường dùng ẩn dụ và biểu tượng.",
       "en": "Poets often use metaphor and symbol.",
       "tokenCount": 8,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_041",
+        "gtag_110"
+      ]
     },
     {
       "id": "it_s_0574",
@@ -18758,7 +19737,10 @@
       "vi": "Nhân vật chính rất phức tạp.",
       "en": "The main character is very complex.",
       "tokenCount": 5,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_031"
+      ]
     },
     {
       "id": "it_s_0575",
@@ -18766,7 +19748,11 @@
       "vi": "Tôi tìm cảm hứng từ thơ ca Việt.",
       "en": "I find inspiration in Vietnamese poetry.",
       "tokenCount": 7,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_001",
+        "gtag_038"
+      ]
     },
     {
       "id": "it_s_0576",
@@ -18774,7 +19760,11 @@
       "vi": "Tranh sơn mài Việt Nam rất nổi tiếng.",
       "en": "Vietnamese lacquer paintings are very famous.",
       "tokenCount": 7,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_031",
+        "gtag_003"
+      ]
     },
     {
       "id": "it_s_0577",
@@ -18782,7 +19772,10 @@
       "vi": "Triển lãm sẽ mở cửa vào cuối tuần.",
       "en": "The exhibition opens this weekend.",
       "tokenCount": 7,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_017"
+      ]
     },
     {
       "id": "it_s_0578",
@@ -18790,7 +19783,11 @@
       "vi": "Làng gốm Bát Tràng có truyền thống lâu đời.",
       "en": "Bat Trang pottery village has a long tradition.",
       "tokenCount": 8,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_001",
+        "gtag_042"
+      ]
     },
     {
       "id": "it_s_0579",
@@ -18798,7 +19795,11 @@
       "vi": "Họa sĩ này có phong cách rất riêng.",
       "en": "This painter has a very distinct style.",
       "tokenCount": 7,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_001",
+        "gtag_031"
+      ]
     },
     {
       "id": "it_s_0580",
@@ -18806,7 +19807,11 @@
       "vi": "Quốc hội đã ban hành luật mới.",
       "en": "The National Assembly enacted a new law.",
       "tokenCount": 7,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_015",
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0581",
@@ -18814,7 +19819,10 @@
       "vi": "Hiến pháp được sửa đổi vào năm 2013.",
       "en": "The Constitution was amended in 2013.",
       "tokenCount": 7,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_107"
+      ]
     },
     {
       "id": "it_s_0582",
@@ -18822,7 +19830,11 @@
       "vi": "Chính sách mới sẽ có hiệu lực từ tháng sau.",
       "en": "The new policy takes effect next month.",
       "tokenCount": 9,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_017",
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0583",
@@ -18830,7 +19842,11 @@
       "vi": "Bầu cử diễn ra năm năm một lần.",
       "en": "Elections occur once every five years.",
       "tokenCount": 8,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_117",
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0584",
@@ -18838,7 +19854,11 @@
       "vi": "Luật sư đang xem xét hợp đồng.",
       "en": "The lawyer is reviewing the contract.",
       "tokenCount": 6,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_016",
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0585",
@@ -18846,7 +19866,11 @@
       "vi": "Thẩm phán đã đưa ra phán quyết cuối cùng.",
       "en": "The judge issued the final verdict.",
       "tokenCount": 8,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_015",
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0586",
@@ -18854,7 +19878,11 @@
       "vi": "Bên vi phạm phải bồi thường thiệt hại.",
       "en": "The violating party must compensate damages.",
       "tokenCount": 7,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_029",
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0587",
@@ -18862,7 +19890,10 @@
       "vi": "Chúng tôi quyết định khởi kiện ra tòa.",
       "en": "We decided to file a lawsuit.",
       "tokenCount": 7,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0588",
@@ -18870,7 +19901,11 @@
       "vi": "Mọi công dân đều bình đẳng trước pháp luật.",
       "en": "All citizens are equal before the law.",
       "tokenCount": 8,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_001",
+        "gtag_038"
+      ]
     },
     {
       "id": "it_s_0589",
@@ -18878,7 +19913,11 @@
       "vi": "Tôi cần gia hạn thị thực cư trú.",
       "en": "I need to extend my residence visa.",
       "tokenCount": 7,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_029",
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0590",
@@ -18886,7 +19925,10 @@
       "vi": "Quyền lợi đi đôi với nghĩa vụ.",
       "en": "Rights come with duties.",
       "tokenCount": 6,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0591",
@@ -18894,7 +19936,10 @@
       "vi": "Tự do ngôn luận là quyền cơ bản.",
       "en": "Free speech is a basic right.",
       "tokenCount": 7,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_002"
+      ]
     },
     {
       "id": "it_s_0592",
@@ -18902,7 +19947,11 @@
       "vi": "Tôi muốn đặt lịch khám tổng quát.",
       "en": "I'd like to book a general check-up.",
       "tokenCount": 6,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_022",
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0593",
@@ -18910,7 +19959,11 @@
       "vi": "Triệu chứng của tôi là sốt và ho.",
       "en": "My symptoms are fever and cough.",
       "tokenCount": 7,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_002",
+        "gtag_094"
+      ]
     },
     {
       "id": "it_s_0594",
@@ -18918,7 +19971,10 @@
       "vi": "Bác sĩ yêu cầu làm xét nghiệm máu.",
       "en": "The doctor asked for a blood test.",
       "tokenCount": 7,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0595",
@@ -18926,7 +19982,11 @@
       "vi": "Tuần sau tôi cần tái khám.",
       "en": "Next week I need a follow-up.",
       "tokenCount": 6,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_063",
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0596",
@@ -18934,7 +19994,11 @@
       "vi": "Sức khỏe tinh thần cũng quan trọng như thể chất.",
       "en": "Mental health is as important as physical health.",
       "tokenCount": 9,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_027",
+        "gtag_093"
+      ]
     },
     {
       "id": "it_s_0597",
@@ -18942,7 +20006,11 @@
       "vi": "Tôi đang gặp căng thẳng trong công việc.",
       "en": "I'm under stress at work.",
       "tokenCount": 7,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_016",
+        "gtag_038"
+      ]
     },
     {
       "id": "it_s_0598",
@@ -18950,7 +20018,10 @@
       "vi": "Bạn nên gặp chuyên gia tâm lý.",
       "en": "You should see a psychologist.",
       "tokenCount": 6,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_064"
+      ]
     },
     {
       "id": "it_s_0599",
@@ -18958,7 +20029,11 @@
       "vi": "Hãy dành thời gian chăm sóc bản thân.",
       "en": "Please make time for self-care.",
       "tokenCount": 7,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_089",
+        "gtag_098"
+      ]
     },
     {
       "id": "it_s_0600",
@@ -18966,7 +20041,11 @@
       "vi": "Tôi cần mua thuốc theo đơn này.",
       "en": "I need to fill this prescription.",
       "tokenCount": 6,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_063",
+        "gtag_042"
+      ]
     },
     {
       "id": "it_s_0601",
@@ -18974,7 +20053,11 @@
       "vi": "Liều dùng là hai viên một ngày.",
       "en": "The dosage is two pills a day.",
       "tokenCount": 7,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_002",
+        "gtag_024"
+      ]
     },
     {
       "id": "it_s_0602",
@@ -18982,7 +20065,11 @@
       "vi": "Thuốc này có tác dụng phụ gì không?",
       "en": "Does this medicine have side effects?",
       "tokenCount": 7,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_005",
+        "gtag_006"
+      ]
     },
     {
       "id": "it_s_0603",
@@ -18990,7 +20077,11 @@
       "vi": "Anh cần ba ngày để phục hồi.",
       "en": "You need three days to recover.",
       "tokenCount": 7,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_063",
+        "gtag_098"
+      ]
     },
     {
       "id": "it_s_0604",
@@ -18998,7 +20089,11 @@
       "vi": "Gọi xe cứu thương ngay đi!",
       "en": "Call an ambulance immediately!",
       "tokenCount": 5,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_118",
+        "gtag_089"
+      ]
     },
     {
       "id": "it_s_0605",
@@ -19006,7 +20101,11 @@
       "vi": "Người này bị bất tỉnh và chảy máu.",
       "en": "This person is unconscious and bleeding.",
       "tokenCount": 7,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_050",
+        "gtag_042"
+      ]
     },
     {
       "id": "it_s_0606",
@@ -19014,7 +20113,11 @@
       "vi": "Hãy kiểm tra hô hấp trước.",
       "en": "Check the breathing first.",
       "tokenCount": 5,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_067",
+        "gtag_055"
+      ]
     },
     {
       "id": "it_s_0607",
@@ -19022,7 +20125,11 @@
       "vi": "Đưa bệnh nhân đến phòng cấp cứu.",
       "en": "Take the patient to the ER.",
       "tokenCount": 6,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_001",
+        "gtag_089"
+      ]
     },
     {
       "id": "it_s_0608",
@@ -19030,7 +20137,11 @@
       "vi": "Giọng miền Bắc và miền Nam khá khác nhau.",
       "en": "Northern and Southern accents are quite different.",
       "tokenCount": 8,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_044",
+        "gtag_120"
+      ]
     },
     {
       "id": "it_s_0609",
@@ -19038,7 +20149,11 @@
       "vi": "Ở miền Nam người ta gọi 'ba' thay vì 'bố'.",
       "en": "In the South people say 'ba' instead of 'bố'.",
       "tokenCount": 9,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_119",
+        "gtag_038"
+      ]
     },
     {
       "id": "it_s_0610",
@@ -19046,7 +20161,10 @@
       "vi": "Phát âm miền Trung khó nghe nhất.",
       "en": "The Central accent is the hardest to follow.",
       "tokenCount": 6,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_026"
+      ]
     },
     {
       "id": "it_s_0611",
@@ -19054,7 +20172,10 @@
       "vi": "Mỗi vùng có phương ngữ riêng.",
       "en": "Each region has its own dialect.",
       "tokenCount": 5,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_003"
+      ]
     },
     {
       "id": "it_s_0612",
@@ -19062,7 +20183,11 @@
       "vi": "Huế từng là cố đô của triều Nguyễn.",
       "en": "Hue was once the capital of the Nguyen dynasty.",
       "tokenCount": 8,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_048",
+        "gtag_107"
+      ]
     },
     {
       "id": "it_s_0613",
@@ -19070,7 +20195,11 @@
       "vi": "Lăng tẩm các vua nằm rải rác quanh thành phố.",
       "en": "Royal tombs are scattered around the city.",
       "tokenCount": 9,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_001",
+        "gtag_094"
+      ]
     },
     {
       "id": "it_s_0614",
@@ -19078,7 +20207,11 @@
       "vi": "Miền Trung thường xuyên bị bão lụt.",
       "en": "Central Vietnam often suffers storms and floods.",
       "tokenCount": 7,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_041",
+        "gtag_092"
+      ]
     },
     {
       "id": "it_s_0615",
@@ -19086,7 +20219,11 @@
       "vi": "Bún bò Huế nổi tiếng nhờ vị cay đậm.",
       "en": "Hue beef noodle soup is famous for its bold spice.",
       "tokenCount": 8,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_101",
+        "gtag_137"
+      ]
     },
     {
       "id": "it_s_0616",
@@ -19094,7 +20231,10 @@
       "vi": "Việt Nam có 54 dân tộc anh em.",
       "en": "Vietnam has 54 ethnic groups.",
       "tokenCount": 7,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_024"
+      ]
     },
     {
       "id": "it_s_0617",
@@ -19102,7 +20242,11 @@
       "vi": "Người H'Mông có trang phục rất rực rỡ.",
       "en": "The Hmong people have very vibrant traditional dress.",
       "tokenCount": 7,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_031",
+        "gtag_111"
+      ]
     },
     {
       "id": "it_s_0618",
@@ -19110,7 +20254,10 @@
       "vi": "Mỗi dân tộc có phong tục riêng.",
       "en": "Each ethnic group has its own customs.",
       "tokenCount": 6,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_003"
+      ]
     },
     {
       "id": "it_s_0619",
@@ -19118,7 +20265,11 @@
       "vi": "Đa dạng văn hóa là tài sản quý của đất nước.",
       "en": "Cultural diversity is a precious national asset.",
       "tokenCount": 9,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_002",
+        "gtag_095"
+      ]
     },
     {
       "id": "it_s_0620",
@@ -19126,7 +20277,11 @@
       "vi": "Bài luận cần có luận điểm rõ ràng.",
       "en": "An essay needs a clear thesis.",
       "tokenCount": 7,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_063",
+        "gtag_122"
+      ]
     },
     {
       "id": "it_s_0621",
@@ -19134,7 +20289,11 @@
       "vi": "Trước khi viết, hãy lập dàn ý chi tiết.",
       "en": "Before writing, draft a detailed outline.",
       "tokenCount": 8,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_055",
+        "gtag_067"
+      ]
     },
     {
       "id": "it_s_0622",
@@ -19142,7 +20301,11 @@
       "vi": "Mỗi đoạn trong thân bài cần có dẫn chứng.",
       "en": "Each body paragraph needs evidence.",
       "tokenCount": 8,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_122",
+        "gtag_063"
+      ]
     },
     {
       "id": "it_s_0623",
@@ -19150,7 +20313,10 @@
       "vi": "Kết bài tóm tắt luận điểm một cách mạch lạc.",
       "en": "The conclusion summarizes the thesis coherently.",
       "tokenCount": 9,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_122"
+      ]
     },
     {
       "id": "it_s_0624",
@@ -19158,7 +20324,11 @@
       "vi": "Kính gửi quý công ty, tôi xin trình bày như sau.",
       "en": "Dear company, I respectfully wish to state the following.",
       "tokenCount": 10,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_124",
+        "gtag_112"
+      ]
     },
     {
       "id": "it_s_0625",
@@ -19166,7 +20336,11 @@
       "vi": "Tôi xin đề nghị quý ông xem xét hồ sơ.",
       "en": "I respectfully request that you review my application.",
       "tokenCount": 9,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_112",
+        "gtag_125"
+      ]
     },
     {
       "id": "it_s_0626",
@@ -19174,7 +20348,10 @@
       "vi": "Rất mong nhận được phúc đáp sớm.",
       "en": "I look forward to your prompt reply.",
       "tokenCount": 7,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_124"
+      ]
     },
     {
       "id": "it_s_0627",
@@ -19182,7 +20359,11 @@
       "vi": "Hồ sơ đính kèm gồm sơ yếu lý lịch và bằng cấp.",
       "en": "Attached are my CV and qualifications.",
       "tokenCount": 10,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_044",
+        "gtag_127"
+      ]
     },
     {
       "id": "it_s_0628",
@@ -19190,7 +20371,10 @@
       "vi": "Một bài diễn thuyết hay cần ngữ điệu rõ ràng.",
       "en": "A good speech needs clear intonation.",
       "tokenCount": 9,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_063"
+      ]
     },
     {
       "id": "it_s_0629",
@@ -19198,7 +20382,11 @@
       "vi": "Hãy bắt đầu bằng một câu chuyện mở đầu.",
       "en": "Begin with an opening anecdote.",
       "tokenCount": 8,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_067",
+        "gtag_089"
+      ]
     },
     {
       "id": "it_s_0630",
@@ -19206,7 +20394,10 @@
       "vi": "Cuối bài nên có lời kêu gọi hành động.",
       "en": "End with a call to action.",
       "tokenCount": 8,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_064"
+      ]
     },
     {
       "id": "it_s_0631",
@@ -19214,7 +20405,11 @@
       "vi": "Cô ấy hùng biện và truyền cảm hứng cho khán giả.",
       "en": "She is eloquent and inspires the audience.",
       "tokenCount": 9,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_001",
+        "gtag_044"
+      ]
     },
     {
       "id": "it_s_0632",
@@ -19222,7 +20417,10 @@
       "vi": "Bài bình luận cần có lập trường rõ ràng.",
       "en": "Commentary requires a clear stance.",
       "tokenCount": 8,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_063"
+      ]
     },
     {
       "id": "it_s_0633",
@@ -19230,7 +20428,10 @@
       "vi": "Tác giả đưa ra nhận định sắc bén về vấn đề.",
       "en": "The author offers a sharp assessment of the issue.",
       "tokenCount": 9,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0634",
@@ -19238,7 +20439,11 @@
       "vi": "Cần tránh định kiến trong khi viết.",
       "en": "Avoid prejudice while writing.",
       "tokenCount": 7,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_063",
+        "gtag_056"
+      ]
     },
     {
       "id": "it_s_0635",
@@ -19246,7 +20451,10 @@
       "vi": "Phản biện mang tính xây dựng là cần thiết.",
       "en": "Constructive counter-arguments are necessary.",
       "tokenCount": 8,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_002"
+      ]
     },
     {
       "id": "it_s_0636",
@@ -19254,7 +20462,10 @@
       "vi": "Phật giáo có ảnh hưởng sâu sắc đến văn hóa Việt.",
       "en": "Buddhism has profoundly influenced Vietnamese culture.",
       "tokenCount": 9,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0637",
@@ -19262,7 +20473,12 @@
       "vi": "Vào chùa, hãy ăn mặc kín đáo và giữ im lặng.",
       "en": "When entering a pagoda, dress modestly and stay quiet.",
       "tokenCount": 10,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_067",
+        "gtag_089",
+        "gtag_044"
+      ]
     },
     {
       "id": "it_s_0638",
@@ -19270,7 +20486,11 @@
       "vi": "Thiền giúp tâm trí được bình an.",
       "en": "Meditation brings peace to the mind.",
       "tokenCount": 6,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_108",
+        "gtag_128"
+      ]
     },
     {
       "id": "it_s_0639",
@@ -19278,7 +20498,11 @@
       "vi": "Sống từ bi là một bài học của đạo Phật.",
       "en": "Living with compassion is a Buddhist teaching.",
       "tokenCount": 9,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_002",
+        "gtag_128"
+      ]
     },
     {
       "id": "it_s_0640",
@@ -19286,7 +20510,11 @@
       "vi": "Người Việt coi việc thờ cúng tổ tiên rất linh thiêng.",
       "en": "Vietnamese regard ancestor worship as deeply sacred.",
       "tokenCount": 10,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_001",
+        "gtag_128"
+      ]
     },
     {
       "id": "it_s_0641",
@@ -19294,7 +20522,11 @@
       "vi": "Ngày giỗ, cả gia đình quây quần làm mâm cỗ.",
       "en": "On death anniversaries, the family gathers to prepare an offering tray.",
       "tokenCount": 10,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_129",
+        "gtag_036"
+      ]
     },
     {
       "id": "it_s_0642",
@@ -19302,7 +20534,10 @@
       "vi": "Trên bàn thờ luôn có bát hương.",
       "en": "There is always an incense bowl on the altar.",
       "tokenCount": 7,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_038"
+      ]
     },
     {
       "id": "it_s_0643",
@@ -19310,7 +20545,11 @@
       "vi": "Con cháu khấn vái trước bàn thờ ông bà.",
       "en": "Descendants bow and pray before the ancestral altar.",
       "tokenCount": 8,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_001",
+        "gtag_128"
+      ]
     },
     {
       "id": "it_s_0644",
@@ -19318,7 +20557,11 @@
       "vi": "Người Việt tin vào tín ngưỡng dân gian từ xa xưa.",
       "en": "Vietnamese have long believed in folk traditions.",
       "tokenCount": 10,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_106",
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0645",
@@ -19326,7 +20569,11 @@
       "vi": "Nhiều nhà coi phong thủy khi xây dựng.",
       "en": "Many households consult feng shui when building.",
       "tokenCount": 8,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_001",
+        "gtag_056"
+      ]
     },
     {
       "id": "it_s_0646",
@@ -19334,7 +20581,11 @@
       "vi": "Đầu năm, người ta đi cầu may ở đền.",
       "en": "At the start of the year, people pray for luck at temples.",
       "tokenCount": 9,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_038",
+        "gtag_098"
+      ]
     },
     {
       "id": "it_s_0647",
@@ -19342,7 +20593,10 @@
       "vi": "Mê tín có thể dẫn đến những hành vi sai lầm.",
       "en": "Superstition can lead to misguided behavior.",
       "tokenCount": 9,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_103"
+      ]
     },
     {
       "id": "it_s_0648",
@@ -19350,7 +20604,10 @@
       "vi": "Chúng ta nên tìm thỏa thuận đôi bên cùng có lợi.",
       "en": "We should seek a win-win agreement.",
       "tokenCount": 9,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_064"
+      ]
     },
     {
       "id": "it_s_0649",
@@ -19358,7 +20615,12 @@
       "vi": "Tôi không thể nhượng bộ điều khoản này.",
       "en": "I cannot concede on this term.",
       "tokenCount": 7,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_103",
+        "gtag_004",
+        "gtag_042"
+      ]
     },
     {
       "id": "it_s_0650",
@@ -19366,7 +20628,11 @@
       "vi": "Cuộc đàm phán đang rơi vào bế tắc.",
       "en": "The negotiation is at a deadlock.",
       "tokenCount": 7,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_096",
+        "gtag_016"
+      ]
     },
     {
       "id": "it_s_0651",
@@ -19374,7 +20640,10 @@
       "vi": "Đề nghị hoãn buổi họp sang tuần sau.",
       "en": "I propose postponing the meeting until next week.",
       "tokenCount": 8,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0652",
@@ -19382,7 +20651,11 @@
       "vi": "Quan hệ song phương giữa hai nước ngày càng phát triển.",
       "en": "Bilateral relations between the two countries are deepening.",
       "tokenCount": 10,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_075",
+        "gtag_094"
+      ]
     },
     {
       "id": "it_s_0653",
@@ -19390,7 +20663,11 @@
       "vi": "Đại sứ đã tiếp đón đoàn khách một cách trang trọng.",
       "en": "The ambassador received the delegation with formality.",
       "tokenCount": 10,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_106",
+        "gtag_015"
+      ]
     },
     {
       "id": "it_s_0654",
@@ -19398,7 +20675,10 @@
       "vi": "Hai bên nhất trí tăng cường hợp tác.",
       "en": "Both sides agreed to strengthen cooperation.",
       "tokenCount": 8,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0655",
@@ -19406,7 +20686,11 @@
       "vi": "Cuộc hội đàm diễn ra trong bầu không khí thân thiện.",
       "en": "The talks took place in a friendly atmosphere.",
       "tokenCount": 9,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_038",
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0656",
@@ -19414,7 +20698,11 @@
       "vi": "Hòa giải viên cần giữ vị trí trung lập.",
       "en": "Mediators must remain neutral.",
       "tokenCount": 8,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_097",
+        "gtag_063"
+      ]
     },
     {
       "id": "it_s_0657",
@@ -19422,7 +20710,10 @@
       "vi": "Lắng nghe chủ động giúp các bên thấu hiểu nhau.",
       "en": "Active listening helps the parties understand each other.",
       "tokenCount": 9,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_001"
+      ]
     },
     {
       "id": "it_s_0658",
@@ -19430,7 +20721,11 @@
       "vi": "Chúng ta cần tìm tiếng nói chung trước.",
       "en": "We need to find common ground first.",
       "tokenCount": 7,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_097",
+        "gtag_063"
+      ]
     },
     {
       "id": "it_s_0659",
@@ -19438,7 +20733,10 @@
       "vi": "Đối thoại cởi mở có thể hàn gắn rạn nứt.",
       "en": "Open dialogue can mend rifts.",
       "tokenCount": 8,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_103"
+      ]
     },
     {
       "id": "it_s_0660",
@@ -19446,7 +20744,11 @@
       "vi": "Nghiên cứu này dựa trên số liệu thực nghiệm.",
       "en": "This research is based on empirical data.",
       "tokenCount": 8,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_135",
+        "gtag_108"
+      ]
     },
     {
       "id": "it_s_0661",
@@ -19454,7 +20756,11 @@
       "vi": "Phương pháp luận được mô tả trong chương hai.",
       "en": "The methodology is described in chapter two.",
       "tokenCount": 8,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_135",
+        "gtag_108"
+      ]
     },
     {
       "id": "it_s_0662",
@@ -19462,7 +20768,11 @@
       "vi": "Đồ thị cho thấy xu hướng tăng đều.",
       "en": "The graph shows a steady upward trend.",
       "tokenCount": 7,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_096",
+        "gtag_099"
+      ]
     },
     {
       "id": "it_s_0663",
@@ -19470,7 +20780,11 @@
       "vi": "Sai số nằm trong giới hạn chấp nhận được.",
       "en": "The margin of error is within acceptable limits.",
       "tokenCount": 8,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_038",
+        "gtag_103"
+      ]
     },
     {
       "id": "it_s_0664",
@@ -19478,7 +20792,11 @@
       "vi": "Trí tuệ nhân tạo đang thay đổi mọi ngành.",
       "en": "AI is transforming every industry.",
       "tokenCount": 7,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_096",
+        "gtag_016"
+      ]
     },
     {
       "id": "it_s_0665",
@@ -19486,7 +20804,11 @@
       "vi": "Mô hình ngôn ngữ lớn cần dữ liệu khổng lồ.",
       "en": "Large language models require massive data.",
       "tokenCount": 9,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_097",
+        "gtag_063"
+      ]
     },
     {
       "id": "it_s_0666",
@@ -19494,7 +20816,11 @@
       "vi": "Tự động hóa giúp tăng năng suất đáng kể.",
       "en": "Automation significantly boosts productivity.",
       "tokenCount": 7,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_001",
+        "gtag_099"
+      ]
     },
     {
       "id": "it_s_0667",
@@ -19502,7 +20828,11 @@
       "vi": "Đột phá này có thể thay đổi cuộc chơi.",
       "en": "This breakthrough could be a game-changer.",
       "tokenCount": 8,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_103",
+        "gtag_002"
+      ]
     },
     {
       "id": "it_s_0668",
@@ -19510,7 +20840,11 @@
       "vi": "Quyền riêng tư phải được tôn trọng.",
       "en": "Privacy must be respected.",
       "tokenCount": 6,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_136",
+        "gtag_135"
+      ]
     },
     {
       "id": "it_s_0669",
@@ -19518,7 +20852,11 @@
       "vi": "Thành kiến thuật toán gây bất công cho người dùng.",
       "en": "Algorithmic bias creates unfairness for users.",
       "tokenCount": 9,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_001",
+        "gtag_095"
+      ]
     },
     {
       "id": "it_s_0670",
@@ -19526,7 +20864,11 @@
       "vi": "Minh bạch là cốt lõi của niềm tin.",
       "en": "Transparency is at the core of trust.",
       "tokenCount": 7,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_002",
+        "gtag_094"
+      ]
     },
     {
       "id": "it_s_0671",
@@ -19534,7 +20876,11 @@
       "vi": "Cần có quy chuẩn để tránh lạm dụng công nghệ.",
       "en": "Standards are needed to prevent misuse of technology.",
       "tokenCount": 9,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_063",
+        "gtag_098"
+      ]
     },
     {
       "id": "it_s_0672",
@@ -19542,7 +20888,11 @@
       "vi": "Tóm tắt phải nêu rõ kết quả chính.",
       "en": "The abstract must clearly state the main findings.",
       "tokenCount": 8,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_097",
+        "gtag_122"
+      ]
     },
     {
       "id": "it_s_0673",
@@ -19550,7 +20900,11 @@
       "vi": "Nghiên cứu kết hợp phương pháp định lượng và định tính.",
       "en": "The study combines quantitative and qualitative methods.",
       "tokenCount": 9,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_001",
+        "gtag_044"
+      ]
     },
     {
       "id": "it_s_0674",
@@ -19558,7 +20912,11 @@
       "vi": "Mọi suy diễn cần dựa trên số liệu.",
       "en": "All inferences must be grounded in data.",
       "tokenCount": 7,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_063",
+        "gtag_134"
+      ]
     },
     {
       "id": "it_s_0675",
@@ -19566,7 +20924,11 @@
       "vi": "Tài liệu tham khảo trình bày theo chuẩn APA.",
       "en": "References are formatted per APA style.",
       "tokenCount": 8,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_135",
+        "gtag_113"
+      ]
     },
     {
       "id": "it_s_0676",
@@ -19574,7 +20936,11 @@
       "vi": "Phở Hà Nội nổi tiếng với nước dùng thanh đạm.",
       "en": "Hanoi pho is famed for its light broth.",
       "tokenCount": 9,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_137",
+        "gtag_038"
+      ]
     },
     {
       "id": "it_s_0677",
@@ -19582,7 +20948,11 @@
       "vi": "Bún chả từng được tổng thống Obama ăn thử.",
       "en": "Bun cha was tried by President Obama.",
       "tokenCount": 9,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_108",
+        "gtag_106"
+      ]
     },
     {
       "id": "it_s_0678",
@@ -19590,7 +20960,11 @@
       "vi": "Hương vị miền Bắc thường tinh tế và không quá ngọt.",
       "en": "Northern flavors are subtle and not overly sweet.",
       "tokenCount": 10,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_041",
+        "gtag_137"
+      ]
     },
     {
       "id": "it_s_0679",
@@ -19598,7 +20972,11 @@
       "vi": "Mùa thu Hà Nội thơm mùi cốm.",
       "en": "Hanoi autumn smells of young green rice.",
       "tokenCount": 7,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_001",
+        "gtag_003"
+      ]
     },
     {
       "id": "it_s_0680",
@@ -19606,7 +20984,11 @@
       "vi": "Ẩm thực miền Trung nổi tiếng cay nồng và đậm đà.",
       "en": "Central cuisine is famed for being spicy and rich.",
       "tokenCount": 10,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_137",
+        "gtag_044"
+      ]
     },
     {
       "id": "it_s_0681",
@@ -19614,7 +20996,11 @@
       "vi": "Cao lầu chỉ ngon nhất khi ăn ở Hội An.",
       "en": "Cao lau tastes best only in Hoi An.",
       "tokenCount": 9,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_026",
+        "gtag_038"
+      ]
     },
     {
       "id": "it_s_0682",
@@ -19622,7 +21008,11 @@
       "vi": "Mắm ruốc là linh hồn của nhiều món Huế.",
       "en": "Shrimp paste is the soul of many Hue dishes.",
       "tokenCount": 9,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_002",
+        "gtag_094"
+      ]
     },
     {
       "id": "it_s_0683",
@@ -19630,7 +21020,11 @@
       "vi": "Bánh xèo miền Trung mỏng và giòn.",
       "en": "Central-style sizzling pancakes are thin and crispy.",
       "tokenCount": 7,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_001",
+        "gtag_044"
+      ]
     },
     {
       "id": "it_s_0684",
@@ -19638,7 +21032,11 @@
       "vi": "Cơm tấm sườn bì chả là món yêu thích ở Sài Gòn.",
       "en": "Broken rice with pork chop is a Saigon favorite.",
       "tokenCount": 10,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_002",
+        "gtag_038"
+      ]
     },
     {
       "id": "it_s_0685",
@@ -19646,7 +21044,11 @@
       "vi": "Vị ngọt thanh của miền Nam đến từ nước cốt dừa.",
       "en": "The mild sweetness of the South comes from coconut milk.",
       "tokenCount": 10,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_137",
+        "gtag_094"
+      ]
     },
     {
       "id": "it_s_0686",
@@ -19654,7 +21056,11 @@
       "vi": "Miền Tây nổi tiếng với lẩu mắm và trái cây nhiệt đới.",
       "en": "The Mekong Delta is known for fermented fish hotpot and tropical fruit.",
       "tokenCount": 10,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_038",
+        "gtag_044"
+      ]
     },
     {
       "id": "it_s_0687",
@@ -19662,7 +21068,11 @@
       "vi": "Văn hóa sông nước ảnh hưởng sâu đậm đến ẩm thực.",
       "en": "Riverine culture deeply shapes the cuisine.",
       "tokenCount": 9,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_001",
+        "gtag_095"
+      ]
     },
     {
       "id": "it_s_0688",
@@ -19670,7 +21080,11 @@
       "vi": "Chúng tôi xin nâng hạng phòng cho quý khách.",
       "en": "We are upgrading your room.",
       "tokenCount": 8,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_138",
+        "gtag_112"
+      ]
     },
     {
       "id": "it_s_0689",
@@ -19678,7 +21092,11 @@
       "vi": "Quý khách có yêu cầu đặc biệt nào không ạ?",
       "en": "Do you have any special requests?",
       "tokenCount": 8,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_005",
+        "gtag_138"
+      ]
     },
     {
       "id": "it_s_0690",
@@ -19686,7 +21104,11 @@
       "vi": "Xe đưa đón sẽ đón quý khách lúc 8 giờ.",
       "en": "The shuttle will pick you up at 8.",
       "tokenCount": 9,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_017",
+        "gtag_034"
+      ]
     },
     {
       "id": "it_s_0691",
@@ -19694,7 +21116,10 @@
       "vi": "Đội ngũ lễ tân luôn sẵn sàng phục vụ tận tình.",
       "en": "Our concierge team is always ready to serve attentively.",
       "tokenCount": 10,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_041"
+      ]
     },
     {
       "id": "it_s_0692",
@@ -19702,7 +21127,11 @@
       "vi": "Quý khách có muốn xem thực đơn nếm thử không?",
       "en": "Would you like to see the tasting menu?",
       "tokenCount": 8,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_022",
+        "gtag_005"
+      ]
     },
     {
       "id": "it_s_0693",
@@ -19710,7 +21139,10 @@
       "vi": "Đầu bếp trưởng gợi ý món chính là cá hồi.",
       "en": "The head chef recommends salmon as the main.",
       "tokenCount": 9,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_002"
+      ]
     },
     {
       "id": "it_s_0694",
@@ -19718,7 +21150,10 @@
       "vi": "Quý khách dùng rượu vang đỏ hay trắng ạ?",
       "en": "Would you prefer red or white wine?",
       "tokenCount": 8,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_138"
+      ]
     },
     {
       "id": "it_s_0695",
@@ -19726,7 +21161,10 @@
       "vi": "Tráng miệng hôm nay là kem vani và xoài.",
       "en": "Today's dessert is vanilla ice cream with mango.",
       "tokenCount": 9,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_002"
+      ]
     },
     {
       "id": "it_s_0696",
@@ -19734,7 +21172,11 @@
       "vi": "Chúng tôi xin lỗi quý khách vì sự bất tiện.",
       "en": "We apologize for the inconvenience.",
       "tokenCount": 9,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_139",
+        "gtag_138"
+      ]
     },
     {
       "id": "it_s_0697",
@@ -19742,7 +21184,11 @@
       "vi": "Chúng tôi sẽ khắc phục ngay lập tức.",
       "en": "We will fix it immediately.",
       "tokenCount": 7,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_017",
+        "gtag_118"
+      ]
     },
     {
       "id": "it_s_0698",
@@ -19750,7 +21196,10 @@
       "vi": "Đền bù bằng một bữa tối miễn phí.",
       "en": "Compensation with a complimentary dinner.",
       "tokenCount": 7,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_027"
+      ]
     },
     {
       "id": "it_s_0699",
@@ -19758,7 +21207,10 @@
       "vi": "Quản lý sẽ trực tiếp gặp quý khách.",
       "en": "The manager will meet you in person.",
       "tokenCount": 8,
-      "difficulty": 8
+      "difficulty": 8,
+      "grammarTagIds": [
+        "gtag_017"
+      ]
     },
     {
       "id": "it_s_0700",
@@ -19766,7 +21218,10 @@
       "vi": "Dạ vâng, em hiểu rồi.",
       "en": "Yes, I understand.",
       "tokenCount": 5,
-      "difficulty": 3
+      "difficulty": 3,
+      "grammarTagIds": [
+        "gtag_018"
+      ]
     },
     {
       "id": "it_s_0701",
@@ -19774,7 +21229,10 @@
       "vi": "Không, cảm ơn anh.",
       "en": "No, thank you.",
       "tokenCount": 4,
-      "difficulty": 3
+      "difficulty": 3,
+      "grammarTagIds": [
+        "gtag_004"
+      ]
     },
     {
       "id": "it_s_0702",
@@ -19782,7 +21240,11 @@
       "vi": "Xin lỗi, để tôi nghĩ đã.",
       "en": "Sorry, let me think first.",
       "tokenCount": 6,
-      "difficulty": 3
+      "difficulty": 3,
+      "grammarTagIds": [
+        "gtag_045",
+        "gtag_055"
+      ]
     },
     {
       "id": "it_s_0703",
@@ -19790,7 +21252,11 @@
       "vi": "Có thể, mai trả lời nhé.",
       "en": "Maybe, I'll answer tomorrow.",
       "tokenCount": 6,
-      "difficulty": 3
+      "difficulty": 3,
+      "grammarTagIds": [
+        "gtag_103",
+        "gtag_061"
+      ]
     },
     {
       "id": "it_s_0704",
@@ -19798,7 +21264,11 @@
       "vi": "Cho tôi một cà phê sữa đá.",
       "en": "One iced milk coffee, please.",
       "tokenCount": 6,
-      "difficulty": 5
+      "difficulty": 5,
+      "grammarTagIds": [
+        "gtag_021",
+        "gtag_024"
+      ]
     },
     {
       "id": "it_s_0705",
@@ -19806,7 +21276,10 @@
       "vi": "Trà sữa ít đường nhé.",
       "en": "Milk tea, less sugar please.",
       "tokenCount": 5,
-      "difficulty": 5
+      "difficulty": 5,
+      "grammarTagIds": [
+        "gtag_081"
+      ]
     },
     {
       "id": "it_s_0706",
@@ -19814,7 +21287,10 @@
       "vi": "Quán có sinh tố xoài không?",
       "en": "Do you have mango smoothie?",
       "tokenCount": 6,
-      "difficulty": 5
+      "difficulty": 5,
+      "grammarTagIds": [
+        "gtag_005"
+      ]
     },
     {
       "id": "it_s_0707",
@@ -19822,7 +21298,11 @@
       "vi": "Một chai nước suối lạnh.",
       "en": "One cold bottled water.",
       "tokenCount": 5,
-      "difficulty": 5
+      "difficulty": 5,
+      "grammarTagIds": [
+        "gtag_024",
+        "gtag_023"
+      ]
     },
     {
       "id": "it_s_0708",
@@ -19830,7 +21310,10 @@
       "vi": "Cho mình mang đi nhé.",
       "en": "Make it to go, please.",
       "tokenCount": 5,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_021"
+      ]
     },
     {
       "id": "it_s_0709",
@@ -19838,7 +21321,10 @@
       "vi": "Tính tiền giúp mình.",
       "en": "Check, please.",
       "tokenCount": 4,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_089"
+      ]
     },
     {
       "id": "it_s_0710",
@@ -19846,7 +21332,11 @@
       "vi": "Bên này có quẹt thẻ không?",
       "en": "Do you accept cards?",
       "tokenCount": 6,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_005",
+        "gtag_038"
+      ]
     },
     {
       "id": "it_s_0711",
@@ -19854,7 +21344,10 @@
       "vi": "Tổng cộng bao nhiêu ạ?",
       "en": "What's the total?",
       "tokenCount": 5,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_010"
+      ]
     },
     {
       "id": "it_s_0712",
@@ -19862,7 +21355,10 @@
       "vi": "Tôi muốn ăn món chay.",
       "en": "I want a vegetarian dish.",
       "tokenCount": 5,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_022"
+      ]
     },
     {
       "id": "it_s_0713",
@@ -19870,7 +21366,10 @@
       "vi": "Có món hải sản không?",
       "en": "Do you have seafood?",
       "tokenCount": 5,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_005"
+      ]
     },
     {
       "id": "it_s_0714",
@@ -19878,7 +21377,10 @@
       "vi": "Cho tôi cơm gà.",
       "en": "Chicken rice, please.",
       "tokenCount": 4,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_021"
+      ]
     },
     {
       "id": "it_s_0715",
@@ -19886,7 +21388,11 @@
       "vi": "Một tô mì bò.",
       "en": "One bowl of beef noodles.",
       "tokenCount": 5,
-      "difficulty": 6
+      "difficulty": 6,
+      "grammarTagIds": [
+        "gtag_024",
+        "gtag_023"
+      ]
     },
     {
       "id": "it_s_0716",
@@ -19894,7 +21400,10 @@
       "vi": "Tôi bị dị ứng đậu phộng.",
       "en": "I'm allergic to peanuts.",
       "tokenCount": 5,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_037"
+      ]
     },
     {
       "id": "it_s_0717",
@@ -19902,7 +21411,11 @@
       "vi": "Cho tôi món không cay.",
       "en": "A not-spicy dish, please.",
       "tokenCount": 5,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_021",
+        "gtag_004"
+      ]
     },
     {
       "id": "it_s_0718",
@@ -19910,7 +21423,10 @@
       "vi": "Không bột ngọt nhé.",
       "en": "No MSG, please.",
       "tokenCount": 4,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_004"
+      ]
     },
     {
       "id": "it_s_0719",
@@ -19918,7 +21434,10 @@
       "vi": "Tôi đang ăn kiêng, ít muối thôi.",
       "en": "I'm on a diet, low salt please.",
       "tokenCount": 7,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_016"
+      ]
     },
     {
       "id": "it_s_0720",
@@ -19926,7 +21445,10 @@
       "vi": "Mắc quá, bớt chút đi.",
       "en": "Too expensive, give me a discount.",
       "tokenCount": 5,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_032"
+      ]
     },
     {
       "id": "it_s_0721",
@@ -19934,7 +21456,11 @@
       "vi": "Mua hai cái có rẻ hơn không?",
       "en": "Cheaper if I buy two?",
       "tokenCount": 7,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_005",
+        "gtag_025"
+      ]
     },
     {
       "id": "it_s_0722",
@@ -19942,7 +21468,11 @@
       "vi": "Giá cuối là bao nhiêu?",
       "en": "What's the final price?",
       "tokenCount": 5,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_010",
+        "gtag_002"
+      ]
     },
     {
       "id": "it_s_0723",
@@ -19950,7 +21480,10 @@
       "vi": "Thôi cảm ơn, mắc quá.",
       "en": "Never mind, too pricey.",
       "tokenCount": 5,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_032"
+      ]
     },
     {
       "id": "it_s_0724",
@@ -19958,7 +21491,11 @@
       "vi": "Cái này một trăm nghìn đồng.",
       "en": "This is one hundred thousand dong.",
       "tokenCount": 6,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_042",
+        "gtag_024"
+      ]
     },
     {
       "id": "it_s_0725",
@@ -19966,7 +21503,11 @@
       "vi": "Tôi cần đổi một trăm đô.",
       "en": "I need to exchange one hundred dollars.",
       "tokenCount": 6,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_022",
+        "gtag_024"
+      ]
     },
     {
       "id": "it_s_0726",
@@ -19974,7 +21515,11 @@
       "vi": "Có tờ năm trăm nghìn không?",
       "en": "Do you have a five-hundred-thousand note?",
       "tokenCount": 6,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_005",
+        "gtag_023"
+      ]
     },
     {
       "id": "it_s_0727",
@@ -19982,7 +21527,11 @@
       "vi": "Tổng cộng hai triệu đồng.",
       "en": "Total: two million dong.",
       "tokenCount": 5,
-      "difficulty": 7
+      "difficulty": 7,
+      "grammarTagIds": [
+        "gtag_024",
+        "gtag_023"
+      ]
     }
   ],
   "conversations": [

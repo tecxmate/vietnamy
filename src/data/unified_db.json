@@ -19532,7 +19532,9 @@
       "vi_text": "Cảm ơn!",
       "token_count": 2,
       "difficulty": 1,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT081"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -19547,7 +19549,10 @@
       "vi_text": "Bạn tên là gì?",
       "token_count": 4,
       "difficulty": 2,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT006",
+        "GT002"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -19590,7 +19595,10 @@
       "vi_text": "Tôi không hiểu.",
       "token_count": 3,
       "difficulty": 3,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT004",
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -19605,7 +19613,9 @@
       "vi_text": "Nói chậm lại.",
       "token_count": 3,
       "difficulty": 3,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -19620,7 +19630,9 @@
       "vi_text": "Một, hai, ba!",
       "token_count": 3,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT024"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -19635,7 +19647,10 @@
       "vi_text": "Tôi có năm bạn.",
       "token_count": 4,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT024",
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -19650,7 +19665,9 @@
       "vi_text": "Tám hay chín?",
       "token_count": 3,
       "difficulty": 5,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT024"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -19665,7 +19682,9 @@
       "vi_text": "Từ sáu đến mười.",
       "token_count": 4,
       "difficulty": 5,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT024"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -19680,7 +19699,9 @@
       "vi_text": "Cho tôi cà phê.",
       "token_count": 4,
       "difficulty": 5,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT021"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -19695,7 +19716,10 @@
       "vi_text": "Tôi muốn một trà.",
       "token_count": 4,
       "difficulty": 5,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT022",
+        "GT024"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -19710,7 +19734,9 @@
       "vi_text": "Tôi muốn cà phê sữa đá.",
       "token_count": 6,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT022"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -19725,7 +19751,10 @@
       "vi_text": "Tôi muốn một bát phở.",
       "token_count": 5,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT022",
+        "GT024"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -19740,7 +19769,10 @@
       "vi_text": "Cái này bao nhiêu tiền?",
       "token_count": 5,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT010",
+        "GT042"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -19755,7 +19787,10 @@
       "vi_text": "Tôi thích màu đỏ.",
       "token_count": 4,
       "difficulty": 5,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001",
+        "GT014"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -19770,7 +19805,9 @@
       "vi_text": "Cái áo màu xanh.",
       "token_count": 4,
       "difficulty": 5,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT023"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -19785,7 +19822,10 @@
       "vi_text": "Cái nhà to quá!",
       "token_count": 4,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT032",
+        "GT042"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -19800,7 +19840,9 @@
       "vi_text": "Hoa đẹp quá!",
       "token_count": 3,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT032"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -19815,7 +19857,9 @@
       "vi_text": "Mắc quá! Bớt đi.",
       "token_count": 4,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT032"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -19830,7 +19874,10 @@
       "vi_text": "Tôi muốn mua cái này.",
       "token_count": 5,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT022",
+        "GT042"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -19845,7 +19892,9 @@
       "vi_text": "Tôi muốn mua cam.",
       "token_count": 4,
       "difficulty": 5,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT022"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -19860,7 +19909,9 @@
       "vi_text": "Xoài rất ngon.",
       "token_count": 3,
       "difficulty": 5,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT031"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -19875,7 +19926,10 @@
       "vi_text": "Tôi ăn rau mỗi ngày.",
       "token_count": 5,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001",
+        "GT041"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -19890,7 +19944,9 @@
       "vi_text": "Cà chua màu đỏ.",
       "token_count": 4,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -19905,7 +19961,9 @@
       "vi_text": "Tính tiền, làm ơn.",
       "token_count": 4,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT020"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -19920,7 +19978,10 @@
       "vi_text": "Đi thẳng rồi quẹo trái.",
       "token_count": 5,
       "difficulty": 5,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001",
+        "GT044"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -19935,7 +19996,10 @@
       "vi_text": "Nhà tôi gần đây.",
       "token_count": 4,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT003",
+        "GT038"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -19950,7 +20014,9 @@
       "vi_text": "Có xa không?",
       "token_count": 3,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT005"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -19965,7 +20031,9 @@
       "vi_text": "Cho tôi đến khách sạn.",
       "token_count": 5,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT021"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -19980,7 +20048,10 @@
       "vi_text": "Dừng ở đây, làm ơn.",
       "token_count": 5,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT038",
+        "GT020"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -20023,7 +20094,9 @@
       "vi_text": "Giúp tôi với!",
       "token_count": 3,
       "difficulty": 9,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -20038,7 +20111,9 @@
       "vi_text": "Tôi bị lạc.",
       "token_count": 3,
       "difficulty": 9,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT037"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -20053,7 +20128,9 @@
       "vi_text": "Sáng hay chiều?",
       "token_count": 3,
       "difficulty": 5,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT035"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -20068,7 +20145,9 @@
       "vi_text": "Mấy giờ rồi?",
       "token_count": 3,
       "difficulty": 5,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT011"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -20112,7 +20191,9 @@
       "vi_text": "Hôm nay trời đẹp quá!",
       "token_count": 5,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT032"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -20127,7 +20208,9 @@
       "vi_text": "Bố mẹ tôi khỏe.",
       "token_count": 4,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT003"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -20142,7 +20225,9 @@
       "vi_text": "Anh chị khỏe không?",
       "token_count": 4,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT005"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -20157,7 +20242,10 @@
       "vi_text": "Em tôi còn nhỏ.",
       "token_count": 4,
       "difficulty": 9,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT003",
+        "GT049"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -20172,7 +20260,10 @@
       "vi_text": "Vợ chồng tôi rất vui.",
       "token_count": 5,
       "difficulty": 9,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT003",
+        "GT031"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -20187,7 +20278,9 @@
       "vi_text": "Nhà bếp rất sạch.",
       "token_count": 4,
       "difficulty": 9,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT031"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -20202,7 +20295,9 @@
       "vi_text": "Phòng khách rất to.",
       "token_count": 4,
       "difficulty": 9,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT031"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -20217,7 +20312,9 @@
       "vi_text": "Ngồi trên ghế đi.",
       "token_count": 4,
       "difficulty": 10,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT038"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -20232,7 +20329,9 @@
       "vi_text": "Đặt trên bàn.",
       "token_count": 3,
       "difficulty": 10,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT038"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -20247,7 +20346,9 @@
       "vi_text": "Bạn thích làm gì?",
       "token_count": 4,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT006"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -20262,7 +20363,9 @@
       "vi_text": "Tôi mệt quá.",
       "token_count": 3,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT032"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -20277,7 +20380,9 @@
       "vi_text": "Cuối tuần bạn rảnh không?",
       "token_count": 5,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT005"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -20292,7 +20397,10 @@
       "vi_text": "Đi chơi cùng tôi không?",
       "token_count": 5,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT005",
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -20307,7 +20415,9 @@
       "vi_text": "Chúc mừng sinh nhật!",
       "token_count": 4,
       "difficulty": 9,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -20322,7 +20432,9 @@
       "vi_text": "Vui quá!",
       "token_count": 2,
       "difficulty": 9,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT032"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -20382,7 +20494,9 @@
       "vi_text": "Tôi vừa mới về.",
       "token_count": 4,
       "difficulty": 3,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -20407,7 +20521,9 @@
       "vi_text": "Năm ngoái trời rất lạnh.",
       "token_count": 4,
       "difficulty": 3,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT031"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -20427,7 +20543,9 @@
       "vi_text": "Chuyến đi rất tuyệt vời.",
       "token_count": 4,
       "difficulty": 3,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT031"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -20491,7 +20609,10 @@
       "vi_text": "Tôi rất mệt nhưng rất vui.",
       "token_count": 6,
       "difficulty": 3,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT031",
+        "GT052"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -20556,7 +20677,10 @@
       "vi_text": "Đây là lần đầu tôi thử.",
       "token_count": 6,
       "difficulty": 3,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT043",
+        "GT002"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -20598,7 +20722,9 @@
       "vi_text": "Tôi rất ngạc nhiên khi nghe tin.",
       "token_count": 7,
       "difficulty": 3,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT031"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -20613,7 +20739,10 @@
       "vi_text": "Không ngờ bạn cũng ở đây!",
       "token_count": 6,
       "difficulty": 3,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT038",
+        "GT044"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -20650,7 +20779,9 @@
       "vi_text": "Thật à? Tôi không tin nổi.",
       "token_count": 6,
       "difficulty": 3,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT004"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -20709,7 +20840,9 @@
       "vi_text": "Bụng tôi đói lắm.",
       "token_count": 4,
       "difficulty": 3,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT033"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -20729,7 +20862,10 @@
       "vi_text": "Lưng anh ấy đau từ hôm qua.",
       "token_count": 6,
       "difficulty": 3,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT003",
+        "GT055"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -20761,7 +20897,9 @@
       "vi_text": "Bác sĩ ơi, tôi cảm thấy mệt.",
       "token_count": 6,
       "difficulty": 3,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -20810,7 +20948,9 @@
       "vi_text": "Cho tôi mua thuốc cảm.",
       "token_count": 5,
       "difficulty": 3,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT021"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -20830,7 +20970,10 @@
       "vi_text": "Uống hai viên sau bữa ăn.",
       "token_count": 5,
       "difficulty": 3,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT024",
+        "GT055"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -20867,7 +21010,9 @@
       "vi_text": "Bạn có đơn thuốc không?",
       "token_count": 5,
       "difficulty": 3,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT005"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -20882,7 +21027,10 @@
       "vi_text": "Tôi tập thể dục mỗi sáng.",
       "token_count": 5,
       "difficulty": 3,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001",
+        "GT035"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -20914,7 +21062,9 @@
       "vi_text": "Tôi đang cố hạn chế đường.",
       "token_count": 6,
       "difficulty": 3,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT016"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -20946,7 +21096,10 @@
       "vi_text": "Tôi đang làm việc ở công ty mới.",
       "token_count": 7,
       "difficulty": 3,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT016",
+        "GT038"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -20961,7 +21114,10 @@
       "vi_text": "Đồng nghiệp của tôi rất thân thiện.",
       "token_count": 6,
       "difficulty": 3,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT003",
+        "GT031"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -20976,7 +21132,9 @@
       "vi_text": "Tôi vừa hoàn thành báo cáo.",
       "token_count": 5,
       "difficulty": 3,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -20991,7 +21149,10 @@
       "vi_text": "Hôm nay sếp rất bận.",
       "token_count": 5,
       "difficulty": 3,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT031",
+        "GT035"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -21006,7 +21167,9 @@
       "vi_text": "Cuộc họp bắt đầu lúc 9 giờ.",
       "token_count": 6,
       "difficulty": 3,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT034"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -21061,7 +21224,9 @@
       "vi_text": "Xin lỗi, tôi đến trễ năm phút.",
       "token_count": 6,
       "difficulty": 3,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -21076,7 +21241,9 @@
       "vi_text": "Tôi vừa gửi email cho bạn.",
       "token_count": 6,
       "difficulty": 3,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -21091,7 +21258,10 @@
       "vi_text": "Anh có thể gọi lại sau không?",
       "token_count": 6,
       "difficulty": 3,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT103",
+        "GT005"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -21106,7 +21276,9 @@
       "vi_text": "Việc này khá khẩn cấp.",
       "token_count": 5,
       "difficulty": 3,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -21138,7 +21310,10 @@
       "vi_text": "Tôi muốn đặt một vé khứ hồi.",
       "token_count": 7,
       "difficulty": 3,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT022",
+        "GT024"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -21153,7 +21328,9 @@
       "vi_text": "Chuyến bay khởi hành lúc mấy giờ?",
       "token_count": 6,
       "difficulty": 3,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT011"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -21168,7 +21345,9 @@
       "vi_text": "Tour này có hướng dẫn viên không?",
       "token_count": 6,
       "difficulty": 3,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT005"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -21200,7 +21379,10 @@
       "vi_text": "Hà Nội là thủ đô của Việt Nam.",
       "token_count": 7,
       "difficulty": 3,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT002",
+        "GT003"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -21215,7 +21397,9 @@
       "vi_text": "Vịnh Hạ Long rất đẹp.",
       "token_count": 5,
       "difficulty": 3,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT031"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -21230,7 +21414,9 @@
       "vi_text": "Sa Pa nổi tiếng với ruộng bậc thang.",
       "token_count": 7,
       "difficulty": 3,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -21245,7 +21431,10 @@
       "vi_text": "Tôi muốn đi du thuyền ở Hạ Long.",
       "token_count": 8,
       "difficulty": 3,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT022",
+        "GT038"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -21277,7 +21466,10 @@
       "vi_text": "Hội An rất đẹp vào ban đêm với đèn lồng.",
       "token_count": 9,
       "difficulty": 3,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT031",
+        "GT035"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -21292,7 +21484,9 @@
       "vi_text": "Đà Nẵng có nhiều bãi biển đẹp.",
       "token_count": 6,
       "difficulty": 3,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -21307,7 +21501,9 @@
       "vi_text": "Bún bò Huế là đặc sản nổi tiếng.",
       "token_count": 7,
       "difficulty": 3,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT002"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -21322,7 +21518,9 @@
       "vi_text": "Sài Gòn rất nhộn nhịp.",
       "token_count": 4,
       "difficulty": 3,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT031"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -21337,7 +21535,9 @@
       "vi_text": "Chợ nổi có nhiều trái cây nhiệt đới.",
       "token_count": 7,
       "difficulty": 3,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -21352,7 +21552,10 @@
       "vi_text": "Chúng tôi đi thuyền trên sông.",
       "token_count": 6,
       "difficulty": 3,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001",
+        "GT038"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -21367,7 +21570,9 @@
       "vi_text": "Đồng bằng sông Cửu Long rất rộng.",
       "token_count": 6,
       "difficulty": 3,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT031"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -21382,7 +21587,9 @@
       "vi_text": "Cho tôi xin số điện thoại.",
       "token_count": 5,
       "difficulty": 3,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT021"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -21397,7 +21604,9 @@
       "vi_text": "Điện thoại tôi sắp hết pin.",
       "token_count": 5,
       "difficulty": 3,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -21412,7 +21621,10 @@
       "vi_text": "Wifi ở đây mật khẩu là gì?",
       "token_count": 6,
       "difficulty": 3,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT006",
+        "GT002"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -21427,7 +21639,9 @@
       "vi_text": "Tôi sẽ nhắn tin cho bạn sau.",
       "token_count": 6,
       "difficulty": 3,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT017"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -21442,7 +21656,10 @@
       "vi_text": "Tôi cần tải ứng dụng này.",
       "token_count": 5,
       "difficulty": 3,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT063",
+        "GT042"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -21457,7 +21674,10 @@
       "vi_text": "Mạng ở đây hơi chậm.",
       "token_count": 5,
       "difficulty": 3,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT038",
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -21472,7 +21692,9 @@
       "vi_text": "Bạn có tài khoản Zalo không?",
       "token_count": 6,
       "difficulty": 3,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT005"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -21487,7 +21709,9 @@
       "vi_text": "Tôi sẽ chia sẻ ảnh trên mạng xã hội.",
       "token_count": 8,
       "difficulty": 3,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT017"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -21502,7 +21726,9 @@
       "vi_text": "Cuối tuần bạn có rảnh không?",
       "token_count": 6,
       "difficulty": 3,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT005"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -21517,7 +21743,10 @@
       "vi_text": "Mình hẹn nhau lúc 7 giờ tối nhé.",
       "token_count": 7,
       "difficulty": 3,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT034",
+        "GT035"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -21532,7 +21761,10 @@
       "vi_text": "Xin lỗi, mình phải hủy hẹn.",
       "token_count": 6,
       "difficulty": 3,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT029",
+        "GT139"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -21547,7 +21779,9 @@
       "vi_text": "Mình xác nhận lịch ngày mai.",
       "token_count": 5,
       "difficulty": 3,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -21562,7 +21796,9 @@
       "vi_text": "Tết là dịp gia đình sum họp.",
       "token_count": 7,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT002"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -21577,7 +21813,9 @@
       "vi_text": "Trẻ con rất thích nhận lì xì.",
       "token_count": 6,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT031"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -21592,7 +21830,10 @@
       "vi_text": "Miền Bắc chưng hoa đào, miền Nam chưng hoa mai.",
       "token_count": 9,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT120",
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -21607,7 +21848,9 @@
       "vi_text": "Chúc mừng năm mới! An khang thịnh vượng!",
       "token_count": 6,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT077"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -21622,7 +21865,9 @@
       "vi_text": "Trung Thu là tết của trẻ em.",
       "token_count": 7,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT002"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -21637,7 +21882,10 @@
       "vi_text": "Trẻ em rước đèn ông sao và xem múa lân.",
       "token_count": 9,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT044",
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -21652,7 +21900,10 @@
       "vi_text": "Cả nhà cùng nhau phá cỗ dưới trăng rằm.",
       "token_count": 9,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT038",
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -21667,7 +21918,9 @@
       "vi_text": "Bánh trung thu có nhân đậu xanh hoặc thập cẩm.",
       "token_count": 8,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -21682,7 +21935,9 @@
       "vi_text": "Người Việt rất tôn trọng tổ tiên.",
       "token_count": 6,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT031"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -21697,7 +21952,10 @@
       "vi_text": "Mỗi năm gia đình tôi cúng giỗ ông nội.",
       "token_count": 9,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT117",
+        "GT003"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -21712,7 +21970,10 @@
       "vi_text": "Vào lễ Vu Lan, người ta cài hoa hồng.",
       "token_count": 8,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT107",
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -21727,7 +21988,9 @@
       "vi_text": "Đám cưới Việt Nam có nhiều nghi lễ truyền thống.",
       "token_count": 9,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -21794,7 +22057,10 @@
       "vi_text": "Thật ra tôi không đồng ý lắm.",
       "token_count": 6,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT004",
+        "GT033"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -21809,7 +22075,9 @@
       "vi_text": "Tôi hoàn toàn đồng ý với bạn.",
       "token_count": 6,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -21841,7 +22109,10 @@
       "vi_text": "Lý do là vì giá quá cao.",
       "token_count": 7,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT002",
+        "GT032"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -21856,7 +22127,10 @@
       "vi_text": "Cho tôi một ví dụ cụ thể.",
       "token_count": 6,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT021",
+        "GT024"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -21871,7 +22145,9 @@
       "vi_text": "Văn hóa Việt Nam coi trọng gia đình.",
       "token_count": 6,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -21886,7 +22162,9 @@
       "vi_text": "So với phương Tây, người Việt sống cộng đồng hơn.",
       "token_count": 9,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT025"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -21901,7 +22179,10 @@
       "vi_text": "Hai nền văn hóa có nhiều điểm giống nhau.",
       "token_count": 8,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001",
+        "GT083"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -21916,7 +22197,10 @@
       "vi_text": "Sự khác biệt làm cuộc sống thú vị hơn.",
       "token_count": 7,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT025",
+        "GT137"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -21931,7 +22215,10 @@
       "vi_text": "Tôi đọc tin tức mỗi sáng.",
       "token_count": 5,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001",
+        "GT041"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -21946,7 +22233,10 @@
       "vi_text": "Tiêu đề bài báo rất gây sốc.",
       "token_count": 6,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT003",
+        "GT031"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -21961,7 +22251,9 @@
       "vi_text": "Chính phủ vừa thông báo chính sách mới.",
       "token_count": 7,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -21976,7 +22268,10 @@
       "vi_text": "Sự kiện này ảnh hưởng đến nhiều người.",
       "token_count": 7,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT042",
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -22025,7 +22320,9 @@
       "vi_text": "Tái chế rác giúp giảm ô nhiễm.",
       "token_count": 6,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -22057,7 +22354,10 @@
       "vi_text": "Giáo dục là chìa khóa của tương lai.",
       "token_count": 7,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT002",
+        "GT003"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -22072,7 +22372,9 @@
       "vi_text": "Học sinh Việt Nam chịu nhiều áp lực thi cử.",
       "token_count": 8,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -22087,7 +22389,9 @@
       "vi_text": "Du học mở ra nhiều cơ hội mới.",
       "token_count": 7,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -22119,7 +22423,10 @@
       "vi_text": "Mục tiêu của tôi là nói tiếng Việt trôi chảy.",
       "token_count": 8,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT002",
+        "GT003"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -22134,7 +22441,10 @@
       "vi_text": "Tôi đang cố gắng học mỗi ngày.",
       "token_count": 6,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT016",
+        "GT041"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -22149,7 +22459,10 @@
       "vi_text": "Thất bại là mẹ thành công.",
       "token_count": 5,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT002",
+        "GT078"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -22164,7 +22477,9 @@
       "vi_text": "Trong tương lai tôi muốn mở quán cà phê.",
       "token_count": 8,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT022"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -22230,7 +22545,10 @@
       "vi_text": "Tôi không hối hận vì lựa chọn của mình.",
       "token_count": 7,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT004",
+        "GT003"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -22262,7 +22580,10 @@
       "vi_text": "Mỗi trải nghiệm là một bài học.",
       "token_count": 6,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT002",
+        "GT042"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -22277,7 +22598,9 @@
       "vi_text": "Tôi biết ơn hành trình của mình.",
       "token_count": 6,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT094"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -22292,7 +22615,10 @@
       "vi_text": "Tôi sẽ tiếp tục học và trưởng thành.",
       "token_count": 7,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT017",
+        "GT044"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -22307,7 +22633,10 @@
       "vi_text": "Thành ngữ này có nghĩa là gì?",
       "token_count": 6,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT006",
+        "GT002"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -22322,7 +22651,10 @@
       "vi_text": "Bạn ấy lúc nào cũng nước đến chân mới nhảy.",
       "token_count": 8,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT077",
+        "GT041"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -22337,7 +22669,9 @@
       "vi_text": "Có công mài sắt, có ngày nên kim.",
       "token_count": 8,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT078"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -22357,7 +22691,9 @@
       "vi_text": "Tôi không hiểu chính xác ý nghĩa.",
       "token_count": 6,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT004"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -22372,7 +22708,10 @@
       "vi_text": "Tục ngữ chứa đựng trí tuệ của ông cha.",
       "token_count": 8,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT078",
+        "GT003"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -22387,7 +22726,10 @@
       "vi_text": "Ăn quả nhớ kẻ trồng cây là bài học về lòng biết ơn.",
       "token_count": 11,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT078",
+        "GT002"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -22402,7 +22744,10 @@
       "vi_text": "Câu 'lá lành đùm lá rách' nói về tình đoàn kết.",
       "token_count": 9,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT077",
+        "GT002"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -22434,7 +22779,9 @@
       "vi_text": "Bộ phim này hết sảy luôn!",
       "token_count": 5,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT033"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -22454,7 +22801,9 @@
       "vi_text": "Trời ơi, đẹp ghê!",
       "token_count": 4,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT032"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -22474,7 +22823,10 @@
       "vi_text": "Bài này khó quá, bó tay.",
       "token_count": 6,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT032",
+        "GT077"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -22489,7 +22841,10 @@
       "vi_text": "Cái áo của bạn xịn ghê.",
       "token_count": 6,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT094",
+        "GT033"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -22504,7 +22859,9 @@
       "vi_text": "Anh có bao nhiêu năm kinh nghiệm?",
       "token_count": 6,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT010"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -22519,7 +22876,10 @@
       "vi_text": "Điểm mạnh nhất của tôi là làm việc nhóm.",
       "token_count": 8,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT026",
+        "GT002"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -22534,7 +22894,10 @@
       "vi_text": "Mức lương mong muốn của anh là bao nhiêu?",
       "token_count": 8,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT010",
+        "GT094"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -22566,7 +22929,10 @@
       "vi_text": "Chúng ta có thể thương lượng về giá không?",
       "token_count": 7,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT103",
+        "GT005"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -22581,7 +22947,9 @@
       "vi_text": "Tôi đề nghị một thỏa thuận đôi bên cùng có lợi.",
       "token_count": 9,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -22596,7 +22964,9 @@
       "vi_text": "Cho tôi cân nhắc thêm một chút.",
       "token_count": 6,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT021"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -22611,7 +22981,10 @@
       "vi_text": "Điều kiện hợp đồng cần linh hoạt hơn.",
       "token_count": 7,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT097",
+        "GT025"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -22626,7 +22999,9 @@
       "vi_text": "Tôi hiểu nhưng có quan điểm khác.",
       "token_count": 6,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT052"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -22692,7 +23067,9 @@
       "vi_text": "Cảm ơn về phản hồi mang tính xây dựng.",
       "token_count": 6,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT101"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -22707,7 +23084,10 @@
       "vi_text": "Tôi sẽ tiếp thu và cải thiện.",
       "token_count": 6,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT017",
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -22722,7 +23102,9 @@
       "vi_text": "Sếp khen cả nhóm làm việc tốt.",
       "token_count": 7,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -22737,7 +23119,9 @@
       "vi_text": "Mình muốn góp ý một chút về thiết kế.",
       "token_count": 8,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT022"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -22752,7 +23136,10 @@
       "vi_text": "Câu chuyện bắt đầu vào một buổi sáng mưa.",
       "token_count": 8,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT082",
+        "GT107"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -22767,7 +23154,10 @@
       "vi_text": "Lúc đó tôi đang đi làm.",
       "token_count": 6,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT082",
+        "GT016"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -22782,7 +23172,10 @@
       "vi_text": "Bỗng nhiên có một tiếng động lớn.",
       "token_count": 6,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT082",
+        "GT024"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -22797,7 +23190,9 @@
       "vi_text": "Cuối cùng mọi chuyện cũng kết thúc tốt đẹp.",
       "token_count": 8,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT082"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -22812,7 +23207,10 @@
       "vi_text": "Anh ấy cao ráo và rất hiền lành.",
       "token_count": 7,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT031",
+        "GT044"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -22827,7 +23225,10 @@
       "vi_text": "Phố cổ Hội An yên tĩnh và cổ kính.",
       "token_count": 8,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT044",
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -22876,7 +23277,9 @@
       "vi_text": "Tôi muốn kể một kỷ niệm đáng nhớ.",
       "token_count": 7,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT022"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -22891,7 +23294,10 @@
       "vi_text": "Lần đó tôi tình cờ gặp một người bạn cũ.",
       "token_count": 9,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT082",
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -22906,7 +23312,10 @@
       "vi_text": "Câu chuyện rất cảm động và để lại ấn tượng sâu.",
       "token_count": 9,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT031",
+        "GT044"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -22921,7 +23330,10 @@
       "vi_text": "Bài học rút ra là phải biết trân trọng hiện tại.",
       "token_count": 9,
       "difficulty": 4,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT002",
+        "GT097"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -22936,7 +23348,10 @@
       "vi_text": "Theo tôi, đây là vấn đề cần giải quyết ngay.",
       "token_count": 9,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT086",
+        "GT118"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -22951,7 +23366,10 @@
       "vi_text": "Tôi xin khẳng định quan điểm của mình.",
       "token_count": 7,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT087",
+        "GT094"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -22966,7 +23384,10 @@
       "vi_text": "Lập luận của bạn rất rõ ràng.",
       "token_count": 6,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT031",
+        "GT094"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -22981,7 +23402,9 @@
       "vi_text": "Tôi muốn nhấn mạnh một điểm quan trọng.",
       "token_count": 7,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT022"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -22996,7 +23419,9 @@
       "vi_text": "Tôi không đồng ý với ý kiến đó.",
       "token_count": 7,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT004"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23011,7 +23436,9 @@
       "vi_text": "Tuy nhiên, có một điểm cần xem lại.",
       "token_count": 8,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT072"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23026,7 +23453,9 @@
       "vi_text": "Ngược lại, dữ liệu cho thấy điều khác.",
       "token_count": 7,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT088"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23041,7 +23470,10 @@
       "vi_text": "Bạn có bằng chứng gì không?",
       "token_count": 5,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT005",
+        "GT006"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23056,7 +23488,10 @@
       "vi_text": "Hãy suy nghĩ kỹ về lợi ích lâu dài.",
       "token_count": 8,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT089",
+        "GT067"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23071,7 +23506,10 @@
       "vi_text": "Tôi đề xuất một giải pháp hợp lý hơn.",
       "token_count": 7,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001",
+        "GT025"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23086,7 +23524,10 @@
       "vi_text": "Hậu quả sẽ rất nghiêm trọng nếu không hành động.",
       "token_count": 9,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT017",
+        "GT090"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23101,7 +23542,10 @@
       "vi_text": "Hãy tin tưởng vào quyết định này.",
       "token_count": 6,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT089",
+        "GT067"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23116,7 +23560,10 @@
       "vi_text": "Đạo diễn của bộ phim này rất nổi tiếng.",
       "token_count": 8,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT003",
+        "GT031"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23131,7 +23578,9 @@
       "vi_text": "Cốt truyện hơi phức tạp nhưng hay.",
       "token_count": 7,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT052"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23146,7 +23595,9 @@
       "vi_text": "Tôi thích thể loại phim tài liệu.",
       "token_count": 6,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23161,7 +23612,9 @@
       "vi_text": "Bạn xem có phụ đề không?",
       "token_count": 5,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT005"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23176,7 +23629,10 @@
       "vi_text": "Phóng viên đang phỏng vấn người dân.",
       "token_count": 6,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT016",
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23191,7 +23647,9 @@
       "vi_text": "Tiêu đề của bài báo gây tranh cãi.",
       "token_count": 7,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT003"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23206,7 +23664,9 @@
       "vi_text": "Bạn nên kiểm tra nguồn tin.",
       "token_count": 5,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT064"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23221,7 +23681,10 @@
       "vi_text": "Một bài báo tốt phải khách quan.",
       "token_count": 6,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT097",
+        "GT029"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23236,7 +23699,9 @@
       "vi_text": "Bài đăng của cô ấy lan truyền nhanh.",
       "token_count": 7,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT003"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23251,7 +23716,9 @@
       "vi_text": "Tôi không thích đọc bình luận tiêu cực.",
       "token_count": 7,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT004"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23266,7 +23733,9 @@
       "vi_text": "Bạn có theo dõi anh ấy không?",
       "token_count": 5,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT005"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23281,7 +23750,9 @@
       "vi_text": "Mạng xã hội ảnh hưởng đến giới trẻ.",
       "token_count": 7,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23296,7 +23767,9 @@
       "vi_text": "Tôi cảm thấy bình yên khi ở quê.",
       "token_count": 8,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT038"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23311,7 +23784,9 @@
       "vi_text": "Cô ấy rất xúc động khi nghe tin.",
       "token_count": 8,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT031"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23326,7 +23801,9 @@
       "vi_text": "Tôi biết ơn vì có gia đình.",
       "token_count": 6,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23341,7 +23818,9 @@
       "vi_text": "Đôi khi tôi cảm thấy cô đơn.",
       "token_count": 6,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT041"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23356,7 +23835,9 @@
       "vi_text": "Mỗi người có giá trị riêng.",
       "token_count": 5,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23371,7 +23852,9 @@
       "vi_text": "Tự do và trách nhiệm luôn đi đôi.",
       "token_count": 7,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT044"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23386,7 +23869,10 @@
       "vi_text": "Bạn nghĩ gì về ý nghĩa cuộc sống?",
       "token_count": 7,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT006",
+        "GT003"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23401,7 +23887,10 @@
       "vi_text": "Triết lý sống của tôi là đơn giản.",
       "token_count": 7,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT002",
+        "GT003"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23416,7 +23905,10 @@
       "vi_text": "Tôi là người hướng nội nhưng cởi mở.",
       "token_count": 7,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT002",
+        "GT052"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23431,7 +23923,9 @@
       "vi_text": "Anh ấy rất quyết đoán trong công việc.",
       "token_count": 7,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT031"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23446,7 +23940,9 @@
       "vi_text": "Cô ấy sáng tạo và đáng tin cậy.",
       "token_count": 7,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT044"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23461,7 +23957,9 @@
       "vi_text": "Khiêm tốn là một đức tính quý.",
       "token_count": 6,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT002"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23476,7 +23974,9 @@
       "vi_text": "Biến đổi khí hậu là vấn đề toàn cầu.",
       "token_count": 8,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT002"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23491,7 +23991,10 @@
       "vi_text": "Việt Nam thường có bão vào mùa hè.",
       "token_count": 8,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT041",
+        "GT107"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23506,7 +24009,9 @@
       "vi_text": "Nhiệt độ năm nay cao kỷ lục.",
       "token_count": 6,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23521,7 +24026,10 @@
       "vi_text": "Mực nước biển đang dâng cao.",
       "token_count": 5,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT016",
+        "GT096"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23536,7 +24044,10 @@
       "vi_text": "Hà Nội bị ô nhiễm không khí nặng.",
       "token_count": 7,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT050",
+        "GT092"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23551,7 +24062,10 @@
       "vi_text": "Chúng ta nên giảm dùng nhựa.",
       "token_count": 6,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT064",
+        "GT097"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23566,7 +24080,10 @@
       "vi_text": "Tái chế giúp bảo vệ môi trường.",
       "token_count": 6,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT098",
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23581,7 +24098,9 @@
       "vi_text": "Khí thải từ xe máy rất nhiều.",
       "token_count": 7,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT031"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23596,7 +24115,10 @@
       "vi_text": "Chúng ta phải bảo tồn rừng tự nhiên.",
       "token_count": 7,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT029",
+        "GT121"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23611,7 +24133,10 @@
       "vi_text": "Nhiều loài động vật đang bị tuyệt chủng.",
       "token_count": 7,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT016",
+        "GT092"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23626,7 +24151,10 @@
       "vi_text": "Đa dạng sinh học rất quan trọng.",
       "token_count": 6,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT031",
+        "GT095"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23641,7 +24169,10 @@
       "vi_text": "Khu bảo tồn này thành lập năm 1990.",
       "token_count": 7,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT107",
+        "GT108"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23656,7 +24187,9 @@
       "vi_text": "Tôi đang theo lối sống xanh.",
       "token_count": 6,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT016"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23671,7 +24204,10 @@
       "vi_text": "Nhà tôi dùng năng lượng mặt trời.",
       "token_count": 6,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001",
+        "GT003"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23686,7 +24222,10 @@
       "vi_text": "Tiêu dùng hữu cơ tốt cho sức khỏe.",
       "token_count": 7,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT002",
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23701,7 +24240,10 @@
       "vi_text": "Hãy giảm thiểu rác thải hàng ngày.",
       "token_count": 6,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT067",
+        "GT089"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23716,7 +24258,9 @@
       "vi_text": "Tôi học chuyên ngành kinh tế.",
       "token_count": 5,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23731,7 +24275,9 @@
       "vi_text": "Cô ấy nhận học bổng toàn phần.",
       "token_count": 6,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23746,7 +24292,9 @@
       "vi_text": "Tôi sẽ tốt nghiệp vào tháng sáu.",
       "token_count": 6,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT017"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23761,7 +24309,10 @@
       "vi_text": "Bằng cấp không quan trọng bằng kinh nghiệm.",
       "token_count": 7,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT093",
+        "GT004"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23776,7 +24327,10 @@
       "vi_text": "Tôi đang học một khóa trực tuyến.",
       "token_count": 6,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT016",
+        "GT024"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23791,7 +24345,10 @@
       "vi_text": "Tự học rất hiệu quả nếu kiên trì.",
       "token_count": 7,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT031",
+        "GT053"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23806,7 +24363,10 @@
       "vi_text": "Tư duy phản biện rất cần thiết.",
       "token_count": 6,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT031",
+        "GT063"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23821,7 +24381,9 @@
       "vi_text": "Tôi muốn áp dụng kiến thức vào thực tế.",
       "token_count": 8,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT022"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23836,7 +24398,10 @@
       "vi_text": "Nghiên cứu này phân tích dữ liệu lớn.",
       "token_count": 7,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT042",
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23851,7 +24416,10 @@
       "vi_text": "Giả thuyết của tôi được xác nhận.",
       "token_count": 6,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT094",
+        "GT108"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23866,7 +24434,10 @@
       "vi_text": "Cô ấy thuyết trình tại hội thảo quốc tế.",
       "token_count": 8,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT038",
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23881,7 +24452,9 @@
       "vi_text": "Vui lòng trích dẫn nguồn đầy đủ.",
       "token_count": 6,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT102"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23896,7 +24469,9 @@
       "vi_text": "Thị trường năm nay rất cạnh tranh.",
       "token_count": 7,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT031"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23911,7 +24486,9 @@
       "vi_text": "Việt Nam xuất khẩu nhiều cà phê.",
       "token_count": 6,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23926,7 +24503,9 @@
       "vi_text": "Doanh thu quý này tăng 20 phần trăm.",
       "token_count": 8,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT099"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23941,7 +24520,9 @@
       "vi_text": "Khách hàng là ưu tiên số một.",
       "token_count": 6,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT002"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23956,7 +24537,9 @@
       "vi_text": "Tôi đang đầu tư vào cổ phiếu.",
       "token_count": 6,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT016"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23971,7 +24554,9 @@
       "vi_text": "Lãi suất ngân hàng đang giảm.",
       "token_count": 6,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT096"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -23986,7 +24571,9 @@
       "vi_text": "Lạm phát ảnh hưởng đến đời sống.",
       "token_count": 6,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24001,7 +24588,9 @@
       "vi_text": "Đầu tư luôn có rủi ro.",
       "token_count": 5,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT041"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24016,7 +24605,10 @@
       "vi_text": "Công ty của tôi mới khởi nghiệp.",
       "token_count": 6,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT094",
+        "GT002"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24031,7 +24623,9 @@
       "vi_text": "Chúng tôi đang gọi vốn vòng đầu tiên.",
       "token_count": 8,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT016"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24046,7 +24640,10 @@
       "vi_text": "Mô hình kinh doanh phải bền vững.",
       "token_count": 6,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT029",
+        "GT002"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24061,7 +24658,9 @@
       "vi_text": "Đổi mới là chìa khóa thành công.",
       "token_count": 6,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT002"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24076,7 +24675,10 @@
       "vi_text": "Toàn cầu hóa thay đổi thị trường lao động.",
       "token_count": 7,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT016",
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24091,7 +24693,10 @@
       "vi_text": "Hiệp định này giảm thuế quan giữa hai nước.",
       "token_count": 9,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001",
+        "GT042"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24106,7 +24711,10 @@
       "vi_text": "Chuỗi cung ứng toàn cầu đang bị gián đoạn.",
       "token_count": 8,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT016",
+        "GT050"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24121,7 +24729,9 @@
       "vi_text": "Kinh tế đang tăng trưởng trở lại.",
       "token_count": 6,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT016"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24136,7 +24746,9 @@
       "vi_text": "Bọn mình mới hẹn hò được ba tháng.",
       "token_count": 8,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT108"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24151,7 +24763,9 @@
       "vi_text": "Anh ấy đã tỏ tình một cách chân thành.",
       "token_count": 8,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT015"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24166,7 +24780,10 @@
       "vi_text": "Có vẻ như cô ấy đang cảm nắng ai đó.",
       "token_count": 9,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT104",
+        "GT105"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24181,7 +24798,10 @@
       "vi_text": "Họ đã đính hôn vào mùa xuân năm ngoái.",
       "token_count": 8,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT015",
+        "GT107"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24196,7 +24816,10 @@
       "vi_text": "Mình và bạn ấy gắn bó từ thời cấp ba.",
       "token_count": 9,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT044",
+        "GT055"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24211,7 +24834,10 @@
       "vi_text": "Tôi luôn bên cạnh bạn lúc khó khăn.",
       "token_count": 7,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT041",
+        "GT034"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24226,7 +24852,10 @@
       "vi_text": "Sự phản bội ấy thật khó tha thứ.",
       "token_count": 7,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT095",
+        "GT042"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24241,7 +24870,9 @@
       "vi_text": "Cảm ơn vì đã lắng nghe mình tâm sự.",
       "token_count": 8,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT015"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24256,7 +24887,10 @@
       "vi_text": "Có lẽ chúng ta đã hiểu lầm nhau.",
       "token_count": 7,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT061",
+        "GT106"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24271,7 +24905,10 @@
       "vi_text": "Mình xin lỗi vì đã làm bạn tổn thương.",
       "token_count": 8,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT112",
+        "GT015"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24286,7 +24923,10 @@
       "vi_text": "Mong bạn có thể tha thứ và bỏ qua.",
       "token_count": 8,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT103",
+        "GT044"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24301,7 +24941,10 @@
       "vi_text": "Hai bên đã hòa giải sau buổi nói chuyện.",
       "token_count": 8,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT015",
+        "GT055"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24316,7 +24959,9 @@
       "vi_text": "Triều đại nhà Lý kéo dài hơn hai trăm năm.",
       "token_count": 9,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT025"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24331,7 +24976,10 @@
       "vi_text": "Hai Bà Trưng đã lãnh đạo cuộc khởi nghĩa năm 40.",
       "token_count": 9,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT106",
+        "GT107"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24346,7 +24994,10 @@
       "vi_text": "Trần Hưng Đạo đã đánh bại quân Nguyên Mông.",
       "token_count": 8,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT106",
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24361,7 +25012,9 @@
       "vi_text": "Sử sách ghi lại nhiều câu chuyện cổ đại.",
       "token_count": 8,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24376,7 +25029,10 @@
       "vi_text": "Việt Nam là thuộc địa của Pháp gần 80 năm.",
       "token_count": 9,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT002",
+        "GT106"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24391,7 +25047,9 @@
       "vi_text": "Nhiều phong trào yêu nước đã nổi lên.",
       "token_count": 7,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT106"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24406,7 +25064,9 @@
       "vi_text": "Người dân bị bóc lột nặng nề.",
       "token_count": 6,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT092"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24421,7 +25081,10 @@
       "vi_text": "Hiệp ước được ký kết vào năm 1884.",
       "token_count": 7,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT108",
+        "GT107"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24436,7 +25099,9 @@
       "vi_text": "Năm 1945, Việt Nam tuyên bố độc lập.",
       "token_count": 7,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT107"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24451,7 +25116,9 @@
       "vi_text": "Đất nước thống nhất vào năm 1975.",
       "token_count": 7,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT107"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24466,7 +25133,10 @@
       "vi_text": "Nhiều thế hệ đã hy sinh vì hòa bình.",
       "token_count": 8,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT106",
+        "GT098"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24481,7 +25151,10 @@
       "vi_text": "Tuyên ngôn độc lập được đọc tại Ba Đình.",
       "token_count": 8,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT108",
+        "GT038"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24496,7 +25169,9 @@
       "vi_text": "Chính sách Đổi mới bắt đầu từ năm 1986.",
       "token_count": 8,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT107"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24511,7 +25186,9 @@
       "vi_text": "Việt Nam đã mở cửa và hội nhập quốc tế.",
       "token_count": 8,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT106"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24526,7 +25203,9 @@
       "vi_text": "Đầu tư nước ngoài tăng mạnh trong hai thập kỷ.",
       "token_count": 9,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT099"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24541,7 +25220,9 @@
       "vi_text": "Thế hệ trẻ đóng vai trò quan trọng.",
       "token_count": 7,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24556,7 +25237,10 @@
       "vi_text": "Đàn bầu là nhạc cụ độc đáo của Việt Nam.",
       "token_count": 9,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT002",
+        "GT003"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24571,7 +25255,10 @@
       "vi_text": "Quan họ được UNESCO công nhận là di sản.",
       "token_count": 8,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT108",
+        "GT002"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24586,7 +25273,9 @@
       "vi_text": "Giai điệu nhẹ nhàng và lời sâu lắng.",
       "token_count": 7,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT044"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24601,7 +25290,9 @@
       "vi_text": "Buổi biểu diễn ca trù rất ấn tượng.",
       "token_count": 7,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT031"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24616,7 +25307,10 @@
       "vi_text": "Truyện Kiều là tác phẩm nổi tiếng nhất.",
       "token_count": 7,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT002",
+        "GT026"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24631,7 +25325,10 @@
       "vi_text": "Nhà thơ thường dùng ẩn dụ và biểu tượng.",
       "token_count": 8,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT041",
+        "GT110"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24646,7 +25343,9 @@
       "vi_text": "Nhân vật chính rất phức tạp.",
       "token_count": 5,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT031"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24661,7 +25360,10 @@
       "vi_text": "Tôi tìm cảm hứng từ thơ ca Việt.",
       "token_count": 7,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001",
+        "GT038"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24676,7 +25378,10 @@
       "vi_text": "Tranh sơn mài Việt Nam rất nổi tiếng.",
       "token_count": 7,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT031",
+        "GT003"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24691,7 +25396,9 @@
       "vi_text": "Triển lãm sẽ mở cửa vào cuối tuần.",
       "token_count": 7,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT017"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24706,7 +25413,10 @@
       "vi_text": "Làng gốm Bát Tràng có truyền thống lâu đời.",
       "token_count": 8,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001",
+        "GT042"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24721,7 +25431,10 @@
       "vi_text": "Họa sĩ này có phong cách rất riêng.",
       "token_count": 7,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001",
+        "GT031"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24736,7 +25449,10 @@
       "vi_text": "Quốc hội đã ban hành luật mới.",
       "token_count": 7,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT015",
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24751,7 +25467,9 @@
       "vi_text": "Hiến pháp được sửa đổi vào năm 2013.",
       "token_count": 7,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT107"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24766,7 +25484,10 @@
       "vi_text": "Chính sách mới sẽ có hiệu lực từ tháng sau.",
       "token_count": 9,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT017",
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24781,7 +25502,10 @@
       "vi_text": "Bầu cử diễn ra năm năm một lần.",
       "token_count": 8,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT117",
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24796,7 +25520,10 @@
       "vi_text": "Luật sư đang xem xét hợp đồng.",
       "token_count": 6,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT016",
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24811,7 +25538,10 @@
       "vi_text": "Thẩm phán đã đưa ra phán quyết cuối cùng.",
       "token_count": 8,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT015",
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24826,7 +25556,10 @@
       "vi_text": "Bên vi phạm phải bồi thường thiệt hại.",
       "token_count": 7,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT029",
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24841,7 +25574,9 @@
       "vi_text": "Chúng tôi quyết định khởi kiện ra tòa.",
       "token_count": 7,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24856,7 +25591,10 @@
       "vi_text": "Mọi công dân đều bình đẳng trước pháp luật.",
       "token_count": 8,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001",
+        "GT038"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24871,7 +25609,10 @@
       "vi_text": "Tôi cần gia hạn thị thực cư trú.",
       "token_count": 7,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT029",
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24886,7 +25627,9 @@
       "vi_text": "Quyền lợi đi đôi với nghĩa vụ.",
       "token_count": 6,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24901,7 +25644,9 @@
       "vi_text": "Tự do ngôn luận là quyền cơ bản.",
       "token_count": 7,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT002"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24916,7 +25661,10 @@
       "vi_text": "Tôi muốn đặt lịch khám tổng quát.",
       "token_count": 6,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT022",
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24931,7 +25679,10 @@
       "vi_text": "Triệu chứng của tôi là sốt và ho.",
       "token_count": 7,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT002",
+        "GT094"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24946,7 +25697,9 @@
       "vi_text": "Bác sĩ yêu cầu làm xét nghiệm máu.",
       "token_count": 7,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24961,7 +25714,10 @@
       "vi_text": "Tuần sau tôi cần tái khám.",
       "token_count": 6,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT063",
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24976,7 +25732,10 @@
       "vi_text": "Sức khỏe tinh thần cũng quan trọng như thể chất.",
       "token_count": 9,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT027",
+        "GT093"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -24991,7 +25750,10 @@
       "vi_text": "Tôi đang gặp căng thẳng trong công việc.",
       "token_count": 7,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT016",
+        "GT038"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25006,7 +25768,9 @@
       "vi_text": "Bạn nên gặp chuyên gia tâm lý.",
       "token_count": 6,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT064"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25021,7 +25785,10 @@
       "vi_text": "Hãy dành thời gian chăm sóc bản thân.",
       "token_count": 7,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT089",
+        "GT098"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25036,7 +25803,10 @@
       "vi_text": "Tôi cần mua thuốc theo đơn này.",
       "token_count": 6,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT063",
+        "GT042"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25051,7 +25821,10 @@
       "vi_text": "Liều dùng là hai viên một ngày.",
       "token_count": 7,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT002",
+        "GT024"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25066,7 +25839,10 @@
       "vi_text": "Thuốc này có tác dụng phụ gì không?",
       "token_count": 7,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT005",
+        "GT006"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25081,7 +25857,10 @@
       "vi_text": "Anh cần ba ngày để phục hồi.",
       "token_count": 7,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT063",
+        "GT098"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25096,7 +25875,10 @@
       "vi_text": "Gọi xe cứu thương ngay đi!",
       "token_count": 5,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT118",
+        "GT089"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25111,7 +25893,10 @@
       "vi_text": "Người này bị bất tỉnh và chảy máu.",
       "token_count": 7,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT050",
+        "GT042"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25126,7 +25911,10 @@
       "vi_text": "Hãy kiểm tra hô hấp trước.",
       "token_count": 5,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT067",
+        "GT055"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25141,7 +25929,10 @@
       "vi_text": "Đưa bệnh nhân đến phòng cấp cứu.",
       "token_count": 6,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001",
+        "GT089"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25156,7 +25947,10 @@
       "vi_text": "Giọng miền Bắc và miền Nam khá khác nhau.",
       "token_count": 8,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT044",
+        "GT120"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25171,7 +25965,10 @@
       "vi_text": "Ở miền Nam người ta gọi 'ba' thay vì 'bố'.",
       "token_count": 9,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT119",
+        "GT038"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25186,7 +25983,9 @@
       "vi_text": "Phát âm miền Trung khó nghe nhất.",
       "token_count": 6,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT026"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25201,7 +26000,9 @@
       "vi_text": "Mỗi vùng có phương ngữ riêng.",
       "token_count": 5,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT003"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25216,7 +26017,10 @@
       "vi_text": "Huế từng là cố đô của triều Nguyễn.",
       "token_count": 8,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT048",
+        "GT107"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25231,7 +26035,10 @@
       "vi_text": "Lăng tẩm các vua nằm rải rác quanh thành phố.",
       "token_count": 9,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001",
+        "GT094"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25246,7 +26053,10 @@
       "vi_text": "Miền Trung thường xuyên bị bão lụt.",
       "token_count": 7,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT041",
+        "GT092"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25261,7 +26071,10 @@
       "vi_text": "Bún bò Huế nổi tiếng nhờ vị cay đậm.",
       "token_count": 8,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT101",
+        "GT137"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25276,7 +26089,9 @@
       "vi_text": "Việt Nam có 54 dân tộc anh em.",
       "token_count": 7,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT024"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25291,7 +26106,10 @@
       "vi_text": "Người H'Mông có trang phục rất rực rỡ.",
       "token_count": 7,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT031",
+        "GT111"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25306,7 +26124,9 @@
       "vi_text": "Mỗi dân tộc có phong tục riêng.",
       "token_count": 6,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT003"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25321,7 +26141,10 @@
       "vi_text": "Đa dạng văn hóa là tài sản quý của đất nước.",
       "token_count": 9,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT002",
+        "GT095"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25336,7 +26159,10 @@
       "vi_text": "Bài luận cần có luận điểm rõ ràng.",
       "token_count": 7,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT063",
+        "GT122"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25351,7 +26177,10 @@
       "vi_text": "Trước khi viết, hãy lập dàn ý chi tiết.",
       "token_count": 8,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT055",
+        "GT067"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25366,7 +26195,10 @@
       "vi_text": "Mỗi đoạn trong thân bài cần có dẫn chứng.",
       "token_count": 8,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT122",
+        "GT063"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25381,7 +26213,9 @@
       "vi_text": "Kết bài tóm tắt luận điểm một cách mạch lạc.",
       "token_count": 9,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT122"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25396,7 +26230,10 @@
       "vi_text": "Kính gửi quý công ty, tôi xin trình bày như sau.",
       "token_count": 10,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT124",
+        "GT112"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25411,7 +26248,10 @@
       "vi_text": "Tôi xin đề nghị quý ông xem xét hồ sơ.",
       "token_count": 9,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT112",
+        "GT125"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25426,7 +26266,9 @@
       "vi_text": "Rất mong nhận được phúc đáp sớm.",
       "token_count": 7,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT124"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25441,7 +26283,10 @@
       "vi_text": "Hồ sơ đính kèm gồm sơ yếu lý lịch và bằng cấp.",
       "token_count": 10,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT044",
+        "GT127"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25456,7 +26301,9 @@
       "vi_text": "Một bài diễn thuyết hay cần ngữ điệu rõ ràng.",
       "token_count": 9,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT063"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25471,7 +26318,10 @@
       "vi_text": "Hãy bắt đầu bằng một câu chuyện mở đầu.",
       "token_count": 8,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT067",
+        "GT089"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25486,7 +26336,9 @@
       "vi_text": "Cuối bài nên có lời kêu gọi hành động.",
       "token_count": 8,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT064"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25501,7 +26353,10 @@
       "vi_text": "Cô ấy hùng biện và truyền cảm hứng cho khán giả.",
       "token_count": 9,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001",
+        "GT044"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25516,7 +26371,9 @@
       "vi_text": "Bài bình luận cần có lập trường rõ ràng.",
       "token_count": 8,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT063"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25531,7 +26388,9 @@
       "vi_text": "Tác giả đưa ra nhận định sắc bén về vấn đề.",
       "token_count": 9,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25546,7 +26405,10 @@
       "vi_text": "Cần tránh định kiến trong khi viết.",
       "token_count": 7,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT063",
+        "GT056"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25561,7 +26423,9 @@
       "vi_text": "Phản biện mang tính xây dựng là cần thiết.",
       "token_count": 8,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT002"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25576,7 +26440,9 @@
       "vi_text": "Phật giáo có ảnh hưởng sâu sắc đến văn hóa Việt.",
       "token_count": 9,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25591,7 +26457,11 @@
       "vi_text": "Vào chùa, hãy ăn mặc kín đáo và giữ im lặng.",
       "token_count": 10,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT067",
+        "GT089",
+        "GT044"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25606,7 +26476,10 @@
       "vi_text": "Thiền giúp tâm trí được bình an.",
       "token_count": 6,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT108",
+        "GT128"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25621,7 +26494,10 @@
       "vi_text": "Sống từ bi là một bài học của đạo Phật.",
       "token_count": 9,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT002",
+        "GT128"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25636,7 +26512,10 @@
       "vi_text": "Người Việt coi việc thờ cúng tổ tiên rất linh thiêng.",
       "token_count": 10,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001",
+        "GT128"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25651,7 +26530,10 @@
       "vi_text": "Ngày giỗ, cả gia đình quây quần làm mâm cỗ.",
       "token_count": 10,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT129",
+        "GT036"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25666,7 +26548,9 @@
       "vi_text": "Trên bàn thờ luôn có bát hương.",
       "token_count": 7,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT038"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25681,7 +26565,10 @@
       "vi_text": "Con cháu khấn vái trước bàn thờ ông bà.",
       "token_count": 8,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001",
+        "GT128"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25696,7 +26583,10 @@
       "vi_text": "Người Việt tin vào tín ngưỡng dân gian từ xa xưa.",
       "token_count": 10,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT106",
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25711,7 +26601,10 @@
       "vi_text": "Nhiều nhà coi phong thủy khi xây dựng.",
       "token_count": 8,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001",
+        "GT056"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25726,7 +26619,10 @@
       "vi_text": "Đầu năm, người ta đi cầu may ở đền.",
       "token_count": 9,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT038",
+        "GT098"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25741,7 +26637,9 @@
       "vi_text": "Mê tín có thể dẫn đến những hành vi sai lầm.",
       "token_count": 9,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT103"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25756,7 +26654,9 @@
       "vi_text": "Chúng ta nên tìm thỏa thuận đôi bên cùng có lợi.",
       "token_count": 9,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT064"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25771,7 +26671,11 @@
       "vi_text": "Tôi không thể nhượng bộ điều khoản này.",
       "token_count": 7,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT103",
+        "GT004",
+        "GT042"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25786,7 +26690,10 @@
       "vi_text": "Cuộc đàm phán đang rơi vào bế tắc.",
       "token_count": 7,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT096",
+        "GT016"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25801,7 +26708,9 @@
       "vi_text": "Đề nghị hoãn buổi họp sang tuần sau.",
       "token_count": 8,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25816,7 +26725,10 @@
       "vi_text": "Quan hệ song phương giữa hai nước ngày càng phát triển.",
       "token_count": 10,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT075",
+        "GT094"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25831,7 +26743,10 @@
       "vi_text": "Đại sứ đã tiếp đón đoàn khách một cách trang trọng.",
       "token_count": 10,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT106",
+        "GT015"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25846,7 +26761,9 @@
       "vi_text": "Hai bên nhất trí tăng cường hợp tác.",
       "token_count": 8,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25861,7 +26778,10 @@
       "vi_text": "Cuộc hội đàm diễn ra trong bầu không khí thân thiện.",
       "token_count": 9,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT038",
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25876,7 +26796,10 @@
       "vi_text": "Hòa giải viên cần giữ vị trí trung lập.",
       "token_count": 8,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT097",
+        "GT063"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25891,7 +26814,9 @@
       "vi_text": "Lắng nghe chủ động giúp các bên thấu hiểu nhau.",
       "token_count": 9,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25906,7 +26831,10 @@
       "vi_text": "Chúng ta cần tìm tiếng nói chung trước.",
       "token_count": 7,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT097",
+        "GT063"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25921,7 +26849,9 @@
       "vi_text": "Đối thoại cởi mở có thể hàn gắn rạn nứt.",
       "token_count": 8,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT103"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25936,7 +26866,10 @@
       "vi_text": "Nghiên cứu này dựa trên số liệu thực nghiệm.",
       "token_count": 8,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT135",
+        "GT108"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25951,7 +26884,10 @@
       "vi_text": "Phương pháp luận được mô tả trong chương hai.",
       "token_count": 8,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT135",
+        "GT108"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25966,7 +26902,10 @@
       "vi_text": "Đồ thị cho thấy xu hướng tăng đều.",
       "token_count": 7,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT096",
+        "GT099"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25981,7 +26920,10 @@
       "vi_text": "Sai số nằm trong giới hạn chấp nhận được.",
       "token_count": 8,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT038",
+        "GT103"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -25996,7 +26938,10 @@
       "vi_text": "Trí tuệ nhân tạo đang thay đổi mọi ngành.",
       "token_count": 7,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT096",
+        "GT016"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26011,7 +26956,10 @@
       "vi_text": "Mô hình ngôn ngữ lớn cần dữ liệu khổng lồ.",
       "token_count": 9,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT097",
+        "GT063"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26026,7 +26974,10 @@
       "vi_text": "Tự động hóa giúp tăng năng suất đáng kể.",
       "token_count": 7,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001",
+        "GT099"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26041,7 +26992,10 @@
       "vi_text": "Đột phá này có thể thay đổi cuộc chơi.",
       "token_count": 8,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT103",
+        "GT002"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26056,7 +27010,10 @@
       "vi_text": "Quyền riêng tư phải được tôn trọng.",
       "token_count": 6,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT136",
+        "GT135"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26071,7 +27028,10 @@
       "vi_text": "Thành kiến thuật toán gây bất công cho người dùng.",
       "token_count": 9,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001",
+        "GT095"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26086,7 +27046,10 @@
       "vi_text": "Minh bạch là cốt lõi của niềm tin.",
       "token_count": 7,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT002",
+        "GT094"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26101,7 +27064,10 @@
       "vi_text": "Cần có quy chuẩn để tránh lạm dụng công nghệ.",
       "token_count": 9,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT063",
+        "GT098"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26116,7 +27082,10 @@
       "vi_text": "Tóm tắt phải nêu rõ kết quả chính.",
       "token_count": 8,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT097",
+        "GT122"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26131,7 +27100,10 @@
       "vi_text": "Nghiên cứu kết hợp phương pháp định lượng và định tính.",
       "token_count": 9,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001",
+        "GT044"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26146,7 +27118,10 @@
       "vi_text": "Mọi suy diễn cần dựa trên số liệu.",
       "token_count": 7,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT063",
+        "GT134"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26161,7 +27136,10 @@
       "vi_text": "Tài liệu tham khảo trình bày theo chuẩn APA.",
       "token_count": 8,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT135",
+        "GT113"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26176,7 +27154,10 @@
       "vi_text": "Phở Hà Nội nổi tiếng với nước dùng thanh đạm.",
       "token_count": 9,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT137",
+        "GT038"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26191,7 +27172,10 @@
       "vi_text": "Bún chả từng được tổng thống Obama ăn thử.",
       "token_count": 9,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT108",
+        "GT106"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26206,7 +27190,10 @@
       "vi_text": "Hương vị miền Bắc thường tinh tế và không quá ngọt.",
       "token_count": 10,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT041",
+        "GT137"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26221,7 +27208,10 @@
       "vi_text": "Mùa thu Hà Nội thơm mùi cốm.",
       "token_count": 7,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001",
+        "GT003"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26236,7 +27226,10 @@
       "vi_text": "Ẩm thực miền Trung nổi tiếng cay nồng và đậm đà.",
       "token_count": 10,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT137",
+        "GT044"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26251,7 +27244,10 @@
       "vi_text": "Cao lầu chỉ ngon nhất khi ăn ở Hội An.",
       "token_count": 9,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT026",
+        "GT038"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26266,7 +27262,10 @@
       "vi_text": "Mắm ruốc là linh hồn của nhiều món Huế.",
       "token_count": 9,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT002",
+        "GT094"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26281,7 +27280,10 @@
       "vi_text": "Bánh xèo miền Trung mỏng và giòn.",
       "token_count": 7,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001",
+        "GT044"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26296,7 +27298,10 @@
       "vi_text": "Cơm tấm sườn bì chả là món yêu thích ở Sài Gòn.",
       "token_count": 10,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT002",
+        "GT038"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26311,7 +27316,10 @@
       "vi_text": "Vị ngọt thanh của miền Nam đến từ nước cốt dừa.",
       "token_count": 10,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT137",
+        "GT094"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26326,7 +27334,10 @@
       "vi_text": "Miền Tây nổi tiếng với lẩu mắm và trái cây nhiệt đới.",
       "token_count": 10,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT038",
+        "GT044"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26341,7 +27352,10 @@
       "vi_text": "Văn hóa sông nước ảnh hưởng sâu đậm đến ẩm thực.",
       "token_count": 9,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT001",
+        "GT095"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26356,7 +27370,10 @@
       "vi_text": "Chúng tôi xin nâng hạng phòng cho quý khách.",
       "token_count": 8,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT138",
+        "GT112"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26371,7 +27388,10 @@
       "vi_text": "Quý khách có yêu cầu đặc biệt nào không ạ?",
       "token_count": 8,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT005",
+        "GT138"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26386,7 +27406,10 @@
       "vi_text": "Xe đưa đón sẽ đón quý khách lúc 8 giờ.",
       "token_count": 9,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT017",
+        "GT034"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26401,7 +27424,9 @@
       "vi_text": "Đội ngũ lễ tân luôn sẵn sàng phục vụ tận tình.",
       "token_count": 10,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT041"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26416,7 +27441,10 @@
       "vi_text": "Quý khách có muốn xem thực đơn nếm thử không?",
       "token_count": 8,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT022",
+        "GT005"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26431,7 +27459,9 @@
       "vi_text": "Đầu bếp trưởng gợi ý món chính là cá hồi.",
       "token_count": 9,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT002"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26446,7 +27476,9 @@
       "vi_text": "Quý khách dùng rượu vang đỏ hay trắng ạ?",
       "token_count": 8,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT138"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26461,7 +27493,9 @@
       "vi_text": "Tráng miệng hôm nay là kem vani và xoài.",
       "token_count": 9,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT002"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26476,7 +27510,10 @@
       "vi_text": "Chúng tôi xin lỗi quý khách vì sự bất tiện.",
       "token_count": 9,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT139",
+        "GT138"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26491,7 +27528,10 @@
       "vi_text": "Chúng tôi sẽ khắc phục ngay lập tức.",
       "token_count": 7,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT017",
+        "GT118"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26506,7 +27546,9 @@
       "vi_text": "Đền bù bằng một bữa tối miễn phí.",
       "token_count": 7,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT027"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26521,7 +27563,9 @@
       "vi_text": "Quản lý sẽ trực tiếp gặp quý khách.",
       "token_count": 8,
       "difficulty": 8,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT017"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26536,7 +27580,9 @@
       "vi_text": "Dạ vâng, em hiểu rồi.",
       "token_count": 5,
       "difficulty": 3,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT018"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26551,7 +27597,9 @@
       "vi_text": "Không, cảm ơn anh.",
       "token_count": 4,
       "difficulty": 3,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT004"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26566,7 +27614,10 @@
       "vi_text": "Xin lỗi, để tôi nghĩ đã.",
       "token_count": 6,
       "difficulty": 3,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT045",
+        "GT055"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26581,7 +27632,10 @@
       "vi_text": "Có thể, mai trả lời nhé.",
       "token_count": 6,
       "difficulty": 3,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT103",
+        "GT061"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26596,7 +27650,10 @@
       "vi_text": "Cho tôi một cà phê sữa đá.",
       "token_count": 6,
       "difficulty": 5,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT021",
+        "GT024"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26611,7 +27668,9 @@
       "vi_text": "Trà sữa ít đường nhé.",
       "token_count": 5,
       "difficulty": 5,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT081"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26626,7 +27685,9 @@
       "vi_text": "Quán có sinh tố xoài không?",
       "token_count": 6,
       "difficulty": 5,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT005"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26641,7 +27702,10 @@
       "vi_text": "Một chai nước suối lạnh.",
       "token_count": 5,
       "difficulty": 5,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT024",
+        "GT023"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26656,7 +27720,9 @@
       "vi_text": "Cho mình mang đi nhé.",
       "token_count": 5,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT021"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26671,7 +27737,9 @@
       "vi_text": "Tính tiền giúp mình.",
       "token_count": 4,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT089"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26686,7 +27754,10 @@
       "vi_text": "Bên này có quẹt thẻ không?",
       "token_count": 6,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT005",
+        "GT038"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26701,7 +27772,9 @@
       "vi_text": "Tổng cộng bao nhiêu ạ?",
       "token_count": 5,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT010"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26716,7 +27789,9 @@
       "vi_text": "Tôi muốn ăn món chay.",
       "token_count": 5,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT022"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26731,7 +27806,9 @@
       "vi_text": "Có món hải sản không?",
       "token_count": 5,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT005"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26746,7 +27823,9 @@
       "vi_text": "Cho tôi cơm gà.",
       "token_count": 4,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT021"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26761,7 +27840,10 @@
       "vi_text": "Một tô mì bò.",
       "token_count": 5,
       "difficulty": 6,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT024",
+        "GT023"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26776,7 +27858,9 @@
       "vi_text": "Tôi bị dị ứng đậu phộng.",
       "token_count": 5,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT037"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26791,7 +27875,10 @@
       "vi_text": "Cho tôi món không cay.",
       "token_count": 5,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT021",
+        "GT004"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26806,7 +27893,9 @@
       "vi_text": "Không bột ngọt nhé.",
       "token_count": 4,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT004"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26821,7 +27910,9 @@
       "vi_text": "Tôi đang ăn kiêng, ít muối thôi.",
       "token_count": 7,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT016"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26836,7 +27927,9 @@
       "vi_text": "Mắc quá, bớt chút đi.",
       "token_count": 5,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT032"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26851,7 +27944,10 @@
       "vi_text": "Mua hai cái có rẻ hơn không?",
       "token_count": 7,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT005",
+        "GT025"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26866,7 +27962,10 @@
       "vi_text": "Giá cuối là bao nhiêu?",
       "token_count": 5,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT010",
+        "GT002"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26881,7 +27980,9 @@
       "vi_text": "Thôi cảm ơn, mắc quá.",
       "token_count": 5,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT032"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26896,7 +27997,10 @@
       "vi_text": "Cái này một trăm nghìn đồng.",
       "token_count": 6,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT042",
+        "GT024"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26911,7 +28015,10 @@
       "vi_text": "Tôi cần đổi một trăm đô.",
       "token_count": 6,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT022",
+        "GT024"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26926,7 +28033,10 @@
       "vi_text": "Có tờ năm trăm nghìn không?",
       "token_count": 6,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT005",
+        "GT023"
+      ],
       "translations": [
         {
           "lang": "en",
@@ -26941,7 +28051,10 @@
       "vi_text": "Tổng cộng hai triệu đồng.",
       "token_count": 5,
       "difficulty": 7,
-      "grammar_tags": [],
+      "grammar_tags": [
+        "GT024",
+        "GT023"
+      ],
       "translations": [
         {
           "lang": "en",

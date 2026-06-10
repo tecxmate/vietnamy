@@ -44,10 +44,6 @@
     "concepts": {
       "path": "concepts.json",
       "authoritative": true
-    },
-    "mascot": {
-      "path": "mascotScripts.json",
-      "authoritative": true
     }
   }
 }
