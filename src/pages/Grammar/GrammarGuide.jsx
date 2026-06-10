@@ -11,13 +11,15 @@ import './GrammarGuide.css';
 // Level tabs → module accordion → unit accordion (inline explanation + TTS examples)
 // + FAQs, plus an Extras section linking the practice modules.
 
+// Harmonized A1→C2 ramp: one cohesive cool→fuchsia sweep at consistent luminance,
+// all bright enough to read on the dark theme (and legible on light via tinted bg).
 const LEVEL_COLORS = {
-    A1: '#06D6A0',
-    A2: '#118AB2',
-    B1: '#EF476F',
-    B2: '#FB8500',
-    C1: '#A78BFA',
-    C2: '#818CF8',
+    A1: '#34D399', // emerald
+    A2: '#22D3EE', // cyan
+    B1: '#60A5FA', // blue
+    B2: '#818CF8', // indigo
+    C1: '#A78BFA', // violet
+    C2: '#E879F9', // fuchsia
 };
 
 const PRACTICE_MODULES = [
