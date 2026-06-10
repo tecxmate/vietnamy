@@ -14,7 +14,6 @@ export default defineConfig({
       output: {
         manualChunks: {
           'grammar-modules': ['./content/grammar.json'],
-          'grammar-bank': ['./src/data/vn_grammar_bank_v2.json'],
         },
       },
     },

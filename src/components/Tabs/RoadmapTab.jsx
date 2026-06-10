@@ -37,7 +37,6 @@ function getNodeStyle(node) {
 
     // Fallback for legacy nodes without module_type
     if (node.type === 'test') return NODE_STYLES.test;
-    if (node.type === 'skill' && node.skill_content?.type === 'grammar_lesson') return NODE_STYLES.green;
     if (node.type === 'skill') return NODE_STYLES.purple;
     return NODE_STYLES.orange;
 }
@@ -128,8 +127,6 @@ const RoadmapTab = () => {
             case 'skill':
                 if (node.skill_content?.type === 'grammar_unit') {
                     navigate(`/grammar-unit/${node.skill_content.grammar_unit_id}?nodeId=${node.id}`);
-                } else if (node.skill_content?.type === 'grammar_lesson') {
-                    navigate(`/grammar-lesson/${node.id}`);
                 } else if (node.skill_content?.route) {
                     navigate(`${node.skill_content.route}?nodeId=${node.id}`);
                 } else if (node.practice_route) {

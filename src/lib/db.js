@@ -197,7 +197,6 @@ export const getNodeRoute = (node) => {
         if (node.skill_content?.type === 'grammar_unit' && node.skill_content.grammar_unit_id) {
             return `/grammar-unit/${node.skill_content.grammar_unit_id}?nodeId=${node.id}`;
         }
-        if (node.skill_content?.type === 'grammar_lesson') return `/grammar-lesson/${node.id}`;
         if (node.skill_content?.route) return `${node.skill_content.route}?nodeId=${node.id}`;
         if (node.practice_route) return `${node.practice_route}?nodeId=${node.id}`;
     }

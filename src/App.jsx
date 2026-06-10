@@ -82,12 +82,10 @@ const ReadingLibraryTab = lazy(loadReadingLibraryTab);
 
 const GrammarIndex = lazy(() => import('./pages/Grammar/GrammarIndex'));
 const GrammarList = lazy(() => import('./pages/Grammar/GrammarList'));
-const GrammarDetail = lazy(() => import('./pages/Grammar/GrammarDetail'));
 
 const AdminLayout = lazy(() => import('./pages/Admin/AdminLayout'));
 const RoadmapMapper = lazy(() => import('./pages/Admin/RoadmapMapper'));
 const LessonBuilder = lazy(() => import('./pages/Admin/LessonBuilder'));
-const GrammarEditor = lazy(() => import('./pages/Admin/GrammarEditor'));
 const GrammarUnitEditor = lazy(() => import('./pages/Admin/GrammarUnitEditor'));
 const AlphabetEditor = lazy(() => import('./pages/Admin/AlphabetEditor'));
 const VowelsEditor = lazy(() => import('./pages/Admin/VowelsEditor'));
@@ -101,7 +99,6 @@ const MascotEditor = lazy(() => import('./pages/Admin/MascotEditor'));
 
 const LessonGame = lazy(() => import('./components/LessonGame'));
 const SceneEngine = lazy(() => import('./components/Scene/SceneEngine'));
-const GrammarLesson = lazy(() => import('./pages/GrammarLesson'));
 const GrammarUnitLesson = lazy(() => import('./pages/GrammarUnitLesson'));
 const UnitTest = lazy(() => import('./pages/UnitTest'));
 const PrivacyPolicy = lazy(() => import('./pages/Legal/PrivacyPolicy'));
@@ -361,7 +358,6 @@ function AppRoutes() {
         <Route path="/practice" element={<StudentApp initialTab="library" />} />
         <Route path="/lesson/:lessonId" element={<div className="mobile-app-wrapper"><LessonGame /></div>} />
         <Route path="/scene/:sceneId" element={<div className="mobile-app-wrapper"><SceneEngine /></div>} />
-        <Route path="/grammar-lesson/:nodeId" element={<div className="mobile-app-wrapper"><GrammarLesson /></div>} />
         <Route path="/grammar-unit/:unitId" element={<div className="mobile-app-wrapper"><GrammarUnitLesson /></div>} />
         <Route path="/test/:nodeId" element={<div className="mobile-app-wrapper"><UnitTest /></div>} />
         {/* Full-screen Practice Routes */}
@@ -431,7 +427,6 @@ function AppRoutes() {
         {/* Grammar Routes */}
         <Route path="/grammar" element={<div className="mobile-app-wrapper"><GrammarIndex /></div>} />
         <Route path="/grammar/:level" element={<div className="mobile-app-wrapper"><GrammarList /></div>} />
-        <Route path="/grammar/:level/:index" element={<div className="mobile-app-wrapper"><GrammarDetail /></div>} />
 
         {/* Admin CMS Routes */}
         <Route path="/admin" element={<AdminRoute />}>
@@ -439,7 +434,6 @@ function AppRoutes() {
           <Route path="mapper" element={<RoadmapMapper />} />
           <Route path="lesson" element={<LessonBuilder />} />
           <Route path="concepts" element={<ConceptEditor />} />
-          <Route path="grammar" element={<GrammarEditor />} />
           <Route path="grammar-unit" element={<GrammarUnitEditor />} />
           <Route path="alphabet" element={<AlphabetEditor />} />
           <Route path="vowels" element={<VowelsEditor />} />

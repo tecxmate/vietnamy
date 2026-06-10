@@ -53,7 +53,7 @@ export function moduleKindOf(node) {
     if (mt === 'test' || node.test_scope === 'unit') return MODULE_KINDS.test;
     if (mt === 'orange' || node.node_type === 'lesson' || node.type === 'lesson') return MODULE_KINDS.vocabulary;
     if (mt === 'blue') return MODULE_KINDS.pronunciation;
-    if (mt === 'purple' || node.skill_content?.type === 'grammar_unit' || node.skill_content?.type === 'grammar_lesson') return MODULE_KINDS.grammar;
+    if (mt === 'purple' || node.skill_content?.type === 'grammar_unit') return MODULE_KINDS.grammar;
     return null; // green / scene etc.
 }
 

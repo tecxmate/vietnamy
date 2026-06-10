@@ -139,7 +139,6 @@ const JSON_TARGETS = [
     'src/data/unified_db.json',
     'src/data/dictionary.json',
     'src/data/grammar_modules.json',
-    'src/data/vn_grammar_bank_v2.json',
     ...listJson('src/data/curricula'),
     ...listJson('src/data/drills'),
 ];

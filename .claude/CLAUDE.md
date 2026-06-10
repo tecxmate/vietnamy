@@ -53,7 +53,7 @@ localStorage keys are prefixed `vnme_*` or `vietnamy_*`. The "mock database" in 
 ### Routing (React Router v6)
 - `/` — Main app with 3 tab layout (Study [roadmap], Dictionary, Library)
 - `/lesson/:lessonId` — Interactive lesson engine
-- `/grammar-lesson/:nodeId`, `/test/:nodeId` — Grammar lessons and unit tests
+- `/grammar` (level index), `/grammar/:level`, `/grammar-unit/:unitId`, `/test/:nodeId` — Grammar browser/lessons (canonical `grammar_modules.json`) and unit tests
 - `/practice/*` — Full-screen practice modules (tones, pronouns, numbers, vowels, pitch, telex, teencode)
 - `/grammar/:level/:index` — Grammar list/detail
 - `/admin/*` — Content management (mapper, lesson builder, grammar/article/vocab/tone/kinship editors)
