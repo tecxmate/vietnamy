@@ -90,11 +90,17 @@ Foundations.
 `lesson_complete`. NOTHING reads these for sequencing — per the design: instrument
 now, act only once the data shows what the signals mean.
 
+**Admin tuning + analytics (done).** `/admin/adaptive` (`AdaptiveEditor`):
+per-lesson purpose-weight table persisted as id-keyed overrides
+(`vnme_cms_purpose_weights`, overlaid in `recommendations.js`), plus a Layer-5
+engagement panel (counts, avg response by exercise type, most-quit, JSON export).
+The roadmap also badges the sequencer's current top-3 lesson nodes with a
+"Recommended" sparkle — per-purpose pathing visible inside the linear map,
+unlock semantics untouched.
+
 ## Open questions / next steps (for whoever continues)
-- **Refine purpose weights** — coarse binary v1; a per-lesson admin editor.
 - **Act on engagement** — only after `vnme_engagement` data accumulates and is
-  analyzed (does fast+accurate mean bored or confident?). Add an export/analysis
-  path first.
+  analyzed (export now exists in /admin/adaptive).
 - **Graph-based unlock** — the roadmap's *visible path* is still linear-unlock;
   rendering a per-purpose path from the sequencer is the remaining big UX change.
 - **Foundations** (alphabet/vowels) are practice *nodes*, not lessons, so they're
@@ -109,3 +115,5 @@ now, act only once the data shows what the signals mean.
   Library SRS review via `location.state.vocabDeck`.
 - 2026-06-11 — Item-based remediation (`usesVocab`), sequencer-primary Continue
   (lesson nodes only), Layer 5 engagement capture (`vnme_engagement`).
+- 2026-06-11 — /admin/adaptive weight editor + engagement analytics/export;
+  roadmap "Recommended" badges on the sequencer's top picks.
