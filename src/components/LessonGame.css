@@ -113,7 +113,14 @@
        (the feedback size) means revealing the banner doesn't grow it or move
        the CTA. The CTA sits at the bottom; the banner fills the space above it. */
     flex: 0 0 auto;
-    min-height: calc(var(--lesson-action-bar-base-height) + var(--safe-area-bottom-effective));
+    /* Reserve the feedback height — but cap it at a fraction of the visible
+       viewport so when the keyboard opens (viewport shrinks via
+       --app-viewport-height) the reserve collapses and the input stays visible
+       instead of being pushed off-screen. */
+    min-height: min(
+        calc(var(--lesson-action-bar-base-height) + var(--safe-area-bottom-effective)),
+        calc(var(--app-viewport-height, 100dvh) * 0.3)
+    );
     padding: 16px 16px calc(16px + var(--safe-area-bottom-effective));
     border-top: 2px solid var(--border-color);
     background: var(--lesson-action-bar-bg, var(--surface-color));
