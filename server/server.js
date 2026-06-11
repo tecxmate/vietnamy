@@ -44,6 +44,7 @@ import {
     updatePushSubscriptionStats,
     upsertPushSubscription,
 } from './opsStore.js';
+import { isR2Configured, putR2Object } from './r2Storage.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT_DIR = join(__dirname, '..');
