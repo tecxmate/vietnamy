@@ -140,18 +140,16 @@
   background: color-mix(in srgb, var(--tc-teal) 14%, transparent);
 }
 
-/* definitions in Finesse */
-:root[data-theme="tap-chi"] .meaning-text {
-  font-family: var(--tc-finesse);
-  font-weight: 400;
-  font-size: 21px;
-  line-height: 1.3;
-}
+/* definitions & examples stay in Be Vietnam Pro (body sans) for readability —
+   only the headword uses the Finesse display serif */
+:root[data-theme="tap-chi"] .meaning-text,
+:root[data-theme="tap-chi"] .example-vi,
+:root[data-theme="tap-chi"] .meaning-text strong,
+:root[data-theme="tap-chi"] .example-vi b { font-family: var(--font-sans); }
 
 /* examples on a teal rule */
 :root[data-theme="tap-chi"] .examples-list { border-left: 4px solid var(--tc-teal); }
 :root[data-theme="tap-chi"] .example-item { background: transparent; padding: 4px 0; }
-:root[data-theme="tap-chi"] .example-vi { font-family: var(--tc-finesse); font-size: 17px; }
 
 /* Navy is the dictionary's accent — remap the whole subtree so the mode toggle,
    search/voice buttons and the entry hero all read blue. */
