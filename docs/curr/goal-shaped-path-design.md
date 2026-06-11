@@ -64,7 +64,8 @@ drives all three layers.
 - Completing a lesson then returning advances the visible path.
 - Quiz (module-scope) badges still attach (they read raw nodesMap, unaffected).
 
-## Known follow-up
-`db.getNextNode` (in-lesson "next") is still linear over ALL nodes — a
-professional-mode learner finishing a lesson may be offered an off-goal next
-lesson there. Same fix pattern applies if desired.
+## Follow-ups — DONE (2026-06-11, 5a6462f)
+- `db.getNextNode` is goal-aware (skips off-goal-topic nodes when advancing).
+- The 7 travel scenes carry topics and goal-filter; "At a Party" stays universal.
+- Pipeline reminder: roadmap content changes require `node
+  scripts/build-roadmap-seed.mjs` + a CURRICULUM_VERSION bump (now 32).
