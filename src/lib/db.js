@@ -2,6 +2,7 @@
 
 import { createLessonExerciseService } from './content/lessonExerciseService';
 import { getDB as getRoadmapDB, getFullDB, saveDB } from './storage/mockDbStore';
+import { LEARNER_MODES } from '../data/learnerModes';
 
 export { getFullDB as getDB };
 
@@ -157,34 +158,70 @@ export const getNodeById = (nodeId) => {
     return (db.path_nodes || []).find(n => n.id === nodeId) || null;
 };
 
+// --- Goal awareness: the learner's goal gates which topics are on their path ---
+// (mirrors RoadmapTab.isVisibleRoadmapNode; topic-less nodes are in every goal)
+const getGoalTopicIds = () => {
+    try {
+        const profile = JSON.parse(localStorage.getItem('vnme_user_profile') || '{}');
+        const mode = profile.learnerMode;
+        if (!mode || mode === 'all') return null; // null = no gating
+        const topics = LEARNER_MODES[mode]?.topics;
+        return topics ? new Set(topics.map(t => t.id)) : null;
+    } catch {
+        return null;
+    }
+};
+
+const nodeTopicOf = (db, node) => {
+    if (node.topic) return node.topic;
+    if (node.lesson_id) {
+        const lesson = (db.lessons || []).find(l => l.id === node.lesson_id);
+        return lesson?.topic || null;
+    }
+    return null;
+};
+
 // --- Get next node in the roadmap after the given node ---
+// Goal-aware: skips nodes whose topic is outside the learner's current goal
+// (so finishing a lesson never suggests an off-goal next step).
 export const getNextNode = (nodeId) => {
     const db = getDB();
-    const currentNode = (db.path_nodes || []).find(n => n.id === nodeId);
-    if (!currentNode) return null;
+    const goalTopics = getGoalTopicIds();
 
-    // Get all nodes in the same unit, sorted by index
-    const unitNodes = (db.path_nodes || [])
-        .filter(n => n.unit_id === currentNode.unit_id)
-        .sort((a, b) => (a.node_index || 0) - (b.node_index || 0));
+    const rawNext = (fromId) => {
+        const currentNode = (db.path_nodes || []).find(n => n.id === fromId);
+        if (!currentNode) return null;
 
-    const currentIdx = unitNodes.findIndex(n => n.id === nodeId);
-    if (currentIdx >= 0 && currentIdx < unitNodes.length - 1) {
-        return unitNodes[currentIdx + 1];
+        const unitNodes = (db.path_nodes || [])
+            .filter(n => n.unit_id === currentNode.unit_id)
+            .sort((a, b) => (a.node_index || 0) - (b.node_index || 0));
+        const currentIdx = unitNodes.findIndex(n => n.id === fromId);
+        if (currentIdx >= 0 && currentIdx < unitNodes.length - 1) {
+            return unitNodes[currentIdx + 1];
+        }
+
+        const currentUnit = db.units.find(u => u.id === currentNode.unit_id);
+        if (!currentUnit) return null;
+        const nextUnit = db.units
+            .sort((a, b) => (a.unit_index || 0) - (b.unit_index || 0))
+            .find(u => (u.unit_index || 0) > (currentUnit.unit_index || 0));
+        if (!nextUnit) return null;
+
+        const nextUnitNodes = (db.path_nodes || [])
+            .filter(n => n.unit_id === nextUnit.id)
+            .sort((a, b) => (a.node_index || 0) - (b.node_index || 0));
+        return nextUnitNodes[0] || null;
+    };
+
+    let next = rawNext(nodeId);
+    if (!goalTopics) return next;
+    let hops = 0;
+    while (next && hops++ < 200) {
+        const topic = nodeTopicOf(db, next);
+        if (!topic || goalTopics.has(topic)) return next;
+        next = rawNext(next.id);
     }
-
-    // If last in unit, find first node of next unit
-    const currentUnit = db.units.find(u => u.id === currentNode.unit_id);
-    if (!currentUnit) return null;
-    const nextUnit = db.units
-        .sort((a, b) => (a.unit_index || 0) - (b.unit_index || 0))
-        .find(u => (u.unit_index || 0) > (currentUnit.unit_index || 0));
-    if (!nextUnit) return null;
-
-    const nextUnitNodes = (db.path_nodes || [])
-        .filter(n => n.unit_id === nextUnit.id)
-        .sort((a, b) => (a.node_index || 0) - (b.node_index || 0));
-    return nextUnitNodes[0] || null;
+    return next;
 };
 
 // --- Build route for a node (mirrors RoadmapTab.navigateNode) ---

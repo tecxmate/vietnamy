@@ -1,7 +1,7 @@
 import { getInitialData, hydrateInitialData } from '../content/initialData';
 
 const DB_KEY = 'vnme_mock_db_v24'; // v24: unified_db.json as primary source
-const CURRICULUM_VERSION = 31; // v31: goal-specific lesson topics (57 basics lessons re-tagged)
+const CURRICULUM_VERSION = 32; // v32: scene topics + goal-aware next-node
 
 let dbCache = null;
 let dbIsFull = false;
