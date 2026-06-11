@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { Save, Plus, Trash2, Search, Download, Upload, Check } from 'lucide-react';
-import { DEFAULT_PRACTICE_WORDS, TONEWORDS_CMS_KEY } from '../../data/toneContours';
+import { DEFAULT_PRACTICE_WORDS, TONEWORDS_CMS_KEY, TONEDESCS_CMS_KEY, TONE_LIST } from '../../data/toneContours';
 
 const TONE_IDS = ['ngang', 'sac', 'huyen', 'hoi', 'nga', 'nang'];
 const TONE_LABELS = {
@@ -33,6 +33,12 @@ const ToneWordEditor = () => {
     const [hasChanges, setHasChanges] = useState(false);
     const [saved, setSaved] = useState(false);
     const fileInputRef = useRef(null);
+    // Per-language tone descriptions (shown in the Tone lesson). Seeded from
+    // TONE_LIST, which already merges any saved override.
+    const [descs, setDescs] = useState(() => Object.fromEntries(
+        TONE_LIST.map(t => [t.id, { description: t.description || '', descriptionZhS: t.descriptionZhS || '', descriptionZhT: t.descriptionZhT || '' }])
+    ));
+    const updateDesc = (id, field, value) => { setDescs(d => ({ ...d, [id]: { ...d[id], [field]: value } })); setHasChanges(true); };
 
     const filtered = words
         .map((w, idx) => ({ ...w, _idx: idx }))
@@ -61,6 +67,7 @@ const ToneWordEditor = () => {
 
     const handleSave = () => {
         saveWords(words);
+        localStorage.setItem(TONEDESCS_CMS_KEY, JSON.stringify(descs));
         setHasChanges(false);
         setSaved(true);
         setTimeout(() => setSaved(false), 2000);
@@ -122,6 +129,20 @@ const ToneWordEditor = () => {
                         {saved ? <><Check size={16} /> Saved!</> : <><Save size={16} /> Save</>}
                     </button>
                 </div>
+            </div>
+
+            {/* Tone reference descriptions — shown in the Tone lesson, per UI language */}
+            <div style={{ marginBottom: 20, padding: 14, borderRadius: 12, border: '1px solid var(--border-color)', backgroundColor: 'var(--surface-color)' }}>
+                <div style={{ fontWeight: 700, fontSize: 14, marginBottom: 4 }}>Tone descriptions (shown in the Tone lesson)</div>
+                <div style={{ fontSize: 12, color: 'var(--text-muted)', marginBottom: 10 }}>English · 中-简 Pinyin · 中-繁 注音 — leave a language blank to fall back to English.</div>
+                {TONE_LIST.map(t => (
+                    <div key={t.id} style={{ display: 'grid', gridTemplateColumns: '90px 1fr 1fr 1fr', gap: 6, alignItems: 'start', marginBottom: 6 }}>
+                        <span style={{ ...s.toneBadge(t.id), alignSelf: 'center' }}>{t.label}</span>
+                        <textarea value={descs[t.id]?.description || ''} onChange={e => updateDesc(t.id, 'description', e.target.value)} placeholder="EN" style={{ ...s.input, minHeight: 38, resize: 'vertical' }} />
+                        <textarea value={descs[t.id]?.descriptionZhS || ''} onChange={e => updateDesc(t.id, 'descriptionZhS', e.target.value)} placeholder="拼音 Pinyin" style={{ ...s.input, minHeight: 38, resize: 'vertical' }} />
+                        <textarea value={descs[t.id]?.descriptionZhT || ''} onChange={e => updateDesc(t.id, 'descriptionZhT', e.target.value)} placeholder="注音 Bopomofo" style={{ ...s.input, minHeight: 38, resize: 'vertical' }} />
+                    </div>
+                ))}
             </div>
 
             <div style={{ display: 'flex', gap: 8, marginBottom: 16, alignItems: 'center' }}>

@@ -12,10 +12,15 @@ import tonesData from '../../content/tones.json';
 import { loadOverride } from '../lib/contentOverrides';
 
 export const TONEWORDS_CMS_KEY = 'vnme_cms_tonewords';
+export const TONEDESCS_CMS_KEY = 'vnme_cms_tonedescs';
 
 // Ordered array for iteration: [ngang, sac, huyen, hoi, nga, nang].
-// Each item: { id, name, label, mark, color, description, contour }.
-export const TONE_LIST = tonesData.tones;
+// Each item: { id, name, label, mark, color, description, descriptionZhS/ZhT, contour }.
+// The admin Tone editor can override the per-language descriptions (keyed by id).
+const _toneDescs = loadOverride(TONEDESCS_CMS_KEY, null);
+export const TONE_LIST = _toneDescs
+    ? tonesData.tones.map(t => ({ ...t, ...(_toneDescs[t.id] || {}) }))
+    : tonesData.tones;
 
 // Keyed lookup by tone id.
 export const TONE_CONTOURS = Object.fromEntries(TONE_LIST.map(t => [t.id, t]));

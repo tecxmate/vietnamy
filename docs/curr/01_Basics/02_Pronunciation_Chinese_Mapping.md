@@ -1,12 +1,27 @@
-# Pronunciation — Chinese (Bopomofo / Pinyin) Mapping · DRAFT
+# Pronunciation — Chinese (Bopomofo / Pinyin) Mapping
 
-> **STATUS: DRAFT — NOT shipped, NOT wired into the app.** First-pass Vietnamese→Mandarin
-> sound mapping by an AI agent. It is **not authoritative**. Every row must be red-penned by
-> a native **Taiwan (Bopomofo)** + **Mainland (Pinyin)** speaker before it ships — wrong anchors
-> teach wrong pronunciation. Companion to `01_Alphabet.md` (the English-anchored source).
-> Implements wiki decision `2026-06-11-chinese-pronunciation-curriculum`.
+> **STATUS: SHIPPED.** Wired into the app via per-language `sound`/`approx`/`description` fields
+> (`alphabet.js`, `vowels.js`, `tones.json`) read by `pickLocalized`. **Single vowels + tones
+> are owner-validated.** Diphthongs/triphthongs + **consonants are first-pass** — correct them in
+> the admin (Alphabet/Vowels/Tone editors gain Pinyin/Bopomofo columns) or here. Companion to
+> `01_Alphabet.md`. Implements wiki decision `2026-06-11-chinese-pronunciation-curriculum`.
 >
 > Legend: ✅ clean · ⚠️ approximation · ❌ no Mandarin equivalent (teach "closest + how to adjust").
+
+## Consonants (alphabet initials) — first-pass, review
+| VN | en (current) | zh-s · Pinyin | zh-t · Bopomofo | |
+|----|--------------|---------------|------------------|---|
+| b | beh | 像 b（玻、爸） | 像 ㄅ（玻） | ✅ |
+| c / k | seh / kah | 像 g（哥），不送气 | 像 ㄍ（哥），不送氣 | ✅ unaspirated |
+| đ | deh | 像 d（大） | 像 ㄉ（大） | ✅ |
+| d | zeh/yeh | 北部像英文 z（zoo） | 北部像英文 z（zoo） | ❌ (北 /z/) |
+| g | — | 浊的 g，喉咙振动 | 濁的 ㄍ，喉嚨振動 | ❌ /ɣ/ |
+| h·l·m·n | — | h(哈)·l(拉)·m(妈)·n(拿) | ㄏ·ㄌ·ㄇ·ㄋ | ✅ |
+| p | peh | 像 b（不送气），多在词尾 | 像 ㄅ（不送氣） | ✅ |
+| r | — | 北部像 r(日) 或英文 z | 北部像 ㄖ(日) 或英文 z | ⚠️ |
+| s·x | — | 北部像 s(撒)；南部 sh | 北部 ㄙ(撒)；南部 ㄕ | ⚠️ N/S |
+| t | teh | 像 d（大），不送气 | 像 ㄉ（大），不送氣 | ✅ unaspirated |
+| v | veh | 像英文 v（van） | 像英文 v（van） | ❌ no /v/ |
 
 ## Why
 The app anchors each Vietnamese sound to an **English** word ("ah as in *father*") — meaningless to a

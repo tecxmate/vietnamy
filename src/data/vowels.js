@@ -21,38 +21,38 @@ const DEFAULT_SINGLE = [
 ];
 
 const DEFAULT_CENTERING = [
-    { group: 'i-ê', open: 'ia', closed: 'iê / yê', approx: 'Like <b>ee-uh</b> (e.g., beer)', examples: [{ word: 'mía', meaning: 'cane', type: 'open' }, { word: 'tiền', meaning: 'money', type: 'closed' }, { word: 'yêu', meaning: 'love', type: 'closed' }] },
-    { group: 'u-ô', open: 'ua', closed: 'uô', approx: 'Like <b>oo-uh</b> (e.g., tour)', examples: [{ word: 'mua', meaning: 'buy', type: 'open' }, { word: 'muộn', meaning: 'late', type: 'closed' }] },
-    { group: 'ư-ơ', open: 'ưa', closed: 'ươ', approx: 'Like <b>ư</b> (unrounded "ee") gliding into a neutral <b>uh</b>', examples: [{ word: 'mưa', meaning: 'rain', type: 'open' }, { word: 'mượn', meaning: 'borrow', type: 'closed' }] },
+    { group: 'i-ê', open: 'ia', closed: 'iê / yê', approx: 'Like <b>ee-uh</b> (e.g., beer)', approxZhS: 'i 滑向含糊的 ə（ee-uh）', approxZhT: 'ㄧ 滑向含糊的 ㄜ', examples: [{ word: 'mía', meaning: 'cane', type: 'open' }, { word: 'tiền', meaning: 'money', type: 'closed' }, { word: 'yêu', meaning: 'love', type: 'closed' }] },
+    { group: 'u-ô', open: 'ua', closed: 'uô', approx: 'Like <b>oo-uh</b> (e.g., tour)', approxZhS: 'u 滑向含糊的 ə（oo-uh）', approxZhT: 'ㄨ 滑向含糊的 ㄜ', examples: [{ word: 'mua', meaning: 'buy', type: 'open' }, { word: 'muộn', meaning: 'late', type: 'closed' }] },
+    { group: 'ư-ơ', open: 'ưa', closed: 'ươ', approx: 'Like <b>ư</b> (unrounded "ee") gliding into a neutral <b>uh</b>', approxZhS: '思的母音滑向含糊的 ə（国语没有）', approxZhT: 'ㄙ後母音滑向含糊的 ㄜ（國語沒有）', examples: [{ word: 'mưa', meaning: 'rain', type: 'open' }, { word: 'mượn', meaning: 'borrow', type: 'closed' }] },
 ];
 
 const DEFAULT_GLIDING = [
-    { diph: 'ai', approx: 'Like "I" or "eye" (long a)', example: 'tai', meaning: 'ear' },
-    { diph: 'ay', approx: 'Like "I" but shorter (short ă)', example: 'tay', meaning: 'hand' },
-    { diph: 'ao', approx: 'Like "now" or "how"', example: 'chào', meaning: 'hello' },
-    { diph: 'au', approx: 'Like "owl" but much shorter', example: 'sau', meaning: 'after' },
-    { diph: 'âu', approx: 'Like "oh" (as in "go")', example: 'câu', meaning: 'sentence' },
-    { diph: 'ây', approx: 'Like "ay" (as in "day")', example: 'mấy', meaning: 'how many' },
-    { diph: 'eo', approx: 'Like "eh-ao" (meow)', example: 'mèo', meaning: 'cat' },
-    { diph: 'êu', approx: 'Like "ay-oo"', example: 'kêu', meaning: 'call' },
-    { diph: 'oi', approx: 'Like "oy" (as in "boy")', example: 'hỏi', meaning: 'ask' },
-    { diph: 'ôi', approx: 'Like "oh-ee"', example: 'tôi', meaning: 'I / me' },
-    { diph: 'ơi', approx: 'Like "uh-ee"', example: 'mới', meaning: 'new' },
-    { diph: 'ui', approx: 'Like "oo-ee" (long u)', example: 'tui', meaning: 'me (slang)' },
-    { diph: 'uy', approx: 'Like "we" in English', example: 'tuy', meaning: 'although' },
-    { diph: 'iu', approx: 'Like "ew" (as in "few")', example: 'chịu', meaning: 'tolerate' },
-    { diph: 'ưu', approx: 'Like ư gliding into u', example: 'hưu', meaning: 'retired' },
+    { diph: 'ai', approx: 'Like "I" or "eye" (long a)', approxZhS: '像 ài（爱、唉）', approxZhT: '像 ㄞ（愛）', example: 'tai', meaning: 'ear' },
+    { diph: 'ay', approx: 'Like "I" but shorter (short ă)', approxZhS: '像 ai 但更短', approxZhT: '像 ㄞ 但更短', example: 'tay', meaning: 'hand' },
+    { diph: 'ao', approx: 'Like "now" or "how"', approxZhS: '像 ào（奥）', approxZhT: '像 ㄠ（奧）', example: 'chào', meaning: 'hello' },
+    { diph: 'au', approx: 'Like "owl" but much shorter', approxZhS: '像 ao 但更短促', approxZhT: '像 ㄠ 但更短促', example: 'sau', meaning: 'after' },
+    { diph: 'âu', approx: 'Like "oh" (as in "go")', approxZhS: '像 ōu（欧）', approxZhT: '像 ㄡ（歐）', example: 'câu', meaning: 'sentence' },
+    { diph: 'ây', approx: 'Like "ay" (as in "day")', approxZhS: '像 ei（欸）', approxZhT: '像 ㄟ（欸）', example: 'mấy', meaning: 'how many' },
+    { diph: 'eo', approx: 'Like "eh-ao" (meow)', approxZhS: 'ê 滑向 ao（ㄝ→ㄠ）', approxZhT: 'ㄝ 滑向 ㄠ', example: 'mèo', meaning: 'cat' },
+    { diph: 'êu', approx: 'Like "ay-oo"', approxZhS: 'ê 滑向 u（ㄝ→ㄨ）', approxZhT: 'ㄝ 滑向 ㄨ', example: 'kêu', meaning: 'call' },
+    { diph: 'oi', approx: 'Like "oy" (as in "boy")', approxZhS: 'o 滑向 i（ㄛ→ㄧ）', approxZhT: 'ㄛ 滑向 ㄧ', example: 'hỏi', meaning: 'ask' },
+    { diph: 'ôi', approx: 'Like "oh-ee"', approxZhS: 'ô 收圆滑向 i', approxZhT: 'ㄛ 收圓滑向 ㄧ', example: 'tôi', meaning: 'I / me' },
+    { diph: 'ơi', approx: 'Like "uh-ee"', approxZhS: '含糊的 ơ 滑向 i（国语没有）', approxZhT: '含糊的 ㄜ 滑向 ㄧ（國語沒有）', example: 'mới', meaning: 'new' },
+    { diph: 'ui', approx: 'Like "oo-ee" (long u)', approxZhS: 'u 滑向 i，像 wéi 的尾', approxZhT: '像 ㄨㄟ（威）', example: 'tui', meaning: 'me (slang)' },
+    { diph: 'uy', approx: 'Like "we" in English', approxZhS: '像 wei（威）', approxZhT: '像 ㄨㄟ（威）', example: 'tuy', meaning: 'although' },
+    { diph: 'iu', approx: 'Like "ew" (as in "few")', approxZhS: 'i 滑向 u（ㄧ→ㄨ）', approxZhT: 'ㄧ 滑向 ㄨ', example: 'chịu', meaning: 'tolerate' },
+    { diph: 'ưu', approx: 'Like ư gliding into u', approxZhS: '思的母音滑向 u（国语没有）', approxZhT: 'ㄙ/ㄗ 後母音滑向 ㄨ（國語沒有）', example: 'hưu', meaning: 'retired' },
 ];
 
 const DEFAULT_TRIPHTHONGS = [
-    { triph: 'iêu', components: 'iê + u', approx: '"ee-ay-oo" (like a fast "miao")', example: 'tiêu', meaning: 'pepper / spend' },
-    { triph: 'yêu', components: 'yê + u', approx: '"ee-ay-oo" (same as iêu, but stands alone)', example: 'yêu', meaning: 'love' },
-    { triph: 'oai', components: 'o + ai', approx: '"o-eye" (like "why" with a rounded start)', example: 'khoai', meaning: 'potato' },
-    { triph: 'oay', components: 'o + ay', approx: '"o-eye" (shorter and sharper than oai)', example: 'xoay', meaning: 'rotate' },
-    { triph: 'uôi', components: 'uô + i', approx: '"oo-oh-ee" (like "buoy")', example: 'chuối', meaning: 'banana' },
-    { triph: 'ươi', components: 'ươ + i', approx: '"ư-uh-ee" (no English equivalent)', example: 'tươi', meaning: 'fresh' },
-    { triph: 'ươu', components: 'ươ + u', approx: '"ư-uh-oo" (vaguely like "sewer")', example: 'rượu', meaning: 'wine / alcohol' },
-    { triph: 'uây', components: 'u + ây', approx: '"w-ay" (like "sway")', example: 'khuấy', meaning: 'to stir' },
+    { triph: 'iêu', components: 'iê + u', approx: '"ee-ay-oo" (like a fast "miao")', approxZhS: 'i-ê-u 连读（ㄧㄝㄨ）', approxZhT: 'ㄧㄝㄨ 連讀', example: 'tiêu', meaning: 'pepper / spend' },
+    { triph: 'yêu', components: 'yê + u', approx: '"ee-ay-oo" (same as iêu, but stands alone)', approxZhS: '同 iêu（ㄧㄝㄨ）', approxZhT: '同 iêu（ㄧㄝㄨ）', example: 'yêu', meaning: 'love' },
+    { triph: 'oai', components: 'o + ai', approx: '"o-eye" (like "why" with a rounded start)', approxZhS: 'o-a-i（ㄛㄚㄧ），像歪加圆唇', approxZhT: 'ㄛㄚㄧ（像歪加圓唇）', example: 'khoai', meaning: 'potato' },
+    { triph: 'oay', components: 'o + ay', approx: '"o-eye" (shorter and sharper than oai)', approxZhS: '像 oai 但更短', approxZhT: '像 oai 但更短', example: 'xoay', meaning: 'rotate' },
+    { triph: 'uôi', components: 'uô + i', approx: '"oo-oh-ee" (like "buoy")', approxZhS: 'u-ô-i（ㄨㄛㄧ），像 buoy', approxZhT: 'ㄨㄛㄧ（像 buoy）', example: 'chuối', meaning: 'banana' },
+    { triph: 'ươi', components: 'ươ + i', approx: '"ư-uh-ee" (no English equivalent)', approxZhS: 'ư-ơ-i 连读（国语没有）', approxZhT: 'ㄙ後母音-ㄜ-ㄧ（國語沒有）', example: 'tươi', meaning: 'fresh' },
+    { triph: 'ươu', components: 'ươ + u', approx: '"ư-uh-oo" (vaguely like "sewer")', approxZhS: 'ư-ơ-u 连读（国语没有）', approxZhT: 'ㄙ後母音-ㄜ-ㄨ（國語沒有）', example: 'rượu', meaning: 'wine / alcohol' },
+    { triph: 'uây', components: 'u + ây', approx: '"w-ay" (like "sway")', approxZhS: 'u-â-y（ㄨㄟ），像 sway', approxZhT: 'ㄨㄟ（像 sway）', example: 'khuấy', meaning: 'to stir' },
 ];
 
 export const DEFAULT_VOWELS = { single: DEFAULT_SINGLE, centering: DEFAULT_CENTERING, gliding: DEFAULT_GLIDING, triphthongs: DEFAULT_TRIPHTHONGS };
