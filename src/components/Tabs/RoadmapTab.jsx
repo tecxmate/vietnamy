@@ -4,6 +4,8 @@ import { MessageCircle, Zap, Trophy, Pen, Check, Lock, BookOpen, Music, Clapperb
 import { getUnits, getNodesForUnitWithProgress } from '../../lib/roadmapDb';
 import GrammarGuidebook from '../GrammarGuidebook';
 import RecommendedNext from '../RecommendedNext';
+import WordOfDay from '../WordOfDay/WordOfDay';
+import { relColor, useMagazineActive } from '../../lib/nodePalette';
 import { useProgress } from '../../context/ProgressContext';
 import { useUser } from '../../context/UserContext';
 import { useNotifications } from '../../context/NotificationContext';
@@ -17,28 +19,52 @@ const MODE_ICONS = { BookOpen, Plane, Briefcase, Heart };
 const BeKhe = React.lazy(() => import('../BeKhe/BeKhe'));
 
 
-const NODE_STYLES = {
-    orange: { color: '#FFB703', dark: '#CC9202', bg: 'rgba(255,183,3,0.12)', muted: 'rgba(255,183,3,0.35)', mutedBorder: 'rgba(255,183,3,0.25)', mutedIcon: 'rgba(255,183,3,0.5)', icon: MessageCircle, label: 'Vocabulary' },
-    blue:   { color: '#1CB0F6', dark: '#0D8ECF', bg: 'rgba(28,176,246,0.12)', muted: 'rgba(28,176,246,0.35)', mutedBorder: 'rgba(28,176,246,0.25)', mutedIcon: 'rgba(28,176,246,0.5)', icon: Music, label: 'Phonetics' },
-    purple: { color: '#A78BFA', dark: '#7C3AED', bg: 'rgba(167,139,250,0.12)', muted: 'rgba(167,139,250,0.35)', mutedBorder: 'rgba(167,139,250,0.25)', mutedIcon: 'rgba(167,139,250,0.5)', icon: Pen, label: 'Grammar' },
-    green:  { color: '#06D6A0', dark: '#05A67D', bg: 'rgba(6,214,160,0.12)', muted: 'rgba(6,214,160,0.35)', mutedBorder: 'rgba(6,214,160,0.25)', mutedIcon: 'rgba(6,214,160,0.5)', icon: Clapperboard, label: 'Scene' },
-    test:   { color: '#EF4444', dark: '#B91C1C', bg: 'rgba(239,68,68,0.12)', muted: 'rgba(239,68,68,0.35)', mutedBorder: 'rgba(239,68,68,0.25)', mutedIcon: 'rgba(239,68,68,0.5)', icon: Zap, label: 'Quiz' },
-    gold:   { color: '#F59E0B', dark: '#D97706', bg: 'rgba(245,158,11,0.12)', muted: 'rgba(245,158,11,0.35)', mutedBorder: 'rgba(245,158,11,0.25)', mutedIcon: 'rgba(245,158,11,0.5)', icon: Clapperboard, label: 'Scene' },
-};
+// Build a node-style map from base (hex) + rgb + dark per kind, so the default
+// and magazine palettes derive their fill/muted variants the same way. `color`
+// stays hex because call sites append alpha (e.g. `${style.color}15`).
+const buildNodeStyles = (p) => ({
+    orange: { color: p.orange[0], dark: p.orange[2], bg: `rgba(${p.orange[1]},0.12)`, muted: `rgba(${p.orange[1]},0.35)`, mutedBorder: `rgba(${p.orange[1]},0.25)`, mutedIcon: `rgba(${p.orange[1]},0.5)`, icon: MessageCircle, label: 'Vocabulary' },
+    blue:   { color: p.blue[0],   dark: p.blue[2],   bg: `rgba(${p.blue[1]},0.12)`,   muted: `rgba(${p.blue[1]},0.35)`,   mutedBorder: `rgba(${p.blue[1]},0.25)`,   mutedIcon: `rgba(${p.blue[1]},0.5)`,   icon: Music, label: 'Phonetics' },
+    purple: { color: p.purple[0], dark: p.purple[2], bg: `rgba(${p.purple[1]},0.12)`, muted: `rgba(${p.purple[1]},0.35)`, mutedBorder: `rgba(${p.purple[1]},0.25)`, mutedIcon: `rgba(${p.purple[1]},0.5)`, icon: Pen, label: 'Grammar' },
+    green:  { color: p.green[0],  dark: p.green[2],  bg: `rgba(${p.green[1]},0.12)`,  muted: `rgba(${p.green[1]},0.35)`,  mutedBorder: `rgba(${p.green[1]},0.25)`,  mutedIcon: `rgba(${p.green[1]},0.5)`,  icon: Clapperboard, label: 'Scene' },
+    test:   { color: p.test[0],   dark: p.test[2],   bg: `rgba(${p.test[1]},0.12)`,   muted: `rgba(${p.test[1]},0.35)`,   mutedBorder: `rgba(${p.test[1]},0.25)`,   mutedIcon: `rgba(${p.test[1]},0.5)`,   icon: Zap, label: 'Quiz' },
+    gold:   { color: p.gold[0],   dark: p.gold[2],   bg: `rgba(${p.gold[1]},0.12)`,   muted: `rgba(${p.gold[1]},0.35)`,   mutedBorder: `rgba(${p.gold[1]},0.25)`,   mutedIcon: `rgba(${p.gold[1]},0.5)`,   icon: Clapperboard, label: 'Scene' },
+});
 
-function getNodeStyle(node) {
+// [hex, "r,g,b", darkHex] per kind.
+const DEFAULT_NODE_STYLES = buildNodeStyles({
+    orange: ['#FFB703', '255,183,3', '#CC9202'],
+    blue:   ['#1CB0F6', '28,176,246', '#0D8ECF'],
+    purple: ['#A78BFA', '167,139,250', '#7C3AED'],
+    green:  ['#06D6A0', '6,214,160', '#05A67D'],
+    test:   ['#EF4444', '239,68,68', '#B91C1C'],
+    gold:   ['#F59E0B', '245,158,11', '#D97706'],
+});
+
+// Tạp Chí relatives, separated across 6 hues: blue→navy, orange→gold,
+// purple→plum, green→teal, test→lacquer red, gold-scene→terracotta.
+const MAGAZINE_NODE_STYLES = buildNodeStyles({
+    orange: ['#FCBD1B', '252,189,27', '#CC9610'],
+    blue:   ['#204081', '32,64,129', '#142C5C'],
+    purple: ['#7D3C6A', '125,60,106', '#5A2C4E'],
+    green:  ['#38BA94', '56,186,148', '#2A9476'],
+    test:   ['#C5305A', '197,48,90', '#9E2547'],
+    gold:   ['#C8572B', '200,87,43', '#9E4220'],
+});
+
+function getNodeStyle(node, styles) {
     // Module-type based coloring (new cycle system)
-    if (node.module_type === 'orange') return NODE_STYLES.orange;
-    if (node.module_type === 'blue') return NODE_STYLES.blue;
-    if (node.module_type === 'purple') return NODE_STYLES.purple;
-    if (node.module_type === 'green') return NODE_STYLES.green;
-    if (node.module_type === 'test') return NODE_STYLES.test;
-    if (node.module_type === 'gold') return NODE_STYLES.gold;
+    if (node.module_type === 'orange') return styles.orange;
+    if (node.module_type === 'blue') return styles.blue;
+    if (node.module_type === 'purple') return styles.purple;
+    if (node.module_type === 'green') return styles.green;
+    if (node.module_type === 'test') return styles.test;
+    if (node.module_type === 'gold') return styles.gold;
 
     // Fallback for legacy nodes without module_type
-    if (node.type === 'test') return NODE_STYLES.test;
-    if (node.type === 'skill') return NODE_STYLES.purple;
-    return NODE_STYLES.orange;
+    if (node.type === 'test') return styles.test;
+    if (node.type === 'skill') return styles.purple;
+    return styles.orange;
 }
 
 function getNodeLabel(node, style, t) {
@@ -116,6 +142,10 @@ const RoadmapTab = () => {
     // Topic-based filtering from learner mode
     const modeTopics = getTopicsForMode(currentMode);
     const modeConfig = getModeConfig(currentMode);
+    // Magazine theme remaps the legacy category palette to its closest relatives.
+    const magazine = useMagazineActive();
+    const NODE_STYLES = magazine ? MAGAZINE_NODE_STYLES : DEFAULT_NODE_STYLES;
+    const modeColor = relColor(modeConfig.color, magazine);
     const topicCounts = React.useMemo(() => {
         const counts = new Map();
         Object.values(nodesMap).flat().forEach(node => {
@@ -314,20 +344,20 @@ const RoadmapTab = () => {
                             style={{
                                 display: 'flex', alignItems: 'center', gap: 6,
                                 padding: '6px 10px', borderRadius: 20,
-                                backgroundColor: `${modeConfig.color}15`,
-                                border: `2px solid ${modeConfig.color}`,
+                                backgroundColor: `${modeColor}15`,
+                                border: `2px solid ${modeColor}`,
                                 cursor: 'pointer', fontFamily: 'inherit',
                                 flexShrink: 0,
                             }}
                         >
                             <div style={{
                                 width: 22, height: 22, borderRadius: 6,
-                                backgroundColor: modeConfig.color,
+                                backgroundColor: modeColor,
                                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                             }}>
                                 <ModeIcon size={12} color="#fff" />
                             </div>
-                            <ChevronDown size={14} color={modeConfig.color} />
+                            <ChevronDown size={14} color={modeColor} />
                         </button>
 
                         {/* Divider */}
@@ -341,9 +371,9 @@ const RoadmapTab = () => {
                     style={{
                         display: 'flex', alignItems: 'center', gap: 6,
                         padding: '6px 14px', borderRadius: 20,
-                        border: `2px solid ${activeTopic === null ? modeConfig.color : 'var(--border-color)'}`,
-                        backgroundColor: activeTopic === null ? `${modeConfig.color}15` : 'transparent',
-                        color: activeTopic === null ? modeConfig.color : 'var(--text-muted)',
+                        border: `2px solid ${activeTopic === null ? modeColor : 'var(--border-color)'}`,
+                        backgroundColor: activeTopic === null ? `${modeColor}15` : 'transparent',
+                        color: activeTopic === null ? modeColor : 'var(--text-muted)',
                         fontWeight: 700, fontSize: 13,
                         cursor: 'pointer', whiteSpace: 'nowrap',
                         transition: 'all 0.15s',
@@ -355,7 +385,7 @@ const RoadmapTab = () => {
                 </button>
                 {visibleTopics.map(topic => {
                     const isActive = activeTopic === topic.id;
-                    const color = modeConfig.color;
+                    const color = modeColor;
                     return (
                         <button
                             key={topic.id}
@@ -465,8 +495,8 @@ const RoadmapTab = () => {
                                         style={{
                                             display: 'flex', alignItems: 'center', gap: 12,
                                             padding: '14px 16px', borderRadius: 14,
-                                            backgroundColor: isActive ? `${mode.color}15` : 'var(--bg-color)',
-                                            border: `2px solid ${isActive ? mode.color : 'var(--border-color)'}`,
+                                            backgroundColor: isActive ? `${relColor(mode.color, magazine)}15` : 'var(--bg-color)',
+                                            border: `2px solid ${isActive ? relColor(mode.color, magazine) : 'var(--border-color)'}`,
                                             cursor: isEnabled ? 'pointer' : 'not-allowed', fontFamily: 'inherit',
                                             transition: 'all 0.15s',
                                             opacity: isEnabled ? 1 : 0.45,
@@ -474,14 +504,14 @@ const RoadmapTab = () => {
                                     >
                                         <div style={{
                                             width: 40, height: 40, borderRadius: 10,
-                                            backgroundColor: mode.color,
+                                            backgroundColor: relColor(mode.color, magazine),
                                             display: 'flex', alignItems: 'center', justifyContent: 'center',
                                             flexShrink: 0,
                                         }}>
                                             <Icon size={22} color="#fff" />
                                         </div>
                                         <div style={{ flex: 1, textAlign: 'left' }}>
-                                            <div style={{ fontWeight: 700, fontSize: 15, color: isActive ? mode.color : 'var(--text-main)' }}>
+                                            <div style={{ fontWeight: 700, fontSize: 15, color: isActive ? relColor(mode.color, magazine) : 'var(--text-main)' }}>
                                                 {t(`learner_mode_${mode.id}`, mode.label)}
                                             </div>
                                             <div style={{ fontSize: 12, color: 'var(--text-muted)', marginTop: 2 }}>
@@ -489,7 +519,7 @@ const RoadmapTab = () => {
                                             </div>
                                         </div>
                                         {isActive && (
-                                            <Check size={20} color={mode.color} strokeWidth={3} />
+                                            <Check size={20} color={relColor(mode.color, magazine)} strokeWidth={3} />
                                         )}
                                     </button>
                                 );
@@ -498,6 +528,8 @@ const RoadmapTab = () => {
                     </div>
                 </div>
             )}
+
+            <WordOfDay />
 
             <RecommendedNext completedNodeIds={modeCompletedNodes} purpose={currentMode} />
 
@@ -530,7 +562,7 @@ const RoadmapTab = () => {
 
                         <div style={{ padding: 16, display: 'flex', flexDirection: 'column', gap: 8 }}>
                             {visibleNodes.map((node) => {
-                                const style = getNodeStyle(node);
+                                const style = getNodeStyle(node, NODE_STYLES);
                                 const Icon = style.icon;
                                 const isActive = node.status === 'active';
                                 const isCompleted = node.status === 'completed';
@@ -758,10 +790,10 @@ const RoadmapTab = () => {
                     >
                         <div style={{
                             width: 56, height: 56, borderRadius: '50%', margin: '0 auto 16px',
-                            backgroundColor: getNodeStyle(redoNode).color,
+                            backgroundColor: getNodeStyle(redoNode, NODE_STYLES).color,
                             display: 'flex', alignItems: 'center', justifyContent: 'center',
                         }}>
-                            {React.createElement(getNodeStyle(redoNode).icon, { size: 28, fill: '#fff', color: '#fff' })}
+                            {React.createElement(getNodeStyle(redoNode, NODE_STYLES).icon, { size: 28, fill: '#fff', color: '#fff' })}
                         </div>
                         <h3 style={{ margin: '0 0 8px', fontSize: 18, color: 'var(--text-main)' }}>{translateNodeLabel(redoNode)}</h3>
                         <p style={{ margin: '0 0 24px', fontSize: 14, color: 'var(--text-muted)' }}>
@@ -779,8 +811,8 @@ const RoadmapTab = () => {
                                 className="primary"
                                 style={{
                                     flex: 1, padding: '14px 16px', fontSize: 15, fontWeight: 700, borderRadius: 12,
-                                    backgroundColor: getNodeStyle(redoNode).color,
-                                    boxShadow: `0 4px 0 ${getNodeStyle(redoNode).dark}`,
+                                    backgroundColor: getNodeStyle(redoNode, NODE_STYLES).color,
+                                    boxShadow: `0 4px 0 ${getNodeStyle(redoNode, NODE_STYLES).dark}`,
                                 }}
                                 onClick={() => { setRedoNode(null); navigateNode(redoNode); }}
                             >

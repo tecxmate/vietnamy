@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import {
     Target, Zap, User, X, ChevronDown, ChevronRight, RefreshCw,
     Globe, Type, Volume2, Wrench, Clock, Bell, Gift, Tag, Compass,
-    VolumeX,
+    VolumeX, Newspaper,
 } from 'lucide-react';
 import { ENABLE_LEARNING_PATH_CHOOSER, LEARNER_MODES, DEFAULT_LEARNER_MODE } from '../data/learnerModes';
 import { getEnabledVoices, isVoiceEnabled, FALLBACK_VOICE, ALWAYS_ON_VOICE } from '../data/ttsVoices';
@@ -17,6 +17,7 @@ import { useNotifications } from '../context/NotificationContext';
 import { getSoundEnabled, setSoundEnabled, playTap, playSelect, playTransitionUp, playTransitionDown } from '../utils/sound';
 import { clearSpeakQueue } from '../utils/speak';
 import { isAdminAuthenticated, loginAdmin } from '../lib/adminAuth';
+import { applyTheme, MAGAZINE_THEME } from '../lib/theme';
 
 
 const TAB_META = {
@@ -462,6 +463,16 @@ const TopBar = ({ activeTab, subtitleOverride }) => {
                                     icon={<Tag size={16} />}
                                     checked={settings.showCefrTags !== false}
                                     onChange={v => updateSetting('showCefrTags', v)}
+                                />
+                                <SettingToggle
+                                    label={t('magazine_theme')}
+                                    icon={<Newspaper size={16} />}
+                                    checked={settings.theme === MAGAZINE_THEME}
+                                    onChange={v => {
+                                        const theme = v ? MAGAZINE_THEME : undefined;
+                                        updateSetting('theme', theme);
+                                        applyTheme(theme);
+                                    }}
                                 />
                             </SettingsGroup>
 
