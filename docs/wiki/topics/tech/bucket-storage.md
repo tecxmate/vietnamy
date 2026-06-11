@@ -56,7 +56,11 @@ See [issue #17](https://github.com/tecxmate/vietnamy/issues/17) for the migratio
 All scripts read `SUPABASE_SERVICE_ROLE_KEY` from env. Niko pastes the key from Zeabur into a local `.env` (gitignored) before running.
 
 ## R2 is now primary (2026-06-11)
-Prod runs `TTS_STORAGE_PROVIDER=r2` with R2 creds in Zeabur; new cache writes go to R2, and `ttsCacheHit` checks R2 first then falls through to the still-populated Supabase bucket. **Known misconfiguration:** `R2_PUBLIC_BASE_URL` points at the private S3 endpoint (`<account>.r2.cloudflarestorage.com/tts-cache`), so any cache-hit that resolves to R2 redirects to a URL that needs signed auth → **HTTP 400**. Masked today because most-played strings still resolve to Supabase. Fix decided: bind the **`tts.tecxmate.com`** custom domain and set `R2_PUBLIC_BASE_URL` to it — see [2026-06-11-r2-public-url-custom-domain](../../decisions/2026-06-11-r2-public-url-custom-domain.md). This resolves the "r2.dev vs custom domain" open question below in favour of a custom domain (the `tecxmate.com` zone is already in the same Cloudflare account as the bucket).
+Prod runs `TTS_STORAGE_PROVIDER=r2` with R2 creds in Zeabur; new cache writes go to R2, and `ttsCacheHit` checks R2 first then falls through to the still-populated Supabase bucket. `R2_PUBLIC_BASE_URL` is `https://tts.tecxmate.com`, which is bound to the R2 bucket as a public custom domain. Production verification on 2026-06-11:
+- `https://vietnamy.tecxmate.com/api/tts?text=Xin%20ch%C3%A0o&lang=vi&voice=azure-north` returns `302` with `x-tts-cache-provider: r2`.
+- The redirected `https://tts.tecxmate.com/...wav` URL returns `HTTP 200` with `content-type: audio/wav`.
+
+The one-shot migration processed all `42,071` Supabase Storage objects. Final retry pass copied 2 remaining objects, skipped 42,069 already-present objects, and ended with `failed=0`.
 
 ## Open questions
 - Should the migration be a one-shot cutover or a dual-write period with R2 as primary and Supabase as backup? Issue #17 suggests dual-write for 2 weeks, then delete Supabase.

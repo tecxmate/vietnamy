@@ -185,3 +185,10 @@ attributed_to: [niko, claude-opus]   belongs_to: [curriculum-paths, adaptive-seq
 - Pipeline note: the roadmap is now a **baked seed** (`roadmapSeedData.js` via `scripts/build-roadmap-seed.mjs`, Codex) — content changes need bundle regen + seed regen + `CURRICULUM_VERSION` bump (30→31 here).
 - Follow-ups parked in `docs/curr/goal-shaped-path-design.md`: in-lesson `getNextNode` still goal-blind; scenes could inherit topics.
 - Pages: [curriculum-paths](topics/tech/curriculum-paths.md), [adaptive-sequencer](topics/tech/adaptive-sequencer.md).
+
+## [2026-06-11] ingest | TTS bucket migration completed to Cloudflare R2
+attributed_to: [niko, codex]   belongs_to: [bucket-storage, tts-pipeline]
+- Supabase `tts-cache` → Cloudflare R2 migration completed for all `42,071` objects.
+- First full pass copied `16,491` missing objects, skipped `25,560`, and left 20 transient fetch failures. Retry pass copied 2 remaining objects, skipped `42,069`, and ended with `failed=0`.
+- Verified production `/api/tts` redirects to `https://tts.tecxmate.com/...` with `x-tts-cache-provider: r2`; following the redirect returns `HTTP 200 audio/wav`.
+- Pages: [bucket-storage](topics/tech/bucket-storage.md), [tts-pipeline](topics/tech/tts-pipeline.md).
