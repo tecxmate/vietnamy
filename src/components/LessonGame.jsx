@@ -912,7 +912,7 @@ const LessonGame = () => {
                                 border: 'none', cursor: 'pointer',
                                 backgroundColor: ACCENT, color: '#fff',
                                 fontWeight: 800, fontSize: 16,
-                                boxShadow: '0 4px 0 #B03E2D',
+                                boxShadow: '0 4px 0 var(--cta-edge)',
                             }}
                         >
                             {nextNodeLabel || t('next_lesson_upper')}

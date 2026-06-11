@@ -735,7 +735,7 @@ const RoadmapTab = () => {
                             textTransform: 'uppercase',
                             letterSpacing: '1px',
                             borderRadius: 16,
-                            boxShadow: '0 8px 0 #B03E2D, 0 8px 20px rgba(0,0,0,0.2)'
+                            boxShadow: '0 8px 0 var(--cta-edge), 0 8px 20px rgba(0,0,0,0.2)'
                         }}
                         onClick={handleContinueClick}
                     >
@@ -752,7 +752,7 @@ const RoadmapTab = () => {
                             textTransform: 'uppercase',
                             letterSpacing: '1px',
                             borderRadius: 16,
-                            boxShadow: '0 8px 0 #B03E2D, 0 8px 20px rgba(0,0,0,0.2)',
+                            boxShadow: '0 8px 0 var(--cta-edge), 0 8px 20px rgba(0,0,0,0.2)',
                             opacity: 0.5,
                             cursor: 'not-allowed',
                         }}

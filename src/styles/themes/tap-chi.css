@@ -68,6 +68,9 @@
   --interstitial-bg: var(--tc-navy);
   --interstitial-text: #ffffff;
   --interstitial-border: rgba(255, 255, 255, 0.14);
+
+  /* primary CTA 3D edge → darker pink (one token drives every CTA) */
+  --cta-edge: var(--tc-pink-dk);
 }
 
 /* =========================================================================
@@ -166,10 +169,6 @@
   background-color: color-mix(in srgb, var(--tc-navy) 14%, transparent);
 }
 :root[data-theme="tap-chi"] .dictionary-container .mode-btn { color: var(--tc-navy); }
-
-/* main CTA (Continue / check) — 3D bottom edge in the darker pink, not coral */
-:root[data-theme="tap-chi"] button.primary { box-shadow: 0 4px 0 var(--tc-pink-dk); }
-:root[data-theme="tap-chi"] button.primary:active { box-shadow: 0 0 0 var(--tc-pink-dk); }
 
 /* dictionary tab highlights navy when active (its accent is blue) */
 :root[data-theme="tap-chi"] .nav-item[data-tab="dictionary"].active { color: var(--tc-navy); }
