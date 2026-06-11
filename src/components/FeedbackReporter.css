@@ -1,7 +1,5 @@
 .feedback-reporter {
   position: fixed;
-  right: calc(var(--app-edge-right) + 4px);
-  bottom: calc(var(--bottom-nav-height) + var(--bottom-nav-gap) + 14px);
   z-index: 850;
   width: 44px;
   height: 44px;
@@ -13,11 +11,23 @@
   color: var(--text-main);
   box-shadow: 0 10px 26px rgba(0, 0, 0, 0.32);
   cursor: pointer;
-  touch-action: manipulation;
+  touch-action: none;
+  user-select: none;
+  transition:
+    left 0.18s ease,
+    top 0.18s ease,
+    transform 0.12s ease,
+    box-shadow 0.12s ease;
 }
 
 .feedback-reporter:active {
   transform: translateY(1px) scale(0.97);
+}
+
+.feedback-reporter-dragging {
+  cursor: grabbing;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.42);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
 }
 
 .feedback-modal-shell {
@@ -216,10 +226,6 @@
 }
 
 @media (min-width: 700px) {
-  .feedback-reporter {
-    bottom: calc(var(--app-edge-bottom) + 18px);
-  }
-
   .feedback-modal-shell {
     place-items: center;
   }

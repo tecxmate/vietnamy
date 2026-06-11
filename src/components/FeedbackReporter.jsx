@@ -8,10 +8,53 @@ import './FeedbackReporter.css';
 
 const SHAKE_ENABLED = import.meta.env.VITE_FEEDBACK_SHAKE_ENABLED === 'true';
 const MAX_SCREENSHOT_WIDTH = 1280;
+const BUTTON_SIZE = 44;
+const EDGE_GAP = 12;
+const BUTTON_POSITION_KEY = 'vnme_feedback_button_position';
 
 function getViewport() {
   const visual = window.visualViewport;
   return `${Math.round(visual?.width || window.innerWidth)}x${Math.round(visual?.height || window.innerHeight)}`;
+}
+
+function getViewportSize() {
+  const visual = window.visualViewport;
+  return {
+    width: Math.round(visual?.width || window.innerWidth || 390),
+    height: Math.round(visual?.height || window.innerHeight || 844),
+  };
+}
+
+function clampButtonY(y) {
+  const { height } = getViewportSize();
+  return Math.min(Math.max(EDGE_GAP, y), Math.max(EDGE_GAP, height - BUTTON_SIZE - EDGE_GAP));
+}
+
+function positionForEdge(edge, y) {
+  const { width, height } = getViewportSize();
+  const defaultY = height - BUTTON_SIZE - 110;
+  const safeY = clampButtonY(Number.isFinite(y) ? y : defaultY);
+  return {
+    edge: edge === 'left' ? 'left' : 'right',
+    x: edge === 'left' ? EDGE_GAP : Math.max(EDGE_GAP, width - BUTTON_SIZE - EDGE_GAP),
+    y: safeY,
+  };
+}
+
+function readSavedButtonPosition() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(BUTTON_POSITION_KEY) || 'null');
+    return positionForEdge(saved?.edge, saved?.y);
+  } catch {
+    return positionForEdge('right');
+  }
+}
+
+function saveButtonPosition(position) {
+  localStorage.setItem(BUTTON_POSITION_KEY, JSON.stringify({
+    edge: position.edge,
+    y: Math.round(position.y),
+  }));
 }
 
 function buildMetadata(language) {
@@ -90,8 +133,12 @@ export default function FeedbackReporter() {
   const [attachScreenshot, setAttachScreenshot] = React.useState(true);
   const [submitState, setSubmitState] = React.useState('idle');
   const [message, setMessage] = React.useState('');
+  const [buttonPosition, setButtonPosition] = React.useState(readSavedButtonPosition);
+  const [isDraggingButton, setIsDraggingButton] = React.useState(false);
   const longPressRef = React.useRef(null);
   const lastShakeRef = React.useRef(0);
+  const dragRef = React.useRef(null);
+  const suppressNextClickRef = React.useRef(false);
 
   const resetDraft = React.useCallback(() => {
     setDescription('');
@@ -146,13 +193,88 @@ export default function FeedbackReporter() {
     return () => window.removeEventListener('devicemotion', handleMotion);
   }, [isOpen, openReporter]);
 
-  const handlePointerDown = () => {
+  React.useEffect(() => {
+    const handleResize = () => {
+      setButtonPosition(current => {
+        const next = positionForEdge(current.edge, current.y);
+        saveButtonPosition(next);
+        return next;
+      });
+    };
+    window.addEventListener('resize', handleResize);
+    window.visualViewport?.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      window.visualViewport?.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  const handlePointerDown = event => {
     window.clearTimeout(longPressRef.current);
+    dragRef.current = {
+      pointerId: event.pointerId,
+      startX: event.clientX,
+      startY: event.clientY,
+      offsetX: event.clientX - buttonPosition.x,
+      offsetY: event.clientY - buttonPosition.y,
+      moved: false,
+    };
+    event.currentTarget.setPointerCapture?.(event.pointerId);
     longPressRef.current = window.setTimeout(openReporter, 520);
   };
 
-  const clearLongPress = () => {
+  const clearLongPress = React.useCallback(() => {
     window.clearTimeout(longPressRef.current);
+  }, []);
+
+  const handlePointerMove = event => {
+    const drag = dragRef.current;
+    if (!drag || drag.pointerId !== event.pointerId) return;
+    const distance = Math.hypot(event.clientX - drag.startX, event.clientY - drag.startY);
+    if (distance < 6 && !drag.moved) return;
+
+    clearLongPress();
+    drag.moved = true;
+    setIsDraggingButton(true);
+
+    const { width } = getViewportSize();
+    const nextX = Math.min(Math.max(EDGE_GAP, event.clientX - drag.offsetX), Math.max(EDGE_GAP, width - BUTTON_SIZE - EDGE_GAP));
+    const nextY = clampButtonY(event.clientY - drag.offsetY);
+    setButtonPosition({
+      edge: nextX < width / 2 ? 'left' : 'right',
+      x: nextX,
+      y: nextY,
+    });
+  };
+
+  const finishButtonDrag = event => {
+    const drag = dragRef.current;
+    clearLongPress();
+    if (!drag || drag.pointerId !== event.pointerId) return;
+
+    event.currentTarget.releasePointerCapture?.(event.pointerId);
+    dragRef.current = null;
+
+    if (!drag.moved) return;
+    suppressNextClickRef.current = true;
+    const { width } = getViewportSize();
+    const currentX = Math.min(Math.max(EDGE_GAP, event.clientX - drag.offsetX), Math.max(EDGE_GAP, width - BUTTON_SIZE - EDGE_GAP));
+    const edge = currentX < width / 2 ? 'left' : 'right';
+    const next = positionForEdge(edge, event.clientY - drag.offsetY);
+    saveButtonPosition(next);
+    setButtonPosition(next);
+    window.setTimeout(() => {
+      suppressNextClickRef.current = false;
+      setIsDraggingButton(false);
+    }, 80);
+  };
+
+  const handleButtonClick = event => {
+    if (suppressNextClickRef.current || isDraggingButton) {
+      event.preventDefault();
+      return;
+    }
+    openReporter();
   };
 
   const handleSubmit = async event => {
@@ -221,14 +343,15 @@ export default function FeedbackReporter() {
     <>
       <button
         type="button"
-        className="feedback-reporter"
+        className={`feedback-reporter ${isDraggingButton ? 'feedback-reporter-dragging' : ''}`}
+        style={{ left: buttonPosition.x, top: buttonPosition.y }}
         aria-label="Report a problem"
         title="Report a problem"
         onPointerDown={handlePointerDown}
-        onPointerUp={clearLongPress}
-        onPointerCancel={clearLongPress}
-        onPointerLeave={clearLongPress}
-        onClick={openReporter}
+        onPointerMove={handlePointerMove}
+        onPointerUp={finishButtonDrag}
+        onPointerCancel={finishButtonDrag}
+        onClick={handleButtonClick}
       >
         <Bug size={21} aria-hidden="true" />
       </button>
