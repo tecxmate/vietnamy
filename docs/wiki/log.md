@@ -192,3 +192,17 @@ attributed_to: [niko, codex]   belongs_to: [bucket-storage, tts-pipeline]
 - First full pass copied `16,491` missing objects, skipped `25,560`, and left 20 transient fetch failures. Retry pass copied 2 remaining objects, skipped `42,069`, and ended with `failed=0`.
 - Verified production `/api/tts` redirects to `https://tts.tecxmate.com/...` with `x-tts-cache-provider: r2`; following the redirect returns `HTTP 200 audio/wav`.
 - Pages: [bucket-storage](topics/tech/bucket-storage.md), [tts-pipeline](topics/tech/tts-pipeline.md).
+
+## [2026-06-11] ingest | Supabase storage quota unlock for R2 migration
+attributed_to: [niko, codex]   belongs_to: [bucket-storage]
+- Supabase Storage reads were restricted after the `tts-cache` bucket exceeded the free storage quota by roughly 25%; the R2 migration script failed at object listing with HTTP 402.
+- Niko paid for one Supabase Pro month ($25) to unlock the project and allow the Supabase → Cloudflare R2 migration to complete.
+- Lesson: migrate future storage workloads before crossing free-tier quota. Once Supabase restricts a project, the read/list calls required for migration can be blocked too.
+- Pages: [bucket-storage](topics/tech/bucket-storage.md).
+
+## [2026-06-11] decision | Staged Supabase retirement plan via Neon, Auth.js, and R2
+attributed_to: [niko, codex]   belongs_to: [backend-vendor-migration, backend-ops-store, bucket-storage]
+- Migration branch `infra/migrate-to-neon-r2` is a scaffold/warm-up path, not an immediate cutover; Supabase stays primary until Neon data, R2 storage, and Auth.js auth are all verified.
+- Planned sequence: run Neon schema, backfill Supabase tables, dual-write progress, move ops/progress reads to Neon, migrate TTS via the existing script, flip R2 uploads, then complete Auth.js cutover and user-ID linking.
+- Supabase can be retired only after runtime code no longer depends on `supabase.auth`, Supabase bearer validation, Supabase Storage URLs, or Supabase env vars.
+- Pages: [backend-vendor-migration](topics/tech/backend-vendor-migration.md), [backend-ops-store](topics/tech/backend-ops-store.md), [bucket-storage](topics/tech/bucket-storage.md).

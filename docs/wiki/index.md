@@ -49,6 +49,7 @@ Topics are split into `topics/tech/` (engineering, infra, app, content systems) 
 - [Tone Trainer](topics/tech/tone-trainer.md) — Sounds-tab Learn→Identify→Speak lesson with client-side pitch overlay + shape-classification verdict
 - [Tone Training Data](topics/tech/tone-training-data.md) — self-labeled pitch-contour samples pooled to `/api/tone-samples` toward a learned tone-scoring model
 - [Bucket Storage (Supabase → R2)](topics/tech/bucket-storage.md) — current state, sizes, R2 migration plan
+- [Backend Vendor Migration (Supabase → Neon + R2)](topics/tech/backend-vendor-migration.md) — staged plan to migrate data/storage/auth and retire Supabase safely
 - [Backups & Disaster Recovery](topics/tech/backups-recovery.md) — local backup, full bucket mirror, cron setup
 - [Mobile Strategy](topics/tech/mobile-strategy.md) — Capacitor path, what ports, what to avoid
 - [Drive Media Sync](topics/tech/drive-media-sync.md) — root `drive/` convention and symlink helper for heavy Google Drive media files

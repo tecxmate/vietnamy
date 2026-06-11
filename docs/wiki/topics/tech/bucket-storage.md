@@ -34,6 +34,9 @@ Cleaned up 2026-05-24:
 - **Storage**: 1 GB free → 100 GB Pro at $25/mo. Already over 1 GB.
 - **Egress**: 5 GB/month free → 250 GB on Pro. At ~25 KB per audio playback × ~50 plays per active session, the free egress supports ~4,000 sessions/month. Tight with growth.
 
+## Quota incident (2026-06-11)
+The project exceeded Supabase's free storage quota by roughly 25%, which restricted Storage reads and blocked the Supabase → R2 migration script with HTTP 402. Niko paid for the $25 Supabase Pro month to unlock the project long enough to migrate. Lesson: for future buckets, start the R2 migration before crossing the free-tier quota, not after restriction, because once Supabase restricts the project even read/list operations needed for migration can fail.
+
 ## Why Cloudflare R2 is the answer
 - **10 GB storage free** (room to grow comfortably).
 - **Zero egress fees**. The big one — audio playback is read-heavy by nature.
