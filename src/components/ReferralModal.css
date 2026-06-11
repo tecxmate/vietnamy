@@ -119,7 +119,7 @@
     background: var(--primary-color);
     color: #1A1A1A;
     font-size: 13px;
-    box-shadow: 0 3px 0 #B03E2D;
+    box-shadow: 0 3px 0 var(--cta-edge);
 }
 
 .copy-btn.copied {

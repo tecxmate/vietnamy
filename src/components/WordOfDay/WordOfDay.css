@@ -1,0 +1,78 @@
+/* Word-of-the-day magazine cover hero — in-app, fluid width (up to the 480px
+   app shell), built on the Tạp Chí theme tokens. Renders only under the
+   magazine theme, so --tc-* tokens are always present. */
+
+/* swipeable deck */
+.wod-wrap { padding-top: 14px; }
+.wod-head { display: flex; align-items: center; gap: 6px; padding: 0 16px; margin-bottom: 10px; }
+.wod-head span {
+  font-size: 13px; font-weight: 800; letter-spacing: 0.04em;
+  text-transform: uppercase; color: var(--text-muted);
+}
+.wod-deck {
+  display: flex;
+  align-items: stretch;
+  gap: 14px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding: 0 14px 22px;       /* room for the card's offset drop-shadow */
+  scroll-padding: 0 14px;
+}
+.wod-deck::-webkit-scrollbar { display: none; }
+.wod-deck { scrollbar-width: none; }
+
+/* pagination dots */
+.wod-dots { display: flex; justify-content: center; gap: 7px; margin: 2px 0 4px; }
+.wod-dots button {
+  width: 7px; height: 7px; padding: 0; border: none; border-radius: 50%;
+  background: var(--tc-paper-line); cursor: pointer; transition: width 0.2s, background 0.2s;
+}
+.wod-dots button.on { width: 20px; border-radius: 4px; background: var(--tc-pink); }
+
+.wod {
+  position: relative;
+  flex: 0 0 86%;
+  scroll-snap-align: center;
+  border-radius: 20px;
+  background: var(--tc-pink);
+  color: #fff;
+  padding: 18px 20px 22px;
+  overflow: hidden;
+  box-shadow: 0 14px 0 -4px var(--tc-pink-dk);
+  font-family: var(--font-sans);
+  cursor: pointer;
+}
+.wod .halftone {
+  position: absolute; inset: 0; opacity: 0.16; pointer-events: none;
+  background-image: radial-gradient(#fff 1.4px, transparent 1.6px);
+  background-size: 11px 11px;
+}
+.wod .burst {
+  position: absolute; right: -26px; top: -26px; width: 120px; height: 120px; border-radius: 50%;
+  background: repeating-conic-gradient(from 0deg, var(--tc-yellow) 0 9deg, transparent 9deg 18deg);
+  opacity: 0.85;
+}
+.wod .word {
+  position: relative; font-family: var(--tc-finesse);
+  font-size: clamp(56px, 19vw, 92px); line-height: 0.9; letter-spacing: -0.01em;
+  margin: 8px 0 0; color: var(--tc-cream);
+}
+.wod .word .tone { color: var(--tc-yellow); }
+.wod .gloss { position: relative; font-family: var(--tc-finesse); font-size: 23px; margin-top: 12px; padding-right: 56px; color: #fff; }
+.wod .gloss em { color: var(--tc-yellow); font-style: normal; }
+.wod .listen {
+  position: absolute; right: 18px; bottom: 18px; z-index: 2;
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 46px; height: 46px; padding: 0; border-radius: 50%;
+  background: var(--tc-yellow); color: var(--tc-ink); box-shadow: 0 4px 0 var(--tc-yellow-dk);
+  border: none; cursor: pointer;
+}
+.wod .listen:active { transform: translateY(2px); box-shadow: 0 2px 0 var(--tc-yellow-dk); }
+.wod .listen svg { width: 20px; height: 20px; }
+.wod .tag2 {
+  position: absolute; right: 18px; bottom: 18px; display: flex; align-items: center; gap: 5px;
+  color: #fff; font-size: 9px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.9;
+}
+.wod .plus { display: inline-grid; place-items: center; width: 14px; height: 14px; border-radius: 50%; border: 1.6px solid currentColor; }
+.wod .plus::before { content: '+'; font-size: 10px; font-weight: 700; line-height: 1; }

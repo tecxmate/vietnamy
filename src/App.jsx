@@ -105,6 +105,7 @@ const GrammarUnitLesson = lazy(() => import('./pages/GrammarUnitLesson'));
 const UnitTest = lazy(() => import('./pages/UnitTest'));
 const PrivacyPolicy = lazy(() => import('./pages/Legal/PrivacyPolicy'));
 const TermsOfService = lazy(() => import('./pages/Legal/TermsOfService'));
+const TapChiShowcase = lazy(() => import('./pages/Design/TapChiShowcase'));
 
 const KinshipFoundation = lazy(() => import('./pages/Practice/KinshipFoundation'));
 const Pronouns1 = lazy(() => import('./pages/Practice/Pronouns1'));
@@ -275,6 +276,16 @@ function StudentApp({ initialTab = 'study' }) {
     setPendingDictInput(text);
     setActiveTab('dictionary');
   };
+
+  // Deep-link a dictionary lookup (e.g. tapping a word-of-day card) from nav state.
+  React.useEffect(() => {
+    if (location.state?.dictInput) {
+      updateUserProfile({ dictMode: 'all' });
+      setPendingDictInput(location.state.dictInput);
+      setActiveTab('dictionary');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location.state?.dictInput]);
 
   const [pendingLibraryArticle, setPendingLibraryArticle] = useState(null);
   const [pendingVocabDeck, setPendingVocabDeck] = useState(null);
@@ -453,6 +464,9 @@ function AppRoutes() {
           <Route path="/practice/vision-verbs" element={<div className="mobile-app-wrapper"><VisionVerbs /></div>} />
           <Route path="/practice/prepositions" element={<div className="mobile-app-wrapper"><Prepositions /></div>} />
           <Route path="/practice/flashcards" element={<Navigate to="/practice" replace />} />
+
+          {/* Design showcase (Tạp Chí — Thanh âm Hà Nội) */}
+          <Route path="/design/tap-chi" element={<TapChiShowcase />} />
 
           {/* Legal Routes */}
           <Route path="/privacy" element={<div className="mobile-app-wrapper"><PrivacyPolicy /></div>} />

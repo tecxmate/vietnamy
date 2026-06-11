@@ -18,6 +18,9 @@
   --primary-color: #F26B5A;
   /* Warm coral — pastel red that bridges to orange accents */
   --primary-color-hover: #D9523F;
+  /* 3D bottom edge for primary CTA buttons — single source of truth so the
+     coral "drop" stays in sync with the button face (and themes can recolor it) */
+  --cta-edge: #B03E2D;
   --secondary-color: #118AB2;
   --success-color: #06D6A0;
   --danger-color: #EF476F;
@@ -278,12 +281,12 @@ button.primary {
   background-color: var(--primary-color);
   color: #FFFFFF;
   /* White text on coral for contrast */
-  box-shadow: 0 4px 0 #B03E2D;
-  /* 3D effect, darker coral shadow */
+  box-shadow: 0 4px 0 var(--cta-edge);
+  /* 3D effect, edge color from --cta-edge */
 }
 
 button.primary:active {
-  box-shadow: 0 0 0 #B03E2D;
+  box-shadow: 0 0 0 var(--cta-edge);
   transform: translateY(4px);
 }
 

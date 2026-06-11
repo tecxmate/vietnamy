@@ -35,6 +35,7 @@ const BottomNav = ({ activeTab, setActiveTab, onPreloadTab, tabs: allowedTabs, s
                 {tabs.map(tab => (
                     <button
                         key={tab.id}
+                        data-tab={tab.id}
                         className={`nav-item ${activeTab === tab.id ? 'active' : ''}`}
                         onPointerEnter={() => onPreloadTab?.(tab.id)}
                         onPointerDown={() => onPreloadTab?.(tab.id)}

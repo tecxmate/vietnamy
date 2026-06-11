@@ -196,11 +196,11 @@
 .practice-action-btn.primary {
     background-color: var(--primary-color);
     color: #FFFFFF;
-    box-shadow: 0 4px 0 #B03E2D;
+    box-shadow: 0 4px 0 var(--cta-edge);
 }
 
 .practice-action-btn.primary:active {
-    box-shadow: 0 0 0 #B03E2D;
+    box-shadow: 0 0 0 var(--cta-edge);
     transform: translateY(4px);
 }
 
