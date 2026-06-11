@@ -22,7 +22,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@auth/express": "^0.12.2",
     "@lottiefiles/dotlottie-react": "^0.19.4",
+    "@neondatabase/serverless": "^1.0.2",
     "@supabase/supabase-js": "^2.99.3",
     "@vercel/blob": "^2.4.0",
     "better-sqlite3": "^12.6.2",
@@ -35,7 +37,8 @@
     "react-dom": "^19.2.0",
     "react-router-dom": "^6.30.3",
     "snd-lib": "^1.2.4",
-    "tesseract.js": "^7.0.0"
+    "tesseract.js": "^7.0.0",
+    "ws": "^8.20.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",

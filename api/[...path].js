@@ -1,13 +1,12 @@
 import crypto from 'crypto';
 import express from 'express';
+import { maybeMountAuthJs } from '../server/authJsRoutes.js';
 import {
     getMessageScenario,
     listMessageScenarios,
     renderEngagementMessage,
 } from '../server/engagementMessages.js';
 import {
-    buildTrackingUrls,
-    createMessageInstanceId,
     getMessageEngagementStats,
     recordMessageEvent,
     selectMessageVariant,
@@ -36,10 +35,13 @@ import {
     markNotificationsRead,
     recordPushEvent,
 } from '../server/opsStore.js';
+import { mountSyncRoutes } from '../server/syncRoutes.js';
 
 const app = express();
 
 app.use(express.json({ limit: '1mb' }));
+
+await maybeMountAuthJs(app);
 
 const MAIL_ADMIN_TOKEN = process.env.MAIL_ADMIN_TOKEN || '';
 const MAIL_ADMIN_ALLOW_LOCAL = process.env.MAIL_ADMIN_ALLOW_LOCAL === 'true';
@@ -89,6 +91,8 @@ async function requireAuthenticatedUserId(req, res) {
     res.status(401).json({ error: 'authenticated Supabase user required' });
     return null;
 }
+
+mountSyncRoutes(app, { requireAuthenticatedUserId });
 
 function compactMetadata(value) {
     if (!value || typeof value !== 'object' || Array.isArray(value)) return {};

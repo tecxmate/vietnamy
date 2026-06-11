@@ -4,9 +4,10 @@ import cors from 'cors';
 import crypto from 'crypto';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
+import { existsSync, mkdirSync, readFileSync } from 'fs';
 import { Converter } from 'opencc-js';
 import { put as blobPut } from '@vercel/blob';
+import { maybeMountAuthJs } from './authJsRoutes.js';
 import {
     getMessageScenario,
     listMessageScenarios,
@@ -45,6 +46,7 @@ import {
     upsertPushSubscription,
 } from './opsStore.js';
 import { isR2Configured, putR2Object } from './r2Storage.js';
+import { mountSyncRoutes } from './syncRoutes.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT_DIR = join(__dirname, '..');
@@ -72,7 +74,10 @@ const PORT = process.env.PORT || 3001;
 app.use(cors());
 app.use(express.json({ limit: '1mb' }));
 
-// Mascot art upload → Vercel Blob (local-dev parity with api/mascot-upload.js).
+await maybeMountAuthJs(app);
+
+// Mascot art upload → Vercel Blob by default; R2 is available behind
+// MASCOT_STORAGE_PROVIDER=r2 for the backend migration.
 const MASCOT_BLOB_TYPES = { svg: 'image/svg+xml', gif: 'image/gif', lottie: 'application/json', json: 'application/json' };
 const FEEDBACK_SCREENSHOT_TYPES = new Set(['image/jpeg', 'image/png', 'image/webp']);
 
@@ -83,13 +88,28 @@ function feedbackScreenshotExt(type) {
 }
 
 app.post('/api/mascot-upload', express.raw({ type: '*/*', limit: '6mb' }), async (req, res) => {
-    if (!process.env.BLOB_READ_WRITE_TOKEN) {
-        return res.status(500).json({ error: 'Blob storage is not configured (missing BLOB_READ_WRITE_TOKEN).' });
-    }
     try {
         const type = String(req.query.type || 'svg');
         const filename = String(req.query.filename || 'asset').replace(/[^\w.-]/g, '_');
         if (!req.body || !req.body.length) return res.status(400).json({ error: 'Empty upload.' });
+
+        if ((process.env.MASCOT_STORAGE_PROVIDER || 'blob').toLowerCase() === 'r2') {
+            if (!isR2Configured()) {
+                return res.status(500).json({ error: 'R2 storage is not configured.' });
+            }
+            const key = `mascot/${Date.now()}-${filename}`;
+            const upload = await putR2Object({
+                bucket: process.env.R2_MASCOT_BUCKET || process.env.R2_BUCKET || process.env.TTS_BUCKET || 'tts-cache',
+                key,
+                body: req.body,
+                contentType: MASCOT_BLOB_TYPES[type] || 'application/octet-stream',
+            });
+            return res.json({ url: upload.url, provider: upload.provider, key });
+        }
+
+        if (!process.env.BLOB_READ_WRITE_TOKEN) {
+            return res.status(500).json({ error: 'Blob storage is not configured (missing BLOB_READ_WRITE_TOKEN).' });
+        }
         const blob = await blobPut(`mascot/${Date.now()}-${filename}`, req.body, {
             access: 'public',
             contentType: MASCOT_BLOB_TYPES[type] || 'application/octet-stream',
@@ -230,6 +250,8 @@ async function requireAuthenticatedUserId(req, res) {
     res.status(401).json({ error: 'authenticated Supabase user required' });
     return null;
 }
+
+mountSyncRoutes(app, { requireAuthenticatedUserId });
 
 function mailRateLimitKey(req, email, action) {
     return `mail:${action}:${email || requestIp(req)}`;
@@ -436,7 +458,9 @@ function safeRedirectUrl(value) {
     try {
         const parsed = new URL(target);
         if (parsed.protocol === 'http:' || parsed.protocol === 'https:') return parsed.toString();
-    } catch {}
+    } catch {
+        return PUBLIC_BASE_URL;
+    }
     return PUBLIC_BASE_URL;
 }
 
@@ -1539,10 +1563,6 @@ function supabaseTtsPublicUrl(key) {
 function r2TtsPublicUrl(key) {
     if (!R2_PUBLIC_BASE_URL) return '';
     return `${R2_PUBLIC_BASE_URL}/${encodeObjectKey(key)}`;
-}
-
-function ttsPublicUrl(key) {
-    return R2_PRIMARY && R2_PUBLIC_BASE_URL ? r2TtsPublicUrl(key) : supabaseTtsPublicUrl(key);
 }
 
 function ttsContentTypeForKey(key) {

@@ -2,6 +2,10 @@ import { supabase } from './supabase';
 
 export const PROGRESS_CHANGED_EVENT = 'vnme-progress-changed';
 
+const CLOUD_SYNC_PROVIDER = (import.meta.env.VITE_CLOUD_SYNC_PROVIDER || 'supabase').toLowerCase();
+const CLOUD_SYNC_DUAL_WRITE = import.meta.env.VITE_CLOUD_SYNC_DUAL_WRITE === 'true';
+const API_SYNC_PRIMARY = CLOUD_SYNC_PROVIDER === 'api';
+
 const SYNC_KEYS = [
   'vietnamy_dong',
   'vietnamy_progress',
@@ -71,6 +75,48 @@ function collectLocalData() {
   return data;
 }
 
+async function getCloudAccessToken() {
+  if (!supabase) return '';
+  const { data } = await supabase.auth.getSession();
+  return data?.session?.access_token || '';
+}
+
+async function cloudApi(path, options = {}) {
+  const token = await getCloudAccessToken();
+  if (!token) throw new Error('Cloud sync requires an authenticated session.');
+  const response = await fetch(path, {
+    ...options,
+    headers: {
+      'Content-Type': 'application/json',
+      ...(options.headers || {}),
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  if (!response.ok) {
+    const detail = await response.text().catch(() => '');
+    throw new Error(`Cloud sync API failed (${response.status}): ${detail.slice(0, 200)}`);
+  }
+  return response.json();
+}
+
+async function bestEffortCloudApi(path, options) {
+  try {
+    return await cloudApi(path, options);
+  } catch (err) {
+    console.warn('Neon dual-write sync failed:', err?.message || err);
+    return null;
+  }
+}
+
+function applySavedWordRows(rows) {
+  if (!Array.isArray(rows) || rows.length === 0) return false;
+  const lessonWords = rows.filter(row => row.source === 'lesson').map(row => row.word_id || row.wordId).filter(Boolean);
+  const dictionaryWords = rows.filter(row => row.source === 'dictionary').map(row => row.word_id || row.wordId).filter(Boolean);
+  if (lessonWords.length > 0) localStorage.setItem('vnme_saved_words', JSON.stringify([...new Set(lessonWords)]));
+  if (dictionaryWords.length > 0) localStorage.setItem('vnme_dict_saved_words', JSON.stringify([...new Set(dictionaryWords)]));
+  return lessonWords.length > 0 || dictionaryWords.length > 0;
+}
+
 export function getProfileFromAuthUser(user, cloudProfile = null) {
   if (!user) return null;
   const metadata = user.user_metadata || {};
@@ -86,6 +132,29 @@ export function getProfileFromAuthUser(user, cloudProfile = null) {
 }
 
 export async function ensureUserProfile(user) {
+  if (API_SYNC_PRIMARY && user?.id) {
+    const localProfile = readLocalProfile();
+    const metadata = user.user_metadata || {};
+    const payload = {
+      email: user.email || '',
+      full_name: (localProfile.name && localProfile.name !== 'Bạn') ? localProfile.name : (metadata.full_name || metadata.name || ''),
+      avatar_url: metadata.avatar_url || '',
+      ui_language: localStorage.getItem('vnme_app_language') || localProfile.nativeLang || 'en',
+      dialect: localProfile.dialect || 'north',
+      onboarding_completed: localStorage.getItem('vnme_onboarding_completed') === 'true',
+    };
+    try {
+      const result = await cloudApi('/api/sync/profile', {
+        method: 'PUT',
+        body: JSON.stringify({ profile: payload }),
+      });
+      return getProfileFromAuthUser(user, result.profile);
+    } catch (err) {
+      console.error('Failed to create API user profile:', err);
+      return getProfileFromAuthUser(user);
+    }
+  }
+
   if (!supabase || !user?.id) return getProfileFromAuthUser(user);
   const localProfile = readLocalProfile();
   const metadata = user.user_metadata || {};
@@ -111,6 +180,12 @@ export async function ensureUserProfile(user) {
       console.error('Failed to create user profile:', error.message);
       return getProfileFromAuthUser(user);
     }
+    if (CLOUD_SYNC_DUAL_WRITE) {
+      bestEffortCloudApi('/api/sync/profile', {
+        method: 'PUT',
+        body: JSON.stringify({ profile: payload }),
+      });
+    }
     return getProfileFromAuthUser(user, data);
   } catch (err) {
     console.error('Failed to create user profile:', err);
@@ -119,7 +194,7 @@ export async function ensureUserProfile(user) {
 }
 
 export async function saveUserProfileToCloud(userId, userProfile = {}) {
-  if (!supabase || !userId) return;
+  if (!userId) return;
   try {
     const payload = {
       id: userId,
@@ -130,16 +205,38 @@ export async function saveUserProfileToCloud(userId, userProfile = {}) {
     if (userProfile.name && userProfile.name !== 'Bạn') {
       payload.full_name = userProfile.name;
     }
+    if (API_SYNC_PRIMARY) {
+      await cloudApi('/api/sync/profile', {
+        method: 'PUT',
+        body: JSON.stringify({ profile: payload }),
+      });
+      return;
+    }
+    if (!supabase) return;
     await supabase.from('profiles').upsert(payload, { onConflict: 'id' });
+    if (CLOUD_SYNC_DUAL_WRITE) {
+      bestEffortCloudApi('/api/sync/profile', {
+        method: 'PUT',
+        body: JSON.stringify({ profile: payload }),
+      });
+    }
   } catch (err) {
     console.error('Failed to save profile to cloud:', err);
   }
 }
 
 export async function syncSavedWordsToCloud(userId) {
-  if (!supabase || !userId) return;
+  if (!userId) return;
   try {
     const rows = collectSavedWordRows(userId);
+    if (API_SYNC_PRIMARY) {
+      await cloudApi('/api/sync/saved-words', {
+        method: 'PUT',
+        body: JSON.stringify({ rows }),
+      });
+      return;
+    }
+    if (!supabase) return;
     const sources = ['lesson', 'dictionary'];
     const { error: deleteError } = await supabase
       .from('saved_words')
@@ -156,14 +253,25 @@ export async function syncSavedWordsToCloud(userId) {
       const { error: insertError } = await supabase.from('saved_words').insert(rows);
       if (insertError) console.error('Failed to save saved words to cloud:', insertError.message);
     }
+    if (CLOUD_SYNC_DUAL_WRITE) {
+      bestEffortCloudApi('/api/sync/saved-words', {
+        method: 'PUT',
+        body: JSON.stringify({ rows }),
+      });
+    }
   } catch (err) {
     console.error('Failed to sync saved words to cloud:', err);
   }
 }
 
 export async function loadSavedWordsFromCloud(userId) {
-  if (!supabase || !userId) return false;
+  if (!userId) return false;
   try {
+    if (API_SYNC_PRIMARY) {
+      const result = await cloudApi('/api/sync/saved-words');
+      return applySavedWordRows(result.rows);
+    }
+    if (!supabase) return false;
     const { data, error } = await supabase
       .from('saved_words')
       .select('word_id, source')
@@ -175,11 +283,7 @@ export async function loadSavedWordsFromCloud(userId) {
     }
     if (!Array.isArray(data) || data.length === 0) return false;
 
-    const lessonWords = data.filter(row => row.source === 'lesson').map(row => row.word_id);
-    const dictionaryWords = data.filter(row => row.source === 'dictionary').map(row => row.word_id);
-    if (lessonWords.length > 0) localStorage.setItem('vnme_saved_words', JSON.stringify([...new Set(lessonWords)]));
-    if (dictionaryWords.length > 0) localStorage.setItem('vnme_dict_saved_words', JSON.stringify([...new Set(dictionaryWords)]));
-    return true;
+    return applySavedWordRows(data);
   } catch (err) {
     console.error('Failed to load saved words from cloud:', err);
     return false;
@@ -187,29 +291,57 @@ export async function loadSavedWordsFromCloud(userId) {
 }
 
 export async function saveProgressToCloud(userId) {
-  if (!supabase || !userId) return;
+  if (!userId) return;
   try {
     const data = collectLocalData();
+    const savedWords = collectSavedWordRows(userId);
+    if (API_SYNC_PRIMARY) {
+      await cloudApi('/api/sync/progress', {
+        method: 'PUT',
+        body: JSON.stringify({ data, savedWords }),
+      });
+      return;
+    }
+    if (!supabase) return;
     await supabase.from('user_progress').upsert({
       user_id: userId,
       data,
       updated_at: new Date().toISOString(),
     });
     await syncSavedWordsToCloud(userId);
+    if (CLOUD_SYNC_DUAL_WRITE) {
+      bestEffortCloudApi('/api/sync/progress', {
+        method: 'PUT',
+        body: JSON.stringify({ data, savedWords }),
+      });
+    }
   } catch (err) {
     console.error('Failed to save progress to cloud:', err);
   }
 }
 
 export function debouncedSaveProgress(userId) {
-  if (!supabase || !userId) return;
+  if (!userId || (!supabase && !API_SYNC_PRIMARY)) return;
   clearTimeout(debounceTimer);
   debounceTimer = setTimeout(() => saveProgressToCloud(userId), 2000);
 }
 
 export async function loadProgressFromCloud(userId) {
-  if (!supabase || !userId) return false;
+  if (!userId) return false;
   try {
+    if (API_SYNC_PRIMARY) {
+      const result = await cloudApi('/api/sync/progress');
+      if (result?.data) {
+        for (const [key, val] of Object.entries(result.data)) {
+          if (SYNC_KEYS.includes(key) && val !== null && val !== undefined) {
+            localStorage.setItem(key, val);
+          }
+        }
+      }
+      applySavedWordRows(result?.savedWords);
+      return Boolean(result?.data || result?.savedWords?.length);
+    }
+    if (!supabase) return false;
     const { data, error } = await supabase
       .from('user_progress')
       .select('data')

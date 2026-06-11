@@ -4,6 +4,7 @@ import { createClient } from '@supabase/supabase-js';
 import { existsSync, mkdirSync } from 'fs';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
+import * as neonOps from './neonOpsStore.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const OPS_DB_PATH = process.env.APP_OPS_DB_PATH || join(__dirname, 'databases', 'app_ops.db');
@@ -41,6 +42,10 @@ function boolInt(value) {
 
 function useSupabaseOps() {
     return OPS_STORE_PROVIDER === 'supabase' && Boolean(SUPABASE_URL && SUPABASE_SERVICE_ROLE_KEY);
+}
+
+function useNeonOps() {
+    return neonOps.useNeonOpsStore(OPS_STORE_PROVIDER);
 }
 
 function getSupabaseOps() {
@@ -185,6 +190,7 @@ function initOpsSchema(db) {
 }
 
 export async function recordEmailLog(entry = {}) {
+    if (useNeonOps()) return neonOps.recordEmailLog(entry);
     const supabase = getSupabaseOps();
     if (supabase) {
         const id = entry.id || crypto.randomUUID();
@@ -225,6 +231,7 @@ export async function recordEmailLog(entry = {}) {
 }
 
 export async function getEmailLogStats() {
+    if (useNeonOps()) return neonOps.getEmailLogStats();
     const supabase = getSupabaseOps();
     if (supabase) {
         const { data: rows = [], error } = await supabase
@@ -333,6 +340,7 @@ function buildEmailStatsFromRows(rows) {
 }
 
 export async function recordMessageEvent(entry = {}) {
+    if (useNeonOps()) return neonOps.recordMessageEvent(entry);
     const supabase = getSupabaseOps();
     if (supabase) {
         const id = entry.id || crypto.randomUUID();
@@ -394,6 +402,7 @@ export async function recordMessageEvent(entry = {}) {
 }
 
 export async function listMessageEvents({ scenarioId, channel } = {}) {
+    if (useNeonOps()) return neonOps.listMessageEvents({ scenarioId, channel });
     const supabase = getSupabaseOps();
     if (supabase) {
         let query = supabase
@@ -444,6 +453,7 @@ export async function listMessageEvents({ scenarioId, channel } = {}) {
 }
 
 export async function upsertPushSubscription({ id, userId, userName, platform, subscription } = {}) {
+    if (useNeonOps()) return neonOps.upsertPushSubscription({ id, userId, userName, platform, subscription });
     const supabase = getSupabaseOps();
     if (supabase) {
         const now = nowIso();
@@ -509,6 +519,7 @@ export async function upsertPushSubscription({ id, userId, userName, platform, s
 }
 
 export async function listPushSubscriptions({ userId, activeOnly = true } = {}) {
+    if (useNeonOps()) return neonOps.listPushSubscriptions({ userId, activeOnly });
     const supabase = getSupabaseOps();
     if (supabase) {
         let query = supabase
@@ -557,6 +568,7 @@ export async function listPushSubscriptions({ userId, activeOnly = true } = {}) 
 }
 
 export async function updatePushSubscriptionStats(id, { sentDelta = 0, clickedDelta = 0, active } = {}) {
+    if (useNeonOps()) return neonOps.updatePushSubscriptionStats(id, { sentDelta, clickedDelta, active });
     const supabase = getSupabaseOps();
     if (supabase) {
         const { data: existing, error: readError } = await supabase
@@ -591,6 +603,7 @@ export async function updatePushSubscriptionStats(id, { sentDelta = 0, clickedDe
 }
 
 export async function recordPushEvent(entry = {}) {
+    if (useNeonOps()) return neonOps.recordPushEvent(entry);
     const supabase = getSupabaseOps();
     if (supabase) {
         const id = entry.id || crypto.randomUUID();
@@ -633,6 +646,7 @@ export async function recordPushEvent(entry = {}) {
 }
 
 export async function getPushStats() {
+    if (useNeonOps()) return neonOps.getPushStats();
     const supabase = getSupabaseOps();
     if (supabase) {
         const { count: activeSubscriptions, error: countError } = await supabase
@@ -690,6 +704,7 @@ function buildPushStatsFromRows(rows, activeSubscriptions) {
 }
 
 export async function createFeedbackReport(report = {}) {
+    if (useNeonOps()) return neonOps.createFeedbackReport(report);
     const supabase = getSupabaseOps();
     if (supabase) {
         const id = report.id || crypto.randomUUID();
@@ -748,6 +763,7 @@ export async function createFeedbackReport(report = {}) {
 }
 
 export async function getFeedbackStats() {
+    if (useNeonOps()) return neonOps.getFeedbackStats();
     const supabase = getSupabaseOps();
     if (supabase) {
         const { data: rows = [], error } = await supabase
@@ -821,6 +837,7 @@ export async function getFeedbackStats() {
 }
 
 export async function createNotification(notification = {}) {
+    if (useNeonOps()) return neonOps.createNotification(notification);
     const supabase = getSupabaseOps();
     if (supabase) {
         const id = notification.id || crypto.randomUUID();
@@ -863,6 +880,7 @@ export async function createNotification(notification = {}) {
 }
 
 export async function listNotifications({ recipientId = 'anonymous', unreadOnly = false, limit = 20 } = {}) {
+    if (useNeonOps()) return neonOps.listNotifications({ recipientId, unreadOnly, limit });
     const supabase = getSupabaseOps();
     if (supabase) {
         const cappedLimit = Math.min(Math.max(Number(limit) || 20, 1), 50);
@@ -924,6 +942,7 @@ export async function listNotifications({ recipientId = 'anonymous', unreadOnly 
 }
 
 export async function markNotificationsRead({ recipientId = 'anonymous', ids = [], markAllRead = false } = {}) {
+    if (useNeonOps()) return neonOps.markNotificationsRead({ recipientId, ids, markAllRead });
     const supabase = getSupabaseOps();
     if (supabase) {
         if (markAllRead) {

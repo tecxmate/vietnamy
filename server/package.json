@@ -8,9 +8,13 @@
         "dev": "node --watch server.js"
     },
     "dependencies": {
+        "@auth/express": "^0.12.2",
+        "@neondatabase/serverless": "^1.0.2",
+        "@vercel/blob": "^2.4.0",
         "better-sqlite3": "^12.6.2",
         "cors": "^2.8.5",
         "express": "^4.19.2",
-        "web-push": "^3.6.7"
+        "web-push": "^3.6.7",
+        "ws": "^8.20.0"
     }
 }
