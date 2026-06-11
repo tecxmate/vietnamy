@@ -39,6 +39,25 @@ Use the paid Supabase month as migration insurance and an experiment lab, not as
 - Optional pgvector experiments are allowed only for rebuildable data, such as semantic dictionary or grammar-guide retrieval. Do not make embeddings source-of-truth app data.
 - Avoid new long-lived Edge Functions, complex Supabase Auth-coupled RLS, or new direct frontend `supabase-js` calls.
 
+## Portable pgvector Experiments for Vietnamy
+Use Supabase pgvector during the paid month as a temporary R&D lab for Vietnamese-learning features that can later move to Neon Postgres with pgvector. Embeddings are derived cache data: they must be rebuildable from curriculum, dictionary, grammar, conversation, and cultural-note source files.
+
+Priority feature order:
+
+1. Semantic search across vocabulary, grammar, lessons, dialogues, and cultural notes. A learner should be able to search by intent, such as "politely order food" or "goodbye to an older person", without needing exact lesson titles or dictionary wording.
+2. "Ask Vietnamy Tutor" as RAG over app-owned content only. The answer should retrieve cited curriculum chunks first, then explain from that context instead of acting like a generic chatbot.
+3. "Explain my mistake" for exercise feedback. Use the learner answer, expected answer, lesson node, grammar tags, and nearby examples to retrieve relevant explanations before generating feedback.
+4. "More examples like this" for grammar patterns, vocabulary, tone pairs, sentence frames, and conversation turns.
+5. Internal content QA for authors: find duplicate examples, thin grammar coverage, missing prerequisite explanations, and vocabulary that appears in exercises before it is taught.
+
+Guardrails:
+
+- Keep vector reads and writes behind server/API modules. Do not call Supabase vector search directly from React components.
+- Store source references with each embedding chunk so every learner-facing AI answer can cite the originating lesson, grammar unit, vocabulary item, or dialogue.
+- Start with search and retrieval quality before exposing an open-ended chatbot.
+- Keep SQL and schema portable to standard Postgres/pgvector so the same design can move to Neon.
+- Do not treat Supabase as the long-term vector dependency. The experiment succeeds only if the embeddings, schema, and retrieval code can be regenerated or pointed at Neon.
+
 ## Test Sequence
 1. Switch to the migration branch:
    ```bash

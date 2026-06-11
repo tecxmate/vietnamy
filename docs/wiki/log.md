@@ -213,3 +213,10 @@ attributed_to: [niko, codex]   belongs_to: [backend-vendor-migration, backups-re
 - Added npm commands: `db:apply:neon`, `db:export:supabase`, and `db:check:neon-parity`.
 - Updated the backend migration wiki to treat Supabase Pro as a one-month safety net and experiment lab, while avoiding new Supabase lock-in.
 - Pages: [backend-vendor-migration](topics/tech/backend-vendor-migration.md), [backups-recovery](topics/tech/backups-recovery.md).
+
+## [2026-06-11] decision | Portable pgvector experiments for Vietnamy learning UX
+attributed_to: [niko, codex]   belongs_to: [backend-vendor-migration, grammar-system, curriculum-paths]
+- Supabase pgvector can be used during the paid month as a temporary experiment lab, but embeddings stay rebuildable derived data and must remain portable to Neon Postgres/pgvector.
+- Prioritized app uses: semantic search, "Ask Vietnamy Tutor" RAG over app-owned content, mistake explanations, "more examples like this", and internal content QA.
+- Guardrail: no broad open-ended chatbot or direct frontend Supabase vector calls until retrieval quality, source references, and the Neon exit path are proven.
+- Pages: [backend-vendor-migration](topics/tech/backend-vendor-migration.md).
