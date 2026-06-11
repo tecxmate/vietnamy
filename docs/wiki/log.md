@@ -206,3 +206,10 @@ attributed_to: [niko, codex]   belongs_to: [backend-vendor-migration, backend-op
 - Planned sequence: run Neon schema, backfill Supabase tables, dual-write progress, move ops/progress reads to Neon, migrate TTS via the existing script, flip R2 uploads, then complete Auth.js cutover and user-ID linking.
 - Supabase can be retired only after runtime code no longer depends on `supabase.auth`, Supabase bearer validation, Supabase Storage URLs, or Supabase env vars.
 - Pages: [backend-vendor-migration](topics/tech/backend-vendor-migration.md), [backend-ops-store](topics/tech/backend-ops-store.md), [bucket-storage](topics/tech/bucket-storage.md).
+
+## [2026-06-11] ingest | Supabase Pro month turned into migration tooling
+attributed_to: [niko, codex]   belongs_to: [backend-vendor-migration, backups-recovery]
+- Added portable Supabase → Neon export and parity-check scripts: `scripts/export-supabase-neon-sql.mjs`, `scripts/check-neon-parity.mjs`, and shared table map `scripts/backend-migration-tables.mjs`.
+- Added npm commands: `db:apply:neon`, `db:export:supabase`, and `db:check:neon-parity`.
+- Updated the backend migration wiki to treat Supabase Pro as a one-month safety net and experiment lab, while avoiding new Supabase lock-in.
+- Pages: [backend-vendor-migration](topics/tech/backend-vendor-migration.md), [backups-recovery](topics/tech/backups-recovery.md).

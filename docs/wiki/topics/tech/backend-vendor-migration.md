@@ -29,6 +29,16 @@ Vietnamy should retire Supabase only after Neon owns relational app data, R2 own
 - TTS cache migration is handled by the existing TTS migration script path; do not duplicate that logic in the backend vendor migration.
 - Auth.js is scaffolded behind `AUTH_PROVIDER=authjs`, but the client auth flow and API auth verification still need a dedicated implementation pass before Supabase Auth can be retired.
 
+## Supabase Pro ROI During Migration
+Use the paid Supabase month as migration insurance and an experiment lab, not as a reason to deepen platform lock-in.
+
+- Before each risky bulk operation, confirm a recent Supabase database backup exists in the dashboard.
+- Remember backups protect database rows, not Storage objects. Keep TTS/R2 mirror outputs separate.
+- Use Supabase Pro Storage access to complete the TTS bucket extraction while reads/listing are unlocked.
+- Use branching only for portable Postgres schema experiments. Export the winning SQL and apply it to Neon.
+- Optional pgvector experiments are allowed only for rebuildable data, such as semantic dictionary or grammar-guide retrieval. Do not make embeddings source-of-truth app data.
+- Avoid new long-lived Edge Functions, complex Supabase Auth-coupled RLS, or new direct frontend `supabase-js` calls.
+
 ## Test Sequence
 1. Switch to the migration branch:
    ```bash
@@ -39,10 +49,15 @@ Vietnamy should retire Supabase only after Neon owns relational app data, R2 own
    ```
 2. Apply the Neon schema:
    ```bash
-   psql "$DATABASE_URL" -f neon/migrations/202606110001_backend_foundation.sql
+   npm run db:apply:neon
    ```
    If `psql` is unavailable, paste the SQL into the Neon SQL editor.
-3. Baseline safe mode:
+3. Export Supabase relational data as portable Neon SQL:
+   ```bash
+   npm run db:export:supabase -- --out=backups/supabase-neon-export.sql
+   ```
+   This exports app-owned tables only. It does not migrate TTS Storage; use the existing TTS script for that.
+4. Baseline safe mode:
    ```env
    AUTH_PROVIDER=supabase
    VITE_CLOUD_SYNC_PROVIDER=supabase
@@ -51,27 +66,32 @@ Vietnamy should retire Supabase only after Neon owns relational app data, R2 own
    MASCOT_STORAGE_PROVIDER=blob
    DATABASE_URL=
    ```
-4. Neon warm-up mode:
+5. Neon warm-up mode:
    ```env
    DATABASE_URL=...
    VITE_CLOUD_SYNC_PROVIDER=supabase
    VITE_CLOUD_SYNC_DUAL_WRITE=true
    ```
    Complete lessons/save words, then verify Neon `profiles`, `user_progress`, and `saved_words`.
-5. Neon primary progress sync:
+6. Check Supabase/Neon parity:
+   ```bash
+   npm run db:check:neon-parity
+   ```
+   Counts should match before reads move to Neon. Latest timestamps are printed as drift clues.
+7. Neon primary progress sync:
    ```env
    DATABASE_URL=...
    VITE_CLOUD_SYNC_PROVIDER=api
    VITE_CLOUD_SYNC_DUAL_WRITE=false
    ```
    This still authenticates API calls through Supabase bearer tokens during the migration.
-6. Neon ops store:
+8. Neon ops store:
    ```env
    DATABASE_URL=...
    OPS_STORE_PROVIDER=neon
    ```
    Verify feedback, notifications, push events, email logs, and message engagement rows land in Neon.
-7. R2 mascot/art uploads:
+9. R2 mascot/art uploads:
    ```env
    MASCOT_STORAGE_PROVIDER=r2
    R2_MASCOT_BUCKET=app-assets
@@ -90,6 +110,12 @@ Vietnamy should retire Supabase only after Neon owns relational app data, R2 own
    - `push_events`
    - `feedback_reports`
    - `notifications`
+   Use:
+   ```bash
+   npm run db:export:supabase -- --out=backups/supabase-neon-export.sql
+   psql "$DATABASE_URL" -f backups/supabase-neon-export.sql
+   npm run db:check:neon-parity
+   ```
 3. Keep Supabase user UUIDs as Neon text IDs for the first pass. This preserves profile/progress ownership while Supabase Auth is still active.
 4. Enable dual-write for progress sync:
    ```env
@@ -107,7 +133,7 @@ Vietnamy should retire Supabase only after Neon owns relational app data, R2 own
    VITE_CLOUD_SYNC_DUAL_WRITE=false
    ```
 8. Complete storage migration:
-   - Run the existing TTS cache migration script.
+   - Run the existing TTS cache migration script: `npm run tts:migrate:r2`.
    - Flip `TTS_STORAGE_PROVIDER=r2`.
    - Flip `MASCOT_STORAGE_PROVIDER=r2` when mascot uploads are verified.
 9. Implement the Auth.js cutover:
@@ -138,3 +164,4 @@ Supabase cannot be retired while any of these are true:
 ## History
 - 2026-06-10 — Supabase ops store and identity/progress sync landed as the intermediate backend.
 - 2026-06-11 — `infra/migrate-to-neon-r2` added Neon schema/runtime adapters, API sync, R2 mascot upload support, and guarded Auth.js scaffold.
+- 2026-06-11 — Added `db:export:supabase`, `db:check:neon-parity`, and `db:apply:neon` commands so the Supabase Pro month can be used as a controlled migration runway.

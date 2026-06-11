@@ -57,7 +57,7 @@ Everything outside the audio bucket lives in the GitHub repo (`tecxmate/vietnamy
 - The SQLite dictionaries (`server/databases/*.db`) — **NOT** in git; they're 100 MB+ and Niko keeps a local copy.
 
 ## What's NOT backed up (yet)
-- **User progress** in Supabase Postgres `user_progress` table. Supabase has its own daily snapshots; for stronger guarantees, a `pg_dump` cron should be added.
+- **User progress** in Supabase Postgres `user_progress` table. Supabase has its own daily snapshots; for stronger guarantees during the Neon migration, run `npm run db:export:supabase -- --out=backups/supabase-neon-export.sql` before risky bulk work.
 - **The `server/databases/` SQLite files**. They're not in git and not in any backup pipeline. If Niko's local copy is lost, the production version on Zeabur is the only remaining source — which is itself ephemeral if the Zeabur disk isn't persistent.
 
 ## Open questions

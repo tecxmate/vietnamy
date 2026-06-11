@@ -17,6 +17,9 @@
     "validate:curriculum": "node scripts/validate-curriculum.js",
     "validate:content": "node scripts/validate-content.mjs",
     "content:build": "node scripts/build-canonical.mjs && node scripts/build-roadmap-seed.mjs",
+    "db:apply:neon": "psql \"$DATABASE_URL\" -f neon/migrations/202606110001_backend_foundation.sql",
+    "db:check:neon-parity": "node scripts/check-neon-parity.mjs",
+    "db:export:supabase": "node scripts/export-supabase-neon-sql.mjs",
     "ops:export:postgres": "node scripts/export-app-ops-postgres.mjs",
     "tts:migrate:r2": "node scripts/migrate-tts-supabase-to-r2.mjs",
     "preview": "vite preview"
