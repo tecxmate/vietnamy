@@ -73,6 +73,14 @@ app.use(express.json({ limit: '1mb' }));
 
 // Mascot art upload → Vercel Blob (local-dev parity with api/mascot-upload.js).
 const MASCOT_BLOB_TYPES = { svg: 'image/svg+xml', gif: 'image/gif', lottie: 'application/json', json: 'application/json' };
+const FEEDBACK_SCREENSHOT_TYPES = new Set(['image/jpeg', 'image/png', 'image/webp']);
+
+function feedbackScreenshotExt(type) {
+    if (type === 'image/png') return 'png';
+    if (type === 'image/webp') return 'webp';
+    return 'jpg';
+}
+
 app.post('/api/mascot-upload', express.raw({ type: '*/*', limit: '6mb' }), async (req, res) => {
     if (!process.env.BLOB_READ_WRITE_TOKEN) {
         return res.status(500).json({ error: 'Blob storage is not configured (missing BLOB_READ_WRITE_TOKEN).' });
@@ -89,6 +97,35 @@ app.post('/api/mascot-upload', express.raw({ type: '*/*', limit: '6mb' }), async
         res.json({ url: blob.url });
     } catch (err) {
         res.status(500).json({ error: err?.message || 'Upload failed.' });
+    }
+});
+
+app.post('/api/feedback-screenshot', express.raw({ type: '*/*', limit: '5mb' }), async (req, res) => {
+    if (!isR2Configured()) {
+        return res.status(503).json({ error: 'R2 storage is not configured.' });
+    }
+
+    try {
+        const contentType = String(req.get('content-type') || 'image/jpeg').split(';')[0].toLowerCase();
+        if (!FEEDBACK_SCREENSHOT_TYPES.has(contentType)) {
+            return res.status(415).json({ error: 'Unsupported screenshot type.' });
+        }
+        if (!req.body || !req.body.length) {
+            return res.status(400).json({ error: 'Empty screenshot.' });
+        }
+
+        const day = new Date().toISOString().slice(0, 10);
+        const key = `feedback/${day}/${Date.now()}-${crypto.randomUUID()}.${feedbackScreenshotExt(contentType)}`;
+        const upload = await putR2Object({
+            bucket: process.env.R2_FEEDBACK_BUCKET || process.env.R2_APP_BUCKET || process.env.R2_MASCOT_BUCKET || process.env.R2_BUCKET || 'app-assets',
+            key,
+            body: req.body,
+            contentType,
+            cacheControl: 'private, max-age=604800',
+        });
+        res.json({ url: upload.url, provider: upload.provider, key });
+    } catch (err) {
+        res.status(500).json({ error: err?.message || 'Screenshot upload failed.' });
     }
 });
 
