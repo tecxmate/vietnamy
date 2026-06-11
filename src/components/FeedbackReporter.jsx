@@ -1,5 +1,5 @@
 import React from 'react';
-import { Bug, ImageOff, Loader2, Send, X } from 'lucide-react';
+import { Bug, Loader2, Send, X } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
@@ -17,11 +17,29 @@ function getViewport() {
   return `${Math.round(visual?.width || window.innerWidth)}x${Math.round(visual?.height || window.innerHeight)}`;
 }
 
+function getUiScale() {
+  return parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--ui-scale')) || 1;
+}
+
+function getCssPxVar(name) {
+  const value = getComputedStyle(document.documentElement).getPropertyValue(name);
+  return parseFloat(value) || 0;
+}
+
 function getViewportSize() {
   const visual = window.visualViewport;
+  const scale = getUiScale();
   return {
-    width: Math.round(visual?.width || window.innerWidth || 390),
-    height: Math.round(visual?.height || window.innerHeight || 844),
+    width: Math.round((visual?.width || window.innerWidth || 390) / scale),
+    height: Math.round((visual?.height || window.innerHeight || 844) / scale),
+  };
+}
+
+function eventPoint(event) {
+  const scale = getUiScale();
+  return {
+    x: event.clientX / scale - getCssPxVar('--app-viewport-offset-left'),
+    y: event.clientY / scale - getCssPxVar('--app-viewport-offset-top'),
   };
 }
 
@@ -70,15 +88,6 @@ function buildMetadata(language) {
   };
 }
 
-async function blobToDataUrl(blob) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = () => resolve(reader.result);
-    reader.onerror = reject;
-    reader.readAsDataURL(blob);
-  });
-}
-
 async function captureViewport() {
   const { default: html2canvas } = await import('html2canvas');
   const root = document.querySelector('.mobile-app-wrapper') || document.body;
@@ -103,10 +112,7 @@ async function captureViewport() {
 
   const blob = await new Promise(resolve => output.toBlob(resolve, 'image/jpeg', 0.78));
   if (!blob) throw new Error('Screenshot capture failed.');
-  return {
-    blob,
-    previewUrl: await blobToDataUrl(blob),
-  };
+  return { blob };
 }
 
 async function uploadScreenshot(blob) {
@@ -130,20 +136,17 @@ export default function FeedbackReporter() {
   const [description, setDescription] = React.useState('');
   const [captureState, setCaptureState] = React.useState('idle');
   const [screenshot, setScreenshot] = React.useState(null);
-  const [attachScreenshot, setAttachScreenshot] = React.useState(true);
   const [submitState, setSubmitState] = React.useState('idle');
   const [message, setMessage] = React.useState('');
   const [buttonPosition, setButtonPosition] = React.useState(readSavedButtonPosition);
   const [isDraggingButton, setIsDraggingButton] = React.useState(false);
-  const longPressRef = React.useRef(null);
   const lastShakeRef = React.useRef(0);
   const dragRef = React.useRef(null);
-  const suppressNextClickRef = React.useRef(false);
+  const buttonPositionRef = React.useRef(buttonPosition);
 
   const resetDraft = React.useCallback(() => {
     setDescription('');
     setScreenshot(null);
-    setAttachScreenshot(true);
     setCaptureState('idle');
     setSubmitState('idle');
     setMessage('');
@@ -155,13 +158,10 @@ export default function FeedbackReporter() {
     try {
       const shot = await captureViewport();
       setScreenshot(shot);
-      setAttachScreenshot(true);
       setCaptureState('ready');
-    } catch (error) {
+    } catch {
       setScreenshot(null);
-      setAttachScreenshot(false);
       setCaptureState('failed');
-      setMessage(error?.message || 'Screenshot unavailable. You can still submit the report.');
     }
   }, []);
 
@@ -172,10 +172,9 @@ export default function FeedbackReporter() {
     window.setTimeout(startCapture, 80);
   }, [isOpen, resetDraft, startCapture]);
 
-  const closeReporter = () => {
-    if (submitState === 'submitting') return;
+  const closeReporter = React.useCallback(() => {
     setIsOpen(false);
-  };
+  }, []);
 
   React.useEffect(() => {
     if (!SHAKE_ENABLED || isOpen) return undefined;
@@ -194,6 +193,19 @@ export default function FeedbackReporter() {
   }, [isOpen, openReporter]);
 
   React.useEffect(() => {
+    buttonPositionRef.current = buttonPosition;
+  }, [buttonPosition]);
+
+  React.useEffect(() => {
+    if (!isOpen) return undefined;
+    const handleKeyDown = event => {
+      if (event.key === 'Escape') closeReporter();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, closeReporter]);
+
+  React.useEffect(() => {
     const handleResize = () => {
       setButtonPosition(current => {
         const next = positionForEdge(current.edge, current.y);
@@ -210,71 +222,85 @@ export default function FeedbackReporter() {
   }, []);
 
   const handlePointerDown = event => {
-    window.clearTimeout(longPressRef.current);
+    if (event.button !== undefined && event.button !== 0) return;
+    const point = eventPoint(event);
+    const current = buttonPositionRef.current;
     dragRef.current = {
       pointerId: event.pointerId,
-      startX: event.clientX,
-      startY: event.clientY,
-      offsetX: event.clientX - buttonPosition.x,
-      offsetY: event.clientY - buttonPosition.y,
+      startX: point.x,
+      startY: point.y,
+      offsetX: point.x - current.x,
+      offsetY: point.y - current.y,
       moved: false,
     };
-    event.currentTarget.setPointerCapture?.(event.pointerId);
-    longPressRef.current = window.setTimeout(openReporter, 520);
+    setIsDraggingButton(false);
+    event.preventDefault();
   };
 
-  const clearLongPress = React.useCallback(() => {
-    window.clearTimeout(longPressRef.current);
-  }, []);
+  React.useEffect(() => {
+    const handlePointerMove = event => {
+      const drag = dragRef.current;
+      if (!drag || drag.pointerId !== event.pointerId) return;
+      const point = eventPoint(event);
+      const distance = Math.hypot(point.x - drag.startX, point.y - drag.startY);
+      if (distance < 6 && !drag.moved) return;
 
-  const handlePointerMove = event => {
-    const drag = dragRef.current;
-    if (!drag || drag.pointerId !== event.pointerId) return;
-    const distance = Math.hypot(event.clientX - drag.startX, event.clientY - drag.startY);
-    if (distance < 6 && !drag.moved) return;
-
-    clearLongPress();
-    drag.moved = true;
-    setIsDraggingButton(true);
-
-    const { width } = getViewportSize();
-    const nextX = Math.min(Math.max(EDGE_GAP, event.clientX - drag.offsetX), Math.max(EDGE_GAP, width - BUTTON_SIZE - EDGE_GAP));
-    const nextY = clampButtonY(event.clientY - drag.offsetY);
-    setButtonPosition({
-      edge: nextX < width / 2 ? 'left' : 'right',
-      x: nextX,
-      y: nextY,
-    });
-  };
-
-  const finishButtonDrag = event => {
-    const drag = dragRef.current;
-    clearLongPress();
-    if (!drag || drag.pointerId !== event.pointerId) return;
-
-    event.currentTarget.releasePointerCapture?.(event.pointerId);
-    dragRef.current = null;
-
-    if (!drag.moved) return;
-    suppressNextClickRef.current = true;
-    const { width } = getViewportSize();
-    const currentX = Math.min(Math.max(EDGE_GAP, event.clientX - drag.offsetX), Math.max(EDGE_GAP, width - BUTTON_SIZE - EDGE_GAP));
-    const edge = currentX < width / 2 ? 'left' : 'right';
-    const next = positionForEdge(edge, event.clientY - drag.offsetY);
-    saveButtonPosition(next);
-    setButtonPosition(next);
-    window.setTimeout(() => {
-      suppressNextClickRef.current = false;
-      setIsDraggingButton(false);
-    }, 80);
-  };
-
-  const handleButtonClick = event => {
-    if (suppressNextClickRef.current || isDraggingButton) {
       event.preventDefault();
-      return;
-    }
+      drag.moved = true;
+      setIsDraggingButton(true);
+
+      const { width } = getViewportSize();
+      const nextX = Math.min(Math.max(EDGE_GAP, point.x - drag.offsetX), Math.max(EDGE_GAP, width - BUTTON_SIZE - EDGE_GAP));
+      const nextY = clampButtonY(point.y - drag.offsetY);
+      setButtonPosition({
+        edge: nextX < width / 2 ? 'left' : 'right',
+        x: nextX,
+        y: nextY,
+      });
+    };
+
+    const finishButtonDrag = event => {
+      const drag = dragRef.current;
+      if (!drag || drag.pointerId !== event.pointerId) return;
+
+      dragRef.current = null;
+
+      if (!drag.moved) {
+        setIsDraggingButton(false);
+        if (event.type === 'pointerup') openReporter();
+        return;
+      }
+      const point = eventPoint(event);
+      const { width } = getViewportSize();
+      const currentX = Math.min(Math.max(EDGE_GAP, point.x - drag.offsetX), Math.max(EDGE_GAP, width - BUTTON_SIZE - EDGE_GAP));
+      const edge = currentX < width / 2 ? 'left' : 'right';
+      const next = positionForEdge(edge, point.y - drag.offsetY);
+      saveButtonPosition(next);
+      setButtonPosition(next);
+      window.setTimeout(() => {
+        setIsDraggingButton(false);
+      }, 80);
+    };
+
+    window.addEventListener('pointermove', handlePointerMove, { passive: false });
+    window.addEventListener('pointerup', finishButtonDrag);
+    window.addEventListener('pointercancel', finishButtonDrag);
+    return () => {
+      window.removeEventListener('pointermove', handlePointerMove);
+      window.removeEventListener('pointerup', finishButtonDrag);
+      window.removeEventListener('pointercancel', finishButtonDrag);
+    };
+  }, [openReporter]);
+
+  const handleButtonKeyDown = event => {
+    if (event.key !== 'Enter' && event.key !== ' ') return;
+    event.preventDefault();
     openReporter();
+  };
+
+  const buttonStyle = {
+    left: `calc(var(--app-viewport-offset-left) + ${buttonPosition.x}px)`,
+    top: `calc(var(--app-viewport-offset-top) + ${buttonPosition.y}px)`,
   };
 
   const handleSubmit = async event => {
@@ -288,7 +314,7 @@ export default function FeedbackReporter() {
     let screenshotUrl = '';
     let screenshotKey = '';
 
-    if (attachScreenshot && screenshot?.blob) {
+    if (screenshot?.blob) {
       try {
         const upload = await uploadScreenshot(screenshot.blob);
         screenshotUrl = upload.url || '';
@@ -344,21 +370,18 @@ export default function FeedbackReporter() {
       <button
         type="button"
         className={`feedback-reporter ${isDraggingButton ? 'feedback-reporter-dragging' : ''}`}
-        style={{ left: buttonPosition.x, top: buttonPosition.y }}
+        style={buttonStyle}
         aria-label="Report a problem"
         title="Report a problem"
         onPointerDown={handlePointerDown}
-        onPointerMove={handlePointerMove}
-        onPointerUp={finishButtonDrag}
-        onPointerCancel={finishButtonDrag}
-        onClick={handleButtonClick}
+        onKeyDown={handleButtonKeyDown}
       >
         <Bug size={21} aria-hidden="true" />
       </button>
 
       {isOpen && (
         <div className="feedback-modal-shell" role="dialog" aria-modal="true" aria-labelledby="feedback-title">
-          <div className="feedback-modal-backdrop" onClick={closeReporter} />
+          <div className="feedback-modal-backdrop" onPointerDown={closeReporter} onClick={closeReporter} />
           <form className="feedback-modal" onSubmit={handleSubmit}>
             <div className="feedback-modal-header">
               <div>
@@ -368,34 +391,6 @@ export default function FeedbackReporter() {
               <button type="button" className="feedback-icon-button" onClick={closeReporter} aria-label="Close">
                 <X size={20} />
               </button>
-            </div>
-
-            <div className="feedback-screenshot-panel">
-              {captureState === 'capturing' && (
-                <div className="feedback-screenshot-placeholder">
-                  <Loader2 size={24} className="feedback-spin" />
-                  <span>Capturing screen...</span>
-                </div>
-              )}
-              {captureState === 'failed' && (
-                <div className="feedback-screenshot-placeholder">
-                  <ImageOff size={24} />
-                  <span>Screenshot unavailable</span>
-                </div>
-              )}
-              {screenshot?.previewUrl && captureState === 'ready' && (
-                <>
-                  <img src={screenshot.previewUrl} alt="Screenshot preview" />
-                  <label className="feedback-checkbox">
-                    <input
-                      type="checkbox"
-                      checked={attachScreenshot}
-                      onChange={event => setAttachScreenshot(event.target.checked)}
-                    />
-                    Attach screenshot
-                  </label>
-                </>
-              )}
             </div>
 
             <label className="feedback-field">
