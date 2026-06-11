@@ -8,6 +8,7 @@ import { useSpeakingState } from '../../hooks/useSpeakingState';
 import VocabImage from '../VocabImage';
 import { getDueItems, recordReview, getTotalItems } from '../../lib/srs';
 import { playSuccess, playError } from '../../utils/sound';
+import { relColor, relTint, useMagazineActive } from '../../lib/nodePalette';
 
 import { useUser } from '../../context/UserContext';
 import TappableVietnamese from '../TappableVietnamese';
@@ -185,6 +186,17 @@ function LibraryLanding({ onSelectModule, onOpenArticle }) {
     const [sortAsc, setSortAsc] = useState(false);
     const [viewMode, setViewMode] = useState('list'); // 'list' | 'grid'
 
+    // Theme-aware content-type colors (magazine relatives + soft tints).
+    const magazine = useMagazineActive();
+    const CT = useMemo(() => {
+        if (!magazine) return CONTENT_TYPES;
+        const out = {};
+        for (const [k, c] of Object.entries(CONTENT_TYPES)) {
+            out[k] = { ...c, color: relColor(c.color, true), bg: relTint(c.color, 15, true), border: relTint(c.color, 30, true) };
+        }
+        return out;
+    }, [magazine]);
+
     const allItems = useMemo(() => buildLibraryItems(t), [t]);
 
     const filtered = useMemo(() => {
@@ -250,7 +262,7 @@ function LibraryLanding({ onSelectModule, onOpenArticle }) {
             {activeType && SUB_TAGS[activeType] && (
                 <div className="lib-filter-row lib-subtag-row">
                     {SUB_TAGS[activeType].map(tag => {
-                        const typeCfg = CONTENT_TYPES[activeType];
+                        const typeCfg = CT[activeType];
                         const isActive = activeSubTag === tag.id;
                         return (
                             <button
@@ -292,7 +304,7 @@ function LibraryLanding({ onSelectModule, onOpenArticle }) {
             {/* ── Content ── */}
             <div className={viewMode === 'grid' ? 'lib-content-grid' : 'lib-content-list'}>
                 {activeType === 'vocabulary' && (() => {
-                    const c = CONTENT_TYPES.vocabulary.color;
+                    const c = CT.vocabulary.color;
                     return viewMode === 'grid' ? (
                         <button className="lib-grid-card lib-card-dashed" style={{ borderColor: c }} onClick={() => onSelectModule({ view: 'vocabulary', deckId: '__create__' })}>
                             <div className="lib-grid-icon lib-icon-dashed" style={{ borderColor: c }}><Plus size={28} color={c} /></div>
@@ -310,7 +322,7 @@ function LibraryLanding({ onSelectModule, onOpenArticle }) {
                     );
                 })()}
                 {filtered.map(item => {
-                    const cfg = CONTENT_TYPES[item.type];
+                    const cfg = CT[item.type];
                     const Icon = item.itemIcon || cfg.icon;
                     const iconColor = cfg.color;
                     const iconBg = cfg.bg;
@@ -373,7 +385,7 @@ function LibraryLanding({ onSelectModule, onOpenArticle }) {
 
             {/* ── Primary type bar — floating pill ── */}
             <div id="library-tag-bar" className="lib-type-bar">
-                {Object.entries(CONTENT_TYPES).map(([key, cfg]) => {
+                {Object.entries(CT).map(([key, cfg]) => {
                     const Icon = cfg.icon;
                     const isActive = activeType === key;
                     return (

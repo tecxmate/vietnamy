@@ -173,6 +173,35 @@
 /* dictionary tab highlights navy when active (its accent is blue) */
 :root[data-theme="tap-chi"] .nav-item[data-tab="dictionary"].active { color: var(--tc-navy); }
 
+/* =========================================================================
+   Library tab — propagate the magazine system.
+   Category colors are remapped in JS (theme-aware CONTENT_TYPES); here we add
+   the poster card treatment, Finesse on Vietnamese titles, and remap the few
+   hardcoded state colors onto the palette.
+   ========================================================================= */
+/* poster offset shadow on the browsing cards */
+:root[data-theme="tap-chi"] .lib-grid-card,
+:root[data-theme="tap-chi"] .lib-content-card,
+:root[data-theme="tap-chi"] .rlib-article-card {
+  box-shadow: 0 4px 0 color-mix(in srgb, var(--tc-ink) 9%, transparent);
+}
+/* Vietnamese display titles in Finesse */
+:root[data-theme="tap-chi"] .rlib-article-title,
+:root[data-theme="tap-chi"] .rlib-reader-title {
+  font-family: var(--tc-finesse);
+  font-weight: 400;
+  font-size: 18px;
+}
+/* state colors → palette (green→teal, purple→plum, red→lacquer) */
+:root[data-theme="tap-chi"] .vocab-deck-icon.saved,
+:root[data-theme="tap-chi"] .vq-option.correct,
+:root[data-theme="tap-chi"] .vq-action-btn.success { --success-color: var(--tc-teal); }
+:root[data-theme="tap-chi"] .vocab-deck-icon.saved { background: color-mix(in srgb, var(--tc-teal) 15%, transparent); color: var(--tc-teal); }
+:root[data-theme="tap-chi"] .vq-option.correct { border-color: var(--tc-teal); background: color-mix(in srgb, var(--tc-teal) 15%, transparent); }
+:root[data-theme="tap-chi"] .vq-action-btn.success { background: var(--tc-teal); }
+:root[data-theme="tap-chi"] .vocab-study-chip.quiz { background: color-mix(in srgb, var(--tc-plum) 15%, transparent); color: var(--tc-plum); }
+:root[data-theme="tap-chi"] .vocab-deck-delete:hover { color: var(--tc-pink-dk); background: color-mix(in srgb, var(--tc-pink-dk) 10%, transparent); }
+
 /* feedback / bug-report FAB — bold pink button with the poster offset shadow */
 :root[data-theme="tap-chi"] .feedback-reporter {
   background: var(--tc-pink);

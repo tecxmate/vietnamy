@@ -21,8 +21,10 @@ export const MAGAZINE_RELATIVE = {
   '#10B981': '#38BA94', // green (beginner mode) → teal
   '#FFB703': '#FCBD1B', // orange (vocab) → gold
   '#F59E0B': '#C8572B', // gold (scene variant) → terracotta
+  '#FF9F43': '#C8572B', // library vocabulary orange → terracotta
+  '#FFD166': '#FCBD1B', // library intermediate level → gold
   '#EF4444': '#C5305A', // red (test) → lacquer red
-  '#EF476F': '#C5305A', // red-pink (heritage) → lacquer red
+  '#EF476F': '#C5305A', // red-pink (heritage / advanced) → lacquer red
   '#F26B5A': '#EE4A75', // coral (beginner mode) → pink
   // matching dark/shadow shades
   '#CC9202': '#CC9610',
@@ -37,6 +39,13 @@ export const MAGAZINE_RELATIVE = {
 export function relColor(hex, active = isMagazineTheme()) {
   if (!active || typeof hex !== 'string') return hex;
   return MAGAZINE_RELATIVE[hex.toUpperCase()] || hex;
+}
+
+// A translucent tint of a hex's magazine relative (for soft badge/card fills).
+// Falls back to the original hex when the theme is off.
+export function relTint(hex, pct, active = isMagazineTheme()) {
+  if (!active || typeof hex !== 'string') return hex;
+  return `color-mix(in srgb, ${relColor(hex, true)} ${pct}%, transparent)`;
 }
 
 // Re-render a component when the magazine theme toggles on/off.
