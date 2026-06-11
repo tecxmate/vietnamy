@@ -6,7 +6,7 @@ date: 2026-06-11
 attributed_to: [niko]
 belongs_to: [curriculum-paths]
 source: chat
-status: proposed
+status: active
 tags: [curriculum, i18n, pronunciation, sounds, content]
 related: [curriculum-paths, 2026-05-23-pronunciation-assessment-for-grading]
 ---
@@ -35,4 +35,12 @@ Where a Vietnamese sound has **no clean Mandarin equivalent**, give a "closest s
 
 ## Provenance
 - Discussed 2026-06-11 between [niko] (owner) and [claude-opus] (agent).
-- No implementing commits yet (status `proposed`). Captured in agent memory `pronunciation-chinese-curriculum`.
+- **Shipped 2026-06-12** (status now `active`). Per-language `sound`/`approx`/`description` sibling
+  fields (`soundZhS`/`soundZhT`, …) read by `lib/pickLocalized.js` with English fallback; admin
+  edit spots in the Alphabet / Vowels / Tone editors. Coverage: 29 alphabet letters, 11 single
+  vowels, 26 diphthong/triphthong/centering, 6 tones — Bopomofo (zh-t) + Pinyin (zh-s). Single
+  vowels + tones owner-validated; diphthongs + consonants are first-pass, correctable in the admin.
+- Implementing commits: `559e316` (single vowels + tones + readers + editor columns),
+  `19ed265` (diphthongs/triphthongs/centering + consonants + tone-description editor).
+- Validated mapping table: `docs/curr/01_Basics/02_Pronunciation_Chinese_Mapping.md`. Captured in
+  agent memory `pronunciation-chinese-curriculum`.

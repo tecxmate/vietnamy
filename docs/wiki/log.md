@@ -220,3 +220,10 @@ attributed_to: [niko, codex]   belongs_to: [backend-vendor-migration, grammar-sy
 - Prioritized app uses: semantic search, "Ask Vietnamy Tutor" RAG over app-owned content, mistake explanations, "more examples like this", and internal content QA.
 - Guardrail: no broad open-ended chatbot or direct frontend Supabase vector calls until retrieval quality, source references, and the Neon exit path are proven.
 - Pages: [backend-vendor-migration](topics/tech/backend-vendor-migration.md).
+
+## [2026-06-12] decision | Chinese pronunciation localization shipped (Bopomofo/Pinyin)
+attributed_to: [niko]   belongs_to: [curriculum-paths]
+- Implemented decision 2026-06-11-chinese-pronunciation-curriculum (status proposed → active).
+- Per-language sound explanations across alphabet/vowels/tones via `pickLocalized` + sibling fields; admin edit spots in Alphabet/Vowels/Tone editors.
+- Coverage: 29 letters, 11 vowels, 26 diphthong/triphthong/centering, 6 tones — zh-t 注音 + zh-s 拼音. Single vowels + tones owner-validated; diphthongs/consonants first-pass.
+- Commits: 559e316, 19ed265. Pages: [decision](decisions/2026-06-11-chinese-pronunciation-curriculum.md).
