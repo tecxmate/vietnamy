@@ -7,7 +7,6 @@ import { getClientLogs } from '../lib/clientDiagnostics';
 import './FeedbackReporter.css';
 
 const SHAKE_ENABLED = import.meta.env.VITE_FEEDBACK_SHAKE_ENABLED === 'true';
-const MAX_SCREENSHOT_WIDTH = 1280;
 const BUTTON_SIZE = 44;
 const EDGE_GAP = 12;
 const BUTTON_POSITION_KEY = 'vnme_feedback_button_position';
@@ -78,6 +77,7 @@ function saveButtonPosition(position) {
 function buildMetadata(language) {
   return {
     language,
+    title: document.title || '',
     url: window.location.href,
     referrer: document.referrer || '',
     timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || '',
@@ -88,44 +88,36 @@ function buildMetadata(language) {
   };
 }
 
-async function captureViewport() {
-  const { default: html2canvas } = await import('html2canvas');
-  const root = document.querySelector('.mobile-app-wrapper') || document.body;
-  const canvas = await html2canvas(root, {
-    backgroundColor: getComputedStyle(document.documentElement).getPropertyValue('--bg-color').trim() || '#121212',
-    ignoreElements: element => element?.classList?.contains('feedback-reporter') || element?.classList?.contains('feedback-modal-shell'),
-    logging: false,
-    scale: Math.min(window.devicePixelRatio || 1, 2),
-    useCORS: true,
-    windowWidth: window.innerWidth,
-    windowHeight: window.innerHeight,
-  });
-
-  const ratio = Math.min(1, MAX_SCREENSHOT_WIDTH / canvas.width);
-  const output = ratio < 1 ? document.createElement('canvas') : canvas;
-  if (ratio < 1) {
-    output.width = Math.round(canvas.width * ratio);
-    output.height = Math.round(canvas.height * ratio);
-    const context = output.getContext('2d');
-    context.drawImage(canvas, 0, 0, output.width, output.height);
-  }
-
-  const blob = await new Promise(resolve => output.toBlob(resolve, 'image/jpeg', 0.78));
-  if (!blob) throw new Error('Screenshot capture failed.');
-  return { blob };
+function getElementLabel(element) {
+  if (!element || element === document.body) return '';
+  const label = element.getAttribute?.('aria-label') || element.getAttribute?.('title') || element.textContent || '';
+  return label.trim().replace(/\s+/g, ' ').slice(0, 120);
 }
 
-async function uploadScreenshot(blob) {
-  const response = await fetch('/api/feedback-screenshot', {
-    method: 'POST',
-    headers: { 'Content-Type': blob.type || 'image/jpeg' },
-    body: blob,
-  });
-  const result = await response.json().catch(() => ({}));
-  if (!response.ok) {
-    throw new Error(result.error || 'Screenshot upload failed.');
-  }
-  return result;
+function buildOpenContext(trigger, buttonPosition) {
+  const activeElement = document.activeElement;
+  return {
+    trigger,
+    pathname: `${window.location.pathname}${window.location.search || ''}`,
+    hash: window.location.hash || '',
+    title: document.title || '',
+    viewport: getViewport(),
+    scroll: {
+      x: Math.round(window.scrollX || 0),
+      y: Math.round(window.scrollY || 0),
+    },
+    buttonPosition: {
+      edge: buttonPosition.edge,
+      x: Math.round(buttonPosition.x),
+      y: Math.round(buttonPosition.y),
+    },
+    activeElement: activeElement ? {
+      tag: activeElement.tagName?.toLowerCase() || '',
+      id: activeElement.id || '',
+      className: String(activeElement.className || '').slice(0, 160),
+      label: getElementLabel(activeElement),
+    } : null,
+  };
 }
 
 export default function FeedbackReporter() {
@@ -134,43 +126,27 @@ export default function FeedbackReporter() {
   const { language } = useLanguage();
   const [isOpen, setIsOpen] = React.useState(false);
   const [description, setDescription] = React.useState('');
-  const [captureState, setCaptureState] = React.useState('idle');
-  const [screenshot, setScreenshot] = React.useState(null);
   const [submitState, setSubmitState] = React.useState('idle');
   const [message, setMessage] = React.useState('');
   const [buttonPosition, setButtonPosition] = React.useState(readSavedButtonPosition);
   const [isDraggingButton, setIsDraggingButton] = React.useState(false);
+  const [openContext, setOpenContext] = React.useState(null);
   const lastShakeRef = React.useRef(0);
   const dragRef = React.useRef(null);
   const buttonPositionRef = React.useRef(buttonPosition);
 
   const resetDraft = React.useCallback(() => {
     setDescription('');
-    setScreenshot(null);
-    setCaptureState('idle');
     setSubmitState('idle');
     setMessage('');
   }, []);
 
-  const startCapture = React.useCallback(async () => {
-    setCaptureState('capturing');
-    setMessage('');
-    try {
-      const shot = await captureViewport();
-      setScreenshot(shot);
-      setCaptureState('ready');
-    } catch {
-      setScreenshot(null);
-      setCaptureState('failed');
-    }
-  }, []);
-
-  const openReporter = React.useCallback(() => {
+  const openReporter = React.useCallback((trigger = 'button') => {
     if (isOpen) return;
     resetDraft();
+    setOpenContext(buildOpenContext(trigger, buttonPositionRef.current));
     setIsOpen(true);
-    window.setTimeout(startCapture, 80);
-  }, [isOpen, resetDraft, startCapture]);
+  }, [isOpen, resetDraft]);
 
   const closeReporter = React.useCallback(() => {
     setIsOpen(false);
@@ -185,7 +161,7 @@ export default function FeedbackReporter() {
       const now = Date.now();
       if (magnitude > 34 && now - lastShakeRef.current > 1800) {
         lastShakeRef.current = now;
-        openReporter();
+        openReporter('shake');
       }
     };
     window.addEventListener('devicemotion', handleMotion);
@@ -267,7 +243,7 @@ export default function FeedbackReporter() {
 
       if (!drag.moved) {
         setIsDraggingButton(false);
-        if (event.type === 'pointerup') openReporter();
+        if (event.type === 'pointerup') openReporter('button');
         return;
       }
       const point = eventPoint(event);
@@ -295,7 +271,7 @@ export default function FeedbackReporter() {
   const handleButtonKeyDown = event => {
     if (event.key !== 'Enter' && event.key !== ' ') return;
     event.preventDefault();
-    openReporter();
+    openReporter('keyboard');
   };
 
   const buttonStyle = {
@@ -311,21 +287,6 @@ export default function FeedbackReporter() {
     setSubmitState('submitting');
     setMessage('');
 
-    let screenshotUrl = '';
-    let screenshotKey = '';
-
-    if (screenshot?.blob) {
-      try {
-        const upload = await uploadScreenshot(screenshot.blob);
-        screenshotUrl = upload.url || '';
-        screenshotKey = upload.key || '';
-      } catch (error) {
-        screenshotUrl = '';
-        screenshotKey = '';
-        setMessage(error?.message || 'Screenshot upload failed. Submitting text report only.');
-      }
-    }
-
     const payload = {
       kind: 'bug',
       severity: 'med',
@@ -336,13 +297,13 @@ export default function FeedbackReporter() {
       userId: user?.id || 'anonymous',
       pathname: `${location.pathname}${location.search || ''}`,
       viewport: getViewport(),
-      screenshotUrl,
+      screenshotUrl: '',
       clientLogs: getClientLogs(),
       metadata: {
         ...buildMetadata(language),
-        screenshotAttached: Boolean(screenshotUrl),
-        screenshotKey,
-        captureState,
+        screenshotAttached: false,
+        screenshotCapture: 'disabled-client-performance',
+        openContext,
       },
     };
 
