@@ -12,7 +12,7 @@
 import { readFileSync, writeFileSync, existsSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
-import XLSX from 'xlsx';
+import readXlsxFile from 'read-excel-file/node';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -30,19 +30,31 @@ let curriculumData = { vocab: new Map(), sentences: new Map(), grammarTags: [], 
 
 if (existsSync(CURRICULUM_PATH)) {
     console.log(`📊 Loading curriculum: ${CURRICULUM_PATH}`);
-    const workbook = XLSX.readFile(CURRICULUM_PATH);
 
-    const sheetToJson = (name) => {
-        const sheet = workbook.Sheets[name];
-        return sheet ? XLSX.utils.sheet_to_json(sheet) : [];
+    const sheetToJson = async (name) => {
+        try {
+            const rows = await readXlsxFile(CURRICULUM_PATH, { sheet: name });
+            const headers = (rows[0] || []).map(value => String(value || '').trim());
+            return rows.slice(1).map(row => {
+                const record = {};
+                row.forEach((value, index) => {
+                    const key = headers[index];
+                    if (key && value !== null && value !== undefined && value !== '') record[key] = value;
+                });
+                return record;
+            }).filter(row => Object.keys(row).length);
+        } catch (err) {
+            if (String(err?.message || err).includes(`Sheet not found`)) return [];
+            throw err;
+        }
     };
 
-    const vocab = sheetToJson('Vocabulary');
-    const sentences = sheetToJson('Sentences');
-    const acceptedTrans = sheetToJson('AcceptedTranslations');
-    const grammarTags = sheetToJson('GrammarTags');
-    const conversations = sheetToJson('Conversations');
-    const convLines = sheetToJson('ConversationLines');
+    const vocab = await sheetToJson('Vocabulary');
+    const sentences = await sheetToJson('Sentences');
+    const acceptedTrans = await sheetToJson('AcceptedTranslations');
+    const grammarTags = await sheetToJson('GrammarTags');
+    const conversations = await sheetToJson('Conversations');
+    const convLines = await sheetToJson('ConversationLines');
 
     // Build accepted translations lookup
     const transBySentence = new Map();

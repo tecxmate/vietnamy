@@ -13,14 +13,11 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import readXlsxFile from 'read-excel-file/node';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const PROJECT_ROOT = join(__dirname, '..');
-
-// We'll use xlsx library for reading Excel
-// Install: npm install xlsx
-import XLSX from 'xlsx';
 
 // Parse CLI args
 const args = process.argv.slice(2);
@@ -38,29 +35,36 @@ const modeId = modeIdx !== -1 && args[modeIdx + 1] ? args[modeIdx + 1] : 'explor
 console.log(`Converting: ${inputPath}`);
 console.log(`Mode: ${modeId}`);
 
-// Read workbook
-const workbook = XLSX.readFile(inputPath);
-
-function sheetToJson(sheetName) {
-    const sheet = workbook.Sheets[sheetName];
-    if (!sheet) {
+async function sheetToJson(sheetName) {
+    try {
+        const rows = await readXlsxFile(inputPath, { sheet: sheetName });
+        const headers = (rows[0] || []).map(value => String(value || '').trim());
+        return rows.slice(1).map(row => {
+            const record = {};
+            row.forEach((value, index) => {
+                const key = headers[index];
+                if (key && value !== null && value !== undefined && value !== '') record[key] = value;
+            });
+            return record;
+        }).filter(row => Object.keys(row).length);
+    } catch (err) {
+        if (!String(err?.message || err).includes('Sheet not found')) throw err;
         console.warn(`Sheet "${sheetName}" not found`);
         return [];
     }
-    return XLSX.utils.sheet_to_json(sheet);
 }
 
 // Load all sheets
-const courses = sheetToJson('Courses');
-const units = sheetToJson('Units');
-const lessons = sheetToJson('Lessons');
-const grammarTags = sheetToJson('GrammarTags');
-const vocabulary = sheetToJson('Vocabulary');
-const sentences = sheetToJson('Sentences');
-const acceptedTranslations = sheetToJson('AcceptedTranslations');
-const conversations = sheetToJson('Conversations');
-const conversationLines = sheetToJson('ConversationLines');
-const lessonTargets = sheetToJson('LessonTargets');
+const courses = await sheetToJson('Courses');
+const units = await sheetToJson('Units');
+const lessons = await sheetToJson('Lessons');
+const grammarTags = await sheetToJson('GrammarTags');
+const vocabulary = await sheetToJson('Vocabulary');
+const sentences = await sheetToJson('Sentences');
+const acceptedTranslations = await sheetToJson('AcceptedTranslations');
+const conversations = await sheetToJson('Conversations');
+const conversationLines = await sheetToJson('ConversationLines');
+const lessonTargets = await sheetToJson('LessonTargets');
 
 console.log(`Loaded: ${units.length} units, ${lessons.length} lessons, ${vocabulary.length} vocab, ${sentences.length} sentences`);
 

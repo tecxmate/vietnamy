@@ -12,8 +12,9 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        manualChunks: {
-          'grammar-modules': ['./content/grammar.json'],
+        manualChunks(id) {
+          if (id.endsWith('/content/grammar.json')) return 'grammar-modules';
+          return undefined;
         },
       },
     },
