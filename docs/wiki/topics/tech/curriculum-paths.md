@@ -3,12 +3,12 @@ title: Curriculum & Learner Paths
 type: topic
 slug: curriculum-paths
 date: 2026-05-23
-updated: 2026-05-24
+updated: 2026-06-13
 belongs_to: [niko]
 source: synthesis
 status: active
 tags: [curriculum, content, learner-modes, cefr]
-related: [skill-tree, vietnamy-app, 2026-05-23-three-learner-paths]
+related: [skill-tree, vietnamy-app, 2026-05-23-three-learner-paths, 2026-06-13-canonical-curriculum-admin]
 ---
 
 ## Summary
@@ -62,6 +62,11 @@ Each lesson in a curriculum JSON has:
 - `conversations[]`: 1 short dialogue with `lines[]` of `{ speaker, vi, en }`.
 
 Reference schema: `docs/curr/CANONICAL_CURRICULUM_SCHEMA.md`. Lesson data details: `docs/curr/LESSON_DATA_SPEC.md`.
+
+## Canonical admin editing
+As of 2026-06-13, lesson authoring in the web admin is canonical-first. `content/curriculum.json` remains the baked bundle, and admin edits create a local draft under `vnme_canonical_curriculum_v1` using the same normalized shape: top-level `units`, `lessons`, `words`, `sentences`, `conversations`, and `grammarTags`. The Lesson Builder validates that draft, then regenerates the current study runtime tables (`items`, `translations`, `lesson_blueprints`, `lessons`, and lesson/test roadmap nodes) through `buildRuntimeFromCanonical()`.
+
+Admin import/export now uses canonical curriculum JSON by default, while still accepting older derived mock-DB backups. This means lesson/vocabulary content should be treated as canonical curriculum data, not as hand-authored runtime DB rows. Broader module types such as grammar units, pronunciation drills, scenes, and articles still use their specialized editors and are a separate unification pass.
 
 ## Current state (2026-05-24)
 - **Professional**: 30 lessons, 240 words, 120 sentences, 30 conversations. Authored by [claude-opus] in three commits (A1: `38a7b94`, A2/B1: `60d60ce`, B2/C1: `84bf3c3`).

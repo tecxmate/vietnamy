@@ -227,3 +227,11 @@ attributed_to: [niko]   belongs_to: [curriculum-paths]
 - Per-language sound explanations across alphabet/vowels/tones via `pickLocalized` + sibling fields; admin edit spots in Alphabet/Vowels/Tone editors.
 - Coverage: 29 letters, 11 vowels, 26 diphthong/triphthong/centering, 6 tones — zh-t 注音 + zh-s 拼音. Single vowels + tones owner-validated; diphthongs/consonants first-pass.
 - Commits: 559e316, 19ed265. Pages: [decision](decisions/2026-06-11-chinese-pronunciation-curriculum.md).
+
+## [2026-06-13] decision | Canonical curriculum admin editing
+attributed_to: [niko, codex]   belongs_to: [curriculum-paths]
+- Lesson Builder moved from editing derived mock DB rows to editing a local canonical curriculum draft shaped like `content/curriculum.json`.
+- Admin import/export now defaults to canonical curriculum JSON; legacy `vnme_curriculum_edits` backups remain importable.
+- Saves validate the canonical draft and regenerate the current study runtime tables (`items`, `translations`, `lesson_blueprints`, `lessons`, lesson/test roadmap nodes).
+- Remaining boundary: grammar, pronunciation drills, scenes, and articles still use specialized editors/data contracts.
+- Pages: [decision](decisions/2026-06-13-canonical-curriculum-admin.md), [curriculum-paths](topics/tech/curriculum-paths.md).
