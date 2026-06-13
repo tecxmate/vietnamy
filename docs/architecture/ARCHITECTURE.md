@@ -29,6 +29,11 @@ Vietnamy is a **mobile-first React web app** with a **thin Express backend**. Th
 
 The porting consequence: the learning engines (lessons, SRS, roadmap, dictionary client) are **pure JS and port cleanly**; the Express server is **reused over REST**; the real work is replacing the **browser-dependent layer** (`localStorage`, `react-router`, Web Audio, `speechSynthesis`, OCR, Web Push).
 
+For production handoff, use the backend-neutral contracts instead of copying the
+temporary localStorage/Supabase shape: [`USER_STATE_API.md`](USER_STATE_API.md)
+for learner state and [`CURRICULUM_DRAFT_API.md`](CURRICULUM_DRAFT_API.md) for
+admin curriculum drafts.
+
 ---
 
 ## 1. System context

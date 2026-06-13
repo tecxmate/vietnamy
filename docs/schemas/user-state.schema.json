@@ -1,0 +1,268 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vietnamy.app/schema/user-state.schema.json",
+  "title": "Vietnamy backend-neutral user state",
+  "description": "Portable learner state contract for web and Flutter clients. This is not a Supabase table shape.",
+  "type": "object",
+  "required": ["kind", "apiVersion", "userId", "updatedAt", "profile", "progress", "srs", "savedWords"],
+  "properties": {
+    "kind": { "const": "vnme_user_state" },
+    "apiVersion": { "const": 1 },
+    "userId": { "type": "string", "minLength": 1 },
+    "revision": { "type": ["string", "integer", "null"] },
+    "baseRevision": { "type": ["string", "integer", "null"] },
+    "updatedAt": { "type": "string", "format": "date-time" },
+    "deviceId": { "type": ["string", "null"] },
+    "profile": { "$ref": "#/$defs/profile" },
+    "progress": { "$ref": "#/$defs/progress" },
+    "srs": { "$ref": "#/$defs/srs" },
+    "wordGrades": { "$ref": "#/$defs/wordGrades" },
+    "savedWords": { "$ref": "#/$defs/savedWords" },
+    "notificationPreferences": { "$ref": "#/$defs/notificationPreferences" },
+    "clientState": {
+      "type": "object",
+      "description": "Temporary compatibility bag for fields not yet promoted into typed schemas.",
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "date": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "language": {
+      "type": "string",
+      "enum": ["en", "zh-s", "zh-t"]
+    },
+    "dialect": {
+      "type": "string",
+      "enum": ["north", "south", "central", "both", "neutral", ""]
+    },
+    "profile": {
+      "type": "object",
+      "required": ["name", "nativeLang", "dialect", "learnerMode", "onboardingCompleted"],
+      "properties": {
+        "name": { "type": "string" },
+        "email": { "type": ["string", "null"] },
+        "avatarUrl": { "type": ["string", "null"] },
+        "age": { "type": ["integer", "null"], "minimum": 0, "maximum": 120 },
+        "gender": { "type": ["string", "null"] },
+        "goal": { "type": "string" },
+        "dialect": { "$ref": "#/$defs/dialect" },
+        "level": { "type": "string" },
+        "dailyMins": { "type": "integer", "minimum": 1, "maximum": 240 },
+        "nativeLang": { "$ref": "#/$defs/language" },
+        "dictMode": {
+          "type": "string",
+          "enum": ["en", "zh-s", "zh-t", "all"]
+        },
+        "visibleDicts": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/language" },
+          "uniqueItems": true
+        },
+        "learnerMode": { "type": "string", "minLength": 1 },
+        "onboardingCompleted": { "type": "boolean" },
+        "tutorialCompleted": { "type": "boolean" },
+        "uiLanguage": { "$ref": "#/$defs/language" },
+        "timezone": { "type": ["string", "null"] }
+      },
+      "additionalProperties": false
+    },
+    "progress": {
+      "type": "object",
+      "required": ["completedNodes", "nodeSessionCounts", "hearts", "streak"],
+      "properties": {
+        "completedNodes": {
+          "type": "object",
+          "description": "Map learnerMode -> ordered completed roadmap node IDs.",
+          "additionalProperties": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1 },
+            "uniqueItems": true
+          }
+        },
+        "nodeSessionCounts": {
+          "type": "object",
+          "description": "Map learnerMode -> nodeId -> completed session count.",
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        },
+        "hearts": { "type": "integer", "minimum": 0, "maximum": 5 },
+        "maxHearts": { "type": "integer", "minimum": 1, "maximum": 20 },
+        "streak": { "$ref": "#/$defs/streak" },
+        "lastLessonId": { "type": ["string", "null"] },
+        "lastActivityAt": { "type": ["string", "null"], "format": "date-time" }
+      },
+      "additionalProperties": false
+    },
+    "streak": {
+      "type": "object",
+      "required": ["count", "best", "lastActiveDate", "moments"],
+      "properties": {
+        "count": { "type": "integer", "minimum": 0 },
+        "best": { "type": "integer", "minimum": 0 },
+        "lastActiveDate": {
+          "anyOf": [
+            { "$ref": "#/$defs/date" },
+            { "type": "null" }
+          ]
+        },
+        "moments": {
+          "type": "object",
+          "description": "Map event kind -> local date already consumed.",
+          "additionalProperties": { "$ref": "#/$defs/date" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "srs": {
+      "type": "object",
+      "required": ["algorithm", "cards"],
+      "properties": {
+        "algorithm": {
+          "type": "string",
+          "enum": ["vnme-fixed-interval-v1"]
+        },
+        "cards": {
+          "type": "object",
+          "description": "Map itemId -> SRS card.",
+          "additionalProperties": { "$ref": "#/$defs/srsCard" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "srsCard": {
+      "type": "object",
+      "required": ["itemId", "intervalIndex", "nextReview", "correctCount", "wrongCount"],
+      "properties": {
+        "itemId": { "type": "string", "minLength": 1 },
+        "vietnamese": { "type": "string" },
+        "english": { "type": "string" },
+        "intervalIndex": { "type": "integer", "minimum": 0, "maximum": 4 },
+        "nextReview": { "$ref": "#/$defs/date" },
+        "lastReview": {
+          "anyOf": [
+            { "$ref": "#/$defs/date" },
+            { "type": "null" }
+          ]
+        },
+        "correctCount": { "type": "integer", "minimum": 0 },
+        "wrongCount": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "wordGrades": {
+      "type": "object",
+      "description": "Map itemId -> dimension -> grade counters.",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": { "$ref": "#/$defs/gradeDimension" }
+      }
+    },
+    "gradeDimension": {
+      "type": "object",
+      "required": ["correct", "wrong", "last"],
+      "properties": {
+        "correct": { "type": "integer", "minimum": 0 },
+        "wrong": { "type": "integer", "minimum": 0 },
+        "last": {
+          "anyOf": [
+            { "$ref": "#/$defs/date" },
+            { "type": "null" }
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "savedWords": {
+      "type": "object",
+      "required": ["lessonWordIds", "dictionaryWordIds", "lessonDecks", "dictionaryDecks"],
+      "properties": {
+        "lessonWordIds": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        },
+        "dictionaryWordIds": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        },
+        "lessonDecks": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/lessonDeck" }
+        },
+        "dictionaryDecks": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/dictionaryDeck" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "lessonDeck": {
+      "type": "object",
+      "required": ["id", "name", "wordIds"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "name": { "type": "string" },
+        "wordIds": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "dictionaryDeck": {
+      "type": "object",
+      "required": ["id", "name", "words"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "name": { "type": "string" },
+        "words": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        },
+        "createdAt": { "type": ["integer", "null"] }
+      },
+      "additionalProperties": false
+    },
+    "notificationPreferences": {
+      "type": "object",
+      "required": ["pushEnabled", "dailyReminderEnabled", "adaptiveMessagesEnabled"],
+      "properties": {
+        "pushEnabled": { "type": "boolean" },
+        "dailyReminderEnabled": { "type": "boolean" },
+        "dailyReminderTimeLocal": {
+          "type": ["string", "null"],
+          "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$"
+        },
+        "adaptiveMessagesEnabled": { "type": "boolean" },
+        "quietHours": {
+          "type": ["object", "null"],
+          "properties": {
+            "start": {
+              "type": "string",
+              "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$"
+            },
+            "end": {
+              "type": "string",
+              "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$"
+            }
+          },
+          "required": ["start", "end"],
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

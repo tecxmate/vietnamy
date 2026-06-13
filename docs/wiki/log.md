@@ -242,3 +242,10 @@ attributed_to: [niko, codex]   belongs_to: [vietnamy-app, mobile-strategy]
 - Decision direction: avoid building Supabase-only admin/user infrastructure unless it sits behind backend-neutral contracts; the proprietary Zeabur backend should become the long-term source of truth for web and Flutter.
 - Recommended next chunk: backend-neutral user/progress/SRS/saved-words API and schema handoff.
 - Pages: [production-readiness-flutter-handoff](topics/tech/production-readiness-flutter-handoff.md).
+
+## [2026-06-13] architecture | Backend-neutral learner state handoff
+attributed_to: [niko, codex]   belongs_to: [production-readiness-flutter-handoff, mobile-strategy]
+- Added `docs/architecture/USER_STATE_API.md` for profile, progress, hearts/streak, SRS, word grades, saved words/decks, notification preferences, conflict handling, offline/idempotent writes, and migration from current web localStorage keys.
+- Added `docs/schemas/user-state.schema.json` as the machine-readable `vnme_user_state` envelope and `docs/fixtures/user-state-sample.json` as the first shared learner fixture.
+- Direction: Flutter should consume typed API fields, not React localStorage key names; the Zeabur backend can store JSON first and normalize later without changing clients.
+- Pages: [production-readiness-flutter-handoff](topics/tech/production-readiness-flutter-handoff.md).

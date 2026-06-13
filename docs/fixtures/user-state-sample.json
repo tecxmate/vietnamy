@@ -1,0 +1,115 @@
+{
+  "kind": "vnme_user_state",
+  "apiVersion": 1,
+  "userId": "user_demo_001",
+  "revision": "12",
+  "baseRevision": "11",
+  "updatedAt": "2026-06-13T12:00:00.000Z",
+  "deviceId": "web_demo_device",
+  "profile": {
+    "name": "An",
+    "email": "an@example.com",
+    "avatarUrl": null,
+    "age": 28,
+    "gender": "female",
+    "goal": "travel",
+    "dialect": "south",
+    "level": "A1",
+    "dailyMins": 10,
+    "nativeLang": "en",
+    "dictMode": "en",
+    "visibleDicts": ["en", "zh-s", "zh-t"],
+    "learnerMode": "explore_vietnam",
+    "onboardingCompleted": true,
+    "tutorialCompleted": true,
+    "uiLanguage": "en",
+    "timezone": "Asia/Taipei"
+  },
+  "progress": {
+    "completedNodes": {
+      "explore_vietnam": ["p1_L001", "p1_L002"]
+    },
+    "nodeSessionCounts": {
+      "explore_vietnam": {
+        "p1_L001": 4,
+        "p1_L002": 2
+      }
+    },
+    "hearts": 5,
+    "maxHearts": 5,
+    "streak": {
+      "count": 7,
+      "best": 12,
+      "lastActiveDate": "2026-06-13",
+      "moments": {
+        "milestone": "2026-06-13"
+      }
+    },
+    "lastLessonId": "lesson_002",
+    "lastActivityAt": "2026-06-13T11:58:00.000Z"
+  },
+  "srs": {
+    "algorithm": "vnme-fixed-interval-v1",
+    "cards": {
+      "w_xin_chao": {
+        "itemId": "w_xin_chao",
+        "vietnamese": "xin chao",
+        "english": "hello",
+        "intervalIndex": 2,
+        "nextReview": "2026-06-16",
+        "lastReview": "2026-06-13",
+        "correctCount": 3,
+        "wrongCount": 1
+      }
+    }
+  },
+  "wordGrades": {
+    "w_xin_chao": {
+      "meaning_recognition": {
+        "correct": 5,
+        "wrong": 1,
+        "last": "2026-06-13"
+      },
+      "listening": {
+        "correct": 2,
+        "wrong": 0,
+        "last": "2026-06-13"
+      }
+    }
+  },
+  "savedWords": {
+    "lessonWordIds": ["w_xin_chao"],
+    "dictionaryWordIds": ["pho"],
+    "lessonDecks": [
+      {
+        "id": "custom_travel",
+        "name": "Travel basics",
+        "wordIds": ["w_xin_chao"]
+      }
+    ],
+    "dictionaryDecks": [
+      {
+        "id": "dict_food",
+        "name": "Food",
+        "words": ["pho"],
+        "createdAt": 1781323200000
+      }
+    ]
+  },
+  "notificationPreferences": {
+    "pushEnabled": true,
+    "dailyReminderEnabled": true,
+    "dailyReminderTimeLocal": "19:30",
+    "adaptiveMessagesEnabled": true,
+    "quietHours": {
+      "start": "22:00",
+      "end": "08:00"
+    }
+  },
+  "clientState": {
+    "vnme_settings": {
+      "testMode": false,
+      "showCefrTags": true
+    }
+  }
+}

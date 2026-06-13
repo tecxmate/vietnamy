@@ -103,8 +103,11 @@ The Flutter team should receive these artifacts before implementing parity:
 
 - OpenAPI spec for proprietary backend endpoints.
 - JSON schemas for curriculum, profile, progress, SRS, saved words/decks,
-  notifications, and admin draft/publish payloads.
+  notifications, and admin draft/publish payloads. The user-state schema now
+  lives at `docs/schemas/user-state.schema.json`.
 - `docs/architecture/CURRICULUM_DRAFT_API.md` plus example draft/publish payloads.
+- `docs/architecture/USER_STATE_API.md` plus `docs/fixtures/user-state-sample.json`
+  for profile/progress/SRS/saved-word handoff.
 - Sample learner fixtures covering a new user, mid-course user, due-review user,
   saved-word/deck user, and notification-preference variants.
 - Content bundle exports: curriculum, drills, grammar, scenes, articles, tone
@@ -116,9 +119,11 @@ The Flutter team should receive these artifacts before implementing parity:
 - Cross-platform QA checklist that web and Flutter can run against the same
   fixtures.
 
-## Recommended next chunk
+## Handoff status
 
-Create the backend-neutral **user/progress/SRS/saved-words API and schema
-handoff**. That is the largest blocker for production readiness and Flutter
-parity because both clients need to read/write the same learner state without
-depending on localStorage or Supabase-specific data models.
+The backend-neutral **user/progress/SRS/saved-words API and schema handoff** was
+created on 2026-06-13. It gives the Zeabur backend and Flutter team a typed
+envelope, endpoints, conflict semantics, migration map from current web
+localStorage keys, and a sample learner fixture. The next practical step is to
+turn `docs/architecture/USER_STATE_API.md` into an OpenAPI document once the
+backend framework/router conventions are known.
