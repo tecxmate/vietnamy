@@ -56,6 +56,7 @@ Topics are split into `topics/tech/` (engineering, infra, app, content systems) 
 - [Repository Publishing](topics/tech/repository-publishing.md) — Git/GitHub publishing status for the reusable template
 - [Adaptive Software Automation](topics/tech/adaptive-software-automation.md) — long-term feedback, telemetry, AI repair, and PR review loop
 - [Backend Ops Store and Identity Migration](topics/tech/backend-ops-store.md) — Supabase ops tables, Vercel API routing, production env, and next auth/RLS plan
+- [Production Readiness and Flutter Handoff](topics/tech/production-readiness-flutter-handoff.md) — production blockers and backend-neutral handoff package for web/Flutter parity
 
 ### Business
 <!-- Agent: append `- [Title](topics/business/slug.md) — one-line summary` for each business topic. -->

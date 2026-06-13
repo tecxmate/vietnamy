@@ -235,3 +235,10 @@ attributed_to: [niko, codex]   belongs_to: [curriculum-paths]
 - Saves validate the canonical draft and regenerate the current study runtime tables (`items`, `translations`, `lesson_blueprints`, `lessons`, lesson/test roadmap nodes).
 - Remaining boundary: grammar, pronunciation drills, scenes, and articles still use specialized editors/data contracts.
 - Pages: [decision](decisions/2026-06-13-canonical-curriculum-admin.md), [curriculum-paths](topics/tech/curriculum-paths.md).
+
+## [2026-06-13] topic | Production readiness and Flutter handoff
+attributed_to: [niko, codex]   belongs_to: [vietnamy-app, mobile-strategy]
+- Documented that the biggest remaining production blockers are backend-owned user/progress state, admin publish workflow, module contract unification, end-to-end QA, observability, privacy/security workflows, and Flutter handoff fixtures.
+- Decision direction: avoid building Supabase-only admin/user infrastructure unless it sits behind backend-neutral contracts; the proprietary Zeabur backend should become the long-term source of truth for web and Flutter.
+- Recommended next chunk: backend-neutral user/progress/SRS/saved-words API and schema handoff.
+- Pages: [production-readiness-flutter-handoff](topics/tech/production-readiness-flutter-handoff.md).
