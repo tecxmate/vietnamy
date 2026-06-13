@@ -21,7 +21,7 @@ const gtagToGT = (id) => id.replace(/^gtag_/, 'GT');
  * Verified equivalent to the former unified_db.json path
  * (scripts/verify-seed-equivalence.mjs).
  */
-function buildFromCanonical(db, { includeContent = true } = {}) {
+export function buildRuntimeFromCanonical(db, { includeContent = true } = {}) {
     const items = [];
     const translations = [];
     const blueprints = [];
@@ -175,7 +175,7 @@ const LEGACY_UNITS = [
 ];
 
 function createInitialData({ full = false } = {}) {
-    const built = buildFromCanonical(canonicalDB, { includeContent: full });
+    const built = buildRuntimeFromCanonical(canonicalDB, { includeContent: full });
 
     return {
     course: {

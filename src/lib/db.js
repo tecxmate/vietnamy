@@ -1,7 +1,8 @@
 // A mock database using localStorage to simulate a backend for the 100-levels proposal.
 
 import { createLessonExerciseService } from './content/lessonExerciseService';
-import { getDB as getRoadmapDB, getFullDB, saveDB } from './storage/mockDbStore';
+import { getCanonicalCurriculum, getCanonicalLessonContent, saveCanonicalLessonContent } from './content/canonicalCurriculumStore';
+import { getDB as getRoadmapDB, getFullDB, saveDB, applyCanonicalCurriculumToDB } from './storage/mockDbStore';
 import { LEARNER_MODES } from '../data/learnerModes';
 
 export { getFullDB as getDB };
@@ -446,6 +447,31 @@ export const getItems = () => {
 
 // --- Lesson Content API ---
 export const getLessonContent = (contentRefId) => {
+    const canonical = getCanonicalLessonContent(contentRefId);
+    if (canonical) {
+        return {
+            id: canonical.lesson.id,
+            goal: canonical.lesson.title,
+            title: canonical.lesson.title,
+            exerciseProfileId: canonical.lesson.exerciseProfileId || '',
+            lesson: canonical.lesson,
+            attachedItems: canonical.words.map(word => ({
+                id: word.id,
+                vi_text: word.vi,
+                en: word.en || '',
+                pos: word.pos || 'word',
+            })),
+            sentences: canonical.sentences.map(sentence => ({
+                id: sentence.id,
+                vietnamese: sentence.vi,
+                english: sentence.en || '',
+                note: sentence.note || '',
+                grammarTagIds: sentence.grammarTagIds || [],
+            })),
+            source: 'canonical',
+        };
+    }
+
     const db = getFullDB();
 
     // First try the old generic format in case it was created via CMS
@@ -484,6 +510,44 @@ export const getLessonContent = (contentRefId) => {
 };
 
 export const saveLessonContent = (contentData) => {
+    const canonical = getCanonicalLessonContent(contentData.id);
+    if (canonical) {
+        const wordsById = new Map((getCanonicalCurriculum().words || []).map(word => [word.id, word]));
+        const lesson = {
+            ...canonical.lesson,
+            ...(contentData.lesson || {}),
+            title: contentData.goal || contentData.lesson?.title || canonical.lesson.title,
+            exerciseProfileId: contentData.exerciseProfileId || contentData.lesson?.exerciseProfileId || undefined,
+        };
+        const words = (contentData.attachedItems || []).map(item => ({
+            ...(wordsById.get(item.id) || {}),
+            id: item.id,
+            lessonId: wordsById.get(item.id)?.lessonId || canonical.lesson.id,
+            vi: item.vi || item.vi_text,
+            en: item.en || '',
+            pos: item.pos || (String(item.vi || item.vi_text || '').split(/\s+/).length > 1 ? 'phrase' : 'noun'),
+        })).filter(item => item.id && item.vi);
+        const sentences = (contentData.sentences || []).map((sentence, idx) => ({
+            id: sentence.id || `it_cms_${canonical.lesson.id}_${idx}`,
+            lessonId: canonical.lesson.id,
+            vi: sentence.vi || sentence.vietnamese,
+            en: sentence.en || sentence.english || '',
+            note: sentence.note || undefined,
+            grammarTagIds: sentence.grammarTagIds || [],
+            tokenCount: String(sentence.vi || sentence.vietnamese || '').trim().split(/\s+/).filter(Boolean).length,
+        })).filter(sentence => sentence.id && sentence.vi);
+
+        const curriculum = saveCanonicalLessonContent({
+            lesson,
+            words,
+            sentences,
+            conversations: canonical.conversations,
+        });
+        applyCanonicalCurriculumToDB(curriculum);
+        clearExerciseCache();
+        return contentData;
+    }
+
     const db = getFullDB();
 
     // 1. Update Lesson Metadata

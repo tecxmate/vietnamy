@@ -1,4 +1,4 @@
-import { getInitialData, hydrateInitialData } from '../content/initialData';
+import { buildRuntimeFromCanonical, getInitialData, hydrateInitialData } from '../content/initialData';
 
 const DB_KEY = 'vnme_mock_db_v24'; // v24: unified_db.json as primary source
 const CURRICULUM_VERSION = 32; // v32: scene topics + goal-aware next-node
@@ -68,6 +68,30 @@ export const saveDB = (data) => {
     dbCache = data;
     dbIsFull = hasFullContent(data);
     localStorage.setItem(DB_KEY, JSON.stringify(data));
+};
+
+export const applyCanonicalCurriculumToDB = (curriculum) => {
+    const runtime = buildRuntimeFromCanonical(curriculum, { includeContent: true });
+    const db = getFullDB();
+    const canonicalNodeIds = new Set(runtime.pathNodes.map(node => node.id));
+    const canonicalSourceNodeIds = new Set(runtime.pathNodes.map(node => node.source_node_id).filter(Boolean));
+
+    db.lessons = runtime.lessons;
+    db.items = runtime.items;
+    db.translations = runtime.translations;
+    db.lesson_blueprints = runtime.blueprints;
+    db.path_nodes = [
+        ...runtime.pathNodes,
+        ...(db.path_nodes || []).filter(node => {
+            if (canonicalNodeIds.has(node.id)) return false;
+            if (node.node_type === 'lesson' || node.type === 'lesson') return false;
+            if (node.test_scope === 'module' && canonicalSourceNodeIds.has(node.source_node_id)) return false;
+            return true;
+        }),
+    ];
+
+    saveDB(db);
+    return db;
 };
 
 const EXPORT_KIND = 'vnme_curriculum_edits';

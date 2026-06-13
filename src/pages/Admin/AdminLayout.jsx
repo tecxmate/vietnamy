@@ -5,7 +5,8 @@ import {
     Users, PenTool, FlaskConical, Download, Upload, Menu, X, Lightbulb, Sparkles, Volume2
 } from 'lucide-react';
 import { logoutAdmin } from '../../lib/adminAuth';
-import { exportDB, importDB } from '../../lib/storage/mockDbStore';
+import { importDB, applyCanonicalCurriculumToDB } from '../../lib/storage/mockDbStore';
+import { exportCanonicalCurriculum, importCanonicalCurriculum } from '../../lib/content/canonicalCurriculumStore';
 import './AdminLayout.css';
 
 const NAV_ITEMS = [
@@ -51,21 +52,27 @@ const downloadJson = (data, filename) => {
 };
 
 const handleExport = () => {
-    const payload = exportDB();
-    downloadJson(payload, `vnme-curriculum-edits-${new Date().toISOString().slice(0, 10)}.json`);
+    const payload = exportCanonicalCurriculum();
+    downloadJson(payload, `vnme-canonical-curriculum-${new Date().toISOString().slice(0, 10)}.json`);
 };
 
 const handleImport = async (file) => {
     if (!file) return;
     const ok = confirm(
         `Import "${file.name}"?\n\n` +
-        'This REPLACES your current curriculum (units, lessons, exercises). ' +
+        'This REPLACES your current canonical curriculum draft and regenerates the study runtime. ' +
         'Student progress is not affected. Tip: export first if you want a backup.'
     );
     if (!ok) return;
     try {
         const text = await file.text();
-        importDB(JSON.parse(text));
+        const payload = JSON.parse(text);
+        if (payload?.kind === 'vnme_curriculum_edits') {
+            importDB(payload);
+        } else {
+            const curriculum = importCanonicalCurriculum(payload);
+            applyCanonicalCurriculumToDB(curriculum);
+        }
         alert('Import successful. Reloading...');
         window.location.reload();
     } catch (err) {
@@ -143,11 +150,11 @@ const AdminLayout = () => {
                 <div className="admin-nav-list">{renderNavItems()}</div>
 
                 <div className="admin-sidebar-actions">
-                    <button className="admin-sidebar-btn" onClick={handleExport} title="Download a JSON backup of your curriculum edits (units, lessons, exercises). Excludes student progress.">
-                        <Download size={16} /> <span className="admin-nav-label">Export edits</span>
+                    <button className="admin-sidebar-btn" onClick={handleExport} title="Download the canonical curriculum JSON draft. Excludes student progress.">
+                        <Download size={16} /> <span className="admin-nav-label">Export curriculum</span>
                     </button>
-                    <button className="admin-sidebar-btn" onClick={() => importInputRef.current?.click()} title="Restore curriculum edits from a previously exported JSON file. Replaces current edits.">
-                        <Upload size={16} /> <span className="admin-nav-label">Import edits</span>
+                    <button className="admin-sidebar-btn" onClick={() => importInputRef.current?.click()} title="Import a canonical curriculum JSON file. Replaces the current draft.">
+                        <Upload size={16} /> <span className="admin-nav-label">Import curriculum</span>
                     </button>
                     <input
                         ref={importInputRef}

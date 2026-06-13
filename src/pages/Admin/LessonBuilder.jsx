@@ -1,8 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { getLessonContent, saveLessonContent, getItems, getExercisesGenerated, clearExerciseCache } from '../../lib/db';
 import { EXERCISE_PROFILES } from '../../lib/exerciseProfiles';
-import { Search, Plus, Trash2, Save, ArrowLeft, Check, Eye } from 'lucide-react';
+import { getCanonicalCurriculum, getCurriculumCounts, validateCanonicalCurriculum } from '../../lib/content/canonicalCurriculumStore';
+import { Search, Plus, Trash2, Save, ArrowLeft, Check, Eye, FileCheck } from 'lucide-react';
+
+const splitCsv = (value) => String(value || '').split(',').map(part => part.trim()).filter(Boolean);
+
+const toNumberOrUndefined = (value) => {
+    if (value === '' || value === null || value === undefined) return undefined;
+    const next = Number(value);
+    return Number.isFinite(next) ? next : undefined;
+};
 
 const LessonBuilder = () => {
     const { search } = useLocation();
@@ -10,41 +19,86 @@ const LessonBuilder = () => {
     const query = new URLSearchParams(search);
     const targetLessonId = query.get('id') || 'lesson_001';
 
-    const [goal, setGoal] = useState('');
-    const [exerciseProfileId, setExerciseProfileId] = useState('');
-    const [sentences, setSentences] = useState([]);
+    return <LessonBuilderEditor key={targetLessonId} targetLessonId={targetLessonId} navigate={navigate} />;
+};
+
+const buildInitialEditorState = (targetLessonId) => {
+    const data = getLessonContent(targetLessonId);
+    const validation = validateCanonicalCurriculum(getCanonicalCurriculum());
+    const counts = getCurriculumCounts();
+    return {
+        goal: data?.goal || 'New Lesson Goal',
+        exerciseProfileId: data?.exerciseProfileId || '',
+        lessonMeta: {
+            unitId: data?.lesson?.unitId || '',
+            orderIndex: data?.lesson?.orderIndex ?? '',
+            nodeId: data?.lesson?.nodeId || '',
+            quizId: data?.lesson?.quizId || '',
+            topic: data?.lesson?.topic || '',
+            cefrLevel: data?.lesson?.cefrLevel || '',
+            difficulty: data?.lesson?.difficulty ?? '',
+            xpReward: data?.lesson?.xpReward ?? '',
+            focus: (data?.lesson?.focus || []).join(', '),
+        },
+        sentences: data?.sentences || [],
+        attachedItems: data?.attachedItems || [],
+        allItems: getItems().filter(item => item.item_type !== 'sentence'),
+        validation,
+        counts,
+    };
+};
+
+const LessonBuilderEditor = ({ targetLessonId, navigate }) => {
+    const initialState = useMemo(() => buildInitialEditorState(targetLessonId), [targetLessonId]);
+    const [goal, setGoal] = useState(initialState.goal);
+    const [exerciseProfileId, setExerciseProfileId] = useState(initialState.exerciseProfileId);
+    const [lessonMeta, setLessonMeta] = useState(initialState.lessonMeta);
+    const [sentences, setSentences] = useState(initialState.sentences);
     const [vocabSearch, setVocabSearch] = useState('');
-    const [allItems, setAllItems] = useState([]);
-    const [attachedItems, setAttachedItems] = useState([]);
+    const [allItems] = useState(initialState.allItems);
+    const [attachedItems, setAttachedItems] = useState(initialState.attachedItems);
     const [saved, setSaved] = useState(false);
     const [previewExercises, setPreviewExercises] = useState(null);
-
-    useEffect(() => {
-        const data = getLessonContent(targetLessonId);
-        if (data) {
-            setGoal(data.goal || '');
-            setExerciseProfileId(data.exerciseProfileId || '');
-            setSentences(data.sentences || []);
-            setAttachedItems(data.attachedItems || []);
-        } else {
-            setGoal('New Lesson Goal');
-            setExerciseProfileId('');
-            setSentences([]);
-            setAttachedItems([]);
-        }
-        setAllItems(getItems());
-    }, [targetLessonId]);
+    const [validation, setValidation] = useState(initialState.validation);
+    const [counts, setCounts] = useState(initialState.counts);
 
     const handleSave = () => {
-        saveLessonContent({
-            id: targetLessonId,
-            goal,
-            exerciseProfileId,
-            sentences,
-            attachedItems
-        });
-        setSaved(true);
-        setTimeout(() => setSaved(false), 2000);
+        try {
+            saveLessonContent({
+                id: targetLessonId,
+                goal,
+                exerciseProfileId,
+                lesson: {
+                    id: targetLessonId,
+                    title: goal,
+                    unitId: lessonMeta.unitId || undefined,
+                    orderIndex: toNumberOrUndefined(lessonMeta.orderIndex),
+                    nodeId: lessonMeta.nodeId || undefined,
+                    quizId: lessonMeta.quizId || undefined,
+                    topic: lessonMeta.topic || undefined,
+                    cefrLevel: lessonMeta.cefrLevel || undefined,
+                    difficulty: toNumberOrUndefined(lessonMeta.difficulty),
+                    xpReward: toNumberOrUndefined(lessonMeta.xpReward),
+                    exerciseProfileId: exerciseProfileId || undefined,
+                    focus: splitCsv(lessonMeta.focus),
+                },
+                sentences,
+                attachedItems
+            });
+            setValidation(validateCanonicalCurriculum(getCanonicalCurriculum()));
+            setCounts(getCurriculumCounts());
+            setSaved(true);
+            setTimeout(() => setSaved(false), 2000);
+            return true;
+        } catch (err) {
+            alert(`Save failed: ${err.message || err}`);
+            setValidation(validateCanonicalCurriculum(getCanonicalCurriculum()));
+            return false;
+        }
+    };
+
+    const updateLessonMeta = (field, value) => {
+        setLessonMeta(current => ({ ...current, [field]: value }));
     };
 
     const addSentence = () => {
@@ -63,7 +117,7 @@ const LessonBuilder = () => {
 
     const attachItem = (item) => {
         if (attachedItems.find(a => a.id === item.id)) return;
-        setAttachedItems([...attachedItems, { id: item.id, vi_text: item.vi_text, en: item.en }]);
+        setAttachedItems([...attachedItems, { id: item.id, vi_text: item.vi_text, en: item.en, pos: item.pos }]);
     };
 
     const detachItem = (itemId) => {
@@ -72,8 +126,8 @@ const LessonBuilder = () => {
 
     const filteredVocab = vocabSearch
         ? allItems.filter(w =>
-            w.vi_text.toLowerCase().includes(vocabSearch.toLowerCase()) ||
-            w.en.toLowerCase().includes(vocabSearch.toLowerCase())
+            (w.vi_text || '').toLowerCase().includes(vocabSearch.toLowerCase()) ||
+            (w.en || '').toLowerCase().includes(vocabSearch.toLowerCase())
         ).slice(0, 10)
         : [];
 
@@ -91,7 +145,7 @@ const LessonBuilder = () => {
                         </button>
                     </div>
                     <h1 style={{ fontSize: 32, margin: 0, marginBottom: 8 }}>Lesson Builder</h1>
-                    <span style={{ color: 'var(--text-muted)' }}>Editing: <code style={{ color: 'var(--secondary-color)' }}>{targetLessonId}</code></span>
+                    <span style={{ color: 'var(--text-muted)' }}>Editing canonical lesson: <code style={{ color: 'var(--secondary-color)' }}>{targetLessonId}</code></span>
                 </div>
                 <button className="primary" onClick={handleSave} style={{ minWidth: 160 }}>
                     {saved ? <><Check size={20} /> Saved!</> : <><Save size={20} /> Publish Changes</>}
@@ -104,11 +158,43 @@ const LessonBuilder = () => {
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
                     <div className="glass-panel">
                         <h3 style={{ marginTop: 0 }}>Lesson Metadata</h3>
-                        <label style={{ display: 'block', fontSize: 14, color: 'var(--text-muted)', marginBottom: 8 }}>Lesson Goal (Instructor notes)</label>
+                        <label style={{ display: 'block', fontSize: 14, color: 'var(--text-muted)', marginBottom: 8 }}>Title</label>
                         <input
                             type="text"
                             value={goal}
                             onChange={(e) => setGoal(e.target.value)}
+                            style={{ width: '100%', padding: 12, borderRadius: 8, backgroundColor: 'var(--surface-color-light)', border: '1px solid var(--border-color)', color: 'var(--text-main)', fontSize: 16, boxSizing: 'border-box' }}
+                        />
+
+                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: 12, marginTop: 16 }}>
+                            {[
+                                ['unitId', 'Unit ID'],
+                                ['orderIndex', 'Order'],
+                                ['nodeId', 'Node ID'],
+                                ['quizId', 'Quiz ID'],
+                                ['topic', 'Topic'],
+                                ['cefrLevel', 'CEFR'],
+                                ['difficulty', 'Difficulty'],
+                                ['xpReward', 'XP'],
+                            ].map(([field, label]) => (
+                                <label key={field} style={{ display: 'block', fontSize: 12, color: 'var(--text-muted)' }}>
+                                    {label}
+                                    <input
+                                        type={['orderIndex', 'difficulty', 'xpReward'].includes(field) ? 'number' : 'text'}
+                                        value={lessonMeta[field] ?? ''}
+                                        onChange={(e) => updateLessonMeta(field, e.target.value)}
+                                        style={{ width: '100%', marginTop: 4, padding: 10, borderRadius: 6, backgroundColor: 'var(--surface-color-light)', border: '1px solid var(--border-color)', color: 'var(--text-main)', boxSizing: 'border-box' }}
+                                    />
+                                </label>
+                            ))}
+                        </div>
+
+                        <label style={{ display: 'block', fontSize: 14, color: 'var(--text-muted)', marginTop: 16, marginBottom: 8 }}>Focus tags</label>
+                        <input
+                            type="text"
+                            value={lessonMeta.focus || ''}
+                            onChange={(e) => updateLessonMeta('focus', e.target.value)}
+                            placeholder="comma-separated tags"
                             style={{ width: '100%', padding: 12, borderRadius: 8, backgroundColor: 'var(--surface-color-light)', border: '1px solid var(--border-color)', color: 'var(--text-main)', fontSize: 16, boxSizing: 'border-box' }}
                         />
 
@@ -144,6 +230,16 @@ const LessonBuilder = () => {
                                     </div>
                                     <div style={{ flex: 1, display: 'flex', flexWrap: 'wrap', gap: 12 }}>
                                         <div style={{ flex: '1 1 200px' }}>
+                                            <label style={{ fontSize: 12, color: 'var(--text-muted)', marginBottom: 4, display: 'block' }}>Sentence ID</label>
+                                            <input
+                                                type="text"
+                                                value={s.id || ''}
+                                                onChange={(e) => updateSentence(idx, 'id', e.target.value)}
+                                                placeholder={`it_cms_${targetLessonId}_${idx}`}
+                                                style={{ width: '100%', padding: '8px 12px', borderRadius: 4, backgroundColor: 'var(--surface-color)', border: '1px solid var(--border-color)', color: 'var(--text-main)', boxSizing: 'border-box' }}
+                                            />
+                                        </div>
+                                        <div style={{ flex: '1 1 200px' }}>
                                             <label style={{ fontSize: 12, color: 'var(--text-muted)', marginBottom: 4, display: 'block' }}>Vietnamese Target</label>
                                             <input
                                                 type="text"
@@ -160,6 +256,16 @@ const LessonBuilder = () => {
                                                 value={s.english}
                                                 onChange={(e) => updateSentence(idx, 'english', e.target.value)}
                                                 placeholder="e.g. Hello friend"
+                                                style={{ width: '100%', padding: '8px 12px', borderRadius: 4, backgroundColor: 'var(--surface-color)', border: '1px solid var(--border-color)', color: 'var(--text-main)', boxSizing: 'border-box' }}
+                                            />
+                                        </div>
+                                        <div style={{ flex: '1 1 100%' }}>
+                                            <label style={{ fontSize: 12, color: 'var(--text-muted)', marginBottom: 4, display: 'block' }}>Grammar note</label>
+                                            <input
+                                                type="text"
+                                                value={s.note || ''}
+                                                onChange={(e) => updateSentence(idx, 'note', e.target.value)}
+                                                placeholder="optional note"
                                                 style={{ width: '100%', padding: '8px 12px', borderRadius: 4, backgroundColor: 'var(--surface-color)', border: '1px solid var(--border-color)', color: 'var(--text-main)', boxSizing: 'border-box' }}
                                             />
                                         </div>
@@ -181,6 +287,26 @@ const LessonBuilder = () => {
 
                 {/* Right Column: Tools */}
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+
+                    <div className="glass-panel" style={{ borderColor: validation.ok ? 'rgba(76,175,80,0.35)' : 'rgba(239,68,68,0.45)' }}>
+                        <h3 style={{ marginTop: 0, fontSize: 16, display: 'flex', alignItems: 'center', gap: 8 }}>
+                            <FileCheck size={18} /> Canonical Contract
+                        </h3>
+                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, fontSize: 12, color: 'var(--text-muted)' }}>
+                            <span>Units: {counts.units}</span>
+                            <span>Lessons: {counts.lessons}</span>
+                            <span>Words: {counts.words}</span>
+                            <span>Sentences: {counts.sentences}</span>
+                        </div>
+                        <div style={{ marginTop: 12, fontSize: 12, color: validation.ok ? '#4CAF50' : 'var(--danger-color)' }}>
+                            {validation.ok ? 'Valid canonical curriculum' : `${validation.errors.length} validation issue${validation.errors.length === 1 ? '' : 's'}`}
+                        </div>
+                        {!validation.ok && (
+                            <ul style={{ margin: '8px 0 0', paddingLeft: 18, fontSize: 11, color: 'var(--danger-color)' }}>
+                                {validation.errors.slice(0, 3).map((err, idx) => <li key={idx}>{err}</li>)}
+                            </ul>
+                        )}
+                    </div>
 
                     <div className="glass-panel">
                         <h3 style={{ marginTop: 0, fontSize: 16 }}>Vocab Selector</h3>
@@ -273,7 +399,7 @@ const LessonBuilder = () => {
                                 className="secondary"
                                 onClick={() => {
                                     clearExerciseCache();
-                                    handleSave();
+                                    if (!handleSave()) return;
                                     const exercises = getExercisesGenerated(targetLessonId);
                                     setPreviewExercises(exercises);
                                 }}
