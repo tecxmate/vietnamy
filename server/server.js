@@ -17,7 +17,9 @@ import {
     buildTrackingUrls,
     createMessageInstanceId,
     getMessageEngagementStats,
+    getUserMessageAffinity,
     recordMessageEvent,
+    selectAdaptiveScenario,
     selectMessageVariant,
 } from './engagementOptimizer.js';
 import {
@@ -480,6 +482,14 @@ app.get('/api/messages/stats', async (req, res) => {
     res.json(await getMessageEngagementStats({
         scenarioId: req.query.scenarioId || undefined,
         channel: req.query.channel || undefined,
+    }));
+});
+
+app.get('/api/messages/affinity', async (req, res) => {
+    if (!requireMailAdmin(req, res)) return;
+    res.json(await getUserMessageAffinity({
+        userId: clampText(req.query.userId, 160),
+        channel: clampText(req.query.channel, 40) || undefined,
     }));
 });
 
@@ -2332,6 +2342,21 @@ app.post('/api/push/subscribe', async (req, res) => {
     res.json({ ok: true, subscriptionId: id, enabled: PUSH_ENABLED });
 });
 
+app.post('/api/push/unsubscribe', async (req, res) => {
+    const { subscription, userId = 'anonymous' } = req.body || {};
+    if (!subscription?.endpoint) return res.status(400).json({ error: 'valid push subscription required' });
+
+    const id = pushSubscriptionKey(subscription);
+    await updatePushSubscriptionStats(id, { active: false });
+    await recordPushEvent({
+        type: 'unsubscribed',
+        subscriptionId: id,
+        userId,
+        at: new Date().toISOString(),
+    });
+    res.json({ ok: true, subscriptionId: id });
+});
+
 app.post('/api/push/events', async (req, res) => {
     const {
         type,
@@ -2406,7 +2431,15 @@ app.post('/api/push/send', async (req, res) => {
         variantId: requestedVariantId = '',
     } = req.body || {};
     const context = rawContext && typeof rawContext === 'object' ? rawContext : {};
-    const selectedScenarioId = requestedScenarioId || LEGACY_PUSH_SCENARIOS[templateId] || templateId;
+    const isAdaptive = templateId === 'adaptive' || requestedScenarioId === 'adaptive';
+    const adaptiveScenario = isAdaptive
+        ? await selectAdaptiveScenario('push', {
+            userId: clampText(userId || '', 160),
+            candidateScenarioIds: Array.isArray(req.body?.candidateScenarioIds) ? req.body.candidateScenarioIds.map(id => clampText(id, 120)).filter(Boolean) : undefined,
+            allowedGroups: Array.isArray(req.body?.allowedGroups) ? req.body.allowedGroups.map(group => clampText(group, 60)).filter(Boolean) : undefined,
+        })
+        : null;
+    const selectedScenarioId = adaptiveScenario?.id || requestedScenarioId || LEGACY_PUSH_SCENARIOS[templateId] || templateId;
     const selectedVariant = getMessageScenario(selectedScenarioId)
         ? await selectMessageVariant(selectedScenarioId, 'push', {
             userId: clampText(userId || '', 160),

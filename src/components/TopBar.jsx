@@ -17,6 +17,7 @@ import { useNotifications } from '../context/NotificationContext';
 import { getSoundEnabled, setSoundEnabled, playTap, playSelect, playTransitionUp, playTransitionDown } from '../utils/sound';
 import { clearSpeakQueue } from '../utils/speak';
 import { isAdminAuthenticated, loginAdmin } from '../lib/adminAuth';
+import { disablePushReminders, enablePushReminders, getPushReminderStatus } from '../utils/pushNotifications';
 
 
 const TAB_META = {
@@ -35,7 +36,7 @@ const TopBar = ({ activeTab, subtitleOverride }) => {
     const [isReferralOpen, setIsReferralOpen] = useState(false);
     const navigate = useNavigate();
     const { userProfile, updateUserProfile } = useUser();
-    const { profile: authProfile, signInWithGoogle, signOut } = useAuth();
+    const { user, profile: authProfile, signInWithGoogle, signOut } = useAuth();
     const { unreadCount, openPanel } = useNotifications();
     const isHome = activeTab === 'home';
     const isRoadmap = activeTab === 'roadmap';
@@ -44,6 +45,7 @@ const TopBar = ({ activeTab, subtitleOverride }) => {
     const t = useT();
     const [settings, setSettings] = useState(() => loadSettings());
     const [interactionAudioEnabled, setInteractionAudioEnabled] = useState(() => getSoundEnabled());
+    const [pushReminderStatus, setPushReminderStatus] = useState('checking');
 
     const updateSetting = (key, value) => {
         const next = { ...settings, [key]: value };
@@ -68,8 +70,46 @@ const TopBar = ({ activeTab, subtitleOverride }) => {
         if (!value) clearSpeakQueue({ stopCurrent: true });
     };
 
+    useEffect(() => {
+        let cancelled = false;
+        getPushReminderStatus()
+            .then(status => {
+                if (!cancelled) setPushReminderStatus(status);
+            })
+            .catch(() => {
+                if (!cancelled) setPushReminderStatus('unsupported');
+            });
+        return () => { cancelled = true; };
+    }, [user?.id]);
+
+    const updateDailyReminder = async (enabled) => {
+        if (!enabled) {
+            updateSetting('dailyReminder', false);
+            setPushReminderStatus('saving');
+            const result = await disablePushReminders({ userId: user?.id }).catch(() => ({ ok: false, status: 'default' }));
+            setPushReminderStatus(result.status || 'default');
+            return;
+        }
+
+        setPushReminderStatus('saving');
+        const result = await enablePushReminders({
+            userId: user?.id,
+            userName: authProfile?.name || userProfile.name || '',
+        }).catch(() => ({ ok: false, status: 'subscribe-failed' }));
+        if (result.ok) {
+            updateSetting('dailyReminder', true);
+            setPushReminderStatus('enabled');
+        } else {
+            updateSetting('dailyReminder', false);
+            setPushReminderStatus(result.status || 'subscribe-failed');
+        }
+    };
+
     const dialectLabel = userProfile.dialect === 'north' ? t('dialect_northern') : userProfile.dialect === 'south' ? t('dialect_southern') : userProfile.dialect === 'both' ? t('dialect_both') : '';
     const goalLabel = userProfile.dailyMins ? `${userProfile.dailyMins}m/day` : '';
+    const dailyReminderChecked = settings.dailyReminder !== false && pushReminderStatus === 'enabled';
+    const dailyReminderLabel = t(`home_push_label_${pushReminderStatus}`, t('daily_reminder'));
+    const dailyReminderDisabled = pushReminderStatus === 'checking' || pushReminderStatus === 'saving';
     const enabledVoices = getEnabledVoices(settings);
     const resolvedTtsVoice = isVoiceEnabled(settings.ttsVoice, settings)
         ? settings.ttsVoice
@@ -468,10 +508,11 @@ const TopBar = ({ activeTab, subtitleOverride }) => {
                             {/* Notifications */}
                             <SettingsGroup title={t('reminders')}>
                                 <SettingToggle
-                                    label={t('daily_reminder')}
+                                    label={dailyReminderLabel}
                                     icon={<Bell size={16} />}
-                                    checked={settings.dailyReminder !== false}
-                                    onChange={v => updateSetting('dailyReminder', v)}
+                                    checked={dailyReminderChecked}
+                                    disabled={dailyReminderDisabled}
+                                    onChange={updateDailyReminder}
                                 />
                             </SettingsGroup>
 
@@ -721,10 +762,12 @@ const QuickAudioToggle = ({ label, checked, onChange }) => (
     </button>
 );
 
-const SettingToggle = ({ label, icon, checked, onChange }) => (
+const SettingToggle = ({ label, icon, checked, onChange, disabled = false }) => (
     <div
-        onClick={() => onChange(!checked)}
-        style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '14px 16px', cursor: 'pointer', borderBottom: '1px solid var(--border-color)' }}
+        onClick={() => {
+            if (!disabled) onChange(!checked);
+        }}
+        style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '14px 16px', cursor: disabled ? 'wait' : 'pointer', borderBottom: '1px solid var(--border-color)', opacity: disabled ? 0.72 : 1 }}
     >
         <span style={{ color: 'var(--primary-color)', display: 'flex' }}>{icon}</span>
         <span style={{ flex: 1, fontSize: 15 }}>{label}</span>

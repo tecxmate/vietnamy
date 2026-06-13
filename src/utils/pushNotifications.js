@@ -53,6 +53,9 @@ export async function enablePushReminders({ userId, userName = '' } = {}) {
     }
 
     const keyResponse = await fetch('/api/push/vapid-public-key');
+    if (!keyResponse.ok) {
+        return { ok: false, status: 'server-missing-key', message: 'Push reminders need server setup.' };
+    }
     const keyData = await keyResponse.json();
     if (!keyData.enabled || !keyData.publicKey) {
         return { ok: false, status: 'server-missing-key', message: 'Push reminders need VAPID keys on the server.' };
@@ -64,10 +67,11 @@ export async function enablePushReminders({ userId, userName = '' } = {}) {
     }
 
     const registration = await registerVietnamyServiceWorker();
-    const subscription = await registration.pushManager.subscribe({
-        userVisibleOnly: true,
-        applicationServerKey: urlBase64ToUint8Array(keyData.publicKey),
-    });
+    const subscription = await registration.pushManager.getSubscription()
+        || await registration.pushManager.subscribe({
+            userVisibleOnly: true,
+            applicationServerKey: urlBase64ToUint8Array(keyData.publicKey),
+        });
 
     const response = await fetch('/api/push/subscribe', {
         method: 'POST',
@@ -88,6 +92,26 @@ export async function enablePushReminders({ userId, userName = '' } = {}) {
     return { ok: true, status: 'enabled' };
 }
 
+export async function disablePushReminders({ userId } = {}) {
+    if (!isPushSupported()) {
+        return { ok: false, status: 'unsupported', message: 'Push reminders are unavailable.' };
+    }
+
+    const registration = await registerVietnamyServiceWorker();
+    const subscription = await registration.pushManager.getSubscription();
+    if (!subscription) return { ok: true, status: Notification.permission === 'denied' ? 'blocked' : 'default' };
+
+    const payload = { subscription, userId: userId || 'anonymous', deviceId: getPushDeviceId() };
+    await fetch('/api/push/unsubscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+    }).catch(() => {});
+    await subscription.unsubscribe().catch(() => {});
+
+    return { ok: true, status: Notification.permission === 'denied' ? 'blocked' : 'default' };
+}
+
 export function trackPushReturnFromUrl(userId) {
     const params = new URLSearchParams(window.location.search);
     const notificationId = params.get('notification');
@@ -95,6 +119,20 @@ export function trackPushReturnFromUrl(userId) {
     if (!userId) return;
     const scenarioId = params.get('scenario') || '';
     const variantId = params.get('variant') || '';
+
+    fetch('/api/messages/events', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            event: 'clicked',
+            messageInstanceId: notificationId,
+            scenarioId,
+            variantId,
+            channel: 'push',
+            userId,
+            metadata: { source: 'push_return_url', path: window.location.pathname },
+        }),
+    }).catch(() => {});
 
     fetch('/api/push/events', {
         method: 'POST',

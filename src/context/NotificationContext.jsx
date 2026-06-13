@@ -1,4 +1,6 @@
-import React, { createContext, useContext, useState, useEffect, useCallback, useRef } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback, useMemo } from 'react';
+import { supabase } from '../lib/supabase';
+import { useAuth } from './AuthContext';
 import { playNotifSound } from '../utils/sound';
 
 const NotificationContext = createContext(null);
@@ -81,6 +83,15 @@ const FRIEND_ACTIVITY = [
 
 const STORAGE_KEY = 'vnme_notifications';
 const MAX_HISTORY = 40;
+const SERVER_HISTORY_LIMIT = 50;
+
+const DEFAULT_SERVER_STYLE = {
+    type: 'info',
+    icon: 'bell',
+    color: '#4CC9F0',
+    accent: 'rgba(76,201,240,0.13)',
+    border: 'rgba(76,201,240,0.3)',
+};
 
 function loadHistory() {
     try {
@@ -89,19 +100,83 @@ function loadHistory() {
     } catch { return []; }
 }
 
+function normalizeLocalHistory(history) {
+    return history.map((item, index) => ({
+        ...item,
+        _uid: item._uid || `local_${item.id || 'notification'}_${item.timestamp || index}`,
+        timestamp: item.timestamp || Date.now(),
+        isServer: false,
+    }));
+}
+
+function normalizeServerNotification(notification) {
+    const style = NOTIFICATION_DEFS[notification.type] || DEFAULT_SERVER_STYLE;
+    const timestamp = Date.parse(notification.at);
+    return {
+        _uid: `server_${notification.id}`,
+        serverId: notification.id,
+        id: notification.type || 'system',
+        ...style,
+        title: notification.title || style.title || 'Notification',
+        body: notification.message || style.body || '',
+        url: notification.url || '/',
+        timestamp: Number.isFinite(timestamp) ? timestamp : Date.now(),
+        read: Boolean(notification.read),
+        isServer: true,
+        metadata: notification.metadata || {},
+    };
+}
+
+async function getAuthHeaders() {
+    if (!supabase) return null;
+    const { data } = await supabase.auth.getSession();
+    const token = data?.session?.access_token;
+    return token ? { Authorization: `Bearer ${token}` } : null;
+}
+
 export function NotificationProvider({ children }) {
-    const [history, setHistory] = useState(() => loadHistory());
+    const { user } = useAuth();
+    const userId = user?.id || '';
+    const [localHistory, setLocalHistory] = useState(() => normalizeLocalHistory(loadHistory()));
+    const [serverHistory, setServerHistory] = useState([]);
+    const [serverUnreadCount, setServerUnreadCount] = useState(0);
     const [liveQueue, setLiveQueue] = useState([]); // toast queue
-    const [unreadCount, setUnreadCount] = useState(() => {
-        const h = loadHistory();
-        return h.filter(n => !n.read).length;
-    });
     const [panelOpen, setPanelOpen] = useState(false);
+    const localUnreadCount = useMemo(() => localHistory.filter(n => !n.read).length, [localHistory]);
+    const unreadCount = localUnreadCount + serverUnreadCount;
+    const history = useMemo(() => (
+        [...serverHistory, ...localHistory]
+            .sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0))
+            .slice(0, SERVER_HISTORY_LIMIT + MAX_HISTORY)
+    ), [localHistory, serverHistory]);
 
     // Persist history
     useEffect(() => {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(history.slice(0, MAX_HISTORY)));
-    }, [history]);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(localHistory.slice(0, MAX_HISTORY)));
+    }, [localHistory]);
+
+    const refreshServerNotifications = useCallback(async () => {
+        await Promise.resolve();
+        if (!userId || userId === 'local-dev') {
+            setServerHistory([]);
+            setServerUnreadCount(0);
+            return;
+        }
+        const headers = await getAuthHeaders();
+        if (!headers) return;
+        const response = await fetch(`/api/notifications?limit=${SERVER_HISTORY_LIMIT}`, { headers });
+        if (!response.ok) return;
+        const data = await response.json();
+        setServerHistory((data.notifications || []).map(normalizeServerNotification));
+        setServerUnreadCount(Number(data.unreadCount || 0));
+    }, [userId]);
+
+    useEffect(() => {
+        const timer = window.setTimeout(() => {
+            refreshServerNotifications().catch(() => {});
+        }, 0);
+        return () => window.clearTimeout(timer);
+    }, [refreshServerNotifications]);
 
     // Listen for vnme:notify events
     useEffect(() => {
@@ -122,8 +197,7 @@ export function NotificationProvider({ children }) {
             playNotifSound(id);
 
             // Add to persistent history
-            setHistory(h => [entry, ...h].slice(0, MAX_HISTORY));
-            setUnreadCount(c => c + 1);
+            setLocalHistory(h => [entry, ...h].slice(0, MAX_HISTORY));
 
             // Push to live toast queue (max 2)
             setLiveQueue(q => q.length >= 2 ? q : [...q, entry]);
@@ -140,16 +214,36 @@ export function NotificationProvider({ children }) {
     const openPanel = useCallback(() => {
         setPanelOpen(true);
         // Mark all as read
-        setHistory(h => h.map(n => ({ ...n, read: true })));
-        setUnreadCount(0);
-    }, []);
+        setLocalHistory(h => h.map(n => ({ ...n, read: true })));
+        if (serverUnreadCount > 0) {
+            setServerHistory(h => h.map(n => ({ ...n, read: true })));
+            setServerUnreadCount(0);
+            getAuthHeaders().then(headers => {
+                if (!headers) return;
+                return fetch('/api/notifications', {
+                    method: 'PUT',
+                    headers: { ...headers, 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ markAllRead: true }),
+                });
+            }).catch(() => {});
+        }
+    }, [serverUnreadCount]);
 
     const closePanel = useCallback(() => setPanelOpen(false), []);
 
     const clearHistory = useCallback(() => {
-        setHistory([]);
-        setUnreadCount(0);
+        setLocalHistory([]);
+        setServerHistory([]);
+        setServerUnreadCount(0);
         localStorage.removeItem(STORAGE_KEY);
+        getAuthHeaders().then(headers => {
+            if (!headers) return;
+            return fetch('/api/notifications', {
+                method: 'PUT',
+                headers: { ...headers, 'Content-Type': 'application/json' },
+                body: JSON.stringify({ markAllRead: true }),
+            });
+        }).catch(() => {});
     }, []);
 
     return (
@@ -162,6 +256,7 @@ export function NotificationProvider({ children }) {
             openPanel,
             closePanel,
             clearHistory,
+            refreshServerNotifications,
             friendActivity: FRIEND_ACTIVITY,
         }}>
             {children}
