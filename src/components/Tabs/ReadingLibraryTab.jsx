@@ -517,11 +517,33 @@ function ArticleReaderView({ article, onBack }) {
         return 'en';
     });
     const [copiedCode, setCopiedCode] = useState(false);
+    const [dictInfo, setDictInfo] = useState(new Map());
 
     // Warm the cache for every sentence when the article opens, so tapping a
     // speaker later hits a ready clip instead of a cold Azure round-trip.
     useEffect(() => {
         preloadSpeak((article.sentences || []).map(s => s.vi).filter(Boolean));
+    }, [article]);
+
+    // Pre-load per-word definitions from the local content dictionary so tapping
+    // a word surfaces a brief explanation instantly (no API round-trip). Mirrors
+    // the flashcard study view's lookupWords precedent. We include 1-, 2- and
+    // 3-token windows so compound headwords (e.g. "cảm ơn") — which the segmenter
+    // surfaces as a single tappable phrase — also resolve from the local cache.
+    useEffect(() => {
+        const words = new Set();
+        for (const s of (article.sentences || [])) {
+            const toks = (s.vi || '')
+                .split(/\s+/)
+                .map(w => w.replace(/[.,!?;:"“”'’()…«»]/g, '').trim())
+                .filter(Boolean);
+            for (let i = 0; i < toks.length; i++) {
+                for (let len = 1; len <= 3 && i + len <= toks.length; len++) {
+                    words.add(toks.slice(i, i + len).join(' '));
+                }
+            }
+        }
+        lookupWords([...words]).then(info => setDictInfo(info));
     }, [article]);
 
     const toggleReveal = (idx) => {
@@ -634,6 +656,9 @@ function ArticleReaderView({ article, onBack }) {
                     anchorRect={popupWord.anchorRect}
                     dictMode={translationLang === 'en' ? 'en' : translationLang}
                     isPhrase={popupWord.isPhrase}
+                    preDefinition={!popupWord.isPhrase && translationLang === 'en'
+                        ? (dictInfo.get(popupWord.word) || dictInfo.get(popupWord.word.toLowerCase()))
+                        : null}
                     onClose={() => setPopupWord(null)}
                     onNavigate={() => setPopupWord(null)}
                     onSave={(word) => { toggleDictSavedWord(word); setPopupWord(null); }}
