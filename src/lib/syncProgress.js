@@ -2,9 +2,12 @@ import { supabase } from './supabase';
 
 export const PROGRESS_CHANGED_EVENT = 'vnme-progress-changed';
 
-const CLOUD_SYNC_PROVIDER = (import.meta.env.VITE_CLOUD_SYNC_PROVIDER || 'supabase').toLowerCase();
+const CLOUD_SYNC_PROVIDER = (import.meta.env.VITE_CLOUD_SYNC_PROVIDER || 'local').toLowerCase();
 const CLOUD_SYNC_DUAL_WRITE = import.meta.env.VITE_CLOUD_SYNC_DUAL_WRITE === 'true';
+const DIRECT_SUPABASE_SYNC = import.meta.env.VITE_DIRECT_SUPABASE_SYNC === 'true';
 const API_SYNC_PRIMARY = CLOUD_SYNC_PROVIDER === 'api';
+const SUPABASE_SYNC_PRIMARY = CLOUD_SYNC_PROVIDER === 'supabase' && DIRECT_SUPABASE_SYNC;
+const CLOUD_SYNC_ENABLED = API_SYNC_PRIMARY || (SUPABASE_SYNC_PRIMARY && Boolean(supabase));
 
 const SYNC_KEYS = [
   'vietnamy_dong',
@@ -155,7 +158,7 @@ export async function ensureUserProfile(user) {
     }
   }
 
-  if (!supabase || !user?.id) return getProfileFromAuthUser(user);
+  if (!SUPABASE_SYNC_PRIMARY || !supabase || !user?.id) return getProfileFromAuthUser(user);
   const localProfile = readLocalProfile();
   const metadata = user.user_metadata || {};
   const localName = localProfile.name && localProfile.name !== 'Bạn' ? localProfile.name : '';
@@ -212,7 +215,7 @@ export async function saveUserProfileToCloud(userId, userProfile = {}) {
       });
       return;
     }
-    if (!supabase) return;
+    if (!SUPABASE_SYNC_PRIMARY || !supabase) return;
     await supabase.from('profiles').upsert(payload, { onConflict: 'id' });
     if (CLOUD_SYNC_DUAL_WRITE) {
       bestEffortCloudApi('/api/sync/profile', {
@@ -236,7 +239,7 @@ export async function syncSavedWordsToCloud(userId) {
       });
       return;
     }
-    if (!supabase) return;
+    if (!SUPABASE_SYNC_PRIMARY || !supabase) return;
     const sources = ['lesson', 'dictionary'];
     const { error: deleteError } = await supabase
       .from('saved_words')
@@ -271,7 +274,7 @@ export async function loadSavedWordsFromCloud(userId) {
       const result = await cloudApi('/api/sync/saved-words');
       return applySavedWordRows(result.rows);
     }
-    if (!supabase) return false;
+    if (!SUPABASE_SYNC_PRIMARY || !supabase) return false;
     const { data, error } = await supabase
       .from('saved_words')
       .select('word_id, source')
@@ -302,7 +305,7 @@ export async function saveProgressToCloud(userId) {
       });
       return;
     }
-    if (!supabase) return;
+    if (!SUPABASE_SYNC_PRIMARY || !supabase) return;
     await supabase.from('user_progress').upsert({
       user_id: userId,
       data,
@@ -321,7 +324,7 @@ export async function saveProgressToCloud(userId) {
 }
 
 export function debouncedSaveProgress(userId) {
-  if (!userId || (!supabase && !API_SYNC_PRIMARY)) return;
+  if (!userId || !CLOUD_SYNC_ENABLED) return;
   clearTimeout(debounceTimer);
   debounceTimer = setTimeout(() => saveProgressToCloud(userId), 2000);
 }
@@ -341,7 +344,7 @@ export async function loadProgressFromCloud(userId) {
       applySavedWordRows(result?.savedWords);
       return Boolean(result?.data || result?.savedWords?.length);
     }
-    if (!supabase) return false;
+    if (!SUPABASE_SYNC_PRIMARY || !supabase) return false;
     const { data, error } = await supabase
       .from('user_progress')
       .select('data')
