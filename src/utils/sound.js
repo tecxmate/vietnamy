@@ -1,9 +1,25 @@
 // UI Sound Effects via snd-lib (SND01 "sine" kit)
 // Does NOT play when TTS or mic recording is active to avoid conflicts.
-import Snd from 'snd-lib';
+import SndModule from 'snd-lib';
 import { haptic } from './haptics';
 
 const STORAGE_KEY = 'vnme_sound_enabled';
+
+const Snd = SndModule?.default || SndModule;
+const SOUNDS = Snd?.SOUNDS || {
+    BUTTON: 'button',
+    CAUTION: 'caution',
+    CELEBRATION: 'celebration',
+    DISABLED: 'disabled',
+    NOTIFICATION: 'notification',
+    SELECT: 'select',
+    TAP: 'tap',
+    TOGGLE_OFF: 'toggle_off',
+    TOGGLE_ON: 'toggle_on',
+    TRANSITION_DOWN: 'transition_down',
+    TRANSITION_UP: 'transition_up',
+};
+const KITS = Snd?.KITS || { SND01: '01' };
 
 let snd = null;
 let ready = false;
@@ -20,9 +36,10 @@ function scheduleInteractionEffect(fn) {
 
 // Load the sound kit outside critical tap handlers when possible.
 function init() {
+    if (typeof Snd !== 'function') return Promise.resolve();
     if (snd || loading) return loading;
     snd = new Snd();
-    loading = snd.load(Snd.KITS.SND01)
+    loading = snd.load(KITS.SND01)
         .then(() => { ready = true; })
         .catch(() => {
             snd = null;
@@ -67,18 +84,18 @@ export const preloadUISounds = () => {
     if (isEnabled()) init();
 };
 
-export const playSuccess     = () => feedback('success', Snd.SOUNDS.TOGGLE_ON);
-export const playError       = () => feedback('error', Snd.SOUNDS.TOGGLE_OFF);
-export const playCelebration = () => feedback('success', Snd.SOUNDS.CELEBRATION);
-export const playNotification= () => feedback('notification', Snd.SOUNDS.NOTIFICATION);
-export const playButton      = () => feedback('tap', Snd.SOUNDS.BUTTON);
-export const playSelect      = () => feedback('select', Snd.SOUNDS.SELECT);
-export const playTap         = () => feedback('tap', Snd.SOUNDS.TAP);
-export const playDisabled    = () => feedback('disabled', Snd.SOUNDS.DISABLED);
-export const playToggleOn    = () => feedback('select', Snd.SOUNDS.TOGGLE_ON);
-export const playToggleOff   = () => feedback('select', Snd.SOUNDS.TOGGLE_OFF);
-export const playTransitionUp   = () => scheduleInteractionEffect(() => playOrWarm(Snd.SOUNDS.TRANSITION_UP));
-export const playTransitionDown = () => scheduleInteractionEffect(() => playOrWarm(Snd.SOUNDS.TRANSITION_DOWN));
+export const playSuccess     = () => feedback('success', SOUNDS.TOGGLE_ON);
+export const playError       = () => feedback('error', SOUNDS.TOGGLE_OFF);
+export const playCelebration = () => feedback('success', SOUNDS.CELEBRATION);
+export const playNotification= () => feedback('notification', SOUNDS.NOTIFICATION);
+export const playButton      = () => feedback('tap', SOUNDS.BUTTON);
+export const playSelect      = () => feedback('select', SOUNDS.SELECT);
+export const playTap         = () => feedback('tap', SOUNDS.TAP);
+export const playDisabled    = () => feedback('disabled', SOUNDS.DISABLED);
+export const playToggleOn    = () => feedback('select', SOUNDS.TOGGLE_ON);
+export const playToggleOff   = () => feedback('select', SOUNDS.TOGGLE_OFF);
+export const playTransitionUp   = () => scheduleInteractionEffect(() => playOrWarm(SOUNDS.TRANSITION_UP));
+export const playTransitionDown = () => scheduleInteractionEffect(() => playOrWarm(SOUNDS.TRANSITION_DOWN));
 
 // ─── Conflict guards (call from mic/pitch modules) ──────────────────────────
 
@@ -101,13 +118,13 @@ export function getSoundEnabled() {
 // ─── Notification → sound mapping ────────────────────────────────────────────
 
 const NOTIF_SOUNDS = {
-    streak_3:              Snd.SOUNDS.CELEBRATION,
-    streak_5:              Snd.SOUNDS.CELEBRATION,
-    lesson_complete:       Snd.SOUNDS.CELEBRATION,
-    coins_earned:          Snd.SOUNDS.NOTIFICATION,
-    lost_heart:            Snd.SOUNDS.CAUTION,
-    achievement_tonemaster:Snd.SOUNDS.CELEBRATION,
-    daily_streak:          Snd.SOUNDS.NOTIFICATION,
+    streak_3:              SOUNDS.CELEBRATION,
+    streak_5:              SOUNDS.CELEBRATION,
+    lesson_complete:       SOUNDS.CELEBRATION,
+    coins_earned:          SOUNDS.NOTIFICATION,
+    lost_heart:            SOUNDS.CAUTION,
+    achievement_tonemaster:SOUNDS.CELEBRATION,
+    daily_streak:          SOUNDS.NOTIFICATION,
 };
 
 export function playNotifSound(notifId) {
