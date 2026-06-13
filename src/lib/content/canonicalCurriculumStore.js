@@ -1,8 +1,10 @@
 import bakedCurriculum from '../../../content/curriculum.json';
+import {
+    createCurriculumDraftEnvelope,
+    getCurriculumFromDraftPayload,
+} from './curriculumDraftContract';
 
 const STORAGE_KEY = 'vnme_canonical_curriculum_v1';
-const EXPORT_KIND = 'vnme_canonical_curriculum';
-const EXPORT_VERSION = 1;
 
 const clone = (value) => JSON.parse(JSON.stringify(value));
 
@@ -164,17 +166,13 @@ export function saveCanonicalCurriculum(curriculum) {
 
 export function exportCanonicalCurriculum() {
     const curriculum = getCanonicalCurriculum();
-    return {
-        kind: EXPORT_KIND,
-        version: EXPORT_VERSION,
-        exportedAt: new Date().toISOString(),
-        curriculum,
+    return createCurriculumDraftEnvelope(curriculum, {
         counts: getCurriculumCounts(curriculum),
-    };
+    });
 }
 
 export function importCanonicalCurriculum(payload) {
-    const curriculum = payload?.kind === EXPORT_KIND ? payload.curriculum : payload;
+    const curriculum = getCurriculumFromDraftPayload(payload);
     if (!curriculum || typeof curriculum !== 'object') {
         throw new Error('Import payload is missing a curriculum object.');
     }

@@ -68,6 +68,8 @@ As of 2026-06-13, lesson authoring in the web admin is canonical-first. `content
 
 Admin import/export now uses canonical curriculum JSON by default, while still accepting older derived mock-DB backups. This means lesson/vocabulary content should be treated as canonical curriculum data, not as hand-authored runtime DB rows. Broader module types such as grammar units, pronunciation drills, scenes, and articles still use their specialized editors and are a separate unification pass.
 
+Admin cloud persistence is intentionally backend-neutral. The portable contract is `docs/architecture/CURRICULUM_DRAFT_API.md`: clients exchange a `vnme_canonical_curriculum_draft` envelope with generic draft/publish endpoints, while the backend can store that envelope in its own Zeabur-hosted service or any future database. The web client should not depend on a Supabase-only admin curriculum table.
+
 ## Current state (2026-05-24)
 - **Professional**: 30 lessons, 240 words, 120 sentences, 30 conversations. Authored by [claude-opus] in three commits (A1: `38a7b94`, A2/B1: `60d60ce`, B2/C1: `84bf3c3`).
 - **Heritage**: 30 lessons, 240 words, 120 sentences, 30 conversations. Same three commits.
