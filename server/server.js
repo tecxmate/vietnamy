@@ -2667,6 +2667,9 @@ const distPath = join(__dirname, '..', 'dist');
 if (existsSync(distPath)) {
     app.use(express.static(distPath));
     app.get('*', (req, res) => {
+        if (req.path.startsWith('/assets/') || req.path.includes('.')) {
+            return res.status(404).send('Not found');
+        }
         res.sendFile(join(distPath, 'index.html'));
     });
 }
