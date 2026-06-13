@@ -206,8 +206,12 @@ const LessonGame = () => {
         fuzzyHint,
         imageError,
         setImageError,
+        attemptCount,
+        answerRevealed,
+        setAnswerRevealed,
         resetSessionState,
         checkCurrentExercise,
+        retryExercise,
         canCheck: canCheckExercise,
         completeMatch,
     } = useQuizSession({
@@ -542,6 +546,34 @@ const LessonGame = () => {
     };
 
 
+    // The full correct answer text for the current exercise (same resolution the
+    // FeedbackBanner reveal uses).
+    const getCorrectAnswerText = () => {
+        if (!currentEx) return '';
+        const p = currentEx.prompt || {};
+        if (currentEx.exercise_type === 'fill_blank') return getFillBlankCorrectSentence(p);
+        return p.answer_vi || p.answer_en || (p.answer_tokens && p.answer_tokens.join(' ')) || '';
+    };
+
+    // A lightweight hint derived from the correct answer — never the full answer.
+    // Prefers the first word's gloss (its meaning); otherwise falls back to a
+    // masked shape (first letter + length). For multi-word answers, also shows
+    // the word count. A single-word answer is never spelled out.
+    const getAnswerHint = () => {
+        const answer = getCorrectAnswerText();
+        if (!answer) return '';
+        const words = answer.trim().split(/\s+/).filter(Boolean);
+        if (words.length === 0) return '';
+        const firstWord = words[0];
+        const gloss = currentEx?.wordHints?.[firstWord.toLowerCase()];
+        // Masked shape of the first word: first letter, rest as dots.
+        const masked = firstWord[0] + '•'.repeat(Math.max(0, firstWord.length - 1));
+        const clue = gloss || masked;
+        return words.length > 1
+            ? t('feedback_hint_starts_with').replace('{count}', String(words.length)).replace('{clue}', clue)
+            : clue;
+    };
+
     const handleCheck = () => {
         if (!currentEx) return;
         if (currentEx.exercise_type === 'speak_sentence') {
@@ -552,6 +584,21 @@ const LessonGame = () => {
         if (!result.handled) return;
         const { correct } = result;
 
+        // Hint-first: on the FIRST wrong attempt, show a hint and let the learner
+        // retry without committing the result (no penalty, no SRS record yet).
+        // The result is only committed once it's final (correct, second wrong
+        // attempt, or "Show answer").
+        const isFirstWrongWithHint = !correct && result.attemptCount === 1 && Boolean(getAnswerHint());
+        if (isFirstWrongWithHint) {
+            playError();
+            return;
+        }
+
+        commitResult(correct);
+    };
+
+    // Commit a final result: analytics, SRS grading, and reward/penalty side-effects.
+    const commitResult = (correct) => {
         // Engagement capture (Layer 5, analytics only)
         logEngagement({
             kind: 'exercise', lessonId, exerciseType: currentEx.exercise_type,
@@ -593,6 +640,29 @@ const LessonGame = () => {
             }
         }
     };
+
+    // "Try again" on the first wrong attempt: re-enter the answer without
+    // advancing. For speaking exercises, clear the stale recording/score so the
+    // learner gets a genuine second attempt rather than re-checking the old one.
+    const handleTryAgain = () => {
+        if (currentEx?.exercise_type === 'speak_sentence') {
+            setPronResult(null);
+            setSpeechResult('');
+        }
+        retryExercise();
+    };
+
+    // "Show answer" on the first wrong attempt: reveal the full answer and commit
+    // the wrong result (the learner chose not to retry).
+    const handleShowAnswer = () => {
+        setAnswerRevealed(true);
+        commitResult(false);
+    };
+
+    // Whether the feedback bar is currently in hint-first mode (first wrong
+    // attempt, answer not yet revealed). Continue is suppressed in this state.
+    const showingHint = isChecking && !isCorrect && attemptCount === 1
+        && !answerRevealed && Boolean(getAnswerHint());
 
     const handleSkip = () => {
         if (!testMode) return;
@@ -647,6 +717,7 @@ const LessonGame = () => {
         const onKey = (e) => {
             if (e.key !== 'Enter') return;
             if (isFinished || showQuitConfirm) return;
+            if (showingHint) { handleTryAgain(); return; }
             if (isChecking) { handleNext(); return; }
             if (canCheck()) handleCheck();
         };
@@ -1457,13 +1528,11 @@ const LessonGame = () => {
                 {isChecking ? (
                     <FeedbackBanner
                         isCorrect={isCorrect}
-                        correctAnswer={
-                            !isCorrect
-                                ? (currentEx?.exercise_type === 'fill_blank'
-                                    ? getFillBlankCorrectSentence(currentEx.prompt)
-                                    : (currentEx?.prompt?.answer_vi || currentEx?.prompt?.answer_en || (currentEx?.prompt?.answer_tokens && currentEx.prompt.answer_tokens.join(' '))))
-                                : ''
-                        }
+                        correctAnswer={!isCorrect ? getCorrectAnswerText() : ''}
+                        showHint={showingHint}
+                        hint={getAnswerHint()}
+                        onTryAgain={handleTryAgain}
+                        onShowAnswer={handleShowAnswer}
                         fuzzyHint={fuzzyHint}
                         alternatives={currentEx?.prompt?.accepted_en}
                         onContinue={handleNext}

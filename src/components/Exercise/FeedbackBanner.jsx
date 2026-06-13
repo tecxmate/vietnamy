@@ -21,6 +21,10 @@ export default function FeedbackBanner({
     onContinue,
     fuzzyHint = null,
     alternatives = null, // Array of alternative accepted translations
+    showHint = false, // First wrong attempt: show a hint instead of the full answer
+    hint = '', // The hint text shown when showHint is true
+    onTryAgain = null, // Re-enter the answer without advancing
+    onShowAnswer = null, // Reveal the full answer immediately
 }) {
     const t = useT();
     const { userProfile } = useUser();
@@ -60,6 +64,16 @@ export default function FeedbackBanner({
     const handleContinue = () => {
         playTap();
         onContinue();
+    };
+
+    const handleTryAgain = () => {
+        playTap();
+        onTryAgain?.();
+    };
+
+    const handleShowAnswer = () => {
+        playTap();
+        onShowAnswer?.();
     };
 
     return (
@@ -150,7 +164,15 @@ export default function FeedbackBanner({
                             {t('feedback_also')}: {alternatives.slice(1, 3).join(', ')}
                         </div>
                     )}
-                    {!isCorrect && correctAnswer && (
+                    {!isCorrect && showHint && hint && (
+                        <div style={{
+                            fontSize: 14, color: 'var(--text-muted)',
+                            marginTop: 4,
+                        }}>
+                            {t('feedback_hint')}: <strong style={{ color: 'var(--text-main)' }}>{hint}</strong>
+                        </div>
+                    )}
+                    {!isCorrect && !showHint && correctAnswer && (
                         <div style={{
                             fontSize: 14, color: 'var(--text-muted)',
                             marginTop: 4,
@@ -161,31 +183,77 @@ export default function FeedbackBanner({
                 </div>
             </div>
 
-            {/* Continue button */}
-            <button
-                onPointerDown={() => setIsPressed(true)}
-                onPointerUp={() => setIsPressed(false)}
-                onPointerLeave={() => setIsPressed(false)}
-                onClick={handleContinue}
-                style={{
-                    width: '100%',
-                    padding: '16px 24px',
-                    borderRadius: 14,
-                    border: 'none',
-                    cursor: 'pointer',
-                    backgroundColor: color,
-                    color: '#fff',
-                    fontWeight: 800,
-                    fontSize: 17,
-                    letterSpacing: 0.5,
-                    boxShadow: isPressed ? 'none' : `0 4px 0 ${shadowColor}`,
-                    transform: isPressed ? 'translateY(4px)' : 'translateY(0)',
-                    transition: 'transform 0.1s ease, box-shadow 0.1s ease',
-                    WebkitTapHighlightColor: 'transparent',
-                }}
-            >
-                {t('continue_upper')}
-            </button>
+            {/* Hint-first actions on the first wrong attempt; otherwise Continue */}
+            {showHint ? (
+                <div style={{ display: 'flex', gap: 10 }}>
+                    <button
+                        onPointerDown={() => setIsPressed(true)}
+                        onPointerUp={() => setIsPressed(false)}
+                        onPointerLeave={() => setIsPressed(false)}
+                        onClick={handleTryAgain}
+                        style={{
+                            flex: 1,
+                            padding: '16px 24px',
+                            borderRadius: 14,
+                            border: 'none',
+                            cursor: 'pointer',
+                            backgroundColor: color,
+                            color: '#fff',
+                            fontWeight: 800,
+                            fontSize: 17,
+                            letterSpacing: 0.5,
+                            boxShadow: isPressed ? 'none' : `0 4px 0 ${shadowColor}`,
+                            transform: isPressed ? 'translateY(4px)' : 'translateY(0)',
+                            transition: 'transform 0.1s ease, box-shadow 0.1s ease',
+                            WebkitTapHighlightColor: 'transparent',
+                        }}
+                    >
+                        {t('feedback_try_again')}
+                    </button>
+                    <button
+                        onClick={handleShowAnswer}
+                        style={{
+                            padding: '16px 18px',
+                            borderRadius: 14,
+                            border: `2px solid ${color}`,
+                            cursor: 'pointer',
+                            backgroundColor: 'transparent',
+                            color,
+                            fontWeight: 800,
+                            fontSize: 15,
+                            letterSpacing: 0.3,
+                            WebkitTapHighlightColor: 'transparent',
+                        }}
+                    >
+                        {t('feedback_show_answer')}
+                    </button>
+                </div>
+            ) : (
+                <button
+                    onPointerDown={() => setIsPressed(true)}
+                    onPointerUp={() => setIsPressed(false)}
+                    onPointerLeave={() => setIsPressed(false)}
+                    onClick={handleContinue}
+                    style={{
+                        width: '100%',
+                        padding: '16px 24px',
+                        borderRadius: 14,
+                        border: 'none',
+                        cursor: 'pointer',
+                        backgroundColor: color,
+                        color: '#fff',
+                        fontWeight: 800,
+                        fontSize: 17,
+                        letterSpacing: 0.5,
+                        boxShadow: isPressed ? 'none' : `0 4px 0 ${shadowColor}`,
+                        transform: isPressed ? 'translateY(4px)' : 'translateY(0)',
+                        transition: 'transform 0.1s ease, box-shadow 0.1s ease',
+                        WebkitTapHighlightColor: 'transparent',
+                    }}
+                >
+                    {t('continue_upper')}
+                </button>
+            )}
         </div>
     );
 }

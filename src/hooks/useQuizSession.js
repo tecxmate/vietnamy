@@ -92,6 +92,10 @@ export default function useQuizSession({ currentExercise, resetKey, onExerciseRe
     const [speechResult, setSpeechResult] = useState('');
     const [fuzzyHint, setFuzzyHint] = useState(null);
     const [imageError, setImageError] = useState(false);
+    // Wrong attempts on the current exercise (drives hint-first behaviour)
+    const [attemptCount, setAttemptCount] = useState(0);
+    // When true, the full answer is revealed even on the first wrong attempt
+    const [answerRevealed, setAnswerRevealed] = useState(false);
 
     const onExerciseResetRef = useRef(onExerciseReset);
     onExerciseResetRef.current = onExerciseReset;
@@ -104,6 +108,8 @@ export default function useQuizSession({ currentExercise, resetKey, onExerciseRe
         setSpeechResult('');
         setFuzzyHint(null);
         setImageError(false);
+        setAttemptCount(0);
+        setAnswerRevealed(false);
 
         if (exercise && ['reorder_words', 'translation_word_bank'].includes(exercise.exercise_type)) {
             setAvailableTokens(shuffle(exercise.prompt?.tokens || []));
@@ -133,11 +139,20 @@ export default function useQuizSession({ currentExercise, resetKey, onExerciseRe
 
         if (!result.handled) return result;
 
+        const nextAttempt = result.correct ? attemptCount : attemptCount + 1;
         setFuzzyHint(result.fuzzyHint);
         setIsCorrect(result.correct);
         setIsChecking(true);
-        return result;
-    }, [currentExercise, orderedTokens, selectedAnswer, speechResult, typedAnswer]);
+        if (!result.correct) setAttemptCount(nextAttempt);
+        return { ...result, attemptCount: nextAttempt };
+    }, [attemptCount, currentExercise, orderedTokens, selectedAnswer, speechResult, typedAnswer]);
+
+    // Re-enter the current exercise after a wrong attempt without advancing.
+    const retryExercise = useCallback(() => {
+        setIsChecking(false);
+        setIsCorrect(null);
+        setFuzzyHint(null);
+    }, []);
 
     const canCheck = useCallback((options = {}) => {
         if (!currentExercise) return false;
@@ -192,9 +207,13 @@ export default function useQuizSession({ currentExercise, resetKey, onExerciseRe
         setFuzzyHint,
         imageError,
         setImageError,
+        attemptCount,
+        answerRevealed,
+        setAnswerRevealed,
         resetExerciseState,
         resetSessionState,
         checkCurrentExercise,
+        retryExercise,
         canCheck,
         completeMatch,
         handleReorderToggle,
