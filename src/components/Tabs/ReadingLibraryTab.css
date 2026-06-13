@@ -653,15 +653,10 @@
 .rlib-sentence-row {
     padding: var(--spacing-4) 0;
     border-bottom: 1px solid var(--border-color);
-    cursor: pointer;
 }
 
 .rlib-sentence-row:last-child {
     border-bottom: none;
-}
-
-.rlib-sentence-row:active {
-    opacity: 0.8;
 }
 
 .rlib-sentence-vi-row {

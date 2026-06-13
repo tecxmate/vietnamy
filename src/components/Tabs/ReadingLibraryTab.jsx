@@ -502,12 +502,11 @@ function SentenceSpeakButton({ text, onSpeak }) {
 }
 
 // ═══════════════════════════════════════════════════════════════
-// Article Reader View (tap-to-reveal)
+// Article Reader View
 // ═══════════════════════════════════════════════════════════════
 function ArticleReaderView({ article, onBack }) {
     const t = useT();
     const { userProfile } = useUser();
-    const [revealedSet, setRevealedSet] = useState(new Set());
     const [translationLang, setTranslationLang] = useState(() => {
         try {
             const savedLang = localStorage.getItem('vnme_reading_translation_lang');
@@ -545,14 +544,6 @@ function ArticleReaderView({ article, onBack }) {
         }
         lookupWords([...words]).then(info => setDictInfo(info));
     }, [article]);
-
-    const toggleReveal = (idx) => {
-        setRevealedSet(prev => {
-            const next = new Set(prev);
-            next.has(idx) ? next.delete(idx) : next.add(idx);
-            return next;
-        });
-    };
 
     const [popupWord, setPopupWord] = useState(null);
 
@@ -626,12 +617,10 @@ function ArticleReaderView({ article, onBack }) {
             {/* Sentence list */}
             <div className="rlib-sentence-list">
                 {article.sentences.map((s, idx) => {
-                    const isRevealed = revealedSet.has(idx);
                     return (
                         <div
                             key={idx}
-                            className={`rlib-sentence-row ${isRevealed ? 'revealed' : ''}`}
-                            onClick={() => toggleReveal(idx)}
+                            className="rlib-sentence-row revealed"
                         >
                             <div className="rlib-sentence-vi-row">
                                 <span className="rlib-sentence-vi">
@@ -639,11 +628,9 @@ function ArticleReaderView({ article, onBack }) {
                                 </span>
                                 <SentenceSpeakButton text={s.vi} onSpeak={handleSpeak} />
                             </div>
-                            {isRevealed && (
-                                <div className="rlib-translation">
-                                    {translationLang === 'en' ? s.en : toTraditionalIfNeeded(s.zh, translationLang)}
-                                </div>
-                            )}
+                            <div className="rlib-translation">
+                                {translationLang === 'en' ? s.en : toTraditionalIfNeeded(s.zh, translationLang)}
+                            </div>
                         </div>
                     );
                 })}
