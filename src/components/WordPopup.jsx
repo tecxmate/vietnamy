@@ -6,9 +6,24 @@ import { useT } from '../lib/i18n';
 
 const popupCache = new Map();
 
-const WordPopup = ({ word, anchorRect, dictMode, onClose, onNavigate, isPhrase, onSave }) => {
-    const [data, setData] = useState(null);
-    const [loading, setLoading] = useState(true);
+// Shape a pre-loaded local dictionary entry ({ definition, tags }) into the
+// data object this popup renders.
+const fromPreDefinition = (word, pre) =>
+    pre && pre.definition
+        ? {
+            word,
+            found: true,
+            translated: false,
+            definition: pre.definition,
+            pos: pre.tags?.length ? pre.tags[0] : null,
+            ipa: null,
+        }
+        : null;
+
+const WordPopup = ({ word, anchorRect, dictMode, onClose, onNavigate, isPhrase, onSave, preDefinition }) => {
+    const seeded = fromPreDefinition(word, preDefinition);
+    const [data, setData] = useState(seeded);
+    const [loading, setLoading] = useState(!seeded);
     const cardRef = useRef(null);
     const [pos, setPos] = useState(null);
     const t = useT();
@@ -20,6 +35,15 @@ const WordPopup = ({ word, anchorRect, dictMode, onClose, onNavigate, isPhrase, 
     useEffect(() => { preloadSpeak([word]); }, [word]);
 
     useEffect(() => {
+        // A pre-loaded local definition is authoritative — render it instantly
+        // and skip the network round-trip.
+        const local = fromPreDefinition(word, preDefinition);
+        if (local) {
+            setData(local);
+            setLoading(false);
+            return;
+        }
+
         const cacheKey = `${word.toLowerCase()}|${lang}|${isPhrase ? 'p' : 'w'}`;
 
         if (popupCache.has(cacheKey)) {
@@ -79,7 +103,8 @@ const WordPopup = ({ word, anchorRect, dictMode, onClose, onNavigate, isPhrase, 
         }
 
         return () => { cancelled = true; };
-    }, [word, lang, isPhrase]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [word, lang, isPhrase, preDefinition?.definition]);
 
     // Position the popup after it renders so we know its actual height
     useEffect(() => {
