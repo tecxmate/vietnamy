@@ -9,6 +9,50 @@ function json(value, fallback = {}) {
     return value == null ? fallback : value;
 }
 
+function normalizeFeedbackRow(row) {
+    if (!row) return null;
+    return {
+        id: row.id,
+        at: row.at,
+        status: row.status,
+        kind: row.kind,
+        severity: row.severity,
+        subject: row.subject,
+        body: row.body,
+        name: row.name,
+        email: row.email,
+        userId: row.user_id,
+        pathname: row.pathname,
+        viewport: row.viewport,
+        screenshotUrl: row.screenshot_url || '',
+        userAgent: row.user_agent || '',
+        appVersion: row.app_version || '',
+        clientLogs: json(row.client_logs, []),
+        metadata: json(row.metadata),
+    };
+}
+
+function mergeFeedbackMetadata(currentMetadata = {}, update = {}) {
+    const metadata = {
+        ...(currentMetadata && typeof currentMetadata === 'object' && !Array.isArray(currentMetadata) ? currentMetadata : {}),
+        ...(update.metadata && typeof update.metadata === 'object' && !Array.isArray(update.metadata) ? update.metadata : {}),
+    };
+    if (update.action || update.note || update.actor || update.branch || update.commit || update.prUrl) {
+        const previous = Array.isArray(metadata.agentEvents) ? metadata.agentEvents : [];
+        metadata.agentEvents = previous.concat({
+            at: nowIso(),
+            action: update.action || update.status || 'updated',
+            actor: update.actor || 'agent',
+            note: update.note || '',
+            branch: update.branch || '',
+            commit: update.commit || '',
+            prUrl: update.prUrl || '',
+            approvalRequired: update.approvalRequired !== false,
+        });
+    }
+    return metadata;
+}
+
 function buildEmailStatsFromRows(rows) {
     const now = new Date();
     const todayStart = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
@@ -384,6 +428,60 @@ export async function getFeedbackStats() {
             metadata: row.metadata || {},
         })),
     };
+}
+
+export async function listFeedbackReports(options = {}) {
+    const limit = Math.min(Math.max(Number(options.limit) || 50, 1), 500);
+    const status = options.status && options.status !== 'all' ? String(options.status) : '';
+    const rows = status
+        ? await neonQuery(
+            `select id, at, status, kind, severity, subject, body, name, email, user_id, pathname,
+                    viewport, screenshot_url, user_agent, app_version, client_logs, metadata
+             from feedback_reports
+             where status = $1
+             order by at desc
+             limit $2`,
+            [status, limit]
+        )
+        : await neonQuery(
+            `select id, at, status, kind, severity, subject, body, name, email, user_id, pathname,
+                    viewport, screenshot_url, user_agent, app_version, client_logs, metadata
+             from feedback_reports
+             order by at desc
+             limit $1`,
+            [limit]
+        );
+    return rows.map(normalizeFeedbackRow);
+}
+
+export async function updateFeedbackReportLifecycle(id, update = {}) {
+    if (!id) throw new Error('feedback report id is required');
+    const currentRows = await neonQuery(
+        `select id, status, severity, metadata
+         from feedback_reports
+         where id = $1
+         limit 1`,
+        [id]
+    );
+    const current = currentRows[0];
+    if (!current?.id) throw new Error(`feedback report not found: ${id}`);
+    const metadata = mergeFeedbackMetadata(json(current.metadata), update);
+    const rows = await neonQuery(
+        `update feedback_reports
+         set status = $2,
+             severity = $3,
+             metadata = $4::jsonb
+         where id = $1
+         returning id, at, status, kind, severity, subject, body, name, email, user_id, pathname,
+                   viewport, screenshot_url, user_agent, app_version, client_logs, metadata`,
+        [
+            id,
+            update.status ? String(update.status) : current.status || 'open',
+            update.severity ? String(update.severity) : current.severity || 'med',
+            JSON.stringify(metadata),
+        ]
+    );
+    return normalizeFeedbackRow(rows[0]);
 }
 
 export async function createNotification(notification = {}) {

@@ -40,6 +40,50 @@ function boolInt(value) {
     return value ? 1 : 0;
 }
 
+function normalizeFeedbackRow(row) {
+    if (!row) return null;
+    return {
+        id: row.id,
+        at: row.at,
+        status: row.status,
+        kind: row.kind,
+        severity: row.severity,
+        subject: row.subject,
+        body: row.body,
+        name: row.name,
+        email: row.email,
+        userId: row.user_id || row.userId,
+        pathname: row.pathname,
+        viewport: row.viewport,
+        screenshotUrl: row.screenshot_url || row.screenshotUrl || '',
+        userAgent: row.user_agent || row.userAgent || '',
+        appVersion: row.app_version || row.appVersion || '',
+        clientLogs: row.client_logs || parseJson(row.clientLogsJson, []),
+        metadata: row.metadata || parseJson(row.metadataJson, {}),
+    };
+}
+
+function mergeFeedbackMetadata(currentMetadata = {}, update = {}) {
+    const metadata = {
+        ...(currentMetadata && typeof currentMetadata === 'object' && !Array.isArray(currentMetadata) ? currentMetadata : {}),
+        ...(update.metadata && typeof update.metadata === 'object' && !Array.isArray(update.metadata) ? update.metadata : {}),
+    };
+    if (update.action || update.note || update.actor || update.branch || update.commit || update.prUrl) {
+        const previous = Array.isArray(metadata.agentEvents) ? metadata.agentEvents : [];
+        metadata.agentEvents = previous.concat({
+            at: nowIso(),
+            action: update.action || update.status || 'updated',
+            actor: update.actor || 'agent',
+            note: update.note || '',
+            branch: update.branch || '',
+            commit: update.commit || '',
+            prUrl: update.prUrl || '',
+            approvalRequired: update.approvalRequired !== false,
+        });
+    }
+    return metadata;
+}
+
 function useSupabaseOps() {
     return OPS_STORE_PROVIDER === 'supabase' && Boolean(SUPABASE_URL && SUPABASE_SERVICE_ROLE_KEY);
 }
@@ -760,6 +804,98 @@ export async function createFeedbackReport(report = {}) {
         metadataJson: jsonString(report.metadata),
     });
     return id;
+}
+
+export async function listFeedbackReports(options = {}) {
+    if (useNeonOps()) return neonOps.listFeedbackReports(options);
+    const limit = Math.min(Math.max(Number(options.limit) || 50, 1), 500);
+    const status = options.status && options.status !== 'all' ? String(options.status) : '';
+    const supabase = getSupabaseOps();
+    if (supabase) {
+        let query = supabase
+            .from('feedback_reports')
+            .select('id, at, status, kind, severity, subject, body, name, email, user_id, pathname, viewport, screenshot_url, user_agent, app_version, client_logs, metadata')
+            .order('at', { ascending: false })
+            .limit(limit);
+        if (status) query = query.eq('status', status);
+        const { data, error } = await query;
+        logSupabaseError('listFeedbackReports', error);
+        const rows = Array.isArray(data) ? data : [];
+        return rows.map(normalizeFeedbackRow);
+    }
+
+    const db = getOpsDb();
+    const rows = status
+        ? db.prepare(`
+            SELECT id, at, status, kind, severity, subject, body, name, email, user_id AS userId,
+                   pathname, viewport, screenshot_url AS screenshotUrl, user_agent AS userAgent,
+                   app_version AS appVersion, client_logs_json AS clientLogsJson, metadata_json AS metadataJson
+            FROM feedback_reports
+            WHERE status = ?
+            ORDER BY at DESC
+            LIMIT ?
+        `).all(status, limit)
+        : db.prepare(`
+            SELECT id, at, status, kind, severity, subject, body, name, email, user_id AS userId,
+                   pathname, viewport, screenshot_url AS screenshotUrl, user_agent AS userAgent,
+                   app_version AS appVersion, client_logs_json AS clientLogsJson, metadata_json AS metadataJson
+            FROM feedback_reports
+            ORDER BY at DESC
+            LIMIT ?
+        `).all(limit);
+    return rows.map(normalizeFeedbackRow);
+}
+
+export async function updateFeedbackReportLifecycle(id, update = {}) {
+    if (!id) throw new Error('feedback report id is required');
+    if (useNeonOps()) return neonOps.updateFeedbackReportLifecycle(id, update);
+    const nextStatus = update.status ? String(update.status) : '';
+    const nextSeverity = update.severity ? String(update.severity) : '';
+    const supabase = getSupabaseOps();
+    if (supabase) {
+        const { data: current, error: selectError } = await supabase
+            .from('feedback_reports')
+            .select('id, status, severity, metadata')
+            .eq('id', id)
+            .single();
+        logSupabaseError('updateFeedbackReportLifecycle.select', selectError);
+        if (!current?.id) throw new Error(`feedback report not found: ${id}`);
+        const patch = {
+            metadata: mergeFeedbackMetadata(current.metadata || {}, update),
+        };
+        if (nextStatus) patch.status = nextStatus;
+        if (nextSeverity) patch.severity = nextSeverity;
+        const { data, error } = await supabase
+            .from('feedback_reports')
+            .update(patch)
+            .eq('id', id)
+            .select('id, at, status, kind, severity, subject, body, name, email, user_id, pathname, viewport, screenshot_url, user_agent, app_version, client_logs, metadata');
+        logSupabaseError('updateFeedbackReportLifecycle.update', error);
+        const rows = Array.isArray(data) ? data : [];
+        return normalizeFeedbackRow(rows[0]);
+    }
+
+    const db = getOpsDb();
+    const current = db.prepare(`
+        SELECT id, status, severity, metadata_json AS metadataJson
+        FROM feedback_reports
+        WHERE id = ?
+    `).get(id);
+    if (!current?.id) throw new Error(`feedback report not found: ${id}`);
+    const metadata = mergeFeedbackMetadata(parseJson(current.metadataJson, {}), update);
+    db.prepare(`
+        UPDATE feedback_reports
+        SET status = @status,
+            severity = @severity,
+            metadata_json = @metadataJson
+        WHERE id = @id
+    `).run({
+        id,
+        status: nextStatus || current.status || 'open',
+        severity: nextSeverity || current.severity || 'med',
+        metadataJson: jsonString(metadata),
+    });
+    return listFeedbackReports({ status: 'all', limit: 500 }).then(rows => rows.find(row => row.id === id) || null);
 }
 
 export async function getFeedbackStats() {

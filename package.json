@@ -21,6 +21,10 @@
     "db:check:neon-parity": "node scripts/check-neon-parity.mjs",
     "db:export:supabase": "node scripts/export-supabase-neon-sql.mjs",
     "ops:export:postgres": "node scripts/export-app-ops-postgres.mjs",
+    "feedback:queue": "node scripts/feedback-agent-pipeline.mjs list",
+    "feedback:claim": "node scripts/feedback-agent-pipeline.mjs claim",
+    "feedback:mark": "node scripts/feedback-agent-pipeline.mjs mark",
+    "feedback:pending-approval": "node scripts/feedback-agent-pipeline.mjs pending-approval",
     "tts:migrate:r2": "node scripts/migrate-tts-supabase-to-r2.mjs",
     "preview": "vite preview"
   },

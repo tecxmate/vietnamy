@@ -41,9 +41,11 @@ import {
     getFeedbackStats as getStoredFeedbackStats,
     getPushStats as getStoredPushStats,
     listNotifications,
+    listFeedbackReports,
     listPushSubscriptions,
     markNotificationsRead,
     recordPushEvent,
+    updateFeedbackReportLifecycle,
     updatePushSubscriptionStats,
     upsertPushSubscription,
 } from './opsStore.js';
@@ -207,6 +209,7 @@ const SUPABASE_AUTH_URL = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_
 const SUPABASE_ANON_KEY = process.env.VITE_SUPABASE_ANON_KEY || '';
 const FEEDBACK_KINDS = new Set(['bug', 'feedback', 'feature']);
 const FEEDBACK_SEVERITIES = new Set(['low', 'med', 'high']);
+const FEEDBACK_STATUSES = new Set(['open', 'triaged', 'claimed', 'fixed_pending_approval', 'closed', 'not_reproducible', 'wont_fix']);
 
 function requestIp(req) {
     return String(req.headers['x-forwarded-for'] || req.ip || req.socket?.remoteAddress || 'unknown')
@@ -366,7 +369,41 @@ app.post('/api/feedback', async (req, res) => {
 
 app.get('/api/admin/feedback', async (req, res) => {
     if (!requireMailAdmin(req, res)) return;
-    res.json(await getStoredFeedbackStats());
+    const status = req.query.status ? clampText(req.query.status, 40) : '';
+    const limit = Math.min(Math.max(Number(req.query.limit) || 50, 1), 500);
+    const stats = await getStoredFeedbackStats();
+    const reports = await listFeedbackReports({ status: status || 'all', limit });
+    res.json({ ...stats, reports });
+});
+
+app.patch('/api/admin/feedback/:id', async (req, res) => {
+    if (!requireMailAdmin(req, res)) return;
+    const id = clampText(req.params.id, 120);
+    const status = req.body?.status ? clampText(req.body.status, 40) : '';
+    const severity = req.body?.severity ? clampText(req.body.severity, 40) : '';
+    if (status && !FEEDBACK_STATUSES.has(status)) {
+        return res.status(400).json({ error: `invalid feedback status: ${status}` });
+    }
+    if (severity && !FEEDBACK_SEVERITIES.has(severity)) {
+        return res.status(400).json({ error: `invalid feedback severity: ${severity}` });
+    }
+    try {
+        const report = await updateFeedbackReportLifecycle(id, {
+            status,
+            severity,
+            action: clampText(req.body?.action || status || 'updated', 80),
+            actor: clampText(req.body?.actor || 'agent', 120),
+            note: clampText(req.body?.note, 2000),
+            branch: clampText(req.body?.branch, 240),
+            commit: clampText(req.body?.commit, 80),
+            prUrl: clampText(req.body?.prUrl, 500),
+            metadata: req.body?.metadata,
+            approvalRequired: req.body?.approvalRequired !== false,
+        });
+        res.json({ ok: true, report });
+    } catch (error) {
+        res.status(404).json({ error: error?.message || 'feedback report not found' });
+    }
 });
 
 app.post('/api/mail/waitlist', async (req, res) => {
