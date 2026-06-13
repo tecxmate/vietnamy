@@ -6,6 +6,30 @@ const CURRICULUM_VERSION = 32; // v32: scene topics + goal-aware next-node
 let dbCache = null;
 let dbIsFull = false;
 
+const safeSetLocalStorage = (key, value) => {
+    try {
+        localStorage.setItem(key, value);
+    } catch {
+        // Some browsers deny localStorage in private/blocked-storage contexts.
+    }
+};
+
+const persistLightSeed = (lightSeed) => {
+    safeSetLocalStorage(DB_KEY, JSON.stringify(lightSeed));
+    safeSetLocalStorage(DB_KEY + '_cv', String(CURRICULUM_VERSION));
+    dbIsFull = false;
+    return lightSeed;
+};
+
+const parseStoredDB = (raw) => {
+    try {
+        const parsed = JSON.parse(raw);
+        return parsed && typeof parsed === 'object' ? parsed : null;
+    } catch {
+        return null;
+    }
+};
+
 const hasFullContent = (db) => (
     (db.items || []).length > 0 &&
     (db.translations || []).length > 0 &&
@@ -17,18 +41,18 @@ const initDB = () => {
     const lightSeed = getInitialData({ full: false });
 
     if (!raw) {
-        localStorage.setItem(DB_KEY, JSON.stringify(lightSeed));
-        localStorage.setItem(DB_KEY + '_cv', String(CURRICULUM_VERSION));
-        dbIsFull = false;
-        return lightSeed;
+        return persistLightSeed(lightSeed);
     }
+
+    const parsed = parseStoredDB(raw);
+    if (!parsed) return persistLightSeed(lightSeed);
 
     const storedVersion = parseInt(localStorage.getItem(DB_KEY + '_cv') || '1', 10);
     if (storedVersion < CURRICULUM_VERSION) {
         // Overwrite curriculum-derived collections, keep user-edited exercises.
         // v30 intentionally stores a slim roadmap seed; full exercise/content
         // collections are hydrated only when a route actually needs them.
-        const existing = JSON.parse(raw);
+        const existing = parsed;
         existing.units = lightSeed.units;
         existing.path_nodes = lightSeed.path_nodes;
         existing.lessons = lightSeed.lessons;
@@ -37,13 +61,12 @@ const initDB = () => {
         existing.lesson_blueprints = [];
         existing.scenes = [];
         existing.scene_locations = [];
-        localStorage.setItem(DB_KEY, JSON.stringify(existing));
-        localStorage.setItem(DB_KEY + '_cv', String(CURRICULUM_VERSION));
+        safeSetLocalStorage(DB_KEY, JSON.stringify(existing));
+        safeSetLocalStorage(DB_KEY + '_cv', String(CURRICULUM_VERSION));
         dbIsFull = false;
         return existing;
     }
 
-    const parsed = JSON.parse(raw);
     dbIsFull = hasFullContent(parsed);
     return parsed;
 };
@@ -67,7 +90,7 @@ export const getFullDB = () => {
 export const saveDB = (data) => {
     dbCache = data;
     dbIsFull = hasFullContent(data);
-    localStorage.setItem(DB_KEY, JSON.stringify(data));
+    safeSetLocalStorage(DB_KEY, JSON.stringify(data));
 };
 
 export const applyCanonicalCurriculumToDB = (curriculum) => {
@@ -119,11 +142,11 @@ export const importDB = (payload) => {
     if (!payload.db || typeof payload.db !== 'object') {
         throw new Error('Import payload is missing the `db` object.');
     }
-    localStorage.setItem(DB_KEY, JSON.stringify(payload.db));
+    safeSetLocalStorage(DB_KEY, JSON.stringify(payload.db));
     // Pin the version to what was exported so the version-gate logic in
     // initDB doesn't immediately overwrite the imported curriculum on next load.
     const cv = Number.isFinite(payload.curriculumVersion) ? payload.curriculumVersion : CURRICULUM_VERSION;
-    localStorage.setItem(DB_KEY + '_cv', String(cv));
+    safeSetLocalStorage(DB_KEY + '_cv', String(cv));
     dbCache = payload.db;
     dbIsFull = hasFullContent(payload.db);
 };
