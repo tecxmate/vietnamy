@@ -249,3 +249,11 @@ attributed_to: [niko, codex]   belongs_to: [production-readiness-flutter-handoff
 - Added `docs/schemas/user-state.schema.json` as the machine-readable `vnme_user_state` envelope and `docs/fixtures/user-state-sample.json` as the first shared learner fixture.
 - Direction: Flutter should consume typed API fields, not React localStorage key names; the Zeabur backend can store JSON first and normalize later without changing clients.
 - Pages: [production-readiness-flutter-handoff](topics/tech/production-readiness-flutter-handoff.md).
+
+## [2026-06-14] implementation | Feedback-to-agent bug pipeline
+attributed_to: [niko, codex]   belongs_to: [adaptive-software-automation, backend-ops-store]
+- In-app bug reports continue to save in `feedback_reports` through local SQLite, Supabase, or Neon depending on `OPS_STORE_PROVIDER`.
+- Added lifecycle states and admin APIs so agents can list, claim, triage, and mark reports `fixed_pending_approval`.
+- Added `scripts/feedback-agent-pipeline.mjs` plus npm commands for local/cloud queue export and agent handoff.
+- Guardrail: agents may prepare fixes, branches, commits, and PRs, but closing/merge/deploy requires Niko approval.
+- Pages: [feedback-agent-pipeline](topics/tech/feedback-agent-pipeline.md), [adaptive-software-automation](topics/tech/adaptive-software-automation.md), [backend-ops-store](topics/tech/backend-ops-store.md).

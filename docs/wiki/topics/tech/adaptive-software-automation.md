@@ -3,20 +3,22 @@ title: Adaptive Software Automation
 type: topic
 slug: adaptive-software-automation
 date: 2026-05-13
-updated: 2026-05-13
+updated: 2026-06-14
 attributed_to: [tecxmate]
 belongs_to: [tecxmate]
 source: chat
 status: active
 tags: [automation, github-actions, cron-jobs, ai-agents]
-related: [2026-05-13-adaptive-software-automation-vision]
+related: [2026-05-13-adaptive-software-automation-vision, feedback-agent-pipeline]
 ---
 
 ## Summary
 Tecxmate's long-term template goal is an adaptive web app system that collects user feedback and telemetry, turns small issues into repair tasks, lets AI agents propose fixes, and opens pull requests for human review.
 
 ## Current state
-The template currently documents the operating model rather than implementing it. The expected automation stack includes GitHub Actions, cron jobs or scheduled jobs, feedback intake from in-app systems, Google Forms, GA4, logs, and AI coding agents.
+Vietnamy now implements the first narrow feedback-to-agent loop through the Feedback Agent Pipeline. In-app reports are stored in the ops store, agents can list and claim reports, and prepared fixes stop at `fixed_pending_approval` until Niko approves merge/deploy.
+
+The broader template vision still includes GitHub Actions, cron jobs or scheduled jobs, Google Forms, GA4, logs, and AI coding agents.
 
 ## Target loop
 1. Collect feedback from in-app reports, Google Forms, GA4 events, logs, and support notes.
@@ -53,4 +55,5 @@ The template should bias future projects toward GitHub Actions, cron jobs, and a
 - What severity and confidence thresholds should allow an agent to open a PR automatically?
 
 ## History
+- 2026-06-14: Added the first implemented feedback-to-agent pipeline using `feedback_reports`, admin lifecycle APIs, and `scripts/feedback-agent-pipeline.mjs`.
 - 2026-05-13: Tecxmate described the adaptive software goal and asked to document the role of GitHub Actions, cron jobs, and automation.

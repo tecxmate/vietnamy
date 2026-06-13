@@ -3,12 +3,12 @@ title: Backend Ops Store and Identity Migration
 type: topic
 slug: backend-ops-store
 date: 2026-06-10
-updated: 2026-06-10
+updated: 2026-06-14
 belongs_to: [niko]
 source: synthesis
 status: active
 tags: [backend, supabase, vercel, auth, notifications, email, analytics]
-related: [vietnamy-app, bucket-storage, 2026-06-10-supabase-ops-store-vercel-api]
+related: [vietnamy-app, bucket-storage, feedback-agent-pipeline, 2026-06-10-supabase-ops-store-vercel-api]
 ---
 
 ## Summary
@@ -45,6 +45,7 @@ RLS policies allow authenticated users to select/update only their own profile, 
 - `OPS_STORE_PROVIDER=supabase` uses Supabase via `SUPABASE_URL`/`VITE_SUPABASE_URL` plus `SUPABASE_SERVICE_ROLE_KEY`.
 - `server/mail.js`, `server/engagementOptimizer.js`, and the API routes are async because Supabase writes/reads are remote.
 - `scripts/export-app-ops-postgres.mjs` exports local SQLite ops data as Postgres insert SQL when preservation is needed.
+- `scripts/feedback-agent-pipeline.mjs` lists, claims, and marks `feedback_reports` for the coding-agent repair loop. It works against local SQLite, Supabase, Neon, or the admin API.
 
 ### Production hosting
 Production API ops routes are on Vercel, not the full dictionary Express process:
@@ -82,6 +83,12 @@ On 2026-06-10, after redeploying `https://vnme-web.vercel.app`:
 - `POST /api/feedback` returned 200.
 - The new feedback row was verified in Supabase `feedback_reports`.
 
+### Feedback agent lifecycle
+`feedback_reports.status` now supports the coding-agent workflow:
+`open`, `triaged`, `claimed`, `fixed_pending_approval`, `closed`, `not_reproducible`, and `wont_fix`.
+
+Agent actions append audit notes to `metadata.agentEvents`. The expected stopping point for an automated fix is `fixed_pending_approval`; Niko must approve merge/deploy before a report is closed.
+
 ## Open Questions
 - Should notification reads eventually move from the server API to direct Supabase client reads now that RLS exists?
 - Which progress state should get first-class relational tables next: SRS review records, lesson completion, streaks, or decks?
@@ -96,5 +103,6 @@ On 2026-06-10, after redeploying `https://vnme-web.vercel.app`:
 6. Add Supabase Postgres backup/export and R2 inventory backup.
 
 ## History
+- 2026-06-14 — Added feedback agent lifecycle APIs and CLI queue commands.
 - 2026-06-10 — Supabase ops store and Vercel API cutover ([decision](../../decisions/2026-06-10-supabase-ops-store-vercel-api.md)).
 - 2026-06-10 — Added Supabase Auth profile/progress/saved-word migration and client sync path.
