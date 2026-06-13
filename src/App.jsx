@@ -24,10 +24,14 @@ import { installClientDiagnostics } from './lib/clientDiagnostics';
 const loadRoadmapTab = () => import('./components/Tabs/RoadmapTab');
 const loadDictionaryTab = () => import('./components/Tabs/DictionaryTab');
 const loadReadingLibraryTab = () => import('./components/Tabs/ReadingLibraryTab');
+const loadSpeakTab = () => import('./components/Tabs/SpeakTab');
+const loadWatchTab = () => import('./components/Tabs/WatchTab');
 
 const TAB_LOADERS = {
   study: loadRoadmapTab,
   dictionary: loadDictionaryTab,
+  speak: loadSpeakTab,
+  watch: loadWatchTab,
   library: loadReadingLibraryTab,
 };
 
@@ -80,6 +84,8 @@ const AppTutorial = lazy(() => import('./components/Onboarding/AppTutorial'));
 const RoadmapTab = lazy(loadRoadmapTab);
 const DictionaryTab = lazy(loadDictionaryTab);
 const ReadingLibraryTab = lazy(loadReadingLibraryTab);
+const SpeakTab = lazy(loadSpeakTab);
+const WatchTab = lazy(loadWatchTab);
 
 const GrammarGuide = lazy(() => import('./pages/Grammar/GrammarGuide'));
 
@@ -146,9 +152,11 @@ const Quantifiers = lazy(() => import('./pages/Practice/Quantifiers'));
 const VisionVerbs = lazy(() => import('./pages/Practice/VisionVerbs'));
 const Prepositions = lazy(() => import('./pages/Practice/Prepositions'));
 
-// One app, three tabs. Pronunciation and grammar are integrated into Study
-// (the roadmap modules), so they are no longer separate nav tabs.
-const VALID_TABS = ['study', 'dictionary', 'library'];
+// Super-app structure (Competitor Analysis Meeting, Jun 2026).
+// NAV_TABS = the equal-rank bottom-nav tabs, in order:
+// Study | Dictionary | Speak | Watch | Library.
+const NAV_TABS = ['study', 'dictionary', 'speak', 'watch', 'library'];
+const VALID_TABS = [...NAV_TABS];
 
 function normalizeTab(tab, fallback = 'study') {
   return VALID_TABS.includes(tab) ? tab : fallback;
@@ -346,6 +354,8 @@ function StudentApp({ initialTab = 'study' }) {
     switch (activeTab) {
       case 'study': return <RoadmapTab onNavigateToVocabDeck={handleNavigateToVocabDeck} />;
       case 'dictionary': return <DictionaryTab pendingInput={pendingDictInput} clearPendingInput={() => setPendingDictInput(null)} onNavigateToLibrary={handleNavigateToLibrary} />;
+      case 'speak': return <SpeakTab />;
+      case 'watch': return <WatchTab />;
       case 'library': return <ReadingLibraryTab onSubtitleChange={setTabSubtitle} onSearchWord={handleDictInput} pendingArticle={pendingLibraryArticle} clearPendingArticle={() => setPendingLibraryArticle(null)} pendingVocabDeck={pendingVocabDeck} clearPendingVocabDeck={() => setPendingVocabDeck(null)} />;
       default: return <RoadmapTab onNavigateToVocabDeck={handleNavigateToVocabDeck} />;
     }
@@ -360,13 +370,13 @@ function StudentApp({ initialTab = 'study' }) {
           </div>
           <main key={activeTab} className={`main-content ${activeTab}-tab no-topbar`}>{renderTab()}</main>
         </div>
-        <BottomNav activeTab={activeTab} setActiveTab={setActiveTab} onPreloadTab={preloadTab} tabs={VALID_TABS} />
+        <BottomNav activeTab={activeTab} setActiveTab={setActiveTab} onPreloadTab={preloadTab} tabs={NAV_TABS} />
         {!hasCompletedTutorial && (
           <AppTutorial
             activeTab={activeTab}
             setActiveTab={setActiveTab}
             onComplete={completeTutorial}
-            allowedTabs={VALID_TABS}
+            allowedTabs={NAV_TABS}
           />
         )}
         <NotificationToastStack />
