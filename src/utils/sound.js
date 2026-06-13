@@ -4,6 +4,7 @@ import SndModule from 'snd-lib';
 import { haptic } from './haptics';
 
 const STORAGE_KEY = 'vnme_sound_enabled';
+const DEFAULT_SOUND_KIT = '01';
 
 const Snd = SndModule?.default || SndModule;
 const SOUNDS = Snd?.SOUNDS || {
@@ -19,7 +20,7 @@ const SOUNDS = Snd?.SOUNDS || {
     TRANSITION_DOWN: 'transition_down',
     TRANSITION_UP: 'transition_up',
 };
-const KITS = Snd?.KITS || { SND01: '01' };
+const KITS = Snd?.KITS || { SND01: DEFAULT_SOUND_KIT };
 
 let snd = null;
 let ready = false;
