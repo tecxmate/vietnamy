@@ -84,7 +84,7 @@ lessons / 1,001 words / 479 sentences. Canonical content bundle at repo-root `co
 | 4.1c | "Translate this" ×3 fallbacks (LessonGame/GrammarLesson/UnitTest) — low-visibility, defer. | TODO |
 | 4.2 | Tighten verbose copy. Done: 2 live strings (`app_tutorial_roadmap_desc`, `library_review_deck_count`). Note: many flagged ones (`home_welcome_subtitle`, `sounds_*`, `quick_search_desc`) are **dead keys** (see 4.4). | PARTIAL |
 | 4.3 | Unify terminology — **DONE** (commit `46ee633`). Only one user-facing "module" string existed (it reflects a real Unit→Module→Lesson hierarchy, not a clash); changed it to "lesson" so learner vocab is Unit/Lesson. | DONE |
-| 4.4 | **Dead i18n-key sweep.** Pass 1's deletions (HomeTab/SoundsTab/GrammarTab/FlashcardsPage) orphaned a whole set of keys (verified: the 12 tutorial keys + `home_welcome_subtitle`, `sounds_alphabet_intro`, `sounds_tones_intro`, `quick_search_desc`, … all 0 live refs). Worth a sweep, but must guard against dynamic keys (`t(\`tip_body_${n}\`)`) — do carefully, not half-way. | TODO |
+| 4.4 | **Dead i18n-key sweep.** Pass 1's deletions (HomeTab/SoundsTab/GrammarTab/FlashcardsPage) orphaned a whole set of keys (verified: the 12 tutorial keys + `home_welcome_subtitle`, `sounds_alphabet_intro`, `sounds_tones_intro`, `quick_search_desc`, … all 0 live refs). Worth a sweep, but must guard against dynamic keys (`t(\`tip_body_${n}\`)`) — do carefully, not half-way. **Chunk done (2026-06-13):** removed the 18 `sounds_tone_*_desc` keys (6 tones × en/zh-s/zh-t) — orphaned when SoundsTab was cut; tones now render from `tones.json` + `pickLocalized`. Exhaustively verified 0 static/dynamic refs. The sibling `sounds_tone_*_label` family + the other listed keys remain for a careful follow-up. | IN PROGRESS |
 
 ---
 
