@@ -23,4 +23,4 @@ sequenceDiagram
     LS->>SP: debouncedSaveProgress(userId)
     SP->>TBL: upsert { user_id, data, updated_at }
 
-    Note over SP: SYNC_KEYS = profile, dong, srs,<br/>word_grades, saved_words, decks,<br/>settings, language, onboarding flags
+    Note over SP: SYNC_KEYS = profile, progress, hearts,<br/>streak, srs, word_grades, saved_words,<br/>decks, settings, language, onboarding flags

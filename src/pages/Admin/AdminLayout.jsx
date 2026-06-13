@@ -80,7 +80,14 @@ const handleImport = async (file) => {
     }
 };
 
-// Open the live app as a fresh student: wipes lesson progress + coins/hearts/streak,
+const FRESH_STUDENT_STORAGE_KEYS = [
+    'vietnamy_progress',
+    'vietnamy_dong',
+    'vnme_hearts',
+    'vnme_streak',
+];
+
+// Open the live app as a fresh student: wipes lesson progress + legacy coins/hearts/streak,
 // but keeps the user profile, onboarding state, and any curriculum edits made via the
 // CMS (those live in vnme_mock_db_v24, which is untouched here).
 const openAsFreshStudent = (navigate) => {
@@ -90,8 +97,7 @@ const openAsFreshStudent = (navigate) => {
     );
     if (!ok) return;
     try {
-        localStorage.removeItem('vietnamy_progress');
-        localStorage.removeItem('vietnamy_dong');
+        FRESH_STUDENT_STORAGE_KEYS.forEach(key => localStorage.removeItem(key));
     } catch { /* ignore */ }
     navigate('/');
     // Reload so every context re-reads localStorage from scratch.

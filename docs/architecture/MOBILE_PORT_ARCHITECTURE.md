@@ -197,7 +197,7 @@ flowchart LR
 
 ### Replace these (browser-only)
 
-- **Persistence (biggest item).** All app state is `localStorage` under `vnme_*` / `vietnamy_*` keys, accessed through `db.js` + `storage/mockDbStore.js`. Swap this single storage module for native storage (AsyncStorage, MMKV, or SQLite) and most of the app follows. Keys to know: `vnme_mock_db_v24` (curriculum DB), `vietnamy_progress` / `vietnamy_dong` (gamification), `vnme_srs` (review schedule), `vnme_user_profile`, `vnme_word_grades`, `vnme_saved_words`.
+- **Persistence (biggest item).** All app state is `localStorage` under `vnme_*` / `vietnamy_*` keys, accessed through `db.js` + `storage/mockDbStore.js`. Swap this single storage module for native storage (AsyncStorage, MMKV, or SQLite) and most of the app follows. Keys to know: `vnme_mock_db_v24` (curriculum DB), `vietnamy_progress` (completed roadmap/session counts), `vnme_hearts`, `vnme_streak`, `vnme_srs` (review schedule), `vnme_user_profile`, `vnme_word_grades`, `vnme_saved_words`. `vietnamy_dong` is a legacy migration key.
 - **Routing.** `react-router-dom` route table → native navigation stack/tabs.
 - **Audio & pitch.** Pitch-detection practice uses the Web Audio API; pronunciation uses browser mic capture. Replace with native audio + recording.
 - **TTS fallback.** Primary TTS is the server `/api/tts` (keep it). The browser `speechSynthesis` fallback must be replaced with a native TTS engine.

@@ -99,8 +99,8 @@ const EXPORT_VERSION = 1;
 
 // Serialize the entire mock DB (curriculum + edits + exercises) to a JSON
 // payload that can be re-imported on another browser/machine. Progress keys
-// (vietnamy_progress / vietnamy_dong) are intentionally excluded — this is
-// a curriculum backup, not a save game.
+// (vietnamy_progress / vnme_hearts / vnme_streak / legacy vietnamy_dong)
+// are intentionally excluded — this is a curriculum backup, not a save game.
 export const exportDB = () => ({
     kind: EXPORT_KIND,
     version: EXPORT_VERSION,

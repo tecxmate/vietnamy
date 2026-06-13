@@ -213,7 +213,9 @@ export function ProgressProvider({ children }) {
         setCompletedNodes(empty.completedNodes);
         setNodeSessionCounts(empty.nodeSessionCounts);
         setStreak({ ...EMPTY_STREAK });
+        setHearts(MAX_HEARTS);
         localStorage.removeItem(STREAK_STORAGE_KEY);
+        localStorage.removeItem(HEARTS_STORAGE_KEY);
         localStorage.removeItem(STORAGE_KEY);
     }, []);
 
