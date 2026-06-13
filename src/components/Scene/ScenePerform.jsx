@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Check, X, Volume2 } from 'lucide-react';
+import { Check, X, Volume2, Mic, Square } from 'lucide-react';
 import speak, { scheduleSpeak, clearSpeakQueue } from '../../utils/speak';
+import { startPCMRecording } from '../../utils/recordPCM';
 import { checkVietnameseInput } from '../../utils/fuzzyVietnamese';
 import SoundButton from '../SoundButton';
 import { playSuccess, playError } from '../../utils/sound';
@@ -36,6 +37,10 @@ const ScenePerform = ({ config, scene, onComplete }) => {
     // Speak state
     const [typedAnswer, setTypedAnswer] = useState('');
     const [speechResult, setSpeechResult] = useState('');
+    const [isRecording, setIsRecording] = useState(false);
+    const [isScoring, setIsScoring] = useState(false);
+    const [pronScore, setPronScore] = useState(null); // 0–100 or null
+    const recorderRef = useRef(null);
 
     // Word popup state
     const [popupWord, setPopupWord] = useState(null);
@@ -61,6 +66,13 @@ const ScenePerform = ({ config, scene, onComplete }) => {
         setTypedAnswer('');
         setSpeechResult('');
         setPopupWord(null);
+        setPronScore(null);
+        setIsScoring(false);
+        setIsRecording(false);
+        if (recorderRef.current) {
+            recorderRef.current.stop().catch(() => {});
+            recorderRef.current = null;
+        }
 
         if (currentChallenge.type === 'build_sentence') {
             const answer = currentChallenge.answer_tokens || [];
@@ -175,6 +187,44 @@ const ScenePerform = ({ config, scene, onComplete }) => {
 
     const handleRemoveToken = (idx) => {
         setOrderedTokens(prev => prev.filter((_, i) => i !== idx));
+    };
+
+    // Record speech and score pronunciation via Azure (/api/pronunciation).
+    // Falls back silently to the existing typed-answer flow if mic or scoring fails.
+    const handleRecord = async () => {
+        if (isScoring) return;
+        if (isRecording) {
+            const rec = recorderRef.current;
+            recorderRef.current = null;
+            setIsRecording(false);
+            if (!rec) return;
+            setIsScoring(true);
+            try {
+                const blob = await rec.stop();
+                const res = await fetch(
+                    `/api/pronunciation?text=${encodeURIComponent(currentChallenge.target_vi)}`,
+                    { method: 'POST', headers: { 'Content-Type': 'audio/wav' }, body: blob }
+                );
+                const data = await res.json();
+                if (data.recognized) { setTypedAnswer(''); setSpeechResult(data.recognized); }
+                setPronScore(data.scores ? (data.scores.pronunciation ?? data.scores.accuracy ?? null) : null);
+            } catch (err) {
+                console.warn('Pronunciation scoring failed:', err);
+                setPronScore(null);
+            } finally {
+                setIsScoring(false);
+            }
+        } else {
+            try {
+                setPronScore(null);
+                const rec = await startPCMRecording();
+                recorderRef.current = rec;
+                setIsRecording(true);
+            } catch (err) {
+                console.warn('Mic access failed:', err);
+                setIsRecording(false);
+            }
+        }
     };
 
     const canCheck = () => {
@@ -449,6 +499,28 @@ const ScenePerform = ({ config, scene, onComplete }) => {
                                     onFocus={(e) => { e.target.style.borderColor = 'var(--secondary-color)'; }}
                                     onBlur={(e) => { e.target.style.borderColor = 'var(--border-color)'; }}
                                 />
+                                <button
+                                    className="ghost"
+                                    onClick={handleRecord}
+                                    disabled={isScoring}
+                                    style={{
+                                        margin: '0 auto', display: 'flex', alignItems: 'center', gap: 8,
+                                        padding: '10px 18px', borderRadius: 'var(--radius-full)',
+                                        border: `2px solid ${isRecording ? 'var(--lesson-error-border)' : 'var(--secondary-color)'}`,
+                                        backgroundColor: isRecording ? 'var(--lesson-error-fill)' : 'transparent',
+                                        color: isRecording ? 'var(--lesson-error-border)' : 'var(--secondary-color)',
+                                        fontSize: 14, fontWeight: 700, cursor: isScoring ? 'default' : 'pointer',
+                                        opacity: isScoring ? 0.6 : 1,
+                                    }}
+                                >
+                                    {isRecording ? <Square size={16} /> : <Mic size={18} />}
+                                    {isScoring ? t('scene_scoring') : isRecording ? t('scene_recording_stop') : t('scene_speak_record')}
+                                </button>
+                                {pronScore != null && (
+                                    <div style={{ textAlign: 'center', fontSize: 14, fontWeight: 700, color: 'var(--text-main)' }}>
+                                        {t('scene_pron_score')}: <span style={{ color: pronScore >= 70 ? 'var(--success-color)' : 'var(--secondary-color)' }}>{Math.round(pronScore)}%</span>
+                                    </div>
+                                )}
                             </>
                         )}
                     </div>
