@@ -1,0 +1,160 @@
+/* Watch tab — VoiceTube-style scaffold. Mobile-first (max-width 480px). */
+.watch-tab {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.watch-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.watch-header-icon {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: var(--surface-color-light);
+  color: var(--primary-color);
+}
+
+.watch-header-text {
+  min-width: 0;
+}
+
+.watch-title {
+  margin: 0;
+  font-size: 22px;
+  color: var(--text-main);
+}
+
+.watch-subtitle {
+  margin: 2px 0 0;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--text-muted);
+}
+
+.watch-badge {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--primary-color);
+  background: color-mix(in srgb, var(--primary-color) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--primary-color) 30%, transparent);
+}
+
+/* Responsive 16:9 player slot */
+.watch-player {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 14px;
+  overflow: hidden;
+  background:
+    linear-gradient(135deg,
+      color-mix(in srgb, var(--primary-color) 22%, var(--surface-color)),
+      var(--surface-color));
+  border: 1px solid var(--border-color);
+}
+
+.watch-player-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.watch-play-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background: color-mix(in srgb, var(--primary-color) 85%, transparent);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  padding-left: 4px; /* optically center the triangle */
+}
+
+.watch-sample-tag {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.watch-preview-note {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.watch-subtitles {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 14px;
+  border-radius: 14px;
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+}
+
+.watch-subtitles-heading {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+.watch-sub-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.watch-sub-row:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.watch-sub-vi {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text-main);
+}
+
+.watch-sub-en {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--text-muted);
+}
