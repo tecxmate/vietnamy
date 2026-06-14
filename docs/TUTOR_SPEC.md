@@ -155,11 +155,22 @@ Per **typed** turn (Haiku-class model, the recommended default):
 Rough per-turn cost ≈ **$0.0006–0.0015** (lower once the system block is cached).
 A *chatty* lesson (~8 typed turns) ≈ **$0.005–0.012**. A tap-through lesson ≈ **$0**.
 
-At 10k daily learners each doing one chatty lesson/day ≈ **~$50–120/day**.
-Cost levers, in order: (1) only call on free text, (2) prompt-cache the system
-block, (3) Haiku by default / escalate to Sonnet only for hard turns, (4) cap
-`max_tokens` (~160) and the temp-memory window (~6 turns).
-*(Prices are approximate — verify current Anthropic pricing.)*
+Cost levers, in order:
+1. **Cache predefined help answers** (implemented). Help-chip prompts are a
+   finite, stateless set per lesson, so `/api/tutor` caches replies keyed on
+   `(lessonId, help, message)` and serves repeats with **zero LLM + embedding
+   cost** (measured: 2.97s LLM miss → 0.9ms cache hit). Cost then scales with the
+   number of *distinct questions*, not DAU — so help-tap cost stays roughly flat
+   from 10k to 1M DAU. In-memory LRU now; a Postgres-backed shared cache is a
+   drop-in upgrade for zero cold-start across instances.
+2. **Only call on free text** — tap-throughs are $0.
+3. **Prompt-cache** the system + facts block (both providers support it).
+4. **Tier the model** — a `-mini`/`-lite` for help, escalate only for free text.
+5. Cap `max_tokens` and the temp-memory window (~6 turns); per-user daily caps.
+
+Net effect: at 10k DAU the variable LLM bill is dominated by *free-text* volume,
+not help taps. With only predefined help (current product), ongoing LLM cost is
+near-fixed. *(Prices are approximate — verify current provider pricing.)*
 
 ---
 

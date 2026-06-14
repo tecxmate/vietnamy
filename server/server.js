@@ -2869,6 +2869,27 @@ app.get('/api/semantic-search', async (req, res) => {
     res.json({ enabled: isSemanticEnabled(), corpus, results });
 });
 
+// Help-answer cache. Predefined help-chip prompts are a finite, stateless set
+// per lesson, so their replies are cacheable and served with ZERO LLM/embedding
+// cost — the key unit-economics lever (cost scales with distinct questions, not
+// DAU). In-memory LRU; a restart re-warms in minutes. (A shared Postgres-backed
+// cache is a drop-in upgrade for zero cold-start across instances.)
+const helpCache = new Map();
+const HELP_CACHE_MAX = 5000;
+function helpKey(lessonId, help, message) {
+    return crypto.createHash('sha1').update(`${lessonId}|${help}|${message}`).digest('hex');
+}
+function helpCacheGet(key) {
+    if (!helpCache.has(key)) return null;
+    const v = helpCache.get(key);
+    helpCache.delete(key); helpCache.set(key, v); // LRU bump
+    return v;
+}
+function helpCacheSet(key, v) {
+    helpCache.set(key, v);
+    if (helpCache.size > HELP_CACHE_MAX) helpCache.delete(helpCache.keys().next().value);
+}
+
 app.post('/api/tutor', async (req, res) => {
     const { lessonId = '', message = '', context = {} } = req.body || {};
     const msg = String(message).slice(0, 1000).trim();
@@ -2876,6 +2897,13 @@ app.post('/api/tutor', async (req, res) => {
 
     // No key configured → deterministic, grounded fallback (feature still works).
     if (!TUTOR_ENABLED) return res.json(tutorFallback(msg, context));
+
+    // Cache hit for a predefined help question → no LLM, no RAG embedding.
+    const cacheKey = context.help ? helpKey(lessonId, context.help, msg) : null;
+    if (cacheKey) {
+        const hit = helpCacheGet(cacheKey);
+        if (hit) return res.json({ ...hit, cached: true });
+    }
 
     // Enrich grounding facts with retrieved curriculum chunks when available
     // (RAG). Falls back to the authored facts if semantic search is off/empty.
@@ -2889,18 +2917,22 @@ app.post('/api/tutor', async (req, res) => {
 
     try {
         const system = buildTutorSystem(ctx);
-        const turns = (context.recentTurns || []).slice(-6);
+        // Help answers are stateless FAQ (so they cache cleanly); free text keeps
+        // the rolling conversation window.
+        const turns = cacheKey ? [] : (context.recentTurns || []).slice(-6);
         const out = TUTOR_PROVIDER === 'openai'
             ? await callOpenAI(system, turns, msg)
             : TUTOR_PROVIDER === 'gemini'
                 ? await callGemini(system, turns, msg)
                 : await callAnthropic(system, turns, msg);
-        return res.json({
+        const reply = {
             say: out.say || "Let's keep going!",
             intent: ['answer', 'question', 'confused', 'offtopic', 'ready'].includes(out.intent) ? out.intent : 'answer',
             action: ['stay', 'advance', 'reexplain', 'hint'].includes(out.action) ? out.action : 'stay',
             masteryEvidence: ['strong', 'partial', 'none', 'na'].includes(out.masteryEvidence) ? out.masteryEvidence : 'na',
-        });
+        };
+        if (cacheKey) helpCacheSet(cacheKey, reply);
+        return res.json(reply);
     } catch (err) {
         console.warn('tutor error', err.message);
         return res.json(tutorFallback(msg, context));
