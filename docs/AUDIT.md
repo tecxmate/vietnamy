@@ -30,6 +30,7 @@ lessons / 1,001 words / 479 sentences. Canonical content bundle at repo-root `co
 | 1.5 | Fix stale `app_tutorial_navigation_desc` (named a 6-tab bar that doesn't exist) → 3-tab concise copy | copy | DONE |
 | 1.6 | Docs: delete superseded `docs/prd/{PROJECT_HANDOFF,user_flow_and_features,mockup-dictionary-vocab-library}.md` + `tone_marks_styles.patch` | clean | DONE |
 | 1.7 | Docs: fix `README.md` + `.claude/CLAUDE.md` + wiki to the real 3-tab / ProgressContext / no-currency system | clean | DONE |
+| 1.8 | Delete orphaned `src/pages/Practice/VocabPractice.css` (2026-06-14) — no `VocabPractice.jsx` exists, file imported nowhere, its `.voc-*` classes used in 0 files. 29→28 src CSS files. | clean | DONE |
 
 ---
 
