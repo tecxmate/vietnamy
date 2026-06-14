@@ -8,6 +8,7 @@ import { existsSync, mkdirSync, readFileSync } from 'fs';
 import { Converter } from 'opencc-js';
 import { put as blobPut } from '@vercel/blob';
 import { maybeMountAuthJs } from './authJsRoutes.js';
+import { semanticSearch, isSemanticEnabled } from './semantic.js';
 import {
     getMessageScenario,
     listMessageScenarios,
@@ -2822,6 +2823,16 @@ async function callGemini(system, turns, message) {
     return JSON.parse(text);
 }
 
+// GET /api/semantic-search?q=...&corpus=curriculum|dictionary|repo&k=5
+app.get('/api/semantic-search', async (req, res) => {
+    const q = String(req.query.q || '').trim();
+    if (!q) return res.status(400).json({ error: 'q required' });
+    const corpus = req.query.corpus ? String(req.query.corpus) : null;
+    const k = Math.min(Number(req.query.k) || 5, 20);
+    const results = await semanticSearch(q, { corpus, k });
+    res.json({ enabled: isSemanticEnabled(), corpus, results });
+});
+
 app.post('/api/tutor', async (req, res) => {
     const { lessonId = '', message = '', context = {} } = req.body || {};
     const msg = String(message).slice(0, 1000).trim();
@@ -2830,8 +2841,18 @@ app.post('/api/tutor', async (req, res) => {
     // No key configured → deterministic, grounded fallback (feature still works).
     if (!TUTOR_ENABLED) return res.json(tutorFallback(msg, context));
 
+    // Enrich grounding facts with retrieved curriculum chunks when available
+    // (RAG). Falls back to the authored facts if semantic search is off/empty.
+    const ctx = { ...context, lessonId };
+    if (isSemanticEnabled()) {
+        const hits = await semanticSearch(msg, { corpus: 'curriculum', k: 4 });
+        if (hits.length) {
+            ctx.facts = [ctx.facts, ...hits.map(h => h.content)].filter(Boolean).join(' | ');
+        }
+    }
+
     try {
-        const system = buildTutorSystem({ ...context, lessonId });
+        const system = buildTutorSystem(ctx);
         const turns = (context.recentTurns || []).slice(-6);
         const out = TUTOR_PROVIDER === 'gemini'
             ? await callGemini(system, turns, msg)
