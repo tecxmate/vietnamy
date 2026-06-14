@@ -75,7 +75,9 @@ export function expandLessonsIntoSkills(pathNodes) {
                     id: `${node.id}__${skill}`,
                     node_index: baseIndex + i / 10, // x.0..x.4 keep order before quiz at x+1
                     skill,
-                    label: `${node.label || node.topic || 'Lesson'} · ${skill[0].toUpperCase()}${skill.slice(1)}`,
+                    // Title falls back to the lesson topic; the roadmap overrides
+                    // it with the lesson title and shows the skill as the subtitle.
+                    label: node.label || node.topic || 'Lesson',
                     sessions_required: 1,
                     // Only the vocab node introduces/requires vocab, so SRS and
                     // prerequisite validation are not double-counted.

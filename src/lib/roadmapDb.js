@@ -88,7 +88,7 @@ export const getNodesForUnitWithProgress = (unitId, completedNodeIds) => {
         const sourceNode = n.source_node_id ? nodesById.get(n.source_node_id) : null;
         const sourceLesson = sourceNode?.lesson_id ? lessonsById.get(sourceNode.lesson_id) : null;
         let label = n.label || '';
-        if (n.node_type === 'lesson' && n.lesson_id && lesson && !n.skill) label = lesson.title;
+        if (n.node_type === 'lesson' && n.lesson_id && lesson) label = lesson.title;
 
         return {
             id: n.id,
