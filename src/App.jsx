@@ -87,6 +87,7 @@ const ReadingLibraryTab = lazy(loadReadingLibraryTab);
 const SpeakTab = lazy(loadSpeakTab);
 const WatchTab = lazy(loadWatchTab);
 
+const TeacherChat = lazy(() => import('./components/Teacher/TeacherChat'));
 const GrammarGuide = lazy(() => import('./pages/Grammar/GrammarGuide'));
 
 const AdminLayout = lazy(() => import('./pages/Admin/AdminLayout'));
@@ -402,6 +403,7 @@ function AppRoutes() {
           <Route path="/practice" element={<StudentApp initialTab="library" />} />
           <Route path="/lesson/:lessonId" element={<div className="mobile-app-wrapper"><LessonGame /></div>} />
           <Route path="/scene/:sceneId" element={<div className="mobile-app-wrapper"><SceneEngine /></div>} />
+          <Route path="/teach/:lessonId" element={<div className="mobile-app-wrapper"><TeacherChat /></div>} />
           <Route path="/grammar-unit/:unitId" element={<div className="mobile-app-wrapper"><GrammarUnitLesson /></div>} />
           <Route path="/test/:nodeId" element={<div className="mobile-app-wrapper"><UnitTest /></div>} />
           {/* Full-screen Practice Routes */}
