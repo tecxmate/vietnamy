@@ -11,7 +11,7 @@ const wordForTone = (toneId) => {
     return w ? { vi: w.word, en: w.meaning } : null;
 };
 
-export const TEACHER = { name: 'Cô Mai', emoji: '👩‍🏫' };
+export const TEACHER = { name: 'Bé Khế', emoji: '⭐' };
 
 // Beat kinds the director understands:
 //   say          — a teacher message bubble (auto-advances)
@@ -43,7 +43,7 @@ export function buildTonesLesson() {
             { id: 'speak', text: 'say a tone aloud', threshold: 0.6 },
         ],
         beats: [
-            { type: 'say', text: 'Xin chào! 👋 I\'m Cô Mai, your Vietnamese teacher.' },
+            { type: 'say', text: 'Xin chào! 👋 I\'m Bé Khế, your friendly starfruit guide to Vietnamese!' },
             { type: 'say', text: 'Today we\'ll meet something that makes Vietnamese special: its 6 tones.' },
             { type: 'say', text: 'A tone is the *melody* of a syllable. Change the tone and you change the word completely.' },
             {

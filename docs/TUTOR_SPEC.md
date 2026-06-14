@@ -1,6 +1,6 @@
 # AI Tutor (`/api/tutor`) — end-to-end spec
 
-The chat-style teacher ("Cô Mai"). This layer adds **free-text conversation** on
+The chat-style teacher ("Bé Khế", the starfruit mascot). This layer adds **free-text conversation** on
 top of the deterministic beat lessons. The golden rule, unchanged: **the LLM is
 the voice and the interpreter — never the curriculum or the grader.**
 
@@ -107,7 +107,7 @@ tutor_reply`), so malformed output self-retries. The client applies `action`:
 ## 5. System prompt & memory
 
 **System prompt** (built server-side per request, cacheable):
-- **Persona**: Cô Mai — warm, patient Vietnamese teacher; replies are short, like texting.
+- **Persona**: Bé Khế (the starfruit mascot) — warm, playful Vietnamese guide; replies are short, like texting.
 - **Strict rules**: teach *only* this lesson's content; use only the Vietnamese facts in the injected context; if asked off-topic, redirect warmly in one line; never reveal you're an AI model; always return the structured reply.
 - **Injected grounding** (the anti-hallucination layer): lesson title, objectives, the current beat's authored content, and the allowed `action`s.
 

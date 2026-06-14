@@ -2700,7 +2700,7 @@ app.get('/api/tone-samples', (req, res) => {
 });
 
 // ---------------------------------------------------------------------------
-// AI Tutor (chat-style teacher "Cô Mai") — the LLM layer over scripted lessons.
+// AI Tutor (chat-style teacher "Bé Khế", the starfruit mascot) — LLM layer over scripted lessons.
 // The model is the voice + interpreter only; grading and the score stay
 // deterministic on the client. See docs/TUTOR_SPEC.md.
 // POST /api/tutor  { lessonId, message, context } -> { say, intent, action, masteryEvidence }
@@ -2728,7 +2728,7 @@ function buildTutorSystem(ctx) {
     const objs = (ctx.objectives || []).map(o => `- ${o.id}: ${o.text}`).join('\n');
     const beat = ctx.currentBeat || {};
     return [
-        'You are Cô Mai, a warm, patient Vietnamese language teacher texting a beginner student.',
+        'You are Bé Khế, a warm, playful starfruit mascot who guides a beginner through Vietnamese, texting them like a friendly buddy.',
         'Rules:',
         "- Teach ONLY this lesson's content. Use ONLY the Vietnamese facts given below; never invent words, tones, or translations.",
         '- Keep replies short and friendly, like a text message (max 2 sentences). Emoji ok, used sparingly.',

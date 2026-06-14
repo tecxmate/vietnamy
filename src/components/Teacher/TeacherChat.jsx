@@ -4,6 +4,7 @@ import { ArrowLeft, Volume2, Check, X, ChevronRight, RotateCcw, Sparkles, Mic, S
 import speak, { subscribeSpeakingState, getSpeakingState } from '../../utils/speak';
 import { startPCMRecording } from '../../utils/recordPCM';
 import { useT } from '../../lib/i18n';
+import BeKhe from '../BeKhe/BeKhe';
 import { buildTonesLesson } from './tonesLesson';
 import { buildGreetingsLesson } from './greetingsLesson';
 import './TeacherChat.css';
@@ -170,7 +171,7 @@ const TeacherChat = ({ lessonId: lessonIdProp }) => {
                 <button className="teacher-chat__back" onClick={() => navigate(-1)} aria-label="Back">
                     <ArrowLeft size={22} />
                 </button>
-                <span className="teacher-chat__avatar" aria-hidden>{lesson.teacher.emoji}</span>
+                <span className="teacher-chat__avatar" aria-hidden><BeKhe expression="idle" size={38} /></span>
                 <div className="teacher-chat__who">
                     <span className="teacher-chat__name">{lesson.teacher.name}</span>
                     <span className="teacher-chat__sub">{lesson.title}</span>
@@ -323,18 +324,20 @@ function PronounceCard({ beat, t, onStudent, onTeacher, onEvidence, onDone }) {
                 <div className="tc-pronounce__target">
                     {target}{beat.en && <span className="tc-pronounce__en">{beat.en}</span>}
                 </div>
-                <button className="tc-replay" onClick={() => speak(target)}>
-                    {isAudible(listenSpeaking) ? <SoundBars /> : <Volume2 size={18} />} Listen
-                </button>
-                <button className={`tc-mic ${isRecording ? 'tc-mic--rec' : ''}`} onClick={handleMicTap} disabled={isScoring}>
-                    {isRecording ? <Square size={20} /> : <Mic size={22} />}
-                    <span>{isScoring ? t('scene_scoring') : isRecording ? t('scene_recording_listening') : t('scene_speak_record')}</span>
-                </button>
-                {score != null && (
-                    <div className="tc-pronounce__score" style={{ color: score >= 70 ? 'var(--success-color, #58cc02)' : 'var(--secondary-color, #1cb0f6)' }}>
-                        {Math.round(score)}%
-                    </div>
-                )}
+                <div className="tc-pronounce__controls">
+                    <button className="tc-replay" onClick={() => speak(target)}>
+                        {isAudible(listenSpeaking) ? <SoundBars /> : <Volume2 size={18} />} Listen
+                    </button>
+                    <button className={`tc-mic ${isRecording ? 'tc-mic--rec' : ''}`} onClick={handleMicTap} disabled={isScoring}>
+                        {isRecording ? <Square size={20} /> : <Mic size={22} />}
+                        <span>{isScoring ? t('scene_scoring') : isRecording ? t('scene_recording_listening') : t('scene_speak_record')}</span>
+                    </button>
+                    {score != null && (
+                        <div className="tc-pronounce__score" style={{ color: score >= 70 ? 'var(--success-color, #58cc02)' : 'var(--secondary-color, #1cb0f6)' }}>
+                            {Math.round(score)}%
+                        </div>
+                    )}
+                </div>
             </div>
             {attempted && (
                 <button className="tc-primary-btn" onClick={onDone}>
