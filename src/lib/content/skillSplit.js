@@ -38,16 +38,19 @@ export function filterExercisesBySkill(exercises, skill) {
     return filtered.length > 0 ? filtered : exercises;
 }
 
-// Roadmap nodes repointed to the chat-style teacher (/teach/:lessonId) instead
-// of their old practice drill. Applied at read time, so no reseed is needed.
+// Roadmap nodes repointed to the chat-style teacher (/teach/:lessonId). Sets a
+// `teach_route` field that routing honors first, so it works for any node type
+// (skill, lesson, …). Applied at read time, so no reseed is needed. Note the
+// __vocab key targets a skill-split node, so this runs after the split.
 const TEACHER_ROUTE_OVERRIDES = {
-    p1_PRON: '/teach/tones', // Unit 1 "Pronunciation: Tones"
+    p1_PRON: '/teach/tones',          // Unit 1 "Pronunciation: Tones"
+    p1_L001a__vocab: '/teach/greetings', // "Say Hello" — Vocab skill node
 };
 
 export function applyTeacherRoutes(pathNodes) {
     if (!Array.isArray(pathNodes)) return pathNodes;
     return pathNodes.map(n =>
-        TEACHER_ROUTE_OVERRIDES[n.id] ? { ...n, practice_route: TEACHER_ROUTE_OVERRIDES[n.id] } : n
+        TEACHER_ROUTE_OVERRIDES[n.id] ? { ...n, teach_route: TEACHER_ROUTE_OVERRIDES[n.id] } : n
     );
 }
 

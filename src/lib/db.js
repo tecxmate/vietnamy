@@ -228,6 +228,7 @@ export const getNextNode = (nodeId) => {
 // --- Build route for a node (mirrors RoadmapTab.navigateNode) ---
 export const getNodeRoute = (node) => {
     if (!node) return '/';
+    if (node.teach_route) return node.teach_route;
     const type = node.node_type || node.type;
     const lessonId = node.lesson_id || node.content_ref_id;
     if (type === 'lesson') {

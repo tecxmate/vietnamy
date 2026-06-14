@@ -4,6 +4,7 @@ import { ArrowLeft, Volume2, Check, X, ChevronRight, RotateCcw, Sparkles } from 
 import speak from '../../utils/speak';
 import { useT } from '../../lib/i18n';
 import { buildTonesLesson } from './tonesLesson';
+import { buildGreetingsLesson } from './greetingsLesson';
 import './TeacherChat.css';
 
 // Tiny inline formatter for the authored scripts: **bold** and *italic*.
@@ -16,8 +17,9 @@ function formatText(text) {
     });
 }
 
-// Lessons are keyed by id; only "tones" exists for now.
-const LESSONS = { tones: buildTonesLesson };
+// Lessons are keyed by id. Add a builder here + an authored script file to
+// ship a new teacher lesson — the shell, director and widgets are shared.
+const LESSONS = { tones: buildTonesLesson, greetings: buildGreetingsLesson };
 
 const TeacherChat = ({ lessonId: lessonIdProp }) => {
     const navigate = useNavigate();
@@ -120,8 +122,10 @@ const TeacherChat = ({ lessonId: lessonIdProp }) => {
 // ── Widgets ──────────────────────────────────────────────────────────────
 function Widget({ beat, t, onStudent, onTeacher, onDone, onFinish }) {
     if (beat.type === 'tone_explore') return <ToneExplore beat={beat} t={t} onDone={onDone} />;
-    if (beat.type === 'mcq') return <Mcq beat={beat} t={t} onStudent={onStudent} onTeacher={onTeacher} onDone={onDone} />;
     if (beat.type === 'tone_listen') return <ToneListen beat={beat} t={t} onStudent={onStudent} onTeacher={onTeacher} onDone={onDone} />;
+    if (beat.type === 'cards') return <CardsExplore beat={beat} t={t} onDone={onDone} />;
+    if (beat.type === 'listen_pick') return <ListenPick beat={beat} t={t} onStudent={onStudent} onTeacher={onTeacher} onDone={onDone} />;
+    if (beat.type === 'mcq') return <Mcq beat={beat} t={t} onStudent={onStudent} onTeacher={onTeacher} onDone={onDone} />;
     if (beat.type === 'done') {
         return (
             <button className="tc-primary-btn" onClick={onFinish}>
@@ -231,6 +235,78 @@ function ToneListen({ beat, t, onStudent, onTeacher, onDone }) {
                         else if (tone.id === picked) state = 'wrong';
                     }
                     return <ToneChip key={tone.id} tone={tone} onTap={() => choose(tone)} state={state} />;
+                })}
+            </div>
+            {picked !== null && (
+                <button className="tc-primary-btn" onClick={onDone}>
+                    {t('continue_upper')} <ChevronRight size={18} />
+                </button>
+            )}
+        </div>
+    );
+}
+
+// ── Generic vocab widgets (reused across non-tone lessons) ────────────────
+function VocabCard({ item, onTap, state }) {
+    return (
+        <button className={`tc-card ${state ? `tc-card--${state}` : ''}`} onClick={onTap}>
+            <span className="tc-card__emoji" aria-hidden>{item.emoji || '💬'}</span>
+            <span className="tc-card__vi">{item.vi}</span>
+            <span className="tc-card__en">{item.en}</span>
+        </button>
+    );
+}
+
+function CardsExplore({ beat, t, onDone }) {
+    const [explored, setExplored] = useState(() => new Set());
+    const tap = (item, i) => {
+        if (item.vi) speak(item.vi);
+        setExplored(prev => new Set(prev).add(i));
+    };
+    return (
+        <div className="tc-widget">
+            <div className="tc-card-grid">
+                {beat.items.map((item, i) => (
+                    <VocabCard key={i} item={item} state={explored.has(i) ? 'done' : ''} onTap={() => tap(item, i)} />
+                ))}
+            </div>
+            <button className="tc-primary-btn" disabled={explored.size < 1} onClick={onDone}>
+                {t('continue_upper')} <ChevronRight size={18} />
+            </button>
+        </div>
+    );
+}
+
+function ListenPick({ beat, t, onStudent, onTeacher, onDone }) {
+    const targetIndex = beat.targetIndex ?? 0;
+    const target = beat.items[targetIndex] || beat.items[0];
+    const [picked, setPicked] = useState(null);
+    const play = useCallback(() => { if (target.vi) speak(target.vi); }, [target]);
+
+    useEffect(() => { const id = setTimeout(play, 350); return () => clearTimeout(id); }, [play]);
+
+    const choose = (item, i) => {
+        if (picked !== null) return;
+        setPicked(i);
+        onStudent(item.vi);
+        onTeacher(i === targetIndex
+            ? `Chính xác! ✅ “${target.vi}” means ${target.en}.`
+            : `Not quite — that was “${target.vi}” (${target.en}). Your ear is training. 💪`);
+    };
+
+    return (
+        <div className="tc-widget">
+            <button className="tc-replay" onClick={play}>
+                <Volume2 size={18} /> Play again <RotateCcw size={15} />
+            </button>
+            <div className="tc-card-grid">
+                {beat.items.map((item, i) => {
+                    let state = '';
+                    if (picked !== null) {
+                        if (i === targetIndex) state = 'correct';
+                        else if (i === picked) state = 'wrong';
+                    }
+                    return <VocabCard key={i} item={item} state={state} onTap={() => choose(item, i)} />;
                 })}
             </div>
             {picked !== null && (

@@ -101,6 +101,7 @@ export const getNodesForUnitWithProgress = (unitId, completedNodeIds) => {
             skill_content: n.skill_content || null,
             module_type: n.module_type || null,
             skill: n.skill || null,
+            teach_route: n.teach_route || null,
             test_scope: n.test_scope || null,
             source_node_id: n.source_node_id || null,
             scene_id: n.scene_id || null,

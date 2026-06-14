@@ -155,6 +155,8 @@ const RoadmapTab = () => {
     }, [currentMode]);
 
     const navigateNode = (node) => {
+        // A node can be repointed to the chat-style teacher via teach_route.
+        if (node.teach_route) { navigate(node.teach_route); return; }
         switch (node.type) {
             case 'lesson':
                 // Skill-split nodes carry skill + node id so the lesson engine
