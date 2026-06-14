@@ -2712,7 +2712,7 @@ const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY || '';
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY || '';
 const TUTOR_PROVIDER = OPENAI_API_KEY ? 'openai' : GEMINI_API_KEY ? 'gemini' : ANTHROPIC_API_KEY ? 'anthropic' : 'none';
 const TUTOR_MODEL = process.env.TUTOR_MODEL
-    || (TUTOR_PROVIDER === 'openai' ? 'gpt-4o-mini'
+    || (TUTOR_PROVIDER === 'openai' ? 'gpt-4.1-mini'
         : TUTOR_PROVIDER === 'gemini' ? 'gemini-2.5-flash'
             : 'claude-haiku-4-5-20251001');
 const TUTOR_ENABLED = TUTOR_PROVIDER !== 'none';

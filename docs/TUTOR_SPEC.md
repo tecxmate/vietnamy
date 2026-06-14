@@ -226,3 +226,38 @@ Also fixed alongside this: `recordPCM` resumes a possibly-`suspended`
 AudioContext (Safari/Chrome) — without it the capture was silent — and added
 voice-activity **auto-stop** (~2s of silence, 8s cap) so the learner doesn't
 have to stop manually.
+
+---
+
+## 11. Model A/B — Vietnamese tone accuracy (June 2026)
+
+Question: is OpenAI worse than Gemini at Vietnamese (more hallucination)? We
+ran 6 Vietnamese tone questions × 3 models × grounded/ungrounded, judged each
+answer against `content/tones.json` (CORRECT=1, PARTIAL=0.5, WRONG=0).
+
+| Model | **Grounded** (what we ship) | Ungrounded |
+|---|---|---|
+| `gpt-4o-mini` | 92% | 83% |
+| **`gpt-4.1-mini`** (chosen default) | **100%** | 83% |
+| `gemini-2.5-flash` | 100% | 88% * |
+
+\* Gemini's free tier **429'd mid-run** — even with pacing + retries, only 4 of
+6 ungrounded calls completed. That operational unreliability (not accuracy) is
+the real reason we moved off Gemini.
+
+**Findings**
+1. **Grounded, vendor barely matters** — all three land 92–100%. The injected
+   `facts` ("use ONLY these") carry the accuracy; the model is the voice, the
+   content is the truth.
+2. **"OpenAI worse on Vietnamese" doesn't hold.** `gpt-4.1-mini` ties
+   `gemini-2.5-flash` at 100% grounded. The earlier misses were the *cheap*
+   `gpt-4o-mini` (a model-tier gap, not a vendor gap). Ungrounded, Gemini was
+   marginally ahead (88% vs 83%) — consistent with Google's broader multilingual
+   training — but only on the calls it managed to complete.
+3. **Reliability decided it.** OpenAI ran every call clean; Gemini rate-limited
+   itself out of the test.
+
+**Decision:** default `TUTOR_MODEL = gpt-4.1-mini` (OpenAI). Matches Gemini's
+grounded accuracy, fixes the `gpt-4o-mini` miss, and doesn't rate-limit. Keep
+the grounding as the real safety net regardless of model. (Method:
+`/tmp/ab.mjs` — re-runnable; swap the model list to re-test.)
