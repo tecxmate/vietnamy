@@ -2710,7 +2710,7 @@ const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY || '';
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY || '';
 const TUTOR_PROVIDER = GEMINI_API_KEY ? 'gemini' : ANTHROPIC_API_KEY ? 'anthropic' : 'none';
 const TUTOR_MODEL = process.env.TUTOR_MODEL
-    || (TUTOR_PROVIDER === 'gemini' ? 'gemini-2.0-flash' : 'claude-haiku-4-5-20251001');
+    || (TUTOR_PROVIDER === 'gemini' ? 'gemini-2.5-flash' : 'claude-haiku-4-5-20251001');
 const TUTOR_ENABLED = TUTOR_PROVIDER !== 'none';
 
 // Shared reply shape — the Anthropic tool schema, and described to Gemini.
@@ -2736,6 +2736,7 @@ function buildTutorSystem(ctx) {
         '- Use at most ONE emoji per reply, and only when it adds warmth — often use none.',
         '- It is fine to admit something is tricky ("these two mix me up too"). Never sarcastic, never blame the learner.',
         '- You may drop a tiny Vietnamese word (Tuyệt! = awesome, Cố lên! = keep going, Không sao! = no worries); gloss it the first time.',
+        '- Reply in the language the student writes in (English or Chinese) — only the little Vietnamese sprinkle words stay Vietnamese. Never reply entirely in Vietnamese.',
         '- If the student goes off-topic, warmly point back to the lesson in one line.',
         '- You do NOT grade tapped exercises; you interpret free text and choose the next move.',
         '',
@@ -2799,13 +2800,17 @@ async function callGemini(system, turns, message) {
     // Gemini requires the first content to be a 'user' turn — drop leading model turns.
     const history = turns.map(t => ({ role: t.role === 'student' ? 'user' : 'model', parts: [{ text: String(t.text || '') }] }));
     while (history.length && history[0].role !== 'user') history.shift();
+    const generationConfig = { temperature: 0.6, maxOutputTokens: 256, responseMimeType: 'application/json' };
+    // Disable "thinking" on Gemini 2.5/3.x — the tutor needs fast, short replies,
+    // not reasoning (and thinking tokens would eat the output budget).
+    if (/2\.5|gemini-3|-latest/.test(TUTOR_MODEL)) generationConfig.thinkingConfig = { thinkingBudget: 0 };
     const r = await fetch(url, {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({
             systemInstruction: { parts: [{ text: system + jsonRule }] },
             contents: [...history, { role: 'user', parts: [{ text: message }] }],
-            generationConfig: { temperature: 0.6, maxOutputTokens: 256, responseMimeType: 'application/json' },
+            generationConfig,
         }),
     });
     if (!r.ok) throw new Error(`gemini ${r.status}: ${(await r.text()).slice(0, 200)}`);
