@@ -23,6 +23,7 @@ export function buildGreetingsLesson() {
         objectives: [
             { id: 'vocab', text: 'recognize core greetings', threshold: 0.6 },
             { id: 'listen', text: 'identify a greeting by ear', threshold: 0.6 },
+            { id: 'speak', text: 'say a greeting aloud', threshold: 0.6 },
         ],
         beats: [
             { type: 'say', text: 'Xin chào! 👋 Last time we met the tones — today let’s actually *greet* people.' },
@@ -56,7 +57,15 @@ export function buildGreetingsLesson() {
                 items: cards,
                 targetIndex: 2, // tạm biệt
             },
-            { type: 'say', text: 'That’s greetings, thanks, and a polite goodbye — enough to start a real conversation. 🌟' },
+            { type: 'say', text: 'Last thing — let’s hear *you* say it.' },
+            {
+                type: 'pronounce',
+                objective: 'speak',
+                text: 'Tap the mic and say “xin chào”. I’ll score your pronunciation. 🎤',
+                target: 'xin chào',
+                en: 'hello (polite)',
+            },
+            { type: 'say', text: 'That’s greetings, thanks, a polite goodbye — and your own voice saying hello. 🌟' },
             { type: 'done', text: 'Tuyệt vời! 🎉 Hẹn gặp lại — see you next lesson!' },
         ],
     };

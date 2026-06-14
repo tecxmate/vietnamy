@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { ArrowLeft, Volume2, Check, X, ChevronRight, RotateCcw, Sparkles } from 'lucide-react';
+import { ArrowLeft, Volume2, Check, X, ChevronRight, RotateCcw, Sparkles, Mic, Square } from 'lucide-react';
 import speak from '../../utils/speak';
+import { startPCMRecording } from '../../utils/recordPCM';
 import { useT } from '../../lib/i18n';
 import { buildTonesLesson } from './tonesLesson';
 import { buildGreetingsLesson } from './greetingsLesson';
@@ -202,7 +203,94 @@ function Widget({ beat, t, onStudent, onTeacher, onEvidence, onDone }) {
     if (beat.type === 'cards') return <CardsExplore beat={beat} t={t} onDone={onDone} />;
     if (beat.type === 'listen_pick') return <ListenPick beat={beat} t={t} onStudent={onStudent} onTeacher={onTeacher} onEvidence={onEvidence} onDone={onDone} />;
     if (beat.type === 'mcq') return <Mcq beat={beat} t={t} onStudent={onStudent} onTeacher={onTeacher} onEvidence={onEvidence} onDone={onDone} />;
+    if (beat.type === 'pronounce') return <PronounceCard beat={beat} t={t} onStudent={onStudent} onTeacher={onTeacher} onEvidence={onEvidence} onDone={onDone} />;
     return null;
+}
+
+// Pronunciation practice — record, score via Azure (/api/pronunciation), and
+// turn the % into deterministic mastery evidence. Degrades gracefully if the
+// mic or Azure is unavailable (never blocks progress).
+function PronounceCard({ beat, t, onStudent, onTeacher, onEvidence, onDone }) {
+    const target = beat.target;
+    const [isRecording, setIsRecording] = useState(false);
+    const [isScoring, setIsScoring] = useState(false);
+    const [score, setScore] = useState(null);
+    const [attempted, setAttempted] = useState(false);
+    const recorderRef = useRef(null);
+
+    const handleRecord = async () => {
+        if (isScoring) return;
+        if (isRecording) {
+            const rec = recorderRef.current;
+            recorderRef.current = null;
+            setIsRecording(false);
+            if (!rec) return;
+            setIsScoring(true);
+            try {
+                const blob = await rec.stop();
+                const res = await fetch(`/api/pronunciation?text=${encodeURIComponent(target)}`, {
+                    method: 'POST', headers: { 'Content-Type': 'audio/wav' }, body: blob,
+                });
+                const data = await res.json();
+                const s = data.scores ? (data.scores.pronunciation ?? data.scores.accuracy ?? null) : null;
+                setScore(s);
+                setAttempted(true);
+                onStudent?.(`🎤 ${target}`);
+                if (s != null) {
+                    const ev = s >= 80 ? 'strong' : s >= 60 ? 'partial' : 'none';
+                    onEvidence?.(beat.objective, ev);
+                    const r = Math.round(s);
+                    onTeacher?.(s >= 80 ? `Excellent — ${r}%! 🎉` : s >= 60 ? `Good — ${r}%. A little crisper and it’s perfect. 💪` : `${r}% — listen again and copy the melody. 🔊`);
+                } else {
+                    onTeacher?.('I couldn’t quite hear that — try once more, or tap continue. 🙂');
+                }
+            } catch (err) {
+                console.warn('pronounce error', err.message);
+                setAttempted(true);
+                onTeacher?.('Mic trouble — you can try again or continue. 🙂');
+            } finally {
+                setIsScoring(false);
+            }
+        } else {
+            try {
+                setScore(null);
+                const rec = await startPCMRecording();
+                recorderRef.current = rec;
+                setIsRecording(true);
+            } catch (err) {
+                console.warn('mic unavailable', err.message);
+                setAttempted(true);
+                onTeacher?.('I can’t access your mic — tap continue to move on. 🙂');
+            }
+        }
+    };
+
+    return (
+        <div className="tc-widget">
+            <div className="tc-pronounce">
+                <div className="tc-pronounce__target">
+                    {target}{beat.en && <span className="tc-pronounce__en">{beat.en}</span>}
+                </div>
+                <button className="tc-replay" onClick={() => speak(target)}>
+                    <Volume2 size={18} /> Listen
+                </button>
+                <button className={`tc-mic ${isRecording ? 'tc-mic--rec' : ''}`} onClick={handleRecord} disabled={isScoring}>
+                    {isRecording ? <Square size={20} /> : <Mic size={22} />}
+                    <span>{isScoring ? t('scene_scoring') : isRecording ? t('scene_recording_stop') : t('scene_speak_record')}</span>
+                </button>
+                {score != null && (
+                    <div className="tc-pronounce__score" style={{ color: score >= 70 ? 'var(--success-color, #58cc02)' : 'var(--secondary-color, #1cb0f6)' }}>
+                        {Math.round(score)}%
+                    </div>
+                )}
+            </div>
+            {attempted && (
+                <button className="tc-primary-btn" onClick={onDone}>
+                    {t('continue_upper')} <ChevronRight size={18} />
+                </button>
+            )}
+        </div>
+    );
 }
 
 // Predefined help options — controlled prompts only (no open free text yet).

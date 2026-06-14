@@ -40,6 +40,7 @@ export function buildTonesLesson() {
         objectives: [
             { id: 'recognize', text: 'recognize the 6 tone marks', threshold: 0.6 },
             { id: 'identify', text: 'identify a tone by ear', threshold: 0.6 },
+            { id: 'speak', text: 'say a tone aloud', threshold: 0.6 },
         ],
         beats: [
             { type: 'say', text: 'Xin chào! 👋 I\'m Cô Mai, your Vietnamese teacher.' },
@@ -74,7 +75,15 @@ export function buildTonesLesson() {
                 tones,
                 targetToneId: 'sac',
             },
-            { type: 'say', text: 'You\'ve now met all six tones and started hearing them apart. That\'s the hardest first step. 🌟' },
+            { type: 'say', text: 'Now your turn to *say* one — this is where it really sticks.' },
+            {
+                type: 'pronounce',
+                objective: 'speak',
+                text: `Tap the mic and say “${sac.word?.vi || 'má'}” (${sac.name} — rising). I’ll score you. 🎤`,
+                target: sac.word?.vi || 'má',
+                en: sac.word?.en || '',
+            },
+            { type: 'say', text: 'You\'ve now met all six tones, heard them apart, and said one aloud. That\'s the hardest first step. 🌟' },
             { type: 'done', text: 'Tuyệt vời! 🎉 Lesson complete. We\'ll keep practising these in your next sessions.' },
         ],
     };

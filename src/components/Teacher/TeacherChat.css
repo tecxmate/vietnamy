@@ -231,6 +231,30 @@
 .tc-obj-list li.got { color: var(--success-color, #58cc02); }
 .tc-obj-list li.review { color: var(--text-muted); }
 
+/* Pronunciation practice (Azure scoring) */
+.tc-pronounce {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 14px;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-color, #0f1115);
+}
+.tc-pronounce__target { font-size: 26px; font-weight: 800; color: var(--text-main); display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.tc-pronounce__en { font-size: 13px; font-weight: 600; color: var(--text-muted); }
+.tc-mic {
+    display: flex; align-items: center; gap: 8px;
+    padding: 12px 24px; border-radius: 999px;
+    border: 2px solid var(--secondary-color, #1cb0f6);
+    background: transparent; color: var(--secondary-color, #1cb0f6);
+    font-size: 15px; font-weight: 800; cursor: pointer;
+}
+.tc-mic--rec { border-color: var(--lesson-error-border, #ef4444); color: var(--lesson-error-border, #ef4444); background: color-mix(in srgb, var(--lesson-error-border, #ef4444) 12%, transparent); }
+.tc-mic:disabled { opacity: 0.55; cursor: default; }
+.tc-pronounce__score { font-size: 28px; font-weight: 800; }
+
 .tc-replay {
     align-self: center;
     display: flex;
