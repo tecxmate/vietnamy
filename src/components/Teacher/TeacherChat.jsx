@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ArrowLeft, Volume2, Check, X, ChevronRight, RotateCcw, Sparkles, Mic, Square } from 'lucide-react';
-import speak from '../../utils/speak';
+import speak, { subscribeSpeakingState, getSpeakingState } from '../../utils/speak';
 import { startPCMRecording } from '../../utils/recordPCM';
 import { useT } from '../../lib/i18n';
 import { buildTonesLesson } from './tonesLesson';
@@ -16,6 +16,29 @@ function formatText(text) {
         if (p.startsWith('*') && p.endsWith('*')) return <em key={i}>{p.slice(1, -1)}</em>;
         return <React.Fragment key={i}>{p}</React.Fragment>;
     });
+}
+
+// Visual "audio is playing" feedback (driven by the real TTS playback state) so
+// a volume-off learner still sees that something is happening.
+function useSpeakingState(text) {
+    const [state, setState] = useState(() => getSpeakingState(text));
+    useEffect(() => {
+        const update = () => setState(getSpeakingState(text));
+        const unsub = subscribeSpeakingState(update);
+        update();
+        return unsub;
+    }, [text]);
+    return state; // 'idle' | 'loading' | 'playing'
+}
+const isAudible = (s) => s === 'playing' || s === 'loading';
+
+// Animated equalizer bars — shown while the matching audio plays.
+function SoundBars({ className = '' }) {
+    return (
+        <span className={`tc-sound ${className}`} aria-label="playing audio">
+            <span /><span /><span /><span />
+        </span>
+    );
 }
 
 // Lessons are keyed by id. Add a builder here + an authored script file to
@@ -207,6 +230,7 @@ function Widget({ beat, t, onStudent, onTeacher, onEvidence, onDone }) {
 // mic or Azure is unavailable (never blocks progress).
 function PronounceCard({ beat, t, onStudent, onTeacher, onEvidence, onDone }) {
     const target = beat.target;
+    const listenSpeaking = useSpeakingState(target);
     const [isRecording, setIsRecording] = useState(false);
     const [isScoring, setIsScoring] = useState(false);
     const [score, setScore] = useState(null);
@@ -300,7 +324,7 @@ function PronounceCard({ beat, t, onStudent, onTeacher, onEvidence, onDone }) {
                     {target}{beat.en && <span className="tc-pronounce__en">{beat.en}</span>}
                 </div>
                 <button className="tc-replay" onClick={() => speak(target)}>
-                    <Volume2 size={18} /> Listen
+                    {isAudible(listenSpeaking) ? <SoundBars /> : <Volume2 size={18} />} Listen
                 </button>
                 <button className={`tc-mic ${isRecording ? 'tc-mic--rec' : ''}`} onClick={handleMicTap} disabled={isScoring}>
                     {isRecording ? <Square size={20} /> : <Mic size={22} />}
@@ -368,7 +392,9 @@ function ScoreSummary({ objectives, scores, overall, helps, busy, onAsk, t, onFi
     );
 }
 
-function ToneChip({ tone, onTap, state }) {
+function ToneChip({ tone, onTap, state, withSound }) {
+    const speaking = useSpeakingState(tone.word?.vi);
+    const active = withSound && isAudible(speaking);
     return (
         <button
             className={`tc-chip ${state ? `tc-chip--${state}` : ''}`}
@@ -378,6 +404,7 @@ function ToneChip({ tone, onTap, state }) {
             <span className="tc-chip__mark">{tone.mark}</span>
             <span className="tc-chip__name">{tone.name}</span>
             <span className="tc-chip__label">{tone.label}</span>
+            {active && <SoundBars className="tc-chip__sound" />}
         </button>
     );
 }
@@ -392,7 +419,7 @@ function ToneExplore({ beat, t, onDone }) {
         <div className="tc-widget">
             <div className="tc-chip-grid">
                 {beat.tones.map(tone => (
-                    <ToneChip key={tone.id} tone={tone} onTap={() => tap(tone)} state={explored.has(tone.id) ? 'done' : ''} />
+                    <ToneChip key={tone.id} tone={tone} onTap={() => tap(tone)} state={explored.has(tone.id) ? 'done' : ''} withSound />
                 ))}
             </div>
             <button className="tc-primary-btn" disabled={explored.size < 1} onClick={onDone}>
@@ -441,6 +468,7 @@ function Mcq({ beat, t, onStudent, onTeacher, onEvidence, onDone }) {
 function ToneListen({ beat, t, onStudent, onTeacher, onEvidence, onDone }) {
     const target = beat.tones.find(x => x.id === beat.targetToneId) || beat.tones[0];
     const [picked, setPicked] = useState(null);
+    const speaking = useSpeakingState(target.word?.vi);
     const play = useCallback(() => { if (target.word?.vi) speak(target.word.vi); }, [target]);
 
     useEffect(() => { const id = setTimeout(play, 350); return () => clearTimeout(id); }, [play]);
@@ -459,7 +487,7 @@ function ToneListen({ beat, t, onStudent, onTeacher, onEvidence, onDone }) {
     return (
         <div className="tc-widget">
             <button className="tc-replay" onClick={play}>
-                <Volume2 size={18} /> Play again <RotateCcw size={15} />
+                {isAudible(speaking) ? <SoundBars /> : <Volume2 size={18} />} Play again <RotateCcw size={15} />
             </button>
             <div className="tc-chip-grid">
                 {beat.tones.map(tone => {
@@ -481,12 +509,15 @@ function ToneListen({ beat, t, onStudent, onTeacher, onEvidence, onDone }) {
 }
 
 // ── Generic vocab widgets (reused across non-tone lessons) ────────────────
-function VocabCard({ item, onTap, state }) {
+function VocabCard({ item, onTap, state, withSound }) {
+    const speaking = useSpeakingState(item.vi);
+    const active = withSound && isAudible(speaking);
     return (
         <button className={`tc-card ${state ? `tc-card--${state}` : ''}`} onClick={onTap}>
             <span className="tc-card__emoji" aria-hidden>{item.emoji || '💬'}</span>
             <span className="tc-card__vi">{item.vi}</span>
             <span className="tc-card__en">{item.en}</span>
+            {active && <SoundBars className="tc-card__sound" />}
         </button>
     );
 }
@@ -501,7 +532,7 @@ function CardsExplore({ beat, t, onDone }) {
         <div className="tc-widget">
             <div className="tc-card-grid">
                 {beat.items.map((item, i) => (
-                    <VocabCard key={i} item={item} state={explored.has(i) ? 'done' : ''} onTap={() => tap(item, i)} />
+                    <VocabCard key={i} item={item} state={explored.has(i) ? 'done' : ''} onTap={() => tap(item, i)} withSound />
                 ))}
             </div>
             <button className="tc-primary-btn" disabled={explored.size < 1} onClick={onDone}>
@@ -515,6 +546,7 @@ function ListenPick({ beat, t, onStudent, onTeacher, onEvidence, onDone }) {
     const targetIndex = beat.targetIndex ?? 0;
     const target = beat.items[targetIndex] || beat.items[0];
     const [picked, setPicked] = useState(null);
+    const speaking = useSpeakingState(target.vi);
     const play = useCallback(() => { if (target.vi) speak(target.vi); }, [target]);
 
     useEffect(() => { const id = setTimeout(play, 350); return () => clearTimeout(id); }, [play]);
@@ -532,7 +564,7 @@ function ListenPick({ beat, t, onStudent, onTeacher, onEvidence, onDone }) {
     return (
         <div className="tc-widget">
             <button className="tc-replay" onClick={play}>
-                <Volume2 size={18} /> Play again <RotateCcw size={15} />
+                {isAudible(speaking) ? <SoundBars /> : <Volume2 size={18} />} Play again <RotateCcw size={15} />
             </button>
             <div className="tc-card-grid">
                 {beat.items.map((item, i) => {
