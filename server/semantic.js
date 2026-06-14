@@ -19,10 +19,15 @@ export function semanticConfig() {
     const databaseUrl = process.env.DATABASE_URL || '';
     const url = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL || '';
     const key = process.env.SUPABASE_SERVICE_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY || '';
+    const openai = process.env.OPENAI_API_KEY || '';
     const gemini = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY || '';
-    const model = process.env.EMBED_MODEL || 'gemini-embedding-001';
+    // Embeddings: OpenAI preferred (reliable), else Gemini. Query + stored docs
+    // MUST use the same model — re-ingest when switching providers.
+    const embedProvider = openai ? 'openai' : gemini ? 'gemini' : 'none';
+    const model = process.env.EMBED_MODEL
+        || (embedProvider === 'openai' ? 'text-embedding-3-small' : 'gemini-embedding-001');
     const driver = databaseUrl ? 'pg' : (url && key ? 'supabase' : 'none');
-    return { databaseUrl, url, key, gemini, model, driver, enabled: driver !== 'none' && Boolean(gemini) };
+    return { databaseUrl, url, key, openai, gemini, embedProvider, model, driver, enabled: driver !== 'none' && embedProvider !== 'none' };
 }
 
 export function isSemanticEnabled() {
@@ -57,13 +62,24 @@ export async function closeDb() {
 // Embed a single string. taskType is 'RETRIEVAL_QUERY' for searches,
 // 'RETRIEVAL_DOCUMENT' for stored chunks (improves retrieval quality).
 export async function embedText(text, taskType = 'RETRIEVAL_QUERY') {
-    const { gemini, model } = semanticConfig();
+    const { embedProvider, openai, gemini, model } = semanticConfig();
+    const input = String(text).slice(0, 8000);
+    if (embedProvider === 'openai') {
+        const r = await fetch('https://api.openai.com/v1/embeddings', {
+            method: 'POST',
+            headers: { authorization: `Bearer ${openai}`, 'content-type': 'application/json' },
+            body: JSON.stringify({ model, input, dimensions: EMBED_DIM }),
+        });
+        if (!r.ok) throw new Error(`embed ${r.status}: ${(await r.text()).slice(0, 150)}`);
+        const data = await r.json();
+        return data.data?.[0]?.embedding || null;
+    }
     if (!gemini) return null;
     const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:embedContent?key=${encodeURIComponent(gemini)}`;
     const r = await fetch(url, {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ content: { parts: [{ text: String(text).slice(0, 8000) }] }, taskType, outputDimensionality: EMBED_DIM }),
+        body: JSON.stringify({ content: { parts: [{ text: input }] }, taskType, outputDimensionality: EMBED_DIM }),
     });
     if (!r.ok) throw new Error(`embed ${r.status}: ${(await r.text()).slice(0, 150)}`);
     const data = await r.json();
@@ -77,7 +93,17 @@ export async function embedText(text, taskType = 'RETRIEVAL_QUERY') {
 // Embed many texts in one call (Gemini batchEmbedContents, cap ~100/call). Used
 // by ingestion. Returns an array of vectors aligned to `texts`.
 export async function embedBatch(texts, taskType = 'RETRIEVAL_DOCUMENT') {
-    const { gemini, model } = semanticConfig();
+    const { embedProvider, openai, gemini, model } = semanticConfig();
+    if (embedProvider === 'openai') {
+        const r = await fetch('https://api.openai.com/v1/embeddings', {
+            method: 'POST',
+            headers: { authorization: `Bearer ${openai}`, 'content-type': 'application/json' },
+            body: JSON.stringify({ model, input: texts.map(t => String(t).slice(0, 8000)), dimensions: EMBED_DIM }),
+        });
+        if (!r.ok) throw new Error(`batchEmbed ${r.status}: ${(await r.text()).slice(0, 150)}`);
+        const data = await r.json();
+        return (data.data || []).sort((a, b) => a.index - b.index).map(e => e.embedding || null);
+    }
     if (!gemini) return texts.map(() => null);
     const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:batchEmbedContents?key=${encodeURIComponent(gemini)}`;
     const requests = texts.map(t => ({ model: `models/${model}`, content: { parts: [{ text: String(t).slice(0, 8000) }] }, taskType, outputDimensionality: EMBED_DIM }));

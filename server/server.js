@@ -2706,12 +2706,15 @@ app.get('/api/tone-samples', (req, res) => {
 // deterministic on the client. See docs/TUTOR_SPEC.md.
 // POST /api/tutor  { lessonId, message, context } -> { say, intent, action, masteryEvidence }
 // ---------------------------------------------------------------------------
-// Provider is chosen by whichever key is set (Gemini preferred, then Anthropic).
+// Provider is chosen by whichever key is set (OpenAI preferred, then Gemini, then Anthropic).
+const OPENAI_API_KEY = process.env.OPENAI_API_KEY || '';
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY || '';
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY || '';
-const TUTOR_PROVIDER = GEMINI_API_KEY ? 'gemini' : ANTHROPIC_API_KEY ? 'anthropic' : 'none';
+const TUTOR_PROVIDER = OPENAI_API_KEY ? 'openai' : GEMINI_API_KEY ? 'gemini' : ANTHROPIC_API_KEY ? 'anthropic' : 'none';
 const TUTOR_MODEL = process.env.TUTOR_MODEL
-    || (TUTOR_PROVIDER === 'gemini' ? 'gemini-2.5-flash' : 'claude-haiku-4-5-20251001');
+    || (TUTOR_PROVIDER === 'openai' ? 'gpt-4o-mini'
+        : TUTOR_PROVIDER === 'gemini' ? 'gemini-2.5-flash'
+            : 'claude-haiku-4-5-20251001');
 const TUTOR_ENABLED = TUTOR_PROVIDER !== 'none';
 
 // Shared reply shape — the Anthropic tool schema, and described to Gemini.
@@ -2798,6 +2801,39 @@ async function callAnthropic(system, turns, message) {
     return (data.content || []).find(c => c.type === 'tool_use')?.input || {};
 }
 
+async function callOpenAI(system, turns, message) {
+    // Strict structured output: all props required, no extras.
+    const schema = {
+        type: 'object',
+        additionalProperties: false,
+        properties: {
+            say: { type: 'string' },
+            intent: { type: 'string', enum: ['answer', 'question', 'confused', 'offtopic', 'ready'] },
+            action: { type: 'string', enum: ['stay', 'advance', 'reexplain', 'hint'] },
+            masteryEvidence: { type: 'string', enum: ['strong', 'partial', 'none', 'na'] },
+        },
+        required: ['say', 'intent', 'action', 'masteryEvidence'],
+    };
+    const r = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: { authorization: `Bearer ${OPENAI_API_KEY}`, 'content-type': 'application/json' },
+        body: JSON.stringify({
+            model: TUTOR_MODEL,
+            temperature: 0.6,
+            max_tokens: 400,
+            messages: [
+                { role: 'system', content: system },
+                ...turns.map(t => ({ role: t.role === 'student' ? 'user' : 'assistant', content: String(t.text || '') })),
+                { role: 'user', content: message },
+            ],
+            response_format: { type: 'json_schema', json_schema: { name: 'tutor_reply', strict: true, schema } },
+        }),
+    });
+    if (!r.ok) throw new Error(`openai ${r.status}: ${(await r.text()).slice(0, 200)}`);
+    const data = await r.json();
+    return JSON.parse(data.choices?.[0]?.message?.content || '{}');
+}
+
 async function callGemini(system, turns, message) {
     const jsonRule = '\n\nRespond ONLY with a JSON object: {"say": string up to 2 sentences, "intent": one of ["answer","question","confused","offtopic","ready"], "action": one of ["stay","advance","reexplain","hint"], "masteryEvidence": one of ["strong","partial","none","na"]}.';
     const url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(TUTOR_MODEL)}:generateContent?key=${encodeURIComponent(GEMINI_API_KEY)}`;
@@ -2854,9 +2890,11 @@ app.post('/api/tutor', async (req, res) => {
     try {
         const system = buildTutorSystem(ctx);
         const turns = (context.recentTurns || []).slice(-6);
-        const out = TUTOR_PROVIDER === 'gemini'
-            ? await callGemini(system, turns, msg)
-            : await callAnthropic(system, turns, msg);
+        const out = TUTOR_PROVIDER === 'openai'
+            ? await callOpenAI(system, turns, msg)
+            : TUTOR_PROVIDER === 'gemini'
+                ? await callGemini(system, turns, msg)
+                : await callAnthropic(system, turns, msg);
         return res.json({
             say: out.say || "Let's keep going!",
             intent: ['answer', 'question', 'confused', 'offtopic', 'ready'].includes(out.intent) ? out.intent : 'answer',

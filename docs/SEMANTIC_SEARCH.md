@@ -2,7 +2,7 @@
 
 A vector store so AI agents can semantically search reference material — the AI
 tutor (RAG grounding), meaning-based dictionary lookup, and a repo docs/code
-knowledge base. Embeddings via **Gemini `text-embedding-004` (768-dim)**, stored
+knowledge base. Embeddings via **OpenAI `text-embedding-3-small` (768-dim, preferred) or Gemini**, stored
 in **Supabase Postgres + `pgvector`**.
 
 **Status:** foundation built and wired. It is a **graceful no-op until creds are
@@ -15,7 +15,7 @@ run ingestion.
 
 ```
 content/*.json ─┐
-docs/*.md ──────┤  ingest-semantic.mjs  → Gemini embed (batch) → semantic_docs (pgvector)
+docs/*.md ──────┤  ingest-semantic.mjs  → OpenAI/Gemini embed (batch) → semantic_docs (pgvector)
 dictionary ─────┘
 
 /api/tutor      ─ embed question → match_semantic_docs(corpus='curriculum') → inject as facts
@@ -52,7 +52,7 @@ table + one index serves all three.
    - **Generic Postgres (recommended, portable):** `DATABASE_URL=postgres://…`
    - **or Supabase REST:** `SUPABASE_URL=…` (or `VITE_SUPABASE_URL`) + a
      service-role key (`SUPABASE_SERVICE_KEY` / `SUPABASE_SERVICE_ROLE_KEY`).
-   `GEMINI_API_KEY` is already set (used for embeddings).
+   Embeddings use `OPENAI_API_KEY` if set (preferred), else `GEMINI_API_KEY`.
 2. In the Supabase SQL editor, run **`db/sql/semantic_search.sql`** (enables
    `vector`, creates the table/index + the match RPC).
 3. Ingest, cheapest first:
@@ -75,7 +75,7 @@ This is **plain Postgres + pgvector** — Supabase is just one way to host it.
 | **`supabase`** (REST SDK) | only `SUPABASE_URL` + service key set | Current hosted setup |
 
 The schema (`db/sql/semantic_search.sql`), the `match_semantic_docs` function,
-the embeddings (Gemini), and every endpoint are **identical** across drivers.
+the embeddings, and every endpoint are **identical** across drivers.
 
 **Migrating off Supabase to your own Postgres:**
 1. Stand up Postgres with the `vector` extension (`create extension vector;`).

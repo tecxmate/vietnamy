@@ -141,7 +141,7 @@ async function main() {
         if (rows.length) await insertDocs(rows);
         done += rows.length;
         console.log(`  ${done}/${docs.length}`);
-        await new Promise(r => setTimeout(r, 40000)); // stay under per-minute embedding quota
+        await new Promise(r => setTimeout(r, 400)); // small gap; retry handles any 429
     }
     console.log(`[${corpus}] done — ${done} chunks embedded and stored.`);
 }
