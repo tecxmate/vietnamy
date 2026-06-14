@@ -20,6 +20,8 @@ export function buildGreetingsLesson() {
         id: 'greetings',
         title: 'Say Hello',
         teacher: TEACHER,
+        // Authoritative vocab facts for the AI tutor (no invented words/meanings).
+        facts: cards.map(c => `${c.vi} = ${c.en}`).join(' | '),
         objectives: [
             { id: 'vocab', text: 'recognize core greetings', threshold: 0.6 },
             { id: 'listen', text: 'identify a greeting by ear', threshold: 0.6 },

@@ -2732,8 +2732,10 @@ function buildTutorSystem(ctx) {
         'You are Bé Khế ("Little Starfruit"), a curious, funny kid who started learning Vietnamese a few weeks before this student. You are a fellow learner and friend, NOT a teacher — you explore the language WITH them, never above them.',
         'Voice:',
         "- Teach ONLY this lesson's content. Use ONLY the Vietnamese facts given below; never invent words, tones, or translations.",
-        '- Keep replies to ONE short sentence. Use "we"/"us" for the journey and "you" for praise.',
+        '- For reactions and encouragement, keep it to one short, warm sentence ("we"/"us" for the journey, "you" for praise).',
+        '- When the student asks you to explain, compare, or give an example, TEACH it properly: a clear, complete explanation (2-4 sentences, with a concrete example when it helps). Warm but genuinely instructive — being explanatory here is good.',
         '- Use at most ONE emoji per reply, and only when it adds warmth — often use none.',
+        '- Write in plain text — no markdown, asterisks, or backticks.',
         '- It is fine to admit something is tricky ("these two mix me up too"). Never sarcastic, never blame the learner.',
         '- You may drop a tiny Vietnamese word (Tuyệt! = awesome, Cố lên! = keep going, Không sao! = no worries); gloss it the first time.',
         '- Reply in the language the student writes in (English or Chinese) — only the little Vietnamese sprinkle words stay Vietnamese. Never reply entirely in Vietnamese.',
@@ -2741,11 +2743,12 @@ function buildTutorSystem(ctx) {
         '- You do NOT grade tapped exercises; you interpret free text and choose the next move.',
         '',
         `Lesson: ${ctx.lessonTitle || ctx.lessonId || ''}`,
+        ctx.facts ? `Authoritative facts — use ONLY these, never contradict or go beyond them:\n${ctx.facts}` : '',
         objs ? `Objectives:\n${objs}` : '',
         `Current step: ${beat.type || 'chat'} — ${beat.text || ''}`,
         beat.summary ? `Step detail: ${beat.summary}` : '',
         ctx.help
-            ? `The student tapped the "${ctx.help}" help button. Give a short, focused explanation or example for THIS step only; always set action to 'stay' (do not move on).`
+            ? `The student tapped the "${ctx.help}" help button. Give a clear, explanatory answer that genuinely teaches THIS step — be thorough (a few sentences, with a concrete example if it helps), so they actually understand. Always set action to 'stay' (do not move on).`
             : "Pick action: 'advance' if they answered/are ready, 'reexplain' if confused, 'hint' if stuck on this step, 'stay' for a side question.",
     ].filter(Boolean).join('\n');
 }
@@ -2778,7 +2781,7 @@ async function callAnthropic(system, turns, message) {
         headers: { 'x-api-key': ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01', 'content-type': 'application/json' },
         body: JSON.stringify({
             model: TUTOR_MODEL,
-            max_tokens: 220,
+            max_tokens: 400,
             temperature: 0.6,
             system: [{ type: 'text', text: system, cache_control: { type: 'ephemeral' } }],
             tools: [{ name: 'tutor_reply', description: 'Reply and tell the client the next move.', input_schema: REPLY_SCHEMA }],
@@ -2800,7 +2803,7 @@ async function callGemini(system, turns, message) {
     // Gemini requires the first content to be a 'user' turn — drop leading model turns.
     const history = turns.map(t => ({ role: t.role === 'student' ? 'user' : 'model', parts: [{ text: String(t.text || '') }] }));
     while (history.length && history[0].role !== 'user') history.shift();
-    const generationConfig = { temperature: 0.6, maxOutputTokens: 256, responseMimeType: 'application/json' };
+    const generationConfig = { temperature: 0.6, maxOutputTokens: 400, responseMimeType: 'application/json' };
     // Disable "thinking" on Gemini 2.5/3.x — the tutor needs fast, short replies,
     // not reasoning (and thinking tokens would eat the output budget).
     if (/2\.5|gemini-3|-latest/.test(TUTOR_MODEL)) generationConfig.thinkingConfig = { thinkingBudget: 0 };

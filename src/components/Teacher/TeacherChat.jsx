@@ -125,6 +125,7 @@ const TeacherChat = ({ lessonId: lessonIdProp }) => {
                     message,
                     context: {
                         lessonTitle: lesson.title,
+                        facts: lesson.facts || null,
                         objectives,
                         objectiveStates: scores,
                         currentBeat: awaiting ? { type: awaiting.type, text: awaiting.text } : { type: 'chat' },

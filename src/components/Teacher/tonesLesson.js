@@ -37,6 +37,9 @@ export function buildTonesLesson() {
         id: 'tones',
         title: 'The 6 Tones',
         teacher: TEACHER,
+        // Authoritative facts injected into the AI tutor so it never invents tone
+        // descriptions — grounded in content/tones.json.
+        facts: TONE_LIST.map(t => `${t.name} (mark "${t.mark}", ${t.label}): ${t.description}`).join(' | '),
         objectives: [
             { id: 'recognize', text: 'recognize the 6 tone marks', threshold: 0.6 },
             { id: 'identify', text: 'identify a tone by ear', threshold: 0.6 },
