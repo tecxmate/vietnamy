@@ -22,6 +22,13 @@ function formatText(text) {
 // ship a new teacher lesson — the shell, director and widgets are shared.
 const LESSONS = { tones: buildTonesLesson, greetings: buildGreetingsLesson };
 
+// Vietnamese tone marks (combining): huyền/sắc/ngã/hỏi/nặng — NOT the vowel-
+// quality marks (circumflex/breve/horn), which we keep. Used to score
+// pronunciation by ASR match when phoneme assessment is unavailable (vi-VN).
+const VI_TONE_MARKS = /[\u0300\u0301\u0303\u0309\u0323]/g;
+const normVi = (x) => (x || '').toLowerCase().normalize('NFC').replace(/[.,!?"'’]/g, '').trim();
+const stripViTone = (x) => normVi(x).normalize('NFD').replace(VI_TONE_MARKS, '').normalize('NFC');
+
 const TeacherChat = ({ lessonId: lessonIdProp }) => {
     const navigate = useNavigate();
     const params = useParams();
@@ -237,21 +244,33 @@ function PronounceCard({ beat, t, onStudent, onTeacher, onEvidence, onDone }) {
                 method: 'POST', headers: { 'Content-Type': 'audio/wav' }, body: blob,
             });
             const data = await res.json();
-            // Diagnostic: blob size tells us if the mic captured audio; recognized/
-            // status tell us what Azure heard. (Visible in console + the message.)
-            const kb = Math.round(blob.size / 1024);
-            console.warn('[pronounce]', JSON.stringify({ httpStatus: res.status, audioKB: kb, status: data.status, recognized: data.recognized, scores: data.scores, error: data.error }));
-            const s = data.scores ? (data.scores.pronunciation ?? data.scores.accuracy ?? null) : null;
-            setScore(s);
             setAttempted(true);
             onStudent?.(`🎤 ${target}`);
+            const s = data.scores ? (data.scores.pronunciation ?? data.scores.accuracy ?? null) : null;
             if (s != null) {
-                const ev = s >= 80 ? 'strong' : s >= 60 ? 'partial' : 'none';
-                onEvidence?.(beat.objective, ev);
+                // Phoneme assessment (Azure-supported locales).
                 const r = Math.round(s);
+                setScore(r);
+                onEvidence?.(beat.objective, s >= 80 ? 'strong' : s >= 60 ? 'partial' : 'none');
                 onTeacher?.(s >= 80 ? `Excellent — ${r}%! 🎉` : s >= 60 ? `Good — ${r}%. A little crisper and it’s perfect. 💪` : `${r}% — listen again and copy the melody. 🔊`);
+            } else if (data.status === 'Success' && data.recognized) {
+                // Azure has no phoneme assessment for Vietnamese, but its ASR IS
+                // tone-aware — so score by recognition match (right word + tone).
+                const heard = normVi(data.recognized);
+                const want = normVi(target);
+                let ev; let pct; let msg;
+                if (heard === want) {
+                    ev = 'strong'; pct = 90; msg = `Tuyệt! ✅ I heard “${data.recognized}” — spot on.`;
+                } else if (stripViTone(heard) === stripViTone(want)) {
+                    ev = 'partial'; pct = 55; msg = `Right sound — but the tone came out like “${data.recognized}”. Aim for “${target}”. 🔊`;
+                } else {
+                    ev = 'none'; pct = 30; msg = `I heard “${data.recognized}”. Listen again and try “${target}”. 🔊`;
+                }
+                onEvidence?.(beat.objective, ev);
+                setScore(pct);
+                onTeacher?.(msg);
             } else {
-                onTeacher?.(`[debug] ${kb}KB audio · heard “${data.recognized || '∅'}” · status ${data.status || data.error || '?'}. Try again or tap continue. 🙂`);
+                onTeacher?.('I couldn’t quite hear that — try once more, or tap continue. 🙂');
             }
         } catch (err) {
             console.warn('pronounce error', err.message);
