@@ -237,6 +237,10 @@ function PronounceCard({ beat, t, onStudent, onTeacher, onEvidence, onDone }) {
                 method: 'POST', headers: { 'Content-Type': 'audio/wav' }, body: blob,
             });
             const data = await res.json();
+            // Diagnostic: blob size tells us if the mic captured audio; recognized/
+            // status tell us what Azure heard. (Visible in console + the message.)
+            const kb = Math.round(blob.size / 1024);
+            console.warn('[pronounce]', JSON.stringify({ httpStatus: res.status, audioKB: kb, status: data.status, recognized: data.recognized, scores: data.scores, error: data.error }));
             const s = data.scores ? (data.scores.pronunciation ?? data.scores.accuracy ?? null) : null;
             setScore(s);
             setAttempted(true);
@@ -247,7 +251,7 @@ function PronounceCard({ beat, t, onStudent, onTeacher, onEvidence, onDone }) {
                 const r = Math.round(s);
                 onTeacher?.(s >= 80 ? `Excellent — ${r}%! 🎉` : s >= 60 ? `Good — ${r}%. A little crisper and it’s perfect. 💪` : `${r}% — listen again and copy the melody. 🔊`);
             } else {
-                onTeacher?.('I couldn’t quite hear that — try once more, or tap continue. 🙂');
+                onTeacher?.(`[debug] ${kb}KB audio · heard “${data.recognized || '∅'}” · status ${data.status || data.error || '?'}. Try again or tap continue. 🙂`);
             }
         } catch (err) {
             console.warn('pronounce error', err.message);
