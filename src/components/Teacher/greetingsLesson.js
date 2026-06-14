@@ -26,8 +26,8 @@ export function buildGreetingsLesson() {
             { id: 'speak', text: 'say a greeting aloud', threshold: 0.6 },
         ],
         beats: [
-            { type: 'say', text: 'Xin chào! 👋 Last time we met the tones — today let’s actually *greet* people.' },
-            { type: 'say', text: 'A handful of words will carry you through almost any first meeting in Vietnam.' },
+            { type: 'say', text: 'Xin chào! Last time we tackled tones — today we actually *greet* people.' },
+            { type: 'say', text: 'A handful of words will carry us through almost any first meeting in Vietnam.' },
             {
                 type: 'cards',
                 text: 'Tap each one to hear it 👇',
@@ -36,7 +36,7 @@ export function buildGreetingsLesson() {
                     { mode: 'usage', label: 'dạ vs vâng? 🔍', prompt: 'When do I use dạ versus vâng for “yes”?' },
                 ],
             },
-            { type: 'say', text: '“Xin chào” is your safe, polite hello — any time of day, to anyone. 😊' },
+            { type: 'say', text: '“Xin chào” is the safe, polite hello — any time of day, to anyone.' },
             {
                 type: 'mcq',
                 objective: 'vocab',
@@ -46,27 +46,27 @@ export function buildGreetingsLesson() {
                     { label: `${V.camon.vi}  ·  ${V.camon.en}`, correct: true },
                     { label: `${V.khong.vi}  ·  ${V.khong.en}`, correct: false },
                 ],
-                correctNote: 'Đúng rồi! ✅ “Cảm ơn” = thank you. Add “nhiều” (a lot) to say thank you very much.',
-                wrongNote: 'Almost — “thank you” is “cảm ơn” 🙏. The others mean goodbye and no.',
+                correctNote: 'Đúng rồi! (that\'s "right") — “cảm ơn” is thank you.',
+                wrongNote: 'Không sao! (no worries) — “thank you” is “cảm ơn”. The others mean goodbye and no.',
             },
-            { type: 'say', text: 'To be polite, Vietnamese often add “dạ” before answering — it shows respect to the listener.' },
+            { type: 'say', text: 'Little tip I picked up: Vietnamese often add “dạ” before answering — it sounds respectful.' },
             {
                 type: 'listen_pick',
                 objective: 'listen',
-                text: 'My turn — I’ll say one. Tap the word you hear 🔊',
+                text: 'My turn — I\'ll say one, you tap the word you hear.',
                 items: cards,
                 targetIndex: 2, // tạm biệt
             },
-            { type: 'say', text: 'Last thing — let’s hear *you* say it.' },
+            { type: 'say', text: 'Last thing — let\'s hear you say it.' },
             {
                 type: 'pronounce',
                 objective: 'speak',
-                text: 'Tap the mic and say “xin chào”. I’ll score your pronunciation. 🎤',
+                text: 'Say “xin chào” into the mic — let\'s hear how it sounds! 🎤',
                 target: 'xin chào',
                 en: 'hello (polite)',
             },
-            { type: 'say', text: 'That’s greetings, thanks, a polite goodbye — and your own voice saying hello. 🌟' },
-            { type: 'done', text: 'Tuyệt vời! 🎉 Hẹn gặp lại — see you next lesson!' },
+            { type: 'say', text: 'Greetings, thanks, a polite goodbye — and your own voice saying hello. 🌟' },
+            { type: 'done', text: 'Tuyệt! (awesome!) Hẹn gặp lại — see you next lesson.' },
         ],
     };
 }

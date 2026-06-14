@@ -136,7 +136,7 @@ const TeacherChat = ({ lessonId: lessonIdProp }) => {
             const data = await res.json();
             if (data.say) pushTeacher(data.say);
         } catch {
-            pushTeacher('Hmm, let me try that again in a moment. 🙂');
+            pushTeacher('Hmm, let me try that again in a moment.');
         } finally {
             setBusy(false);
         }
@@ -250,7 +250,7 @@ function PronounceCard({ beat, t, onStudent, onTeacher, onEvidence, onDone }) {
             if (!blob || blob.size < 2000) {
                 setAttempted(true);
                 onStudent?.(`🎤 ${target}`);
-                onTeacher?.('I didn’t catch any sound — check your mic is on, then tap the mic and speak clearly. 🎙️');
+                onTeacher?.('I didn’t catch any sound — check your mic is on, then try again.');
                 return;
             }
             const res = await fetch(`/api/pronunciation?text=${encodeURIComponent(target)}`, {
@@ -265,7 +265,7 @@ function PronounceCard({ beat, t, onStudent, onTeacher, onEvidence, onDone }) {
                 const r = Math.round(s);
                 setScore(r);
                 onEvidence?.(beat.objective, s >= 80 ? 'strong' : s >= 60 ? 'partial' : 'none');
-                onTeacher?.(s >= 80 ? `Excellent — ${r}%! 🎉` : s >= 60 ? `Good — ${r}%. A little crisper and it’s perfect. 💪` : `${r}% — listen again and copy the melody. 🔊`);
+                onTeacher?.(s >= 80 ? `Tuyệt! ${r}% — spot on.` : s >= 60 ? `Good — ${r}%, a little crisper and it's perfect.` : `${r}% — listen again and copy the melody.`);
             } else if (data.status === 'Success' && data.recognized) {
                 // Azure has no phoneme assessment for Vietnamese, but its ASR IS
                 // tone-aware — so score by recognition match (right word + tone).
@@ -273,22 +273,22 @@ function PronounceCard({ beat, t, onStudent, onTeacher, onEvidence, onDone }) {
                 const want = normVi(target);
                 let ev; let pct; let msg;
                 if (heard === want) {
-                    ev = 'strong'; pct = 90; msg = `Tuyệt! ✅ I heard “${data.recognized}” — spot on.`;
+                    ev = 'strong'; pct = 90; msg = `Tuyệt! I heard “${data.recognized}” — spot on.`;
                 } else if (stripViTone(heard) === stripViTone(want)) {
-                    ev = 'partial'; pct = 55; msg = `Right sound — but the tone came out like “${data.recognized}”. Aim for “${target}”. 🔊`;
+                    ev = 'partial'; pct = 55; msg = `So close — the tone slid to “${data.recognized}”. Aim for “${target}”.`;
                 } else {
-                    ev = 'none'; pct = 30; msg = `I heard “${data.recognized}”. Listen again and try “${target}”. 🔊`;
+                    ev = 'none'; pct = 30; msg = `Hmm, I heard “${data.recognized}”. Listen once more and try “${target}”.`;
                 }
                 onEvidence?.(beat.objective, ev);
                 setScore(pct);
                 onTeacher?.(msg);
             } else {
-                onTeacher?.('I couldn’t quite hear that — try once more, or tap continue. 🙂');
+                onTeacher?.('Không sao — I couldn\'t quite catch that. Try once more, or tap continue.');
             }
         } catch (err) {
             console.warn('pronounce error', err.message);
             setAttempted(true);
-            onTeacher?.('Mic trouble — you can try again or continue. 🙂');
+            onTeacher?.('Mic trouble — try again or just tap continue.');
         } finally {
             setIsScoring(false);
             scoringRef.current = false;
@@ -313,7 +313,7 @@ function PronounceCard({ beat, t, onStudent, onTeacher, onEvidence, onDone }) {
             } catch (err) {
                 console.warn('mic unavailable', err.message);
                 setAttempted(true);
-                onTeacher?.('I can’t access your mic — tap continue to move on. 🙂');
+                onTeacher?.('Can’t reach your mic — tap continue to move on.');
             }
         }
     };

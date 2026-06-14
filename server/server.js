@@ -2705,36 +2705,39 @@ app.get('/api/tone-samples', (req, res) => {
 // deterministic on the client. See docs/TUTOR_SPEC.md.
 // POST /api/tutor  { lessonId, message, context } -> { say, intent, action, masteryEvidence }
 // ---------------------------------------------------------------------------
+// Provider is chosen by whichever key is set (Gemini preferred, then Anthropic).
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY || '';
-const TUTOR_MODEL = process.env.TUTOR_MODEL || 'claude-haiku-4-5-20251001';
-const TUTOR_ENABLED = Boolean(ANTHROPIC_API_KEY);
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY || '';
+const TUTOR_PROVIDER = GEMINI_API_KEY ? 'gemini' : ANTHROPIC_API_KEY ? 'anthropic' : 'none';
+const TUTOR_MODEL = process.env.TUTOR_MODEL
+    || (TUTOR_PROVIDER === 'gemini' ? 'gemini-2.0-flash' : 'claude-haiku-4-5-20251001');
+const TUTOR_ENABLED = TUTOR_PROVIDER !== 'none';
 
-const TUTOR_TOOL = {
-    name: 'tutor_reply',
-    description: 'Reply to the student in character and tell the client what to do next.',
-    input_schema: {
-        type: 'object',
-        properties: {
-            say: { type: 'string', description: 'Short, warm teacher reply, texting style, max 2 sentences.' },
-            intent: { type: 'string', enum: ['answer', 'question', 'confused', 'offtopic', 'ready'] },
-            action: { type: 'string', enum: ['stay', 'advance', 'reexplain', 'hint'] },
-            masteryEvidence: { type: 'string', enum: ['strong', 'partial', 'none', 'na'] },
-        },
-        required: ['say', 'intent', 'action'],
+// Shared reply shape — the Anthropic tool schema, and described to Gemini.
+const REPLY_SCHEMA = {
+    type: 'object',
+    properties: {
+        say: { type: 'string', description: 'Short, warm reply, texting style, max 2 sentences.' },
+        intent: { type: 'string', enum: ['answer', 'question', 'confused', 'offtopic', 'ready'] },
+        action: { type: 'string', enum: ['stay', 'advance', 'reexplain', 'hint'] },
+        masteryEvidence: { type: 'string', enum: ['strong', 'partial', 'none', 'na'] },
     },
+    required: ['say', 'intent', 'action'],
 };
 
 function buildTutorSystem(ctx) {
     const objs = (ctx.objectives || []).map(o => `- ${o.id}: ${o.text}`).join('\n');
     const beat = ctx.currentBeat || {};
     return [
-        'You are Bé Khế, a warm, playful starfruit mascot who guides a beginner through Vietnamese, texting them like a friendly buddy.',
-        'Rules:',
+        'You are Bé Khế ("Little Starfruit"), a curious, funny kid who started learning Vietnamese a few weeks before this student. You are a fellow learner and friend, NOT a teacher — you explore the language WITH them, never above them.',
+        'Voice:',
         "- Teach ONLY this lesson's content. Use ONLY the Vietnamese facts given below; never invent words, tones, or translations.",
-        '- Keep replies short and friendly, like a text message (max 2 sentences). Emoji ok, used sparingly.',
-        '- If the student goes off-topic, gently redirect to the lesson in one line.',
+        '- Keep replies to ONE short sentence. Use "we"/"us" for the journey and "you" for praise.',
+        '- Use at most ONE emoji per reply, and only when it adds warmth — often use none.',
+        '- It is fine to admit something is tricky ("these two mix me up too"). Never sarcastic, never blame the learner.',
+        '- You may drop a tiny Vietnamese word (Tuyệt! = awesome, Cố lên! = keep going, Không sao! = no worries); gloss it the first time.',
+        '- If the student goes off-topic, warmly point back to the lesson in one line.',
         '- You do NOT grade tapped exercises; you interpret free text and choose the next move.',
-        '- Always answer by calling the tutor_reply tool.',
         '',
         `Lesson: ${ctx.lessonTitle || ctx.lessonId || ''}`,
         objs ? `Objectives:\n${objs}` : '',
@@ -2767,6 +2770,50 @@ function tutorFallback(msg, context) {
     return { say: `Good question! For now, focus on “${beatText}”. 😊`, intent: 'question', action: 'stay', masteryEvidence: 'na' };
 }
 
+// turns: [{ role: 'student'|'teacher', text }] (most recent last)
+async function callAnthropic(system, turns, message) {
+    const r = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: { 'x-api-key': ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01', 'content-type': 'application/json' },
+        body: JSON.stringify({
+            model: TUTOR_MODEL,
+            max_tokens: 220,
+            temperature: 0.6,
+            system: [{ type: 'text', text: system, cache_control: { type: 'ephemeral' } }],
+            tools: [{ name: 'tutor_reply', description: 'Reply and tell the client the next move.', input_schema: REPLY_SCHEMA }],
+            tool_choice: { type: 'tool', name: 'tutor_reply' },
+            messages: [
+                ...turns.map(t => ({ role: t.role === 'student' ? 'user' : 'assistant', content: String(t.text || '') })),
+                { role: 'user', content: message },
+            ],
+        }),
+    });
+    if (!r.ok) throw new Error(`anthropic ${r.status}: ${(await r.text()).slice(0, 200)}`);
+    const data = await r.json();
+    return (data.content || []).find(c => c.type === 'tool_use')?.input || {};
+}
+
+async function callGemini(system, turns, message) {
+    const jsonRule = '\n\nRespond ONLY with a JSON object: {"say": string up to 2 sentences, "intent": one of ["answer","question","confused","offtopic","ready"], "action": one of ["stay","advance","reexplain","hint"], "masteryEvidence": one of ["strong","partial","none","na"]}.';
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(TUTOR_MODEL)}:generateContent?key=${encodeURIComponent(GEMINI_API_KEY)}`;
+    // Gemini requires the first content to be a 'user' turn — drop leading model turns.
+    const history = turns.map(t => ({ role: t.role === 'student' ? 'user' : 'model', parts: [{ text: String(t.text || '') }] }));
+    while (history.length && history[0].role !== 'user') history.shift();
+    const r = await fetch(url, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({
+            systemInstruction: { parts: [{ text: system + jsonRule }] },
+            contents: [...history, { role: 'user', parts: [{ text: message }] }],
+            generationConfig: { temperature: 0.6, maxOutputTokens: 256, responseMimeType: 'application/json' },
+        }),
+    });
+    if (!r.ok) throw new Error(`gemini ${r.status}: ${(await r.text()).slice(0, 200)}`);
+    const data = await r.json();
+    const text = (data.candidates?.[0]?.content?.parts || []).map(p => p.text || '').join('') || '{}';
+    return JSON.parse(text);
+}
+
 app.post('/api/tutor', async (req, res) => {
     const { lessonId = '', message = '', context = {} } = req.body || {};
     const msg = String(message).slice(0, 1000).trim();
@@ -2777,39 +2824,15 @@ app.post('/api/tutor', async (req, res) => {
 
     try {
         const system = buildTutorSystem({ ...context, lessonId });
-        const turns = (context.recentTurns || []).slice(-6).map(turn => ({
-            role: turn.role === 'student' ? 'user' : 'assistant',
-            content: String(turn.text || ''),
-        }));
-        const r = await fetch('https://api.anthropic.com/v1/messages', {
-            method: 'POST',
-            headers: {
-                'x-api-key': ANTHROPIC_API_KEY,
-                'anthropic-version': '2023-06-01',
-                'content-type': 'application/json',
-            },
-            body: JSON.stringify({
-                model: TUTOR_MODEL,
-                max_tokens: 200,
-                temperature: 0.6,
-                system: [{ type: 'text', text: system, cache_control: { type: 'ephemeral' } }],
-                tools: [TUTOR_TOOL],
-                tool_choice: { type: 'tool', name: 'tutor_reply' },
-                messages: [...turns, { role: 'user', content: msg }],
-            }),
-        });
-        if (!r.ok) {
-            console.warn('tutor LLM error', r.status, (await r.text()).slice(0, 200));
-            return res.json(tutorFallback(msg, context));
-        }
-        const data = await r.json();
-        const tool = (data.content || []).find(c => c.type === 'tool_use');
-        const out = tool?.input || {};
+        const turns = (context.recentTurns || []).slice(-6);
+        const out = TUTOR_PROVIDER === 'gemini'
+            ? await callGemini(system, turns, msg)
+            : await callAnthropic(system, turns, msg);
         return res.json({
             say: out.say || "Let's keep going!",
-            intent: out.intent || 'answer',
+            intent: ['answer', 'question', 'confused', 'offtopic', 'ready'].includes(out.intent) ? out.intent : 'answer',
             action: ['stay', 'advance', 'reexplain', 'hint'].includes(out.action) ? out.action : 'stay',
-            masteryEvidence: out.masteryEvidence || 'na',
+            masteryEvidence: ['strong', 'partial', 'none', 'na'].includes(out.masteryEvidence) ? out.masteryEvidence : 'na',
         });
     } catch (err) {
         console.warn('tutor error', err.message);
@@ -2834,5 +2857,6 @@ export default app;
 if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
     app.listen(PORT, () => {
         console.log(`Dictionary API running on http://localhost:${PORT}`);
+        console.log(`AI tutor: ${TUTOR_ENABLED ? `${TUTOR_PROVIDER} (${TUTOR_MODEL})` : 'disabled — using deterministic fallback'}`);
     });
 }
