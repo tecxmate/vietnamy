@@ -89,9 +89,10 @@ const TeacherChat = ({ lessonId: lessonIdProp }) => {
     // Help options are offered only at the end (after all questions), to keep the
     // in-lesson steps focused — the score screen aggregates the lesson's deep-dives.
     const lessonHelps = useMemo(() => {
+        if (lesson.helps?.length) return lesson.helps;
         const authored = beats.flatMap(b => b.helps || []);
         return authored.length ? authored : DEFAULT_HELPS;
-    }, [beats]);
+    }, [lesson, beats]);
     const scores = useMemo(() => {
         const out = {};
         objectives.forEach(o => {
@@ -196,6 +197,8 @@ const TeacherChat = ({ lessonId: lessonIdProp }) => {
                         helps={lessonHelps}
                         busy={busy}
                         onAsk={handleAsk}
+                        next={lesson.next}
+                        onNext={() => lesson.next && navigate(`/teach/${lesson.next.id}`)}
                         t={t}
                         onFinish={() => navigate(-1)}
                     />
@@ -370,9 +373,9 @@ function HelpChips({ helps, busy, onAsk }) {
     );
 }
 
-// Deterministic score screen — the LLM never sets this. Help/deep-dive chips
-// live here (after all questions) so they never compete with the lesson steps.
-function ScoreSummary({ objectives, scores, overall, helps, busy, onAsk, t, onFinish }) {
+// Deterministic score screen — the LLM never sets this. Suggested follow-up
+// questions and the next-lesson hand-off live here (after all questions).
+function ScoreSummary({ objectives, scores, overall, helps, busy, onAsk, next, onNext, t, onFinish }) {
     return (
         <div className="tc-summary">
             <div className="tc-score" style={{ '--pct': overall }}>
@@ -388,10 +391,24 @@ function ScoreSummary({ objectives, scores, overall, helps, busy, onAsk, t, onFi
                     );
                 })}
             </ul>
-            <HelpChips helps={helps} busy={busy} onAsk={onAsk} />
-            <button className="tc-primary-btn" onClick={onFinish}>
-                <Sparkles size={18} /> {t('done')}
-            </button>
+            {helps?.length > 0 && (
+                <div className="tc-summary__ask">
+                    <span className="tc-summary__ask-label">Curious about anything? Ask Bé Khế:</span>
+                    <HelpChips helps={helps} busy={busy} onAsk={onAsk} />
+                </div>
+            )}
+            {next ? (
+                <>
+                    <button className="tc-primary-btn" onClick={onNext}>
+                        Next: {next.label} <ChevronRight size={18} />
+                    </button>
+                    <button className="tc-text-btn" onClick={onFinish}>Back to Study</button>
+                </>
+            ) : (
+                <button className="tc-primary-btn" onClick={onFinish}>
+                    <Sparkles size={18} /> {t('done')}
+                </button>
+            )}
         </div>
     );
 }

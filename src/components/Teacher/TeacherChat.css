@@ -237,6 +237,12 @@
 }
 .tc-obj-list li.got { color: var(--success-color, #58cc02); }
 .tc-obj-list li.review { color: var(--text-muted); }
+.tc-summary__ask { width: 100%; display: flex; flex-direction: column; gap: 8px; }
+.tc-summary__ask-label { font-size: 12px; font-weight: 700; color: var(--text-muted); }
+.tc-text-btn {
+    background: none; border: none; cursor: pointer;
+    color: var(--text-muted); font-size: 14px; font-weight: 700; padding: 4px;
+}
 
 /* Pronunciation practice (Azure scoring) — compact single-row controls */
 .tc-pronounce {

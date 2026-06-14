@@ -43,8 +43,16 @@ export function buildTonesLesson() {
         objectives: [
             { id: 'recognize', text: 'recognize the 6 tone marks', threshold: 0.6 },
             { id: 'identify', text: 'identify a tone by ear', threshold: 0.6 },
-            { id: 'speak', text: 'say a tone aloud', threshold: 0.6 },
         ],
+        // Suggested follow-up questions shown on the score screen (controlled prompts).
+        helps: [
+            { mode: 'compare', label: 'à vs ã?', prompt: 'What is the difference between the à (huyền) and ã (ngã) tones?' },
+            { mode: 'similar', label: 'Which tones sound alike?', prompt: 'Which of the six Vietnamese tones sound the most similar, and how do I tell them apart?' },
+            { mode: 'why', label: 'Why do tones matter?', prompt: 'Why do tones matter so much in Vietnamese — what happens if I get one wrong?' },
+            { mode: 'practice', label: 'How do I practise?', prompt: 'What is a good way to practise hearing and producing the six tones?' },
+        ],
+        // The next lesson to flow into for a seamless path.
+        next: { id: 'greetings', label: 'Say Hello' },
         beats: [
             { type: 'say', text: 'Xin chào! I\'m Bé Khế — a little starfruit, learning Vietnamese same as you.' },
             { type: 'say', text: 'Let\'s figure out the six tones together. They\'re the thing that makes Vietnamese, well, Vietnamese.' },
@@ -78,15 +86,7 @@ export function buildTonesLesson() {
                 tones,
                 targetToneId: 'sac',
             },
-            { type: 'say', text: 'Okay, my favourite part — now we say one out loud.' },
-            {
-                type: 'pronounce',
-                objective: 'speak',
-                text: `Your turn: say “${sac.word?.vi || 'má'}” (${sac.name}, the rising one). Be brave, be loud! 🎤`,
-                target: sac.word?.vi || 'má',
-                en: sac.word?.en || '',
-            },
-            { type: 'say', text: 'Six tones met, heard, and said aloud — that was the hard part, honestly. 🌟' },
+            { type: 'say', text: 'Six tones met, and you can start telling them apart — that\'s the hard part, honestly. 🌟' },
             { type: 'done', text: 'Tuyệt! (awesome!) That\'s the whole set — we\'ll keep practising. Hẹn gặp lại!' },
         ],
     };

@@ -25,7 +25,12 @@ export function buildGreetingsLesson() {
         objectives: [
             { id: 'vocab', text: 'recognize core greetings', threshold: 0.6 },
             { id: 'listen', text: 'identify a greeting by ear', threshold: 0.6 },
-            { id: 'speak', text: 'say a greeting aloud', threshold: 0.6 },
+        ],
+        helps: [
+            { mode: 'usage', label: 'dạ vs vâng?', prompt: 'When do I use dạ versus vâng for "yes"?' },
+            { mode: 'formal', label: 'Formal vs casual hello?', prompt: 'How do I greet someone formally versus casually in Vietnamese?' },
+            { mode: 'name', label: 'Why chào + a word?', prompt: 'Why do Vietnamese greetings often add a word after chào, like chào anh or chào chị?' },
+            { mode: 'goodbye', label: 'Other ways to say bye?', prompt: 'Besides tạm biệt, what are common ways to say goodbye in Vietnamese?' },
         ],
         beats: [
             { type: 'say', text: 'Xin chào! Last time we tackled tones — today we actually *greet* people.' },
@@ -59,15 +64,7 @@ export function buildGreetingsLesson() {
                 items: cards,
                 targetIndex: 2, // tạm biệt
             },
-            { type: 'say', text: 'Last thing — let\'s hear you say it.' },
-            {
-                type: 'pronounce',
-                objective: 'speak',
-                text: 'Say “xin chào” into the mic — let\'s hear how it sounds! 🎤',
-                target: 'xin chào',
-                en: 'hello (polite)',
-            },
-            { type: 'say', text: 'Greetings, thanks, a polite goodbye — and your own voice saying hello. 🌟' },
+            { type: 'say', text: 'Greetings, thanks, and a polite goodbye — a solid first kit. 🌟' },
             { type: 'done', text: 'Tuyệt! (awesome!) Hẹn gặp lại — see you next lesson.' },
         ],
     };
