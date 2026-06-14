@@ -77,33 +77,14 @@ const TeacherChat = ({ lessonId: lessonIdProp }) => {
         setBeatIndex(i => i + 1);
     }, []);
 
-    // ── Mastery (deterministic) ──
     const objectives = useMemo(() => lesson.objectives || [], [lesson]);
-    const [mastery, setMastery] = useState({}); // objId -> evidence scores []
-    const recordEvidence = useCallback((objId, evidence) => {
-        if (!objId) return;
-        const val = evidence === 'strong' ? 1 : evidence === 'partial' ? 0.6 : 0;
-        setMastery(prev => ({ ...prev, [objId]: [...(prev[objId] || []), val] }));
-    }, []);
 
-    // Help options are offered only at the end (after all questions), to keep the
-    // in-lesson steps focused — the score screen aggregates the lesson's deep-dives.
+    // Suggested follow-up questions shown at the end of the lesson.
     const lessonHelps = useMemo(() => {
         if (lesson.helps?.length) return lesson.helps;
         const authored = beats.flatMap(b => b.helps || []);
         return authored.length ? authored : DEFAULT_HELPS;
     }, [lesson, beats]);
-    const scores = useMemo(() => {
-        const out = {};
-        objectives.forEach(o => {
-            const arr = mastery[o.id] || [];
-            out[o.id] = arr.length ? arr.reduce((a, b) => a + b, 0) / arr.length : 0;
-        });
-        return out;
-    }, [mastery, objectives]);
-    const overall = objectives.length
-        ? Math.round(100 * objectives.reduce((s, o) => s + (scores[o.id] || 0), 0) / objectives.length)
-        : 0;
 
     // ── Free-text → /api/tutor (the LLM layer; degrades to a server fallback) ──
     const [busy, setBusy] = useState(false);
@@ -128,7 +109,6 @@ const TeacherChat = ({ lessonId: lessonIdProp }) => {
                         lessonTitle: lesson.title,
                         facts: lesson.facts || null,
                         objectives,
-                        objectiveStates: scores,
                         currentBeat: awaiting ? { type: awaiting.type, text: awaiting.text } : { type: 'chat' },
                         recentTurns,
                         help: help || null,
@@ -142,7 +122,7 @@ const TeacherChat = ({ lessonId: lessonIdProp }) => {
         } finally {
             setBusy(false);
         }
-    }, [busy, lessonId, lesson, objectives, scores, awaiting, pushStudent, pushTeacher]);
+    }, [busy, lessonId, lesson, objectives, awaiting, pushStudent, pushTeacher]);
 
     // Director: reveal each beat after a short pause so it lands like a text
     // message; auto-advance plain messages, pause on interactive ones.
@@ -190,10 +170,7 @@ const TeacherChat = ({ lessonId: lessonIdProp }) => {
 
             <div className="teacher-chat__dock">
                 {awaiting?.type === 'done' ? (
-                    <ScoreSummary
-                        objectives={objectives}
-                        scores={scores}
-                        overall={overall}
+                    <LessonEnd
                         helps={lessonHelps}
                         busy={busy}
                         onAsk={handleAsk}
@@ -209,7 +186,6 @@ const TeacherChat = ({ lessonId: lessonIdProp }) => {
                             t={t}
                             onStudent={pushStudent}
                             onTeacher={pushTeacher}
-                            onEvidence={recordEvidence}
                             onDone={advance}
                         />
                     )
@@ -220,13 +196,13 @@ const TeacherChat = ({ lessonId: lessonIdProp }) => {
 };
 
 // ── Widgets ──────────────────────────────────────────────────────────────
-function Widget({ beat, t, onStudent, onTeacher, onEvidence, onDone }) {
+function Widget({ beat, t, onStudent, onTeacher, onDone }) {
     if (beat.type === 'tone_explore') return <ToneExplore beat={beat} t={t} onDone={onDone} />;
-    if (beat.type === 'tone_listen') return <ToneListen beat={beat} t={t} onStudent={onStudent} onTeacher={onTeacher} onEvidence={onEvidence} onDone={onDone} />;
+    if (beat.type === 'tone_listen') return <ToneListen beat={beat} t={t} onStudent={onStudent} onTeacher={onTeacher} onDone={onDone} />;
     if (beat.type === 'cards') return <CardsExplore beat={beat} t={t} onDone={onDone} />;
-    if (beat.type === 'listen_pick') return <ListenPick beat={beat} t={t} onStudent={onStudent} onTeacher={onTeacher} onEvidence={onEvidence} onDone={onDone} />;
-    if (beat.type === 'mcq') return <Mcq beat={beat} t={t} onStudent={onStudent} onTeacher={onTeacher} onEvidence={onEvidence} onDone={onDone} />;
-    if (beat.type === 'pronounce') return <PronounceCard beat={beat} t={t} onStudent={onStudent} onTeacher={onTeacher} onEvidence={onEvidence} onDone={onDone} />;
+    if (beat.type === 'listen_pick') return <ListenPick beat={beat} t={t} onStudent={onStudent} onTeacher={onTeacher} onDone={onDone} />;
+    if (beat.type === 'mcq') return <Mcq beat={beat} t={t} onStudent={onStudent} onTeacher={onTeacher} onDone={onDone} />;
+    if (beat.type === 'pronounce') return <PronounceCard beat={beat} t={t} onStudent={onStudent} onTeacher={onTeacher} onDone={onDone} />;
     return null;
 }
 
@@ -373,24 +349,10 @@ function HelpChips({ helps, busy, onAsk }) {
     );
 }
 
-// Deterministic score screen — the LLM never sets this. Suggested follow-up
-// questions and the next-lesson hand-off live here (after all questions).
-function ScoreSummary({ objectives, scores, overall, helps, busy, onAsk, next, onNext, t, onFinish }) {
+// End-of-lesson (Q&A mode): just the suggested follow-up questions + the CTA.
+function LessonEnd({ helps, busy, onAsk, next, onNext, t, onFinish }) {
     return (
         <div className="tc-summary">
-            <div className="tc-score" style={{ '--pct': overall }}>
-                <span className="tc-score__val">{overall}%</span>
-            </div>
-            <ul className="tc-obj-list">
-                {objectives.map(o => {
-                    const got = (scores[o.id] || 0) >= o.threshold;
-                    return (
-                        <li key={o.id} className={got ? 'got' : 'review'}>
-                            {got ? <Check size={16} /> : <RotateCcw size={16} />} {o.text}
-                        </li>
-                    );
-                })}
-            </ul>
             {helps?.length > 0 && (
                 <div className="tc-summary__ask">
                     <span className="tc-summary__ask-label">Curious about anything? Ask Bé Khế:</span>
@@ -450,14 +412,13 @@ function ToneExplore({ beat, t, onDone }) {
     );
 }
 
-function Mcq({ beat, t, onStudent, onTeacher, onEvidence, onDone }) {
+function Mcq({ beat, t, onStudent, onTeacher, onDone }) {
     const [picked, setPicked] = useState(null);
     const choose = (opt, idx) => {
         if (picked !== null) return;
         setPicked(idx);
         onStudent(opt.label);
         onTeacher(opt.correct ? beat.correctNote : beat.wrongNote);
-        onEvidence?.(beat.objective, opt.correct ? 'strong' : 'none');
     };
     return (
         <div className="tc-widget">
@@ -486,7 +447,7 @@ function Mcq({ beat, t, onStudent, onTeacher, onEvidence, onDone }) {
     );
 }
 
-function ToneListen({ beat, t, onStudent, onTeacher, onEvidence, onDone }) {
+function ToneListen({ beat, t, onStudent, onTeacher, onDone }) {
     const target = beat.tones.find(x => x.id === beat.targetToneId) || beat.tones[0];
     const [picked, setPicked] = useState(null);
     const speaking = useSpeakingState(target.word?.vi);
@@ -499,7 +460,6 @@ function ToneListen({ beat, t, onStudent, onTeacher, onEvidence, onDone }) {
         setPicked(tone.id);
         onStudent(tone.name);
         const ok = tone.id === target.id;
-        onEvidence?.(beat.objective, ok ? 'strong' : 'none');
         onTeacher(ok
             ? `Chính xác! ✅ That was ${target.name} — “${target.word?.vi}” (${target.word?.en}).`
             : `Close! That one was ${target.name} — “${target.word?.vi}”. Keep listening, your ear is training. 💪`);
@@ -563,7 +523,7 @@ function CardsExplore({ beat, t, onDone }) {
     );
 }
 
-function ListenPick({ beat, t, onStudent, onTeacher, onEvidence, onDone }) {
+function ListenPick({ beat, t, onStudent, onTeacher, onDone }) {
     const targetIndex = beat.targetIndex ?? 0;
     const target = beat.items[targetIndex] || beat.items[0];
     const [picked, setPicked] = useState(null);
@@ -576,7 +536,6 @@ function ListenPick({ beat, t, onStudent, onTeacher, onEvidence, onDone }) {
         if (picked !== null) return;
         setPicked(i);
         onStudent(item.vi);
-        onEvidence?.(beat.objective, i === targetIndex ? 'strong' : 'none');
         onTeacher(i === targetIndex
             ? `Chính xác! ✅ “${target.vi}” means ${target.en}.`
             : `Not quite — that was “${target.vi}” (${target.en}). Your ear is training. 💪`);

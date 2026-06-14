@@ -221,32 +221,8 @@
 .tc-help:active { transform: scale(0.96); }
 .tc-help:disabled { opacity: 0.4; cursor: default; }
 
-/* Score / mastery summary — compact */
-.tc-summary { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 2px 0; }
-.tc-score {
-    position: relative;
-    width: 80px; height: 80px; border-radius: 50%;
-    background: conic-gradient(var(--success-color, #58cc02) calc(var(--pct) * 1%), var(--border-color) 0);
-}
-.tc-score::before {
-    content: ''; position: absolute; inset: 7px; border-radius: 50%;
-    background: var(--surface-color);
-}
-/* One centered text unit — no two-size split, so it can't go off-centre. */
-.tc-score__val {
-    position: absolute; inset: 0;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 22px; font-weight: 800; color: var(--text-main);
-    font-variant-numeric: tabular-nums;
-}
-.tc-obj-list { list-style: none; margin: 0; padding: 0; width: 100%; display: flex; flex-direction: column; gap: 6px; }
-.tc-obj-list li {
-    display: flex; align-items: center; gap: 8px;
-    font-size: 14px; padding: 7px 12px; border-radius: 10px;
-    background: var(--bg-color, #0f1115); border: 1px solid var(--border-color);
-}
-.tc-obj-list li.got { color: var(--success-color, #58cc02); }
-.tc-obj-list li.review { color: var(--text-muted); }
+/* End-of-lesson wrap-up (Q&A mode): suggestions + CTA only */
+.tc-summary { display: flex; flex-direction: column; align-items: stretch; gap: 12px; padding: 2px 0; }
 .tc-summary__ask { width: 100%; display: flex; flex-direction: column; gap: 8px; }
 .tc-summary__ask-label { font-size: 12px; font-weight: 700; color: var(--text-muted); }
 .tc-text-btn {
