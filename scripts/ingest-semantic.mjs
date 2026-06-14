@@ -9,7 +9,7 @@
 import { readFileSync, readdirSync, statSync } from 'fs';
 import { join, dirname, relative } from 'path';
 import { fileURLToPath } from 'url';
-import { embedBatch, insertDocs, clearCorpus, isSemanticEnabled } from '../server/semantic.js';
+import { embedBatch, insertDocs, clearCorpus, isSemanticEnabled, closeDb } from '../server/semantic.js';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -146,4 +146,6 @@ async function main() {
     console.log(`[${corpus}] done — ${done} chunks embedded and stored.`);
 }
 
-main().catch(err => { console.error(err); process.exit(1); });
+main()
+    .then(() => closeDb())
+    .catch(async (err) => { console.error(err); await closeDb().catch(() => {}); process.exit(1); });

@@ -48,8 +48,11 @@ table + one index serves all three.
 
 ## Setup (you provide creds)
 
-1. Add to `.env` (not committed): `SUPABASE_URL=…`, `SUPABASE_SERVICE_KEY=…`
-   (service-role). `GEMINI_API_KEY` is already set.
+1. Add DB creds to `.env` (not committed). Either:
+   - **Generic Postgres (recommended, portable):** `DATABASE_URL=postgres://…`
+   - **or Supabase REST:** `SUPABASE_URL=…` (or `VITE_SUPABASE_URL`) + a
+     service-role key (`SUPABASE_SERVICE_KEY` / `SUPABASE_SERVICE_ROLE_KEY`).
+   `GEMINI_API_KEY` is already set (used for embeddings).
 2. In the Supabase SQL editor, run **`db/sql/semantic_search.sql`** (enables
    `vector`, creates the table/index + the match RPC).
 3. Ingest, cheapest first:
@@ -60,6 +63,30 @@ table + one index serves all three.
    ```
 4. Restart the server. `GET /api/semantic-search?q=falling%20tone&corpus=curriculum`
    should return hits; the tutor automatically starts using curriculum retrieval.
+
+## Backend portability (no lock-in)
+
+This is **plain Postgres + pgvector** — Supabase is just one way to host it.
+`server/semantic.js` auto-selects a driver:
+
+| Driver | When | Used for |
+|---|---|---|
+| **`pg`** (generic Postgres) | `DATABASE_URL` is set | Your own backend, Neon, RDS, local Postgres, or Supabase's direct connection string |
+| **`supabase`** (REST SDK) | only `SUPABASE_URL` + service key set | Current hosted setup |
+
+The schema (`db/sql/semantic_search.sql`), the `match_semantic_docs` function,
+the embeddings (Gemini), and every endpoint are **identical** across drivers.
+
+**Migrating off Supabase to your own Postgres:**
+1. Stand up Postgres with the `vector` extension (`create extension vector;`).
+2. Run `db/sql/semantic_search.sql` there (unchanged).
+3. Set `DATABASE_URL=postgres://user:pass@host:5432/db` in `.env` (the driver
+   switches to `pg` automatically; the Supabase SDK is no longer used).
+4. Re-run `node scripts/ingest-semantic.mjs curriculum` (and friends) against the
+   new DB. Nothing else changes — the tutor RAG, the search endpoint, all the
+   same. (SSL is on by default except for `localhost`.)
+
+That's the whole migration: a connection string + a schema run. No app code edits.
 
 ## Cost / feasibility
 
