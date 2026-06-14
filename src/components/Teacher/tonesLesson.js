@@ -37,6 +37,10 @@ export function buildTonesLesson() {
         id: 'tones',
         title: 'The 6 Tones',
         teacher: TEACHER,
+        objectives: [
+            { id: 'recognize', text: 'recognize the 6 tone marks', threshold: 0.6 },
+            { id: 'identify', text: 'identify a tone by ear', threshold: 0.6 },
+        ],
         beats: [
             { type: 'say', text: 'Xin chào! 👋 I\'m Cô Mai, your Vietnamese teacher.' },
             { type: 'say', text: 'Today we\'ll meet something that makes Vietnamese special: its 6 tones.' },
@@ -49,6 +53,7 @@ export function buildTonesLesson() {
             { type: 'say', text: 'Did you hear how the pitch moved? Some stay flat, some rise, some fall, some bend.' },
             {
                 type: 'mcq',
+                objective: 'recognize',
                 text: `Quick check — which mark gives the **falling** tone (${huyen.name})?`,
                 options: [
                     { label: `${sac.mark}  ·  ${sac.name}`, correct: false },
@@ -61,6 +66,7 @@ export function buildTonesLesson() {
             { type: 'say', text: 'Great. Now let\'s train your ear.' },
             {
                 type: 'tone_listen',
+                objective: 'identify',
                 text: 'I\'ll say a word. Tap the tone you hear 🔊',
                 tones,
                 targetToneId: 'sac',

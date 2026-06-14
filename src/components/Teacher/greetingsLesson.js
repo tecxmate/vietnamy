@@ -20,6 +20,10 @@ export function buildGreetingsLesson() {
         id: 'greetings',
         title: 'Say Hello',
         teacher: TEACHER,
+        objectives: [
+            { id: 'vocab', text: 'recognize core greetings', threshold: 0.6 },
+            { id: 'listen', text: 'identify a greeting by ear', threshold: 0.6 },
+        ],
         beats: [
             { type: 'say', text: 'Xin chào! 👋 Last time we met the tones — today let’s actually *greet* people.' },
             { type: 'say', text: 'A handful of words will carry you through almost any first meeting in Vietnam.' },
@@ -31,6 +35,7 @@ export function buildGreetingsLesson() {
             { type: 'say', text: '“Xin chào” is your safe, polite hello — any time of day, to anyone. 😊' },
             {
                 type: 'mcq',
+                objective: 'vocab',
                 text: 'Someone just helped you. What do you say?',
                 options: [
                     { label: `${V.tambiet.vi}  ·  ${V.tambiet.en}`, correct: false },
@@ -43,6 +48,7 @@ export function buildGreetingsLesson() {
             { type: 'say', text: 'To be polite, Vietnamese often add “dạ” before answering — it shows respect to the listener.' },
             {
                 type: 'listen_pick',
+                objective: 'listen',
                 text: 'My turn — I’ll say one. Tap the word you hear 🔊',
                 items: cards,
                 targetIndex: 2, // tạm biệt

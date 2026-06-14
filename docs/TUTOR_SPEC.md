@@ -1,0 +1,184 @@
+# AI Tutor (`/api/tutor`) — end-to-end spec
+
+The chat-style teacher ("Cô Mai"). This layer adds **free-text conversation** on
+top of the deterministic beat lessons. The golden rule, unchanged: **the LLM is
+the voice and the interpreter — never the curriculum or the grader.**
+
+---
+
+## 1. Scripted vs LLM — who does what
+
+| Concern | Owner | Why |
+|---|---|---|
+| What is taught, in what order | **Authored beats** | Strict, reviewable, stable |
+| Grading taps (chips/MCQ/listen) | **Deterministic** | Can't be wrong, zero cost |
+| Mastery score & pass/fail | **Deterministic** | Auditable, reproducible |
+| Vietnamese facts (tones, words, IPA) | **Content bundle (injected)** | No hallucination |
+| Warm replies to free text | **LLM** | Natural, handles ambiguity |
+| Interpreting a fuzzy/confused reply | **LLM** | "uhh the falling one?" → intent |
+| Answering side questions | **LLM (grounded)** | "dạ vs vâng?" |
+| Grading a free-text "explain it back" | **LLM (rubric, structured verdict)** | Returns evidence, not a grade |
+
+**The LLM is only called when the student *types*.** Tapping through a lesson =
+**$0** (pure deterministic path). A chatty student pays per typed turn.
+
+---
+
+## 2. Conversation flow
+
+```
+beat plays (typing → message → optional widget)
+   │
+   ├─ student TAPS a widget  → deterministic grade → scripted feedback → advance   [no LLM]
+   │
+   └─ student TYPES free text → POST /api/tutor → {say, intent, action} → render + apply   [LLM]
+                                   action ∈ stay | advance | reexplain | hint
+```
+
+A free-text input box sits under every beat. `checkpoint` beats *require* a typed
+answer and are LLM-graded for mastery. Everything else is optional conversation.
+
+---
+
+## 3. Lesson format (v2)
+
+```jsonc
+Lesson {
+  id, title,
+  teacher: { name, emoji },
+  objectives: [                       // what "getting it" means — drives the score
+    { id, text, threshold }           // threshold 0..1 mastery to count as "got it"
+  ],
+  beats: [ Beat, … ]
+}
+
+Beat =
+  | { type:'say',         text }
+  | { type:'cards',       text, items:[{vi,en,emoji}] }
+  | { type:'tone_explore',text, tones:[…] }
+  | { type:'mcq',         text, options:[{label,correct}], correctNote, wrongNote, objective }
+  | { type:'listen_pick', text, items, targetIndex, objective }
+  | { type:'tone_listen', text, tones, targetToneId, objective }
+  | { type:'checkpoint',  text, objective, rubric }   // free-text, LLM-graded
+  | { type:'done',        text }
+```
+
+Interactive beats carry an `objective` id. Each contributes **evidence**
+(`strong` first-try correct, `partial` correct-after-hint, `none` wrong) to that
+objective's running mastery. Authoring a new lesson = a script file + a
+`LESSONS` entry + (optional) a `teach_route` to surface it in Study.
+
+---
+
+## 4. `/api/tutor` contract
+
+### Request (client → server)
+```jsonc
+POST /api/tutor
+{
+  "lessonId": "tones",
+  "message": "wait is the falling one à or ã?",   // student free text
+  "context": {
+    "currentBeat": { "type":"mcq", "text":"which mark is falling?", "summary":"…" },
+    "objectives": [ { "id":"recognize", "text":"recognize the 6 tone marks" }, … ],
+    "objectiveStates": { "recognize": 0.5, "identify": 0.0 },   // durable "what they know"
+    "recentTurns": [ { "role":"teacher", "text":"…" }, { "role":"student", "text":"…" } ]  // temp memory, last ~6
+  }
+}
+```
+
+### Response (server → client) — schema-validated
+```jsonc
+{
+  "say": "Good question! The falling tone (huyền) is the grave mark “à”. “ã” is ngã, which dips and breaks. 😊",
+  "intent": "question",            // answer | question | confused | offtopic | ready
+  "action": "stay",                // stay | advance | reexplain | hint
+  "masteryEvidence": "na"          // strong | partial | none | na  (for checkpoints)
+}
+```
+
+The server forces this shape via Anthropic **tool use** (`tool_choice:
+tutor_reply`), so malformed output self-retries. The client applies `action`:
+`advance` moves to the next beat, `reexplain`/`hint` re-present the current beat,
+`stay` just shows `say`.
+
+---
+
+## 5. System prompt & memory
+
+**System prompt** (built server-side per request, cacheable):
+- **Persona**: Cô Mai — warm, patient Vietnamese teacher; replies are short, like texting.
+- **Strict rules**: teach *only* this lesson's content; use only the Vietnamese facts in the injected context; if asked off-topic, redirect warmly in one line; never reveal you're an AI model; always return the structured reply.
+- **Injected grounding** (the anti-hallucination layer): lesson title, objectives, the current beat's authored content, and the allowed `action`s.
+
+**Memory, two tiers:**
+- **Temp (conversational)** — a rolling window of the last ~6 turns, passed in the
+  request, lives only for the lesson. Cheap, ephemeral.
+- **Durable (what they know)** — the deterministic `objectiveStates` mastery
+  vector. This is the real "memory" of progress; it persists with the learner
+  and is injected so the teacher can adapt ("you've nailed recognition, let's
+  train your ear").
+
+**Prompt caching**: the system block + lesson grounding are static per lesson →
+cached (5-min TTL) so repeat turns in a session are cheap.
+
+---
+
+## 6. Knowing when they "get it" + graceful end + score
+
+100% deterministic (the LLM only *feeds* evidence at checkpoints):
+
+1. Every interactive beat emits evidence to its `objective`.
+2. `mastery[obj] = weighted(correct, attempts, first-try)` → 0..1.
+3. An objective is **mastered** when `mastery[obj] ≥ objective.threshold`.
+4. The lesson **ends** when beats reach `done` (or all objectives mastered early).
+5. **Score** = `round(100 × mean(mastery across objectives))`; pass = all required
+   objectives mastered.
+6. **Closing screen**: score ring + per-objective ✓/⟳ ("Mastered: recognize
+   tones · Review: ngã vs hỏi") + a Finish button. The numbers are deterministic;
+   an optional LLM one-liner adds warmth, but never changes the score.
+
+This is how we avoid the classic failure of "the model decides if you passed."
+
+---
+
+## 7. Inference cost
+
+Per **typed** turn (Haiku-class model, the recommended default):
+
+| Component | Tokens | Note |
+|---|---|---|
+| System + lesson grounding | ~900 in | **cached** after first turn |
+| Recent turns + message | ~350 in | |
+| Reply (structured) | ~120 out | short by design |
+
+Rough per-turn cost ≈ **$0.0006–0.0015** (lower once the system block is cached).
+A *chatty* lesson (~8 typed turns) ≈ **$0.005–0.012**. A tap-through lesson ≈ **$0**.
+
+At 10k daily learners each doing one chatty lesson/day ≈ **~$50–120/day**.
+Cost levers, in order: (1) only call on free text, (2) prompt-cache the system
+block, (3) Haiku by default / escalate to Sonnet only for hard turns, (4) cap
+`max_tokens` (~160) and the temp-memory window (~6 turns).
+*(Prices are approximate — verify current Anthropic pricing.)*
+
+---
+
+## 8. Required input data & output, recap
+
+- **Input data the feature needs**: the authored lesson (beats + objectives),
+  the current beat, the rolling turn window, and the mastery vector. All already
+  produced by the client director — no new content authoring for the LLM layer.
+- **Output**: a validated `{ say, intent, action, masteryEvidence }` directive,
+  plus (deterministically) an updated mastery vector and, at the end, a score.
+
+---
+
+## 9. Stability / failure modes
+
+- **No API key** → server returns a deterministic, grounded fallback reply (the
+  lesson still works end-to-end; this is the prototype's default).
+- **Malformed model output** → tool-use schema forces retry; on hard failure the
+  server falls back to `{action:'stay'}` + a safe message.
+- **Latency** → stream `say`; show the typing indicator (already built).
+- **Abuse / off-topic / cost** → per-user rate limit + max tokens + the scope
+  guard in the system prompt; the model can't touch grading or the score.

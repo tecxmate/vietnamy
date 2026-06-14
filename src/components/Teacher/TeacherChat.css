@@ -187,6 +187,59 @@
 }
 .tc-primary-btn:disabled { opacity: 0.45; cursor: default; }
 
+/* Free-text input to the AI tutor */
+.tc-input {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+    align-items: center;
+}
+.tc-input input {
+    flex: 1;
+    padding: 12px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-color, #0f1115);
+    color: var(--text-main);
+    font-size: 15px;
+    outline: none;
+}
+.tc-input input:focus { border-color: var(--secondary-color, #1cb0f6); }
+.tc-input button {
+    flex-shrink: 0;
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: var(--secondary-color, #1cb0f6);
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+}
+.tc-input button:disabled { opacity: 0.4; cursor: default; }
+
+/* Score / mastery summary */
+.tc-summary { display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 4px 0; }
+.tc-score {
+    display: flex; align-items: baseline; justify-content: center;
+    width: 96px; height: 96px; border-radius: 50%;
+    background: conic-gradient(var(--success-color, #58cc02) calc(var(--pct) * 1%), var(--border-color) 0);
+    position: relative;
+}
+.tc-score::before {
+    content: ''; position: absolute; inset: 8px; border-radius: 50%;
+    background: var(--surface-color);
+}
+.tc-score__num { position: relative; font-size: 30px; font-weight: 800; color: var(--text-main); }
+.tc-score__pct { position: relative; font-size: 15px; font-weight: 700; color: var(--text-muted); }
+.tc-obj-list { list-style: none; margin: 0; padding: 0; width: 100%; display: flex; flex-direction: column; gap: 6px; }
+.tc-obj-list li {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 14px; padding: 8px 12px; border-radius: 10px;
+    background: var(--bg-color, #0f1115); border: 1px solid var(--border-color);
+}
+.tc-obj-list li.got { color: var(--success-color, #58cc02); }
+.tc-obj-list li.review { color: var(--text-muted); }
+
 .tc-replay {
     align-self: center;
     display: flex;

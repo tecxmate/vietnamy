@@ -2699,6 +2699,113 @@ app.get('/api/tone-samples', (req, res) => {
     res.json({ count: samples.length, samples });
 });
 
+// ---------------------------------------------------------------------------
+// AI Tutor (chat-style teacher "Cô Mai") — the LLM layer over scripted lessons.
+// The model is the voice + interpreter only; grading and the score stay
+// deterministic on the client. See docs/TUTOR_SPEC.md.
+// POST /api/tutor  { lessonId, message, context } -> { say, intent, action, masteryEvidence }
+// ---------------------------------------------------------------------------
+const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY || '';
+const TUTOR_MODEL = process.env.TUTOR_MODEL || 'claude-haiku-4-5-20251001';
+const TUTOR_ENABLED = Boolean(ANTHROPIC_API_KEY);
+
+const TUTOR_TOOL = {
+    name: 'tutor_reply',
+    description: 'Reply to the student in character and tell the client what to do next.',
+    input_schema: {
+        type: 'object',
+        properties: {
+            say: { type: 'string', description: 'Short, warm teacher reply, texting style, max 2 sentences.' },
+            intent: { type: 'string', enum: ['answer', 'question', 'confused', 'offtopic', 'ready'] },
+            action: { type: 'string', enum: ['stay', 'advance', 'reexplain', 'hint'] },
+            masteryEvidence: { type: 'string', enum: ['strong', 'partial', 'none', 'na'] },
+        },
+        required: ['say', 'intent', 'action'],
+    },
+};
+
+function buildTutorSystem(ctx) {
+    const objs = (ctx.objectives || []).map(o => `- ${o.id}: ${o.text}`).join('\n');
+    const beat = ctx.currentBeat || {};
+    return [
+        'You are Cô Mai, a warm, patient Vietnamese language teacher texting a beginner student.',
+        'Rules:',
+        "- Teach ONLY this lesson's content. Use ONLY the Vietnamese facts given below; never invent words, tones, or translations.",
+        '- Keep replies short and friendly, like a text message (max 2 sentences). Emoji ok, used sparingly.',
+        '- If the student goes off-topic, gently redirect to the lesson in one line.',
+        '- You do NOT grade tapped exercises; you interpret free text and choose the next move.',
+        '- Always answer by calling the tutor_reply tool.',
+        '',
+        `Lesson: ${ctx.lessonTitle || ctx.lessonId || ''}`,
+        objs ? `Objectives:\n${objs}` : '',
+        `Current step: ${beat.type || 'chat'} — ${beat.text || ''}`,
+        beat.summary ? `Step detail: ${beat.summary}` : '',
+        "Pick action: 'advance' if they answered/are ready, 'reexplain' if confused, 'hint' if stuck on this step, 'stay' for a side question.",
+    ].filter(Boolean).join('\n');
+}
+
+function tutorFallback(msg, context) {
+    const m = msg.toLowerCase();
+    const ready = /\b(ok|okay|ready|next|continue|got it|yes|yep|understood)\b/.test(m);
+    const question = msg.includes('?') || /\b(why|how|what|when|which|where|difference|mean|vs)\b/.test(m);
+    if (ready) return { say: "Great — let's keep going! 👍", intent: 'ready', action: 'advance', masteryEvidence: 'na' };
+    if (question) {
+        const beatText = context?.currentBeat?.text || 'this step';
+        return { say: `Good question! For now, focus on “${beatText}”. (Full answers turn on once the AI tutor is enabled.) 😊`, intent: 'question', action: 'stay', masteryEvidence: 'na' };
+    }
+    return { say: "Nice — tap the answer above when you're ready, or ask me anything. 💪", intent: 'confused', action: 'stay', masteryEvidence: 'na' };
+}
+
+app.post('/api/tutor', async (req, res) => {
+    const { lessonId = '', message = '', context = {} } = req.body || {};
+    const msg = String(message).slice(0, 1000).trim();
+    if (!msg) return res.status(400).json({ error: 'message required' });
+
+    // No key configured → deterministic, grounded fallback (feature still works).
+    if (!TUTOR_ENABLED) return res.json(tutorFallback(msg, context));
+
+    try {
+        const system = buildTutorSystem({ ...context, lessonId });
+        const turns = (context.recentTurns || []).slice(-6).map(turn => ({
+            role: turn.role === 'student' ? 'user' : 'assistant',
+            content: String(turn.text || ''),
+        }));
+        const r = await fetch('https://api.anthropic.com/v1/messages', {
+            method: 'POST',
+            headers: {
+                'x-api-key': ANTHROPIC_API_KEY,
+                'anthropic-version': '2023-06-01',
+                'content-type': 'application/json',
+            },
+            body: JSON.stringify({
+                model: TUTOR_MODEL,
+                max_tokens: 200,
+                temperature: 0.6,
+                system: [{ type: 'text', text: system, cache_control: { type: 'ephemeral' } }],
+                tools: [TUTOR_TOOL],
+                tool_choice: { type: 'tool', name: 'tutor_reply' },
+                messages: [...turns, { role: 'user', content: msg }],
+            }),
+        });
+        if (!r.ok) {
+            console.warn('tutor LLM error', r.status, (await r.text()).slice(0, 200));
+            return res.json(tutorFallback(msg, context));
+        }
+        const data = await r.json();
+        const tool = (data.content || []).find(c => c.type === 'tool_use');
+        const out = tool?.input || {};
+        return res.json({
+            say: out.say || "Let's keep going!",
+            intent: out.intent || 'answer',
+            action: ['stay', 'advance', 'reexplain', 'hint'].includes(out.action) ? out.action : 'stay',
+            masteryEvidence: out.masteryEvidence || 'na',
+        });
+    } catch (err) {
+        console.warn('tutor error', err.message);
+        return res.json(tutorFallback(msg, context));
+    }
+});
+
 // Serve Vite build output in production (skip if dist doesn't exist, e.g. dev mode)
 const distPath = join(__dirname, '..', 'dist');
 if (existsSync(distPath)) {
