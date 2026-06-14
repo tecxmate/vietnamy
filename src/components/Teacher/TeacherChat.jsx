@@ -217,44 +217,61 @@ function PronounceCard({ beat, t, onStudent, onTeacher, onEvidence, onDone }) {
     const [score, setScore] = useState(null);
     const [attempted, setAttempted] = useState(false);
     const recorderRef = useRef(null);
+    const scoringRef = useRef(false);
 
-    const handleRecord = async () => {
-        if (isScoring) return;
-        if (isRecording) {
-            const rec = recorderRef.current;
-            recorderRef.current = null;
-            setIsRecording(false);
-            if (!rec) return;
-            setIsScoring(true);
-            try {
-                const blob = await rec.stop();
-                const res = await fetch(`/api/pronunciation?text=${encodeURIComponent(target)}`, {
-                    method: 'POST', headers: { 'Content-Type': 'audio/wav' }, body: blob,
-                });
-                const data = await res.json();
-                const s = data.scores ? (data.scores.pronunciation ?? data.scores.accuracy ?? null) : null;
-                setScore(s);
+    // Score one recording — used by both manual stop and silence auto-stop.
+    const scoreBlob = useCallback(async (blob) => {
+        if (scoringRef.current) return;
+        scoringRef.current = true;
+        recorderRef.current = null;
+        setIsRecording(false);
+        setIsScoring(true);
+        try {
+            if (!blob || blob.size < 2000) {
                 setAttempted(true);
                 onStudent?.(`🎤 ${target}`);
-                if (s != null) {
-                    const ev = s >= 80 ? 'strong' : s >= 60 ? 'partial' : 'none';
-                    onEvidence?.(beat.objective, ev);
-                    const r = Math.round(s);
-                    onTeacher?.(s >= 80 ? `Excellent — ${r}%! 🎉` : s >= 60 ? `Good — ${r}%. A little crisper and it’s perfect. 💪` : `${r}% — listen again and copy the melody. 🔊`);
-                } else {
-                    onTeacher?.('I couldn’t quite hear that — try once more, or tap continue. 🙂');
-                }
-            } catch (err) {
-                console.warn('pronounce error', err.message);
-                setAttempted(true);
-                onTeacher?.('Mic trouble — you can try again or continue. 🙂');
-            } finally {
-                setIsScoring(false);
+                onTeacher?.('I didn’t catch any sound — check your mic is on, then tap the mic and speak clearly. 🎙️');
+                return;
             }
+            const res = await fetch(`/api/pronunciation?text=${encodeURIComponent(target)}`, {
+                method: 'POST', headers: { 'Content-Type': 'audio/wav' }, body: blob,
+            });
+            const data = await res.json();
+            const s = data.scores ? (data.scores.pronunciation ?? data.scores.accuracy ?? null) : null;
+            setScore(s);
+            setAttempted(true);
+            onStudent?.(`🎤 ${target}`);
+            if (s != null) {
+                const ev = s >= 80 ? 'strong' : s >= 60 ? 'partial' : 'none';
+                onEvidence?.(beat.objective, ev);
+                const r = Math.round(s);
+                onTeacher?.(s >= 80 ? `Excellent — ${r}%! 🎉` : s >= 60 ? `Good — ${r}%. A little crisper and it’s perfect. 💪` : `${r}% — listen again and copy the melody. 🔊`);
+            } else {
+                onTeacher?.('I couldn’t quite hear that — try once more, or tap continue. 🙂');
+            }
+        } catch (err) {
+            console.warn('pronounce error', err.message);
+            setAttempted(true);
+            onTeacher?.('Mic trouble — you can try again or continue. 🙂');
+        } finally {
+            setIsScoring(false);
+            scoringRef.current = false;
+        }
+    }, [target, beat.objective, onStudent, onTeacher, onEvidence]);
+
+    const handleMicTap = async () => {
+        if (isScoring) return;
+        if (isRecording) {
+            const rec = recorderRef.current; // manual stop (early)
+            if (rec) { const blob = await rec.stop(); if (blob) scoreBlob(blob); }
         } else {
             try {
                 setScore(null);
-                const rec = await startPCMRecording();
+                const rec = await startPCMRecording({
+                    silenceMs: 2000,   // auto-stop ~2s after the learner stops speaking
+                    maxMs: 8000,       // hard cap
+                    onAutoStop: (blob) => scoreBlob(blob),
+                });
                 recorderRef.current = rec;
                 setIsRecording(true);
             } catch (err) {
@@ -274,9 +291,9 @@ function PronounceCard({ beat, t, onStudent, onTeacher, onEvidence, onDone }) {
                 <button className="tc-replay" onClick={() => speak(target)}>
                     <Volume2 size={18} /> Listen
                 </button>
-                <button className={`tc-mic ${isRecording ? 'tc-mic--rec' : ''}`} onClick={handleRecord} disabled={isScoring}>
+                <button className={`tc-mic ${isRecording ? 'tc-mic--rec' : ''}`} onClick={handleMicTap} disabled={isScoring}>
                     {isRecording ? <Square size={20} /> : <Mic size={22} />}
-                    <span>{isScoring ? t('scene_scoring') : isRecording ? t('scene_recording_stop') : t('scene_speak_record')}</span>
+                    <span>{isScoring ? t('scene_scoring') : isRecording ? t('scene_recording_listening') : t('scene_speak_record')}</span>
                 </button>
                 {score != null && (
                     <div className="tc-pronounce__score" style={{ color: score >= 70 ? 'var(--success-color, #58cc02)' : 'var(--secondary-color, #1cb0f6)' }}>

@@ -61,22 +61,25 @@ function pcm16ToWavBlob(pcm16, sampleRate) {
     return new Blob([buffer], { type: 'audio/wav' });
 }
 
-export async function startPCMRecording() {
+// options:
+//   onAutoStop(blob)  — called once when the take ends itself (silence/maxMs)
+//   silenceMs         — end the take after this much silence once speech began (0 = off)
+//   maxMs             — hard cap on take length (0 = off)
+//   silenceThreshold  — RMS below this counts as silence
+export async function startPCMRecording(options = {}) {
+    const { onAutoStop, silenceMs = 0, maxMs = 0, silenceThreshold = 0.015 } = options;
     const stream = await navigator.mediaDevices.getUserMedia({ audio: { channelCount: 1, sampleRate: 16000, echoCancellation: true, noiseSuppression: true } });
     const AudioCtx = window.AudioContext || window.webkitAudioContext;
     const ctx = new AudioCtx();
+    // A fresh AudioContext can start 'suspended'; without resuming it,
+    // onaudioprocess never fires and the recording is silent.
+    if (ctx.state === 'suspended') { try { await ctx.resume(); } catch { /* ignore */ } }
     const source = ctx.createMediaStreamSource(stream);
     // 4096-sample buffer = ~85ms at 48kHz; small enough for snappy stop but
     // large enough to keep CPU low.
     const processor = ctx.createScriptProcessor(4096, 1, 1);
     const chunks = [];
-
-    processor.onaudioprocess = (e) => {
-        const input = e.inputBuffer.getChannelData(0);
-        chunks.push(new Float32Array(input));
-    };
-    source.connect(processor);
-    processor.connect(ctx.destination);
+    const inputRate = ctx.sampleRate;
 
     let stopped = false;
     // `samples` (16 kHz mono Float32) is exposed after stop() so callers can run
@@ -95,10 +98,41 @@ export async function startPCMRecording() {
         const merged = new Float32Array(total);
         let offset = 0;
         for (const c of chunks) { merged.set(c, offset); offset += c.length; }
-        const downsampled = downsampleTo16k(merged, ctx.sampleRate);
+        const downsampled = downsampleTo16k(merged, inputRate);
         api.samples = downsampled;
         const pcm16 = floatToInt16(downsampled);
         return pcm16ToWavBlob(pcm16, TARGET_RATE);
     };
+
+    // Voice-activity auto-stop: end the take after `silenceMs` of silence (once
+    // the learner has spoken) or once `maxMs` is reached.
+    let hasSpoken = false;
+    let silentSamples = 0;
+    let totalSamples = 0;
+    let autoStopping = false;
+    const triggerAutoStop = () => {
+        if (autoStopping || stopped) return;
+        autoStopping = true;
+        api.stop().then(blob => { if (onAutoStop) onAutoStop(blob); }).catch(() => {});
+    };
+    processor.onaudioprocess = (e) => {
+        const input = e.inputBuffer.getChannelData(0);
+        chunks.push(new Float32Array(input));
+        if (silenceMs <= 0 && maxMs <= 0) return;
+        totalSamples += input.length;
+        let sum = 0;
+        for (let i = 0; i < input.length; i++) sum += input[i] * input[i];
+        const rms = Math.sqrt(sum / input.length);
+        if (rms > silenceThreshold) { hasSpoken = true; silentSamples = 0; }
+        else if (hasSpoken) { silentSamples += input.length; }
+        const silentMs = (silentSamples / inputRate) * 1000;
+        const totalMs = (totalSamples / inputRate) * 1000;
+        if ((silenceMs > 0 && hasSpoken && silentMs >= silenceMs) || (maxMs > 0 && totalMs >= maxMs)) {
+            triggerAutoStop();
+        }
+    };
+    source.connect(processor);
+    processor.connect(ctx.destination);
+
     return api;
 }
