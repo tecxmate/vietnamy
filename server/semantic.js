@@ -34,6 +34,12 @@ export function isSemanticEnabled() {
     return semanticConfig().enabled;
 }
 
+// A Postgres/Supabase connection exists (independent of embeddings) — used by
+// the shared help-answer cache.
+export function isDbEnabled() {
+    return semanticConfig().driver !== 'none';
+}
+
 // pgvector literal for a JS number array, e.g. [0.1, 0.2] -> '[0.1,0.2]'.
 const toVector = (vec) => `[${vec.join(',')}]`;
 
@@ -57,6 +63,44 @@ function pgPool() {
 // Release the pg pool (so standalone scripts can exit). No-op on Supabase.
 export async function closeDb() {
     if (_pool) { await _pool.end(); _pool = null; }
+}
+
+// ── Shared help-answer cache (tutor_help_cache table) ──────────────────────
+// Never throw — a cache miss/failure just falls back to the live LLM call.
+export async function getHelpReply(key) {
+    const { driver } = semanticConfig();
+    if (driver === 'none') return null;
+    try {
+        if (driver === 'pg') {
+            const { rows } = await pgPool().query('SELECT reply FROM tutor_help_cache WHERE key = $1', [key]);
+            return rows[0]?.reply || null;
+        }
+        const { data, error } = await supabaseClient().from('tutor_help_cache').select('reply').eq('key', key).maybeSingle();
+        if (error) return null;
+        return data?.reply || null;
+    } catch (err) {
+        console.warn('help cache get failed:', err.message);
+        return null;
+    }
+}
+
+export async function setHelpReply(key, { lessonId, help, message, reply }) {
+    const { driver } = semanticConfig();
+    if (driver === 'none') return;
+    try {
+        if (driver === 'pg') {
+            await pgPool().query(
+                `INSERT INTO tutor_help_cache (key, lesson_id, help, message, reply)
+                 VALUES ($1,$2,$3,$4,$5::jsonb) ON CONFLICT (key) DO NOTHING`,
+                [key, lessonId, help, message, JSON.stringify(reply)],
+            );
+            return;
+        }
+        await supabaseClient().from('tutor_help_cache')
+            .upsert({ key, lesson_id: lessonId, help, message, reply }, { onConflict: 'key', ignoreDuplicates: true });
+    } catch (err) {
+        console.warn('help cache set failed:', err.message);
+    }
 }
 
 // Embed a single string. taskType is 'RETRIEVAL_QUERY' for searches,

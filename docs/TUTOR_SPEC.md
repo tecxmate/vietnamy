@@ -156,13 +156,15 @@ Rough per-turn cost ≈ **$0.0006–0.0015** (lower once the system block is cac
 A *chatty* lesson (~8 typed turns) ≈ **$0.005–0.012**. A tap-through lesson ≈ **$0**.
 
 Cost levers, in order:
-1. **Cache predefined help answers** (implemented). Help-chip prompts are a
-   finite, stateless set per lesson, so `/api/tutor` caches replies keyed on
-   `(lessonId, help, message)` and serves repeats with **zero LLM + embedding
+1. **Cache predefined help answers** (implemented, two-tier). Help-chip prompts
+   are a finite, stateless set per lesson, so `/api/tutor` caches replies keyed
+   on `(lessonId, help, message)` and serves repeats with **zero LLM + embedding
    cost** (measured: 2.97s LLM miss → 0.9ms cache hit). Cost then scales with the
    number of *distinct questions*, not DAU — so help-tap cost stays roughly flat
-   from 10k to 1M DAU. In-memory LRU now; a Postgres-backed shared cache is a
-   drop-in upgrade for zero cold-start across instances.
+   from 10k to 1M DAU. **In-memory L1** (sub-ms) over a **shared Postgres L2**
+   (`tutor_help_cache`, via the same DB connection) so it's persistent and shared
+   across instances — zero cold-start at scale. Run `db/sql/tutor_help_cache.sql`
+   once to enable L2; until then L1 still works (L2 is a graceful no-op).
 2. **Only call on free text** — tap-throughs are $0.
 3. **Prompt-cache** the system + facts block (both providers support it).
 4. **Tier the model** — a `-mini`/`-lite` for help, escalate only for free text.

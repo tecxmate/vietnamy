@@ -8,7 +8,7 @@ import { existsSync, mkdirSync, readFileSync } from 'fs';
 import { Converter } from 'opencc-js';
 import { put as blobPut } from '@vercel/blob';
 import { maybeMountAuthJs } from './authJsRoutes.js';
-import { semanticSearch, isSemanticEnabled } from './semantic.js';
+import { semanticSearch, isSemanticEnabled, getHelpReply, setHelpReply } from './semantic.js';
 import {
     getMessageScenario,
     listMessageScenarios,
@@ -2872,8 +2872,8 @@ app.get('/api/semantic-search', async (req, res) => {
 // Help-answer cache. Predefined help-chip prompts are a finite, stateless set
 // per lesson, so their replies are cacheable and served with ZERO LLM/embedding
 // cost — the key unit-economics lever (cost scales with distinct questions, not
-// DAU). In-memory LRU; a restart re-warms in minutes. (A shared Postgres-backed
-// cache is a drop-in upgrade for zero cold-start across instances.)
+// DAU). Two-tier: in-memory L1 (sub-ms) over a shared Postgres L2
+// (tutor_help_cache) so it's persistent + shared across instances.
 const helpCache = new Map();
 const HELP_CACHE_MAX = 5000;
 function helpKey(lessonId, help, message) {
@@ -2899,10 +2899,13 @@ app.post('/api/tutor', async (req, res) => {
     if (!TUTOR_ENABLED) return res.json(tutorFallback(msg, context));
 
     // Cache hit for a predefined help question → no LLM, no RAG embedding.
+    // L1 in-memory, then shared L2 Postgres (which warms L1 on hit).
     const cacheKey = context.help ? helpKey(lessonId, context.help, msg) : null;
     if (cacheKey) {
-        const hit = helpCacheGet(cacheKey);
-        if (hit) return res.json({ ...hit, cached: true });
+        const l1 = helpCacheGet(cacheKey);
+        if (l1) return res.json({ ...l1, cached: true });
+        const l2 = await getHelpReply(cacheKey);
+        if (l2) { helpCacheSet(cacheKey, l2); return res.json({ ...l2, cached: true }); }
     }
 
     // Enrich grounding facts with retrieved curriculum chunks when available
@@ -2931,7 +2934,10 @@ app.post('/api/tutor', async (req, res) => {
             action: ['stay', 'advance', 'reexplain', 'hint'].includes(out.action) ? out.action : 'stay',
             masteryEvidence: ['strong', 'partial', 'none', 'na'].includes(out.masteryEvidence) ? out.masteryEvidence : 'na',
         };
-        if (cacheKey) helpCacheSet(cacheKey, reply);
+        if (cacheKey) {
+            helpCacheSet(cacheKey, reply); // L1
+            setHelpReply(cacheKey, { lessonId, help: context.help, message: msg, reply }).catch(() => {}); // L2, fire-and-forget
+        }
         return res.json(reply);
     } catch (err) {
         console.warn('tutor error', err.message);
