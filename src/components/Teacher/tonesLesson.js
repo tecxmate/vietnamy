@@ -54,6 +54,9 @@ export function buildTonesLesson() {
             {
                 type: 'mcq',
                 objective: 'recognize',
+                helps: [
+                    { mode: 'compare', label: 'à vs ã? 🔍', prompt: 'What is the difference between the à (huyền) and ã (ngã) tones?' },
+                ],
                 text: `Quick check — which mark gives the **falling** tone (${huyen.name})?`,
                 options: [
                     { label: `${sac.mark}  ·  ${sac.name}`, correct: false },

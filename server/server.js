@@ -2740,20 +2740,31 @@ function buildTutorSystem(ctx) {
         objs ? `Objectives:\n${objs}` : '',
         `Current step: ${beat.type || 'chat'} — ${beat.text || ''}`,
         beat.summary ? `Step detail: ${beat.summary}` : '',
-        "Pick action: 'advance' if they answered/are ready, 'reexplain' if confused, 'hint' if stuck on this step, 'stay' for a side question.",
+        ctx.help
+            ? `The student tapped the "${ctx.help}" help button. Give a short, focused explanation or example for THIS step only; always set action to 'stay' (do not move on).`
+            : "Pick action: 'advance' if they answered/are ready, 'reexplain' if confused, 'hint' if stuck on this step, 'stay' for a side question.",
     ].filter(Boolean).join('\n');
 }
 
 function tutorFallback(msg, context) {
-    const m = msg.toLowerCase();
-    const ready = /\b(ok|okay|ready|next|continue|got it|yes|yep|understood)\b/.test(m);
-    const question = msg.includes('?') || /\b(why|how|what|when|which|where|difference|mean|vs)\b/.test(m);
-    if (ready) return { say: "Great — let's keep going! 👍", intent: 'ready', action: 'advance', masteryEvidence: 'na' };
-    if (question) {
-        const beatText = context?.currentBeat?.text || 'this step';
-        return { say: `Good question! For now, focus on “${beatText}”. (Full answers turn on once the AI tutor is enabled.) 😊`, intent: 'question', action: 'stay', masteryEvidence: 'na' };
+    const beatText = context?.currentBeat?.text || 'this step';
+    // Predefined help tap → grounded, mode-appropriate canned reply, never advance.
+    if (context?.help) {
+        const byMode = {
+            explain: `Here’s the key idea for this step: “${beatText}”. Take it slowly — you’ve got this. 😊`,
+            why: 'It matters because small differences here change a word’s meaning entirely in Vietnamese.',
+            example: `A quick example tied to “${beatText}” — say it aloud, then tap your answer above. ✍️`,
+        };
+        return {
+            say: byMode[context.help] || `Sure — a bit more on “${beatText}”. (Deeper explanations turn on with the AI tutor.) 😊`,
+            intent: 'question', action: 'stay', masteryEvidence: 'na',
+        };
     }
-    return { say: "Nice — tap the answer above when you're ready, or ask me anything. 💪", intent: 'confused', action: 'stay', masteryEvidence: 'na' };
+    const m = msg.toLowerCase();
+    if (/\b(ok|okay|ready|next|continue|got it|yes|yep|understood)\b/.test(m)) {
+        return { say: "Great — let's keep going! 👍", intent: 'ready', action: 'advance', masteryEvidence: 'na' };
+    }
+    return { say: `Good question! For now, focus on “${beatText}”. 😊`, intent: 'question', action: 'stay', masteryEvidence: 'na' };
 }
 
 app.post('/api/tutor', async (req, res) => {

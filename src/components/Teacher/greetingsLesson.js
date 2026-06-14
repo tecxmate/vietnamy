@@ -31,6 +31,9 @@ export function buildGreetingsLesson() {
                 type: 'cards',
                 text: 'Tap each one to hear it 👇',
                 items: cards,
+                helps: [
+                    { mode: 'usage', label: 'dạ vs vâng? 🔍', prompt: 'When do I use dạ versus vâng for “yes”?' },
+                ],
             },
             { type: 'say', text: '“Xin chào” is your safe, polite hello — any time of day, to anyone. 😊' },
             {

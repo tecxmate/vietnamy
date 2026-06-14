@@ -187,35 +187,26 @@
 }
 .tc-primary-btn:disabled { opacity: 0.45; cursor: default; }
 
-/* Free-text input to the AI tutor */
-.tc-input {
+/* Predefined help chips (controlled input — no open free text yet) */
+.tc-helps {
     display: flex;
+    flex-wrap: wrap;
     gap: 8px;
     margin-top: 10px;
-    align-items: center;
 }
-.tc-input input {
-    flex: 1;
-    padding: 12px 14px;
+.tc-help {
+    padding: 9px 14px;
     border-radius: 999px;
-    border: 1px solid var(--border-color);
-    background: var(--bg-color, #0f1115);
-    color: var(--text-main);
-    font-size: 15px;
-    outline: none;
-}
-.tc-input input:focus { border-color: var(--secondary-color, #1cb0f6); }
-.tc-input button {
-    flex-shrink: 0;
-    width: 44px; height: 44px;
-    border-radius: 50%;
-    border: none;
-    background: var(--secondary-color, #1cb0f6);
-    color: #fff;
-    display: flex; align-items: center; justify-content: center;
+    border: 1px solid var(--secondary-color, #1cb0f6);
+    background: color-mix(in srgb, var(--secondary-color, #1cb0f6) 10%, transparent);
+    color: var(--secondary-color, #1cb0f6);
+    font-size: 13px;
+    font-weight: 700;
     cursor: pointer;
+    transition: transform 0.1s, opacity 0.15s;
 }
-.tc-input button:disabled { opacity: 0.4; cursor: default; }
+.tc-help:active { transform: scale(0.96); }
+.tc-help:disabled { opacity: 0.4; cursor: default; }
 
 /* Score / mastery summary */
 .tc-summary { display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 4px 0; }

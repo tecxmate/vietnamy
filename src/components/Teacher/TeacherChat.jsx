@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { ArrowLeft, Volume2, Check, X, ChevronRight, RotateCcw, Sparkles, Send } from 'lucide-react';
+import { ArrowLeft, Volume2, Check, X, ChevronRight, RotateCcw, Sparkles } from 'lucide-react';
 import speak from '../../utils/speak';
 import { useT } from '../../lib/i18n';
 import { buildTonesLesson } from './tonesLesson';
@@ -74,10 +74,11 @@ const TeacherChat = ({ lessonId: lessonIdProp }) => {
     const messagesRef = useRef([]);
     useEffect(() => { messagesRef.current = messages; }, [messages]);
 
-    const handleTutorMessage = useCallback(async (text) => {
-        const trimmed = (text || '').trim();
-        if (!trimmed || busy) return;
-        pushStudent(trimmed);
+    // Predefined help only (no open free text yet — we control the input).
+    // `message` is one of our authored prompts; help taps never advance the lesson.
+    const handleAsk = useCallback(async (message, displayText, help) => {
+        if (busy || !message) return;
+        pushStudent(displayText || message);
         setBusy(true);
         try {
             const recentTurns = messagesRef.current.slice(-6).map(m => ({ role: m.from, text: m.text }));
@@ -86,25 +87,25 @@ const TeacherChat = ({ lessonId: lessonIdProp }) => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     lessonId,
-                    message: trimmed,
+                    message,
                     context: {
                         lessonTitle: lesson.title,
                         objectives,
                         objectiveStates: scores,
                         currentBeat: awaiting ? { type: awaiting.type, text: awaiting.text } : { type: 'chat' },
                         recentTurns,
+                        help: help || null,
                     },
                 }),
             });
             const data = await res.json();
             if (data.say) pushTeacher(data.say);
-            if (data.action === 'advance' && awaiting && awaiting.type !== 'done') advance();
         } catch {
-            pushTeacher('Hmm, I had trouble hearing you — try again? 🙂');
+            pushTeacher('Hmm, let me try that again in a moment. 🙂');
         } finally {
             setBusy(false);
         }
-    }, [busy, lessonId, lesson, objectives, scores, awaiting, advance, pushStudent, pushTeacher]);
+    }, [busy, lessonId, lesson, objectives, scores, awaiting, pushStudent, pushTeacher]);
 
     // Director: reveal each beat with a "typing" pause; auto-advance plain
     // messages, pause on interactive ones until the widget reports back.
@@ -175,7 +176,7 @@ const TeacherChat = ({ lessonId: lessonIdProp }) => {
                                 onDone={advance}
                             />
                         )}
-                        <TutorInput onSend={handleTutorMessage} busy={busy} />
+                        <HelpChips beat={awaiting} busy={busy} onAsk={handleAsk} />
                     </>
                 )}
             </div>
@@ -193,28 +194,24 @@ function Widget({ beat, t, onStudent, onTeacher, onEvidence, onDone }) {
     return null;
 }
 
-// Free-text input → the AI tutor. Always available except on the score screen.
-function TutorInput({ onSend, busy }) {
-    const [val, setVal] = useState('');
-    const submit = (e) => {
-        e.preventDefault();
-        if (!val.trim() || busy) return;
-        onSend(val);
-        setVal('');
-    };
+// Predefined help options — controlled prompts only (no open free text yet).
+// A beat may add its own deeper-dive questions via `beat.helps`.
+const DEFAULT_HELPS = [
+    { mode: 'explain', label: 'Explain more 💡', prompt: 'Explain the current step again, more simply.' },
+    { mode: 'why', label: 'Why does this matter? 🤔', prompt: 'Why does this matter for speaking Vietnamese?' },
+    { mode: 'example', label: 'Give an example ✍️', prompt: 'Give me one simple example for the current step.' },
+];
+
+function HelpChips({ beat, busy, onAsk }) {
+    const helps = [...(beat?.helps || []), ...DEFAULT_HELPS].slice(0, 4);
     return (
-        <form className="tc-input" onSubmit={submit}>
-            <input
-                value={val}
-                onChange={e => setVal(e.target.value)}
-                placeholder="Ask Cô Mai anything…"
-                disabled={busy}
-                aria-label="Message the teacher"
-            />
-            <button type="submit" disabled={busy || !val.trim()} aria-label="Send">
-                <Send size={18} />
-            </button>
-        </form>
+        <div className="tc-helps" aria-label="Ask for help">
+            {helps.map((h, i) => (
+                <button key={i} className="tc-help" disabled={busy} onClick={() => onAsk(h.prompt, h.label, h.mode)}>
+                    {h.label}
+                </button>
+            ))}
+        </div>
     );
 }
 
