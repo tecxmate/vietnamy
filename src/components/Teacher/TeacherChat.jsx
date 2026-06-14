@@ -21,9 +21,6 @@ function formatText(text) {
 // ship a new teacher lesson — the shell, director and widgets are shared.
 const LESSONS = { tones: buildTonesLesson, greetings: buildGreetingsLesson };
 
-// Beats with a right/wrong answer — help chips stay hidden until these are answered.
-const GRADED_BEATS = new Set(['mcq', 'tone_listen', 'listen_pick']);
-
 const TeacherChat = ({ lessonId: lessonIdProp }) => {
     const navigate = useNavigate();
     const params = useParams();
@@ -55,15 +52,18 @@ const TeacherChat = ({ lessonId: lessonIdProp }) => {
     // ── Mastery (deterministic) ──
     const objectives = useMemo(() => lesson.objectives || [], [lesson]);
     const [mastery, setMastery] = useState({}); // objId -> evidence scores []
-    // `answered` gates the help chips: while a graded question is unanswered we
-    // show only the answer options, so help never competes with the choices.
-    const [answered, setAnswered] = useState(false);
     const recordEvidence = useCallback((objId, evidence) => {
-        setAnswered(true);
         if (!objId) return;
         const val = evidence === 'strong' ? 1 : evidence === 'partial' ? 0.6 : 0;
         setMastery(prev => ({ ...prev, [objId]: [...(prev[objId] || []), val] }));
     }, []);
+
+    // Help options are offered only at the end (after all questions), to keep the
+    // in-lesson steps focused — the score screen aggregates the lesson's deep-dives.
+    const lessonHelps = useMemo(() => {
+        const authored = beats.flatMap(b => b.helps || []);
+        return authored.length ? authored : DEFAULT_HELPS;
+    }, [beats]);
     const scores = useMemo(() => {
         const out = {};
         objectives.forEach(o => {
@@ -129,7 +129,6 @@ const TeacherChat = ({ lessonId: lessonIdProp }) => {
             if (beat.type === 'say') {
                 timers.push(setTimeout(() => setBeatIndex(i => i + 1), 600));
             } else {
-                setAnswered(false);
                 setAwaiting(beat);
             }
         }, 700));
@@ -157,13 +156,11 @@ const TeacherChat = ({ lessonId: lessonIdProp }) => {
             <div className="teacher-chat__scroll" ref={scrollRef}>
                 {messages.map(msg => (
                     <div key={msg.id} className={`tc-row tc-row--${msg.from}`}>
-                        {msg.from === 'teacher' && <span className="tc-row__avatar" aria-hidden>{lesson.teacher.emoji}</span>}
                         <div className={`tc-bubble tc-bubble--${msg.from}`}>{formatText(msg.text)}</div>
                     </div>
                 ))}
                 {(isTyping || busy) && (
                     <div className="tc-row tc-row--teacher">
-                        <span className="tc-row__avatar" aria-hidden>{lesson.teacher.emoji}</span>
                         <div className="tc-bubble tc-bubble--teacher tc-typing"><span /><span /><span /></div>
                     </div>
                 )}
@@ -171,24 +168,27 @@ const TeacherChat = ({ lessonId: lessonIdProp }) => {
 
             <div className="teacher-chat__dock">
                 {awaiting?.type === 'done' ? (
-                    <ScoreSummary objectives={objectives} scores={scores} overall={overall} t={t} onFinish={() => navigate(-1)} />
+                    <ScoreSummary
+                        objectives={objectives}
+                        scores={scores}
+                        overall={overall}
+                        helps={lessonHelps}
+                        busy={busy}
+                        onAsk={handleAsk}
+                        t={t}
+                        onFinish={() => navigate(-1)}
+                    />
                 ) : (
-                    <>
-                        {awaiting && (
-                            <Widget
-                                beat={awaiting}
-                                t={t}
-                                onStudent={pushStudent}
-                                onTeacher={pushTeacher}
-                                onEvidence={recordEvidence}
-                                onDone={advance}
-                            />
-                        )}
-                        {/* Help only when no graded question is waiting for an answer. */}
-                        {!(awaiting && GRADED_BEATS.has(awaiting.type) && !answered) && (
-                            <HelpChips beat={awaiting} busy={busy} onAsk={handleAsk} />
-                        )}
-                    </>
+                    awaiting && (
+                        <Widget
+                            beat={awaiting}
+                            t={t}
+                            onStudent={pushStudent}
+                            onTeacher={pushTeacher}
+                            onEvidence={recordEvidence}
+                            onDone={advance}
+                        />
+                    )
                 )}
             </div>
         </div>
@@ -213,11 +213,11 @@ const DEFAULT_HELPS = [
     { mode: 'example', label: 'Give an example ✍️', prompt: 'Give me one simple example for the current step.' },
 ];
 
-function HelpChips({ beat, busy, onAsk }) {
-    const helps = [...(beat?.helps || []), ...DEFAULT_HELPS].slice(0, 4);
+function HelpChips({ helps, busy, onAsk }) {
+    if (!helps?.length) return null;
     return (
         <div className="tc-helps" aria-label="Ask for help">
-            {helps.map((h, i) => (
+            {helps.slice(0, 4).map((h, i) => (
                 <button key={i} className="tc-help" disabled={busy} onClick={() => onAsk(h.prompt, h.label, h.mode)}>
                     {h.label}
                 </button>
@@ -226,8 +226,9 @@ function HelpChips({ beat, busy, onAsk }) {
     );
 }
 
-// Deterministic score screen — the LLM never sets this.
-function ScoreSummary({ objectives, scores, overall, t, onFinish }) {
+// Deterministic score screen — the LLM never sets this. Help/deep-dive chips
+// live here (after all questions) so they never compete with the lesson steps.
+function ScoreSummary({ objectives, scores, overall, helps, busy, onAsk, t, onFinish }) {
     return (
         <div className="tc-summary">
             <div className="tc-score" style={{ '--pct': overall }}>
@@ -243,6 +244,7 @@ function ScoreSummary({ objectives, scores, overall, t, onFinish }) {
                     );
                 })}
             </ul>
+            <HelpChips helps={helps} busy={busy} onAsk={onAsk} />
             <button className="tc-primary-btn" onClick={onFinish}>
                 <Sparkles size={18} /> {t('done')}
             </button>
