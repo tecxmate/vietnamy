@@ -38,6 +38,19 @@ export function filterExercisesBySkill(exercises, skill) {
     return filtered.length > 0 ? filtered : exercises;
 }
 
+// Roadmap nodes repointed to the chat-style teacher (/teach/:lessonId) instead
+// of their old practice drill. Applied at read time, so no reseed is needed.
+const TEACHER_ROUTE_OVERRIDES = {
+    p1_PRON: '/teach/tones', // Unit 1 "Pronunciation: Tones"
+};
+
+export function applyTeacherRoutes(pathNodes) {
+    if (!Array.isArray(pathNodes)) return pathNodes;
+    return pathNodes.map(n =>
+        TEACHER_ROUTE_OVERRIDES[n.id] ? { ...n, practice_route: TEACHER_ROUTE_OVERRIDES[n.id] } : n
+    );
+}
+
 const isA1 = (node) => typeof node.cefr_level === 'string' && node.cefr_level.startsWith('A1');
 
 // Is this a vocab lesson node we should split into per-skill nodes?

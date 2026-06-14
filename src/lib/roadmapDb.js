@@ -1,5 +1,5 @@
 import { ROADMAP_SEED } from './content/roadmapSeedData';
-import { expandLessonsIntoSkills } from './content/skillSplit.js';
+import { expandLessonsIntoSkills, applyTeacherRoutes } from './content/skillSplit.js';
 
 const DB_KEY = 'vnme_mock_db_v24';
 const CURRICULUM_VERSION = 31; // v31: A1 lessons split into per-skill nodes
@@ -12,7 +12,7 @@ const cloneSeed = () => structuredClone(ROADMAP_SEED);
 // safe whether the db came from our own seed or one written by mockDbStore.
 const withSkills = (db) => {
     if (db && Array.isArray(db.path_nodes)) {
-        db.path_nodes = expandLessonsIntoSkills(db.path_nodes);
+        db.path_nodes = applyTeacherRoutes(expandLessonsIntoSkills(db.path_nodes));
     }
     return db;
 };

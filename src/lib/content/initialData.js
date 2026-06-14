@@ -1,7 +1,7 @@
 // Static curriculum seed data and builders for the local mock DB.
 
 import { SCENE_LOCATIONS, SCENES } from './sceneSeedData.js';
-import { expandLessonsIntoSkills } from './skillSplit.js';
+import { expandLessonsIntoSkills, applyTeacherRoutes } from './skillSplit.js';
 
 // ── Diacritics stripping ──
 const stripDiacritics = (s) => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
@@ -335,8 +335,9 @@ function createInitialData({ full = false } = {}) {
 
 export const getInitialData = (options) => {
     const data = createInitialData(options);
-    // Split A1 vocab lessons into per-skill nodes (Vocab/Listen/Speak/Read/Write).
-    data.path_nodes = expandLessonsIntoSkills(data.path_nodes);
+    // Split A1 vocab lessons into per-skill nodes (Vocab/Listen/Speak/Read/Write),
+    // then repoint any nodes that should open the chat-style teacher.
+    data.path_nodes = applyTeacherRoutes(expandLessonsIntoSkills(data.path_nodes));
     return data;
 };
 
