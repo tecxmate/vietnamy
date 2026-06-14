@@ -9,13 +9,13 @@
 
 import { createClient } from '@supabase/supabase-js';
 
-const EMBED_DIM = 768; // text-embedding-004
+const EMBED_DIM = 768; // gemini-embedding-001 truncated to 768 via outputDimensionality
 
 export function semanticConfig() {
-    const url = process.env.SUPABASE_URL || '';
+    const url = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL || '';
     const key = process.env.SUPABASE_SERVICE_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY || '';
     const gemini = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY || '';
-    const model = process.env.EMBED_MODEL || 'text-embedding-004';
+    const model = process.env.EMBED_MODEL || 'gemini-embedding-001';
     return { url, key, gemini, model, enabled: Boolean(url && key && gemini) };
 }
 
@@ -40,7 +40,7 @@ export async function embedText(text, taskType = 'RETRIEVAL_QUERY') {
     const r = await fetch(url, {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ content: { parts: [{ text: String(text).slice(0, 8000) }] }, taskType }),
+        body: JSON.stringify({ content: { parts: [{ text: String(text).slice(0, 8000) }] }, taskType, outputDimensionality: EMBED_DIM }),
     });
     if (!r.ok) throw new Error(`embed ${r.status}: ${(await r.text()).slice(0, 150)}`);
     const data = await r.json();
@@ -57,7 +57,7 @@ export async function embedBatch(texts, taskType = 'RETRIEVAL_DOCUMENT') {
     const { gemini, model } = semanticConfig();
     if (!gemini) return texts.map(() => null);
     const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:batchEmbedContents?key=${encodeURIComponent(gemini)}`;
-    const requests = texts.map(t => ({ model: `models/${model}`, content: { parts: [{ text: String(t).slice(0, 8000) }] }, taskType }));
+    const requests = texts.map(t => ({ model: `models/${model}`, content: { parts: [{ text: String(t).slice(0, 8000) }] }, taskType, outputDimensionality: EMBED_DIM }));
     const r = await fetch(url, {
         method: 'POST',
         headers: { 'content-type': 'application/json' },

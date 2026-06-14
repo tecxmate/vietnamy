@@ -118,16 +118,30 @@ async function main() {
     console.log(`[${corpus}] clearing existing rows…`);
     await clearCorpus(corpus);
 
+    // Retry on 429 (free-tier rate limit) with backoff.
+    const embedWithRetry = async (texts, tries = 6) => {
+        for (let attempt = 0; ; attempt++) {
+            try { return await embedBatch(texts, 'RETRIEVAL_DOCUMENT'); }
+            catch (e) {
+                if (/\b429\b/.test(e.message) && attempt < tries - 1) {
+                    const wait = 35000 * (attempt + 1);
+                    console.log(`  rate limited — waiting ${wait / 1000}s…`);
+                    await new Promise(r => setTimeout(r, wait));
+                } else throw e;
+            }
+        }
+    };
+
     let done = 0;
     for (let i = 0; i < docs.length; i += BATCH) {
         const slice = docs.slice(i, i + BATCH);
-        const vectors = await embedBatch(slice.map(d => d.content), 'RETRIEVAL_DOCUMENT');
+        const vectors = await embedWithRetry(slice.map(d => d.content));
         const rows = slice.map((d, j) => ({ corpus, source: d.source, content: d.content, metadata: d.metadata || {}, embedding: vectors[j] }))
             .filter(r => Array.isArray(r.embedding));
         if (rows.length) await insertDocs(rows);
         done += rows.length;
         console.log(`  ${done}/${docs.length}`);
-        await new Promise(r => setTimeout(r, 200)); // gentle rate-limit
+        await new Promise(r => setTimeout(r, 40000)); // stay under per-minute embedding quota
     }
     console.log(`[${corpus}] done — ${done} chunks embedded and stored.`);
 }
