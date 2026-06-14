@@ -165,6 +165,12 @@ Cost levers, in order:
    (`tutor_help_cache`, via the same DB connection) so it's persistent and shared
    across instances — zero cold-start at scale. Run `db/sql/tutor_help_cache.sql`
    once to enable L2; until then L1 still works (L2 is a graceful no-op).
+   **Verified end-to-end (June 2026):** a help answer written by one server
+   instance was served by a *fresh* instance after a full restart (cold L1)
+   straight from L2 — `cached: true`, no LLM call. So the cache is persistent and
+   shared: the first instance to answer a question caches it for all of them.
+   Latencies: L1 hit ~1ms, L2 cold read ~0.8s (Supabase REST; faster on the
+   `pg`/self-hosted driver), full miss ~3s.
 2. **Only call on free text** — tap-throughs are $0.
 3. **Prompt-cache** the system + facts block (both providers support it).
 4. **Tier the model** — a `-mini`/`-lite` for help, escalate only for free text.
