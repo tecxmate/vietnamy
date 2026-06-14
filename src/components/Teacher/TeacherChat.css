@@ -74,17 +74,6 @@
     to { opacity: 1; transform: none; }
 }
 
-/* Typing indicator */
-.tc-typing { display: flex; gap: 4px; align-items: center; padding: 14px; }
-.tc-typing span {
-    width: 7px; height: 7px; border-radius: 50%;
-    background: var(--text-muted);
-    animation: tc-blink 1.2s infinite ease-in-out;
-}
-.tc-typing span:nth-child(2) { animation-delay: 0.2s; }
-.tc-typing span:nth-child(3) { animation-delay: 0.4s; }
-@keyframes tc-blink { 0%, 60%, 100% { opacity: 0.25; } 30% { opacity: 1; } }
-
 /* Bottom interaction dock */
 .teacher-chat__dock {
     flex-shrink: 0;

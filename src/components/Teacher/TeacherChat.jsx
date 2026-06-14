@@ -40,11 +40,7 @@ const TeacherChat = ({ lessonId: lessonIdProp }) => {
     const [messages, setMessages] = useState([]);
     const [beatIndex, setBeatIndex] = useState(0);
     const [awaiting, setAwaiting] = useState(null); // current interactive beat, or null
-    const [revealedUpTo, setRevealedUpTo] = useState(-1);
     const scrollRef = useRef(null);
-
-    // Typing indicator is derived, not stored — avoids setState in the effect.
-    const isTyping = beatIndex < beats.length && revealedUpTo < beatIndex && !awaiting;
 
     const pushTeacher = useCallback((text) => {
         setMessages(m => [...m, { id: `m${m.length}`, from: 'teacher', text }]);
@@ -122,18 +118,15 @@ const TeacherChat = ({ lessonId: lessonIdProp }) => {
         }
     }, [busy, lessonId, lesson, objectives, scores, awaiting, pushStudent, pushTeacher]);
 
-    // Director: reveal each beat with a "typing" pause; auto-advance plain
-    // messages, pause on interactive ones until the widget reports back.
+    // Director: reveal each beat after a short pause so it lands like a text
+    // message; auto-advance plain messages, pause on interactive ones.
     useEffect(() => {
         if (beatIndex >= beats.length) return undefined;
         const beat = beats[beatIndex];
         const timers = [];
         // Effect body only schedules timers; all setState happens in callbacks.
-        // Deps are [beatIndex, beats] only — revealedUpTo must NOT re-run this
-        // effect, or its update would clear the pending auto-advance timer.
         timers.push(setTimeout(() => {
             setMessages(m => [...m, { id: `m${m.length}`, from: 'teacher', text: beat.text }]);
-            setRevealedUpTo(beatIndex);
             if (beat.type === 'say') {
                 timers.push(setTimeout(() => setBeatIndex(i => i + 1), 600));
             } else {
@@ -146,7 +139,7 @@ const TeacherChat = ({ lessonId: lessonIdProp }) => {
     // Keep the latest message in view.
     useEffect(() => {
         scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: 'smooth' });
-    }, [messages, isTyping, awaiting]);
+    }, [messages, awaiting]);
 
     return (
         <div className="teacher-chat">
@@ -167,11 +160,6 @@ const TeacherChat = ({ lessonId: lessonIdProp }) => {
                         <div className={`tc-bubble tc-bubble--${msg.from}`}>{formatText(msg.text)}</div>
                     </div>
                 ))}
-                {(isTyping || busy) && (
-                    <div className="tc-row tc-row--teacher">
-                        <div className="tc-bubble tc-bubble--teacher tc-typing"><span /><span /><span /></div>
-                    </div>
-                )}
             </div>
 
             <div className="teacher-chat__dock">
