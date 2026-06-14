@@ -182,3 +182,47 @@ block, (3) Haiku by default / escalate to Sonnet only for hard turns, (4) cap
 - **Latency** → stream `say`; show the typing indicator (already built).
 - **Abuse / off-topic / cost** → per-user rate limit + max tokens + the scope
   guard in the system prompt; the model can't touch grading or the score.
+
+---
+
+## 10. Pronunciation scoring by language (IMPORTANT FINDING)
+
+The `pronounce` beat records audio (`recordPCM`) and posts it to Azure Speech
+via `/api/pronunciation`. How a take is scored depends on the language, because
+**Azure Pronunciation Assessment supports only a limited set of locales — and
+Vietnamese (`vi-VN`) is NOT one of them** (verified June 2026 against
+[Azure language support](https://learn.microsoft.com/en-us/azure/ai-services/speech-service/language-support)).
+
+What we observed for `vi-VN`: Azure does plain speech recognition (and its ASR
+**is tone-aware** — it transcribes `má` with the sắc mark), returns
+`status: Success`, but **omits the `PronunciationAssessment` object**, so every
+score field is `null`. The symptom was the teacher repeating "I couldn't quite
+hear that" even on perfect speech.
+
+Two scoring paths, chosen automatically by what Azure returns:
+
+| Path | When | How |
+|---|---|---|
+| **Phoneme assessment** | Azure returns `scores` (en-US, zh-CN, … — supported locales) | use `pronunciation`/`accuracy` %; ≥80 strong, ≥60 partial, else none |
+| **Recognition match** (Vietnamese) | `scores` null but `status: Success` + `recognized` | compare the transcript to the target: exact (right tone) → **strong/90%**, right syllable but wrong tone → **partial/55%** + a "watch the tone" hint, different word → none |
+
+For the wrong-tone check we strip the five Vietnamese tone marks
+(huyền/sắc/ngã/hỏi/nặng = combining U+0300/0301/0303/0309/0323) while keeping
+vowel-quality marks (circumflex/breve/horn). Recognition match is implemented
+client-side in `TeacherChat.PronounceCard` (`normVi` / `stripViTone`).
+
+**Why this is fine — even good:** for a tonal language the most important
+pronunciation signal is *did you produce the right tone*, and tone-aware ASR
+match captures exactly that. Phoneme-level detail (which Azure can't give for
+Vietnamese anyway) is a refinement, not the core.
+
+**Cross-language implication:** pronunciation-feature richness varies by
+language. Supported locales get full phoneme assessment for free; unsupported
+ones fall back to ASR recognition match (works wherever Azure has tone/word-
+accurate ASR). Worth confirming Azure's assessment + ASR support per target
+language before promising phoneme-level scoring in that language's course.
+
+Also fixed alongside this: `recordPCM` resumes a possibly-`suspended`
+AudioContext (Safari/Chrome) — without it the capture was silent — and added
+voice-activity **auto-stop** (~2s of silence, 8s cap) so the learner doesn't
+have to stop manually.
