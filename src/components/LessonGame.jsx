@@ -5,7 +5,7 @@ import { lookupWords } from '../lib/dictionaryLookup';
 import { getConceptsForLesson } from '../lib/concepts';
 import { useProgress } from '../context/ProgressContext';
 import { useUser } from '../context/UserContext';
-import { getNodeByLessonId, getLessonBlueprint, getExercisesGenerated, getNextNode, getNodeRoute } from '../lib/db';
+import { getNodeByLessonId, getNodeById, getLessonBlueprint, getExercisesGenerated, getNextNode, getNodeRoute } from '../lib/db';
 import speak, { preloadSpeak, scheduleSpeak, clearSpeakQueue } from '../utils/speak';
 import { startPCMRecording } from '../utils/recordPCM';
 import { addItemsFromLesson, recordReview } from '../lib/srs';
@@ -260,11 +260,16 @@ const LessonGame = () => {
         setHalfwayLine(null);
         setStreakLine(null);
 
-        // Determine current session number for this lesson's node
-        const node = getNodeByLessonId(lessonId);
+        // Determine current session number for this lesson's node.
+        // Skill-split nodes share a lesson_id, so resolve the exact node via the
+        // ?node= param when present; ?skill= filters the generated exercises.
+        const params = new URLSearchParams(location.search);
+        const skill = params.get('skill') || '';
+        const nodeIdParam = params.get('node');
+        const node = (nodeIdParam && getNodeById(nodeIdParam)) || getNodeByLessonId(lessonId);
         const session = node ? progressCtx.getNodeSessionCount(node.id, progressMode) : 0;
 
-        const loaded = getExercisesGenerated(lessonId, session);
+        const loaded = getExercisesGenerated(lessonId, session, { skill });
         if (loaded.length === 0) {
             console.warn(`No exercises found for ${lessonId}`);
         }

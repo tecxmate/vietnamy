@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { MessageCircle, Zap, Trophy, Pen, Check, Lock, BookOpen, Music, Clapperboard, ChevronDown, Plane, Briefcase, Heart, Flame, Sparkles, Bell } from 'lucide-react';
+import { MessageCircle, Zap, Trophy, Pen, Check, Lock, BookOpen, Music, Clapperboard, ChevronDown, Plane, Briefcase, Heart, Flame, Sparkles, Bell, Layers, Headphones, Mic, PencilLine } from 'lucide-react';
 import { getUnits, getNodesForUnitWithProgress } from '../../lib/roadmapDb';
 import GrammarGuidebook from '../GrammarGuidebook';
 import RecommendedNext from '../RecommendedNext';
@@ -26,7 +26,18 @@ const NODE_STYLES = {
     gold:   { color: '#F59E0B', dark: '#D97706', bg: 'rgba(245,158,11,0.12)', muted: 'rgba(245,158,11,0.35)', mutedBorder: 'rgba(245,158,11,0.25)', mutedIcon: 'rgba(245,158,11,0.5)', icon: Clapperboard, label: 'Scene' },
 };
 
+// Per-skill node styles (A1 lessons split into Vocab/Listen/Speak/Read/Write).
+const SKILL_STYLES = {
+    vocab:  { color: '#FFB703', dark: '#CC9202', bg: 'rgba(255,183,3,0.12)',  muted: 'rgba(255,183,3,0.35)',  mutedBorder: 'rgba(255,183,3,0.25)',  mutedIcon: 'rgba(255,183,3,0.5)',  icon: Layers,     label: 'Vocab' },
+    listen: { color: '#1CB0F6', dark: '#0D8ECF', bg: 'rgba(28,176,246,0.12)', muted: 'rgba(28,176,246,0.35)', mutedBorder: 'rgba(28,176,246,0.25)', mutedIcon: 'rgba(28,176,246,0.5)', icon: Headphones, label: 'Listen' },
+    speak:  { color: '#06D6A0', dark: '#05A67D', bg: 'rgba(6,214,160,0.12)',  muted: 'rgba(6,214,160,0.35)',  mutedBorder: 'rgba(6,214,160,0.25)',  mutedIcon: 'rgba(6,214,160,0.5)',  icon: Mic,        label: 'Speak' },
+    read:   { color: '#8B5CF6', dark: '#6D28D9', bg: 'rgba(139,92,246,0.12)', muted: 'rgba(139,92,246,0.35)', mutedBorder: 'rgba(139,92,246,0.25)', mutedIcon: 'rgba(139,92,246,0.5)', icon: BookOpen,   label: 'Read' },
+    write:  { color: '#F4795B', dark: '#D85A3C', bg: 'rgba(244,121,91,0.12)', muted: 'rgba(244,121,91,0.35)', mutedBorder: 'rgba(244,121,91,0.25)', mutedIcon: 'rgba(244,121,91,0.5)', icon: PencilLine, label: 'Write' },
+};
+
 function getNodeStyle(node) {
+    // Per-skill split nodes (share module_type 'orange') — check skill first.
+    if (node.skill && SKILL_STYLES[node.skill]) return SKILL_STYLES[node.skill];
     // Module-type based coloring (new cycle system)
     if (node.module_type === 'orange') return NODE_STYLES.orange;
     if (node.module_type === 'blue') return NODE_STYLES.blue;
@@ -42,6 +53,8 @@ function getNodeStyle(node) {
 }
 
 function getNodeLabel(node, style, t) {
+    // Per-skill split nodes show their localized skill name.
+    if (node.skill) return t(`skill_${node.skill}`);
     // Mini-tests get "Quiz" label, module tests show their module type
     if (node.test_scope === 'module') return t('roadmap_type_quiz');
     if (node.test_scope === 'unit') return t('roadmap_type_quizzes');
@@ -144,7 +157,10 @@ const RoadmapTab = () => {
     const navigateNode = (node) => {
         switch (node.type) {
             case 'lesson':
-                navigate(`/lesson/${node.content_ref_id}`);
+                // Skill-split nodes carry skill + node id so the lesson engine
+                // filters exercises and tracks the right node.
+                if (node.skill) navigate(`/lesson/${node.content_ref_id}?skill=${node.skill}&node=${node.id}`);
+                else navigate(`/lesson/${node.content_ref_id}`);
                 break;
             case 'skill':
                 if (node.skill_content?.type === 'grammar_unit') {

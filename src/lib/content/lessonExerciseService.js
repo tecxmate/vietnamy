@@ -2,6 +2,7 @@ import modules from '../../data/lessons.json';
 import { getImageForWord } from '../../utils/vocabImageLookup';
 import { generateExercises } from '../exerciseGenerator';
 import { resolveExerciseProfile } from '../exerciseProfiles';
+import { filterExercisesBySkill } from './skillSplit.js';
 import { getDueItemIds } from '../srs';
 import { getWeakItems as _getWeakItems, extractItemIds as _extractItemIds } from '../wordGrades';
 
@@ -105,9 +106,10 @@ export const createLessonExerciseService = ({ getDB }) => {
         return knownItems.filter(item => !currentItemIds.has(item.id));
     };
 
-    const getExercisesGenerated = (lessonId, session = 0) => {
+    const getExercisesGenerated = (lessonId, session = 0, options = {}) => {
+        const skill = options.skill || '';
         const today = new Date().toISOString().slice(0, 10);
-        const cacheKey = `${lessonId}_s${session}_${today}`;
+        const cacheKey = `${lessonId}_s${session}_${skill}_${today}`;
         if (exerciseCache.has(cacheKey)) return exerciseCache.get(cacheKey);
 
         const db = getDB();
@@ -181,7 +183,8 @@ export const createLessonExerciseService = ({ getDB }) => {
             cefrLevel: lessonNode?.cefr_level,
         });
 
-        const exercises = generateExercises(lessonId, allItems, distractorPool, imageMap, session, profile.options);
+        const generated = generateExercises(lessonId, allItems, distractorPool, imageMap, session, profile.options);
+        const exercises = filterExercisesBySkill(generated, skill);
         exercises.forEach(ex => { ex.wordHints = wordHints; });
 
         exerciseCache.set(cacheKey, exercises);

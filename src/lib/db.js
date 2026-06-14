@@ -230,7 +230,13 @@ export const getNodeRoute = (node) => {
     if (!node) return '/';
     const type = node.node_type || node.type;
     const lessonId = node.lesson_id || node.content_ref_id;
-    if (type === 'lesson') return lessonId ? `/lesson/${lessonId}` : '/';
+    if (type === 'lesson') {
+        if (!lessonId) return '/';
+        // Skill-split nodes share a lesson_id; carry skill + node id so the
+        // lesson engine filters exercises and tracks the right node.
+        if (node.skill) return `/lesson/${lessonId}?skill=${node.skill}&node=${node.id}`;
+        return `/lesson/${lessonId}`;
+    }
     if (type === 'test') return `/test/${node.id}`;
     if (type === 'scene') return node.scene_id ? `/scene/${node.scene_id}` : '/';
     if (type === 'skill') {

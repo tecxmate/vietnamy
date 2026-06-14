@@ -78,7 +78,7 @@ export const getNodesForUnitWithProgress = (unitId, completedNodeIds) => {
         const sourceNode = n.source_node_id ? nodesById.get(n.source_node_id) : null;
         const sourceLesson = sourceNode?.lesson_id ? lessonsById.get(sourceNode.lesson_id) : null;
         let label = n.label || '';
-        if (n.node_type === 'lesson' && n.lesson_id && lesson) label = lesson.title;
+        if (n.node_type === 'lesson' && n.lesson_id && lesson && !n.skill) label = lesson.title;
 
         return {
             id: n.id,
@@ -90,6 +90,7 @@ export const getNodesForUnitWithProgress = (unitId, completedNodeIds) => {
             practice_route: n.practice_route || null,
             skill_content: n.skill_content || null,
             module_type: n.module_type || null,
+            skill: n.skill || null,
             test_scope: n.test_scope || null,
             source_node_id: n.source_node_id || null,
             scene_id: n.scene_id || null,

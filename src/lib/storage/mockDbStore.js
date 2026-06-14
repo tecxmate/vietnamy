@@ -1,7 +1,7 @@
 import { buildRuntimeFromCanonical, getInitialData, hydrateInitialData } from '../content/initialData';
 
 const DB_KEY = 'vnme_mock_db_v24'; // v24: unified_db.json as primary source
-const CURRICULUM_VERSION = 32; // v32: scene topics + goal-aware next-node
+const CURRICULUM_VERSION = 33; // v33: A1 lessons split into per-skill nodes
 
 let dbCache = null;
 let dbIsFull = false;
