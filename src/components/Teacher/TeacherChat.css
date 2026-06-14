@@ -232,9 +232,13 @@
     content: ''; position: absolute; inset: 7px; border-radius: 50%;
     background: var(--surface-color);
 }
-.tc-score__val { position: absolute; inset: 0; display: flex; align-items: baseline; justify-content: center; }
-.tc-score__num { font-size: 26px; font-weight: 800; color: var(--text-main); }
-.tc-score__pct { font-size: 13px; font-weight: 700; color: var(--text-muted); margin-left: 1px; }
+/* One centered text unit — no two-size split, so it can't go off-centre. */
+.tc-score__val {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; font-weight: 800; color: var(--text-main);
+    font-variant-numeric: tabular-nums;
+}
 .tc-obj-list { list-style: none; margin: 0; padding: 0; width: 100%; display: flex; flex-direction: column; gap: 6px; }
 .tc-obj-list li {
     display: flex; align-items: center; gap: 8px;

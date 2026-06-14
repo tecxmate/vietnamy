@@ -379,7 +379,7 @@ function ScoreSummary({ objectives, scores, overall, helps, busy, onAsk, next, o
     return (
         <div className="tc-summary">
             <div className="tc-score" style={{ '--pct': overall }}>
-                <span className="tc-score__val"><span className="tc-score__num">{overall}</span><span className="tc-score__pct">%</span></span>
+                <span className="tc-score__val">{overall}%</span>
             </div>
             <ul className="tc-obj-list">
                 {objectives.map(o => {
