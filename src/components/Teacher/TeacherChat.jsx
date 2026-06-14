@@ -21,6 +21,9 @@ function formatText(text) {
 // ship a new teacher lesson — the shell, director and widgets are shared.
 const LESSONS = { tones: buildTonesLesson, greetings: buildGreetingsLesson };
 
+// Beats with a right/wrong answer — help chips stay hidden until these are answered.
+const GRADED_BEATS = new Set(['mcq', 'tone_listen', 'listen_pick']);
+
 const TeacherChat = ({ lessonId: lessonIdProp }) => {
     const navigate = useNavigate();
     const params = useParams();
@@ -52,7 +55,11 @@ const TeacherChat = ({ lessonId: lessonIdProp }) => {
     // ── Mastery (deterministic) ──
     const objectives = useMemo(() => lesson.objectives || [], [lesson]);
     const [mastery, setMastery] = useState({}); // objId -> evidence scores []
+    // `answered` gates the help chips: while a graded question is unanswered we
+    // show only the answer options, so help never competes with the choices.
+    const [answered, setAnswered] = useState(false);
     const recordEvidence = useCallback((objId, evidence) => {
+        setAnswered(true);
         if (!objId) return;
         const val = evidence === 'strong' ? 1 : evidence === 'partial' ? 0.6 : 0;
         setMastery(prev => ({ ...prev, [objId]: [...(prev[objId] || []), val] }));
@@ -122,6 +129,7 @@ const TeacherChat = ({ lessonId: lessonIdProp }) => {
             if (beat.type === 'say') {
                 timers.push(setTimeout(() => setBeatIndex(i => i + 1), 600));
             } else {
+                setAnswered(false);
                 setAwaiting(beat);
             }
         }, 700));
@@ -176,7 +184,10 @@ const TeacherChat = ({ lessonId: lessonIdProp }) => {
                                 onDone={advance}
                             />
                         )}
-                        <HelpChips beat={awaiting} busy={busy} onAsk={handleAsk} />
+                        {/* Help only when no graded question is waiting for an answer. */}
+                        {!(awaiting && GRADED_BEATS.has(awaiting.type) && !answered) && (
+                            <HelpChips beat={awaiting} busy={busy} onAsk={handleAsk} />
+                        )}
                     </>
                 )}
             </div>
