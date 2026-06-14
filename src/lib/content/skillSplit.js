@@ -41,8 +41,11 @@ export function filterExercisesBySkill(exercises, skill) {
 const isA1 = (node) => typeof node.cefr_level === 'string' && node.cefr_level.startsWith('A1');
 
 // Is this a vocab lesson node we should split into per-skill nodes?
+// `!node.skill` keeps the transform idempotent — an already-split node
+// (which is still an orange A1 lesson) is never re-split.
 function isSplittableLesson(node) {
     return node
+        && !node.skill
         && node.module_type === 'orange'
         && (node.node_type === 'lesson' || node.type === 'lesson')
         && node.lesson_id

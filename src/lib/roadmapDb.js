@@ -1,11 +1,21 @@
 import { ROADMAP_SEED } from './content/roadmapSeedData';
+import { expandLessonsIntoSkills } from './content/skillSplit.js';
 
 const DB_KEY = 'vnme_mock_db_v24';
-const CURRICULUM_VERSION = 30;
+const CURRICULUM_VERSION = 31; // v31: A1 lessons split into per-skill nodes
 
 let dbCache = null;
 
 const cloneSeed = () => structuredClone(ROADMAP_SEED);
+
+// Apply the per-skill lesson split to a db's path_nodes. Idempotent, so it's
+// safe whether the db came from our own seed or one written by mockDbStore.
+const withSkills = (db) => {
+    if (db && Array.isArray(db.path_nodes)) {
+        db.path_nodes = expandLessonsIntoSkills(db.path_nodes);
+    }
+    return db;
+};
 
 const persist = (db) => {
     try {
@@ -21,13 +31,13 @@ const getRoadmapDB = () => {
         const raw = localStorage.getItem(DB_KEY);
         const storedVersion = parseInt(localStorage.getItem(DB_KEY + '_cv') || '1', 10);
         if (!raw || storedVersion < CURRICULUM_VERSION) {
-            dbCache = cloneSeed();
+            dbCache = withSkills(cloneSeed());
             persist(dbCache);
             return dbCache;
         }
-        dbCache = JSON.parse(raw);
+        dbCache = withSkills(JSON.parse(raw));
     } catch {
-        dbCache = cloneSeed();
+        dbCache = withSkills(cloneSeed());
     }
 
     return dbCache;
