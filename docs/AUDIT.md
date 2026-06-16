@@ -32,6 +32,7 @@ lessons / 1,001 words / 479 sentences. Canonical content bundle at repo-root `co
 | 1.7 | Docs: fix `README.md` + `.claude/CLAUDE.md` + wiki to the real 3-tab / ProgressContext / no-currency system | clean | DONE |
 | 1.8 | Delete orphaned `src/pages/Practice/VocabPractice.css` (2026-06-14) — no `VocabPractice.jsx` exists, file imported nowhere, its `.voc-*` classes used in 0 files. 29→28 src CSS files. | clean | DONE |
 | 1.9 | **Orphan modules — owner CONFIRM before delete (2026-06-15).** 4 src modules imported nowhere (basename referenced nowhere else, no static/dynamic import). **Removal candidates (4-month orphans):** `src/utils/pitchDetector.js` (`detectPitch`/`hzToSemitones`/`calibrateBaseline` — tone trainer uses `utils/pitch.js` instead) and `src/components/FamilyTree.jsx` (family-tree feature, never wired). **NOT dead — leave:** `src/lib/content/curriculumDraftApi.js` (added 2 days ago) + `src/lib/vocabLibrary.js` (5 days) are recent in-progress work. Held off deleting the 2 candidates because the pending **superapp reorg** (see untracked `docs/HANDOFF-superapp-reorg.md`) may repurpose them — product call. | clean | CONFIRM |
+| 1.10 | Delete stray `src/data/.grammar_progress.json` (2026-06-16) — a **0-byte** dot-file committed by accident 4mo ago, referenced nowhere, not gitignored. (Verified the `curricula/*.json` flagged alongside are build sources, and `alphabet.js`/`vowels.js`/`ttsVoices.js` are imported sans extension — false positives, left.) | clean | DONE |
 
 ---
 
