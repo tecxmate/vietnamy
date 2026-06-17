@@ -79,6 +79,7 @@ export function buildRuntimeFromCanonical(db, { includeContent = true } = {}) {
             title: lesson.title,
             target_xp: lesson.xpReward || 10,
             exercise_profile_id: lesson.exerciseProfileId || null,
+            mcq_type_ids: Array.isArray(lesson.mcqTypeIds) && lesson.mcqTypeIds.length ? lesson.mcqTypeIds : null,
             topic: lesson.topic,
         });
 

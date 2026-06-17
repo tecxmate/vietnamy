@@ -2,6 +2,8 @@
 // Input: lesson items (words/sentences with translations) + distractor pool
 // Output: progressive exercise sequence
 
+import { CHOICE_EXERCISE_TYPES, normalizeMcqTypeIds } from './mcqTypes';
+
 function shuffleArray(arr) {
     const a = [...arr];
     for (let i = a.length - 1; i > 0; i--) {
@@ -460,6 +462,13 @@ function interleaveExercises(exercises) {
     return [...matchExercises, ...result];
 }
 
+function applyMcqTypeFilter(exercises, options = {}) {
+    const allowedMcqTypes = normalizeMcqTypeIds(options.mcqTypeIds || options.allowedMcqTypes);
+    if (allowedMcqTypes.length === 0) return exercises;
+    const allowed = new Set(allowedMcqTypes);
+    return exercises.filter(ex => !CHOICE_EXERCISE_TYPES.has(ex.exercise_type) || allowed.has(ex.exercise_type));
+}
+
 /**
  * Main generator: takes lesson items and produces a progressive exercise sequence.
  * Phase ordering follows Duolingo pedagogy: recognition → production, passive → active.
@@ -472,7 +481,8 @@ function interleaveExercises(exercises) {
  * @param {number} session - session number (0-3), varies the exercise mix
  * @param {Object} options - per-lesson knobs. { disableTyping } swaps "type what
  *   you hear" for the gentler "listen & choose" twin (for beginners who can't yet
- *   type Vietnamese diacritics). First step toward editable per-lesson exercise profiles.
+ *   type Vietnamese diacritics). { mcqTypeIds } limits choice-style formats for
+ *   lessons configured in the admin builder.
  * @returns {Array} exercises
  */
 export function generateExercises(lessonId, items, distractorPool, imageMap = {}, session = 0, options = {}) {
@@ -580,5 +590,5 @@ export function generateExercises(lessonId, items, distractorPool, imageMap = {}
     }
 
     // Interleave exercise types for variety (match_pairs stay first, soft difficulty curve)
-    return interleaveExercises(exercises);
+    return interleaveExercises(applyMcqTypeFilter(exercises, options));
 }

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { MessageCircle, Zap, Trophy, Pen, Check, Lock, BookOpen, Music, Clapperboard, ChevronDown, Plane, Briefcase, Heart, Flame, Sparkles, Bell, Layers, Headphones, Mic, PencilLine } from 'lucide-react';
+import { MessageCircle, Zap, Trophy, Pen, Check, Lock, BookOpen, Music, Clapperboard, ChevronDown, ChevronRight, Plane, Briefcase, Heart, Flame, Sparkles, Bell, Layers, Headphones, Mic, PencilLine, X } from 'lucide-react';
 import { getUnits, getNodesForUnitWithProgress } from '../../lib/roadmapDb';
+import { getCanonicalLessonContent } from '../../lib/content/canonicalCurriculumStore';
 import GrammarGuidebook from '../GrammarGuidebook';
 import RecommendedNext from '../RecommendedNext';
 import { useProgress } from '../../context/ProgressContext';
@@ -12,6 +13,7 @@ import SoundButton from '../SoundButton';
 import { DEFAULT_LEARNER_MODE, ALL_LEARNER_MODE, ENABLE_LEARNING_PATH_CHOOSER, getProgressMode, getTopicsForMode, getModeConfig, LEARNER_MODES } from '../../data/learnerModes';
 import { useT, normalizeLang } from '../../lib/i18n';
 import MobileAccountBar from '../MobileAccountBar';
+import { getDueItems } from '../../lib/srs';
 
 const MODE_ICONS = { BookOpen, Plane, Briefcase, Heart };
 const BeKhe = React.lazy(() => import('../BeKhe/BeKhe'));
@@ -100,6 +102,7 @@ const RoadmapTab = () => {
     const [grammarByUnit, setGrammarByUnit] = useState({});
     const [recommendedNodeIds, setRecommendedNodeIds] = useState(() => new Set());
     const [emptyLine, setEmptyLine] = useState(null);
+    const [previewNode, setPreviewNode] = useState(null);
 
     React.useEffect(() => {
         let cancelled = false;
@@ -186,8 +189,7 @@ const RoadmapTab = () => {
     };
 
     const handleNodeClick = (node) => {
-        if (node.status === 'active' || (testMode && node.status === 'locked')) navigateNode(node);
-        else if (node.status === 'completed') setRedoNode(node);
+        setPreviewNode(node);
     };
 
     const modeTopicIds = React.useMemo(() => new Set(modeTopics.map(tp => tp.id)), [modeTopics]);
@@ -228,6 +230,16 @@ const RoadmapTab = () => {
         () => units.some(unit => (visibleNodesMap[unit.id] || []).length > 0),
         [units, visibleNodesMap]
     );
+
+    const handleRecommendedLessonSelect = React.useCallback((lessonId) => {
+        const node = Object.values(visibleNodesMap).flat().find(n => n.content_ref_id === lessonId)
+            || Object.values(nodesMap).flat().find(n => n.content_ref_id === lessonId);
+        if (!node) {
+            navigate(`/lesson/${lessonId}`);
+            return;
+        }
+        setPreviewNode(node.status === 'locked' ? { ...node, status: 'active' } : node);
+    }, [navigate, nodesMap, visibleNodesMap]);
 
     const mascotLang = normalizeLang(userProfile?.nativeLang);
 
@@ -281,12 +293,17 @@ const RoadmapTab = () => {
                         const { getRecommendations } = await import('../../lib/recommendations');
                         const top = getRecommendations(modeCompletedNodes, currentMode, { limit: 1 }).recs[0];
                         if (top?.lesson?.id) {
-                            navigate(`/lesson/${top.lesson.id}`);
-                            return;
+                            const recommendedNode = Object.values(visibleNodesMap)
+                                .flat()
+                                .find(node => node.content_ref_id === top.lesson.id);
+                            if (recommendedNode) {
+                                setPreviewNode(recommendedNode);
+                                return;
+                            }
                         }
                     } catch { /* fall back to the visible linear node */ }
                 }
-                navigateNode(activeNode);
+                setPreviewNode(activeNode);
                 return;
             }
         }
@@ -305,6 +322,37 @@ const RoadmapTab = () => {
             .replace('{title}', title);
     };
     const translateNodeLabel = (node) => t(`roadmap_node_${node.id}`, node.label);
+    const previewContent = React.useMemo(() => {
+        if (!previewNode) return null;
+
+        const style = getNodeStyle(previewNode);
+        const lessonContent = previewNode.content_ref_id
+            ? getCanonicalLessonContent(previewNode.content_ref_id)
+            : null;
+        const conversation = lessonContent?.conversations?.[0] || null;
+        const words = (lessonContent?.words || []).slice(0, 6);
+        const sentences = (lessonContent?.sentences || []).slice(0, 4);
+        const dueReviewCount = previewNode.type === 'lesson' ? getDueItems().length : 0;
+        const sessionCount = getNodeSessionCount(previewNode.id, progressMode);
+        const sessionsTarget = previewNode.sessions_required || (previewNode.skill_content?.type === 'grammar_unit' ? 2 : SESSIONS_TO_COMPLETE);
+
+        return {
+            style,
+            Icon: style.icon,
+            title: translateNodeLabel(previewNode),
+            sublabel: getNodeLabel(previewNode, style, t),
+            conversation,
+            words,
+            sentences,
+            dueReviewCount,
+            sessionCount,
+            sessionsTarget,
+            canStart: previewNode.status !== 'locked' || testMode,
+            isCompleted: previewNode.status === 'completed',
+            isLocked: previewNode.status === 'locked' && !testMode,
+            hasProgress: sessionCount > 0 && previewNode.status !== 'completed',
+        };
+    }, [previewNode, getNodeSessionCount, progressMode, SESSIONS_TO_COMPLETE, t, testMode]);
 
     return (
         <div>
@@ -517,7 +565,11 @@ const RoadmapTab = () => {
                 </div>
             )}
 
-            <RecommendedNext completedNodeIds={modeCompletedNodes} purpose={currentMode} />
+            <RecommendedNext
+                completedNodeIds={modeCompletedNodes}
+                purpose={currentMode}
+                onLessonSelect={handleRecommendedLessonSelect}
+            />
 
             {units.map((unit) => {
                 const nodes = nodesMap[unit.id] || [];
@@ -552,12 +604,11 @@ const RoadmapTab = () => {
                                 const Icon = style.icon;
                                 const isActive = node.status === 'active';
                                 const isCompleted = node.status === 'completed';
-                                // When testMode is off, treat ALL nodes as locked
-                                const isLocked = !testMode || node.status === 'locked';
+                                const isLocked = node.status === 'locked' && !testMode;
                                 const sublabel = getNodeLabel(node, style, t);
                                 const sessionCount = getNodeSessionCount(node.id, progressMode);
                                 const sessionsTarget = node.sessions_required || (node.skill_content?.type === 'grammar_unit' ? 2 : SESSIONS_TO_COMPLETE);
-                                const hasProgress = testMode && sessionCount > 0 && !isCompleted;
+                                const hasProgress = sessionCount > 0 && !isCompleted;
                                 const quiz = quizByParent[node.id];
                                 const quizDone = quiz?.status === 'completed';
                                 const quizReady = quiz?.status === 'active';
@@ -577,12 +628,23 @@ const RoadmapTab = () => {
                                     >
                                         {/* Main card content */}
                                         <div
-                                            onClick={() => testMode && handleNodeClick(node)}
+                                            role="button"
+                                            tabIndex={0}
+                                            onClick={() => handleNodeClick(node)}
+                                            onPointerUp={() => handleNodeClick(node)}
+                                            onKeyDown={(event) => {
+                                                if (event.key === 'Enter' || event.key === ' ') {
+                                                    event.preventDefault();
+                                                    handleNodeClick(node);
+                                                }
+                                            }}
                                             style={{
                                                 flex: 1, minWidth: 0,
                                                 display: 'flex', flexDirection: 'column',
                                                 backgroundColor: isLocked ? 'var(--surface-color)' : style.bg,
-                                                cursor: testMode && (isActive || isCompleted) ? 'pointer' : 'default',
+                                                cursor: 'pointer',
+                                                outline: 'none',
+                                                textAlign: 'left',
                                             }}
                                         >
                                             <div style={{ display: 'flex', alignItems: 'center', gap: 14, padding: '12px 16px' }}>
@@ -631,19 +693,24 @@ const RoadmapTab = () => {
                                                         </div>
                                                     )}
                                                 </div>
-                                                {testMode && isActive && !hasProgress && (
+                                                {isLocked && (
+                                                    <div style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 12, fontWeight: 800, color: style.muted, textTransform: 'uppercase', letterSpacing: '0.5px', flexShrink: 0 }}>
+                                                        <Lock size={14} /> Locked
+                                                    </div>
+                                                )}
+                                                {!isLocked && isActive && !hasProgress && (
                                                     <div style={{ fontSize: 12, fontWeight: 800, color: style.color, textTransform: 'uppercase', letterSpacing: '0.5px', flexShrink: 0 }}>
                                                         {t('start_upper')}
                                                     </div>
                                                 )}
-                                                {testMode && hasProgress && (
+                                                {!isLocked && hasProgress && (
                                                     <div style={{ fontSize: 12, fontWeight: 800, color: style.color, textTransform: 'uppercase', letterSpacing: '0.5px', flexShrink: 0 }}>
                                                         {t('continue_upper')}
                                                     </div>
                                                 )}
                                             </div>
                                             {/* Segmented progress bar */}
-                                            {testMode && (isActive || hasProgress || isCompleted) && (
+                                            {!isLocked && (isActive || hasProgress || isCompleted) && (
                                                 <div style={{ display: 'flex', gap: 3, padding: '0 16px 8px' }}>
                                                     {Array.from({ length: sessionsTarget }, (_, i) => (
                                                         <div key={i} style={{
@@ -659,21 +726,28 @@ const RoadmapTab = () => {
 
                                         {/* Trophy endcap — quiz tap target, or completion badge */}
                                         {quiz ? (
-                                            <div
-                                                onClick={(e) => { e.stopPropagation(); if (testMode) handleNodeClick(quiz); }}
+                                            <button
+                                                type="button"
+                                                onClick={(e) => { e.stopPropagation(); handleNodeClick(quiz); }}
+                                                onPointerUp={(e) => { e.stopPropagation(); handleNodeClick(quiz); }}
                                                 style={{
                                                     width: 52, flexShrink: 0,
                                                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                                                     backgroundColor: !isLocked && quizDone ? style.color : !isLocked && quizReady ? `${style.color}30` : isLocked ? 'var(--surface-color)' : `${style.color}15`,
                                                     borderLeft: `1.5px dashed ${isLocked ? style.mutedBorder : style.color}`,
-                                                    cursor: testMode && (quizReady || quizDone) ? 'pointer' : 'default',
+                                                    cursor: 'pointer',
+                                                    borderTop: 'none',
+                                                    borderRight: 'none',
+                                                    borderBottom: 'none',
+                                                    padding: 0,
+                                                    font: 'inherit',
                                                 }}
                                             >
                                                 <Trophy size={22}
                                                     color={!isLocked && quizDone ? '#fff' : !isLocked && quizReady ? style.color : style.muted}
                                                     fill={!isLocked && quizDone ? '#fff' : 'none'}
                                                 />
-                                            </div>
+                                            </button>
                                         ) : isCompleted && (
                                             <div style={{
                                                 width: 52, flexShrink: 0,
@@ -710,43 +784,216 @@ const RoadmapTab = () => {
             <div className="roadmap-bottom-spacer" aria-hidden="true" />
 
             <div className="roadmap-continue-wrapper">
-                {testMode ? (
-                    <SoundButton
-                        id="roadmap-continue-btn"
-                        className="primary w-full shadow-lg"
-                        style={{
-                            maxWidth: 400,
-                            fontSize: 18,
-                            padding: '18px 24px',
-                            textTransform: 'uppercase',
-                            letterSpacing: '1px',
-                            borderRadius: 16,
-                            boxShadow: '0 8px 0 #B03E2D, 0 8px 20px rgba(0,0,0,0.2)'
-                        }}
-                        onClick={handleContinueClick}
-                    >
-                        {t('continue_upper')}
-                    </SoundButton>
-                ) : (
-                    <SoundButton
-                        id="roadmap-continue-btn"
-                        className="disabled w-full shadow-lg"
-                        style={{
-                            maxWidth: 400,
-                            fontSize: 18,
-                            padding: '18px 24px',
-                            textTransform: 'uppercase',
-                            letterSpacing: '1px',
-                            borderRadius: 16,
-                            boxShadow: '0 8px 0 #B03E2D, 0 8px 20px rgba(0,0,0,0.2)',
-                            opacity: 0.5,
-                            cursor: 'not-allowed',
-                        }}
-                    >
-                        {t('coming_soon_upper')}
-                    </SoundButton>
-                )}
+                <SoundButton
+                    id="roadmap-continue-btn"
+                    className="primary w-full shadow-lg"
+                    style={{
+                        maxWidth: 400,
+                        fontSize: 18,
+                        padding: '18px 24px',
+                        textTransform: 'uppercase',
+                        letterSpacing: '1px',
+                        borderRadius: 16,
+                        boxShadow: '0 8px 0 #B03E2D, 0 8px 20px rgba(0,0,0,0.2)'
+                    }}
+                    onClick={handleContinueClick}
+                >
+                    {t('continue_upper')}
+                </SoundButton>
             </div>
+
+            {previewNode && previewContent && (
+                <div
+                    style={{
+                        position: 'fixed', inset: 0, zIndex: 220,
+                        backgroundColor: 'rgba(0,0,0,0.52)',
+                        display: 'flex', alignItems: 'flex-end', justifyContent: 'center',
+                        padding: '16px 12px calc(16px + var(--safe-area-bottom-effective))',
+                    }}
+                    onClick={() => setPreviewNode(null)}
+                >
+                    <div
+                        style={{
+                            width: '100%', maxWidth: 440, maxHeight: '86vh', overflowY: 'auto',
+                            backgroundColor: 'var(--surface-color)', borderRadius: '22px 22px 18px 18px',
+                            border: '1px solid var(--border-color)', boxShadow: '0 18px 60px rgba(0,0,0,0.34)',
+                        }}
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '18px 18px 14px', borderBottom: '1px solid var(--border-color)' }}>
+                            <div style={{
+                                width: 52, height: 52, borderRadius: '50%',
+                                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                backgroundColor: previewContent.isLocked ? previewContent.style.muted : previewContent.style.color,
+                                color: '#fff', boxShadow: `0 4px 0 ${previewContent.isLocked ? previewContent.style.mutedBorder : previewContent.style.dark}`,
+                                flexShrink: 0,
+                            }}>
+                                {previewContent.isLocked ? <Lock size={24} /> : <previewContent.Icon size={25} fill="#fff" color="#fff" />}
+                            </div>
+                            <div style={{ flex: 1, minWidth: 0 }}>
+                                <div style={{ fontSize: 12, fontWeight: 800, color: previewContent.style.color, textTransform: 'uppercase', letterSpacing: '0.4px' }}>
+                                    {previewContent.sublabel}
+                                </div>
+                                <h3 style={{ margin: '3px 0 0', fontSize: 20, lineHeight: 1.2, color: 'var(--text-main)' }}>
+                                    {previewContent.title}
+                                </h3>
+                            </div>
+                            <button
+                                onClick={() => setPreviewNode(null)}
+                                aria-label="Close preview"
+                                style={{
+                                    width: 36, height: 36, borderRadius: '50%', border: 'none',
+                                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                    backgroundColor: 'var(--surface-color-light)', color: 'var(--text-muted)',
+                                    cursor: 'pointer', flexShrink: 0,
+                                }}
+                            >
+                                <X size={20} />
+                            </button>
+                        </div>
+
+                        <div style={{ padding: 18, display: 'flex', flexDirection: 'column', gap: 16 }}>
+                            {(previewContent.hasProgress || previewContent.isCompleted) && (
+                                <div style={{ display: 'flex', gap: 4 }}>
+                                    {Array.from({ length: previewContent.sessionsTarget }, (_, i) => (
+                                        <div key={i} style={{
+                                            flex: 1, height: 8, borderRadius: 999,
+                                            backgroundColor: i < previewContent.sessionCount || previewContent.isCompleted
+                                                ? previewContent.style.color
+                                                : `${previewContent.style.color}25`,
+                                        }} />
+                                    ))}
+                                </div>
+                            )}
+
+                            {previewContent.dueReviewCount > 0 && previewContent.canStart && (
+                                <div style={{
+                                    display: 'flex', alignItems: 'center', gap: 10,
+                                    padding: '11px 12px', borderRadius: 12,
+                                    backgroundColor: 'rgba(6, 214, 160, 0.1)',
+                                    border: '1px solid rgba(6, 214, 160, 0.26)',
+                                }}>
+                                    <Sparkles size={18} color="#06D6A0" style={{ flexShrink: 0 }} />
+                                    <div style={{ fontSize: 13, color: 'var(--text-main)', lineHeight: 1.35 }}>
+                                        <strong>{previewContent.dueReviewCount} due review{previewContent.dueReviewCount === 1 ? '' : 's'}</strong> can appear inside this lesson when they fit.
+                                    </div>
+                                </div>
+                            )}
+
+                            {previewContent.conversation ? (
+                                <section style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+                                    <div>
+                                        <div style={{ fontSize: 12, fontWeight: 800, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.4px' }}>
+                                            Dialogue preview
+                                        </div>
+                                        {previewContent.conversation.title && (
+                                            <div style={{ marginTop: 3, fontSize: 15, fontWeight: 800, color: 'var(--text-main)' }}>
+                                                {previewContent.conversation.title}
+                                            </div>
+                                        )}
+                                    </div>
+                                    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                                        {(previewContent.conversation.lines || []).slice(0, 5).map((line, index) => (
+                                            <div key={`${line.speaker || 'line'}-${index}`} style={{
+                                                padding: '10px 12px', borderRadius: 12,
+                                                backgroundColor: index % 2 === 0 ? `${previewContent.style.color}12` : 'var(--bg-color)',
+                                                border: `1px solid ${index % 2 === 0 ? `${previewContent.style.color}28` : 'var(--border-color)'}`,
+                                            }}>
+                                                <div style={{ display: 'flex', gap: 8, alignItems: 'baseline' }}>
+                                                    {line.speaker && (
+                                                        <span style={{ fontSize: 12, fontWeight: 900, color: previewContent.style.color }}>
+                                                            {line.speaker}
+                                                        </span>
+                                                    )}
+                                                    <span style={{ fontSize: 16, fontWeight: 800, color: 'var(--text-main)', lineHeight: 1.35 }}>
+                                                        {line.vi}
+                                                    </span>
+                                                </div>
+                                                {line.en && (
+                                                    <div style={{ marginTop: 4, fontSize: 13, color: 'var(--text-muted)', lineHeight: 1.35 }}>
+                                                        {line.en}
+                                                    </div>
+                                                )}
+                                            </div>
+                                        ))}
+                                    </div>
+                                </section>
+                            ) : null}
+
+                            {previewContent.words.length > 0 && (
+                                <section>
+                                    <div style={{ fontSize: 12, fontWeight: 800, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.4px', marginBottom: 8 }}>
+                                        New words
+                                    </div>
+                                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+                                        {previewContent.words.map(word => (
+                                            <span key={word.id} style={{
+                                                display: 'inline-flex', flexDirection: 'column', gap: 2,
+                                                padding: '8px 10px', borderRadius: 12,
+                                                backgroundColor: `${previewContent.style.color}12`,
+                                                border: `1px solid ${previewContent.style.color}28`,
+                                            }}>
+                                                <strong style={{ fontSize: 14, color: 'var(--text-main)' }}>{word.vi}</strong>
+                                                {word.en && <span style={{ fontSize: 12, color: 'var(--text-muted)' }}>{word.en}</span>}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </section>
+                            )}
+
+                            {!previewContent.conversation && previewContent.sentences.length > 0 && (
+                                <section style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                                    <div style={{ fontSize: 12, fontWeight: 800, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.4px' }}>
+                                        Practice lines
+                                    </div>
+                                    {previewContent.sentences.map(sentence => (
+                                        <div key={sentence.id} style={{ padding: '10px 12px', borderRadius: 12, backgroundColor: 'var(--bg-color)', border: '1px solid var(--border-color)' }}>
+                                            <div style={{ fontSize: 15, fontWeight: 800, color: 'var(--text-main)' }}>{sentence.vi}</div>
+                                            {sentence.en && <div style={{ marginTop: 4, fontSize: 13, color: 'var(--text-muted)' }}>{sentence.en}</div>}
+                                        </div>
+                                    ))}
+                                </section>
+                            )}
+
+                            {!previewContent.conversation && previewContent.words.length === 0 && previewContent.sentences.length === 0 && (
+                                <div style={{ padding: '12px 14px', borderRadius: 12, backgroundColor: 'var(--bg-color)', border: '1px solid var(--border-color)', color: 'var(--text-muted)', fontSize: 14, lineHeight: 1.45 }}>
+                                    {previewContent.isLocked
+                                        ? 'Complete the previous card to unlock this step.'
+                                        : 'Open this card to begin the next guided practice.'}
+                                </div>
+                            )}
+                        </div>
+
+                        <div style={{ padding: 18, paddingTop: 0 }}>
+                            <button
+                                className={previewContent.canStart ? 'primary' : 'disabled'}
+                                disabled={!previewContent.canStart}
+                                onClick={() => {
+                                    if (!previewContent.canStart) return;
+                                    setPreviewNode(null);
+                                    navigateNode(previewNode);
+                                }}
+                                style={{
+                                    width: '100%', padding: '15px 18px', borderRadius: 14,
+                                    fontSize: 16, fontWeight: 900, textTransform: 'uppercase',
+                                    display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+                                    opacity: previewContent.canStart ? 1 : 0.55,
+                                    cursor: previewContent.canStart ? 'pointer' : 'not-allowed',
+                                }}
+                            >
+                                {previewContent.isLocked
+                                    ? 'Locked'
+                                    : previewContent.isCompleted
+                                        ? t('roadmap_redo')
+                                        : previewContent.hasProgress
+                                            ? t('continue_upper')
+                                            : t('start_upper')}
+                                {previewContent.canStart && <ChevronRight size={18} />}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
 
             {guidebookUnit && (
                 <GrammarGuidebook

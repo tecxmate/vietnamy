@@ -4,6 +4,7 @@ import { createLessonExerciseService } from './content/lessonExerciseService';
 import { getCanonicalCurriculum, getCanonicalLessonContent, saveCanonicalLessonContent } from './content/canonicalCurriculumStore';
 import { getDB as getRoadmapDB, getFullDB, saveDB, applyCanonicalCurriculumToDB } from './storage/mockDbStore';
 import { LEARNER_MODES } from '../data/learnerModes';
+import { normalizeMcqTypeIds } from './mcqTypes';
 
 export { getFullDB as getDB };
 
@@ -461,6 +462,7 @@ export const getLessonContent = (contentRefId) => {
             goal: canonical.lesson.title,
             title: canonical.lesson.title,
             exerciseProfileId: canonical.lesson.exerciseProfileId || '',
+            mcqTypeIds: normalizeMcqTypeIds(canonical.lesson.mcqTypeIds),
             lesson: canonical.lesson,
             attachedItems: canonical.words.map(word => ({
                 id: word.id,
@@ -474,6 +476,16 @@ export const getLessonContent = (contentRefId) => {
                 english: sentence.en || '',
                 note: sentence.note || '',
                 grammarTagIds: sentence.grammarTagIds || [],
+            })),
+            conversations: canonical.conversations.map(conversation => ({
+                id: conversation.id,
+                title: conversation.title || '',
+                context: conversation.context || '',
+                lines: (conversation.lines || []).map(line => ({
+                    speaker: line.speaker || '',
+                    vi: line.vi || '',
+                    en: line.en || '',
+                })),
             })),
             source: 'canonical',
         };
@@ -512,7 +524,8 @@ export const getLessonContent = (contentRefId) => {
         id: lesson.id,
         goal: lesson.title,
         sentences: sentences,
-        exerciseProfileId: lesson.exercise_profile_id || ''
+        exerciseProfileId: lesson.exercise_profile_id || '',
+        mcqTypeIds: normalizeMcqTypeIds(lesson.mcq_type_ids || lesson.mcqTypeIds),
     };
 };
 
@@ -525,6 +538,7 @@ export const saveLessonContent = (contentData) => {
             ...(contentData.lesson || {}),
             title: contentData.goal || contentData.lesson?.title || canonical.lesson.title,
             exerciseProfileId: contentData.exerciseProfileId || contentData.lesson?.exerciseProfileId || undefined,
+            mcqTypeIds: normalizeMcqTypeIds(contentData.mcqTypeIds || contentData.lesson?.mcqTypeIds),
         };
         const words = (contentData.attachedItems || []).map(item => ({
             ...(wordsById.get(item.id) || {}),
@@ -548,7 +562,7 @@ export const saveLessonContent = (contentData) => {
             lesson,
             words,
             sentences,
-            conversations: canonical.conversations,
+            conversations: contentData.conversations || canonical.conversations,
         });
         applyCanonicalCurriculumToDB(curriculum);
         clearExerciseCache();
@@ -564,6 +578,10 @@ export const saveLessonContent = (contentData) => {
         // Exercise profile: '' / undefined means "inherit from CEFR level".
         if (contentData.exerciseProfileId !== undefined) {
             db.lessons[lessonIndex].exercise_profile_id = contentData.exerciseProfileId || null;
+        }
+        if (contentData.mcqTypeIds !== undefined) {
+            const mcqTypeIds = normalizeMcqTypeIds(contentData.mcqTypeIds);
+            db.lessons[lessonIndex].mcq_type_ids = mcqTypeIds.length ? mcqTypeIds : null;
         }
     }
 
