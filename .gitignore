@@ -60,3 +60,9 @@ supabase/.temp/
 
 # Generated app screenshots
 docs/app-screens/
+
+# Word-timed TTS pipeline (Phase 4) — generated audio + reference clips
+server/tts-timed-cache/
+scripts/voices/
+scripts/explainers.json
+.venv-tts/

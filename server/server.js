@@ -2088,6 +2088,63 @@ async function synthesizeWithGoogleTranslate(text, lang) {
     return Buffer.from(await response.arrayBuffer());
 }
 
+// ── Word-timed TTS (Phase 4) ─────────────────────────────────────────────────
+// Vendor-neutral, Azure-free. Word timings are generated OFFLINE (see
+// scripts/generate_explainer_audio.py: VieNeu-TTS → WAV → CTC forced alignment),
+// cached forever as static files, and served here. The endpoint just reads the
+// pre-baked WAV + marks; if a sentence hasn't been generated yet it returns 503
+// and the client falls back to its client-side syllable estimate.
+const TTS_TIMED_DIR = process.env.TTS_TIMED_DIR || join(__dirname, 'tts-timed-cache');
+const ttsTimedCache = new Map(); // sha1 -> { contentType, audioBase64, marks, voice }
+const TTS_TIMED_CACHE_MAX = 200;
+
+// Must match scripts/generate_explainer_audio.py timed_key(): sha1("timed|voice|lang|text").
+function ttsTimedKey(voice, lang, text) {
+    return crypto.createHash('sha1').update(`timed|${voice}|${lang}|${text}`).digest('hex');
+}
+
+// /api/tts-timed?text=...&lang=vi&voice=azure-north → { audioBase64, contentType, marks:[{text,offsetMs,durMs}] }
+app.get('/api/tts-timed', (req, res) => {
+    const text = (req.query.text || '').trim();
+    const lang = req.query.lang || 'vi';
+    const voice = TTS_VOICES.has(req.query.voice) ? req.query.voice : DEFAULT_TTS_VOICE;
+
+    if (!text || text.length > 200) {
+        return res.status(400).json({ error: 'text required (max 200 chars)' });
+    }
+    if (lang !== 'vi' || voice === 'google') {
+        return res.status(503).json({ error: 'word-timed TTS unavailable' });
+    }
+
+    const key = ttsTimedKey(voice, lang, text);
+    const cached = ttsTimedCache.get(key);
+    if (cached) {
+        res.set('X-TTS-Timed-Cache', 'hit');
+        return res.json(cached);
+    }
+
+    const wavPath = join(TTS_TIMED_DIR, `${key}.wav`);
+    const marksPath = join(TTS_TIMED_DIR, `${key}.json`);
+    if (!existsSync(wavPath) || !existsSync(marksPath)) {
+        return res.status(503).json({ error: 'no pre-baked timing for this sentence' });
+    }
+
+    try {
+        const audioBase64 = readFileSync(wavPath).toString('base64');
+        const marks = JSON.parse(readFileSync(marksPath, 'utf-8'));
+        const payload = { contentType: 'audio/wav', audioBase64, marks, voice };
+        ttsTimedCache.set(key, payload);
+        if (ttsTimedCache.size > TTS_TIMED_CACHE_MAX) {
+            ttsTimedCache.delete(ttsTimedCache.keys().next().value);
+        }
+        res.set('X-TTS-Timed-Cache', 'miss');
+        res.json(payload);
+    } catch (err) {
+        console.warn('tts-timed read error:', err.message);
+        res.status(500).json({ error: 'tts-timed read failed' });
+    }
+});
+
 // /api/tts?text=xin+chào&lang=vi&voice=google|azure-north
 app.get('/api/tts', async (req, res) => {
     const text = (req.query.text || '').trim();

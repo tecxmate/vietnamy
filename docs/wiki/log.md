@@ -257,3 +257,11 @@ attributed_to: [niko, codex]   belongs_to: [adaptive-software-automation, backen
 - Added `scripts/feedback-agent-pipeline.mjs` plus npm commands for local/cloud queue export and agent handoff.
 - Guardrail: agents may prepare fixes, branches, commits, and PRs, but closing/merge/deploy requires Niko approval.
 - Pages: [feedback-agent-pipeline](topics/tech/feedback-agent-pipeline.md), [adaptive-software-automation](topics/tech/adaptive-software-automation.md), [backend-ops-store](topics/tech/backend-ops-store.md).
+
+## [2026-06-17] decision | Narrated Reader + Azure-free word timing
+attributed_to: [niko]   belongs_to: [narrated-reader, tts-pipeline]
+- Built the Narrated Reader: slide deck synced to narration, word-by-word karaoke, tap-to-meaning; new `explainer` content type (airport topic). Reuses TappableVietnamese/WordPopup/segment/SRS.
+- Promoted to its own bottom-nav **Reader tab, replacing Watch** (WatchTab now orphaned).
+- Phase 4 word timing: prototyped Azure Speech SDK `WordBoundary`, then **dropped Azure** per Niko → VieNeu-TTS (open) + CTC forced alignment, generated offline (`scripts/generate_explainer_audio.py`) and served from a pre-baked cache by `/api/tts-timed`. Runs on M1 Pro (GGUF) / Ryzen CPU; no CUDA.
+- Client `karaokeTiming.js`: exact marks when present (Exact badge), syllable estimate fallback. Verified end-to-end with a dummy cache entry.
+- Pages: [narrated-reader](topics/tech/narrated-reader.md), [decision](decisions/2026-06-17-narrated-reader-azure-free-timing.md), [tts-pipeline](topics/tech/tts-pipeline.md).

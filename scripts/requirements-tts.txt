@@ -1,0 +1,16 @@
+# Offline word-timed TTS pipeline (scripts/generate_explainer_audio.py).
+# Install into a venv:  pip install -r scripts/requirements-tts.txt
+#
+# VieNeu-TTS (open Vietnamese TTS, Apache-2.0). The GGUF/llama.cpp path runs
+# real-time on Apple Silicon (Accelerate/Metal) and CPU-only boxes.
+vieneu
+
+# CTC forced alignment → word timestamps from a known transcript (multilingual,
+# incl. Vietnamese). Installed straight from GitHub.
+ctc-forced-aligner @ git+https://github.com/MahmoudAshraf97/ctc-forced-aligner.git
+
+# Torch stack used by the aligner. On macOS, the default wheels include MPS;
+# on the Ryzen box CPU wheels are fine.
+torch
+torchaudio
+soundfile

@@ -25,13 +25,13 @@ const loadRoadmapTab = () => import('./components/Tabs/RoadmapTab');
 const loadDictionaryTab = () => import('./components/Tabs/DictionaryTab');
 const loadReadingLibraryTab = () => import('./components/Tabs/ReadingLibraryTab');
 const loadSpeakTab = () => import('./components/Tabs/SpeakTab');
-const loadWatchTab = () => import('./components/Tabs/WatchTab');
+const loadReaderTab = () => import('./components/Tabs/ReaderTab');
 
 const TAB_LOADERS = {
   study: loadRoadmapTab,
   dictionary: loadDictionaryTab,
   speak: loadSpeakTab,
-  watch: loadWatchTab,
+  reader: loadReaderTab,
   library: loadReadingLibraryTab,
 };
 
@@ -85,7 +85,7 @@ const RoadmapTab = lazy(loadRoadmapTab);
 const DictionaryTab = lazy(loadDictionaryTab);
 const ReadingLibraryTab = lazy(loadReadingLibraryTab);
 const SpeakTab = lazy(loadSpeakTab);
-const WatchTab = lazy(loadWatchTab);
+const ReaderTab = lazy(loadReaderTab);
 
 const TeacherChat = lazy(() => import('./components/Teacher/TeacherChat'));
 const GrammarGuide = lazy(() => import('./pages/Grammar/GrammarGuide'));
@@ -155,8 +155,8 @@ const Prepositions = lazy(() => import('./pages/Practice/Prepositions'));
 
 // Super-app structure (Competitor Analysis Meeting, Jun 2026).
 // NAV_TABS = the equal-rank bottom-nav tabs, in order:
-// Study | Dictionary | Speak | Watch | Library.
-const NAV_TABS = ['study', 'dictionary', 'speak', 'watch', 'library'];
+// Study | Dictionary | Speak | Reader | Library.
+const NAV_TABS = ['study', 'dictionary', 'speak', 'reader', 'library'];
 const VALID_TABS = [...NAV_TABS];
 
 function normalizeTab(tab, fallback = 'study') {
@@ -356,7 +356,7 @@ function StudentApp({ initialTab = 'study' }) {
       case 'study': return <RoadmapTab onNavigateToVocabDeck={handleNavigateToVocabDeck} />;
       case 'dictionary': return <DictionaryTab pendingInput={pendingDictInput} clearPendingInput={() => setPendingDictInput(null)} onNavigateToLibrary={handleNavigateToLibrary} />;
       case 'speak': return <SpeakTab />;
-      case 'watch': return <WatchTab />;
+      case 'reader': return <ReaderTab />;
       case 'library': return <ReadingLibraryTab onSubtitleChange={setTabSubtitle} onSearchWord={handleDictInput} pendingArticle={pendingLibraryArticle} clearPendingArticle={() => setPendingLibraryArticle(null)} pendingVocabDeck={pendingVocabDeck} clearPendingVocabDeck={() => setPendingVocabDeck(null)} />;
       default: return <RoadmapTab onNavigateToVocabDeck={handleNavigateToVocabDeck} />;
     }

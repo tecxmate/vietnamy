@@ -5,7 +5,11 @@ const segmentCache = new Map();
 const looksVietnamese = (t) =>
     /[àáảãạăắằẳẵặâấầẩẫậèéẻẽẹêếềểễệìíỉĩịòóỏõọôốồổỗộơớờởỡợùúủũụưứừửữựỳýỷỹỵđ]/i.test(t);
 
-const TappableVietnamese = ({ text, onWordTap, bold }) => {
+// `karaokeCur` (optional) = the segment index currently being narrated. Segments
+// before it are marked "spoken", that one "current" — used by the narrated reader.
+// `onSegments` (optional) reports the loaded segment array so the parent can build
+// audio-synced timing from the exact same tokens this component renders.
+const TappableVietnamese = ({ text, onWordTap, bold, karaokeCur = -1, onSegments }) => {
     const [segments, setSegments] = useState(null);
     const [selected, setSelected] = useState(new Set());
 
@@ -15,7 +19,9 @@ const TappableVietnamese = ({ text, onWordTap, bold }) => {
         if (!text || !isVi) return;
 
         if (segmentCache.has(text)) {
-            setSegments(segmentCache.get(text));
+            const cached = segmentCache.get(text);
+            setSegments(cached);
+            onSegments?.(cached);
             return;
         }
 
@@ -26,6 +32,7 @@ const TappableVietnamese = ({ text, onWordTap, bold }) => {
                 if (!cancelled && data.segments) {
                     segmentCache.set(text, data.segments);
                     setSegments(data.segments);
+                    onSegments?.(data.segments);
                 }
             })
             .catch(() => {
@@ -120,12 +127,15 @@ const TappableVietnamese = ({ text, onWordTap, bold }) => {
                     return <span key={i}>{seg.text}</span>;
                 }
                 const isSelected = selected.has(i);
+                const kClass = karaokeCur >= 0
+                    ? (i === karaokeCur ? ' tw-cur' : (i < karaokeCur ? ' tw-spoken' : ''))
+                    : '';
                 return (
                     <span key={i}>
                         {seg.leading || ''}
                         <span
                             data-tw-id={`${text}-${i}`}
-                            className={`tappable-word${isSelected ? ' tappable-word--selected' : ''}`}
+                            className={`tappable-word${isSelected ? ' tappable-word--selected' : ''}${kClass}`}
                             onClick={(e) => handleTap(i, e)}
                             style={bold ? { fontWeight: 700 } : undefined}
                         >

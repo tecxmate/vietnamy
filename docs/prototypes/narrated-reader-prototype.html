@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title>Vietnamy — Narrated Reader Prototype</title>
+<style>
+  :root{
+    --bg:#0f1115; --frame:#000; --paper:#ffffff; --ink:#1d2430; --mut:#6b7480;
+    --cyan:#d6f4fb; --cyanedge:#9fe3f0; --teal:#bdeede; --lime:#e6f59a; --limehot:#cde85f;
+    --brand:#5b2b1a; --accent:#0ea5b7; --line:#e7ebf0; --chip:#f1f4f8;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0; height:100%; background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,system-ui,sans-serif;}
+  .stage{min-height:100%; display:flex; align-items:center; justify-content:center; padding:18px; gap:24px; flex-wrap:wrap;}
+  .phone{width:390px; height:780px; background:var(--paper); border-radius:38px; border:11px solid var(--frame);
+    overflow:hidden; position:relative; box-shadow:0 24px 70px rgba(0,0,0,.5); display:flex; flex-direction:column;}
+  .notch{position:absolute; top:0; left:50%; transform:translateX(-50%); width:130px; height:22px; background:#000; border-radius:0 0 16px 16px; z-index:40;}
+
+  /* top bar */
+  .topbar{height:48px; flex:0 0 auto; display:flex; align-items:center; gap:10px; padding:0 12px; border-bottom:1px solid var(--line); background:#fff; z-index:20;}
+  .topbar .t{font-weight:700; font-size:15px; color:var(--ink); flex:1; line-height:1.1;}
+  .topbar .t small{display:block; font-weight:500; font-size:11px; color:var(--mut);}
+  .ibtn{width:34px; height:34px; border-radius:10px; border:none; background:var(--chip); color:var(--ink); font-size:16px; display:flex; align-items:center; justify-content:center; cursor:pointer;}
+
+  /* slide stage */
+  .slidewrap{flex:0 0 auto; height:268px; position:relative; background:#0b0d10; overflow:hidden;}
+  .slide{position:absolute; inset:0; opacity:0; transition:opacity .45s ease; display:flex; align-items:flex-end;}
+  .slide.on{opacity:1;}
+  .photo{position:absolute; inset:0;}
+  .ph-grad{position:absolute; inset:0;}
+  .scene-emoji{position:absolute; top:50%; left:50%; transform:translate(-50%,-58%); font-size:96px; filter:drop-shadow(0 6px 10px rgba(0,0,0,.35));}
+  .photo-tag{position:absolute; top:8px; left:8px; font-size:10px; letter-spacing:.04em; text-transform:uppercase; color:#fff; background:rgba(0,0,0,.45); padding:3px 8px; border-radius:6px; z-index:5;}
+  /* callouts */
+  .callout{position:absolute; z-index:6; display:flex; align-items:center; gap:6px;}
+  .callout .dot{width:12px; height:12px; border-radius:50%; background:#ffd54a; border:2px solid #fff; box-shadow:0 0 0 3px rgba(255,213,74,.35); flex:0 0 auto;}
+  .callout .lab{background:rgba(255,255,255,.96); color:#1d2430; font-size:11px; font-weight:600; padding:3px 8px; border-radius:8px; white-space:nowrap; box-shadow:0 2px 6px rgba(0,0,0,.25);}
+  .slide-cap{position:relative; z-index:4; width:100%; padding:24px 14px 12px; color:#fff;
+    background:linear-gradient(to top, rgba(0,0,0,.72), rgba(0,0,0,0)); font-size:13px; font-weight:600;}
+  .slide-nav{position:absolute; top:50%; transform:translateY(-50%); z-index:8; width:36px; height:36px; border-radius:50%;
+    background:rgba(0,0,0,.4); color:#fff; border:none; font-size:18px; cursor:pointer; display:flex; align-items:center; justify-content:center;}
+  #prevSlide{left:8px;} #nextSlide{right:8px;}
+  .dots{position:absolute; bottom:6px; left:50%; transform:translateX(-50%); z-index:8; display:flex; gap:6px;}
+  .dots i{width:7px; height:7px; border-radius:50%; background:rgba(255,255,255,.45); display:block; transition:all .2s;}
+  .dots i.on{background:#fff; width:18px; border-radius:4px;}
+
+  /* mode strip */
+  .modes{flex:0 0 auto; display:flex; align-items:center; gap:18px; padding:8px 14px 6px; border-bottom:1px solid var(--line); background:#fff;}
+  .modes b{font-size:14px; color:var(--accent); border-bottom:2px solid var(--accent); padding-bottom:6px;}
+  .modes span{font-size:14px; color:#b3bcc6; padding-bottom:6px;}
+  .modes .sp{flex:1;}
+
+  /* transcript */
+  .scroll{flex:1 1 auto; overflow-y:auto; padding:12px 14px 16px; background:#fff;}
+  .sent{padding:8px 8px; border-radius:12px; margin-bottom:4px; transition:background .25s;}
+  .sent.active{background:var(--cyan); box-shadow:inset 0 0 0 1px var(--cyanedge);}
+  .vi{font-size:21px; line-height:1.7; color:var(--ink); font-weight:600;}
+  .w{border-radius:6px; padding:1px 2px; cursor:pointer; transition:background .12s, color .12s;}
+  .w.spoken{background:var(--teal);}
+  .w.cur{background:var(--limehot); }
+  .w:hover{background:#eef2f6;}
+  .en{font-size:14px; color:#46505c; margin-top:6px; display:none;}
+  .sent.active .en{display:block;}
+  .lineacts{display:none; gap:8px; margin-top:10px;}
+  .sent.active .lineacts{display:flex;}
+  .la{display:flex; align-items:center; gap:5px; font-size:12px; font-weight:600; color:var(--mut); background:var(--chip); border:none; padding:6px 10px; border-radius:9px; cursor:pointer;}
+  .la.on{color:#b8860b; background:#fff5d6;}
+
+  /* player */
+  .player{flex:0 0 auto; border-top:1px solid var(--line); background:#fff; padding:8px 14px 14px;}
+  .seekrow{display:flex; align-items:center; gap:8px; font-size:11px; color:var(--mut);}
+  .seek{flex:1; height:5px; border-radius:3px; background:#e5e9ef; position:relative; cursor:pointer;}
+  .seek .fill{position:absolute; left:0; top:0; bottom:0; width:0%; background:var(--accent); border-radius:3px;}
+  .seek .knob{position:absolute; top:50%; width:13px; height:13px; border-radius:50%; background:var(--accent); transform:translate(-50%,-50%); left:0%;}
+  .speed{font-size:11px; font-weight:700; color:#7a3; background:#eefae0; padding:3px 8px; border-radius:8px; cursor:pointer;}
+  .controls{display:flex; align-items:center; justify-content:space-between; margin-top:10px;}
+  .pbtn{background:none; border:none; cursor:pointer; display:flex; flex-direction:column; align-items:center; gap:3px; color:var(--mut); font-size:10px; font-weight:600;}
+  .pbtn .ic{font-size:20px; color:var(--brand);}
+  .play{width:54px; height:54px; border-radius:50%; background:var(--brand); color:#fff; border:none; font-size:22px; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 6px 16px rgba(91,43,26,.4);}
+  .pbtn.on .ic, .pbtn.on{color:#0a9; }
+
+  /* word popup */
+  .pop{position:absolute; z-index:60; background:#11161c; color:#fff; border-radius:12px; padding:10px 12px; min-width:120px; max-width:200px; box-shadow:0 10px 30px rgba(0,0,0,.4); display:none;}
+  .pop .pv{font-size:16px; font-weight:700;}
+  .pop .pe{font-size:13px; color:#bfe9f2; margin-top:2px;}
+  .pop .pr{font-size:11px; color:#8d99a6; margin-top:6px; display:flex; gap:10px;}
+  .pop .pr b{color:#fff; cursor:pointer;}
+  .pop:after{content:""; position:absolute; bottom:-7px; left:22px; border:7px solid transparent; border-top-color:#11161c; border-bottom:0;}
+
+  /* explain sheet */
+  .sheet{position:absolute; left:0; right:0; bottom:0; z-index:70; background:#fff; border-radius:20px 20px 0 0; box-shadow:0 -10px 40px rgba(0,0,0,.25); transform:translateY(110%); transition:transform .32s cubic-bezier(.2,.8,.2,1); padding:16px 18px 24px;}
+  .sheet.up{transform:translateY(0);}
+  .sheet h4{margin:2px 0 4px; font-size:15px; color:var(--ink);}
+  .sheet .sv{font-size:18px; font-weight:700; color:var(--ink);}
+  .sheet .se{font-size:13px; color:var(--mut); margin:2px 0 12px;}
+  .sheet p{font-size:14px; line-height:1.6; color:#3a444f; margin:0 0 10px;}
+  .sheet .close{position:absolute; top:12px; right:14px; border:none; background:var(--chip); width:30px; height:30px; border-radius:50%; font-size:16px; cursor:pointer;}
+  .grab{width:38px; height:4px; background:#dfe4ea; border-radius:3px; margin:0 auto 12px;}
+
+  /* toast */
+  .toast{position:absolute; bottom:96px; left:50%; transform:translateX(-50%) translateY(20px); z-index:80; background:#11161c; color:#fff; font-size:13px; padding:9px 16px; border-radius:20px; opacity:0; transition:all .3s; pointer-events:none;}
+  .toast.show{opacity:1; transform:translateX(-50%) translateY(0);}
+
+  .sidecard{width:300px; color:#cfd6e0; font-size:13px; line-height:1.65;}
+  .sidecard h3{color:#fff; font-size:15px; margin:0 0 8px;}
+  .sidecard b{color:#fff;}
+  .sidecard ul{padding-left:18px; margin:8px 0;}
+  .sidecard li{margin:5px 0;}
+  @media(max-width:760px){ .sidecard{display:none;} }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="phone">
+    <div class="notch"></div>
+
+    <!-- TOP BAR -->
+    <div class="topbar">
+      <button class="ibtn" title="Back">‹</button>
+      <div class="t">Ở sân bay <small>At the airport · A1 · 5 slides</small></div>
+      <button class="ibtn" title="Bookmark">🔖</button>
+    </div>
+
+    <!-- SLIDE STAGE -->
+    <div class="slidewrap" id="slidewrap">
+      <button class="slide-nav" id="prevSlide">‹</button>
+      <button class="slide-nav" id="nextSlide">›</button>
+      <div class="dots" id="dots"></div>
+    </div>
+
+    <!-- MODE STRIP -->
+    <div class="modes">
+      <b>Listen &amp; Read</b>
+      <div class="sp"></div>
+      <span title="not in this prototype">Shadowing</span>
+      <span title="not in this prototype">Dictation</span>
+    </div>
+
+    <!-- TRANSCRIPT -->
+    <div class="scroll" id="scroll"></div>
+
+    <!-- PLAYER -->
+    <div class="player">
+      <div class="seekrow">
+        <span id="cur">0:00</span>
+        <div class="seek" id="seek"><div class="fill" id="fill"></div><div class="knob" id="knob"></div></div>
+        <span id="dur">0:00</span>
+        <span class="speed" id="speed">1.0x</span>
+      </div>
+      <div class="controls">
+        <button class="pbtn" id="prev"><span class="ic">⏮</span>Prev line</button>
+        <button class="pbtn" id="explainBtn"><span class="ic">✦</span>Explain</button>
+        <button class="play" id="play">▶</button>
+        <button class="pbtn" id="saveBtn"><span class="ic">📌</span>Save</button>
+        <button class="pbtn" id="loop"><span class="ic">🔁</span>Loop</button>
+      </div>
+    </div>
+
+    <!-- POPUP / SHEET / TOAST -->
+    <div class="pop" id="pop"></div>
+    <div class="sheet" id="sheet">
+      <div class="grab"></div>
+      <button class="close" id="sheetClose">×</button>
+      <h4>Explain this line</h4>
+      <div class="sv" id="shVi"></div>
+      <div class="se" id="shEn"></div>
+      <p id="shNote"></p>
+    </div>
+    <div class="toast" id="toast"></div>
+  </div>
+
+  <div class="sidecard">
+    <h3>What this prototype shows</h3>
+    <p>A narrated explainer that turns your reading page into a <b>slide presentation synced to audio</b>.</p>
+    <ul>
+      <li><b>Top:</b> annotated-photo slides that auto-advance as the narration reaches them.</li>
+      <li><b>Bottom:</b> the transcript with the current sentence highlighted and words sweeping one-by-one (the v1 <b>syllable-estimate</b> approach — no backend change).</li>
+      <li><b>Tap any word</b> → meaning popup (reuses your <code>TappableVietnamese</code> + <code>WordPopup</code>).</li>
+      <li><b>Save</b> a phrase to review (SRS) · <b>Explain</b> opens a usage note.</li>
+    </ul>
+    <p>Press <b>▶</b> to start the narration. Tap words while it plays. Drag the seek bar, change speed, or jump lines.</p>
+    <p style="color:#8d99a6">Slides here are placeholders — in the app they're real annotated photos of airports, money, and the Grab app.</p>
+  </div>
+</div>
+
+<script>
+// ---------- CONTENT (sample topic) ----------
+// words: array of [token, syllables]. Compound words stay together (like /api/segment).
+const GLOSS = {
+  "Xin chào":"hello","Hôm nay":"today","chúng ta":"we (you & me)","tìm hiểu":"learn about","về":"about",
+  "sân bay":"airport","ở":"at / in","Việt Nam":"Vietnam","Khi":"when","máy bay":"airplane","hạ cánh":"to land",
+  "bạn":"you","đi theo":"follow","biển":"sign","Nhập cảnh":"immigration / entry","cần":"need","hộ chiếu":"passport",
+  "và":"and","visa":"visa","để":"in order to","nhập cảnh":"to enter","Nhân viên":"officer / staff","sẽ":"will (future)",
+  "hỏi":"to ask","ở lại":"to stay","bao lâu":"how long","Sau đó":"after that","lấy":"to collect / take","hành lý":"luggage",
+  "băng chuyền":"baggage carousel","Tìm":"to find","số":"number","chuyến bay":"flight","của":"of","trên":"on","màn hình":"screen",
+  "Tiền":"money","là":"is","đồng":"dong (currency)","viết tắt":"abbreviated","Một trăm nghìn":"one hundred thousand",
+  "khoảng":"about / roughly","bốn":"four","đô la":"dollars","nên":"should","rút tiền":"withdraw cash","máy ATM":"ATM",
+  "trong":"inside","Để":"in order to","về":"to go back to","khách sạn":"hotel","mở":"to open","ứng dụng":"app",
+  "Grab":"Grab (ride app)","giống như":"is like","taxi":"taxi","nhưng":"but","đặt":"to book","bằng":"by means of",
+  "điện thoại":"phone","Chúc":"to wish","có":"to have","một":"a / one","chuyến đi":"trip","vui vẻ":"happy / fun"
+};
+function W(str){ return str.split(" ").map(t=>[t, Math.max(1, t.split(/\s+/).length)]); }
+// helper to build words from a tokenized array (tokens may be compound, given explicitly)
+function toks(arr){ return arr.map(t=>[t, t.trim().split(/\s+/).length]); }
+
+const SLIDES = [
+  {tag:"Arrival hall", emoji:"✈️", g1:"#1e3a5f", g2:"#3f6fa3", cap:"Landing & finding the Immigration signs",
+   callouts:[{x:'58%',y:'30%',t:'Nhập cảnh →'},{x:'20%',y:'62%',t:'Follow signs'}]},
+  {tag:"Immigration", emoji:"🛂", g1:"#3a2c5f", g2:"#6f5aa3", cap:"Passport, visa & the officer's question",
+   callouts:[{x:'24%',y:'34%',t:'Hộ chiếu'},{x:'60%',y:'58%',t:'Visa'}]},
+  {tag:"Baggage claim", emoji:"🧳", g1:"#1f5246", g2:"#3f9a82", cap:"Collecting luggage at the carousel",
+   callouts:[{x:'30%',y:'40%',t:'Băng chuyền'},{x:'66%',y:'26%',t:'Màn hình ↗'}]},
+  {tag:"Money & ATM", emoji:"💵", g1:"#5f4a1e", g2:"#b08a2e", cap:"How the đồng works, and where to get cash",
+   callouts:[{x:'26%',y:'30%',t:'100.000đ ≈ $4'},{x:'62%',y:'60%',t:'máy ATM'}]},
+  {tag:"Getting to town", emoji:"🚗", g1:"#5f1e2e", g2:"#b03e57", cap:"Booking a Grab to your hotel",
+   callouts:[{x:'28%',y:'34%',t:'Mở app Grab'},{x:'62%',y:'58%',t:'→ khách sạn'}]},
+];
+
+const SENTS = [
+  {slide:0, words:toks(["Xin chào","!","Hôm nay","chúng ta","tìm hiểu","về","sân bay","ở","Việt Nam","."]),
+   en:"Hello! Today we'll learn about airports in Vietnam.",
+   note:"“tìm hiểu về …” = “to learn / find out about …”. A friendly, common way to open an explainer."},
+  {slide:0, words:toks(["Khi","máy bay","hạ cánh",",","bạn","đi theo","biển","'Nhập cảnh'","."]),
+   en:"When the plane lands, you follow the 'Immigration' signs.",
+   note:"“Khi …” = “When …”. Vietnamese puts the time clause first, then the action — no verb tense change needed."},
+  {slide:1, words:toks(["Bạn","cần","hộ chiếu","và","visa","để","nhập cảnh","."]),
+   en:"You need a passport and visa to enter.",
+   note:"“để + verb” = “in order to …”. Here: “để nhập cảnh” = “in order to enter”."},
+  {slide:1, words:toks(["Nhân viên","sẽ","hỏi",":","'Bạn","ở lại","bao lâu","?'"]),
+   en:"The officer will ask: 'How long are you staying?'",
+   note:"“sẽ” marks the future. “bao lâu” = “how long” and goes at the END of the question."},
+  {slide:2, words:toks(["Sau đó",",","bạn","lấy","hành lý","ở","băng chuyền","."]),
+   en:"After that, you collect your luggage at the carousel.",
+   note:"“Sau đó” = “after that” — a sequencing word that keeps a how-to flowing step by step."},
+  {slide:2, words:toks(["Tìm","số","chuyến bay","của","bạn","trên","màn hình","."]),
+   en:"Find your flight number on the screen.",
+   note:"“của bạn” = “your” (literally “of you”). Possession comes AFTER the noun in Vietnamese."},
+  {slide:3, words:toks(["Tiền","Việt Nam","là","'đồng'",",","viết tắt","là","'đ'","."]),
+   en:"Vietnamese money is the 'dong', abbreviated 'đ'.",
+   note:"“là” = “is/are”, used to link two nouns (X là Y). The currency symbol is đ, written after the number."},
+  {slide:3, words:toks(["Một trăm nghìn","đồng","khoảng","bốn","đô la","."]),
+   en:"One hundred thousand dong is about four dollars.",
+   note:"Big numbers feel scary at first: 100.000đ ≈ $4. “khoảng” = “about / roughly”."},
+  {slide:3, words:toks(["Bạn","nên","rút tiền","ở","máy ATM","trong","sân bay","."]),
+   en:"You should withdraw cash at an ATM in the airport.",
+   note:"“nên” = “should” — soft advice. Put it right before the verb: nên + rút tiền."},
+  {slide:4, words:toks(["Để","về","khách sạn",",","bạn","mở","ứng dụng","Grab","."]),
+   en:"To get to your hotel, open the Grab app.",
+   note:"“Để + …” opens a purpose clause: “(In order) to get to your hotel …”."},
+  {slide:4, words:toks(["Grab","giống như","taxi",",","nhưng","đặt","bằng","điện thoại","."]),
+   en:"Grab is like a taxi, but you book it by phone.",
+   note:"“giống như” = “similar to / like”. “bằng” = “by means of” (bằng điện thoại = by phone)."},
+  {slide:4, words:toks(["Chúc","bạn","có","một","chuyến đi","vui vẻ","!"]),
+   en:"Have a great trip!",
+   note:"“Chúc bạn …” = “I wish you …” — the standard way to wish someone well."},
+];
+
+// ---------- TIMING (the v1 syllable-estimate sweep) ----------
+const BASE_MS = 240;       // pause padding per word
+const PER_SYLL = 165;      // ms per syllable
+const isWord = t => /[A-Za-zÀ-ỹ]/.test(t);          // skip pure punctuation
+function wordDur(tok, syl){ return isWord(tok) ? BASE_MS + PER_SYLL*syl : 90; }
+function sentDur(s){ return s.words.reduce((a,[t,syl])=>a+wordDur(t,syl),0); }
+const TOTAL = SENTS.reduce((a,s)=>a+sentDur(s),0);
+
+// ---------- RENDER ----------
+const slidewrap = document.getElementById('slidewrap');
+const dotsEl = document.getElementById('dots');
+SLIDES.forEach((sl,i)=>{
+  const d=document.createElement('div'); d.className='slide'+(i===0?' on':''); d.dataset.i=i;
+  d.innerHTML = `
+    <div class="photo">
+      <div class="ph-grad" style="background:radial-gradient(120% 90% at 50% 20%, ${sl.g2}, ${sl.g1})"></div>
+      <div class="scene-emoji">${sl.emoji}</div>
+    </div>
+    <div class="photo-tag">📷 real annotated photo · ${sl.tag}</div>
+    ${sl.callouts.map(c=>`<div class="callout" style="left:${c.x}; top:${c.y}"><span class="dot"></span><span class="lab">${c.t}</span></div>`).join('')}
+    <div class="slide-cap">${i+1}. ${sl.cap}</div>`;
+  slidewrap.insertBefore(d, slidewrap.querySelector('.dots'));
+  const dot=document.createElement('i'); if(i===0) dot.className='on'; dotsEl.appendChild(dot);
+});
+function showSlide(i){
+  slidewrap.querySelectorAll('.slide').forEach(s=>s.classList.toggle('on', +s.dataset.i===i));
+  [...dotsEl.children].forEach((d,di)=>d.classList.toggle('on', di===i));
+  curSlide=i;
+}
+
+const scroll=document.getElementById('scroll');
+SENTS.forEach((s,si)=>{
+  const row=document.createElement('div'); row.className='sent'; row.dataset.i=si;
+  const vi=document.createElement('div'); vi.className='vi';
+  s.words.forEach(([tok,syl],wi)=>{
+    if(isWord(tok)){
+      const sp=document.createElement('span'); sp.className='w'; sp.textContent=tok;
+      sp.dataset.s=si; sp.dataset.w=wi;
+      sp.addEventListener('click',(e)=>{e.stopPropagation(); openPop(sp,tok);});
+      vi.appendChild(sp); vi.appendChild(document.createTextNode(' '));
+    } else {
+      vi.appendChild(document.createTextNode(tok+' '));
+    }
+  });
+  const en=document.createElement('div'); en.className='en'; en.textContent=s.en;
+  const acts=document.createElement('div'); acts.className='lineacts';
+  acts.innerHTML=`<button class="la" data-act="save">📌 Save phrase</button><button class="la" data-act="explain">✦ Explain</button>`;
+  acts.querySelector('[data-act="save"]').addEventListener('click',()=>toggleSave(si, acts.querySelector('[data-act="save"]')));
+  acts.querySelector('[data-act="explain"]').addEventListener('click',()=>openSheet(si));
+  row.appendChild(vi); row.appendChild(en); row.appendChild(acts);
+  row.addEventListener('click',()=>{ if(!playing){ jumpTo(si); } });
+  scroll.appendChild(row);
+});
+
+// ---------- PLAYBACK ENGINE ----------
+let playing=false, curSlide=0, curSent=0, curWord=-1, elapsedBefore=0, t0=0, raf=0, speed=1, looping=false;
+const saved=new Set();
+
+const playBtn=document.getElementById('play');
+const fill=document.getElementById('fill'), knob=document.getElementById('knob');
+const curEl=document.getElementById('cur'), durEl=document.getElementById('dur');
+durEl.textContent=fmt(TOTAL);
+
+function fmt(ms){ const s=Math.round(ms/1000); return Math.floor(s/60)+':'+String(s%60).padStart(2,'0'); }
+function sentStartOffset(si){ let a=0; for(let k=0;k<si;k++) a+=sentDur(SENTS[k]); return a; }
+
+function setActiveSentence(si){
+  scroll.querySelectorAll('.sent').forEach(r=>r.classList.toggle('active', +r.dataset.i===si));
+  const row=scroll.querySelector(`.sent[data-i="${si}"]`);
+  if(row) row.scrollIntoView({behavior:'smooth', block:'center'});
+  if(SENTS[si].slide!==curSlide) showSlide(SENTS[si].slide);
+}
+function clearWords(si){ scroll.querySelectorAll(`.sent[data-i="${si}"] .w`).forEach(w=>w.classList.remove('spoken','cur')); }
+function paintWord(si, wi){
+  const ws=scroll.querySelectorAll(`.sent[data-i="${si}"] .w`);
+  let idx=0;
+  SENTS[si].words.forEach(([tok],k)=>{
+    if(!isWord(tok)) return;
+    const el=ws[idx];
+    if(k<wi) {el.classList.add('spoken'); el.classList.remove('cur');}
+    else if(k===wi){el.classList.add('cur'); el.classList.remove('spoken');}
+    else {el.classList.remove('spoken','cur');}
+    idx++;
+  });
+}
+
+function tick(){
+  const now=performance.now();
+  const localElapsed=(now-t0)*speed;             // ms into current sentence
+  const s=SENTS[curSent];
+  // find current word by cumulative threshold
+  let acc=0, wi=0;
+  for(let k=0;k<s.words.length;k++){
+    const [tok,syl]=s.words[k]; const d=wordDur(tok,syl);
+    if(localElapsed < acc+d){ wi=k; break; }
+    acc+=d; wi=k;
+  }
+  if(wi!==curWord){ curWord=wi; paintWord(curSent, wi); }
+  // global progress
+  const globalMs=sentStartOffset(curSent)+Math.min(localElapsed, sentDur(s));
+  const pct=Math.min(100, globalMs/TOTAL*100);
+  fill.style.width=pct+'%'; knob.style.left=pct+'%'; curEl.textContent=fmt(globalMs);
+
+  if(localElapsed >= sentDur(s)){
+    // sentence finished
+    scroll.querySelectorAll(`.sent[data-i="${curSent}"] .w`).forEach(w=>{w.classList.add('spoken'); w.classList.remove('cur');});
+    if(looping){ startSentence(curSent); return; }
+    if(curSent < SENTS.length-1){ startSentence(curSent+1); }
+    else { stop(true); return; }
+  }
+  raf=requestAnimationFrame(tick);
+}
+function startSentence(si){
+  curSent=si; curWord=-1; t0=performance.now();
+  setActiveSentence(si); clearWords(si);
+  if(playing){ cancelAnimationFrame(raf); raf=requestAnimationFrame(tick); }
+}
+function play(){
+  playing=true; playBtn.textContent='⏸'; closePop();
+  // resume mid-sentence: estimate t0 from current word not tracked; simplest: restart current sentence
+  t0=performance.now();
+  raf=requestAnimationFrame(tick);
+}
+function pause(){ playing=false; playBtn.textContent='▶'; cancelAnimationFrame(raf); }
+function stop(done){
+  pause();
+  if(done){ playBtn.textContent='↻'; }
+}
+function jumpTo(si){ pause(); startSentence(si); fillToSentence(si); }
+function fillToSentence(si){ const g=sentStartOffset(si); const pct=g/TOTAL*100; fill.style.width=pct+'%'; knob.style.left=pct+'%'; curEl.textContent=fmt(g); }
+
+playBtn.addEventListener('click',()=>{
+  if(playBtn.textContent==='↻'){ startSentence(0); play(); return; }
+  playing ? pause() : play();
+});
+document.getElementById('prev').addEventListener('click',()=>{ startSentence(Math.max(0,curSent-1)); fillToSentence(curSent); });
+document.getElementById('loop').addEventListener('click',(e)=>{ looping=!looping; e.currentTarget.classList.toggle('on',looping); toast(looping?'Looping this line':'Loop off'); });
+document.getElementById('saveBtn').addEventListener('click',()=>{ const b=scroll.querySelector(`.sent[data-i="${curSent}"] [data-act="save"]`); toggleSave(curSent,b); });
+document.getElementById('explainBtn').addEventListener('click',()=>openSheet(curSent));
+
+const speedEl=document.getElementById('speed'); const speeds=[1,1.25,1.5,0.75]; let spi=0;
+speedEl.addEventListener('click',()=>{ spi=(spi+1)%speeds.length; speed=speeds[spi]; speedEl.textContent=speed.toFixed(2).replace(/0$/,'')+'x'; });
+
+// seek
+const seek=document.getElementById('seek');
+seek.addEventListener('click',(e)=>{
+  const r=seek.getBoundingClientRect(); const pct=(e.clientX-r.left)/r.width; const target=pct*TOTAL;
+  let acc=0, si=0; for(let k=0;k<SENTS.length;k++){ const d=sentDur(SENTS[k]); if(target<acc+d){si=k;break;} acc+=d; si=k; }
+  startSentence(si); fillToSentence(si); if(playing) play();
+});
+
+// ---------- WORD POPUP ----------
+const pop=document.getElementById('pop');
+function openPop(el, tok){
+  const meaning = GLOSS[tok] || GLOSS[tok.replace(/^['"]|['"]$/g,'')] || 'tap to look up…';
+  pop.innerHTML=`<div class="pv">${tok}</div><div class="pe">${meaning}</div>
+    <div class="pr"><b id="popPlay">🔊 hear</b><b id="popSave">📌 save</b></div>`;
+  const pr=el.getBoundingClientRect(); const ph=document.querySelector('.phone').getBoundingClientRect();
+  pop.style.display='block';
+  let left=pr.left-ph.left-10, top=pr.top-ph.top-pop.offsetHeight-10;
+  left=Math.max(8, Math.min(left, ph.width-pop.offsetWidth-8));
+  if(top<54) top=pr.bottom-ph.top+10;
+  pop.style.left=left+'px'; pop.style.top=top+'px';
+  document.getElementById('popPlay').onclick=(e)=>{e.stopPropagation(); speakWord(tok);};
+  document.getElementById('popSave').onclick=(e)=>{e.stopPropagation(); toast('“'+tok+'” saved to review'); closePop();};
+}
+function closePop(){ pop.style.display='none'; }
+document.querySelector('.phone').addEventListener('click',(e)=>{ if(!e.target.closest('.pop') && !e.target.closest('.w')) closePop(); });
+
+function speakWord(tok){
+  // prototype ambience: use the browser's built-in TTS if a Vietnamese voice exists
+  try{ const u=new SpeechSynthesisUtterance(tok.replace(/['"!?:.]/g,'')); u.lang='vi-VN'; u.rate=.9;
+    const v=speechSynthesis.getVoices().find(x=>/vi/i.test(x.lang)); if(v)u.voice=v; speechSynthesis.cancel(); speechSynthesis.speak(u);
+  }catch(_){}
+}
+
+// ---------- SAVE + EXPLAIN ----------
+function toggleSave(si, btn){
+  if(saved.has(si)){ saved.delete(si); btn&&btn.classList.remove('on'); btn&&(btn.textContent='📌 Save phrase'); toast('Removed from review'); }
+  else { saved.add(si); btn&&btn.classList.add('on'); btn&&(btn.textContent='✓ Saved'); toast('Phrase saved to review ('+saved.size+')'); }
+}
+const sheet=document.getElementById('sheet');
+function openSheet(si){
+  const s=SENTS[si];
+  document.getElementById('shVi').textContent=s.words.map(w=>w[0]).join(' ').replace(/\s+([.,!?:])/g,'$1');
+  document.getElementById('shEn').textContent=s.en;
+  document.getElementById('shNote').textContent=s.note;
+  sheet.classList.add('up');
+}
+document.getElementById('sheetClose').addEventListener('click',()=>sheet.classList.remove('up'));
+
+// ---------- TOAST ----------
+let toastT; const toastEl=document.getElementById('toast');
+function toast(m){ toastEl.textContent=m; toastEl.classList.add('show'); clearTimeout(toastT); toastT=setTimeout(()=>toastEl.classList.remove('show'),1600); }
+
+// slide manual nav
+document.getElementById('prevSlide').addEventListener('click',()=>showSlide(Math.max(0,curSlide-1)));
+document.getElementById('nextSlide').addEventListener('click',()=>showSlide(Math.min(SLIDES.length-1,curSlide+1)));
+
+// init
+setActiveSentence(0);
+if('speechSynthesis' in window){ speechSynthesis.onvoiceschanged=()=>{}; speechSynthesis.getVoices(); }
+</script>
+</body>
+</html>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Home, BookOpen, Search, Library, User, Bell, Settings, Pen, Music, Mic, Video } from 'lucide-react';
+import { Home, BookOpen, Search, Library, User, Bell, Settings, Pen, Music, Mic, Headphones } from 'lucide-react';
 import { useT } from '../lib/i18n';
 import { useUser } from '../context/UserContext';
 import { useNotifications } from '../context/NotificationContext';
@@ -9,13 +9,13 @@ const BottomNav = ({ activeTab, setActiveTab, onPreloadTab, tabs: allowedTabs, s
     const { userProfile } = useUser();
     const { unreadCount, openPanel } = useNotifications();
 
-    // Super-app bottom nav order: Study | Dictionary | Speak | Watch | Library.
+    // Super-app bottom nav order: Study | Dictionary | Speak | Reader | Library.
     // Legacy ids (home, grammar, sounds) kept for other shells / deep links.
     const allTabs = [
         { id: 'study', icon: <BookOpen size={24} />, label: t('nav_study') },
         { id: 'dictionary', icon: <Search size={24} />, label: t('nav_dictionary') },
         { id: 'speak', icon: <Mic size={24} />, label: t('nav_speak') },
-        { id: 'watch', icon: <Video size={24} />, label: t('nav_watch') },
+        { id: 'reader', icon: <Headphones size={24} />, label: t('nav_reader') },
         { id: 'library', icon: <Library size={24} />, label: t('nav_library') },
         { id: 'home', icon: <Home size={24} />, label: t('nav_home') },
         { id: 'dicthome', icon: <Home size={24} />, label: t('nav_home') },
