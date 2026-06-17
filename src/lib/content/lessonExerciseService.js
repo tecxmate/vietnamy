@@ -105,9 +105,11 @@ export const createLessonExerciseService = ({ getDB }) => {
         return knownItems.filter(item => !currentItemIds.has(item.id));
     };
 
-    const getExercisesGenerated = (lessonId, session = 0) => {
+    const getExercisesGenerated = (lessonId, session = 0, options = {}) => {
+        const skill = options.skill || '';
+        const useAllLessonItems = options.useAllLessonItems === true;
         const today = new Date().toISOString().slice(0, 10);
-        const cacheKey = `${lessonId}_s${session}_${today}`;
+        const cacheKey = `${lessonId}_s${session}_${skill}_${useAllLessonItems ? 'all' : 'slice'}_${today}`;
         if (exerciseCache.has(cacheKey)) return exerciseCache.get(cacheKey);
 
         const db = getDB();
@@ -118,8 +120,10 @@ export const createLessonExerciseService = ({ getDB }) => {
         if (allBlueprintItems.length === 0) return [];
 
         const newStart = session * ITEMS_PER_SESSION;
-        const sessionNewItems = allBlueprintItems.slice(newStart, newStart + ITEMS_PER_SESSION);
-        const previouslyIntroduced = allBlueprintItems.slice(0, newStart);
+        const sessionNewItems = useAllLessonItems
+            ? allBlueprintItems
+            : allBlueprintItems.slice(newStart, newStart + ITEMS_PER_SESSION);
+        const previouslyIntroduced = useAllLessonItems ? [] : allBlueprintItems.slice(0, newStart);
 
         const newItems = sessionNewItems.length > 0 ? sessionNewItems : [];
         let reviewFromLesson = previouslyIntroduced;
@@ -175,13 +179,18 @@ export const createLessonExerciseService = ({ getDB }) => {
         // Builder); otherwise it's derived from the lesson's CEFR level on its
         // roadmap node (A1 → beginner, no typing).
         const lessonRecord = (db.lessons || []).find(l => l.id === lessonId);
-        const lessonNode = (db.path_nodes || []).find(n => n.lesson_id === lessonId);
+        const lessonNode = (db.path_nodes || []).find(n => n.lesson_id === lessonId && (!skill || n.skill === skill))
+            || (db.path_nodes || []).find(n => n.lesson_id === lessonId);
         const profile = resolveExerciseProfile({
             profileId: lessonRecord?.exercise_profile_id,
             cefrLevel: lessonNode?.cefr_level,
         });
 
-        const exercises = generateExercises(lessonId, allItems, distractorPool, imageMap, session, profile.options);
+        const generated = generateExercises(lessonId, allItems, distractorPool, imageMap, session, {
+            ...profile.options,
+            mcqTypeIds: lessonRecord?.mcq_type_ids || lessonRecord?.mcqTypeIds || profile.options?.mcqTypeIds,
+        });
+        const exercises = filterExercisesBySkill(generated, skill);
         exercises.forEach(ex => { ex.wordHints = wordHints; });
 
         exerciseCache.set(cacheKey, exercises);
@@ -216,28 +225,37 @@ export const createLessonExerciseService = ({ getDB }) => {
         if (node.test_scope === 'module' && node.source_node_id) {
             const sourceNode = (db.path_nodes || []).find(n => n.id === node.source_node_id);
             if (sourceNode?.lesson_id) {
-                return getExercisesGenerated(sourceNode.lesson_id);
+                return getExercisesGenerated(sourceNode.lesson_id, 0, {
+                    skill: sourceNode.skill || '',
+                    useAllLessonItems: Boolean(sourceNode.skill),
+                });
             }
         }
 
         if (node.lesson_id) {
-            return getExercisesGenerated(node.lesson_id);
+            return getExercisesGenerated(node.lesson_id, 0, {
+                skill: node.skill || '',
+                useAllLessonItems: Boolean(node.skill),
+            });
         }
 
         return [];
     };
 
-    const getLessonBlueprint = (lessonId, session = 0) => {
+    const getLessonBlueprint = (lessonId, session = 0, options = {}) => {
         const db = getDB();
         const blueprint = (db.lesson_blueprints || []).find(bp => bp.lesson_id === lessonId);
         if (!blueprint) return null;
+        const useAllLessonItems = options.useAllLessonItems === true;
 
         const moduleId = parseInt(lessonId.replace('lesson_', ''));
         const moduleData = modules.find(m => m.id === moduleId);
 
         const allItemIds = blueprint.introduced_items || [];
         const newStart = session * ITEMS_PER_SESSION;
-        const sessionItemIds = allItemIds.slice(newStart, newStart + ITEMS_PER_SESSION);
+        const sessionItemIds = useAllLessonItems
+            ? allItemIds
+            : allItemIds.slice(newStart, newStart + ITEMS_PER_SESSION);
 
         const words = sessionItemIds.map(itemId => {
             const item = (db.items || []).find(i => i.id === itemId);

@@ -5,7 +5,7 @@ import { lookupWords } from '../lib/dictionaryLookup';
 import { getConceptsForLesson } from '../lib/concepts';
 import { useProgress } from '../context/ProgressContext';
 import { useUser } from '../context/UserContext';
-import { getNodeByLessonId, getLessonBlueprint, getExercisesGenerated, getNextNode, getNodeRoute } from '../lib/db';
+import { getNodeByLessonId, getNodeById, getLessonBlueprint, getExercisesGenerated, getNextNode, getNodeRoute } from '../lib/db';
 import speak, { preloadSpeak, scheduleSpeak, clearSpeakQueue } from '../utils/speak';
 import { startPCMRecording } from '../utils/recordPCM';
 import { addItemsFromLesson, recordReview } from '../lib/srs';
@@ -256,11 +256,17 @@ const LessonGame = () => {
         setHalfwayLine(null);
         setStreakLine(null);
 
-        // Determine current session number for this lesson's node
-        const node = getNodeByLessonId(lessonId);
+        // Determine current session number for this lesson's node.
+        // Skill-split nodes share a lesson_id, so resolve the exact node via the
+        // ?node= param when present; ?skill= filters the generated exercises.
+        const params = new URLSearchParams(location.search);
+        const skill = params.get('skill') || '';
+        const nodeIdParam = params.get('node');
+        const useAllLessonItems = Boolean(skill);
+        const node = (nodeIdParam && getNodeById(nodeIdParam)) || getNodeByLessonId(lessonId);
         const session = node ? progressCtx.getNodeSessionCount(node.id, progressMode) : 0;
 
-        const loaded = getExercisesGenerated(lessonId, session);
+        const loaded = getExercisesGenerated(lessonId, session, { skill, useAllLessonItems });
         if (loaded.length === 0) {
             console.warn(`No exercises found for ${lessonId}`);
         }
@@ -280,7 +286,7 @@ const LessonGame = () => {
         }
 
         // Load lesson words for summary + dictionary lookup (session-aware: only this session's new words)
-        const blueprint = getLessonBlueprint(lessonId, session);
+        const blueprint = getLessonBlueprint(lessonId, session, { useAllLessonItems });
         if (blueprint) {
             setLessonBlueprint(blueprint);
             setLessonWords(blueprint.words);
@@ -344,8 +350,10 @@ const LessonGame = () => {
                 progressCtx.completeNode(nodeId, { mode: progressMode });
             }
 
-            // Add words to SRS for review later
-            addItemsFromLesson(lessonId);
+            // Add only the words this card/session exposed; split-mode lesson
+            // cards share a lesson id, so lesson-wide enqueue would over-review.
+            const taughtItemIds = lessonWords.map(word => word.id).filter(Boolean);
+            addItemsFromLesson(taughtItemIds.length > 0 ? taughtItemIds : lessonId);
 
             // 🔔 Notify: lesson complete
             setTimeout(() => fireNotification('lesson_complete'), 400);

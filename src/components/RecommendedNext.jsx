@@ -6,12 +6,12 @@ import { getUnits, getNodesForUnitWithProgress } from '../lib/roadmapDb';
 // Sequencer-powered "Recommended for you" row (Layer 3 activation).
 // Additive: sits above the visible roadmap; the linear path is unchanged. Picks
 // the next lessons by purpose-fit + difficulty-fit + variety, constrained by the
-// grammar prerequisite graph. Tapping a card jumps to that lesson. Picks beyond
-// the roadmap's linear unlock are honest about it: labelled "Skip ahead"
+// grammar prerequisite graph. Tapping a lesson card opens the Study preview.
+// Picks beyond the roadmap's linear unlock are honest about it: labelled "Skip ahead"
 // (grammar-prereq-safe by construction, but ahead of the visible path order).
 const TOPIC_COLOR = { explore_vietnam: '#1CB0F6', professional: '#A78BFA', heritage: '#EF476F' };
 
-export default function RecommendedNext({ completedNodeIds, purpose }) {
+export default function RecommendedNext({ completedNodeIds, purpose, onLessonSelect }) {
     const navigate = useNavigate();
     const [recommendations, setRecommendations] = useState({ recs: [], dueCount: 0 });
 
@@ -51,6 +51,10 @@ export default function RecommendedNext({ completedNodeIds, purpose }) {
 
     if (!recs.length && !dueCount) return null;
     const accent = TOPIC_COLOR[purpose] || 'var(--primary-color)';
+    const selectLesson = (lessonId) => {
+        if (onLessonSelect) onLessonSelect(lessonId);
+        else navigate(`/lesson/${lessonId}`);
+    };
 
     return (
         <div style={{ padding: '14px 16px 6px' }}>
@@ -86,7 +90,8 @@ export default function RecommendedNext({ completedNodeIds, purpose }) {
                 {recs.map(({ lesson, spine, ahead }) => (
                     <button
                         key={lesson.id}
-                        onClick={() => navigate(`/lesson/${lesson.id}`)}
+                        onClick={() => selectLesson(lesson.id)}
+                        onPointerUp={() => selectLesson(lesson.id)}
                         style={{
                             flex: '0 0 auto', width: 160, textAlign: 'left', cursor: 'pointer',
                             background: 'var(--surface-color)', border: `2px solid ${accent}30`,

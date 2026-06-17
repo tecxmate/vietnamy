@@ -25,37 +25,41 @@ function todayISO() {
  * Add items from a completed lesson to the SRS queue.
  * Reads the lesson blueprint from the mock DB to find introduced items.
  */
-export function addItemsFromLesson(lessonId) {
-    const dbRaw = localStorage.getItem('vnme_mock_db_v12');
-    if (!dbRaw) return;
-    const db = JSON.parse(dbRaw);
+export async function addItemsFromLesson(lessonId) {
+    try {
+        const { getFullDB } = await import('./storage/mockDbStore');
+        const db = getFullDB();
+        const itemIds = Array.isArray(lessonId)
+            ? lessonId
+            : (db.lesson_blueprints || []).find(bp => bp.lesson_id === lessonId)?.introduced_items;
+        if (!itemIds?.length) return;
 
-    const blueprint = (db.lesson_blueprints || []).find(bp => bp.lesson_id === lessonId);
-    if (!blueprint) return;
+        const srs = loadSRS();
+        const today = todayISO();
 
-    const srs = loadSRS();
-    const today = todayISO();
+        itemIds.forEach(itemId => {
+            if (srs[itemId]) return; // Already in SRS, don't reset
 
-    (blueprint.introduced_items || []).forEach(itemId => {
-        if (srs[itemId]) return; // Already in SRS, don't reset
+            const item = (db.items || []).find(i => i.id === itemId);
+            const translation = (db.translations || []).find(t => t.item_id === itemId && t.lang === 'en');
+            if (!item || !translation) return;
 
-        const item = (db.items || []).find(i => i.id === itemId);
-        const translation = (db.translations || []).find(t => t.item_id === itemId && t.lang === 'en');
-        if (!item || !translation) return;
+            srs[itemId] = {
+                itemId,
+                vietnamese: item.vi_text,
+                english: translation.text,
+                intervalIndex: 0,      // Index into INTERVALS array
+                nextReview: today,     // Due immediately for first review
+                lastReview: null,
+                correctCount: 0,
+                wrongCount: 0,
+            };
+        });
 
-        srs[itemId] = {
-            itemId,
-            vietnamese: item.vi_text,
-            english: translation.text,
-            intervalIndex: 0,      // Index into INTERVALS array
-            nextReview: today,     // Due immediately for first review
-            lastReview: null,
-            correctCount: 0,
-            wrongCount: 0,
-        };
-    });
-
-    saveSRS(srs);
+        saveSRS(srs);
+    } catch {
+        // SRS is a retention layer; never let it interrupt lesson completion.
+    }
 }
 
 /**

@@ -2,6 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { getLessonContent, saveLessonContent, getItems, getExercisesGenerated, clearExerciseCache } from '../../lib/db';
 import { EXERCISE_PROFILES } from '../../lib/exerciseProfiles';
+import { MCQ_TYPE_OPTIONS, normalizeMcqTypeIds } from '../../lib/mcqTypes';
 import { getCanonicalCurriculum, getCurriculumCounts, validateCanonicalCurriculum } from '../../lib/content/canonicalCurriculumStore';
 import { Search, Plus, Trash2, Save, ArrowLeft, Check, Eye, FileCheck } from 'lucide-react';
 
@@ -29,6 +30,7 @@ const buildInitialEditorState = (targetLessonId) => {
     return {
         goal: data?.goal || 'New Lesson Goal',
         exerciseProfileId: data?.exerciseProfileId || '',
+        mcqTypeIds: normalizeMcqTypeIds(data?.mcqTypeIds || data?.lesson?.mcqTypeIds),
         lessonMeta: {
             unitId: data?.lesson?.unitId || '',
             orderIndex: data?.lesson?.orderIndex ?? '',
@@ -41,6 +43,7 @@ const buildInitialEditorState = (targetLessonId) => {
             focus: (data?.lesson?.focus || []).join(', '),
         },
         sentences: data?.sentences || [],
+        conversations: data?.conversations || [],
         attachedItems: data?.attachedItems || [],
         allItems: getItems().filter(item => item.item_type !== 'sentence'),
         validation,
@@ -52,8 +55,10 @@ const LessonBuilderEditor = ({ targetLessonId, navigate }) => {
     const initialState = useMemo(() => buildInitialEditorState(targetLessonId), [targetLessonId]);
     const [goal, setGoal] = useState(initialState.goal);
     const [exerciseProfileId, setExerciseProfileId] = useState(initialState.exerciseProfileId);
+    const [mcqTypeIds, setMcqTypeIds] = useState(initialState.mcqTypeIds);
     const [lessonMeta, setLessonMeta] = useState(initialState.lessonMeta);
     const [sentences, setSentences] = useState(initialState.sentences);
+    const [conversations, setConversations] = useState(initialState.conversations);
     const [vocabSearch, setVocabSearch] = useState('');
     const [allItems] = useState(initialState.allItems);
     const [attachedItems, setAttachedItems] = useState(initialState.attachedItems);
@@ -80,10 +85,13 @@ const LessonBuilderEditor = ({ targetLessonId, navigate }) => {
                     difficulty: toNumberOrUndefined(lessonMeta.difficulty),
                     xpReward: toNumberOrUndefined(lessonMeta.xpReward),
                     exerciseProfileId: exerciseProfileId || undefined,
+                    mcqTypeIds,
                     focus: splitCsv(lessonMeta.focus),
                 },
                 sentences,
-                attachedItems
+                attachedItems,
+                conversations,
+                mcqTypeIds,
             });
             setValidation(validateCanonicalCurriculum(getCanonicalCurriculum()));
             setCounts(getCurriculumCounts());
@@ -101,6 +109,14 @@ const LessonBuilderEditor = ({ targetLessonId, navigate }) => {
         setLessonMeta(current => ({ ...current, [field]: value }));
     };
 
+    const toggleMcqType = (typeId) => {
+        setMcqTypeIds(current => (
+            current.includes(typeId)
+                ? current.filter(id => id !== typeId)
+                : [...current, typeId]
+        ));
+    };
+
     const addSentence = () => {
         setSentences([...sentences, { vietnamese: '', english: '' }]);
     };
@@ -113,6 +129,59 @@ const LessonBuilderEditor = ({ targetLessonId, navigate }) => {
 
     const removeSentence = (index) => {
         setSentences(sentences.filter((_, i) => i !== index));
+    };
+
+    const addConversation = () => {
+        setConversations([
+            ...conversations,
+            {
+                id: `conv_${targetLessonId}_${conversations.length + 1}`,
+                title: '',
+                context: '',
+                lines: [
+                    { speaker: 'A', vi: '', en: '' },
+                    { speaker: 'B', vi: '', en: '' },
+                ],
+            },
+        ]);
+    };
+
+    const updateConversation = (index, field, value) => {
+        const next = [...conversations];
+        next[index] = { ...next[index], [field]: value };
+        setConversations(next);
+    };
+
+    const removeConversation = (index) => {
+        setConversations(conversations.filter((_, i) => i !== index));
+    };
+
+    const addConversationLine = (conversationIndex) => {
+        const next = [...conversations];
+        const lines = next[conversationIndex].lines || [];
+        const lastSpeaker = lines[lines.length - 1]?.speaker;
+        next[conversationIndex] = {
+            ...next[conversationIndex],
+            lines: [...lines, { speaker: lastSpeaker === 'A' ? 'B' : 'A', vi: '', en: '' }],
+        };
+        setConversations(next);
+    };
+
+    const updateConversationLine = (conversationIndex, lineIndex, field, value) => {
+        const next = [...conversations];
+        const lines = [...(next[conversationIndex].lines || [])];
+        lines[lineIndex] = { ...lines[lineIndex], [field]: value };
+        next[conversationIndex] = { ...next[conversationIndex], lines };
+        setConversations(next);
+    };
+
+    const removeConversationLine = (conversationIndex, lineIndex) => {
+        const next = [...conversations];
+        next[conversationIndex] = {
+            ...next[conversationIndex],
+            lines: (next[conversationIndex].lines || []).filter((_, i) => i !== lineIndex),
+        };
+        setConversations(next);
     };
 
     const attachItem = (item) => {
@@ -212,6 +281,63 @@ const LessonBuilderEditor = ({ targetLessonId, navigate }) => {
                         <p style={{ fontSize: 12, color: 'var(--text-muted)', margin: '8px 0 0' }}>
                             Controls which question types this lesson generates. "Beginner" replaces typing with multiple-choice. Use Preview to see the effect.
                         </p>
+
+                        <div style={{ marginTop: 20, padding: 14, borderRadius: 10, border: '1px solid var(--border-color)', backgroundColor: 'var(--bg-color)' }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12, marginBottom: 12 }}>
+                                <div>
+                                    <h4 style={{ margin: 0, fontSize: 14 }}>MCQ Formats</h4>
+                                    <p style={{ fontSize: 12, color: 'var(--text-muted)', margin: '4px 0 0' }}>
+                                        Leave empty to use the full profile mix. Select formats to limit this lesson's choice-style questions.
+                                    </p>
+                                </div>
+                                {mcqTypeIds.length > 0 && (
+                                    <button
+                                        className="ghost"
+                                        type="button"
+                                        onClick={() => setMcqTypeIds([])}
+                                        style={{ fontSize: 12, padding: '6px 8px', flexShrink: 0 }}
+                                    >
+                                        Auto
+                                    </button>
+                                )}
+                            </div>
+
+                            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))', gap: 8 }}>
+                                {MCQ_TYPE_OPTIONS.map(option => {
+                                    const checked = mcqTypeIds.includes(option.id);
+                                    return (
+                                        <label
+                                            key={option.id}
+                                            style={{
+                                                display: 'flex',
+                                                gap: 10,
+                                                alignItems: 'flex-start',
+                                                padding: 10,
+                                                borderRadius: 8,
+                                                border: `1px solid ${checked ? 'var(--secondary-color)' : 'var(--border-color)'}`,
+                                                backgroundColor: checked ? 'rgba(17, 138, 178, 0.12)' : 'var(--surface-color)',
+                                                cursor: 'pointer',
+                                            }}
+                                        >
+                                            <input
+                                                type="checkbox"
+                                                checked={checked}
+                                                onChange={() => toggleMcqType(option.id)}
+                                                style={{ marginTop: 2 }}
+                                            />
+                                            <span>
+                                                <span style={{ display: 'block', fontSize: 13, fontWeight: 800, color: 'var(--text-main)' }}>
+                                                    {option.label}
+                                                </span>
+                                                <span style={{ display: 'block', fontSize: 11, color: 'var(--text-muted)', lineHeight: 1.35, marginTop: 2 }}>
+                                                    {option.description}
+                                                </span>
+                                            </span>
+                                        </label>
+                                    );
+                                })}
+                            </div>
+                        </div>
                     </div>
 
                     <div className="glass-panel">
@@ -279,6 +405,110 @@ const LessonBuilderEditor = ({ targetLessonId, navigate }) => {
                             {sentences.length === 0 && (
                                 <div style={{ textAlign: 'center', padding: 32, color: 'var(--text-muted)', borderStyle: 'dashed', borderWidth: 2, borderColor: 'var(--border-color)', borderRadius: 8 }}>
                                     No sentences yet. Click "Add Pair" to start building lesson content.
+                                </div>
+                            )}
+                        </div>
+                    </div>
+
+                    <div className="glass-panel">
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
+                            <div>
+                                <h3 style={{ margin: 0 }}>Dialogue Preview</h3>
+                                <p style={{ margin: '4px 0 0', fontSize: 12, color: 'var(--text-muted)' }}>
+                                    These lines appear when a learner taps a study card before starting.
+                                </p>
+                            </div>
+                            <button className="ghost" style={{ fontSize: 14 }} onClick={addConversation}>
+                                <Plus size={16} /> Add Dialogue
+                            </button>
+                        </div>
+
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
+                            {conversations.map((conversation, convIdx) => (
+                                <div key={conversation.id || convIdx} style={{ padding: 16, backgroundColor: 'var(--bg-color)', borderRadius: 10, border: '1px solid var(--border-color)' }}>
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12, marginBottom: 14 }}>
+                                        <div style={{ display: 'grid', gridTemplateColumns: 'minmax(130px, 0.8fr) minmax(160px, 1fr) minmax(160px, 1fr)', gap: 12, flex: 1 }}>
+                                            <label style={{ display: 'block', fontSize: 12, color: 'var(--text-muted)' }}>
+                                                Dialogue ID
+                                                <input
+                                                    type="text"
+                                                    value={conversation.id || ''}
+                                                    onChange={(e) => updateConversation(convIdx, 'id', e.target.value)}
+                                                    style={{ width: '100%', marginTop: 4, padding: '8px 10px', borderRadius: 6, backgroundColor: 'var(--surface-color)', border: '1px solid var(--border-color)', color: 'var(--text-main)', boxSizing: 'border-box' }}
+                                                />
+                                            </label>
+                                            <label style={{ display: 'block', fontSize: 12, color: 'var(--text-muted)' }}>
+                                                Title
+                                                <input
+                                                    type="text"
+                                                    value={conversation.title || ''}
+                                                    onChange={(e) => updateConversation(convIdx, 'title', e.target.value)}
+                                                    placeholder="Meeting someone"
+                                                    style={{ width: '100%', marginTop: 4, padding: '8px 10px', borderRadius: 6, backgroundColor: 'var(--surface-color)', border: '1px solid var(--border-color)', color: 'var(--text-main)', boxSizing: 'border-box' }}
+                                                />
+                                            </label>
+                                            <label style={{ display: 'block', fontSize: 12, color: 'var(--text-muted)' }}>
+                                                Context
+                                                <input
+                                                    type="text"
+                                                    value={conversation.context || ''}
+                                                    onChange={(e) => updateConversation(convIdx, 'context', e.target.value)}
+                                                    placeholder="At a cafe"
+                                                    style={{ width: '100%', marginTop: 4, padding: '8px 10px', borderRadius: 6, backgroundColor: 'var(--surface-color)', border: '1px solid var(--border-color)', color: 'var(--text-main)', boxSizing: 'border-box' }}
+                                                />
+                                            </label>
+                                        </div>
+                                        <button className="ghost" onClick={() => removeConversation(convIdx)} style={{ color: 'var(--danger-color)', flexShrink: 0 }}>
+                                            <Trash2 size={20} />
+                                        </button>
+                                    </div>
+
+                                    <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+                                        {(conversation.lines || []).map((line, lineIdx) => (
+                                            <div key={lineIdx} style={{ display: 'grid', gridTemplateColumns: '72px minmax(180px, 1fr) minmax(180px, 1fr) 36px', gap: 10, alignItems: 'center' }}>
+                                                <input
+                                                    type="text"
+                                                    value={line.speaker || ''}
+                                                    onChange={(e) => updateConversationLine(convIdx, lineIdx, 'speaker', e.target.value)}
+                                                    placeholder="A"
+                                                    aria-label="Speaker"
+                                                    style={{ width: '100%', padding: '8px 10px', borderRadius: 6, backgroundColor: 'var(--surface-color)', border: '1px solid var(--border-color)', color: 'var(--text-main)', boxSizing: 'border-box' }}
+                                                />
+                                                <input
+                                                    type="text"
+                                                    value={line.vi || ''}
+                                                    onChange={(e) => updateConversationLine(convIdx, lineIdx, 'vi', e.target.value)}
+                                                    placeholder="Vietnamese line"
+                                                    style={{ width: '100%', padding: '8px 10px', borderRadius: 6, backgroundColor: 'var(--surface-color)', border: '1px solid var(--border-color)', color: 'var(--text-main)', boxSizing: 'border-box' }}
+                                                />
+                                                <input
+                                                    type="text"
+                                                    value={line.en || ''}
+                                                    onChange={(e) => updateConversationLine(convIdx, lineIdx, 'en', e.target.value)}
+                                                    placeholder="English meaning"
+                                                    style={{ width: '100%', padding: '8px 10px', borderRadius: 6, backgroundColor: 'var(--surface-color)', border: '1px solid var(--border-color)', color: 'var(--text-main)', boxSizing: 'border-box' }}
+                                                />
+                                                <button
+                                                    className="ghost"
+                                                    onClick={() => removeConversationLine(convIdx, lineIdx)}
+                                                    style={{ color: 'var(--danger-color)', padding: 8 }}
+                                                    aria-label="Remove dialogue line"
+                                                >
+                                                    <Trash2 size={16} />
+                                                </button>
+                                            </div>
+                                        ))}
+                                    </div>
+
+                                    <button className="ghost" style={{ marginTop: 12, fontSize: 13 }} onClick={() => addConversationLine(convIdx)}>
+                                        <Plus size={14} /> Add Line
+                                    </button>
+                                </div>
+                            ))}
+
+                            {conversations.length === 0 && (
+                                <div style={{ textAlign: 'center', padding: 32, color: 'var(--text-muted)', borderStyle: 'dashed', borderWidth: 2, borderColor: 'var(--border-color)', borderRadius: 8 }}>
+                                    No dialogue yet. Add one if learners should preview a conversation before the lesson.
                                 </div>
                             )}
                         </div>
