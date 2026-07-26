@@ -2352,6 +2352,98 @@ app.get('/api/translate', async (req, res) => {
     }
 });
 
+// ── AI Tutor (Gemini) ────────────────────────────────────────────
+// Streaming-free chat endpoint. Add GEMINI_API_KEY to server/.env to enable.
+const GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
+
+const TUTOR_LEVELS = {
+    new: 'absolute beginner (A0) — use only very simple, short sentences',
+    basic: 'elementary (A1) — simple everyday sentences',
+    intermediate: 'intermediate (B1) — natural everyday Vietnamese',
+};
+
+app.post('/api/tutor', async (req, res) => {
+    const apiKey = process.env.GEMINI_API_KEY;
+    if (!apiKey) {
+        return res.status(503).json({ error: 'no_key', message: 'Add GEMINI_API_KEY to server/.env to enable the AI tutor.' });
+    }
+
+    const messages = Array.isArray(req.body?.messages) ? req.body.messages : [];
+    const level = TUTOR_LEVELS[req.body?.level] || TUTOR_LEVELS.new;
+    if (messages.length === 0) {
+        return res.status(400).json({ error: 'messages required' });
+    }
+
+    // Map chat history → Gemini contents (me→user, ai→model). Gemini wants the
+    // first turn to be 'user', so inject a lead-in if the seed opens with the tutor.
+    const contents = messages.slice(-12).map(m => ({
+        role: m.from === 'me' ? 'user' : 'model',
+        parts: [{ text: m.vi || m.en || '' }],
+    }));
+    if (contents[0]?.role === 'model') {
+        contents.unshift({ role: 'user', parts: [{ text: 'Chào cô.' }] });
+    }
+
+    const systemInstruction = {
+        parts: [{
+            text: `You are "Cô Vy", a warm, patient Vietnamese tutor chatting with an English-speaking learner at this level: ${level}. `
+                + `Reply in SHORT natural Vietnamese (1-2 sentences) and always keep the conversation going with one simple question. `
+                + `If the learner's last message has a mistake, add a brief gentle note in English in "correction" (one line); otherwise leave it empty. `
+                + `Never break character. Return JSON only.`,
+        }],
+    };
+
+    const body = {
+        systemInstruction,
+        contents,
+        generationConfig: {
+            temperature: 0.7,
+            responseMimeType: 'application/json',
+            responseSchema: {
+                type: 'OBJECT',
+                properties: {
+                    reply_vi: { type: 'STRING' },
+                    reply_en: { type: 'STRING' },
+                    correction: { type: 'STRING' },
+                },
+                required: ['reply_vi', 'reply_en'],
+            },
+        },
+    };
+
+    try {
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${apiKey}`;
+        const r = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body),
+        });
+        if (!r.ok) {
+            const detail = await r.text().catch(() => '');
+            console.error('Gemini error', r.status, detail.slice(0, 300));
+            if (r.status === 429) {
+                return res.status(502).json({ error: 'quota', message: 'The AI tutor is out of quota or rate-limited. Check your Gemini API plan/billing, then try again.' });
+            }
+            if (r.status === 400 || r.status === 403) {
+                return res.status(502).json({ error: 'auth', message: 'Gemini rejected the request (bad or unauthorized API key). Check GEMINI_API_KEY in server/.env.' });
+            }
+            return res.status(502).json({ error: 'upstream', message: 'AI service error, please try again.' });
+        }
+        const data = await r.json();
+        const raw = data?.candidates?.[0]?.content?.parts?.[0]?.text || '';
+        let parsed;
+        try { parsed = JSON.parse(raw); } catch { parsed = { reply_vi: raw, reply_en: '' }; }
+        return res.json({
+            vi: parsed.reply_vi || '',
+            en: parsed.reply_en || '',
+            correction: parsed.correction || '',
+        });
+    } catch (err) {
+        console.error('Tutor error:', err.message);
+        return res.status(502).json({ error: 'failed', message: 'AI request failed.' });
+    }
+});
+
 app.get('/api/push/vapid-public-key', (_req, res) => {
     res.json({
         enabled: PUSH_ENABLED,

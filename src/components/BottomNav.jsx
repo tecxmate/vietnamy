@@ -1,5 +1,5 @@
 import React from 'react';
-import { Home, BookOpen, Search, Library, User, Bell, Settings, Pen, Music } from 'lucide-react';
+import { Home, BookOpen, Search, Library, User, Bell, Settings, Pen, Music, MessageCircle, Video } from 'lucide-react';
 import { useT } from '../lib/i18n';
 import { useUser } from '../context/UserContext';
 import { useNotifications } from '../context/NotificationContext';
@@ -9,13 +9,17 @@ const BottomNav = ({ activeTab, setActiveTab, onPreloadTab, tabs: allowedTabs, s
     const { userProfile } = useUser();
     const { unreadCount, openPanel } = useNotifications();
 
+    // Order here defines the filtered nav order: Learn · AI Tutor · Dictionary · Video · Library.
+    // Legacy ids (home/dicthome/grammar/sounds) are kept for deep links but filtered out of the bar.
     const allTabs = [
         { id: 'home', icon: <Home size={24} />, label: t('nav_home') },
         { id: 'dicthome', icon: <Home size={24} />, label: t('nav_home') },
         { id: 'study', icon: <BookOpen size={24} />, label: t('nav_study') },
+        { id: 'ai', icon: <MessageCircle size={24} />, label: t('nav_ai') },
         { id: 'grammar', icon: <Pen size={24} />, label: t('nav_grammar') },
         { id: 'sounds', icon: <Music size={24} />, label: t('nav_sounds') },
         { id: 'dictionary', icon: <Search size={24} />, label: t('nav_dictionary') },
+        { id: 'video', icon: <Video size={24} />, label: t('nav_video') },
         { id: 'library', icon: <Library size={24} />, label: t('nav_library') },
     ];
     const tabs = allowedTabs ? allTabs.filter(tab => allowedTabs.includes(tab.id)) : allTabs;

@@ -22,12 +22,16 @@ import { trackPushReturnFromUrl } from './utils/pushNotifications';
 import { installClientDiagnostics } from './lib/clientDiagnostics';
 
 const loadRoadmapTab = () => import('./components/Tabs/RoadmapTab');
+const loadAITab = () => import('./components/Tabs/AITab');
 const loadDictionaryTab = () => import('./components/Tabs/DictionaryTab');
+const loadVideoTab = () => import('./components/Tabs/VideoTab');
 const loadReadingLibraryTab = () => import('./components/Tabs/ReadingLibraryTab');
 
 const TAB_LOADERS = {
   study: loadRoadmapTab,
+  ai: loadAITab,
   dictionary: loadDictionaryTab,
+  video: loadVideoTab,
   library: loadReadingLibraryTab,
 };
 
@@ -78,7 +82,9 @@ function preloadStudentTabs(activeTab) {
 const OnboardingFlow = lazy(() => import('./components/Onboarding/OnboardingFlow'));
 const AppTutorial = lazy(() => import('./components/Onboarding/AppTutorial'));
 const RoadmapTab = lazy(loadRoadmapTab);
+const AITab = lazy(loadAITab);
 const DictionaryTab = lazy(loadDictionaryTab);
+const VideoTab = lazy(loadVideoTab);
 const ReadingLibraryTab = lazy(loadReadingLibraryTab);
 
 const GrammarGuide = lazy(() => import('./pages/Grammar/GrammarGuide'));
@@ -146,9 +152,10 @@ const Quantifiers = lazy(() => import('./pages/Practice/Quantifiers'));
 const VisionVerbs = lazy(() => import('./pages/Practice/VisionVerbs'));
 const Prepositions = lazy(() => import('./pages/Practice/Prepositions'));
 
-// One app, three tabs. Pronunciation and grammar are integrated into Study
-// (the roadmap modules), so they are no longer separate nav tabs.
-const VALID_TABS = ['study', 'dictionary', 'library'];
+// One app, five tabs (living-spec structure matching the Figma):
+// Learn(study) · Talk to AI(ai) · Dictionary · Video · Library.
+// Pronunciation and grammar are integrated into Study (the roadmap modules).
+const VALID_TABS = ['study', 'ai', 'dictionary', 'video', 'library'];
 
 function normalizeTab(tab, fallback = 'study') {
   return VALID_TABS.includes(tab) ? tab : fallback;
@@ -345,7 +352,9 @@ function StudentApp({ initialTab = 'study' }) {
   const renderTab = () => {
     switch (activeTab) {
       case 'study': return <RoadmapTab onNavigateToVocabDeck={handleNavigateToVocabDeck} />;
+      case 'ai': return <AITab />;
       case 'dictionary': return <DictionaryTab pendingInput={pendingDictInput} clearPendingInput={() => setPendingDictInput(null)} onNavigateToLibrary={handleNavigateToLibrary} />;
+      case 'video': return <VideoTab />;
       case 'library': return <ReadingLibraryTab onSubtitleChange={setTabSubtitle} onSearchWord={handleDictInput} pendingArticle={pendingLibraryArticle} clearPendingArticle={() => setPendingLibraryArticle(null)} pendingVocabDeck={pendingVocabDeck} clearPendingVocabDeck={() => setPendingVocabDeck(null)} />;
       default: return <RoadmapTab onNavigateToVocabDeck={handleNavigateToVocabDeck} />;
     }

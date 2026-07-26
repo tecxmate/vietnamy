@@ -24,7 +24,9 @@ const TAB_META = {
     home: null,
     dicthome: null,
     study: null,
+    ai: { title: 'tab_ai_title', subtitle: 'tab_ai_subtitle' },
     dictionary: { title: 'tab_dictionary_title', subtitle: 'tab_dictionary_subtitle' },
+    video: { title: 'tab_video_title', subtitle: 'tab_video_subtitle' },
     grammar: { title: 'tab_grammar_title', subtitle: 'tab_grammar_subtitle' },
     library: { title: 'tab_library_title', subtitle: 'tab_library_subtitle' },
 };
