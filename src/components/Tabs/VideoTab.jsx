@@ -2,6 +2,10 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Play, ChevronLeft, Volume2 } from 'lucide-react';
 import speak from '../../utils/speak';
 import { useT } from '../../lib/i18n';
+import { useUser } from '../../context/UserContext';
+import TappableVietnamese from '../TappableVietnamese';
+import WordPopup from '../WordPopup';
+import { toggleDictSavedWord } from '../../lib/dictSavedWords';
 
 // Video — real YouTube playback (IFrame API) with tap-to-seek bilingual transcript.
 // Seed videos are verified-embeddable VN-learning clips. Transcripts here are
@@ -78,7 +82,15 @@ export default function VideoTab() {
     const [videos, setVideos] = useState(SEED);
     const [active, setActive] = useState(null);
     const [linkInput, setLinkInput] = useState('');
+    const [popupWord, setPopupWord] = useState(null);
     const playerRef = useRef(null);
+    const { userProfile } = useUser();
+
+    const dictMode = (userProfile?.nativeLang === 'zh-s' || userProfile?.nativeLang === 'zh-t') ? userProfile.nativeLang : 'en';
+    const handleWordTap = (word, rect, isPhrase) => {
+        if (!word) { setPopupWord(null); return; }
+        setPopupWord({ word, anchorRect: rect, isPhrase });
+    };
 
     const seek = (sec) => {
         const p = playerRef.current;
@@ -110,14 +122,19 @@ export default function VideoTab() {
                     {active.transcript.length > 0 ? (
                         <>
                             <div style={{ fontSize: 11, fontWeight: 800, letterSpacing: 0.5, color: 'var(--text-muted)', marginBottom: 8 }}>{t('video_transcript')}</div>
+                            <p style={{ fontSize: 11, color: 'var(--text-muted)', margin: '0 0 8px' }}>{t('video_transcript_hint')}</p>
                             {active.transcript.map((line, i) => (
-                                <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 8, marginBottom: 8 }}>
-                                    <button onClick={() => seek(line.s)} style={{ flex: 1, textAlign: 'left', padding: '10px 12px', borderRadius: 12, border: '1px solid var(--border-color)', background: 'var(--surface-color)', cursor: 'pointer', fontFamily: 'inherit' }}>
-                                        <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--primary-color)', marginRight: 8 }}>{Math.floor(line.s / 60)}:{String(line.s % 60).padStart(2, '0')}</span>
-                                        <span style={{ fontSize: 15, fontWeight: 600, color: 'var(--text-main)' }}>{line.vi}</span>
-                                        <div style={{ fontSize: 12, color: 'var(--text-muted)', marginTop: 2 }}>{line.en}</div>
+                                <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 8, marginBottom: 8, padding: '8px 10px', borderRadius: 12, border: '1px solid var(--border-color)', background: 'var(--surface-color)' }}>
+                                    <button onClick={() => seek(line.s)} aria-label="seek" style={{ flexShrink: 0, padding: '3px 8px', borderRadius: 8, border: 'none', background: 'var(--surface-color-light)', color: 'var(--primary-color)', fontSize: 11, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', marginTop: 2 }}>
+                                        ▶ {Math.floor(line.s / 60)}:{String(line.s % 60).padStart(2, '0')}
                                     </button>
-                                    <button onClick={() => speak(line.vi)} aria-label="hear" style={{ width: 40, height: 40, flexShrink: 0, borderRadius: 10, border: '1px solid var(--border-color)', background: 'var(--surface-color)', color: 'var(--text-main)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                    <div style={{ flex: 1, minWidth: 0 }}>
+                                        <div style={{ fontSize: 15, fontWeight: 600, color: 'var(--text-main)', lineHeight: 1.5 }}>
+                                            <TappableVietnamese text={line.vi} onWordTap={handleWordTap} />
+                                        </div>
+                                        <div style={{ fontSize: 12, color: 'var(--text-muted)', marginTop: 2 }}>{line.en}</div>
+                                    </div>
+                                    <button onClick={() => speak(line.vi)} aria-label="hear" style={{ width: 36, height: 36, flexShrink: 0, borderRadius: 10, border: '1px solid var(--border-color)', background: 'var(--surface-color)', color: 'var(--text-main)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                                         <Volume2 size={16} />
                                     </button>
                                 </div>
@@ -128,6 +145,17 @@ export default function VideoTab() {
                         <p style={{ fontSize: 13, color: 'var(--text-muted)' }}>{t('video_no_transcript')}</p>
                     )}
                 </div>
+                {popupWord && (
+                    <WordPopup
+                        word={popupWord.word}
+                        anchorRect={popupWord.anchorRect}
+                        dictMode={dictMode}
+                        isPhrase={popupWord.isPhrase}
+                        onClose={() => setPopupWord(null)}
+                        onNavigate={() => setPopupWord(null)}
+                        onSave={(w) => { toggleDictSavedWord(w); setPopupWord(null); }}
+                    />
+                )}
             </div>
         );
     }

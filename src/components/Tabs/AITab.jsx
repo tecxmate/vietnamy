@@ -3,6 +3,9 @@ import { Send, Mic, Sparkles, Volume2, AlertCircle } from 'lucide-react';
 import speak from '../../utils/speak';
 import { useT } from '../../lib/i18n';
 import { useUser } from '../../context/UserContext';
+import TappableVietnamese from '../TappableVietnamese';
+import WordPopup from '../WordPopup';
+import { toggleDictSavedWord } from '../../lib/dictSavedWords';
 
 // Talk to AI — live Vietnamese tutor powered by Gemini (server /api/tutor).
 // If GEMINI_API_KEY is not set in server/.env, the endpoint returns 503 and we
@@ -18,7 +21,7 @@ const SUGGESTIONS = [
     { vi: 'Nghĩa là gì?', en: 'What does that mean?' },
 ];
 
-function Bubble({ turn }) {
+function Bubble({ turn, onWordTap }) {
     const mine = turn.from === 'me';
     return (
         <div style={{ display: 'flex', justifyContent: mine ? 'flex-end' : 'flex-start', marginBottom: 12 }}>
@@ -32,7 +35,9 @@ function Bubble({ turn }) {
                     borderBottomLeftRadius: mine ? 16 : 4,
                     padding: '10px 14px',
                 }}>
-                    <div style={{ fontSize: 15, fontWeight: 600 }}>{turn.vi}</div>
+                    <div style={{ fontSize: 15, fontWeight: 600 }}>
+                        {!mine && onWordTap ? <TappableVietnamese text={turn.vi} onWordTap={onWordTap} /> : turn.vi}
+                    </div>
                     {turn.en && <div style={{ fontSize: 12, opacity: 0.7, marginTop: 2 }}>{turn.en}</div>}
                 </div>
                 {!mine && (
@@ -60,7 +65,14 @@ export default function AITab() {
     const [draft, setDraft] = useState('');
     const [loading, setLoading] = useState(false);
     const [notice, setNotice] = useState('');
+    const [popupWord, setPopupWord] = useState(null);
     const endRef = useRef(null);
+
+    const dictMode = (userProfile?.nativeLang === 'zh-s' || userProfile?.nativeLang === 'zh-t') ? userProfile.nativeLang : 'en';
+    const handleWordTap = (word, rect, isPhrase) => {
+        if (!word) { setPopupWord(null); return; }
+        setPopupWord({ word, anchorRect: rect, isPhrase });
+    };
 
     useEffect(() => {
         endRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -101,7 +113,7 @@ export default function AITab() {
             </div>
 
             <div style={{ flex: 1, overflowY: 'auto', padding: 16 }}>
-                {turns.map((turn, i) => <Bubble key={i} turn={turn} />)}
+                {turns.map((turn, i) => <Bubble key={i} turn={turn} onWordTap={handleWordTap} />)}
                 {loading && (
                     <div style={{ display: 'flex', justifyContent: 'flex-start', marginBottom: 12 }}>
                         <div style={{ background: 'var(--surface-color)', border: '1px solid var(--border-color)', borderRadius: 16, borderBottomLeftRadius: 4, padding: '12px 16px', color: 'var(--text-muted)', fontSize: 14 }}>
@@ -155,6 +167,18 @@ export default function AITab() {
                     <Send size={20} />
                 </button>
             </div>
+
+            {popupWord && (
+                <WordPopup
+                    word={popupWord.word}
+                    anchorRect={popupWord.anchorRect}
+                    dictMode={dictMode}
+                    isPhrase={popupWord.isPhrase}
+                    onClose={() => setPopupWord(null)}
+                    onNavigate={() => setPopupWord(null)}
+                    onSave={(w) => { toggleDictSavedWord(w); setPopupWord(null); }}
+                />
+            )}
         </div>
     );
 }
