@@ -1396,6 +1396,7 @@ function VocabularyBrowseView({ onBack, onSearchWord, initialDeckId }) {
                                 <span className="vocab-card-vi">{word.vietnamese}</span>
                                 <span className="vocab-card-en">{word.english}</span>
                                 {word.example && <span className="vocab-card-example">{word.example}</span>}
+                                {word.note && <span style={{ fontSize: 10.5, fontWeight: 800, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--tc-pink, var(--primary-color))', marginTop: 2 }}>{word.note}</span>}
                             </div>
                             <button className="vocab-card-speak" onClick={() => speak(word.vietnamese)}>
                                 <Volume2 size={16} />

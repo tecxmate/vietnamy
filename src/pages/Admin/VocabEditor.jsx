@@ -209,6 +209,10 @@ const VocabEditor = () => {
                                 <input type="text" value={selected.example || ''} onChange={e => updateField('example', e.target.value)} style={s.input} placeholder="Cho tôi một bát phở." />
                             </div>
                             <div style={{ marginTop: 12 }}>
+                                <label style={s.fieldLabel}>Editorial note (Tạp Chí)</label>
+                                <input type="text" value={selected.note || ''} onChange={e => updateField('note', e.target.value)} style={s.input} placeholder="Món quốc dân · short editorial tag (optional)" />
+                            </div>
+                            <div style={{ marginTop: 12 }}>
                                 <label style={s.fieldLabel}>Image URL</label>
                                 <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
                                     <input type="text" value={selected.image || ''} onChange={e => updateField('image', e.target.value)} style={{ ...s.input, flex: 1 }} placeholder="https://..." />
