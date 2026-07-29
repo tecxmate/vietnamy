@@ -351,7 +351,7 @@ function StudentApp({ initialTab = 'study' }) {
 
   const renderTab = () => {
     switch (activeTab) {
-      case 'study': return <RoadmapTab onNavigateToVocabDeck={handleNavigateToVocabDeck} />;
+      case 'study': return <RoadmapTab onNavigateToVocabDeck={handleNavigateToVocabDeck} onSearchWord={handleDictInput} />;
       case 'ai': return <AITab />;
       case 'dictionary': return <DictionaryTab pendingInput={pendingDictInput} clearPendingInput={() => setPendingDictInput(null)} onNavigateToLibrary={handleNavigateToLibrary} />;
       case 'video': return <VideoTab />;

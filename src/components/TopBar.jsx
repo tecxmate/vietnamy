@@ -3,8 +3,9 @@ import { createPortal } from 'react-dom';
 import {
     Target, Zap, User, X, ChevronDown, ChevronRight, RefreshCw,
     Globe, Type, Volume2, Wrench, Clock, Bell, Gift, Tag, Compass,
-    VolumeX,
+    VolumeX, Newspaper,
 } from 'lucide-react';
+import { applyTheme, MAGAZINE_THEME } from '../lib/theme';
 import { ENABLE_LEARNING_PATH_CHOOSER, LEARNER_MODES, DEFAULT_LEARNER_MODE } from '../data/learnerModes';
 import { getEnabledVoices, isVoiceEnabled, FALLBACK_VOICE, ALWAYS_ON_VOICE } from '../data/ttsVoices';
 import { useNavigate } from 'react-router-dom';
@@ -504,6 +505,12 @@ const TopBar = ({ activeTab, subtitleOverride }) => {
                                     icon={<Tag size={16} />}
                                     checked={settings.showCefrTags !== false}
                                     onChange={v => updateSetting('showCefrTags', v)}
+                                />
+                                <SettingToggle
+                                    label={t('magazine_theme')}
+                                    icon={<Newspaper size={16} />}
+                                    checked={settings.theme !== null}
+                                    onChange={v => { const th = v ? MAGAZINE_THEME : null; updateSetting('theme', th); applyTheme(th); }}
                                 />
                             </SettingsGroup>
 

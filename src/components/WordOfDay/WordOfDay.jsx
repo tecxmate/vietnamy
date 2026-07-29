@@ -33,9 +33,12 @@ function CoverCard({ entry, onOpen }) {
 /* Word-of-the-day magazine deck for the top of the Study tab — a swipeable
    row of cover cards (today's pick first, then the rest of the pool). Renders
    only under the Tạp Chí theme; each word is pulled live from /api/search. */
-export default function WordOfDay() {
+export default function WordOfDay({ onOpenWord }) {
   const navigate = useNavigate();
-  const openWord = (word) => navigate('/', { state: { tab: 'dictionary', dictInput: word } });
+  const openWord = (word) => {
+    if (onOpenWord) return onOpenWord(word);
+    navigate('/', { state: { tab: 'dictionary', dictInput: word } });
+  };
   const [active, setActive] = useState(isMagazineTheme);
   const ordered = useMemo(() => {
     const { pick } = getEdition();

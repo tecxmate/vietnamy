@@ -76,7 +76,7 @@ function getNodeLabel(node, style, t) {
     return labels[style.label] ? t(labels[style.label]) : style.label;
 }
 
-const RoadmapTab = () => {
+const RoadmapTab = ({ onSearchWord }) => {
     const navigate = useNavigate();
     const t = useT();
     const magazineActive = useMagazineActive();
@@ -565,7 +565,7 @@ const RoadmapTab = () => {
                 </div>
             )}
 
-            <WordOfDay />
+            <WordOfDay onOpenWord={onSearchWord} />
 
             <RecommendedNext
                 completedNodeIds={modeCompletedNodes}

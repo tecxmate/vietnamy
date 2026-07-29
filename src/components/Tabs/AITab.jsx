@@ -33,6 +33,7 @@ function Bubble({ turn, onWordTap }) {
                     borderRadius: 16,
                     borderBottomRightRadius: mine ? 4 : 16,
                     borderBottomLeftRadius: mine ? 16 : 4,
+                    boxShadow: mine ? '0 3px 0 var(--cta-edge, rgba(27,26,58,0.14))' : '0 2px 0 rgba(27,26,58,0.07)',
                     padding: '10px 14px',
                 }}>
                     <div style={{ fontSize: 15, fontWeight: 600 }}>
