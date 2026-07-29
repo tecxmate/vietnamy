@@ -14,6 +14,8 @@ import { DEFAULT_LEARNER_MODE, ALL_LEARNER_MODE, ENABLE_LEARNING_PATH_CHOOSER, g
 import { useT, normalizeLang } from '../../lib/i18n';
 import MobileAccountBar from '../MobileAccountBar';
 import { getDueItems } from '../../lib/srs';
+import WordOfDay from '../WordOfDay/WordOfDay';
+import { relColor, relTint, useMagazineActive } from '../../lib/nodePalette';
 
 const MODE_ICONS = { BookOpen, Plane, Briefcase, Heart };
 const BeKhe = React.lazy(() => import('../BeKhe/BeKhe'));
@@ -43,6 +45,21 @@ function getNodeStyle(node) {
     return NODE_STYLES.orange;
 }
 
+// Under the Tạp Chí theme, remap a node style's hardcoded category hex onto the
+// magazine palette (navy/gold/plum/teal/terracotta/lacquer); pass-through otherwise.
+function themeNodeStyle(style, active) {
+    if (!active) return style;
+    return {
+        ...style,
+        color: relColor(style.color, true),
+        dark: relColor(style.dark, true),
+        bg: relTint(style.color, 12, true),
+        muted: relTint(style.color, 35, true),
+        mutedBorder: relTint(style.color, 25, true),
+        mutedIcon: relTint(style.color, 50, true),
+    };
+}
+
 function getNodeLabel(node, style, t) {
     // Mini-tests get "Quiz" label, module tests show their module type
     if (node.test_scope === 'module') return t('roadmap_type_quiz');
@@ -62,6 +79,7 @@ function getNodeLabel(node, style, t) {
 const RoadmapTab = () => {
     const navigate = useNavigate();
     const t = useT();
+    const magazineActive = useMagazineActive();
     const { completedNodes, getNodeSessionCount, SESSIONS_TO_COMPLETE, dailyStreak, getStreakStatus, consumeStreakMoment } = useProgress();
     const [streakMoment, setStreakMoment] = useState(null);
     const { userProfile, updateUserProfile } = useUser();
@@ -547,6 +565,8 @@ const RoadmapTab = () => {
                 </div>
             )}
 
+            <WordOfDay />
+
             <RecommendedNext
                 completedNodeIds={modeCompletedNodes}
                 purpose={currentMode}
@@ -582,7 +602,7 @@ const RoadmapTab = () => {
 
                         <div style={{ padding: 16, display: 'flex', flexDirection: 'column', gap: 8 }}>
                             {visibleNodes.map((node) => {
-                                const style = getNodeStyle(node);
+                                const style = themeNodeStyle(getNodeStyle(node), magazineActive);
                                 const Icon = style.icon;
                                 const isActive = node.status === 'active';
                                 const isCompleted = node.status === 'completed';
