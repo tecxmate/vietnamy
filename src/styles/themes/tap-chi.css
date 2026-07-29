@@ -1,0 +1,215 @@
+/* =========================================================================
+   Theme: Tạp Chí — "Thanh âm Hà Nội"
+
+   Opt-in magazine theme, activated by `:root[data-theme="tap-chi"]` (set from
+   the Display settings toggle). It remaps the app's existing design tokens onto
+   the hot-pink / navy / teal / gold cream-paper palette, so existing components
+   inherit the look without being rewritten.
+
+   Light-only by design: the magazine identity is cream paper, so this forces
+   the light palette regardless of OS dark mode. A dark "lacquer night" variant
+   can be authored later if wanted.
+
+   `:root[data-theme]` (0,2,0) outranks both `:root` and the
+   `@media (prefers-color-scheme)` `:root` overrides in index.css, so these win
+   in light and dark OS alike.
+   ========================================================================= */
+
+@font-face {
+  font-family: 'Finesse';
+  src: url('/fonts/Finesse-Roman.otf') format('opentype');
+  font-weight: 400;
+  font-display: swap;
+}
+
+:root[data-theme="tap-chi"] {
+  /* magazine palette */
+  --tc-pink: #EE4A75;
+  --tc-pink-dk: #c5305a;
+  --tc-navy: #204081;
+  --tc-navy-dk: #142c5c;
+  --tc-teal: #38BA94;
+  --tc-yellow: #FCBD1B;
+  --tc-yellow-dk: #cc9610;
+  --tc-plum: #7D3C6A;       /* extended accent — grammar category */
+  --tc-terracotta: #C8572B; /* extended accent — scene (gold) category */
+  --tc-cream: #faf8f3;
+  --tc-ink: #1B1A3A;
+  --tc-paper-line: #e7d9bb;
+  --tc-finesse: 'Finesse', 'Be Vietnam Pro', Georgia, serif;
+
+  /* remap the app's core tokens → magazine palette, forced light */
+  --font-sans: 'Be Vietnam Pro', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  --primary-color: var(--tc-pink);
+  --primary-color-hover: var(--tc-pink-dk);
+  --secondary-color: var(--tc-navy);
+  --success-color: var(--tc-teal);
+  --danger-color: var(--tc-pink-dk);
+
+  --bg-color: var(--tc-cream);
+  --surface-color: #faf8f3;
+  --surface-color-light: #fffdf8;
+  --text-main: var(--tc-ink);
+  --text-muted: #9a8f74;
+  --border-color: var(--tc-paper-line);
+
+  --shadow-sm: 0 1px 2px rgba(27, 26, 58, 0.12);
+  --shadow-md: 0 4px 10px rgba(27, 26, 58, 0.14);
+  --shadow-lg: 0 12px 24px rgba(27, 26, 58, 0.16);
+
+  /* lesson-engine accents kept on-palette */
+  --lesson-selected-border: var(--tc-navy);
+  --lesson-selected-fill: rgba(32, 64, 129, 0.12);
+  --lesson-correct-fill: rgba(56, 186, 148, 0.14);
+  --lesson-error-border: var(--tc-pink);
+  --lesson-error-fill: rgba(238, 74, 117, 0.12);
+
+  --interstitial-bg: var(--tc-navy);
+  --interstitial-text: #ffffff;
+  --interstitial-border: rgba(255, 255, 255, 0.14);
+
+  /* primary CTA 3D edge → darker pink (one token drives every CTA) */
+  --cta-edge: var(--tc-pink-dk);
+}
+
+/* =========================================================================
+   Stage 2 — dictionary entry as a magazine spread.
+
+   Pure restyle of DictionaryTab's existing result markup (scoped to the theme),
+   so it only ever shows data the DB actually returned: the headword + IPA in a
+   navy hero, definitions in Finesse, examples on a teal rule. No fabricated
+   fields (no CEFR level, no invented phonetic breakdown).
+   ========================================================================= */
+
+/* headword hero — navy block with halftone */
+:root[data-theme="tap-chi"] .word-heading-card {
+  position: relative;
+  overflow: hidden;
+  background: var(--tc-navy);
+  border: none;
+  border-radius: 20px;
+  padding: 20px 22px 18px;
+  color: #fff;
+  box-shadow: 0 14px 0 -4px var(--tc-navy-dk);
+}
+:root[data-theme="tap-chi"] .word-heading-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.14;
+  pointer-events: none;
+  background-image: radial-gradient(#fff 1.3px, transparent 1.5px);
+  background-size: 12px 12px;
+}
+:root[data-theme="tap-chi"] .word-heading-row,
+:root[data-theme="tap-chi"] .word-metrics { position: relative; z-index: 1; }
+
+:root[data-theme="tap-chi"] .word-heading {
+  font-family: var(--tc-finesse);
+  font-weight: 400;
+  font-size: clamp(52px, 17vw, 84px);
+  line-height: 0.92;
+  color: var(--tc-cream);
+}
+
+/* hero action buttons on navy */
+:root[data-theme="tap-chi"] .speak-btn {
+  background: var(--tc-yellow);
+  color: var(--tc-ink);
+  box-shadow: 0 4px 0 var(--tc-yellow-dk);
+  padding: 9px;
+}
+:root[data-theme="tap-chi"] .speak-btn:hover { background: var(--tc-yellow); color: var(--tc-ink); }
+:root[data-theme="tap-chi"] .speak-btn:active { transform: translateY(2px); box-shadow: 0 2px 0 var(--tc-yellow-dk); }
+:root[data-theme="tap-chi"] .dict-save-btn { color: rgba(255, 255, 255, 0.85); }
+:root[data-theme="tap-chi"] .dict-save-btn:hover,
+:root[data-theme="tap-chi"] .dict-save-btn.saved { color: var(--tc-yellow); }
+
+:root[data-theme="tap-chi"] .ipa-badge {
+  font-family: var(--tc-finesse);
+  font-size: 16px;
+  color: var(--tc-cream);
+  background: rgba(255, 255, 255, 0.16);
+}
+
+/* section labels (source names) — pink uppercase kickers */
+:root[data-theme="tap-chi"] .source-name { color: var(--tc-pink); letter-spacing: 0.14em; }
+
+/* part of speech — teal pill */
+:root[data-theme="tap-chi"] .part-of-speech {
+  color: var(--tc-teal);
+  background: color-mix(in srgb, var(--tc-teal) 14%, transparent);
+}
+
+/* definitions & examples stay in Be Vietnam Pro (body sans) for readability —
+   only the headword uses the Finesse display serif */
+:root[data-theme="tap-chi"] .meaning-text,
+:root[data-theme="tap-chi"] .example-vi,
+:root[data-theme="tap-chi"] .meaning-text strong,
+:root[data-theme="tap-chi"] .example-vi b { font-family: var(--font-sans); }
+
+/* examples on a teal rule */
+:root[data-theme="tap-chi"] .examples-list { border-left: 4px solid var(--tc-teal); }
+:root[data-theme="tap-chi"] .example-item { background: transparent; padding: 4px 0; }
+
+/* Navy is the dictionary's accent — remap the whole subtree so the mode toggle,
+   search/voice buttons and the entry hero all read blue. */
+:root[data-theme="tap-chi"] .dictionary-container {
+  --primary-color: var(--tc-navy);
+  --primary-color-hover: var(--tc-navy-dk);
+}
+/* filled controls need light text on navy (defaults hardcode dark) */
+:root[data-theme="tap-chi"] .dictionary-container .toggle-btn.active,
+:root[data-theme="tap-chi"] .dictionary-container .lang-toggle-label.active,
+:root[data-theme="tap-chi"] .dictionary-container .search-button { color: #fff; }
+/* the voice/mic group has a hardcoded coral tint — make it light blue */
+:root[data-theme="tap-chi"] .dictionary-container .search-actions-group {
+  background-color: color-mix(in srgb, var(--tc-navy) 14%, transparent);
+}
+:root[data-theme="tap-chi"] .dictionary-container .mode-btn { color: var(--tc-navy); }
+
+/* dictionary tab highlights navy when active (its accent is blue) */
+:root[data-theme="tap-chi"] .nav-item[data-tab="dictionary"].active { color: var(--tc-navy); }
+
+/* =========================================================================
+   Library tab — propagate the magazine system.
+   Category colors are remapped in JS (theme-aware CONTENT_TYPES); here we add
+   the poster card treatment, Finesse on Vietnamese titles, and remap the few
+   hardcoded state colors onto the palette.
+   ========================================================================= */
+/* poster offset shadow on the browsing cards */
+:root[data-theme="tap-chi"] .lib-grid-card,
+:root[data-theme="tap-chi"] .lib-content-card,
+:root[data-theme="tap-chi"] .rlib-article-card {
+  box-shadow: 0 4px 0 color-mix(in srgb, var(--tc-ink) 9%, transparent);
+}
+/* Vietnamese display titles in Finesse */
+:root[data-theme="tap-chi"] .rlib-article-title,
+:root[data-theme="tap-chi"] .rlib-reader-title {
+  font-family: var(--tc-finesse);
+  font-weight: 400;
+  font-size: 18px;
+}
+/* state colors → palette (green→teal, purple→plum, red→lacquer) */
+:root[data-theme="tap-chi"] .vocab-deck-icon.saved,
+:root[data-theme="tap-chi"] .vq-option.correct,
+:root[data-theme="tap-chi"] .vq-action-btn.success { --success-color: var(--tc-teal); }
+:root[data-theme="tap-chi"] .vocab-deck-icon.saved { background: color-mix(in srgb, var(--tc-teal) 15%, transparent); color: var(--tc-teal); }
+:root[data-theme="tap-chi"] .vq-option.correct { border-color: var(--tc-teal); background: color-mix(in srgb, var(--tc-teal) 15%, transparent); }
+:root[data-theme="tap-chi"] .vq-action-btn.success { background: var(--tc-teal); }
+:root[data-theme="tap-chi"] .vocab-study-chip.quiz { background: color-mix(in srgb, var(--tc-plum) 15%, transparent); color: var(--tc-plum); }
+:root[data-theme="tap-chi"] .vocab-deck-delete:hover { color: var(--tc-pink-dk); background: color-mix(in srgb, var(--tc-pink-dk) 10%, transparent); }
+
+/* feedback / bug-report FAB — bold pink button with the poster offset shadow */
+:root[data-theme="tap-chi"] .feedback-reporter {
+  background: var(--tc-pink);
+  color: #fff;
+  border: none;
+  box-shadow: 0 5px 0 var(--tc-pink-dk), 0 8px 18px rgba(27, 26, 58, 0.18);
+}
+:root[data-theme="tap-chi"] .feedback-reporter:active {
+  transform: translateY(2px) scale(0.98);
+  box-shadow: 0 3px 0 var(--tc-pink-dk), 0 5px 12px rgba(27, 26, 58, 0.18);
+}
