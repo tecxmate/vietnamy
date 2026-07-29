@@ -15,6 +15,7 @@ import { useT, normalizeLang } from '../../lib/i18n';
 import MobileAccountBar from '../MobileAccountBar';
 import { getDueItems } from '../../lib/srs';
 import WordOfDay from '../WordOfDay/WordOfDay';
+import DailyPlan from '../DailyPlan/DailyPlan';
 import { relColor, relTint, useMagazineActive } from '../../lib/nodePalette';
 
 const MODE_ICONS = { BookOpen, Plane, Briefcase, Heart };
@@ -76,7 +77,7 @@ function getNodeLabel(node, style, t) {
     return labels[style.label] ? t(labels[style.label]) : style.label;
 }
 
-const RoadmapTab = ({ onSearchWord }) => {
+const RoadmapTab = ({ onSearchWord, onNavigateToVocabDeck }) => {
     const navigate = useNavigate();
     const t = useT();
     const magazineActive = useMagazineActive();
@@ -567,6 +568,8 @@ const RoadmapTab = ({ onSearchWord }) => {
 
             <WordOfDay onOpenWord={onSearchWord} />
 
+            <DailyPlan onReview={() => onNavigateToVocabDeck?.('__srs__')} />
+
             <RecommendedNext
                 completedNodeIds={modeCompletedNodes}
                 purpose={currentMode}
@@ -585,10 +588,19 @@ const RoadmapTab = ({ onSearchWord }) => {
                     }
                 });
 
+                const totalModules = visibleNodes.length;
+                const doneModules = visibleNodes.filter(n => modeCompletedNodes.has(n.id)).length;
+                const unitCefr = visibleNodes.find(n => n.cefr_level)?.cefr_level || '';
+
                 return (
                     <div key={unit.id} style={{ marginBottom: 16 }}>
                         <div style={{ backgroundColor: 'var(--surface-color)', padding: 'var(--spacing-4)', position: 'sticky', top: 54, zIndex: 5, borderBottom: '1px solid var(--border-color)', display: 'flex', alignItems: 'center', gap: 12 }}>
-                            <h2 style={{ margin: 0, fontSize: 18, flex: 1 }}>{translateUnitTitle(unit)}</h2>
+                            <div style={{ flex: 1, minWidth: 0 }}>
+                                <h2 style={{ margin: 0, fontSize: 18 }}>{translateUnitTitle(unit)}</h2>
+                                <div style={{ fontSize: 11.5, color: 'var(--text-muted)', fontWeight: 700, marginTop: 2 }}>
+                                    {doneModules}/{totalModules} modules{unitCefr ? ` · ${unitCefr}` : ''}
+                                </div>
+                            </div>
                             {(grammarByUnit[unit.id]?.length > 0) && (
                                 <button
                                     onClick={() => setGuidebookUnit(unit)}

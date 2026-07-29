@@ -19,6 +19,11 @@ function CoverCard({ entry, onOpen }) {
       onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onOpen(entry.word); } }}
     >
       <span className="halftone" /><span className="burst" />
+      {entry.glossEm && (
+        <div style={{ position: 'relative', zIndex: 1, fontSize: 11, fontWeight: 800, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--tc-yellow, #FCBD1B)', marginBottom: 6 }}>
+          {entry.glossEm}
+        </div>
+      )}
       <div className="word"><TonedWord word={entry.word} /></div>
       {entry.gloss && <div className="gloss">{entry.gloss}</div>}
       <button type="button" className="listen" aria-label="Nghe phát âm"
