@@ -1,0 +1,16 @@
+/* Scroll regions of the AI tab (scenario picker + chat transcript).
+   Kept in CSS rather than inline style because momentum/overscroll behaviour
+   can't be expressed with the React style prop's vendor-prefixed keys. */
+.ai-scroll {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 16px;
+    /* Momentum scrolling on iOS; without it the transcript scrolls step-by-step
+       and the gesture leaks into the app shell's rubber band. */
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    /* The transcript is bottom-anchored by JS. Leaving browser scroll anchoring
+       on top of that makes the view jump the opposite way as bubbles mount. */
+    overflow-anchor: none;
+}

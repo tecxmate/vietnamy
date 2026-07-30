@@ -8,6 +8,7 @@ import WordPopup from '../WordPopup';
 import { toggleDictSavedWord } from '../../lib/dictSavedWords';
 import { AI_DAILY_LIMIT, hasReachedLimit, recordUsage, getRemaining } from '../../lib/aiQuota';
 import { AI_SCENARIOS, scenarioPayload } from '../../lib/aiScenarios';
+import './AITab.css';
 
 const FREE_TALK = { id: '__free__' };
 
@@ -95,7 +96,7 @@ function ScenarioCard({ scenario, onOpen }) {
 
 function ScenarioPicker({ t, onOpen }) {
     return (
-        <div style={{ flex: 1, overflowY: 'auto', padding: 16 }}>
+        <div className="ai-scroll">
             <button
                 onClick={() => onOpen(FREE_TALK)}
                 style={{
@@ -131,7 +132,8 @@ export default function AITab() {
     const [loading, setLoading] = useState(false);
     const [notice, setNotice] = useState('');
     const [popupWord, setPopupWord] = useState(null);
-    const endRef = useRef(null);
+    const scrollRef = useRef(null);
+    const stickToBottom = useRef(true);
     const convoRef = useRef(0); // bumps on every open/leave; drops stale in-flight replies
 
     const dictMode = (userProfile?.nativeLang === 'zh-s' || userProfile?.nativeLang === 'zh-t') ? userProfile.nativeLang : 'en';
@@ -140,8 +142,19 @@ export default function AITab() {
         setPopupWord({ word, anchorRect: rect, isPhrase });
     };
 
+    // Track whether the reader is parked at the newest message. Only then do we
+    // follow new turns — a smooth auto-scroll that fires while a finger is on the
+    // transcript fights the swipe and reads as choppy, backwards scrolling.
+    const handleTranscriptScroll = () => {
+        const el = scrollRef.current;
+        if (!el) return;
+        stickToBottom.current = el.scrollHeight - el.scrollTop - el.clientHeight < 80;
+    };
+
     useEffect(() => {
-        endRef.current?.scrollIntoView({ behavior: 'smooth' });
+        const el = scrollRef.current;
+        if (!el || !stickToBottom.current) return;
+        el.scrollTop = el.scrollHeight;
     }, [turns, loading]);
 
     const devMode = userProfile?.isDeveloperMode === true;
@@ -151,6 +164,7 @@ export default function AITab() {
 
     const openConversation = (scn) => {
         convoRef.current += 1; // invalidate any in-flight reply from a prior chat
+        stickToBottom.current = true;
         setLoading(false);
         setScenario(scn);
         setNotice('');
@@ -252,7 +266,7 @@ export default function AITab() {
                 </div>
             )}
 
-            <div style={{ flex: 1, overflowY: 'auto', padding: 16 }}>
+            <div className="ai-scroll" ref={scrollRef} onScroll={handleTranscriptScroll}>
                 {turns.map((turn, i) => <Bubble key={i} turn={turn} onWordTap={handleWordTap} />)}
                 {loading && (
                     <div style={{ display: 'flex', justifyContent: 'flex-start', marginBottom: 12 }}>
@@ -267,7 +281,6 @@ export default function AITab() {
                         <span>{notice}</span>
                     </div>
                 )}
-                <div ref={endRef} />
             </div>
 
             {!isScenario && (
