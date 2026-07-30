@@ -15,6 +15,7 @@ WORKDIR /app/server
 RUN npm install
 
 WORKDIR /app
+# Host platforms (Render/Zeabur) inject PORT at runtime; the server reads
+# process.env.PORT and falls back to 3001 locally. EXPOSE is documentation only.
 EXPOSE 8080
-ENV PORT=8080
 CMD ["node", "server/server.js"]

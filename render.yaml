@@ -1,0 +1,17 @@
+# Render Blueprint for the Vietnamy reference app (slim deploy).
+# One Docker web service serving the built frontend + /api same-origin.
+# Free plan (512 MB) — the extra-language dictionaries are stripped on this
+# branch so the image stays light; the server does on-demand SQLite reads.
+services:
+  - type: web
+    name: vietnamy
+    runtime: docker
+    plan: free
+    branch: deploy/render-live
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false            # set this in the Render dashboard (secret)
+      - key: OPENAI_MODEL
+        value: gpt-4o-mini
