@@ -16,6 +16,15 @@ const PLACEHOLDER_DEFAULTS = {
     ROLE: { vi: 'sinh viên', en: 'student' },
 };
 
+// For skill-split nodes, keep only exercises for the active skill. Generated
+// exercises are untagged today, so no skill → all exercises (the common case);
+// a skill keeps matching + untagged ones. (Restores a helper referenced but
+// never defined, which broke every generator-based lesson.)
+function filterExercisesBySkill(generated, skill) {
+    if (!skill) return generated;
+    return generated.filter(ex => !ex.skill || ex.skill === skill);
+}
+
 const getUserProfile = () => {
     try {
         const raw = localStorage.getItem('vnme_user_profile');
