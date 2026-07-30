@@ -6,6 +6,7 @@ import { useUser } from '../../context/UserContext';
 import TappableVietnamese from '../TappableVietnamese';
 import WordPopup from '../WordPopup';
 import { toggleDictSavedWord } from '../../lib/dictSavedWords';
+import { AI_DAILY_LIMIT, hasReachedLimit, recordUsage, getRemaining } from '../../lib/aiQuota';
 
 // Talk to AI — live Vietnamese tutor powered by Gemini (server /api/tutor).
 // If GEMINI_API_KEY is not set in server/.env, the endpoint returns 503 and we
@@ -79,9 +80,17 @@ export default function AITab() {
         endRef.current?.scrollIntoView({ behavior: 'smooth' });
     }, [turns, loading]);
 
+    const devMode = userProfile?.isDeveloperMode === true;
+    const [remaining, setRemaining] = useState(() => getRemaining());
+
     const sendTurn = async (vi, en) => {
         const text = (vi || '').trim();
         if (!text || loading) return;
+        // Daily free-message limit — Developer Preview bypasses it.
+        if (!devMode && hasReachedLimit()) {
+            setNotice(t('ai_limit_reached').replace('{n}', AI_DAILY_LIMIT));
+            return;
+        }
         setNotice('');
         const next = [...turns, { from: 'me', vi: text, en: en || '' }];
         setTurns(next);
@@ -99,6 +108,7 @@ export default function AITab() {
                 return;
             }
             setTurns(prev => [...prev, { from: 'ai', vi: data.vi, en: data.en, correction: data.correction }]);
+            if (!devMode) setRemaining(recordUsage());
         } catch {
             setNotice(t('ai_error'));
         } finally {
@@ -143,6 +153,14 @@ export default function AITab() {
                     </button>
                 ))}
             </div>
+
+            {!devMode && (
+                <div style={{ padding: '0 16px 6px', fontSize: 11, color: remaining <= 5 ? 'var(--primary-color)' : 'var(--text-muted)', textAlign: 'center', flexShrink: 0 }}>
+                    {remaining > 0
+                        ? t('ai_messages_left').replace('{n}', remaining).replace('{total}', AI_DAILY_LIMIT)
+                        : t('ai_limit_reached').replace('{n}', AI_DAILY_LIMIT)}
+                </div>
+            )}
 
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '12px 16px', borderTop: '1px solid var(--border-color)', background: 'var(--surface-color)', flexShrink: 0 }}>
                 <input
