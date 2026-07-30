@@ -28,10 +28,23 @@ function syncAppViewport() {
   document.documentElement.style.setProperty('--app-viewport-offset-top', `${offsetTop / scale}px`)
 }
 
+// visualViewport 'scroll' fires per frame while the keyboard settles, and
+// syncAppViewport reads getComputedStyle + writes custom properties, so running
+// it raw forces a layout flush on every event. Coalesce to one run per frame.
+let viewportSyncQueued = false
+function queueViewportSync() {
+  if (viewportSyncQueued) return
+  viewportSyncQueued = true
+  requestAnimationFrame(() => {
+    viewportSyncQueued = false
+    syncAppViewport()
+  })
+}
+
 syncAppViewport()
-window.visualViewport?.addEventListener('resize', syncAppViewport)
-window.visualViewport?.addEventListener('scroll', syncAppViewport)
-window.addEventListener('resize', syncAppViewport)
+window.visualViewport?.addEventListener('resize', queueViewportSync)
+window.visualViewport?.addEventListener('scroll', queueViewportSync)
+window.addEventListener('resize', queueViewportSync)
 
 applyStoredTheme()
 

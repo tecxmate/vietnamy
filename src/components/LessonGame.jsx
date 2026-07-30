@@ -3,6 +3,7 @@ import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { X, Heart, Check, Volume2, Frown, Trophy, ChevronRight, Mic, MicOff } from 'lucide-react';
 import { lookupWords } from '../lib/dictionaryLookup';
 import { getConceptsForLesson } from '../lib/concepts';
+import { getLearnModule, buildLearnSteps, getLearnDepth } from '../lib/learnModules';
 import { useProgress } from '../context/ProgressContext';
 import { useUser } from '../context/UserContext';
 import { getNodeByLessonId, getNodeById, getLessonBlueprint, getExercisesGenerated, getNextNode, getNodeRoute } from '../lib/db';
@@ -266,7 +267,11 @@ const LessonGame = () => {
         const node = (nodeIdParam && getNodeById(nodeIdParam)) || getNodeByLessonId(lessonId);
         const session = node ? progressCtx.getNodeSessionCount(node.id, progressMode) : 0;
 
-        const loaded = getExercisesGenerated(lessonId, session, { skill, useAllLessonItems });
+        // A LEARN module authors its own practice; otherwise use the generator.
+        const learnModule = getLearnModule(lessonId);
+        const loaded = (learnModule?.practice?.length)
+            ? learnModule.practice
+            : getExercisesGenerated(lessonId, session, { skill, useAllLessonItems });
         if (loaded.length === 0) {
             console.warn(`No exercises found for ${lessonId}`);
         }
@@ -285,28 +290,45 @@ const LessonGame = () => {
             }
         }
 
-        // Load lesson words for summary + dictionary lookup (session-aware: only this session's new words)
-        const blueprint = getLessonBlueprint(lessonId, session, { useAllLessonItems });
-        if (blueprint) {
-            setLessonBlueprint(blueprint);
-            setLessonWords(blueprint.words);
-
-            // Build intro steps — teaching concepts first, then vocab cards
-            const steps = [];
-            getConceptsForLesson(lessonId).forEach(concept => {
-                steps.push({ type: 'concept', concept });
-            });
-            blueprint.words.forEach(word => {
-                steps.push({ type: 'vocab', word });
-            });
-            setIntroSteps(steps);
-            setShowWordIntro(steps.length > 0);
+        // Build the LEARN (teach) phase. A LEARN module supplies typed steps
+        // (objective/pattern/insight/vocab) filtered by the learner's depth;
+        // otherwise fall back to concept + vocab cards from the blueprint.
+        if (learnModule) {
+            const learnSteps = buildLearnSteps(learnModule, getLearnDepth());
+            setIntroSteps(learnSteps);
+            setShowWordIntro(learnSteps.length > 0);
             setCurrentIntroStep(0);
-            const viTexts = blueprint.words.map(w => w.vietnamese);
+            const viTexts = (learnModule.learn || []).flatMap(s =>
+                s.type === 'vocab' ? (s.words || []).map(w => w.vi)
+                    : s.type === 'pattern' ? [s.example?.vi, ...(s.examples || []).map(e => e.vi)]
+                        : []
+            ).filter(Boolean);
             preloadSpeak(viTexts);
             lookupWords(viTexts).then(info => setDictInfo(info));
         } else {
-            setShowWordIntro(false);
+            // Load lesson words for summary + dictionary lookup (session-aware).
+            const blueprint = getLessonBlueprint(lessonId, session, { useAllLessonItems });
+            if (blueprint) {
+                setLessonBlueprint(blueprint);
+                setLessonWords(blueprint.words);
+
+                // Build intro steps — teaching concepts first, then vocab cards
+                const steps = [];
+                getConceptsForLesson(lessonId).forEach(concept => {
+                    steps.push({ type: 'concept', concept });
+                });
+                blueprint.words.forEach(word => {
+                    steps.push({ type: 'vocab', word });
+                });
+                setIntroSteps(steps);
+                setShowWordIntro(steps.length > 0);
+                setCurrentIntroStep(0);
+                const viTexts = blueprint.words.map(w => w.vietnamese);
+                preloadSpeak(viTexts);
+                lookupWords(viTexts).then(info => setDictInfo(info));
+            } else {
+                setShowWordIntro(false);
+            }
         }
 
         // Check speech recognition support
@@ -763,6 +785,106 @@ const LessonGame = () => {
                             <span style={{ fontSize: 15, fontWeight: 600, color: 'var(--text-main)' }}>{mascotIntro.text}</span>
                         </div>
                     )}
+                    {step.type === 'objective' && (() => {
+                        const d = step.data; const m = d.meta || {};
+                        return (
+                            <div style={{ width: '100%', maxWidth: 400 }}>
+                                <div style={{ background: 'var(--tc-navy, #204081)', color: '#fff', borderRadius: 20, padding: '22px 22px 26px', marginBottom: 20, boxShadow: '0 4px 0 rgba(27,26,58,.2)' }}>
+                                    <div style={{ fontSize: 14, opacity: 0.85, marginBottom: 6 }}>{m.title_en}</div>
+                                    <div style={{ fontFamily: 'Finesse, Georgia, serif', fontSize: 32, fontWeight: 800, lineHeight: 1.05, marginBottom: 14 }}>{m.title_vi}</div>
+                                    <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+                                        <span style={{ fontSize: 11, fontWeight: 800, border: '1.5px solid var(--tc-yellow, #FCBD1B)', color: 'var(--tc-yellow, #FCBD1B)', borderRadius: 8, padding: '4px 8px' }}>{m.est_minutes} MIN</span>
+                                        <span style={{ fontSize: 11, fontWeight: 800, border: '1.5px solid var(--tc-teal, #38BA94)', color: 'var(--tc-teal, #38BA94)', borderRadius: 8, padding: '4px 8px' }}>{m.cefr}</span>
+                                        <span style={{ fontSize: 11, fontWeight: 800, border: '1.5px solid rgba(255,255,255,.4)', color: '#fff', borderRadius: 8, padding: '4px 8px' }}>DIFFICULTY {m.difficulty}</span>
+                                    </div>
+                                </div>
+                                <div style={{ fontSize: 11, fontWeight: 800, letterSpacing: '.12em', textTransform: 'uppercase', color: 'var(--tc-pink, var(--primary-color))', marginBottom: 14 }}>By the end you can</div>
+                                {(d.can_do || []).map((c, i) => (
+                                    <div key={i} style={{ display: 'flex', gap: 12, alignItems: 'flex-start', marginBottom: 14 }}>
+                                        <span style={{ flexShrink: 0, width: 26, height: 26, borderRadius: '50%', background: 'var(--tc-navy, #204081)', color: '#fff', fontSize: 13, fontWeight: 800, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{i + 1}</span>
+                                        <span style={{ fontSize: 16, fontWeight: 600, lineHeight: 1.35 }}>{c}</span>
+                                    </div>
+                                ))}
+                                {d.already_know && (
+                                    <div style={{ border: '1px solid var(--border-color)', borderRadius: 14, padding: 16, marginTop: 12, boxShadow: '0 3px 0 var(--tc-navy, #204081)' }}>
+                                        <div style={{ fontSize: 11, fontWeight: 800, letterSpacing: '.1em', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: 4 }}>You already know</div>
+                                        <div style={{ fontSize: 18, fontWeight: 800, marginBottom: 4 }}>{d.already_know.title_vi}</div>
+                                        <div style={{ fontSize: 13, color: 'var(--text-muted)', lineHeight: 1.5 }}>{d.already_know.note}</div>
+                                    </div>
+                                )}
+                            </div>
+                        );
+                    })()}
+                    {step.type === 'pattern' && (() => {
+                        const d = step.data; const colors = { navy: 'var(--tc-navy, #204081)', pink: 'var(--tc-pink, #EE4A75)', teal: 'var(--tc-teal, #38BA94)' };
+                        return (
+                            <div style={{ width: '100%', maxWidth: 400 }}>
+                                <div style={{ background: 'var(--tc-yellow, #FCBD1B)', borderRadius: 18, padding: 22, marginBottom: 18, boxShadow: '0 4px 0 rgba(27,26,58,.18)' }}>
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', marginBottom: 14 }}>
+                                        {(d.slots || []).map((s, i) => (
+                                            <React.Fragment key={i}>
+                                                <span style={{ background: colors[s.color] || 'var(--tc-navy,#204081)', color: '#fff', fontSize: 12, fontWeight: 800, borderRadius: 8, padding: '5px 10px' }}>{s.label}</span>
+                                                {i < d.slots.length - 1 && <span style={{ fontSize: 16, fontWeight: 800, color: '#1B1A3A' }}>+</span>}
+                                            </React.Fragment>
+                                        ))}
+                                    </div>
+                                    <div style={{ fontSize: 30, fontWeight: 800, color: '#1B1A3A', lineHeight: 1.2 }}>
+                                        {(d.example?.slot_map || []).map((w, i) => (
+                                            <span key={i} style={{ color: colors[d.slots?.[i]?.color] || '#1B1A3A' }}>{w}{i < d.example.slot_map.length - 1 ? ' ' : ''}</span>
+                                        ))}
+                                    </div>
+                                    <div style={{ fontSize: 14, fontWeight: 600, color: '#1B1A3A', opacity: 0.75, marginTop: 4 }}>{d.example?.en}</div>
+                                </div>
+                                {d.note && <div style={{ fontSize: 16, lineHeight: 1.5, marginBottom: 16 }}>{d.note}</div>}
+                                {(d.examples || []).length > 0 && (
+                                    <>
+                                        <div style={{ fontSize: 11, fontWeight: 800, letterSpacing: '.12em', textTransform: 'uppercase', color: 'var(--tc-pink, var(--primary-color))', marginBottom: 10 }}>Ví dụ · tap to hear</div>
+                                        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+                                            {d.examples.map((ex, i) => (
+                                                <button key={i} className="ghost" onClick={() => speak(ex.vi)} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '12px 14px', background: 'var(--surface-color)', border: '1px solid var(--border-color)', borderRadius: 12, width: '100%', textAlign: 'left', boxShadow: '0 2px 0 var(--tc-navy, rgba(27,26,58,.12))' }}>
+                                                    <span style={{ flexShrink: 0, width: 34, height: 34, borderRadius: 8, background: 'var(--tc-yellow, #FCBD1B)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Volume2 size={16} color="#1B1A3A" /></span>
+                                                    <span><span style={{ display: 'block', fontSize: 17, fontWeight: 700 }}>{ex.vi}</span><span style={{ fontSize: 13, color: 'var(--text-muted)' }}>{ex.en}</span></span>
+                                                </button>
+                                            ))}
+                                        </div>
+                                    </>
+                                )}
+                            </div>
+                        );
+                    })()}
+                    {step.type === 'insight' && (() => {
+                        const d = step.data;
+                        return (
+                            <div style={{ width: '100%', maxWidth: 400, background: 'var(--tc-pink, #EE4A75)', color: '#fff', borderRadius: 20, padding: 24, boxShadow: '0 4px 0 rgba(27,26,58,.2)' }}>
+                                {d.kicker && <div style={{ fontSize: 11, fontWeight: 800, letterSpacing: '.12em', textTransform: 'uppercase', color: 'var(--tc-yellow, #FCBD1B)', marginBottom: 10 }}>{d.kicker}</div>}
+                                <div style={{ fontFamily: 'Finesse, Georgia, serif', fontSize: 26, fontWeight: 800, lineHeight: 1.15, marginBottom: 12 }}>{d.headline}</div>
+                                <div style={{ fontSize: 15, lineHeight: 1.55, opacity: 0.95 }}>{d.body}</div>
+                            </div>
+                        );
+                    })()}
+                    {step.type === 'learn_vocab' && (() => {
+                        const words = step.data.words || [];
+                        return (
+                            <div style={{ width: '100%', maxWidth: 400 }}>
+                                <div style={{ fontSize: 11, fontWeight: 800, letterSpacing: '.12em', textTransform: 'uppercase', color: 'var(--tc-pink, var(--primary-color))', marginBottom: 12 }}>New words · {words.length}</div>
+                                <div style={{ display: 'flex', gap: 12, overflowX: 'auto', scrollSnapType: 'x mandatory', margin: '0 -24px', padding: '0 24px 8px' }}>
+                                    {words.map((w, i) => (
+                                        <div key={i} style={{ flex: '0 0 82%', scrollSnapAlign: 'center', background: 'var(--surface-color)', border: '1px solid var(--border-color)', borderRadius: 16, padding: 22, boxShadow: '0 3px 0 var(--tc-navy, rgba(27,26,58,.12))' }}>
+                                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                                                <div style={{ fontSize: 11, fontWeight: 800, letterSpacing: '.1em', textTransform: 'uppercase', color: 'var(--tc-navy, #204081)' }}>{w.pos}</div>
+                                                <button className="ghost" onClick={() => speak(w.vi)} style={{ width: 40, height: 40, borderRadius: '50%', background: 'var(--tc-yellow, #FCBD1B)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 0 }}><Volume2 size={18} color="#1B1A3A" /></button>
+                                            </div>
+                                            <div style={{ fontSize: 40, fontWeight: 800, lineHeight: 1.1, margin: '4px 0 8px' }}>{w.vi}</div>
+                                            <div style={{ fontSize: 18, fontWeight: 700 }}>{w.en}</div>
+                                            {w.note && <div style={{ fontSize: 13, color: 'var(--text-muted)', marginTop: 6, lineHeight: 1.4 }}>{w.note}</div>}
+                                            {w.example && <div style={{ marginTop: 12, paddingLeft: 10, borderLeft: '3px solid var(--tc-teal, #38BA94)' }}><div style={{ fontSize: 15, fontWeight: 700 }}>{w.example.vi}</div><div style={{ fontSize: 12, color: 'var(--text-muted)' }}>{w.example.en}</div></div>}
+                                        </div>
+                                    ))}
+                                </div>
+                                <div style={{ fontSize: 12, color: 'var(--text-muted)', textAlign: 'center', marginTop: 8 }}>← swipe →</div>
+                            </div>
+                        );
+                    })()}
                     {step.type === 'concept' && (
                         <div style={{ width: '100%', maxWidth: 400, backgroundColor: 'var(--surface-color)', borderRadius: 'var(--radius-lg)', padding: 32, border: '2px solid var(--border-color)' }}>
                             <div style={{ fontSize: 12, textTransform: 'uppercase', letterSpacing: 2, color: 'var(--primary-color)', fontWeight: 700, marginBottom: 16 }}>Key Idea</div>
