@@ -4,7 +4,6 @@ import { MessageCircle, Zap, Trophy, Pen, Check, Lock, BookOpen, Music, Clapperb
 import { getUnits, getNodesForUnitWithProgress } from '../../lib/roadmapDb';
 import { getCanonicalLessonContent } from '../../lib/content/canonicalCurriculumStore';
 import GrammarGuidebook from '../GrammarGuidebook';
-import RecommendedNext from '../RecommendedNext';
 import { useProgress } from '../../context/ProgressContext';
 import { useUser } from '../../context/UserContext';
 import { useNotifications } from '../../context/NotificationContext';
@@ -231,16 +230,6 @@ const RoadmapTab = ({ onSearchWord, onNavigateToVocabDeck }) => {
         () => units.some(unit => (visibleNodesMap[unit.id] || []).length > 0),
         [units, visibleNodesMap]
     );
-
-    const handleRecommendedLessonSelect = React.useCallback((lessonId) => {
-        const node = Object.values(visibleNodesMap).flat().find(n => n.content_ref_id === lessonId)
-            || Object.values(nodesMap).flat().find(n => n.content_ref_id === lessonId);
-        if (!node) {
-            navigate(`/lesson/${lessonId}`);
-            return;
-        }
-        setPreviewNode(node.status === 'locked' ? { ...node, status: 'active' } : node);
-    }, [navigate, nodesMap, visibleNodesMap]);
 
     const mascotLang = normalizeLang(userProfile?.nativeLang);
 
@@ -569,12 +558,6 @@ const RoadmapTab = ({ onSearchWord, onNavigateToVocabDeck }) => {
             <WordOfDay onOpenWord={onSearchWord} />
 
             <DailyPlan onReview={() => onNavigateToVocabDeck?.('__srs__')} />
-
-            <RecommendedNext
-                completedNodeIds={modeCompletedNodes}
-                purpose={currentMode}
-                onLessonSelect={handleRecommendedLessonSelect}
-            />
 
             {units.map((unit) => {
                 const nodes = nodesMap[unit.id] || [];
