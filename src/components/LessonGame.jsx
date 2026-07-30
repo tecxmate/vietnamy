@@ -3,7 +3,7 @@ import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { X, Heart, Check, Volume2, Frown, Trophy, ChevronRight, Mic, MicOff } from 'lucide-react';
 import { lookupWords } from '../lib/dictionaryLookup';
 import { getConceptsForLesson } from '../lib/concepts';
-import { getLearnModule, buildLearnSteps, getLearnDepth } from '../lib/learnModules';
+import { getLearnModule, buildLearnSteps } from '../lib/learnModules';
 import { useProgress } from '../context/ProgressContext';
 import { useUser } from '../context/UserContext';
 import { getNodeByLessonId, getNodeById, getLessonBlueprint, getExercisesGenerated, getNextNode, getNodeRoute } from '../lib/db';
@@ -294,7 +294,7 @@ const LessonGame = () => {
         // (objective/pattern/insight/vocab) filtered by the learner's depth;
         // otherwise fall back to concept + vocab cards from the blueprint.
         if (learnModule) {
-            const learnSteps = buildLearnSteps(learnModule, getLearnDepth());
+            const learnSteps = buildLearnSteps(learnModule);
             setIntroSteps(learnSteps);
             setShowWordIntro(learnSteps.length > 0);
             setCurrentIntroStep(0);

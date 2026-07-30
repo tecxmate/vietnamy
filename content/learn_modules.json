@@ -12,7 +12,6 @@
       "learn": [
         {
           "type": "objective",
-          "depth": "core",
           "can_do": [
             "Say what you are doing to something — Tôi ăn cơm",
             "Order food and drink without pointing",
@@ -25,14 +24,13 @@
         },
         {
           "type": "pattern",
-          "depth": "core",
           "slots": [
             { "label": "SUBJECT", "color": "navy" },
             { "label": "VERB", "color": "pink" },
             { "label": "OBJECT", "color": "teal" }
           ],
           "example": { "vi": "Tôi ăn cơm", "en": "I eat rice", "slot_map": ["Tôi", "ăn", "cơm"] },
-          "note": "To make a sentence more detailed, add an object — the same way as in English.",
+          "note": "Add an object the same way as in English. And the verb never changes — ăn is always ăn.",
           "examples": [
             { "vi": "Anh ấy uống nước", "en": "He drinks water" },
             { "vi": "Chúng tôi đọc sách", "en": "We read a book" }
@@ -40,28 +38,12 @@
         },
         {
           "type": "insight",
-          "depth": "core",
           "kicker": "The question everyone asks",
           "headline": "Vietnamese is SVO — like English",
           "body": "Sentences are Subject + Verb + Object, exactly like English. That is why this pattern feels free: you already have the instinct."
         },
         {
-          "type": "insight",
-          "depth": "core",
-          "kicker": "One thing that is not like English",
-          "headline": "No verb conjugation. ăn is ăn — always.",
-          "body": "Present simple is the default tense. Time is carried by adverbs (you will meet đang later), never by changing the verb."
-        },
-        {
-          "type": "insight",
-          "depth": "deep",
-          "kicker": "Watch out",
-          "headline": "A counter can sit before the object",
-          "body": "Con mèo bắt con chuột — 'con' is the counter for animals, not part of the noun. Counters come in a later module."
-        },
-        {
           "type": "vocab",
-          "depth": "core",
           "words": [
             { "vi": "ăn", "en": "to eat", "pos": "verb", "example": { "vi": "ăn cơm", "en": "eat rice" } },
             { "vi": "uống", "en": "to drink", "pos": "verb", "note": "Takes a liquid object directly — no preposition.", "example": { "vi": "uống nước", "en": "drink water" } },

@@ -4,13 +4,26 @@ Pilot the "teach then practice" lesson flow from the design mockups, starting
 with **one Unit 1 module end-to-end** (Subject + Verb + Object — "Tôi ăn cơm").
 
 ## Decisions (locked with Niko)
-- **Intensity dial:** curriculum caps *plus* a learner **Light / Standard / Deep**
-  toggle that shows/hides the compressible layer (insight cards + extra examples).
-- **Content model:** define a typed LEARN-step schema now, hand-author Unit 1,
-  build the admin editor later.
-- **Dose per module (conservative):** 1 pattern · **≤4 new words** · 1 core
-  insight · ~4 practice items. Spread thin → more small modules per unit.
-- **Sequence:** one module end-to-end first, lock the flow, then replicate.
+- **Keep it lean (revised).** The adjustable Light/Standard/Deep dial was cut —
+  it added complexity for little pilot value. Instead: **one fixed, short
+  teaching on-ramp per module** (objective · pattern · 1 insight · vocab = ~4
+  cards), then practice. This preserves the teach-first differentiator vs
+  Duolingo without the machinery.
+- **Content model:** typed LEARN-step schema, hand-authored. Admin editor later.
+- **Dose per module (conservative):** 1 pattern · **≤4 new words** · 1 insight ·
+  ~4 practice items. The "verb never changes" nugget folds into the pattern note
+  rather than its own card.
+- **Sequence:** one module end-to-end first (done), then shape Unit 1 content to
+  a **reverse-engineered Duolingo Vietnamese sequence** as the skeleton, and win
+  on content quality + the assets Duolingo lacks (real dictionary, AI tutor,
+  scenario roleplays, genuine audio).
+
+## Strategy note
+Don't copy Duolingo's *model* (exercise-first, no teaching) and try to out-content
+them — that competes on their strength. Copy the hard part they solved — the
+**curriculum sequencing** — and differentiate with a thin, excellent teaching
+layer + our unique tools. Exercise loop (already have it) + short teach on-ramp
+(our edge) + reverse-engineered sequence + better content.
 
 ## Architecture: extend LessonGame, don't add a new engine
 The design's single progress bar (LEARN 1/9 → PRACTICE 5/9) already matches
@@ -66,14 +79,11 @@ Conservative trims the design's 6 words → **4** (ăn, uống, đọc, cơm); `
 `bắt` move to a later module. Two of the three insights are `deep` (hidden at
 Light/Standard core view unless the learner opts into Deep).
 
-## Depth toggle (the adjustable dial)
-- Setting `learnDepth`: `light` | `standard` (default) | `deep`.
-- Filter rule for LEARN steps:
-  - **light** → show only `depth:"core"` steps; pattern shows 1 example; skip extra `examples[]`.
-  - **standard** → all `core` steps, pattern shows 2–3 examples.
-  - **deep** → everything, including `depth:"deep"` insights and all examples.
-- Curriculum cap stays authored (≤4 words etc.); the toggle only compresses the
-  explanatory layer, never changes which words/pattern are taught.
+## Depth toggle — REMOVED
+The Light/Standard/Deep `learnDepth` dial was cut to keep the pilot lean. Modules
+now render their authored `learn[]` steps in order, full stop. If per-learner
+density is ever wanted again, reintroduce a filter over the steps — but only once
+there's real demand.
 
 ## Renderers (LessonGame)
 Add step components for `objective`, `pattern`, `insight`, `vocab` (carousel),
