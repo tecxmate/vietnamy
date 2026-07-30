@@ -1,5 +1,11 @@
 // Speak text through the server TTS proxy with the configured voice provider.
 let currentAudio = null;
+// Monotonic token: every speak() bumps it. Because audio.play() is async, a
+// rapid second tap can start a new clip before the previous clip's play()
+// promise resolves — the old clip then begins playing anyway and the two
+// overlap ("stack"). Each clip captures the token at call time; if it is no
+// longer current when playback actually begins, we pause it immediately.
+let playToken = 0;
 let lastSpeakTime = 0;
 const SPEAK_COOLDOWN = 50; // ms — ignore only true double-fires
 const MAX_QUEUED_CLIPS = 60;
@@ -231,6 +237,8 @@ const speak = (text, rate = 1, lang = 'vi') => {
     if (now - lastSpeakTime < SPEAK_COOLDOWN) return;
     lastSpeakTime = now;
 
+    const token = ++playToken;
+
     clearSpeakQueue();
 
     // Stop any currently playing audio
@@ -250,11 +258,23 @@ const speak = (text, rate = 1, lang = 'vi') => {
     setMediaSessionMetadata(text);
     emitSpeakingState(text, 'loading');
 
-    audio.onplaying = () => { if (currentAudio === audio) emitSpeakingState(text, 'playing'); };
-    audio.play().catch(() => {
-        currentAudio = null;
-        emitSpeakingState(text, 'idle');
-        clearMediaSessionPlayback();
+    audio.onplaying = () => {
+        // Superseded by a newer tap while loading — stop before it can overlap.
+        if (token !== playToken) { try { audio.pause(); } catch { /* ignore */ } return; }
+        if (currentAudio === audio) emitSpeakingState(text, 'playing');
+    };
+    audio.play().then(() => {
+        // play() resolved late, after another speak() took over: pause this clip
+        // so rapid speaker taps can't stack their audio on top of each other.
+        if (token !== playToken) {
+            try { audio.pause(); audio.currentTime = 0; } catch { /* ignore */ }
+        }
+    }).catch(() => {
+        if (currentAudio === audio) {
+            currentAudio = null;
+            emitSpeakingState(text, 'idle');
+            clearMediaSessionPlayback();
+        }
     });
 
     audio.onended = () => { if (currentAudio === audio) { currentAudio = null; emitSpeakingState(text, 'idle'); } clearMediaSessionPlayback(); };

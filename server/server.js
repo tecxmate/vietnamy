@@ -2353,8 +2353,10 @@ app.get('/api/translate', async (req, res) => {
 });
 
 // ── AI Tutor (Gemini) ────────────────────────────────────────────
-// Streaming-free chat endpoint. Add GEMINI_API_KEY to server/.env to enable.
-const GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
+// Streaming-free chat endpoint (AI tutor "Cô Vy"). Add OPENAI_API_KEY to
+// server/.env.local to enable. gpt-4o-mini is the efficient default: cheap,
+// fast, strong Vietnamese, and supports strict JSON-schema structured output.
+const OPENAI_MODEL = process.env.OPENAI_MODEL || 'gpt-4o-mini';
 
 const TUTOR_LEVELS = {
     new: 'absolute beginner (A0) — use only very simple, short sentences',
@@ -2363,74 +2365,72 @@ const TUTOR_LEVELS = {
 };
 
 app.post('/api/tutor', async (req, res) => {
-    const apiKey = process.env.GEMINI_API_KEY;
+    const apiKey = process.env.OPENAI_API_KEY;
     if (!apiKey) {
-        return res.status(503).json({ error: 'no_key', message: 'Add GEMINI_API_KEY to server/.env to enable the AI tutor.' });
+        return res.status(503).json({ error: 'no_key', message: 'Add OPENAI_API_KEY to server/.env.local to enable the AI tutor.' });
     }
 
-    const messages = Array.isArray(req.body?.messages) ? req.body.messages : [];
+    const history = Array.isArray(req.body?.messages) ? req.body.messages : [];
     const level = TUTOR_LEVELS[req.body?.level] || TUTOR_LEVELS.new;
-    if (messages.length === 0) {
+    if (history.length === 0) {
         return res.status(400).json({ error: 'messages required' });
     }
 
-    // Map chat history → Gemini contents (me→user, ai→model). Gemini wants the
-    // first turn to be 'user', so inject a lead-in if the seed opens with the tutor.
-    const contents = messages.slice(-12).map(m => ({
-        role: m.from === 'me' ? 'user' : 'model',
-        parts: [{ text: m.vi || m.en || '' }],
+    // Map chat history → OpenAI messages (me→user, tutor→assistant).
+    const chat = history.slice(-12).map(m => ({
+        role: m.from === 'me' ? 'user' : 'assistant',
+        content: m.vi || m.en || '',
     }));
-    if (contents[0]?.role === 'model') {
-        contents.unshift({ role: 'user', parts: [{ text: 'Chào cô.' }] });
-    }
 
-    const systemInstruction = {
-        parts: [{
-            text: `You are "Cô Vy", a warm, patient Vietnamese tutor chatting with an English-speaking learner at this level: ${level}. `
-                + `Reply in SHORT natural Vietnamese (1-2 sentences) and always keep the conversation going with one simple question. `
-                + `If the learner's last message has a mistake, add a brief gentle note in English in "correction" (one line); otherwise leave it empty. `
-                + `Never break character. Return JSON only.`,
-        }],
-    };
+    const system = `You are "Cô Vy", a warm, patient Vietnamese tutor chatting with an English-speaking learner at this level: ${level}. `
+        + `"reply_vi": your reply in SHORT natural Vietnamese (1-2 sentences) that always keeps the conversation going with one simple question. `
+        + `"reply_en": a faithful English translation of reply_vi — never leave it empty. `
+        + `"correction": if the learner's last message has a mistake, a brief gentle one-line note in English; otherwise an empty string. `
+        + `Never break character.`;
 
     const body = {
-        systemInstruction,
-        contents,
-        generationConfig: {
-            temperature: 0.7,
-            responseMimeType: 'application/json',
-            responseSchema: {
-                type: 'OBJECT',
-                properties: {
-                    reply_vi: { type: 'STRING' },
-                    reply_en: { type: 'STRING' },
-                    correction: { type: 'STRING' },
+        model: OPENAI_MODEL,
+        temperature: 0.7,
+        max_tokens: 300,
+        messages: [{ role: 'system', content: system }, ...chat],
+        response_format: {
+            type: 'json_schema',
+            json_schema: {
+                name: 'tutor_reply',
+                strict: true,
+                schema: {
+                    type: 'object',
+                    properties: {
+                        reply_vi: { type: 'string' },
+                        reply_en: { type: 'string' },
+                        correction: { type: 'string' },
+                    },
+                    required: ['reply_vi', 'reply_en', 'correction'],
+                    additionalProperties: false,
                 },
-                required: ['reply_vi', 'reply_en'],
             },
         },
     };
 
     try {
-        const url = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${apiKey}`;
-        const r = await fetch(url, {
+        const r = await fetch('https://api.openai.com/v1/chat/completions', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${apiKey}` },
             body: JSON.stringify(body),
         });
         if (!r.ok) {
             const detail = await r.text().catch(() => '');
-            console.error('Gemini error', r.status, detail.slice(0, 300));
+            console.error('OpenAI error', r.status, detail.slice(0, 300));
             if (r.status === 429) {
-                return res.status(502).json({ error: 'quota', message: 'The AI tutor is out of quota or rate-limited. Check your Gemini API plan/billing, then try again.' });
+                return res.status(502).json({ error: 'quota', message: 'The AI tutor is out of quota or rate-limited. Check your OpenAI plan/billing, then try again.' });
             }
-            if (r.status === 400 || r.status === 403) {
-                return res.status(502).json({ error: 'auth', message: 'Gemini rejected the request (bad or unauthorized API key). Check GEMINI_API_KEY in server/.env.' });
+            if (r.status === 401 || r.status === 403) {
+                return res.status(502).json({ error: 'auth', message: 'OpenAI rejected the request (bad or unauthorized API key). Check OPENAI_API_KEY in server/.env.local.' });
             }
             return res.status(502).json({ error: 'upstream', message: 'AI service error, please try again.' });
         }
         const data = await r.json();
-        const raw = data?.candidates?.[0]?.content?.parts?.[0]?.text || '';
+        const raw = data?.choices?.[0]?.message?.content || '';
         let parsed;
         try { parsed = JSON.parse(raw); } catch { parsed = { reply_vi: raw, reply_en: '' }; }
         return res.json({
