@@ -439,6 +439,17 @@ const TopBar = ({ activeTab, subtitleOverride }) => {
                                     options={[{ v: 'new', l: t('level_beginner') }, { v: 'basic', l: t('level_elementary') }, { v: 'intermediate', l: t('level_intermediate_short') }]}
                                     onChange={v => updateUserProfile({ level: v })}
                                 />
+                                <SettingSelect
+                                    label={t('learn_depth')}
+                                    icon={<Compass size={16} />}
+                                    value={settings.learnDepth || 'standard'}
+                                    options={[
+                                        { v: 'light', l: t('learn_depth_light') },
+                                        { v: 'standard', l: t('learn_depth_standard') },
+                                        { v: 'deep', l: t('learn_depth_deep') },
+                                    ]}
+                                    onChange={v => updateSetting('learnDepth', v)}
+                                />
                                 {ENABLE_LEARNING_PATH_CHOOSER && (
                                     <SettingSelect
                                         label={t('learning_path')}
