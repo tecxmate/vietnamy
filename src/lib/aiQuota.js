@@ -4,7 +4,11 @@
 const STORAGE_KEY = 'vnme_ai_daily';
 export const AI_DAILY_LIMIT = 30;
 
-const today = () => new Date().toISOString().slice(0, 10); // YYYY-MM-DD (local-ish)
+// Local YYYY-MM-DD so the daily limit resets at the user's midnight, not UTC.
+const today = () => {
+    const d = new Date();
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+};
 
 // Read today's usage, resetting the counter when the date rolls over.
 function readUsage() {

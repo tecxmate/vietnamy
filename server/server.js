@@ -2381,6 +2381,26 @@ function withinGlobalTutorCap() {
     return true;
 }
 
+// Free OpenAI moderation pass on the learner's text. Returns true only when the
+// content is clearly flagged. Fails OPEN (returns false) on any error so a
+// moderation outage never blocks legitimate learners.
+async function isFlaggedContent(text, apiKey) {
+    if (!text) return false;
+    try {
+        const r = await fetch('https://api.openai.com/v1/moderations', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${apiKey}` },
+            body: JSON.stringify({ model: 'omni-moderation-latest', input: text }),
+        });
+        if (!r.ok) return false;
+        const data = await r.json();
+        return data?.results?.[0]?.flagged === true;
+    } catch (err) {
+        console.warn('Moderation check failed (allowing through):', err.message);
+        return false;
+    }
+}
+
 app.post('/api/tutor', async (req, res) => {
     const apiKey = process.env.OPENAI_API_KEY;
     if (!apiKey) {
@@ -2409,6 +2429,18 @@ app.post('/api/tutor', async (req, res) => {
         role: m.from === 'me' ? 'user' : 'assistant',
         content: clampText(m.vi || m.en || '', TUTOR_MAX_MESSAGE_CHARS),
     }));
+
+    // Moderation: screen the learner's latest message (free) before the paid
+    // call. If flagged, deflect gently in character without spending on OpenAI.
+    const lastUser = [...history].reverse().find(m => m.from === 'me');
+    const lastUserText = clampText(lastUser?.vi || lastUser?.en || '', TUTOR_MAX_MESSAGE_CHARS);
+    if (await isFlaggedContent(lastUserText, apiKey)) {
+        return res.json({
+            vi: 'Mình chỉ ở đây để giúp bạn học tiếng Việt thôi nhé. Mình nói chuyện khác nha?',
+            en: "I'm just here to help you practice Vietnamese. Shall we talk about something else?",
+            correction: '',
+        });
+    }
 
     // Optional roleplay scenario: the AI plays a scene NPC toward a goal.
     // Clamp all client-supplied fields — they go into the system prompt.

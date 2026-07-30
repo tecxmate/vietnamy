@@ -132,6 +132,7 @@ export default function AITab() {
     const [notice, setNotice] = useState('');
     const [popupWord, setPopupWord] = useState(null);
     const endRef = useRef(null);
+    const convoRef = useRef(0); // bumps on every open/leave; drops stale in-flight replies
 
     const dictMode = (userProfile?.nativeLang === 'zh-s' || userProfile?.nativeLang === 'zh-t') ? userProfile.nativeLang : 'en';
     const handleWordTap = (word, rect, isPhrase) => {
@@ -149,6 +150,8 @@ export default function AITab() {
     const isScenario = scenario && scenario.id !== FREE_TALK.id;
 
     const openConversation = (scn) => {
+        convoRef.current += 1; // invalidate any in-flight reply from a prior chat
+        setLoading(false);
         setScenario(scn);
         setNotice('');
         setDraft('');
@@ -157,6 +160,13 @@ export default function AITab() {
         } else {
             setTurns([{ from: 'ai', vi: scn.opening?.vi || 'Xin chào!', en: scn.opening?.en || '' }]);
         }
+    };
+
+    const leaveConversation = () => {
+        convoRef.current += 1;
+        setLoading(false);
+        setNotice('');
+        setScenario(null);
     };
 
     const sendTurn = async (vi, en) => {
@@ -172,6 +182,9 @@ export default function AITab() {
         setTurns(next);
         setDraft('');
         setLoading(true);
+        const myConvo = convoRef.current;
+        const controller = new AbortController();
+        const timer = setTimeout(() => controller.abort(), 30000);
         try {
             const r = await fetch('/api/tutor', {
                 method: 'POST',
@@ -181,8 +194,10 @@ export default function AITab() {
                     level: userProfile?.level || 'new',
                     scenario: isScenario ? scenarioPayload(scenario) : undefined,
                 }),
+                signal: controller.signal,
             });
             const data = await r.json().catch(() => ({}));
+            if (convoRef.current !== myConvo) return; // user switched chats; drop this reply
             if (!r.ok) {
                 setNotice(data.message || t('ai_error'));
                 return;
@@ -190,9 +205,10 @@ export default function AITab() {
             setTurns(prev => [...prev, { from: 'ai', vi: data.vi, en: data.en, correction: data.correction }]);
             if (!devMode) setRemaining(recordUsage());
         } catch {
-            setNotice(t('ai_error'));
+            if (convoRef.current === myConvo) setNotice(t('ai_error'));
         } finally {
-            setLoading(false);
+            clearTimeout(timer);
+            if (convoRef.current === myConvo) setLoading(false);
         }
     };
 
@@ -211,7 +227,7 @@ export default function AITab() {
     return (
         <div style={{ display: 'flex', flexDirection: 'column', height: '100%', background: 'var(--bg-color)' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '8px 12px', background: 'var(--surface-color-light)', borderBottom: '1px solid var(--border-color)', flexShrink: 0 }}>
-                <button onClick={() => setScenario(null)} aria-label={t('ai_back_to_situations')}
+                <button onClick={leaveConversation} aria-label={t('ai_back_to_situations')}
                     style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-main)', display: 'flex', alignItems: 'center', padding: 4 }}>
                     <ArrowLeft size={20} />
                 </button>
