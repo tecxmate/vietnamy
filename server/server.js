@@ -2382,11 +2382,25 @@ app.post('/api/tutor', async (req, res) => {
         content: m.vi || m.en || '',
     }));
 
-    const system = `You are "Cô Vy", a warm, patient Vietnamese tutor chatting with an English-speaking learner at this level: ${level}. `
-        + `"reply_vi": your reply in SHORT natural Vietnamese (1-2 sentences) that always keeps the conversation going with one simple question. `
+    // Optional roleplay scenario: the AI plays a scene NPC toward a goal.
+    const scenario = req.body?.scenario && typeof req.body.scenario === 'object' ? req.body.scenario : null;
+    const npc = scenario?.npc || null;
+    const goal = scenario?.goal || null;
+
+    const commonJson = `"reply_vi": your reply in SHORT natural Vietnamese (1-2 sentences). `
         + `"reply_en": a faithful English translation of reply_vi — never leave it empty. `
-        + `"correction": if the learner's last message has a mistake, a brief gentle one-line note in English; otherwise an empty string. `
-        + `Never break character.`;
+        + `"correction": if the learner's last message has a mistake, a brief gentle one-line note in English; otherwise an empty string.`;
+
+    const system = scenario
+        ? `You are ${npc?.name || 'a local'}, ${npc?.role ? `the ${npc.role}` : 'a Vietnamese person'} in this situation: "${scenario.setting}". `
+            + `Personality: ${npc?.personality || 'natural and friendly'}. Stay FULLY in character as this person — you are NOT a tutor and never mention being an AI. `
+            + `The learner is an English speaker practicing Vietnamese at level: ${level}. `
+            + (goal ? `Their goal is: ${goal.label}${goal.vi ? ` (a good line would be "${goal.vi}")` : ''}. Play the scene naturally and steer it so they get a chance to reach that goal, but don't say the line for them. ` : '')
+            + `Keep replies SHORT (1-2 sentences), speak simple natural Vietnamese, and keep the exchange going. `
+            + commonJson
+        : `You are "Cô Vy", a warm, patient Vietnamese tutor chatting with an English-speaking learner at this level: ${level}. `
+            + `Always keep the conversation going with one simple question. Never break character. `
+            + commonJson;
 
     const body = {
         model: OPENAI_MODEL,

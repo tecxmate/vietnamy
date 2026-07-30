@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Send, Mic, Sparkles, Volume2, AlertCircle } from 'lucide-react';
+import { Send, Mic, Sparkles, Volume2, AlertCircle, ArrowLeft, MessageCircle, Target } from 'lucide-react';
 import speak from '../../utils/speak';
 import { useT } from '../../lib/i18n';
 import { useUser } from '../../context/UserContext';
@@ -7,6 +7,9 @@ import TappableVietnamese from '../TappableVietnamese';
 import WordPopup from '../WordPopup';
 import { toggleDictSavedWord } from '../../lib/dictSavedWords';
 import { AI_DAILY_LIMIT, hasReachedLimit, recordUsage, getRemaining } from '../../lib/aiQuota';
+import { AI_SCENARIOS, scenarioPayload } from '../../lib/aiScenarios';
+
+const FREE_TALK = { id: '__free__' };
 
 // Talk to AI — live Vietnamese tutor powered by Gemini (server /api/tutor).
 // If GEMINI_API_KEY is not set in server/.env, the endpoint returns 503 and we
@@ -60,9 +63,69 @@ function Bubble({ turn, onWordTap }) {
     );
 }
 
+function ScenarioCard({ scenario, onOpen }) {
+    return (
+        <button
+            onClick={() => onOpen(scenario)}
+            style={{
+                textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit',
+                background: 'var(--surface-color)', border: '1px solid var(--border-color)',
+                borderRadius: 16, padding: 14, display: 'flex', flexDirection: 'column', gap: 6,
+                boxShadow: '0 2px 0 rgba(27,26,58,0.06)',
+            }}
+        >
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <span style={{ fontSize: 30, lineHeight: 1 }}>{scenario.emoji}</span>
+                {scenario.level && (
+                    <span style={{ fontSize: 10, fontWeight: 800, letterSpacing: '0.08em', color: 'var(--text-muted)', border: '1px solid var(--border-color)', borderRadius: 999, padding: '2px 7px' }}>
+                        {scenario.level}
+                    </span>
+                )}
+            </div>
+            <div style={{ fontSize: 15, fontWeight: 800, color: 'var(--text-main)', lineHeight: 1.2 }}>{scenario.titleVi}</div>
+            <div style={{ fontSize: 12, color: 'var(--text-muted)' }}>{scenario.title}</div>
+            {scenario.npc && (
+                <div style={{ fontSize: 11, color: 'var(--text-muted)', marginTop: 2 }}>
+                    {scenario.npc.emoji} {scenario.npc.role}
+                </div>
+            )}
+        </button>
+    );
+}
+
+function ScenarioPicker({ t, onOpen }) {
+    return (
+        <div style={{ flex: 1, overflowY: 'auto', padding: 16 }}>
+            <button
+                onClick={() => onOpen(FREE_TALK)}
+                style={{
+                    width: '100%', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit',
+                    background: 'var(--primary-color)', border: 'none', borderRadius: 16, padding: 16,
+                    display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20,
+                    boxShadow: '0 3px 0 var(--cta-edge, rgba(27,26,58,0.14))', color: '#1A1A1A',
+                }}
+            >
+                <MessageCircle size={22} />
+                <div>
+                    <div style={{ fontSize: 15, fontWeight: 800 }}>{t('ai_free_talk')}</div>
+                    <div style={{ fontSize: 12, opacity: 0.75 }}>{t('ai_free_talk_sub')}</div>
+                </div>
+            </button>
+
+            <div style={{ fontSize: 11, fontWeight: 800, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: 10 }}>
+                {t('ai_pick_situation')}
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 11 }}>
+                {AI_SCENARIOS.map(s => <ScenarioCard key={s.id} scenario={s} onOpen={onOpen} />)}
+            </div>
+        </div>
+    );
+}
+
 export default function AITab() {
     const t = useT();
     const { userProfile } = useUser();
+    const [scenario, setScenario] = useState(null); // null = picker; FREE_TALK or a scenario object = chat
     const [turns, setTurns] = useState(SEED_TURNS);
     const [draft, setDraft] = useState('');
     const [loading, setLoading] = useState(false);
@@ -83,6 +146,19 @@ export default function AITab() {
     const devMode = userProfile?.isDeveloperMode === true;
     const [remaining, setRemaining] = useState(() => getRemaining());
 
+    const isScenario = scenario && scenario.id !== FREE_TALK.id;
+
+    const openConversation = (scn) => {
+        setScenario(scn);
+        setNotice('');
+        setDraft('');
+        if (scn.id === FREE_TALK.id) {
+            setTurns(SEED_TURNS);
+        } else {
+            setTurns([{ from: 'ai', vi: scn.opening?.vi || 'Xin chào!', en: scn.opening?.en || '' }]);
+        }
+    };
+
     const sendTurn = async (vi, en) => {
         const text = (vi || '').trim();
         if (!text || loading) return;
@@ -100,7 +176,11 @@ export default function AITab() {
             const r = await fetch('/api/tutor', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ messages: next, level: userProfile?.level || 'new' }),
+                body: JSON.stringify({
+                    messages: next,
+                    level: userProfile?.level || 'new',
+                    scenario: isScenario ? scenarioPayload(scenario) : undefined,
+                }),
             });
             const data = await r.json().catch(() => ({}));
             if (!r.ok) {
@@ -116,12 +196,45 @@ export default function AITab() {
         }
     };
 
+    if (scenario === null) {
+        return (
+            <div style={{ display: 'flex', flexDirection: 'column', height: '100%', background: 'var(--bg-color)' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '10px 16px', background: 'var(--surface-color-light)', borderBottom: '1px solid var(--border-color)', flexShrink: 0 }}>
+                    <Sparkles size={16} color="var(--primary-color)" />
+                    <span style={{ fontSize: 12, color: 'var(--text-muted)' }}>{t('ai_live_note')}</span>
+                </div>
+                <ScenarioPicker t={t} onOpen={openConversation} />
+            </div>
+        );
+    }
+
     return (
         <div style={{ display: 'flex', flexDirection: 'column', height: '100%', background: 'var(--bg-color)' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '10px 16px', background: 'var(--surface-color-light)', borderBottom: '1px solid var(--border-color)', flexShrink: 0 }}>
-                <Sparkles size={16} color="var(--primary-color)" />
-                <span style={{ fontSize: 12, color: 'var(--text-muted)' }}>{t('ai_live_note')}</span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '8px 12px', background: 'var(--surface-color-light)', borderBottom: '1px solid var(--border-color)', flexShrink: 0 }}>
+                <button onClick={() => setScenario(null)} aria-label={t('ai_back_to_situations')}
+                    style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-main)', display: 'flex', alignItems: 'center', padding: 4 }}>
+                    <ArrowLeft size={20} />
+                </button>
+                <span style={{ fontSize: 20 }}>{isScenario ? scenario.emoji : '💬'}</span>
+                <div style={{ minWidth: 0, flex: 1 }}>
+                    <div style={{ fontSize: 14, fontWeight: 800, color: 'var(--text-main)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                        {isScenario ? scenario.titleVi : t('ai_free_talk')}
+                    </div>
+                    <div style={{ fontSize: 11, color: 'var(--text-muted)' }}>
+                        {isScenario ? `${scenario.npc?.emoji || ''} ${scenario.npc?.name || ''} · ${scenario.title}` : t('ai_free_talk_sub')}
+                    </div>
+                </div>
             </div>
+
+            {isScenario && scenario.goal && (
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '8px 16px', background: 'var(--surface-color)', borderBottom: '1px solid var(--border-color)', flexShrink: 0 }}>
+                    <Target size={14} color="var(--primary-color)" style={{ flexShrink: 0 }} />
+                    <span style={{ fontSize: 12, color: 'var(--text-muted)' }}>
+                        <b style={{ color: 'var(--text-main)' }}>{t('ai_goal')}:</b> {scenario.goal.en}
+                        {scenario.goal.vi ? ` — “${scenario.goal.vi}”` : ''}
+                    </span>
+                </div>
+            )}
 
             <div style={{ flex: 1, overflowY: 'auto', padding: 16 }}>
                 {turns.map((turn, i) => <Bubble key={i} turn={turn} onWordTap={handleWordTap} />)}
@@ -141,18 +254,20 @@ export default function AITab() {
                 <div ref={endRef} />
             </div>
 
-            <div style={{ display: 'flex', gap: 8, padding: '8px 16px', overflowX: 'auto', flexShrink: 0 }}>
-                {SUGGESTIONS.map((s, i) => (
-                    <button
-                        key={i}
-                        onClick={() => sendTurn(s.vi, s.en)}
-                        disabled={loading}
-                        style={{ whiteSpace: 'nowrap', padding: '8px 14px', borderRadius: 999, border: '1px solid var(--border-color)', background: 'var(--surface-color)', color: 'var(--text-main)', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0, opacity: loading ? 0.5 : 1 }}
-                    >
-                        {s.vi}
-                    </button>
-                ))}
-            </div>
+            {!isScenario && (
+                <div style={{ display: 'flex', gap: 8, padding: '8px 16px', overflowX: 'auto', flexShrink: 0 }}>
+                    {SUGGESTIONS.map((s, i) => (
+                        <button
+                            key={i}
+                            onClick={() => sendTurn(s.vi, s.en)}
+                            disabled={loading}
+                            style={{ whiteSpace: 'nowrap', padding: '8px 14px', borderRadius: 999, border: '1px solid var(--border-color)', background: 'var(--surface-color)', color: 'var(--text-main)', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0, opacity: loading ? 0.5 : 1 }}
+                        >
+                            {s.vi}
+                        </button>
+                    ))}
+                </div>
+            )}
 
             {!devMode && (
                 <div style={{ padding: '0 16px 6px', fontSize: 11, color: remaining <= 5 ? 'var(--primary-color)' : 'var(--text-muted)', textAlign: 'center', flexShrink: 0 }}>
