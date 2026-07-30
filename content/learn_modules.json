@@ -1,8 +1,215 @@
 {
   "modules": [
     {
-      "module_id": "lesson_svo_pilot",
-      "lesson_id": "lesson_svo_pilot",
+      "module_id": "lesson_u1_m1",
+      "lesson_id": "lesson_u1_m1",
+      "unit_id": "phase_1_first_words",
+      "title_vi": "Xin chào",
+      "title_en": "Hello & the magic words",
+      "est_minutes": 4,
+      "cefr": "A1",
+      "difficulty": 1,
+      "learn": [
+        {
+          "type": "objective",
+          "can_do": [
+            "Greet anyone politely — Chào cô ạ",
+            "Say thank you and sorry",
+            "Say goodbye"
+          ]
+        },
+        {
+          "type": "insight",
+          "kicker": "Politeness in one syllable",
+          "headline": "Add 'ạ' and you sound respectful",
+          "body": "Tack 'ạ' onto the end when you speak to someone older — Chào cô ạ. It is the easiest way to be polite."
+        },
+        {
+          "type": "vocab",
+          "words": [
+            { "vi": "chào", "en": "hello / hi", "pos": "greeting", "example": { "vi": "Chào bạn!", "en": "Hello!" } },
+            { "vi": "cảm ơn", "en": "thank you", "pos": "phrase", "example": { "vi": "Cảm ơn cô ạ.", "en": "Thank you." } },
+            { "vi": "xin lỗi", "en": "sorry / excuse me", "pos": "phrase", "example": { "vi": "Xin lỗi bạn.", "en": "Excuse me." } },
+            { "vi": "tạm biệt", "en": "goodbye", "pos": "phrase", "example": { "vi": "Tạm biệt!", "en": "Goodbye!" } }
+          ]
+        }
+      ],
+      "practice": [
+        { "id": "u1m1_p1", "item_id": "u1m1_chao", "exercise_type": "mcq_translate_to_en", "prompt": { "source_text_vi": "Chào bạn", "choices_en": ["Hello", "Thank you", "Sorry", "Goodbye"], "answer_en": "Hello" } },
+        { "id": "u1m1_p2", "item_id": "u1m1_camon", "exercise_type": "mcq_translate_to_en", "prompt": { "source_text_vi": "Cảm ơn", "choices_en": ["Thank you", "Hello", "Excuse me", "Goodbye"], "answer_en": "Thank you" } },
+        { "id": "u1m1_p3", "item_id": "u1m1_xinloi", "exercise_type": "listen_choose", "prompt": { "audio_text": "Xin lỗi", "choices_vi": ["Xin lỗi", "Cảm ơn", "Tạm biệt", "Chào bạn"], "answer_vi": "Xin lỗi" } },
+        { "id": "u1m1_p4", "item_id": "u1m1_tambiet", "exercise_type": "mcq_translate_to_en", "prompt": { "source_text_vi": "Tạm biệt", "choices_en": ["Goodbye", "Hello", "Thank you", "Sorry"], "answer_en": "Goodbye" } }
+      ]
+    },
+    {
+      "module_id": "lesson_u1_m2",
+      "lesson_id": "lesson_u1_m2",
+      "unit_id": "phase_1_first_words",
+      "title_vi": "Tôi tên là…",
+      "title_en": "Say your name",
+      "est_minutes": 5,
+      "cefr": "A1",
+      "difficulty": 1,
+      "learn": [
+        {
+          "type": "objective",
+          "can_do": [
+            "Introduce yourself — Tôi tên là Nam",
+            "Say 'I' and 'you'",
+            "Tell people your name with confidence"
+          ],
+          "already_know": { "title_vi": "Chào", "note": "You can already greet people. Now put a name to yourself." }
+        },
+        {
+          "type": "pattern",
+          "slots": [
+            { "label": "YOU", "color": "navy" },
+            { "label": "tên là", "color": "pink" },
+            { "label": "NAME", "color": "teal" }
+          ],
+          "example": { "vi": "Tôi tên là Nam", "en": "My name is Nam", "slot_map": ["Tôi", "tên là", "Nam"] },
+          "note": "'Tên' means name and 'là' means is. Tôi tên là… = My name is…",
+          "examples": [
+            { "vi": "Tôi tên là Lan", "en": "My name is Lan" },
+            { "vi": "Tôi là sinh viên", "en": "I am a student" }
+          ]
+        },
+        {
+          "type": "insight",
+          "kicker": "The little word 'là'",
+          "headline": "là = am / is / are — and it never changes",
+          "body": "One word does the work of all three. Tôi là… , Bạn là… — 'là' stays exactly the same."
+        },
+        {
+          "type": "vocab",
+          "words": [
+            { "vi": "tôi", "en": "I / me", "pos": "pronoun", "example": { "vi": "Tôi là Nam.", "en": "I am Nam." } },
+            { "vi": "bạn", "en": "you / friend", "pos": "pronoun", "example": { "vi": "Chào bạn!", "en": "Hello (friend)!" } },
+            { "vi": "tên", "en": "name", "pos": "noun", "example": { "vi": "Tên tôi là Lan.", "en": "My name is Lan." } },
+            { "vi": "là", "en": "to be (is / am / are)", "pos": "verb", "note": "Never changes form.", "example": { "vi": "Tôi là sinh viên.", "en": "I am a student." } }
+          ]
+        }
+      ],
+      "practice": [
+        { "id": "u1m2_p1", "item_id": "u1m2_ten", "exercise_type": "mcq_translate_to_en", "prompt": { "source_text_vi": "Tôi tên là Nam", "choices_en": ["My name is Nam", "I am a student", "Hello Nam", "You are Nam"], "answer_en": "My name is Nam" } },
+        { "id": "u1m2_p2", "item_id": "u1m2_ban", "exercise_type": "mcq_translate_to_en", "prompt": { "source_text_vi": "bạn", "choices_en": ["you", "I", "name", "hello"], "answer_en": "you" } },
+        { "id": "u1m2_p3", "item_id": "u1m2_la", "exercise_type": "listen_choose", "prompt": { "audio_text": "Tôi là Lan", "choices_vi": ["Tôi là Lan", "Tôi tên là Nam", "Bạn là Lan", "Chào bạn"], "answer_vi": "Tôi là Lan" } },
+        { "id": "u1m2_p4", "item_id": "u1m2_toi", "exercise_type": "mcq_translate_to_en", "prompt": { "source_text_vi": "tôi", "choices_en": ["I / me", "you", "name", "friend"], "answer_en": "I / me" } }
+      ]
+    },
+    {
+      "module_id": "lesson_u1_m3",
+      "lesson_id": "lesson_u1_m3",
+      "unit_id": "phase_1_first_words",
+      "title_vi": "…là gì?",
+      "title_en": "Ask a question",
+      "est_minutes": 5,
+      "cefr": "A1",
+      "difficulty": 2,
+      "learn": [
+        {
+          "type": "objective",
+          "can_do": [
+            "Ask 'What's your name?' — Bạn tên là gì?",
+            "Understand a yes / no answer",
+            "Answer politely with dạ / vâng"
+          ],
+          "already_know": { "title_vi": "Tôi tên là…", "note": "You can say your name. Now ask for someone else's." }
+        },
+        {
+          "type": "pattern",
+          "slots": [
+            { "label": "STATEMENT", "color": "navy" },
+            { "label": "gì?", "color": "pink" }
+          ],
+          "example": { "vi": "Bạn tên là gì?", "en": "What is your name?", "slot_map": ["Bạn tên là", "gì?"] },
+          "note": "Turn a statement into a question by adding 'gì' (what) at the end — no word-order flip.",
+          "examples": [
+            { "vi": "Đây là gì?", "en": "What is this?" },
+            { "vi": "Bạn khỏe không?", "en": "Are you well?" }
+          ]
+        },
+        {
+          "type": "insight",
+          "kicker": "Questions the easy way",
+          "headline": "Vietnamese asks by adding a word at the end",
+          "body": "No flipping the sentence around like English. Add 'gì' (what) or 'không' (yes/no) to the end and you have a question."
+        },
+        {
+          "type": "vocab",
+          "words": [
+            { "vi": "gì", "en": "what", "pos": "question", "example": { "vi": "Đây là gì?", "en": "What is this?" } },
+            { "vi": "không", "en": "no / (question word)", "pos": "particle", "example": { "vi": "Bạn khỏe không?", "en": "Are you well?" } },
+            { "vi": "dạ", "en": "yes (polite)", "pos": "particle", "example": { "vi": "Dạ, cảm ơn.", "en": "Yes, thank you." } },
+            { "vi": "vâng", "en": "yes", "pos": "particle", "example": { "vi": "Vâng ạ.", "en": "Yes." } }
+          ]
+        }
+      ],
+      "practice": [
+        { "id": "u1m3_p1", "item_id": "u1m3_gi", "exercise_type": "mcq_translate_to_en", "prompt": { "source_text_vi": "Bạn tên là gì?", "choices_en": ["What is your name?", "My name is Nam", "Are you well?", "What is this?"], "answer_en": "What is your name?" } },
+        { "id": "u1m3_p2", "item_id": "u1m3_day", "exercise_type": "listen_choose", "prompt": { "audio_text": "Đây là gì?", "choices_vi": ["Đây là gì?", "Bạn tên là gì?", "Bạn khỏe không?", "Tôi tên là Nam"], "answer_vi": "Đây là gì?" } },
+        { "id": "u1m3_p3", "item_id": "u1m3_da", "exercise_type": "mcq_translate_to_en", "prompt": { "source_text_vi": "Dạ", "choices_en": ["Yes (polite)", "No", "What", "Sorry"], "answer_en": "Yes (polite)" } },
+        { "id": "u1m3_p4", "item_id": "u1m3_khong", "exercise_type": "mcq_translate_to_en", "prompt": { "source_text_vi": "Bạn khỏe không?", "choices_en": ["Are you well?", "What is your name?", "What is this?", "Thank you"], "answer_en": "Are you well?" } }
+      ]
+    },
+    {
+      "module_id": "lesson_u1_m4",
+      "lesson_id": "lesson_u1_m4",
+      "unit_id": "phase_1_first_words",
+      "title_vi": "Cho tôi…",
+      "title_en": "Order a drink",
+      "est_minutes": 5,
+      "cefr": "A1",
+      "difficulty": 2,
+      "learn": [
+        {
+          "type": "objective",
+          "can_do": [
+            "Order anything — Cho tôi cà phê",
+            "Name three everyday drinks",
+            "Be polite at a café"
+          ],
+          "already_know": { "title_vi": "Cảm ơn", "note": "You know your manners. Now order like a local." }
+        },
+        {
+          "type": "pattern",
+          "slots": [
+            { "label": "Cho tôi", "color": "navy" },
+            { "label": "DRINK", "color": "teal" }
+          ],
+          "example": { "vi": "Cho tôi cà phê", "en": "Give me a coffee", "slot_map": ["Cho tôi", "cà phê"] },
+          "note": "'Cho tôi…' means 'Give me…' — the one phrase to order absolutely anything.",
+          "examples": [
+            { "vi": "Cho tôi trà", "en": "Give me a tea" },
+            { "vi": "Cho tôi nước", "en": "Give me water" }
+          ]
+        },
+        {
+          "type": "insight",
+          "kicker": "Your most useful phrase",
+          "headline": "Cho tôi… orders anything",
+          "body": "Point at the menu or just say the word — 'Cho tôi + [thing]'. Add 'một' (one) later when you start counting."
+        },
+        {
+          "type": "vocab",
+          "words": [
+            { "vi": "cho", "en": "to give / for", "pos": "verb", "example": { "vi": "Cho tôi trà.", "en": "Give me a tea." } },
+            { "vi": "cà phê", "en": "coffee", "pos": "noun", "example": { "vi": "Cho tôi cà phê.", "en": "Give me a coffee." } },
+            { "vi": "trà", "en": "tea", "pos": "noun", "example": { "vi": "Trà đá", "en": "Iced tea" } },
+            { "vi": "nước", "en": "water", "pos": "noun", "example": { "vi": "Cho tôi nước.", "en": "Give me water." } }
+          ]
+        }
+      ],
+      "practice": [
+        { "id": "u1m4_p1", "item_id": "u1m4_caphe", "exercise_type": "mcq_translate_to_en", "prompt": { "source_text_vi": "Cho tôi cà phê", "choices_en": ["Give me a coffee", "Give me a tea", "Give me water", "Thank you"], "answer_en": "Give me a coffee" } },
+        { "id": "u1m4_p2", "item_id": "u1m4_tra", "exercise_type": "listen_choose", "prompt": { "audio_text": "Cho tôi trà", "choices_vi": ["Cho tôi trà", "Cho tôi cà phê", "Cho tôi nước", "Cảm ơn"], "answer_vi": "Cho tôi trà" } },
+        { "id": "u1m4_p3", "item_id": "u1m4_nuoc", "exercise_type": "mcq_translate_to_en", "prompt": { "source_text_vi": "nước", "choices_en": ["water", "coffee", "tea", "give"], "answer_en": "water" } },
+        { "id": "u1m4_p4", "item_id": "u1m4_caphe2", "exercise_type": "mcq_translate_to_en", "prompt": { "source_text_vi": "cà phê", "choices_en": ["coffee", "tea", "water", "rice"], "answer_en": "coffee" } }
+      ]
+    },
+    {
+      "module_id": "lesson_u1_m5",
+      "lesson_id": "lesson_u1_m5",
       "unit_id": "phase_1_first_words",
       "title_vi": "Chủ ngữ + Động từ + Tân ngữ",
       "title_en": "Subject + Verb + Object",
@@ -18,8 +225,8 @@
             "Recognise the pattern in 3 everyday verbs"
           ],
           "already_know": {
-            "title_vi": "Chủ ngữ + Động từ",
-            "note": "Subject + Verb — you already met this. This module adds the object."
+            "title_vi": "Cho tôi…",
+            "note": "You can ask for things. Now build full sentences with a verb."
           }
         },
         {
@@ -53,46 +260,10 @@
         }
       ],
       "practice": [
-        {
-          "id": "svo_p1",
-          "item_id": "svo_toi_an_com",
-          "exercise_type": "mcq_translate_to_en",
-          "prompt": {
-            "source_text_vi": "Tôi ăn cơm",
-            "choices_en": ["I eat rice", "I drink water", "I read a book", "I listen to music"],
-            "answer_en": "I eat rice"
-          }
-        },
-        {
-          "id": "svo_p2",
-          "item_id": "svo_anh_ay_uong_nuoc",
-          "exercise_type": "mcq_translate_to_en",
-          "prompt": {
-            "source_text_vi": "Anh ấy uống nước",
-            "choices_en": ["He drinks water", "He eats rice", "We read a book", "They listen to music"],
-            "answer_en": "He drinks water"
-          }
-        },
-        {
-          "id": "svo_p3",
-          "item_id": "svo_chung_toi_doc_sach",
-          "exercise_type": "listen_choose",
-          "prompt": {
-            "audio_text": "Chúng tôi đọc sách",
-            "choices_vi": ["Chúng tôi đọc sách", "Chúng tôi ăn cơm", "Anh ấy uống nước", "Tôi đọc sách"],
-            "answer_vi": "Chúng tôi đọc sách"
-          }
-        },
-        {
-          "id": "svo_p4",
-          "item_id": "svo_chung_toi_doc_sach_en",
-          "exercise_type": "mcq_translate_to_en",
-          "prompt": {
-            "source_text_vi": "Chúng tôi đọc sách",
-            "choices_en": ["We read a book", "We eat rice", "He drinks water", "I read a book"],
-            "answer_en": "We read a book"
-          }
-        }
+        { "id": "svo_p1", "item_id": "svo_toi_an_com", "exercise_type": "mcq_translate_to_en", "prompt": { "source_text_vi": "Tôi ăn cơm", "choices_en": ["I eat rice", "I drink water", "I read a book", "I listen to music"], "answer_en": "I eat rice" } },
+        { "id": "svo_p2", "item_id": "svo_anh_ay_uong_nuoc", "exercise_type": "mcq_translate_to_en", "prompt": { "source_text_vi": "Anh ấy uống nước", "choices_en": ["He drinks water", "He eats rice", "We read a book", "They listen to music"], "answer_en": "He drinks water" } },
+        { "id": "svo_p3", "item_id": "svo_chung_toi_doc_sach", "exercise_type": "listen_choose", "prompt": { "audio_text": "Chúng tôi đọc sách", "choices_vi": ["Chúng tôi đọc sách", "Chúng tôi ăn cơm", "Anh ấy uống nước", "Tôi đọc sách"], "answer_vi": "Chúng tôi đọc sách" } },
+        { "id": "svo_p4", "item_id": "svo_chung_toi_doc_sach_en", "exercise_type": "mcq_translate_to_en", "prompt": { "source_text_vi": "Chúng tôi đọc sách", "choices_en": ["We read a book", "We eat rice", "He drinks water", "I read a book"], "answer_en": "We read a book" } }
       ]
     }
   ]
