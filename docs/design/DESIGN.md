@@ -5,7 +5,7 @@ This doc + the interactive prototype are the **design north star**; the theme fi
 below make it real in code.
 
 ## Reference artifacts
-- **Interactive prototype**: [`tap-chi-prototype.html`](./tap-chi-prototype.html) — a self-contained
+- **Interactive prototype**: [`DESIGN.html`](./DESIGN.html) — a self-contained
   Claude Artifact showing all 5 tabs in this style (open in a browser). Recreated from `vnme-app` content.
   Nav order as built: Learn · Talk · Dict · Explore · Library.
 - **Theme (code)**: `src/styles/themes/tap-chi.css` — remaps the app's design tokens onto the palette.
