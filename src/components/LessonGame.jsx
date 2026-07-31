@@ -4,6 +4,7 @@ import { X, Heart, Check, Volume2, Frown, Trophy, ChevronRight, Mic, MicOff } fr
 import { lookupWords } from '../lib/dictionaryLookup';
 import { getConceptsForLesson } from '../lib/concepts';
 import { getLearnModule, buildLearnSteps } from '../lib/learnModules';
+import LearnFlashcard from './LearnFlashcard';
 import { useProgress } from '../context/ProgressContext';
 import { useUser } from '../context/UserContext';
 import { getNodeByLessonId, getNodeById, getLessonBlueprint, getExercisesGenerated, getNextNode, getNodeRoute } from '../lib/db';
@@ -820,29 +821,9 @@ const LessonGame = () => {
                             </div>
                         );
                     })()}
-                    {step.type === 'learn_vocab' && (() => {
-                        const words = step.data.words || [];
-                        return (
-                            <div style={{ width: '100%', maxWidth: 400 }}>
-                                <div style={{ fontSize: 11, fontWeight: 800, letterSpacing: '.12em', textTransform: 'uppercase', color: 'var(--tc-pink, var(--primary-color))', marginBottom: 12 }}>New words · {words.length}</div>
-                                <div style={{ display: 'flex', gap: 12, overflowX: 'auto', scrollSnapType: 'x mandatory', margin: '0 -24px', padding: '0 24px 8px' }}>
-                                    {words.map((w, i) => (
-                                        <div key={i} style={{ flex: '0 0 82%', scrollSnapAlign: 'center', background: 'var(--surface-color)', border: '1px solid var(--border-color)', borderRadius: 16, padding: 22, boxShadow: '0 3px 0 var(--tc-navy, rgba(27,26,58,.12))' }}>
-                                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                                                <div style={{ fontSize: 11, fontWeight: 800, letterSpacing: '.1em', textTransform: 'uppercase', color: 'var(--tc-navy, #204081)' }}>{w.pos}</div>
-                                                <button className="ghost" onClick={() => speak(w.vi)} style={{ width: 40, height: 40, borderRadius: '50%', background: 'var(--tc-yellow, #FCBD1B)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 0 }}><Volume2 size={18} color="#1B1A3A" /></button>
-                                            </div>
-                                            <div style={{ fontSize: 40, fontWeight: 800, lineHeight: 1.1, margin: '4px 0 8px' }}>{w.vi}</div>
-                                            <div style={{ fontSize: 18, fontWeight: 700 }}>{w.en}</div>
-                                            {w.note && <div style={{ fontSize: 13, color: 'var(--text-muted)', marginTop: 6, lineHeight: 1.4 }}>{w.note}</div>}
-                                            {w.example && <div style={{ marginTop: 12, paddingLeft: 10, borderLeft: '3px solid var(--tc-teal, #38BA94)' }}><div style={{ fontSize: 15, fontWeight: 700 }}>{w.example.vi}</div><div style={{ fontSize: 12, color: 'var(--text-muted)' }}>{w.example.en}</div></div>}
-                                        </div>
-                                    ))}
-                                </div>
-                                <div style={{ fontSize: 12, color: 'var(--text-muted)', textAlign: 'center', marginTop: 8 }}>← swipe →</div>
-                            </div>
-                        );
-                    })()}
+                    {step.type === 'flashcard' && (
+                        <LearnFlashcard key={currentIntroStep} word={step.data.word} index={step.data.index} total={step.data.total} />
+                    )}
                     {step.type === 'concept' && (
                         <div style={{ width: '100%', maxWidth: 400, backgroundColor: 'var(--surface-color)', borderRadius: 'var(--radius-lg)', padding: 32, border: '2px solid var(--border-color)' }}>
                             <div style={{ fontSize: 12, textTransform: 'uppercase', letterSpacing: 2, color: 'var(--primary-color)', fontWeight: 700, marginBottom: 16 }}>Key Idea</div>

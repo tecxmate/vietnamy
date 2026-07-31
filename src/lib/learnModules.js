@@ -52,8 +52,10 @@ export function buildLearnSteps(module) {
             },
         });
     }
-    if (module.words?.length) {
-        steps.push({ type: 'learn_vocab', data: { words: module.words } });
-    }
+    // One flashcard step per word (each is its own progress-bar step).
+    const words = module.words || [];
+    words.forEach((word, i) => {
+        steps.push({ type: 'flashcard', data: { word, index: i, total: words.length } });
+    });
     return steps;
 }
