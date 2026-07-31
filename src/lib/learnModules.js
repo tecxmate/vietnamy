@@ -1,11 +1,10 @@
-// LEARN modules — the "teach before practice" phase of a lesson: a short,
-// fixed set of typed teaching steps (objective / pattern / insight / vocab)
-// that play before the practice exercises, all under one progress bar in
-// LessonGame.
-//
-// Kept deliberately lean: one clean on-ramp per module, no per-learner depth
-// dial. Canonical content lives in content/learn_modules.json; admin edits save
-// to localStorage and override the bundle at runtime (vnme_cms_* CMS pattern).
+// LEARN modules — the "teach before practice" phase of a lesson. A fixed,
+// Duolingo-lean 2-screen template that plays before the MCQ practice, all under
+// one progress bar in LessonGame:
+//   1) THE IDEA  — the goal + (optional) color-coded pattern + one-line note
+//   2) NEW WORDS — the words, tap-to-hear
+// Canonical content lives in content/learn_modules.json; admin edits save to
+// localStorage and override the bundle at runtime (vnme_cms_* CMS pattern).
 
 import learnData from '../../content/learn_modules.json';
 
@@ -31,22 +30,30 @@ export function getLearnModule(lessonId) {
 }
 
 /**
- * Build the ordered LEARN intro steps for LessonGame.
- * Returns render-ready step objects: { type, data }. The objective step is
- * enriched with the module header (title / minutes / CEFR / difficulty).
+ * Build the fixed 2-screen LEARN sequence for LessonGame.
+ * Returns render-ready step objects: { type, data }.
+ *   - 'idea'  → goal + optional pattern + note (+ module header for context)
+ *   - 'vocab' → the new words
  */
 export function buildLearnSteps(module) {
-    if (!module?.learn) return [];
-    const meta = {
-        title_vi: module.title_vi,
-        title_en: module.title_en,
-        est_minutes: module.est_minutes,
-        cefr: module.cefr,
-        difficulty: module.difficulty,
-    };
-    return module.learn.map((step) => {
-        if (step.type === 'objective') return { type: 'objective', data: { ...step, meta } };
-        if (step.type === 'vocab') return { type: 'learn_vocab', data: step };
-        return { type: step.type, data: step };
-    });
+    if (!module) return [];
+    const steps = [];
+    if (module.idea) {
+        steps.push({
+            type: 'idea',
+            data: {
+                goal: module.idea.goal,
+                note: module.idea.note || null,
+                pattern: module.idea.pattern || null,
+                title_vi: module.title_vi,
+                title_en: module.title_en,
+                cefr: module.cefr,
+                difficulty: module.difficulty,
+            },
+        });
+    }
+    if (module.words?.length) {
+        steps.push({ type: 'learn_vocab', data: { words: module.words } });
+    }
+    return steps;
 }

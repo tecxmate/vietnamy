@@ -785,80 +785,38 @@ const LessonGame = () => {
                             <span style={{ fontSize: 15, fontWeight: 600, color: 'var(--text-main)' }}>{mascotIntro.text}</span>
                         </div>
                     )}
-                    {step.type === 'objective' && (() => {
-                        const d = step.data; const m = d.meta || {};
+                    {step.type === 'idea' && (() => {
+                        const d = step.data;
+                        const colors = { navy: 'var(--tc-navy, #204081)', pink: 'var(--tc-pink, #EE4A75)', teal: 'var(--tc-teal, #38BA94)' };
+                        const p = d.pattern;
                         return (
                             <div style={{ width: '100%', maxWidth: 400 }}>
-                                <div style={{ background: 'var(--tc-navy, #204081)', color: '#fff', borderRadius: 20, padding: '22px 22px 26px', marginBottom: 20, boxShadow: '0 4px 0 rgba(27,26,58,.2)' }}>
-                                    <div style={{ fontSize: 14, opacity: 0.85, marginBottom: 6 }}>{m.title_en}</div>
-                                    <div style={{ fontFamily: 'Finesse, Georgia, serif', fontSize: 32, fontWeight: 800, lineHeight: 1.05, marginBottom: 14 }}>{m.title_vi}</div>
-                                    <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-                                        <span style={{ fontSize: 11, fontWeight: 800, border: '1.5px solid var(--tc-yellow, #FCBD1B)', color: 'var(--tc-yellow, #FCBD1B)', borderRadius: 8, padding: '4px 8px' }}>{m.est_minutes} MIN</span>
-                                        <span style={{ fontSize: 11, fontWeight: 800, border: '1.5px solid var(--tc-teal, #38BA94)', color: 'var(--tc-teal, #38BA94)', borderRadius: 8, padding: '4px 8px' }}>{m.cefr}</span>
-                                        <span style={{ fontSize: 11, fontWeight: 800, border: '1.5px solid rgba(255,255,255,.4)', color: '#fff', borderRadius: 8, padding: '4px 8px' }}>DIFFICULTY {m.difficulty}</span>
-                                    </div>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
+                                    <span style={{ fontSize: 11, fontWeight: 800, letterSpacing: '.14em', textTransform: 'uppercase', color: 'var(--tc-pink, var(--primary-color))' }}>Learn</span>
+                                    {d.cefr && <span style={{ fontSize: 10, fontWeight: 800, border: '1.5px solid var(--tc-teal, #38BA94)', color: 'var(--tc-teal, #38BA94)', borderRadius: 8, padding: '2px 7px' }}>{d.cefr}</span>}
                                 </div>
-                                <div style={{ fontSize: 11, fontWeight: 800, letterSpacing: '.12em', textTransform: 'uppercase', color: 'var(--tc-pink, var(--primary-color))', marginBottom: 14 }}>By the end you can</div>
-                                {(d.can_do || []).map((c, i) => (
-                                    <div key={i} style={{ display: 'flex', gap: 12, alignItems: 'flex-start', marginBottom: 14 }}>
-                                        <span style={{ flexShrink: 0, width: 26, height: 26, borderRadius: '50%', background: 'var(--tc-navy, #204081)', color: '#fff', fontSize: 13, fontWeight: 800, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{i + 1}</span>
-                                        <span style={{ fontSize: 16, fontWeight: 600, lineHeight: 1.35 }}>{c}</span>
-                                    </div>
-                                ))}
-                                {d.already_know && (
-                                    <div style={{ border: '1px solid var(--border-color)', borderRadius: 14, padding: 16, marginTop: 12, boxShadow: '0 3px 0 var(--tc-navy, #204081)' }}>
-                                        <div style={{ fontSize: 11, fontWeight: 800, letterSpacing: '.1em', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: 4 }}>You already know</div>
-                                        <div style={{ fontSize: 18, fontWeight: 800, marginBottom: 4 }}>{d.already_know.title_vi}</div>
-                                        <div style={{ fontSize: 13, color: 'var(--text-muted)', lineHeight: 1.5 }}>{d.already_know.note}</div>
-                                    </div>
-                                )}
-                            </div>
-                        );
-                    })()}
-                    {step.type === 'pattern' && (() => {
-                        const d = step.data; const colors = { navy: 'var(--tc-navy, #204081)', pink: 'var(--tc-pink, #EE4A75)', teal: 'var(--tc-teal, #38BA94)' };
-                        return (
-                            <div style={{ width: '100%', maxWidth: 400 }}>
-                                <div style={{ background: 'var(--tc-yellow, #FCBD1B)', borderRadius: 18, padding: 22, marginBottom: 18, boxShadow: '0 4px 0 rgba(27,26,58,.18)' }}>
-                                    <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', marginBottom: 14 }}>
-                                        {(d.slots || []).map((s, i) => (
-                                            <React.Fragment key={i}>
-                                                <span style={{ background: colors[s.color] || 'var(--tc-navy,#204081)', color: '#fff', fontSize: 12, fontWeight: 800, borderRadius: 8, padding: '5px 10px' }}>{s.label}</span>
-                                                {i < d.slots.length - 1 && <span style={{ fontSize: 16, fontWeight: 800, color: '#1B1A3A' }}>+</span>}
-                                            </React.Fragment>
-                                        ))}
-                                    </div>
-                                    <div style={{ fontSize: 30, fontWeight: 800, color: '#1B1A3A', lineHeight: 1.2 }}>
-                                        {(d.example?.slot_map || []).map((w, i) => (
-                                            <span key={i} style={{ color: colors[d.slots?.[i]?.color] || '#1B1A3A' }}>{w}{i < d.example.slot_map.length - 1 ? ' ' : ''}</span>
-                                        ))}
-                                    </div>
-                                    <div style={{ fontSize: 14, fontWeight: 600, color: '#1B1A3A', opacity: 0.75, marginTop: 4 }}>{d.example?.en}</div>
-                                </div>
-                                {d.note && <div style={{ fontSize: 16, lineHeight: 1.5, marginBottom: 16 }}>{d.note}</div>}
-                                {(d.examples || []).length > 0 && (
-                                    <>
-                                        <div style={{ fontSize: 11, fontWeight: 800, letterSpacing: '.12em', textTransform: 'uppercase', color: 'var(--tc-pink, var(--primary-color))', marginBottom: 10 }}>Ví dụ · tap to hear</div>
-                                        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-                                            {d.examples.map((ex, i) => (
-                                                <button key={i} className="ghost" onClick={() => speak(ex.vi)} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '12px 14px', background: 'var(--surface-color)', border: '1px solid var(--border-color)', borderRadius: 12, width: '100%', textAlign: 'left', boxShadow: '0 2px 0 var(--tc-navy, rgba(27,26,58,.12))' }}>
-                                                    <span style={{ flexShrink: 0, width: 34, height: 34, borderRadius: 8, background: 'var(--tc-yellow, #FCBD1B)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Volume2 size={16} color="#1B1A3A" /></span>
-                                                    <span><span style={{ display: 'block', fontSize: 17, fontWeight: 700 }}>{ex.vi}</span><span style={{ fontSize: 13, color: 'var(--text-muted)' }}>{ex.en}</span></span>
-                                                </button>
+                                <div style={{ fontFamily: 'Finesse, Georgia, serif', fontSize: 30, fontWeight: 800, lineHeight: 1.1, color: 'var(--tc-navy, var(--text-main))', marginBottom: p ? 20 : 14 }}>{d.goal}</div>
+                                {p && (
+                                    <div style={{ background: 'var(--tc-yellow, #FCBD1B)', borderRadius: 18, padding: 22, marginBottom: 16, boxShadow: '0 4px 0 rgba(27,26,58,.18)' }}>
+                                        <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', marginBottom: 14 }}>
+                                            {(p.slots || []).map((s, i) => (
+                                                <React.Fragment key={i}>
+                                                    <span style={{ background: colors[s.color] || 'var(--tc-navy,#204081)', color: '#fff', fontSize: 12, fontWeight: 800, borderRadius: 8, padding: '5px 10px' }}>{s.label}</span>
+                                                    {i < p.slots.length - 1 && <span style={{ fontSize: 16, fontWeight: 800, color: '#1B1A3A' }}>+</span>}
+                                                </React.Fragment>
                                             ))}
                                         </div>
-                                    </>
+                                        <button className="ghost" onClick={() => speak(p.example?.vi)} style={{ padding: 0, background: 'none', border: 'none', textAlign: 'left', cursor: 'pointer', width: '100%' }}>
+                                            <div style={{ fontSize: 30, fontWeight: 800, color: '#1B1A3A', lineHeight: 1.2 }}>
+                                                {(p.example?.slot_map || []).map((w, i) => (
+                                                    <span key={i} style={{ color: colors[p.slots?.[i]?.color] || '#1B1A3A' }}>{w}{i < p.example.slot_map.length - 1 ? ' ' : ''}</span>
+                                                ))}
+                                            </div>
+                                            <div style={{ fontSize: 14, fontWeight: 600, color: '#1B1A3A', opacity: 0.75, marginTop: 4, display: 'flex', alignItems: 'center', gap: 6 }}><Volume2 size={14} color="#1B1A3A" /> {p.example?.en}</div>
+                                        </button>
+                                    </div>
                                 )}
-                            </div>
-                        );
-                    })()}
-                    {step.type === 'insight' && (() => {
-                        const d = step.data;
-                        return (
-                            <div style={{ width: '100%', maxWidth: 400, background: 'var(--tc-pink, #EE4A75)', color: '#fff', borderRadius: 20, padding: 24, boxShadow: '0 4px 0 rgba(27,26,58,.2)' }}>
-                                {d.kicker && <div style={{ fontSize: 11, fontWeight: 800, letterSpacing: '.12em', textTransform: 'uppercase', color: 'var(--tc-yellow, #FCBD1B)', marginBottom: 10 }}>{d.kicker}</div>}
-                                <div style={{ fontFamily: 'Finesse, Georgia, serif', fontSize: 26, fontWeight: 800, lineHeight: 1.15, marginBottom: 12 }}>{d.headline}</div>
-                                <div style={{ fontSize: 15, lineHeight: 1.55, opacity: 0.95 }}>{d.body}</div>
+                                {d.note && <div style={{ fontSize: 15, lineHeight: 1.5, color: 'var(--text-main)' }}>{d.note}</div>}
                             </div>
                         );
                     })()}
