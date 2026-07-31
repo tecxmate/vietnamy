@@ -35,7 +35,7 @@ export default function LearnFlashcard({ word, index, total }) {
             {/* Static raised base — carries the 3D offset shadow + perspective */}
             <div style={{
                 position: 'relative', height: 320, borderRadius: 20, perspective: 1200,
-                boxShadow: '0 8px 0 var(--tc-navy, #204081), 0 10px 22px rgba(27,26,58,0.14)',
+                boxShadow: '0 7px 0 color-mix(in srgb, var(--tc-ink, #1b1a3a) 16%, transparent), 0 9px 18px rgba(27,26,58,0.10)',
             }}>
                 <button
                     onClick={toggle}
