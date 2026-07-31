@@ -1,4 +1,4 @@
-# Vietnamy — Tạp Chí ("Thanh âm Hà Nội") Design System
+# Vietnamy — Tạp Chí ("Thanh âm Việt Nam") Design System
 
 The magazine visual language for the app. Cream paper, hot-pink / navy / teal / gold.
 This doc + the interactive prototype are the **design north star**; the theme files
@@ -7,6 +7,7 @@ below make it real in code.
 ## Reference artifacts
 - **Interactive prototype**: [`tap-chi-prototype.html`](./tap-chi-prototype.html) — a self-contained
   Claude Artifact showing all 5 tabs in this style (open in a browser). Recreated from `vnme-app` content.
+  Nav order as built: Learn · Talk · Dict · Explore · Library.
 - **Theme (code)**: `src/styles/themes/tap-chi.css` — remaps the app's design tokens onto the palette.
 - **Activation**: `src/lib/theme.js` (`applyTheme('tap-chi')` sets `<html data-theme="tap-chi">`).
 - **Origin branch**: `design/tap-chi-han-noi` (has extras not yet harvested — see "Not yet ported").
@@ -17,19 +18,25 @@ below make it real in code.
 3. **Teal** `#38BA94` — earned: known, correct, saved, due.
 4. **Gold** `#FCBD1B` — attention: new words, audio buttons, highlights on dark.
 
-Extended accents: **Plum** `#7D3C6A` (grammar), **Terracotta** `#C8572B` (scene/roleplay).
+Extended accents (theme-only — **not** in the prototype): **Plum** `#7D3C6A` (grammar),
+**Terracotta** `#C8572B` (scene/roleplay).
 
 ## Palette
-| Token | Hex |
+| Token | Hex (prototype) |
 |---|---|
-| pink / pink-dk | `#EE4A75` / `#c5305a` |
-| navy / navy-dk | `#204081` / `#142c5c` |
-| teal | `#38BA94` |
-| gold / gold-dk | `#FCBD1B` / `#cc9610` |
-| cream (paper) | `#faf8f3` |
+| pink / pink-dk | `#EE4A75` / `#C5305A` |
+| navy / navy-dk | `#204081` / `#142C5C` |
+| teal / teal-dk | `#38BA94` / `#23886A` |
+| gold / gold-dk | `#FCBD1B` / `#CC9610` |
+| cream (paper) | `#FBF3E2` |
+| paper shade (dividers, grabbers) | `#D9C9A4` |
 | ink (text) | `#1B1A3A` |
-| muted text | `#9a8f74` |
-| paper line (border) | `#e7d9bb` |
+| muted text | `#9A8F74` |
+| secondary text | `#57514A` |
+| paper line (border) | `#E7D9BB` |
+
+Note: the theme file currently ships a paler cream (`--tc-cream: #faf8f3`) than the
+prototype's `#FBF3E2`. The prototype is the north star — align the theme when convenient.
 
 Light-only by design (cream paper is the identity — it overrides OS dark mode).
 
