@@ -49,6 +49,26 @@ export const getUnits = () => {
     })).sort((a, b) => a.order_index - b.order_index);
 };
 
+// Route for the node that follows `lessonId`'s node in the roadmap (same unit,
+// next by node_index). Keeps the learner in the loop after a LEARN-module lesson,
+// whose nodes live only in ROADMAP_SEED (not the mock DB). Returns null at the
+// end of a unit.
+export const getNextRouteAfterLesson = (lessonId) => {
+    const db = getRoadmapDB();
+    const nodes = db.path_nodes || [];
+    const current = nodes.find(n => n.lesson_id === lessonId);
+    if (!current) return null;
+    const unitNodes = nodes
+        .filter(n => n.unit_id === current.unit_id)
+        .sort((a, b) => (a.node_index || 0) - (b.node_index || 0));
+    const next = unitNodes[unitNodes.findIndex(n => n.id === current.id) + 1];
+    if (!next) return null;
+    if (next.lesson_id) return `/lesson/${next.lesson_id}`;
+    if (next.node_type === 'test' || next.test_scope) return `/test/${next.id}`;
+    if (next.practice_route) return next.practice_route;
+    return null;
+};
+
 const getPreviousUnitTestId = (unitId) => {
     const db = getRoadmapDB();
     const units = [...(db.units || [])].sort((a, b) => (a.unit_index || 0) - (b.unit_index || 0));

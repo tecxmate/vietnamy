@@ -4,6 +4,7 @@ import { X, Heart, Check, Volume2, Frown, Trophy, ChevronRight, Mic, MicOff } fr
 import { lookupWords } from '../lib/dictionaryLookup';
 import { getConceptsForLesson } from '../lib/concepts';
 import { getLearnModule, buildLearnSteps } from '../lib/learnModules';
+import { getNextRouteAfterLesson } from '../lib/roadmapDb';
 import LearnFlashcard from './LearnFlashcard';
 import { useProgress } from '../context/ProgressContext';
 import { useUser } from '../context/UserContext';
@@ -288,6 +289,15 @@ const LessonGame = () => {
                 setNextNodeRoute(getNodeRoute(next));
                 const label = next.label || (next.lesson_id ? 'Next Lesson' : 'Next');
                 setNextNodeLabel(label);
+            }
+        }
+        // LEARN-module lessons live only in ROADMAP_SEED (not the mock DB), so
+        // resolve their next step from the roadmap to keep the Continue loop going.
+        if (learnModule) {
+            const nextRoute = getNextRouteAfterLesson(lessonId);
+            if (nextRoute) {
+                setNextNodeRoute(nextRoute);
+                setNextNodeLabel(t('continue_upper'));
             }
         }
 
