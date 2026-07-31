@@ -31,8 +31,31 @@ const LEVEL_COLORS = { beginner: '#06D6A0', intermediate: '#FFD166', advanced: '
 const CONTENT_TYPES = {
     readings: { labelKey: 'library_readings', icon: BookOpen, color: '#1CB0F6', bg: 'rgba(28,176,246,0.15)', border: 'rgba(28,176,246,0.3)' },
     vocabulary: { labelKey: 'library_vocabulary', icon: Layers, color: '#FF9F43', bg: 'rgba(255,159,67,0.15)', border: 'rgba(255,159,67,0.3)' },
+    sounds: { labelKey: 'library_sounds', label: 'Sounds', icon: Volume2, color: '#06D6A0', bg: 'rgba(6,214,160,0.15)', border: 'rgba(6,214,160,0.3)' },
     grammar: { labelKey: 'library_grammar', label: 'Grammar', icon: Pen, color: '#A78BFA', bg: 'rgba(167,139,250,0.15)', border: 'rgba(167,139,250,0.3)', route: '/grammar' },
 };
+
+// Pronunciation & tone modules — moved out of the roadmap into the Library so a
+// beginner isn't forced through phonics before real words. Each links to its
+// existing /practice mini-game.
+const SOUND_MODULES = [
+    { title: 'The alphabet', route: '/practice/alphabet', group: 'Letters & sounds' },
+    { title: 'Basic vowels', route: '/practice/vowels-single-1', group: 'Letters & sounds' },
+    { title: 'Special vowels', route: '/practice/vowels-single-2', group: 'Letters & sounds' },
+    { title: 'Consonants', route: '/practice/consonants', group: 'Letters & sounds' },
+    { title: 'Final consonants', route: '/practice/consonants-final', group: 'Letters & sounds' },
+    { title: 'Combining vowels', route: '/practice/vowels-diph-1', group: 'Letters & sounds' },
+    { title: 'Gliding vowels', route: '/practice/vowels-diph-2', group: 'Letters & sounds' },
+    { title: 'Advanced sounds', route: '/practice/vowels-diph-3', group: 'Letters & sounds' },
+    { title: 'Tones: Level vs Falling', route: '/practice/tones/level1', group: 'Tones' },
+    { title: 'Tones: add Rising', route: '/practice/tones/level2', group: 'Tones' },
+    { title: 'Tones: add Dipping', route: '/practice/tones/level3', group: 'Tones' },
+    { title: 'Hỏi vs Ngã', route: '/practice/tones/level4', group: 'Tones' },
+    { title: 'All 6 tones', route: '/practice/tones/level5', group: 'Tones' },
+    { title: 'Read the tone marks', route: '/practice/tonemarks-basic', group: 'Tones' },
+    { title: 'Say a tone', route: '/practice/tones/speak', group: 'Tones' },
+    { title: 'Tone marks mastery', route: '/practice/tonemarks-master', group: 'Tones' },
+];
 
 const SUB_TAGS = {
     readings: [
@@ -165,6 +188,24 @@ function buildLibraryItems(t) {
             createdAt: now - (i + 5) * 86400000 * 10,
             sortName: cat.label,
             levelOrder: 2,
+        });
+    });
+
+    // Sounds & Tones — pronunciation modules (link to their /practice mini-games)
+    SOUND_MODULES.forEach((m, i) => {
+        items.push({
+            id: `sound-${i}`,
+            type: 'sounds',
+            subTag: m.group,
+            title: m.title,
+            subtitle: m.group,
+            itemIcon: Volume2,
+            itemColor: '#06D6A0',
+            itemBg: 'rgba(6,214,160,0.15)',
+            route: m.route,
+            createdAt: now - i * 3600000, // preserve natural order under "recent"
+            sortName: m.title,
+            levelOrder: 1,
         });
     });
 

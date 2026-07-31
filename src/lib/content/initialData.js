@@ -133,7 +133,6 @@ export function buildRuntimeFromCanonical(db, { includeContent = true } = {}) {
 
 // Units definition
 const LEGACY_UNITS = [
-    { id: "phase_0_foundations", course_id: "course_vi_en_v1", unit_index: -1, title: "Unit 0 — Foundations" },
     { id: "phase_1_first_words", course_id: "course_vi_en_v1", unit_index: 0, title: "Unit 1 — First Words" },
     { id: "phase_2_polite", course_id: "course_vi_en_v1", unit_index: 2, title: "Unit 2 — Polite Survival" },
     { id: "phase_3_cafe", course_id: "course_vi_en_v1", unit_index: 3, title: "Unit 3 — Ordering & Café" },
@@ -229,27 +228,6 @@ function createInitialData({ full = false } = {}) {
     path_nodes: [
         // ═══ Lesson + quiz nodes from unified_db + legacy ═══
         ...built.pathNodes,
-        // ═══ Unit 0 — Foundations: letters & sounds FIRST, then tones ═══
-        // You can't add a tone to a syllable you can't pronounce yet, so teach the
-        // alphabet, vowels, consonants and letter combinations before the tone
-        // ladder, then the marks, production, and a checkpoint that gates Unit 1.
-        // Each is a skill node; one pass completes it (sessions_required: 1).
-        { id: "f0_alphabet", course_id: "course_vi_en_v1", unit_id: "phase_0_foundations", node_index: 0, node_type: "skill", module_type: "blue", label: "The alphabet", practice_route: "/practice/alphabet", sessions_required: 1, difficulty: 1, cefr_level: "A1.1", vocab_introduces: [], vocab_requires: [] },
-        { id: "f0_vowels", course_id: "course_vi_en_v1", unit_id: "phase_0_foundations", node_index: 1, node_type: "skill", module_type: "blue", label: "Basic vowels", practice_route: "/practice/vowels-single-1", sessions_required: 1, difficulty: 1, cefr_level: "A1.1", vocab_introduces: [], vocab_requires: [] },
-        { id: "f0_vowels2", course_id: "course_vi_en_v1", unit_id: "phase_0_foundations", node_index: 2, node_type: "skill", module_type: "blue", label: "Special vowels", practice_route: "/practice/vowels-single-2", sessions_required: 1, difficulty: 1, cefr_level: "A1.1", vocab_introduces: [], vocab_requires: [] },
-        { id: "f0_cons", course_id: "course_vi_en_v1", unit_id: "phase_0_foundations", node_index: 3, node_type: "skill", module_type: "blue", label: "Consonants", practice_route: "/practice/consonants", sessions_required: 1, difficulty: 1, cefr_level: "A1.1", vocab_introduces: [], vocab_requires: [] },
-        { id: "f0_cons_final", course_id: "course_vi_en_v1", unit_id: "phase_0_foundations", node_index: 4, node_type: "skill", module_type: "blue", label: "Final consonants", practice_route: "/practice/consonants-final", sessions_required: 1, difficulty: 2, cefr_level: "A1.1", vocab_introduces: [], vocab_requires: [] },
-        { id: "f0_combos", course_id: "course_vi_en_v1", unit_id: "phase_0_foundations", node_index: 5, node_type: "skill", module_type: "blue", label: "Combining vowels", practice_route: "/practice/vowels-diph-1", sessions_required: 1, difficulty: 2, cefr_level: "A1.1", vocab_introduces: [], vocab_requires: [] },
-        { id: "f0_combos2", course_id: "course_vi_en_v1", unit_id: "phase_0_foundations", node_index: 6, node_type: "skill", module_type: "blue", label: "Gliding vowels", practice_route: "/practice/vowels-diph-2", sessions_required: 1, difficulty: 2, cefr_level: "A1.1", vocab_introduces: [], vocab_requires: [] },
-        { id: "f0_combos3", course_id: "course_vi_en_v1", unit_id: "phase_0_foundations", node_index: 7, node_type: "skill", module_type: "blue", label: "Advanced sounds", practice_route: "/practice/vowels-diph-3", sessions_required: 1, difficulty: 2, cefr_level: "A1.1", vocab_introduces: [], vocab_requires: [] },
-        { id: "f0_t1", course_id: "course_vi_en_v1", unit_id: "phase_0_foundations", node_index: 8, node_type: "skill", module_type: "blue", label: "Tones: Level vs Falling", practice_route: "/practice/tones/level1", sessions_required: 1, difficulty: 1, cefr_level: "A1.1", vocab_introduces: [], vocab_requires: [] },
-        { id: "f0_t2", course_id: "course_vi_en_v1", unit_id: "phase_0_foundations", node_index: 9, node_type: "skill", module_type: "blue", label: "Tones: add Rising", practice_route: "/practice/tones/level2", sessions_required: 1, difficulty: 1, cefr_level: "A1.1", vocab_introduces: [], vocab_requires: [] },
-        { id: "f0_t3", course_id: "course_vi_en_v1", unit_id: "phase_0_foundations", node_index: 10, node_type: "skill", module_type: "blue", label: "Tones: add Dipping", practice_route: "/practice/tones/level3", sessions_required: 1, difficulty: 1, cefr_level: "A1.1", vocab_introduces: [], vocab_requires: [] },
-        { id: "f0_t4", course_id: "course_vi_en_v1", unit_id: "phase_0_foundations", node_index: 11, node_type: "skill", module_type: "blue", label: "Hỏi vs Ngã", practice_route: "/practice/tones/level4", sessions_required: 1, difficulty: 2, cefr_level: "A1.1", vocab_introduces: [], vocab_requires: [] },
-        { id: "f0_t5", course_id: "course_vi_en_v1", unit_id: "phase_0_foundations", node_index: 12, node_type: "skill", module_type: "blue", label: "All 6 tones", practice_route: "/practice/tones/level5", sessions_required: 1, difficulty: 2, cefr_level: "A1.1", vocab_introduces: [], vocab_requires: [] },
-        { id: "f0_marks", course_id: "course_vi_en_v1", unit_id: "phase_0_foundations", node_index: 13, node_type: "skill", module_type: "blue", label: "Read the tone marks", practice_route: "/practice/tonemarks-basic", sessions_required: 1, difficulty: 1, cefr_level: "A1.1", vocab_introduces: [], vocab_requires: [] },
-        { id: "f0_speak", course_id: "course_vi_en_v1", unit_id: "phase_0_foundations", node_index: 14, node_type: "skill", module_type: "blue", label: "Say a tone", practice_route: "/practice/tones/speak", sessions_required: 1, difficulty: 2, cefr_level: "A1.1", vocab_introduces: [], vocab_requires: [] },
-        { id: "f0_check", course_id: "course_vi_en_v1", unit_id: "phase_0_foundations", node_index: 15, node_type: "skill", module_type: "test", label: "Foundations checkpoint", practice_route: "/practice/tonemarks-master", test_scope: "unit", sessions_required: 1, difficulty: 2, cefr_level: "A1.1", vocab_introduces: [], vocab_requires: [] },
 
         // ═══ 4-module structure (Units 1–3 prototype) ═══
         // Each unit interleaves Pronunciation (blue, an existing /practice drill) and
