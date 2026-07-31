@@ -6,6 +6,10 @@ import speak from '../utils/speak';
 // the Vietnamese word and its meaning; flipping to the meaning reads the word
 // aloud. One card = one step in the lesson progress bar. Give it a `key` that
 // changes per step so the flip resets when advancing to the next word.
+//
+// The raised 3D look (matching the roadmap nodes / poster cards) lives on a
+// STATIC base beneath the flip, so the offset shadow stays put when the card
+// rotates.
 export default function LearnFlashcard({ word, index, total }) {
     const [flipped, setFlipped] = useState(false);
 
@@ -15,11 +19,11 @@ export default function LearnFlashcard({ word, index, total }) {
         if (next) speak(word.vi); // hear the word while reading its meaning
     };
 
+    // Faces cover the base; no shadow here — the base provides the 3D edge.
     const faceBase = {
         position: 'absolute', inset: 0, backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden',
         display: 'flex', flexDirection: 'column', borderRadius: 20, padding: 24,
         background: 'var(--surface-color)', border: '1px solid var(--border-color)',
-        boxShadow: '0 4px 0 var(--tc-navy, rgba(27,26,58,0.14))',
     };
 
     return (
@@ -28,13 +32,17 @@ export default function LearnFlashcard({ word, index, total }) {
                 New word · {index + 1} / {total}
             </div>
 
-            <div style={{ perspective: 1200 }}>
+            {/* Static raised base — carries the 3D offset shadow + perspective */}
+            <div style={{
+                position: 'relative', height: 320, borderRadius: 20, perspective: 1200,
+                boxShadow: '0 8px 0 var(--tc-navy, #204081), 0 10px 22px rgba(27,26,58,0.14)',
+            }}>
                 <button
                     onClick={toggle}
                     aria-label={flipped ? 'Show word' : 'Show meaning'}
                     style={{
-                        position: 'relative', width: '100%', height: 320, padding: 0, border: 'none',
-                        background: 'none', cursor: 'pointer', fontFamily: 'inherit',
+                        position: 'absolute', inset: 0, padding: 0, border: 'none', background: 'none',
+                        cursor: 'pointer', fontFamily: 'inherit',
                         transformStyle: 'preserve-3d', transition: 'transform .5s cubic-bezier(.2,.7,.2,1)',
                         transform: flipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
                     }}
@@ -60,11 +68,11 @@ export default function LearnFlashcard({ word, index, total }) {
                     </div>
 
                     {/* Back — the meaning */}
-                    <div style={{ ...faceBase, transform: 'rotateY(180deg)', justifyContent: 'center' }}>
+                    <div style={{ ...faceBase, transform: 'rotateY(180deg)', justifyContent: 'center', textAlign: 'center' }}>
                         <div style={{ fontSize: 12, fontWeight: 800, letterSpacing: '.1em', textTransform: 'uppercase', color: 'var(--tc-teal, #38BA94)', marginBottom: 8 }}>Meaning</div>
                         <div style={{ fontSize: 26, fontWeight: 800, lineHeight: 1.2, marginBottom: word.example ? 16 : 0 }}>{word.en}</div>
                         {word.example && (
-                            <div style={{ paddingLeft: 12, borderLeft: '3px solid var(--tc-teal, #38BA94)' }}>
+                            <div style={{ display: 'inline-block', textAlign: 'left', paddingLeft: 12, borderLeft: '3px solid var(--tc-teal, #38BA94)' }}>
                                 <div style={{ fontSize: 17, fontWeight: 700 }}>{word.example.vi}</div>
                                 <div style={{ fontSize: 13, color: 'var(--text-muted)' }}>{word.example.en}</div>
                             </div>
