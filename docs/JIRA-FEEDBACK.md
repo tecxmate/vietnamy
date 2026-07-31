@@ -36,7 +36,19 @@ filed from a lesson screen.
 
    Leaving `JIRA_BASE_URL` blank disables the mirror.
 
-4. **Verify** by filing a report from the app. The confirmation reads
+4. **Preflight the config** — this checks your credentials, lists every project key
+   the account can see (so the key is never a guess), and confirms `JIRA_ISSUE_TYPE`
+   exists in that project's scheme:
+
+   ```sh
+   npm run feedback:verify-jira            # read-only checks
+   npm run feedback:verify-jira -- --create  # also files a real test issue + attachment
+   ```
+
+   The `--create` run exercises the attachment endpoint too, so a missing permission
+   shows up here rather than the first time a user files a report with a screenshot.
+
+5. **Verify end to end** by filing a report from the app. The confirmation reads
    "Report sent — tracked as VNMYUSER-1." when the mirror worked. If it just says
    "Report sent.", check the server log for `[feedback] Jira issue creation failed`.
 
