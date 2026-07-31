@@ -1,7 +1,11 @@
 import { ROADMAP_SEED } from './content/roadmapSeedData';
 
-const DB_KEY = 'vnme_mock_db_v25';
-const CURRICULUM_VERSION = 30;
+// Dedicated key — must NOT be shared with mockDbStore. They seed the roadmap
+// from different sources (ROADMAP_SEED here vs curriculum.json there); sharing a
+// key made mockDbStore's version-gate re-seed clobber this one, reverting the
+// Study-tab roadmap to the old curriculum.
+const DB_KEY = 'vnme_roadmap_seed_v1';
+const CURRICULUM_VERSION = 31;
 
 let dbCache = null;
 
