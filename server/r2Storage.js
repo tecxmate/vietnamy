@@ -76,6 +76,28 @@ function signedHeaders(method, url, headers = {}, body = null) {
     };
 }
 
+// Feedback screenshots are stored with `private` cache control and the bucket may
+// have no public base URL at all, so anything server-side that needs the bytes back
+// (e.g. attaching them to a Jira issue) has to read them over a signed request.
+export async function getR2Object({ bucket, key }) {
+    if (!isR2Configured()) {
+        throw new Error('R2 storage is not configured.');
+    }
+    const url = new URL(`${R2_ENDPOINT}/${bucket}/${encodeObjectKey(key)}`);
+    const res = await fetch(url, {
+        method: 'GET',
+        headers: signedHeaders('GET', url, {}, ''),
+    });
+    if (!res.ok) {
+        const detail = await res.text().catch(() => '');
+        throw new Error(`R2 download failed (${res.status}): ${detail.slice(0, 200)}`);
+    }
+    return {
+        body: Buffer.from(await res.arrayBuffer()),
+        contentType: res.headers.get('content-type') || 'application/octet-stream',
+    };
+}
+
 export async function putR2Object({ bucket, key, body, contentType = 'application/octet-stream', cacheControl = 'public, max-age=31536000, immutable' }) {
     if (!isR2Configured()) {
         throw new Error('R2 storage is not configured.');

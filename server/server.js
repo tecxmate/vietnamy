@@ -49,7 +49,8 @@ import {
     updatePushSubscriptionStats,
     upsertPushSubscription,
 } from './opsStore.js';
-import { isR2Configured, putR2Object } from './r2Storage.js';
+import { getR2Object, isR2Configured, putR2Object } from './r2Storage.js';
+import { attachJiraFile, createJiraIssue, isJiraConfigured, jiraProjectKey } from './jira.js';
 import { mountSyncRoutes } from './syncRoutes.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -89,6 +90,11 @@ function feedbackScreenshotExt(type) {
     if (type === 'image/png') return 'png';
     if (type === 'image/webp') return 'webp';
     return 'jpg';
+}
+
+// Upload and the later Jira read-back have to agree on where the object lives.
+function feedbackBucket() {
+    return process.env.R2_FEEDBACK_BUCKET || process.env.R2_APP_BUCKET || process.env.R2_MASCOT_BUCKET || process.env.R2_BUCKET || 'app-assets';
 }
 
 app.post('/api/mascot-upload', express.raw({ type: '*/*', limit: '6mb' }), async (req, res) => {
@@ -142,7 +148,7 @@ app.post('/api/feedback-screenshot', express.raw({ type: '*/*', limit: '5mb' }),
         const day = new Date().toISOString().slice(0, 10);
         const key = `feedback/${day}/${Date.now()}-${crypto.randomUUID()}.${feedbackScreenshotExt(contentType)}`;
         const upload = await putR2Object({
-            bucket: process.env.R2_FEEDBACK_BUCKET || process.env.R2_APP_BUCKET || process.env.R2_MASCOT_BUCKET || process.env.R2_BUCKET || 'app-assets',
+            bucket: feedbackBucket(),
             key,
             body: req.body,
             contentType,
@@ -321,6 +327,39 @@ app.post('/api/mail/support', async (req, res) => {
     res.json({ ok: true });
 });
 
+// Mirror a report into the Jira "vnmy-user" space. Best-effort throughout: the
+// feedback row is the source of truth, so a Jira outage must never cost us the
+// report or surface an error to the user who took the time to file it.
+async function mirrorReportToJira(report, screenshotKey) {
+    if (!isJiraConfigured()) return null;
+
+    let issue = null;
+    try {
+        issue = await createJiraIssue(report);
+    } catch (err) {
+        console.warn('[feedback] Jira issue creation failed:', err?.message || err);
+        return null;
+    }
+    if (!issue) return null;
+
+    // The screenshot lives in a private R2 bucket, so pull it back over a signed
+    // request rather than relying on the object being publicly reachable.
+    if (screenshotKey && isR2Configured()) {
+        try {
+            const object = await getR2Object({ bucket: feedbackBucket(), key: screenshotKey });
+            await attachJiraFile(issue.key, {
+                filename: screenshotKey.split('/').pop() || 'screenshot.jpg',
+                contentType: object.contentType,
+                body: object.body,
+            });
+        } catch (err) {
+            console.warn('[feedback] Jira screenshot attachment failed:', err?.message || err);
+        }
+    }
+
+    return { key: issue.key, url: issue.url, project: jiraProjectKey() };
+}
+
 app.post('/api/feedback', async (req, res) => {
     const name = clampText(req.body?.name, 120);
     const email = normalizeEmail(req.body?.email);
@@ -332,6 +371,7 @@ app.post('/api/feedback', async (req, res) => {
     const pathname = clampText(req.body?.pathname || req.body?.path, 500) || '/';
     const viewport = clampText(req.body?.viewport, 80);
     const screenshotUrl = clampText(req.body?.screenshotUrl, 500);
+    const screenshotKey = clampText(req.body?.screenshotKey, 300);
     const userAgent = clampText(req.body?.userAgent || req.headers['user-agent'], 500);
 
     if (!subject || !body) {
@@ -362,9 +402,12 @@ app.post('/api/feedback', async (req, res) => {
         clientLogs: compactClientLogs(req.body?.clientLogs),
         metadata: compactMetadata(req.body?.metadata),
     };
+
+    const jira = await mirrorReportToJira(report, screenshotKey);
+    if (jira) report.metadata = { ...report.metadata, jira };
     await createFeedbackReport(report);
 
-    res.json({ ok: true, id: report.id });
+    res.json({ ok: true, id: report.id, jira });
 });
 
 app.get('/api/admin/feedback', async (req, res) => {
