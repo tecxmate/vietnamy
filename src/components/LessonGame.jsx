@@ -946,8 +946,11 @@ const LessonGame = () => {
                 </h2>
 
                 <div style={{ fontSize: 15, color: 'var(--text-muted)', textAlign: 'center', lineHeight: 1.5 }}>
-                    <strong style={{ color: ACCENT }}>{lessonBlueprint?.title || lessonId}</strong>
-                    <br />{t('you_scored').replace('{score}', score).replace('{total}', exercises.length)}
+                    {(() => {
+                        const title = lessonBlueprint?.title || getLearnModule(lessonId)?.title_en;
+                        return title ? <><strong style={{ color: ACCENT }}>{title}</strong><br /></> : null;
+                    })()}
+                    {t('you_scored').replace('{score}', score).replace('{total}', exercises.length)}
                 </div>
 
                 {/* Stats row */}
@@ -959,10 +962,6 @@ const LessonGame = () => {
                     <div style={{ textAlign: 'center', padding: '12px 20px', borderRadius: 12, backgroundColor: 'var(--surface-color)', border: '1px solid var(--border-color)' }}>
                         <div style={{ fontSize: 20, fontWeight: 800, color: '#F59E0B' }}>+10</div>
                         <div style={{ fontSize: 11, color: 'var(--text-muted)', fontWeight: 600 }}>{t('stat_coins')}</div>
-                    </div>
-                    <div style={{ textAlign: 'center', padding: '12px 20px', borderRadius: 12, backgroundColor: 'var(--surface-color)', border: '1px solid var(--border-color)' }}>
-                        <div style={{ fontSize: 20, fontWeight: 800, color: '#EF4444' }}>{hearts === Infinity ? '∞' : hearts}/{5}</div>
-                        <div style={{ fontSize: 11, color: 'var(--text-muted)', fontWeight: 600 }}>{t('stat_hearts')}</div>
                     </div>
                 </div>
 
