@@ -1,6 +1,6 @@
 import { buildRuntimeFromCanonical, getInitialData, hydrateInitialData } from '../content/initialData';
 
-const DB_KEY = 'vnme_mock_db_v24'; // v24: unified_db.json as primary source
+const DB_KEY = 'vnme_mock_db_v25'; // v25: Foundations→Library, clean Unit 1 (forces re-seed)
 const CURRICULUM_VERSION = 34; // v34: Foundations moved to Library; roadmap starts at Unit 1
 
 let dbCache = null;

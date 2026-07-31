@@ -18,6 +18,10 @@ import DailyPlan from '../DailyPlan/DailyPlan';
 import { relColor, relTint, useMagazineActive } from '../../lib/nodePalette';
 
 const MODE_ICONS = { BookOpen, Plane, Briefcase, Heart };
+// TEMP: the goal-shaped path (hiding nodes whose topic is outside the chosen
+// goal) isn't fully curated yet, so show every node regardless of goal. Flip to
+// true to re-enable goal-based topic filtering once module topics are set.
+const GOAL_TOPIC_FILTER_ENABLED = false;
 const BeKhe = React.lazy(() => import('../BeKhe/BeKhe'));
 
 
@@ -200,7 +204,8 @@ const RoadmapTab = ({ onSearchWord, onNavigateToVocabDeck }) => {
         // The learning goal SHAPES the path: topic-bearing nodes outside the
         // current goal's topics are hidden ("All" shows the union; foundations,
         // grammar and tests carry no topic and appear in every goal).
-        (currentMode === ALL_LEARNER_MODE || !node.topic || modeTopicIds.has(node.topic)) &&
+        // TEMP-disabled via GOAL_TOPIC_FILTER_ENABLED — show all nodes for now.
+        (!GOAL_TOPIC_FILTER_ENABLED || currentMode === ALL_LEARNER_MODE || !node.topic || modeTopicIds.has(node.topic)) &&
         (!activeTopic || node.topic === activeTopic)
     ), [activeTopic, currentMode, modeTopicIds]);
 

@@ -1,6 +1,6 @@
 import { ROADMAP_SEED } from './content/roadmapSeedData';
 
-const DB_KEY = 'vnme_mock_db_v24';
+const DB_KEY = 'vnme_mock_db_v25';
 const CURRICULUM_VERSION = 30;
 
 let dbCache = null;
