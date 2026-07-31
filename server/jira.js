@@ -5,31 +5,40 @@
 // the work lives. The local feedback_reports row stays the source of truth — Jira
 // is a mirror, so every function here fails soft and never blocks a submission.
 
-const JIRA_BASE_URL = (process.env.JIRA_BASE_URL || '').replace(/\/+$/, '');
-const JIRA_EMAIL = process.env.JIRA_EMAIL || '';
-const JIRA_API_TOKEN = process.env.JIRA_API_TOKEN || '';
-const JIRA_PROJECT_KEY = process.env.JIRA_PROJECT_KEY || 'VNMYUSER';
-const JIRA_ISSUE_TYPE = process.env.JIRA_ISSUE_TYPE || 'Bug';
-const JIRA_TIMEOUT_MS = Number(process.env.JIRA_TIMEOUT_MS) || 8000;
+// Read on every call rather than at module load. server.js populates process.env
+// from .env in its module body, which runs *after* this import is evaluated, so
+// snapshotting these into consts here would silently ignore .env config.
+function config() {
+    return {
+        baseUrl: (process.env.JIRA_BASE_URL || '').replace(/\/+$/, ''),
+        email: process.env.JIRA_EMAIL || '',
+        apiToken: process.env.JIRA_API_TOKEN || '',
+        projectKey: process.env.JIRA_PROJECT_KEY || 'VNMYUSER',
+        issueType: process.env.JIRA_ISSUE_TYPE || 'Bug',
+        timeoutMs: Number(process.env.JIRA_TIMEOUT_MS) || 8000,
+    };
+}
 
 export function isJiraConfigured() {
-    return Boolean(JIRA_BASE_URL && JIRA_EMAIL && JIRA_API_TOKEN);
+    const { baseUrl, email, apiToken } = config();
+    return Boolean(baseUrl && email && apiToken);
 }
 
 export function jiraProjectKey() {
-    return JIRA_PROJECT_KEY;
-}
-
-function authHeader() {
-    return `Basic ${Buffer.from(`${JIRA_EMAIL}:${JIRA_API_TOKEN}`).toString('base64')}`;
+    return config().projectKey;
 }
 
 async function jiraFetch(path, { method = 'GET', headers = {}, body } = {}) {
-    const res = await fetch(`${JIRA_BASE_URL}${path}`, {
+    const { baseUrl, email, apiToken, timeoutMs } = config();
+    const res = await fetch(`${baseUrl}${path}`, {
         method,
-        headers: { Authorization: authHeader(), Accept: 'application/json', ...headers },
+        headers: {
+            Authorization: `Basic ${Buffer.from(`${email}:${apiToken}`).toString('base64')}`,
+            Accept: 'application/json',
+            ...headers,
+        },
         body,
-        signal: AbortSignal.timeout(JIRA_TIMEOUT_MS),
+        signal: AbortSignal.timeout(timeoutMs),
     });
     if (!res.ok) {
         const detail = await res.text().catch(() => '');
@@ -150,6 +159,7 @@ function describe(report) {
  */
 export async function createJiraIssue(report = {}) {
     if (!isJiraConfigured()) return null;
+    const { baseUrl, projectKey, issueType } = config();
 
     const labels = [
         'vietnamy',
@@ -164,8 +174,8 @@ export async function createJiraIssue(report = {}) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
             fields: {
-                project: { key: JIRA_PROJECT_KEY },
-                issuetype: { name: JIRA_ISSUE_TYPE },
+                project: { key: projectKey },
+                issuetype: { name: issueType },
                 summary: summaryFor(report),
                 description: describe(report),
                 labels,
@@ -174,7 +184,7 @@ export async function createJiraIssue(report = {}) {
     });
 
     if (!result?.key) return null;
-    return { key: result.key, url: `${JIRA_BASE_URL}/browse/${result.key}` };
+    return { key: result.key, url: `${baseUrl}/browse/${result.key}` };
 }
 
 /**
