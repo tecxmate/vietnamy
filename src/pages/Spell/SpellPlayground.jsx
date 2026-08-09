@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, Volume2, Blocks, AlertTriangle, RotateCcw, Lightbulb } from 'lucide-react';
 import { SLOTS, BY_ROLE, TONES, findBlock } from '../../data/spellingBlocks';
-import { compose, validate, placementBlock, slotHasViolation, isSpeakable, correctInitial, spellingNote } from '../../lib/spellingRules';
+import { compose, validate, placementBlock, slotHasViolation, isSpeakable, correctInitial, spellingNote, correctGlide, glideNote } from '../../lib/spellingRules';
 import { playSequence, stopSpell } from '../../lib/spellAudio';
 import './Spell.css';
 
@@ -124,12 +124,20 @@ export default function SpellPlayground() {
             next[role] = id;
             if (role === 'initial' && id === 'q') next.glide = 'u'; // q always drags in u
         }
-        // auto-correct the c/k · g/gh · ng/ngh spelling, and coach the learner
-        const fixed = correctInitial(next.initial, next.glide, next.nucleus);
-        if (fixed !== next.initial) {
-            setCoach(spellingNote(next.initial, fixed, next.glide, next.nucleus));
-            next.initial = fixed;
+        // auto-correct context-spelled sounds, and coach the learner:
+        // the c/k · g/gh · ng/ngh initial, then the o/u glide.
+        let note = null;
+        const fixedInitial = correctInitial(next.initial, next.glide, next.nucleus);
+        if (fixedInitial !== next.initial) {
+            note = spellingNote(next.initial, fixedInitial, next.glide, next.nucleus);
+            next.initial = fixedInitial;
         }
+        const fixedGlide = correctGlide(next.glide, next.nucleus, next.initial);
+        if (fixedGlide !== next.glide) {
+            note = note || glideNote(next.glide, fixedGlide, next.nucleus);
+            next.glide = fixedGlide;
+        }
+        if (note) setCoach(note);
         setState(next);
         // advance along the structural build order; tone/glide don't move focus
         if (next[role] && BUILD_SEQUENCE.includes(role)) {
@@ -284,10 +292,16 @@ export default function SpellPlayground() {
             {state.nucleus && (
                 <div className="spell-tonebar">
                     <div className="spell-tonebar-label">Thanh <span>· tone — tap anytime</span></div>
+                    {findBlock('final', state.final)?.stops && (
+                        <div className="spell-tonebar-teach">
+                            <Lightbulb size={14} />
+                            <span>Ends in “{state.final}” — a stopped syllable takes only sắc (´) or nặng (.).</span>
+                        </div>
+                    )}
                     <div className="spell-grid r-tone">
                         {TONES.map((t) => {
                             const disabled = Boolean(placementBlock(state, 'tone', t.id));
-                            const selected = (state.tone || 'ngang') === t.id;
+                            const selected = (state.tone || 'ngang') === t.id && !disabled;
                             const shaking = shakeId === `tone:${t.id}`;
                             return (
                                 <button

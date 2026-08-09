@@ -269,6 +269,19 @@
     font-weight: 600;
     color: var(--sp-muted);
 }
+.spell-tonebar-teach {
+    display: flex;
+    gap: 6px;
+    align-items: flex-start;
+    margin-bottom: 8px;
+    padding: 7px 10px;
+    border-radius: 10px;
+    background: color-mix(in srgb, var(--sp-tone) 14%, var(--sp-panel));
+    color: var(--sp-ink);
+    font-size: 12px;
+    font-weight: 600;
+}
+.spell-tonebar-teach svg { color: var(--sp-tone); flex-shrink: 0; margin-top: 1px; }
 
 /* guided next-step footer */
 .spell-footer {

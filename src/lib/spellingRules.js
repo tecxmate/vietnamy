@@ -65,6 +65,23 @@ export function spellingNote(original, corrected, glide, nucleus) {
     return `“${original}” is written “${corrected}” ${where}.`;
 }
 
+// The /w/ glide is one sound with two spellings, chosen by context: "o" before
+// a/ă/e, "u" otherwise (and always "u" after q). Auto-corrected like the c/k
+// family. (Glide-before-rounded is impossible — that stays a hard block in R3.)
+export function correctGlide(glide, nucleus, initial) {
+    if ((glide !== 'o' && glide !== 'u') || !nucleus) return glide;
+    if (!GLIDE_OK_NUCLEI.has(nucleus)) return glide; // impossible — leave for R3
+    if (initial === 'q') return 'u';
+    return GLIDE_O_NUCLEI.has(nucleus) ? 'o' : 'u';
+}
+
+/** A plain-language note when the glide spelling was auto-corrected, else null. */
+export function glideNote(original, corrected, nucleus) {
+    if (!corrected || corrected === original) return null;
+    const where = corrected === 'o' ? 'before a, ă, e' : `before ${nucleus}`;
+    return `The w-glide is written “${corrected}” ${where}.`;
+}
+
 /** Place the tone mark on the correct vowel of a (possibly multi-char) nucleus. */
 function toneNucleus(nucleusId, toneId) {
     const at = findBlock('nucleus', nucleusId)?.tone_at ?? 0;
@@ -108,15 +125,10 @@ export function validate(state) {
     // auto-corrected at pick time via correctInitial(), so the learner can try
     // "ng é" and watch it become "ngh é" with an explanation.
 
-    // ── R3: the glide only fits certain vowels, and its o/u spelling ─────────
-    if (glide && nucleus) {
-        if (!GLIDE_OK_NUCLEI.has(nucleus)) {
-            out.push({ slots: ['glide'], reason: `There’s no w-glide before ${nucleus} — drop the glide.` });
-        } else if (glide === 'o' && !GLIDE_O_NUCLEI.has(nucleus)) {
-            out.push({ slots: ['glide'], reason: `Before ${nucleus} the glide is written “u”, not “o”.` });
-        } else if (glide === 'u' && GLIDE_O_NUCLEI.has(nucleus) && initial !== 'q') {
-            out.push({ slots: ['glide'], reason: `Before ${nucleus} the glide is written “o”, not “u” (unless after q).` });
-        }
+    // ── R3: a glide can't attach to a rounded vowel. (The o/u spelling itself
+    // is auto-corrected at pick time via correctGlide — not blocked.)
+    if (glide && nucleus && !GLIDE_OK_NUCLEI.has(nucleus)) {
+        out.push({ slots: ['glide'], reason: `There’s no w-glide before ${nucleus} — drop the glide.` });
     }
 
     // ── R4: open diphthongs ia/ua/ưa take no final ───────────────────────────
@@ -194,7 +206,8 @@ export function placementBlock(state, slot, blockId) {
     // Reachability uses the auto-corrected spelling, so a family choice (or its
     // vowel) is never greyed just for being the "wrong" spelling — ng+e reaches
     // a real word as ngh+e; picking it will auto-correct.
-    const norm = { ...candidate, initial: correctInitial(candidate.initial, candidate.glide, candidate.nucleus) };
+    const normInitial = correctInitial(candidate.initial, candidate.glide, candidate.nucleus);
+    const norm = { ...candidate, initial: normInitial, glide: correctGlide(candidate.glide, candidate.nucleus, normInitial) };
     if (norm.nucleus && !canReachRealBase(norm)) {
         return 'No real Vietnamese word uses this combination.';
     }
