@@ -74,7 +74,15 @@ export const createLessonExerciseService = ({ getDB }) => {
                 vi_text_no_diacritics: item.vi_text_no_diacritics ? substituteTemplate(item.vi_text_no_diacritics, 'vi') : null,
                 en_text: substituteTemplate(translation.text, 'en'),
                 audio_key: item.audio_key,
-                item_type: item.item_type
+                item_type: item.item_type,
+                // The generator reads these to pick same-POS distractors, to blank
+                // grammar-bearing words rather than random ones, and to fall back to
+                // an emoji when a word has no illustration. Dropping them here left
+                // all three heuristics silently inert.
+                pos: item.pos,
+                tags: item.tags,
+                emoji: item.emoji,
+                dialect: item.dialect,
             };
         }).filter(Boolean);
     };

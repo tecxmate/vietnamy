@@ -2568,12 +2568,12 @@
       "pos": "word",
       "emoji": "✅",
       "difficulty": 3,
-      "dialect": "both",
+      "dialect": "north",
       "has_image": false,
       "translations": [
         {
           "lang": "en",
-          "text": "yes (Northern)",
+          "text": "yes",
           "is_primary": true
         }
       ]
@@ -2585,15 +2585,16 @@
       "pos": "word",
       "emoji": "✅",
       "difficulty": 3,
-      "dialect": "both",
+      "dialect": "south",
       "has_image": false,
       "translations": [
         {
           "lang": "en",
-          "text": "yes (Southern / polite response)",
+          "text": "yes",
           "is_primary": true
         }
-      ]
+      ],
+      "note": "Also a polite/deferential response"
     },
     {
       "id": "it_w_0014",
@@ -3378,12 +3379,12 @@
       "pos": "word",
       "emoji": "💸",
       "difficulty": 7,
-      "dialect": "both",
+      "dialect": "south",
       "has_image": false,
       "translations": [
         {
           "lang": "en",
-          "text": "expensive (Southern)",
+          "text": "expensive",
           "is_primary": true
         }
       ]
@@ -3603,12 +3604,12 @@
       "pos": "word",
       "emoji": "🔢",
       "difficulty": 7,
-      "dialect": "both",
+      "dialect": "north",
       "has_image": false,
       "translations": [
         {
           "lang": "en",
-          "text": "thousand (Northern)",
+          "text": "thousand",
           "is_primary": true
         }
       ]
@@ -3620,12 +3621,12 @@
       "pos": "word",
       "emoji": "🔢",
       "difficulty": 7,
-      "dialect": "both",
+      "dialect": "south",
       "has_image": false,
       "translations": [
         {
           "lang": "en",
-          "text": "thousand (Southern)",
+          "text": "thousand",
           "is_primary": true
         }
       ]
@@ -4304,12 +4305,12 @@
       "pos": "word",
       "emoji": "👨",
       "difficulty": 8,
-      "dialect": "both",
+      "dialect": "north",
       "has_image": false,
       "translations": [
         {
           "lang": "en",
-          "text": "father (Northern)",
+          "text": "father",
           "is_primary": true
         }
       ]
@@ -4318,16 +4319,16 @@
       "id": "it_w_0161",
       "lesson_id": "lesson_019",
       "vi_text": "ba",
-      "pos": "number",
+      "pos": "noun",
       "emoji": "👨",
       "difficulty": 1,
       "frequency_rank": 21,
-      "dialect": "both",
+      "dialect": "south",
       "has_image": true,
       "translations": [
         {
           "lang": "en",
-          "text": "father (Southern)",
+          "text": "father",
           "is_primary": true
         }
       ]
@@ -4339,12 +4340,12 @@
       "pos": "word",
       "emoji": "👩",
       "difficulty": 8,
-      "dialect": "both",
+      "dialect": "north",
       "has_image": false,
       "translations": [
         {
           "lang": "en",
-          "text": "mother (Northern)",
+          "text": "mother",
           "is_primary": true
         }
       ]
@@ -4356,12 +4357,12 @@
       "pos": "word",
       "emoji": "👩",
       "difficulty": 8,
-      "dialect": "both",
+      "dialect": "south",
       "has_image": false,
       "translations": [
         {
           "lang": "en",
-          "text": "mother (Southern)",
+          "text": "mother",
           "is_primary": true
         }
       ]
@@ -15532,7 +15533,7 @@
     {
       "id": "it_w_0874",
       "lesson_id": "lesson_110",
-      "vi_text": "Tô (Bắc) / Tô lớn (Nam)",
+      "vi_text": "tô",
       "pos": "noun",
       "difficulty": 7,
       "frequency_rank": 874,
@@ -15541,27 +15542,29 @@
       "translations": [
         {
           "lang": "en",
-          "text": "Bowl (regional variants)",
+          "text": "bowl",
           "is_primary": true
         }
-      ]
+      ],
+      "note": "Regional variants: Tô (Bắc) / Tô lớn (Nam)"
     },
     {
       "id": "it_w_0875",
       "lesson_id": "lesson_110",
-      "vi_text": "Bố (Bắc) / Ba (Nam)",
+      "vi_text": "bố",
       "pos": "noun",
       "difficulty": 7,
       "frequency_rank": 875,
-      "dialect": "both",
+      "dialect": "north",
       "has_image": false,
       "translations": [
         {
           "lang": "en",
-          "text": "Father (regional variants)",
+          "text": "father",
           "is_primary": true
         }
-      ]
+      ],
+      "note": "Regional variants: Bố (Bắc) / Ba (Nam)"
     },
     {
       "id": "it_w_0876",

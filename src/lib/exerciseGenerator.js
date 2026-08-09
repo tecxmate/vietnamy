@@ -2,7 +2,7 @@
 // Input: lesson items (words/sentences with translations) + distractor pool
 // Output: progressive exercise sequence
 
-import { CHOICE_EXERCISE_TYPES, normalizeMcqTypeIds } from './mcqTypes';
+import { CHOICE_EXERCISE_TYPES, normalizeMcqTypeIds } from './mcqTypes.js';
 
 function shuffleArray(arr) {
     const a = [...arr];
@@ -14,12 +14,55 @@ function shuffleArray(arr) {
 }
 
 /**
+ * Compare two choice strings the way a learner reads them: a choice that differs
+ * only by case, punctuation or a parenthetical gloss note is not a real option.
+ * "Hẹn"/"hẹn" and "no / not"/"No / not" are the same answer on screen.
+ */
+function choiceKey(text) {
+    return String(text || '')
+        .toLowerCase()
+        .replace(/\(.*?\)/g, ' ')
+        .replace(/[.!?,;:"']/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
+}
+
+/**
+ * Drop choices that collide with an already-taken one, so a question never ships
+ * two options a learner would read as the same answer.
+ */
+function dedupeChoices(answer, distractors, count) {
+    const taken = new Set([choiceKey(answer)]);
+    const kept = [];
+    for (const d of distractors) {
+        const key = choiceKey(d);
+        if (!key || taken.has(key)) continue;
+        taken.add(key);
+        kept.push(d);
+        if (kept.length >= count) break;
+    }
+    return kept;
+}
+
+/**
  * Pick distractors with POS-aware tiering (better pedagogical distractors)
  * Tier 1: Same POS from pool (hardest - can't eliminate by word type)
  * Tier 2: Any POS from pool (fallback)
+ *
+ * Candidates are compared on BOTH sides: a distractor is rejected if it collides
+ * with the answer in the field being shown (two choices that look identical) or
+ * in the opposite field (a genuine synonym, so both choices would be correct —
+ * e.g. the dialect pairs vâng/dạ, ngàn/nghìn).
  */
 function pickDistractors(item, pool, count, field = 'en_text') {
-    const candidates = pool.filter(p => p.id !== item.id && p[field] !== item[field]);
+    const otherField = field === 'en_text' ? 'vi_text' : 'en_text';
+    const answerKey = choiceKey(item[field]);
+    const meaningKey = choiceKey(item[otherField]);
+    const candidates = pool.filter(p =>
+        p.id !== item.id &&
+        choiceKey(p[field]) !== answerKey &&
+        choiceKey(p[otherField]) !== meaningKey,
+    );
 
     // If item has POS, prefer same-POS distractors
     if (item.pos) {
@@ -30,11 +73,11 @@ function pickDistractors(item, pool, count, field = 'en_text') {
         const tier1 = shuffleArray(samePOS);
         const tier2 = shuffleArray(otherPOS);
         const combined = [...tier1, ...tier2];
-        return combined.slice(0, count).map(c => c[field]);
+        return dedupeChoices(item[field], combined.map(c => c[field]), count);
     }
 
     const shuffled = shuffleArray(candidates);
-    return shuffled.slice(0, count).map(c => c[field]);
+    return dedupeChoices(item[field], shuffled.map(c => c[field]), count);
 }
 
 function isSentence(item) {
@@ -268,10 +311,22 @@ function selectBlankTarget(words, tags) {
     const measureIdx = lowerWords.findIndex(w => MEASURE_WORDS.includes(w));
     if (measureIdx !== -1) return { word: words[measureIdx], index: measureIdx, type: 'measure' };
 
-    // Fallback: Random content word (not punctuation, not too short)
+    // Fallback: Random content word (not punctuation, not too short).
+    // A word that occurs more than once in the sentence is skipped — blanking one
+    // copy while the other stays visible ("Bây ___ là mấy giờ?" = "giờ") is both a
+    // giveaway and ambiguous about which slot is being tested.
+    const occurrences = new Map();
+    for (const w of lowerWords) {
+        const k = w.replace(/[.!?,]/g, '');
+        occurrences.set(k, (occurrences.get(k) || 0) + 1);
+    }
     const candidates = words
         .map((w, i) => ({ word: w, index: i }))
-        .filter(({ word }) => word.length > 1 && !/^[.!?,]+$/.test(word));
+        .filter(({ word }) =>
+            word.length > 1 &&
+            !/^[.!?,]+$/.test(word) &&
+            occurrences.get(word.toLowerCase().replace(/[.!?,]/g, '')) === 1,
+        );
 
     if (candidates.length === 0) return null;
     return candidates[Math.floor(Math.random() * candidates.length)];
@@ -304,8 +359,18 @@ function generateFillBlank(lessonId, sentenceItem, pool, exIndex) {
             .filter(w => w !== target.word);
     }
 
-    const uniqueDistractors = [...new Set(distractorPool)];
-    const distractorChoices = shuffleArray(uniqueDistractors).slice(0, 2);
+    // A distractor that is already visible in the prompt is free to eliminate, so
+    // drop anything still on screen (case-insensitively) before choosing.
+    const visible = new Set(
+        words
+            .filter((_, i) => i !== target.index)
+            .map(w => choiceKey(w))
+            .filter(Boolean),
+    );
+    const uniqueDistractors = [...new Set(distractorPool)].filter(w => !visible.has(choiceKey(w)));
+    const distractorChoices = dedupeChoices(target.word, shuffleArray(uniqueDistractors), 2);
+    // Two real options is not a question. Skip rather than ship a coin flip.
+    if (distractorChoices.length < 2) return null;
     const choices = shuffleArray([target.word, ...distractorChoices]);
 
     return {
@@ -338,13 +403,23 @@ function generateWordInContextFillBlank(lessonId, wordItem, allItems, pool, exIn
     const blanked = sentence.vi_text.replace(regex, '____');
     if (blanked === sentence.vi_text) return null;
 
-    // Distractors: other word items from the pool
+    // Distractors: other word items from the pool. Exclude anything still visible
+    // in the blanked sentence, and anything that means the same as the answer
+    // (both would be correct in the slot).
+    const visible = new Set(blanked.split(/\s+/).map(w => choiceKey(w)).filter(Boolean));
+    const meaningKey = choiceKey(wordItem.en_text);
     const distractors = pool
-        .filter(p => p.id !== wordItem.id && !isSentence(p))
-        .map(p => p.vi_text)
-        .filter(t => t !== wordItem.vi_text);
-    const uniqueDistractors = [...new Set(distractors)];
-    const choices = shuffleArray([wordItem.vi_text, ...shuffleArray(uniqueDistractors).slice(0, 2)]);
+        .filter(p =>
+            p.id !== wordItem.id &&
+            !isSentence(p) &&
+            choiceKey(p.vi_text) !== choiceKey(wordItem.vi_text) &&
+            choiceKey(p.en_text) !== meaningKey &&
+            !visible.has(choiceKey(p.vi_text)),
+        )
+        .map(p => p.vi_text);
+    const picked = dedupeChoices(wordItem.vi_text, shuffleArray([...new Set(distractors)]), 2);
+    if (picked.length < 2) return null;
+    const choices = shuffleArray([wordItem.vi_text, ...picked]);
 
     return {
         id: `${lessonId}_gen_${exIndex}`,

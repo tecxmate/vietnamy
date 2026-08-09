@@ -1673,6 +1673,7 @@
         "usesVocab": [
           "it_w_0007",
           "it_w_0008",
+          "it_w_0875",
           "it_w_1056",
           "it_w_1111"
         ]
@@ -6821,7 +6822,8 @@
           "it_w_0032",
           "it_w_0160",
           "it_w_0161",
-          "it_w_0258"
+          "it_w_0258",
+          "it_w_0875"
         ]
       }
     },
@@ -9484,6 +9486,7 @@
           "it_w_0035",
           "it_w_0036",
           "it_w_0048",
+          "it_w_0874",
           "it_w_1056"
         ]
       }
@@ -9785,22 +9788,22 @@
       "id": "it_w_0005",
       "lessonId": "lesson_003",
       "vi": "vâng",
-      "en": "yes (Northern)",
+      "en": "yes",
       "pos": "word",
       "emoji": "✅",
       "difficulty": 3,
-      "dialect": "neutral",
+      "dialect": "north",
       "hasImage": false
     },
     {
       "id": "it_w_0006",
       "lessonId": "lesson_003",
       "vi": "dạ",
-      "en": "yes (Southern / polite response)",
+      "en": "yes",
       "pos": "word",
       "emoji": "✅",
       "difficulty": 3,
-      "dialect": "neutral",
+      "dialect": "south",
       "hasImage": false
     },
     {
@@ -10319,11 +10322,11 @@
       "id": "it_w_0072",
       "lessonId": "lesson_010",
       "vi": "mắc",
-      "en": "expensive (Southern)",
+      "en": "expensive",
       "pos": "word",
       "emoji": "💸",
       "difficulty": 7,
-      "dialect": "neutral",
+      "dialect": "south",
       "hasImage": false
     },
     {
@@ -10466,22 +10469,22 @@
       "id": "it_w_0091",
       "lessonId": "lesson_012",
       "vi": "nghìn",
-      "en": "thousand (Northern)",
+      "en": "thousand",
       "pos": "word",
       "emoji": "🔢",
       "difficulty": 7,
-      "dialect": "neutral",
+      "dialect": "north",
       "hasImage": false
     },
     {
       "id": "it_w_0092",
       "lessonId": "lesson_012",
       "vi": "ngàn",
-      "en": "thousand (Southern)",
+      "en": "thousand",
       "pos": "word",
       "emoji": "🔢",
       "difficulty": 7,
-      "dialect": "neutral",
+      "dialect": "south",
       "hasImage": false
     },
     {
@@ -10927,45 +10930,45 @@
       "id": "it_w_0160",
       "lessonId": "lesson_019",
       "vi": "bố",
-      "en": "father (Northern)",
+      "en": "father",
       "pos": "word",
       "emoji": "👨",
       "difficulty": 8,
-      "dialect": "neutral",
+      "dialect": "north",
       "hasImage": false
     },
     {
       "id": "it_w_0161",
       "lessonId": "lesson_019",
       "vi": "ba",
-      "en": "father (Southern)",
-      "pos": "number",
+      "en": "father",
+      "pos": "noun",
       "emoji": "👨",
       "difficulty": 1,
       "frequencyRank": 21,
-      "dialect": "neutral",
+      "dialect": "south",
       "hasImage": true
     },
     {
       "id": "it_w_0162",
       "lessonId": "lesson_019",
       "vi": "mẹ",
-      "en": "mother (Northern)",
+      "en": "mother",
       "pos": "word",
       "emoji": "👩",
       "difficulty": 8,
-      "dialect": "neutral",
+      "dialect": "north",
       "hasImage": false
     },
     {
       "id": "it_w_0163",
       "lessonId": "lesson_019",
       "vi": "má",
-      "en": "mother (Southern)",
+      "en": "mother",
       "pos": "word",
       "emoji": "👩",
       "difficulty": 8,
-      "dialect": "neutral",
+      "dialect": "south",
       "hasImage": false
     },
     {
@@ -18198,8 +18201,8 @@
     {
       "id": "it_w_0874",
       "lessonId": "lesson_110",
-      "vi": "Tô (Bắc) / Tô lớn (Nam)",
-      "en": "Bowl (regional variants)",
+      "vi": "tô",
+      "en": "bowl",
       "pos": "noun",
       "difficulty": 7,
       "frequencyRank": 874,
@@ -18209,12 +18212,12 @@
     {
       "id": "it_w_0875",
       "lessonId": "lesson_110",
-      "vi": "Bố (Bắc) / Ba (Nam)",
-      "en": "Father (regional variants)",
+      "vi": "bố",
+      "en": "father",
       "pos": "noun",
       "difficulty": 7,
       "frequencyRank": 875,
-      "dialect": "neutral",
+      "dialect": "north",
       "hasImage": false
     },
     {
