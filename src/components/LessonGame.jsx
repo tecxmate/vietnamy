@@ -3,6 +3,7 @@ import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { X, Heart, Check, Volume2, Frown, Trophy, ChevronRight, Mic, MicOff } from 'lucide-react';
 import { lookupWords } from '../lib/dictionaryLookup';
 import { getConceptsForLesson } from '../lib/concepts';
+import { getGrammarForLesson } from '../lib/grammarGuide';
 import { getLearnModule, buildLearnSteps } from '../lib/learnModules';
 import { getNextRouteAfterLesson } from '../lib/roadmapDb';
 import LearnFlashcard from './LearnFlashcard';
@@ -19,7 +20,7 @@ import { loadSettings } from '../lib/settings';
 import { fireNotification } from '../context/NotificationContext';
 import { playSuccess, playError, playCelebration, playNotification, playSelect, playTap } from '../utils/sound';
 import SoundButton from './SoundButton';
-import { MCQOptions, MatchPairs, FeedbackBanner, ProgressBar, buildFillBlankSentence, getFillBlankCorrectSentence } from './Exercise';
+import { MCQOptions, MatchPairs, DialogueTranscript, FeedbackBanner, ProgressBar, buildFillBlankSentence, getFillBlankCorrectSentence } from './Exercise';
 import useQuizSession, { getCompletedSentenceAudio } from '../hooks/useQuizSession';
 import { DEFAULT_LEARNER_MODE, getProgressMode } from '../data/learnerModes';
 import { useT, normalizeLang } from '../lib/i18n';
@@ -328,6 +329,14 @@ const LessonGame = () => {
                 getConceptsForLesson(lessonId).forEach(concept => {
                     steps.push({ type: 'concept', concept });
                 });
+                // Grammar points this lesson is the FIRST to use. Their canonical
+                // descriptions already exist in the curriculum bundle but were only
+                // reachable from the unit guidebook, never from the lesson that
+                // introduces them.
+                const grammarPoints = getGrammarForLesson(lessonId);
+                if (grammarPoints.length > 0) {
+                    steps.push({ type: 'grammar', grammarPoints });
+                }
                 blueprint.words.forEach(word => {
                     steps.push({ type: 'vocab', word });
                 });
@@ -859,6 +868,37 @@ const LessonGame = () => {
                             )}
                         </div>
                     )}
+                    {step.type === 'grammar' && (
+                        <div className="lesson-intro__card">
+                            <div className="lesson-intro__eyebrow lesson-intro__eyebrow--grammar">
+                                {step.grammarPoints.length > 1 ? 'New Grammar' : 'New Grammar Point'}
+                            </div>
+                            <div className="lesson-intro__grammar-list">
+                                {step.grammarPoints.map(point => (
+                                    <div key={point.id} className="lesson-intro__grammar-item">
+                                        <div className="lesson-intro__grammar-head">
+                                            <span className="lesson-intro__grammar-desc">{point.description}</span>
+                                            {point.category && (
+                                                <span className="lesson-intro__grammar-tag">{point.category}</span>
+                                            )}
+                                        </div>
+                                        {point.example && (
+                                            <button
+                                                className="ghost lesson-intro__grammar-example"
+                                                onClick={() => speak(point.example.vi)}
+                                            >
+                                                <Volume2 size={16} color="var(--secondary-color)" />
+                                                <span className="lesson-intro__grammar-example-vi">{point.example.vi}</span>
+                                                {point.example.en && (
+                                                    <span className="lesson-intro__grammar-example-en">{point.example.en}</span>
+                                                )}
+                                            </button>
+                                        )}
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    )}
                     {step.type === 'vocab' && (
                         <div style={{ width: '100%', maxWidth: 400, backgroundColor: 'var(--surface-color)', borderRadius: 'var(--radius-lg)', padding: 32, textAlign: 'center', border: '2px solid var(--border-color)' }}>
                             <div style={{ fontSize: 12, textTransform: 'uppercase', letterSpacing: 2, color: 'var(--secondary-color)', fontWeight: 700, marginBottom: 16 }}>New Word</div>
@@ -1104,7 +1144,7 @@ const LessonGame = () => {
                 <h2 className="lesson-game__instruction">{prompt.instruction}</h2>
 
                 {/* Question Prompt Area */}
-                {exercise_type !== 'picture_choice' && exercise_type !== 'speak_sentence' && exercise_type !== 'match_pairs' && (
+                {exercise_type !== 'picture_choice' && exercise_type !== 'speak_sentence' && exercise_type !== 'match_pairs' && exercise_type !== 'dialogue_complete' && (
                     <div className="lesson-game__prompt-area">
                         {['listen_choose', 'listen_type'].includes(exercise_type) ? (
                             <div style={{ display: 'flex', alignItems: 'center', gap: 12, width: '100%', justifyContent: 'center' }}>
@@ -1313,6 +1353,30 @@ const LessonGame = () => {
                                     onBlur={(e) => { e.target.style.borderColor = 'var(--border-color)'; }}
                                 />
                             </div>
+                        </>
+                    )}
+
+                    {/* Dialogue Completion — transcript with one turn missing, then choices */}
+                    {exercise_type === 'dialogue_complete' && (
+                        <>
+                            {prompt.title && (
+                                <p className="lesson-game__dialogue-title">{prompt.title}</p>
+                            )}
+                            <DialogueTranscript
+                                lines={prompt.lines}
+                                selectedAnswer={selectedAnswer}
+                                isChecking={isChecking}
+                                isCorrect={isCorrect}
+                                onPlay={handlePlayAudio}
+                            />
+                            <MCQOptions
+                                options={prompt.choices_vi}
+                                selectedAnswer={selectedAnswer}
+                                correctAnswer={prompt.answer_vi}
+                                onSelect={(choice) => { setSelectedAnswer(choice); speak(choice); }}
+                                isChecking={isChecking}
+                                isCorrect={isCorrect}
+                            />
                         </>
                     )}
 

@@ -27,6 +27,7 @@ export function buildRuntimeFromCanonical(db, { includeContent = true } = {}) {
     const blueprints = [];
     const lessons = [];
     const pathNodes = [];
+    const conversations = [];
 
     if (includeContent) {
         (db.words || []).forEach(v => {
@@ -64,6 +65,24 @@ export function buildRuntimeFromCanonical(db, { includeContent = true } = {}) {
             if (s.en) translations.push({ item_id: s.id, lang: 'en', text: s.en, is_alternate: false });
             (s.accepted || []).forEach(alt => translations.push({ item_id: s.id, lang: 'en', text: alt, is_alternate: true }));
             if (s.zh) translations.push({ item_id: s.id, lang: 'zh', text: s.zh, is_alternate: false });
+        });
+
+        // 132 authored dialogues sat in content/curriculum.json unreferenced by the
+        // runtime store, so nothing downstream could reach them.
+        (db.conversations || []).forEach(c => {
+            conversations.push({
+                id: c.id,
+                lesson_id: c.lessonId,
+                title: c.title,
+                context: c.context,
+                lines: (c.lines || []).map(l => ({
+                    speaker: l.speaker,
+                    vi_text: l.vi,
+                    vi_text_no_diacritics: l.vi ? stripDiacritics(l.vi) : null,
+                    en_text: l.en,
+                    zh_text: l.zh,
+                })),
+            });
         });
     }
 
@@ -126,7 +145,7 @@ export function buildRuntimeFromCanonical(db, { includeContent = true } = {}) {
         }
     });
 
-    return { items, translations, blueprints, lessons, pathNodes };
+    return { items, translations, blueprints, lessons, pathNodes, conversations };
 }
 
 
@@ -304,6 +323,7 @@ function createInitialData({ full = false } = {}) {
         // Exercises are now auto-generated at runtime by exerciseGenerator.js
     ],
     lesson_blueprints: full ? [...built.blueprints] : [],
+    conversations: full ? [...built.conversations] : [],
 
     scene_locations: full ? SCENE_LOCATIONS : [],
     scenes: full ? SCENES : []
@@ -320,6 +340,7 @@ export const hydrateInitialData = (db) => {
         items: full.items,
         translations: full.translations,
         lesson_blueprints: full.lesson_blueprints,
+        conversations: full.conversations,
         scene_locations: full.scene_locations,
         scenes: full.scenes,
     };

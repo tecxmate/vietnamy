@@ -45,6 +45,17 @@ const groupBy = (rows, key) => {
 const wordsByLesson = groupBy(cur.words, 'lessonId');
 const sentsByLesson = groupBy(cur.sentences, 'lessonId');
 
+// Mirror the runtime store's conversation shape (initialData.js).
+const convsByLesson = groupBy(
+    (cur.conversations || []).map((c) => ({
+        id: c.id,
+        lessonId: c.lessonId,
+        title: c.title,
+        lines: (c.lines || []).map((l) => ({ speaker: l.speaker, vi_text: l.vi, en_text: l.en })),
+    })),
+    'lessonId',
+);
+
 // vi → the English glosses it can carry, for spotting two-correct-answer questions
 const glossByVi = new Map();
 for (const w of cur.words) {
@@ -95,7 +106,8 @@ for (const lesson of lessons) {
 
     for (let session = 0; session < SESSIONS; session++) {
         for (let seed = 0; seed < SEEDS; seed++) {
-            for (const ex of generateExercises(lesson.id, items, pool, imageMap, session, {})) {
+            const options = { conversations: convsByLesson.get(lesson.id) || [] };
+            for (const ex of generateExercises(lesson.id, items, pool, imageMap, session, options)) {
                 totalEx++;
                 typeCount[ex.exercise_type] = (typeCount[ex.exercise_type] || 0) + 1;
                 const p = ex.prompt;
@@ -133,6 +145,17 @@ for (const lesson of lessons) {
                     if (p.tokens.filter((t) => !ansSet.has(t.toLowerCase())).length === 0) {
                         bump('word_bank: no distractor tokens', `${at} ${p.answer_vi}`);
                     }
+                }
+
+                if (ex.exercise_type === 'dialogue_complete') {
+                    const visible = new Set(p.lines.filter((l) => !l.isBlank).map((l) => normViChoice(l.vi_text)));
+                    if (p.choices_vi.some((c) => c !== p.answer_vi && visible.has(normViChoice(c)))) {
+                        bump('dialogue: distractor already visible in the transcript', `${at} ${p.answer_vi} / ${p.choices_vi.join(' | ')}`);
+                    }
+                    if (new Set(p.choices_vi.map(normViChoice)).size < p.choices_vi.length) {
+                        bump('dialogue: duplicate choices', `${at} ${p.choices_vi.join(' | ')}`);
+                    }
+                    if (!p.choices_vi.includes(p.answer_vi)) bump('dialogue: answer missing from choices', `${at} ${p.answer_vi}`);
                 }
 
                 if (ex.exercise_type === 'reorder_words' && p.tokens.length !== p.answer_tokens.length) {

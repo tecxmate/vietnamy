@@ -253,6 +253,17 @@ export function extractItemIds(exercise, db) {
                 if (id) ids.push(id);
             }
             break;
+
+        case 'dialogue_complete':
+            // The missing turn is the tested item. Dialogue lines are authored
+            // separately from the sentence bank, so this only resolves when the
+            // line also exists as an item — no match simply means no SRS credit,
+            // which is the same behaviour as any unrecognised text.
+            {
+                const id = findByVi(prompt.answer_vi);
+                if (id) ids.push(id);
+            }
+            break;
     }
 
     return ids;

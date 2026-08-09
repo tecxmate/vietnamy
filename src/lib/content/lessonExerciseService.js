@@ -203,9 +203,12 @@ export const createLessonExerciseService = ({ getDB }) => {
             cefrLevel: lessonNode?.cefr_level,
         });
 
+        const conversations = (db.conversations || []).filter(c => c.lesson_id === lessonId);
+
         const generated = generateExercises(lessonId, allItems, distractorPool, imageMap, session, {
             ...profile.options,
             mcqTypeIds: lessonRecord?.mcq_type_ids || lessonRecord?.mcqTypeIds || profile.options?.mcqTypeIds,
+            conversations,
         });
         const exercises = filterExercisesBySkill(generated, skill);
         exercises.forEach(ex => { ex.wordHints = wordHints; });

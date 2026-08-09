@@ -61,8 +61,209 @@
 
 .lesson-game__exercise[data-exercise-type="picture_choice"],
 .lesson-game__exercise[data-exercise-type="speak_sentence"],
-.lesson-game__exercise[data-exercise-type="match_pairs"] {
+.lesson-game__exercise[data-exercise-type="match_pairs"],
+.lesson-game__exercise[data-exercise-type="dialogue_complete"] {
     grid-template-rows: auto 1fr;
+}
+
+/* ── Lesson intro: grammar card ───────────────────────────────────────────── */
+
+.lesson-intro__card {
+    width: 100%;
+    max-width: 400px;
+    padding: 32px;
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    background-color: var(--surface-color);
+}
+
+.lesson-intro__eyebrow {
+    margin-bottom: 16px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.lesson-intro__eyebrow--grammar {
+    color: var(--secondary-color);
+}
+
+.lesson-intro__grammar-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.lesson-intro__grammar-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.lesson-intro__grammar-desc {
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.lesson-intro__grammar-tag {
+    flex: none;
+    padding: 2px 8px;
+    border-radius: 10px;
+    background-color: rgba(255, 209, 102, 0.15);
+    color: var(--primary-color);
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.lesson-intro__grammar-example {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    background-color: var(--bg-color);
+    text-align: left;
+}
+
+.lesson-intro__grammar-example-vi {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.lesson-intro__grammar-example-en {
+    margin-left: auto;
+    color: var(--text-muted);
+    font-size: 13px;
+}
+
+/* ── Dialogue completion ──────────────────────────────────────────────────── */
+
+.lesson-game__dialogue-title {
+    margin: 0 0 12px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.dialogue-transcript {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 18px;
+    /* A long dialogue must not push the answer choices off screen. Cap the
+       transcript and scroll inside it; the blank is scrolled into view on mount. */
+    max-height: min(42vh, 320px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    flex: 0 0 auto;
+}
+
+.dialogue-transcript__row {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3px;
+    max-width: 85%;
+}
+
+.dialogue-transcript__row.is-right {
+    align-items: flex-end;
+    align-self: flex-end;
+}
+
+.dialogue-transcript__speaker {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-muted);
+    padding: 0 6px;
+}
+
+.dialogue-transcript__bubble {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 10px 14px;
+    border-radius: 16px;
+    border: 2px solid var(--border-color);
+    background-color: var(--surface-color);
+    /* Motion stays on compositor-friendly properties only. */
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.dialogue-transcript__row.is-right .dialogue-transcript__bubble {
+    border-bottom-right-radius: 4px;
+}
+
+.dialogue-transcript__row:not(.is-right) .dialogue-transcript__bubble {
+    border-bottom-left-radius: 4px;
+}
+
+.dialogue-transcript__bubble.is-blank {
+    border-style: dashed;
+}
+
+.dialogue-transcript__bubble.is-empty {
+    min-width: 72px;
+    align-items: center;
+}
+
+.dialogue-transcript__bubble.is-filled {
+    border-style: solid;
+    border-color: var(--lesson-selected-border);
+    background-color: var(--lesson-selected-fill);
+}
+
+.dialogue-transcript__bubble.is-correct {
+    border-style: solid;
+    border-color: #58cc02;
+    background-color: rgba(88, 204, 2, 0.15);
+}
+
+.dialogue-transcript__bubble.is-wrong {
+    border-style: solid;
+    border-color: #ef4444;
+    background-color: rgba(239, 68, 68, 0.15);
+}
+
+.dialogue-transcript__vi {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.dialogue-transcript__en {
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.dialogue-transcript__placeholder {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-muted);
+}
+
+.dialogue-transcript__audio {
+    align-self: flex-start;
+    margin-top: 4px;
+    padding: 2px;
+    border: none;
+    background: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    line-height: 0;
+}
+
+.dialogue-transcript__audio:hover,
+.dialogue-transcript__audio:focus-visible {
+    color: var(--secondary-color);
 }
 
 .lesson-game__prompt-area {

@@ -3,6 +3,7 @@
 // Output: progressive exercise sequence
 
 import { CHOICE_EXERCISE_TYPES, normalizeMcqTypeIds } from './mcqTypes.js';
+import { rankByConfusability } from './vietnamesePhonology.js';
 
 function shuffleArray(arr) {
     const a = [...arr];
@@ -54,7 +55,7 @@ function dedupeChoices(answer, distractors, count) {
  * in the opposite field (a genuine synonym, so both choices would be correct —
  * e.g. the dialect pairs vâng/dạ, ngàn/nghìn).
  */
-function pickDistractors(item, pool, count, field = 'en_text') {
+function pickDistractors(item, pool, count, field = 'en_text', options = {}) {
     const otherField = field === 'en_text' ? 'vi_text' : 'en_text';
     const answerKey = choiceKey(item[field]);
     const meaningKey = choiceKey(item[otherField]);
@@ -64,20 +65,24 @@ function pickDistractors(item, pool, count, field = 'en_text') {
         choiceKey(p[otherField]) !== meaningKey,
     );
 
-    // If item has POS, prefer same-POS distractors
+    let ordered;
     if (item.pos) {
-        const samePOS = candidates.filter(p => p.pos === item.pos);
-        const otherPOS = candidates.filter(p => p.pos !== item.pos);
-
         // Prioritize same-POS, then fill with others
-        const tier1 = shuffleArray(samePOS);
-        const tier2 = shuffleArray(otherPOS);
-        const combined = [...tier1, ...tier2];
-        return dedupeChoices(item[field], combined.map(c => c[field]), count);
+        ordered = [
+            ...shuffleArray(candidates.filter(p => p.pos === item.pos)),
+            ...shuffleArray(candidates.filter(p => p.pos !== item.pos)),
+        ];
+    } else {
+        ordered = shuffleArray(candidates);
     }
 
-    const shuffled = shuffleArray(candidates);
-    return dedupeChoices(item[field], shuffled.map(c => c[field]), count);
+    // For listening, a same-POS distractor is still eliminable by meaning. Promote
+    // phonological neighbours instead so the tone is what has to be heard.
+    if (options.preferConfusable && field === 'vi_text') {
+        ordered = rankByConfusability(item.vi_text, ordered, c => c.vi_text);
+    }
+
+    return dedupeChoices(item[field], ordered.map(c => c[field]), count);
 }
 
 function isSentence(item) {
@@ -157,7 +162,9 @@ function generateMCQ(lessonId, item, pool, direction, exIndex) {
 
 // Listen & choose
 function generateListenChoose(lessonId, item, pool, exIndex) {
-    const distractors = pickDistractors(item, pool, 2, 'vi_text');
+    // The skill here is hearing the word, so the choices should differ by sound,
+    // not by meaning.
+    const distractors = pickDistractors(item, pool, 2, 'vi_text', { preferConfusable: true });
     const choices = shuffleArray([item.vi_text, ...distractors]);
     return {
         id: `${lessonId}_gen_${exIndex}`,
@@ -239,6 +246,55 @@ function generateTranslationWordBank(lessonId, item, pool, exIndex) {
             // Include accepted translations for flexible answer checking
             accepted_en: item.accepted || [item.en_text],
         }
+    };
+}
+
+/**
+ * Dialogue completion — show an authored conversation with one turn removed and
+ * have the learner pick the missing line.
+ *
+ * This is the only exercise that tests a line *in its conversational slot*: the
+ * same words are right or wrong depending on who is speaking and what was just
+ * said. Distractors are other turns from the same lesson's dialogues, so they are
+ * all plausible Vietnamese — only the context rules them out.
+ */
+function generateDialogueComplete(lessonId, conversation, distractorLines, exIndex) {
+    const lines = conversation.lines || [];
+    // Need a line to hide and at least one line of context before it, otherwise
+    // there is nothing to reason from.
+    if (lines.length < 3) return null;
+
+    const blankIndex = 1 + Math.floor(Math.random() * (lines.length - 1));
+    const answer = lines[blankIndex];
+    if (!answer?.vi_text) return null;
+
+    // Anything still on screen in this transcript is a giveaway, not a distractor.
+    const visible = new Set(lines.map(l => choiceKey(l.vi_text)).filter(Boolean));
+    const candidates = distractorLines
+        .map(l => l.vi_text)
+        .filter(t => t && !visible.has(choiceKey(t)));
+    const distractors = dedupeChoices(answer.vi_text, shuffleArray([...new Set(candidates)]), 2);
+    if (distractors.length < 2) return null;
+
+    return {
+        id: `${lessonId}_gen_${exIndex}`,
+        lesson_id: lessonId,
+        exercise_type: 'dialogue_complete',
+        prompt: {
+            instruction: 'Complete the conversation',
+            title: conversation.title,
+            lines: lines.map((l, i) => ({
+                speaker: l.speaker,
+                vi_text: i === blankIndex ? null : l.vi_text,
+                en_text: i === blankIndex ? null : l.en_text,
+                isBlank: i === blankIndex,
+            })),
+            blank_index: blankIndex,
+            blank_speaker: answer.speaker,
+            choices_vi: shuffleArray([answer.vi_text, ...distractors]),
+            answer_vi: answer.vi_text,
+            answer_en: answer.en_text,
+        },
     };
 }
 
@@ -444,13 +500,13 @@ function generateWordInContextFillBlank(lessonId, wordItem, allItems, pool, exIn
  */
 const SESSION_PROFILES = [
     // Session 0: Introduction — some recognition, but contextual from the start
-    { match: true, picture: 1, mcqToEn: 2, listenChoose: 1, mcqToVi: 1, listenType: 1, wordBank: 2, reorder: 2, fillBlank: 3, speak: 1 },
+    { match: true, picture: 1, mcqToEn: 2, listenChoose: 1, mcqToVi: 1, listenType: 1, wordBank: 2, reorder: 2, fillBlank: 3, speak: 1, dialogue: 1 },
     // Session 1: Reinforcement — more production in context
-    { match: false, picture: 0, mcqToEn: 1, listenChoose: 1, mcqToVi: 1, listenType: 2, wordBank: 2, reorder: 2, fillBlank: 3, speak: 2 },
+    { match: false, picture: 0, mcqToEn: 1, listenChoose: 1, mcqToVi: 1, listenType: 2, wordBank: 2, reorder: 2, fillBlank: 3, speak: 2, dialogue: 1 },
     // Session 2: Production — heavy contextual
-    { match: false, picture: 0, mcqToEn: 1, listenChoose: 1, mcqToVi: 0, listenType: 2, wordBank: 3, reorder: 2, fillBlank: 3, speak: 3 },
+    { match: false, picture: 0, mcqToEn: 1, listenChoose: 1, mcqToVi: 0, listenType: 2, wordBank: 3, reorder: 2, fillBlank: 3, speak: 3, dialogue: 2 },
     // Session 3: Mastery — almost all production/context
-    { match: false, picture: 0, mcqToEn: 0, listenChoose: 1, mcqToVi: 0, listenType: 2, wordBank: 3, reorder: 2, fillBlank: 3, speak: 4 },
+    { match: false, picture: 0, mcqToEn: 0, listenChoose: 1, mcqToVi: 0, listenType: 2, wordBank: 3, reorder: 2, fillBlank: 3, speak: 4, dialogue: 2 },
 ];
 
 // --- Interleaving: distribute exercise types with soft difficulty curve ---
@@ -557,7 +613,8 @@ function applyMcqTypeFilter(exercises, options = {}) {
  * @param {Object} options - per-lesson knobs. { disableTyping } swaps "type what
  *   you hear" for the gentler "listen & choose" twin (for beginners who can't yet
  *   type Vietnamese diacritics). { mcqTypeIds } limits choice-style formats for
- *   lessons configured in the admin builder.
+ *   lessons configured in the admin builder. { conversations } supplies the
+ *   lesson's authored dialogues for dialogue_complete.
  * @returns {Array} exercises
  */
 export function generateExercises(lessonId, items, distractorPool, imageMap = {}, session = 0, options = {}) {
@@ -661,6 +718,23 @@ export function generateExercises(lessonId, items, distractorPool, imageMap = {}
         const speakItems = pickItemsLeastSeen(nonTemplatedSentences, profile.speak, itemCount);
         for (const item of speakItems) {
             exercises.push(generateSpeakSentence(lessonId, item, exIndex++));
+        }
+    }
+
+    // --- Phase 11: Dialogue Completion (authored conversations for this lesson) ---
+    const conversations = options.conversations || [];
+    if (profile.dialogue > 0 && conversations.length > 0) {
+        // Distractors must be plausible turns the learner has met but that are NOT
+        // in the transcript on screen: other dialogues' lines first, then sentences
+        // from the lesson and the known-vocabulary pool.
+        const dialogueLines = conversations.flatMap(c => c.lines || []);
+        const sentenceLines = allPool.filter(isSentence).map(s => ({ vi_text: s.vi_text, en_text: s.en_text }));
+        const distractorLines = [...dialogueLines, ...sentenceLines];
+
+        const picked = shuffleArray(conversations).slice(0, profile.dialogue);
+        for (const conversation of picked) {
+            const ex = generateDialogueComplete(lessonId, conversation, distractorLines, exIndex);
+            if (ex) { exercises.push(ex); exIndex++; }
         }
     }
 

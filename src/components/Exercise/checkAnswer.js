@@ -27,6 +27,7 @@ export const checkAnswer = (exerciseType, userAnswer, prompt) => {
             return { correct: userAnswer === answer, correctAnswer: answer };
         }
 
+        case 'dialogue_complete':
         case 'fill_blank': {
             const answer = prompt.answer_vi;
             const accepted = prompt.accepted_answers_vi || [answer];

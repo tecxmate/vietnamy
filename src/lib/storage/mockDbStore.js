@@ -30,10 +30,13 @@ const parseStoredDB = (raw) => {
     }
 };
 
+// conversations is included so a DB cached before dialogues existed reads as
+// incomplete and gets rehydrated once, rather than staying dialogue-less forever.
 const hasFullContent = (db) => (
     (db.items || []).length > 0 &&
     (db.translations || []).length > 0 &&
-    (db.lesson_blueprints || []).length > 0
+    (db.lesson_blueprints || []).length > 0 &&
+    (db.conversations || []).length > 0
 );
 
 const initDB = () => {
@@ -103,6 +106,7 @@ export const applyCanonicalCurriculumToDB = (curriculum) => {
     db.items = runtime.items;
     db.translations = runtime.translations;
     db.lesson_blueprints = runtime.blueprints;
+    db.conversations = runtime.conversations;
     db.path_nodes = [
         ...runtime.pathNodes,
         ...(db.path_nodes || []).filter(node => {

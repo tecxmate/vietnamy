@@ -29,3 +29,33 @@ export function getGrammarForUnit(unitId) {
     }
     return [...tagIds].map((id) => TAGS.get(id)).filter(Boolean);
 }
+
+const LESSONS = new Map((curriculum.lessons || []).map((l) => [l.id, l]));
+
+/**
+ * The grammar points a lesson INTRODUCES — the ones the learner has not met in an
+ * earlier lesson. `adaptive.introducesGrammar` already carries this (it is
+ * computed in curriculum order at build time), so a lesson only ever explains a
+ * point once, on first encounter.
+ *
+ * Each point is paired with a sentence from this lesson that uses it, so the
+ * explanation arrives with a worked example rather than as an abstract rule.
+ *
+ * @param {string} lessonId
+ * @returns {Array<{ id, name, category, description, example?: { vi, en } }>}
+ */
+export function getGrammarForLesson(lessonId) {
+    const lesson = LESSONS.get(lessonId);
+    if (!lesson) return [];
+
+    const lessonSentences = (lesson.sentenceIds || []).map((id) => SENTENCES.get(id)).filter(Boolean);
+
+    return (lesson.adaptive?.introducesGrammar || [])
+        .map((tagId) => {
+            const tag = TAGS.get(tagId);
+            if (!tag) return null;
+            const example = lessonSentences.find((s) => (s.grammarTagIds || []).includes(tagId));
+            return example ? { ...tag, example: { vi: example.vi, en: example.en } } : tag;
+        })
+        .filter(Boolean);
+}

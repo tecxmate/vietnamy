@@ -43,7 +43,7 @@ function evaluateExerciseAnswer(exercise, state, options = {}) {
             fuzzyHint: null,
         };
     }
-    if (type === 'fill_blank') {
+    if (type === 'fill_blank' || type === 'dialogue_complete') {
         return { handled: true, correct: selectedAnswer === prompt.answer_vi, fuzzyHint: null };
     }
     if (type === 'match_pairs') {
