@@ -1,0 +1,358 @@
+/* Spelling Playground — a self-contained full-screen subpage.
+   Scoped tokens so it doesn't depend on the main app theme. */
+
+.spell-screen {
+    --sp-bg: #f6f1e7;
+    --sp-panel: #fffdf8;
+    --sp-ink: #1c2438;
+    --sp-muted: #6b7180;
+    --sp-line: #e7dfd0;
+    --sp-initial: #204081; /* navy  */
+    --sp-glide: #6c5ce7;   /* violet */
+    --sp-nucleus: #ee4a75; /* pink  */
+    --sp-final: #1c9e78;   /* teal  */
+    --sp-tone: #d99400;    /* gold  */
+    --sp-bad: #b9483f;
+
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    display: flex;
+    flex-direction: column;
+    background:
+        radial-gradient(120% 60% at 50% -10%, rgba(238, 74, 117, 0.10), transparent 60%),
+        var(--sp-bg);
+    color: var(--sp-ink);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    overflow: hidden;
+}
+
+@media (prefers-color-scheme: dark) {
+    .spell-screen {
+        --sp-bg: #14161f;
+        --sp-panel: #1e2130;
+        --sp-ink: #f2eee6;
+        --sp-muted: #9aa0b0;
+        --sp-line: #2c3040;
+    }
+}
+
+/* ── header ─────────────────────────────────────────────────────────────── */
+.spell-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px 8px;
+}
+.spell-back {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    border: 1px solid var(--sp-line);
+    background: var(--sp-panel);
+    color: var(--sp-ink);
+    cursor: pointer;
+}
+.spell-title {
+    flex: 1;
+    min-width: 0;
+}
+.spell-title h1 {
+    margin: 0;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+.spell-title p {
+    margin: 2px 0 0;
+    font-size: 12px;
+    color: var(--sp-muted);
+}
+
+/* segmented + accent toggles */
+.spell-seg {
+    display: inline-flex;
+    padding: 3px;
+    border-radius: 12px;
+    background: var(--sp-line);
+    gap: 2px;
+}
+.spell-seg button {
+    border: none;
+    background: transparent;
+    color: var(--sp-muted);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 6px 10px;
+    border-radius: 9px;
+    cursor: pointer;
+}
+.spell-seg button.on {
+    background: var(--sp-panel);
+    color: var(--sp-ink);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+}
+
+/* ── workbench: the composed syllable ───────────────────────────────────── */
+.spell-stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px 4px;
+}
+.spell-word {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(56px, 18vw, 104px);
+    line-height: 1.3;
+    padding-top: 0.14em; /* headroom for stacked diacritics (ê + sắc) */
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    min-height: 1.35em;
+    display: flex;
+    gap: 0;
+}
+.spell-word .ph {
+    color: var(--sp-muted);
+    opacity: 0.35;
+}
+/* colour each part of the live word by its role */
+.spell-word .r-initial { color: var(--sp-initial); }
+.spell-word .r-glide { color: var(--sp-glide); }
+.spell-word .r-nucleus { color: var(--sp-nucleus); }
+.spell-word .r-final { color: var(--sp-final); }
+.spell-word span { transition: opacity 0.15s ease; }
+/* while a slot is active, spotlight its part of the word and fade the rest */
+.spell-word .part-off { opacity: 0.28; }
+.spell-word .part-on {
+    text-decoration: underline;
+    text-decoration-thickness: 0.055em;
+    text-underline-offset: 0.14em;
+}
+/* placeholder for the vowel that hasn't been chosen yet (initial-first flow) */
+.spell-word .spell-ph { color: var(--sp-nucleus); opacity: 0.28; }
+.spell-empty {
+    color: var(--sp-muted);
+    font-size: 15px;
+    padding: 24px 0;
+}
+.spell-note {
+    margin-top: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--sp-muted);
+    letter-spacing: 0.01em;
+}
+.spell-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 6px;
+}
+.spell-play {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    border-radius: 999px;
+    padding: 11px 18px;
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+}
+.spell-play.primary { background: var(--sp-nucleus); color: #fff; }
+.spell-play.ghost { background: var(--sp-panel); color: var(--sp-ink); border: 1px solid var(--sp-line); }
+.spell-play:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* ── slot rack ──────────────────────────────────────────────────────────── */
+.spell-rack {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 10px 12px 4px;
+}
+.spell-slot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    min-width: 58px;
+    padding: 8px 8px 6px;
+    border-radius: 14px;
+    border: 2px dashed var(--sp-line);
+    background: var(--sp-panel);
+    cursor: pointer;
+    transition: transform 0.12s ease, border-color 0.12s ease;
+}
+.spell-slot.active { border-style: solid; border-color: var(--sp-ink); transform: translateY(-2px); }
+.spell-slot.filled { border-style: solid; }
+.spell-slot.bad { border-color: var(--sp-bad); }
+.spell-slot .slot-label {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--sp-muted);
+    font-weight: 800;
+}
+.spell-slot .slot-val {
+    font-family: Georgia, serif;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1;
+}
+.spell-slot .slot-val.empty { color: var(--sp-muted); opacity: 0.4; }
+.spell-slot.r-initial.filled { border-color: var(--sp-initial); }
+.spell-slot.r-glide.filled { border-color: var(--sp-glide); }
+.spell-slot.r-nucleus.filled { border-color: var(--sp-nucleus); }
+.spell-slot.r-final.filled { border-color: var(--sp-final); }
+.spell-slot.r-tone.filled { border-color: var(--sp-tone); }
+.spell-slot.na { opacity: 0.42; }
+.spell-slot.na .slot-label { text-decoration: line-through; }
+
+/* ── reason banner ──────────────────────────────────────────────────────── */
+.spell-reason {
+    margin: 8px 16px 0;
+    padding: 9px 12px;
+    border-radius: 12px;
+    background: color-mix(in srgb, var(--sp-bad) 12%, var(--sp-panel));
+    border: 1px solid color-mix(in srgb, var(--sp-bad) 40%, transparent);
+    color: var(--sp-ink);
+    font-size: 12.5px;
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+}
+.spell-reason svg { color: var(--sp-bad); flex-shrink: 0; margin-top: 1px; }
+
+/* teaching banner — friendly, for auto-corrections (ng → ngh) */
+.spell-coach {
+    margin: 8px 16px 0;
+    padding: 9px 12px;
+    border-radius: 12px;
+    background: color-mix(in srgb, var(--sp-tone) 16%, var(--sp-panel));
+    border: 1px solid color-mix(in srgb, var(--sp-tone) 45%, transparent);
+    color: var(--sp-ink);
+    font-size: 12.5px;
+    font-weight: 600;
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+}
+.spell-coach svg { color: var(--sp-tone); flex-shrink: 0; margin-top: 1px; }
+
+/* ── palette ────────────────────────────────────────────────────────────── */
+.spell-palette-wrap {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 12px 16px 16px;
+}
+
+/* always-visible tone bar (sits above the footer) */
+.spell-tonebar {
+    padding: 10px 16px;
+    border-top: 1px solid var(--sp-line);
+    background: var(--sp-panel);
+    max-height: 34vh;
+    overflow-y: auto;
+}
+.spell-tonebar-label {
+    font-size: 13px;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+.spell-tonebar-label span {
+    font-weight: 600;
+    color: var(--sp-muted);
+}
+
+/* guided next-step footer */
+.spell-footer {
+    padding: 10px 16px calc(12px + env(safe-area-inset-bottom));
+    border-top: 1px solid var(--sp-line);
+    background: var(--sp-panel);
+}
+.spell-next {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: none;
+    border-radius: 14px;
+    padding: 14px;
+    font-size: 15px;
+    font-weight: 800;
+    cursor: pointer;
+    background: var(--sp-initial);
+    color: #fff;
+}
+.spell-next.done { background: var(--sp-nucleus); }
+.spell-next:disabled { opacity: 0.4; cursor: not-allowed; }
+.spell-palette-head {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+.spell-palette-head strong { font-size: 14px; }
+.spell-palette-head span { font-size: 12px; color: var(--sp-muted); }
+.spell-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
+    gap: 8px;
+}
+.spell-block {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 10px 6px;
+    border-radius: 14px;
+    border: 1.5px solid var(--sp-line);
+    background: var(--sp-panel);
+    color: var(--sp-ink);
+    cursor: pointer;
+    transition: transform 0.1s ease;
+}
+.spell-block:active { transform: scale(0.94); }
+.spell-block .b-glyph { font-family: Georgia, serif; font-size: 24px; font-weight: 700; line-height: 1; }
+.spell-block .b-name { font-size: 10px; color: var(--sp-muted); }
+.spell-block.sel { color: #fff; }
+.spell-block.disabled { opacity: 0.34; cursor: help; }
+.spell-block.shake { animation: sp-shake 0.32s ease; }
+
+/* role tint on selected chip */
+.spell-grid.r-initial .spell-block.sel { background: var(--sp-initial); border-color: var(--sp-initial); }
+.spell-grid.r-glide .spell-block.sel { background: var(--sp-glide); border-color: var(--sp-glide); }
+.spell-grid.r-nucleus .spell-block.sel { background: var(--sp-nucleus); border-color: var(--sp-nucleus); }
+.spell-grid.r-final .spell-block.sel { background: var(--sp-final); border-color: var(--sp-final); }
+.spell-grid.r-tone .spell-block.sel { background: var(--sp-tone); border-color: var(--sp-tone); }
+.spell-grid.r-initial .spell-block.sel .b-name,
+.spell-grid.r-nucleus .spell-block.sel .b-name,
+.spell-grid.r-glide .spell-block.sel .b-name,
+.spell-grid.r-final .spell-block.sel .b-name,
+.spell-grid.r-tone .spell-block.sel .b-name { color: rgba(255, 255, 255, 0.85); }
+
+/* tone chips preview the whole syllable — pills size to the word, not the letter grid */
+.spell-grid.r-tone {
+    display: flex;
+    flex-wrap: wrap;
+}
+.spell-grid.r-tone .spell-block {
+    width: auto;
+    min-width: 64px;
+    padding: 8px 16px;
+}
+.spell-grid.r-tone .spell-block .b-glyph { font-size: 22px; }
+
+@keyframes sp-shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}

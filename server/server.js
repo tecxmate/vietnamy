@@ -2164,9 +2164,9 @@ app.get('/api/tts', async (req, res) => {
             if (lang === 'vi' && voice === 'azure-south') {
                 addAttempt('azure-south-fallback', 'azure', 'azure-north', () => synthesizeWithAzure(text, lang, 'azure-north', { saveSource: true }));
             }
-            if (lang === 'vi' && voice === 'azure-north') {
-                addAttempt('azure-north-fallback', 'azure', 'azure-south', () => synthesizeWithAzure(text, lang, 'azure-south', { saveSource: true }));
-            }
+            // Northern deliberately does NOT fall back to Southern — the southern
+            // voice is disabled for now (slow + costly). A north failure falls
+            // through to Google Translate below instead.
             addAttempt('google-translate', 'google', 'google', async () => {
                 return {
                     buffer: await synthesizeWithGoogleTranslate(text, lang),

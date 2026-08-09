@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import {
     Target, Zap, User, X, ChevronDown, ChevronRight, RefreshCw,
     Globe, Type, Volume2, Wrench, Clock, Bell, Gift, Tag, Compass,
-    VolumeX, Newspaper,
+    VolumeX, Newspaper, Blocks,
 } from 'lucide-react';
 import { applyTheme, MAGAZINE_THEME } from '../lib/theme';
 import { ENABLE_LEARNING_PATH_CHOOSER, LEARNER_MODES, DEFAULT_LEARNER_MODE } from '../data/learnerModes';
@@ -213,6 +213,14 @@ const TopBar = ({ activeTab, subtitleOverride }) => {
 
                 {/* Stats — always visible */}
                 <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexShrink: 0 }}>
+                    <button
+                        className="notif-bell-btn"
+                        onClick={() => { playSelect(); navigate('/spell'); }}
+                        aria-label={t('spell_open')}
+                        title={t('spell_open')}
+                    >
+                        <Blocks size={20} />
+                    </button>
                     {userProfile.isDeveloperMode && (
                         <button onClick={() => setIsReferralOpen(true)} className="ghost" style={{ padding: 6, color: 'var(--primary-color)', display: 'flex', alignItems: 'center' }}>
                             <Gift size={20} />

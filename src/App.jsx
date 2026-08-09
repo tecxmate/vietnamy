@@ -151,6 +151,7 @@ const DegreeAdverbs = lazy(() => import('./pages/Practice/DegreeAdverbs'));
 const Quantifiers = lazy(() => import('./pages/Practice/Quantifiers'));
 const VisionVerbs = lazy(() => import('./pages/Practice/VisionVerbs'));
 const Prepositions = lazy(() => import('./pages/Practice/Prepositions'));
+const SpellPlayground = lazy(() => import('./pages/Spell/SpellPlayground'));
 
 // One app, five tabs (living-spec structure matching the Figma):
 // Learn(study) · Talk to AI(ai) · Dictionary · Video · Library.
@@ -403,6 +404,8 @@ function AppRoutes() {
           <Route path="/scene/:sceneId" element={<div className="mobile-app-wrapper"><SceneEngine /></div>} />
           <Route path="/grammar-unit/:unitId" element={<div className="mobile-app-wrapper"><GrammarUnitLesson /></div>} />
           <Route path="/test/:nodeId" element={<div className="mobile-app-wrapper"><UnitTest /></div>} />
+          {/* Spelling Playground — standalone full-screen subpage, outside the tab layout. */}
+          <Route path="/spell" element={<SpellPlayground />} />
           {/* Full-screen Practice Routes */}
           {/* Backward-compat: old tone URLs now enter the roadmap-backed tone lessons. */}
           <Route path="/practice/tones" element={<Navigate to="/practice/tones/level1" replace />} />
