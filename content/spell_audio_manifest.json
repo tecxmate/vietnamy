@@ -1,6 +1,9 @@
 {
-  "note": "Pre-generated audio assets for the Spelling Playground. Each entry is a filename (without extension) that exists under /public/audio/spell/<accent>/. When a key is listed here, spellAudio.js plays the local HF-generated file; otherwise it falls back to the live /api/tts proxy. Generate assets from the HuggingFace model, drop them in public/audio/spell/north|south/, and add their keys here.",
+  "note": "Pre-generated audio assets for the Spelling Playground. Playback currently uses Google TTS directly; keep this manifest empty unless asset-first playback is re-enabled.",
   "ext": "mp3",
-  "accents": ["north", "south"],
+  "accents": [
+    "north",
+    "south"
+  ],
   "assets": []
 }

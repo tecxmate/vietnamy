@@ -1,0 +1,371 @@
+{
+  "voice": "north-audition",
+  "ext": "mp3",
+  "items": [
+    {
+      "slug": "a",
+      "text": "a",
+      "kind": "syllable"
+    },
+    {
+      "slug": "a2",
+      "text": "à",
+      "kind": "syllable"
+    },
+    {
+      "slug": "a1",
+      "text": "á",
+      "kind": "syllable"
+    },
+    {
+      "slug": "a3",
+      "text": "ả",
+      "kind": "syllable"
+    },
+    {
+      "slug": "a5",
+      "text": "ạ",
+      "kind": "syllable"
+    },
+    {
+      "slug": "ba",
+      "text": "ba",
+      "kind": "syllable"
+    },
+    {
+      "slug": "ba2",
+      "text": "bà",
+      "kind": "syllable"
+    },
+    {
+      "slug": "ba1",
+      "text": "bá",
+      "kind": "syllable"
+    },
+    {
+      "slug": "ba3",
+      "text": "bả",
+      "kind": "syllable"
+    },
+    {
+      "slug": "ba4",
+      "text": "bã",
+      "kind": "syllable"
+    },
+    {
+      "slug": "ba5",
+      "text": "bạ",
+      "kind": "syllable"
+    },
+    {
+      "slug": "ma",
+      "text": "ma",
+      "kind": "syllable"
+    },
+    {
+      "slug": "ma2",
+      "text": "mà",
+      "kind": "syllable"
+    },
+    {
+      "slug": "ma1",
+      "text": "má",
+      "kind": "syllable"
+    },
+    {
+      "slug": "ma3",
+      "text": "mả",
+      "kind": "syllable"
+    },
+    {
+      "slug": "ma4",
+      "text": "mã",
+      "kind": "syllable"
+    },
+    {
+      "slug": "ma5",
+      "text": "mạ",
+      "kind": "syllable"
+    },
+    {
+      "slug": "me5",
+      "text": "mẹ",
+      "kind": "syllable"
+    },
+    {
+      "slug": "me6",
+      "text": "mê",
+      "kind": "syllable"
+    },
+    {
+      "slug": "ini-m",
+      "text": "mờ",
+      "kind": "initial"
+    },
+    {
+      "slug": "nghe",
+      "text": "nghe",
+      "kind": "syllable"
+    },
+    {
+      "slug": "nghe1",
+      "text": "nghé",
+      "kind": "syllable"
+    },
+    {
+      "slug": "ngu6o72i",
+      "text": "người",
+      "kind": "syllable"
+    },
+    {
+      "slug": "ngo75i",
+      "text": "ngợi",
+      "kind": "syllable"
+    },
+    {
+      "slug": "d6u6o75c",
+      "text": "được",
+      "kind": "syllable"
+    },
+    {
+      "slug": "d6u6o72ng",
+      "text": "đường",
+      "kind": "syllable"
+    },
+    {
+      "slug": "bu6o71c",
+      "text": "bước",
+      "kind": "syllable"
+    },
+    {
+      "slug": "ac",
+      "text": "ac",
+      "kind": "syllable"
+    },
+    {
+      "slug": "a1c",
+      "text": "ác",
+      "kind": "syllable"
+    },
+    {
+      "slug": "ach",
+      "text": "ach",
+      "kind": "syllable"
+    },
+    {
+      "slug": "a1ch",
+      "text": "ách",
+      "kind": "syllable"
+    },
+    {
+      "slug": "an",
+      "text": "an",
+      "kind": "syllable"
+    },
+    {
+      "slug": "a1n",
+      "text": "án",
+      "kind": "syllable"
+    },
+    {
+      "slug": "a1ng",
+      "text": "áng",
+      "kind": "syllable"
+    },
+    {
+      "slug": "anh",
+      "text": "anh",
+      "kind": "syllable"
+    },
+    {
+      "slug": "a1nh",
+      "text": "ánh",
+      "kind": "syllable"
+    },
+    {
+      "slug": "a5nh",
+      "text": "ạnh",
+      "kind": "syllable"
+    },
+    {
+      "slug": "ap",
+      "text": "ap",
+      "kind": "syllable"
+    },
+    {
+      "slug": "a1p",
+      "text": "áp",
+      "kind": "syllable"
+    },
+    {
+      "slug": "a1t",
+      "text": "át",
+      "kind": "syllable"
+    },
+    {
+      "slug": "a5t",
+      "text": "ạt",
+      "kind": "syllable"
+    },
+    {
+      "slug": "muo61n",
+      "text": "muốn",
+      "kind": "syllable"
+    },
+    {
+      "slug": "mu6o75n",
+      "text": "mượn",
+      "kind": "syllable"
+    },
+    {
+      "slug": "quo61c",
+      "text": "quốc",
+      "kind": "syllable"
+    },
+    {
+      "slug": "chu1i",
+      "text": "chúi",
+      "kind": "syllable"
+    },
+    {
+      "slug": "chui1",
+      "text": "chuí",
+      "kind": "syllable"
+    },
+    {
+      "slug": "co6ng",
+      "text": "công",
+      "kind": "syllable"
+    },
+    {
+      "slug": "coong",
+      "text": "coong",
+      "kind": "syllable"
+    },
+    {
+      "slug": "pho73",
+      "text": "phở",
+      "kind": "syllable"
+    },
+    {
+      "slug": "co7m",
+      "text": "cơm",
+      "kind": "syllable"
+    },
+    {
+      "slug": "tie62n",
+      "text": "tiền",
+      "kind": "syllable"
+    },
+    {
+      "slug": "bie61t",
+      "text": "biết",
+      "kind": "syllable"
+    },
+    {
+      "slug": "ho5c",
+      "text": "học",
+      "kind": "syllable"
+    },
+    {
+      "slug": "no1i",
+      "text": "nói",
+      "kind": "syllable"
+    },
+    {
+      "slug": "ngon",
+      "text": "ngon",
+      "kind": "syllable"
+    },
+    {
+      "slug": "xin",
+      "text": "xin",
+      "kind": "syllable"
+    },
+    {
+      "slug": "cha2o",
+      "text": "chào",
+      "kind": "syllable"
+    },
+    {
+      "slug": "ini-b",
+      "text": "bờ",
+      "kind": "initial"
+    },
+    {
+      "slug": "ini-c",
+      "text": "cờ",
+      "kind": "initial"
+    },
+    {
+      "slug": "ini-ch",
+      "text": "chờ",
+      "kind": "initial"
+    },
+    {
+      "slug": "ini-d6",
+      "text": "đờ",
+      "kind": "initial"
+    },
+    {
+      "slug": "ini-g",
+      "text": "gờ",
+      "kind": "initial"
+    },
+    {
+      "slug": "ini-ng",
+      "text": "ngờ",
+      "kind": "initial"
+    },
+    {
+      "slug": "ini-ngh",
+      "text": "ngờ",
+      "kind": "initial"
+    },
+    {
+      "slug": "ini-ph",
+      "text": "phờ",
+      "kind": "initial"
+    },
+    {
+      "slug": "ini-tr",
+      "text": "trờ",
+      "kind": "initial"
+    },
+    {
+      "slug": "ini-x",
+      "text": "xờ",
+      "kind": "initial"
+    },
+    {
+      "slug": "tone-ngang",
+      "text": "ngang",
+      "kind": "tone"
+    },
+    {
+      "slug": "tone-huyen",
+      "text": "huyền",
+      "kind": "tone"
+    },
+    {
+      "slug": "tone-sac",
+      "text": "sắc",
+      "kind": "tone"
+    },
+    {
+      "slug": "tone-hoi",
+      "text": "hỏi",
+      "kind": "tone"
+    },
+    {
+      "slug": "tone-nga",
+      "text": "ngã",
+      "kind": "tone"
+    },
+    {
+      "slug": "tone-nang",
+      "text": "nặng",
+      "kind": "tone"
+    }
+  ]
+}

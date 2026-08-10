@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight, Volume2, Blocks, AlertTriangle, RotateCcw, Light
 import { SLOTS, BY_ROLE, TONES, findBlock } from '../../data/spellingBlocks';
 import { compose, validate, placementBlock, slotHasViolation, isSpeakable, correctInitial, spellingNote, correctGlide, glideNote } from '../../lib/spellingRules';
 import { playSequence, stopSpell } from '../../lib/spellAudio';
+import { spellInitialKey, spellSlug, spellToneKey } from '../../lib/spellSlug';
 import './Spell.css';
 
 const EMPTY = { initial: null, glide: null, nucleus: null, final: null, tone: 'ngang' };
@@ -22,16 +23,16 @@ function danhVanSegments(state) {
     const rhymeParts = ['glide', 'nucleus', 'final'].filter((r) => state[r]);
     const tone = findBlock('tone', state.tone);
     const segs = [];
-    if (state.initial) segs.push({ text: findBlock('initial', state.initial)?.name || state.initial, parts: ['initial'] });
-    segs.push({ text: rhyme, parts: rhymeParts });
-    segs.push({ text: base, parts: all });
-    if (state.tone && state.tone !== 'ngang') segs.push({ text: tone?.name || '', parts: ['nucleus'] });
-    segs.push({ text: full, parts: all });
+    if (state.initial) segs.push({ key: spellInitialKey(state.initial), text: findBlock('initial', state.initial)?.name || state.initial, parts: ['initial'] });
+    segs.push({ key: spellSlug(rhyme), text: rhyme, parts: rhymeParts });
+    segs.push({ key: spellSlug(base), text: base, parts: all });
+    if (state.tone && state.tone !== 'ngang') segs.push({ key: spellToneKey(state.tone), text: tone?.name || '', parts: ['nucleus'] });
+    segs.push({ key: spellSlug(full), text: full, parts: all });
     // drop empties, dedupe consecutive identical text
     return segs
         .filter((s) => s.text)
         .filter((s, i, a) => s.text !== a[i - 1]?.text)
-        .map((s) => ({ key: null, text: s.text, parts: s.parts }));
+        .map((s) => ({ key: s.key, text: s.text, parts: s.parts }));
 }
 
 // A slot is "usable" if it can take at least one legal piece right now
@@ -96,7 +97,7 @@ export default function SpellPlayground() {
         const all = presentParts(s);
         const segs = readMode === 'danhvan'
             ? danhVanSegments(s)
-            : [{ key: `syl-${accent}-${compose(s)}`, text: compose(s), parts: all }];
+            : [{ key: spellSlug(compose(s)), text: compose(s), parts: all }];
         playSequence(segs, {
             accent,
             gap: readMode === 'danhvan' ? 140 : 90,

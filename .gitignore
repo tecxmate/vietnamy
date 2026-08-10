@@ -53,6 +53,8 @@ public/opening.mov
 .vercel
 .env*.local
 tts-backup/
+spell_audio_out/
+spell_audio_audition/
 backups/
 .env*
 supabase/.temp/

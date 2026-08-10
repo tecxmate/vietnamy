@@ -26,6 +26,8 @@
     "feedback:mark": "node scripts/feedback-agent-pipeline.mjs mark",
     "feedback:pending-approval": "node scripts/feedback-agent-pipeline.mjs pending-approval",
     "tts:migrate:r2": "node scripts/migrate-tts-supabase-to-r2.mjs",
+    "spell:audio:list": "node scripts/gen-audio-list.mjs",
+    "spell:audio:upload": "node scripts/upload-spell-audio-r2.mjs",
     "preview": "vite preview"
   },
   "dependencies": {
