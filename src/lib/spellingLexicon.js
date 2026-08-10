@@ -3,7 +3,9 @@
 // the playground from ever presenting a syllable that isn't a real Vietnamese
 // word: the rules say what's spellable, the lexicon says what actually exists.
 
-import data from '../../content/vn_syllables.json';
+// Import attribute included so Node can load this module directly — that's what
+// lets scripts/validate-spell-lexicon.mjs check the real engine rather than a copy.
+import data from '../../content/vn_syllables.json' with { type: 'json' };
 
 /** Every attested syllable the builder can compose, in the builder's spelling. */
 export const VALID_SYLLABLES = new Set(data.syllables);

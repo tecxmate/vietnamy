@@ -5,36 +5,42 @@
 // Reads the Vietnamese side of the local dictionary (example sentences = clean
 // running VN text for tone-less syllables; diacritic-bearing headwords = the
 // toned forms), collects every attested syllable, then keeps only the ones the
-// builder can actually compose. Output: content/vn_syllables.json.
+// builder can actually compose — a tuple the playground's own rules would
+// refuse never reaches the lexicon, so the two can't drift apart.
 //
-// Requires the sqlite3 CLI and server/databases/vn_en_dictionary.db.
+// Requires server/databases/vn_en_dictionary.db, read through the sqlite3 CLI
+// or (when that isn't installed) node:sqlite.
 
 import { execFileSync } from 'node:child_process';
 import { writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
-import { INITIALS, GLIDES, NUCLEI, FINALS, findBlock } from '../src/data/spellingBlocks.js';
-import { TONE_IDS, applyTone, splitTone } from '../src/data/vnTones.js';
+import { INITIALS, GLIDES, NUCLEI, FINALS } from '../src/data/spellingBlocks.js';
+import { TONE_IDS, splitTone } from '../src/data/vnTones.js';
+import { compose, isNormalForm, validate } from '../src/lib/spellingSyntax.js';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, '..');
 const DB = join(ROOT, 'server/databases/vn_en_dictionary.db');
 const OUT = join(ROOT, 'content/vn_syllables.json');
 
-// compose(), duplicated minimally so this script needs no runtime imports.
-const toneNucleus = (nucleusId, toneId) => {
-    const at = findBlock('nucleus', nucleusId)?.tone_at ?? 0;
-    const chars = [...nucleusId];
-    if (at < chars.length) chars[at] = applyTone(chars[at], toneId);
-    return chars.join('');
-};
-const compose = ({ initial, glide, nucleus, final, tone }) =>
-    `${initial || ''}${glide || ''}${toneNucleus(nucleus, tone || 'ngang')}${final || ''}`;
-
 const VN = 'a-zàáảãạăằắẳẵặâầấẩẫậèéẻẽẹêềếểễệìíỉĩịòóỏõọôồốổỗộơờớởỡợùúủũụưừứửữựỳýỷỹỵđ';
 const SPLIT = new RegExp(`[^${VN}]+`, 'i');
 
-const sql = (q) => execFileSync('sqlite3', [DB, q], { encoding: 'utf8', maxBuffer: 1 << 28 });
+// sqlite3 CLI when it's on PATH, node:sqlite otherwise (Node 22 needs
+// --experimental-sqlite; 24+ has it stable). Both return one value per line.
+const hasSqliteCli = () => {
+    try { execFileSync('sqlite3', ['-version'], { stdio: 'ignore' }); return true; } catch { return false; }
+};
+
+let sql;
+if (hasSqliteCli()) {
+    sql = (q) => execFileSync('sqlite3', [DB, q], { encoding: 'utf8', maxBuffer: 1 << 28 });
+} else {
+    const { DatabaseSync } = await import('node:sqlite');
+    const db = new DatabaseSync(DB, { readOnly: true });
+    sql = (q) => db.prepare(q).all().map((row) => Object.values(row)[0] ?? '').join('\n');
+}
 
 // VN-specific letters — a token containing any of these is unambiguously
 // Vietnamese (English never does), so it's safe to harvest from the mixed
@@ -81,20 +87,28 @@ const finals = [null, ...FINALS.map((b) => b.id)];
 const tupleKeys = new Set();
 const validSyllables = new Set();
 let combos = 0;
+let illegal = 0;
 for (const i of initials) for (const g of glides) for (const n of nuclei) for (const f of finals) {
     combos++;
-    const base = compose({ initial: i, glide: g, nucleus: n, final: f, tone: 'ngang' });
+    const state = { initial: i, glide: g, nucleus: n, final: f, tone: 'ngang' };
+    const base = compose(state);
     if (!attestedBases.has(base)) continue;
+    // An attested spelling can still be a bogus SPLIT of that spelling — "buôc"
+    // reads as b+u+ô+c, but the u there is part of the uô nucleus, not a glide;
+    // "gen" reads as g+e+n, but g before e is always written gh. Keeping those
+    // would let the playground offer blocks it then refuses or silently rewrites.
+    if (validate(state).length || !isNormalForm(state)) { illegal++; continue; }
     tupleKeys.add(`${i || ''}|${g || ''}|${n}|${f || ''}`);
     for (const t of TONE_IDS) {
         // The builder's own spelling of this tone; "real" iff (base, tone) is attested.
-        if (attestedBaseTone.has(`${base}_${t}`)) {
-            validSyllables.add(compose({ initial: i, glide: g, nucleus: n, final: f, tone: t }));
+        if (attestedBaseTone.has(`${base}_${t}`) && validate({ ...state, tone: t }).length === 0) {
+            validSyllables.add(compose({ ...state, tone: t }));
         }
     }
 }
 
 console.log(`  enumerated ${combos} combos → ${tupleKeys.size} real tuples, ${validSyllables.size} real syllables`);
+console.log(`  dropped ${illegal} attested-looking tuples the spelling rules reject`);
 
 const out = {
     note: 'Attested Vietnamese syllables + builder tuples, generated from the local dictionary. Regenerate with scripts/gen-vn-syllables.mjs.',
