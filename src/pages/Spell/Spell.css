@@ -15,7 +15,13 @@
     --sp-bad: #b9483f;
 
     position: fixed;
-    inset: 0;
+    top: var(--app-viewport-offset-top, 0px);
+    left: 0;
+    right: 0;
+    /* The app root is zoomed to --ui-scale, so a raw 100dvh renders ~8% short and
+       strands a dead strip under the footer. --app-viewport-height is the visual
+       viewport already divided by that scale, and it tracks the iOS URL bar. */
+    height: var(--app-viewport-height, 100dvh);
     z-index: 60;
     display: flex;
     flex-direction: column;
@@ -38,18 +44,21 @@
 }
 
 /* ── header ─────────────────────────────────────────────────────────────── */
+/* One compact row. Everything else on this screen is a working surface, so the
+   chrome gets the smallest slice: no tagline, no second row for the toggle. */
 .spell-header {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 14px 16px 8px;
+    gap: 10px;
+    flex: 0 0 auto;
+    padding: 8px 14px 4px;
 }
 .spell-back {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
     border-radius: 12px;
     border: 1px solid var(--sp-line);
     background: var(--sp-panel);
@@ -63,14 +72,12 @@
 .spell-title h1 {
     margin: 0;
     font-family: Georgia, 'Times New Roman', serif;
-    font-size: 20px;
+    font-size: 17px;
     font-weight: 700;
     letter-spacing: -0.01em;
-}
-.spell-title p {
-    margin: 2px 0 0;
-    font-size: 12px;
-    color: var(--sp-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 /* segmented + accent toggles */
@@ -87,9 +94,10 @@
     color: var(--sp-muted);
     font-size: 12px;
     font-weight: 700;
-    padding: 6px 10px;
+    padding: 5px 10px;
     border-radius: 9px;
     cursor: pointer;
+    white-space: nowrap;
 }
 .spell-seg button.on {
     background: var(--sp-panel);
@@ -103,16 +111,22 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 8px 16px 4px;
+    /* Stage and palette share the slack evenly, so a small palette doesn't leave
+       a hole above the tone bar and a big one doesn't strand the word in space.
+       min-height stays `auto` here: the word can never be shrunk under itself. */
+    flex: 1 1 auto;
+    padding: 2px 16px 6px;
 }
 .spell-word {
     font-family: Georgia, 'Times New Roman', serif;
-    font-size: clamp(56px, 18vw, 104px);
-    line-height: 1.3;
-    padding-top: 0.14em; /* headroom for stacked diacritics (ê + sắc) */
+    /* scales off height as well as width, so a short viewport gives the word
+       back to the palette instead of pushing it off-screen */
+    font-size: clamp(34px, min(15vw, 10vh), 84px);
+    line-height: 1.18;
+    padding-top: 0.12em; /* headroom for stacked diacritics (ê + sắc) */
     font-weight: 700;
     letter-spacing: -0.02em;
-    min-height: 1.35em;
+    min-height: 1.22em;
     display: flex;
     gap: 0;
 }
@@ -137,11 +151,11 @@
 .spell-word .spell-ph { color: var(--sp-nucleus); opacity: 0.28; }
 .spell-empty {
     color: var(--sp-muted);
-    font-size: 15px;
-    padding: 24px 0;
+    font-size: 14px;
+    padding: 14px 0;
 }
 .spell-note {
-    margin-top: 6px;
+    margin-top: 4px;
     font-size: 12px;
     font-weight: 700;
     color: var(--sp-muted);
@@ -149,18 +163,22 @@
 }
 .spell-actions {
     display: flex;
+    align-items: center;
+    justify-content: center;
     gap: 10px;
     margin-top: 6px;
 }
+/* icon-only: the footer carries the labelled "Nghe" once the word is real */
 .spell-play {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    flex: 0 0 auto;
     border: none;
     border-radius: 999px;
-    padding: 11px 18px;
-    font-size: 14px;
-    font-weight: 800;
+    padding: 0;
     cursor: pointer;
 }
 .spell-play.primary { background: var(--sp-nucleus); color: #fff; }
@@ -173,16 +191,17 @@
     gap: 6px;
     justify-content: center;
     flex-wrap: wrap;
-    padding: 10px 12px 4px;
+    flex: 0 0 auto;
+    padding: 4px 12px 2px;
 }
 .spell-slot {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 4px;
-    min-width: 58px;
-    padding: 8px 8px 6px;
-    border-radius: 14px;
+    gap: 2px;
+    min-width: 54px;
+    padding: 6px 8px 5px;
+    border-radius: 13px;
     border: 2px dashed var(--sp-line);
     background: var(--sp-panel);
     cursor: pointer;
@@ -200,7 +219,7 @@
 }
 .spell-slot .slot-val {
     font-family: Georgia, serif;
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 700;
     line-height: 1;
 }
@@ -215,13 +234,14 @@
 
 /* ── reason banner ──────────────────────────────────────────────────────── */
 .spell-reason {
-    margin: 8px 16px 0;
-    padding: 9px 12px;
-    border-radius: 12px;
+    margin: 6px 14px 0;
+    padding: 7px 10px;
+    border-radius: 11px;
     background: color-mix(in srgb, var(--sp-bad) 12%, var(--sp-panel));
     border: 1px solid color-mix(in srgb, var(--sp-bad) 40%, transparent);
     color: var(--sp-ink);
-    font-size: 12.5px;
+    font-size: 12px;
+    flex: 0 0 auto;
     display: flex;
     gap: 8px;
     align-items: flex-start;
@@ -230,14 +250,15 @@
 
 /* teaching banner — friendly, for auto-corrections (ng → ngh) */
 .spell-coach {
-    margin: 8px 16px 0;
-    padding: 9px 12px;
-    border-radius: 12px;
+    margin: 6px 14px 0;
+    padding: 7px 10px;
+    border-radius: 11px;
     background: color-mix(in srgb, var(--sp-tone) 16%, var(--sp-panel));
     border: 1px solid color-mix(in srgb, var(--sp-tone) 45%, transparent);
     color: var(--sp-ink);
-    font-size: 12.5px;
+    font-size: 12px;
     font-weight: 600;
+    flex: 0 0 auto;
     display: flex;
     gap: 8px;
     align-items: flex-start;
@@ -245,25 +266,30 @@
 .spell-coach svg { color: var(--sp-tone); flex-shrink: 0; margin-top: 1px; }
 
 /* ── palette ────────────────────────────────────────────────────────────── */
+/* The only elastic band on the screen: it absorbs whatever the fixed bands
+   leave, and it's the only thing allowed to scroll (27 initials can't fit any
+   phone). Everything else stays put so the tone bar and footer never slide off. */
 .spell-palette-wrap {
-    flex: 1;
+    flex: 1 1 auto;
     min-height: 0;
     overflow-y: auto;
-    padding: 12px 16px 16px;
+    -webkit-overflow-scrolling: touch;
+    padding: 8px 14px 10px;
 }
 
 /* always-visible tone bar (sits above the footer) */
 .spell-tonebar {
-    padding: 10px 16px;
+    padding: 8px 14px;
     border-top: 1px solid var(--sp-line);
     background: var(--sp-panel);
-    max-height: 34vh;
+    flex: 0 0 auto;
+    max-height: 30vh;
     overflow-y: auto;
 }
 .spell-tonebar-label {
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 800;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
 }
 .spell-tonebar-label span {
     font-weight: 600;
@@ -273,8 +299,8 @@
     display: flex;
     gap: 6px;
     align-items: flex-start;
-    margin-bottom: 8px;
-    padding: 7px 10px;
+    margin-bottom: 6px;
+    padding: 6px 9px;
     border-radius: 10px;
     background: color-mix(in srgb, var(--sp-tone) 14%, var(--sp-panel));
     color: var(--sp-ink);
@@ -285,9 +311,10 @@
 
 /* guided next-step footer */
 .spell-footer {
-    padding: 10px 16px calc(12px + env(safe-area-inset-bottom));
+    padding: 8px 14px calc(10px + env(safe-area-inset-bottom));
     border-top: 1px solid var(--sp-line);
     background: var(--sp-panel);
+    flex: 0 0 auto;
 }
 .spell-next {
     width: 100%;
@@ -296,9 +323,9 @@
     justify-content: center;
     gap: 8px;
     border: none;
-    border-radius: 14px;
-    padding: 14px;
-    font-size: 15px;
+    border-radius: 13px;
+    padding: 12px;
+    font-size: 14.5px;
     font-weight: 800;
     cursor: pointer;
     background: var(--sp-initial);
@@ -310,23 +337,23 @@
     display: flex;
     align-items: baseline;
     gap: 8px;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
 }
-.spell-palette-head strong { font-size: 14px; }
-.spell-palette-head span { font-size: 12px; color: var(--sp-muted); }
+.spell-palette-head strong { font-size: 13px; }
+.spell-palette-head span { font-size: 11.5px; color: var(--sp-muted); }
 .spell-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
-    gap: 8px;
+    grid-template-columns: repeat(auto-fill, minmax(56px, 1fr));
+    gap: 6px;
 }
 .spell-block {
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2px;
-    padding: 10px 6px;
-    border-radius: 14px;
+    gap: 1px;
+    padding: 7px 4px;
+    border-radius: 12px;
     border: 1.5px solid var(--sp-line);
     background: var(--sp-panel);
     color: var(--sp-ink);
@@ -334,8 +361,8 @@
     transition: transform 0.1s ease;
 }
 .spell-block:active { transform: scale(0.94); }
-.spell-block .b-glyph { font-family: Georgia, serif; font-size: 24px; font-weight: 700; line-height: 1; }
-.spell-block .b-name { font-size: 10px; color: var(--sp-muted); }
+.spell-block .b-glyph { font-family: Georgia, serif; font-size: 21px; font-weight: 700; line-height: 1.1; }
+.spell-block .b-name { font-size: 9.5px; color: var(--sp-muted); line-height: 1.2; }
 .spell-block.sel { color: #fff; }
 .spell-block.disabled { opacity: 0.34; cursor: help; }
 .spell-block.shake { animation: sp-shake 0.32s ease; }
@@ -356,13 +383,34 @@
 .spell-grid.r-tone {
     display: flex;
     flex-wrap: wrap;
+    gap: 6px;
 }
 .spell-grid.r-tone .spell-block {
     width: auto;
-    min-width: 64px;
-    padding: 8px 16px;
+    min-width: 46px;
+    padding: 5px 11px;
 }
-.spell-grid.r-tone .spell-block .b-glyph { font-size: 22px; }
+.spell-grid.r-tone .spell-block .b-glyph { font-size: 19px; }
+
+/* Short viewports (landscape phones): the word is the one thing that can give
+   up room without losing function, so shrink it and the chrome to keep at least
+   a couple of chip rows visible. */
+@media (max-height: 520px) {
+    .spell-header { padding: 4px 14px 2px; }
+    .spell-back { width: 32px; height: 32px; }
+    .spell-title h1 { font-size: 15px; }
+    .spell-stage { padding: 0 16px 4px; }
+    .spell-word { font-size: clamp(26px, 7vh, 42px); }
+    .spell-actions { margin-top: 4px; }
+    .spell-play { width: 32px; height: 32px; }
+    .spell-rack { padding: 2px 12px 0; }
+    .spell-slot { min-width: 48px; padding: 4px 6px 3px; }
+    .spell-slot .slot-val { font-size: 17px; }
+    .spell-tonebar { padding: 6px 14px; max-height: 26vh; }
+    .spell-tonebar-label { display: none; }
+    .spell-footer { padding: 6px 14px calc(8px + env(safe-area-inset-bottom)); }
+    .spell-next { padding: 9px; font-size: 13.5px; }
+}
 
 @keyframes sp-shake {
     0%, 100% { transform: translateX(0); }

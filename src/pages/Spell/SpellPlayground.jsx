@@ -179,19 +179,11 @@ export default function SpellPlayground() {
                 </button>
                 <div className="spell-title">
                     <h1>Ghép vần · Spell it</h1>
-                    <p>Snap the pieces. Some fit, some refuse — that’s the rule.</p>
                 </div>
                 <button className="spell-back" onClick={reset} aria-label="Reset">
                     <RotateCcw size={18} />
                 </button>
             </header>
-
-            <div className="spell-header" style={{ paddingTop: 0, gap: 8 }}>
-                <div className="spell-seg" role="tablist" aria-label="Read mode">
-                    <button className={readMode === 'blend' ? 'on' : ''} onClick={() => setReadMode('blend')}>Blend</button>
-                    <button className={readMode === 'danhvan' ? 'on' : ''} onClick={() => setReadMode('danhvan')}>Đánh vần</button>
-                </div>
-            </div>
 
             {/* the composed syllable */}
             <div className="spell-stage">
@@ -210,9 +202,20 @@ export default function SpellPlayground() {
                 {hasAnyPart && !violations.length && !speakable && !footerTarget && (
                     <div className="spell-note">chưa phải từ có thật · not a real Vietnamese word</div>
                 )}
+                {/* how to read it, and a replay — paired, since the mode is what
+                    the play button does */}
                 <div className="spell-actions">
-                    <button className="spell-play primary" disabled={!speakable} onClick={() => say(state)}>
-                        <Volume2 size={16} /> {readMode === 'danhvan' ? 'Đánh vần' : 'Nghe'}
+                    <div className="spell-seg" role="tablist" aria-label="Read mode">
+                        <button className={readMode === 'blend' ? 'on' : ''} onClick={() => setReadMode('blend')}>Blend</button>
+                        <button className={readMode === 'danhvan' ? 'on' : ''} onClick={() => setReadMode('danhvan')}>Đánh vần</button>
+                    </div>
+                    <button
+                        className="spell-play primary"
+                        disabled={!speakable}
+                        onClick={() => say(state)}
+                        aria-label={readMode === 'danhvan' ? 'Đánh vần' : 'Nghe'}
+                    >
+                        <Volume2 size={18} />
                     </button>
                 </div>
             </div>
