@@ -161,6 +161,7 @@
     color: var(--sp-muted);
     letter-spacing: 0.01em;
 }
+.spell-note-warn { color: var(--sp-bad); }
 .spell-actions {
     display: flex;
     align-items: center;

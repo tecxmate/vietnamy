@@ -43,6 +43,7 @@ import {
     upsertPushSubscription,
 } from '../server/opsStore.js';
 import { mountSyncRoutes } from '../server/syncRoutes.js';
+import { synthesizeSpeech, TTS_VOICES } from '../server/ttsProviders.js';
 
 const app = express();
 
@@ -170,6 +171,37 @@ function safeRedirectUrl(rawUrl) {
         return fallback;
     }
 }
+
+// /api/tts?text=xin+chào&lang=vi&voice=google|azure-north|azure-south
+//
+// The Docker/`npm start` deployment gets this from server/server.js, but every
+// /api/* request behind vercel.json lands here — where the route didn't exist,
+// so audio 404'd on Vercel and the players fell silent. Cache-Control stands in
+// for server.js's object-storage cache: the URL is fully deterministic, so the
+// CDN can hold the clip.
+app.get('/api/tts', async (req, res) => {
+    const text = String(req.query.text || '').trim();
+    const lang = String(req.query.lang || 'vi');
+    const voice = TTS_VOICES.has(req.query.voice) ? req.query.voice : 'google';
+
+    if (!text || text.length > 200) {
+        return res.status(400).json({ error: 'text required (max 200 chars)' });
+    }
+
+    try {
+        const { buffer, provider, fellBack } = await synthesizeSpeech(text, lang, voice);
+        res.set({
+            'Content-Type': 'audio/mpeg',
+            'Cache-Control': 'public, max-age=86400',
+            'X-TTS-Provider': provider,
+            ...(fellBack ? { 'X-TTS-Fallback': 'google' } : {}),
+        });
+        return res.send(buffer);
+    } catch (err) {
+        console.error('[tts] synthesis failed:', err);
+        return res.status(502).json({ error: 'tts synthesis failed' });
+    }
+});
 
 app.get('/api/mail/config', async (_req, res) => {
     res.json({

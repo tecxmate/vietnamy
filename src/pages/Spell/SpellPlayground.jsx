@@ -70,6 +70,7 @@ export default function SpellPlayground() {
     const [reason, setReason] = useState(null);
     const [coach, setCoach] = useState(null); // teaching note after an auto-correction
     const [playingParts, setPlayingParts] = useState(null); // Set of parts being voiced, or null when idle
+    const [audioFailed, setAudioFailed] = useState(false); // neither /api/tts nor the device voice could speak
 
     const violations = useMemo(() => validate(state), [state]);
     const speakable = isSpeakable(state);
@@ -101,11 +102,13 @@ export default function SpellPlayground() {
         const segs = readMode === 'danhvan'
             ? danhVanSegments(s)
             : [{ key: spellSlug(compose(s)), text: compose(s), parts: all }];
+        setAudioFailed(false);
         playSequence(segs, {
             accent,
             gap: readMode === 'danhvan' ? 140 : 90,
             onSegment: (seg) => setPlayingParts(new Set(seg.parts || all)),
             onEnd: () => setPlayingParts(null),
+            onFail: () => setAudioFailed(true),
         });
     };
 
@@ -201,6 +204,9 @@ export default function SpellPlayground() {
                 )}
                 {hasAnyPart && !violations.length && !speakable && !footerTarget && (
                     <div className="spell-note">chưa phải từ có thật · not a real Vietnamese word</div>
+                )}
+                {audioFailed && (
+                    <div className="spell-note spell-note-warn">audio unavailable — check your connection</div>
                 )}
                 {/* how to read it, and a replay — paired, since the mode is what
                     the play button does */}
