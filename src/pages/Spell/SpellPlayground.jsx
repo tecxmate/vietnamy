@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, Volume2, Blocks, AlertTriangle, RotateCcw, Lightbulb } from 'lucide-react';
 import { SLOTS, BY_ROLE, TONES, findBlock } from '../../data/spellingBlocks';
-import { compose, validate, placementBlock, slotHasViolation, isSpeakable, applyPick } from '../../lib/spellingRules';
+import { compose, validate, placementBlock, slotHasViolation, isSpeakable, applyPick, writtenInitial } from '../../lib/spellingRules';
 import { playSequence, stopSpell } from '../../lib/spellAudio';
 import { spellInitialKey, spellSlug, spellToneKey } from '../../lib/spellSlug';
 import './Spell.css';
@@ -192,7 +192,7 @@ export default function SpellPlayground() {
             <div className="spell-stage">
                 {hasAnyPart ? (
                     <div className="spell-word" aria-live="polite">
-                        {state.initial && <span className={partClass('initial')}>{state.initial}</span>}
+                        {state.initial && <span className={partClass('initial')}>{writtenInitial(state.initial, state.nucleus)}</span>}
                         {state.glide && <span className={partClass('glide')}>{state.glide}</span>}
                         {state.nucleus
                             ? <span className={partClass('nucleus')}>{compose({ ...EMPTY, nucleus: state.nucleus, tone: state.tone })}</span>

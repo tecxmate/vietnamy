@@ -29,6 +29,7 @@ export {
     spellingNote,
     toneStopNote,
     validate,
+    writtenInitial,
 } from './spellingSyntax.js';
 
 /** The written syllable is a real, attested Vietnamese syllable. */

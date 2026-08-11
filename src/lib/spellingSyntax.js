@@ -134,6 +134,16 @@ function toneNucleus(nucleusId, toneId) {
 }
 
 /**
+ * The initial as WRITTEN before this nucleus. One special case: "gi" shares
+ * its i with a following i-nucleus — gì is g + ì on paper, never "giì". The
+ * tone stays on the nucleus, so the shared letter carries the mark.
+ */
+export function writtenInitial(initial, nucleus) {
+    if (initial === 'gi' && nucleus === 'i') return 'g';
+    return initial || '';
+}
+
+/**
  * Compose the written syllable from a slot state.
  * state = { initial, glide, nucleus, final, tone } — each an id or null.
  * The tone mark lands on the nucleus's tone-bearing vowel.
@@ -142,7 +152,7 @@ export function compose(state) {
     const { initial, glide, nucleus, final, tone } = state;
     if (!nucleus) return '';
     const toned = toneNucleus(nucleus, tone || 'ngang');
-    return `${initial || ''}${glide || ''}${toned}${final || ''}`;
+    return `${writtenInitial(initial, nucleus)}${glide || ''}${toned}${final || ''}`;
 }
 
 /**
