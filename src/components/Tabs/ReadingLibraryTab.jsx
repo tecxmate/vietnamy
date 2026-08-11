@@ -39,22 +39,22 @@ const CONTENT_TYPES = {
 // beginner isn't forced through phonics before real words. Each links to its
 // existing /practice mini-game.
 const SOUND_MODULES = [
-    { title: 'The alphabet', route: '/practice/alphabet', group: 'Letters & sounds' },
-    { title: 'Basic vowels', route: '/practice/vowels-single-1', group: 'Letters & sounds' },
-    { title: 'Special vowels', route: '/practice/vowels-single-2', group: 'Letters & sounds' },
-    { title: 'Consonants', route: '/practice/consonants', group: 'Letters & sounds' },
-    { title: 'Final consonants', route: '/practice/consonants-final', group: 'Letters & sounds' },
-    { title: 'Combining vowels', route: '/practice/vowels-diph-1', group: 'Letters & sounds' },
-    { title: 'Gliding vowels', route: '/practice/vowels-diph-2', group: 'Letters & sounds' },
-    { title: 'Advanced sounds', route: '/practice/vowels-diph-3', group: 'Letters & sounds' },
-    { title: 'Tones: Level vs Falling', route: '/practice/tones/level1', group: 'Tones' },
-    { title: 'Tones: add Rising', route: '/practice/tones/level2', group: 'Tones' },
-    { title: 'Tones: add Dipping', route: '/practice/tones/level3', group: 'Tones' },
-    { title: 'Hỏi vs Ngã', route: '/practice/tones/level4', group: 'Tones' },
-    { title: 'All 6 tones', route: '/practice/tones/level5', group: 'Tones' },
-    { title: 'Read the tone marks', route: '/practice/tonemarks-basic', group: 'Tones' },
-    { title: 'Say a tone', route: '/practice/tones/speak', group: 'Tones' },
-    { title: 'Tone marks mastery', route: '/practice/tonemarks-master', group: 'Tones' },
+    { titleKey: 'library_snd_alphabet', route: '/practice/alphabet', groupKey: 'library_snd_group_letters' },
+    { titleKey: 'library_snd_vowels_basic', route: '/practice/vowels-single-1', groupKey: 'library_snd_group_letters' },
+    { titleKey: 'library_snd_vowels_special', route: '/practice/vowels-single-2', groupKey: 'library_snd_group_letters' },
+    { titleKey: 'library_snd_consonants', route: '/practice/consonants', groupKey: 'library_snd_group_letters' },
+    { titleKey: 'library_snd_consonants_final', route: '/practice/consonants-final', groupKey: 'library_snd_group_letters' },
+    { titleKey: 'library_snd_vowels_combining', route: '/practice/vowels-diph-1', groupKey: 'library_snd_group_letters' },
+    { titleKey: 'library_snd_vowels_gliding', route: '/practice/vowels-diph-2', groupKey: 'library_snd_group_letters' },
+    { titleKey: 'library_snd_sounds_advanced', route: '/practice/vowels-diph-3', groupKey: 'library_snd_group_letters' },
+    { titleKey: 'library_snd_tones_1', route: '/practice/tones/level1', groupKey: 'library_snd_group_tones' },
+    { titleKey: 'library_snd_tones_2', route: '/practice/tones/level2', groupKey: 'library_snd_group_tones' },
+    { titleKey: 'library_snd_tones_3', route: '/practice/tones/level3', groupKey: 'library_snd_group_tones' },
+    { titleKey: 'library_snd_tones_4', route: '/practice/tones/level4', groupKey: 'library_snd_group_tones' },
+    { titleKey: 'library_snd_tones_5', route: '/practice/tones/level5', groupKey: 'library_snd_group_tones' },
+    { titleKey: 'library_snd_tonemarks_basic', route: '/practice/tonemarks-basic', groupKey: 'library_snd_group_tones' },
+    { titleKey: 'library_snd_tones_speak', route: '/practice/tones/speak', groupKey: 'library_snd_group_tones' },
+    { titleKey: 'library_snd_tonemarks_master', route: '/practice/tonemarks-master', groupKey: 'library_snd_group_tones' },
 ];
 
 const SUB_TAGS = {
@@ -193,18 +193,20 @@ function buildLibraryItems(t) {
 
     // Sounds & Tones — pronunciation modules (link to their /practice mini-games)
     SOUND_MODULES.forEach((m, i) => {
+        const title = t(m.titleKey);
+        const group = t(m.groupKey);
         items.push({
             id: `sound-${i}`,
             type: 'sounds',
-            subTag: m.group,
-            title: m.title,
-            subtitle: m.group,
+            subTag: group,
+            title,
+            subtitle: group,
             itemIcon: Volume2,
             itemColor: '#06D6A0',
             itemBg: 'rgba(6,214,160,0.15)',
             route: m.route,
             createdAt: now - i * 3600000, // preserve natural order under "recent"
-            sortName: m.title,
+            sortName: title,
             levelOrder: 1,
         });
     });
@@ -425,7 +427,7 @@ function LibraryLanding({ onSelectModule, onOpenArticle }) {
                             onClick={() => cfg.route ? navigate(cfg.route) : toggleType(key)}
                         >
                             <Icon size={20} />
-                            <span>{cfg.label || t(cfg.labelKey)}</span>
+                            <span>{t(cfg.labelKey, cfg.label)}</span>
                         </button>
                     );
                 })}
