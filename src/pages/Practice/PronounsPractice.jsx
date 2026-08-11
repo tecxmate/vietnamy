@@ -64,6 +64,7 @@ export default function PronounsPractice({ members: memberIds = null, title = 'P
     }, [filteredMembers]);
 
     const handleQuizAnswer = (answer) => {
+        if (quizState.feedback) return; // already answered — a fast double-tap would advance twice
         const q = quizState.questions[quizState.currentIdx];
         const isCorrect = answer === q.correct.targetPronoun;
         if (isCorrect) playSuccess(); else playError();

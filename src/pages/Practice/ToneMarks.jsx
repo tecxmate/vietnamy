@@ -103,6 +103,7 @@ export default function ToneMarks({ vowels = ALL_VOWELS, title = '🔤 Dấu —
     const { speak } = useTTS();
     const { session, markComplete, goNext, goBack } = usePracticeCompletion();
     const [stage, setStage] = useState(quizOnly ? 4 : 1);
+    const [round, setRound] = useState(0); // bumps on Try Again → new shuffle, same stage
     const [playingCell, setPlayingCell] = useState(null);
     const [selectedVowel, setSelectedVowel] = useState(vowels[0]);
 
@@ -128,6 +129,7 @@ export default function ToneMarks({ vowels = ALL_VOWELS, title = '🔤 Dấu —
     }, [vowels]);
 
     const questions = useMemo(() => {
+        void round; // reshuffle nonce — bumping it deals fresh questions on Try Again
         if (stage < 2 || stage > 4) return [];
         const qs = [];
 
@@ -206,7 +208,7 @@ export default function ToneMarks({ vowels = ALL_VOWELS, title = '🔤 Dấu —
         }
 
         return qs;
-    }, [stage, validPairs, vowels, session]);
+    }, [stage, validPairs, vowels, session, round]);
 
     const questionCount = questions.length;
     const currentQ = questions[qIndex];
@@ -263,7 +265,6 @@ export default function ToneMarks({ vowels = ALL_VOWELS, title = '🔤 Dấu —
     }, [qIndex, questionCount]);
 
     const handleRestart = () => {
-        setStage(prev => prev); // keep same stage
         setQIndex(0);
         setSelected(null);
         setFeedback('idle');
@@ -272,11 +273,7 @@ export default function ToneMarks({ vowels = ALL_VOWELS, title = '🔤 Dấu —
         setBestStreak(0);
         setTotalAnswered(0);
         setShowSummary(false);
-        // Force re-generate questions
-        setStage(s => {
-            setTimeout(() => setStage(s), 0);
-            return 0;
-        });
+        setRound(r => r + 1); // reshuffle the questions for the same stage
     };
 
     const startStage = (s) => {

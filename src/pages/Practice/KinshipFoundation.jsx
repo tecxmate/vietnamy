@@ -159,6 +159,7 @@ export default function KinshipFoundation() {
     };
 
     const handleQuizAnswer = (answer) => {
+        if (quizState.feedback) return; // already answered — a fast double-tap would advance twice
         const q = quizState.questions[quizState.currentIdx];
         const isCorrect = answer === q.term.vn;
         if (isCorrect) { playSuccess(); speakTerm(q.term.vn); }

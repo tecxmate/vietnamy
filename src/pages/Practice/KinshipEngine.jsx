@@ -255,6 +255,15 @@ const SIDE_OPTIONS_UNCLE_SPOUSE = [
     { value: 'di', label: 'Husband of Dì → Dượng' },
 ];
 
+// Each context/generation has its own side vocabulary. Switching must reset the
+// side to a valid value — a stale one (say, 'paternal' inside In-Law →
+// Uncle/Aunt's Spouse) matches no chip and strands the result on "?".
+const sideDefaultFor = (category, generation) => {
+    if (category === 'in_law' && generation === 'spouse_parent') return 'husband';
+    if (category === 'in_law' && generation === 'uncle_aunt_spouse') return 'bac';
+    return 'paternal';
+};
+
 export default function KinshipEngine() {
     const [searchParams] = useSearchParams();
     const navigate = useNavigate();
@@ -318,7 +327,12 @@ export default function KinshipEngine() {
                             <button
                                 key={opt.value}
                                 className={`engine-chip ${category === opt.value ? 'active' : ''}`}
-                                onClick={() => { setCategory(opt.value); setGeneration(GENERATION_OPTIONS[opt.value]?.[0]?.value || 'parent'); }}
+                                onClick={() => {
+                                    const gen = GENERATION_OPTIONS[opt.value]?.[0]?.value || 'parent';
+                                    setCategory(opt.value);
+                                    setGeneration(gen);
+                                    setSide(sideDefaultFor(opt.value, gen));
+                                }}
                             >
                                 {opt.label}
                             </button>
@@ -335,7 +349,7 @@ export default function KinshipEngine() {
                                 <button
                                     key={opt.value}
                                     className={`engine-chip ${generation === opt.value ? 'active' : ''}`}
-                                    onClick={() => setGeneration(opt.value)}
+                                    onClick={() => { setGeneration(opt.value); setSide(sideDefaultFor(category, opt.value)); }}
                                 >
                                     {opt.label}
                                 </button>

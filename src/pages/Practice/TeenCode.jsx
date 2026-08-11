@@ -114,6 +114,7 @@ const TeenCode = ({ categories: allowedCategories = null, title = '💬 Teen Cod
     };
 
     const handleAnswer = (isCorrect) => {
+        if (feedback) return; // already answered — a fast double-tap would advance twice
         if (isCorrect) {
             playSuccess();
             setScore(s => s + 10 + (streak * 2));
