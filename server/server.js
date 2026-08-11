@@ -157,6 +157,45 @@ app.post('/api/feedback-screenshot', express.raw({ type: '*/*', limit: '5mb' }),
 // Simplified ↔ Traditional Chinese converters
 const s2t = Converter({ from: 'cn', to: 'tw' });
 
+// Fields in a search response that hold Chinese text. Vietnamese fields
+// (`word`, `vietnamese_text`, `hanviet`) are deliberately absent: they are
+// Latin script and converting them would corrupt them.
+const ZH_TEXT_FIELDS = new Set(['meaning_text', 'english_text', 'chinese', 'gloss']);
+
+/**
+ * Rewrites the Chinese text of a response into Traditional characters.
+ *
+ * There is no Traditional corpus — `dbs['zh-t']` is an alias of `dbs['zh-s']`
+ * (see below), so a zh-t request reads Simplified rows. Converting here, at
+ * the response boundary, is what makes `lang=zh-t` mean anything, and doing it
+ * server-side keeps every client honest instead of each shipping its own
+ * conversion table.
+ *
+ * Must run exactly once per payload: s2t is *not* idempotent for every
+ * character — 幺 → 么 → 麼 and 苎 → 苧 → 薴 both drift on a second pass (2 of
+ * 20,992 in the CJK range). Clients therefore must not convert again.
+ */
+function toTraditional(value, inZhField = false) {
+    if (typeof value === 'string') return inZhField ? s2t(value) : value;
+    if (Array.isArray(value)) return value.map(v => toTraditional(v, inZhField));
+    if (value && typeof value === 'object') {
+        const out = {};
+        for (const [key, v] of Object.entries(value)) {
+            // Walk the whole tree, but only rewrite strings sitting under a
+            // Chinese-bearing key — the payload nests meanings several levels
+            // down, and Vietnamese fields must pass through untouched.
+            out[key] = toTraditional(v, ZH_TEXT_FIELDS.has(key));
+        }
+        return out;
+    }
+    return value;
+}
+
+/** Applies {@link toTraditional} to a payload only when the caller asked for zh-t. */
+function localizeChinese(payload, lang) {
+    return lang === 'zh-t' ? toTraditional(payload) : payload;
+}
+
 // ---------------------------------------------------------------------------
 // Push notification MVP
 // ---------------------------------------------------------------------------
@@ -1385,7 +1424,10 @@ app.get('/api/search', (req, res) => {
             }
         }
 
-        res.json({ word: query, structured: true, data: Object.values(grouped), components, hanvietComponents });
+        res.json(localizeChinese(
+            { word: query, structured: true, data: Object.values(grouped), components, hanvietComponents },
+            lang,
+        ));
 
     } catch (error) {
         console.error(error);

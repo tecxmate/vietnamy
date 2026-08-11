@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { Search, BookA, Loader2, Volume2, Sparkles, Mic, X, ArrowLeft, Check, Bookmark, Clock, Trash2, Type, ChevronLeft, ChevronDown, BookmarkPlus } from 'lucide-react';
-import { Converter } from 'opencc-js';
 import speak, { preloadSpeak } from '../../utils/speak';
 import { useSpeakingState } from '../../hooks/useSpeakingState';
 
@@ -12,7 +11,6 @@ import WordPopup from '../WordPopup';
 import { useT } from '../../lib/i18n';
 import './DictionaryTab.css';
 
-const s2t = Converter({ from: 'cn', to: 'tw' });
 
 const HISTORY_KEY = 'vnme_dict_history';
 const MAX_HISTORY = 10;
@@ -872,7 +870,10 @@ const DictionaryTab = ({ pendingInput, clearPendingInput, onNavigateToLibrary })
                 )}
 
                 {hasValidResults && (() => {
-                    const convert = dictMode === 'zh-t' ? s2t : null;
+                    // Traditional now arrives converted from /api/search?lang=zh-t.
+                    // Converting again here would double-apply s2t, which is not
+                    // idempotent for every character (幺 → 么 → 麼, 苎 → 苧 → 薴).
+                    const convert = null;
                     const MAX_VISIBLE = 2;
                     const hasMore = displaySources.length > MAX_VISIBLE;
                     const visible = hasMore && !sourcesExpanded ? displaySources.slice(0, MAX_VISIBLE) : displaySources;
