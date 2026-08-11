@@ -320,7 +320,8 @@ export default function VowelsPractice({
             {section === 1 && (
                 <>
                     <p className="vp-intro">
-                        Tap any vowel card to hear it. Vietnamese has 12 single vowels — each mark creates an entirely new letter.
+                        Tap any vowel card to hear it — each mark creates an entirely new letter.
+                        {singleVowels.length > 1 && ` These are ${singleVowels.length} of Vietnamese's single vowel sounds.`}
                     </p>
                     <div className="vp-vowel-cards">
                         {singleVowels.map(v => (

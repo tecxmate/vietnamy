@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 import { Volume2, Check, X, RotateCw, ArrowLeft, Trophy, Flame, Star, ChevronRight, Lightbulb } from 'lucide-react';
 import { useTTS } from '../../hooks/useTTS';
@@ -105,6 +105,60 @@ const shuffle = (arr) => [...arr].sort(() => Math.random() - 0.5);
 
 const FOUNDATION_NUMBERS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
+// Interesting compound numbers for the builder — each exercises a pattern
+// (mươi, mốt, tư, lăm) at least once. The deck carries each number's word bank,
+// dealt together so no shuffling happens during render.
+const BUILDER_POOL = [12, 15, 21, 24, 25, 30, 31, 44, 55, 67, 73, 89];
+const BUILDER_DISTRACTORS = ['một', 'hai', 'ba', 'bốn', 'năm', 'mười', 'mươi', 'mốt', 'lăm', 'tư', 'sáu', 'bảy', 'tám', 'chín'];
+
+function dealBuilderDeck() {
+    return shuffle(BUILDER_POOL).map((num) => {
+        const correctWords = decomposeNumber(num).map(p => p.word);
+        const distractors = shuffle(BUILDER_DISTRACTORS.filter(w => !correctWords.includes(w))).slice(0, 2);
+        return { num, bank: shuffle([...correctWords, ...distractors]) };
+    });
+}
+
+// Build one challenge round. Question generation is random, so it lives OUTSIDE
+// render (called from effects/handlers) — components must stay pure, and a
+// restart should deal a fresh round rather than replay the memoized one.
+function buildChallenges(session) {
+    const qs = [];
+
+    // Type 1: See number → pick Vietnamese (multiple choice) — easy range
+    const mcVnCount = Math.min(3 + session, 7);
+    for (let i = 0; i < mcVnCount; i++) {
+        const n = Math.floor(Math.random() * 11); // 0–10
+        const correct = numberToVietnamese(n);
+        const distractorNums = shuffle(FOUNDATION_NUMBERS.filter(x => x !== n)).slice(0, 3);
+        const options = shuffle([correct, ...distractorNums.map(numberToVietnamese)]);
+        qs.push({ type: 'mc-vn', number: n, correctAnswer: correct, options, prompt: 'What is this number in Vietnamese?' });
+    }
+
+    // Type 2: See Vietnamese → pick number (multiple choice) — medium range
+    const mcNumCount = Math.min(3 + session, 6);
+    for (let i = 0; i < mcNumCount; i++) {
+        const n = 10 + Math.floor(Math.random() * 90); // 10–99
+        const vnWord = numberToVietnamese(n);
+        const distractorNums = [];
+        while (distractorNums.length < 3) {
+            const d = 10 + Math.floor(Math.random() * 90);
+            if (d !== n && !distractorNums.includes(d)) distractorNums.push(d);
+        }
+        const options = shuffle([String(n), ...distractorNums.map(String)]);
+        qs.push({ type: 'mc-num', vnWord, number: n, correctAnswer: String(n), options, prompt: 'What number is this?' });
+    }
+
+    // Type 3: Listen → type number
+    const listenCount = Math.min(2 + session, 5);
+    for (let i = 0; i < listenCount; i++) {
+        const n = Math.floor(Math.random() * 100); // 0–99
+        qs.push({ type: 'listen-type', number: n, correctAnswer: String(n), vnWord: numberToVietnamese(n), prompt: 'Listen and type the number' });
+    }
+
+    return shuffle(qs);
+}
+
 // ─── Component ─────────────────────────────────────────────────────
 export default function NumbersPractice({ stages: allowedStages = [1, 2, 3], title = '🔢 Numbers' }) {
     const { speak } = useTTS();
@@ -129,63 +183,20 @@ export default function NumbersPractice({ stages: allowedStages = [1, 2, 3], tit
     const [totalAnswered, setTotalAnswered] = useState(0);
     const [showSummary, setShowSummary] = useState(false);
 
-    // ── Stage 2: Builder Numbers ──
-    const builderNumbers = useMemo(() => {
-        // Pick interesting compound numbers to teach patterns
-        return shuffle([12, 15, 21, 24, 25, 30, 31, 44, 55, 67, 73, 89]);
-    }, [stage === 2 ? stage : null]);
+    // ── Stage 2: Builder deck — dealt on entry (initializer / tab handler),
+    // never during render ──
+    const [builderDeck, setBuilderDeck] = useState(() => (allowedStages[0] === 2 ? dealBuilderDeck() : []));
 
-    const currentBuilderNum = builderNumbers[builderIndex];
+    const currentBuilderNum = builderDeck[builderIndex]?.num;
     const currentDecomp = currentBuilderNum !== undefined ? decomposeNumber(currentBuilderNum) : [];
     const currentBuilderAnswer = currentBuilderNum !== undefined ? numberToVietnamese(currentBuilderNum) : '';
-    const builderWordBank = useMemo(() => {
-        if (!currentDecomp.length) return [];
-        const correctWords = currentDecomp.map(p => p.word);
-        // Add distractors
-        const allDistractors = ['một', 'hai', 'ba', 'bốn', 'năm', 'mười', 'mươi', 'mốt', 'lăm', 'tư', 'sáu', 'bảy', 'tám', 'chín'];
-        const distractors = allDistractors.filter(w => !correctWords.includes(w));
-        const picked = shuffle(distractors).slice(0, 2);
-        return shuffle([...correctWords, ...picked]);
-    }, [currentBuilderNum]);
+    const builderWordBank = builderDeck[builderIndex]?.bank || [];
 
-    // ── Stage 3: Challenge Questions ──
-    const challenges = useMemo(() => {
-        if (stage !== 3) return [];
-        const qs = [];
-
-        // Type 1: See number → pick Vietnamese (multiple choice) — easy range
-        const mcVnCount = Math.min(3 + session, 7);
-        for (let i = 0; i < mcVnCount; i++) {
-            const n = Math.floor(Math.random() * 11); // 0–10
-            const correct = numberToVietnamese(n);
-            const distractorNums = shuffle(FOUNDATION_NUMBERS.filter(x => x !== n)).slice(0, 3);
-            const options = shuffle([correct, ...distractorNums.map(numberToVietnamese)]);
-            qs.push({ type: 'mc-vn', number: n, correctAnswer: correct, options, prompt: 'What is this number in Vietnamese?' });
-        }
-
-        // Type 2: See Vietnamese → pick number (multiple choice) — medium range
-        const mcNumCount = Math.min(3 + session, 6);
-        for (let i = 0; i < mcNumCount; i++) {
-            const n = 10 + Math.floor(Math.random() * 90); // 10–99
-            const vnWord = numberToVietnamese(n);
-            const distractorNums = [];
-            while (distractorNums.length < 3) {
-                const d = 10 + Math.floor(Math.random() * 90);
-                if (d !== n && !distractorNums.includes(d)) distractorNums.push(d);
-            }
-            const options = shuffle([String(n), ...distractorNums.map(String)]);
-            qs.push({ type: 'mc-num', vnWord, number: n, correctAnswer: String(n), options, prompt: 'What number is this?' });
-        }
-
-        // Type 3: Listen → type number
-        const listenCount = Math.min(2 + session, 5);
-        for (let i = 0; i < listenCount; i++) {
-            const n = Math.floor(Math.random() * 100); // 0–99
-            qs.push({ type: 'listen-type', number: n, correctAnswer: String(n), vnWord: numberToVietnamese(n), prompt: 'Listen and type the number' });
-        }
-
-        return shuffle(qs);
-    }, [stage, session]);
+    // ── Stage 3: Challenge Questions — a fresh deal on every entry/restart,
+    // from the handlers, so "Try Again" really reshuffles (the old useMemo
+    // version silently replayed the identical round: setStage(3) while already
+    // on 3 never invalidated it).
+    const [challenges, setChallenges] = useState(() => (allowedStages[0] === 3 ? buildChallenges(session) : []));
 
     const totalChallenges = challenges.length;
     const currentChallenge = challenges[challengeIndex];
@@ -234,19 +245,20 @@ export default function NumbersPractice({ stages: allowedStages = [1, 2, 3], tit
     }, [builtAnswer, currentBuilderAnswer, playWord]);
 
     const handleBuilderContinue = useCallback(() => {
-        if (builderIndex < builderNumbers.length - 1) {
+        if (builderIndex < builderDeck.length - 1) {
             setBuilderIndex(i => i + 1);
             setBuiltAnswer([]);
             setBuilderFeedback('idle');
         } else {
             setStagesCompleted(prev => new Set([...prev, 2]));
             if (allowedStages.includes(3)) {
+                setChallenges(buildChallenges(session));
                 setStage(3);
             } else {
                 setShowSummary(true);
             }
         }
-    }, [builderIndex, builderNumbers.length, allowedStages]);
+    }, [builderIndex, builderDeck.length, allowedStages, session]);
 
     // ── Stage 3 Handlers ──
     const handleChallengeCheck = useCallback(() => {
@@ -287,7 +299,8 @@ export default function NumbersPractice({ stages: allowedStages = [1, 2, 3], tit
     }, [challengeIndex, totalChallenges]);
 
     const handleRestartChallenge = () => {
-        setStage(3); // triggers useMemo refresh
+        setStage(3);
+        setChallenges(buildChallenges(session)); // deal a fresh round
         setChallengeIndex(0);
         setSelectedOption(null);
         setTypedAnswer('');
@@ -324,6 +337,12 @@ export default function NumbersPractice({ stages: allowedStages = [1, 2, 3], tit
     // ── Get active special rule for builder ──
     const activeRule = currentDecomp.find(p => p.isSpecial && p.rule);
 
+    // Completion is a side effect of reaching the summary — an effect, not a
+    // render-time call, so ProgressContext isn't updated mid-render.
+    useEffect(() => {
+        if (showSummary) markComplete();
+    }, [showSummary, markComplete]);
+
     // ════════════════════════════════════════════════════════════════
     // RENDER
     // ════════════════════════════════════════════════════════════════
@@ -331,7 +350,6 @@ export default function NumbersPractice({ stages: allowedStages = [1, 2, 3], tit
     // ── Summary Screen ──
     if (showSummary) {
         const pct = totalAnswered > 0 ? Math.round((score / totalAnswered) * 100) : 0;
-        markComplete();
         let message = 'Keep practicing!';
         if (pct >= 90) message = 'Perfect! You can count like a native! 🎯';
         else if (pct >= 70) message = 'Great work! Almost fluent with numbers! 💪';
@@ -402,7 +420,7 @@ export default function NumbersPractice({ stages: allowedStages = [1, 2, 3], tit
                 {allowedStages.includes(2) && (
                     <button
                         className={`stage-tab ${stage === 2 ? 'active' : ''} ${stagesCompleted.has(2) ? 'completed' : ''}`}
-                        onClick={() => { setStage(2); setBuilderIndex(0); setBuiltAnswer([]); setBuilderFeedback('idle'); }}
+                        onClick={() => { setStage(2); setBuilderDeck(dealBuilderDeck()); setBuilderIndex(0); setBuiltAnswer([]); setBuilderFeedback('idle'); }}
                     >
                         ② Build
                     </button>
@@ -510,6 +528,11 @@ export default function NumbersPractice({ stages: allowedStages = [1, 2, 3], tit
                                                 ? `${currentBuilderNum} = ${currentBuilderAnswer}`
                                                 : `Answer: ${currentBuilderAnswer}`}
                                         </span>
+                                        {activeRule && (
+                                            <span style={{ fontSize: '0.85rem', color: '#FF9800', fontWeight: 600 }}>
+                                                Rule: {activeRule.rule}
+                                            </span>
+                                        )}
                                     </div>
                                 </div>
                             </div>

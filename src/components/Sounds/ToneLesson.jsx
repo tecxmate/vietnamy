@@ -543,10 +543,14 @@ function SpeakStep({ tones, onDone }) {
 
     const next = () => {
         // Record the spoken-tone score: the pitch-shape match when available,
-        // else a pass/fail from the recognition fallback.
-        const acc = result?.matchScore != null ? result.matchScore : (result?.verdict === 'correct' ? 100 : 0);
-        const nextScores = [...scores, acc];
-        setScores(nextScores);
+        // else a pass/fail from the recognition fallback. A SKIP (no attempt)
+        // records nothing — it shouldn't drag the average down like a 0% take.
+        let nextScores = scores;
+        if (result) {
+            const acc = result.matchScore != null ? result.matchScore : (result.verdict === 'correct' ? 100 : 0);
+            nextScores = [...scores, acc];
+            setScores(nextScores);
+        }
         if (idx + 1 >= tones.length) { onDone(nextScores); return; }
         setIdx(idx + 1);
     };
@@ -735,8 +739,12 @@ function DoneStep({ tones, steps, identifyScore, speakScores, onRestart, onExit,
                 </div>
                 {hasSpeak && (
                     <div style={{ flex: 1, maxWidth: 150, padding: 18, borderRadius: 16, backgroundColor: 'var(--surface-color)', border: '1px solid var(--border-color)' }}>
-                        <div style={{ fontSize: 34, fontWeight: 800, color: scoreColor(speakAvg) }}>{speakAvg}%</div>
-                        <div style={{ fontSize: 12, color: 'var(--text-muted)' }}>Tones spoken right</div>
+                        <div style={{ fontSize: 34, fontWeight: 800, color: speakScores.length ? scoreColor(speakAvg) : 'var(--text-muted)' }}>
+                            {speakScores.length ? `${speakAvg}%` : '—'}
+                        </div>
+                        <div style={{ fontSize: 12, color: 'var(--text-muted)' }}>
+                            {speakScores.length ? 'Tones spoken right' : 'No attempts scored'}
+                        </div>
                     </div>
                 )}
             </div>
