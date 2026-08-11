@@ -81,6 +81,7 @@ export const NUCLEI = [
     { id: 'ua', name: 'u-a', hint: 'oo-uh (mua) · open', front: false, tone_at: 0, diph: true },
     { id: 'uô', name: 'u-ô', hint: 'oo-oh (muốn) · takes a final', front: false, tone_at: 1, diph: true },
     { id: 'ưa', name: 'ư-a', hint: 'ưh-uh (mưa) · open', front: false, tone_at: 0, diph: true },
+    { id: 'oo', name: 'o-o', hint: 'long "o" in loanwords (boong, xoong)', front: false, tone_at: 1, diph: true },
     { id: 'ươ', name: 'ư-ơ', hint: 'ưh-uh (người) · takes a final', front: false, tone_at: 1, diph: true },
 ];
 
