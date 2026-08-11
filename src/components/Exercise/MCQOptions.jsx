@@ -21,7 +21,7 @@ export default function MCQOptions({
 }) {
     const [pressedIndex, setPressedIndex] = useState(null);
 
-    const handlePress = (opt, index) => {
+    const handlePress = (opt, _index) => {
         if (isChecking || disabled) return;
         playTap();
         onSelect(opt);

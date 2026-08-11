@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
 
 test('record pronouns practice module run', async ({ page }) => {
   // Navigate to app

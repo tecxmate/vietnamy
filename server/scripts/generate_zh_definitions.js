@@ -35,7 +35,7 @@ function loadDone() {
             try {
                 const obj = JSON.parse(line);
                 if (obj.word) done.add(obj.word);
-            } catch { }
+            } catch { /* skip malformed line */ }
         }
     }
     return done;
@@ -106,7 +106,7 @@ async function callOpenAI(words) {
                         : parsed.results ? parsed.results
                             : [parsed];
         return entries;
-    } catch (e) {
+    } catch {
         console.error('Failed to parse response:', content.slice(0, 200));
         return [];
     }

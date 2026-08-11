@@ -96,7 +96,7 @@ function createAndPopulate(destPath, wordIdSet, label) {
 
     // Copy sources table (all sources needed for foreign keys)
     const sources = src.prepare('SELECT * FROM sources').all();
-    const insertSource = db.prepare('INSERT OR IGNORE INTO sources VALUES (' + '?,'.repeat(sources.length > 0 ? Object.keys(sources[0]).length : 0).slice(0, -1) + ')');
+    db.prepare('INSERT OR IGNORE INTO sources VALUES (' + '?,'.repeat(sources.length > 0 ? Object.keys(sources[0]).length : 0).slice(0, -1) + ')');
     if (sources.length > 0) {
         const cols = Object.keys(sources[0]);
         const placeholders = cols.map(() => '?').join(',');
@@ -167,7 +167,7 @@ function copyExamples(db, meaningIds, label) {
     try {
         src.prepare('SELECT 1 FROM examples LIMIT 1').get();
         hasExamples = true;
-    } catch (_) {}
+    } catch { /* table absent in this source db */ }
 
     if (!hasExamples) {
         console.log(`    No examples table in source`);
@@ -203,7 +203,7 @@ function copyMetricsAndPronunciations(db, wordIdSet, label) {
     // word_metrics
     console.log(`  [${label}] Copying word_metrics...`);
     let hasMetrics = false;
-    try { src.prepare('SELECT 1 FROM word_metrics LIMIT 1').get(); hasMetrics = true; } catch (_) {}
+    try { src.prepare('SELECT 1 FROM word_metrics LIMIT 1').get(); hasMetrics = true; } catch { /* table absent in this source db */ }
     if (hasMetrics) {
         const all = src.prepare('SELECT * FROM word_metrics').all();
         if (all.length > 0) {
@@ -227,7 +227,7 @@ function copyMetricsAndPronunciations(db, wordIdSet, label) {
     // pronunciations
     console.log(`  [${label}] Copying pronunciations...`);
     let hasPron = false;
-    try { src.prepare('SELECT 1 FROM pronunciations LIMIT 1').get(); hasPron = true; } catch (_) {}
+    try { src.prepare('SELECT 1 FROM pronunciations LIMIT 1').get(); hasPron = true; } catch { /* table absent in this source db */ }
     if (hasPron) {
         const all = src.prepare('SELECT * FROM pronunciations').all();
         if (all.length > 0) {

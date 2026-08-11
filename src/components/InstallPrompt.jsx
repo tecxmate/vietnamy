@@ -24,9 +24,6 @@ function InstallPrompt() {
     const ua = navigator.userAgent;
     const isIOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
     const isSafari = /Safari/.test(ua) && !/Chrome|CriOS|FxiOS/.test(ua);
-    const isCriOS = /CriOS/.test(ua); // Chrome on iOS
-    const isFxiOS = /FxiOS/.test(ua); // Firefox on iOS
-    const isChrome = /Chrome/.test(ua) && !/Edge/.test(ua);
     const isAndroid = /Android/.test(ua);
 
     if (isIOS) {

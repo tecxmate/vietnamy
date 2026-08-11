@@ -83,7 +83,7 @@ function main() {
     const sourceId = db.prepare("SELECT id FROM sources WHERE name = 'HanViet'").get().id;
 
     // Clear old HanViet data (idempotent re-runs)
-    const oldExamples = db.prepare(`
+    db.prepare(`
         DELETE FROM examples WHERE meaning_id IN (
             SELECT id FROM meanings WHERE source_id = ?
         )
