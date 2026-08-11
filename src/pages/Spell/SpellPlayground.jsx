@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, Volume2, Blocks, AlertTriangle, RotateCcw, Lightbulb } from 'lucide-react';
 import { SLOTS, BY_ROLE, TONES, findBlock } from '../../data/spellingBlocks';
-import { compose, validate, placementBlock, slotHasViolation, isSpeakable, correctInitial, spellingNote, correctGlide, glideNote } from '../../lib/spellingRules';
+import { compose, validate, placementBlock, slotHasViolation, isSpeakable, applyPick } from '../../lib/spellingRules';
 import { playSequence, stopSpell } from '../../lib/spellAudio';
 import { spellInitialKey, spellSlug, spellToneKey } from '../../lib/spellSlug';
 import './Spell.css';
@@ -47,8 +47,11 @@ const slotUsableFor = (st, role) =>
 // opt-in chip, and the tone lives in an always-visible bar so you can tone the
 // syllable at any point. Returns the next slot AFTER `from`, or null when done.
 const BUILD_SEQUENCE = ['initial', 'nucleus', 'final'];
+// …but they still have a place in the order, so focusing one doesn't send the
+// walk back to the start: the glide sits after the initial, the tone last.
+const OFF_SEQUENCE_AT = { glide: 0, tone: BUILD_SEQUENCE.length - 1 };
 const nextAfter = (from, st) => {
-    const i = BUILD_SEQUENCE.indexOf(from);
+    const i = BUILD_SEQUENCE.indexOf(from) >= 0 ? BUILD_SEQUENCE.indexOf(from) : (OFF_SEQUENCE_AT[from] ?? -1);
     for (let j = i + 1; j < BUILD_SEQUENCE.length; j++) {
         if (slotUsableFor(st, BUILD_SEQUENCE[j])) return BUILD_SEQUENCE[j];
     }
@@ -67,6 +70,7 @@ export default function SpellPlayground() {
     const [reason, setReason] = useState(null);
     const [coach, setCoach] = useState(null); // teaching note after an auto-correction
     const [playingParts, setPlayingParts] = useState(null); // Set of parts being voiced, or null when idle
+    const [audioFailed, setAudioFailed] = useState(false); // neither /api/tts nor the device voice could speak
 
     const violations = useMemo(() => validate(state), [state]);
     const speakable = isSpeakable(state);
@@ -98,11 +102,13 @@ export default function SpellPlayground() {
         const segs = readMode === 'danhvan'
             ? danhVanSegments(s)
             : [{ key: spellSlug(compose(s)), text: compose(s), parts: all }];
+        setAudioFailed(false);
         playSequence(segs, {
             accent,
             gap: readMode === 'danhvan' ? 140 : 90,
             onSegment: (seg) => setPlayingParts(new Set(seg.parts || all)),
             onEnd: () => setPlayingParts(null),
+            onFail: () => setAudioFailed(true),
         });
     };
 
@@ -117,28 +123,20 @@ export default function SpellPlayground() {
         }
         setReason(null);
         setCoach(null);
-        const next = { ...state };
-        // toggle off if re-tapping the same non-tone block
-        if (role !== 'tone' && next[role] === id) {
-            next[role] = null;
+        // toggle off if re-tapping the same non-tone block; taking q back out
+        // takes its u with it
+        let next;
+        if (role !== 'tone' && state[role] === id) {
+            next = { ...state, [role]: null };
+            if (role === 'initial' && id === 'q') next.glide = null;
         } else {
-            next[role] = id;
-            if (role === 'initial' && id === 'q') next.glide = 'u'; // q always drags in u
+            // applyPick carries the auto-corrections — the c/k · g/gh · ng/ngh
+            // initial, the o/u glide, q's u, and a tone a stopping final can't
+            // hold — plus the note that teaches each one.
+            const picked = applyPick(state, role, id);
+            next = picked.state;
+            if (picked.note) setCoach(picked.note);
         }
-        // auto-correct context-spelled sounds, and coach the learner:
-        // the c/k · g/gh · ng/ngh initial, then the o/u glide.
-        let note = null;
-        const fixedInitial = correctInitial(next.initial, next.glide, next.nucleus);
-        if (fixedInitial !== next.initial) {
-            note = spellingNote(next.initial, fixedInitial, next.glide, next.nucleus);
-            next.initial = fixedInitial;
-        }
-        const fixedGlide = correctGlide(next.glide, next.nucleus, next.initial);
-        if (fixedGlide !== next.glide) {
-            note = note || glideNote(next.glide, fixedGlide, next.nucleus);
-            next.glide = fixedGlide;
-        }
-        if (note) setCoach(note);
         setState(next);
         // advance along the structural build order; tone/glide don't move focus
         if (next[role] && BUILD_SEQUENCE.includes(role)) {
@@ -161,9 +159,9 @@ export default function SpellPlayground() {
     const handleSlot = (role) => {
         setReason(null);
         setCoach(null);
-        const filled = role === 'tone' ? state.tone !== 'ngang' : Boolean(state[role]);
-        if (active === role && filled) {
-            setState((s) => ({ ...s, [role]: role === 'tone' ? 'ngang' : null }));
+        // the tone has its own bar; only structural slots reach here
+        if (active === role && state[role]) {
+            setState((s) => ({ ...s, [role]: null }));
         } else {
             setActive(role);
             if (!slotUsableFor(state, role)) {
@@ -184,19 +182,11 @@ export default function SpellPlayground() {
                 </button>
                 <div className="spell-title">
                     <h1>Ghép vần · Spell it</h1>
-                    <p>Snap the pieces. Some fit, some refuse — that’s the rule.</p>
                 </div>
                 <button className="spell-back" onClick={reset} aria-label="Reset">
                     <RotateCcw size={18} />
                 </button>
             </header>
-
-            <div className="spell-header" style={{ paddingTop: 0, gap: 8 }}>
-                <div className="spell-seg" role="tablist" aria-label="Read mode">
-                    <button className={readMode === 'blend' ? 'on' : ''} onClick={() => setReadMode('blend')}>Blend</button>
-                    <button className={readMode === 'danhvan' ? 'on' : ''} onClick={() => setReadMode('danhvan')}>Đánh vần</button>
-                </div>
-            </div>
 
             {/* the composed syllable */}
             <div className="spell-stage">
@@ -215,9 +205,23 @@ export default function SpellPlayground() {
                 {hasAnyPart && !violations.length && !speakable && !footerTarget && (
                     <div className="spell-note">chưa phải từ có thật · not a real Vietnamese word</div>
                 )}
+                {audioFailed && (
+                    <div className="spell-note spell-note-warn">audio unavailable — check your connection</div>
+                )}
+                {/* how to read it, and a replay — paired, since the mode is what
+                    the play button does */}
                 <div className="spell-actions">
-                    <button className="spell-play primary" disabled={!speakable} onClick={() => say(state)}>
-                        <Volume2 size={16} /> {readMode === 'danhvan' ? 'Đánh vần' : 'Nghe'}
+                    <div className="spell-seg" role="tablist" aria-label="Read mode">
+                        <button className={readMode === 'blend' ? 'on' : ''} onClick={() => setReadMode('blend')}>Blend</button>
+                        <button className={readMode === 'danhvan' ? 'on' : ''} onClick={() => setReadMode('danhvan')}>Đánh vần</button>
+                    </div>
+                    <button
+                        className="spell-play primary"
+                        disabled={!speakable}
+                        onClick={() => say(state)}
+                        aria-label={readMode === 'danhvan' ? 'Đánh vần' : 'Nghe'}
+                    >
+                        <Volume2 size={18} />
                     </button>
                 </div>
             </div>
@@ -226,12 +230,10 @@ export default function SpellPlayground() {
             <div className="spell-rack">
                 {SLOTS.filter((slot) => slot.role !== 'tone').map((slot) => {
                     const val = state[slot.role];
-                    const filled = slot.role === 'tone' ? val !== 'ngang' : Boolean(val);
+                    const filled = Boolean(val);
                     const bad = slotHasViolation(violations, slot.role);
                     const na = !filled && !usable[slot.role]; // optional slot with nothing legal to place
-                    const glyph = slot.role === 'tone'
-                        ? (findBlock('tone', val || 'ngang')?.sample || '·')
-                        : (na ? '·' : (val || '—'));
+                    const glyph = na ? '·' : (val || '—');
                     return (
                         <div
                             key={slot.role}

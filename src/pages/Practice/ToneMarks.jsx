@@ -302,6 +302,12 @@ export default function ToneMarks({ vowels = ALL_VOWELS, title = '🔤 Dấu —
         return () => window.removeEventListener('keydown', onKey);
     }, [stage, feedback, selected, handleCheck, handleContinue, showSummary]);
 
+    // Completion is a side effect of reaching the summary — an effect, not a
+    // render-time call, so ProgressContext isn't updated mid-render.
+    useEffect(() => {
+        if (showSummary) markComplete();
+    }, [showSummary, markComplete]);
+
     // ════════════════════════════════════════════════════════════════
     // RENDER
     // ════════════════════════════════════════════════════════════════
@@ -309,7 +315,6 @@ export default function ToneMarks({ vowels = ALL_VOWELS, title = '🔤 Dấu —
     // Summary
     if (showSummary) {
         const pct = totalAnswered > 0 ? Math.round((score / totalAnswered) * 100) : 0;
-        markComplete();
         let message = 'Keep practicing!';
         if (pct >= 90) message = 'Master of diacritics! 🎯';
         else if (pct >= 70) message = 'Great work! You\'re getting fluent! 💪';

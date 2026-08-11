@@ -28,10 +28,17 @@ export default function DrillPractice({ data, questionCount = 10 }) {
     const { speak } = useTTS();
     const { session, markComplete, goNext, goBack } = usePracticeCompletion();
 
-    // Load CMS overrides from localStorage (if teacher edited the content)
+    // Load CMS overrides from localStorage (if teacher edited the content).
+    // A corrupt or questionless override falls back to the bundled data —
+    // otherwise one bad admin edit white-screens the drill until storage is cleared.
     const drillData = useMemo(() => {
-        const stored = localStorage.getItem(CMS_KEY_PREFIX + data.id);
-        return stored ? JSON.parse(stored) : data;
+        try {
+            const stored = localStorage.getItem(CMS_KEY_PREFIX + data.id);
+            const parsed = stored ? JSON.parse(stored) : null;
+            return parsed?.questions?.length ? parsed : data;
+        } catch {
+            return data;
+        }
     }, [data]);
 
     const [phase, setPhase] = useState('intro'); // intro | drill | summary

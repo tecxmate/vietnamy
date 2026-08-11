@@ -43,6 +43,7 @@ import {
     upsertPushSubscription,
 } from '../server/opsStore.js';
 import { mountSyncRoutes } from '../server/syncRoutes.js';
+import { assessPronunciationAzure, synthesizeSpeech, TTS_VOICES } from '../server/ttsProviders.js';
 
 const app = express();
 
@@ -170,6 +171,64 @@ function safeRedirectUrl(rawUrl) {
         return fallback;
     }
 }
+
+// /api/tts?text=xin+chào&lang=vi&voice=google|azure-north|azure-south
+//
+// The Docker/`npm start` deployment gets this from server/server.js, but every
+// /api/* request behind vercel.json lands here — where the route didn't exist,
+// so audio 404'd on Vercel and the players fell silent. Cache-Control stands in
+// for server.js's object-storage cache: the URL is fully deterministic, so the
+// CDN can hold the clip.
+app.get('/api/tts', async (req, res) => {
+    const text = String(req.query.text || '').trim();
+    const lang = String(req.query.lang || 'vi');
+    const voice = TTS_VOICES.has(req.query.voice) ? req.query.voice : 'google';
+
+    if (!text || text.length > 200) {
+        return res.status(400).json({ error: 'text required (max 200 chars)' });
+    }
+
+    try {
+        const { buffer, provider, fellBack } = await synthesizeSpeech(text, lang, voice);
+        res.set({
+            'Content-Type': 'audio/mpeg',
+            'Cache-Control': 'public, max-age=86400',
+            'X-TTS-Provider': provider,
+            ...(fellBack ? { 'X-TTS-Fallback': 'google' } : {}),
+        });
+        return res.send(buffer);
+    } catch (err) {
+        console.error('[tts] synthesis failed:', err);
+        return res.status(502).json({ error: 'tts synthesis failed' });
+    }
+});
+
+// POST /api/pronunciation?text=<reference> — body: raw WAV (16kHz mono PCM).
+// Same serverless gap as /api/tts: the route only existed in server/server.js,
+// so tone speaking practice always got "Scoring unavailable" on Vercel. The
+// platform may hand us a pre-read Buffer body; express.raw covers the case
+// where it doesn't.
+const pronunciationRawBody = express.raw({ type: '*/*', limit: '10mb' });
+app.post(
+    '/api/pronunciation',
+    (req, res, next) => (Buffer.isBuffer(req.body) && req.body.length ? next() : pronunciationRawBody(req, res, next)),
+    async (req, res) => {
+        const referenceText = String(req.query.text || '').trim();
+        if (!referenceText || referenceText.length > 500) {
+            return res.status(400).json({ error: 'text query param required (max 500 chars)' });
+        }
+        if (!Buffer.isBuffer(req.body) || req.body.length < 1024) {
+            return res.status(400).json({ error: 'audio body required (raw WAV PCM 16kHz mono)' });
+        }
+        try {
+            const { status, body } = await assessPronunciationAzure(referenceText, req.body);
+            return res.status(status).json(body);
+        } catch (err) {
+            console.error('[pronunciation] request failed:', err);
+            return res.status(502).json({ error: 'pronunciation request failed' });
+        }
+    },
+);
 
 app.get('/api/mail/config', async (_req, res) => {
     res.json({

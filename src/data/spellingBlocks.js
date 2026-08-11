@@ -77,6 +77,7 @@ export const NUCLEI = [
     // centering diphthongs — the "open" form (no final) + the "closed" form (takes a final)
     { id: 'ia', name: 'i-a', hint: 'ee-uh (mía) · open', front: true, tone_at: 0, diph: true },
     { id: 'iê', name: 'i-ê', hint: 'ee-ay (tiền) · takes a final', front: true, tone_at: 1, diph: true },
+    { id: 'yê', name: 'y-ê', hint: 'the same sound as iê, spelled after a glide (chuyện) or alone (yêu)', front: true, tone_at: 1, diph: true },
     { id: 'ua', name: 'u-a', hint: 'oo-uh (mua) · open', front: false, tone_at: 0, diph: true },
     { id: 'uô', name: 'u-ô', hint: 'oo-oh (muốn) · takes a final', front: false, tone_at: 1, diph: true },
     { id: 'ưa', name: 'ư-a', hint: 'ưh-uh (mưa) · open', front: false, tone_at: 0, diph: true },
