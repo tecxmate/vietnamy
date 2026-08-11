@@ -43,7 +43,7 @@ import {
     upsertPushSubscription,
 } from '../server/opsStore.js';
 import { mountSyncRoutes } from '../server/syncRoutes.js';
-import { synthesizeSpeech, TTS_VOICES } from '../server/ttsProviders.js';
+import { assessPronunciationAzure, synthesizeSpeech, TTS_VOICES } from '../server/ttsProviders.js';
 
 const app = express();
 
@@ -202,6 +202,33 @@ app.get('/api/tts', async (req, res) => {
         return res.status(502).json({ error: 'tts synthesis failed' });
     }
 });
+
+// POST /api/pronunciation?text=<reference> — body: raw WAV (16kHz mono PCM).
+// Same serverless gap as /api/tts: the route only existed in server/server.js,
+// so tone speaking practice always got "Scoring unavailable" on Vercel. The
+// platform may hand us a pre-read Buffer body; express.raw covers the case
+// where it doesn't.
+const pronunciationRawBody = express.raw({ type: '*/*', limit: '10mb' });
+app.post(
+    '/api/pronunciation',
+    (req, res, next) => (Buffer.isBuffer(req.body) && req.body.length ? next() : pronunciationRawBody(req, res, next)),
+    async (req, res) => {
+        const referenceText = String(req.query.text || '').trim();
+        if (!referenceText || referenceText.length > 500) {
+            return res.status(400).json({ error: 'text query param required (max 500 chars)' });
+        }
+        if (!Buffer.isBuffer(req.body) || req.body.length < 1024) {
+            return res.status(400).json({ error: 'audio body required (raw WAV PCM 16kHz mono)' });
+        }
+        try {
+            const { status, body } = await assessPronunciationAzure(referenceText, req.body);
+            return res.status(status).json(body);
+        } catch (err) {
+            console.error('[pronunciation] request failed:', err);
+            return res.status(502).json({ error: 'pronunciation request failed' });
+        }
+    },
+);
 
 app.get('/api/mail/config', async (_req, res) => {
     res.json({

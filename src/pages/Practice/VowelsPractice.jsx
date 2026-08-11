@@ -240,6 +240,12 @@ export default function VowelsPractice({
         return () => window.removeEventListener('keydown', onKey);
     }, [section, feedback, selected, handleCheck, handleContinue, showSummary]);
 
+    // Completion is a side effect of reaching the summary — an effect, not a
+    // render-time call, so ProgressContext isn't updated mid-render.
+    useEffect(() => {
+        if (showSummary) markComplete();
+    }, [showSummary, markComplete]);
+
     // ════════════════════════════════════════════════════════════════
     // RENDER
     // ════════════════════════════════════════════════════════════════
@@ -247,7 +253,6 @@ export default function VowelsPractice({
     // Summary
     if (showSummary) {
         const pct = questionCount > 0 ? Math.round((score / questionCount) * 100) : 0;
-        markComplete();
         let message = 'Keep practicing!';
         if (pct >= 90) message = 'Vowel master! 🎯';
         else if (pct >= 70) message = 'Great ear for vowels! 💪';

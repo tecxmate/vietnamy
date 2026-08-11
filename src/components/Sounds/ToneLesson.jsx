@@ -467,27 +467,36 @@ function SpeakStep({ tones, onDone }) {
                     setScoring(false);
                     return;
                 }
-                // Track the learner's own pitch shape (runs locally, no network).
-                let userContour = null;
-                try { userContour = pitchContourFromSamples(r.samples, r.sampleRate); } catch { /* ignore */ }
-                const res = await fetch(`/api/pronunciation?text=${encodeURIComponent(example.word)}`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'audio/wav' },
-                    body: blob,
-                });
-                if (!res.ok) throw new Error(`HTTP ${res.status}`);
-                const data = await res.json();
-                const recognized = (data.recognized || '').trim();
-
                 // Verdict comes from the learner's actual PITCH SHAPE, not Azure's
                 // speech recognition: vi-VN STT is too lenient about tone (it will
                 // "hear" the right word from a wrong tone). We classify the produced
                 // pitch contour against the 6 tone templates and check whether it
-                // best matches the target. Azure's transcript is kept as a hint only.
+                // best matches the target — all locally, no network.
+                let userContour = null;
+                try { userContour = pitchContourFromSamples(r.samples, r.sampleRate); } catch { /* ignore */ }
                 let ranking = null;
                 if (userContour) {
                     try { ranking = classifyContour(userContour, TONE_LIST); } catch { /* ignore */ }
                 }
+
+                // Azure's transcript is a hint only, so its failure must never
+                // discard a take the local classifier can already score.
+                let recognized = '';
+                let sttFailed = false;
+                try {
+                    const res = await fetch(`/api/pronunciation?text=${encodeURIComponent(example.word)}`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'audio/wav' },
+                        body: blob,
+                    });
+                    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                    const data = await res.json();
+                    recognized = (data.recognized || '').trim();
+                } catch (err) {
+                    sttFailed = true;
+                    console.warn('Pronunciation hint unavailable:', err.message);
+                }
+
                 let verdict = 'unclear'; // 'correct' | 'wrong' | 'unclear'
                 let predictedId = null;
                 let matchScore = null;
@@ -501,10 +510,15 @@ function SpeakStep({ tones, onDone }) {
                     // Huyền/Nặng genuinely overlap) so we're strict but not punishing.
                     verdict = (rank === 0 || (rank === 1 && tEntry.dist - top.dist <= 0.4 && tEntry.score >= 65))
                         ? 'correct' : 'wrong';
-                } else {
+                } else if (recognized) {
                     // No usable pitch (too quiet / no voicing) — fall back to STT match.
                     const norm = (s) => s.toLowerCase().replace(/[.!?,]/g, '').trim();
-                    if (recognized) verdict = norm(recognized) === norm(example.word) ? 'correct' : 'wrong';
+                    verdict = norm(recognized) === norm(example.word) ? 'correct' : 'wrong';
+                } else if (sttFailed) {
+                    // Nothing to judge with: no voiced pitch AND no transcript.
+                    setError('Scoring unavailable. Check your connection and retry.');
+                    setScoring(false);
+                    return;
                 }
                 setResult({ recognized, userContour, verdict, predictedId, matchScore });
                 if (verdict === 'correct') playSuccess();
