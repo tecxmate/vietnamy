@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
 
 test('record retention mockups', async ({ page }) => {
   // Navigate to app
@@ -41,7 +41,7 @@ test('record retention mockups', async ({ page }) => {
       }
       
       const checkBtn = await page.$('button:has-text("CHECK")');
-      const contBtn = await page.$('button:has-text("CONTINUE")');
+      await page.$('button:has-text("CONTINUE")');
       const passBtn = await page.$('button:has-text("SIMULATE PASS")');
       
       if (passBtn && await passBtn.isVisible()) {

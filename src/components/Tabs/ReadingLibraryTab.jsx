@@ -554,7 +554,7 @@ function ArticleReaderView({ article, onBack }) {
             const savedLang = localStorage.getItem('vnme_reading_translation_lang');
             if (savedLang === 'en' || savedLang === 'zh-s' || savedLang === 'zh-t') return savedLang;
             if (savedLang === 'zh') return 'zh-s';
-        } catch { }
+        } catch { /* unreadable storage — fall through to default */ }
         return 'en';
     });
     const [copiedCode, setCopiedCode] = useState(false);
@@ -595,7 +595,7 @@ function ArticleReaderView({ article, onBack }) {
         setTranslationLang(lang);
         try {
             localStorage.setItem('vnme_reading_translation_lang', lang);
-        } catch { }
+        } catch { /* storage full/blocked — selection just won't persist */ }
     };
 
     return (

@@ -67,26 +67,26 @@ for (let i = endIdx; i < dbContent.length; i++) {
     }
 }
 
-const lessonDefsStr = dbContent.slice(startIdx + startMarker.length - 1, endIdx);
+const _lessonDefsStr = dbContent.slice(startIdx + startMarker.length - 1, endIdx);
 
 // Parse it (this is JS, not JSON, so we need to eval carefully)
 // For safety, we'll use a regex-based approach to extract and enhance
 
 // Stats
-let wordsEnriched = 0;
-let sentencesEnriched = 0;
-let wordsNotFound = 0;
-let sentencesNotFound = 0;
+let _wordsEnriched = 0;
+let _sentencesEnriched = 0;
+let _wordsNotFound = 0;
+let _sentencesNotFound = 0;
 
 /**
  * Enrich a word object with curriculum metadata
  */
-function enrichWord(word) {
+function _enrichWord(word) {
     const key = word.vi.toLowerCase().trim();
     const match = vocabByVi.get(key);
 
     if (match) {
-        wordsEnriched++;
+        _wordsEnriched++;
         return {
             ...word,
             // Add curriculum metadata
@@ -95,7 +95,7 @@ function enrichWord(word) {
             ...(match.hasImage && !word.hasImage ? { hasImage: match.hasImage } : {}),
         };
     } else {
-        wordsNotFound++;
+        _wordsNotFound++;
         return word;
     }
 }
@@ -103,12 +103,12 @@ function enrichWord(word) {
 /**
  * Enrich a sentence object with curriculum metadata
  */
-function enrichSentence(sentence) {
+function _enrichSentence(sentence) {
     const key = sentence.vi.toLowerCase().trim();
     const match = sentencesByVi.get(key);
 
     if (match) {
-        sentencesEnriched++;
+        _sentencesEnriched++;
         return {
             ...sentence,
             // Add curriculum metadata
@@ -118,7 +118,7 @@ function enrichSentence(sentence) {
             ...(match.tokens ? { tokens: match.tokens } : {}),
         };
     } else {
-        sentencesNotFound++;
+        _sentencesNotFound++;
         return sentence;
     }
 }

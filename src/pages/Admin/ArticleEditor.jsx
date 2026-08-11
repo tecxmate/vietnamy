@@ -31,7 +31,7 @@ const ArticleEditor = () => {
     const [articles, setArticles] = useState(() => loadArticles() || []);
     const [selectedIndex, setSelectedIndex] = useState(null);
     const [filterCategory, setFilterCategory] = useState('All');
-    const [filterLevel, setFilterLevel] = useState('All');
+    const [filterLevel] = useState('All');
     const [searchQuery, setSearchQuery] = useState('');
     const [hasChanges, setHasChanges] = useState(false);
     const [saved, setSaved] = useState(false);

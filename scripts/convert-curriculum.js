@@ -10,7 +10,7 @@
  * Output: src/data/curricula/{mode}.json
  */
 
-import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'fs';
+import { writeFileSync, mkdirSync, existsSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import readXlsxFile from 'read-excel-file/node';
@@ -55,7 +55,7 @@ async function sheetToJson(sheetName) {
 }
 
 // Load all sheets
-const courses = await sheetToJson('Courses');
+await sheetToJson('Courses'); // fetched for completeness; not used in this pass
 const units = await sheetToJson('Units');
 const lessons = await sheetToJson('Lessons');
 const grammarTags = await sheetToJson('GrammarTags');
@@ -70,8 +70,6 @@ console.log(`Loaded: ${units.length} units, ${lessons.length} lessons, ${vocabul
 
 // Build lookup maps
 const unitMap = new Map(units.map(u => [u.unit_id, u]));
-const lessonMap = new Map(lessons.map(l => [l.lesson_id, l]));
-const grammarTagMap = new Map(grammarTags.map(g => [g.tag_id, g]));
 
 // Group vocab by lesson
 const vocabByLesson = new Map();
@@ -128,7 +126,8 @@ const EMOJI_MAP = {
     'rau': '🥬', 'cà chua': '🍅', 'khoai': '🥔',
     // Colors
     'màu': '🎨', 'đỏ': '🔴', 'xanh': '🟢', 'trắng': '⚪', 'đen': '⚫',
-    'vàng': '🟡', 'hồng': '🩷', 'tím': '🟣', 'cam': '🟠',
+    // ('cam' the color collides with 'cam' the fruit above — the fruit wins)
+    'vàng': '🟡', 'hồng': '🩷', 'tím': '🟣',
     // Transport
     'xe': '🚗', 'xe máy': '🏍️', 'xe ôm': '🏍️', 'taxi': '🚕', 'xe buýt': '🚌',
     'máy bay': '✈️', 'tàu': '🚢', 'xe đạp': '🚲',
@@ -141,7 +140,8 @@ const EMOJI_MAP = {
     // Body
     'đầu': '🗣️', 'mắt': '👁️', 'mũi': '👃', 'miệng': '👄', 'tai': '👂', 'tay': '✋', 'chân': '🦶',
     // Time
-    'giờ': '🕐', 'phút': '⏱️', 'ngày': '📅', 'tuần': '📆', 'tháng': '🗓️', 'năm': '📅',
+    // ('năm' the year collides with 'năm' = five above — the number wins)
+    'giờ': '🕐', 'phút': '⏱️', 'ngày': '📅', 'tuần': '📆', 'tháng': '🗓️',
     // Weather
     'trời': '🌤️', 'mưa': '🌧️', 'nắng': '☀️', 'gió': '💨', 'lạnh': '🥶', 'nóng': '🥵',
     // Actions
@@ -151,7 +151,8 @@ const EMOJI_MAP = {
     // Misc
     'tiền': '💵', 'điện thoại': '📱', 'wifi': '📶', 'chìa khóa': '🔑',
     'phòng': '🚪', 'giường': '🛏️', 'nhà vệ sinh': '🚽',
-    'vâng': '✅', 'dạ': '✅', 'không': '❌', 'có': '✅',
+    // ('không' = no collides with 'không' = zero above — zero wins)
+    'vâng': '✅', 'dạ': '✅', 'có': '✅',
 };
 
 function getEmoji(viWord) {

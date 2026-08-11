@@ -122,8 +122,8 @@ const parseVietPhap = (text) => {
             if (currentSection) sections.push(currentSection);
             const raw_meaning = line.slice(1).trim();
             // Match leading (word_type), {word_type}, or [word_type]
-            const typeMatch = raw_meaning.match(/^(\([^)]+\)|\{[^}]+\}|\[[^\]]+\])\s*/);
-            const wordType = typeMatch ? typeMatch[1].replace(/^[({\[]|[)}\]]$/g, '').trim() : null;
+            const typeMatch = raw_meaning.match(/^(\([^)]+\)|\{[^}]+\}|[[][^\]]+\])\s*/);
+            const wordType = typeMatch ? typeMatch[1].replace(/^[({[]|[)}\]]$/g, '').trim() : null;
             const definition = typeMatch ? raw_meaning.slice(typeMatch[0].length).trim() : raw_meaning;
             currentSection = { wordType, meaning: definition, examples: [] };
         } else if (line.startsWith('= ') || line.startsWith('=')) {
@@ -470,7 +470,7 @@ const DictionaryTab = ({ pendingInput, clearPendingInput, onNavigateToLibrary })
                 // To avoid an infinite loop, only fetch if the current localTranslation language
                 // doesn't match the new target language, or if it isn't set yet.
                 // We accomplish this by always firing translateLocally which starts by clearing state.
-                const { tl } = getTranslateLangs();
+                getTranslateLangs();
                 if (!localTranslation || (localTranslation && !translating)) {
                     // We use a small ref hack or rely on `translateLocally` clearing state to prevent loops.
                     // A safer way is checking if a fresh translation is needed:
