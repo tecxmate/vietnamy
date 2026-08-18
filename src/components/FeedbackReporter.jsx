@@ -4,9 +4,14 @@ import { useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
 import { getClientLogs } from '../lib/clientDiagnostics';
+import { captureScreenshot, uploadScreenshot } from '../lib/screenshot';
 import './FeedbackReporter.css';
 
 const SHAKE_ENABLED = import.meta.env.VITE_FEEDBACK_SHAKE_ENABLED === 'true';
+// Rasterising the DOM costs a few hundred ms of main thread once per report.
+// Kept behind a flag so it can be switched off without a code change if it ever
+// regresses on a low-end device.
+const SCREENSHOT_ENABLED = import.meta.env.VITE_FEEDBACK_SCREENSHOT_ENABLED !== 'false';
 const BUTTON_SIZE = 44;
 const EDGE_GAP = 12;
 const BUTTON_POSITION_KEY = 'vnme_feedback_button_position';
@@ -131,6 +136,8 @@ export default function FeedbackReporter() {
   const [buttonPosition, setButtonPosition] = React.useState(readSavedButtonPosition);
   const [isDraggingButton, setIsDraggingButton] = React.useState(false);
   const [openContext, setOpenContext] = React.useState(null);
+  const [screenshotState, setScreenshotState] = React.useState('idle');
+  const screenshotRef = React.useRef(null);
   const lastShakeRef = React.useRef(0);
   const dragRef = React.useRef(null);
   const buttonPositionRef = React.useRef(buttonPosition);
@@ -139,6 +146,8 @@ export default function FeedbackReporter() {
     setDescription('');
     setSubmitState('idle');
     setMessage('');
+    screenshotRef.current = null;
+    setScreenshotState('idle');
   }, []);
 
   const openReporter = React.useCallback((trigger = 'button') => {
@@ -146,6 +155,16 @@ export default function FeedbackReporter() {
     resetDraft();
     setOpenContext(buildOpenContext(trigger, buttonPositionRef.current));
     setIsOpen(true);
+
+    // Capture in the background so the modal opens instantly. The reporter's own
+    // chrome is excluded from the raster, so the shot still shows the screen the
+    // user was looking at when they hit the button.
+    if (!SCREENSHOT_ENABLED) return;
+    setScreenshotState('capturing');
+    captureScreenshot().then(blob => {
+      screenshotRef.current = blob;
+      setScreenshotState(blob ? 'ready' : 'unavailable');
+    });
   }, [isOpen, resetDraft]);
 
   const closeReporter = React.useCallback(() => {
@@ -287,6 +306,10 @@ export default function FeedbackReporter() {
     setSubmitState('submitting');
     setMessage('');
 
+    // Uploaded at submit time rather than at capture time so abandoned drafts
+    // never cost an upload.
+    const screenshot = await uploadScreenshot(screenshotRef.current);
+
     const payload = {
       kind: 'bug',
       severity: 'med',
@@ -297,12 +320,13 @@ export default function FeedbackReporter() {
       userId: user?.id || 'anonymous',
       pathname: `${location.pathname}${location.search || ''}`,
       viewport: getViewport(),
-      screenshotUrl: '',
+      screenshotUrl: screenshot?.url || '',
+      screenshotKey: screenshot?.key || '',
       clientLogs: getClientLogs(),
       metadata: {
         ...buildMetadata(language),
-        screenshotAttached: false,
-        screenshotCapture: 'disabled-client-performance',
+        screenshotAttached: Boolean(screenshot),
+        screenshotCapture: SCREENSHOT_ENABLED ? screenshotState : 'disabled',
         openContext,
       },
     };
@@ -316,8 +340,8 @@ export default function FeedbackReporter() {
       const result = await response.json().catch(() => ({}));
       if (!response.ok) throw new Error(result.error || 'Could not submit report.');
       setSubmitState('sent');
-      setMessage('Report sent.');
-      window.setTimeout(() => setIsOpen(false), 900);
+      setMessage(result?.jira?.key ? `Report sent — tracked as ${result.jira.key}.` : 'Report sent.');
+      window.setTimeout(() => setIsOpen(false), 1200);
     } catch (error) {
       setSubmitState('error');
       setMessage(error?.message || 'Could not submit report.');
@@ -363,6 +387,14 @@ export default function FeedbackReporter() {
                 rows={5}
               />
             </label>
+
+            {SCREENSHOT_ENABLED && screenshotState !== 'idle' && (
+              <p className="feedback-note">
+                {screenshotState === 'capturing' && 'Capturing a screenshot of this screen…'}
+                {screenshotState === 'ready' && 'A screenshot of this screen will be attached.'}
+                {screenshotState === 'unavailable' && 'Screenshot unavailable — sending the page details only.'}
+              </p>
+            )}
 
             {message && <div className={`feedback-message feedback-message-${submitState}`}>{message}</div>}
 
