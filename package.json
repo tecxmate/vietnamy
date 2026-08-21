@@ -27,6 +27,7 @@
     "feedback:pending-approval": "node scripts/feedback-agent-pipeline.mjs pending-approval",
     "tts:migrate:r2": "node scripts/migrate-tts-supabase-to-r2.mjs",
     "validate:spell": "node scripts/validate-spell-lexicon.mjs",
+    "validate:numbers": "node scripts/validate-numbers.mjs",
     "test:smoke": "node scripts/smoke-routes.mjs",
     "spell:lexicon": "node scripts/gen-vn-syllables.mjs",
     "spell:audio:list": "node scripts/gen-audio-list.mjs",

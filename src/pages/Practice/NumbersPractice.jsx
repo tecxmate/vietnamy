@@ -7,98 +7,13 @@ import './NumbersPractice.css';
 import { playSuccess, playError } from '../../utils/sound';
 import SoundButton from '../../components/SoundButton';
 import './PracticeShared.css'; // Add shared layout
-
-// ─── Vietnamese Number Engine ──────────────────────────────────────
-const BASIC = ['không', 'một', 'hai', 'ba', 'bốn', 'năm', 'sáu', 'bảy', 'tám', 'chín'];
-
-/**
- * Convert a number (0–999) to Vietnamese string.
- * Handles special compound rules for 1, 4, 5 after tens.
- */
-function numberToVietnamese(n) {
-    if (n < 0 || n > 999) return '';
-    if (n <= 10) {
-        if (n === 10) return 'mười';
-        return BASIC[n];
-    }
-
-    // 11–19
-    if (n >= 11 && n <= 19) {
-        const ones = n % 10;
-        if (ones === 0) return 'mười';
-        if (ones === 1) return 'mười một';
-        if (ones === 5) return 'mười lăm';
-        return `mười ${BASIC[ones]}`;
-    }
-
-    // 20–99
-    if (n >= 20 && n <= 99) {
-        const tens = Math.floor(n / 10);
-        const ones = n % 10;
-        let result = `${BASIC[tens]} mươi`;
-        if (ones === 0) return result;
-        if (ones === 1) return `${result} mốt`;
-        if (ones === 4) return `${result} tư`;
-        if (ones === 5) return `${result} lăm`;
-        return `${result} ${BASIC[ones]}`;
-    }
-
-    // 100–999
-    if (n >= 100 && n <= 999) {
-        const hundreds = Math.floor(n / 100);
-        const remainder = n % 100;
-        let result = `${BASIC[hundreds]} trăm`;
-        if (remainder === 0) return result;
-        if (remainder < 10) return `${result} lẻ ${BASIC[remainder]}`;
-        return `${result} ${numberToVietnamese(remainder)}`;
-    }
-
-    return '';
-}
-
-/**
- * Decompose a number into its Vietnamese parts for the pattern builder.
- * Returns array of { digit, word, isSpecial, rule }
- */
-function decomposeNumber(n) {
-    if (n <= 10) {
-        return [{ digit: String(n), word: numberToVietnamese(n), isSpecial: false }];
-    }
-
-    if (n >= 11 && n <= 19) {
-        const ones = n % 10;
-        const parts = [{ digit: '10', word: 'mười', isSpecial: false }];
-        if (ones > 0) {
-            let word = BASIC[ones];
-            let rule = null;
-            let isSpecial = false;
-            if (ones === 5) { word = 'lăm'; rule = 'năm → lăm after tens'; isSpecial = true; }
-            parts.push({ digit: String(ones), word, isSpecial, rule });
-        }
-        return parts;
-    }
-
-    if (n >= 20 && n <= 99) {
-        const tens = Math.floor(n / 10);
-        const ones = n % 10;
-        const parts = [
-            { digit: String(tens), word: BASIC[tens], isSpecial: false },
-            { digit: '×10', word: 'mươi', isSpecial: true, rule: 'mười → mươi in compounds' },
-        ];
-        if (ones > 0) {
-            let word = BASIC[ones];
-            let rule = null;
-            let isSpecial = false;
-            if (ones === 1) { word = 'mốt'; rule = 'một → mốt after tens'; isSpecial = true; }
-            else if (ones === 4) { word = 'tư'; rule = 'bốn → tư after tens'; isSpecial = true; }
-            else if (ones === 5) { word = 'lăm'; rule = 'năm → lăm after tens'; isSpecial = true; }
-            parts.push({ digit: String(ones), word, isSpecial, rule });
-        }
-        return parts;
-    }
-
-    return [{ digit: String(n), word: numberToVietnamese(n), isSpecial: false }];
-}
+import {
+    numberToVietnamese,
+    decomposeNumber,
+    formatVND,
+    priceToVietnamese,
+    PRICE_TIERS,
+} from '../../lib/vietnameseNumbers';
 
 // ─── Helpers ───────────────────────────────────────────────────────
 const shuffle = (arr) => [...arr].sort(() => Math.random() - 0.5);
@@ -154,6 +69,27 @@ function buildChallenges(session) {
     for (let i = 0; i < listenCount; i++) {
         const n = Math.floor(Math.random() * 100); // 0–99
         qs.push({ type: 'listen-type', number: n, correctAnswer: String(n), vnWord: numberToVietnamese(n), prompt: 'Listen and type the number' });
+    }
+
+    // Type 4: Prices — the reason this module exists. Every price in Vietnam is
+    // in thousands, so a learner who can only count to 99 can't order lunch.
+    // Tiers widen with the session: street food first, then everyday, then big.
+    const priceTiers = [PRICE_TIERS.street, PRICE_TIERS.everyday, PRICE_TIERS.big];
+    const tierCount = Math.min(1 + Math.floor(session / 2), priceTiers.length);
+    const pricePool = shuffle(priceTiers.slice(0, tierCount).flat());
+    const priceCount = Math.min(3 + session, 6);
+    for (let i = 0; i < priceCount && i < pricePool.length; i++) {
+        const dong = pricePool[i];
+        const distractors = shuffle(pricePool.filter(p => p !== dong)).slice(0, 3);
+        const options = shuffle([dong, ...distractors].map(formatVND));
+        qs.push({
+            type: 'mc-price',
+            number: dong,
+            vnWord: priceToVietnamese(dong),
+            correctAnswer: formatVND(dong),
+            options,
+            prompt: 'How much is this?',
+        });
     }
 
     return shuffle(qs);
@@ -266,7 +202,7 @@ export default function NumbersPractice({ stages: allowedStages = [1, 2, 3], tit
         if (!q) return;
         let isCorrect = false;
 
-        if (q.type === 'mc-vn' || q.type === 'mc-num') {
+        if (q.type === 'mc-vn' || q.type === 'mc-num' || q.type === 'mc-price') {
             isCorrect = selectedOption === q.correctAnswer;
         } else if (q.type === 'listen-type') {
             isCorrect = typedAnswer.trim() === q.correctAnswer;
@@ -617,6 +553,38 @@ export default function NumbersPractice({ stages: allowedStages = [1, 2, 3], tit
                                                 className={`challenge-option ${cls}`}
                                                 onClick={() => challengeFeedback === 'idle' && setSelectedOption(opt)}
                                             >{opt}</button>
+                                        );
+                                    })}
+                                </div>
+                            </>
+                        )}
+
+                        {/* Price → pick the amount written the Vietnamese way */}
+                        {currentChallenge.type === 'mc-price' && (
+                            <>
+                                <div className="challenge-number" style={{ fontSize: '1.6rem', lineHeight: 1.4 }}>
+                                    <button
+                                        className="practice-audio-btn"
+                                        onClick={() => playWord(currentChallenge.vnWord)}
+                                        style={{ display: 'inline-flex', width: '48px', height: '48px', marginRight: '12px', verticalAlign: 'middle', margin: 0 }}
+                                    >
+                                        <Volume2 size={22} />
+                                    </button>
+                                    {currentChallenge.vnWord}
+                                </div>
+                                <div className="challenge-options">
+                                    {currentChallenge.options.map((opt, i) => {
+                                        let cls = '';
+                                        if (challengeFeedback !== 'idle') {
+                                            if (opt === currentChallenge.correctAnswer) cls = 'correct-highlight';
+                                            else if (opt === selectedOption) cls = 'wrong';
+                                            else cls = 'disabled';
+                                        } else if (opt === selectedOption) cls = 'selected';
+                                        return (
+                                            <button key={i}
+                                                className={`challenge-option ${cls}`}
+                                                onClick={() => challengeFeedback === 'idle' && setSelectedOption(opt)}
+                                            >{opt}₫</button>
                                         );
                                     })}
                                 </div>
