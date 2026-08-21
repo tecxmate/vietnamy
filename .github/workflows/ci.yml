@@ -47,6 +47,9 @@ jobs:
       - name: Validate spelling lexicon
         run: npm run validate:spell
 
+      - name: Validate grammar quizzes
+        run: npm run validate:grammar
+
       - name: Validate Vietnamese numbers
         run: npm run validate:numbers
 
