@@ -6,7 +6,8 @@
 #
 #   lint       — zero-error policy repo-wide (compiler-era React diagnostics
 #                are warnings; see eslint.config.js)
-#   validate   — curriculum schema + the spelling lexicon⟷rules contract
+#   validate   — curriculum schema, the spelling lexicon⟷rules contract, and
+#                the spoken-number rules
 #   build      — the production bundle must compile
 #   smoke      — the built app boots; every key route renders in a real
 #                Chromium with no page errors (scripts/smoke-routes.mjs)
@@ -48,6 +49,9 @@ jobs:
 
       - name: Validate grammar quizzes
         run: npm run validate:grammar
+
+      - name: Validate Vietnamese numbers
+        run: npm run validate:numbers
 
       - name: Build
         run: npx vite build
