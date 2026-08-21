@@ -39,6 +39,7 @@ const CONTENT_TYPES = {
 // beginner isn't forced through phonics before real words. Each links to its
 // existing /practice mini-game.
 const SOUND_MODULES = [
+    { titleKey: 'library_snd_spell', route: '/spell', groupKey: 'library_snd_group_spell' },
     { titleKey: 'library_snd_alphabet', route: '/practice/alphabet', groupKey: 'library_snd_group_letters' },
     { titleKey: 'library_snd_vowels_basic', route: '/practice/vowels-single-1', groupKey: 'library_snd_group_letters' },
     { titleKey: 'library_snd_vowels_special', route: '/practice/vowels-single-2', groupKey: 'library_snd_group_letters' },
