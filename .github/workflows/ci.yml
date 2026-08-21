@@ -46,6 +46,9 @@ jobs:
       - name: Validate spelling lexicon
         run: npm run validate:spell
 
+      - name: Validate grammar quizzes
+        run: npm run validate:grammar
+
       - name: Build
         run: npx vite build
 

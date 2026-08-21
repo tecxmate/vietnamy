@@ -18,16 +18,40 @@ let _loadPromise = null;
 function _ensureLoaded() {
     if (_data) return Promise.resolve(_data);
     if (!_loadPromise) {
-        _loadPromise = import('../../content/grammar.json').then(mod => {
-            _data = mod.default;
-            return _data;
-        });
+        // No import attribute here: Vite bundles a bare dynamic JSON import as a
+        // chunk, but treats `with { type: 'json' }` as an external URL that the
+        // SPA fallback then answers with index.html. Node-side callers seed the
+        // data through primeGrammarModules() instead.
+        _loadPromise = import('../../content/grammar.json')
+            .then(mod => {
+                _data = mod.default;
+                return _data;
+            })
+            .catch(err => {
+                // A failed chunk fetch used to surface as an unhandled rejection
+                // and a blank grammar screen. Report it, forget the promise so a
+                // later navigation can retry, and let callers see null.
+                console.warn('[grammar] bundle failed to load:', err?.message || err);
+                _loadPromise = null;
+                return null;
+            });
     }
     return _loadPromise;
 }
 
 // Start loading immediately (non-blocking) so data is ready by the time user navigates
 _ensureLoaded();
+
+/**
+ * Seed the module with an already-parsed grammar bundle, skipping the dynamic
+ * import. Exists so Node tooling (scripts/validate-grammar-exercises.mjs) can
+ * exercise the real generator — the browser never needs it.
+ */
+export function primeGrammarModules(data) {
+    _data = data;
+    _loadPromise = Promise.resolve(data);
+    return _data;
+}
 
 /** Async accessor — call from useEffect/event handlers */
 export async function loadGrammarModules() {
@@ -181,6 +205,36 @@ const GRAMMAR_SESSION_PROFILES = [
 ];
 
 /**
+ * Real sentences to use as wrong answers, for units too small to supply their
+ * own. 57 of the 394 units carry fewer than 4 examples — most of them in A1,
+ * where beginners start — so their quizzes used to pad the options with
+ * "Not: <the answer reversed>", which is nonsense, repeats itself, and hands
+ * the answer to anyone who can spot the odd one out.
+ *
+ * Siblings in the same module come first (same topic, same difficulty), then
+ * the rest of the level. Never the unit's own sentences.
+ */
+function siblingSentences(unitId, module, level) {
+    const pool = [];
+    const seen = new Set();
+    const collect = (units) => {
+        for (const u of units || []) {
+            if (u.id === unitId) continue;
+            for (const ex of u.examples || []) {
+                if (!ex?.vi || !ex?.en || seen.has(ex.vi)) continue;
+                seen.add(ex.vi);
+                pool.push(ex);
+            }
+        }
+    };
+    collect(module?.units);
+    for (const mod of level?.modules || []) {
+        if (mod.id !== module?.id) collect(mod.units);
+    }
+    return pool;
+}
+
+/**
  * Generate exercises for a grammar unit from its examples + exercise_types.
  * Session parameter controls exercise type profile (0 = recognition, 1 = production).
  */
@@ -188,9 +242,13 @@ export function generateExercisesForUnit(unitId, _count = 6, session = 0) {
     const result = getUnit(unitId);
     if (!result) return [];
 
-    const { unit } = result;
+    const { unit, module, level } = result;
     const examples = unit.examples || [];
     if (examples.length === 0) return [];
+
+    // Own examples first; siblings only fill the gap when there aren't enough
+    // to make three believable wrong answers.
+    const distractorPool = examples.length >= 4 ? examples : [...examples, ...siblingSentences(unitId, module, level)];
 
     const profile = GRAMMAR_SESSION_PROFILES[Math.min(session, GRAMMAR_SESSION_PROFILES.length - 1)];
     const exerciseTypes = profile.types;
@@ -204,7 +262,7 @@ export function generateExercisesForUnit(unitId, _count = 6, session = 0) {
         const ex = examples[i % examples.length];
         const exType = exerciseTypes[i % exerciseTypes.length];
 
-        const exercise = buildExercise(ex, exType, examples, unit);
+        const exercise = buildExercise(ex, exType, distractorPool, unit);
         if (exercise) exercises.push(exercise);
     }
 
@@ -217,6 +275,43 @@ export function generateExercisesForUnit(unitId, _count = 6, session = 0) {
     return exercises.slice(0, effectiveCount);
 }
 
+/**
+ * Wrong answers for a multiple-choice question: real sentences from the pool,
+ * never equal to the answer and never equal to each other. The source bank
+ * repeats some sentences across units ("Tôi biết nấu ăn", "Really?"), so
+ * de-duplicating by value matters — a question that lists the same wrong
+ * answer twice is both sloppy and easier to guess.
+ */
+/**
+ * Some examples came out of the source scrape mangled — a whole NOTE paragraph
+ * in the translation, punctuation noise ("?!!! Where?!!"), a fragment of a
+ * lifted table ("6,000 6 ="). About 5% of the bank. They can't all be repaired
+ * automatically, but they can be kept out of the answer list when a clean
+ * sentence is available.
+ */
+function looksMangled(text) {
+    return !text
+        || text.length > 110
+        || /NOTE\b/i.test(text)
+        || /[?!]{3,}/.test(text)
+        || /\d\s*=|=\s*\d/.test(text)
+        || /[\t\n]/.test(text);
+}
+
+function pickDistractors(pool, field, answer, count = 3) {
+    const seen = new Set([answer]);
+    const clean = [];
+    const rough = [];
+    for (const item of [...pool].sort(() => Math.random() - 0.5)) {
+        const value = item?.[field];
+        if (!value || seen.has(value)) continue;
+        seen.add(value);
+        (looksMangled(value) ? rough : clean).push(value);
+    }
+    // Clean sentences first; the rough ones only fill a gap.
+    return [...clean, ...rough].slice(0, count);
+}
+
 function buildExercise(example, type, allExamples, unit) {
     const { vi, en } = example;
     if (!vi || !en) return null;
@@ -224,16 +319,9 @@ function buildExercise(example, type, allExamples, unit) {
     switch (type) {
         case 'mcq_translate_to_en': {
             // Show Vietnamese, pick correct English
-            const distractors = allExamples
-                .filter(e => e.en && e.en !== en)
-                .map(e => e.en)
-                .sort(() => Math.random() - 0.5)
-                .slice(0, 3);
-            // Pad with generic distractors if not enough
-            while (distractors.length < 3) {
-                distractors.push(`Not: ${en.split(' ').reverse().join(' ')}`);
-            }
+            const distractors = pickDistractors(allExamples, 'en', en);
             const options = [en, ...distractors].sort(() => Math.random() - 0.5);
+            if (options.length < 2) return null; // nothing to choose between
             return {
                 exercise_type: 'mcq_translate_to_en',
                 prompt: { sentence_vi: vi, answer_en: en, options_en: options },
@@ -241,15 +329,9 @@ function buildExercise(example, type, allExamples, unit) {
         }
 
         case 'mcq_translate_to_vi': {
-            const distractors = allExamples
-                .filter(e => e.vi && e.vi !== vi)
-                .map(e => e.vi)
-                .sort(() => Math.random() - 0.5)
-                .slice(0, 3);
-            while (distractors.length < 3) {
-                distractors.push(`Không phải: ${vi.split(' ').slice(0, 3).join(' ')}...`);
-            }
+            const distractors = pickDistractors(allExamples, 'vi', vi);
             const options = [vi, ...distractors].sort(() => Math.random() - 0.5);
+            if (options.length < 2) return null; // nothing to choose between
             return {
                 exercise_type: 'mcq_translate_to_vi',
                 prompt: { sentence_en: en, answer_vi: vi, options_vi: options },
@@ -278,15 +360,9 @@ function buildExercise(example, type, allExamples, unit) {
 
         case 'listen_choose': {
             // Play Vietnamese audio, pick the correct translation
-            const distractors = allExamples
-                .filter(e => e.en && e.en !== en)
-                .map(e => e.en)
-                .sort(() => Math.random() - 0.5)
-                .slice(0, 3);
-            while (distractors.length < 3) {
-                distractors.push(`Not: ${en.split(' ').reverse().join(' ')}`);
-            }
+            const distractors = pickDistractors(allExamples, 'en', en);
             const options = [en, ...distractors].sort(() => Math.random() - 0.5);
+            if (options.length < 2) return null; // nothing to choose between
             return {
                 exercise_type: 'listen_choose',
                 prompt: { audio_vi: vi, answer_en: en, options_en: options },
