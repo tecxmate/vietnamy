@@ -203,6 +203,41 @@ app.get('/api/tts', async (req, res) => {
     }
 });
 
+// /api/translate?text=…&sl=vi&tl=en
+//
+// Same serverless gap as /api/tts (issue #49): the route existed only in
+// server/server.js, so tapping "translate" in a reading returned 404 on every
+// Vercel deploy. Ported verbatim — it calls Google's public endpoint and needs
+// no dictionary DB and no API key, so unlike the dictionary routes it carries
+// no architecture decision.
+app.get('/api/translate', async (req, res) => {
+    const text = String(req.query.text || '').trim();
+    const sl = String(req.query.sl || 'vi');
+    const tl = String(req.query.tl || 'en');
+    if (!text || text.length > 500) {
+        return res.status(400).json({ error: 'text required (max 500 chars)' });
+    }
+
+    const url = `https://translate.googleapis.com/translate_a/single?client=gtx`
+        + `&sl=${encodeURIComponent(sl)}&tl=${encodeURIComponent(tl)}&dt=t&q=${encodeURIComponent(text)}`;
+
+    try {
+        const response = await fetch(url, {
+            headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36' },
+        });
+        if (!response.ok) {
+            return res.status(502).json({ error: 'Translation upstream error' });
+        }
+        const data = await response.json();
+        // [[["translated","source",null,null,10]],null,"vi",…]
+        const translated = (data[0] || []).map(seg => seg[0]).join('');
+        return res.json({ translated, source: text, sl: data[2] || sl, tl });
+    } catch (err) {
+        console.error('[translate] request failed:', err);
+        return res.status(502).json({ error: 'Translation failed' });
+    }
+});
+
 // POST /api/pronunciation?text=<reference> — body: raw WAV (16kHz mono PCM).
 // Same serverless gap as /api/tts: the route only existed in server/server.js,
 // so tone speaking practice always got "Scoring unavailable" on Vercel. The

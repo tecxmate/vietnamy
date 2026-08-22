@@ -30,6 +30,7 @@
     "validate:grammar": "node scripts/validate-grammar-exercises.mjs",
     "validate:numbers": "node scripts/validate-numbers.mjs",
     "validate:senses": "node scripts/validate-sense-rank.mjs",
+    "validate:routes": "node scripts/validate-api-routes.mjs",
     "test:smoke": "node scripts/smoke-routes.mjs",
     "spell:lexicon": "node scripts/gen-vn-syllables.mjs",
     "spell:audio:list": "node scripts/gen-audio-list.mjs",
