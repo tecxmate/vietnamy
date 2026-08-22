@@ -5,9 +5,21 @@ import { SLOTS, BY_ROLE, TONES, findBlock } from '../../data/spellingBlocks';
 import { compose, validate, placementBlock, slotHasViolation, isSpeakable, applyPick, writtenInitial } from '../../lib/spellingRules';
 import { playSequence, stopSpell } from '../../lib/spellAudio';
 import { spellInitialKey, spellSlug, spellToneKey } from '../../lib/spellSlug';
+import { useT } from '../../lib/i18n';
 import './Spell.css';
 
 const EMPTY = { initial: null, glide: null, nucleus: null, final: null, tone: 'ngang' };
+
+// Slot names are shown constantly (rack, palette head, the Next button), so they
+// come from i18n rather than spellingBlocks' label_en. The Vietnamese label_vi
+// stays as-is — it's the term the learner is here to learn.
+const SLOT_LABEL_KEY = {
+    initial: 'spell_slot_initial',
+    glide: 'spell_slot_glide',
+    nucleus: 'spell_slot_vowel',
+    final: 'spell_slot_final',
+    tone: 'spell_slot_tone',
+};
 
 const STRUCTURAL = ['initial', 'glide', 'nucleus', 'final'];
 const presentParts = (state) => STRUCTURAL.filter((r) => state[r]);
@@ -60,6 +72,8 @@ const nextAfter = (from, st) => {
 
 export default function SpellPlayground() {
     const navigate = useNavigate();
+    const t = useT();
+    const slotLabel = (role) => t(SLOT_LABEL_KEY[role] || '');
     const [state, setState] = useState(EMPTY);
     const [active, setActive] = useState('initial');
     const [readMode, setReadMode] = useState('blend'); // 'blend' | 'danhvan'
@@ -165,8 +179,7 @@ export default function SpellPlayground() {
         } else {
             setActive(role);
             if (!slotUsableFor(state, role)) {
-                const label = (SLOTS.find((s) => s.role === role)?.label_en || '').toLowerCase();
-                setReason(`This syllable has no ${label} — skip it.`);
+                setReason(t('spell_slot_na').replace('{slot}', slotLabel(role).toLowerCase()));
             }
         }
     };
@@ -177,13 +190,13 @@ export default function SpellPlayground() {
     return (
         <div className="spell-screen">
             <header className="spell-header">
-                <button className="spell-back" onClick={() => navigate('/')} aria-label="Back">
+                <button className="spell-back" onClick={() => navigate('/')} aria-label={t('spell_back')}>
                     <ArrowLeft size={20} />
                 </button>
                 <div className="spell-title">
-                    <h1>Ghép vần · Spell it</h1>
+                    <h1>{t('spell_title')}</h1>
                 </div>
-                <button className="spell-back" onClick={reset} aria-label="Reset">
+                <button className="spell-back" onClick={reset} aria-label={t('spell_reset')}>
                     <RotateCcw size={18} />
                 </button>
             </header>
@@ -200,26 +213,26 @@ export default function SpellPlayground() {
                         {state.final && <span className={partClass('final')}>{state.final}</span>}
                     </div>
                 ) : (
-                    <div className="spell-empty">Tap the first sound below to begin →</div>
+                    <div className="spell-empty">{t('spell_empty')}</div>
                 )}
                 {hasAnyPart && !violations.length && !speakable && !footerTarget && (
-                    <div className="spell-note">chưa phải từ có thật · not a real Vietnamese word</div>
+                    <div className="spell-note">{t('spell_not_word')}</div>
                 )}
                 {audioFailed && (
-                    <div className="spell-note spell-note-warn">audio unavailable — check your connection</div>
+                    <div className="spell-note spell-note-warn">{t('spell_audio_fail')}</div>
                 )}
                 {/* how to read it, and a replay — paired, since the mode is what
                     the play button does */}
                 <div className="spell-actions">
-                    <div className="spell-seg" role="tablist" aria-label="Read mode">
-                        <button className={readMode === 'blend' ? 'on' : ''} onClick={() => setReadMode('blend')}>Blend</button>
+                    <div className="spell-seg" role="tablist" aria-label={t('spell_read_mode')}>
+                        <button className={readMode === 'blend' ? 'on' : ''} onClick={() => setReadMode('blend')}>{t('spell_mode_blend')}</button>
                         <button className={readMode === 'danhvan' ? 'on' : ''} onClick={() => setReadMode('danhvan')}>Đánh vần</button>
                     </div>
                     <button
                         className="spell-play primary"
                         disabled={!speakable}
                         onClick={() => say(state)}
-                        aria-label={readMode === 'danhvan' ? 'Đánh vần' : 'Nghe'}
+                        aria-label={readMode === 'danhvan' ? 'Đánh vần' : t('spell_listen')}
                     >
                         <Volume2 size={18} />
                     </button>
@@ -240,7 +253,7 @@ export default function SpellPlayground() {
                             className={`spell-slot r-${slot.role} ${active === slot.role ? 'active' : ''} ${filled ? 'filled' : ''} ${bad ? 'bad' : ''} ${na ? 'na' : ''}`}
                             onClick={() => handleSlot(slot.role)}
                         >
-                            <span className="slot-label">{slot.label_en}</span>
+                            <span className="slot-label">{slotLabel(slot.role)}</span>
                             <span className={`slot-val ${filled ? '' : 'empty'}`}>{glyph}</span>
                         </div>
                     );
@@ -264,8 +277,8 @@ export default function SpellPlayground() {
             {/* palette for the active slot */}
             <div className="spell-palette-wrap">
                 <div className="spell-palette-head">
-                    <strong>{activeSlot.label_en}</strong>
-                    <span>{activeSlot.label_vi}{activeSlot.optional ? ' · optional' : ''}</span>
+                    <strong>{slotLabel(activeSlot.role)}</strong>
+                    <span>{activeSlot.label_vi}{activeSlot.optional ? ` · ${t('spell_optional')}` : ''}</span>
                 </div>
                 <div className={`spell-grid r-${active}`}>
                     {options.map((b) => {
@@ -294,27 +307,27 @@ export default function SpellPlayground() {
                 syllable at any point without touching the (optional) final */}
             {state.nucleus && (
                 <div className="spell-tonebar">
-                    <div className="spell-tonebar-label">Thanh <span>· tone — tap anytime</span></div>
+                    <div className="spell-tonebar-label">Thanh <span>· {t('spell_tone_label')}</span></div>
                     {findBlock('final', state.final)?.stops && (
                         <div className="spell-tonebar-teach">
                             <Lightbulb size={14} />
-                            <span>Ends in “{state.final}” — a stopped syllable takes only sắc (´) or nặng (.).</span>
+                            <span>{t('spell_tone_stopped').replace('{final}', state.final)}</span>
                         </div>
                     )}
                     <div className="spell-grid r-tone">
-                        {TONES.map((t) => {
-                            const disabled = Boolean(placementBlock(state, 'tone', t.id));
-                            const selected = (state.tone || 'ngang') === t.id && !disabled;
-                            const shaking = shakeId === `tone:${t.id}`;
+                        {TONES.map((tone) => {
+                            const disabled = Boolean(placementBlock(state, 'tone', tone.id));
+                            const selected = (state.tone || 'ngang') === tone.id && !disabled;
+                            const shaking = shakeId === `tone:${tone.id}`;
                             return (
                                 <button
-                                    key={t.id}
+                                    key={tone.id}
                                     className={`spell-block ${selected ? 'sel' : ''} ${disabled ? 'disabled' : ''} ${shaking ? 'shake' : ''}`}
-                                    onClick={() => pick('tone', t.id)}
-                                    title={disabled ? 'No real word has this tone' : t.hint}
+                                    onClick={() => pick('tone', tone.id)}
+                                    title={disabled ? t('spell_tone_impossible') : tone.hint}
                                 >
-                                    <span className="b-glyph">{compose({ ...state, tone: t.id })}</span>
-                                    <span className="b-name">{t.name}</span>
+                                    <span className="b-glyph">{compose({ ...state, tone: tone.id })}</span>
+                                    <span className="b-name">{tone.name}</span>
                                 </button>
                             );
                         })}
@@ -326,11 +339,11 @@ export default function SpellPlayground() {
             <div className="spell-footer">
                 {footerTarget ? (
                     <button className="spell-next" onClick={() => { setActive(footerTarget); setReason(null); }}>
-                        Next: {SLOTS.find((s) => s.role === footerTarget)?.label_en} <ArrowRight size={18} />
+                        {t('spell_next').replace('{slot}', slotLabel(footerTarget))} <ArrowRight size={18} />
                     </button>
                 ) : (
                     <button className="spell-next done" disabled={!speakable} onClick={() => say(state)}>
-                        <Volume2 size={18} /> {speakable ? 'Nghe' : 'Done'}
+                        <Volume2 size={18} /> {speakable ? t('spell_listen') : t('spell_done')}
                     </button>
                 )}
             </div>
