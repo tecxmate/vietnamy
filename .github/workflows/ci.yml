@@ -56,6 +56,9 @@ jobs:
       - name: Validate dictionary sense ranking
         run: npm run validate:senses
 
+      - name: Validate API route coverage
+        run: npm run validate:routes
+
       - name: Build
         run: npx vite build
 
