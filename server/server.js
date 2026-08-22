@@ -848,6 +848,75 @@ function normalizeVi(text) {
 }
 
 // ---------------------------------------------------------------------------
+// Accent-insensitive fallback for /api/search
+//
+// /api/search matches `w.word = ? COLLATE NOCASE` -- exact, and with
+// diacritics. That is correct for typed input, where the reader can see and
+// fix what they wrote. It is wrong for input the reader did not type: OCR off
+// a menu and voice dictation both lose tone marks routinely, and Vietnamese
+// stacks them, so a single missing hook turns a real word into zero results.
+//
+// `word_normalized` is the accent-stripped column /api/suggest already uses.
+// Only the EN and ZH corpora are known to carry it -- the other language DBs
+// are third-party and their schemas vary -- so probe once per DB rather than
+// assuming, and skip the fallback where it is absent.
+// ---------------------------------------------------------------------------
+const normalizedColumnCache = new Map();
+
+function hasNormalizedColumn(db) {
+    if (!db) return false;
+    if (normalizedColumnCache.has(db)) return normalizedColumnCache.get(db);
+    let present = false;
+    try {
+        present = db.prepare('PRAGMA table_info(words)').all()
+            .some(col => col.name === 'word_normalized');
+    } catch (_) {
+        present = false;
+    }
+    normalizedColumnCache.set(db, present);
+    return present;
+}
+
+// Distinct headwords sharing an accent-stripped form.
+//
+// The collision is the whole difficulty: `ma`, `mà`, `má`, `mã`, `mạ` and `mả`
+// all normalize to `ma`. Merging their meanings under one entry would invent a
+// word that does not exist, so the caller re-runs the ordinary exact query
+// against a single headword and the response always describes exactly one
+// real word.
+//
+// Ordered by frequency, but the caller deliberately does NOT auto-resolve on
+// that ordering when there is more than one candidate. `subt_freq` is subtitle
+// frequency, which is not learner relevance: `com` yields `cớm` (slang for a
+// cop, 5594) above `cơm` (rice, 2619), because film dialogue mentions police
+// more than lunch. Guessing there would confidently return the wrong word.
+// The order is still useful for presenting alternatives.
+function normalizedCandidates(db, normalized, withMetrics) {
+    if (!hasNormalizedColumn(db)) return [];
+    const sql = withMetrics
+        ? `SELECT w.word AS word, MAX(COALESCE(wm.subt_freq, 0)) AS freq
+             FROM words w
+             LEFT JOIN word_metrics wm ON w.id = wm.word_id
+            WHERE w.word_normalized = ?
+            GROUP BY w.word
+            ORDER BY freq DESC, w.word ASC
+            LIMIT 8`
+        : `SELECT w.word AS word, 0 AS freq
+             FROM words w
+            WHERE w.word_normalized = ?
+            GROUP BY w.word
+            ORDER BY w.word ASC
+            LIMIT 8`;
+    try {
+        return db.prepare(sql).all(normalized).map(r => r.word);
+    } catch (_) {
+        // A corpus that has the column but not word_metrics, or any other
+        // schema surprise: no fallback is better than a 500.
+        return [];
+    }
+}
+
+// ---------------------------------------------------------------------------
 // Frequency tier helper (query on-demand instead of pre-loading)
 // ---------------------------------------------------------------------------
 const MAX_DISP = 13287; // max subt_disp value in corpus
@@ -1175,7 +1244,12 @@ app.get('/api/search', (req, res) => {
     const query = rawQuery.toLowerCase();
 
     const db = dbs[lang] || dbEn;
-    const syllables = query.trim().split(/\s+/);
+
+    // The word the response ends up describing. Diverges from `query` only
+    // when the accent-insensitive fallback below rescues a mistyped or
+    // misrecognised form; everything downstream keys off this, not the input.
+    let searchWord = query;
+    let syllables = query.trim().split(/\s+/);
 
     const isCJK = ch => {
         const cp = ch.codePointAt(0);
@@ -1218,8 +1292,59 @@ app.get('/api/search', (req, res) => {
             results = db.prepare(otherSql).all(query);
         }
 
+        // Nothing matched exactly. Before giving up, try again ignoring
+        // diacritics -- see normalizedCandidates() for why this re-runs the
+        // ordinary query against a single winner instead of matching loosely.
+        let matchedVia = 'exact';
+        let alternatives = [];
         if (results.length === 0 && !queryIsCJK) {
-            return res.json({ word: query, results: [] });
+            const normalized = normalizeVi(query);
+            // Note the absence of a `normalized !== query` guard. It is
+            // tempting -- "nothing was stripped, so the exact query already
+            // covered it" -- and it is wrong, because the two compare
+            // different columns: the exact query matches `w.word`, this one
+            // matches `w.word_normalized`. Unaccented input is precisely the
+            // case this exists for (`ca phe` normalizes to itself and must
+            // still find `cà phê`), so such a guard would make the whole
+            // fallback inert on the input it was built for.
+            if (normalized) {
+                const probes = lang === 'en'
+                    ? [[dbEnHigh, enSql, true], [dbEnLow, enSql, true]]
+                    : [[db, otherSql, false]];
+                for (const [probeDb, sql, withMetrics] of probes) {
+                    if (!probeDb) continue;
+                    const candidates = normalizedCandidates(probeDb, normalized, withMetrics);
+                    if (candidates.length === 0) continue;
+
+                    // Ambiguous: several real words share this spelling once
+                    // the accents come off. Offer them rather than picking one
+                    // -- see normalizedCandidates() for why ranking cannot be
+                    // trusted to choose. /api/suggest feeds the client's
+                    // "did you mean" row with the same set.
+                    if (candidates.length > 1) {
+                        alternatives = candidates;
+                        matchedVia = 'ambiguous';
+                        break;
+                    }
+
+                    const rescued = probeDb.prepare(sql).all(candidates[0]);
+                    if (rescued.length === 0) continue;
+                    results = rescued;
+                    searchDb = probeDb;
+                    searchWord = candidates[0];
+                    syllables = candidates[0].trim().split(/\s+/);
+                    matchedVia = 'normalized';
+                    break;
+                }
+            }
+        }
+
+        if (results.length === 0 && !queryIsCJK) {
+            return res.json({
+                word: query,
+                results: [],
+                ...(alternatives.length ? { matched_via: matchedVia, alternatives } : {}),
+            });
         }
 
         const grouped = {};
@@ -1425,7 +1550,20 @@ app.get('/api/search', (req, res) => {
         }
 
         res.json(localizeChinese(
-            { word: query, structured: true, data: Object.values(grouped), components, hanvietComponents },
+            {
+                word: searchWord,
+                structured: true,
+                data: Object.values(grouped),
+                components,
+                hanvietComponents,
+                // Additive, so existing clients are unaffected. `query` lets a
+                // client say "showing results for X" when it differs from what
+                // was asked for, and `alternatives` carries the other headwords
+                // that share the accent-stripped form.
+                query,
+                matched_via: matchedVia,
+                ...(alternatives.length ? { alternatives } : {}),
+            },
             lang,
         ));
 
