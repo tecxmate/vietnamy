@@ -6,6 +6,7 @@ import { usePracticeCompletion } from '../../hooks/usePracticeCompletion';
 import './NumbersPractice.css';
 import { playSuccess, playError } from '../../utils/sound';
 import SoundButton from '../../components/SoundButton';
+import { useT } from '../../lib/i18n';
 import './PracticeShared.css'; // Add shared layout
 import {
     numberToVietnamese,
@@ -37,7 +38,9 @@ function dealBuilderDeck() {
 // Build one challenge round. Question generation is random, so it lives OUTSIDE
 // render (called from effects/handlers) — components must stay pure, and a
 // restart should deal a fresh round rather than replay the memoized one.
-function buildChallenges(session) {
+// `t` is threaded in because prompts are baked into each question object at deal
+// time, not at render time.
+function buildChallenges(session, t) {
     const qs = [];
 
     // Type 1: See number → pick Vietnamese (multiple choice) — easy range
@@ -47,7 +50,7 @@ function buildChallenges(session) {
         const correct = numberToVietnamese(n);
         const distractorNums = shuffle(FOUNDATION_NUMBERS.filter(x => x !== n)).slice(0, 3);
         const options = shuffle([correct, ...distractorNums.map(numberToVietnamese)]);
-        qs.push({ type: 'mc-vn', number: n, correctAnswer: correct, options, prompt: 'What is this number in Vietnamese?' });
+        qs.push({ type: 'mc-vn', number: n, correctAnswer: correct, options, prompt: t('num_q_mc_vn') });
     }
 
     // Type 2: See Vietnamese → pick number (multiple choice) — medium range
@@ -61,14 +64,14 @@ function buildChallenges(session) {
             if (d !== n && !distractorNums.includes(d)) distractorNums.push(d);
         }
         const options = shuffle([String(n), ...distractorNums.map(String)]);
-        qs.push({ type: 'mc-num', vnWord, number: n, correctAnswer: String(n), options, prompt: 'What number is this?' });
+        qs.push({ type: 'mc-num', vnWord, number: n, correctAnswer: String(n), options, prompt: t('num_q_mc_num') });
     }
 
     // Type 3: Listen → type number
     const listenCount = Math.min(2 + session, 5);
     for (let i = 0; i < listenCount; i++) {
         const n = Math.floor(Math.random() * 100); // 0–99
-        qs.push({ type: 'listen-type', number: n, correctAnswer: String(n), vnWord: numberToVietnamese(n), prompt: 'Listen and type the number' });
+        qs.push({ type: 'listen-type', number: n, correctAnswer: String(n), vnWord: numberToVietnamese(n), prompt: t('num_q_listen') });
     }
 
     // Type 4: Prices — the reason this module exists. Every price in Vietnam is
@@ -88,7 +91,7 @@ function buildChallenges(session) {
             vnWord: priceToVietnamese(dong),
             correctAnswer: formatVND(dong),
             options,
-            prompt: 'How much is this?',
+            prompt: t('num_q_price'),
         });
     }
 
@@ -96,7 +99,9 @@ function buildChallenges(session) {
 }
 
 // ─── Component ─────────────────────────────────────────────────────
-export default function NumbersPractice({ stages: allowedStages = [1, 2, 3], title = '🔢 Numbers' }) {
+export default function NumbersPractice({ stages: allowedStages = [1, 2, 3], titleKey = 'num_title_default' }) {
+    const t = useT();
+    const title = t(titleKey);
     const { speak } = useTTS();
     const { session, markComplete, goNext, goBack } = usePracticeCompletion();
 
@@ -132,7 +137,7 @@ export default function NumbersPractice({ stages: allowedStages = [1, 2, 3], tit
     // from the handlers, so "Try Again" really reshuffles (the old useMemo
     // version silently replayed the identical round: setStage(3) while already
     // on 3 never invalidated it).
-    const [challenges, setChallenges] = useState(() => (allowedStages[0] === 3 ? buildChallenges(session) : []));
+    const [challenges, setChallenges] = useState(() => (allowedStages[0] === 3 ? buildChallenges(session, t) : []));
 
     const totalChallenges = challenges.length;
     const currentChallenge = challenges[challengeIndex];
@@ -146,8 +151,8 @@ export default function NumbersPractice({ stages: allowedStages = [1, 2, 3], tit
     // Auto-play audio for listen questions
     useEffect(() => {
         if (stage === 3 && currentChallenge?.type === 'listen-type' && challengeFeedback === 'idle') {
-            const t = setTimeout(() => playWord(currentChallenge.vnWord), 400);
-            return () => clearTimeout(t);
+            const timer = setTimeout(() => playWord(currentChallenge.vnWord), 400);
+            return () => clearTimeout(timer);
         }
     }, [stage, challengeIndex, challengeFeedback, currentChallenge, playWord]);
 
@@ -188,13 +193,13 @@ export default function NumbersPractice({ stages: allowedStages = [1, 2, 3], tit
         } else {
             setStagesCompleted(prev => new Set([...prev, 2]));
             if (allowedStages.includes(3)) {
-                setChallenges(buildChallenges(session));
+                setChallenges(buildChallenges(session, t));
                 setStage(3);
             } else {
                 setShowSummary(true);
             }
         }
-    }, [builderIndex, builderDeck.length, allowedStages, session]);
+    }, [builderIndex, builderDeck.length, allowedStages, session, t]);
 
     // ── Stage 3 Handlers ──
     const handleChallengeCheck = useCallback(() => {
@@ -236,7 +241,7 @@ export default function NumbersPractice({ stages: allowedStages = [1, 2, 3], tit
 
     const handleRestartChallenge = () => {
         setStage(3);
-        setChallenges(buildChallenges(session)); // deal a fresh round
+        setChallenges(buildChallenges(session, t)); // deal a fresh round
         setChallengeIndex(0);
         setSelectedOption(null);
         setTypedAnswer('');
@@ -286,10 +291,10 @@ export default function NumbersPractice({ stages: allowedStages = [1, 2, 3], tit
     // ── Summary Screen ──
     if (showSummary) {
         const pct = totalAnswered > 0 ? Math.round((score / totalAnswered) * 100) : 0;
-        let message = 'Keep practicing!';
-        if (pct >= 90) message = 'Perfect! You can count like a native! 🎯';
-        else if (pct >= 70) message = 'Great work! Almost fluent with numbers! 💪';
-        else if (pct >= 50) message = 'Good progress! Keep going!';
+        let message = t('num_summary_low');
+        if (pct >= 90) message = t('num_summary_perfect');
+        else if (pct >= 70) message = t('num_summary_great');
+        else if (pct >= 50) message = t('num_summary_good');
 
         return (
             <div className="practice-layout">
@@ -303,19 +308,19 @@ export default function NumbersPractice({ stages: allowedStages = [1, 2, 3], tit
                 </div>
                 <div className="practice-content-centered">
                     <Trophy size={80} style={{ color: 'var(--primary-color)', marginBottom: '24px' }} />
-                    <h2 className="practice-title">Challenge Complete!</h2>
+                    <h2 className="practice-title">{t('num_complete')}</h2>
                     <div style={{ fontSize: '3rem', fontWeight: 800, color: 'var(--primary-color)', margin: '16px 0' }}>{score} / {totalAnswered}</div>
                     <p className="practice-subtitle">
                         {message}<br />
-                        Best streak: 🔥 {bestStreak}
+                        {t('num_best_streak')} 🔥 {bestStreak}
                     </p>
                 </div>
                 <div className="practice-bottom-bar" style={{ flexDirection: 'row', gap: '16px', justifyContent: 'center' }}>
                     <SoundButton className="practice-action-btn" sound="button" style={{ background: 'var(--surface-color)', border: '2px solid var(--border-color)', color: 'var(--text-main)', width: 'auto', flex: 1, boxShadow: '0 4px 0 var(--border-color)' }} onClick={() => { setShowSummary(false); setStage(allowedStages[0]); }}>
-                        Back
+                        {t('num_back')}
                     </SoundButton>
                     <SoundButton className="practice-action-btn primary" style={{ width: 'auto', flex: 2 }} onClick={goNext}>
-                        Next
+                        {t('num_next')}
                     </SoundButton>
                 </div>
             </div>
@@ -350,7 +355,7 @@ export default function NumbersPractice({ stages: allowedStages = [1, 2, 3], tit
                         className={`stage-tab ${stage === 1 ? 'active' : ''} ${stagesCompleted.has(1) ? 'completed' : ''}`}
                         onClick={() => setStage(1)}
                     >
-                        ① Learn
+                        {t('num_stage_learn')}
                     </button>
                 )}
                 {allowedStages.includes(2) && (
@@ -358,7 +363,7 @@ export default function NumbersPractice({ stages: allowedStages = [1, 2, 3], tit
                         className={`stage-tab ${stage === 2 ? 'active' : ''} ${stagesCompleted.has(2) ? 'completed' : ''}`}
                         onClick={() => { setStage(2); setBuilderDeck(dealBuilderDeck()); setBuilderIndex(0); setBuiltAnswer([]); setBuilderFeedback('idle'); }}
                     >
-                        ② Build
+                        {t('num_stage_build')}
                     </button>
                 )}
                 {allowedStages.includes(3) && (
@@ -366,7 +371,7 @@ export default function NumbersPractice({ stages: allowedStages = [1, 2, 3], tit
                         className={`stage-tab ${stage === 3 ? 'active' : ''}`}
                         onClick={handleRestartChallenge}
                     >
-                        ③ Test
+                        {t('num_stage_test')}
                     </button>
                 )}
             </div>
@@ -378,7 +383,7 @@ export default function NumbersPractice({ stages: allowedStages = [1, 2, 3], tit
             {stage === 1 && (
                 <>
                     <p className="stage-intro">
-                        Tap each tile to hear the pronunciation. Learn these first — they're the building blocks!
+                        {t('num_stage1_intro')}
                     </p>
                     <div className="number-grid">
                         {FOUNDATION_NUMBERS.map(n => (
@@ -400,7 +405,7 @@ export default function NumbersPractice({ stages: allowedStages = [1, 2, 3], tit
             {stage === 2 && (
                 <div className="practice-content-centered" style={{ justifyContent: 'flex-start', marginTop: '16px' }}>
                     <div className="builder-target">{currentBuilderNum}</div>
-                    <div className="builder-subtitle">Build this number in Vietnamese</div>
+                    <div className="builder-subtitle">{t('num_build_prompt')}</div>
 
                     {/* Decomposition visual */}
                     <div className="decomposition">
@@ -420,7 +425,7 @@ export default function NumbersPractice({ stages: allowedStages = [1, 2, 3], tit
                     {/* Build area */}
                     <div className="build-answer-area">
                         {builtAnswer.length === 0 ? (
-                            <span className="placeholder-text">Tap words below...</span>
+                            <span className="placeholder-text">{t('num_tap_words')}</span>
                         ) : (
                             builtAnswer.map((word, i) => (
                                 <button key={i} className="build-block" onClick={() => handleBuilderRemoveWord(i)}>
@@ -458,15 +463,15 @@ export default function NumbersPractice({ stages: allowedStages = [1, 2, 3], tit
                                         {builderFeedback === 'correct' ? <Check size={20} /> : <X size={20} />}
                                     </div>
                                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-                                        <span>{builderFeedback === 'correct' ? 'Correct!' : 'Incorrect'}</span>
+                                        <span>{builderFeedback === 'correct' ? t('num_correct') : t('num_incorrect')}</span>
                                         <span style={{ fontSize: '0.9rem', color: 'var(--text-muted)', fontWeight: 500 }}>
                                             {builderFeedback === 'correct'
                                                 ? `${currentBuilderNum} = ${currentBuilderAnswer}`
-                                                : `Answer: ${currentBuilderAnswer}`}
+                                                : `${t('num_answer_label')} ${currentBuilderAnswer}`}
                                         </span>
                                         {activeRule && (
                                             <span style={{ fontSize: '0.85rem', color: '#FF9800', fontWeight: 600 }}>
-                                                Rule: {activeRule.rule}
+                                                {t('num_rule_label')} {t('num_rule_muoi')}
                                             </span>
                                         )}
                                     </div>
@@ -479,7 +484,7 @@ export default function NumbersPractice({ stages: allowedStages = [1, 2, 3], tit
                                 className={`practice-action-btn ${builtAnswer.length > 0 ? 'primary' : 'disabled'}`}
                                 onClick={handleBuilderCheck}
                             >
-                                Check
+                                {t('num_check')}
                             </SoundButton>
                         ) : (
                             <SoundButton
@@ -487,7 +492,7 @@ export default function NumbersPractice({ stages: allowedStages = [1, 2, 3], tit
                                 style={builderFeedback === 'incorrect' ? { background: 'var(--danger-color)', color: 'white', boxShadow: '0 4px 0 #b92b49' } : { background: 'var(--success-color)', color: '#1a1a1a', boxShadow: '0 4px 0 #049e75' }}
                                 onClick={handleBuilderContinue}
                             >
-                                Continue
+                                {t('num_continue')}
                             </SoundButton>
                         )}
                     </div>
@@ -608,7 +613,7 @@ export default function NumbersPractice({ stages: allowedStages = [1, 2, 3], tit
                                 <input
                                     className={`challenge-input ${challengeFeedback === 'correct' ? 'correct-input' : challengeFeedback === 'incorrect' ? 'wrong-input' : ''}`}
                                     type="number"
-                                    placeholder="Type the number"
+                                    placeholder={t('num_type_placeholder')}
                                     value={typedAnswer}
                                     onChange={(e) => challengeFeedback === 'idle' && setTypedAnswer(e.target.value)}
                                     autoFocus
@@ -626,11 +631,11 @@ export default function NumbersPractice({ stages: allowedStages = [1, 2, 3], tit
                                         {challengeFeedback === 'correct' ? <Check size={20} /> : <X size={20} />}
                                     </div>
                                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-                                        <span>{challengeFeedback === 'correct' ? 'Correct!' : 'Incorrect'}</span>
+                                        <span>{challengeFeedback === 'correct' ? t('num_correct') : t('num_incorrect')}</span>
                                         <span style={{ fontSize: '0.9rem', color: 'var(--text-muted)', fontWeight: 500 }}>
                                             {challengeFeedback === 'correct'
                                                 ? currentChallenge.correctAnswer
-                                                : `Answer: ${currentChallenge.correctAnswer} ${currentChallenge.type === 'listen-type' ? `(${currentChallenge.vnWord})` : ''}`}
+                                                : `${t('num_answer_label')} ${currentChallenge.correctAnswer} ${currentChallenge.type === 'listen-type' ? `(${currentChallenge.vnWord})` : ''}`}
                                         </span>
                                     </div>
                                 </div>
@@ -643,7 +648,7 @@ export default function NumbersPractice({ stages: allowedStages = [1, 2, 3], tit
                                     }`}
                                 onClick={handleChallengeCheck}
                             >
-                                Check
+                                {t('num_check')}
                             </SoundButton>
                         ) : (
                             <SoundButton
@@ -651,7 +656,7 @@ export default function NumbersPractice({ stages: allowedStages = [1, 2, 3], tit
                                 style={challengeFeedback === 'incorrect' ? { background: 'var(--danger-color)', color: 'white', boxShadow: '0 4px 0 #b92b49' } : { background: 'var(--success-color)', color: '#1a1a1a', boxShadow: '0 4px 0 #049e75' }}
                                 onClick={handleChallengeContinue}
                             >
-                                Continue
+                                {t('num_continue')}
                             </SoundButton>
                         )}
                     </div>
@@ -664,7 +669,7 @@ export default function NumbersPractice({ stages: allowedStages = [1, 2, 3], tit
             {stage === 1 && allowedStages.length > 1 && (
                 <div className="stage-cta">
                     <SoundButton sound="button" onClick={() => { setStagesCompleted(prev => new Set([...prev, 1])); setStage(allowedStages[allowedStages.indexOf(1) + 1] || allowedStages[1]); }}>
-                        I know these! Next <ChevronRight size={18} style={{ verticalAlign: 'middle' }} />
+                        {t('num_know_these')} <ChevronRight size={18} style={{ verticalAlign: 'middle' }} />
                     </SoundButton>
                 </div>
             )}
