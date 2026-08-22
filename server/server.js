@@ -2530,7 +2530,17 @@ app.post('/api/tutor', async (req, res) => {
         + `Set "correction" to an EMPTY STRING unless the learner's Vietnamese is genuinely WRONG: a grammar error, a wrong or missing word, a wrong diacritic or tone mark, a wrong classifier, or something no Vietnamese speaker would say. `
         + `Vietnamese that is correct and natural gets an empty string, even when a longer, fuller, more formal or more "complete" phrasing also exists. `
         + `Short answers and fragments are normal speech, not errors: "Cà phê sữa đá ạ." is a correct and polite way to order and must NOT be corrected. `
-        + `Never use "correction" to propose a stylistic rewrite, a fuller sentence, or a different register. When in doubt, return an empty string.`;
+        + `Never use "correction" to propose a stylistic rewrite, a fuller sentence, or a different register. When in doubt, return an empty string. `
+        // What the character does when the learner gets it wrong. Without this
+        // the model stops serving and starts tutoring: a learner who ordered
+        // correctly was answered with their own line handed back as a model
+        // sentence, and a learner who typed English got "Đúng rồi! Bạn có thể
+        // nói..." — the clerk grading them instead of taking the order.
+        + `WHEN THE LEARNER'S MESSAGE IS WRONG, UNCLEAR, OR NOT IN VIETNAMESE: stay in character and react the way a real person in your role would — a vendor, a driver, a receptionist, a relative. `
+        + `Be a little confused, ask them to say it again, ask a short clarifying question, or guess what they meant and check it with them (in a café: "Dạ, anh muốn cà phê sữa đá ạ?"). Then keep the scene moving. `
+        + `Do NOT break role to explain the mistake, and do NOT switch to English — the explanation belongs in "correction", which the learner sees separately. `
+        + `Never say the learner is right or wrong in "reply_vi": no "Đúng rồi", no "Chính xác", no praise, no grading. A real clerk does not score your grammar. `
+        + `Never repeat the learner's own sentence back to them as a model answer, and never hand them the line they were supposed to say. Just respond to what they said as a person would.`;
 
     const system = scenario
         ? `You are ${npc?.name || 'a local'}, ${npc?.role ? `the ${npc.role}` : 'a Vietnamese person'} in this situation: "${scenario.setting}". `
