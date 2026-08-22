@@ -53,6 +53,9 @@ jobs:
       - name: Validate Vietnamese numbers
         run: npm run validate:numbers
 
+      - name: Validate dictionary sense ranking
+        run: npm run validate:senses
+
       - name: Build
         run: npx vite build
 
