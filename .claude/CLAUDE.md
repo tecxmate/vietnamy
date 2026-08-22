@@ -2,6 +2,22 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Read first: what this repo is for
+
+This repo holds a React web app **and** the Express server that is the
+live backend for the mobile app's dictionary and AI tutor.
+
+The Flutter app in `Vietnamy_APP` is the product. The React UI is no longer
+maintained toward feature parity with it — do not port new app features
+into `src/`.
+
+`server/server.js` is a different matter and is **load-bearing**:
+`POST /api/tutor` and the dictionary endpoints there are what a real user
+on a phone talks to. `Vietnamy_Backend` has its own tutor and dictionary
+that the app does not call, so a fix applied there deploys and changes
+nothing. See `docs/ROLE-OF-THIS-REPO.md` and
+`Vietnamy_APP/docs/BACKENDS.md`.
+
 ## Project Overview
 
 Vietnamy is a mobile-first Vietnamese language learning app (React + Vite frontend, Express + SQLite backend). It teaches Vietnamese to English/Chinese speakers through interactive lessons, spaced repetition, dictionary, grammar drills, and gamification. The architecture is designed to be cloned and adapted for other language pairs.
