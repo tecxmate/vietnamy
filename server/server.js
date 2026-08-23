@@ -1394,7 +1394,13 @@ app.get('/api/search', (req, res) => {
         for (const group of Object.values(grouped)) {
             group.meanings = rankSenses(group.meanings, {
                 lang,
-                word: query,
+                // searchWord, not query: when the accent-insensitive fallback
+                // resolves `ca phe` to `cà phê`, these meanings belong to the
+                // headword that was found, not to what was typed. Today
+                // isMetadataSense() only tests it against /^0\d-database-/,
+                // so the two are interchangeable in practice -- but the
+                // correct value costs nothing and will not rot.
+                word: searchWord,
                 sourceName: group.source_name,
             });
         }
