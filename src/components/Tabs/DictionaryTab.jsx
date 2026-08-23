@@ -165,17 +165,36 @@ const VOICE_LANGUAGES = [
 
 const isStardictSource = (name) => ['TrungViet', 'VietAnh_Stardict'].includes(name);
 
-const renderSources = (sources, convert = null, searchQuery = '', onWordTap = null, uiT = (key) => key) => {
-    if (!sources || sources.length === 0) return null;
+/**
+ * One dictionary source's entry.
+ *
+ * The server ranks senses for the reader and tags each one `primary` or
+ * `secondary` (see server/senseRank.js). A word like "đi" carries 25 senses,
+ * most of them Vietnamese-monolingual definitions a beginner can't read yet —
+ * so only the primaries show, with the rest one tap away. Sources that arrive
+ * as a single parsed blob (FVDP, StarDict) have no sense list to collapse.
+ */
+const SourceSection = ({ src, convert, searchQuery, onWordTap, uiT }) => {
+    const [expanded, setExpanded] = useState(false);
     const t = (text) => convert ? convert(text) : text;
-    return sources.map((src) => (
-        <div key={src.source_name} className="source-section">
+
+    const collapsible = !isFVDP(src.source_name) && !isStardictSource(src.source_name);
+    const hasTiers = collapsible && src.meanings.some(m => m.tier);
+    const hidden = hasTiers && !expanded
+        ? src.meanings.filter(m => m.tier !== 'primary').length
+        : 0;
+    const visible = hidden > 0
+        ? src.meanings.filter(m => m.tier === 'primary')
+        : src.meanings;
+
+    return (
+        <div className="source-section">
             <div className="source-header">
                 <BookA size={16} />
                 <span className="source-name">{SOURCE_LABELS[convert ? src.source_name + '_T' : src.source_name] || SOURCE_LABELS[src.source_name] || src.source_name}</span>
             </div>
             <div className="meanings-list">
-                {src.meanings.map((meaning, mIdx) => (
+                {visible.map((meaning, mIdx) => (
                     <div key={mIdx} className="meaning-item">
                         {isFVDP(src.source_name) ? (
                             <div className="fvdp-entry">
@@ -240,10 +259,20 @@ const renderSources = (sources, convert = null, searchQuery = '', onWordTap = nu
                             </div>
                         ) : (
                             <div className="meaning-header">
-                                {meaning.part_of_speech && (
-                                    <span className="part-of-speech">{meaning.part_of_speech}</span>
+                                {/* The merged sources tag parts of speech in three
+                                    conventions — "noun", "danh từ", "Nt" — and an
+                                    English reader was being shown whichever one the
+                                    source happened to use. The server maps them onto
+                                    one label; fall back to the raw tag if it can't. */}
+                                {(meaning.part_of_speech_canonical || meaning.part_of_speech) && (
+                                    <span className="part-of-speech">
+                                        {meaning.part_of_speech_canonical || meaning.part_of_speech}
+                                    </span>
                                 )}
                                 <p className="meaning-text">{t(meaning.meaning_text)}</p>
+                                {meaning.gloss_lang === 'vi' && (
+                                    <span className="gloss-lang-badge" title={uiT('dict_gloss_vi_hint')}>VI</span>
+                                )}
                             </div>
                         )}
                         {
@@ -289,7 +318,32 @@ const renderSources = (sources, convert = null, searchQuery = '', onWordTap = nu
                     </div >
                 ))}
             </div >
+            {hasTiers && (hidden > 0 || expanded) && (
+                <button
+                    className="sense-toggle"
+                    onClick={() => setExpanded(e => !e)}
+                    aria-expanded={expanded}
+                >
+                    {expanded
+                        ? uiT('dict_show_fewer_senses')
+                        : uiT('dict_show_more_senses').replace('{count}', hidden)}
+                </button>
+            )}
         </div >
+    );
+};
+
+const renderSources = (sources, convert = null, searchQuery = '', onWordTap = null, uiT = (key) => key) => {
+    if (!sources || sources.length === 0) return null;
+    return sources.map((src) => (
+        <SourceSection
+            key={src.source_name}
+            src={src}
+            convert={convert}
+            searchQuery={searchQuery}
+            onWordTap={onWordTap}
+            uiT={uiT}
+        />
     ));
 };
 

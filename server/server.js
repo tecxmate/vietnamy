@@ -8,6 +8,7 @@ import { existsSync, mkdirSync, readFileSync } from 'fs';
 import { Converter } from 'opencc-js';
 import { put as blobPut } from '@vercel/blob';
 import { maybeMountAuthJs } from './authJsRoutes.js';
+import { rankSenses } from './senseRank.js';
 import {
     getMessageScenario,
     listMessageScenarios,
@@ -1384,6 +1385,17 @@ app.get('/api/search', (req, res) => {
                 part_of_speech: r.part_of_speech,
                 meaning_text: r.meaning_text,
                 examples,
+            });
+        }
+
+        // Order each source's senses for a learner: the glosses this reader can
+        // actually use first, license/index rows last. Senses are annotated,
+        // never dropped — the client collapses `tier: 'secondary'`.
+        for (const group of Object.values(grouped)) {
+            group.meanings = rankSenses(group.meanings, {
+                lang,
+                word: query,
+                sourceName: group.source_name,
             });
         }
 

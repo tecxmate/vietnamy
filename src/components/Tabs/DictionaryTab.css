@@ -941,6 +941,26 @@
     border-bottom: 1px solid var(--border-color);
 }
 
+/* Reveals the senses ranked below the primaries — a common word carries
+   20+ of them, most Vietnamese-monolingual. See server/senseRank.js. */
+.sense-toggle {
+    display: block;
+    width: 100%;
+    margin-top: var(--spacing-3);
+    padding: var(--spacing-2);
+    background: none;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    color: var(--primary-color);
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.sense-toggle:hover {
+    background-color: var(--bg-color);
+}
+
 .source-name {
     font-size: 12px;
     font-weight: 800;
@@ -1790,4 +1810,17 @@
     padding: 0;
     cursor: pointer;
     margin-left: auto;
+}
+/* Marks a sense that is written in Vietnamese rather than the reader's
+   language — ~11% of entries on the English tab. See server/senseRank.js. */
+.gloss-lang-badge {
+    flex-shrink: 0;
+    align-self: flex-start;
+    padding: 1px 5px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    color: var(--text-muted);
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
 }
