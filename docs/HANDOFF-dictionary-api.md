@@ -21,6 +21,15 @@ They're grouped because all four read the SQLite dictionaries in `server/databas
 
 **This gates real work.** PR #58 normalized part-of-speech tags across five merged sources, ranked senses by whether the reader can read them, and filtered license rows out of results. All of that runs inside `/api/search`. Until the route is reachable, none of it executes in production — and neither will any future dictionary enrichment.
 
+### Read `ROLE-OF-THIS-REPO.md` and `Vietnamy_APP/docs/BACKENDS.md` before choosing an architecture
+
+Those two describe the constraint this handoff sits inside, and it narrows the options below more than it first appears: **the Flutter app calls these same four routes**, on `vietnamy.tecxmate.com` — which is the Docker deploy, so mobile works today while Vercel 404s. Confirmed live: `GET /api/suggest?q=di` returns a populated array.
+
+Two consequences for the fix:
+
+- Of the two architectures under "What done looks like", **serving both halves from the same backend leaves mobile untouched.** Re-pointing only the web app at the mobile backend leaves the two clients reading from two different dictionary deployments — the symptom is web and app disagreeing on search results, which is tedious to diagnose from either side alone.
+- Either way, `dictionaryBaseUrl` in the Flutter repo moves in the same change, or someone decides it doesn't and writes down why.
+
 ---
 
 ## What "done" looks like
@@ -154,6 +163,10 @@ for (const group of Object.values(grouped)) {
 `server.js` prefers the `_high`/`_low` pair and falls back to `vn_en_dictionary.db` only when the split files are absent. That fallback is a silent cliff: lookups keep returning 200 while missing the most common words in the language. **Add a startup assertion** that a known core word (`ăn` will do) resolves, and refuse to boot otherwise.
 
 For sizing: the useful EN dictionary is 18 MB, not 100 MB.
+
+**The Flutter app bundles a file with that same poisoned name.** `Vietnamy_APP/assets/databases/vn_en_dictionary.db` is ~10 MB, 18,357 words, same six-table schema — and it is *not* the collocation dump despite the name. Spot-checked: `ăn tôi đi nhà học anh chị nước người làm` are all present, 10/10. It is 75% multi-word, close enough to the bad file's 70% to be mistaken for it at a glance.
+
+The hazard is copying **by filename** between the repos. `vn_en_dictionary.db` means a working 18k-word offline dictionary in one repo and a core-word-free collocation dump in the other, and swapping them produces a dictionary that still answers 200 while missing the commonest words in the language. If these files are ever synced, match them on a core-word probe rather than a name.
 
 **2. Two of these aren't as portable as issue #49 claims.**
 - `/api/tone-samples` — writes to a local SQLite file. On serverless its disk is ephemeral, so a naive port accepts every upload and silently discards it. Needs a hosted store. Worse than the current 404.
