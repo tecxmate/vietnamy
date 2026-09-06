@@ -34,6 +34,7 @@ server/databases/archive/
 
 # Runtime-generated user data stores (must never be committed)
 server/databases/tone_samples.db
+server/databases/tutor_usage.db
 server/databases/app_ops.db
 server/databases/push_notifications.json
 server/databases/email_logs.json
