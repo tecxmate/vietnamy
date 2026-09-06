@@ -29,22 +29,21 @@ const STARTERS = {
     thinking: thinkingLottie, wow: wowLottie, sleepy: sleepyLottie, reading: readingLottie,
 };
 
-// /api/mascot-upload is admin-only: it writes caller-supplied bytes to a public
-// bucket, so it now requires the server's MAIL_ADMIN_TOKEN. Nothing in this app
-// has an admin session, so the operator pastes the token once and it is kept in
-// localStorage for this browser only. Running the dev server with
-// MAIL_ADMIN_ALLOW_LOCAL=true and no token set keeps localhost prompt-free.
-const ADMIN_TOKEN_KEY = 'vnme_admin_token';
-
-const readAdminToken = () => {
-    try { return localStorage.getItem(ADMIN_TOKEN_KEY) || ''; } catch { return ''; }
-};
-const writeAdminToken = (value) => {
-    try {
-        if (value) localStorage.setItem(ADMIN_TOKEN_KEY, value);
-        else localStorage.removeItem(ADMIN_TOKEN_KEY);
-    } catch { /* private mode — the token just won't persist */ }
-};
+// /api/mascot-upload writes caller-supplied bytes to a public bucket, so it
+// now requires a credential. Two deliberate choices here:
+//
+//   1. The credential is MASCOT_UPLOAD_TOKEN, which the server accepts on this
+//      route and nowhere else — not MAIL_ADMIN_TOKEN, which also sends email
+//      and push to the whole user base. The server refuses to run if the two
+//      are set to the same value, so this is enforced, not just intended.
+//   2. It is NEVER written to localStorage or sessionStorage. /admin/* has no
+//      auth gate of its own, so anything persisted here would outlive the tab
+//      on a shared machine and be readable by any XSS on any admin route. It
+//      lives in a module variable for the lifetime of the page and dies with
+//      the tab; the operator re-pastes it next session.
+//
+// Replacing this with a real admin login is still the right end state.
+let sessionUploadToken = '';
 
 async function postUpload(file, type, name, token) {
     return fetch(`/api/mascot-upload?filename=${encodeURIComponent(name)}&type=${type}`, {
@@ -58,18 +57,19 @@ async function postUpload(file, type, name, token) {
 }
 
 async function uploadToBlob(file, type, name) {
-    let res = await postUpload(file, type, name, readAdminToken());
+    let res = await postUpload(file, type, name, sessionUploadToken);
 
-    // 401 means either no token stored yet or a stale one. Ask once, retry once.
+    // 401 means nothing entered yet this page load, or a stale value. Ask once,
+    // retry once, and forget it again if it is rejected.
     if (res.status === 401) {
-        writeAdminToken('');
-        const entered = (window.prompt('Admin token required to upload mascot art (MAIL_ADMIN_TOKEN):') || '').trim();
-        if (!entered) throw new Error('Upload needs an admin token.');
-        writeAdminToken(entered);
+        sessionUploadToken = '';
+        const entered = (window.prompt('Mascot upload token (MASCOT_UPLOAD_TOKEN):') || '').trim();
+        if (!entered) throw new Error('Upload needs the mascot upload token.');
+        sessionUploadToken = entered;
         res = await postUpload(file, type, name, entered);
         if (res.status === 401) {
-            writeAdminToken('');
-            throw new Error('That admin token was rejected.');
+            sessionUploadToken = '';
+            throw new Error('That upload token was rejected.');
         }
     }
 

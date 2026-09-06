@@ -4,7 +4,7 @@
 // { url } — a public Blob URL the editor saves in the asset registry.
 import { put } from '@vercel/blob';
 import { isR2Configured, putR2Object } from '../server/r2Storage.js';
-import { requireAdminToken } from '../server/adminAuth.js';
+import { requireUploadToken } from '../server/adminAuth.js';
 
 // `svg` is deliberately absent — see the matching note in server/server.js.
 // An accepted image/svg+xml is a script the public bucket will serve back and
@@ -21,9 +21,11 @@ export default async function handler(req, res) {
         res.status(405).json({ error: 'Method not allowed' });
         return;
     }
-    // Admin only. There is no localhost escape hatch on a serverless function:
-    // with MAIL_ADMIN_TOKEN unset, every caller is denied.
-    if (!requireAdminToken(req, res)) return;
+    // Upload credential only, and never the master admin token — see
+    // server/adminAuth.js. With MASCOT_UPLOAD_TOKEN unset, every caller is
+    // denied; there is no localhost escape hatch on a serverless function
+    // either way.
+    if (!requireUploadToken(req, res)) return;
 
     try {
         const type = String(req.query.type || 'lottie');

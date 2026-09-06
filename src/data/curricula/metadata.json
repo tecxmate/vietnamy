@@ -48,6 +48,15 @@
       "hasImage": true,
       "difficulty": 1
     },
+    "bố": {
+      "pos": "noun"
+    },
+    "mẹ": {
+      "pos": "noun"
+    },
+    "má": {
+      "pos": "noun"
+    },
     "mỹ": {
       "pos": "noun",
       "frequency": 9,

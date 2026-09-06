@@ -52,7 +52,7 @@ import {
 } from './opsStore.js';
 import { isR2Configured, putR2Object } from './r2Storage.js';
 import { mountSyncRoutes } from './syncRoutes.js';
-import { requireAdminToken } from './adminAuth.js';
+import { requireAdminToken, requireUploadToken } from './adminAuth.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT_DIR = join(__dirname, '..');
@@ -106,11 +106,13 @@ function feedbackScreenshotExt(type) {
 }
 
 app.post('/api/mascot-upload', express.raw({ type: '*/*', limit: '6mb' }), async (req, res) => {
-    // Admin only. This writes caller-controlled bytes to a public bucket under
-    // a caller-influenced content type; it was reachable by anyone.
-    if (!requireAdminToken(req, res, {
-        allowLocalWhenUnconfigured: MAIL_ADMIN_ALLOW_LOCAL && isLocalRequest(req),
-    })) return;
+    // Upload credential only. This writes caller-controlled bytes to a public
+    // bucket under a caller-influenced content type; it was reachable by
+    // anyone. MASCOT_UPLOAD_TOKEN is deliberately NOT the master admin token,
+    // so the value pasted into the mascot editor cannot be replayed against
+    // /api/admin/*, /api/messages/* or /api/push/*. There is no localhost
+    // escape hatch: unset means deny, on a laptop as much as in production.
+    if (!requireUploadToken(req, res)) return;
 
     try {
         const type = String(req.query.type || 'lottie');
@@ -287,20 +289,35 @@ const FEEDBACK_KINDS = new Set(['bug', 'feedback', 'feature']);
 const FEEDBACK_SEVERITIES = new Set(['low', 'med', 'high']);
 const FEEDBACK_STATUSES = new Set(['open', 'triaged', 'claimed', 'fixed_pending_approval', 'closed', 'not_reproducible', 'wont_fix']);
 
+// Best-effort caller identity for rate-limit bucketing. This trusts
+// X-Forwarded-For, which a caller can set — acceptable for spreading buckets,
+// never acceptable for an authorization decision. Use isLocalRequest for that.
 function requestIp(req) {
     return String(req.headers['x-forwarded-for'] || req.ip || req.socket?.remoteAddress || 'unknown')
         .split(',')[0]
         .trim();
 }
 
+const LOOPBACK_ADDRESSES = new Set(['::1', '127.0.0.1', '::ffff:127.0.0.1']);
+
+// Authorization-grade "is this the developer's own machine". Reads the TCP peer
+// address only — X-Forwarded-For is caller-supplied, so requestIp() above would
+// let any remote caller claim to be 127.0.0.1 and open the MAIL_ADMIN_ALLOW_LOCAL
+// escape hatch from the internet.
+//
+// Residual risk this cannot remove: a reverse proxy running on the same host
+// also connects from loopback. That is why MAIL_ADMIN_ALLOW_LOCAL is opt-in,
+// off by default, documented as local-development-only in .env.example, and no
+// longer gates any upload route.
 function isLocalRequest(req) {
-    const ip = requestIp(req);
-    return ip === '::1' || ip === '127.0.0.1' || ip === '::ffff:127.0.0.1';
+    const peer = String(req.socket?.remoteAddress || req.connection?.remoteAddress || '');
+    return LOOPBACK_ADDRESSES.has(peer);
 }
 
-// Same credential and the same three header/query shapes as before; the
-// comparison now runs in constant time and lives in one place (adminAuth.js)
-// that the upload routes and the api/ serverless functions share.
+// Same credential and the same header/query shapes as before (plus
+// x-admin-token, which the api/ copy accepted); the comparison now runs in
+// constant time and lives in one place (adminAuth.js) that this server and the
+// api/ serverless functions share.
 function requireMailAdmin(req, res) {
     return requireAdminToken(req, res, {
         allowLocalWhenUnconfigured: MAIL_ADMIN_ALLOW_LOCAL && isLocalRequest(req),
