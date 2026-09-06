@@ -29,10 +29,50 @@ const STARTERS = {
     thinking: thinkingLottie, wow: wowLottie, sleepy: sleepyLottie, reading: readingLottie,
 };
 
-async function uploadToBlob(file, type, name) {
-    const res = await fetch(`/api/mascot-upload?filename=${encodeURIComponent(name)}&type=${type}`, {
-        method: 'POST', headers: { 'content-type': 'application/octet-stream' }, body: file,
+// /api/mascot-upload writes caller-supplied bytes to a public bucket, so it
+// now requires a credential. Two deliberate choices here:
+//
+//   1. The credential is MASCOT_UPLOAD_TOKEN, which the server accepts on this
+//      route and nowhere else — not MAIL_ADMIN_TOKEN, which also sends email
+//      and push to the whole user base. The server refuses to run if the two
+//      are set to the same value, so this is enforced, not just intended.
+//   2. It is NEVER written to localStorage or sessionStorage. /admin/* has no
+//      auth gate of its own, so anything persisted here would outlive the tab
+//      on a shared machine and be readable by any XSS on any admin route. It
+//      lives in a module variable for the lifetime of the page and dies with
+//      the tab; the operator re-pastes it next session.
+//
+// Replacing this with a real admin login is still the right end state.
+let sessionUploadToken = '';
+
+async function postUpload(file, type, name, token) {
+    return fetch(`/api/mascot-upload?filename=${encodeURIComponent(name)}&type=${type}`, {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/octet-stream',
+            ...(token ? { authorization: `Bearer ${token}` } : {}),
+        },
+        body: file,
     });
+}
+
+async function uploadToBlob(file, type, name) {
+    let res = await postUpload(file, type, name, sessionUploadToken);
+
+    // 401 means nothing entered yet this page load, or a stale value. Ask once,
+    // retry once, and forget it again if it is rejected.
+    if (res.status === 401) {
+        sessionUploadToken = '';
+        const entered = (window.prompt('Mascot upload token (MASCOT_UPLOAD_TOKEN):') || '').trim();
+        if (!entered) throw new Error('Upload needs the mascot upload token.');
+        sessionUploadToken = entered;
+        res = await postUpload(file, type, name, entered);
+        if (res.status === 401) {
+            sessionUploadToken = '';
+            throw new Error('That upload token was rejected.');
+        }
+    }
+
     if (!res.ok) {
         const e = await res.json().catch(() => ({}));
         throw new Error(e.error || `Upload failed (${res.status})`);
@@ -139,16 +179,21 @@ const MascotEditor = () => {
     // --- custom artwork (uploaded to Vercel Blob; only the URL is stored locally) ---
     const handleArtFile = async (expression, file) => {
         if (!file) return;
+        // SVG is no longer accepted: uploads are served from a public bucket
+        // origin, and an SVG served as image/svg+xml is a script that runs
+        // there. The server rejects it too (415) — this is just the friendlier
+        // message.
         const isSvg = file.type === 'image/svg+xml' || /\.svg$/i.test(file.name);
         const isGif = file.type === 'image/gif' || /\.gif$/i.test(file.name);
         const isLottie = /\.(lottie|json)$/i.test(file.name) || file.type === 'application/json';
-        if (!isSvg && !isGif && !isLottie) { alert('Please choose an SVG, GIF, or Lottie (.json / .lottie) file.'); return; }
+        if (isSvg) { alert('SVG uploads are no longer accepted (they run as script from the asset origin). Please use a GIF or a Lottie (.json / .lottie) file.'); return; }
+        if (!isGif && !isLottie) { alert('Please choose a GIF or Lottie (.json / .lottie) file.'); return; }
         if (file.size > ASSET_MAX_BYTES) {
             alert(`That file is ${(file.size / 1024 / 1024).toFixed(1)} MB — too large (max 5 MB). Please optimize it first.`);
             return;
         }
         if (file.size > ASSET_WARN_BYTES && !confirm(`That file is ${Math.round(file.size / 1024)} KB. Upload anyway?`)) return;
-        const type = isSvg ? 'svg' : isGif ? 'gif' : 'lottie';
+        const type = isGif ? 'gif' : 'lottie';
         setUploading(expression);
         try {
             const url = await uploadToBlob(file, type, file.name);
@@ -467,7 +512,7 @@ const MascotEditor = () => {
                     })}
                 </div>
                 <input
-                    ref={artInputRef} type="file" accept="image/svg+xml,image/gif,application/json,.svg,.gif,.json,.lottie" style={{ display: 'none' }}
+                    ref={artInputRef} type="file" accept="image/gif,application/json,.gif,.json,.lottie" style={{ display: 'none' }}
                     onChange={(e) => { const f = e.target.files?.[0]; e.target.value = ''; if (uploadTarget) handleArtFile(uploadTarget, f); setUploadTarget(null); }}
                 />
             </div>

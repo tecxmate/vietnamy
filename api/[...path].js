@@ -1,5 +1,6 @@
 import crypto from 'crypto';
 import express from 'express';
+import { requireAdminToken } from '../server/adminAuth.js';
 import { maybeMountAuthJs } from '../server/authJsRoutes.js';
 import {
     getMessageScenario,
@@ -51,7 +52,8 @@ app.use(express.json({ limit: '1mb' }));
 
 await maybeMountAuthJs(app);
 
-const MAIL_ADMIN_TOKEN = process.env.MAIL_ADMIN_TOKEN || '';
+// MAIL_ADMIN_TOKEN itself is read lazily inside adminAuth.js, so a value that
+// only appears in the environment after this module is evaluated is still seen.
 const MAIL_ADMIN_ALLOW_LOCAL = process.env.MAIL_ADMIN_ALLOW_LOCAL === 'true';
 const FEEDBACK_SEVERITIES = new Set(['low', 'med', 'high']);
 const FEEDBACK_STATUSES = new Set(['open', 'triaged', 'claimed', 'fixed_pending_approval', 'closed', 'not_reproducible', 'wont_fix']);
@@ -86,18 +88,23 @@ const LEGACY_PUSH_SCENARIOS = {
     new_lesson: 'new_lesson_available',
 };
 
+// The TCP peer address, never X-Forwarded-For: the header is caller-supplied,
+// so trusting it here would let any remote caller claim to be local and open
+// the MAIL_ADMIN_ALLOW_LOCAL escape hatch from the internet.
 function isLocalRequest(req) {
-    const ip = req.ip || req.socket?.remoteAddress || '';
-    return ['127.0.0.1', '::1', '::ffff:127.0.0.1'].includes(ip);
+    const peer = String(req.socket?.remoteAddress || req.connection?.remoteAddress || '');
+    return ['127.0.0.1', '::1', '::ffff:127.0.0.1'].includes(peer);
 }
 
+// One implementation, shared with server/server.js — see server/adminAuth.js.
+// It accepts the union of the credential shapes the two copies used to take
+// (Bearer, x-admin-token, x-mail-admin-token, ?token=), so no client that
+// worked against either entry point is rejected now, and the comparison runs
+// in constant time.
 function requireMailAdmin(req, res) {
-    if (!MAIL_ADMIN_TOKEN && MAIL_ADMIN_ALLOW_LOCAL && isLocalRequest(req)) return true;
-    const header = req.get('authorization') || '';
-    const token = header.startsWith('Bearer ') ? header.slice(7) : req.get('x-admin-token');
-    if (MAIL_ADMIN_TOKEN && token === MAIL_ADMIN_TOKEN) return true;
-    res.status(401).json({ error: 'admin token required' });
-    return false;
+    return requireAdminToken(req, res, {
+        allowLocalWhenUnconfigured: MAIL_ADMIN_ALLOW_LOCAL && isLocalRequest(req),
+    });
 }
 
 async function getAuthenticatedUserId(req) {
