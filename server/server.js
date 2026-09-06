@@ -52,6 +52,13 @@ import {
 } from './opsStore.js';
 import { isR2Configured, putR2Object } from './r2Storage.js';
 import { mountSyncRoutes } from './syncRoutes.js';
+import { identifyMember, memberAuthConfigured } from './memberAuth.js';
+import {
+    consumeTutorMessage,
+    initTutorUsage,
+    refundTutorMessage,
+    tutorUsageReady,
+} from './tutorUsage.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT_DIR = join(__dirname, '..');
@@ -2562,15 +2569,72 @@ const TUTOR_LEVELS = {
     intermediate: 'intermediate (B1) — natural everyday Vietnamese',
 };
 
-// Abuse/cost guardrails for the public, unauthenticated tutor endpoint.
+// Abuse/cost guardrails. These apply to EVERY caller, signed in or not: they
+// are the blunt instruments that bound spend. The per-user allowance below is
+// the sharp one, and it only exists for callers we can identify.
 const TUTOR_MAX_PER_IP_PER_HOUR = Number(process.env.TUTOR_MAX_PER_IP_PER_HOUR) || 60;
 const TUTOR_GLOBAL_DAILY_MAX = Number(process.env.TUTOR_GLOBAL_DAILY_MAX) || 5000;
 const TUTOR_MAX_MESSAGE_CHARS = 600;
+
+// ── Per-user free allowance (the paywall trigger) ────────────────────────────
+// Messages a signed-in learner may send per day before we ask them to upgrade.
+// Anonymous callers are NOT subject to this — see the note on the handler.
+const TUTOR_FREE_MESSAGES_PER_DAY = Number.isFinite(Number(process.env.TUTOR_FREE_MESSAGES_PER_DAY))
+    ? Number(process.env.TUTOR_FREE_MESSAGES_PER_DAY)
+    : 30;
+
+// ── The one-line tightening switch ───────────────────────────────────────────
+// FALSE (the default) keeps the endpoint open to unauthenticated callers, and
+// that default is load-bearing: every app build already installed on a phone
+// sends no token at all. Flipping this to true before those builds age out
+// would break the tutor for every one of them — an outage of our own making.
+//
+// READ THIS BEFORE CALLING THE FREE ALLOWANCE "ENFORCED": while this is false,
+// it is not. Anonymous callers are deliberately unmetered, so anyone who hits
+// their daily limit can drop the Authorization header and carry on. That is
+// not a bug in the meter, it is the direct cost of keeping old builds alive,
+// and there is no way to have both. Until this flips, the per-user allowance
+// is a paywall the real app HONOURS, not one the server ENFORCES.
+// What is enforced for everyone, signed in or not, is the pair that actually
+// bounds spend: the per-IP hourly limiter and the global daily cap.
+//
+// Flip it to true only once BOTH are true:
+//   1. an app version that sends the member JWT (this change, app side) has
+//      shipped and telemetry shows old builds have fallen to a share you are
+//      willing to break; and
+//   2. JWT_SECRET is set here to the same value NestJS signs with, and you have
+//      confirmed a real token from the app verifies (watch for 'anonymous' in
+//      the logs after deploying the secret).
+// Until then, an unauthenticated request is served exactly as it is today.
+const TUTOR_REQUIRE_AUTH = String(process.env.TUTOR_REQUIRE_AUTH || '').toLowerCase() === 'true';
+
 let tutorCapDay = '';
 let tutorCapCount = 0;
 
+// The per-user meter. Unlike the global cap below, this one is on disk and so
+// survives a restart. Failing to open it disables per-user metering only; the
+// tutor keeps serving.
+initTutorUsage(join(__dirname, 'databases'));
+
+// One line at boot that says what the tutor is actually enforcing. This is the
+// check for the ops step: after setting JWT_SECRET, a restart should print
+// auth=on. auth=off means every caller is anonymous no matter what they send.
+console.log(
+    `Tutor guardrails: auth=${memberAuthConfigured() ? 'on' : 'off'} `
+    + `require_auth=${TUTOR_REQUIRE_AUTH} `
+    + `per_user_meter=${tutorUsageReady() ? 'on' : 'off'} `
+    + `free_per_day=${TUTOR_FREE_MESSAGES_PER_DAY} `
+    + `ip_per_hour=${TUTOR_MAX_PER_IP_PER_HOUR} global_per_day=${TUTOR_GLOBAL_DAILY_MAX}`,
+);
+
 // Hard daily ceiling on total tutor calls so cost is bounded regardless of the
 // client-side limit. Resets on UTC date change. Returns false once exceeded.
+//
+// KNOWN WEAKNESS, deliberately left alone here: this counter is a module
+// variable, so it zeroes on every deploy and each instance keeps its own — N
+// replicas mean N x TUTOR_GLOBAL_DAILY_MAX. It is a cost ceiling, not an
+// entitlement, so the looseness has never mattered; the per-user allowance,
+// which does need to be exact, is in tutorUsage.js on disk instead.
 function withinGlobalTutorCap() {
     const today = new Date().toISOString().slice(0, 10);
     if (today !== tutorCapDay) { tutorCapDay = today; tutorCapCount = 0; }
@@ -2615,10 +2679,73 @@ app.post('/api/tutor', async (req, res) => {
         return res.status(429).json({ error: 'quota', message: 'The AI tutor is resting for today. Please come back tomorrow.' });
     }
 
+    // ── Who is asking ────────────────────────────────────────────────────────
+    // A member access token signed by NestJS, if the client sent one. Old app
+    // builds send nothing and must keep working, so absence is not an error.
+    const member = identifyMember(req);
+
+    // An UNVERIFIABLE token is treated as anonymous, not as a 401. That choice
+    // is deliberate and it is the safer failure mode here:
+    //
+    //  - Access tokens live 7 days and the tutor's HTTP client in the app is a
+    //    bare Dio with no refresh interceptor (unlike the main ApiClient), so
+    //    nothing on the client would recover from a 401. A learner whose token
+    //    lapsed mid-conversation would just be stuck.
+    //  - Nothing here is private. This endpoint spends money; it does not read
+    //    anyone's data. The token buys a per-user allowance, and falling back
+    //    to anonymous means falling back to the STRICTER treatment (IP limiter
+    //    plus global cap), never a looser one.
+    //  - Verification failure never yields a user id (see memberAuth.js), so a
+    //    forged token cannot borrow someone else's allowance. It just gets the
+    //    anonymous path, same as a lapsed one.
+    //
+    // TUTOR_REQUIRE_AUTH flips this to a hard 401 once old builds have aged out.
+    if (TUTOR_REQUIRE_AUTH && member.status !== 'authenticated') {
+        return res.status(401).json({
+            error: 'auth_required',
+            message: 'Please sign in to keep practising with the tutor.',
+        });
+    }
+    if (member.status === 'invalid') {
+        console.warn(`Tutor: ignoring unverifiable member token (${member.reason}); treating as anonymous.`);
+    }
+    const userId = member.userId;
+
     const history = Array.isArray(req.body?.messages) ? req.body.messages : [];
     const level = TUTOR_LEVELS[req.body?.level] || TUTOR_LEVELS.new;
     if (history.length === 0) {
         return res.status(400).json({ error: 'messages required' });
+    }
+
+    // ── Per-user free allowance ──────────────────────────────────────────────
+    // Metered only for callers we could identify. An anonymous caller keeps
+    // exactly today's behaviour: IP limiter plus global cap, nothing new. That
+    // is what lets this ship ahead of the app change without an outage.
+    //
+    // Charged here, after the request is known to be well-formed but before any
+    // paid work, and refunded further down if the upstream call never lands —
+    // an outage on our side should not eat someone's allowance.
+    const allowance = consumeTutorMessage(userId, TUTOR_FREE_MESSAGES_PER_DAY);
+    if (!allowance.ok) {
+        // A distinct code, on purpose. The app has to tell three different
+        // things apart and say three different things to the learner:
+        //   'rate_limited'      -> you are going too fast, wait a moment
+        //   'quota'             -> the tutor is resting for everyone today
+        //   'free_limit_reached'-> YOUR free messages are used up  ← paywall
+        // Collapsing this into either of the others would make the upgrade
+        // prompt fire on a transient hiccup, or never fire at all.
+        return res.status(429).json({
+            error: 'free_limit_reached',
+            message: "You've used your free tutor messages for today.",
+            limit: allowance.limit,
+            used: allowance.used,
+            resetAt: allowance.resetAt,
+            upgrade: true,
+        });
+    }
+    if (allowance.metered) {
+        res.set('X-Tutor-Free-Limit', String(allowance.limit));
+        res.set('X-Tutor-Free-Remaining', String(Math.max(allowance.limit - allowance.used, 0)));
     }
 
     // Map chat history → OpenAI messages (me→user, tutor→assistant).
@@ -2632,6 +2759,10 @@ app.post('/api/tutor', async (req, res) => {
     // call. If flagged, deflect gently in character without spending on OpenAI.
     const lastUser = [...history].reverse().find(m => m.from === 'me');
     const lastUserText = clampText(lastUser?.vi || lastUser?.en || '', TUTOR_MAX_MESSAGE_CHARS);
+    // Note: a deflected message is NOT refunded. The learner sent a message and
+    // got a reply, so from the product's side the turn happened — and refunding
+    // here would open an unlimited free channel to anyone willing to trip the
+    // filter. The rule stays "refund only when the reply never came".
     if (await isFlaggedContent(lastUserText, apiKey)) {
         return res.json({
             vi: 'Mình chỉ ở đây để giúp bạn học tiếng Việt thôi nhé. Mình nói chuyện khác nha?',
@@ -2742,6 +2873,10 @@ app.post('/api/tutor', async (req, res) => {
         if (!r.ok) {
             const detail = await r.text().catch(() => '');
             console.error('OpenAI error', r.status, detail.slice(0, 300));
+            // The learner never got a reply, so give the message back. Safe to
+            // do unconditionally: refunds are clamped at zero, and every other
+            // guardrail (IP, global cap) still applies to the retry.
+            refundTutorMessage(userId);
             if (r.status === 429) {
                 return res.status(502).json({ error: 'quota', message: 'The AI tutor is out of quota or rate-limited. Check your OpenAI plan/billing, then try again.' });
             }
@@ -2761,6 +2896,7 @@ app.post('/api/tutor', async (req, res) => {
         });
     } catch (err) {
         console.error('Tutor error:', err.message);
+        refundTutorMessage(userId);
         return res.status(502).json({ error: 'failed', message: 'AI request failed.' });
     }
 });
