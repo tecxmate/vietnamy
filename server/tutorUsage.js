@@ -129,6 +129,17 @@ export function tutorUsageReady() {
 }
 
 /**
+ * The open handle, for other tutor-side state that belongs in the same file.
+ *
+ * Telemetry (tutorMetrics.js) lives in this database rather than its own, so
+ * there is one TUTOR_USAGE_DB_PATH to point at a persistent volume, one file
+ * to back up, and one connection. Null when the store failed to open.
+ */
+export function tutorStoreDb() {
+    return db;
+}
+
+/**
  * Try to spend one message from `userId`'s allowance for today.
  *
  * Returns { ok, used, limit, resetAt }. `ok:false` means the allowance is spent.

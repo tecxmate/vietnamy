@@ -56,9 +56,18 @@ import { identifyMember, memberAuthConfigured } from './memberAuth.js';
 import {
     consumeTutorMessage,
     initTutorUsage,
+    meteringDay,
     refundTutorMessage,
+    tutorStoreDb,
     tutorUsageReady,
 } from './tutorUsage.js';
+import {
+    forgetTutorUser,
+    initTutorMetrics,
+    recordTutorEvent,
+    summariseTutorUsage,
+    tutorMetricsReady,
+} from './tutorMetrics.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT_DIR = join(__dirname, '..');
@@ -2615,6 +2624,9 @@ let tutorCapCount = 0;
 // survives a restart. Failing to open it disables per-user metering only; the
 // tutor keeps serving.
 initTutorUsage(join(__dirname, 'databases'));
+// Telemetry rides in the same file as the meter, so there is one path to point
+// at a volume. If the meter failed to open this is a no-op.
+initTutorMetrics(tutorStoreDb());
 
 // One line at boot that says what the tutor is actually enforcing. This is the
 // check for the ops step: after setting JWT_SECRET, a restart should print
@@ -2623,6 +2635,7 @@ console.log(
     `Tutor guardrails: auth=${memberAuthConfigured() ? 'on' : 'off'} `
     + `require_auth=${TUTOR_REQUIRE_AUTH} `
     + `per_user_meter=${tutorUsageReady() ? 'on' : 'off'} `
+    + `metrics=${tutorMetricsReady() ? 'on' : 'off'} `
     + `free_per_day=${TUTOR_FREE_MESSAGES_PER_DAY} `
     + `ip_per_hour=${TUTOR_MAX_PER_IP_PER_HOUR} global_per_day=${TUTOR_GLOBAL_DAILY_MAX}`,
 );
@@ -2640,6 +2653,27 @@ function withinGlobalTutorCap() {
     if (today !== tutorCapDay) { tutorCapDay = today; tutorCapCount = 0; }
     if (tutorCapCount >= TUTOR_GLOBAL_DAILY_MAX) return false;
     tutorCapCount += 1;
+    return true;
+}
+
+// ── Keeping the event log bounded ────────────────────────────────────────────
+// Three outcomes repeat once per request for as long as a condition holds: the
+// IP limiter and the global cap answer 429 to EVERY call above the ceiling, and
+// a missing API key answers 503 forever. One event row each would let a client
+// stuck in a retry loop write unbounded rows into a table whose whole premise
+// is that it is bounded by the daily cap.
+//
+// What is worth measuring is that a caller HIT the condition, not how many
+// times their retry loop noticed. So those three are logged once per distinct
+// window. The memo is in-process and holds nothing that is ever written down;
+// it keys on the same IP the rate limiter already buckets by, and clears
+// wholesale rather than tracking per-entry expiry — losing it just means one
+// extra row.
+const tutorLoggedOnce = new Map();
+function tutorLogOnce(key) {
+    if (tutorLoggedOnce.has(key)) return false;
+    if (tutorLoggedOnce.size > 5000) tutorLoggedOnce.clear();
+    tutorLoggedOnce.set(key, true);
     return true;
 }
 
@@ -2664,26 +2698,86 @@ async function isFlaggedContent(text, apiKey) {
 }
 
 app.post('/api/tutor', async (req, res) => {
+    // ── Telemetry context ───────────────────────────────────────────────────
+    // Gathered up front so an early bail — rate limited, capped, spent
+    // allowance — is still attributable. Every field here is a count, a
+    // catalogue id or an enum: no message text reaches the event log, ever.
+    // tutorMetrics.js states the whole boundary.
+    const startedAt = Date.now();
+    const clientIp = requestIp(req);
+
+    // identifyMember() moved above the guardrails so a bounced request still
+    // records WHO bounced. It is pure and does no I/O — one jwt.verify — so
+    // the order in which the checks below fire is unchanged.
+    const member = identifyMember(req);
+
+    const history = Array.isArray(req.body?.messages) ? req.body.messages : [];
+    // The learner's turn number in this conversation, read straight out of the
+    // history the client already sends. Turn 1 IS a conversation start, which
+    // is where conversation counts and depth come from — no conversation id
+    // had to be invented and no app change was needed, so it measures builds
+    // that shipped long before any of this.
+    const turn = history.filter(m => m?.from === 'me').length;
+    // A bounded catalogue id ('scene_pho_001'), never free text. Builds that
+    // predate it send nothing, which is why the summary reports
+    // '(not reported)' instead of pretending the scenario was unknown.
+    const scenarioId = clampText(req.body?.scenarioId, 60);
+    const levelKey = TUTOR_LEVELS[req.body?.level] ? String(req.body.level) : 'new';
+    let openAiUsage = null;
+
+    /**
+     * Record the outcome, then answer. Every exit from this handler goes
+     * through here, which is what makes "where does the tutor fail" a query
+     * rather than a log grep.
+     *
+     * `log:false` suppresses the row for conditions that repeat once per
+     * request until they clear — see tutorLogOnce above.
+     */
+    const finish = (outcome, status, payload, { log = true } = {}) => {
+        if (log) {
+            recordTutorEvent({
+                userId: member.userId,
+                turn,
+                scenarioId,
+                level: levelKey,
+                outcome,
+                status,
+                latencyMs: Date.now() - startedAt,
+                tokensIn: openAiUsage?.prompt_tokens || 0,
+                tokensOut: openAiUsage?.completion_tokens || 0,
+                model: openAiUsage ? OPENAI_MODEL : '',
+            });
+        }
+        return res.status(status).json(payload);
+    };
+
     const apiKey = process.env.OPENAI_API_KEY;
     if (!apiKey) {
-        return res.status(503).json({ error: 'no_key', message: 'Add OPENAI_API_KEY to server/.env.local to enable the AI tutor.' });
+        return finish('no_key', 503,
+            { error: 'no_key', message: 'Add OPENAI_API_KEY to server/.env.local to enable the AI tutor.' },
+            { log: tutorLogOnce(`nk|${meteringDay()}`) });
     }
 
     // Per-IP rate limit: a safety net well above normal use that stops loops.
-    const ipLimit = checkMailRateLimit(`tutor:${requestIp(req)}`, { max: TUTOR_MAX_PER_IP_PER_HOUR, windowMs: 60 * 60 * 1000 });
+    const ipLimit = checkMailRateLimit(`tutor:${clientIp}`, { max: TUTOR_MAX_PER_IP_PER_HOUR, windowMs: 60 * 60 * 1000 });
     if (!ipLimit.ok) {
-        return res.status(429).json({ error: 'rate_limited', message: 'Too many messages right now — please slow down and try again shortly.', resetAt: ipLimit.resetAt });
+        return finish('rate_limited', 429,
+            { error: 'rate_limited', message: 'Too many messages right now — please slow down and try again shortly.', resetAt: ipLimit.resetAt },
+            { log: tutorLogOnce(`rl|${clientIp}|${ipLimit.resetAt}`) });
     }
     // Global daily cost ceiling (bounds spend no matter what any client does).
     if (!withinGlobalTutorCap()) {
-        return res.status(429).json({ error: 'quota', message: 'The AI tutor is resting for today. Please come back tomorrow.' });
+        return finish('global_quota', 429,
+            { error: 'quota', message: 'The AI tutor is resting for today. Please come back tomorrow.' },
+            { log: tutorLogOnce(`gq|${meteringDay()}|${member.userId || clientIp}`) });
     }
 
     // ── Who is asking ────────────────────────────────────────────────────────
     // A member access token signed by NestJS, if the client sent one. Old app
     // builds send nothing and must keep working, so absence is not an error.
-    const member = identifyMember(req);
-
+    // (Identified in the telemetry preamble above so a bounced request is
+    // attributable too; nothing about the decisions below has moved.)
+    //
     // An UNVERIFIABLE token is treated as anonymous, not as a 401. That choice
     // is deliberate and it is the safer failure mode here:
     //
@@ -2701,7 +2795,7 @@ app.post('/api/tutor', async (req, res) => {
     //
     // TUTOR_REQUIRE_AUTH flips this to a hard 401 once old builds have aged out.
     if (TUTOR_REQUIRE_AUTH && member.status !== 'authenticated') {
-        return res.status(401).json({
+        return finish('auth_required', 401, {
             error: 'auth_required',
             message: 'Please sign in to keep practising with the tutor.',
         });
@@ -2711,10 +2805,9 @@ app.post('/api/tutor', async (req, res) => {
     }
     const userId = member.userId;
 
-    const history = Array.isArray(req.body?.messages) ? req.body.messages : [];
     const level = TUTOR_LEVELS[req.body?.level] || TUTOR_LEVELS.new;
     if (history.length === 0) {
-        return res.status(400).json({ error: 'messages required' });
+        return finish('bad_request', 400, { error: 'messages required' });
     }
 
     // ── Per-user free allowance ──────────────────────────────────────────────
@@ -2734,7 +2827,7 @@ app.post('/api/tutor', async (req, res) => {
         //   'free_limit_reached'-> YOUR free messages are used up  ← paywall
         // Collapsing this into either of the others would make the upgrade
         // prompt fire on a transient hiccup, or never fire at all.
-        return res.status(429).json({
+        return finish('free_limit', 429, {
             error: 'free_limit_reached',
             message: "You've used your free tutor messages for today.",
             limit: allowance.limit,
@@ -2764,7 +2857,7 @@ app.post('/api/tutor', async (req, res) => {
     // here would open an unlimited free channel to anyone willing to trip the
     // filter. The rule stays "refund only when the reply never came".
     if (await isFlaggedContent(lastUserText, apiKey)) {
-        return res.json({
+        return finish('moderated', 200, {
             vi: 'Mình chỉ ở đây để giúp bạn học tiếng Việt thôi nhé. Mình nói chuyện khác nha?',
             en: "I'm just here to help you practice Vietnamese. Shall we talk about something else?",
             correction: '',
@@ -2877,19 +2970,24 @@ app.post('/api/tutor', async (req, res) => {
             // do unconditionally: refunds are clamped at zero, and every other
             // guardrail (IP, global cap) still applies to the retry.
             refundTutorMessage(userId);
+            // Three buckets, because they need three different responses from
+            // whoever is on call: top up billing, fix the key, or wait it out.
             if (r.status === 429) {
-                return res.status(502).json({ error: 'quota', message: 'The AI tutor is out of quota or rate-limited. Check your OpenAI plan/billing, then try again.' });
+                return finish('upstream_quota', 502, { error: 'quota', message: 'The AI tutor is out of quota or rate-limited. Check your OpenAI plan/billing, then try again.' });
             }
             if (r.status === 401 || r.status === 403) {
-                return res.status(502).json({ error: 'auth', message: 'OpenAI rejected the request (bad or unauthorized API key). Check OPENAI_API_KEY in server/.env.local.' });
+                return finish('upstream_auth', 502, { error: 'auth', message: 'OpenAI rejected the request (bad or unauthorized API key). Check OPENAI_API_KEY in server/.env.local.' });
             }
-            return res.status(502).json({ error: 'upstream', message: 'AI service error, please try again.' });
+            return finish('upstream_error', 502, { error: 'upstream', message: 'AI service error, please try again.' });
         }
         const data = await r.json();
+        // Token counts, so "what does this cost" has an answer that is not a
+        // guess. Counts only — the completion itself is never recorded.
+        openAiUsage = data?.usage || null;
         const raw = data?.choices?.[0]?.message?.content || '';
         let parsed;
         try { parsed = JSON.parse(raw); } catch { parsed = { reply_vi: raw, reply_en: '' }; }
-        return res.json({
+        return finish('ok', 200, {
             vi: parsed.reply_vi || '',
             en: parsed.reply_en || '',
             correction: parsed.correction || '',
@@ -2897,8 +2995,48 @@ app.post('/api/tutor', async (req, res) => {
     } catch (err) {
         console.error('Tutor error:', err.message);
         refundTutorMessage(userId);
-        return res.status(502).json({ error: 'failed', message: 'AI request failed.' });
+        // Separate the clock running out from the call being refused: one says
+        // raise the timeout or the model is slow, the other says the network or
+        // the request is broken. Same body on the wire either way — the app
+        // keys off `error`, and that string does not change.
+        const timedOut = /timeout|timedout|etimedout/i.test(`${err?.code || ''} ${err?.name || ''}`);
+        return finish(timedOut ? 'timeout' : 'failed', 502, { error: 'failed', message: 'AI request failed.' });
     }
+});
+
+// ── Reading the numbers ──────────────────────────────────────────────────────
+// A metric nobody can read is not a metric. These two are the whole reader
+// surface, and they reuse MAIL_ADMIN_TOKEN — the operator credential this
+// server already has, already documents in .env.example, and already guards
+// /api/push/stats and /api/admin/notifications with. Inventing a second admin
+// secret would mean two things to rotate and one more to leak.
+//
+// `npm run tutor:metrics` calls the first one and prints it as a page of text;
+// scripts/tutor-metrics.mjs is the thing to actually run.
+app.get('/api/tutor/stats', (req, res) => {
+    if (!requireMailAdmin(req, res)) return;
+    const days = Number(req.query.days) || 30;
+    res.json(summariseTutorUsage({ days }));
+});
+
+// Erasure, for both tutor tables at once.
+//
+// The event log and the allowance counters are both keyed by the NestJS user
+// id, and until now neither could honour a deletion request. Shipping the log
+// without this would have widened a gap the product is already closing
+// elsewhere, so it covers the counters too.
+//
+// It deletes; it does not anonymise. And it is honest about the side effect:
+// wiping the counter resets that learner's daily allowance, which is the right
+// way round — the alternative is keeping a record of someone who asked to be
+// forgotten purely so we can keep billing against it.
+app.delete('/api/tutor/user-data/:userId', (req, res) => {
+    if (!requireMailAdmin(req, res)) return;
+    const userId = clampText(req.params.userId, 100);
+    if (!userId) return res.status(400).json({ error: 'userId required' });
+    const removed = forgetTutorUser(userId);
+    console.log(`Tutor erasure for ${userId}: ${removed.events} event(s), ${removed.usage} counter(s)`);
+    res.json({ ok: !removed.error, userId, removed });
 });
 
 app.get('/api/push/vapid-public-key', (_req, res) => {
