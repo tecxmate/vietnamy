@@ -6,8 +6,9 @@
 #
 #   lint       — zero-error policy repo-wide (compiler-era React diagnostics
 #                are warnings; see eslint.config.js)
-#   validate   — curriculum schema, the spelling lexicon⟷rules contract, and
-#                the spoken-number rules
+#   validate   — curriculum schema, the spelling lexicon⟷rules contract, the
+#                spoken-number rules, part-of-speech tagging, and that neither
+#                upload route is open to the internet
 #   build      — the production bundle must compile
 #   smoke      — the built app boots; every key route renders in a real
 #                Chromium with no page errors (scripts/smoke-routes.mjs)
@@ -58,6 +59,12 @@ jobs:
 
       - name: Validate API route coverage
         run: npm run validate:routes
+
+      - name: Validate part-of-speech tagging
+        run: npm run validate:pos
+
+      - name: Validate upload auth
+        run: npm run validate:upload-auth
 
       - name: Build
         run: npx vite build

@@ -4,9 +4,13 @@
 // { url } — a public Blob URL the editor saves in the asset registry.
 import { put } from '@vercel/blob';
 import { isR2Configured, putR2Object } from '../server/r2Storage.js';
+import { requireAdminToken } from '../server/adminAuth.js';
 
+// `svg` is deliberately absent — see the matching note in server/server.js.
+// An accepted image/svg+xml is a script the public bucket will serve back and
+// execute. Unlisted types are rejected rather than falling through to
+// application/octet-stream.
 const CONTENT_TYPES = {
-    svg: 'image/svg+xml',
     gif: 'image/gif',
     lottie: 'application/json',
     json: 'application/json',
@@ -17,8 +21,17 @@ export default async function handler(req, res) {
         res.status(405).json({ error: 'Method not allowed' });
         return;
     }
+    // Admin only. There is no localhost escape hatch on a serverless function:
+    // with MAIL_ADMIN_TOKEN unset, every caller is denied.
+    if (!requireAdminToken(req, res)) return;
+
     try {
-        const type = String(req.query.type || 'svg');
+        const type = String(req.query.type || 'lottie');
+        const contentType = CONTENT_TYPES[type];
+        if (!contentType) {
+            res.status(415).json({ error: 'Unsupported upload type. Use gif, lottie, or json.' });
+            return;
+        }
         const filename = String(req.query.filename || 'asset').replace(/[^\w.-]/g, '_');
 
         // Get the raw bytes whether Vercel pre-buffered them or left a stream.
@@ -47,7 +60,7 @@ export default async function handler(req, res) {
                 bucket: process.env.R2_MASCOT_BUCKET || process.env.R2_BUCKET || process.env.TTS_BUCKET || 'tts-cache',
                 key,
                 body: buffer,
-                contentType: CONTENT_TYPES[type] || 'application/octet-stream',
+                contentType,
             });
             res.status(200).json({ url: upload.url, provider: upload.provider, key });
             return;
@@ -60,7 +73,7 @@ export default async function handler(req, res) {
 
         const blob = await put(`mascot/${Date.now()}-${filename}`, buffer, {
             access: 'public',
-            contentType: CONTENT_TYPES[type] || 'application/octet-stream',
+            contentType,
             token: process.env.BLOB_READ_WRITE_TOKEN,
         });
         res.status(200).json({ url: blob.url });

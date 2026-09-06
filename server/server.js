@@ -52,6 +52,7 @@ import {
 } from './opsStore.js';
 import { isR2Configured, putR2Object } from './r2Storage.js';
 import { mountSyncRoutes } from './syncRoutes.js';
+import { requireAdminToken } from './adminAuth.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT_DIR = join(__dirname, '..');
@@ -83,8 +84,20 @@ await maybeMountAuthJs(app);
 
 // Mascot art upload → Vercel Blob by default; R2 is available behind
 // MASCOT_STORAGE_PROVIDER=r2 for the backend migration.
-const MASCOT_BLOB_TYPES = { svg: 'image/svg+xml', gif: 'image/gif', lottie: 'application/json', json: 'application/json' };
+//
+// `svg` is deliberately absent. Uploads land on a public bucket origin and are
+// served back with the content type recorded here, so an accepted
+// image/svg+xml is a script the bucket will execute for anyone who opens the
+// asset URL. Mascot art is Lottie or GIF; SVG bought nothing worth that.
+// Anything not listed is rejected outright rather than stored as
+// application/octet-stream, so a caller cannot smuggle a type past the table.
+const MASCOT_BLOB_TYPES = { gif: 'image/gif', lottie: 'application/json', json: 'application/json' };
 const FEEDBACK_SCREENSHOT_TYPES = new Set(['image/jpeg', 'image/png', 'image/webp']);
+// Screenshots stay open on purpose — they are attached by ordinary learners
+// reporting a bug from inside the app, who hold no admin token. What was
+// missing is a ceiling: 5 MB × unlimited requests is free storage for anyone
+// who finds the route. Per-IP, reusing the limiter the mail/tutor routes use.
+const FEEDBACK_SCREENSHOT_MAX_PER_IP_PER_HOUR = 20;
 
 function feedbackScreenshotExt(type) {
     if (type === 'image/png') return 'png';
@@ -93,8 +106,18 @@ function feedbackScreenshotExt(type) {
 }
 
 app.post('/api/mascot-upload', express.raw({ type: '*/*', limit: '6mb' }), async (req, res) => {
+    // Admin only. This writes caller-controlled bytes to a public bucket under
+    // a caller-influenced content type; it was reachable by anyone.
+    if (!requireAdminToken(req, res, {
+        allowLocalWhenUnconfigured: MAIL_ADMIN_ALLOW_LOCAL && isLocalRequest(req),
+    })) return;
+
     try {
-        const type = String(req.query.type || 'svg');
+        const type = String(req.query.type || 'lottie');
+        const contentType = MASCOT_BLOB_TYPES[type];
+        if (!contentType) {
+            return res.status(415).json({ error: 'Unsupported upload type. Use gif, lottie, or json.' });
+        }
         const filename = String(req.query.filename || 'asset').replace(/[^\w.-]/g, '_');
         if (!req.body || !req.body.length) return res.status(400).json({ error: 'Empty upload.' });
 
@@ -107,7 +130,7 @@ app.post('/api/mascot-upload', express.raw({ type: '*/*', limit: '6mb' }), async
                 bucket: process.env.R2_MASCOT_BUCKET || process.env.R2_BUCKET || process.env.TTS_BUCKET || 'tts-cache',
                 key,
                 body: req.body,
-                contentType: MASCOT_BLOB_TYPES[type] || 'application/octet-stream',
+                contentType,
             });
             return res.json({ url: upload.url, provider: upload.provider, key });
         }
@@ -117,7 +140,7 @@ app.post('/api/mascot-upload', express.raw({ type: '*/*', limit: '6mb' }), async
         }
         const blob = await blobPut(`mascot/${Date.now()}-${filename}`, req.body, {
             access: 'public',
-            contentType: MASCOT_BLOB_TYPES[type] || 'application/octet-stream',
+            contentType,
             token: process.env.BLOB_READ_WRITE_TOKEN,
         });
         res.json({ url: blob.url });
@@ -127,6 +150,18 @@ app.post('/api/mascot-upload', express.raw({ type: '*/*', limit: '6mb' }), async
 });
 
 app.post('/api/feedback-screenshot', express.raw({ type: '*/*', limit: '5mb' }), async (req, res) => {
+    // Shed abusive callers before doing anything else — including before the
+    // config check, so a misconfigured deployment still can't be used as a
+    // free request amplifier. Deliberately NOT behind the admin token: this is
+    // how a learner attaches a screenshot to an in-app bug report.
+    const limit = checkMailRateLimit(`feedback-screenshot:${requestIp(req)}`, {
+        max: FEEDBACK_SCREENSHOT_MAX_PER_IP_PER_HOUR,
+        windowMs: 60 * 60 * 1000,
+    });
+    if (!limit.ok) {
+        return res.status(429).json({ error: 'Too many screenshots. Try again later.', resetAt: limit.resetAt });
+    }
+
     if (!isR2Configured()) {
         return res.status(503).json({ error: 'R2 storage is not configured.' });
     }
@@ -243,7 +278,8 @@ async function loadWebPush() {
 // ---------------------------------------------------------------------------
 // Transactional email MVP (Resend-compatible HTTP API)
 // ---------------------------------------------------------------------------
-const MAIL_ADMIN_TOKEN = process.env.MAIL_ADMIN_TOKEN || '';
+// MAIL_ADMIN_TOKEN itself is read lazily inside adminAuth.js — see the note
+// there about loadEnvFile() running after the import graph is evaluated.
 const MAIL_ADMIN_ALLOW_LOCAL = process.env.MAIL_ADMIN_ALLOW_LOCAL === 'true';
 const SUPABASE_AUTH_URL = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL || '';
 const SUPABASE_ANON_KEY = process.env.VITE_SUPABASE_ANON_KEY || '';
@@ -262,13 +298,14 @@ function isLocalRequest(req) {
     return ip === '::1' || ip === '127.0.0.1' || ip === '::ffff:127.0.0.1';
 }
 
+// Same credential and the same three header/query shapes as before; the
+// comparison now runs in constant time and lives in one place (adminAuth.js)
+// that the upload routes and the api/ serverless functions share.
 function requireMailAdmin(req, res) {
-    if (!MAIL_ADMIN_TOKEN && MAIL_ADMIN_ALLOW_LOCAL && isLocalRequest(req)) return true;
-    const header = String(req.headers.authorization || '').replace(/^Bearer\s+/i, '');
-    const token = header || String(req.headers['x-mail-admin-token'] || req.query.token || '');
-    if (MAIL_ADMIN_TOKEN && token === MAIL_ADMIN_TOKEN) return true;
-    res.status(401).json({ error: 'mail admin token required' });
-    return false;
+    return requireAdminToken(req, res, {
+        allowLocalWhenUnconfigured: MAIL_ADMIN_ALLOW_LOCAL && isLocalRequest(req),
+        message: 'mail admin token required',
+    });
 }
 
 async function getAuthenticatedUserId(req) {
